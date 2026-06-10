@@ -1,3 +1,4 @@
+"use client"
 import { StatusTag, statusConfig } from "@/components/business/status-tag"
 import type { Status } from "@/components/business/status-tag"
 import {

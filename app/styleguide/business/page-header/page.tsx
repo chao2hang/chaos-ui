@@ -1,3 +1,4 @@
+"use client"
 import { PageHeader } from "@/components/business/page-header"
 import { Button } from "@/components/ui/button"
 import { PlusIcon, DownloadIcon } from "lucide-react"

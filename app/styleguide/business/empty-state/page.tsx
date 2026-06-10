@@ -1,3 +1,4 @@
+"use client"
 import { EmptyState } from "@/components/business/empty-state"
 import { Button } from "@/components/ui/button"
 import { FolderOpenIcon, SearchIcon, FileTextIcon, UsersIcon } from "lucide-react"

@@ -1,3 +1,4 @@
+"use client"
 import { StatCard } from "@/components/business/stat-card"
 import { UsersIcon, DollarSignIcon, ShoppingCartIcon, ActivityIcon } from "lucide-react"
 import {
