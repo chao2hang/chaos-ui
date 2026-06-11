@@ -68,6 +68,7 @@ All colors, spacing, and visual properties use CSS custom properties defined in 
 | `--brand-50` to `--brand-950` | Brand color scale |
 | `--border` / `--input` / `--ring` | Borders, inputs, focus rings |
 | `--surface` | Elevated surfaces |
+| `--chart-1` to `--chart-5` | Chart colors (blue, green, orange, purple, yellow) |
 
 ### Spacing
 
@@ -248,8 +249,70 @@ All colors use CSS custom properties with `.dark` class variants. Components aut
 - ❌ Using `@apply` when a Tailwind class exists
 - ❌ Importing from relative paths (use `@/` alias)
 
-## 15. Changelog
+## 15. Responsive Design
+
+### Mobile-First Approach
+
+Use Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`) for responsive styling:
+
+```tsx
+<Button className="h-12 px-6 text-base md:h-8 md:px-3 md:text-sm">
+  Responsive Button
+</Button>
+```
+
+### Mobile Components
+
+For mobile-specific components, create wrappers in `components/business/`:
+
+```tsx
+// components/business/mobile-button.tsx
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+
+export function MobileButton({ className, ...props }) {
+  return (
+    <Button
+      className={cn(
+        "h-12 px-6 text-base",  // Mobile: larger touch target
+        "md:h-8 md:px-3 md:text-sm",  // Desktop: standard size
+        className
+      )}
+      {...props}
+    />
+  )
+}
+```
+
+### Responsive Preview
+
+Use `ResponsivePreview` component to test components at different breakpoints:
+
+```tsx
+import { ResponsivePreview } from "@/components/business/responsive-preview"
+
+<ResponsivePreview device="mobile">
+  <MobileButton>Test</MobileButton>
+</ResponsivePreview>
+```
+
+### Device Breakpoints
+
+| Device | Width | Height |
+|--------|-------|--------|
+| Mobile | 375px | 667px |
+| Tablet | 768px | 1024px |
+| Desktop | 1024px | 768px |
+
+### Mobile Component Naming
+
+- Prefix: `Mobile` (e.g., `MobileButton`, `MobileInput`)
+- Location: `components/business/mobile-*.tsx`
+- Props: Same as base component + mobile-specific props
+
+## 16. Changelog
 
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-06-10 | Initial spec created | System |
+| 2026-06-11 | Added responsive design guidelines | System |

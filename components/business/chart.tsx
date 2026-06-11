@@ -9,16 +9,34 @@ import {
 import { cn } from "@/lib/utils"
 
 const defaultColors = [
-  "hsl(var(--chart-1))",
-  "hsl(var(--chart-2))",
-  "hsl(var(--chart-3))",
-  "hsl(var(--chart-4))",
-  "hsl(var(--chart-5))",
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
+]
+
+// 品牌色阶梯
+const brandColors = [
+  "var(--brand-500)",
+  "var(--brand-600)",
+  "var(--brand-400)",
+  "var(--brand-700)",
+  "var(--brand-300)",
+]
+
+// 状态色
+const statusColors = [
+  "var(--primary)",
+  "var(--success)",
+  "var(--warning)",
+  "var(--info)",
+  "var(--destructive)",
 ]
 
 function ChartContainer({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("w-full h-[350px]", className)}>
+    <div className={cn("w-full min-w-[320px] h-[350px]", className)}>
       <ResponsiveContainer width="100%" height="100%">
         {children}
       </ResponsiveContainer>
@@ -46,13 +64,13 @@ function LineChart({ data, categories, index, colors = defaultColors, className 
   return (
     <ChartContainer className={className}>
       <RLineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-        <XAxis dataKey={index} tick={{ fontSize: 12 }} className="text-muted-foreground" />
-        <YAxis tick={{ fontSize: 12 }} className="text-muted-foreground" />
+        <CartesianGrid strokeDasharray="3 3" stroke="color-mix(in srgb, var(--border) 50%, transparent)" />
+        <XAxis dataKey={index} tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
+        <YAxis tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
         <Tooltip content={<ChartTooltip />} />
         <Legend />
         {categories.map((cat, i) => (
-          <Line key={cat} type="monotone" dataKey={cat} stroke={colors[i % colors.length]} strokeWidth={2} dot={false} />
+          <Line key={cat} type="monotone" dataKey={cat} stroke={colors[i % colors.length]} strokeWidth={2} dot={{ r: 3, fill: colors[i % colors.length] }} />
         ))}
       </RLineChart>
     </ChartContainer>
@@ -62,14 +80,14 @@ function LineChart({ data, categories, index, colors = defaultColors, className 
 function BarChart({ data, categories, index, colors = defaultColors, className, stacked = false }: { data: any[]; categories: string[]; index: string; colors?: string[]; className?: string; stacked?: boolean }) {
   return (
     <ChartContainer className={className}>
-      <RBarChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-        <XAxis dataKey={index} tick={{ fontSize: 12 }} />
-        <YAxis tick={{ fontSize: 12 }} />
+      <RBarChart data={data} barCategoryGap="20%">
+        <CartesianGrid strokeDasharray="3 3" stroke="color-mix(in srgb, var(--border) 50%, transparent)" />
+        <XAxis dataKey={index} tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
+        <YAxis tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
         <Tooltip content={<ChartTooltip />} />
         <Legend />
         {categories.map((cat, i) => (
-          <Bar key={cat} dataKey={cat} fill={colors[i % colors.length]} radius={[4, 4, 0, 0]} stackId={stacked ? "stack" : undefined} />
+          <Bar key={cat} dataKey={cat} fill={colors[i % colors.length]} radius={[4, 4, 0, 0]} stackId={stacked ? "stack" : undefined} barSize={stacked ? 40 : undefined} />
         ))}
       </RBarChart>
     </ChartContainer>
@@ -80,9 +98,9 @@ function AreaChart({ data, categories, index, colors = defaultColors, className 
   return (
     <ChartContainer className={className}>
       <RAreaChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-        <XAxis dataKey={index} tick={{ fontSize: 12 }} />
-        <YAxis tick={{ fontSize: 12 }} />
+        <CartesianGrid strokeDasharray="3 3" stroke="color-mix(in srgb, var(--border) 50%, transparent)" />
+        <XAxis dataKey={index} tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
+        <YAxis tick={{ fontSize: 12 }} stroke="var(--border)" tickLine={false} className="text-muted-foreground" />
         <Tooltip content={<ChartTooltip />} />
         <Legend />
         {categories.map((cat, i) => (
@@ -109,4 +127,4 @@ function PieChart({ data, category, index, colors = defaultColors, className }: 
   )
 }
 
-export { LineChart, BarChart, AreaChart, PieChart, ChartContainer, ChartTooltip }
+export { LineChart, BarChart, AreaChart, PieChart, ChartContainer, ChartTooltip, defaultColors, brandColors, statusColors }

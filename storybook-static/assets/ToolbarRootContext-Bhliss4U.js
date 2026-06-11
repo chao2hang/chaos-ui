@@ -1,0 +1,1 @@
+import{c as e,i as t}from"./preload-helper-D2yxXLVK.js";import{j as n}from"./iframe-agP7ZJF7.js";import{b as r,y as i}from"./useRenderElement-BliProex.js";function a(e){let t=o.useContext(s);if(t===void 0&&!e)throw Error(i(69));return t}var o,s,c=t((()=>{r(),o=e(n()),s=o.createContext(void 0)}));export{a as n,c as t};

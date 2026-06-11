@@ -69,6 +69,25 @@ export const styleguideNav: NavGroup[] = [
     ],
   },
   {
+    title: "Advanced",
+    items: [
+      { title: "Browse Input", href: "/styleguide/advanced/browse-input", description: "Browse input for selecting items" },
+      { title: "User Browse", href: "/styleguide/advanced/user-browse", description: "User selection browse dialog" },
+      { title: "Department Browse", href: "/styleguide/advanced/department-browse", description: "Department tree selection" },
+      { title: "Tree View", href: "/styleguide/advanced/tree-view", description: "Hierarchical tree display" },
+      { title: "Tree Select", href: "/styleguide/advanced/tree-select", description: "Tree-based select input" },
+      { title: "Form Section", href: "/styleguide/advanced/form-section", description: "Collapsible form section" },
+      { title: "Form Grid", href: "/styleguide/advanced/form-grid", description: "Responsive form grid layout" },
+      { title: "Form List", href: "/styleguide/advanced/form-list", description: "Dynamic form list" },
+      { title: "Grid Layout", href: "/styleguide/advanced/grid-layout", description: "Responsive grid layout" },
+      { title: "Split Pane", href: "/styleguide/advanced/split-pane", description: "Resizable split pane" },
+      { title: "Page Container", href: "/styleguide/advanced/page-container", description: "Page layout container" },
+      { title: "KPI Panel", href: "/styleguide/advanced/kpi-panel", description: "KPI metrics display" },
+      { title: "Virtual List", href: "/styleguide/advanced/virtual-list", description: "Virtual scrolling list" },
+      { title: "Virtual Table", href: "/styleguide/advanced/virtual-table", description: "Virtual scrolling table" },
+    ],
+  },
+  {
     title: "Business",
     items: [
       { title: "Activity Feed", href: "/styleguide/business/activity-feed" },

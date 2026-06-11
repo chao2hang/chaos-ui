@@ -115,7 +115,7 @@ function KanbanCard({ item, columnId, renderCard }: { item: any; columnId: strin
           {renderCard ? renderCard(item) : (
             <>
               <p className="font-medium truncate">{item.title}</p>
-              {item.description && <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{item.description}</p>}
+              {item.description && <p className="text-xs text-muted-foreground mt-0.5">{item.description}</p>}
             </>
           )}
         </div>

@@ -22,8 +22,52 @@ const timelineDotVariants = cva(
   }
 )
 
-function TimelineItem({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex gap-4 pb-8 last:pb-0", className)} {...props} />
+function TimelineItem({
+  className,
+  icon: Icon,
+  title,
+  description,
+  time,
+  status,
+  variant,
+  children,
+  ...props
+}: {
+  className?: string
+  icon?: React.ComponentType<{ className?: string }>
+  title?: React.ReactNode
+  description?: React.ReactNode
+  time?: React.ReactNode
+  status?: "completed" | "current" | "pending" | "default"
+  variant?: "default" | "success" | "warning" | "destructive" | "info"
+  children?: React.ReactNode
+} & Omit<React.HTMLAttributes<HTMLDivElement>, "title">) {
+  const resolvedVariant =
+    variant ??
+    (status === "completed"
+      ? "success"
+      : status === "current"
+        ? "info"
+        : status === "pending"
+          ? "default"
+          : "default")
+
+  return (
+    <div className={cn("flex gap-4 relative", className)} {...props}>
+      <div className="flex flex-col items-center self-stretch">
+        <TimelineDot variant={resolvedVariant}>
+          {Icon ? <Icon className="size-4" /> : null}
+        </TimelineDot>
+        <TimelineConnector />
+      </div>
+      <TimelineContent className="pb-8 last:pb-0">
+        {title !== undefined ? <TimelineTitle>{title}</TimelineTitle> : null}
+        {description !== undefined ? <TimelineDescription>{description}</TimelineDescription> : null}
+        {time !== undefined ? <TimelineTime>{time}</TimelineTime> : null}
+        {children}
+      </TimelineContent>
+    </div>
+  )
 }
 
 function TimelineDot({ className, variant, children, ...props }: { className?: string; variant?: "default" | "success" | "warning" | "destructive" | "info"; children?: React.ReactNode } & React.HTMLAttributes<HTMLDivElement>) {
