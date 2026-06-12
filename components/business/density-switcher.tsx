@@ -3,27 +3,35 @@ import * as React from "react"
 import { CheckIcon, XIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-interface ToggleProps {
+interface DensitySwitcherProps {
   open: boolean
   density?: "compact" | "default" | "comfortable"
   onChange?: (open: boolean) => void
   className?: string
   size?: "sm" | "default" | "lg"
+  children?: React.ReactNode
 }
 
-const DENSITY_STYLES: Record<NonNullable<ToggleProps["density"]>, string> = {
+const DENSITY_STYLES: Record<NonNullable<DensitySwitcherProps["density"]>, string> = {
   compact: "h-7 px-2 text-xs",
   default: "h-9 px-3 text-sm",
   comfortable: "h-11 px-4 text-base",
 }
 
-const SIZE_STYLES: Record<NonNullable<ToggleProps["size"]>, string> = {
+const SIZE_STYLES: Record<NonNullable<DensitySwitcherProps["size"]>, string> = {
   sm: "scale-75",
   default: "scale-100",
   lg: "scale-125",
 }
 
-export function DensitySwitcher({ open: openProp, density = "default", onChange, className, size = "default" }: ToggleProps) {
+export function DensitySwitcher({
+  open: openProp,
+  density = "default",
+  onChange,
+  className,
+  size = "default",
+  children,
+}: DensitySwitcherProps) {
   const [open, setOpen] = React.useState(openProp ?? false)
   React.useEffect(() => {
     if (openProp !== undefined) setOpen(openProp)
@@ -55,7 +63,7 @@ export function DensitySwitcher({ open: openProp, density = "default", onChange,
       >
         {open ? <CheckIcon className="size-3" /> : <XIcon className="size-3" />}
       </span>
-      <span className="text-xs">密度</span>
+      <span className="text-xs">{children ?? "密度"}</span>
     </button>
   )
 }

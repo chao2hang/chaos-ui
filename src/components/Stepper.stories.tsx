@@ -108,7 +108,7 @@ export const AllSteps: Story = {
       </div>
       <div>
         <p className="text-sm text-muted-foreground mb-2">All Complete</p>
-        <Stepper activeStep={4}>
+        <Stepper activeStep={3}>
           <Step>Step 1</Step>
           <Step>Step 2</Step>
           <Step>Step 3</Step>

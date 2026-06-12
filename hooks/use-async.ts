@@ -49,7 +49,9 @@ export function useAsync<T, Args extends unknown[] = []>(
 
   React.useEffect(() => {
     if (immediate) {
-      run(...((lastArgs.current ?? []) as Args))
+      const args = (lastArgs.current ?? []) as Args
+      const id = requestAnimationFrame(() => run(...args))
+      return () => cancelAnimationFrame(id)
     }
   }, [immediate, run])
 

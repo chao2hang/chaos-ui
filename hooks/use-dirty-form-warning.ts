@@ -13,7 +13,9 @@ export function useDirtyFormWarning(
 ): { confirmLeave: () => boolean } {
   const { enabled = true, message = "您有未保存的更改，确定离开吗？", onAttemptLeave } = options
   const enabledRef = React.useRef(enabled)
-  enabledRef.current = enabled
+  React.useEffect(() => {
+    enabledRef.current = enabled
+  }, [enabled])
 
   React.useEffect(() => {
     if (typeof window === "undefined") return

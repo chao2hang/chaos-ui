@@ -9,7 +9,9 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
   enabled = true
 ) {
   const handlerRef = React.useRef(handler)
-  handlerRef.current = handler
+  React.useEffect(() => {
+    handlerRef.current = handler
+  }, [handler])
 
   React.useEffect(() => {
     if (!enabled) return

@@ -5,20 +5,46 @@ import { cn } from "@/lib/utils"
 
 interface MobileAuthLayoutProps {
   children: React.ReactNode
+  logo?: React.ReactNode
+  title?: string
+  description?: string
+  footer?: React.ReactNode
   className?: string
 }
 
-function MobileAuthLayout({ children, className }: MobileAuthLayoutProps) {
+function MobileAuthLayout({
+  children,
+  logo,
+  title,
+  description,
+  footer,
+  className,
+}: MobileAuthLayoutProps) {
   return (
-    <div
-      className={cn(
-        "flex min-h-screen items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-4",
-        className
+    <div className={cn("min-h-screen bg-background px-5 pt-14 pb-8", className)}>
+      {logo && (
+        <div className="mb-6 flex justify-center">{logo}</div>
       )}
-    >
-      <div className="w-full max-w-md">
-        {children}
-      </div>
+      {(title || description) && (
+        <div className="mb-8">
+          {title && (
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
+              {title}
+            </h1>
+          )}
+          {description && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              {description}
+            </p>
+          )}
+        </div>
+      )}
+      <div className="w-full">{children}</div>
+      {footer && (
+        <div className="mt-8 text-center text-sm text-muted-foreground">
+          {footer}
+        </div>
+      )}
     </div>
   )
 }

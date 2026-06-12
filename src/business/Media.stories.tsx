@@ -25,12 +25,15 @@ const moreImages = [
   { id: "12", src: "https://picsum.photos/seed/12/600/600", alt: "风景 12", caption: "彩虹" },
 ]
 
-export default {
+const meta = {
   title: "Business/Media",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const GalleryExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const GalleryExample: Story = {
   render: () => (
     <div className="max-w-3xl space-y-3">
       <h3 className="text-sm font-medium">Image Gallery 3 列</h3>
@@ -39,7 +42,7 @@ export const GalleryExample: StoryObj = {
   ),
 }
 
-export const GalleryFiveCol: StoryObj = {
+export const GalleryFiveCol: Story = {
   render: () => (
     <div className="max-w-4xl space-y-3">
       <h3 className="text-sm font-medium">Image Gallery 5 列</h3>
@@ -48,7 +51,7 @@ export const GalleryFiveCol: StoryObj = {
   ),
 }
 
-export const VideoExample: StoryObj = {
+export const VideoExample: Story = {
   render: () => (
     <div className="max-w-2xl">
       <h3 className="mb-3 text-sm font-medium">VideoPlayer — 基础播放</h3>
@@ -61,7 +64,7 @@ export const VideoExample: StoryObj = {
   ),
 }
 
-export const VideoWithCaptions: StoryObj = {
+export const VideoWithCaptions: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <h3 className="text-sm font-medium">VideoPlayer — 带字幕</h3>
@@ -73,7 +76,7 @@ export const VideoWithCaptions: StoryObj = {
   ),
 }
 
-export const VideoAutoplayMuted: StoryObj = {
+export const VideoAutoplayMuted: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <h3 className="text-sm font-medium">VideoPlayer — 自动播放（静音）</h3>
@@ -87,7 +90,7 @@ export const VideoAutoplayMuted: StoryObj = {
   ),
 }
 
-export const VideoWithPoster: StoryObj = {
+export const VideoWithPoster: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <h3 className="text-sm font-medium">VideoPlayer — 封面图</h3>
@@ -100,7 +103,7 @@ export const VideoWithPoster: StoryObj = {
   ),
 }
 
-export const AudioExample: StoryObj = {
+export const AudioExample: Story = {
   render: () => (
     <div className="max-w-xl space-y-4">
       <h3 className="text-sm font-medium">AudioPlayer</h3>
@@ -114,7 +117,7 @@ export const AudioExample: StoryObj = {
   ),
 }
 
-export const PDFExample: StoryObj = {
+export const PDFExample: Story = {
   render: () => (
     <div className="h-[500px]">
       <PDFViewer
@@ -126,7 +129,7 @@ export const PDFExample: StoryObj = {
   ),
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-5xl space-y-8">
       <section>

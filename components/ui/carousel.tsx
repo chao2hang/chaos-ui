@@ -39,7 +39,19 @@ function Carousel({
   children,
   ...props
 }: CarouselProps) {
-  const total = React.Children.count(children)
+  const total = React.useMemo(() => {
+    let count = 0
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement(child) && child.type === CarouselContent) {
+        React.Children.forEach(child.props.children, (item) => {
+          if (React.isValidElement(item) && item.type === CarouselItem) {
+            count++
+          }
+        })
+      }
+    })
+    return count
+  }, [children])
   const [index, setIndex] = React.useState(defaultIndex)
 
   const goTo = React.useCallback(

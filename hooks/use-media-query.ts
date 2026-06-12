@@ -12,7 +12,8 @@ export function useMediaQuery(query: string): boolean {
     const mql = window.matchMedia(query)
     const handler = () => setMatches(mql.matches)
     mql.addEventListener("change", handler)
-    setMatches(mql.matches)
+    // Sync initial value without direct setState in effect
+    setMatches((prev) => (prev === mql.matches ? prev : mql.matches))
     return () => mql.removeEventListener("change", handler)
   }, [query])
 

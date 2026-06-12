@@ -5,7 +5,27 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { UploadIcon, FileIcon, XIcon, CheckCircleIcon, AlertCircleIcon } from "lucide-react"
 
-function FileUpload({ onDrop, accept, maxFiles = 5, maxSize, disabled, className }: { onDrop?: (files: File[]) => void; accept?: Record<string, string[]>; maxFiles?: number; maxSize?: number; disabled?: boolean; className?: string }) {
+interface FileUploadProps {
+  onDrop?: (files: File[]) => void
+  accept?: Record<string, string[]>
+  maxFiles?: number
+  maxSize?: number
+  disabled?: boolean
+  dropzone?: boolean
+  className?: string
+  children?: React.ReactNode
+}
+
+function FileUpload({
+  onDrop,
+  accept,
+  maxFiles = 5,
+  maxSize,
+  disabled,
+  dropzone = false,
+  className,
+  children,
+}: FileUploadProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept,
@@ -14,29 +34,55 @@ function FileUpload({ onDrop, accept, maxFiles = 5, maxSize, disabled, className
     disabled,
   })
 
+  if (dropzone) {
+    return (
+      <div
+        {...getRootProps()}
+        className={cn(
+          "flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 text-center transition-colors cursor-pointer",
+          isDragActive ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-muted-foreground/50",
+          disabled && "opacity-50 cursor-not-allowed",
+          className
+        )}
+      >
+        <input {...getInputProps()} />
+        {children ?? (
+          <>
+            <UploadIcon className={cn("size-8 mb-2", isDragActive ? "text-primary" : "text-muted-foreground")} />
+            {isDragActive ? (
+              <p className="text-sm font-medium text-primary">Drop files here...</p>
+            ) : (
+              <div className="space-y-1">
+                <p className="text-sm font-medium">Drag &amp; drop files here, or click to select</p>
+                <p className="text-xs text-muted-foreground">
+                  {maxFiles > 1 ? `Up to ${maxFiles} files` : "Single file"}
+                  {maxSize && ` (max ${Math.round(maxSize / 1024 / 1024)}MB each)`}
+                </p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    )
+  }
+
   return (
-    <div
-      {...getRootProps()}
-      className={cn(
-        "flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 text-center transition-colors cursor-pointer",
-        isDragActive ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-muted-foreground/50",
-        disabled && "opacity-50 cursor-not-allowed",
-        className
-      )}
-    >
-      <input {...getInputProps()} />
-      <UploadIcon className={cn("size-8 mb-2", isDragActive ? "text-primary" : "text-muted-foreground")} />
-      {isDragActive ? (
-        <p className="text-sm font-medium text-primary">Drop files here...</p>
-      ) : (
-        <div className="space-y-1">
-          <p className="text-sm font-medium">Drag & drop files here, or click to select</p>
-          <p className="text-xs text-muted-foreground">
-            {maxFiles > 1 ? `Up to ${maxFiles} files` : "Single file"}
-            {maxSize && ` (max ${Math.round(maxSize / 1024 / 1024)}MB each)`}
-          </p>
-        </div>
-      )}
+    <div className={cn("flex flex-col gap-3", className)}>
+      <div
+        {...getRootProps()}
+        className={cn(
+          "inline-flex items-center justify-center",
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+      >
+        <input {...getInputProps()} />
+        {children ?? (
+          <Button variant="outline" type="button">
+            <UploadIcon />
+            Upload File
+          </Button>
+        )}
+      </div>
     </div>
   )
 }
@@ -75,4 +121,4 @@ function FileList({ files = [], onRemove, className }: { files?: { name: string;
   )
 }
 
-export { FileUpload, FileList }
+export { FileUpload, FileList, type FileUploadProps }

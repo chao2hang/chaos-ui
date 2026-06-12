@@ -33,20 +33,42 @@ function ResizablePanelGroup({
     })
   }, [])
 
+  const handleContextValue = React.useMemo(() => ({
+    size: 50,
+    setSize: () => {},
+    minSize: 10,
+    maxSize: 90,
+    collapsed: false,
+    collapsedSize: 0,
+    collapsible: false,
+    handleCollapse: () => {},
+    handleExpand: () => {},
+    direction,
+  }), [direction])
+
+  // Track if handle is between panels (not inside a panel)
+  const [handleOutsidePanel, setHandleOutsidePanel] = React.useState(false)
+
+  React.useEffect(() => {
+    setHandleOutsidePanel(true)
+  }, [])
+
   return (
     <ResizableContext.Provider value={{ direction, panels, registerPanel }}>
-      <div
-        data-slot="resizable-panel-group"
-        data-direction={direction}
-        className={cn(
-          "flex h-full w-full",
-          direction === "vertical" ? "flex-col" : "flex-row",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
+      <ResizableHandleContext.Provider value={handleContextValue}>
+        <div
+          data-slot="resizable-panel-group"
+          data-direction={direction}
+          className={cn(
+            "flex h-full w-full",
+            direction === "vertical" ? "flex-col" : "flex-row",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </div>
+      </ResizableHandleContext.Provider>
     </ResizableContext.Provider>
   )
 }
@@ -152,7 +174,8 @@ function ResizableHandle({
   className,
   ...props
 }: React.ComponentProps<"div"> & { withHandle?: boolean }) {
-  const { size, setSize, minSize, maxSize, collapsed, collapsible, handleCollapse, handleExpand, direction } = useResizableHandle()
+  const handleCtx = useResizableHandle()
+  const { size, setSize, minSize, maxSize, collapsed, collapsible, handleCollapse, handleExpand, direction } = handleCtx
   const startPos = React.useRef(0)
   const startSize = React.useRef(size)
   const ref = React.useRef<HTMLDivElement>(null)
@@ -184,11 +207,11 @@ function ResizableHandle({
     [direction, minSize, maxSize, setSize, size]
   )
 
-  const onDoubleClick = () => {
+  const onDoubleClick = React.useCallback(() => {
     if (!collapsible) return
     if (collapsed) handleExpand()
     else handleCollapse()
-  }
+  }, [collapsible, collapsed, handleExpand, handleCollapse])
 
   return (
     <div

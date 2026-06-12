@@ -15,14 +15,18 @@ export interface ChartState {
 export function useChartData(): ChartState {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [activeSeries] = React.useState<Set<string>>(() => new Set())
-  const [hiddenSeries] = React.useState<Set<string>>(() => new Set())
+  const [hiddenSeries, setHiddenSeries] = React.useState<Set<string>>(() => new Set())
   const [hoveredPoint, setHoveredPoint] = React.useState<unknown | null>(null)
   const [hidden, setHidden] = React.useState(false)
 
   const toggleSeries = React.useCallback((name: string) => {
-    if (hiddenSeries.has(name)) hiddenSeries.delete(name)
-    else hiddenSeries.add(name)
-  }, [hiddenSeries])
+    setHiddenSeries((prev) => {
+      const next = new Set(prev)
+      if (next.has(name)) next.delete(name)
+      else next.add(name)
+      return next
+    })
+  }, [])
 
   return {
     activeSeries,

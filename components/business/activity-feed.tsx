@@ -4,12 +4,38 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent } from "@/components/ui/timeline"
 
+interface ActivityUser {
+  name: string
+  avatarUrl?: string
+}
+
 interface ActivityItem {
-  user: string
+  id?: string
+  user: string | ActivityUser
   action: string
   time: string
+  target?: string
+  icon?: React.ReactNode
   avatarFallback?: string
   variant?: "default" | "success" | "warning" | "destructive" | "info"
+}
+
+function userDisplayName(user: ActivityItem["user"]): string {
+  if (typeof user === "string") return user
+  return user.name
+}
+
+function userFallback(user: ActivityItem["user"]): string {
+  if (typeof user === "string") {
+    return user
+      .split(/\s+/)
+      .map((p) => p[0])
+      .filter(Boolean)
+      .slice(0, 2)
+      .join("")
+      .toUpperCase()
+  }
+  return userFallback(user.name)
 }
 
 function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
@@ -35,36 +61,47 @@ function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
     return grouped
   }, [items])
 
+  const renderItem = (item: ActivityItem, i: number) => {
+    const fallback = item.avatarFallback ?? userFallback(item.user)
+    return (
+      <TimelineItem key={item.id ?? `${item.time}-${i}`}>
+        <div className="flex flex-col items-center self-stretch">
+          <TimelineDot variant={item.variant}>
+            {item.icon ?? (
+              fallback ? (
+                <Avatar className="size-6">
+                  <AvatarFallback className="text-[0.6rem]">{fallback}</AvatarFallback>
+                </Avatar>
+              ) : null
+            )}
+          </TimelineDot>
+          <TimelineConnector />
+        </div>
+        <TimelineContent>
+          <p className="text-sm">
+            <span className="font-medium">{userDisplayName(item.user)}</span>{" "}
+            <span className="text-muted-foreground">{item.action}</span>
+            {item.target ? (
+              <>
+                {" "}
+                <span className="font-medium">{item.target}</span>
+              </>
+            ) : null}
+          </p>
+          <time className="text-xs text-muted-foreground">
+            {new Date(item.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          </time>
+        </TimelineContent>
+      </TimelineItem>
+    )
+  }
+
   const renderGroup = (title: string, groupItems: ActivityItem[]) => {
     if (groupItems.length === 0) return null
     return (
       <div className="mb-6">
         <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{title}</h4>
-        <Timeline>
-          {groupItems.map((item, i) => (
-            <TimelineItem key={i}>
-              <div className="flex flex-col items-center self-stretch">
-                <TimelineDot variant={item.variant}>
-                  {item.avatarFallback ? (
-                    <Avatar className="size-6">
-                      <AvatarFallback className="text-[0.6rem]">{item.avatarFallback}</AvatarFallback>
-                    </Avatar>
-                  ) : null}
-                </TimelineDot>
-                <TimelineConnector />
-              </div>
-              <TimelineContent>
-                <p className="text-sm">
-                  <span className="font-medium">{item.user}</span>{" "}
-                  <span className="text-muted-foreground">{item.action}</span>
-                </p>
-                <time className="text-xs text-muted-foreground">
-                  {new Date(item.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                </time>
-              </TimelineContent>
-            </TimelineItem>
-          ))}
-        </Timeline>
+        <Timeline>{groupItems.map(renderItem)}</Timeline>
       </div>
     )
   }
@@ -87,4 +124,4 @@ function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
 }
 
 export { ActivityFeed }
-export type { ActivityItem }
+export type { ActivityItem, ActivityUser }

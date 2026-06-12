@@ -62,24 +62,27 @@ const messages = [
   { id: "5", author: { name: "张伟" }, content: "我也来。", timestamp: Date.now() - 100_000 },
 ]
 
-export default {
+const meta = {
   title: "Business/Collaboration",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const CommentsExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const CommentsExample: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <CommentThread
         comments={comments}
-        onReply={(pid, content) => alert(`回复 ${pid}: ${content}`)}
-        onReact={(cid, emoji) => alert(`${cid} 表情 ${emoji}`)}
+        onReply={(pid, content) => console.info("reply", pid, content)}
+        onReact={(cid, emoji) => console.info("react", cid, emoji)}
       />
     </div>
   ),
 }
 
-export const ApprovalExample: StoryObj = {
+export const ApprovalExample: Story = {
   render: () => {
     const [current, setCurrent] = useState(2)
     return (
@@ -88,14 +91,14 @@ export const ApprovalExample: StoryObj = {
           steps={steps}
           currentStep={current}
           onApprove={() => setCurrent((c) => c + 1)}
-          onReject={() => alert("已拒绝")}
+          onReject={() => console.info("rejected")}
         />
       </div>
     )
   },
 }
 
-export const AuditExample: StoryObj = {
+export const AuditExample: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <AuditLog entries={audit} />
@@ -103,7 +106,7 @@ export const AuditExample: StoryObj = {
   ),
 }
 
-export const PresenceExample: StoryObj = {
+export const PresenceExample: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -118,7 +121,7 @@ export const PresenceExample: StoryObj = {
   ),
 }
 
-export const ChatExample: StoryObj = {
+export const ChatExample: Story = {
   render: () => {
     const [list, setList] = useState(messages)
     return (
@@ -134,7 +137,7 @@ export const ChatExample: StoryObj = {
   },
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-5xl space-y-8">
       <section>

@@ -27,27 +27,18 @@ export function isFeatureEnabled(key: string, userContext?: { userId?: string; e
 }
 
 export function useFeatureFlag(key: string, userContext?: { userId?: string; email?: string }): boolean {
-  const [enabled, setEnabled] = React.useState(() => isFeatureEnabled(key, userContext))
-  React.useEffect(() => {
-    setEnabled(isFeatureEnabled(key, userContext))
-  }, [key, userContext?.userId, userContext?.email])
+  const enabled = React.useMemo(() => isFeatureEnabled(key, userContext), [key, userContext?.userId, userContext?.email])
   return enabled
 }
 
 export function useFeatureFlags(userContext?: { userId?: string; email?: string }): Record<string, boolean> {
-  const [flags, setFlags] = React.useState<Record<string, boolean>>(() =>
-    Object.keys(FLAGS).reduce((acc, k) => {
-      acc[k] = isFeatureEnabled(k, userContext)
-      return acc
-    }, {} as Record<string, boolean>)
-  )
-  React.useEffect(() => {
-    setFlags(
+  const flags = React.useMemo(
+    () =>
       Object.keys(FLAGS).reduce((acc, k) => {
         acc[k] = isFeatureEnabled(k, userContext)
         return acc
-      }, {} as Record<string, boolean>)
-    )
-  }, [userContext?.userId, userContext?.email])
+      }, {} as Record<string, boolean>),
+    [userContext?.userId, userContext?.email]
+  )
   return flags
 }

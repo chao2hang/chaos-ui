@@ -30,7 +30,7 @@ interface KanbanBoardProps {
 }
 
 function KanbanBoard({ columns, onColumnsChange, renderCard, className }: KanbanBoardProps) {
-  const sensors = useSensors(useSensor(PointerSensor as any, { activationConstraint: { distance: 5 } }))
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }))
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
@@ -62,8 +62,9 @@ function KanbanBoard({ columns, onColumnsChange, renderCard, className }: Kanban
       if (!srcCol || !dstCol) return
       const itemIndex = srcCol.items.findIndex((item) => item.id === active.id)
       if (itemIndex === -1) return
-      const [item] = srcCol.items.splice(itemIndex, 1)
-      dstCol.items.push(item)
+      const item = srcCol.items[itemIndex]
+      srcCol.items = srcCol.items.filter((_, i) => i !== itemIndex)
+      dstCol.items = [...dstCol.items, item]
     }
 
     onColumnsChange?.(newColumns)

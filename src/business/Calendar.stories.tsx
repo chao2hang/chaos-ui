@@ -22,24 +22,27 @@ const ganttTasks = [
   { id: "5", name: "测试与发布", start: new Date(2026, 0, 22), end: new Date(2026, 0, 30), progress: 0, color: "#ec4899" },
 ]
 
-export default {
+const meta = {
   title: "Business/Calendar",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const MonthExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const MonthExample: Story = {
   render: () => (
     <div className="max-w-3xl">
       <CalendarMonth
         events={events}
-        onEventClick={(e) => alert(`${e.title} ${e.start}`)}
-        onDayClick={(d) => alert(d.toDateString())}
+        onEventClick={(e) => console.info("event click", e.title, e.start)}
+        onDayClick={(d) => console.info("day click", d.toDateString())}
       />
     </div>
   ),
 }
 
-export const TimeSlotsExample: StoryObj = {
+export const TimeSlotsExample: Story = {
   render: () => {
     const [selected, setSelected] = useState<Date | undefined>(undefined)
     return (
@@ -59,15 +62,15 @@ export const TimeSlotsExample: StoryObj = {
   },
 }
 
-export const GanttExample: StoryObj = {
+export const GanttExample: Story = {
   render: () => (
     <div className="max-w-4xl">
-      <GanttChart tasks={ganttTasks} onTaskClick={(t) => alert(t.name)} />
+      <GanttChart tasks={ganttTasks} onTaskClick={(t) => console.info("task click", t.name)} />
     </div>
   ),
 }
 
-export const EventDetailExample: StoryObj = {
+export const EventDetailExample: Story = {
   render: () => (
     <div className="max-w-md space-y-3">
       <EventDetail
@@ -88,13 +91,13 @@ export const EventDetailExample: StoryObj = {
           ],
           rsvp: "accepted",
         }}
-        onRsvp={(s) => alert(`RSVP: ${s}`)}
+        onRsvp={(s) => console.info("RSVP", s)}
       />
     </div>
   ),
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-5xl space-y-8">
       <section>

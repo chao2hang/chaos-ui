@@ -18,6 +18,7 @@ const FormMeta = {
 } satisfies Meta
 
 export default FormMeta
+type Story = StoryObj<typeof FormMeta>
 
 const sections = [
   { id: "name", title: "名称", description: "组织或个人名称" },
@@ -26,7 +27,7 @@ const sections = [
   { id: "tags", title: "标签", description: "用于分类" },
 ]
 
-export const AutosaveStates: StoryObj = {
+export const AutosaveStates: Story = {
   render: () => (
     <div className="space-y-3">
       <div className="text-sm font-medium">AutosaveIndicator 状态</div>
@@ -38,7 +39,7 @@ export const AutosaveStates: StoryObj = {
   ),
 }
 
-export const DirtyWarningDemo: StoryObj = {
+export const DirtyWarningDemo: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
     return (
@@ -55,7 +56,7 @@ export const DirtyWarningDemo: StoryObj = {
   },
 }
 
-export const ErrorSummaryDemo: StoryObj = {
+export const ErrorSummaryDemo: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="text-sm font-medium">ErrorSummary</div>
@@ -65,27 +66,27 @@ export const ErrorSummaryDemo: StoryObj = {
           { field: "email", message: "邮箱格式不正确" },
           { field: "password", message: "密码至少 8 位" },
         ]}
-        onJumpTo={(field) => alert(`跳转到 ${field}`)}
+        onJumpTo={(field) => console.info("jump to", field)}
       />
       <FormErrorSummary errors={[{ message: "服务器错误，请稍后重试" }]} />
     </div>
   ),
 }
 
-export const StepSummaryDemo: StoryObj = {
+export const StepSummaryDemo: Story = {
   render: () => (
     <div className="max-w-md space-y-3">
       <div className="text-sm font-medium">StepSummary 步骤汇总</div>
       <FormStepSummary
         steps={sections}
         values={{ name: "Chaos Design", email: "hi@chaos.com", address: "", tags: ["design-system", "ui"] }}
-        onJumpTo={(id) => alert(`跳到 ${id}`)}
+        onJumpTo={(id) => console.info("jump to", id)}
       />
     </div>
   ),
 }
 
-export const RepeaterDemo: StoryObj = {
+export const RepeaterDemo: Story = {
   render: () => {
     const [items, setItems] = useState<Array<{ name: string; email: string }>>([
       { name: "Alice", email: "alice@example.com" },
@@ -134,7 +135,7 @@ export const RepeaterDemo: StoryObj = {
   },
 }
 
-export const FieldGroupDemo: StoryObj = {
+export const FieldGroupDemo: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <div className="text-sm font-medium">FieldGroup 字段分组</div>
@@ -151,7 +152,7 @@ export const FieldGroupDemo: StoryObj = {
   ),
 }
 
-export const ProgressDemo: StoryObj = {
+export const ProgressDemo: Story = {
   render: () => (
     <div className="max-w-md space-y-6">
       <div className="text-sm font-medium">Progress 进度条变体</div>
@@ -162,7 +163,7 @@ export const ProgressDemo: StoryObj = {
   ),
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-2xl space-y-6">
       <section>

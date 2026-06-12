@@ -7,12 +7,15 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { toast } from "sonner"
 
-export default {
+const meta = {
   title: "Business/Microinteractions",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const AnimatedNumberExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const AnimatedNumberExample: Story = {
   render: () => (
     <div className="space-y-4">
       <h3 className="text-sm font-medium">AnimatedNumber 数字滚动</h3>
@@ -34,7 +37,7 @@ export const AnimatedNumberExample: StoryObj = {
   ),
 }
 
-export const ConfettiExample: StoryObj = {
+export const ConfettiExample: Story = {
   render: () => {
     const [active, setActive] = useState(false)
     return (
@@ -59,7 +62,7 @@ export const ConfettiExample: StoryObj = {
   },
 }
 
-export const CoachMarkExample: StoryObj = {
+export const CoachMarkExample: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
     const [ref, setRef] = useState<HTMLElement | null>(null)
@@ -69,30 +72,48 @@ export const CoachMarkExample: StoryObj = {
         <Button ref={setRef} onClick={() => setOpen((v) => !v)}>
           {open ? "隐藏" : "显示"} 气泡提示
         </Button>
-        <CoachMark
-          open={open}
-          onOpenChange={setOpen}
-          target={ref}
-          title="关键功能"
-          description="这是一个上下文气泡提示，用于引导用户关注核心功能。可放在任意元素旁。"
-          onNext={() => toast.success("已记录")}
-          onSkip={() => setOpen(false)}
-        />
+        {ref ? (
+          <CoachMark
+            open={open}
+            onOpenChange={setOpen}
+            target={ref}
+            title="关键功能"
+            description="这是一个上下文气泡提示，用于引导用户关注核心功能。可放在任意元素旁。"
+            onNext={() => toast.success("已记录")}
+            onSkip={() => setOpen(false)}
+          />
+        ) : null}
       </div>
     )
   },
 }
 
-export const DensityExample: StoryObj = {
+type Density = "compact" | "default" | "comfortable"
+
+export const DensityExample: Story = {
   render: () => {
-    const [d, setD] = useState<"compact" | "default" | "comfortable">("default")
+    const [d, setD] = useState<Density>("default")
+    const switchers: { id: Density; label: string }[] = [
+      { id: "compact", label: "紧凑" },
+      { id: "default", label: "默认" },
+      { id: "comfortable", label: "舒适" },
+    ]
     return (
       <div className="space-y-3">
         <h3 className="text-sm font-medium">DensitySwitcher 密度切换</h3>
         <div className="flex gap-2">
-          <DensitySwitcher density={d === "compact" ? "compact" : "default"} open={d === "compact"} onChange={(o) => o ? setD("compact") : setD("default")} />
-          <DensitySwitcher density="default" open={d === "default"} onChange={(o) => o ? setD("default") : setD("compact")} />
-          <DensitySwitcher density="comfortable" open={d === "comfortable"} onChange={(o) => o ? setD("comfortable") : setD("default")} />
+          {switchers.map(({ id, label }) => (
+            <DensitySwitcher
+              key={id}
+              density={id}
+              open={d === id}
+              onChange={(open) => {
+                if (open) setD(id)
+              }}
+            >
+              {label}
+            </DensitySwitcher>
+          ))}
         </div>
         <p className="text-xs text-muted-foreground">当前：{d}</p>
       </div>
@@ -100,7 +121,7 @@ export const DensityExample: StoryObj = {
   },
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-4xl space-y-8">
       <section>
@@ -122,10 +143,7 @@ export const AllVariants: StoryObj = {
       </section>
       <section>
         <h3 className="mb-3 text-base font-semibold">Density Switcher</h3>
-        <div className="flex gap-2">
-          <DensitySwitcher open={false} />
-          <DensitySwitcher open />
-        </div>
+        <DensitySwitcherSection />
       </section>
       <section>
         <h3 className="mb-3 text-base font-semibold">Coach Mark（点击下方按钮）</h3>
@@ -139,6 +157,29 @@ export const AllVariants: StoryObj = {
   ),
 }
 
+function DensitySwitcherSection() {
+  const [d, setD] = useState<Density>("default")
+  const switchers: { id: Density }[] = [
+    { id: "compact" },
+    { id: "default" },
+    { id: "comfortable" },
+  ]
+  return (
+    <div className="flex gap-2">
+      {switchers.map(({ id }) => (
+        <DensitySwitcher
+          key={id}
+          density={id}
+          open={d === id}
+          onChange={(open) => {
+            if (open) setD(id)
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 function CoachMarkSection() {
   const [open, setOpen] = useState(false)
   const [ref, setRef] = useState<HTMLElement | null>(null)
@@ -147,15 +188,17 @@ function CoachMarkSection() {
       <Button ref={setRef} onClick={() => setOpen((v) => !v)}>
         {open ? "隐藏" : "显示"} 气泡
       </Button>
-      <CoachMark
-        open={open}
-        onOpenChange={setOpen}
-        target={ref}
-        title="关键功能"
-        description="上下文气泡提示，引导用户关注。"
-        onNext={() => toast.success("下一步")}
-        onSkip={() => setOpen(false)}
-      />
+      {ref ? (
+        <CoachMark
+          open={open}
+          onOpenChange={setOpen}
+          target={ref}
+          title="关键功能"
+          description="上下文气泡提示，引导用户关注。"
+          onNext={() => toast.success("下一步")}
+          onSkip={() => setOpen(false)}
+        />
+      ) : null}
     </div>
   )
 }

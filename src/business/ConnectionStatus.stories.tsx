@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ConnectionStatus } from "@/components/business/connection-status"
+import React from "react"
 
 const meta = {
   title: "Business/ConnectionStatus",
@@ -10,6 +11,28 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+function withNavigatorOnline(value: boolean) {
+  return (Story: React.ComponentType) => {
+    const Wrapper = () => {
+      const original = React.useRef<boolean | null>(null)
+      React.useEffect(() => {
+        if (original.current === null) {
+          original.current = navigator.onLine
+        }
+        Object.defineProperty(navigator, "onLine", { value, configurable: true })
+        return () => {
+          if (original.current !== null) {
+            Object.defineProperty(navigator, "onLine", { value: original.current, configurable: true })
+          }
+        }
+      }, [])
+      return <Story />
+    }
+    Wrapper.displayName = `NavigatorOnline(${value})`
+    return <Wrapper />
+  }
+}
 
 export const Banner: Story = {
   args: {
@@ -22,12 +45,7 @@ export const Offline: Story = {
   args: {
     variant: "banner",
   },
-  decorators: [
-    (Story) => {
-      Object.defineProperty(navigator, "onLine", { value: false, configurable: true })
-      return <Story />
-    },
-  ],
+  decorators: [withNavigatorOnline(false)],
 }
 
 export const Inline: Story = {

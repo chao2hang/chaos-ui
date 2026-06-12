@@ -43,6 +43,9 @@ next-env.d.ts
 # pnpm
 .pnpm-store/
 
+# Playwright MCP artifacts
+.playwright-mcp/
+
 # IDE
 .vscode/
 .idea/

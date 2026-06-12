@@ -6,12 +6,15 @@ import { Dock } from "@/components/business/dock"
 import { HomeIcon, SearchIcon, BellIcon, MessageCircleIcon, UserIcon, SettingsIcon } from "lucide-react"
 import { useState } from "react"
 
-export default {
+const meta = {
   title: "Business/Navigation",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const TopLoaderExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const TopLoaderExample: Story = {
   render: () => {
     const [loading, setLoading] = useState(false)
     return (
@@ -32,7 +35,7 @@ export const TopLoaderExample: StoryObj = {
   },
 }
 
-export const AnchorExample: StoryObj = {
+export const AnchorExample: Story = {
   render: () => (
     <div className="grid grid-cols-[200px_1fr] gap-6">
       <div className="sticky top-4">
@@ -57,7 +60,7 @@ export const AnchorExample: StoryObj = {
   ),
 }
 
-export const SearchInputExample: StoryObj = {
+export const SearchInputExample: Story = {
   render: () => {
     const [query, setQuery] = useState("")
     return (
@@ -67,21 +70,21 @@ export const SearchInputExample: StoryObj = {
           value={query}
           onChange={setQuery}
           placeholder="搜索用户、文档、设置..."
-          onSubmit={(v) => alert(`搜索：${v}`)}
+          onSubmit={(v) => console.info("search", v)}
           results={query ? [
             { id: "1", title: "产品路线图", description: "2026 Q1 路线图文档", group: "文档" },
             { id: "2", title: "Alice Chen", description: "产品经理", group: "用户" },
             { id: "3", title: "系统设置", description: "账户与偏好", group: "设置" },
             { id: "4", title: "API 文档", description: "REST API 参考", group: "文档" },
           ] : []}
-          onResultClick={(r) => alert(`点击：${r.title}`)}
+          onResultClick={(r) => console.info("click", r.title)}
         />
       </div>
     )
   },
 }
 
-export const DockExample: StoryObj = {
+export const DockExample: Story = {
   render: () => {
     const [active, setActive] = useState("home")
     return (
@@ -101,7 +104,7 @@ export const DockExample: StoryObj = {
   },
 }
 
-export const DockVerticalExample: StoryObj = {
+export const DockVerticalExample: Story = {
   render: () => (
     <div className="flex h-96 items-center justify-center">
       <Dock
@@ -117,7 +120,7 @@ export const DockVerticalExample: StoryObj = {
   ),
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-5xl space-y-8">
       <section>

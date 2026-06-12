@@ -37,20 +37,17 @@ export function useFormPersistence<T>({
     if (timerRef.current) clearTimeout(timerRef.current)
     const now = Date.now()
     const elapsed = now - lastWriteRef.current
-    if (elapsed >= throttle) {
-      lastWriteRef.current = now
+    const write = () => {
+      lastWriteRef.current = Date.now()
       try {
         window.localStorage.setItem(storageKey, JSON.stringify(value))
         setHasDraft(true)
       } catch {}
+    }
+    if (elapsed >= throttle) {
+      write()
     } else {
-      timerRef.current = setTimeout(() => {
-        lastWriteRef.current = Date.now()
-        try {
-          window.localStorage.setItem(storageKey, JSON.stringify(value))
-          setHasDraft(true)
-        } catch {}
-      }, throttle - elapsed)
+      timerRef.current = setTimeout(write, throttle - elapsed)
     }
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)

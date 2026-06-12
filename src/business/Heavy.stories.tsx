@@ -3,12 +3,15 @@ import { RichTextEditor } from "@/components/business/rich-text-editor"
 import { CodeEditor } from "@/components/business/code-editor"
 import { useState } from "react"
 
-export default {
+const meta = {
   title: "Business/Heavy",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const RichTextExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const RichTextExample: Story = {
   render: () => {
     const [value, setValue] = useState(
       "<h1>欢迎使用 Chaos UI 富文本编辑器</h1><p>这是一个基于 <strong>TipTap</strong> 的富文本编辑器，支持：</p><ul><li>加粗、斜体、删除线</li><li>无序/有序列表</li><li>链接、图片</li><li>代码块、引用</li></ul><blockquote>简洁即美 — 设计原则</blockquote><p>试试编辑这段文字。</p>"
@@ -22,7 +25,7 @@ export const RichTextExample: StoryObj = {
   },
 }
 
-export const CodeEditorExample: StoryObj = {
+export const CodeEditorExample: Story = {
   render: () => {
     const [js, setJs] = useState(`// TypeScript 编辑器
 import { useState } from "react"
@@ -36,7 +39,7 @@ export function Counter() {
   )
 }
 `)
-    const [json, setJson] = useValue(`{
+    const [json, setJson] = useState(`{
   "name": "chaos-ui",
   "version": "1.0.0",
   "dependencies": {
@@ -44,7 +47,7 @@ export function Counter() {
     "next": "^16.0.0"
   }
 }`)
-    const [css, setCss] = useValue(`/* CSS 编辑器 */
+    const [css, setCss] = useState(`/* CSS 编辑器 */
 .alert {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -92,11 +95,7 @@ export function Counter() {
   },
 }
 
-function useValue<T>(initial: T) {
-  return useState<T>(initial)
-}
-
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-4xl space-y-8">
       <section>

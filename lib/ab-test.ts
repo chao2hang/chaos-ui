@@ -22,9 +22,6 @@ export function pickVariant<T extends ExperimentVariant>(variants: T[], seed?: s
 }
 
 export function useExperiment<T extends ExperimentVariant>(key: string, variants: T[], userId?: string): T {
-  const [variant, setVariant] = React.useState<T>(() => pickVariant(variants, userId ?? key))
-  React.useEffect(() => {
-    setVariant(pickVariant(variants, userId ?? key))
-  }, [key, userId, variants])
+  const variant = React.useMemo(() => pickVariant(variants, userId ?? key), [key, userId, variants])
   return variant
 }

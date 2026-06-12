@@ -9,8 +9,7 @@ import { useState } from "react"
 import { BellIcon, LockIcon, UserIcon, CreditCardIcon, UsersIcon, SettingsIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { initials } from "@/lib/format"
+import { Avatar } from "@/components/ui/avatar"
 
 const tiers = [
   { id: "free", name: "免费", description: "适合个人尝试", price: 0, period: "月", features: [
@@ -64,12 +63,15 @@ const faqItems = [
   { q: "是否有移动端组件？", a: "是的，我们提供专门的 mobile-* 变体。" },
 ]
 
-export default {
+const meta = {
   title: "Business/Pages",
   parameters: { layout: "padded" },
 } satisfies Meta
 
-export const SettingsExample: StoryObj = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const SettingsExample: Story = {
   render: () => {
     const [active, setActive] = useState("account")
     return (
@@ -114,7 +116,7 @@ export const SettingsExample: StoryObj = {
   },
 }
 
-export const ProfileExample: StoryObj = {
+export const ProfileExample: Story = {
   render: () => (
     <div className="max-w-3xl space-y-4">
       <ProfileHeader
@@ -132,7 +134,7 @@ export const ProfileExample: StoryObj = {
           { label: "贡献", value: 89 },
         ]}
         actions={<Button>关注</Button>}
-        onAvatarUpload={(f) => alert(`上传 ${f.name}`)}
+        onAvatarUpload={(f) => console.info("upload", f.name)}
       />
       <div className="rounded-md border bg-card p-6">
         <h3 className="mb-4 text-base font-semibold">编辑资料</h3>
@@ -142,14 +144,14 @@ export const ProfileExample: StoryObj = {
             { name: "email", label: "邮箱", defaultValue: "li.lei@chaos.com", type: "email" },
             { name: "bio", label: "简介", defaultValue: "设计系统构建者" },
           ]}
-          onSubmit={(v) => alert(JSON.stringify(v))}
+          onSubmit={(v) => console.info("submit", v)}
         />
       </div>
     </div>
   ),
 }
 
-export const InboxExample: StoryObj = {
+export const InboxExample: Story = {
   render: () => {
     const [selected, setSelected] = useState("1")
     return (
@@ -158,23 +160,23 @@ export const InboxExample: StoryObj = {
           items={inboxItems}
           selected={selected}
           onSelect={setSelected}
-          onStar={(id) => alert(`星标 ${id}`)}
+          onStar={(id) => console.info("star", id)}
         />
       </div>
     )
   },
 }
 
-export const PricingExample: StoryObj = {
+export const PricingExample: Story = {
   render: () => (
     <div className="max-w-5xl space-y-3">
       <h3 className="text-lg font-semibold">Pricing Table</h3>
-      <PricingTable tiers={tiers} onCta={(id) => alert(`选择 ${id}`)} />
+      <PricingTable tiers={tiers}           onCta={(id) => console.info("cta", id)} />
     </div>
   ),
 }
 
-export const TestimonialsExample: StoryObj = {
+export const TestimonialsExample: Story = {
   render: () => (
     <div className="max-w-5xl space-y-3">
       <h3 className="text-lg font-semibold">Testimonial Cards</h3>
@@ -187,7 +189,7 @@ export const TestimonialsExample: StoryObj = {
   ),
 }
 
-export const FAQExample: StoryObj = {
+export const FAQExample: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <h3 className="text-lg font-semibold">FAQ Section</h3>
@@ -196,12 +198,12 @@ export const FAQExample: StoryObj = {
   ),
 }
 
-export const SignInExample: StoryObj = {
+export const SignInExample: Story = {
   render: () => (
     <div className="max-w-md rounded-md border bg-card p-6">
       <h3 className="mb-4 text-lg font-semibold">登录</h3>
       <SignInForm
-        onSubmit={(v) => alert(JSON.stringify(v))}
+        onSubmit={(v) => console.info("signin", v)}
         ssoProviders={[
           { id: "github", label: "GitHub" },
           { id: "google", label: "Google" },
@@ -213,25 +215,25 @@ export const SignInExample: StoryObj = {
   ),
 }
 
-export const SignUpExample: StoryObj = {
+export const SignUpExample: Story = {
   render: () => (
     <div className="max-w-md rounded-md border bg-card p-6">
       <h3 className="mb-4 text-lg font-semibold">注册</h3>
-      <SignUpForm onSubmit={(v) => alert(JSON.stringify(v))} signinHref="#signin" />
+        <SignUpForm onSubmit={(v) => console.info("signup", v)} signinHref="#signin" />
     </div>
   ),
 }
 
-export const ForgotPasswordExample: StoryObj = {
+export const ForgotPasswordExample: Story = {
   render: () => (
     <div className="max-w-md rounded-md border bg-card p-6">
       <h3 className="mb-4 text-lg font-semibold">重置密码</h3>
-      <ForgotPasswordForm onSubmit={(email) => alert(`重置链接发送至：${email}`)} />
+        <ForgotPasswordForm onSubmit={(email) => console.info("reset", email)} />
     </div>
   ),
 }
 
-export const OnboardingExample: StoryObj = {
+export const OnboardingExample: Story = {
   render: () => {
     const [done, setDone] = useState<string[]>(["welcome"])
     return (
@@ -254,7 +256,7 @@ export const OnboardingExample: StoryObj = {
   },
 }
 
-export const AllVariants: StoryObj = {
+export const AllVariants: Story = {
   render: () => (
     <div className="max-w-6xl space-y-12">
       <section>
