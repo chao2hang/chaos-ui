@@ -1,139 +1,101 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { LineChart, BarChart, AreaChart, PieChart, defaultColors, brandColors, statusColors } from "@/components/business/chart"
+import type { Meta } from "@storybook/react"
+import {
+  LineChart, AreaChart, BarChart, PieChart, RadarChart, RadialChart,
+  ScatterChart, ComposedChart, FunnelChart, HeatmapChart, SankeyChart,
+  TreemapChart, WaterfallChart,
+} from "@/components/business/charts"
 
-const sampleData = [
-  { month: "Jan", revenue: 4000, expenses: 2400, profit: 1600 },
-  { month: "Feb", revenue: 3000, expenses: 1398, profit: 1602 },
-  { month: "Mar", revenue: 2000, expenses: 9800, profit: -7800 },
-  { month: "Apr", revenue: 2780, expenses: 3908, profit: -1128 },
-  { month: "May", revenue: 1890, expenses: 4800, profit: -2910 },
-  { month: "Jun", revenue: 2390, expenses: 3800, profit: -1410 },
-]
-
-const pieData = [
-  { name: "Electronics", value: 400 },
-  { name: "Clothing", value: 300 },
-  { name: "Food", value: 300 },
-  { name: "Books", value: 200 },
-  { name: "Other", value: 100 },
-]
-
-const meta = {
+export default {
   title: "Business/Charts",
-  tags: ["autodocs"],
-  parameters: {
-    layout: "padded",
-  },
 } satisfies Meta
 
-export default meta
+const lineData = Array.from({ length: 12 }, (_, i) => ({
+  x: `${i + 1}月`,
+  sales: Math.floor(Math.random() * 500) + 100,
+  profit: Math.floor(Math.random() * 200) + 50,
+}))
 
-export const LineChartExample: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <LineChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-    </div>
-  ),
-}
+const pieData = [
+  { name: "直销", value: 400 },
+  { name: "代理", value: 300 },
+  { name: "在线", value: 300 },
+  { name: "其他", value: 200 },
+]
 
-export const BarChartExample: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <BarChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-    </div>
-  ),
-}
+const radarData = [
+  { subject: "销售", A: 120, B: 110, fullMark: 150 },
+  { subject: "管理", A: 98, B: 130, fullMark: 150 },
+  { subject: "技术", A: 86, B: 130, fullMark: 150 },
+  { subject: "客服", A: 99, B: 100, fullMark: 150 },
+  { subject: "研发", A: 85, B: 90, fullMark: 150 },
+  { subject: "市场", A: 65, B: 85, fullMark: 150 },
+]
 
-export const StackedBarChartExample: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <BarChart data={sampleData} categories={["revenue", "expenses"]} index="month" stacked />
-    </div>
-  ),
-}
+const funnelData = [
+  { name: "访问", value: 1000 },
+  { name: "咨询", value: 800 },
+  { name: "订单", value: 600 },
+  { name: "点击", value: 400 },
+  { name: "转化", value: 200 },
+]
 
-export const AreaChartExample: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <AreaChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-    </div>
-  ),
-}
+const heatmapData = [
+  { x: "Mon", y: "9am", value: 10 },
+  { x: "Mon", y: "12pm", value: 30 },
+  { x: "Mon", y: "3pm", value: 20 },
+  { x: "Tue", y: "9am", value: 25 },
+  { x: "Tue", y: "12pm", value: 50 },
+  { x: "Tue", y: "3pm", value: 35 },
+  { x: "Wed", y: "9am", value: 15 },
+  { x: "Wed", y: "12pm", value: 45 },
+  { x: "Wed", y: "3pm", value: 30 },
+]
 
-export const PieChartExample: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <PieChart data={pieData} category="value" index="name" />
-    </div>
-  ),
-}
+const sankeyData = [
+  { source: "A", target: "X", value: 30 },
+  { source: "A", target: "Y", value: 20 },
+  { source: "B", target: "X", value: 15 },
+  { source: "B", target: "Y", value: 25 },
+  { source: "X", target: "Z", value: 35 },
+  { source: "Y", target: "Z", value: 45 },
+]
 
-export const CustomColors: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <LineChart
-        data={sampleData}
-        categories={["revenue", "expenses", "profit"]}
-        index="month"
-        colors={["#2563eb", "#dc2626", "#16a34a"]}
-      />
-    </div>
-  ),
-}
+const treemapData = [
+  { name: "前端", value: 240 },
+  { name: "后端", value: 320 },
+  { name: "DevOps", value: 180 },
+  { name: "测试", value: 120 },
+  { name: "设计", value: 90 },
+]
 
-export const BrandColors: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <BarChart
-        data={sampleData}
-        categories={["revenue", "expenses"]}
-        index="month"
-        colors={brandColors}
-      />
-    </div>
-  ),
-}
+const waterfallData = [
+  { name: "Q1", value: 100, isTotal: true },
+  { name: "Q2", value: 50 },
+  { name: "Q3", value: 30 },
+  { name: "Q4", value: -40 },
+  { name: "Total", value: 140, isTotal: true },
+]
 
-export const StatusColors: StoryObj = {
-  render: () => (
-    <div className="w-full max-w-3xl">
-      <PieChart
-        data={pieData}
-        category="value"
-        index="name"
-        colors={statusColors}
-      />
-    </div>
-  ),
-}
-
-export const AllChartTypes: StoryObj = {
-  render: () => (
-    <div className="space-y-8">
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Line Chart</h3>
-        <div className="w-full max-w-3xl">
-          <LineChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-        </div>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Bar Chart</h3>
-        <div className="w-full max-w-3xl">
-          <BarChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-        </div>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Area Chart</h3>
-        <div className="w-full max-w-3xl">
-          <AreaChart data={sampleData} categories={["revenue", "expenses"]} index="month" />
-        </div>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Pie Chart</h3>
-        <div className="w-full max-w-3xl">
-          <PieChart data={pieData} category="value" index="name" />
-        </div>
-      </div>
-    </div>
-  ),
-}
+export const LineExample = () => <LineChart data={lineData} series={[{ key: "sales", name: "销售" }, { key: "profit", name: "利润" }]} />
+export const AreaExample = () => <AreaChart data={lineData} series={[{ key: "sales", name: "销售" }]} />
+export const BarExample = () => <BarChart data={lineData} series={[{ key: "sales", name: "销售" }, { key: "profit", name: "利润" }]} />
+export const PieExample = () => <PieChart data={pieData} />
+export const RadarExample = () => <RadarChart data={radarData} series={[{ key: "A", name: "组A" }, { key: "B", name: "组B" }]} />
+export const RadialExample = () => <RadialChart data={pieData} />
+export const ScatterExample = () => <ScatterChart data={lineData.map((d) => ({ x: d.sales, y: d.profit }))} />
+export const ComposedExample = () => (
+  <ComposedChart
+    data={lineData}
+    series={[
+      { key: "sales", name: "销售（柱）" },
+      { key: "profit", name: "利润（线）" },
+    ]}
+  />
+)
+export const FunnelExample = () => <FunnelChart data={funnelData} />
+export const HeatmapExample = () => <HeatmapChart data={heatmapData} xKey="x" yKey="y" valueKey="value" />
+export const SankeyExample = () => <SankeyChart data={sankeyData} xKey="source" yKey="target" valueKey="value" />
+export const TreemapExample = () => <TreemapChart data={treemapData} />
+export const WaterfallExample = () => <WaterfallChart data={waterfallData} />
+export const Loading = () => <LineChart data={[]} loading />
+export const Empty = () => <LineChart data={[]} empty />

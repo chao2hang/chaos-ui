@@ -1,490 +1,105 @@
-[11:44:36.607] [INFO] Running addon-a11y-addon-test automigration
-[11:44:36.607] [DEBUG] Extracting storybook data...
-[11:44:36.607] [DEBUG] Getting Storybook info...
-[11:44:36.616] [DEBUG] Loading main config...
-[11:44:36.616] [DEBUG] Getting stories paths...
-[11:44:36.633] [DEBUG] Getting package manager...
-[11:44:36.649] [DEBUG] Getting package.json info for C:/Developer/workspace/design/chaos_style/package.json...
-[11:44:36.649] [DEBUG] Getting Storybook version...
-[11:44:36.649] [DEBUG] Detecting CSF factory usage...
-[11:44:36.663] [INFO] Checking possible migrations..
-[11:44:36.663] [DEBUG] Running [36maddon-a11y-addon-test[39m migration checks
-[11:44:36.665] [DEBUG] End of [36maddon-a11y-addon-test[39m migration checks
-[11:44:36.665] [INFO] 🔎 found a '[36maddon-a11y-addon-test[39m' migration:
-[11:44:36.667] [INFO] ✅ ran [36maddon-a11y-addon-test[39m migration
-[11:44:36.668] [INFO] [32mMigration check ran successfully[39m
-[11:44:36.668] [INFO] [1mSuccessful migrations:[22m
-
-[32maddon-a11y-addon-test[39m
-
-─────────────────────────────────────────────────
-
-If you'd like to run the migrations again, you can do so by running 
-[36mnpx storybook automigrate[39m
-
-The automigrations try to migrate common patterns in your project, but might not contain everything needed to migrate to the latest version of Storybook.
-
-Please check the changelog and migration guide for manual migrations and more information: 
-https://storybook.js.org/docs/releases/migration-guide?ref=upgrade
-And reach out on Discord if you need help: https://discord.gg/storybook
-[11:44:36.668] [INFO] Installing dependencies...
-[11:44:36.668] [DEBUG] Executing command: pnpm install -w
-[11:44:36.669] [DEBUG] Resolved command variation: pnpm.cmd
-[11:44:37.183] [INFO] Installing dependencies...: ? Verifying lockfile against supply-chain policies (728 entries)...
-
-[11:44:48.141] [INFO] Installing dependencies...: ✓ Lockfile passes supply-chain policies (728 entries in 10.9s)
-
-[11:44:48.152] [INFO] Installing dependencies...: [WARN] Moving @tailwindcss/postcss that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.152] [INFO] Installing dependencies...: [WARN] Moving eslint that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.152] [INFO] Installing dependencies...: [WARN] Moving eslint-config-next that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.153] [INFO] Installing dependencies...: [WARN] Moving @types/react that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.153] [INFO] Installing dependencies...: [WARN] Moving @types/react-dom that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.153] [INFO] Installing dependencies...: [WARN] Moving @types/node that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.153] [INFO] Installing dependencies...: [WARN] Moving typescript that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.154] [INFO] Installing dependencies...: [WARN] Moving tailwindcss that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.154] [INFO] Installing dependencies...: [WARN] Moving @base-ui/react that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.154] [INFO] Installing dependencies...: [WARN] Moving @hookform/resolvers that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.154] [INFO] Installing dependencies...: [WARN] Moving @dnd-kit/utilities that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.154] [INFO] Installing dependencies...: [WARN] Moving @dnd-kit/core that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving @radix-ui/react-slot that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving @dnd-kit/sortable that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving @tanstack/react-query that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving class-variance-authority that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving axios that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving clsx that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving cmdk that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.155] [INFO] Installing dependencies...: [WARN] Moving lucide-react that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving date-fns that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving next-themes that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving next that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react-colorful that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react-dom that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react-day-picker that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react-dropzone that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving react-hook-form that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.156] [INFO] Installing dependencies...: [WARN] Moving recharts that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving shadcn that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving sonner that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving tailwind-merge that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving tw-animate-css that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving vaul that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving zod that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.157] [INFO] Installing dependencies...: [WARN] Moving zustand that was installed by a different package manager to "node_modules/.ignored"
-
-[11:44:48.503] [INFO] Installing dependencies...: Progress: resolved 1, reused 0, downloaded 0, added 0
-
-[11:44:49.505] [INFO] Installing dependencies...: Progress: resolved 39, reused 24, downloaded 3, added 0
-
-[11:44:50.570] [INFO] Installing dependencies...: Progress: resolved 49, reused 31, downloaded 13, added 0
-
-[11:44:51.569] [INFO] Installing dependencies...: Progress: resolved 139, reused 99, downloaded 23, added 0
-
-[11:44:52.569] [INFO] Installing dependencies...: Progress: resolved 317, reused 237, downloaded 57, added 0
-
-[11:44:53.574] [INFO] Installing dependencies...: Progress: resolved 597, reused 407, downloaded 73, added 0
-
-[11:44:54.578] [INFO] Installing dependencies...: Progress: resolved 858, reused 628, downloaded 78, added 0
-
-[11:44:55.602] [INFO] Installing dependencies...: Progress: resolved 919, reused 656, downloaded 85, added 0
-
-[11:44:56.614] [INFO] Installing dependencies...: Progress: resolved 944, reused 658, downloaded 128, added 0
-
-[11:44:57.331] [INFO] Installing dependencies...: [WARN] 1 deprecated subdependencies found: node-domexception@1.0.0
-
-[11:44:57.359] [INFO] Installing dependencies...: Packages: +799
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-[11:44:57.614] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 139, added 0
-
-[11:44:58.615] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 139, added 146
-
-[11:44:59.617] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 304
-
-[11:45:00.622] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 433
-
-[11:45:01.632] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 563
-
-[11:45:03.152] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 564
-
-[11:45:04.162] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 587
-
-[11:45:05.170] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 712
-
-[11:45:06.182] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 796
-
-[11:45:07.188] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 798
-
-[11:45:07.252] [INFO] Installing dependencies...: Progress: resolved 957, reused 667, downloaded 140, added 799, done
-
-[11:45:07.688] [INFO] Installing dependencies...: .../node_modules/unrs-resolver postinstall$ node postinstall.js
-
-[11:45:07.709] [INFO] Installing dependencies...: .../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
-
-[11:45:07.845] [INFO] Installing dependencies...: .../sharp@0.34.5/node_modules/sharp install: Done
-
-[11:45:07.890] [INFO] Installing dependencies...: .../node_modules/unrs-resolver postinstall: Done
-
-[11:45:08.834] [INFO] Installing dependencies...: [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
-
-[11:45:08.835] [INFO] Installing dependencies...: 
-dependencies:
-+ @base-ui/react 1.5.0
-+ @dnd-kit/core 6.3.1
-+ @dnd-kit/sortable 10.0.0
-+ @dnd-kit/utilities 3.2.2
-+ @hookform/resolvers 5.4.0
-+ @radix-ui/react-slot 1.2.5
-+ @tanstack/react-query 5.101.0
-+ axios 1.17.0
-+ class-variance-authority 0.7.1
-+ clsx 2.1.1
-+ cmdk 1.1.1
-+ date-fns 4.4.0
-+ lucide-react 1.17.0
-+ next 16.2.9
-+ next-themes 0.4.6
-+ react 19.2.7
-+ react-colorful 5.7.0
-+ react-day-picker 10.0.1
-+ react-dom 19.2.7
-+ react-dropzone 15.0.0
-+ react-hook-form 7.78.0
-+ recharts 3.8.1
-+ shadcn 4.11.0
-+ sonner 2.0.7
-+ tailwind-merge 3.6.0
-+ tw-animate-css 1.4.0
-+ vaul 1.1.2
-+ zod 4.4.3
-+ zustand 5.0.14
-
-devDependencies:
-+ @chromatic-com/storybook 5.2.1
-+ @storybook/addon-a11y 10.4.3
-+ @storybook/addon-docs 10.4.3
-+ @storybook/addon-mcp 0.6.0
-+ @storybook/addon-vitest 10.4.3
-+ @storybook/nextjs-vite 10.4.3
-+ @tailwindcss/postcss 4.3.0
-+ @types/node 25.9.2 (25.9.3 is available)
-+ @types/react 19.2.17
-+ @types/react-dom 19.2.3
-+ @vitest/browser-playwright 4.1.8
-+ @vitest/coverage-v8 4.1.8
-+ eslint 9.39.4 (10.4.1 is available)
-+ eslint-config-next 16.2.9
-+ eslint-plugin-storybook 10.4.3
-+ playwright 1.60.0
-+ storybook 10.4.3
-+ tailwindcss 4.3.0
-+ typescript 5.9.3 (6.0.3 is available)
-+ vite 8.0.16
-+ vitest 4.1.8
-
-
-[11:45:08.867] [INFO] Installing dependencies...: [ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.7
-
-Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
-
-[11:45:08.999] [ERROR] Installation of dependencies failed! {"error":"ExecaError: Command failed with exit code 1: pnpm.cmd install -w\n\n? Verifying lockfile against supply-chain policies (728 entries)...\n✓ Lockfile passes supply-chain policies (728 entries in 10.9s)\n[WARN] Moving @tailwindcss/postcss that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving eslint that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving eslint-config-next that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @types/react that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @types/react-dom that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @types/node that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving typescript that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving tailwindcss that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @base-ui/react that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @hookform/resolvers that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @dnd-kit/utilities that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @dnd-kit/core that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @radix-ui/react-slot that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @dnd-kit/sortable that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving @tanstack/react-query that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving class-variance-authority that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving axios that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving clsx that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving cmdk that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving lucide-react that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving date-fns that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving next-themes that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving next that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react-colorful that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react-dom that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react-day-picker that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react-dropzone that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving react-hook-form that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving recharts that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving shadcn that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving sonner that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving tailwind-merge that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving tw-animate-css that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving vaul that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving zod that was installed by a different package manager to \"node_modules/.ignored\"\n[WARN] Moving zustand that was installed by a different package manager to \"node_modules/.ignored\"\nProgress: resolved 1, reused 0, downloaded 0, added 0\nProgress: resolved 39, reused 24, downloaded 3, added 0\nProgress: resolved 49, reused 31, downloaded 13, added 0\nProgress: resolved 139, reused 99, downloaded 23, added 0\nProgress: resolved 317, reused 237, downloaded 57, added 0\nProgress: resolved 597, reused 407, downloaded 73, added 0\nProgress: resolved 858, reused 628, downloaded 78, added 0\nProgress: resolved 919, reused 656, downloaded 85, added 0\nProgress: resolved 944, reused 658, downloaded 128, added 0\n[WARN] 1 deprecated subdependencies found: node-domexception@1.0.0\nPackages: +799\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\nProgress: resolved 957, reused 667, downloaded 139, added 0\nProgress: resolved 957, reused 667, downloaded 139, added 146\nProgress: resolved 957, reused 667, downloaded 140, added 304\nProgress: resolved 957, reused 667, downloaded 140, added 433\nProgress: resolved 957, reused 667, downloaded 140, added 563\nProgress: resolved 957, reused 667, downloaded 140, added 564\nProgress: resolved 957, reused 667, downloaded 140, added 587\nProgress: resolved 957, reused 667, downloaded 140, added 712\nProgress: resolved 957, reused 667, downloaded 140, added 796\nProgress: resolved 957, reused 667, downloaded 140, added 798\nProgress: resolved 957, reused 667, downloaded 140, added 799, done\n.../node_modules/unrs-resolver postinstall$ node postinstall.js\n.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build\n.../sharp@0.34.5/node_modules/sharp install: Done\n.../node_modules/unrs-resolver postinstall: Done\n[WARN] Issues with peer dependencies found. Run \"pnpm peers check\" to list them.\n\ndependencies:\n+ @base-ui/react 1.5.0\n+ @dnd-kit/core 6.3.1\n+ @dnd-kit/sortable 10.0.0\n+ @dnd-kit/utilities 3.2.2\n+ @hookform/resolvers 5.4.0\n+ @radix-ui/react-slot 1.2.5\n+ @tanstack/react-query 5.101.0\n+ axios 1.17.0\n+ class-variance-authority 0.7.1\n+ clsx 2.1.1\n+ cmdk 1.1.1\n+ date-fns 4.4.0\n+ lucide-react 1.17.0\n+ next 16.2.9\n+ next-themes 0.4.6\n+ react 19.2.7\n+ react-colorful 5.7.0\n+ react-day-picker 10.0.1\n+ react-dom 19.2.7\n+ react-dropzone 15.0.0\n+ react-hook-form 7.78.0\n+ recharts 3.8.1\n+ shadcn 4.11.0\n+ sonner 2.0.7\n+ tailwind-merge 3.6.0\n+ tw-animate-css 1.4.0\n+ vaul 1.1.2\n+ zod 4.4.3\n+ zustand 5.0.14\n\ndevDependencies:\n+ @chromatic-com/storybook 5.2.1\n+ @storybook/addon-a11y 10.4.3\n+ @storybook/addon-docs 10.4.3\n+ @storybook/addon-mcp 0.6.0\n+ @storybook/addon-vitest 10.4.3\n+ @storybook/nextjs-vite 10.4.3\n+ @tailwindcss/postcss 4.3.0\n+ @types/node 25.9.2 (25.9.3 is available)\n+ @types/react 19.2.17\n+ @types/react-dom 19.2.3\n+ @vitest/browser-playwright 4.1.8\n+ @vitest/coverage-v8 4.1.8\n+ eslint 9.39.4 (10.4.1 is available)\n+ eslint-config-next 16.2.9\n+ eslint-plugin-storybook 10.4.3\n+ playwright 1.60.0\n+ storybook 10.4.3\n+ tailwindcss 4.3.0\n+ typescript 5.9.3 (6.0.3 is available)\n+ vite 8.0.16\n+ vitest 4.1.8\n\n[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.7\n\nRun \"pnpm approve-builds\" to pick which dependencies should be allowed to run scripts.\n    at getFinalError (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:11550:10)\n    at makeError (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:13086:15)\n    at getAsyncResult (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:15732:158)\n    at handlePromise (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:15718:162)\n    at async Object.executeTaskWithSpinner (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-6GLEZUPS.js:3683:11)\n    at async PNPMProxy.installDependencies (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:9700:5)\n    at async PNPMProxy.installDependencies (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:16737:7)\n    at async doAutomigrate (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/@storybook/cli/dist/_node-chunks/run-LBK7OPAR.js:8223:32)\n    at async file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/@storybook/cli/dist/_node-chunks/run-LBK7OPAR.js:10614:90\n    at async withTelemetry (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-ZQ5NLTS2.js:655:12)"}
-[11:45:08.999] [ERROR] [38;2;241;97;97mExecaError: Command failed with exit code 1: pnpm.cmd install -w
-
-? Verifying lockfile against supply-chain policies (728 entries)...
-✓ Lockfile passes supply-chain policies (728 entries in 10.9s)
-[WARN] Moving @tailwindcss/postcss that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving eslint that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving eslint-config-next that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/react-dom that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/node that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving typescript that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tailwindcss that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @base-ui/react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @hookform/resolvers that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/utilities that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/core that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @radix-ui/react-slot that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/sortable that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @tanstack/react-query that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving class-variance-authority that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving axios that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving clsx that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving cmdk that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving lucide-react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving date-fns that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving next-themes that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving next that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-colorful that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-dom that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-day-picker that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-dropzone that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-hook-form that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving recharts that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving shadcn that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving sonner that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tailwind-merge that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tw-animate-css that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving vaul that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving zod that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving zustand that was installed by a different package manager to "node_modules/.ignored"
-Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 39, reused 24, downloaded 3, added 0
-Progress: resolved 49, reused 31, downloaded 13, added 0
-Progress: resolved 139, reused 99, downloaded 23, added 0
-Progress: resolved 317, reused 237, downloaded 57, added 0
-Progress: resolved 597, reused 407, downloaded 73, added 0
-Progress: resolved 858, reused 628, downloaded 78, added 0
-Progress: resolved 919, reused 656, downloaded 85, added 0
-Progress: resolved 944, reused 658, downloaded 128, added 0
-[WARN] 1 deprecated subdependencies found: node-domexception@1.0.0
-Packages: +799
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 957, reused 667, downloaded 139, added 0
-Progress: resolved 957, reused 667, downloaded 139, added 146
-Progress: resolved 957, reused 667, downloaded 140, added 304
-Progress: resolved 957, reused 667, downloaded 140, added 433
-Progress: resolved 957, reused 667, downloaded 140, added 563
-Progress: resolved 957, reused 667, downloaded 140, added 564
-Progress: resolved 957, reused 667, downloaded 140, added 587
-Progress: resolved 957, reused 667, downloaded 140, added 712
-Progress: resolved 957, reused 667, downloaded 140, added 796
-Progress: resolved 957, reused 667, downloaded 140, added 798
-Progress: resolved 957, reused 667, downloaded 140, added 799, done
-.../node_modules/unrs-resolver postinstall$ node postinstall.js
-.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
-.../sharp@0.34.5/node_modules/sharp install: Done
-.../node_modules/unrs-resolver postinstall: Done
-[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
-
-dependencies:
-+ @base-ui/react 1.5.0
-+ @dnd-kit/core 6.3.1
-+ @dnd-kit/sortable 10.0.0
-+ @dnd-kit/utilities 3.2.2
-+ @hookform/resolvers 5.4.0
-+ @radix-ui/react-slot 1.2.5
-+ @tanstack/react-query 5.101.0
-+ axios 1.17.0
-+ class-variance-authority 0.7.1
-+ clsx 2.1.1
-+ cmdk 1.1.1
-+ date-fns 4.4.0
-+ lucide-react 1.17.0
-+ next 16.2.9
-+ next-themes 0.4.6
-+ react 19.2.7
-+ react-colorful 5.7.0
-+ react-day-picker 10.0.1
-+ react-dom 19.2.7
-+ react-dropzone 15.0.0
-+ react-hook-form 7.78.0
-+ recharts 3.8.1
-+ shadcn 4.11.0
-+ sonner 2.0.7
-+ tailwind-merge 3.6.0
-+ tw-animate-css 1.4.0
-+ vaul 1.1.2
-+ zod 4.4.3
-+ zustand 5.0.14
-
-devDependencies:
-+ @chromatic-com/storybook 5.2.1
-+ @storybook/addon-a11y 10.4.3
-+ @storybook/addon-docs 10.4.3
-+ @storybook/addon-mcp 0.6.0
-+ @storybook/addon-vitest 10.4.3
-+ @storybook/nextjs-vite 10.4.3
-+ @tailwindcss/postcss 4.3.0
-+ @types/node 25.9.2 (25.9.3 is available)
-+ @types/react 19.2.17
-+ @types/react-dom 19.2.3
-+ @vitest/browser-playwright 4.1.8
-+ @vitest/coverage-v8 4.1.8
-+ eslint 9.39.4 (10.4.1 is available)
-+ eslint-config-next 16.2.9
-+ eslint-plugin-storybook 10.4.3
-+ playwright 1.60.0
-+ storybook 10.4.3
-+ tailwindcss 4.3.0
-+ typescript 5.9.3 (6.0.3 is available)
-+ vite 8.0.16
-+ vitest 4.1.8
-
-[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.7
-
-Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.[39m
-    at getFinalError (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:11550:10)
-    at makeError (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:13086:15)
-    at getAsyncResult (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:15732:158)
-    at handlePromise (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:15718:162)
-    at async Object.executeTaskWithSpinner (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-6GLEZUPS.js:3683:11)
-    at async PNPMProxy.installDependencies (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:9700:5)
-    at async PNPMProxy.installDependencies (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-QTJ23TAE.js:16737:7)
-    at async doAutomigrate (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/@storybook/cli/dist/_node-chunks/run-LBK7OPAR.js:8223:32)
-    at async file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/@storybook/cli/dist/_node-chunks/run-LBK7OPAR.js:10614:90
-    at async withTelemetry (file:///C:/Users/chaos/AppData/Local/npm-cache/_npx/c8d51691e20e7756/node_modules/storybook/dist/_node-chunks/chunk-ZQ5NLTS2.js:655:12)
-[11:45:10.539] [ERROR] ExecaError: Command failed with exit code 1: pnpm.cmd install -w
-
-? Verifying lockfile against supply-chain policies (728 entries)...
-✓ Lockfile passes supply-chain policies (728 entries in 10.9s)
-[WARN] Moving @tailwindcss/postcss that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving eslint that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving eslint-config-next that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/react-dom that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @types/node that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving typescript that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tailwindcss that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @base-ui/react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @hookform/resolvers that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/utilities that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/core that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @radix-ui/react-slot that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @dnd-kit/sortable that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving @tanstack/react-query that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving class-variance-authority that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving axios that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving clsx that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving cmdk that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving lucide-react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving date-fns that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving next-themes that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving next that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-colorful that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-dom that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-day-picker that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-dropzone that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving react-hook-form that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving recharts that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving shadcn that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving sonner that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tailwind-merge that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving tw-animate-css that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving vaul that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving zod that was installed by a different package manager to "node_modules/.ignored"
-[WARN] Moving zustand that was installed by a different package manager to "node_modules/.ignored"
-Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 39, reused 24, downloaded 3, added 0
-Progress: resolved 49, reused 31, downloaded 13, added 0
-Progress: resolved 139, reused 99, downloaded 23, added 0
-Progress: resolved 317, reused 237, downloaded 57, added 0
-Progress: resolved 597, reused 407, downloaded 73, added 0
-Progress: resolved 858, reused 628, downloaded 78, added 0
-Progress: resolved 919, reused 656, downloaded 85, added 0
-Progress: resolved 944, reused 658, downloaded 128, added 0
-[WARN] 1 deprecated subdependencies found: node-domexception@1.0.0
-Packages: +799
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 957, reused 667, downloaded 139, added 0
-Progress: resolved 957, reused 667, downloaded 139, added 146
-Progress: resolved 957, reused 667, downloaded 140, added 304
-Progress: resolved 957, reused 667, downloaded 140, added 433
-Progress: resolved 957, reused 667, downloaded 140, added 563
-Progress: resolved 957, reused 667, downloaded 140, added 564
-Progress: resolved 957, reused 667, downloaded 140, added 587
-Progress: resolved 957, reused 667, downloaded 140, added 712
-Progress: resolved 957, reused 667, downloaded 140, added 796
-Progress: resolved 957, reused 667, downloaded 140, added 798
-Progress: resolved 957, reused 667, downloaded 140, added 799, done
-.../node_modules/unrs-resolver postinstall$ node postinstall.js
-.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
-.../sharp@0.34.5/node_modules/sharp install: Done
-.../node_modules/unrs-resolver postinstall: Done
-[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
-
-dependencies:
-+ @base-ui/react 1.5.0
-+ @dnd-kit/core 6.3.1
-+ @dnd-kit/sortable 10.0.0
-+ @dnd-kit/utilities 3.2.2
-+ @hookform/resolvers 5.4.0
-+ @radix-ui/react-slot 1.2.5
-+ @tanstack/react-query 5.101.0
-+ axios 1.17.0
-+ class-variance-authority 0.7.1
-+ clsx 2.1.1
-+ cmdk 1.1.1
-+ date-fns 4.4.0
-+ lucide-react 1.17.0
-+ next 16.2.9
-+ next-themes 0.4.6
-+ react 19.2.7
-+ react-colorful 5.7.0
-+ react-day-picker 10.0.1
-+ react-dom 19.2.7
-+ react-dropzone 15.0.0
-+ react-hook-form 7.78.0
-+ recharts 3.8.1
-+ shadcn 4.11.0
-+ sonner 2.0.7
-+ tailwind-merge 3.6.0
-+ tw-animate-css 1.4.0
-+ vaul 1.1.2
-+ zod 4.4.3
-+ zustand 5.0.14
-
-devDependencies:
-+ @chromatic-com/storybook 5.2.1
-+ @storybook/addon-a11y 10.4.3
-+ @storybook/addon-docs 10.4.3
-+ @storybook/addon-mcp 0.6.0
-+ @storybook/addon-vitest 10.4.3
-+ @storybook/nextjs-vite 10.4.3
-+ @tailwindcss/postcss 4.3.0
-+ @types/node 25.9.2 (25.9.3 is available)
-+ @types/react 19.2.17
-+ @types/react-dom 19.2.3
-+ @vitest/browser-playwright 4.1.8
-+ @vitest/coverage-v8 4.1.8
-+ eslint 9.39.4 (10.4.1 is available)
-+ eslint-config-next 16.2.9
-+ eslint-plugin-storybook 10.4.3
-+ playwright 1.60.0
-+ storybook 10.4.3
-+ tailwindcss 4.3.0
-+ typescript 5.9.3 (6.0.3 is available)
-+ vite 8.0.16
-+ vitest 4.1.8
-
-[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.7
-
-Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+[10:50:44.177] [INFO] storybook v10.4.3
+[10:50:44.759] [DEBUG] Command "yarn.cmd" not found, trying next variation...
+[10:50:44.936] [DEBUG] Command "yarn.exe" not found, trying next variation...
+[10:50:45.077] [DEBUG] Command "yarn.ps1" not found, trying next variation...
+[10:50:46.994] [DEBUG] Getting package.json info for C:/Developer/workspace/design/chaos_style/package.json...
+[10:50:52.571] [WARN] No story files found for the specified pattern: [34msrc\intro\**\*.stories.@(js|jsx|mjs|ts|tsx)[39m
+[10:50:52.579] [WARN] No story files found for the specified pattern: [34msrc\components\**\*.mdx[39m
+[10:50:52.588] [WARN] No story files found for the specified pattern: [34msrc\business\**\*.mdx[39m
+[10:50:52.590] [WARN] No story files found for the specified pattern: [34msrc\layout\**\*.mdx[39m
+[10:50:54.128] [DEBUG] Serving static files from [36mnode_modules/.pnpm/@chromatic-com+storybook@5._bc11e0d0e4e47959102a5df7fafcb51a/node_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[10:50:54.128] [DEBUG] Serving static files from [36mpublic[39m at [36m/[39m
+[10:50:54.129] [INFO] Starting...
+[10:50:55.000] [DEBUG] Starting preview..
+[10:50:55.144] [DEBUG] Using tsconfig paths for react-docgen
+[10:51:07.840] [DEBUG] Change detection enabled.
+[10:51:07.841] [DEBUG] Change detection: snapshotting Vite resolve config (restart required if vite.config.ts changes)
+[10:51:07.845] [DEBUG] Change detection: ignored 28 regex alias(es); related modules tracked as opaque-leaf.
+[10:51:07.845] [DEBUG] ChangeDetectionResolverFactory: skipped regex aliases [/^react$/, /^react\/jsx-runtime$/, /^react\/jsx-dev-runtime$/, /^react-dom$/, /^react-dom\/server$/, /^react-dom\/test-utils$/, /^react-dom\/client$/, /^react-dom\/cjs\/react-dom\.development\.js$/, /^@storybook\/global$/, /^storybook\/test$/, /^storybook\/actions$/, /^storybook\/preview-api$/, /^storybook\/internal\/channels$/, /^storybook\/internal\/client-logger$/, /^storybook\/internal\/core-events$/, /^storybook\/internal\/preview-errors$/, /^storybook\/internal\/types$/, /^storybook\/internal\/preview-api$/, /^react$/, /^react\/jsx-runtime$/, /^react\/jsx-dev-runtime$/, /^react-dom$/, /^react-dom\/server$/, /^react-dom\/test-utils$/, /^react-dom\/client$/, /^react-dom\/cjs\/react-dom\.development\.js$/, /^\/?@vite\/env/, /^\/?@vite\/client/]
+[10:51:08.262] [ERROR] [38;2;241;97;97mError: listen EADDRINUSE: address already in use :::6006[39m
+    at Server.setupListenHandle [as _listen2] (node:net:2008:16)
+    at listenInCluster (node:net:2065:12)
+    at Server.listen (node:net:2170:7)
+    at _Polka.listen (file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/core-server/index.js:9924:110)
+    at file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/core-server/index.js:11517:39
+    at new Promise (<anonymous>)
+    at storybookDevServer (file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/core-server/index.js:11516:19)
+    at async buildOrThrow (file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/core-server/index.js:8205:12)
+    at async buildDevStandalone (file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/core-server/index.js:12057:41)
+    at async withTelemetry (file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/storybook@10.4.3_@testing-l_8fcd3a988ea73fad03740120670d038b/node_modules/storybook/dist/_node-chunks/chunk-ZQ5NLTS2.js:655:12)
+[10:51:08.281] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[10:51:08.870] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/browse-input.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:08.870] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/browse-input.tsx
+[10:51:09.002] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/badge.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.002] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/badge.tsx
+[10:51:09.004] [DEBUG] ChangeDetectionResolverFactory: 'react-day-picker' from 'C:/Developer/workspace/design/chaos_style/components/ui/calendar.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\react-day-picker (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\react-day-picker\package.json))
+[10:51:09.004] [DEBUG] Could not resolve react-day-picker from C:/Developer/workspace/design/chaos_style/components/ui/calendar.tsx
+[10:51:09.004] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/alert.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.004] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/alert.tsx
+[10:51:09.007] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/button.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.007] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/button.tsx
+[10:51:09.013] [DEBUG] ChangeDetectionResolverFactory: 'cmdk' from 'C:/Developer/workspace/design/chaos_style/components/ui/command.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\cmdk (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\cmdk\package.json))
+[10:51:09.013] [DEBUG] Could not resolve cmdk from C:/Developer/workspace/design/chaos_style/components/ui/command.tsx
+[10:51:09.015] [DEBUG] ChangeDetectionResolverFactory: 'react-dropzone' from 'C:/Developer/workspace/design/chaos_style/components/ui/file-upload.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\react-dropzone (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\react-dropzone\package.json))
+[10:51:09.015] [DEBUG] Could not resolve react-dropzone from C:/Developer/workspace/design/chaos_style/components/ui/file-upload.tsx
+[10:51:09.015] [DEBUG] ChangeDetectionResolverFactory: 'vaul' from 'C:/Developer/workspace/design/chaos_style/components/ui/drawer.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\vaul (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\vaul\package.json))
+[10:51:09.015] [DEBUG] Could not resolve vaul from C:/Developer/workspace/design/chaos_style/components/ui/drawer.tsx
+[10:51:09.015] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/grid-layout.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.015] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/grid-layout.tsx
+[10:51:09.017] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/form-grid.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.017] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/form-grid.tsx
+[10:51:09.019] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/input-group.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.019] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/input-group.tsx
+[10:51:09.020] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/form-section.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.020] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/form-section.tsx
+[10:51:09.028] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/kpi-panel.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.028] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/kpi-panel.tsx
+[10:51:09.028] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/navigation-menu.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.028] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/navigation-menu.tsx
+[10:51:09.028] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/page-container.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.028] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/page-container.tsx
+[10:51:09.121] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/sidebar.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.121] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/sidebar.tsx
+[10:51:09.121] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/tabs.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.121] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/tabs.tsx
+[10:51:09.137] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/toggle.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.137] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/toggle.tsx
+[10:51:09.139] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/timeline.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.139] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/timeline.tsx
+[10:51:09.145] [DEBUG] ChangeDetectionResolverFactory: 'next-themes' from 'C:/Developer/workspace/design/chaos_style/components/ui/sonner.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\next-themes (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\next-themes\package.json))
+[10:51:09.145] [DEBUG] Could not resolve next-themes from C:/Developer/workspace/design/chaos_style/components/ui/sonner.tsx
+[10:51:09.163] [DEBUG] ChangeDetectionResolverFactory: '@tanstack/react-virtual' from 'C:/Developer/workspace/design/chaos_style/components/ui/virtual-table.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tanstack\react-virtual (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tanstack\react-virtual\package.json))
+[10:51:09.163] [DEBUG] Could not resolve @tanstack/react-virtual from C:/Developer/workspace/design/chaos_style/components/ui/virtual-table.tsx
+[10:51:09.163] [DEBUG] ChangeDetectionResolverFactory: '@tanstack/react-virtual' from 'C:/Developer/workspace/design/chaos_style/components/ui/virtual-list.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tanstack\react-virtual (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tanstack\react-virtual\package.json))
+[10:51:09.163] [DEBUG] Could not resolve @tanstack/react-virtual from C:/Developer/workspace/design/chaos_style/components/ui/virtual-list.tsx
+[10:51:09.175] [DEBUG] ChangeDetectionResolverFactory: '@/components/business/form-autosave-indicator' from 'C:/Developer/workspace/design/chaos_style/src/business/Form.stories.tsx' unresolved (Cannot find module '@/components/business/form-autosave-indicator')
+[10:51:09.175] [DEBUG] Could not resolve @/components/business/form-autosave-indicator from C:/Developer/workspace/design/chaos_style/src/business/Form.stories.tsx
+[10:51:09.250] [INFO] [43mVite[49m [optimizer] bundling dependencies...
+[10:51:09.290] [DEBUG] ChangeDetectionResolverFactory: '@tiptap/react' from 'C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\react (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\react\package.json))
+[10:51:09.290] [DEBUG] Could not resolve @tiptap/react from C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx
+[10:51:09.295] [DEBUG] ChangeDetectionResolverFactory: '@tiptap/starter-kit' from 'C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\starter-kit (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\starter-kit\package.json))
+[10:51:09.295] [DEBUG] Could not resolve @tiptap/starter-kit from C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx
+[10:51:09.300] [DEBUG] ChangeDetectionResolverFactory: '@tiptap/extension-link' from 'C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-link (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-link\package.json))
+[10:51:09.300] [DEBUG] Could not resolve @tiptap/extension-link from C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx
+[10:51:09.310] [DEBUG] ChangeDetectionResolverFactory: '@tiptap/extension-image' from 'C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-image (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-image\package.json))
+[10:51:09.311] [DEBUG] Could not resolve @tiptap/extension-image from C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx
+[10:51:09.318] [DEBUG] ChangeDetectionResolverFactory: '@tiptap/extension-placeholder' from 'C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-placeholder (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@tiptap\extension-placeholder\package.json))
+[10:51:09.318] [DEBUG] Could not resolve @tiptap/extension-placeholder from C:/Developer/workspace/design/chaos_style/components/business/rich-text-editor.tsx
+[10:51:09.543] [DEBUG] ChangeDetectionResolverFactory: '@uiw/react-codemirror' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@uiw\react-codemirror (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@uiw\react-codemirror\package.json))
+[10:51:09.543] [DEBUG] Could not resolve @uiw/react-codemirror from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.561] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/lang-javascript' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-javascript (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-javascript\package.json))
+[10:51:09.561] [DEBUG] Could not resolve @codemirror/lang-javascript from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.583] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/lang-html' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-html (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-html\package.json))
+[10:51:09.583] [DEBUG] Could not resolve @codemirror/lang-html from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.595] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/lang-css' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-css (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-css\package.json))
+[10:51:09.595] [DEBUG] Could not resolve @codemirror/lang-css from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.621] [DEBUG] ChangeDetectionResolverFactory: 'class-variance-authority' from 'C:/Developer/workspace/design/chaos_style/components/ui/dot.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\class-variance-authority\package.json))
+[10:51:09.621] [DEBUG] Could not resolve class-variance-authority from C:/Developer/workspace/design/chaos_style/components/ui/dot.tsx
+[10:51:09.621] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/lang-json' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-json (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-json\package.json))
+[10:51:09.621] [DEBUG] Could not resolve @codemirror/lang-json from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.628] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/lang-python' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-python (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\lang-python\package.json))
+[10:51:09.628] [DEBUG] Could not resolve @codemirror/lang-python from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:09.633] [DEBUG] ChangeDetectionResolverFactory: '@codemirror/theme-one-dark' from 'C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx' unresolved ("." is not exported under the conditions ["storybook", "stories", "test", "module", "browser", "development|production"] from package C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\theme-one-dark (see exports field in C:/Developer/workspace/design/chaos_style\node_modules\@codemirror\theme-one-dark\package.json))
+[10:51:09.633] [DEBUG] Could not resolve @codemirror/theme-one-dark from C:/Developer/workspace/design/chaos_style/components/business/code-editor.tsx
+[10:51:10.312] [DEBUG] Change detection graph built: 84 stories, 221 deps tracked, 2460ms

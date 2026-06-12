@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid items-center gap-3 grid-cols-[auto_minmax(0,1fr)] has-[>svg]:items-start has-[[data-slot=alert-title]]:items-start",
+  "relative w-full rounded-lg border px-4 py-3 text-sm grid items-center gap-3 grid-cols-[auto_minmax(0,1fr)]",
   {
     variants: {
       variant: {
@@ -38,12 +38,12 @@ function Alert({ className, variant, icon, children, ...props }: AlertProps) {
       {icon && (
         <div
           data-slot="alert-icon"
-          className="flex size-5 shrink-0 items-center justify-center text-current [&>svg]:size-5 [&>svg]:stroke-2"
+          className="flex size-7 shrink-0 items-center justify-center self-center text-current [&>svg]:size-5 [&>svg]:stroke-[1.75]"
         >
           {icon}
         </div>
       )}
-      <div data-slot="alert-content" className="min-w-0">
+      <div data-slot="alert-content" className="min-w-0 flex flex-col gap-1">
         {children}
       </div>
     </div>
@@ -54,7 +54,7 @@ function AlertTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingEle
   return (
     <h5
       data-slot="alert-title"
-      className={cn("mb-1 font-medium leading-5 tracking-tight", className)}
+      className={cn("font-medium leading-5 tracking-tight", className)}
       {...props}
     />
   )
@@ -64,7 +64,7 @@ function AlertDescription({ className, ...props }: React.HTMLAttributes<HTMLDivE
   return (
     <div
       data-slot="alert-description"
-      className={cn("text-sm leading-relaxed [&_p]:leading-relaxed", className)}
+      className={cn("mt-1 text-sm leading-relaxed text-current/80 [&_p]:leading-relaxed", className)}
       {...props}
     />
   )

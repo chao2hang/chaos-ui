@@ -1,0 +1,13 @@
+[     305ms] [WARNING] The 'ariaLabel' prop on 'PopoverProvider' will become mandatory in Storybook 11. Provide a concise, accessible label describing the popover's purpose. @ http://localhost:6006/sb-manager/globals-runtime.js:5810
+[     482ms] [WARNING] The 'ariaLabel' prop on 'Button' will become mandatory in Storybook 11. Buttons with text content should set 'ariaLabel={false}' to indicate that they are accessible as-is. Buttons without text content must provide a meaningful 'ariaLabel' for accessibility. The button content is: Share. @ http://localhost:6006/sb-manager/globals-runtime.js:5810
+[     699ms] [VERBOSE] Rendering was performed in a subtree hidden by content-visibility. @ http://localhost:6006/sb-manager/runtime.js:12881
+[     701ms] [VERBOSE] Rendering was performed in a subtree hidden by content-visibility. @ http://localhost:6006/sb-manager/runtime.js:12881
+[    1698ms] [WARNING] [vidstack] dev mode! @ http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@vidstack_react.js?v=4fee2faa:1098
+[  137875ms] TypeError: Cannot read properties of undefined (reading 'length')
+    at Poster._getImgSrc (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/media-ui-6_JrIqa6.js?v=4fee2faa:6818:31)
+    at compute (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:113:19)
+    at update (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:220:18)
+    at updateCheck (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:206:35)
+    at updateCheck (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:203:3)
+    at runTop (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:26:50)
+    at runEffects (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/std-D_jNSsi_.js?v=4fee2faa:18:82)

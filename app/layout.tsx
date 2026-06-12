@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "Chaos UI",
     template: "%s | Chaos UI",
   },
-  description: "Enterprise component design system and styleguide",
+  description: "Enterprise component design system",
 };
 
 export default function RootLayout({

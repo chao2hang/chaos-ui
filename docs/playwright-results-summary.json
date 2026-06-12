@@ -1,0 +1,577 @@
+{
+  "scannedAt": "2026-06-12T05:16:23.708Z",
+  "totalStories": 419,
+  "storiesWithIssues": 27,
+  "cleanStories": 392,
+  "byErrorCategory": {
+    "hydration-nested-button": {
+      "count": 7,
+      "stories": [
+        "business-pages--inbox-example",
+        "components-collapsible--default",
+        "components-collapsible--docs",
+        "components-hovercard--docs",
+        "components-hovercard--user-profile",
+        "mobile-components--mobile-dialogs",
+        "mobile-components--mobile-sheets"
+      ]
+    },
+    "non-bool-collapsible": {
+      "count": 3,
+      "stories": [
+        "components-accordion--default",
+        "components-accordion--docs",
+        "components-accordion--faq"
+      ]
+    },
+    "react-dom-unknown-prop": {
+      "count": 7,
+      "stories": [
+        "components-collapsible--default",
+        "components-collapsible--docs",
+        "components-hovercard--docs",
+        "components-hovercard--user-profile",
+        "mobile-components--mobile-dialogs",
+        "mobile-components--mobile-navigations",
+        "mobile-components--mobile-sheets"
+      ]
+    },
+    "base-ui-native-button": {
+      "count": 15,
+      "stories": [
+        "components-departmentbrowse--default",
+        "components-departmentbrowse--disabled",
+        "components-departmentbrowse--docs",
+        "components-departmentbrowse--multiple",
+        "components-departmentbrowse--with-default",
+        "components-treeselect--default",
+        "components-treeselect--docs",
+        "components-treeselect--multiple",
+        "components-treeselect--with-default",
+        "components-userbrowse--default",
+        "components-userbrowse--disabled",
+        "components-userbrowse--docs",
+        "components-userbrowse--multiple",
+        "components-userbrowse--with-default",
+        "components-userbrowse--with-max-count"
+      ]
+    },
+    "other": {
+      "count": 1,
+      "stories": [
+        "components-progress--complete"
+      ]
+    }
+  },
+  "byId": {
+    "business-pages--inbox-example": {
+      "status": "ok",
+      "durationMs": 1614,
+      "categories": [
+        "hydration-nested-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        }
+      ]
+    },
+    "components-accordion--default": {
+      "status": "ok",
+      "durationMs": 1618,
+      "categories": [
+        "non-bool-collapsible"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "non-bool-collapsible",
+          "msg": "Received `%s` for a non-boolean attribute `%s`."
+        }
+      ]
+    },
+    "components-accordion--docs": {
+      "status": "ok",
+      "durationMs": 1715,
+      "categories": [
+        "non-bool-collapsible"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "non-bool-collapsible",
+          "msg": "Received `%s` for a non-boolean attribute `%s`."
+        }
+      ]
+    },
+    "components-accordion--faq": {
+      "status": "ok",
+      "durationMs": 1790,
+      "categories": [
+        "non-bool-collapsible"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "non-bool-collapsible",
+          "msg": "Received `%s` for a non-boolean attribute `%s`."
+        }
+      ]
+    },
+    "components-collapsible--default": {
+      "status": "ok",
+      "durationMs": 1638,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "components-collapsible--docs": {
+      "status": "ok",
+      "durationMs": 1630,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "components-departmentbrowse--default": {
+      "status": "ok",
+      "durationMs": 1638,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-departmentbrowse--disabled": {
+      "status": "ok",
+      "durationMs": 1634,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-departmentbrowse--docs": {
+      "status": "ok",
+      "durationMs": 1714,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-departmentbrowse--multiple": {
+      "status": "ok",
+      "durationMs": 1677,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-departmentbrowse--with-default": {
+      "status": "ok",
+      "durationMs": 1623,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-hovercard--docs": {
+      "status": "ok",
+      "durationMs": 1607,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "components-hovercard--user-profile": {
+      "status": "ok",
+      "durationMs": 1622,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "components-progress--complete": {
+      "status": "ok",
+      "durationMs": 1665,
+      "categories": [
+        "other"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cstoryRenderPhaseChanged%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785"
+        },
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cstoryRendered%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785"
+        },
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cstorybook/highlight/remove%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00"
+        },
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cchromaui/addon-visual-tests/highlightIgnored/count%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00"
+        },
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cstorybook/docs/snippet-rendered%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00"
+        },
+        {
+          "type": "console",
+          "category": "other",
+          "msg": "%c manager %c received %cstoryRenderPhaseChanged%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785"
+        }
+      ]
+    },
+    "components-treeselect--default": {
+      "status": "ok",
+      "durationMs": 1617,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-treeselect--docs": {
+      "status": "ok",
+      "durationMs": 1691,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-treeselect--multiple": {
+      "status": "ok",
+      "durationMs": 1609,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-treeselect--with-default": {
+      "status": "ok",
+      "durationMs": 1622,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--default": {
+      "status": "ok",
+      "durationMs": 1614,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--disabled": {
+      "status": "ok",
+      "durationMs": 1622,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--docs": {
+      "status": "ok",
+      "durationMs": 1739,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        },
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--multiple": {
+      "status": "ok",
+      "durationMs": 1672,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--with-default": {
+      "status": "ok",
+      "durationMs": 1620,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "components-userbrowse--with-max-count": {
+      "status": "ok",
+      "durationMs": 1611,
+      "categories": [
+        "base-ui-native-button"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "base-ui-native-button",
+          "msg": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`."
+        }
+      ]
+    },
+    "mobile-components--mobile-dialogs": {
+      "status": "ok",
+      "durationMs": 1751,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "mobile-components--mobile-navigations": {
+      "status": "ok",
+      "durationMs": 1623,
+      "categories": [
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    },
+    "mobile-components--mobile-sheets": {
+      "status": "ok",
+      "durationMs": 1636,
+      "categories": [
+        "hydration-nested-button",
+        "react-dom-unknown-prop"
+      ],
+      "messages": [
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "In HTML, %s cannot be a descendant of <%s>."
+        },
+        {
+          "type": "console",
+          "category": "hydration-nested-button",
+          "msg": "<%s> cannot contain a nested %s."
+        },
+        {
+          "type": "console",
+          "category": "react-dom-unknown-prop",
+          "msg": "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+        }
+      ]
+    }
+  }
+}

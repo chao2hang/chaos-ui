@@ -2,8 +2,19 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-function Timeline({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex flex-col", className)} {...props} />
+const TimelineContext = React.createContext<{ isLast: boolean }>({ isLast: false })
+
+function Timeline({ className, children, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
+  const items = React.Children.toArray(children)
+  return (
+    <div className={cn("flex flex-col", className)} {...props}>
+      {items.map((child, i) => (
+        <TimelineContext.Provider key={i} value={{ isLast: i === items.length - 1 }}>
+          {child}
+        </TimelineContext.Provider>
+      ))}
+    </div>
+  )
 }
 
 const timelineDotVariants = cva(
@@ -42,6 +53,7 @@ function TimelineItem({
   variant?: "default" | "success" | "warning" | "destructive" | "info"
   children?: React.ReactNode
 } & Omit<React.HTMLAttributes<HTMLDivElement>, "title">) {
+  const { isLast } = React.useContext(TimelineContext)
   const resolvedVariant =
     variant ??
     (status === "completed"
@@ -52,19 +64,26 @@ function TimelineItem({
           ? "default"
           : "default")
 
+  if (children !== undefined) {
+    return (
+      <div className={cn("flex gap-4 relative", className)} {...props}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <div className={cn("flex gap-4 relative", className)} {...props}>
       <div className="flex flex-col items-center self-stretch">
         <TimelineDot variant={resolvedVariant}>
           {Icon ? <Icon className="size-4" /> : null}
         </TimelineDot>
-        <TimelineConnector />
+        {!isLast && <TimelineConnector />}
       </div>
-      <TimelineContent className="pb-8 last:pb-0">
+      <TimelineContent>
         {title !== undefined ? <TimelineTitle>{title}</TimelineTitle> : null}
         {description !== undefined ? <TimelineDescription>{description}</TimelineDescription> : null}
         {time !== undefined ? <TimelineTime>{time}</TimelineTime> : null}
-        {children}
       </TimelineContent>
     </div>
   )
@@ -79,11 +98,14 @@ function TimelineDot({ className, variant, children, ...props }: { className?: s
 }
 
 function TimelineConnector({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("ml-3.5 w-px flex-1 bg-border", className)} {...props} />
+  const { isLast } = React.useContext(TimelineContext)
+  if (isLast) return null
+  return <div className={cn("mx-auto w-px flex-1 bg-border", className)} {...props} />
 }
 
 function TimelineContent({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex-1 pt-1", className)} {...props} />
+  const { isLast } = React.useContext(TimelineContext)
+  return <div className={cn("flex-1 pt-2", !isLast && "pb-8", className)} {...props} />
 }
 
 function TimelineTitle({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLHeadingElement>) {

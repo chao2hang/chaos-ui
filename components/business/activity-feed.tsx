@@ -26,7 +26,7 @@ function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
     const yesterdayStr = yesterday.toDateString()
 
     const grouped: Record<string, ActivityItem[]> = { today: [], yesterday: [], earlier: [] }
-    items.forEach((item: any) => {
+    items.forEach((item) => {
       const d = new Date(item.time)
       if (d.toDateString() === todayStr) grouped.today.push(item)
       else if (d.toDateString() === yesterdayStr) grouped.yesterday.push(item)
@@ -43,14 +43,16 @@ function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
         <Timeline>
           {groupItems.map((item, i) => (
             <TimelineItem key={i}>
-              <TimelineDot variant={item.variant}>
-                {item.avatarFallback ? (
-                  <Avatar className="size-6">
-                    <AvatarFallback className="text-[0.6rem]">{item.avatarFallback}</AvatarFallback>
-                  </Avatar>
-                ) : null}
-              </TimelineDot>
-              <TimelineConnector />
+              <div className="flex flex-col items-center self-stretch">
+                <TimelineDot variant={item.variant}>
+                  {item.avatarFallback ? (
+                    <Avatar className="size-6">
+                      <AvatarFallback className="text-[0.6rem]">{item.avatarFallback}</AvatarFallback>
+                    </Avatar>
+                  ) : null}
+                </TimelineDot>
+                <TimelineConnector />
+              </div>
               <TimelineContent>
                 <p className="text-sm">
                   <span className="font-medium">{item.user}</span>{" "}

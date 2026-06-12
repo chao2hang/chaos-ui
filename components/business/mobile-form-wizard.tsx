@@ -8,7 +8,7 @@ interface MobileFormWizardProps {
   steps: {
     title: string
     description?: string
-    render: (...args: any[]) => React.ReactNode
+    render: (props: { formData: Record<string, unknown>; updateField: (key: string, value: unknown) => void; errors: Record<string, string> }) => React.ReactNode
     validate?: (data: Record<string, unknown>) => Record<string, string>
   }[]
   onComplete?: (data: Record<string, unknown>) => void

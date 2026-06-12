@@ -13,9 +13,9 @@ export default function Home() {
           Built with Next.js, Tailwind CSS 4, and shadcn/ui.
         </p>
         <div className="mt-8">
-          <Link href="/styleguide">
+          <Link href="http://localhost:6006">
             <Button size="lg" className="gap-2">
-              Open Styleguide <ArrowRight className="h-4 w-4" />
+              Open Storybook <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>

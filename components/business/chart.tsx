@@ -60,7 +60,7 @@ function ChartTooltip({ active, payload, label, formatter }: { active?: boolean;
   )
 }
 
-function LineChart({ data, categories, index, colors = defaultColors, className }: { data: any; categories: string[]; index: string; colors?: string[]; className?: string }) {
+function LineChart({ data, categories, index, colors = defaultColors, className }: { data: Record<string, unknown>[]; categories: string[]; index: string; colors?: string[]; className?: string }) {
   return (
     <ChartContainer className={className}>
       <RLineChart data={data}>
@@ -77,7 +77,7 @@ function LineChart({ data, categories, index, colors = defaultColors, className 
   )
 }
 
-function BarChart({ data, categories, index, colors = defaultColors, className, stacked = false }: { data: any[]; categories: string[]; index: string; colors?: string[]; className?: string; stacked?: boolean }) {
+function BarChart({ data, categories, index, colors = defaultColors, className, stacked = false }: { data: Record<string, unknown>[]; categories: string[]; index: string; colors?: string[]; className?: string; stacked?: boolean }) {
   return (
     <ChartContainer className={className}>
       <RBarChart data={data} barCategoryGap="20%">
@@ -94,7 +94,7 @@ function BarChart({ data, categories, index, colors = defaultColors, className, 
   )
 }
 
-function AreaChart({ data, categories, index, colors = defaultColors, className }: { data: any[]; categories: string[]; index: string; colors?: string[]; className?: string }) {
+function AreaChart({ data, categories, index, colors = defaultColors, className }: { data: Record<string, unknown>[]; categories: string[]; index: string; colors?: string[]; className?: string }) {
   return (
     <ChartContainer className={className}>
       <RAreaChart data={data}>
@@ -111,7 +111,7 @@ function AreaChart({ data, categories, index, colors = defaultColors, className 
   )
 }
 
-function PieChart({ data, category, index, colors = defaultColors, className }: { data: any[]; category: string; index: string; colors?: string[]; className?: string }) {
+function PieChart({ data, category, index, colors = defaultColors, className }: { data: Record<string, unknown>[]; category: string; index: string; colors?: string[]; className?: string }) {
   return (
     <ChartContainer className={className}>
       <RPieChart>

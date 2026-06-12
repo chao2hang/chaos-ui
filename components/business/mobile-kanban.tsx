@@ -1,17 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { KanbanBoard } from "@/components/business/kanban-board"
+import { KanbanBoard, type KanbanItem, type KanbanColumnData } from "@/components/business/kanban-board"
 import { cn } from "@/lib/utils"
 
 interface MobileKanbanProps {
-  columns: {
-    id: string
-    title: string
-    items: { id: string; title: string; description?: string; [key: string]: unknown }[]
-  }[]
-  onColumnsChange?: (columns: any[]) => void
-  renderCard?: (item: any) => React.ReactNode
+  columns: KanbanColumnData[]
+  onColumnsChange?: (columns: KanbanColumnData[]) => void
+  renderCard?: (item: KanbanItem) => React.ReactNode
   className?: string
 }
 

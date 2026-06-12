@@ -9,7 +9,27 @@ import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ChevronDownIcon, GripVerticalIcon } from "lucide-react"
 
-function KanbanBoard({ columns, onColumnsChange, renderCard, className }: { columns: { id: string; title: string; items: { id: string; title: string; description?: string; [key: string]: unknown }[] }[]; onColumnsChange?: (columns: any[]) => void; renderCard?: (item: any) => React.ReactNode; className?: string }) {
+interface KanbanItem {
+  id: string
+  title: string
+  description?: string
+  [key: string]: unknown
+}
+
+interface KanbanColumnData {
+  id: string
+  title: string
+  items: KanbanItem[]
+}
+
+interface KanbanBoardProps {
+  columns: KanbanColumnData[]
+  onColumnsChange?: (columns: KanbanColumnData[]) => void
+  renderCard?: (item: KanbanItem) => React.ReactNode
+  className?: string
+}
+
+function KanbanBoard({ columns, onColumnsChange, renderCard, className }: KanbanBoardProps) {
   const sensors = useSensors(useSensor(PointerSensor as any, { activationConstraint: { distance: 5 } }))
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -60,7 +80,7 @@ function KanbanBoard({ columns, onColumnsChange, renderCard, className }: { colu
   )
 }
 
-function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item: any) => React.ReactNode }) {
+function KanbanColumn({ column, renderCard }: { column: KanbanColumnData; renderCard?: (item: KanbanItem) => React.ReactNode }) {
   const [collapsed, setCollapsed] = React.useState(false)
 
   return (
@@ -76,9 +96,9 @@ function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item:
       </div>
       <Collapsible open={!collapsed}>
         <CollapsibleContent>
-          <SortableContext items={column.items.map((i: any) => i.id)} strategy={verticalListSortingStrategy}>
+          <SortableContext items={column.items.map((i) => i.id)} strategy={verticalListSortingStrategy}>
             <div className="flex flex-col gap-2 p-2 pt-0 min-h-[40px]">
-              {column.items.map((item: any) => (
+              {column.items.map((item) => (
                 <KanbanCard key={item.id} item={item} columnId={column.id} renderCard={renderCard} />
               ))}
             </div>
@@ -89,7 +109,7 @@ function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item:
   )
 }
 
-function KanbanCard({ item, columnId, renderCard }: { item: any; columnId: string; renderCard?: (item: any) => React.ReactNode }) {
+function KanbanCard({ item, columnId, renderCard }: { item: KanbanItem; columnId: string; renderCard?: (item: KanbanItem) => React.ReactNode }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: item.id,
     data: { columnId, type: "card" },
@@ -125,3 +145,4 @@ function KanbanCard({ item, columnId, renderCard }: { item: any; columnId: strin
 }
 
 export { KanbanBoard }
+export type { KanbanItem, KanbanColumnData, KanbanBoardProps }

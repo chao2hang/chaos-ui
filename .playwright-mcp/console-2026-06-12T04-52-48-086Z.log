@@ -1,0 +1,213 @@
+[     438ms] [WARNING] The 'ariaLabel' prop on 'PopoverProvider' will become mandatory in Storybook 11. Provide a concise, accessible label describing the popover's purpose. @ http://localhost:6006/sb-manager/globals-runtime.js:5810
+[     519ms] [WARNING] The 'ariaLabel' prop on 'Button' will become mandatory in Storybook 11. Buttons with text content should set 'ariaLabel={false}' to indicate that they are accessible as-is. Buttons without text content must provide a meaningful 'ariaLabel' for accessibility. The button content is: Share. @ http://localhost:6006/sb-manager/globals-runtime.js:5810
+[  250577ms] The element has no supported sources.
+[  252020ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252503ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252573ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252583ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252593ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252603ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252614ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252623ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252633ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252644ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252654ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252664ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252673ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252683ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252693ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252703ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252713ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252724ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252744ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  252753ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)
+[  253119ms] TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+    at onSeek (http://localhost:6006/components/business/video-player.tsx:33:27)
+    at executeDispatch (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9808:5)
+    at runWithFiberInDEV (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:920:66)
+    at processDispatchQueue (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9834:27)
+    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:10104:5
+    at batchedUpdates$1 (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:2118:12)
+    at dispatchEventForPluginEventSystem (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:9907:4)
+    at dispatchEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12340:29)
+    at dispatchDiscreteEvent (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=30baf4cc:12322:56)

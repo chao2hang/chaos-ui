@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Timeline, TimelineItem } from "@/components/ui/timeline"
+import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent } from "@/components/ui/timeline"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { CheckCircle2Icon, ClockIcon, XCircleIcon } from "lucide-react"
 
 const meta = {
@@ -27,6 +28,64 @@ export const Activity: Story = {
       <TimelineItem title="User signed up" description="New user registered" time="10 minutes ago" />
       <TimelineItem title="Profile updated" description="User changed avatar" time="5 minutes ago" />
       <TimelineItem title="Logged in" description="User logged in from Chrome" time="2 minutes ago" />
+    </Timeline>
+  ),
+}
+
+export const Compound: Story = {
+  render: () => (
+    <Timeline>
+      <TimelineItem>
+        <div className="flex flex-col items-center self-stretch">
+          <TimelineDot variant="success">
+            <Avatar className="size-6">
+              <AvatarFallback>AC</AvatarFallback>
+            </Avatar>
+          </TimelineDot>
+          <TimelineConnector />
+        </div>
+        <TimelineContent>
+          <p className="text-sm">
+            <span className="font-medium">Alice</span>{" "}
+            <span className="text-muted-foreground">created a new project</span>
+          </p>
+          <time className="text-xs text-muted-foreground">10:24</time>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <div className="flex flex-col items-center self-stretch">
+          <TimelineDot variant="info">
+            <Avatar className="size-6">
+              <AvatarFallback>BO</AvatarFallback>
+            </Avatar>
+          </TimelineDot>
+          <TimelineConnector />
+        </div>
+        <TimelineContent>
+          <p className="text-sm">
+            <span className="font-medium">Bob</span>{" "}
+            <span className="text-muted-foreground">commented on the project</span>
+          </p>
+          <time className="text-xs text-muted-foreground">11:02</time>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <div className="flex flex-col items-center self-stretch">
+          <TimelineDot>
+            <Avatar className="size-6">
+              <AvatarFallback>EV</AvatarFallback>
+            </Avatar>
+          </TimelineDot>
+          <TimelineConnector />
+        </div>
+        <TimelineContent>
+          <p className="text-sm">
+            <span className="font-medium">Eve</span>{" "}
+            <span className="text-muted-foreground">closed the project</span>
+          </p>
+          <time className="text-xs text-muted-foreground">12:45</time>
+        </TimelineContent>
+      </TimelineItem>
     </Timeline>
   ),
 }

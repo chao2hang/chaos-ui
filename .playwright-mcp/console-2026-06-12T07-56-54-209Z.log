@@ -1,0 +1,3 @@
+[     807ms] [ERROR] TypeError: Failed to fetch dynamically imported module: chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/assets/injecter.ts-91d0e6bd.js @ :0
+[     808ms] [ERROR] TypeError: Failed to fetch dynamically imported module: chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/assets/str.ts-d3a40573.js @ :0
+[    2454ms] [WARNING] Mixed Content: The page at 'https://files.vidstack.io/sprite-fight/720p.mp4' was loaded over HTTPS, but requested an insecure element 'http://localhost:6006/favicon.svg'. This request was not upgraded to HTTPS because it is a local network request. @ https://files.vidstack.io/sprite-fight/720p.mp4:0

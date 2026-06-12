@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Stepper, Step } from "@/components/ui/stepper"
 import { ChevronLeftIcon, ChevronRightIcon, CheckIcon } from "lucide-react"
 
-function FormWizard({ steps, onComplete, className }: { steps: { title: string; description?: string; render: (...args: any[]) => React.ReactNode; validate?: (data: Record<string, unknown>) => Record<string, string> }[]; onComplete?: (data: Record<string, unknown>) => void; className?: string }) {
+function FormWizard({ steps, onComplete, className }: { steps: { title: string; description?: string; render: (props: { formData: Record<string, unknown>; updateField: (key: string, value: unknown) => void; errors: Record<string, string> }) => React.ReactNode; validate?: (data: Record<string, unknown>) => Record<string, string> }[]; onComplete?: (data: Record<string, unknown>) => void; className?: string }) {
   const [currentStep, setCurrentStep] = React.useState(0)
   const [formData, setFormData] = React.useState({})
   const [errors, setErrors] = React.useState({})
@@ -16,7 +16,7 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
 
   const validate = (): boolean => {
     if (!step.validate) return true
-    const stepErrors = step.validate ? step.validate(formData as any) : {}
+    const stepErrors = step.validate ? step.validate(formData as Record<string, unknown>) : {}
     setErrors(stepErrors)
     return Object.keys(stepErrors).length === 0
   }
@@ -53,7 +53,7 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
       <div className="min-h-[200px] rounded-lg border p-6">
         <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
         {step.description && <p className="text-sm text-muted-foreground mb-4">{step.description}</p>}
-        {step.render({ formData: formData as Record<string, unknown>, updateField, errors } as any)}
+        {step.render({ formData: formData as Record<string, unknown>, updateField, errors })}
       </div>
 
       <div className="flex justify-between">

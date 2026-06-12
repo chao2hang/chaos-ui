@@ -17,11 +17,17 @@ const defaultOperators = [
   { value: "lte", label: "<= " },
 ]
 
-function FilterBuilder({ fields, onChange, className }: { fields: { key: string; label: string }[]; onChange?: (result: { logic: string; filters: { field: string; operator: string; value: string }[] }) => void; className?: string }) {
-  const [filters, setFilters] = React.useState<any[]>([])
+interface Filter {
+  field: string
+  operator: string
+  value: string
+}
+
+function FilterBuilder({ fields, onChange, className }: { fields: { key: string; label: string }[]; onChange?: (result: { logic: string; filters: Filter[] }) => void; className?: string }) {
+  const [filters, setFilters] = React.useState<Filter[]>([])
   const [logic, setLogic] = React.useState("AND")
 
-  const updateFilters = (next: any[]): void => {
+  const updateFilters = (next: Filter[]): void => {
     setFilters(next)
     onChange?.({ logic, filters: next })
   }
