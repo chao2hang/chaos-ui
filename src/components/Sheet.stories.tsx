@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/Sheet",
   component: Sheet,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Sheet>
 
 export default meta

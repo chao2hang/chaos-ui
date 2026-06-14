@@ -17,11 +17,17 @@ const defaultOperators = [
   { value: "lte", label: "<= " },
 ]
 
+type FilterRule = {
+  field: string
+  operator: string
+  value: string
+}
+
 function FilterBuilder({ fields, onChange, className }: { fields: { key: string; label: string }[]; onChange?: (result: { logic: string; filters: { field: string; operator: string; value: string }[] }) => void; className?: string }) {
-  const [filters, setFilters] = React.useState<any[]>([])
+  const [filters, setFilters] = React.useState<FilterRule[]>([])
   const [logic, setLogic] = React.useState("AND")
 
-  const updateFilters = (next: any[]): void => {
+  const updateFilters = (next: FilterRule[]): void => {
     setFilters(next)
     onChange?.({ logic, filters: next })
   }
@@ -58,7 +64,7 @@ function FilterBuilder({ fields, onChange, className }: { fields: { key: string;
         </Button>
       </div>
       {filters.length === 0 && (
-        <p className="text-sm text-muted-foreground py-4 text-center">No filters applied. Click "Add Filter" to start.</p>
+        <p className="text-sm text-muted-foreground py-4 text-center">No filters applied. Click &quot;Add Filter&quot; to start.</p>
       )}
       {filters.map((filter, i) => (
         <div key={i} className="flex items-center gap-2">

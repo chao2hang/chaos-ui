@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 const meta = {
   title: "Components/DropdownMenu",
   component: DropdownMenu,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof DropdownMenu>
 
 export default meta

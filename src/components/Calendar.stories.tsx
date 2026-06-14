@@ -4,7 +4,7 @@ import { Calendar } from "@/components/ui/calendar"
 const meta = {
   title: "Components/Calendar",
   component: Calendar,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Calendar>
 
 export default meta
@@ -28,3 +28,4 @@ export const Multiple: Story = {
 export const Range: Story = {
   render: () => <Calendar mode="range" className="rounded-md border" />,
 }
+

@@ -12,8 +12,11 @@ export function useMediaQuery(query: string): boolean {
     const mql = window.matchMedia(query)
     const handler = () => setMatches(mql.matches)
     mql.addEventListener("change", handler)
-    setMatches(mql.matches)
-    return () => mql.removeEventListener("change", handler)
+    const timeout = window.setTimeout(() => setMatches(mql.matches), 0)
+    return () => {
+      window.clearTimeout(timeout)
+      mql.removeEventListener("change", handler)
+    }
   }, [query])
 
   return matches

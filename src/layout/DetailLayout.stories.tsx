@@ -7,7 +7,7 @@ import { EditIcon, TrashIcon } from "lucide-react"
 const meta = {
   title: "Layouts/DetailLayout",
   component: DetailLayout,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof DetailLayout>
 
 export default meta

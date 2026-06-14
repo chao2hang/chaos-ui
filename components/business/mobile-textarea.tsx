@@ -4,9 +4,7 @@ import * as React from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 
-interface MobileTextareaProps extends React.ComponentProps<"textarea"> {
-  // Mobile-specific props
-}
+type MobileTextareaProps = React.ComponentProps<"textarea">
 
 function MobileTextarea({ className, ...props }: MobileTextareaProps) {
   return (

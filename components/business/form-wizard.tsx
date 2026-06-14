@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Stepper, Step } from "@/components/ui/stepper"
 import { ChevronLeftIcon, ChevronRightIcon, CheckIcon } from "lucide-react"
 
-function FormWizard({ steps, onComplete, className }: { steps: { title: string; description?: string; render: (...args: any[]) => React.ReactNode; validate?: (data: Record<string, unknown>) => Record<string, string> }[]; onComplete?: (data: Record<string, unknown>) => void; className?: string }) {
+type WizardRenderContext = {
+  formData: Record<string, unknown>
+  updateField: (key: string, value: unknown) => void
+  errors: Record<string, string>
+}
+
+function FormWizard({ steps, onComplete, className }: { steps: { title: string; description?: string; render: (context: WizardRenderContext) => React.ReactNode; validate?: (data: Record<string, unknown>) => Record<string, string> }[]; onComplete?: (data: Record<string, unknown>) => void; className?: string }) {
   const [currentStep, setCurrentStep] = React.useState(0)
-  const [formData, setFormData] = React.useState({})
-  const [errors, setErrors] = React.useState({})
+  const [formData, setFormData] = React.useState<Record<string, unknown>>({})
+  const [errors, setErrors] = React.useState<Record<string, string>>({})
 
   const step = steps[currentStep]
   const isFirst = currentStep === 0
@@ -16,7 +22,7 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
 
   const validate = (): boolean => {
     if (!step.validate) return true
-    const stepErrors = step.validate ? step.validate(formData as any) : {}
+    const stepErrors = step.validate ? step.validate(formData) : {}
     setErrors(stepErrors)
     return Object.keys(stepErrors).length === 0
   }
@@ -37,7 +43,7 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
 
   const updateField = (key: string, value: unknown): void => {
     setFormData((prev) => ({ ...prev, [key]: value }))
-    if ((errors as Record<string, string>)[key]) {
+    if (errors[key]) {
       setErrors((prev) => { const next: Record<string, string> = { ...prev }; delete next[key]; return next })
     }
   }
@@ -53,7 +59,7 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
       <div className="min-h-[200px] rounded-lg border p-6">
         <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
         {step.description && <p className="text-sm text-muted-foreground mb-4">{step.description}</p>}
-        {step.render({ formData: formData as Record<string, unknown>, updateField, errors } as any)}
+        {step.render({ formData, updateField, errors })}
       </div>
 
       <div className="flex justify-between">
@@ -74,3 +80,4 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
 }
 
 export { FormWizard }
+export type { WizardRenderContext }

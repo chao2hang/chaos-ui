@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { DataTable, type Column } from "@/components/business/data-table"
 import { StatusTag } from "@/components/business/status-tag"
-import { Button } from "@/components/ui/button"
 
 interface Order {
   id: string
@@ -31,24 +30,21 @@ const columns: Column<Order>[] = [
 const meta = {
   title: "Business/DataTable",
   component: DataTable,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof DataTable>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
-  args: { columns, data: mockData },
+  render: () => <DataTable<Order> columns={columns} data={mockData} />,
 }
 
 export const WithRowClick: Story = {
-  args: {
-    columns,
-    data: mockData,
-    onRowClick: (row) => alert(`Clicked: ${row.id}`),
-  },
+  render: () => <DataTable<Order> columns={columns} data={mockData} onRowClick={(row) => alert(`Clicked: ${row.id}`)} />,
 }
 
 export const Empty: Story = {
-  args: { columns, data: [] },
+  render: () => <DataTable<Order> columns={columns} data={[]} />,
 }
+

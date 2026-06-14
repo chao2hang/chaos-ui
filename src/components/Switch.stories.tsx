@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/Switch",
   component: Switch,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     size: {
       control: { type: "select" },
@@ -71,3 +71,4 @@ export const Settings: Story = {
     </div>
   ),
 }
+

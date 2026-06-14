@@ -18,18 +18,18 @@ const generateData = (count: number): Item[] =>
 const meta = {
   title: "Components/VirtualList",
   component: VirtualList,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof VirtualList>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   args: {
     data: generateData(100),
     estimateSize: 50,
     height: 300,
-    renderItem: (item) => (
+    renderItem: (item: Item) => (
       <div className="flex items-center border-b px-4 py-2">
         <div>
           <p className="font-medium">{item.name}</p>
@@ -45,7 +45,7 @@ export const LargeDataset: Story = {
     data: generateData(10000),
     estimateSize: 50,
     height: 300,
-    renderItem: (item) => (
+    renderItem: (item: Item) => (
       <div className="flex items-center border-b px-4 py-2">
         <p className="font-medium">{item.name}</p>
       </div>
@@ -65,10 +65,11 @@ export const WithLoading: Story = {
         <span className="text-sm text-muted-foreground">Loading more...</span>
       </div>
     ),
-    renderItem: (item) => (
+    renderItem: (item: Item) => (
       <div className="border-b px-4 py-2">
         <p className="font-medium">{item.name}</p>
       </div>
     ),
   },
 }
+

@@ -6,7 +6,7 @@ import { SearchIcon } from "lucide-react"
 const meta = {
   title: "Components/Input",
   component: Input,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     type: {
       control: { type: "select" },

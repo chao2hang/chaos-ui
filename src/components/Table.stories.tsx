@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge"
 const meta = {
   title: "Components/Table",
   component: Table,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Table>
 
 export default meta
@@ -86,3 +86,4 @@ export const Simple: Story = {
     </div>
   ),
 }
+

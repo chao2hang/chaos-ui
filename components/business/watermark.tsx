@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable @next/next/no-img-element -- Watermarks accept arbitrary image sources without Next image sizing/domain constraints. */
 import * as React from "react"
 import { cn } from "@/lib/utils"
 

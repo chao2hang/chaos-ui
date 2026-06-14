@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator"
 const meta = {
   title: "Components/Separator",
   component: Separator,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     orientation: {
       control: { type: "select" },
@@ -49,3 +49,4 @@ export const InMenu: Story = {
     </div>
   ),
 }
+

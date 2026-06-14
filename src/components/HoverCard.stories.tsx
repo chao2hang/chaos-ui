@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 const meta = {
   title: "Components/HoverCard",
   component: HoverCard,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof HoverCard>
 
 export default meta
@@ -38,8 +38,8 @@ export const Default: Story = {
 export const UserProfile: Story = {
   render: () => (
     <HoverCard>
-      <HoverCardTrigger asChild>
-        <a href="#" className="text-sm font-medium underline">@shadcn</a>
+      <HoverCardTrigger render={<a href="#" className="text-sm font-medium underline" />}>
+        @shadcn
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
@@ -57,3 +57,4 @@ export const UserProfile: Story = {
     </HoverCard>
   ),
 }
+

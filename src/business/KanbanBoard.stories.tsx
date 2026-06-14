@@ -5,11 +5,11 @@ import { useState } from "react"
 const meta = {
   title: "Business/KanbanBoard",
   component: KanbanBoard,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof KanbanBoard>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 const initialColumns = [
   { id: "todo", title: "To Do", items: [{ id: "1", title: "Design homepage" }, { id: "2", title: "Write docs" }] },
@@ -33,3 +33,4 @@ export const Empty: Story = {
     ],
   },
 }
+

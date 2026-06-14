@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 const meta = {
   title: "Components/Avatar",
   component: Avatar,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Avatar>
 
 export default meta
@@ -68,3 +68,4 @@ export const Group: Story = {
     </div>
   ),
 }
+

@@ -6,7 +6,7 @@ import { toast } from "sonner"
 const meta = {
   title: "Components/Toaster",
   component: Toaster,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Toaster>
 
 export default meta
@@ -34,3 +34,4 @@ export const Default: Story = {
     </div>
   ),
 }
+

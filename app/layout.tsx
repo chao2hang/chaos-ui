@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Chaos UI",
+    default: "Chaos UI Storybook",
     template: "%s | Chaos UI",
   },
-  description: "Enterprise component design system and styleguide",
+  description: "Enterprise component design system documented in Storybook",
 };
 
 export default function RootLayout({

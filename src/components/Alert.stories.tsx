@@ -5,7 +5,7 @@ import { AlertCircleIcon, CheckCircle2Icon, InfoIcon, AlertTriangleIcon } from "
 const meta = {
   title: "Components/Alert",
   component: Alert,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   parameters: {
     layout: "padded",
   },

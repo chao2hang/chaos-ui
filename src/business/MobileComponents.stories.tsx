@@ -17,21 +17,35 @@ import { MobileNavigation } from "@/components/business/mobile-navigation"
 import { MobileTabs } from "@/components/business/mobile-tabs"
 import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout"
 import { MobileAuthLayout } from "@/components/business/mobile-auth-layout"
+import { MobileBottomNav } from "@/components/business/mobile-bottom-nav"
+import { MobileFilterBuilder } from "@/components/business/mobile-filter-builder"
+import { MobileFormWizard } from "@/components/business/mobile-form-wizard"
+import { MobileKanban } from "@/components/business/mobile-kanban"
+import { MobilePageHeader } from "@/components/business/mobile-page-header"
+import { PullToRefresh as MobilePullToRefresh } from "@/components/business/mobile-pull-to-refresh"
+import {
+  MobileCardSkeleton,
+  MobileDetailSkeleton,
+  MobileListItemSkeleton,
+} from "@/components/business/mobile-skeleton"
+import { SwipeActions as MobileSwipeActions } from "@/components/business/mobile-swipe-actions"
 import { ResponsivePreview } from "@/components/business/responsive-preview"
 import {
   DollarSignIcon,
+  HomeIcon,
+  InboxIcon,
+  LayoutDashboardIcon,
+  SettingsIcon,
+  StarIcon,
+  Trash2Icon,
   UsersIcon,
   ShoppingCartIcon,
-  InboxIcon,
-  SearchIcon,
-  AlertTriangleIcon,
-  WifiOffIcon,
 } from "lucide-react"
 
 const meta = {
   title: "Mobile/Components",
   component: MobileButton,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   parameters: {
     layout: "centered",
   },
@@ -308,3 +322,167 @@ export const MobileAuthLayouts: StoryObj = {
     </ResponsivePreview>
   ),
 }
+
+export const MobileBottomNavigation: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="relative h-[560px] overflow-hidden rounded-lg border bg-background">
+        <div className="p-4 pb-20">
+          <MobilePageHeader title="Dashboard" description="Today" />
+          <div className="mt-4 space-y-3">
+            <MobileKPICard
+              title="Revenue"
+              value="$45,231"
+              change="+20.1%"
+              changeType="positive"
+              icon={DollarSignIcon}
+            />
+            <MobileCard title="Tasks" description="3 approvals need review">
+              <p className="text-sm text-muted-foreground">Bottom navigation remains fixed at the viewport edge.</p>
+            </MobileCard>
+          </div>
+        </div>
+        <MobileBottomNav
+          className="absolute md:flex"
+          items={[
+            { label: "Home", href: "#home", icon: <HomeIcon className="size-5" />, active: true },
+            { label: "Inbox", href: "#inbox", icon: <InboxIcon className="size-5" />, badge: 3 },
+            { label: "Reports", href: "#reports", icon: <LayoutDashboardIcon className="size-5" /> },
+            { label: "Settings", href: "#settings", icon: <SettingsIcon className="size-5" /> },
+          ]}
+          onChange={() => undefined}
+        />
+      </div>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobileFilters: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="p-4">
+        <MobileFilterBuilder
+          fields={[
+            { key: "status", label: "Status" },
+            { key: "owner", label: "Owner" },
+            { key: "budget", label: "Budget" },
+          ]}
+        />
+      </div>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobileFormWizards: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="p-4">
+        <MobileFormWizard
+          steps={[
+            {
+              title: "Basics",
+              description: "Name the campaign",
+              render: ({ formData, updateField, errors }) => (
+                <MobileFormField label="Campaign name" error={errors.name} required>
+                  <MobileInput
+                    value={String(formData.name ?? "")}
+                    onChange={(event) => updateField("name", event.target.value)}
+                    placeholder="Summer launch"
+                  />
+                </MobileFormField>
+              ),
+              validate: (data): Record<string, string> => {
+                if (!data.name) return { name: "Campaign name is required" }
+                return {}
+              },
+            },
+            {
+              title: "Budget",
+              description: "Set an initial budget",
+              render: ({ formData, updateField }) => (
+                <MobileFormField label="Budget">
+                  <MobileInput
+                    inputMode="numeric"
+                    value={String(formData.budget ?? "")}
+                    onChange={(event) => updateField("budget", event.target.value)}
+                    placeholder="50000"
+                  />
+                </MobileFormField>
+              ),
+            },
+          ]}
+        />
+      </div>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobileKanbanBoard: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="p-4">
+        <MobileKanban
+          columns={[
+            { id: "todo", title: "To Do", items: [{ id: "1", title: "Approve brief" }] },
+            { id: "doing", title: "Doing", items: [{ id: "2", title: "Review media plan" }] },
+            { id: "done", title: "Done", items: [{ id: "3", title: "Upload assets" }] },
+          ]}
+        />
+      </div>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobilePullToRefreshDemo: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <MobilePullToRefresh
+        className="h-[520px] rounded-lg border"
+        onRefresh={() => new Promise((resolve) => setTimeout(resolve, 600))}
+      >
+        <MobilePageHeader title="Activity" description="Pull down on touch devices" />
+        <div className="space-y-2 p-4">
+          {["Creative approved", "Budget updated", "Segment synced", "Report exported"].map((item) => (
+            <MobileCard key={item} title={item} description="Just now">
+              <p className="text-sm text-muted-foreground">Activity item synced successfully.</p>
+            </MobileCard>
+          ))}
+        </div>
+      </MobilePullToRefresh>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobileSkeletons: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="space-y-4 p-4">
+        <MobileCardSkeleton />
+        <div className="rounded-lg border">
+          <MobileListItemSkeleton />
+          <MobileListItemSkeleton />
+          <MobileListItemSkeleton />
+        </div>
+        <MobileDetailSkeleton />
+      </div>
+    </ResponsivePreview>
+  ),
+}
+
+export const MobileSwipeActionsDemo: StoryObj = {
+  render: () => (
+    <ResponsivePreview device="mobile">
+      <div className="space-y-3 p-4">
+        <MobileSwipeActions
+          leftAction={{ label: "Delete", color: "#dc2626", icon: <Trash2Icon className="size-4" />, onClick: () => undefined }}
+          rightAction={{ label: "Favorite", color: "#16a34a", icon: <StarIcon className="size-4" />, onClick: () => undefined }}
+        >
+          <MobileCard title="Spring launch" description="Swipe left or right on touch devices">
+            <p className="text-sm text-muted-foreground">Review the latest campaign update.</p>
+          </MobileCard>
+        </MobileSwipeActions>
+      </div>
+    </ResponsivePreview>
+  ),
+}
+

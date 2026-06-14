@@ -1,14 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { FormWizard } from "@/components/business/form-wizard"
+import { FormWizard, type WizardRenderContext } from "@/components/business/form-wizard"
 import { cn } from "@/lib/utils"
 
 interface MobileFormWizardProps {
   steps: {
     title: string
     description?: string
-    render: (...args: any[]) => React.ReactNode
+    render: (context: WizardRenderContext) => React.ReactNode
     validate?: (data: Record<string, unknown>) => Record<string, string>
   }[]
   onComplete?: (data: Record<string, unknown>) => void

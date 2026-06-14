@@ -47,7 +47,11 @@ function Step({ className, index = 0, active, completed, last, orientation, chil
     <div
       className={cn(
         "flex items-center",
-        orientation === "horizontal" ? "flex-1 min-w-0" : "flex-col items-start",
+        orientation === "horizontal"
+          ? last
+            ? "shrink-0"
+            : "flex-1 min-w-0"
+          : "flex-col items-start",
         className
       )}
     >

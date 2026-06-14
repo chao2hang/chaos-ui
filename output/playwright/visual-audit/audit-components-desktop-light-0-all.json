@@ -1,0 +1,243 @@
+{
+  "generatedAt": "2026-06-14T00:25:53.017Z",
+  "filters": {
+    "group": "components",
+    "device": "desktop",
+    "theme": "light",
+    "offset": 0,
+    "limit": 0
+  },
+  "scannedDocs": 67,
+  "plannedCombos": 67,
+  "scannedCombos": 67,
+  "issueDocs": 8,
+  "issueCombos": 8,
+  "summary": [
+    {
+      "id": "components-aspectratio--docs",
+      "title": "Components/AspectRatio",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:6006/iframe.html?id=components-aspectratio--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-alert--docs",
+      "title": "Components/Alert",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:6006/iframe.html?id=components-alert--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-alertdialog--docs",
+      "title": "Components/AlertDialog",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:6006/iframe.html?id=components-alertdialog--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-accordion--docs",
+      "title": "Components/Accordion",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:6006/iframe.html?id=components-accordion--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-avatar--docs",
+      "title": "Components/Avatar",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+      "url": "http://localhost:6006/iframe.html?id=components-avatar--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-departmentbrowse--docs",
+      "title": "Components/DepartmentBrowse",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-departmentbrowse--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-treeselect--docs",
+      "title": "Components/TreeSelect",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-treeselect--docs&viewMode=docs&globals=theme:light;device:desktop"
+    },
+    {
+      "id": "components-userbrowse--docs",
+      "title": "Components/UserBrowse",
+      "combos": [
+        "desktop/light"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-userbrowse--docs&viewMode=docs&globals=theme:light;device:desktop"
+    }
+  ],
+  "results": [
+    {
+      "id": "components-aspectratio--docs",
+      "title": "Components/AspectRatio",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-aspectratio--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "metrics": {
+        "docsStoryCount": 5,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "AspectRatio 16:9 preview Show code Copy code Name Description Default Control ratio The width / height ratio to preserve number 16 / 9 STORIES Default 16:9 prev"
+      }
+    },
+    {
+      "id": "components-alert--docs",
+      "title": "Components/Alert",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-alert--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "metrics": {
+        "docsStoryCount": 8,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "Alert Default Alert This is a default alert message. Show code Copy code Name Description Default Control icon ReactReactNode - icon :{ $$typeof : Symbol(react."
+      }
+    },
+    {
+      "id": "components-alertdialog--docs",
+      "title": "Components/AlertDialog",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-alertdialog--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "metrics": {
+        "docsStoryCount": 3,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "AlertDialog Open Alert Dialog Show code Copy code STORIES Default Open Alert Dialog Show code Copy code Destructive Delete Account Show code Copy code"
+      }
+    },
+    {
+      "id": "components-accordion--docs",
+      "title": "Components/Accordion",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-accordion--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "metrics": {
+        "docsStoryCount": 4,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "Accordion Is it accessible? Yes. It adheres to the WAI-ARIA design pattern. Is it styled? Is it animated? Show code Copy code STORIES Default Is it accessible? "
+      }
+    },
+    {
+      "id": "components-avatar--docs",
+      "title": "Components/Avatar",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-avatar--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+      ],
+      "metrics": {
+        "docsStoryCount": 5,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "Avatar CN Show code Copy code Name Description Default Control size union \"default\" - STORIES Default CN Show code Copy code With Fallback JD Show code Copy cod"
+      }
+    },
+    {
+      "id": "components-departmentbrowse--docs",
+      "title": "Components/DepartmentBrowse",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-departmentbrowse--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 5,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "DepartmentBrowse Select department... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select dep"
+      }
+    },
+    {
+      "id": "components-treeselect--docs",
+      "title": "Components/TreeSelect",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-treeselect--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 4,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "TreeSelect Select... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select...\" - disabled boole"
+      }
+    },
+    {
+      "id": "components-userbrowse--docs",
+      "title": "Components/UserBrowse",
+      "combo": "desktop/light",
+      "url": "http://localhost:6006/iframe.html?id=components-userbrowse--docs&viewMode=docs&globals=theme:light;device:desktop",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 6,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 0,
+        "storyIssues": [],
+        "dark": false,
+        "device": "desktop",
+        "text": "UserBrowse Select user... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select user...\" - disa"
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/Textarea",
   component: Textarea,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Textarea>
 
 export default meta
@@ -47,3 +47,4 @@ export const Comment: Story = {
     </div>
   ),
 }
+

@@ -4,7 +4,7 @@ import { Stepper, Step } from "@/components/ui/stepper"
 const meta = {
   title: "Components/Stepper",
   component: Stepper,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   parameters: {
     layout: "padded",
   },
@@ -20,7 +20,7 @@ const meta = {
 } satisfies Meta<typeof Stepper>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   args: { activeStep: 0 },
@@ -118,3 +118,4 @@ export const AllSteps: Story = {
     </div>
   ),
 }
+

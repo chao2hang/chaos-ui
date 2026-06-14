@@ -6,23 +6,41 @@ import { CSS } from "@dnd-kit/utilities"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible"
 import { ChevronDownIcon, GripVerticalIcon } from "lucide-react"
 
-function KanbanBoard({ columns, onColumnsChange, renderCard, className }: { columns: { id: string; title: string; items: { id: string; title: string; description?: string; [key: string]: unknown }[] }[]; onColumnsChange?: (columns: any[]) => void; renderCard?: (item: any) => React.ReactNode; className?: string }) {
-  const sensors = useSensors(useSensor(PointerSensor as any, { activationConstraint: { distance: 5 } }))
+type KanbanItem = {
+  id: string
+  title: string
+  description?: string
+  [key: string]: unknown
+}
+
+type KanbanColumnData = {
+  id: string
+  title: string
+  items: KanbanItem[]
+}
+
+type KanbanDragData = {
+  columnId?: string
+  type?: "card" | "column"
+}
+
+function KanbanBoard({ columns, onColumnsChange, renderCard, className }: { columns: KanbanColumnData[]; onColumnsChange?: (columns: KanbanColumnData[]) => void; renderCard?: (item: KanbanItem) => React.ReactNode; className?: string }) {
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }))
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
     if (!over) return
 
-    const activeData = active.data.current
-    const overData = over.data.current
+    const activeData = active.data.current as KanbanDragData | undefined
+    const overData = over.data.current as KanbanDragData | undefined
 
     if (!activeData || !overData) return
 
     const sourceCol = activeData.columnId
-    const destCol = overData.columnId || overData.type === "column" ? overData.columnId : sourceCol
+    const destCol = overData.type === "column" ? overData.columnId : overData.columnId ?? sourceCol
 
     if (!sourceCol || !destCol) return
 
@@ -60,7 +78,7 @@ function KanbanBoard({ columns, onColumnsChange, renderCard, className }: { colu
   )
 }
 
-function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item: any) => React.ReactNode }) {
+function KanbanColumn({ column, renderCard }: { column: KanbanColumnData; renderCard?: (item: KanbanItem) => React.ReactNode }) {
   const [collapsed, setCollapsed] = React.useState(false)
 
   return (
@@ -76,9 +94,9 @@ function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item:
       </div>
       <Collapsible open={!collapsed}>
         <CollapsibleContent>
-          <SortableContext items={column.items.map((i: any) => i.id)} strategy={verticalListSortingStrategy}>
+          <SortableContext items={column.items.map((i) => i.id)} strategy={verticalListSortingStrategy}>
             <div className="flex flex-col gap-2 p-2 pt-0 min-h-[40px]">
-              {column.items.map((item: any) => (
+              {column.items.map((item) => (
                 <KanbanCard key={item.id} item={item} columnId={column.id} renderCard={renderCard} />
               ))}
             </div>
@@ -89,7 +107,7 @@ function KanbanColumn({ column, renderCard }: { column: any; renderCard?: (item:
   )
 }
 
-function KanbanCard({ item, columnId, renderCard }: { item: any; columnId: string; renderCard?: (item: any) => React.ReactNode }) {
+function KanbanCard({ item, columnId, renderCard }: { item: KanbanItem; columnId: string; renderCard?: (item: KanbanItem) => React.ReactNode }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: item.id,
     data: { columnId, type: "card" },
@@ -125,3 +143,4 @@ function KanbanCard({ item, columnId, renderCard }: { item: any; columnId: strin
 }
 
 export { KanbanBoard }
+export type { KanbanColumnData, KanbanItem }

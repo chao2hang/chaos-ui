@@ -12,11 +12,11 @@ interface EmailItem extends FormListItem {
 const meta = {
   title: "Components/FormList",
   component: FormList,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FormList>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => {
@@ -77,3 +77,4 @@ export const WithMaxItems: Story = {
     )
   },
 }
+

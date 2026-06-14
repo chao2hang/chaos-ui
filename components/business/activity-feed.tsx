@@ -26,7 +26,7 @@ function ActivityFeed({ items = [], onLoadMore, hasMore, className }: {
     const yesterdayStr = yesterday.toDateString()
 
     const grouped: Record<string, ActivityItem[]> = { today: [], yesterday: [], earlier: [] }
-    items.forEach((item: any) => {
+    items.forEach((item) => {
       const d = new Date(item.time)
       if (d.toDateString() === todayStr) grouped.today.push(item)
       else if (d.toDateString() === yesterdayStr) grouped.yesterday.push(item)

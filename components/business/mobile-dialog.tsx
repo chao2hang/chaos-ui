@@ -1,16 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
-import { XIcon } from "lucide-react"
 
 interface MobileDialogProps {
   children: React.ReactNode
   title?: string
   description?: string
-  trigger?: React.ReactNode
+  trigger?: React.ReactElement
   actions?: React.ReactNode
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -20,7 +18,7 @@ interface MobileDialogProps {
 function MobileDialog({ children, title, description, trigger, actions, open, onOpenChange, className }: MobileDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
+      {trigger && <DialogTrigger render={trigger} />}
       <DialogContent
         className={cn(
           "max-w-full inset-0 rounded-none p-0 translate-x-0 translate-y-0",

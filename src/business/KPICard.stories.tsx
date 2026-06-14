@@ -5,7 +5,7 @@ import { DollarSignIcon, UsersIcon, TrendingUpIcon } from "lucide-react"
 const meta = {
   title: "Business/KPICard",
   component: KPICard,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof KPICard>
 
 export default meta
@@ -80,3 +80,4 @@ export const WithTarget: Story = {
     targetLabel: "Goal Progress",
   },
 }
+

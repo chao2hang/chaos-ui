@@ -5,7 +5,7 @@ import { useState } from "react"
 const meta = {
   title: "Components/BrowseInput",
   component: BrowseInput,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof BrowseInput>
 
 export default meta
@@ -47,3 +47,4 @@ export const Interactive: Story = {
     )
   },
 }
+

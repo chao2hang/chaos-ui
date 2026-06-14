@@ -6,11 +6,11 @@ import { PlusIcon, DownloadIcon } from "lucide-react"
 const meta = {
   title: "Business/PageHeader",
   component: PageHeader,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof PageHeader>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
@@ -56,3 +56,4 @@ export const WithBreadcrumb: Story = {
     />
   ),
 }
+

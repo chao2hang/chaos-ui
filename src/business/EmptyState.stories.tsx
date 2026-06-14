@@ -6,7 +6,7 @@ import { InboxIcon, SearchXIcon, FileXIcon, AlertTriangleIcon } from "lucide-rea
 const meta = {
   title: "Business/EmptyState",
   component: EmptyState,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     variant: {
       control: { type: "select" },
@@ -64,3 +64,4 @@ export const Empty: Story = {
     />
   ),
 }
+

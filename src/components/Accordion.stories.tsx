@@ -9,19 +9,19 @@ import {
 const meta = {
   title: "Components/Accordion",
   component: Accordion,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   parameters: {
     layout: "padded",
   },
 } satisfies Meta<typeof Accordion>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
     <div className="w-full max-w-2xl">
-      <Accordion type="single" collapsible>
+      <Accordion defaultValue={["item-1"]}>
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
           <AccordionContent>
@@ -48,7 +48,7 @@ export const Default: Story = {
 export const Multiple: Story = {
   render: () => (
     <div className="w-full max-w-2xl">
-      <Accordion type="multiple">
+      <Accordion multiple defaultValue={["item-1", "item-2"]}>
         <AccordionItem value="item-1">
           <AccordionTrigger>What is Chaos UI?</AccordionTrigger>
           <AccordionContent>
@@ -69,7 +69,7 @@ export const Multiple: Story = {
 export const FAQ: Story = {
   render: () => (
     <div className="w-full max-w-md">
-      <Accordion type="single" collapsible>
+      <Accordion defaultValue={["faq-1"]}>
         <AccordionItem value="faq-1">
           <AccordionTrigger>What payment methods do you accept?</AccordionTrigger>
           <AccordionContent>

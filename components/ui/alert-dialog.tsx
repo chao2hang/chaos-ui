@@ -3,7 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import {
   Dialog, DialogContent, DialogDescription, DialogFooter,
-  DialogHeader, DialogTitle, DialogTrigger, DialogClose,
+  DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 

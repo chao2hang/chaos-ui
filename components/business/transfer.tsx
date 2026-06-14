@@ -72,6 +72,18 @@ export function Transfer({
     setSelectedTarget([])
   }
 
+  const moveItemToTarget = (key: string) => {
+    if (disabled) return
+    onChange?.(Array.from(new Set([...targetKeys, key])))
+    setSelectedSource((prev) => prev.filter((selectedKey) => selectedKey !== key))
+  }
+
+  const moveItemToSource = (key: string) => {
+    if (disabled || oneWay) return
+    onChange?.(targetKeys.filter((targetKey) => targetKey !== key))
+    setSelectedTarget((prev) => prev.filter((selectedKey) => selectedKey !== key))
+  }
+
   const toggleSource = (key: string) => {
     setSelectedSource((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
@@ -87,7 +99,11 @@ export function Transfer({
   return (
     <div
       data-slot="transfer"
-      className={cn("flex items-stretch gap-2", disabled && "opacity-50", className)}
+      className={cn(
+        "flex min-w-0 flex-col gap-2 sm:flex-row sm:items-stretch",
+        disabled && "opacity-50",
+        className
+      )}
     >
       <TransferPanel
         title={titles[0]}
@@ -99,8 +115,9 @@ export function Transfer({
         onSearchChange={setSearchLeft}
         render={render}
         disabled={disabled}
+        onMoveItem={moveItemToTarget}
       />
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="flex flex-row items-center justify-center gap-2 sm:flex-col">
         <Button
           variant="outline"
           size="icon"
@@ -108,7 +125,7 @@ export function Transfer({
           disabled={selectedSource.length === 0 || disabled}
           aria-label="添加到目标"
         >
-          <ChevronRightIcon />
+          <ChevronRightIcon className="rotate-90 sm:rotate-0" />
         </Button>
         {!oneWay && (
           <Button
@@ -118,7 +135,7 @@ export function Transfer({
             disabled={selectedTarget.length === 0 || disabled}
             aria-label="移回源"
           >
-            <ChevronLeftIcon />
+            <ChevronLeftIcon className="rotate-90 sm:rotate-0" />
           </Button>
         )}
       </div>
@@ -132,6 +149,7 @@ export function Transfer({
         onSearchChange={setSearchRight}
         render={render}
         disabled={disabled}
+        onMoveItem={oneWay ? undefined : moveItemToSource}
       />
     </div>
   )
@@ -147,6 +165,7 @@ function TransferPanel({
   onSearchChange,
   render,
   disabled,
+  onMoveItem,
 }: {
   title: string
   items: TransferItem[]
@@ -157,12 +176,37 @@ function TransferPanel({
   onSearchChange: (v: string) => void
   render?: (item: TransferItem) => React.ReactNode
   disabled?: boolean
+  onMoveItem?: (key: string) => void
 }) {
   const allSelected = items.length > 0 && items.every((i) => selected.includes(i.key))
   const someSelected = items.some((i) => selected.includes(i.key))
+  const toggleTimerRef = React.useRef<number | null>(null)
+
+  const clearPendingToggle = React.useCallback(() => {
+    if (toggleTimerRef.current) {
+      window.clearTimeout(toggleTimerRef.current)
+      toggleTimerRef.current = null
+    }
+  }, [])
+
+  React.useEffect(() => clearPendingToggle, [clearPendingToggle])
+
+  const queueToggle = (key: string) => {
+    clearPendingToggle()
+    toggleTimerRef.current = window.setTimeout(() => {
+      onToggle(key)
+      toggleTimerRef.current = null
+    }, 180)
+  }
+
+  const moveItem = (item: TransferItem) => {
+    clearPendingToggle()
+    if (disabled || item.disabled) return
+    onMoveItem?.(item.key)
+  }
 
   return (
-    <div className="flex h-72 w-full flex-col rounded-md border">
+    <div className="flex h-72 w-full min-w-0 flex-col rounded-md border">
       <div className="flex items-center justify-between border-b px-3 py-2 text-sm font-medium">
         <span>{title}</span>
         <span className="text-xs text-muted-foreground">
@@ -212,6 +256,7 @@ function TransferPanel({
           items.map((item) => (
             <label
               key={item.key}
+              onDoubleClick={() => moveItem(item)}
               className={cn(
                 "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
                 "hover:bg-accent",
@@ -220,10 +265,10 @@ function TransferPanel({
             >
               <Checkbox
                 checked={selected.includes(item.key)}
-                onCheckedChange={() => onToggle(item.key)}
+                onCheckedChange={() => queueToggle(item.key)}
                 disabled={item.disabled || disabled}
               />
-              <div className="flex-1 truncate">
+              <div className="min-w-0 flex-1 truncate">
                 {render ? render(item) : (
                   <>
                     <div className="truncate">{item.label}</div>

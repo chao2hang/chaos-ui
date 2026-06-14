@@ -1,28 +1,33 @@
 # Chaos UI
 
-Enterprise component design system and styleguide built with Next.js 16, Tailwind CSS 4, and shadcn/ui.
+Enterprise component design system with Storybook as the primary component
+review surface, built with Next.js 16, Tailwind CSS 4, and shadcn/ui.
 
 ## Quick Start
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-Open [http://localhost:3000/styleguide](http://localhost:3000/styleguide) to view the component library.
+Open [http://localhost:6006](http://localhost:6006) to view the component library in Storybook.
+Use `npm run app:dev` when you need the Next.js app shell.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Production build |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
-| `pnpm audit --prod` | Security audit |
+| `npm run dev` | Start Storybook on port 6006 |
+| `npm run app:dev` | Start the Next.js app |
+| `npm run storybook` | Start Storybook on port 6006 |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run audit` | Run production dependency audit |
 
 ## Tech Stack
 
+- **Primary UI surface:** Storybook 10
 - **Framework:** Next.js 16 (App Router)
 - **UI Library:** shadcn/ui (base-nova)
 - **Styling:** Tailwind CSS 4
@@ -32,17 +37,10 @@ Open [http://localhost:3000/styleguide](http://localhost:3000/styleguide) to vie
 ## Project Structure
 
 ```
-├── app/
-│   ├── styleguide/          # Component showcase (6 categories)
-│   │   ├── tokens/          # Design tokens
-│   │   ├── components/      # Base UI components
-│   │   ├── business/        # Business components
-│   │   ├── patterns/        # Page-level patterns
-│   │   └── layouts/         # Layout templates
-├── components/
-│   ├── ui/                  # shadcn base components
-│   ├── business/            # Business components
-│   └── layout/              # Layout components
+├── app/                     # Next.js app shell / Storybook launcher page
+├── .storybook/              # Storybook configuration
+├── components/              # Shared UI, business, and layout components
+├── src/                     # Storybook stories and MDX docs
 ├── lib/                     # Utilities
 └── component-spec.md        # Component specification
 ```

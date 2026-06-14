@@ -35,6 +35,8 @@ function VirtualList<T>({
 }: VirtualListProps<T>) {
   const parentRef = React.useRef<HTMLDivElement>(null)
 
+  // TanStack Virtual returns imperative helpers that React Compiler cannot safely memoize.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => parentRef.current,

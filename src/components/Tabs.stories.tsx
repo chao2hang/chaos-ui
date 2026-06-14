@@ -7,14 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 const meta = {
   title: "Components/Tabs",
   component: Tabs,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     orientation: {
       control: { type: "select" },
@@ -29,7 +28,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs defaultValue="account" className="w-full max-w-[400px]">
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
@@ -76,7 +75,7 @@ export const Default: Story = {
 
 export const LineVariant: Story = {
   render: () => (
-    <Tabs defaultValue="tab1" className="w-[400px]">
+    <Tabs defaultValue="tab1" className="w-full max-w-[400px]">
       <TabsList variant="line">
         <TabsTrigger value="tab1">Tab 1</TabsTrigger>
         <TabsTrigger value="tab2">Tab 2</TabsTrigger>
@@ -91,7 +90,7 @@ export const LineVariant: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <Tabs orientation="vertical" defaultValue="tab1" className="w-[400px]">
+    <Tabs orientation="vertical" defaultValue="tab1" className="w-full max-w-[400px]">
       <TabsList>
         <TabsTrigger value="tab1">Overview</TabsTrigger>
         <TabsTrigger value="tab2">Settings</TabsTrigger>
@@ -106,7 +105,7 @@ export const Vertical: Story = {
 
 export const WithButtons: Story = {
   render: () => (
-    <Tabs defaultValue="preview" className="w-[400px]">
+    <Tabs defaultValue="preview" className="w-full max-w-[400px]">
       <TabsList>
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>

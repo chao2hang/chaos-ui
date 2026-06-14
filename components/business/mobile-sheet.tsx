@@ -1,16 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
-import { XIcon } from "lucide-react"
 
 interface MobileSheetProps {
   children: React.ReactNode
   title?: string
   description?: string
-  trigger?: React.ReactNode
+  trigger?: React.ReactElement
   actions?: React.ReactNode
   side?: "top" | "right" | "bottom" | "left"
   open?: boolean
@@ -21,7 +19,7 @@ interface MobileSheetProps {
 function MobileSheet({ children, title, description, trigger, actions, side = "bottom", open, onOpenChange, className }: MobileSheetProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
+      {trigger && <SheetTrigger render={trigger} />}
       <SheetContent
         side={side}
         className={cn(

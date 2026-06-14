@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { AdvancedDataTable, type ColumnDef } from "@/components/business/advanced-data-table"
 import { Badge } from "@/components/ui/badge"
 
-interface User {
+type User = Record<string, unknown> & {
   id: number
   name: string
   email: string
@@ -20,17 +20,16 @@ const generateData = (count: number): User[] =>
   }))
 
 const columns: ColumnDef[] = [
-  { key: "id", header: "ID", width: 80 },
-  { key: "name", header: "Name", width: 150 },
-  { key: "email", header: "Email", width: 200 },
-  { key: "role", header: "Role", width: 100 },
+  { key: "id", header: "ID" },
+  { key: "name", header: "Name" },
+  { key: "email", header: "Email" },
+  { key: "role", header: "Role" },
   {
     key: "status",
     header: "Status",
-    width: 100,
     render: (row) => (
       <Badge variant={row.status === "active" ? "default" : row.status === "pending" ? "secondary" : "outline"}>
-        {row.status}
+        {String(row.status)}
       </Badge>
     ),
   },
@@ -39,7 +38,7 @@ const columns: ColumnDef[] = [
 const meta = {
   title: "Business/AdvancedDataTable",
   component: AdvancedDataTable,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof AdvancedDataTable>
 
 export default meta
@@ -58,6 +57,7 @@ export const WithRowClick: Story = {
     columns,
     data: generateData(20),
     pageSize: 10,
-    onRowClick: (row) => alert(`Clicked: ${row.name}`),
+    onRowClick: (row) => alert(`Clicked: ${String(row.name)}`),
   },
 }
+

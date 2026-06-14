@@ -4,9 +4,7 @@ import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
-interface MobileInputProps extends React.ComponentProps<typeof Input> {
-  // Mobile-specific props
-}
+type MobileInputProps = React.ComponentProps<typeof Input>
 
 function MobileInput({ className, ...props }: MobileInputProps) {
   return (

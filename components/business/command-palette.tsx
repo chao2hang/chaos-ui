@@ -5,6 +5,7 @@ import { SearchIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
   Dialog,
+  DialogTrigger,
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -34,7 +35,7 @@ interface CommandPaletteProps {
   groups?: CommandGroup[]
   placeholder?: string
   emptyText?: string
-  trigger?: React.ReactNode
+  trigger?: React.ReactElement
   shortcut?: string
   className?: string
   showShortcut?: boolean
@@ -49,6 +50,7 @@ export function CommandPalette({
   groups = [],
   placeholder = "输入命令或搜索...",
   emptyText = "未找到结果",
+  trigger,
   shortcut = "mod+K",
   className,
   showShortcut = true,
@@ -84,6 +86,7 @@ export function CommandPalette({
 
   return (
     <Dialog open={isOpen} onOpenChange={setOpen}>
+      {trigger && <DialogTrigger render={trigger} />}
       <DialogContent
         showCloseButton={false}
         className="max-w-xl gap-0 overflow-hidden p-0 sm:max-w-xl"

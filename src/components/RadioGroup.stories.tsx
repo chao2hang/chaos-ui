@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/RadioGroup",
   component: RadioGroup,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof RadioGroup>
 
 export default meta
@@ -65,3 +65,4 @@ export const WithDescription: Story = {
     </RadioGroup>
   ),
 }
+

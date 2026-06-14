@@ -5,7 +5,7 @@ import { SearchIcon, MailIcon, InfoIcon } from "lucide-react"
 const meta = {
   title: "Components/InputGroup",
   component: InputGroup,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof InputGroup>
 
 export default meta
@@ -46,3 +46,4 @@ export const Email: Story = {
     </InputGroup>
   ),
 }
+

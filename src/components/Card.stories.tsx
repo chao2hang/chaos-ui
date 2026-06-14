@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge"
 const meta = {
   title: "Components/Card",
   component: Card,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     size: {
       control: { type: "select" },

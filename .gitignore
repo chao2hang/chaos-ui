@@ -19,6 +19,7 @@
 
 # production
 /build
+/storybook-static/
 
 # misc
 .DS_Store
@@ -39,6 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local indexes
+.codegraph/
 
 # pnpm
 .pnpm-store/

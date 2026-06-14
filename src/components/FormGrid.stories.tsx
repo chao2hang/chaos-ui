@@ -6,11 +6,11 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/FormGrid",
   component: FormGrid,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FormGrid>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
@@ -74,3 +74,4 @@ export const WithSpan: Story = {
     </FormGrid>
   ),
 }
+

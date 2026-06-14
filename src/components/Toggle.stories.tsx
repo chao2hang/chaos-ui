@@ -5,7 +5,7 @@ import { Bold, Italic, Underline } from "lucide-react"
 const meta = {
   title: "Components/Toggle",
   component: Toggle,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     variant: {
       control: { type: "select" },
@@ -62,3 +62,4 @@ export const Toolbar: Story = {
     </div>
   ),
 }
+

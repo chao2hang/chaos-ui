@@ -57,7 +57,10 @@ export function useHotkeys(
 ) {
   const { enabled = true, preventDefault = true, allowInInputs = false } = options
   const handlersRef = React.useRef(keys)
-  handlersRef.current = keys
+
+  React.useEffect(() => {
+    handlersRef.current = keys
+  }, [keys])
 
   React.useEffect(() => {
     if (!enabled) return

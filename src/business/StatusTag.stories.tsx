@@ -4,7 +4,7 @@ import { StatusTag } from "@/components/business/status-tag"
 const meta = {
   title: "Business/StatusTag",
   component: StatusTag,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     status: {
       control: { type: "select" },
@@ -28,6 +28,9 @@ export const Completed: Story = { args: { status: "completed" } }
 export const Cancelled: Story = { args: { status: "cancelled" } }
 
 export const AllStatuses: Story = {
+  args: {
+    status: "draft",
+  },
   render: () => (
     <div className="flex flex-wrap gap-2">
       <StatusTag status="draft" />
@@ -39,3 +42,4 @@ export const AllStatuses: Story = {
     </div>
   ),
 }
+

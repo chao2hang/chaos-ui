@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress"
 const meta = {
   title: "Components/Progress",
   component: Progress,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     value: {
       control: { type: "range", min: 0, max: 100, step: 1 },
@@ -14,7 +14,7 @@ const meta = {
 } satisfies Meta<typeof Progress>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   args: { value: 50 },
@@ -39,3 +39,4 @@ export const AllStates: Story = {
     </div>
   ),
 }
+

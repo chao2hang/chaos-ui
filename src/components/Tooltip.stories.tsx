@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 const meta = {
   title: "Components/Tooltip",
   component: Tooltip,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   decorators: [
     (Story) => (
       <TooltipProvider>

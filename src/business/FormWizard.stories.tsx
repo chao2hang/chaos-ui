@@ -7,11 +7,11 @@ import { Textarea } from "@/components/ui/textarea"
 const meta = {
   title: "Business/FormWizard",
   component: FormWizard,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FormWizard>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
@@ -61,3 +61,4 @@ export const Default: Story = {
     />
   ),
 }
+

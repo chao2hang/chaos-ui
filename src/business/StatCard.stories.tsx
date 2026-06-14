@@ -5,7 +5,7 @@ import { TrendingUpIcon, TrendingDownIcon, UsersIcon } from "lucide-react"
 const meta = {
   title: "Business/StatCard",
   component: StatCard,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof StatCard>
 
 export default meta
@@ -39,3 +39,4 @@ export const NoIcon: Story = {
     changeType: "neutral",
   },
 }
+

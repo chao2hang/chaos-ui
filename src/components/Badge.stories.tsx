@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 const meta = {
   title: "Components/Badge",
   component: Badge,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     variant: {
       control: { type: "select" },

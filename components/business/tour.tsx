@@ -90,25 +90,27 @@ export function Tour({
   const step = steps[index]
   const placement = step.placement ?? "bottom"
   const offset = step.offset ?? 8
+  const popoverWidth = Math.min(320, window.innerWidth - 16)
 
   const popoverStyle: React.CSSProperties = (() => {
     const style: React.CSSProperties = { position: "fixed", zIndex: 9999 }
     if (placement === "bottom") {
       style.top = rect.bottom + offset
-      style.left = rect.left + rect.width / 2 - 160
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2
     } else if (placement === "top") {
       style.top = rect.top - offset - 200
-      style.left = rect.left + rect.width / 2 - 160
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2
     } else if (placement === "right") {
       style.top = rect.top + rect.height / 2 - 100
       style.left = rect.right + offset
     } else {
       style.top = rect.top + rect.height / 2 - 100
-      style.left = rect.left - offset - 320
+      style.left = rect.left - offset - popoverWidth
     }
     Object.assign(style, {
-      left: Math.max(8, Math.min((style.left as number), window.innerWidth - 328)),
+      left: Math.max(8, Math.min((style.left as number), window.innerWidth - popoverWidth - 8)),
       top: Math.max(8, Math.min((style.top as number), window.innerHeight - 220)),
+      width: popoverWidth,
     })
     return style
   })()
@@ -132,7 +134,7 @@ export function Tour({
       />
       <Card
         data-slot="tour"
-        className={cn("w-80 shadow-xl", className)}
+        className={cn("shadow-xl", className)}
         style={popoverStyle}
       >
         <CardHeader className="pb-2">
@@ -158,7 +160,7 @@ export function Tour({
             {step.description}
           </CardContent>
         )}
-        <CardFooter className="flex items-center justify-between">
+        <CardFooter className="flex flex-wrap items-center justify-between gap-2">
           <Button
             variant="ghost"
             size="sm"
@@ -166,7 +168,7 @@ export function Tour({
           >
             跳过
           </Button>
-          <div className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center justify-end gap-1">
             <Button
               variant="outline"
               size="sm"

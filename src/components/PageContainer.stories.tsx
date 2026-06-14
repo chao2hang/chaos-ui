@@ -7,11 +7,11 @@ import { PlusIcon } from "lucide-react"
 const meta = {
   title: "Components/PageContainer",
   component: PageContainer,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof PageContainer>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
@@ -50,3 +50,4 @@ export const Small: Story = {
     </PageContainer>
   ),
 }
+

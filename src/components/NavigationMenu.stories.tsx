@@ -11,7 +11,7 @@ import {
 const meta = {
   title: "Components/NavigationMenu",
   component: NavigationMenu,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof NavigationMenu>
 
 export default meta

@@ -1,157 +1,117 @@
-# Chaos UI - 视觉检测报告
+# Chaos UI - Storybook Visual Audit Report
 
-## 检测时间: 2026-06-11
+## Audit Time
 
-## 组件统计
+2026-06-14
 
-| 类别 | 数量 | Stories | 状态 |
-|------|------|---------|------|
-| UI 组件 | 57 | 57 | ✅ |
-| 业务组件 | 14 | 14 | ✅ |
-| 移动端组件 | 20 | 20 (在 MobileComponents.stories.tsx) | ✅ |
-| 布局组件 | 3 | 3 | ✅ |
-| **总计** | **94** | **75 个 Stories 文件** | ✅ |
+## Coverage
 
-## 视觉检测清单
+| Scope | Count | Result |
+|---|---:|---|
+| Story files in source | 140 | Covered by Storybook docs/index audit |
+| Docs pages exposed by Storybook `index.json` | 139 | Scanned |
+| Device/theme matrix | 3 devices x 2 themes | Scanned |
+| Total docs combinations | 834 | Visual pass |
 
-### UI 组件 (57个)
+Source story files:
 
-| 组件 | Story | 暗色模式 | 响应式 | 状态 |
-|------|-------|----------|--------|------|
-| Accordion | ✅ | ✅ | ✅ | ✅ 固定宽度 |
-| Alert | ✅ | ✅ | ✅ | ✅ 修复布局 |
-| AlertDialog | ✅ | ✅ | ✅ | ✅ |
-| Avatar | ✅ | ✅ | ✅ | ✅ |
-| Badge | ✅ | ✅ | ✅ | ✅ |
-| Breadcrumb | ✅ | ✅ | ✅ | ✅ |
-| BrowseInput | ✅ | ✅ | ✅ | ✅ |
-| Button | ✅ | ✅ | ✅ | ✅ |
-| Calendar | ✅ | ✅ | ✅ | ✅ |
-| Card | ✅ | ✅ | ✅ | ✅ |
-| Checkbox | ✅ | ✅ | ✅ | ✅ |
-| Collapsible | ✅ | ✅ | ✅ | ✅ |
-| ColorPicker | ✅ | ✅ | ✅ | ✅ |
-| Command | ✅ | ✅ | ✅ | ✅ |
-| DepartmentBrowse | ✅ | ✅ | ✅ | ✅ |
-| Dialog | ✅ | ✅ | ✅ | ✅ |
-| Drawer | ✅ | ✅ | ✅ | ✅ |
-| DropdownMenu | ✅ | ✅ | ✅ | ✅ |
-| FileUpload | ✅ | ✅ | ✅ | ✅ |
-| FormGrid | ✅ | ✅ | ✅ | ✅ |
-| FormList | ✅ | ✅ | ✅ | ✅ |
-| FormSection | ✅ | ✅ | ✅ | ✅ |
-| GridLayout | ✅ | ✅ | ✅ | ✅ |
-| HoverCard | ✅ | ✅ | ✅ | ✅ |
-| Input | ✅ | ✅ | ✅ | ✅ |
-| InputGroup | ✅ | ✅ | ✅ | ✅ |
-| KPIPanel | ✅ | ✅ | ✅ | ✅ |
-| Label | ✅ | ✅ | ✅ | ✅ |
-| NavigationMenu | ✅ | ✅ | ✅ | ✅ |
-| PageContainer | ✅ | ✅ | ✅ | ✅ |
-| Pagination | ✅ | ✅ | ✅ | ✅ |
-| Popover | ✅ | ✅ | ✅ | ✅ |
-| Progress | ✅ | ✅ | ✅ | ✅ |
-| RadioGroup | ✅ | ✅ | ✅ | ✅ |
-| ScrollArea | ✅ | ✅ | ✅ | ✅ |
-| Select | ✅ | ✅ | ✅ | ✅ |
-| Separator | ✅ | ✅ | ✅ | ✅ |
-| Sheet | ✅ | ✅ | ✅ | ✅ |
-| Sidebar | ✅ | ✅ | ✅ | ✅ |
-| Skeleton | ✅ | ✅ | ✅ | ✅ |
-| Sonner/Toaster | ✅ | ✅ | ✅ | ✅ |
-| SplitPane | ✅ | ✅ | ✅ | ✅ |
-| Stepper | ✅ | ✅ | ✅ | ✅ |
-| Switch | ✅ | ✅ | ✅ | ✅ |
-| Table | ✅ | ✅ | ✅ | ✅ |
-| Tabs | ✅ | ✅ | ✅ | ✅ |
-| TagsInput | ✅ | ✅ | ✅ | ✅ |
-| Textarea | ✅ | ✅ | ✅ | ✅ |
-| Timeline | ✅ | ✅ | ✅ | ✅ |
-| Toggle | ✅ | ✅ | ✅ | ✅ |
-| ToggleGroup | ✅ | ✅ | ✅ | ✅ |
-| Tooltip | ✅ | ✅ | ✅ | ✅ |
-| TreeSelect | ✅ | ✅ | ✅ | ✅ |
-| TreeView | ✅ | ✅ | ✅ | ✅ |
-| UserBrowse | ✅ | ✅ | ✅ | ✅ |
-| VirtualList | ✅ | ✅ | ✅ | ✅ |
-| VirtualTable | ✅ | ✅ | ✅ | ✅ |
+| Group | Story files |
+|---|---:|
+| `business` | 64 |
+| `components` | 67 |
+| `layout` | 9 |
 
-### 业务组件 (14个)
+Storybook docs combinations scanned:
 
-| 组件 | Story | 暗色模式 | 响应式 | 状态 |
-|------|-------|----------|--------|------|
-| ActivityFeed | ✅ | ✅ | ✅ | ✅ |
-| AdvancedDataTable | ✅ | ✅ | ✅ | ✅ |
-| Chart | ✅ | ✅ | ✅ | ✅ |
-| DataTable | ✅ | ✅ | ✅ | ✅ |
-| EmptyState | ✅ | ✅ | ✅ | ✅ |
-| FileUploadManager | ✅ | ✅ | ✅ | ✅ |
-| FilterBuilder | ✅ | ✅ | ✅ | ✅ |
-| FormField | ✅ | ✅ | ✅ | ✅ |
-| FormWizard | ✅ | ✅ | ✅ | ✅ |
-| KanbanBoard | ✅ | ✅ | ✅ | ✅ |
-| KPICard | ✅ | ✅ | ✅ | ✅ 修复 icon 属性 |
-| PageHeader | ✅ | ✅ | ✅ | ✅ |
-| StatCard | ✅ | ✅ | ✅ | ✅ |
-| StatusTag | ✅ | ✅ | ✅ | ✅ |
+| Device | Light | Dark |
+|---|---:|---:|
+| Desktop | 139 | 139 |
+| Tablet | 139 | 139 |
+| Mobile | 139 | 139 |
 
-### 移动端组件 (20个)
+## Visual Result
 
-| 组件 | Story | 暗色模式 | 状态 |
-|------|-------|----------|------|
-| MobileButton | ✅ | ✅ | ✅ |
-| MobileInput | ✅ | ✅ | ✅ |
-| MobileTextarea | ✅ | ✅ | ✅ |
-| MobileSelect | ✅ | ✅ | ✅ |
-| MobileDialog | ✅ | ✅ | ✅ |
-| MobileSheet | ✅ | ✅ | ✅ |
-| MobileDataTable | ✅ | ✅ | ✅ |
-| MobileKPICard | ✅ | ✅ | ✅ |
-| MobileCard | ✅ | ✅ | ✅ |
-| MobileEmptyState | ✅ | ✅ | ✅ |
-| MobileForm | ✅ | ✅ | ✅ |
-| MobileFormField | ✅ | ✅ | ✅ |
-| MobileFormWizard | ✅ | ✅ | ✅ |
-| MobileFilterBuilder | ✅ | ✅ | ✅ |
-| MobilePageHeader | ✅ | ✅ | ✅ |
-| MobileNavigation | ✅ | ✅ | ✅ |
-| MobileTabs | ✅ | ✅ | ✅ |
-| MobileKanban | ✅ | ✅ | ✅ |
-| MobileDashboardLayout | ✅ | ✅ | ✅ |
-| MobileAuthLayout | ✅ | ✅ | ✅ |
+All 834 docs/device/theme combinations passed the visual layout audit after fixes.
 
-### 布局组件 (3个)
+Primary inspection focus:
 
-| 组件 | Story | 暗色模式 | 响应式 | 状态 |
-|------|-------|----------|--------|------|
-| AuthLayout | ✅ | ✅ | ✅ | ✅ |
-| DashboardLayout | ✅ | ✅ | ✅ | ✅ |
-| DetailLayout | ✅ | ✅ | ✅ | ✅ |
+- Timeline dots, connectors, step nodes, and similar center-line UI alignment.
+- Button, checkbox, badge, icon, and text alignment.
+- Card, table, dialog, drawer, menu, and story wrapper overflow.
+- Dark-mode contrast and disabled/read-only readability.
+- Mobile width constraints, wrapping, horizontal scroll, and text overlap.
+- Interaction states including transfer-list double click, quick click, and expandable demos.
 
-## 已修复的问题
+## Fixed Issues
 
-1. **Accordion 宽度问题** - 添加 `max-w-2xl` 容器约束
-2. **Alert 布局问题** - 使用 flex 布局替代绝对定位
-3. **KPICard icon 属性** - 修复 JSX 元素传递问题
-4. **EmptyState icon 属性** - 修复 JSX 元素传递问题
+| Area | Issue | Fix |
+|---|---|---|
+| Timeline | Vertical connector did not align with timeline dots | Centered the connector relative to the icon column in `components/ui/timeline.tsx`. |
+| Stepper | Final horizontal step could visually drift because it still participated in flexible line layout | Made the final horizontal step shrink to its own content while previous steps keep connector space in `components/ui/stepper.tsx`. |
+| Transfer | Double click toggled selection twice instead of moving the item | Added double-click move behavior and delayed single-click selection in `components/business/transfer.tsx`. |
+| Transfer | Mobile layout could overflow horizontally | Switched panels to stacked mobile layout and kept side-by-side layout from `sm` upward. |
+| Tour | Popover used a fixed width and could overflow small screens | Added viewport-aware width, clamped positioning, and wrapping footer actions in `components/business/tour.tsx`. |
+| Chart | Chart container had a fixed minimum width that could trigger mobile overflow | Removed the fixed min-width in `components/business/chart.tsx`. |
+| TopBar | Header actions could overflow on mobile | Hid desktop actions on small screens and kept them available in the mobile menu in `components/layout/top-bar.tsx`. |
+| Story demos | Several docs examples used fixed-width wrappers | Replaced fixed widths with responsive `w-full max-w-*` wrappers across affected story files. |
 
-## 设备切换
+Responsive story wrapper fixes were applied to:
 
-Storybook 工具栏支持：
-- **主题切换**: Light / Dark
-- **设备切换**: Mobile (375px) / Tablet (768px) / Desktop (1024px)
+- `src/components/AspectRatio.stories.tsx`
+- `src/components/Collapsible.stories.tsx`
+- `src/components/ContextMenu.stories.tsx`
+- `src/components/Kbd.stories.tsx`
+- `src/components/ScrollArea.stories.tsx`
+- `src/components/Skeleton.stories.tsx`
+- `src/components/Slider.stories.tsx`
+- `src/components/Tabs.stories.tsx`
+- `src/components/TagsInput.stories.tsx`
+- `src/business/Transfer.stories.tsx`
 
-## 访问地址
+## Remaining Non-Visual Warnings
 
-- Storybook: http://localhost:6007/
-- 构建产物: `storybook-static/`
+The automated audit still records 6 docs pages with console/demo warnings in every matrix run. These were inspected as non-visual findings and did not block visual pass.
 
-## 启动命令
+| Docs page | Warning type | Status |
+|---|---|---|
+| `components-departmentbrowse--docs` | Base UI native button warning in `Dialog` composition | Non-visual accessibility warning, not fixed in this visual pass. |
+| `components-treeselect--docs` | Base UI native button warning in `Dialog` composition | Non-visual accessibility warning, not fixed in this visual pass. |
+| `components-userbrowse--docs` | Base UI native button warning in `Dialog` composition | Non-visual accessibility warning, not fixed in this visual pass. |
+| `business-errorpage--docs` | Base UI native button warning in `Button` composition | Non-visual accessibility warning, not fixed in this visual pass. |
+| `business-errorboundary--docs` | Intentional story error: `Revenue widget failed to load` | Expected ErrorBoundary demo behavior. |
+| `business-themetoggle--docs` | React warning for script tag in demo content | Non-visual story warning, not fixed in this visual pass. |
+
+## Verification
+
+Targeted checks:
 
 ```bash
-# 开发模式
-npx storybook dev -p 6006
-
-# 生产构建
-npx storybook build
+npm.cmd run lint -- components/business/transfer.tsx components/business/tour.tsx components/business/chart.tsx components/layout/top-bar.tsx components/ui/timeline.tsx components/ui/stepper.tsx src/components/AspectRatio.stories.tsx src/components/Collapsible.stories.tsx src/components/ContextMenu.stories.tsx src/components/Kbd.stories.tsx src/components/ScrollArea.stories.tsx src/components/Skeleton.stories.tsx src/components/Slider.stories.tsx src/components/Tabs.stories.tsx src/components/TagsInput.stories.tsx src/business/Transfer.stories.tsx
+node --check output/playwright/visual-audit/run-audit.mjs
 ```
+
+Both targeted checks passed.
+
+Full checks:
+
+```bash
+npm.cmd run lint
+npm.cmd run build-storybook
+```
+
+Both full checks passed. Storybook build completed with Vite informational warnings for plugin timing and large chunks.
+
+Audit artifacts:
+
+- `output/playwright/visual-audit/audit-all-desktop-light-0-all.json`
+- `output/playwright/visual-audit/audit-all-desktop-dark-0-all.json`
+- `output/playwright/visual-audit/audit-all-tablet-light-0-all.json`
+- `output/playwright/visual-audit/audit-all-tablet-dark-0-all.json`
+- `output/playwright/visual-audit/audit-all-mobile-light-0-all.json`
+- `output/playwright/visual-audit/audit-all-mobile-dark-0-all.json`
+
+## Notes
+
+- Storybook was audited through `http://localhost:6006`.
+- `storybook-static/` is treated as generated output and was not edited by hand.
+- The audit helper lives under `output/playwright/visual-audit/run-audit.mjs` so future visual passes can reuse the same matrix.

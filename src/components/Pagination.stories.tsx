@@ -4,7 +4,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 const meta = {
   title: "Components/Pagination",
   component: Pagination,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Pagination>
 
 export default meta
@@ -60,3 +60,4 @@ export const Simple: Story = {
     </Pagination>
   ),
 }
+

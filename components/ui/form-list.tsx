@@ -58,6 +58,7 @@ function FormList<T extends FormListItem>({
     if (value.length <= minItems) return
     const newValue = value.filter((_, i) => i !== index)
     setUncontrolledValue(newValue)
+    onRemove?.(index)
     onChange?.(newValue)
   }
 

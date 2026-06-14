@@ -24,18 +24,23 @@ const sampleData: TreeNode[] = [
 const meta = {
   title: "Components/TreeSelect",
   component: TreeSelect,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof TreeSelect>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => {
     const [value, setValue] = useState<string | undefined>()
     return (
       <div className="w-[300px]">
-        <TreeSelect data={sampleData} value={value} onChange={setValue} placeholder="Select..." />
+        <TreeSelect
+          data={sampleData}
+          value={value}
+          onChange={(next) => setValue(Array.isArray(next) ? undefined : next)}
+          placeholder="Select..."
+        />
       </div>
     )
   },
@@ -46,7 +51,13 @@ export const Multiple: Story = {
     const [value, setValue] = useState<string[]>([])
     return (
       <div className="w-[300px]">
-        <TreeSelect data={sampleData} value={value} onChange={setValue} multiple placeholder="Select items..." />
+        <TreeSelect
+          data={sampleData}
+          value={value}
+          onChange={(next) => setValue(Array.isArray(next) ? next : next ? [next] : [])}
+          multiple
+          placeholder="Select items..."
+        />
       </div>
     )
   },

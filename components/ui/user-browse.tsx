@@ -83,6 +83,7 @@ function UserBrowse({
     let newValue: User[]
     if (multiple) {
       const isSelected = value.some((u) => u.id === user.id)
+      if (!isSelected && maxCount && value.length >= maxCount) return
       newValue = isSelected
         ? value.filter((u) => u.id !== user.id)
         : [...value, user]
@@ -105,8 +106,6 @@ function UserBrowse({
     setUncontrolledValue([])
     onChange?.(multiple ? [] : undefined)
   }
-
-  const isMaxReached = maxCount ? value.length >= maxCount : false
 
   return (
     <div data-slot="user-browse" className={cn("w-full", className)}>

@@ -5,7 +5,7 @@ import { DollarSignIcon, UsersIcon, ShoppingCartIcon, TrendingUpIcon } from "luc
 const meta = {
   title: "Components/KPIPanel",
   component: KPIPanel,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof KPIPanel>
 
 export default meta
@@ -29,3 +29,4 @@ export const TwoColumns: Story = {
 export const Small: Story = {
   args: { items: sampleItems, size: "sm" },
 }
+

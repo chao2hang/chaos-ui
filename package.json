@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+    "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@11.5.0",
+  "packageManager": "npm@11.10.1",
   "scripts": {
-    "dev": "next dev",
+    "dev": "storybook dev -p 6006",
+    "app:dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
-    "audit": "pnpm audit --prod",
-    "audit:fix": "pnpm audit --prod --fix"
+    "audit": "npm audit --omit=dev",
+    "audit:fix": "npm audit fix --omit=dev"
   },
   "dependencies": {
     "@base-ui/react": "1.5.0",

@@ -5,7 +5,7 @@ import { useState } from "react"
 const meta = {
   title: "Components/ColorPicker",
   component: ColorPicker,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof ColorPicker>
 
 export default meta
@@ -32,3 +32,4 @@ export const WithPreview: Story = {
     )
   },
 }
+

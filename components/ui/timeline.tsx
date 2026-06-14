@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 function Timeline({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
@@ -79,7 +79,7 @@ function TimelineDot({ className, variant, children, ...props }: { className?: s
 }
 
 function TimelineConnector({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("ml-3.5 w-px flex-1 bg-border", className)} {...props} />
+  return <div className={cn("mx-auto w-px flex-1 bg-border", className)} {...props} />
 }
 
 function TimelineContent({ className, ...props }: { className?: string } & React.HTMLAttributes<HTMLDivElement>) {

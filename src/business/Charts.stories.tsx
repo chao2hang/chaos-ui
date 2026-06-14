@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { LineChart, BarChart, AreaChart, PieChart, defaultColors, brandColors, statusColors } from "@/components/business/chart"
+import { LineChart, BarChart, AreaChart, PieChart, brandColors, statusColors } from "@/components/business/chart"
 
 const sampleData = [
   { month: "Jan", revenue: 4000, expenses: 2400, profit: 1600 },
@@ -20,7 +20,7 @@ const pieData = [
 
 const meta = {
   title: "Business/Charts",
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   parameters: {
     layout: "padded",
   },
@@ -137,3 +137,4 @@ export const AllChartTypes: StoryObj = {
     </div>
   ),
 }
+

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 const meta = {
   title: "Components/Drawer",
   component: Drawer,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Drawer>
 
 export default meta
@@ -14,7 +14,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Drawer>
-      <DrawerTrigger render={<Button variant="outline" />}>Open Drawer</DrawerTrigger>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Drawer Title</DrawerTitle>
@@ -23,9 +25,12 @@ export const Default: Story = {
         <div className="p-4 pb-0">Drawer content area</div>
         <DrawerFooter>
           <Button>Submit</Button>
-          <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
   ),
 }
+

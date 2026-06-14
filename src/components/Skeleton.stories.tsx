@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 const meta = {
   title: "Components/Skeleton",
   component: Skeleton,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Skeleton>
 
 export default meta
@@ -25,7 +25,7 @@ export const Rectangle: Story = {
 
 export const CardSkeleton: Story = {
   render: () => (
-    <Card className="w-[350px]">
+    <Card className="w-full max-w-[350px]">
       <CardHeader className="flex flex-row items-center gap-4">
         <Skeleton className="w-12 h-12 rounded-full" />
         <div className="space-y-2">
@@ -57,3 +57,4 @@ export const ListSkeleton: Story = {
     </div>
   ),
 }
+

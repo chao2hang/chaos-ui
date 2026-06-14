@@ -5,18 +5,22 @@ import { useState } from "react"
 const meta = {
   title: "Components/DepartmentBrowse",
   component: DepartmentBrowse,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof DepartmentBrowse>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => {
     const [value, setValue] = useState<Department | undefined>()
     return (
       <div className="w-[300px]">
-        <DepartmentBrowse value={value} onChange={setValue} placeholder="Select department..." />
+        <DepartmentBrowse
+          value={value}
+          onChange={(next) => setValue(Array.isArray(next) ? undefined : next)}
+          placeholder="Select department..."
+        />
       </div>
     )
   },
@@ -33,7 +37,12 @@ export const Multiple: Story = {
     const [value, setValue] = useState<Department[]>([])
     return (
       <div className="w-[300px]">
-        <DepartmentBrowse value={value} onChange={setValue} multiple placeholder="Select departments..." />
+        <DepartmentBrowse
+          value={value}
+          onChange={(next) => setValue(Array.isArray(next) ? next : next ? [next] : [])}
+          multiple
+          placeholder="Select departments..."
+        />
       </div>
     )
   },
@@ -45,3 +54,4 @@ export const Disabled: Story = {
     defaultValue: { id: "1-1", name: "Engineering", code: "ENG" },
   },
 }
+

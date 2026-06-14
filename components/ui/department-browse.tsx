@@ -164,11 +164,12 @@ function DepartmentBrowse({
   const [uncontrolledValue, setUncontrolledValue] = React.useState<Department[]>(
     Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
   )
-  const value = controlledValue
-    ? Array.isArray(controlledValue)
-      ? controlledValue
-      : [controlledValue]
-    : uncontrolledValue
+  const value = React.useMemo(() => {
+    if (controlledValue !== undefined) {
+      return Array.isArray(controlledValue) ? controlledValue : [controlledValue]
+    }
+    return uncontrolledValue
+  }, [controlledValue, uncontrolledValue])
 
   const selectedIds = React.useMemo(
     () => new Set(value.map((d) => d.id)),

@@ -3,12 +3,8 @@ import type { StorybookConfig } from '@storybook/nextjs-vite';
 const config: StorybookConfig = {
   "stories": [
     "../src/intro/**/*.mdx",
-    "../src/intro/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../src/components/**/*.mdx",
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../src/business/**/*.mdx",
     "../src/business/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../src/layout/**/*.mdx",
     "../src/layout/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [
@@ -23,7 +19,7 @@ const config: StorybookConfig = {
     "..\\public"
   ],
   "typescript": {
-    "check": false
+    "check": true
   }
 };
 

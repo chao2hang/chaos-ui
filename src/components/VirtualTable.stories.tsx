@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { VirtualTable, type ColumnDef } from "@/components/ui/virtual-table"
 import { Badge } from "@/components/ui/badge"
 
-interface User {
+type User = Record<string, unknown> & {
   id: number
   name: string
   email: string
@@ -39,11 +39,11 @@ const columns: ColumnDef<User>[] = [
 const meta = {
   title: "Components/VirtualTable",
   component: VirtualTable,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof VirtualTable>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   args: { columns, data: generateData(100), estimateRowHeight: 40, height: 300 },
@@ -59,6 +59,7 @@ export const WithRowClick: Story = {
     data: generateData(100),
     estimateRowHeight: 40,
     height: 300,
-    onRowClick: (row) => alert(`Clicked: ${row.name}`),
+    onRowClick: (row: User) => alert(`Clicked: ${row.name}`),
   },
 }
+

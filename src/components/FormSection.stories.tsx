@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/FormSection",
   component: FormSection,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FormSection>
 
 export default meta
@@ -54,3 +54,4 @@ export const Required: Story = {
     </FormSection>
   ),
 }
+

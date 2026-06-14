@@ -6,10 +6,19 @@ import { Badge } from "@/components/ui/badge"
 import { Trash2Icon, GridIcon, ListIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-function FileUploadManager({ files = [], onFilesChange, accept, maxFiles = 10, maxSize, className }: { files?: any[]; onFilesChange?: (files: any[]) => void; accept?: Record<string, string[]>; maxFiles?: number; maxSize?: number; className?: string }) {
+type ManagedFile = {
+  file?: File
+  name: string
+  size: number
+  type?: string
+  status?: string
+  progress?: number
+}
+
+function FileUploadManager({ files = [], onFilesChange, accept, maxFiles = 10, maxSize, className }: { files?: ManagedFile[]; onFilesChange?: (files: ManagedFile[]) => void; accept?: Record<string, string[]>; maxFiles?: number; maxSize?: number; className?: string }) {
   const [view, setView] = React.useState("list")
 
-  const handleDrop = (newFiles: any[]): void => {
+  const handleDrop = (newFiles: File[]): void => {
     onFilesChange?.([...files, ...newFiles.map((f) => ({ file: f, name: f.name, size: f.size, type: f.type, status: "pending" }))])
   }
 
@@ -18,8 +27,6 @@ function FileUploadManager({ files = [], onFilesChange, accept, maxFiles = 10, m
   }
 
   const handleClearAll = () => onFilesChange?.([])
-
-  const imageFiles = files.filter((f) => f.type?.startsWith("image/"))
 
   return (
     <div className={cn("space-y-4", className)}>

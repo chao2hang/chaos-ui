@@ -5,7 +5,7 @@ import { CheckCircle2Icon, ClockIcon, XCircleIcon } from "lucide-react"
 const meta = {
   title: "Components/Timeline",
   component: Timeline,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Timeline>
 
 export default meta
@@ -30,3 +30,4 @@ export const Activity: Story = {
     </Timeline>
   ),
 }
+

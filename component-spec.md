@@ -18,20 +18,20 @@ This document defines the conventions, standards, and patterns used in the compo
 
 ```
 ├── app/
-│   ├── styleguide/          # Component showcase (6 categories)
-│   │   ├── tokens/          # Design tokens (colors, typography, spacing, radius, shadow, motion)
-│   │   ├── components/      # Base UI components
-│   │   ├── business/        # Business domain components
-│   │   ├── patterns/        # Page-level patterns
-│   │   └── layouts/         # Layout templates
+│   └── page.tsx             # Next.js launcher page pointing to Storybook
+├── .storybook/              # Storybook configuration
 ├── components/
 │   ├── ui/                  # shadcn base components (DO NOT EDIT unless necessary)
 │   ├── business/            # Business components (StatusTag, DataTable, etc.)
 │   └── layout/              # Layout components (DashboardLayout, AuthLayout, etc.)
+├── src/
+│   ├── intro/               # Storybook MDX guides
+│   ├── components/          # Base component stories
+│   ├── business/            # Business component stories
+│   └── layout/              # Layout component stories
 ├── hooks/                   # Custom React hooks
 ├── lib/
-│   ├── utils.ts             # Utility functions (cn, etc.)
-│   └── nav.ts               # Styleguide navigation config
+│   └── utils.ts             # Utility functions (cn, etc.)
 └── component-spec.md        # This file
 ```
 

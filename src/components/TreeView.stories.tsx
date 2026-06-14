@@ -30,7 +30,7 @@ const sampleData: TreeNode[] = [
 const meta = {
   title: "Components/TreeView",
   component: TreeView,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof TreeView>
 
 export default meta
@@ -47,3 +47,4 @@ export const WithCheckboxes: Story = {
 export const WithoutIcons: Story = {
   args: { data: sampleData, showIcon: false, defaultExpandedIds: ["1", "2"] },
 }
+

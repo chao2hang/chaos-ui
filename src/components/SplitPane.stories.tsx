@@ -4,11 +4,11 @@ import { SplitPane } from "@/components/ui/split-pane"
 const meta = {
   title: "Components/SplitPane",
   component: SplitPane,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof SplitPane>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Horizontal: Story = {
   render: () => (
@@ -68,3 +68,4 @@ export const CustomSize: Story = {
     </div>
   ),
 }
+

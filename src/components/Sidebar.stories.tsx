@@ -5,7 +5,7 @@ import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react"
 const meta = {
   title: "Components/Sidebar",
   component: Sidebar,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Sidebar>
 
 export default meta

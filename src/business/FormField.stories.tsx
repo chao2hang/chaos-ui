@@ -6,11 +6,11 @@ import { Textarea } from "@/components/ui/textarea"
 const meta = {
   title: "Business/FormField",
   component: FormField,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FormField>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const WithInput: Story = {
   render: () => (
@@ -43,3 +43,4 @@ export const Optional: Story = {
     </FormField>
   ),
 }
+

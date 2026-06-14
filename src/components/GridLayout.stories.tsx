@@ -5,11 +5,11 @@ import { Card, CardContent } from "@/components/ui/card"
 const meta = {
   title: "Components/GridLayout",
   component: GridLayout,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof GridLayout>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (
@@ -61,3 +61,4 @@ export const WithSpan: Story = {
     </GridLayout>
   ),
 }
+

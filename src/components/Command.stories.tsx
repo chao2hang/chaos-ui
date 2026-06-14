@@ -16,7 +16,7 @@ import { useState } from "react"
 const meta = {
   title: "Components/Command",
   component: Command,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof Command>
 
 export default meta

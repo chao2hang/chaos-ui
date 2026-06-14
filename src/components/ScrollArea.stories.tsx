@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 const meta = {
   title: "Components/ScrollArea",
   component: ScrollArea,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof ScrollArea>
 
 export default meta
@@ -31,7 +31,7 @@ export const Default: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
+    <ScrollArea className="w-full max-w-96 whitespace-nowrap rounded-md border">
       <div className="flex w-max space-x-4 p-4">
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} className="shrink-0 rounded-md border p-4 w-32">
@@ -46,3 +46,4 @@ export const Horizontal: Story = {
 }
 
 import { ScrollBar } from "@/components/ui/scroll-area"
+

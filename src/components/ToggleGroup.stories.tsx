@@ -5,7 +5,7 @@ import { Bold, Italic, Underline } from "lucide-react"
 const meta = {
   title: "Components/ToggleGroup",
   component: ToggleGroup,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof ToggleGroup>
 
 export default meta
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const Single: Story = {
   render: () => (
-    <ToggleGroup type="single" defaultValue="bold">
+    <ToggleGroup defaultValue={["bold"]}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="size-4" />
       </ToggleGroupItem>
@@ -29,7 +29,7 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <ToggleGroup type="multiple" defaultValue={["bold", "italic"]}>
+    <ToggleGroup multiple defaultValue={["bold", "italic"]}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="size-4" />
       </ToggleGroupItem>
@@ -45,10 +45,11 @@ export const Multiple: Story = {
 
 export const WithText: Story = {
   render: () => (
-    <ToggleGroup type="single" defaultValue="left">
+    <ToggleGroup defaultValue={["left"]}>
       <ToggleGroupItem value="left">Left</ToggleGroupItem>
       <ToggleGroupItem value="center">Center</ToggleGroupItem>
       <ToggleGroupItem value="right">Right</ToggleGroupItem>
     </ToggleGroup>
   ),
 }
+

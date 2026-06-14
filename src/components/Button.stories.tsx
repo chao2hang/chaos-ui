@@ -5,7 +5,7 @@ import { Mail, Loader2, Plus } from "lucide-react"
 const meta = {
   title: "Components/Button",
   component: Button,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     variant: {
       control: { type: "select" },
@@ -20,10 +20,6 @@ const meta = {
     disabled: {
       control: "boolean",
       description: "Whether the button is disabled",
-    },
-    asChild: {
-      control: "boolean",
-      description: "Render as a child element",
     },
   },
 } satisfies Meta<typeof Button>

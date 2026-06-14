@@ -102,7 +102,7 @@ export function TopBar({
           )
         )}
       </nav>
-      <div className="ml-auto flex items-center gap-2">{actions}</div>
+      <div className="ml-auto hidden items-center gap-2 sm:flex">{actions}</div>
       {open && (
         <div className="fixed inset-x-0 top-14 z-40 border-b bg-background p-4 md:hidden">
           <nav className="flex flex-col gap-1">

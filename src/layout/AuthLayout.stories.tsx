@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button"
 const meta = {
   title: "Layouts/AuthLayout",
   component: AuthLayout,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof AuthLayout>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj
 
 export const Default: Story = {
   render: () => (

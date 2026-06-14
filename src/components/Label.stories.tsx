@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label"
 const meta = {
   title: "Components/Label",
   component: Label,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
   argTypes: {
     htmlFor: {
       control: "text",
@@ -46,3 +46,4 @@ export const Disabled: Story = {
     </div>
   ),
 }
+

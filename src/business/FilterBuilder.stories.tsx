@@ -4,7 +4,7 @@ import { FilterBuilder } from "@/components/business/filter-builder"
 const meta = {
   title: "Business/FilterBuilder",
   component: FilterBuilder,
-  tags: ["autodocs"],
+  tags: ["autodocs", "a11y"],
 } satisfies Meta<typeof FilterBuilder>
 
 export default meta
@@ -27,9 +27,6 @@ export const Default: Story = {
 export const WithInitialFilters: Story = {
   args: {
     fields,
-    initialFilters: [
-      { field: "status", operator: "equals", value: "active" },
-      { field: "age", operator: "greater_than", value: "18" },
-    ],
   },
 }
+

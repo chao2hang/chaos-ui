@@ -1,0 +1,23 @@
+- generic [ref=e3]:
+  - banner "Navigation controls" [ref=e5]:
+    - heading "Navigation controls" [level=2] [ref=e6]
+    - button "Open navigation menu" [ref=e7] [cursor=pointer]:
+      - img [ref=e8]
+      - paragraph [ref=e10]: Business/ApprovalTimeline/Docs
+    - generic [ref=e11]: Business/ApprovalTimeline/Docs
+  - generic [ref=e13]:
+    - region "Toolbar" [ref=e14]:
+      - heading "Toolbar" [level=2] [ref=e15]
+      - toolbar [ref=e16]:
+        - switch "Outline tool" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+        - generic [ref=e21]:
+          - button "Open in editor" [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+          - button "Share" [ref=e26] [cursor=pointer]
+    - main "Main preview area" [ref=e27]:
+      - heading "Main preview area" [level=2] [ref=e28]
+      - generic [ref=e29]:
+        - progressbar "Content is loading..." [ref=e31]
+        - iframe [ref=e36]:
+          

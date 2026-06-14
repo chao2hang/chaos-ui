@@ -142,11 +142,12 @@ function TreeSelect({
     Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
   )
 
-  const value = controlledValue
-    ? Array.isArray(controlledValue)
-      ? controlledValue
-      : [controlledValue]
-    : uncontrolledValue
+  const value = React.useMemo(() => {
+    if (controlledValue !== undefined) {
+      return Array.isArray(controlledValue) ? controlledValue : [controlledValue]
+    }
+    return uncontrolledValue
+  }, [controlledValue, uncontrolledValue])
 
   const selectedIdsSet = React.useMemo(() => new Set(value), [value])
 
