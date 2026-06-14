@@ -43,6 +43,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "output/**",
     "build/**",
+    "dist/**",
     "storybook-static/**",
     "coverage/**",
     ".playwright-mcp/**",
@@ -110,6 +111,13 @@ const eslintConfig = defineConfig([
     files: ["components/business/**/*.{ts,tsx}", "lib/api-client.ts"],
     rules: {
       "@chaos/no-hardcoded-chinese": "off",
+    },
+  },
+  {
+    // CreativePreview 支持任意活动素材 URL；不把 Next image 域名约束带入 React-safe business 入口。
+    files: ["components/business/creative-preview.tsx"],
+    rules: {
+      "@next/next/no-img-element": "off",
     },
   },
   {

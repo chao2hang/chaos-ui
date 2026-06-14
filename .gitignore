@@ -20,6 +20,7 @@
 
 # production
 /build
+/dist
 /storybook-static/
 
 # misc
@@ -50,6 +51,7 @@ next-env.d.ts
 .detection/
 *.tmp
 *.temp
+*.tgz
 *-full.png
 *-timeline.png
 playwright-report/

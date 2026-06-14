@@ -280,7 +280,6 @@ export {
   SliderIndicator,
   SliderThumb,
 } from "./slider";
-export { Toaster } from "./sonner";
 export { SplitPane } from "./split-pane";
 export type { SplitPaneProps } from "./split-pane";
 export { Stepper, Step } from "./stepper";
@@ -333,5 +332,4 @@ export { VirtualList } from "./virtual-list";
 export type { VirtualListProps } from "./virtual-list";
 export { VirtualTable } from "./virtual-table";
 export type { ColumnDef, VirtualTableProps } from "./virtual-table";
-export * from "./icons";
 export * from "./icons";

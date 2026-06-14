@@ -127,8 +127,6 @@ export function CreativePreview({
 
 function MediaBlock({ imageUrl }: { imageUrl?: string }) {
   if (imageUrl) {
-    // Creative assets often come from arbitrary campaign URLs, so avoid Next image domain coupling.
-    // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
         src={imageUrl}

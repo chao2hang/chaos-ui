@@ -1,7 +1,67 @@
 {
-  "name": "chaos-ui",
+  "name": "@qxyfoods/chaos-ui",
   "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "sideEffects": [
+    "./styles.css",
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./ui": {
+      "types": "./dist/ui.d.ts",
+      "import": "./dist/ui.js",
+      "require": "./dist/ui.cjs"
+    },
+    "./ui/icons": {
+      "types": "./dist/ui/icons.d.ts",
+      "import": "./dist/ui/icons.js",
+      "require": "./dist/ui/icons.cjs"
+    },
+    "./ui-icons": {
+      "types": "./dist/ui-icons.d.ts",
+      "import": "./dist/ui-icons.js",
+      "require": "./dist/ui-icons.cjs"
+    },
+    "./business": {
+      "types": "./dist/business.d.ts",
+      "import": "./dist/business.js",
+      "require": "./dist/business.cjs"
+    },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.js",
+      "require": "./dist/hooks.cjs"
+    },
+    "./lib": {
+      "types": "./dist/lib.d.ts",
+      "import": "./dist/lib.js",
+      "require": "./dist/lib.cjs"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js",
+      "require": "./dist/next.cjs"
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
   "engines": {
     "node": ">=22.0.0"
   },
@@ -17,6 +77,9 @@
     "lint:deps": "depcruise --config .dependency-cruiser.cjs components/ hooks/ lib/ app/",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm run lint:css && npm run lint:deps",
+    "build:pkg": "tsup",
+    "pack:dry": "npm pack --dry-run",
+    "prepack": "npm run build:pkg",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
@@ -42,12 +105,8 @@
     "date-fns": "4.4.0",
     "i18next": "^26.3.1",
     "lucide-react": "1.17.0",
-    "next": "16.2.9",
-    "next-themes": "0.4.6",
-    "react": "19.2.7",
     "react-colorful": "^5.7.0",
     "react-day-picker": "10.0.1",
-    "react-dom": "19.2.7",
     "react-dropzone": "^15.0.0",
     "react-hook-form": "7.78.0",
     "react-i18next": "^17.0.8",
@@ -59,6 +118,20 @@
     "vaul": "1.1.2",
     "zod": "4.4.3",
     "zustand": "5.0.14"
+  },
+  "peerDependencies": {
+    "next": ">=16.0.0",
+    "next-themes": ">=0.4.0",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "next-themes": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@chaos/eslint-plugin": "file:./eslint-plugin-chaos",
@@ -79,12 +152,17 @@
     "eslint-plugin-storybook": "^10.4.3",
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
+    "next": "16.2.9",
+    "next-themes": "0.4.6",
     "playwright": "^1.60.0",
     "prettier": "^3.0.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
     "storybook": "^10.4.3",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
     "tailwindcss": "4.3.0",
+    "tsup": "^8.5.1",
     "typescript": "5.9.3",
     "vite": "^8.0.16",
     "vitest": "^4.1.8"
