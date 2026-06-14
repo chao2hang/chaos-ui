@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 type Status =
   | "draft"
@@ -7,12 +7,9 @@ type Status =
   | "approved"
   | "rejected"
   | "completed"
-  | "cancelled"
+  | "cancelled";
 
-const statusConfig: Record<
-  Status,
-  { label: string; className: string }
-> = {
+const statusConfig: Record<Status, { label: string; className: string }> = {
   draft: {
     label: "Draft",
     className: "bg-muted text-muted-foreground",
@@ -37,32 +34,32 @@ const statusConfig: Record<
     label: "Cancelled",
     className: "bg-muted text-muted-foreground line-through",
   },
-}
+};
 
 function StatusTag({
   status,
   size = "default",
 }: {
-  status: Status | string
-  size?: "sm" | "default"
+  status: Status | string;
+  size?: "sm" | "default";
 }) {
-  const key = status.toLowerCase() as Status
+  const key = status.toLowerCase() as Status;
   const config = statusConfig[key] ?? {
     label: status,
     className: "bg-muted text-muted-foreground",
-  }
+  };
 
   return (
     <Badge
       className={cn(
         config.className,
-        size === "sm" && "h-4 px-1.5 text-[0.65rem]"
+        size === "sm" && "h-4 px-1.5 text-[0.65rem]",
       )}
     >
       {config.label}
     </Badge>
-  )
+  );
 }
 
-export { StatusTag, statusConfig }
-export type { Status }
+export { StatusTag, statusConfig };
+export type { Status };

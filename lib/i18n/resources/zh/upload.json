@@ -1,0 +1,20 @@
+{
+  "bulkImportWizard.upload": "Upload",
+  "bulkImportWizard.mapFields": "Map fields",
+  "bulkImportWizard.validate": "Validate",
+  "bulkImportWizard.complete": "Complete",
+  "bulkImportWizard.uploadTitle": "Upload a CSV or spreadsheet",
+  "bulkImportWizard.uploadDescription": "Import contacts, products, or campaign records in bulk.",
+  "bulkImportWizard.selectFile": "Select file",
+  "bulkImportWizard.mapsTo": "maps to",
+  "bulkImportWizard.importComplete": "Import complete",
+  "bulkImportWizard.recordsImported": "{{count}} records were imported successfully.",
+  "bulkImportWizard.continue": "Continue",
+  "exportButton.label": "导出",
+  "exportButton.csv": "CSV",
+  "exportButton.xlsx": "Excel",
+  "exportButton.json": "JSON",
+  "exportButton.pdf": "PDF",
+  "exportButton.print": "打印",
+  "exportButton.popupBlocked": "请允许弹窗以使用打印功能"
+}

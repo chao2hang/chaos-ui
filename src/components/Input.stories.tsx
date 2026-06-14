@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { SearchIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { SearchIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/Input",
@@ -10,7 +10,16 @@ const meta = {
   argTypes: {
     type: {
       control: { type: "select" },
-      options: ["text", "email", "password", "number", "tel", "url", "search", "date"],
+      options: [
+        "text",
+        "email",
+        "password",
+        "number",
+        "tel",
+        "url",
+        "search",
+        "date",
+      ],
       description: "The type of the input",
     },
     placeholder: {
@@ -26,71 +35,71 @@ const meta = {
       description: "Whether the input is required",
     },
   },
-} satisfies Meta<typeof Input>
+} satisfies Meta<typeof Input>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     placeholder: "Enter text...",
   },
-}
+};
 
 export const Email: Story = {
   args: {
     type: "email",
     placeholder: "Enter your email",
   },
-}
+};
 
 export const Password: Story = {
   args: {
     type: "password",
     placeholder: "Enter password",
   },
-}
+};
 
 export const Number: Story = {
   args: {
     type: "number",
     placeholder: "0",
   },
-}
+};
 
 export const Search: Story = {
   args: {
     type: "search",
     placeholder: "Search...",
   },
-}
+};
 
 export const Disabled: Story = {
   args: {
     disabled: true,
     placeholder: "Disabled input",
   },
-}
+};
 
 export const Required: Story = {
   args: {
     required: true,
     placeholder: "Required field",
   },
-}
+};
 
 export const WithValue: Story = {
   args: {
     defaultValue: "Hello World",
   },
-}
+};
 
 export const Invalid: Story = {
   args: {
     "aria-invalid": true,
     placeholder: "Invalid input",
   },
-}
+};
 
 export const WithLabel: Story = {
   render: () => (
@@ -99,7 +108,7 @@ export const WithLabel: Story = {
       <Input id="email-input" type="email" placeholder="Enter your email" />
     </div>
   ),
-}
+};
 
 export const WithIcon: Story = {
   render: () => (
@@ -108,7 +117,7 @@ export const WithIcon: Story = {
       <Input className="pl-8" placeholder="Search..." />
     </div>
   ),
-}
+};
 
 export const AllStates: Story = {
   render: () => (
@@ -119,4 +128,4 @@ export const AllStates: Story = {
       <Input placeholder="Invalid" aria-invalid />
     </div>
   ),
-}
+};

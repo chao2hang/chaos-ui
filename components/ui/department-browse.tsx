@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Checkbox } from "@/components/ui/checkbox"
-import { SearchIcon, XIcon, BuildingIcon, ChevronRightIcon } from "lucide-react"
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Checkbox } from "@/components/ui/checkbox";
+import { BuildingIcon, ChevronRightIcon, SearchIcon, XIcon } from "./icons";
 
 interface Department {
-  id: string
-  name: string
-  code?: string
-  parentId?: string
-  children?: Department[]
-  level?: number
+  id: string;
+  name: string;
+  code?: string;
+  parentId?: string;
+  children?: Department[];
+  level?: number;
 }
 
 interface DepartmentBrowseProps {
-  value?: Department | Department[]
-  defaultValue?: Department | Department[]
-  placeholder?: string
-  disabled?: boolean
-  multiple?: boolean
-  maxCount?: number
-  departments?: Department[]
-  onChange?: (value: Department | Department[] | undefined) => void
-  className?: string
+  value?: Department | Department[];
+  defaultValue?: Department | Department[];
+  placeholder?: string;
+  disabled?: boolean;
+  multiple?: boolean;
+  maxCount?: number;
+  departments?: Department[];
+  onChange?: (value: Department | Department[] | undefined) => void;
+  className?: string;
 }
 
 const defaultDepartments: Department[] = [
@@ -78,7 +78,7 @@ const defaultDepartments: Department[] = [
       },
     ],
   },
-]
+];
 
 function DepartmentTreeItem({
   department,
@@ -86,21 +86,21 @@ function DepartmentTreeItem({
   onSelect,
   level = 0,
 }: {
-  department: Department
-  selectedIds: Set<string>
-  onSelect: (dept: Department) => void
-  level?: number
+  department: Department;
+  selectedIds: Set<string>;
+  onSelect: (dept: Department) => void;
+  level?: number;
 }) {
-  const [expanded, setExpanded] = React.useState(level < 2)
-  const hasChildren = department.children && department.children.length > 0
-  const isSelected = selectedIds.has(department.id)
+  const [expanded, setExpanded] = React.useState(level < 2);
+  const hasChildren = department.children && department.children.length > 0;
+  const isSelected = selectedIds.has(department.id);
 
   return (
     <div>
       <div
         className={cn(
           "flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-muted",
-          isSelected && "bg-muted"
+          isSelected && "bg-muted",
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         onClick={() => onSelect(department)}
@@ -110,13 +110,16 @@ function DepartmentTreeItem({
             variant="ghost"
             size="icon-xs"
             onClick={(e) => {
-              e.stopPropagation()
-              setExpanded(!expanded)
+              e.stopPropagation();
+              setExpanded(!expanded);
             }}
             className="shrink-0"
           >
             <ChevronRightIcon
-              className={cn("size-3 transition-transform", expanded && "rotate-90")}
+              className={cn(
+                "size-3 transition-transform",
+                expanded && "rotate-90",
+              )}
             />
           </Button>
         ) : (
@@ -145,7 +148,7 @@ function DepartmentTreeItem({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function DepartmentBrowse({
@@ -159,70 +162,81 @@ function DepartmentBrowse({
   onChange,
   className,
 }: DepartmentBrowseProps) {
-  const [open, setOpen] = React.useState(false)
-  const [search, setSearch] = React.useState("")
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<Department[]>(
-    Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
-  )
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<
+    Department[]
+  >(
+    Array.isArray(defaultValue)
+      ? defaultValue
+      : defaultValue
+        ? [defaultValue]
+        : [],
+  );
   const value = React.useMemo(() => {
     if (controlledValue !== undefined) {
-      return Array.isArray(controlledValue) ? controlledValue : [controlledValue]
+      return Array.isArray(controlledValue)
+        ? controlledValue
+        : [controlledValue];
     }
-    return uncontrolledValue
-  }, [controlledValue, uncontrolledValue])
+    return uncontrolledValue;
+  }, [controlledValue, uncontrolledValue]);
 
   const selectedIds = React.useMemo(
     () => new Set(value.map((d) => d.id)),
-    [value]
-  )
+    [value],
+  );
 
   const filteredDepartments = React.useMemo(() => {
-    if (!search) return departments
-    const q = search.toLowerCase()
+    if (!search) return departments;
+    const q = search.toLowerCase();
     const filter = (depts: Department[]): Department[] => {
       return depts.reduce<Department[]>((acc, dept) => {
         const matches =
           dept.name.toLowerCase().includes(q) ||
-          dept.code?.toLowerCase().includes(q)
-        const filteredChildren = dept.children ? filter(dept.children) : []
+          dept.code?.toLowerCase().includes(q);
+        const filteredChildren = dept.children ? filter(dept.children) : [];
         if (matches || filteredChildren.length > 0) {
           acc.push({
             ...dept,
-            children: filteredChildren.length > 0 ? filteredChildren : dept.children,
-          })
+            children:
+              filteredChildren.length > 0
+                ? filteredChildren
+                : (dept.children ?? []),
+          });
         }
-        return acc
-      }, [])
-    }
-    return filter(departments)
-  }, [departments, search])
+        return acc;
+      }, []);
+    };
+    return filter(departments);
+  }, [departments, search]);
 
   const handleSelect = (dept: Department) => {
-    let newValue: Department[]
+    let newValue: Department[];
     if (multiple) {
-      const isSelected = value.some((d) => d.id === dept.id)
+      const isSelected = value.some((d) => d.id === dept.id);
       newValue = isSelected
         ? value.filter((d) => d.id !== dept.id)
-        : [...value, dept]
+        : [...value, dept];
     } else {
-      newValue = [dept]
-      setOpen(false)
+      newValue = [dept];
+      setOpen(false);
     }
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
   const handleRemove = (deptId: string) => {
-    const newValue = value.filter((d) => d.id !== deptId)
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+    const newValue = value.filter((d) => d.id !== deptId);
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
   const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setUncontrolledValue([])
-    onChange?.(multiple ? [] : undefined)
-  }
+    e.stopPropagation();
+    setUncontrolledValue([]);
+    onChange?.(multiple ? [] : undefined);
+  };
 
   return (
     <div data-slot="department-browse" className={cn("w-full", className)}>
@@ -235,7 +249,7 @@ function DepartmentBrowse({
                 "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
-                disabled && "cursor-not-allowed opacity-50"
+                disabled && "cursor-not-allowed opacity-50",
               )}
             />
           }
@@ -250,8 +264,8 @@ function DepartmentBrowse({
                   {!disabled && (
                     <button
                       onClick={(e) => {
-                        e.stopPropagation()
-                        handleRemove(dept.id)
+                        e.stopPropagation();
+                        handleRemove(dept.id);
                       }}
                       className="ml-0.5 rounded-full hover:bg-muted"
                     >
@@ -317,8 +331,8 @@ function DepartmentBrowse({
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
 
-export { DepartmentBrowse }
-export type { Department, DepartmentBrowseProps }
+export { DepartmentBrowse };
+export type { Department, DepartmentBrowseProps };

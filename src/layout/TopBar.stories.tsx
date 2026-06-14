@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { TopBar } from "@/components/layout/top-bar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { TopBar } from "@/components/layout/top-bar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart3Icon,
   Building2Icon,
   ClipboardListIcon,
   PackageCheckIcon,
   ShieldCheckIcon,
-} from "lucide-react"
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Layouts/TopBar",
   component: TopBar,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof TopBar>
+} satisfies Meta<typeof TopBar>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const ProductNavigation: Story = {
   render: () => (
@@ -65,7 +65,8 @@ export const ProductNavigation: Story = {
         <div>
           <h1 className="text-2xl font-semibold">Enterprise Navigation</h1>
           <p className="text-sm text-muted-foreground">
-            Top-level access to operational modules, analytics, compliance, and support.
+            Top-level access to operational modules, analytics, compliance, and
+            support.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -76,7 +77,9 @@ export const ProductNavigation: Story = {
           ].map(([label, value]) => (
             <Card key={label}>
               <CardHeader>
-                <CardTitle className="text-sm text-muted-foreground">{label}</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">
+                  {label}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-2xl font-semibold">{value}</p>
@@ -87,7 +90,7 @@ export const ProductNavigation: Story = {
       </main>
     </div>
   ),
-}
+};
 
 export const TransparentHero: Story = {
   render: () => (
@@ -103,7 +106,11 @@ export const TransparentHero: Story = {
         nav={[
           { label: "Network", href: "/network" },
           { label: "Programs", href: "/programs" },
-          { label: "Security", href: "/security", icon: <ShieldCheckIcon className="size-4" /> },
+          {
+            label: "Security",
+            href: "/security",
+            icon: <ShieldCheckIcon className="size-4" />,
+          },
         ]}
         actions={
           <>
@@ -118,11 +125,12 @@ export const TransparentHero: Story = {
         <div className="space-y-4">
           <Badge variant="outline">Partner portal</Badge>
           <h1 className="text-4xl font-semibold tracking-tight">
-            Shared visibility for suppliers, carriers, and enterprise food buyers.
+            Shared visibility for suppliers, carriers, and enterprise food
+            buyers.
           </h1>
           <p className="text-lg text-muted-foreground">
-            Keep everyone aligned on order forecasts, compliance documents, cold-chain checkpoints,
-            and finance-ready delivery proof.
+            Keep everyone aligned on order forecasts, compliance documents,
+            cold-chain checkpoints, and finance-ready delivery proof.
           </p>
         </div>
         <Card>
@@ -135,7 +143,10 @@ export const TransparentHero: Story = {
               ["Carrier SLA", "98.4%"],
               ["Claims resolved", "92%"],
             ].map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between rounded-md border p-3">
+              <div
+                key={label}
+                className="flex items-center justify-between rounded-md border p-3"
+              >
                 <span className="text-sm text-muted-foreground">{label}</span>
                 <span className="font-semibold">{value}</span>
               </div>
@@ -145,4 +156,4 @@ export const TransparentHero: Story = {
       </main>
     </div>
   ),
-}
+};

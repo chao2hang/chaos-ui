@@ -1,17 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { DetailLayout } from "@/components/layout/detail-layout"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { EditIcon, TrashIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { DetailLayout } from "@/components/layout/detail-layout";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { EditIcon, TrashIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Layouts/DetailLayout",
   component: DetailLayout,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof DetailLayout>
+} satisfies Meta<typeof DetailLayout>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -36,12 +42,14 @@ export const Default: Story = {
           <CardDescription>View order information</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Order details content goes here.</p>
+          <p className="text-sm text-muted-foreground">
+            Order details content goes here.
+          </p>
         </CardContent>
       </Card>
     ),
   },
-}
+};
 
 export const WithTabs: Story = {
   args: {
@@ -65,7 +73,9 @@ export const WithTabs: Story = {
         content: (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Activity log content</p>
+              <p className="text-sm text-muted-foreground">
+                Activity log content
+              </p>
             </CardContent>
           </Card>
         ),
@@ -83,4 +93,4 @@ export const WithTabs: Story = {
       },
     ],
   },
-}
+};

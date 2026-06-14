@@ -1,50 +1,75 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Checkbox } from "@/components/ui/checkbox"
-import { SearchIcon, XIcon, UserIcon } from "lucide-react"
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Checkbox } from "@/components/ui/checkbox";
+import { SearchIcon, XIcon, UserIcon } from "@/components/ui/icons";
 
 interface User {
-  id: string
-  name: string
-  email?: string
-  avatar?: string
-  department?: string
+  id: string;
+  name: string;
+  email?: string;
+  avatar?: string;
+  department?: string;
 }
 
 interface UserBrowseProps {
-  value?: User | User[]
-  defaultValue?: User | User[]
-  placeholder?: string
-  disabled?: boolean
-  multiple?: boolean
-  maxCount?: number
-  users?: User[]
-  onChange?: (value: User | User[] | undefined) => void
-  onBrowse?: () => void
-  className?: string
+  value?: User | User[];
+  defaultValue?: User | User[];
+  placeholder?: string;
+  disabled?: boolean;
+  multiple?: boolean;
+  maxCount?: number;
+  users?: User[];
+  onChange?: (value: User | User[] | undefined) => void;
+  onBrowse?: () => void;
+  className?: string;
 }
 
 const defaultUsers: User[] = [
-  { id: "1", name: "John Doe", email: "john@example.com", department: "Engineering" },
-  { id: "2", name: "Jane Smith", email: "jane@example.com", department: "Design" },
-  { id: "3", name: "Bob Johnson", email: "bob@example.com", department: "Marketing" },
-  { id: "4", name: "Alice Williams", email: "alice@example.com", department: "Engineering" },
-  { id: "5", name: "Charlie Brown", email: "charlie@example.com", department: "Sales" },
-]
+  {
+    id: "1",
+    name: "John Doe",
+    email: "john@example.com",
+    department: "Engineering",
+  },
+  {
+    id: "2",
+    name: "Jane Smith",
+    email: "jane@example.com",
+    department: "Design",
+  },
+  {
+    id: "3",
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    department: "Marketing",
+  },
+  {
+    id: "4",
+    name: "Alice Williams",
+    email: "alice@example.com",
+    department: "Engineering",
+  },
+  {
+    id: "5",
+    name: "Charlie Brown",
+    email: "charlie@example.com",
+    department: "Sales",
+  },
+];
 
 function UserBrowse({
   value: controlledValue,
@@ -57,55 +82,59 @@ function UserBrowse({
   onChange,
   className,
 }: UserBrowseProps) {
-  const [open, setOpen] = React.useState(false)
-  const [search, setSearch] = React.useState("")
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
   const [uncontrolledValue, setUncontrolledValue] = React.useState<User[]>(
-    Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
-  )
+    Array.isArray(defaultValue)
+      ? defaultValue
+      : defaultValue
+        ? [defaultValue]
+        : [],
+  );
   const value = controlledValue
     ? Array.isArray(controlledValue)
       ? controlledValue
       : [controlledValue]
-    : uncontrolledValue
+    : uncontrolledValue;
 
   const filteredUsers = React.useMemo(() => {
-    if (!search) return users
-    const q = search.toLowerCase()
+    if (!search) return users;
+    const q = search.toLowerCase();
     return users.filter(
       (user) =>
         user.name.toLowerCase().includes(q) ||
         user.email?.toLowerCase().includes(q) ||
-        user.department?.toLowerCase().includes(q)
-    )
-  }, [users, search])
+        user.department?.toLowerCase().includes(q),
+    );
+  }, [users, search]);
 
   const handleSelect = (user: User) => {
-    let newValue: User[]
+    let newValue: User[];
     if (multiple) {
-      const isSelected = value.some((u) => u.id === user.id)
-      if (!isSelected && maxCount && value.length >= maxCount) return
+      const isSelected = value.some((u) => u.id === user.id);
+      if (!isSelected && maxCount && value.length >= maxCount) return;
       newValue = isSelected
         ? value.filter((u) => u.id !== user.id)
-        : [...value, user]
+        : [...value, user];
     } else {
-      newValue = [user]
-      setOpen(false)
+      newValue = [user];
+      setOpen(false);
     }
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
   const handleRemove = (userId: string) => {
-    const newValue = value.filter((u) => u.id !== userId)
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+    const newValue = value.filter((u) => u.id !== userId);
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
   const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setUncontrolledValue([])
-    onChange?.(multiple ? [] : undefined)
-  }
+    e.stopPropagation();
+    setUncontrolledValue([]);
+    onChange?.(multiple ? [] : undefined);
+  };
 
   return (
     <div data-slot="user-browse" className={cn("w-full", className)}>
@@ -118,7 +147,7 @@ function UserBrowse({
                 "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
-                disabled && "cursor-not-allowed opacity-50"
+                disabled && "cursor-not-allowed opacity-50",
               )}
             />
           }
@@ -138,8 +167,8 @@ function UserBrowse({
                   {!disabled && (
                     <button
                       onClick={(e) => {
-                        e.stopPropagation()
-                        handleRemove(user.id)
+                        e.stopPropagation();
+                        handleRemove(user.id);
                       }}
                       className="ml-0.5 rounded-full hover:bg-muted"
                     >
@@ -181,19 +210,17 @@ function UserBrowse({
           <ScrollArea className="h-[300px]">
             <div className="space-y-1">
               {filteredUsers.map((user) => {
-                const isSelected = value.some((u) => u.id === user.id)
+                const isSelected = value.some((u) => u.id === user.id);
                 return (
                   <div
                     key={user.id}
                     className={cn(
                       "flex items-center gap-3 rounded-md p-2 cursor-pointer hover:bg-muted",
-                      isSelected && "bg-muted"
+                      isSelected && "bg-muted",
                     )}
                     onClick={() => handleSelect(user)}
                   >
-                    {multiple && (
-                      <Checkbox checked={isSelected} />
-                    )}
+                    {multiple && <Checkbox checked={isSelected} />}
                     <Avatar className="size-8">
                       <AvatarImage src={user.avatar} />
                       <AvatarFallback>
@@ -201,7 +228,9 @@ function UserBrowse({
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">{user.name}</p>
+                      <p className="text-sm font-medium truncate">
+                        {user.name}
+                      </p>
                       {user.email && (
                         <p className="text-xs text-muted-foreground truncate">
                           {user.email}
@@ -214,7 +243,7 @@ function UserBrowse({
                       </Badge>
                     )}
                   </div>
-                )
+                );
               })}
               {filteredUsers.length === 0 && (
                 <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
@@ -233,8 +262,8 @@ function UserBrowse({
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
 
-export { UserBrowse }
-export type { User, UserBrowseProps }
+export { UserBrowse };
+export type { User, UserBrowseProps };

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Button } from "@/components/ui/button"
-import { Mail, Loader2, Plus } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@/components/ui/button";
+import { Mail, Loader2, Plus } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/Button",
@@ -9,12 +9,28 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["default", "secondary", "destructive", "outline", "ghost", "link"],
+      options: [
+        "default",
+        "secondary",
+        "destructive",
+        "outline",
+        "ghost",
+        "link",
+      ],
       description: "The visual style of the button",
     },
     size: {
       control: { type: "select" },
-      options: ["xs", "sm", "default", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
+      options: [
+        "xs",
+        "sm",
+        "default",
+        "lg",
+        "icon",
+        "icon-xs",
+        "icon-sm",
+        "icon-lg",
+      ],
       description: "The size of the button",
     },
     disabled: {
@@ -22,72 +38,72 @@ const meta = {
       description: "Whether the button is disabled",
     },
   },
-} satisfies Meta<typeof Button>
+} satisfies Meta<typeof Button>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     children: "Button",
   },
-}
+};
 
 export const Secondary: Story = {
   args: {
     variant: "secondary",
     children: "Secondary",
   },
-}
+};
 
 export const Destructive: Story = {
   args: {
     variant: "destructive",
     children: "Destructive",
   },
-}
+};
 
 export const Outline: Story = {
   args: {
     variant: "outline",
     children: "Outline",
   },
-}
+};
 
 export const Ghost: Story = {
   args: {
     variant: "ghost",
     children: "Ghost",
   },
-}
+};
 
 export const Link: Story = {
   args: {
     variant: "link",
     children: "Link",
   },
-}
+};
 
 export const Small: Story = {
   args: {
     size: "sm",
     children: "Small",
   },
-}
+};
 
 export const Large: Story = {
   args: {
     size: "lg",
     children: "Large",
   },
-}
+};
 
 export const Disabled: Story = {
   args: {
     disabled: true,
     children: "Disabled",
   },
-}
+};
 
 export const Loading: Story = {
   args: {
@@ -99,7 +115,7 @@ export const Loading: Story = {
       </>
     ),
   },
-}
+};
 
 export const WithIcon: Story = {
   args: {
@@ -110,14 +126,14 @@ export const WithIcon: Story = {
       </>
     ),
   },
-}
+};
 
 export const IconOnly: Story = {
   args: {
     size: "icon",
     children: <Plus />,
   },
-}
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -130,7 +146,7 @@ export const AllVariants: Story = {
       <Button variant="link">Link</Button>
     </div>
   ),
-}
+};
 
 export const AllSizes: Story = {
   render: () => (
@@ -141,4 +157,4 @@ export const AllSizes: Story = {
       <Button size="lg">Large</Button>
     </div>
   ),
-}
+};

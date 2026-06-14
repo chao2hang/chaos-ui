@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { BellIcon, CreditCardIcon, ShieldIcon } from "lucide-react"
-import { UserMenu, type UserMenuAction } from "@/components/business/user-menu"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { BellIcon, CreditCardIcon, ShieldIcon } from "@/components/ui/icons";
+import { UserMenu, type UserMenuAction } from "@/components/business/user-menu";
 
 const actions: UserMenuAction[] = [
   {
@@ -18,16 +18,16 @@ const actions: UserMenuAction[] = [
     icon: <BellIcon className="size-4" />,
     disabled: true,
   },
-]
+];
 
 const meta = {
   title: "Business/UserMenu",
   component: UserMenu,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof UserMenu>
+} satisfies Meta<typeof UserMenu>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -46,7 +46,7 @@ export const Default: Story = {
       <UserMenu {...args} />
     </div>
   ),
-}
+};
 
 export const Minimal: Story = {
   args: {
@@ -62,7 +62,7 @@ export const Minimal: Story = {
       <UserMenu {...args} />
     </div>
   ),
-}
+};
 
 export const DestructiveAction: Story = {
   args: {
@@ -85,5 +85,4 @@ export const DestructiveAction: Story = {
       <UserMenu {...args} />
     </div>
   ),
-}
-
+};

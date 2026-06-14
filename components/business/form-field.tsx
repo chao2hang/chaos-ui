@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Label } from "@/components/ui/label"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Label } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 function FormField({
   label,
@@ -10,12 +10,12 @@ function FormField({
   children,
   className,
 }: {
-  label?: string
-  description?: string
-  error?: string
-  required?: boolean
-  children: React.ReactNode
-  className?: string
+  label?: string;
+  description?: string;
+  error?: string;
+  required?: boolean;
+  children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <div className={cn("space-y-1.5", className)}>
@@ -31,7 +31,7 @@ function FormField({
       )}
       {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
-  )
+  );
 }
 
-export { FormField }
+export { FormField };

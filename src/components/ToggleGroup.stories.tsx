@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { Bold, Italic, Underline } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Bold, Italic, Underline } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof ToggleGroup>
+} satisfies Meta<typeof ToggleGroup>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Single: Story = {
   render: () => (
@@ -25,7 +25,7 @@ export const Single: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
-}
+};
 
 export const Multiple: Story = {
   render: () => (
@@ -41,7 +41,7 @@ export const Multiple: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
-}
+};
 
 export const WithText: Story = {
   render: () => (
@@ -51,5 +51,4 @@ export const WithText: Story = {
       <ToggleGroupItem value="right">Right</ToggleGroupItem>
     </ToggleGroup>
   ),
-}
-
+};

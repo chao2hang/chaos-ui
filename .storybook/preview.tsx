@@ -1,5 +1,7 @@
-import type { Preview } from '@storybook/nextjs-vite'
-import '../app/globals.css'
+import type { Preview } from "@storybook/nextjs-vite";
+import { ChaosI18nProvider } from "@/lib/i18n";
+import { LocaleProvider } from "@/hooks/use-locale";
+import "../app/globals.css";
 
 const preview: Preview = {
   parameters: {
@@ -11,32 +13,32 @@ const preview: Preview = {
     },
 
     a11y: {
-      test: 'error'
+      test: "error",
     },
 
-    layout: 'padded',
+    layout: "padded",
 
     backgrounds: {
-      default: 'light',
+      default: "light",
       values: [
-        { name: 'light', value: '#ffffff' },
-        { name: 'dark', value: '#0a0a0a' },
+        { name: "light", value: "#ffffff" },
+        { name: "dark", value: "#0a0a0a" },
       ],
     },
 
     viewport: {
       viewports: {
         mobile: {
-          name: 'Mobile',
-          styles: { width: '375px', height: '667px' },
+          name: "Mobile",
+          styles: { width: "375px", height: "667px" },
         },
         tablet: {
-          name: 'Tablet',
-          styles: { width: '768px', height: '1024px' },
+          name: "Tablet",
+          styles: { width: "768px", height: "1024px" },
         },
         desktop: {
-          name: 'Desktop',
-          styles: { width: '1024px', height: '768px' },
+          name: "Desktop",
+          styles: { width: "1024px", height: "768px" },
         },
       },
     },
@@ -44,28 +46,41 @@ const preview: Preview = {
 
   globalTypes: {
     theme: {
-      description: 'Theme',
-      defaultValue: 'light',
+      description: "Theme",
+      defaultValue: "light",
       toolbar: {
-        title: 'Theme',
-        icon: 'circlehollow',
+        title: "Theme",
+        icon: "circlehollow",
         items: [
-          { value: 'light', icon: 'sun', title: 'Light' },
-          { value: 'dark', icon: 'moon', title: 'Dark' },
+          { value: "light", icon: "sun", title: "Light" },
+          { value: "dark", icon: "moon", title: "Dark" },
         ],
         dynamicTitle: true,
       },
     },
     device: {
-      description: 'Device Preview',
-      defaultValue: 'desktop',
+      description: "Device Preview",
+      defaultValue: "desktop",
       toolbar: {
-        title: 'Device',
-        icon: 'mobile',
+        title: "Device",
+        icon: "mobile",
         items: [
-          { value: 'mobile', icon: 'mobile', title: 'Mobile (375px)' },
-          { value: 'tablet', icon: 'tablet', title: 'Tablet (768px)' },
-          { value: 'desktop', icon: 'browser', title: 'Desktop (1024px)' },
+          { value: "mobile", icon: "mobile", title: "Mobile (375px)" },
+          { value: "tablet", icon: "tablet", title: "Tablet (768px)" },
+          { value: "desktop", icon: "browser", title: "Desktop (1024px)" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    locale: {
+      description: "Language",
+      defaultValue: "zh-CN",
+      toolbar: {
+        title: "Locale",
+        icon: "globe",
+        items: [
+          { value: "zh-CN", title: "中文", right: "🇨🇳" },
+          { value: "en-US", title: "English", right: "🇺🇸" },
         ],
         dynamicTitle: true,
       },
@@ -74,18 +89,25 @@ const preview: Preview = {
 
   decorators: [
     (Story, context) => {
-      const theme = context.globals.theme || 'light'
-      const device = context.globals.device || 'desktop'
+      const theme = context.globals.theme || "light";
+      const device = context.globals.device || "desktop";
+      const locale = context.globals.locale || "zh-CN";
 
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.remove("dark");
       }
 
-      document.documentElement.setAttribute('data-device', device)
+      document.documentElement.setAttribute("data-device", device);
 
-      return Story()
+      return (
+        <LocaleProvider initialLocale={locale}>
+          <ChaosI18nProvider locale={locale}>
+            <Story />
+          </ChaosI18nProvider>
+        </LocaleProvider>
+      );
     },
   ],
 };

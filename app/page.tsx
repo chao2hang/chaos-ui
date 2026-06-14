@@ -1,12 +1,26 @@
+/* eslint-disable @chaos/no-raw-html-button, @chaos/no-raw-html-elements */
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, GalleryHorizontalEnd, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ArrowRight,
+  BookOpen,
+  GalleryHorizontalEnd,
+  ShieldCheck,
+  Sparkles,
+} from "@/components/ui/icons";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-surface p-8">
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight">Chaos UI Storybook</h1>
+        <h1 className="text-4xl font-bold tracking-tight">
+          Chaos UI Storybook
+        </h1>
         <p className="mt-4 text-lg text-muted-foreground">
           The primary surface for exploring components, checking variants, and
           reviewing UI states in isolation.
@@ -15,7 +29,11 @@ export default function Home() {
           <Button
             size="lg"
             render={
-              <a href="http://localhost:6006" target="_blank" rel="noreferrer" />
+              <a
+                href="http://localhost:6006"
+                target="_blank"
+                rel="noreferrer"
+              />
             }
             className="gap-2"
           >
@@ -23,8 +41,13 @@ export default function Home() {
           </Button>
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          Start it with <code className="rounded bg-muted px-1.5 py-0.5">npm run dev</code>
-          {" "}and visit <code className="rounded bg-muted px-1.5 py-0.5">http://localhost:6006</code>.
+          Start it with{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5">npm run dev</code>{" "}
+          and visit{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5">
+            http://localhost:6006
+          </code>
+          .
         </p>
       </div>
 

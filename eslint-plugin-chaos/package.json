@@ -1,0 +1,10 @@
+{
+  "name": "@chaos/eslint-plugin",
+  "version": "0.1.0",
+  "description": "Chaos UI 自定义 ESLint 规则插件",
+  "main": "index.js",
+  "private": true,
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  }
+}

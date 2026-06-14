@@ -1,15 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupText } from "@/components/ui/input-group"
-import { SearchIcon, MailIcon, InfoIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  InputGroup,
+  InputGroupInput,
+  InputGroupAddon,
+  InputGroupText,
+} from "@/components/ui/input-group";
+import { SearchIcon, MailIcon, InfoIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/InputGroup",
   component: InputGroup,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof InputGroup>
+} satisfies Meta<typeof InputGroup>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const WithIcon: Story = {
   render: () => (
@@ -20,7 +25,7 @@ export const WithIcon: Story = {
       <InputGroupInput placeholder="Search..." />
     </InputGroup>
   ),
-}
+};
 
 export const WithText: Story = {
   render: () => (
@@ -31,7 +36,7 @@ export const WithText: Story = {
       <InputGroupInput placeholder="example.com" />
     </InputGroup>
   ),
-}
+};
 
 export const Email: Story = {
   render: () => (
@@ -45,5 +50,4 @@ export const Email: Story = {
       </InputGroupAddon>
     </InputGroup>
   ),
-}
-
+};

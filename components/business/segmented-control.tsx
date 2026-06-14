@@ -1,31 +1,31 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui";
 
 interface SegmentedControlOption<T extends string> {
-  value: T
-  label: string
-  icon?: React.ReactNode
-  disabled?: boolean
+  value: T;
+  label: string;
+  icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
 interface SegmentedControlProps<T extends string> {
-  options: SegmentedControlOption<T>[]
-  value?: T
-  defaultValue?: T
-  onChange?: (value: T) => void
-  size?: "sm" | "default" | "lg"
-  disabled?: boolean
-  className?: string
-  orientation?: "horizontal" | "vertical"
+  options: SegmentedControlOption<T>[];
+  value?: T;
+  defaultValue?: T;
+  onChange?: (value: T) => void;
+  size?: "sm" | "default" | "lg";
+  disabled?: boolean;
+  className?: string;
+  orientation?: "horizontal" | "vertical";
 }
 
 const sizeMap = {
   sm: "h-7 px-2 text-xs",
   default: "h-8 px-3 text-sm",
   lg: "h-9 px-4 text-sm",
-} as const
+} as const;
 
 export function SegmentedControl<T extends string>({
   options,
@@ -42,13 +42,13 @@ export function SegmentedControl<T extends string>({
       data-slot="segmented-control"
       value={value ? [value] : defaultValue ? [defaultValue] : []}
       onValueChange={(v) => {
-        if (v.length > 0) onChange?.(v[v.length - 1] as T)
+        if (v.length > 0) onChange?.(v[v.length - 1] as T);
       }}
       orientation={orientation}
       className={cn(
         "inline-flex items-center rounded-md border bg-muted/30 p-0.5",
         orientation === "vertical" && "flex-col items-stretch",
-        className
+        className,
       )}
     >
       {options.map((opt) => (
@@ -58,7 +58,7 @@ export function SegmentedControl<T extends string>({
           disabled={disabled || opt.disabled}
           className={cn(
             "rounded-sm border-0 bg-transparent shadow-none transition-all data-[pressed]:bg-background data-[pressed]:shadow-xs",
-            sizeMap[size]
+            sizeMap[size],
           )}
         >
           {opt.icon}
@@ -66,5 +66,5 @@ export function SegmentedControl<T extends string>({
         </ToggleGroupItem>
       ))}
     </ToggleGroup>
-  )
+  );
 }

@@ -1,49 +1,54 @@
-"use client"
-import * as React from "react"
-import { AlertTriangleIcon, RefreshCwIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { AlertTriangleIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
 
 interface ErrorBoundaryProps {
-  fallback?: React.ReactNode | ((error: Error, reset: () => void) => React.ReactNode)
-  onError?: (error: Error, info: React.ErrorInfo) => void
-  children: React.ReactNode
-  className?: string
+  fallback?:
+    | React.ReactNode
+    | ((error: Error, reset: () => void) => React.ReactNode);
+  onError?: (error: Error, info: React.ErrorInfo) => void;
+  children: React.ReactNode;
+  className?: string;
 }
 
 interface ErrorBoundaryState {
-  hasError: boolean
-  error: Error | null
+  hasError: boolean;
+  error: Error | null;
 }
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = { hasError: false, error: null }
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  override state: ErrorBoundaryState = { hasError: false, error: null };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error }
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, info: React.ErrorInfo) {
-    this.props.onError?.(error, info)
+  override componentDidCatch(error: Error, info: React.ErrorInfo) {
+    this.props.onError?.(error, info);
   }
 
   reset = () => {
-    this.setState({ hasError: false, error: null })
-  }
+    this.setState({ hasError: false, error: null });
+  };
 
-  render() {
+  override render() {
     if (this.state.hasError) {
-      const { fallback, className } = this.props
+      const { fallback, className } = this.props;
       if (typeof fallback === "function") {
-        return fallback(this.state.error!, this.reset)
+        return fallback(this.state.error!, this.reset);
       }
-      if (fallback) return fallback
+      if (fallback) return fallback;
       return (
         <div
           data-slot="error-boundary"
           className={cn(
             "flex flex-col items-center justify-center gap-3 rounded-md border border-destructive/30 bg-destructive/5 p-8 text-center",
-            className
+            className,
           )}
         >
           <AlertTriangleIcon className="size-8 text-destructive" />
@@ -58,8 +63,8 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
             重试
           </Button>
         </div>
-      )
+      );
     }
-    return this.props.children
+    return this.props.children;
   }
 }

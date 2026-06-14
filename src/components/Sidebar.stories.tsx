@@ -1,15 +1,34 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarInset, SidebarFooter, SidebarRail } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarTrigger,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarInset,
+  SidebarFooter,
+  SidebarRail,
+} from "@/components/ui/sidebar";
+import {
+  Calendar,
+  Home,
+  Inbox,
+  Search,
+  Settings,
+  User,
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Components/Sidebar",
   component: Sidebar,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof Sidebar>
+} satisfies Meta<typeof Sidebar>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -72,4 +91,4 @@ export const Default: Story = {
       </SidebarInset>
     </SidebarProvider>
   ),
-}
+};

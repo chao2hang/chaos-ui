@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { ApprovalTimeline } from "@/components/business/approval-timeline"
-import type { ApprovalStep } from "@/components/business/approval-timeline"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { ApprovalTimeline } from "@/components/business/approval-timeline";
+import type { ApprovalStep } from "@/components/business/approval-timeline";
 
 const approvedSteps: ApprovalStep[] = [
   {
@@ -26,7 +26,7 @@ const approvedSteps: ApprovalStep[] = [
     status: "pending",
     time: "Due Jun 4, 2026",
   },
-]
+];
 
 const meta = {
   title: "Business/ApprovalTimeline",
@@ -35,17 +35,17 @@ const meta = {
   args: {
     steps: approvedSteps,
   },
-} satisfies Meta<typeof ApprovalTimeline>
+} satisfies Meta<typeof ApprovalTimeline>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Variants: Story = {
   args: {
     steps: [
-      approvedSteps[0],
+      approvedSteps[0]!,
       {
         id: "brand",
         title: "Brand review",
@@ -63,5 +63,4 @@ export const Variants: Story = {
       },
     ],
   },
-}
-
+};

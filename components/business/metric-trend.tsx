@@ -1,19 +1,20 @@
-"use client"
-import * as React from "react"
-import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Card, CardContent } from "@/components/ui/card"
-import { Dot } from "@/components/ui/dot"
-import { formatNumber, formatPercent } from "@/lib/format"
+"use client";
+import * as React from "react";
+import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui";
+import { Dot } from "@/components/ui";
+import { formatNumber, formatPercent } from "@/lib/format";
 
 interface SparklineProps {
-  data: number[]
-  width?: number
-  height?: number
-  strokeWidth?: number
-  className?: string
-  color?: string
-  fill?: boolean
+  data: number[];
+  width?: number;
+  height?: number;
+  strokeWidth?: number;
+  className?: string;
+  color?: string;
+  fill?: boolean;
 }
 
 export function Sparkline({
@@ -25,15 +26,15 @@ export function Sparkline({
   color = "currentColor",
   fill = true,
 }: SparklineProps) {
-  if (data.length === 0) return null
-  const min = Math.min(...data)
-  const max = Math.max(...data)
-  const range = max - min || 1
-  const step = data.length > 1 ? width / (data.length - 1) : width
+  if (data.length === 0) return null;
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const step = data.length > 1 ? width / (data.length - 1) : width;
   const points = data
     .map((v, i) => `${i * step},${height - ((v - min) / range) * height}`)
-    .join(" ")
-  const areaPoints = `0,${height} ${points} ${width},${height}`
+    .join(" ");
+  const areaPoints = `0,${height} ${points} ${width},${height}`;
 
   return (
     <svg
@@ -44,10 +45,7 @@ export function Sparkline({
       aria-hidden
     >
       {fill && (
-        <polygon
-          points={areaPoints}
-          className="fill-current opacity-20"
-        />
+        <polygon points={areaPoints} className="fill-current opacity-20" />
       )}
       <polyline
         points={points}
@@ -59,35 +57,41 @@ export function Sparkline({
         className="text-current"
       />
     </svg>
-  )
+  );
 }
 
-interface MetricTrendProps extends Omit<React.ComponentProps<typeof Card>, "children"> {
-  label: string
-  value: number | string
-  unit?: string
-  change?: number
-  changeLabel?: string
-  format?: "number" | "percent" | "compact" | "currency"
-  sparklineData?: number[]
-  trendDirection?: "up-good" | "down-good" | "neutral"
-  icon?: React.ReactNode
-  loading?: boolean
+interface MetricTrendProps extends Omit<
+  React.ComponentProps<typeof Card>,
+  "children"
+> {
+  label: string;
+  value: number | string;
+  unit?: string;
+  change?: number;
+  changeLabel?: string;
+  format?: "number" | "percent" | "compact" | "currency";
+  sparklineData?: number[];
+  trendDirection?: "up-good" | "down-good" | "neutral";
+  icon?: React.ReactNode;
+  loading?: boolean;
 }
 
-const formatFns: Record<NonNullable<MetricTrendProps["format"]>, (v: number) => string> = {
+const formatFns: Record<
+  NonNullable<MetricTrendProps["format"]>,
+  (v: number) => string
+> = {
   number: (v) => formatNumber(v),
   percent: (v) => formatPercent(v),
   compact: (v) => formatNumber(v, { notation: "compact" }),
   currency: (v) => formatNumber(v, { style: "currency", currency: "CNY" }),
-}
+};
 
 export function MetricTrend({
   label,
   value,
   unit,
   change,
-  changeLabel = "vs 上期",
+  changeLabel,
   format = "number",
   sparklineData = [],
   trendDirection = "up-good",
@@ -96,14 +100,30 @@ export function MetricTrend({
   className,
   ...props
 }: MetricTrendProps) {
-  const formatted = typeof value === "number" ? formatFns[format](value) : value
-  const changeValue = change ?? 0
-  const direction = changeValue > 0 ? "up" : changeValue < 0 ? "down" : "flat"
-  const isGood = trendDirection === "up-good" ? direction === "up" : trendDirection === "down-good" ? direction === "down" : false
-  const variant = isGood ? "success" : direction === "flat" ? "default" : "destructive"
+  const { t } = useTranslation("chart");
+  const resolvedChangeLabel = changeLabel ?? t("metricTrend.changeLabel");
+  const formatted =
+    typeof value === "number" ? formatFns[format](value) : value;
+  const changeValue = change ?? 0;
+  const direction = changeValue > 0 ? "up" : changeValue < 0 ? "down" : "flat";
+  const isGood =
+    trendDirection === "up-good"
+      ? direction === "up"
+      : trendDirection === "down-good"
+        ? direction === "down"
+        : false;
+  const variant = isGood
+    ? "success"
+    : direction === "flat"
+      ? "default"
+      : "destructive";
 
   return (
-    <Card data-slot="metric-trend" className={cn("overflow-hidden", className)} {...props}>
+    <Card
+      data-slot="metric-trend"
+      className={cn("overflow-hidden", className)}
+      {...props}
+    >
       <CardContent className="flex flex-col gap-2 p-4">
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
@@ -115,8 +135,9 @@ export function MetricTrend({
               className={cn(
                 "inline-flex items-center gap-0.5 rounded px-1 text-[0.65rem] font-medium",
                 variant === "success" && "bg-success/10 text-success",
-                variant === "destructive" && "bg-destructive/10 text-destructive",
-                variant === "default" && "bg-muted text-muted-foreground"
+                variant === "destructive" &&
+                  "bg-destructive/10 text-destructive",
+                variant === "default" && "bg-muted text-muted-foreground",
               )}
             >
               {direction === "up" && <ArrowUpIcon className="size-3" />}
@@ -132,8 +153,12 @@ export function MetricTrend({
               <div className="h-7 w-20 animate-pulse rounded bg-muted" />
             ) : (
               <>
-                <span className="text-2xl font-semibold tabular-nums tracking-tight">{formatted}</span>
-                {unit && <span className="text-xs text-muted-foreground">{unit}</span>}
+                <span className="text-2xl font-semibold tabular-nums tracking-tight">
+                  {formatted}
+                </span>
+                {unit && (
+                  <span className="text-xs text-muted-foreground">{unit}</span>
+                )}
               </>
             )}
           </div>
@@ -142,7 +167,7 @@ export function MetricTrend({
               className={cn(
                 variant === "success" && "text-success",
                 variant === "destructive" && "text-destructive",
-                variant === "default" && "text-muted-foreground"
+                variant === "default" && "text-muted-foreground",
               )}
             >
               <Sparkline data={sparklineData} />
@@ -151,11 +176,20 @@ export function MetricTrend({
         </div>
         {change !== undefined && (
           <p className="text-[0.65rem] text-muted-foreground">
-            <Dot variant={variant === "destructive" ? "destructive" : variant === "success" ? "success" : "default"} className="mr-1 inline-block align-middle" />
-            {changeLabel}
+            <Dot
+              variant={
+                variant === "destructive"
+                  ? "destructive"
+                  : variant === "success"
+                    ? "success"
+                    : "default"
+              }
+              className="mr-1 inline-block align-middle"
+            />
+            {resolvedChangeLabel}
           </p>
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

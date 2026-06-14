@@ -1,20 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { AppShell } from "@/components/layout/app-shell"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
-import { BellIcon, FactoryIcon, PackageIcon, TruckIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { AppShell } from "@/components/layout/app-shell";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import {
+  BellIcon,
+  FactoryIcon,
+  PackageIcon,
+  TruckIcon,
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Layouts/AppShell",
   component: AppShell,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof AppShell>
+} satisfies Meta<typeof AppShell>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const OperationsConsole: Story = {
   render: () => (
@@ -24,7 +29,9 @@ export const OperationsConsole: Story = {
         <div className="flex w-full items-center justify-between px-4">
           <div>
             <p className="text-sm font-semibold">QXY Foods Command Center</p>
-            <p className="text-xs text-muted-foreground">Live production and logistics status</p>
+            <p className="text-xs text-muted-foreground">
+              Live production and logistics status
+            </p>
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">ERP connected</Badge>
@@ -61,7 +68,9 @@ export const OperationsConsole: Story = {
         <div className="space-y-4 p-4">
           <div>
             <p className="text-sm font-medium">Shift Capacity</p>
-            <p className="text-xs text-muted-foreground">Batch line utilization</p>
+            <p className="text-xs text-muted-foreground">
+              Batch line utilization
+            </p>
           </div>
           <Progress value={74} />
           <Separator />
@@ -92,7 +101,9 @@ export const OperationsConsole: Story = {
           ].map(([label, value, description]) => (
             <Card key={label}>
               <CardHeader>
-                <CardTitle className="text-sm font-medium text-muted-foreground">{label}</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  {label}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-2xl font-semibold">{value}</p>
@@ -106,10 +117,16 @@ export const OperationsConsole: Story = {
             <CardTitle>Production Exceptions</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-3 md:grid-cols-3">
-            {["Line 2 allergen washdown", "Supplier ASN mismatch", "Route CN-07 delayed"].map((item) => (
+            {[
+              "Line 2 allergen washdown",
+              "Supplier ASN mismatch",
+              "Route CN-07 delayed",
+            ].map((item) => (
               <div key={item} className="rounded-lg border p-3">
                 <p className="text-sm font-medium">{item}</p>
-                <p className="text-xs text-muted-foreground">Owner assigned - SLA tracked</p>
+                <p className="text-xs text-muted-foreground">
+                  Owner assigned - SLA tracked
+                </p>
               </div>
             ))}
           </CardContent>
@@ -117,7 +134,7 @@ export const OperationsConsole: Story = {
       </div>
     </AppShell>
   ),
-}
+};
 
 export const FloatingWorkspace: Story = {
   render: () => (
@@ -133,9 +150,19 @@ export const FloatingWorkspace: Story = {
       }
       sidebar={
         <div className="space-y-3 p-4">
-          <p className="text-xs font-semibold uppercase text-muted-foreground">Workflow</p>
-          {["Document intake", "Risk scoring", "Finance approval", "Release"].map((step, index) => (
-            <div key={step} className="flex items-center gap-3 rounded-md border p-2 text-sm">
+          <p className="text-xs font-semibold uppercase text-muted-foreground">
+            Workflow
+          </p>
+          {[
+            "Document intake",
+            "Risk scoring",
+            "Finance approval",
+            "Release",
+          ].map((step, index) => (
+            <div
+              key={step}
+              className="flex items-center gap-3 rounded-md border p-2 text-sm"
+            >
               <span className="flex size-6 items-center justify-center rounded-full bg-muted text-xs">
                 {index + 1}
               </span>
@@ -148,8 +175,8 @@ export const FloatingWorkspace: Story = {
         <div className="space-y-3 p-4">
           <p className="text-sm font-medium">Review Notes</p>
           <p className="text-sm text-muted-foreground">
-            Procurement flagged a pricing variance for frozen vegetable SKUs. Finance needs margin
-            confirmation before release.
+            Procurement flagged a pricing variance for frozen vegetable SKUs.
+            Finance needs margin confirmation before release.
           </p>
         </div>
       }
@@ -160,10 +187,17 @@ export const FloatingWorkspace: Story = {
             <CardTitle>Supplier: East Harbor Foods</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2">
-            {["Contract", "Insurance", "Food safety certificate", "Banking details"].map((item) => (
+            {[
+              "Contract",
+              "Insurance",
+              "Food safety certificate",
+              "Banking details",
+            ].map((item) => (
               <div key={item} className="rounded-lg border p-4">
                 <p className="font-medium">{item}</p>
-                <p className="text-sm text-muted-foreground">Verified against enterprise policy</p>
+                <p className="text-sm text-muted-foreground">
+                  Verified against enterprise policy
+                </p>
               </div>
             ))}
           </CardContent>
@@ -171,4 +205,4 @@ export const FloatingWorkspace: Story = {
       </div>
     </AppShell>
   ),
-}
+};

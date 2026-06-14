@@ -1,23 +1,24 @@
-"use client"
-import * as React from "react"
-import { XIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { XIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
 
 interface BulkAction {
-  label: string
-  icon?: React.ReactNode
-  onClick: () => void
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost"
-  disabled?: boolean
+  label: string;
+  icon?: React.ReactNode;
+  onClick: () => void;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost";
+  disabled?: boolean;
 }
 
 interface BulkActionsToolbarProps extends React.ComponentProps<"div"> {
-  count: number
-  selectedCount: number
-  onClear?: () => void
-  actions?: BulkAction[]
-  label?: string
+  count: number;
+  selectedCount: number;
+  onClear?: () => void;
+  actions?: BulkAction[];
+  label?: string;
 }
 
 export function BulkActionsToolbar({
@@ -25,20 +26,22 @@ export function BulkActionsToolbar({
   selectedCount,
   onClear,
   actions = [],
-  label = "已选择",
+  label: labelProp,
   className,
   ...props
 }: BulkActionsToolbarProps) {
-  if (selectedCount === 0) return null
+  const { t } = useTranslation("navigation");
+  const label = labelProp ?? t("bulkActionsToolbar.label");
+  if (selectedCount === 0) return null;
 
   return (
     <div
       data-slot="bulk-actions-toolbar"
       role="toolbar"
-      aria-label="批量操作"
+      aria-label={t("bulkActionsToolbar.ariaLabel")}
       className={cn(
         "sticky top-0 z-10 flex items-center gap-3 rounded-md border bg-popover px-3 py-2 shadow-sm",
-        className
+        className,
       )}
       {...props}
     >
@@ -68,11 +71,11 @@ export function BulkActionsToolbar({
           variant="ghost"
           size="icon-sm"
           onClick={onClear}
-          aria-label="清除选择"
+          aria-label={t("bulkActionsToolbar.clear")}
         >
           <XIcon />
         </Button>
       )}
     </div>
-  )
+  );
 }

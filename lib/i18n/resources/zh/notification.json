@@ -1,0 +1,11 @@
+{
+  "notificationCenter.title": "通知",
+  "notificationCenter.emptyText": "暂无通知",
+  "notificationCenter.emptyDescription": "没有新通知",
+  "notificationCenter.markRead": "标记已读",
+  "notificationCenter.markAllRead": "全部已读",
+  "notificationCenter.clear": "清空",
+  "notificationCenter.unreadCount": "{{count}} 未读",
+  "notificationCenter.ariaLabel": "通知 {{unreadText}}",
+  "notificationCenter.ariaLabelUnread": "{{count}} 条未读"
+}

@@ -1,20 +1,20 @@
-"use client"
-import * as React from "react"
-import { useTheme } from "next-themes"
-import { MoonIcon, SunIcon, MonitorIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { useTheme } from "next-themes";
+import { MoonIcon, SunIcon, MonitorIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface ThemeToggleProps {
-  className?: string
-  showSystem?: boolean
-  align?: "start" | "center" | "end"
+  className?: string;
+  showSystem?: boolean;
+  align?: "start" | "center" | "end";
 }
 
 export function ThemeToggle({
@@ -22,7 +22,7 @@ export function ThemeToggle({
   showSystem = true,
   align = "end",
 }: ThemeToggleProps) {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -60,11 +60,11 @@ export function ThemeToggle({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 export function useResolvedTheme(): "light" | "dark" {
-  const { theme, resolvedTheme } = useTheme()
-  if (theme === "system") return (resolvedTheme ?? "light") as "light" | "dark"
-  return (theme ?? "light") as "light" | "dark"
+  const { theme, resolvedTheme } = useTheme();
+  if (theme === "system") return (resolvedTheme ?? "light") as "light" | "dark";
+  return (theme ?? "light") as "light" | "dark";
 }

@@ -1,21 +1,22 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ChevronUpIcon } from "lucide-react"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import { ChevronUpIcon } from "@/components/ui/icons";
 
 interface FabProps extends React.ComponentProps<typeof Button> {
-  icon?: React.ReactNode
-  label?: string
-  position?: "bottom-right" | "bottom-left" | "bottom-center"
-  offset?: number
+  icon?: React.ReactNode;
+  label?: string;
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
+  offset?: number;
 }
 
 const positionClass: Record<NonNullable<FabProps["position"]>, string> = {
   "bottom-right": "right-4",
   "bottom-left": "left-4",
   "bottom-center": "left-1/2 -translate-x-1/2",
-}
+};
 
 export function Fab({
   icon,
@@ -32,7 +33,7 @@ export function Fab({
       className={cn(
         "fixed bottom-4 z-40 rounded-full shadow-lg",
         positionClass[position],
-        className
+        className,
       )}
       style={{ bottom: `calc(${offset} * 0.25rem + 1rem)` }}
       {...props}
@@ -40,19 +41,19 @@ export function Fab({
       {icon}
       {label && <span>{label}</span>}
     </Button>
-  )
+  );
 }
 
 interface FabSpeedDialAction {
-  icon: React.ReactNode
-  label: string
-  onClick?: () => void
+  icon: React.ReactNode;
+  label: string;
+  onClick?: () => void;
 }
 
 interface FabSpeedDialProps {
-  icon: React.ReactNode
-  actions: FabSpeedDialAction[]
-  position?: "bottom-right" | "bottom-left"
+  icon: React.ReactNode;
+  actions: FabSpeedDialAction[];
+  position?: "bottom-right" | "bottom-left";
 }
 
 export function FabSpeedDial({
@@ -60,13 +61,14 @@ export function FabSpeedDial({
   actions,
   position = "bottom-right",
 }: FabSpeedDialProps) {
-  const [open, setOpen] = React.useState(false)
+  const { t } = useTranslation("navigation");
+  const [open, setOpen] = React.useState(false);
   return (
     <div
       data-slot="fab-speed-dial"
       className={cn(
         "fixed bottom-4 z-40 flex flex-col-reverse items-end gap-2",
-        position === "bottom-right" ? "right-4" : "left-4"
+        position === "bottom-right" ? "right-4" : "left-4",
       )}
     >
       {open && (
@@ -80,8 +82,8 @@ export function FabSpeedDial({
                 size="icon"
                 variant="secondary"
                 onClick={() => {
-                  a.onClick?.()
-                  setOpen(false)
+                  a.onClick?.();
+                  setOpen(false);
                 }}
                 className="rounded-full shadow-md"
               >
@@ -96,43 +98,44 @@ export function FabSpeedDial({
         onClick={() => setOpen((v) => !v)}
         className="rounded-full shadow-lg"
         aria-expanded={open}
-        aria-label={open ? "关闭快捷操作" : "打开快捷操作"}
+        aria-label={open ? t("fab.speedDialClose") : t("fab.speedDialOpen")}
       >
         {icon}
       </Button>
     </div>
-  )
+  );
 }
 
 interface BackTopProps {
-  threshold?: number
-  target?: React.RefObject<HTMLElement | null>
-  className?: string
+  threshold?: number;
+  target?: React.RefObject<HTMLElement | null>;
+  className?: string;
 }
 
 export function BackTop({ threshold = 400, target, className }: BackTopProps) {
-  const [visible, setVisible] = React.useState(false)
+  const { t } = useTranslation("navigation");
+  const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
-    const el = target?.current ?? window
+    const el = target?.current ?? window;
     const onScroll = () => {
-      const top = target?.current ? target.current.scrollTop : window.scrollY
-      setVisible(top > threshold)
-    }
-    el.addEventListener("scroll", onScroll as EventListener)
-    onScroll()
-    return () => el.removeEventListener("scroll", onScroll as EventListener)
-  }, [target, threshold])
+      const top = target?.current ? target.current.scrollTop : window.scrollY;
+      setVisible(top > threshold);
+    };
+    el.addEventListener("scroll", onScroll as EventListener);
+    onScroll();
+    return () => el.removeEventListener("scroll", onScroll as EventListener);
+  }, [target, threshold]);
 
   const scrollToTop = () => {
     if (target?.current) {
-      target.current.scrollTo({ top: 0, behavior: "smooth" })
+      target.current.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }
+  };
 
-  if (!visible) return null
+  if (!visible) return null;
 
   return (
     <Button
@@ -142,11 +145,11 @@ export function BackTop({ threshold = 400, target, className }: BackTopProps) {
       onClick={scrollToTop}
       className={cn(
         "fixed bottom-4 right-4 z-30 rounded-full shadow-md",
-        className
+        className,
       )}
-      aria-label="返回顶部"
+      aria-label={t("fab.backTop")}
     >
       <ChevronUpIcon />
     </Button>
-  )
+  );
 }

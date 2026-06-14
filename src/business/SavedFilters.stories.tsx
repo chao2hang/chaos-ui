@@ -1,6 +1,9 @@
-import * as React from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { SavedFilters, type SavedFilter } from "@/components/business/saved-filters"
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import {
+  SavedFilters,
+  type SavedFilter,
+} from "@/components/business/saved-filters";
 
 const savedFilters: SavedFilter[] = [
   {
@@ -22,31 +25,31 @@ const savedFilters: SavedFilter[] = [
     filters: { smsConsent: true },
     createdAt: "2026-06-08",
   },
-]
+];
 
 const meta = {
   title: "Business/SavedFilters",
   component: SavedFilters,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof SavedFilters>
+} satisfies Meta<typeof SavedFilters>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-type SavedFiltersProps = React.ComponentProps<typeof SavedFilters>
+export default meta;
+type Story = StoryObj<typeof meta>;
+type SavedFiltersProps = React.ComponentProps<typeof SavedFilters>;
 
 function SavedFiltersDemo(args: SavedFiltersProps) {
-  const [filters, setFilters] = React.useState(args.filters)
-  const [activeId, setActiveId] = React.useState(args.activeId)
+  const [filters, setFilters] = React.useState(args.filters);
+  const [activeId, setActiveId] = React.useState(args.activeId);
 
   return (
     <div className="flex min-h-44 flex-col items-start gap-3 p-4">
       <SavedFilters
         {...args}
         filters={filters}
-        activeId={activeId}
+        {...(activeId !== undefined && { activeId })}
         onApply={(id) => {
-          setActiveId(id)
-          args.onApply?.(id)
+          setActiveId(id);
+          args.onApply?.(id);
         }}
         onSave={(name) => {
           setFilters((items) => [
@@ -57,28 +60,28 @@ function SavedFiltersDemo(args: SavedFiltersProps) {
               filters: { createdFromStory: true },
               createdAt: new Date().toISOString(),
             },
-          ])
-          args.onSave?.(name)
+          ]);
+          args.onSave?.(name);
         }}
         onDelete={(id) => {
-          setFilters((items) => items.filter((item) => item.id !== id))
-          if (activeId === id) setActiveId(undefined)
-          args.onDelete?.(id)
+          setFilters((items) => items.filter((item) => item.id !== id));
+          if (activeId === id) setActiveId(undefined);
+          args.onDelete?.(id);
         }}
         onPin={(id) => {
           setFilters((items) =>
             items.map((item) =>
-              item.id === id ? { ...item, isPinned: !item.isPinned } : item
-            )
-          )
-          args.onPin?.(id)
+              item.id === id ? { ...item, isPinned: !item.isPinned } : item,
+            ),
+          );
+          args.onPin?.(id);
         }}
       />
       <p className="text-xs text-muted-foreground">
         Active filter: <span className="font-mono">{activeId ?? "none"}</span>
       </p>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -87,7 +90,7 @@ export const Default: Story = {
     activeId: "high-value",
   },
   render: (args) => <SavedFiltersDemo {...args} />,
-}
+};
 
 export const CustomLabel: Story = {
   args: {
@@ -96,23 +99,18 @@ export const CustomLabel: Story = {
     label: "Audience presets",
   },
   render: (args) => <SavedFiltersDemo {...args} />,
-}
+};
 
 export const ReadOnly: Story = {
   args: {
     filters: savedFilters,
     activeId: "winback",
-    onApply: undefined,
-    onSave: undefined,
-    onDelete: undefined,
-    onPin: undefined,
   },
-}
+};
 
 export const Empty: Story = {
   args: {
     filters: [],
   },
   render: (args) => <SavedFiltersDemo {...args} />,
-}
-
+};

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Toggle } from "@/components/ui/toggle"
-import { Bold, Italic, Underline } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Toggle } from "@/components/ui/toggle";
+import { Bold, Italic, Underline } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/Toggle",
@@ -22,30 +22,30 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof Toggle>
+} satisfies Meta<typeof Toggle>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { children: "Toggle" },
-}
+};
 
 export const Pressed: Story = {
   args: { pressed: true, children: "Pressed" },
-}
+};
 
 export const WithIcon: Story = {
   args: { children: <Bold className="size-4" />, "aria-label": "Toggle bold" },
-}
+};
 
 export const Disabled: Story = {
   args: { disabled: true, children: "Disabled" },
-}
+};
 
 export const Outline: Story = {
   args: { variant: "outline", children: "Outline" },
-}
+};
 
 export const Toolbar: Story = {
   render: () => (
@@ -61,5 +61,4 @@ export const Toolbar: Story = {
       </Toggle>
     </div>
   ),
-}
-
+};

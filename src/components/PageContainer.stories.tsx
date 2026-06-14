@@ -1,17 +1,21 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { PageContainer, PageHeader, PageContent } from "@/components/ui/page-container"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { PlusIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  PageContainer,
+  PageHeader,
+  PageContent,
+} from "@/components/ui/page-container";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { PlusIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Components/PageContainer",
   component: PageContainer,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof PageContainer>
+} satisfies Meta<typeof PageContainer>;
 
-export default meta
-type Story = StoryObj
+export default meta;
+type Story = StoryObj;
 
 export const Default: Story = {
   render: () => (
@@ -19,7 +23,11 @@ export const Default: Story = {
       <PageHeader
         title="Dashboard"
         description="Welcome to your dashboard"
-        actions={<Button><PlusIcon className="size-4 mr-1" /> Add New</Button>}
+        actions={
+          <Button>
+            <PlusIcon className="size-4 mr-1" /> Add New
+          </Button>
+        }
       />
       <PageContent>
         <div className="grid gap-4 md:grid-cols-2">
@@ -34,7 +42,7 @@ export const Default: Story = {
       </PageContent>
     </PageContainer>
   ),
-}
+};
 
 export const Small: Story = {
   render: () => (
@@ -43,11 +51,12 @@ export const Small: Story = {
       <PageContent>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-sm text-muted-foreground">Settings content goes here.</p>
+            <p className="text-sm text-muted-foreground">
+              Settings content goes here.
+            </p>
           </CardContent>
         </Card>
       </PageContent>
     </PageContainer>
   ),
-}
-
+};

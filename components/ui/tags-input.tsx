@@ -1,42 +1,56 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { XIcon } from "lucide-react"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { XIcon } from "@/components/ui/icons";
 
-function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disabled, className }: { value?: string[]; onChange?: (v: string[]) => void; placeholder?: string; max?: number; disabled?: boolean; className?: string }) {
-  const [input, setInput] = React.useState("")
-  const inputRef = React.useRef<HTMLInputElement>(null)
+function TagsInput({
+  value = [],
+  onChange,
+  placeholder = "Add tag...",
+  max,
+  disabled,
+  className,
+}: {
+  value?: string[];
+  onChange?: (v: string[]) => void;
+  placeholder?: string;
+  max?: number;
+  disabled?: boolean;
+  className?: string;
+}) {
+  const [input, setInput] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (tag: string): void => {
-    const trimmed = tag.trim()
-    if (!trimmed) return
-    if (max && value.length >= max) return
-    if (value.includes(trimmed)) return
-    onChange?.([...value, trimmed])
-    setInput("")
-  }
+    const trimmed = tag.trim();
+    if (!trimmed) return;
+    if (max && value.length >= max) return;
+    if (value.includes(trimmed)) return;
+    onChange?.([...value, trimmed]);
+    setInput("");
+  };
 
   const removeTag = (index: number): void => {
-    onChange?.(value.filter((_, i) => i !== index))
-  }
+    onChange?.(value.filter((_, i) => i !== index));
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault()
-      addTag(input)
+      e.preventDefault();
+      addTag(input);
     }
     if (e.key === "Backspace" && !input && value.length > 0) {
-      removeTag(value.length - 1)
+      removeTag(value.length - 1);
     }
-  }
+  };
 
   return (
     <div
       className={cn(
         "flex min-h-8 flex-wrap items-center gap-1.5 rounded-md border bg-transparent px-2 py-1 text-sm",
         disabled && "opacity-50 cursor-not-allowed",
-        className
+        className,
       )}
       onClick={() => inputRef.current?.focus()}
     >
@@ -46,7 +60,10 @@ function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disa
           {!disabled && (
             <button
               type="button"
-              onClick={(e) => { e.stopPropagation(); removeTag(i) }}
+              onClick={(e) => {
+                e.stopPropagation();
+                removeTag(i);
+              }}
               className="ml-0.5 rounded-full hover:bg-muted-foreground/20"
             >
               <XIcon className="size-3" />
@@ -64,7 +81,7 @@ function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disa
         className="flex-1 min-w-[80px] bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
       />
     </div>
-  )
+  );
 }
 
-export { TagsInput }
+export { TagsInput };

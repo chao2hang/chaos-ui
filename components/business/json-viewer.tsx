@@ -1,25 +1,26 @@
-"use client"
-import * as React from "react"
-import { CheckIcon, CopyIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+"use client";
+import * as React from "react";
+import { CheckIcon, CopyIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 interface JsonViewerProps {
-  data: unknown
-  defaultCollapsedDepth?: number
-  className?: string
-  rootClassName?: string
-  showCopy?: boolean
-  indentSize?: number
+  data: unknown;
+  defaultCollapsedDepth?: number;
+  className?: string;
+  rootClassName?: string;
+  showCopy?: boolean;
+  indentSize?: number;
 }
 
 function isObject(v: unknown): v is Record<string, unknown> {
-  return typeof v === "object" && v !== null && !Array.isArray(v)
+  return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
 function KeyName({ name }: { name: string }) {
-  return <span className="text-primary">&quot;{name}&quot;: </span>
+  return <span className="text-primary">&quot;{name}&quot;: </span>;
 }
 
 function JsonNode({
@@ -29,13 +30,13 @@ function JsonNode({
   defaultCollapsedDepth = 3,
   isLast = true,
 }: {
-  value: unknown
-  keyName?: string
-  depth?: number
-  defaultCollapsedDepth?: number
-  isLast?: boolean
+  value: unknown;
+  keyName?: string;
+  depth?: number;
+  defaultCollapsedDepth?: number;
+  isLast?: boolean;
 }) {
-  const [open, setOpen] = React.useState(depth < defaultCollapsedDepth)
+  const [open, setOpen] = React.useState(depth < defaultCollapsedDepth);
 
   if (value === null) {
     return (
@@ -44,7 +45,7 @@ function JsonNode({
         <span className="text-muted-foreground">null</span>
         {!isLast && " "}
       </span>
-    )
+    );
   }
 
   if (typeof value === "string") {
@@ -54,7 +55,7 @@ function JsonNode({
         <span className="text-success">&quot;{value}&quot;</span>
         {!isLast && " "}
       </span>
-    )
+    );
   }
 
   if (typeof value === "number") {
@@ -64,7 +65,7 @@ function JsonNode({
         <span className="text-info">{String(value)}</span>
         {!isLast && " "}
       </span>
-    )
+    );
   }
 
   if (typeof value === "boolean") {
@@ -74,7 +75,7 @@ function JsonNode({
         <span className="text-warning">{String(value)}</span>
         {!isLast && " "}
       </span>
-    )
+    );
   }
 
   if (Array.isArray(value)) {
@@ -85,18 +86,20 @@ function JsonNode({
           <span className="text-muted-foreground">[]</span>
           {!isLast && " "}
         </span>
-      )
+      );
     }
     return (
       <div>
         {keyName !== undefined && <KeyName name={keyName} />}
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="sm"
           onClick={() => setOpen((v) => !v)}
-          className="text-muted-foreground hover:text-foreground"
+          className="h-auto px-1 py-0 font-mono text-xs text-muted-foreground hover:text-foreground"
         >
           {open ? "▼" : "▶"} [{value.length}]
-        </button>
+        </Button>
         {open && (
           <div className="ml-4 border-l pl-3">
             {value.map((v, i) => (
@@ -113,11 +116,11 @@ function JsonNode({
           </div>
         )}
       </div>
-    )
+    );
   }
 
   if (isObject(value)) {
-    const keys = Object.keys(value)
+    const keys = Object.keys(value);
     if (keys.length === 0) {
       return (
         <span>
@@ -125,18 +128,20 @@ function JsonNode({
           <span className="text-muted-foreground">&#123;&#125;</span>
           {!isLast && " "}
         </span>
-      )
+      );
     }
     return (
       <div>
         {keyName !== undefined && <KeyName name={keyName} />}
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="sm"
           onClick={() => setOpen((v) => !v)}
-          className="text-muted-foreground hover:text-foreground"
+          className="h-auto px-1 py-0 font-mono text-xs text-muted-foreground hover:text-foreground"
         >
           {open ? "▼" : "▶"} &#123;{keys.length}&#125;
-        </button>
+        </Button>
         {open && (
           <div className="ml-4 border-l pl-3">
             {keys.map((k, i) => (
@@ -153,7 +158,7 @@ function JsonNode({
           </div>
         )}
       </div>
-    )
+    );
   }
 
   return (
@@ -162,7 +167,7 @@ function JsonNode({
       {String(value)}
       {!isLast && " "}
     </span>
-  )
+  );
 }
 
 export function JsonViewer({
@@ -173,8 +178,12 @@ export function JsonViewer({
   showCopy = true,
   indentSize = 2,
 }: JsonViewerProps) {
-  const [copied, copy] = useCopyToClipboard()
-  const text = React.useMemo(() => JSON.stringify(data, null, indentSize), [data, indentSize])
+  const { t } = useTranslation("data");
+  const [copied, copy] = useCopyToClipboard();
+  const text = React.useMemo(
+    () => JSON.stringify(data, null, indentSize),
+    [data, indentSize],
+  );
 
   return (
     <div className={cn("group relative", rootClassName)}>
@@ -184,7 +193,7 @@ export function JsonViewer({
           size="icon-xs"
           className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100"
           onClick={() => copy(text)}
-          aria-label="复制 JSON"
+          aria-label={t("jsonViewer.copyJson")}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
         </Button>
@@ -193,11 +202,11 @@ export function JsonViewer({
         data-slot="json-viewer"
         className={cn(
           "overflow-auto rounded-md border bg-muted/30 p-3 text-xs font-mono leading-relaxed",
-          className
+          className,
         )}
       >
         <JsonNode value={data} defaultCollapsedDepth={defaultCollapsedDepth} />
       </div>
     </div>
-  )
+  );
 }

@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import { ScrollArea } from "@/components/ui";
 
 interface MobileNavigationProps {
   items: {
-    label: string
-    href?: string
-    icon?: React.ElementType
-    active?: boolean
-    onClick?: () => void
-  }[]
-  className?: string
+    label: string;
+    href?: string;
+    icon?: React.ElementType;
+    active?: boolean;
+    onClick?: () => void;
+  }[];
+  className?: string;
 }
 
 function MobileNavigation({ items, className }: MobileNavigationProps) {
   return (
     <ScrollArea className={cn("w-full", className)}>
       <div className="flex gap-2 p-2">
-        {items.map((item, index) => (
+        {items.map((item, index) =>
           item.href ? (
             <Button
               key={index}
@@ -41,15 +41,15 @@ function MobileNavigation({ items, className }: MobileNavigationProps) {
               className="shrink-0"
               onClick={item.onClick}
             >
-                {item.icon && <item.icon className="size-4 mr-1" />}
-                {item.label}
+              {item.icon && <item.icon className="size-4 mr-1" />}
+              {item.label}
             </Button>
-          )
-        ))}
+          ),
+        )}
       </div>
     </ScrollArea>
-  )
+  );
 }
 
-export { MobileNavigation }
-export type { MobileNavigationProps }
+export { MobileNavigation };
+export type { MobileNavigationProps };

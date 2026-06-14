@@ -1,6 +1,6 @@
-import { useState } from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { Menubar } from "@/components/ui/menubar"
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Menubar } from "@/components/ui/menubar";
 
 const meta = {
   title: "Components/Menubar",
@@ -17,29 +17,31 @@ const meta = {
       description: "Whether the menubar ignores interaction",
     },
   },
-} satisfies Meta<typeof Menubar>
+} satisfies Meta<typeof Menubar>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const menuItems = ["File", "Edit", "View", "Help"]
+const menuItems = ["File", "Edit", "View", "Help"];
 
 function MenubarDemo({
   disabled = false,
   orientation = "horizontal",
 }: {
-  disabled?: boolean
-  orientation?: "horizontal" | "vertical"
+  disabled?: boolean;
+  orientation?: "horizontal" | "vertical";
 }) {
-  const [activeItem, setActiveItem] = useState("File")
-  const isVertical = orientation === "vertical"
+  const [activeItem, setActiveItem] = useState("File");
+  const isVertical = orientation === "vertical";
 
   return (
     <div className="space-y-3">
       <Menubar
         disabled={disabled}
         orientation={orientation}
-        className={isVertical ? "h-auto w-40 flex-col items-stretch" : undefined}
+        className={
+          isVertical ? "h-auto w-40 flex-col items-stretch" : undefined
+        }
       >
         {menuItems.map((item) => (
           <button
@@ -59,10 +61,11 @@ function MenubarDemo({
         ))}
       </Menubar>
       <p className="text-sm text-muted-foreground">
-        Active menu: <span className="font-medium text-foreground">{activeItem}</span>
+        Active menu:{" "}
+        <span className="font-medium text-foreground">{activeItem}</span>
       </p>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -70,14 +73,18 @@ export const Default: Story = {
     disabled: false,
     orientation: "horizontal",
   },
-  render: (args) => <MenubarDemo {...args} />,
-}
+  render: ({ disabled, orientation }) => (
+    <MenubarDemo
+      disabled={disabled ?? false}
+      orientation={(orientation ?? "horizontal") as "horizontal" | "vertical"}
+    />
+  ),
+};
 
 export const Vertical: Story = {
   render: () => <MenubarDemo orientation="vertical" />,
-}
+};
 
 export const Disabled: Story = {
   render: () => <MenubarDemo disabled />,
-}
-
+};

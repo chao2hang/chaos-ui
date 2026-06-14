@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { PageHeader } from "@/components/business/page-header"
-import { Button } from "@/components/ui/button"
-import { PlusIcon, DownloadIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { PageHeader } from "@/components/business/page-header";
+import { Button } from "@/components/ui/button";
+import { PlusIcon, DownloadIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Business/PageHeader",
   component: PageHeader,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof PageHeader>
+} satisfies Meta<typeof PageHeader>;
 
-export default meta
-type Story = StoryObj
+export default meta;
+type Story = StoryObj;
 
 export const Default: Story = {
   render: () => (
@@ -19,7 +19,7 @@ export const Default: Story = {
       description="Manage your team members and permissions"
     />
   ),
-}
+};
 
 export const WithActions: Story = {
   render: () => (
@@ -40,7 +40,7 @@ export const WithActions: Story = {
       }
     />
   ),
-}
+};
 
 export const WithBreadcrumb: Story = {
   render: () => (
@@ -55,5 +55,4 @@ export const WithBreadcrumb: Story = {
       actions={<Button variant="outline">Edit</Button>}
     />
   ),
-}
-
+};

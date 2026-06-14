@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   BadgeDollarSignIcon,
   MailIcon,
@@ -8,76 +8,98 @@ import {
   MessageSquareIcon,
   RadioTowerIcon,
   SmartphoneIcon,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
-export type MarketingChannel = "email" | "sms" | "push" | "social" | "ads" | "offline"
+export type MarketingChannel =
+  | "email"
+  | "sms"
+  | "push"
+  | "social"
+  | "ads"
+  | "offline";
 
 export interface ChannelOption {
-  value: MarketingChannel
-  label: string
-  description?: string
+  value: MarketingChannel;
+  label: string;
+  description?: string;
 }
 
 export interface ChannelPickerProps {
-  value?: MarketingChannel | MarketingChannel[]
-  onChange?: (value: MarketingChannel | MarketingChannel[] | undefined) => void
-  options?: ChannelOption[]
-  multiple?: boolean
-  disabled?: boolean
-  className?: string
+  value?: MarketingChannel | MarketingChannel[];
+  onChange?: (value: MarketingChannel | MarketingChannel[] | undefined) => void;
+  options?: ChannelOption[];
+  multiple?: boolean;
+  disabled?: boolean;
+  className?: string;
 }
 
 export const defaultChannelOptions: ChannelOption[] = [
-  { value: "email", label: "Email", description: "Lifecycle and newsletters" },
-  { value: "sms", label: "SMS", description: "Urgent account messages" },
-  { value: "push", label: "Push", description: "Mobile notifications" },
-  { value: "social", label: "Social", description: "Organic distribution" },
-  { value: "ads", label: "Ads", description: "Paid acquisition" },
-  { value: "offline", label: "Offline", description: "Events and retail" },
-]
+  { value: "email", label: "" /* overridden in component */, description: "" },
+  { value: "sms", label: "", description: "" },
+  { value: "push", label: "", description: "" },
+  { value: "social", label: "", description: "" },
+  { value: "ads", label: "", description: "" },
+  { value: "offline", label: "", description: "" },
+];
 
-const channelIcons: Record<MarketingChannel, React.ComponentType<{ className?: string }>> = {
+const channelIcons: Record<
+  MarketingChannel,
+  React.ComponentType<{ className?: string }>
+> = {
   email: MailIcon,
   sms: MessageSquareIcon,
   push: SmartphoneIcon,
   social: MegaphoneIcon,
   ads: BadgeDollarSignIcon,
   offline: RadioTowerIcon,
-}
+};
 
 export function ChannelPicker({
   value,
   onChange,
-  options = defaultChannelOptions,
+  options: optionsProp,
   multiple = false,
   disabled,
   className,
 }: ChannelPickerProps) {
+  const { t } = useTranslation("marketing");
+  const resolvedOptions: ChannelOption[] = React.useMemo(() => {
+    const ops = optionsProp ?? defaultChannelOptions;
+    return ops.map((opt) => ({
+      ...opt,
+      label: t(`channelPicker.${opt.value}.label` as any),
+      description: t(`channelPicker.${opt.value}.description` as any),
+    }));
+  }, [optionsProp, t]);
   const selected = React.useMemo(
     () => (Array.isArray(value) ? value : value ? [value] : []),
-    [value]
-  )
+    [value],
+  );
 
   const toggle = (channel: MarketingChannel) => {
-    if (disabled) return
+    if (disabled) return;
     if (!multiple) {
-      onChange?.(selected.includes(channel) ? undefined : channel)
-      return
+      onChange?.(selected.includes(channel) ? undefined : channel);
+      return;
     }
 
     const next = selected.includes(channel)
       ? selected.filter((item) => item !== channel)
-      : [...selected, channel]
-    onChange?.(next)
-  }
+      : [...selected, channel];
+    onChange?.(next);
+  };
 
   return (
-    <div data-slot="channel-picker" className={cn("grid gap-2 sm:grid-cols-2 lg:grid-cols-3", className)}>
-      {options.map((option) => {
-        const Icon = channelIcons[option.value]
-        const active = selected.includes(option.value)
+    <div
+      data-slot="channel-picker"
+      className={cn("grid gap-2 sm:grid-cols-2 lg:grid-cols-3", className)}
+    >
+      {resolvedOptions.map((option) => {
+        const Icon = channelIcons[option.value];
+        const active = selected.includes(option.value);
 
         return (
           <Button
@@ -91,14 +113,18 @@ export function ChannelPicker({
           >
             <Icon className="size-4 shrink-0" />
             <span className="min-w-0">
-              <span className="block truncate text-sm font-medium">{option.label}</span>
+              <span className="block truncate text-sm font-medium">
+                {option.label}
+              </span>
               {option.description && (
-                <span className="block truncate text-xs opacity-75">{option.description}</span>
+                <span className="block truncate text-xs opacity-75">
+                  {option.description}
+                </span>
               )}
             </span>
           </Button>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -1,7 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { CommandPalette } from "@/components/business/command-palette"
-import { Button } from "@/components/ui/button"
-import { SearchIcon, SettingsIcon, FileTextIcon, PlusIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CommandPalette } from "@/components/business/command-palette";
+import { Button } from "@/components/ui/button";
+import {
+  SearchIcon,
+  SettingsIcon,
+  FileTextIcon,
+  PlusIcon,
+} from "@/components/ui/icons";
 
 const groups = [
   {
@@ -48,7 +53,7 @@ const groups = [
       },
     ],
   },
-]
+];
 
 const meta = {
   title: "Business/CommandPalette",
@@ -57,11 +62,11 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof CommandPalette>
+} satisfies Meta<typeof CommandPalette>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -70,7 +75,7 @@ export const Default: Story = {
       groups={groups}
     />
   ),
-}
+};
 
 export const HiddenShortcut: Story = {
   render: () => (
@@ -80,4 +85,4 @@ export const HiddenShortcut: Story = {
       showShortcut={false}
     />
   ),
-}
+};

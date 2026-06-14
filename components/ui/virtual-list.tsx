@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useVirtualizer } from "@tanstack/react-virtual"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { cn } from "@/lib/utils";
 
 interface VirtualListProps<T> {
-  data: T[]
-  renderItem: (item: T, index: number) => React.ReactNode
-  estimateSize: number
-  overscan?: number
-  height: number
-  width?: number | string
-  className?: string
-  onEndReached?: () => void
-  endReachedThreshold?: number
-  loading?: boolean
-  loadingComponent?: React.ReactNode
-  emptyComponent?: React.ReactNode
+  data: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
+  estimateSize: number;
+  overscan?: number;
+  height: number;
+  width?: number | string;
+  className?: string;
+  onEndReached?: () => void;
+  endReachedThreshold?: number;
+  loading?: boolean;
+  loadingComponent?: React.ReactNode;
+  emptyComponent?: React.ReactNode;
 }
 
 function VirtualList<T>({
@@ -33,7 +33,7 @@ function VirtualList<T>({
   loadingComponent,
   emptyComponent,
 }: VirtualListProps<T>) {
-  const parentRef = React.useRef<HTMLDivElement>(null)
+  const parentRef = React.useRef<HTMLDivElement>(null);
 
   // TanStack Virtual returns imperative helpers that React Compiler cannot safely memoize.
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -42,29 +42,31 @@ function VirtualList<T>({
     getScrollElement: () => parentRef.current,
     estimateSize: () => estimateSize,
     overscan,
-  })
+  });
 
   React.useEffect(() => {
-    const scrollElement = parentRef.current
-    if (!scrollElement || !onEndReached) return
+    const scrollElement = parentRef.current;
+    if (!scrollElement || !onEndReached) return;
 
     const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = scrollElement
+      const { scrollTop, scrollHeight, clientHeight } = scrollElement;
       if (scrollHeight - scrollTop - clientHeight < endReachedThreshold) {
-        onEndReached()
+        onEndReached();
       }
-    }
+    };
 
-    scrollElement.addEventListener("scroll", handleScroll)
-    return () => scrollElement.removeEventListener("scroll", handleScroll)
-  }, [onEndReached, endReachedThreshold])
+    scrollElement.addEventListener("scroll", handleScroll);
+    return () => scrollElement.removeEventListener("scroll", handleScroll);
+  }, [onEndReached, endReachedThreshold]);
 
   if (data.length === 0 && !loading) {
-    return emptyComponent || (
-      <div className="flex items-center justify-center p-8 text-muted-foreground">
-        No data
-      </div>
-    )
+    return (
+      emptyComponent || (
+        <div className="flex items-center justify-center p-8 text-muted-foreground">
+          No data
+        </div>
+      )
+    );
   }
 
   return (
@@ -94,7 +96,7 @@ function VirtualList<T>({
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >
-            {renderItem(data[virtualItem.index], virtualItem.index)}
+            {renderItem(data[virtualItem.index]!, virtualItem.index)}
           </div>
         ))}
       </div>
@@ -104,8 +106,8 @@ function VirtualList<T>({
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { VirtualList }
-export type { VirtualListProps }
+export { VirtualList };
+export type { VirtualListProps };

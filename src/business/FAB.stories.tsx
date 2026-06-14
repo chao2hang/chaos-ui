@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { MessageSquareIcon, PlusIcon, UploadIcon } from "lucide-react"
-import { Fab, FabSpeedDial } from "@/components/business/fab"
+import type { Meta, StoryObj } from "@storybook/react";
+import { MessageSquareIcon, PlusIcon, UploadIcon } from "@/components/ui/icons";
+import { Fab, FabSpeedDial } from "@/components/business/fab";
 
 const meta = {
   title: "Business/FAB",
@@ -9,17 +9,17 @@ const meta = {
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof Fab>
+} satisfies Meta<typeof Fab>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const IconOnly: Story = {
   args: {
     icon: <PlusIcon />,
     "aria-label": "Create campaign",
   },
-}
+};
 
 export const WithLabel: Story = {
   args: {
@@ -27,17 +27,24 @@ export const WithLabel: Story = {
     label: "Create",
     position: "bottom-left",
   },
-}
+};
 
 export const SpeedDial: Story = {
   render: () => (
     <FabSpeedDial
       icon={<PlusIcon />}
       actions={[
-        { label: "Upload creative", icon: <UploadIcon />, onClick: () => undefined },
-        { label: "Message owner", icon: <MessageSquareIcon />, onClick: () => undefined },
+        {
+          label: "Upload creative",
+          icon: <UploadIcon />,
+          onClick: () => undefined,
+        },
+        {
+          label: "Message owner",
+          icon: <MessageSquareIcon />,
+          onClick: () => undefined,
+        },
       ]}
     />
   ),
-}
-
+};

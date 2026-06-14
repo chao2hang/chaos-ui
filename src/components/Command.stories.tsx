@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Command,
   CommandDialog,
@@ -9,18 +9,40 @@ import {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-} from "@/components/ui/command"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
+} from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const meta = {
   title: "Components/Command",
   component: Command,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof Command>
+} satisfies Meta<typeof Command>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+function CommandDialogDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)} variant="outline">
+        Open Command Palette
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem>Calendar</CommandItem>
+            <CommandItem>Search</CommandItem>
+            <CommandItem>Settings</CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
+  );
+}
 
 export const Default: Story = {
   render: () => (
@@ -45,28 +67,8 @@ export const Default: Story = {
       </CommandList>
     </Command>
   ),
-}
+};
 
 export const Dialog: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false)
-    return (
-      <>
-        <Button onClick={() => setOpen(true)} variant="outline">
-          Open Command Palette
-        </Button>
-        <CommandDialog open={open} onOpenChange={setOpen}>
-          <CommandInput placeholder="Type a command or search..." />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem>Calendar</CommandItem>
-              <CommandItem>Search</CommandItem>
-              <CommandItem>Settings</CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </CommandDialog>
-      </>
-    )
-  },
-}
+  render: () => <CommandDialogDemo />,
+};

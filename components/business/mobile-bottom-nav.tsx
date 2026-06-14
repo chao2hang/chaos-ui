@@ -1,21 +1,26 @@
-"use client"
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 export interface MobileNavItem {
-  label: string
-  href: string
-  icon: React.ReactNode
-  badge?: number | string
-  active?: boolean
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  badge?: number | string;
+  active?: boolean;
 }
 
-interface MobileBottomNavProps extends Omit<React.ComponentProps<"nav">, "onChange"> {
-  items: MobileNavItem[]
-  onChange?: (href: string) => void
-  variant?: "default" | "floating"
-  className?: string
+interface MobileBottomNavProps extends Omit<
+  React.ComponentProps<"nav">,
+  "onChange"
+> {
+  items: MobileNavItem[];
+  onChange?: (href: string) => void;
+  variant?: "default" | "floating";
+  className?: string;
 }
 
 export function MobileBottomNav({
@@ -25,25 +30,26 @@ export function MobileBottomNav({
   className,
   ...props
 }: MobileBottomNavProps) {
+  const { t } = useTranslation("mobile");
   return (
     <nav
       data-slot="mobile-bottom-nav"
-      aria-label="底部导航"
+      aria-label={t("mobileBottomNav.ariaLabel")}
       className={cn(
         "fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 md:hidden",
         variant === "floating" && "mx-3 mb-3 rounded-2xl border shadow-lg",
-        className
+        className,
       )}
       {...props}
     >
       <ul className="flex items-stretch justify-around">
         {items.map((item) => {
-          const isActive = item.active
+          const isActive = item.active;
           const content = (
             <span
               className={cn(
                 "flex h-14 w-full flex-col items-center justify-center gap-0.5 text-[0.65rem] transition-colors",
-                isActive ? "text-primary" : "text-muted-foreground"
+                isActive ? "text-primary" : "text-muted-foreground",
               )}
             >
               <span className="relative">
@@ -56,27 +62,32 @@ export function MobileBottomNav({
               </span>
               {item.label}
             </span>
-          )
+          );
           return (
             <li key={item.href} className="flex-1">
               {onChange ? (
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
                   onClick={() => onChange(item.href)}
-                  className="w-full"
+                  className="h-auto w-full rounded-none p-0"
                   aria-current={isActive ? "page" : undefined}
                 >
                   {content}
-                </button>
+                </Button>
               ) : (
-                <Link href={item.href} className="block" aria-current={isActive ? "page" : undefined}>
+                <Link
+                  href={item.href}
+                  className="block"
+                  aria-current={isActive ? "page" : undefined}
+                >
                   {content}
                 </Link>
               )}
             </li>
-          )
+          );
         })}
       </ul>
     </nav>
-  )
+  );
 }

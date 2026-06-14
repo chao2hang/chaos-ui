@@ -1,15 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { KPICard } from "@/components/business/kpi-card"
-import { DollarSignIcon, UsersIcon, TrendingUpIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { KPICard } from "@/components/business/kpi-card";
+import {
+  DollarSignIcon,
+  UsersIcon,
+  TrendingUpIcon,
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Business/KPICard",
   component: KPICard,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof KPICard>
+} satisfies Meta<typeof KPICard>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Revenue: Story = {
   args: {
@@ -19,7 +23,7 @@ export const Revenue: Story = {
     changeLabel: "from last month",
     icon: DollarSignIcon,
   },
-}
+};
 
 export const Users: Story = {
   args: {
@@ -29,7 +33,7 @@ export const Users: Story = {
     changeLabel: "from last month",
     icon: UsersIcon,
   },
-}
+};
 
 export const Growth: Story = {
   args: {
@@ -39,7 +43,7 @@ export const Growth: Story = {
     changeLabel: "vs last quarter",
     icon: TrendingUpIcon,
   },
-}
+};
 
 export const NoChange: Story = {
   args: {
@@ -48,7 +52,7 @@ export const NoChange: Story = {
     change: "0%",
     changeType: "neutral",
   },
-}
+};
 
 export const WithSparkline: Story = {
   args: {
@@ -67,7 +71,7 @@ export const WithSparkline: Story = {
       { value: 55 },
     ],
   },
-}
+};
 
 export const WithTarget: Story = {
   args: {
@@ -79,5 +83,4 @@ export const WithTarget: Story = {
     target: 75,
     targetLabel: "Goal Progress",
   },
-}
-
+};

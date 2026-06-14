@@ -1,0 +1,9 @@
+{
+  "cookieBanner.title": "Cookie 使用提示",
+  "cookieBanner.description": "我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。",
+  "cookieBanner.accept": "接受全部",
+  "cookieBanner.reject": "仅必要",
+  "cookieBanner.policy": "隐私政策",
+  "cookieBanner.ariaLabel": "Cookie 偏好",
+  "cookieBanner.close": "关闭"
+}

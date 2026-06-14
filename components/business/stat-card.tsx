@@ -1,12 +1,11 @@
-import type { LucideIcon } from "lucide-react"
-import { TrendingDownIcon, TrendingUpIcon, MinusIcon } from "lucide-react"
+import type { LucideIcon } from "@/components/ui/icons";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+  TrendingDownIcon,
+  TrendingUpIcon,
+  MinusIcon,
+} from "@/components/ui/icons";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 function StatCard({
   title,
@@ -16,19 +15,19 @@ function StatCard({
   icon: Icon,
   className,
 }: {
-  title: string
-  value: string | number
-  change?: string
-  changeType?: "positive" | "negative" | "neutral"
-  icon?: LucideIcon
-  className?: string
+  title: string;
+  value: string | number;
+  change?: string;
+  changeType?: "positive" | "negative" | "neutral";
+  icon?: LucideIcon;
+  className?: string;
 }) {
   const TrendIcon =
     changeType === "positive"
       ? TrendingUpIcon
       : changeType === "negative"
         ? TrendingDownIcon
-        : MinusIcon
+        : MinusIcon;
 
   return (
     <Card className={cn(className)}>
@@ -47,14 +46,14 @@ function StatCard({
                 "size-3.5",
                 changeType === "positive" && "text-success",
                 changeType === "negative" && "text-destructive",
-                changeType === "neutral" && "text-muted-foreground"
+                changeType === "neutral" && "text-muted-foreground",
               )}
             />
             <span
               className={cn(
                 changeType === "positive" && "text-success",
                 changeType === "negative" && "text-destructive",
-                changeType === "neutral" && "text-muted-foreground"
+                changeType === "neutral" && "text-muted-foreground",
               )}
             >
               {change}
@@ -63,7 +62,7 @@ function StatCard({
         )}
       </CardContent>
     </Card>
-  )
+  );
 }
 
-export { StatCard }
+export { StatCard };

@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { PlusIcon, TrashIcon, GripVerticalIcon } from "lucide-react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { PlusIcon, TrashIcon, GripVerticalIcon } from "@/components/ui/icons";
 
 interface FormListItem {
-  id: string
-  [key: string]: unknown
+  id: string;
+  [key: string]: unknown;
 }
 
 interface FormListProps<T extends FormListItem> {
-  value?: T[]
-  defaultValue?: T[]
-  onChange?: (value: T[]) => void
-  onAdd?: () => T
-  onRemove?: (index: number) => void
-  renderItem: (item: T, index: number) => React.ReactNode
-  addButtonText?: string
-  addButtonVariant?: "default" | "outline" | "ghost"
-  maxItems?: number
-  minItems?: number
-  disabled?: boolean
-  sortable?: boolean
-  className?: string
+  value?: T[];
+  defaultValue?: T[];
+  onChange?: (value: T[]) => void;
+  onAdd?: () => T;
+  onRemove?: (index: number) => void;
+  renderItem: (item: T, index: number) => React.ReactNode;
+  addButtonText?: string;
+  addButtonVariant?: "default" | "outline" | "ghost";
+  maxItems?: number;
+  minItems?: number;
+  disabled?: boolean;
+  sortable?: boolean;
+  className?: string;
 }
 
 function FormList<T extends FormListItem>({
@@ -41,29 +41,28 @@ function FormList<T extends FormListItem>({
   sortable = false,
   className,
 }: FormListProps<T>) {
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<T[]>(defaultValue)
-  const value = controlledValue ?? uncontrolledValue
+  const [uncontrolledValue, setUncontrolledValue] =
+    React.useState<T[]>(defaultValue);
+  const value = controlledValue ?? uncontrolledValue;
 
   const handleAdd = () => {
-    if (maxItems && value.length >= maxItems) return
-    const newItem = onAdd
-      ? onAdd()
-      : ({ id: `item-${Date.now()}` } as T)
-    const newValue = [...value, newItem]
-    setUncontrolledValue(newValue)
-    onChange?.(newValue)
-  }
+    if (maxItems && value.length >= maxItems) return;
+    const newItem = onAdd ? onAdd() : ({ id: `item-${Date.now()}` } as T);
+    const newValue = [...value, newItem];
+    setUncontrolledValue(newValue);
+    onChange?.(newValue);
+  };
 
   const handleRemove = (index: number) => {
-    if (value.length <= minItems) return
-    const newValue = value.filter((_, i) => i !== index)
-    setUncontrolledValue(newValue)
-    onRemove?.(index)
-    onChange?.(newValue)
-  }
+    if (value.length <= minItems) return;
+    const newValue = value.filter((_, i) => i !== index);
+    setUncontrolledValue(newValue);
+    onRemove?.(index);
+    onChange?.(newValue);
+  };
 
-  const canAdd = !maxItems || value.length < maxItems
-  const canRemove = value.length > minItems
+  const canAdd = !maxItems || value.length < maxItems;
+  const canRemove = value.length > minItems;
 
   return (
     <div data-slot="form-list" className={cn("space-y-3", className)}>
@@ -84,9 +83,7 @@ function FormList<T extends FormListItem>({
               <span className="sr-only">Drag to reorder</span>
             </Button>
           )}
-          <div className="flex-1 min-w-0">
-            {renderItem(item, index)}
-          </div>
+          <div className="flex-1 min-w-0">{renderItem(item, index)}</div>
           {!disabled && canRemove && (
             <Button
               variant="ghost"
@@ -112,8 +109,8 @@ function FormList<T extends FormListItem>({
         </Button>
       )}
     </div>
-  )
+  );
 }
 
-export { FormList }
-export type { FormListItem, FormListProps }
+export { FormList };
+export type { FormListItem, FormListProps };

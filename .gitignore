@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+.playwright-mcp/
 
 # next.js
 /.next/
@@ -30,6 +31,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -43,6 +45,15 @@ next-env.d.ts
 
 # local indexes
 .codegraph/
+
+# generated review artifacts
+.detection/
+*.tmp
+*.temp
+*-full.png
+*-timeline.png
+playwright-report/
+test-results/
 
 # pnpm
 .pnpm-store/

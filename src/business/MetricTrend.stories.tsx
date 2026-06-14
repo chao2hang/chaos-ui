@@ -1,15 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { DollarSignIcon, MousePointerClickIcon, TrendingDownIcon } from "lucide-react"
-import { MetricTrend, Sparkline } from "@/components/business/metric-trend"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  DollarSignIcon,
+  MousePointerClickIcon,
+  TrendingDownIcon,
+} from "@/components/ui/icons";
+import { MetricTrend, Sparkline } from "@/components/business/metric-trend";
 
 const meta = {
   title: "Business/MetricTrend",
   component: MetricTrend,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof MetricTrend>
+} satisfies Meta<typeof MetricTrend>;
 
-export default meta
-type Story = StoryObj
+export default meta;
+type Story = StoryObj;
 
 export const Revenue: Story = {
   args: {
@@ -20,7 +24,7 @@ export const Revenue: Story = {
     icon: <DollarSignIcon className="size-3.5" />,
     sparklineData: [20, 32, 28, 45, 52, 61, 74],
   },
-}
+};
 
 export const DownIsGood: Story = {
   args: {
@@ -32,7 +36,7 @@ export const DownIsGood: Story = {
     icon: <TrendingDownIcon className="size-3.5" />,
     sparklineData: [62, 58, 54, 49, 44, 41, 38],
   },
-}
+};
 
 export const Loading: Story = {
   args: {
@@ -42,7 +46,7 @@ export const Loading: Story = {
     loading: true,
     icon: <MousePointerClickIcon className="size-3.5" />,
   },
-}
+};
 
 export const SparklineOnly: Story = {
   render: () => (
@@ -50,5 +54,4 @@ export const SparklineOnly: Story = {
       <Sparkline data={[12, 18, 16, 24, 32, 29, 41]} width={160} height={48} />
     </div>
   ),
-}
-
+};

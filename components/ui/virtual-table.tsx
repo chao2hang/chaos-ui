@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useVirtualizer } from "@tanstack/react-virtual"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { cn } from "@/lib/utils";
 
 interface ColumnDef<T> {
-  key: string
-  header: string
-  width?: number | string
-  accessor?: (row: T) => unknown
-  render?: (row: T) => React.ReactNode
+  key: string;
+  header: string;
+  width?: number | string;
+  accessor?: (row: T) => unknown;
+  render?: (row: T) => React.ReactNode;
 }
 
 interface VirtualTableProps<T> {
-  columns: ColumnDef<T>[]
-  data: T[]
-  estimateRowHeight: number
-  overscan?: number
-  height: number
-  width?: number | string
-  className?: string
-  onRowClick?: (row: T) => void
-  loading?: boolean
-  loadingComponent?: React.ReactNode
-  emptyComponent?: React.ReactNode
+  columns: ColumnDef<T>[];
+  data: T[];
+  estimateRowHeight: number;
+  overscan?: number;
+  height: number;
+  width?: number | string;
+  className?: string;
+  onRowClick?: (row: T) => void;
+  loading?: boolean;
+  loadingComponent?: React.ReactNode;
+  emptyComponent?: React.ReactNode;
 }
 
 function VirtualTable<T>({
@@ -39,7 +39,7 @@ function VirtualTable<T>({
   loadingComponent,
   emptyComponent,
 }: VirtualTableProps<T>) {
-  const parentRef = React.useRef<HTMLDivElement>(null)
+  const parentRef = React.useRef<HTMLDivElement>(null);
 
   // TanStack Virtual returns imperative helpers that React Compiler cannot safely memoize.
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -48,22 +48,26 @@ function VirtualTable<T>({
     getScrollElement: () => parentRef.current,
     estimateSize: () => estimateRowHeight,
     overscan,
-  })
+  });
 
   const gridTemplateColumns = React.useMemo(
     () =>
       columns
-        .map((c) => (typeof c.width === "number" ? `${c.width}px` : c.width ?? "1fr"))
+        .map((c) =>
+          typeof c.width === "number" ? `${c.width}px` : (c.width ?? "1fr"),
+        )
         .join(" "),
-    [columns]
-  )
+    [columns],
+  );
 
   if (data.length === 0 && !loading) {
-    return emptyComponent || (
-      <div className="flex items-center justify-center p-8 text-muted-foreground">
-        No data
-      </div>
-    )
+    return (
+      emptyComponent || (
+        <div className="flex items-center justify-center p-8 text-muted-foreground">
+          No data
+        </div>
+      )
+    );
   }
 
   return (
@@ -72,7 +76,7 @@ function VirtualTable<T>({
       data-slot="virtual-table"
       className={cn(
         "relative w-full overflow-auto rounded-md border bg-background text-sm",
-        className
+        className,
       )}
       style={{ height, width }}
     >
@@ -82,24 +86,27 @@ function VirtualTable<T>({
         className="sticky top-0 z-10 grid border-b bg-background font-medium text-foreground"
         style={{ gridTemplateColumns }}
       >
-         {columns.map((column) => (
-           <div
-             key={column.key}
-             role="columnheader"
-             data-slot="virtual-table-head"
-             className="flex h-10 items-center px-2 whitespace-nowrap"
-           >
-             {column.header}
-           </div>
-         ))}
+        {columns.map((column) => (
+          <div
+            key={column.key}
+            role="columnheader"
+            data-slot="virtual-table-head"
+            className="flex h-10 items-center px-2 whitespace-nowrap"
+          >
+            {column.header}
+          </div>
+        ))}
       </div>
 
       <div
         data-slot="virtual-table-body"
-        style={{ position: "relative", height: `${virtualizer.getTotalSize()}px` }}
+        style={{
+          position: "relative",
+          height: `${virtualizer.getTotalSize()}px`,
+        }}
       >
         {virtualizer.getVirtualItems().map((virtualItem) => {
-          const row = data[virtualItem.index]
+          const row = data[virtualItem.index]!;
           return (
             <div
               key={virtualItem.key}
@@ -109,7 +116,7 @@ function VirtualTable<T>({
               role="row"
               className={cn(
                 "absolute left-0 grid w-full border-b transition-colors hover:bg-muted/50",
-                onRowClick && "cursor-pointer"
+                onRowClick && "cursor-pointer",
               )}
               style={{
                 transform: `translateY(${virtualItem.start}px)`,
@@ -124,21 +131,21 @@ function VirtualTable<T>({
                   : String(
                       column.accessor
                         ? column.accessor(row)
-                        : (row as Record<string, unknown>)[column.key] ?? ""
-                    )
+                        : ((row as Record<string, unknown>)[column.key] ?? ""),
+                    );
                 return (
-               <div
-                   key={column.key}
-                   role="cell"
-                   data-slot="virtual-table-cell"
-                   className="flex items-center px-2 whitespace-nowrap"
-                 >
-                   {content}
-                 </div>
-                )
+                  <div
+                    key={column.key}
+                    role="cell"
+                    data-slot="virtual-table-cell"
+                    className="flex items-center px-2 whitespace-nowrap"
+                  >
+                    {content}
+                  </div>
+                );
               })}
             </div>
-          )
+          );
         })}
       </div>
 
@@ -148,8 +155,8 @@ function VirtualTable<T>({
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { VirtualTable }
-export type { ColumnDef, VirtualTableProps }
+export { VirtualTable };
+export type { ColumnDef, VirtualTableProps };

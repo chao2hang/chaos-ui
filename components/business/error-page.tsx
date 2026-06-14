@@ -1,5 +1,5 @@
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 import {
   ArrowLeftIcon,
   HomeIcon,
@@ -8,25 +8,29 @@ import {
   ServerCrashIcon,
   ShieldAlertIcon,
   WrenchIcon,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui";
+import { Button, buttonVariants } from "@/components/ui";
+import { Separator } from "@/components/ui";
 
 interface ErrorPageProps {
-  status?: 403 | 404 | 500 | 503
-  title?: string
-  description?: string
-  homeHref?: string
-  showHome?: boolean
-  showBack?: boolean
-  onBack?: () => void
-  illustration?: React.ReactNode
-  className?: string
+  status?: 403 | 404 | 500 | 503;
+  title?: string;
+  description?: string;
+  homeHref?: string;
+  showHome?: boolean;
+  showBack?: boolean;
+  onBack?: () => void;
+  illustration?: React.ReactNode;
+  className?: string;
 }
 
-const DEFAULT_CONTENT: Record<NonNullable<ErrorPageProps["status"]>, { title: string; description: string }> = {
+const DEFAULT_CONTENT: Record<
+  NonNullable<ErrorPageProps["status"]>,
+  { title: string; description: string }
+> = {
   403: {
     title: "无权访问",
     description: "抱歉，您没有权限访问此页面。如有疑问请联系管理员。",
@@ -43,7 +47,7 @@ const DEFAULT_CONTENT: Record<NonNullable<ErrorPageProps["status"]>, { title: st
     title: "服务暂不可用",
     description: "系统正在维护中，请稍后重试。",
   },
-}
+};
 
 const STATUS_META = {
   403: {
@@ -76,19 +80,20 @@ const STATUS_META = {
     action: "等待维护完成后刷新页面。",
     icon: WrenchIcon,
     accent: "text-brand-600 dark:text-brand-700",
-    surface: "bg-brand-100/70 ring-brand-300/50 dark:bg-brand-300/15 dark:ring-brand-400/30",
+    surface:
+      "bg-brand-100/70 ring-brand-300/50 dark:bg-brand-300/15 dark:ring-brand-400/30",
   },
 } satisfies Record<
   NonNullable<ErrorPageProps["status"]>,
   {
-    label: string
-    impact: string
-    action: string
-    icon: React.ElementType
-    accent: string
-    surface: string
+    label: string;
+    impact: string;
+    action: string;
+    icon: React.ElementType;
+    accent: string;
+    surface: string;
   }
->
+>;
 
 export function ErrorPage({
   status = 404,
@@ -101,16 +106,40 @@ export function ErrorPage({
   illustration,
   className,
 }: ErrorPageProps) {
-  const content = DEFAULT_CONTENT[status]
-  const meta = STATUS_META[status]
-  const Icon = meta.icon
+  const { t } = useTranslation("error");
+  const content = DEFAULT_CONTENT[status];
+  const meta = STATUS_META[status];
+  const Icon = meta.icon;
+
+  const errorKeys = {
+    403: {
+      title: "errorPage.accessRestricted.title" as const,
+      description: "errorPage.accessRestricted.description" as const,
+    },
+    404: {
+      title: "errorPage.notFound.title" as const,
+      description: "errorPage.notFound.description" as const,
+    },
+    500: {
+      title: "errorPage.serverError.title" as const,
+      description: "errorPage.serverError.description" as const,
+    },
+    503: {
+      title: "errorPage.maintenance.title" as const,
+      description: "errorPage.maintenance.description" as const,
+    },
+  };
+  const keys = errorKeys[status];
+  const resolvedTitle = title ?? t(keys.title, content.title);
+  const resolvedDescription =
+    description ?? t(keys.description, content.description);
 
   return (
     <div
       data-slot="error-page"
       className={cn(
         "flex min-h-[60vh] items-center justify-center bg-background px-4 py-10 sm:px-6",
-        className
+        className,
       )}
     >
       <div className="grid w-full max-w-5xl overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm lg:grid-cols-[minmax(0,1fr)_20rem]">
@@ -129,21 +158,28 @@ export function ErrorPage({
               <div
                 className={cn(
                   "flex size-20 items-center justify-center rounded-xl ring-1 sm:size-24",
-                  meta.surface
+                  meta.surface,
                 )}
               >
-                {illustration ?? <Icon className={cn("size-10 sm:size-12", meta.accent)} />}
+                {illustration ?? (
+                  <Icon className={cn("size-10 sm:size-12", meta.accent)} />
+                )}
               </div>
 
               <div className="min-w-0 space-y-3">
-                <p className={cn("font-mono text-5xl font-semibold leading-none sm:text-6xl", meta.accent)}>
+                <p
+                  className={cn(
+                    "font-mono text-5xl font-semibold leading-none sm:text-6xl",
+                    meta.accent,
+                  )}
+                >
                   {status}
                 </p>
                 <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-                  {title ?? content.title}
+                  {resolvedTitle}
                 </h1>
                 <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-                  {description ?? content.description}
+                  {resolvedDescription}
                 </p>
               </div>
             </div>
@@ -153,7 +189,7 @@ export function ErrorPage({
             {showHome && (
               <Link href={homeHref} className={buttonVariants({ size: "lg" })}>
                 <HomeIcon />
-                返回首页
+                {t("errorPage.home")}
               </Link>
             )}
             {showBack && (
@@ -163,7 +199,7 @@ export function ErrorPage({
                 onClick={onBack ?? (() => history.back())}
               >
                 <ArrowLeftIcon />
-                返回上页
+                {t("errorPage.back")}
               </Button>
             )}
           </div>
@@ -174,19 +210,19 @@ export function ErrorPage({
             <div className="space-y-5">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <LifeBuoyIcon className="size-4 text-muted-foreground" />
-                故障上下文
+                {t("errorPage.context")}
               </div>
               <Separator />
               <dl className="space-y-5 text-sm">
                 <div className="space-y-1">
                   <dt className="text-xs font-medium uppercase text-muted-foreground">
-                    影响范围
+                    {t("errorPage.impact")}
                   </dt>
                   <dd className="text-foreground">{meta.impact}</dd>
                 </div>
                 <div className="space-y-1">
                   <dt className="text-xs font-medium uppercase text-muted-foreground">
-                    建议操作
+                    {t("errorPage.action")}
                   </dt>
                   <dd className="leading-6 text-foreground">{meta.action}</dd>
                 </div>
@@ -194,25 +230,26 @@ export function ErrorPage({
             </div>
 
             <div className="rounded-lg border bg-background/70 p-3 text-xs leading-5 text-muted-foreground">
-              Request ID 会在生产环境由上游网关注入，组件仅负责稳定呈现错误状态。
+              Request ID
+              会在生产环境由上游网关注入，组件仅负责稳定呈现错误状态。
             </div>
           </div>
         </aside>
       </div>
     </div>
-  )
+  );
 }
 
 function NotFound() {
-  return <ErrorPage status={404} />
+  return <ErrorPage status={404} />;
 }
 
 function InternalError() {
-  return <ErrorPage status={500} />
+  return <ErrorPage status={500} />;
 }
 
 function Unauthorized() {
-  return <ErrorPage status={403} />
+  return <ErrorPage status={403} />;
 }
 
-export { NotFound, InternalError, Unauthorized }
+export { NotFound, InternalError, Unauthorized };

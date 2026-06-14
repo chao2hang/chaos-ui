@@ -1,39 +1,43 @@
-"use client"
-import * as React from "react"
-import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, CheckIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  SearchIcon,
+  CheckIcon,
+} from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
+import { Button, Input, Checkbox } from "@/components/ui";
 
 export interface TransferItem {
-  key: string
-  label: string
-  description?: string
-  disabled?: boolean
+  key: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
 }
 
 interface TransferProps {
-  dataSource: TransferItem[]
-  targetKeys?: string[]
-  onChange?: (targetKeys: string[]) => void
-  titles?: [string, string]
-  searchable?: boolean
-  filterOption?: (input: string, item: TransferItem) => boolean
-  render?: (item: TransferItem) => React.ReactNode
-  disabled?: boolean
-  className?: string
-  oneWay?: boolean
+  dataSource: TransferItem[];
+  targetKeys?: string[];
+  onChange?: (targetKeys: string[]) => void;
+  titles?: [string, string];
+  searchable?: boolean;
+  filterOption?: (input: string, item: TransferItem) => boolean;
+  render?: (item: TransferItem) => React.ReactNode;
+  disabled?: boolean;
+  className?: string;
+  oneWay?: boolean;
 }
 
 const defaultFilter = (input: string, item: TransferItem) =>
-  item.label.toLowerCase().includes(input.toLowerCase())
+  item.label.toLowerCase().includes(input.toLowerCase());
 
 export function Transfer({
   dataSource,
   targetKeys = [],
   onChange,
-  titles = ["源列表", "目标列表"],
+  titles: titlesProp,
   searchable = true,
   filterOption = defaultFilter,
   render,
@@ -41,60 +45,69 @@ export function Transfer({
   className,
   oneWay = false,
 }: TransferProps) {
-  const [selectedSource, setSelectedSource] = React.useState<string[]>([])
-  const [selectedTarget, setSelectedTarget] = React.useState<string[]>([])
-  const [searchLeft, setSearchLeft] = React.useState("")
-  const [searchRight, setSearchRight] = React.useState("")
+  const { t } = useTranslation("transfer");
+  const titles = titlesProp ?? [
+    t("transfer.sourceTitle"),
+    t("transfer.targetTitle"),
+  ];
+  const [selectedSource, setSelectedSource] = React.useState<string[]>([]);
+  const [selectedTarget, setSelectedTarget] = React.useState<string[]>([]);
+  const [searchLeft, setSearchLeft] = React.useState("");
+  const [searchRight, setSearchRight] = React.useState("");
 
   const source = React.useMemo(
     () => dataSource.filter((d) => !targetKeys.includes(d.key)),
-    [dataSource, targetKeys]
-  )
+    [dataSource, targetKeys],
+  );
   const target = React.useMemo(
     () => dataSource.filter((d) => targetKeys.includes(d.key)),
-    [dataSource, targetKeys]
-  )
+    [dataSource, targetKeys],
+  );
 
-  const filteredSource = source.filter((s) => filterOption(searchLeft, s))
-  const filteredTarget = target.filter((s) => filterOption(searchRight, s))
+  const filteredSource = source.filter((s) => filterOption(searchLeft, s));
+  const filteredTarget = target.filter((s) => filterOption(searchRight, s));
 
   const moveToTarget = () => {
-    if (disabled) return
-    const next = Array.from(new Set([...targetKeys, ...selectedSource]))
-    onChange?.(next)
-    setSelectedSource([])
-  }
+    if (disabled) return;
+    const next = Array.from(new Set([...targetKeys, ...selectedSource]));
+    onChange?.(next);
+    setSelectedSource([]);
+  };
 
   const moveToSource = () => {
-    if (disabled) return
-    const next = targetKeys.filter((k) => !selectedTarget.includes(k))
-    onChange?.(next)
-    setSelectedTarget([])
-  }
+    if (disabled) return;
+    const next = targetKeys.filter((k) => !selectedTarget.includes(k));
+    onChange?.(next);
+    setSelectedTarget([]);
+  };
 
   const moveItemToTarget = (key: string) => {
-    if (disabled) return
-    onChange?.(Array.from(new Set([...targetKeys, key])))
-    setSelectedSource((prev) => prev.filter((selectedKey) => selectedKey !== key))
-  }
+    if (disabled) return;
+    onChange?.(Array.from(new Set([...targetKeys, key])));
+    setSelectedSource((prev) =>
+      prev.filter((selectedKey) => selectedKey !== key),
+    );
+  };
 
   const moveItemToSource = (key: string) => {
-    if (disabled || oneWay) return
-    onChange?.(targetKeys.filter((targetKey) => targetKey !== key))
-    setSelectedTarget((prev) => prev.filter((selectedKey) => selectedKey !== key))
-  }
+    if (disabled || oneWay) return;
+    onChange?.(targetKeys.filter((targetKey) => targetKey !== key));
+    setSelectedTarget((prev) =>
+      prev.filter((selectedKey) => selectedKey !== key),
+    );
+  };
 
   const toggleSource = (key: string) => {
     setSelectedSource((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+  };
 
   const toggleTarget = (key: string) => {
     setSelectedTarget((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+  };
 
   return (
     <div
@@ -102,7 +115,7 @@ export function Transfer({
       className={cn(
         "flex min-w-0 flex-col gap-2 sm:flex-row sm:items-stretch",
         disabled && "opacity-50",
-        className
+        className,
       )}
     >
       <TransferPanel
@@ -113,8 +126,8 @@ export function Transfer({
         searchable={searchable}
         searchValue={searchLeft}
         onSearchChange={setSearchLeft}
-        render={render}
-        disabled={disabled}
+        {...(render ? { render } : {})}
+        {...(disabled !== undefined ? { disabled } : {})}
         onMoveItem={moveItemToTarget}
       />
       <div className="flex flex-row items-center justify-center gap-2 sm:flex-col">
@@ -123,7 +136,7 @@ export function Transfer({
           size="icon"
           onClick={moveToTarget}
           disabled={selectedSource.length === 0 || disabled}
-          aria-label="添加到目标"
+          aria-label={t("transfer.moveToTarget")}
         >
           <ChevronRightIcon className="rotate-90 sm:rotate-0" />
         </Button>
@@ -133,7 +146,7 @@ export function Transfer({
             size="icon"
             onClick={moveToSource}
             disabled={selectedTarget.length === 0 || disabled}
-            aria-label="移回源"
+            aria-label={t("transfer.moveToSource")}
           >
             <ChevronLeftIcon className="rotate-90 sm:rotate-0" />
           </Button>
@@ -147,12 +160,12 @@ export function Transfer({
         searchable={searchable}
         searchValue={searchRight}
         onSearchChange={setSearchRight}
-        render={render}
-        disabled={disabled}
-        onMoveItem={oneWay ? undefined : moveItemToSource}
+        {...(render ? { render } : {})}
+        {...(disabled !== undefined ? { disabled } : {})}
+        {...(oneWay ? {} : { onMoveItem: moveItemToSource })}
       />
     </div>
-  )
+  );
 }
 
 function TransferPanel({
@@ -167,43 +180,45 @@ function TransferPanel({
   disabled,
   onMoveItem,
 }: {
-  title: string
-  items: TransferItem[]
-  selected: string[]
-  onToggle: (key: string) => void
-  searchable: boolean
-  searchValue: string
-  onSearchChange: (v: string) => void
-  render?: (item: TransferItem) => React.ReactNode
-  disabled?: boolean
-  onMoveItem?: (key: string) => void
+  title: string;
+  items: TransferItem[];
+  selected: string[];
+  onToggle: (key: string) => void;
+  searchable: boolean;
+  searchValue: string;
+  onSearchChange: (v: string) => void;
+  render?: (item: TransferItem) => React.ReactNode;
+  disabled?: boolean;
+  onMoveItem?: (key: string) => void;
 }) {
-  const allSelected = items.length > 0 && items.every((i) => selected.includes(i.key))
-  const someSelected = items.some((i) => selected.includes(i.key))
-  const toggleTimerRef = React.useRef<number | null>(null)
+  const { t } = useTranslation("transfer");
+  const allSelected =
+    items.length > 0 && items.every((i) => selected.includes(i.key));
+  const someSelected = items.some((i) => selected.includes(i.key));
+  const toggleTimerRef = React.useRef<number | null>(null);
 
   const clearPendingToggle = React.useCallback(() => {
     if (toggleTimerRef.current) {
-      window.clearTimeout(toggleTimerRef.current)
-      toggleTimerRef.current = null
+      window.clearTimeout(toggleTimerRef.current);
+      toggleTimerRef.current = null;
     }
-  }, [])
+  }, []);
 
-  React.useEffect(() => clearPendingToggle, [clearPendingToggle])
+  React.useEffect(() => () => clearPendingToggle(), [clearPendingToggle]);
 
   const queueToggle = (key: string) => {
-    clearPendingToggle()
+    clearPendingToggle();
     toggleTimerRef.current = window.setTimeout(() => {
-      onToggle(key)
-      toggleTimerRef.current = null
-    }, 180)
-  }
+      onToggle(key);
+      toggleTimerRef.current = null;
+    }, 180);
+  };
 
   const moveItem = (item: TransferItem) => {
-    clearPendingToggle()
-    if (disabled || item.disabled) return
-    onMoveItem?.(item.key)
-  }
+    clearPendingToggle();
+    if (disabled || item.disabled) return;
+    onMoveItem?.(item.key);
+  };
 
   return (
     <div className="flex h-72 w-full min-w-0 flex-col rounded-md border">
@@ -219,39 +234,50 @@ function TransferPanel({
           <Input
             value={searchValue}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="搜索..."
+            placeholder={t("transfer.search")}
             className="h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
           />
         </div>
       )}
       <div className="flex items-center border-b px-3 py-1.5">
-        <button
-          type="button"
-          aria-label="全选"
-          onClick={() => {
-            if (allSelected) items.forEach((i) => selected.includes(i.key) && onToggle(i.key))
-            else items.forEach((i) => !selected.includes(i.key) && onToggle(i.key))
-          }}
-          disabled={disabled || items.length === 0}
+        <Button
+          variant="ghost"
+          size="icon-xs"
+          aria-label={t("transfer.selectAll")}
+          {...(disabled !== undefined
+            ? { disabled: disabled || items.length === 0 }
+            : { disabled: items.length === 0 })}
           className={cn(
-            "flex size-4 items-center justify-center rounded-[4px] border transition-colors",
+            "size-4 rounded-[4px] border p-0",
             allSelected
-              ? "border-primary bg-primary text-primary-foreground"
+              ? "border-primary bg-primary text-primary-foreground hover:bg-primary/80"
               : someSelected
-                ? "border-primary bg-primary/50 text-primary-foreground"
-                : "border-input"
+                ? "border-primary bg-primary/50 text-primary-foreground hover:bg-primary/50"
+                : "border-input",
           )}
+          onClick={() => {
+            if (allSelected)
+              items.forEach((i) => selected.includes(i.key) && onToggle(i.key));
+            else
+              items.forEach(
+                (i) => !selected.includes(i.key) && onToggle(i.key),
+              );
+          }}
         >
           {allSelected && <CheckIcon className="size-3" />}
           {!allSelected && someSelected && (
             <span className="block h-0.5 w-2 bg-primary-foreground" />
           )}
-        </button>
-        <span className="ml-2 text-xs text-muted-foreground">全选</span>
+        </Button>
+        <span className="ml-2 text-xs text-muted-foreground">
+          {t("transfer.selectAll")}
+        </span>
       </div>
       <div className="flex-1 overflow-y-auto p-1">
         {items.length === 0 ? (
-          <div className="px-2 py-6 text-center text-sm text-muted-foreground">无数据</div>
+          <div className="px-2 py-6 text-center text-sm text-muted-foreground">
+            {t("transfer.noData")}
+          </div>
         ) : (
           items.map((item) => (
             <label
@@ -260,7 +286,7 @@ function TransferPanel({
               className={cn(
                 "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
                 "hover:bg-accent",
-                item.disabled && "pointer-events-none opacity-50"
+                item.disabled && "pointer-events-none opacity-50",
               )}
             >
               <Checkbox
@@ -269,11 +295,15 @@ function TransferPanel({
                 disabled={item.disabled || disabled}
               />
               <div className="min-w-0 flex-1 truncate">
-                {render ? render(item) : (
+                {render ? (
+                  render(item)
+                ) : (
                   <>
                     <div className="truncate">{item.label}</div>
                     {item.description && (
-                      <div className="truncate text-xs text-muted-foreground">{item.description}</div>
+                      <div className="truncate text-xs text-muted-foreground">
+                        {item.description}
+                      </div>
                     )}
                   </>
                 )}
@@ -283,5 +313,5 @@ function TransferPanel({
         )}
       </div>
     </div>
-  )
+  );
 }

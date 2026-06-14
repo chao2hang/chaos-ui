@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ChaosI18nProvider } from "@/lib/i18n/provider";
+import { LocaleProvider } from "@/hooks/use-locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -34,8 +36,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <TooltipProvider>{children}</TooltipProvider>
-        <Toaster richColors position="top-right" />
+        <LocaleProvider>
+          <ChaosI18nProvider>
+            <TooltipProvider>
+              <Toaster richColors position="top-right" />
+              {children}
+            </TooltipProvider>
+          </ChaosI18nProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

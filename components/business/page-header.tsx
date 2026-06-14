@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,12 +6,12 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbItemType {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 function PageHeader({
@@ -21,11 +21,11 @@ function PageHeader({
   actions,
   className,
 }: {
-  title: string
-  description?: string
-  breadcrumbItems?: BreadcrumbItemType[]
-  actions?: React.ReactNode
-  className?: string
+  title: string;
+  description?: string;
+  breadcrumbItems?: BreadcrumbItemType[];
+  actions?: React.ReactNode;
+  className?: string;
 }) {
   return (
     <div className={cn("space-y-2", className)}>
@@ -33,7 +33,7 @@ function PageHeader({
         <Breadcrumb>
           <BreadcrumbList>
             {breadcrumbItems.map((item, index) => {
-              const isLast = index === breadcrumbItems.length - 1
+              const isLast = index === breadcrumbItems.length - 1;
               return (
                 <React.Fragment key={index}>
                   <BreadcrumbItem>
@@ -47,7 +47,7 @@ function PageHeader({
                   </BreadcrumbItem>
                   {!isLast && <BreadcrumbSeparator />}
                 </React.Fragment>
-              )
+              );
             })}
           </BreadcrumbList>
         </Breadcrumb>
@@ -62,8 +62,8 @@ function PageHeader({
         {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>
     </div>
-  )
+  );
 }
 
-export { PageHeader }
-export type { BreadcrumbItemType }
+export { PageHeader };
+export type { BreadcrumbItemType };

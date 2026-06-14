@@ -1,25 +1,28 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui";
+import { ScrollArea } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface MobileTabItem {
-  value: string
-  label: string
-  content: React.ReactNode
+  value: string;
+  label: string;
+  content: React.ReactNode;
 }
 
 interface MobileTabsProps {
-  tabs: MobileTabItem[]
-  defaultValue?: string
-  className?: string
+  tabs: MobileTabItem[];
+  defaultValue?: string;
+  className?: string;
 }
 
 function MobileTabs({ tabs, defaultValue, className }: MobileTabsProps) {
   return (
-    <Tabs defaultValue={defaultValue || tabs[0]?.value} className={cn("w-full", className)}>
+    <Tabs
+      defaultValue={defaultValue || tabs[0]?.value}
+      className={cn("w-full", className)}
+    >
       <ScrollArea className="w-full border-b">
         <TabsList className="w-full justify-start rounded-none border-0 bg-transparent p-0 h-auto">
           {tabs.map((tab) => (
@@ -39,8 +42,8 @@ function MobileTabs({ tabs, defaultValue, className }: MobileTabsProps) {
         </TabsContent>
       ))}
     </Tabs>
-  )
+  );
 }
 
-export { MobileTabs }
-export type { MobileTabItem, MobileTabsProps }
+export { MobileTabs };
+export type { MobileTabItem, MobileTabsProps };

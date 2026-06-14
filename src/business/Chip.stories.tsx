@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { FilterIcon, TagIcon } from "lucide-react"
-import { Chip } from "@/components/business/chip"
+import type { Meta, StoryObj } from "@storybook/react";
+import { FilterIcon, TagIcon } from "@/components/ui/icons";
+import { Chip } from "@/components/business/chip";
 
 const meta = {
   title: "Business/Chip",
@@ -9,23 +9,31 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["default", "primary", "success", "warning", "destructive", "info", "outline"],
+      options: [
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "destructive",
+        "info",
+        "outline",
+      ],
     },
     size: {
       control: { type: "select" },
       options: ["sm", "default", "lg"],
     },
   },
-} satisfies Meta<typeof Chip>
+} satisfies Meta<typeof Chip>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     children: "Lifecycle",
   },
-}
+};
 
 export const Variants: Story = {
   render: () => (
@@ -39,7 +47,7 @@ export const Variants: Story = {
       <Chip variant="outline">Outline</Chip>
     </div>
   ),
-}
+};
 
 export const Removable: Story = {
   args: {
@@ -48,16 +56,21 @@ export const Removable: Story = {
     removable: true,
     onRemove: () => undefined,
   },
-}
+};
 
 export const FilterSummary: Story = {
   render: () => (
     <div className="flex max-w-lg flex-wrap gap-2 rounded-lg border p-4">
-      <Chip icon={<TagIcon className="size-3" />} variant="primary">Active campaigns</Chip>
-      <Chip removable onRemove={() => undefined}>Owner: Growth</Chip>
-      <Chip removable onRemove={() => undefined}>Budget above $50k</Chip>
+      <Chip icon={<TagIcon className="size-3" />} variant="primary">
+        Active campaigns
+      </Chip>
+      <Chip removable onRemove={() => undefined}>
+        Owner: Growth
+      </Chip>
+      <Chip removable onRemove={() => undefined}>
+        Budget above $50k
+      </Chip>
       <Chip variant="outline">3 saved filters</Chip>
     </div>
   ),
-}
-
+};

@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
+import { useTranslation } from "react-i18next";
 
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui";
 import {
   Table,
   TableBody,
@@ -10,29 +11,32 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 export interface PermissionMatrixRole {
-  id: string
-  label: string
+  id: string;
+  label: string;
 }
 
 export interface PermissionMatrixResource {
-  id: string
-  label: string
-  description?: string
-  permissions: string[]
+  id: string;
+  label: string;
+  description?: string;
+  permissions: string[];
 }
 
-export type PermissionMatrixValue = Record<string, Record<string, string[]>>
+export type PermissionMatrixValue = Record<string, Record<string, string[]>>;
 
-export interface PermissionMatrixProps extends Omit<React.ComponentProps<"div">, "onChange"> {
-  roles: PermissionMatrixRole[]
-  resources: PermissionMatrixResource[]
-  value: PermissionMatrixValue
-  onChange?: (value: PermissionMatrixValue) => void
-  readOnly?: boolean
+export interface PermissionMatrixProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
+  roles: PermissionMatrixRole[];
+  resources: PermissionMatrixResource[];
+  value: PermissionMatrixValue;
+  onChange?: (value: PermissionMatrixValue) => void;
+  readOnly?: boolean;
 }
 
 export function PermissionMatrix({
@@ -44,13 +48,14 @@ export function PermissionMatrix({
   className,
   ...props
 }: PermissionMatrixProps) {
+  const { t } = useTranslation("transfer");
   const toggle = (roleId: string, resourceId: string, permission: string) => {
-    if (readOnly) return
-    const roleValue = value[roleId] ?? {}
-    const current = roleValue[resourceId] ?? []
+    if (readOnly) return;
+    const roleValue = value[roleId] ?? {};
+    const current = roleValue[resourceId] ?? [];
     const nextPermissions = current.includes(permission)
       ? current.filter((item) => item !== permission)
-      : [...current, permission]
+      : [...current, permission];
 
     onChange?.({
       ...value,
@@ -58,15 +63,21 @@ export function PermissionMatrix({
         ...roleValue,
         [resourceId]: nextPermissions,
       },
-    })
-  }
+    });
+  };
 
   return (
-    <div data-slot="permission-matrix" className={cn("overflow-x-auto rounded-lg border", className)} {...props}>
+    <div
+      data-slot="permission-matrix"
+      className={cn("overflow-x-auto rounded-lg border", className)}
+      {...props}
+    >
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="min-w-48">Resource</TableHead>
+            <TableHead className="min-w-48">
+              {t("permissionMatrix.resource")}
+            </TableHead>
             {roles.map((role) => (
               <TableHead key={role.id} className="min-w-40 text-center">
                 {role.label}
@@ -81,7 +92,9 @@ export function PermissionMatrix({
                 <div>
                   <p className="text-sm font-medium">{resource.label}</p>
                   {resource.description && (
-                    <p className="text-xs text-muted-foreground">{resource.description}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {resource.description}
+                    </p>
                   )}
                 </div>
               </TableCell>
@@ -89,11 +102,18 @@ export function PermissionMatrix({
                 <TableCell key={role.id} className="align-top">
                   <div className="flex flex-col gap-2">
                     {resource.permissions.map((permission) => (
-                      <label key={permission} className="flex items-center justify-center gap-2 text-xs">
+                      <label
+                        key={permission}
+                        className="flex items-center justify-center gap-2 text-xs"
+                      >
                         <Checkbox
-                          checked={(value[role.id]?.[resource.id] ?? []).includes(permission)}
+                          checked={(
+                            value[role.id]?.[resource.id] ?? []
+                          ).includes(permission)}
                           disabled={readOnly}
-                          onCheckedChange={() => toggle(role.id, resource.id, permission)}
+                          onCheckedChange={() =>
+                            toggle(role.id, resource.id, permission)
+                          }
                         />
                         <span>{permission}</span>
                       </label>
@@ -106,5 +126,5 @@ export function PermissionMatrix({
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

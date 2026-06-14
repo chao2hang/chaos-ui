@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { cva, type VariantProps } from "class-variance-authority"
-import { ChevronDownIcon } from "lucide-react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
+import { ChevronDownIcon } from "@/components/ui/icons";
 
 const formSectionVariants = cva(
   "rounded-lg border bg-card text-card-foreground",
@@ -18,18 +18,19 @@ const formSectionVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
-)
+  },
+);
 
 interface FormSectionProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof formSectionVariants> {
-  title?: string
-  description?: string
-  collapsible?: boolean
-  defaultCollapsed?: boolean
-  required?: boolean
-  extra?: React.ReactNode
+  title?: string;
+  description?: string;
+  collapsible?: boolean;
+  defaultCollapsed?: boolean;
+  required?: boolean;
+  extra?: React.ReactNode;
 }
 
 function FormSection({
@@ -44,7 +45,7 @@ function FormSection({
   children,
   ...props
 }: FormSectionProps) {
-  const [collapsed, setCollapsed] = React.useState(defaultCollapsed)
+  const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
 
   return (
     <div
@@ -57,7 +58,7 @@ function FormSection({
         <div
           className={cn(
             "flex items-center justify-between px-4 py-3",
-            collapsible && "cursor-pointer select-none"
+            collapsible && "cursor-pointer select-none",
           )}
           onClick={() => collapsible && setCollapsed(!collapsed)}
         >
@@ -78,7 +79,7 @@ function FormSection({
               <ChevronDownIcon
                 className={cn(
                   "size-4 text-muted-foreground transition-transform",
-                  collapsed && "-rotate-90"
+                  collapsed && "-rotate-90",
                 )}
               />
             )}
@@ -87,17 +88,14 @@ function FormSection({
       )}
       {(!collapsible || !collapsed) && (
         <div
-          className={cn(
-            "px-4 pb-4",
-            title || description ? "pt-0" : "pt-4"
-          )}
+          className={cn("px-4 pb-4", title || description ? "pt-0" : "pt-4")}
         >
           {children}
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { FormSection, formSectionVariants }
-export type { FormSectionProps }
+export { FormSection, formSectionVariants };
+export type { FormSectionProps };

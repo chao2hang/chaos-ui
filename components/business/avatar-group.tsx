@@ -1,20 +1,21 @@
-"use client"
-import * as React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { cn } from "@/lib/utils"
-import { initials } from "@/lib/format"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
+import { initials } from "@/lib/format";
 
 export interface AvatarUser {
-  name: string
-  src?: string
+  name: string;
+  src?: string;
 }
 
 interface AvatarGroupProps extends React.ComponentProps<"div"> {
-  users: AvatarUser[]
-  max?: number
-  size?: "sm" | "default" | "lg" | "xl"
-  showOverflow?: boolean
-  onOverflowClick?: () => void
+  users: AvatarUser[];
+  max?: number;
+  size?: "sm" | "default" | "lg" | "xl";
+  showOverflow?: boolean;
+  onOverflowClick?: () => void;
 }
 
 const sizeMap = {
@@ -22,14 +23,14 @@ const sizeMap = {
   default: "size-8 text-xs",
   lg: "size-10 text-sm",
   xl: "size-12 text-base",
-} as const
+} as const;
 
 const ringMap = {
   sm: "ring-1",
   default: "ring-2",
   lg: "ring-2",
   xl: "ring-2",
-} as const
+} as const;
 
 export function AvatarGroup({
   users,
@@ -40,8 +41,9 @@ export function AvatarGroup({
   className,
   ...props
 }: AvatarGroupProps) {
-  const visible = users.slice(0, max)
-  const overflow = users.length - max
+  const { t } = useTranslation("transfer");
+  const visible = users.slice(0, max);
+  const overflow = users.length - max;
 
   return (
     <div
@@ -55,7 +57,7 @@ export function AvatarGroup({
           className={cn(
             sizeMap[size],
             ringMap[size],
-            "border border-background"
+            "border border-background",
           )}
           title={u.name}
         >
@@ -64,19 +66,20 @@ export function AvatarGroup({
         </Avatar>
       ))}
       {overflow > 0 && showOverflow && (
-        <button
+        <Button
           type="button"
+          variant="ghost"
           onClick={onOverflowClick}
           className={cn(
             "inline-flex shrink-0 items-center justify-center rounded-full border border-background bg-muted font-medium text-muted-foreground",
             sizeMap[size],
-            ringMap[size]
+            ringMap[size],
           )}
-          aria-label={`查看全部 ${users.length} 个`}
+          aria-label={t("avatarGroup.viewAll", { count: users.length })}
         >
           +{overflow}
-        </button>
+        </Button>
       )}
     </div>
-  )
+  );
 }

@@ -1,31 +1,50 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Select, SelectTrigger, SelectContent, SelectValue, SelectItem } from "@/components/ui/select"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectValue,
+  SelectItem,
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface MobileSelectOption {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 interface MobileSelectProps {
-  options: MobileSelectOption[]
-  value?: string
-  onValueChange?: (value: string) => void
-  placeholder?: string
-  disabled?: boolean
-  className?: string
+  options: MobileSelectOption[];
+  value?: string;
+  onValueChange?: (value: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
-function MobileSelect({ options, value, onValueChange, placeholder, disabled, className }: MobileSelectProps) {
+function MobileSelect({
+  options,
+  value,
+  onValueChange,
+  placeholder,
+  disabled,
+  className,
+}: MobileSelectProps) {
   return (
-    <Select value={value} onValueChange={(nextValue) => { if (nextValue !== null) onValueChange?.(nextValue) }} disabled={disabled}>
+    <Select
+      value={value}
+      onValueChange={(nextValue) => {
+        if (nextValue !== null) onValueChange?.(nextValue);
+      }}
+      disabled={disabled}
+    >
       <SelectTrigger
         className={cn(
           "h-12 px-4 text-base w-full",
           "md:h-8 md:px-2.5 md:text-sm",
-          className
+          className,
         )}
       >
         <SelectValue placeholder={placeholder} />
@@ -38,8 +57,8 @@ function MobileSelect({ options, value, onValueChange, placeholder, disabled, cl
         ))}
       </SelectContent>
     </Select>
-  )
+  );
 }
 
-export { MobileSelect }
-export type { MobileSelectProps, MobileSelectOption }
+export { MobileSelect };
+export type { MobileSelectProps, MobileSelectOption };

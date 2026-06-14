@@ -1,6 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
-import { AlertCircleIcon, CheckCircle2Icon, InfoIcon, AlertTriangleIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import {
+  AlertCircleIcon,
+  CheckCircle2Icon,
+  InfoIcon,
+  AlertTriangleIcon,
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Components/Alert",
@@ -9,10 +14,10 @@ const meta = {
   parameters: {
     layout: "padded",
   },
-} satisfies Meta<typeof Alert>
+} satisfies Meta<typeof Alert>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -24,7 +29,7 @@ export const Default: Story = {
       </>
     ),
   },
-}
+};
 
 export const Destructive: Story = {
   args: {
@@ -33,11 +38,13 @@ export const Destructive: Story = {
     children: (
       <>
         <AlertTitle>Error</AlertTitle>
-        <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+        <AlertDescription>
+          Your session has expired. Please log in again.
+        </AlertDescription>
       </>
     ),
   },
-}
+};
 
 export const Success: Story = {
   args: {
@@ -46,11 +53,13 @@ export const Success: Story = {
     children: (
       <>
         <AlertTitle>Success</AlertTitle>
-        <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+        <AlertDescription>
+          Your changes have been saved successfully.
+        </AlertDescription>
       </>
     ),
   },
-}
+};
 
 export const Warning: Story = {
   args: {
@@ -63,7 +72,7 @@ export const Warning: Story = {
       </>
     ),
   },
-}
+};
 
 export const Info: Story = {
   args: {
@@ -72,11 +81,13 @@ export const Info: Story = {
     children: (
       <>
         <AlertTitle>Info</AlertTitle>
-        <AlertDescription>A new version is available for download.</AlertDescription>
+        <AlertDescription>
+          A new version is available for download.
+        </AlertDescription>
       </>
     ),
   },
-}
+};
 
 export const WithoutIcon: Story = {
   args: {
@@ -87,7 +98,7 @@ export const WithoutIcon: Story = {
       </>
     ),
   },
-}
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -114,4 +125,4 @@ export const AllVariants: Story = {
       </Alert>
     </div>
   ),
-}
+};

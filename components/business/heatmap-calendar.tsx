@@ -1,56 +1,57 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 interface HeatmapCalendarProps extends React.ComponentProps<"div"> {
-  data: Array<{ date: string | Date; value: number }>
-  startDate?: Date
-  endDate?: Date
-  weekStartsOn?: 0 | 1
-  cellSize?: number
-  gap?: number
-  levels?: number
-  className?: string
-  legendClassName?: string
-  showLegend?: boolean
-  colorStops?: [string, string, string, string, string]
+  data: Array<{ date: string | Date; value: number }>;
+  startDate?: Date;
+  endDate?: Date;
+  weekStartsOn?: 0 | 1;
+  cellSize?: number;
+  gap?: number;
+  levels?: number;
+  className?: string;
+  legendClassName?: string;
+  showLegend?: boolean;
+  colorStops?: [string, string, string, string, string];
 }
 
 function formatISO(d: Date) {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 function startOfDay(d: Date) {
-  const r = new Date(d)
-  r.setHours(0, 0, 0, 0)
-  return r
+  const r = new Date(d);
+  r.setHours(0, 0, 0, 0);
+  return r;
 }
 
 function buildMatrix(
   data: Map<string, number>,
   start: Date,
   end: Date,
-  weekStartsOn: 0 | 1
+  weekStartsOn: 0 | 1,
 ): { week: number; day: number; date: Date; value: number }[] {
-  const map: { week: number; day: number; date: Date; value: number }[] = []
-  const firstSunday = new Date(start)
-  const startDay = firstSunday.getDay()
-  const offsetToWeekStart = (startDay - weekStartsOn + 7) % 7
-  firstSunday.setDate(firstSunday.getDate() - offsetToWeekStart)
-  let week = 0
-  const cursor = new Date(firstSunday)
+  const map: { week: number; day: number; date: Date; value: number }[] = [];
+  const firstSunday = new Date(start);
+  const startDay = firstSunday.getDay();
+  const offsetToWeekStart = (startDay - weekStartsOn + 7) % 7;
+  firstSunday.setDate(firstSunday.getDate() - offsetToWeekStart);
+  let week = 0;
+  const cursor = new Date(firstSunday);
   while (cursor <= end || cursor.getDay() !== weekStartsOn) {
-    const inRange = cursor >= start && cursor <= end
+    const inRange = cursor >= start && cursor <= end;
     if (inRange) {
-      const key = formatISO(cursor)
-      const value = data.get(key) ?? 0
-      map.push({ week, day: cursor.getDay(), date: new Date(cursor), value })
+      const key = formatISO(cursor);
+      const value = data.get(key) ?? 0;
+      map.push({ week, day: cursor.getDay(), date: new Date(cursor), value });
     }
-    cursor.setDate(cursor.getDate() + 1)
-    if (cursor.getDay() === weekStartsOn) week++
-    if (cursor.getFullYear() > end.getFullYear() + 1) break
+    cursor.setDate(cursor.getDate() + 1);
+    if (cursor.getDay() === weekStartsOn) week++;
+    if (cursor.getFullYear() > end.getFullYear() + 1) break;
   }
-  return map
+  return map;
 }
 
 export function HeatmapCalendar({
@@ -65,53 +66,87 @@ export function HeatmapCalendar({
   showLegend = true,
   colorStops,
 }: HeatmapCalendarProps) {
-  const [now] = React.useState(() => Date.now())
-  const start = startOfDay(startDate ?? new Date(now - 365 * 24 * 60 * 60 * 1000))
-  const end = startOfDay(endDate ?? new Date(now))
+  const { t } = useTranslation("chart");
+  const [now] = React.useState(() => Date.now());
+  const start = startOfDay(
+    startDate ?? new Date(now - 365 * 24 * 60 * 60 * 1000),
+  );
+  const end = startOfDay(endDate ?? new Date(now));
   const map = React.useMemo(() => {
-    const m = new Map<string, number>()
+    const m = new Map<string, number>();
     for (const d of data) {
-      m.set(formatISO(d.date instanceof Date ? d.date : new Date(d.date)), d.value)
+      m.set(
+        formatISO(d.date instanceof Date ? d.date : new Date(d.date)),
+        d.value,
+      );
     }
-    return m
-  }, [data])
+    return m;
+  }, [data]);
 
   const matrix = React.useMemo(
     () => buildMatrix(map, start, end, weekStartsOn),
-    [map, start, end, weekStartsOn]
-  )
+    [map, start, end, weekStartsOn],
+  );
 
-  const max = Math.max(1, ...data.map((d) => d.value))
-  const totalWeeks = matrix.reduce((acc, m) => Math.max(acc, m.week), 0) + 1
+  const max = Math.max(1, ...data.map((d) => d.value));
+  const totalWeeks = matrix.reduce((acc, m) => Math.max(acc, m.week), 0) + 1;
 
   const getLevel = (v: number) => {
-    if (v <= 0) return 0
-    return Math.min(levels, Math.max(1, Math.ceil((v / max) * levels)))
-  }
+    if (v <= 0) return 0;
+    return Math.min(levels, Math.max(1, Math.ceil((v / max) * levels)));
+  };
 
-  const palette = colorStops ?? ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"]
+  const palette = colorStops ?? [
+    "#ebedf0",
+    "#9be9a8",
+    "#40c463",
+    "#30a14e",
+    "#216e39",
+  ];
 
   const getColor = (level: number) => {
-    if (level === 0) return "var(--hm-0, " + palette[0] + ")"
-    return "var(--hm-" + level + ", " + palette[level] + ")"
-  }
+    if (level === 0) return "var(--hm-0, " + palette[0] + ")";
+    return "var(--hm-" + level + ", " + palette[level] + ")";
+  };
 
   const monthLabels = React.useMemo(() => {
-    const labels: { x: number; label: string }[] = []
-    let lastMonth = -1
+    const labels: { x: number; label: string }[] = [];
+    let lastMonth = -1;
     matrix.forEach((m) => {
-      const month = m.date.getMonth()
+      const month = m.date.getMonth();
       if (month !== lastMonth && m.day === weekStartsOn) {
-        labels.push({ x: m.week * (cellSize + gap), label: `${m.date.getMonth() + 1}月` })
-        lastMonth = month
+        labels.push({
+          x: m.week * (cellSize + gap),
+          label: t("heatmapCalendar.monthLabel", {
+            count: m.date.getMonth() + 1,
+          }),
+        });
+        lastMonth = month;
       }
-    })
-    return labels
-  }, [matrix, cellSize, gap, weekStartsOn])
+    });
+    return labels;
+  }, [matrix, cellSize, gap, weekStartsOn, t]);
 
-  const dayLabels = weekStartsOn === 0
-    ? ["", "一", "", "三", "", "五", ""]
-    : ["日", "", "二", "", "四", "", "六"]
+  const dayLabels =
+    weekStartsOn === 0
+      ? [
+          "",
+          t("heatmapCalendar.day.mon"),
+          "",
+          t("heatmapCalendar.day.wed"),
+          "",
+          t("heatmapCalendar.day.fri"),
+          "",
+        ]
+      : [
+          t("heatmapCalendar.day.sun"),
+          "",
+          t("heatmapCalendar.day.tue"),
+          "",
+          t("heatmapCalendar.day.thu"),
+          "",
+          t("heatmapCalendar.day.sat"),
+        ];
 
   return (
     <div
@@ -129,9 +164,15 @@ export function HeatmapCalendar({
       }
     >
       <div className="flex" style={{ gap }}>
-        <div className="flex flex-col text-[0.6rem] text-muted-foreground" style={{ gap, paddingTop: cellSize + gap + 4 }}>
+        <div
+          className="flex flex-col text-[0.6rem] text-muted-foreground"
+          style={{ gap, paddingTop: cellSize + gap + 4 }}
+        >
           {dayLabels.map((d, i) => (
-            <div key={i} style={{ height: cellSize, lineHeight: `${cellSize}px` }}>
+            <div
+              key={i}
+              style={{ height: cellSize, lineHeight: `${cellSize}px` }}
+            >
               {d}
             </div>
           ))}
@@ -144,9 +185,16 @@ export function HeatmapCalendar({
               </span>
             ))}
           </div>
-          <div className="grid" style={{ gridTemplateColumns: `repeat(${totalWeeks}, ${cellSize}px)`, gridAutoRows: cellSize, gap }}>
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: `repeat(${totalWeeks}, ${cellSize}px)`,
+              gridAutoRows: cellSize,
+              gap,
+            }}
+          >
             {matrix.map((m) => {
-              const level = getLevel(m.value)
+              const level = getLevel(m.value);
               return (
                 <div
                   key={`${m.week}-${m.day}`}
@@ -158,24 +206,28 @@ export function HeatmapCalendar({
                   }}
                   title={`${formatISO(m.date)}: ${m.value}`}
                 />
-              )
+              );
             })}
           </div>
         </div>
       </div>
       {showLegend && (
         <div className="mt-2 flex items-center justify-end gap-1 text-[0.6rem] text-muted-foreground">
-          <span>少</span>
+          <span>{t("heatmapCalendar.less")}</span>
           {Array.from({ length: levels }).map((_, i) => (
             <span
               key={i}
               className="inline-block rounded-sm"
-              style={{ width: cellSize, height: cellSize, backgroundColor: getColor(i) }}
+              style={{
+                width: cellSize,
+                height: cellSize,
+                backgroundColor: getColor(i),
+              }}
             />
           ))}
-          <span>多</span>
+          <span>{t("heatmapCalendar.more")}</span>
         </div>
       )}
     </div>
-  )
+  );
 }

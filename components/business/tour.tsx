@@ -1,8 +1,13 @@
-"use client"
-import * as React from "react"
-import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XIcon,
+} from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
 import {
   Card,
   CardContent,
@@ -10,24 +15,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui";
 
 export interface TourStep {
-  target: string | (() => HTMLElement | null)
-  title: string
-  description?: React.ReactNode
-  placement?: "top" | "bottom" | "left" | "right"
-  offset?: number
+  target: string | (() => HTMLElement | null);
+  title: string;
+  description?: React.ReactNode;
+  placement?: "top" | "bottom" | "left" | "right";
+  offset?: number;
 }
 
 interface TourProps {
-  steps: TourStep[]
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-  onComplete?: () => void
-  onSkip?: () => void
-  storageKey?: string
-  className?: string
+  steps: TourStep[];
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  onComplete?: () => void;
+  onSkip?: () => void;
+  storageKey?: string;
+  className?: string;
 }
 
 export function Tour({
@@ -39,81 +44,88 @@ export function Tour({
   storageKey,
   className,
 }: TourProps) {
+  const { t } = useTranslation("tour");
   const [internalOpen, setInternalOpen] = React.useState<boolean>(() => {
-    if (typeof window === "undefined" || !storageKey) return true
+    if (typeof window === "undefined" || !storageKey) return true;
     try {
-      return localStorage.getItem(storageKey) !== "1"
+      return localStorage.getItem(storageKey) !== "1";
     } catch {
-      return true
+      return true;
     }
-  })
-  const [index, setIndex] = React.useState(0)
-  const [rect, setRect] = React.useState<DOMRect | null>(null)
-  const isOpen = open ?? internalOpen
+  });
+  const [index, setIndex] = React.useState(0);
+  const [rect, setRect] = React.useState<DOMRect | null>(null);
+  const isOpen = open ?? internalOpen;
   const setOpen = React.useCallback(
     (v: boolean) => {
-      if (open === undefined) setInternalOpen(v)
-      onOpenChange?.(v)
+      if (open === undefined) setInternalOpen(v);
+      onOpenChange?.(v);
     },
-    [open, onOpenChange]
-  )
+    [open, onOpenChange],
+  );
 
   React.useEffect(() => {
-    if (!isOpen) return
-    const step = steps[index]
-    if (!step) return
-    const el = typeof step.target === "function" ? step.target() : document.querySelector(step.target)
-    if (!el) return
-    el.scrollIntoView({ behavior: "smooth", block: "center" })
-    const update = () => setRect((el as HTMLElement).getBoundingClientRect())
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(el as HTMLElement)
-    window.addEventListener("scroll", update, true)
-    window.addEventListener("resize", update)
+    if (!isOpen) return;
+    const step = steps[index];
+    if (!step) return;
+    const el =
+      typeof step.target === "function"
+        ? step.target()
+        : document.querySelector(step.target);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    const update = () => setRect((el as HTMLElement).getBoundingClientRect());
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el as HTMLElement);
+    window.addEventListener("scroll", update, true);
+    window.addEventListener("resize", update);
     return () => {
-      ro.disconnect()
-      window.removeEventListener("scroll", update, true)
-      window.removeEventListener("resize", update)
-    }
-  }, [isOpen, index, steps])
+      ro.disconnect();
+      window.removeEventListener("scroll", update, true);
+      window.removeEventListener("resize", update);
+    };
+  }, [isOpen, index, steps]);
 
   const finish = (skipped: boolean) => {
-    if (skipped) onSkip?.()
-    else onComplete?.()
-    if (storageKey) localStorage.setItem(storageKey, "1")
-    setOpen(false)
-    setIndex(0)
-  }
+    if (skipped) onSkip?.();
+    else onComplete?.();
+    if (storageKey) localStorage.setItem(storageKey, "1");
+    setOpen(false);
+    setIndex(0);
+  };
 
-  if (!isOpen || !rect) return null
-  const step = steps[index]
-  const placement = step.placement ?? "bottom"
-  const offset = step.offset ?? 8
-  const popoverWidth = Math.min(320, window.innerWidth - 16)
+  if (!isOpen || !rect) return null;
+  const step = steps[index] ?? { target: "", title: "" };
+  const placement = step.placement ?? "bottom";
+  const offset = step.offset ?? 8;
+  const popoverWidth = Math.min(320, window.innerWidth - 16);
 
   const popoverStyle: React.CSSProperties = (() => {
-    const style: React.CSSProperties = { position: "fixed", zIndex: 9999 }
+    const style: React.CSSProperties = { position: "fixed", zIndex: 9999 };
     if (placement === "bottom") {
-      style.top = rect.bottom + offset
-      style.left = rect.left + rect.width / 2 - popoverWidth / 2
+      style.top = rect.bottom + offset;
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2;
     } else if (placement === "top") {
-      style.top = rect.top - offset - 200
-      style.left = rect.left + rect.width / 2 - popoverWidth / 2
+      style.top = rect.top - offset - 200;
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2;
     } else if (placement === "right") {
-      style.top = rect.top + rect.height / 2 - 100
-      style.left = rect.right + offset
+      style.top = rect.top + rect.height / 2 - 100;
+      style.left = rect.right + offset;
     } else {
-      style.top = rect.top + rect.height / 2 - 100
-      style.left = rect.left - offset - popoverWidth
+      style.top = rect.top + rect.height / 2 - 100;
+      style.left = rect.left - offset - popoverWidth;
     }
     Object.assign(style, {
-      left: Math.max(8, Math.min((style.left as number), window.innerWidth - popoverWidth - 8)),
-      top: Math.max(8, Math.min((style.top as number), window.innerHeight - 220)),
+      left: Math.max(
+        8,
+        Math.min(style.left as number, window.innerWidth - popoverWidth - 8),
+      ),
+      top: Math.max(8, Math.min(style.top as number, window.innerHeight - 220)),
       width: popoverWidth,
-    })
-    return style
-  })()
+    });
+    return style;
+  })();
 
   return (
     <>
@@ -149,7 +161,7 @@ export function Tour({
               variant="ghost"
               size="icon-xs"
               onClick={() => finish(true)}
-              aria-label="关闭"
+              aria-label={t("tour.close")}
             >
               <XIcon />
             </Button>
@@ -161,12 +173,8 @@ export function Tour({
           </CardContent>
         )}
         <CardFooter className="flex flex-wrap items-center justify-between gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => finish(true)}
-          >
-            跳过
+          <Button variant="ghost" size="sm" onClick={() => finish(true)}>
+            {t("tour.skip")}
           </Button>
           <div className="flex flex-wrap items-center justify-end gap-1">
             <Button
@@ -176,21 +184,21 @@ export function Tour({
               onClick={() => setIndex((i) => Math.max(0, i - 1))}
             >
               <ChevronLeftIcon />
-              上一步
+              {t("tour.previous")}
             </Button>
             {index < steps.length - 1 ? (
               <Button size="sm" onClick={() => setIndex((i) => i + 1)}>
-                下一步
+                {t("tour.next")}
                 <ChevronRightIcon />
               </Button>
             ) : (
               <Button size="sm" onClick={() => finish(false)}>
-                完成
+                {t("tour.complete")}
               </Button>
             )}
           </div>
         </CardFooter>
       </Card>
     </>
-  )
+  );
 }

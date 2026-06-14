@@ -1,6 +1,6 @@
-import * as React from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { Combobox, type ComboboxOption } from "@/components/business/combobox"
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Combobox, type ComboboxOption } from "@/components/business/combobox";
 
 const assigneeOptions: ComboboxOption[] = [
   {
@@ -38,29 +38,29 @@ const assigneeOptions: ComboboxOption[] = [
     disabled: true,
     group: "Archived",
   },
-]
+];
 
 const meta = {
   title: "Business/Combobox",
   component: Combobox,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof Combobox>
+} satisfies Meta<typeof Combobox>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-type ComboboxProps = React.ComponentProps<typeof Combobox>
+export default meta;
+type Story = StoryObj<typeof meta>;
+type ComboboxProps = React.ComponentProps<typeof Combobox>;
 
 function ControlledCombobox(args: ComboboxProps) {
-  const [value, setValue] = React.useState(args.value)
+  const [value, setValue] = React.useState(args.value);
 
   return (
     <div className="flex max-w-sm flex-col gap-3">
-      <Combobox {...args} value={value} onChange={setValue} />
+      <Combobox {...args} value={(value ?? "") as string} onChange={setValue} />
       <p className="text-xs text-muted-foreground">
         Selected value: <span className="font-mono">{value ?? "none"}</span>
       </p>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -71,7 +71,7 @@ export const Default: Story = {
     searchPlaceholder: "Search people...",
   },
   render: (args) => <ControlledCombobox {...args} />,
-}
+};
 
 export const CustomOption: Story = {
   args: {
@@ -82,13 +82,15 @@ export const CustomOption: Story = {
       <span className="flex flex-col">
         <span>{option.label}</span>
         {option.description && (
-          <span className="text-xs text-muted-foreground">{option.description}</span>
+          <span className="text-xs text-muted-foreground">
+            {option.description}
+          </span>
         )}
       </span>
     ),
   },
   render: (args) => <ControlledCombobox {...args} />,
-}
+};
 
 export const NotSearchable: Story = {
   args: {
@@ -98,7 +100,7 @@ export const NotSearchable: Story = {
     clearable: false,
   },
   render: (args) => <ControlledCombobox {...args} />,
-}
+};
 
 export const Disabled: Story = {
   args: {
@@ -106,7 +108,7 @@ export const Disabled: Story = {
     value: "elena",
     disabled: true,
   },
-}
+};
 
 export const Empty: Story = {
   args: {
@@ -115,5 +117,4 @@ export const Empty: Story = {
     emptyText: "No matching owners",
   },
   render: (args) => <ControlledCombobox {...args} />,
-}
-
+};

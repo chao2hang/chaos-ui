@@ -1,16 +1,39 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 import {
-  InboxIcon, SearchIcon, AlertTriangleIcon, WifiOffIcon,
-} from "lucide-react"
+  InboxIcon,
+  SearchIcon,
+  AlertTriangleIcon,
+  WifiOffIcon,
+} from "@/components/ui/icons";
 
 const variantConfig = {
-  default: { icon: InboxIcon, title: "No data", description: "There are no items to display." },
-  search: { icon: SearchIcon, title: "No results", description: "Try adjusting your search or filter criteria." },
-  error: { icon: AlertTriangleIcon, title: "Something went wrong", description: "An error occurred while loading data." },
-  network: { icon: WifiOffIcon, title: "No connection", description: "Check your internet connection and try again." },
-}
+  default: { icon: InboxIcon },
+  search: { icon: SearchIcon },
+  error: { icon: AlertTriangleIcon },
+  network: { icon: WifiOffIcon },
+};
+
+const variantI18n = {
+  default: {
+    title: "emptyState.default.title" as const,
+    description: "emptyState.default.description" as const,
+  },
+  search: {
+    title: "emptyState.search.title" as const,
+    description: "emptyState.search.description" as const,
+  },
+  error: {
+    title: "emptyState.error.title" as const,
+    description: "emptyState.error.description" as const,
+  },
+  network: {
+    title: "emptyState.network.title" as const,
+    description: "emptyState.network.description" as const,
+  },
+};
 
 function EmptyState({
   variant = "default",
@@ -20,28 +43,40 @@ function EmptyState({
   action,
   className,
 }: {
-  variant?: string
-  icon?: React.ElementType
-  title?: string
-  description?: string
-  action?: React.ReactNode
-  className?: string
+  variant?: string;
+  icon?: React.ElementType;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
+  className?: string;
 }) {
-  const config = (variantConfig as Record<string, typeof variantConfig.default>)[variant] ?? variantConfig.default
-  const Icon = iconProp ?? config.icon
-  const title = titleProp ?? config.title
-  const description = descProp ?? config.description
+  const { t } = useTranslation("data");
+  const config =
+    (variantConfig as Record<string, { icon: React.ElementType }>)[variant] ??
+    variantConfig.default;
+  const keys =
+    variantI18n[variant as keyof typeof variantI18n] ?? variantI18n.default;
+  const Icon = iconProp ?? config.icon;
+  const title = titleProp ?? t(keys.title, keys.title);
+  const description = descProp ?? t(keys.description, keys.description);
 
   return (
-    <div className={cn("flex flex-col items-center justify-center py-12 text-center", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center py-12 text-center",
+        className,
+      )}
+    >
       <div className="flex size-12 items-center justify-center rounded-full bg-muted">
         <Icon className="size-6 text-muted-foreground" />
       </div>
       <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-      <p className="mt-1 text-sm text-muted-foreground max-w-sm">{description}</p>
+      <p className="mt-1 text-sm text-muted-foreground max-w-sm">
+        {description}
+      </p>
       {action && <div className="mt-4">{action}</div>}
     </div>
-  )
+  );
 }
 
-export { EmptyState, variantConfig }
+export { EmptyState, variantConfig };

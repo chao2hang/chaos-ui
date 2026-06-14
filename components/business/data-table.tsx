@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Table,
   TableBody,
@@ -8,13 +8,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface Column<T> {
-  key: string
-  header: string
-  render?: (row: T) => React.ReactNode
+  key: string;
+  header: string;
+  render?: (row: T) => React.ReactNode;
 }
 
 function DataTable<T>({
@@ -23,10 +23,10 @@ function DataTable<T>({
   onRowClick,
   className,
 }: {
-  columns: Column<T>[]
-  data: T[]
-  onRowClick?: (row: T) => void
-  className?: string
+  columns: Column<T>[];
+  data: T[];
+  onRowClick?: (row: T) => void;
+  className?: string;
 }) {
   return (
     <Table className={cn(className)}>
@@ -55,8 +55,8 @@ function DataTable<T>({
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }
 
-export { DataTable }
-export type { Column }
+export { DataTable };
+export type { Column };

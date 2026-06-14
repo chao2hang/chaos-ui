@@ -1,5 +1,10 @@
-import { CalendarDaysIcon, DollarSignIcon, RadioTowerIcon } from "lucide-react"
-import type { ReactNode } from "react"
+import {
+  CalendarDaysIcon,
+  DollarSignIcon,
+  RadioTowerIcon,
+} from "@/components/ui/icons";
+import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Card,
   CardAction,
@@ -8,31 +13,31 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { CampaignStatusTag } from "@/components/business/campaign-status-tag"
-import type { CampaignStatus } from "@/components/business/campaign-status-tag"
-import type { MarketingChannel } from "@/components/business/channel-picker"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { Progress } from "@/components/ui";
+import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
+import type { CampaignStatus } from "@/components/business/campaign-status-tag";
+import type { MarketingChannel } from "@/components/business/channel-picker";
+import { cn } from "@/lib/utils";
 
 export interface CampaignMetric {
-  label: string
-  value: string | number
-  helper?: string
+  label: string;
+  value: string | number;
+  helper?: string;
 }
 
 export interface CampaignCardProps {
-  name: string
-  description?: string
-  status: CampaignStatus
-  channels: MarketingChannel[]
-  dateRange?: string
-  budget?: number
-  spent?: number
-  currency?: string
-  metrics?: CampaignMetric[]
-  actions?: ReactNode
-  className?: string
+  name: string;
+  description?: string;
+  status: CampaignStatus;
+  channels: MarketingChannel[];
+  dateRange?: string;
+  budget?: number;
+  spent?: number;
+  currency?: string;
+  metrics?: CampaignMetric[];
+  actions?: ReactNode;
+  className?: string;
 }
 
 function formatBudget(value: number, currency: string) {
@@ -40,7 +45,7 @@ function formatBudget(value: number, currency: string) {
     style: "currency",
     currency,
     maximumFractionDigits: 0,
-  }).format(value)
+  }).format(value);
 }
 
 export function CampaignCard({
@@ -56,7 +61,10 @@ export function CampaignCard({
   actions,
   className,
 }: CampaignCardProps) {
-  const budgetPercent = budget ? Math.min(Math.round((spent / budget) * 100), 100) : undefined
+  const { t } = useTranslation("marketing");
+  const budgetPercent = budget
+    ? Math.min(Math.round((spent / budget) * 100), 100)
+    : undefined;
 
   return (
     <Card data-slot="campaign-card" className={className}>
@@ -89,7 +97,9 @@ export function CampaignCard({
         {budgetPercent !== undefined && (
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>{formatBudget(spent, currency)} spent</span>
+              <span>
+                {formatBudget(spent, currency)} {t("campaignCard.spent")}
+              </span>
               <span>{budgetPercent}%</span>
             </div>
             <Progress value={budgetPercent} />
@@ -99,15 +109,25 @@ export function CampaignCard({
           <div className="grid gap-2 sm:grid-cols-3">
             {metrics.map((metric) => (
               <div key={metric.label} className={cn("rounded-lg border p-3")}>
-                <div className="text-xs text-muted-foreground">{metric.label}</div>
-                <div className="text-lg font-semibold tabular-nums">{metric.value}</div>
-                {metric.helper && <div className="text-xs text-muted-foreground">{metric.helper}</div>}
+                <div className="text-xs text-muted-foreground">
+                  {metric.label}
+                </div>
+                <div className="text-lg font-semibold tabular-nums">
+                  {metric.value}
+                </div>
+                {metric.helper && (
+                  <div className="text-xs text-muted-foreground">
+                    {metric.helper}
+                  </div>
+                )}
               </div>
             ))}
           </div>
         )}
       </CardContent>
-      {actions && <CardFooter className="justify-end gap-2">{actions}</CardFooter>}
+      {actions && (
+        <CardFooter className="justify-end gap-2">{actions}</CardFooter>
+      )}
     </Card>
-  )
+  );
 }
