@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-D2yxXLVK.js";import{u as t}from"./floating-ui.utils.dom-CJIApmTB.js";function n(e){return e?.ownerDocument||document}var r=e((()=>{t()}));export{n,r as t};
