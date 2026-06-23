@@ -1,0 +1,60 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+.storybook-static
+dist
+out
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+*.md
+!README.md
+
+# Tests
+coverage
+.nyc_output
+*.test.*
+*.spec.*
+vitest.config.ts
+vitest.setup.ts
+vitest.shims.d.ts
+
+# Config files that aren't needed in production
+.eslintrc*
+eslint.config.*
+.prettierrc*
+prettier.config.*
+tsconfig.json
+postcss.config.*
+tailwind.config.*
+components.json
+
+# Storybook source (we only need the built output)
+apps/docs/src
+apps/docs/stories
+
+# Temp files
+tmp
+temp
+*.log

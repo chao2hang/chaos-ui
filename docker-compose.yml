@@ -1,0 +1,14 @@
+services:
+  chaos-ui:
+    image: crpi-rndgjo1w1e1plau8.cn-chengdu.personal.cr.aliyuncs.com/chaos_cn/chaos_ui:latest
+    container_name: chaos-ui
+    ports:
+      - "3000:3000"
+      - "6006:6006"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

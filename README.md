@@ -48,6 +48,35 @@ Open [http://localhost:6006](http://localhost:6006) to browse the component libr
 └── component-spec.md        # Component specification
 ```
 
+## Docker
+
+### 使用 Docker Compose（推荐）
+
+```bash
+# 启动
+docker compose up -d
+
+# 查看日志
+docker compose logs -f
+
+# 停止
+docker compose down
+
+# 拉取最新镜像并重启
+docker compose pull && docker compose up -d
+```
+
+启动后访问：
+- [http://localhost:3000](http://localhost:3000) — Next.js 文档站
+- [http://localhost:6006](http://localhost:6006) — Storybook 组件展示
+
+### 手动构建
+
+```bash
+docker build -t chaos-ui .
+docker run -p 3000:3000 -p 6006:6006 chaos-ui
+```
+
 ## Documentation
 
 See [component-spec.md](./component-spec.md) for naming conventions, patterns, and guidelines.
