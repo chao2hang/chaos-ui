@@ -377,4 +377,22 @@ export { BackTop } from "./back-top";
 export type { BackTopProps } from "./back-top";
 export { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
 export type { ConfigContextValue, ThemeConfig } from "./config-provider";
+export { MessageProvider } from "./message-provider";
+export type { MessageProviderProps } from "./message-provider";
+export { ModalProvider } from "./modal-provider";
+export {
+  Menu,
+  MenuItem,
+  MenuSubMenu,
+  MenuDivider,
+  MenuItemGroup,
+} from "./menu";
+export type {
+  MenuProps,
+  MenuItemConfig,
+  MenuClickInfo,
+  MenuMode,
+  MenuTheme,
+  MenuItemProps,
+} from "./menu";
 export * from "./icons";

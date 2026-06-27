@@ -4,6 +4,19 @@ export { eventBus, EventBus } from "./event-bus";
 export { download } from "./download";
 export { cookie } from "./cookie";
 export { url } from "./url";
+export { message } from "./message";
+export type {
+  MessageType,
+  MessagePlacement,
+  MessageOptions,
+  MessageGlobalConfig,
+} from "./message";
+export { Modal } from "./modal";
+export type {
+  ModalConfirmOptions,
+  ModalAlertOptions,
+  ModalKind,
+} from "./modal";
 export {
   getApiClient,
   safeRequest,
