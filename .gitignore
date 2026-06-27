@@ -37,6 +37,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local npm config (contains auth tokens)
+.npmrc
+
 # vercel
 .vercel
 
