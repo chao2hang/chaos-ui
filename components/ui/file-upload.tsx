@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

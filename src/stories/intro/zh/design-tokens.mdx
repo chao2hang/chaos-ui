@@ -1,0 +1,132 @@
+﻿---
+title: 中文/设计令牌
+---
+
+# 设计令牌
+
+Chaos UI 使用 CSS 自定义属性（CSS 变量）管理所有设计令牌，实现一致的主题化与便捷的自定义。
+
+## 颜色令牌
+
+### 语义色
+
+| 令牌 | 用途 | CSS 变量 |
+|------|------|----------|
+| `background` | 页面背景 | `--background` |
+| `foreground` | 默认文本 | `--foreground` |
+| `primary` | 主要操作 | `--primary` |
+| `primary-foreground` | 主要文本 | `--primary-foreground` |
+| `secondary` | 次要操作 | `--secondary` |
+| `secondary-foreground` | 次要文本 | `--secondary-foreground` |
+| `muted` | 弱化背景 | `--muted` |
+| `muted-foreground` | 弱化文本 | `--muted-foreground` |
+| `accent` | 悬停状态 | `--accent` |
+| `accent-foreground` | 强调文本 | `--accent-foreground` |
+| `destructive` | 危险操作 | `--destructive` |
+| `destructive-foreground` | 危险文本 | `--destructive-foreground` |
+
+### 状态色
+
+| 令牌 | 用途 | CSS 变量 |
+|------|------|----------|
+| `success` | 成功状态 | `--success` |
+| `success-foreground` | 成功文本 | `--success-foreground` |
+| `warning` | 警告状态 | `--warning` |
+| `warning-foreground` | 警告文本 | `--warning-foreground` |
+| `info` | 信息状态 | `--info` |
+| `info-foreground` | 信息文本 | `--info-foreground` |
+
+### 品牌色
+
+专业蓝色色阶（50 至 950）：
+
+| 令牌 | 用途 |
+|------|------|
+| `brand-50` | 最浅色 |
+| `brand-100` | 极浅 |
+| `brand-200` | 浅色 |
+| `brand-300` | 浅中 |
+| `brand-400` | 中浅 |
+| `brand-500` | 基准品牌色 |
+| `brand-600` | 中深 |
+| `brand-700` | 深中 |
+| `brand-800` | 深色 |
+| `brand-900` | 极深 |
+| `brand-950` | 最深色 |
+
+### 边框与输入
+
+| 令牌 | 用途 | CSS 变量 |
+|------|------|----------|
+| `border` | 默认边框 | `--border` |
+| `input` | 输入框边框 | `--input` |
+| `ring` | 焦点环 | `--ring` |
+| `surface` | 提升表面 | `--surface` |
+| `surface-foreground` | 表面文本 | `--surface-foreground` |
+
+## 间距比例
+
+Chaos UI 使用 Tailwind 默认间距比例：
+
+| 类名 | 值 | 像素 |
+|------|----|------|
+| `p-1` | 1 | 4px |
+| `p-2` | 2 | 8px |
+| `p-3` | 3 | 12px |
+| `p-4` | 4 | 16px |
+| `p-6` | 6 | 24px |
+| `p-8` | 8 | 32px |
+
+## 圆角
+
+| 类名 | 值 | 用途 |
+|------|----|------|
+| `rounded-sm` | `radius * 0.6` | 小元素 |
+| `rounded-md` | `radius * 0.8` | 输入框、选择器 |
+| `rounded-lg` | `radius` | 卡片、对话框 |
+| `rounded-xl` | `radius * 1.4` | 模态框 |
+| `rounded-2xl` | `radius * 1.8` | 大面积表面 |
+| `rounded-full` | 9999px | 胶囊、头像 |
+
+## 排版
+
+| 类名 | 大小 | 行高 |
+|------|------|------|
+| `text-xs` | 0.75rem | 1rem |
+| `text-sm` | 0.875rem | 1.25rem |
+| `text-base` | 1rem | 1.5rem |
+| `text-lg` | 1.125rem | 1.75rem |
+| `text-xl` | 1.25rem | 1.75rem |
+| `text-2xl` | 1.5rem | 2rem |
+| `text-3xl` | 1.875rem | 2.25rem |
+
+### 字重
+
+| 类名 | 粗细 |
+|------|------|
+| `font-normal` | 400 |
+| `font-medium` | 500 |
+| `font-semibold` | 600 |
+| `font-bold` | 700 |
+
+## 阴影
+
+| 类名 | 用途 |
+|------|------|
+| `shadow-xs` | 微弱提升 |
+| `shadow-sm` | 轻度提升 |
+| `shadow-md` | 中度提升 |
+| `shadow-lg` | 较大提升 |
+| `shadow-xl` | 大幅提升 |
+| `shadow-2xl` | 最大提升 |
+
+## 组件尺寸
+
+Chaos UI 组件使用一致的尺寸体系：
+
+| 尺寸 | 高度 | 用途 |
+|------|------|------|
+| `xs` | 24px (h-6) | 紧凑 UI |
+| `sm` | 28px (h-7) | 密集布局 |
+| `default` | 32px (h-8) | 标准 UI |
+| `lg` | 36px (h-9) | 显著 UI |

@@ -1,0 +1,113 @@
+---
+title: 中文/安装
+description: 如何在项目中安装 Chaos UI
+---
+
+# 安装
+
+Chaos UI 作为 npm 包提供：`@qxyfoods/chaos-ui`。
+
+## 环境要求
+
+- React >= 19.0.0
+- Node.js >= 22.0.0
+- Tailwind CSS 4（推荐）
+
+## 安装
+
+**npm**
+
+```bash
+npm install @qxyfoods/chaos-ui
+```
+
+**yarn**
+
+```bash
+yarn add @qxyfoods/chaos-ui
+```
+
+**pnpm**
+
+```bash
+pnpm add @qxyfoods/chaos-ui
+```
+
+## 同伴依赖
+
+安装必需的同伴依赖：
+
+```bash
+npm install react@^19 react-dom@^19
+```
+
+对于 Next.js 项目：
+
+```bash
+npm install next@^16 next-themes@^0.4
+```
+
+## 引入样式
+
+在应用入口引入 CSS 文件：
+
+```tsx
+import "@qxyfoods/chaos-ui/styles.css";
+```
+
+## Tailwind 配置（可选）
+
+如果使用 Tailwind CSS，请扩展配置以包含 Chaos UI 的设计令牌：
+
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+export default {
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@qxyfoods/chaos-ui/dist/**/*.{js,cjs}",
+  ],
+} satisfies Config;
+```
+
+## 使用方法
+
+```tsx
+import { Button, Input, Dialog } from "@qxyfoods/chaos-ui";
+
+function App() {
+  return (
+    <div>
+      <Button variant="default">点击我</Button>
+      <Input placeholder="请输入" />
+    </div>
+  );
+}
+```
+
+## 子路径导入
+
+为支持 tree-shaking，使用子路径导入：
+
+```tsx
+// 仅导入 UI 原语
+import { Button } from "@qxyfoods/chaos-ui/ui";
+
+// 仅导入 hooks
+import { useDebounce } from "@qxyfoods/chaos-ui/hooks";
+
+// 仅导入 lib 工具
+import { cn } from "@qxyfoods/chaos-ui/lib";
+
+// 仅导入业务组件
+import { DataTable } from "@qxyfoods/chaos-ui/business";
+```
+
+## TypeScript
+
+Chaos UI 使用 TypeScript 构建，自带完整类型定义，无需额外的 `@types` 包。
+
+```tsx
+import type { ButtonProps } from "@qxyfoods/chaos-ui/ui";
+```

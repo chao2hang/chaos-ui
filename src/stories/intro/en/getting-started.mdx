@@ -1,0 +1,124 @@
+﻿---
+title: English/Getting Started
+---
+
+# Getting Started
+
+Quick guide to using Chaos UI components in your project.
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
+
+```bash
+# Start Storybook documentation on port 6006
+npm run dev
+
+# Start Next.js dev server
+npm run app:dev
+
+# Build for production
+npm run build
+
+# Build Storybook for deployment
+npm run build-storybook
+
+# Run linter
+npm run lint
+```
+
+## Basic Usage
+
+Import a component and use it in your code:
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export default function Page() {
+  return (
+    <div>
+      <Button variant="default">Click me</Button>
+    </div>
+  )
+}
+```
+
+## Component Anatomy
+
+Every Chaos UI component follows a consistent pattern:
+
+```tsx
+import { cn } from '@/lib/utils'
+
+// 1. Import the component
+import { Button } from '@/components/ui/button'
+
+// 2. Use it with TypeScript props
+function MyComponent() {
+  return (
+    <Button
+      variant="default"      // Variant prop
+      size="md"              // Size prop
+      disabled={false}       // State prop
+      onClick={() => {}}     // Event handler
+    >
+      Button Text
+    </Button>
+  )
+}
+```
+
+## Styling
+
+Chaos UI uses Tailwind CSS 4 with CSS custom properties. All components accept a `className` prop for custom styling:
+
+```tsx
+<Button className="mt-4 w-full">
+  Full Width Button
+</Button>
+```
+
+Use the `cn()` utility to merge class names:
+
+```tsx
+import { cn } from '@/lib/utils'
+
+<Button className={cn(
+  "base-classes",
+  isActive && "active-classes",
+  className
+)}>
+```
+
+## Theming
+
+Chaos UI supports light and dark modes via CSS variables. Toggle using the theme switcher in Storybook toolbar.
+
+### Custom Theme
+
+Override CSS variables in your `globals.css`:
+
+```css
+:root {
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+}
+```
+
+## TypeScript
+
+All components are fully typed. Import types directly:
+
+```tsx
+import { Button, type ButtonProps } from '@/components/ui/button'
+```
+
+## Next Steps
+
+- Browse the [Component Library](/docs) for all available components
+- Read the [Design Tokens](/docs/en-design-tokens--docs) guide
+- Check the [Component Guidelines](/docs/en-component-guidelines--docs) for best practices

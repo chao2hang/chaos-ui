@@ -2,6 +2,30 @@
   "name": "@qxyfoods/chaos-ui",
   "version": "0.1.0",
   "type": "module",
+  "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "components",
+    "tailwind",
+    "radix",
+    "base-ui",
+    "enterprise",
+    "erp",
+    "component-library",
+    "storybook"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qxyfoods/chaos-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qxyfoods/chaos-ui/issues"
+  },
+  "homepage": "https://github.com/qxyfoods/chaos-ui#readme",
+  "author": "Chaos UI Team",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -60,10 +84,16 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
+    "registry": "https://npm.qxy1828.com",
     "access": "restricted"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "funding": {
+    "type": "qxyfoods",
+    "url": "https://github.com/sponsors/qxyfoods"
   },
   "packageManager": "npm@11.10.1",
   "scripts": {
@@ -80,6 +110,9 @@
     "build:pkg": "tsup",
     "pack:dry": "npm pack --dry-run",
     "prepack": "npm run build:pkg",
+    "prepublishOnly": "npm run check && npm run test && npm run build:pkg",
+    "format": "prettier --write \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
@@ -136,26 +169,34 @@
   "devDependencies": {
     "@chaos/eslint-plugin": "file:./eslint-plugin-chaos",
     "@chromatic-com/storybook": "^5.2.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@storybook/addon-a11y": "^10.4.3",
     "@storybook/addon-docs": "^10.4.3",
     "@storybook/addon-mcp": "^0.6.0",
     "@storybook/addon-vitest": "^10.4.3",
     "@storybook/nextjs-vite": "^10.4.3",
     "@tailwindcss/postcss": "4.3.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "25.9.2",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
+    "@vitest/coverage-v8": "^4.1.9",
     "dependency-cruiser": "^16.0.0",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.9",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-storybook": "^10.4.3",
     "husky": "^9.0.0",
+    "jsdom": "^25.0.1",
     "lint-staged": "^15.0.0",
     "next": "16.2.9",
     "next-themes": "0.4.6",
     "playwright": "^1.60.0",
     "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "storybook": "^10.4.3",

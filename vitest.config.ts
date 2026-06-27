@@ -4,8 +4,10 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     globals: true,
-    environment: "node",
-    setupFiles: [],
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+    clearMocks: true,
+    restoreMocks: true,
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html", "lcov"],
@@ -16,12 +18,20 @@ export default defineConfig({
         "components/**/*.tsx",
         "eslint-plugin-chaos/rules/**/*.js",
       ],
-      exclude: ["**/*.stories.*", "**/*.d.ts", "node_modules/**", ".next/**"],
+      exclude: [
+        "**/*.stories.*",
+        "**/*.d.ts",
+        "node_modules/**",
+        ".next/**",
+        "dist/**",
+        "storybook-static/**",
+        "coverage/**",
+      ],
       thresholds: {
-        lines: 60,
-        branches: 50,
-        functions: 60,
-        statements: 60,
+        lines: 85,
+        branches: 80,
+        functions: 85,
+        statements: 85,
       },
     },
   },

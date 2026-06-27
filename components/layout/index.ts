@@ -5,3 +5,7 @@ export * from "./dashboard-layout";
 export * from "./detail-layout";
 export * from "./error-layout";
 export * from "./print-layout";
+export * from "./admin-sider";
+export * from "./admin-header";
+export * from "./admin-tabs";
+export * from "./admin-breadcrumb";

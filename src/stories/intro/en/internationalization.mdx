@@ -1,0 +1,167 @@
+﻿---
+title: English/Internationalization
+---
+
+# Internationalization
+
+Chaos UI ships with a built-in i18n layer powered by [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/). Two locales are bundled: `zh-CN` (default) and `en-US`.
+
+## Configuration
+
+The configuration lives at `lib/i18n/config.ts`:
+
+```ts
+i18n.use(initReactI18next).init({
+  lng: "zh-CN",
+  fallbackLng: "zh-CN",
+  defaultNS: "common",
+  interpolation: { escapeValue: false },
+  returnObjects: false,
+});
+```
+
+- **Default language**: `zh-CN`
+- **Fallback language**: `zh-CN`
+- **Default namespace**: `common`
+
+## Namespaces
+
+Translations are split into 13 namespaces, each scoped to a feature area:
+
+| Namespace | Purpose |
+|-----------|---------|
+| `common` | Generic UI strings (save, cancel, confirm, etc.) |
+| `ui` | Component-level labels (button, input, dialog) |
+| `error` | Error messages and validation feedback |
+| `data` | DataTable, lists, search, sort, filter |
+| `chart` | Chart titles, axis labels, legends |
+| `cookie` | Cookie consent banner |
+| `language` | Language picker labels |
+| `marketing` | Marketing copy and CTAs |
+| `mobile` | Mobile-specific copy |
+| `navigation` | Menu, sidebar, breadcrumb |
+| `notification` | Toast and alert messages |
+| `tour` | Product tour steps |
+| `transfer` | Transfer / shuttle component |
+| `upload` | File upload states |
+
+## File Layout
+
+```
+lib/i18n/
+├── config.ts                    # i18next init
+├── provider.tsx                 # React provider
+├── index.ts                     # re-exports
+└── resources/
+    ├── zh/                      # Chinese (zh-CN)
+    │   ├── common.json
+    │   ├── ui.json
+    │   └── ...
+    └── en/                      # English (en-US)
+        ├── common.json
+        ├── ui.json
+        └── ...
+```
+
+## Provider
+
+Wrap your app with `I18nProvider` (in `lib/i18n/provider.tsx`):
+
+```tsx
+import { I18nProvider } from "@/lib/i18n"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+## Usage in Components
+
+```tsx
+import { useTranslation } from "react-i18next";
+
+function MyComponent() {
+  const { t } = useTranslation("common");
+  return <Button>{t("actions.save")}</Button>;
+}
+```
+
+With multiple namespaces:
+
+```tsx
+const { t } = useTranslation(["common", "ui"]);
+return <p>{t("common:actions.save")}</p>;
+```
+
+## Switching Languages
+
+Change the active language at runtime:
+
+```ts
+import i18n from "@/lib/i18n";
+i18n.changeLanguage("en-US");
+```
+
+Or via a hook:
+
+```tsx
+import { useTranslation } from "react-i18next";
+
+const { i18n } = useTranslation();
+<button onClick={() => i18n.changeLanguage("en-US")}>English</button>
+```
+
+## Adding a New Namespace
+
+1. Create `lib/i18n/resources/zh/<name>.json` and `lib/i18n/resources/en/<name>.json` with the same key tree.
+2. Import both files in `lib/i18n/config.ts` and add to the `resources` object.
+3. Use it: `useTranslation("<name>")`.
+
+```ts
+// lib/i18n/config.ts
+import marketingZh from "./resources/zh/marketing.json";
+import marketingEn from "./resources/en/marketing.json";
+
+const resources = {
+  "zh-CN": { ..., marketing: marketingZh },
+  "en-US": { ..., marketing: marketingEn },
+};
+```
+
+## Adding a New Language
+
+1. Create a folder `lib/i18n/resources/<locale>/` and copy every namespace file in.
+2. Translate every key.
+3. Register in `config.ts`:
+
+```ts
+import ja from "./resources/ja/common.json";
+
+const resources = {
+  "zh-CN": { ... },
+  "en-US": { ... },
+  "ja-JP": { common: ja },
+};
+```
+
+4. Update `lng` and `fallbackLng` as needed.
+
+## Best Practices
+
+1. **Never hardcode user-facing strings** in components — always go through `t()`
+2. **Use semantic keys**, not the literal text: `t("actions.save")` not `t("Save")`
+3. **Keep namespaces focused** — don't dump everything into `common`
+4. **Interpolate values** with named placeholders: `t("welcome", { name: "Alex" })`
+5. **Test with a missing key** to ensure `fallbackLng` resolves correctly
+6. **Keep `zh-CN` and `en-US` keys in sync** — same JSON tree, different values
+
+## Related
+
+- [Accessibility](/docs/en-accessibility--docs) — locale and direction
+- [Component Guidelines](/docs/en-component-guidelines--docs) — i18n rules

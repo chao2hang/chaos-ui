@@ -73,22 +73,24 @@ export function UserMenu({
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align} className="w-56">
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col gap-0.5">
-            <p className="text-sm font-medium leading-none">{user.name}</p>
-            {user.email && (
-              <p className="text-xs leading-none text-muted-foreground">
-                {user.email}
-              </p>
-            )}
-            {user.role && (
-              <p className="mt-1 text-xs leading-none text-muted-foreground">
-                {user.role}
-              </p>
-            )}
-          </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex flex-col gap-0.5">
+              <p className="text-sm font-medium leading-none">{user.name}</p>
+              {user.email && (
+                <p className="text-xs leading-none text-muted-foreground">
+                  {user.email}
+                </p>
+              )}
+              {user.role && (
+                <p className="mt-1 text-xs leading-none text-muted-foreground">
+                  {user.role}
+                </p>
+              )}
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+        </DropdownMenuGroup>
         {showProfile && (
           <DropdownMenuGroup>
             <DropdownMenuItem onClick={onProfile}>

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+storybook-static/
+coverage/
+.pnpm-store/
+.output/
+.turbo/
+pnpm-lock.yaml
+package-lock.json
+*.min.js
+*.min.css
+story*
+CHANGELOG.md

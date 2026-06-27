@@ -37,13 +37,13 @@ const external = [
 
 export default defineConfig({
   entry: {
-    index: "package/index.ts",
-    ui: "package/ui.ts",
-    "ui/icons": "package/ui-icons.ts",
-    "ui-icons": "package/ui-icons.ts",
-    business: "package/business.ts",
-    hooks: "package/hooks.ts",
-    lib: "package/lib.ts",
+    index: "components/ui/index.ts",
+    ui: "components/ui/index.ts",
+    "ui/icons": "components/ui/icons.ts",
+    "ui-icons": "components/ui/icons.ts",
+    business: "components/business/index.ts",
+    hooks: "hooks/index.ts",
+    lib: "lib/index.ts",
     next: "package/next.ts",
   },
   format: ["esm", "cjs"],
@@ -53,11 +53,11 @@ export default defineConfig({
     },
   },
   clean: true,
-  splitting: false,
-  sourcemap: false,
-  silent: true,
-  target: "es2019",
-  treeshake: true,
+  splitting: true,
+  sourcemap: true,
+  silent: false,
+  target: "es2020",
+  treeshake: { preset: "smallest" },
   external,
   outExtension({ format }) {
     return {

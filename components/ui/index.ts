@@ -332,4 +332,49 @@ export { VirtualList } from "./virtual-list";
 export type { VirtualListProps } from "./virtual-list";
 export { VirtualTable } from "./virtual-table";
 export type { ColumnDef, VirtualTableProps } from "./virtual-table";
+export { Space } from "./space";
+export type { SpaceProps } from "./space";
+export { Flex } from "./flex";
+export type { FlexProps } from "./flex";
+export { Divider } from "./divider";
+export type { DividerProps } from "./divider";
+export {
+  Typography,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Text,
+  Paragraph,
+  Blockquote,
+  InlineCode,
+  Lead,
+  Large,
+  Small,
+  Muted,
+  List,
+} from "./typography";
+export type { TextProps, ParagraphProps } from "./typography";
+export { Spinner } from "./spinner";
+export type { SpinnerProps } from "./spinner";
+export { InputSearch } from "./input-search";
+export type { InputSearchProps } from "./input-search";
+export { InputNumber } from "./input-number";
+export type { InputNumberProps } from "./input-number";
+export { DatePicker } from "./date-picker";
+export type { DatePickerProps } from "./date-picker";
+export { Descriptions, DescriptionsItem } from "./descriptions";
+export type { DescriptionsProps, DescriptionItem } from "./descriptions";
+export { Popconfirm } from "./popconfirm";
+export type { PopconfirmProps } from "./popconfirm";
+export { Spin } from "./spin";
+export type { SpinProps } from "./spin";
+export { Affix } from "./affix";
+export type { AffixProps } from "./affix";
+export { BackTop } from "./back-top";
+export type { BackTopProps } from "./back-top";
+export { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
+export type { ConfigContextValue, ThemeConfig } from "./config-provider";
 export * from "./icons";

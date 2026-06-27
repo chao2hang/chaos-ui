@@ -1,0 +1,196 @@
+﻿---
+title: 中文/组件规范
+---
+
+# 组件规范
+
+构建 Chaos UI 组件的标准与最佳实践。
+
+## 架构
+
+### 组件分层
+
+```
+components/
+├── ui/           # 基础 UI 组件（原子级）
+├── business/     # 业务领域组件
+└── layout/       # 页面级布局
+```
+
+### 分层规则
+
+1. **UI 组件**（`components/ui/`）
+   - 基础、可复用组件
+   - 不包含业务逻辑
+   - 高度可定制
+
+2. **业务组件**（`components/business/`）
+   - 基于 UI 组件构建
+   - 包含领域特定逻辑
+   - 示例：DataTable、FormField、StatusTag
+
+3. **布局组件**（`components/layout/`）
+   - 页面级布局
+   - 组合业务与 UI 组件
+
+## 命名约定
+
+| 类型 | 约定 | 示例 |
+|------|------|------|
+| 文件 | `kebab-case.tsx` | `status-tag.tsx` |
+| 组件 | `PascalCase` | `StatusTag` |
+| Props 类型 | `ComponentNameProps` | `StatusTagProps` |
+| CSS 变量 | `--kebab-case` | `--brand-500` |
+| Hooks | `use` 前缀 | `use-mobile.ts` |
+| 常量 | `UPPER_SNAKE_CASE` | `ORDER_STATUSES` |
+
+## 组件结构
+
+### 基本组件模板
+
+```tsx
+"use client"
+
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+// 1. 变体定义
+const componentVariants = cva(
+  "基础类名",
+  {
+    variants: { ... },
+    defaultVariants: { ... },
+  }
+)
+
+// 2. Props 接口
+interface ComponentNameProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof componentVariants> {
+  // 自定义 props
+}
+
+// 3. 组件实现
+function ComponentName({ ... }: ComponentNameProps) {
+  return <div className={cn(componentVariants({ ... }))} />
+}
+
+// 4. 导出
+export { ComponentName, componentVariants }
+export type { ComponentNameProps }
+```
+
+## 设计令牌使用
+
+始终使用语义令牌，绝不硬编码颜色：
+
+```tsx
+// ✅ 正确
+<div className="bg-primary text-primary-foreground" />
+
+// ❌ 错误
+<div className="bg-blue-500 text-white" />
+```
+
+### 状态色模式
+
+```tsx
+// 用于徽章和标签
+className="bg-success/15 text-success"
+className="bg-warning/15 text-warning"
+className="bg-destructive/10 text-destructive"
+```
+
+## 状态管理
+
+### 焦点状态
+
+```tsx
+"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+```
+
+### 禁用状态
+
+```tsx
+"disabled:pointer-events-none disabled:opacity-50"
+```
+
+### 校验状态
+
+```tsx
+"aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
+```
+
+## 暗色模式
+
+所有组件必须支持暗色模式：
+
+```tsx
+// 背景色
+"dark:bg-input/30"  // 默认
+"dark:bg-input/50"  // 悬停
+
+// 边框色
+"dark:border-input"
+
+// 校验状态
+"dark:aria-invalid:border-destructive/50"
+```
+
+## 数据属性
+
+每个组件都应使用数据属性来标识状态和变体：
+
+```tsx
+// 插槽识别
+<div data-slot="component-name" />
+
+// 尺寸变体
+<div data-size={size} />
+
+// 视觉变体
+<div data-variant={variant} />
+
+// 状态
+<div data-state="open" />
+```
+
+## 无障碍
+
+1. 所有交互元素必须可键盘访问
+2. 仅图标按钮使用 `aria-label`
+3. 表单字段描述使用 `aria-describedby`
+4. 使用语义化 HTML 元素
+5. 文字保持 4.5:1 对比度
+6. 屏幕阅读器上下文使用 `sr-only`
+
+## 性能
+
+1. 仅在必要时使用 `"use client"`
+2. 默认优先使用服务端组件
+3. 对开销较大的渲染使用 `React.memo()`
+4. 作为 props 传递的事件处理使用 `useCallback`
+5. 重量级组件使用 `next/dynamic`
+
+## 测试
+
+1. 每个组件都应有 Story
+2. 故事中包含所有变体
+3. 使用 `argTypes` 完整描述 Props
+4. 标记 `autodocs` 以自动生成文档
+5. 添加 `tags: ['a11y']` 进行无障碍测试
+
+## 反模式
+
+避免以下模式：
+
+- ❌ className 中使用原始 hex 颜色
+- ❌ 对静态值使用内联样式
+- ❌ `any` 类型
+- ❌ 直接修改 UI 组件
+- ❌ 生产环境中的 `console.log`
+- ❌ 硬编码字符串（使用常量）
+- ❌ 缺失 TypeScript 类型
+- ❌ 存在 Tailwind 类时使用 `@apply`
+- ❌ 使用相对路径导入（用 `@/` 别名）

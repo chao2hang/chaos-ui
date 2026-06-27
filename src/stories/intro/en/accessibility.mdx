@@ -1,0 +1,160 @@
+﻿---
+title: English/Accessibility
+---
+
+# Accessibility
+
+Chaos UI targets **WCAG 2.1 Level AA** compliance. Every component is designed, built, and tested with screen readers, keyboard navigation, and contrast in mind.
+
+## Standards
+
+- **WCAG 2.1 AA** as the baseline
+- **WAI-ARIA 1.2** patterns for complex widgets
+- **Keyboard parity** — every interactive element is reachable and operable without a mouse
+- **RTL support** — components are direction-agnostic and flip correctly under `dir="rtl"`
+
+## Color & Contrast
+
+| Element | Minimum ratio | Target |
+|---------|---------------|--------|
+| Body text | 4.5:1 | AAA 7:1 where possible |
+| Large text (≥18.66px bold / 24px regular) | 3:1 | AA |
+| UI components & graphical objects | 3:1 | AA |
+| Focus indicators | 3:1 against adjacent colors | AA |
+
+Use semantic tokens — they are pre-tuned for contrast in both light and dark modes:
+
+```tsx
+// ✅ Use semantic tokens (contrast-checked)
+<p className="text-foreground">Body</p>
+<p className="text-muted-foreground">Secondary</p>
+
+// ❌ Avoid raw color utilities for text
+<p className="text-gray-500">Body</p>
+```
+
+## Keyboard Navigation
+
+Every interactive element must:
+
+1. Be **reachable** via Tab in logical reading order
+2. Have a **visible focus ring** (`focus-visible:ring-ring/50`)
+3. Be **activatable** via Enter (and Space for buttons/checkboxes)
+4. Trap focus inside modal dialogs and return it to the trigger on close
+5. Expose **escape hatches** — `Esc` closes overlays
+
+Pattern for focus-visible styling:
+
+```tsx
+className="focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+```
+
+## ARIA Patterns
+
+Chaos UI uses `@base-ui/react` for primitives, which provide correct ARIA roles and attributes out of the box. Don't override them unless you have a specific reason.
+
+| Component | Role | Key attributes |
+|-----------|------|----------------|
+| `Dialog` | `dialog` | `aria-modal`, `aria-labelledby`, `aria-describedby` |
+| `Sheet` | `dialog` | same as Dialog |
+| `Popover` | `dialog` | `aria-expanded` on trigger |
+| `Tooltip` | `tooltip` | `role="tooltip"` on content |
+| `Tabs` | `tablist` / `tab` / `tabpanel` | `aria-selected`, `aria-controls` |
+| `Menu` | `menu` / `menuitem` | `aria-expanded`, `aria-haspopup` |
+| `Switch` | `switch` | `aria-checked` |
+| `RadioGroup` | `radiogroup` / `radio` | `aria-checked` |
+
+## Forms
+
+Form fields must always have an accessible label. Use `<Label>` or `aria-label` / `aria-labelledby`:
+
+```tsx
+<div>
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" aria-describedby="email-hint" />
+  <p id="email-hint" className="text-sm text-muted-foreground">
+    We'll never share your address.
+  </p>
+</div>
+```
+
+Validation state:
+
+```tsx
+<Input
+  aria-invalid={hasError}
+  aria-describedby={hasError ? "email-error" : "email-hint"}
+  className="aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
+/>
+```
+
+## Icon-Only Buttons
+
+Always provide an accessible name:
+
+```tsx
+<Button variant="ghost" size="icon" aria-label="Close dialog">
+  <X className="h-4 w-4" />
+</Button>
+```
+
+## Screen Reader-Only Content
+
+Use `sr-only` for context that helps screen reader users but is visually redundant:
+
+```tsx
+<Button>
+  <Trash className="h-4 w-4" />
+  <span className="sr-only">Delete item</span>
+</Button>
+```
+
+## Live Regions
+
+Toasts and alerts use `aria-live` politeness levels:
+
+```tsx
+<div role="status" aria-live="polite">  {/* non-urgent */}
+<div role="alert" aria-live="assertive"> {/* urgent, interrupts */}
+```
+
+## Testing
+
+### Automated
+
+- **`@storybook/addon-a11y`** — runs axe-core on every story
+- Add `tags: ["a11y"]` to surface violations in the a11y panel
+
+### Manual
+
+- **Keyboard-only walkthrough** — Tab, Shift+Tab, Enter, Space, Esc, arrow keys
+- **Screen reader smoke test** — VoiceOver (macOS), NVDA (Windows), Orca (Linux)
+- **200% zoom** — content must remain readable and operable
+- **High contrast mode** — verify focus rings and borders are still visible
+
+## Internationalization & RTL
+
+Accessibility and i18n intersect at direction and locale:
+
+- Use logical CSS properties (`ms-*`, `me-*`, `ps-*`, `pe-*`) instead of physical (`ml-*`, `mr-*`)
+- Test components in `dir="rtl"`
+- Avoid baked-in `text-left` / `text-right` — prefer `text-start` / `text-end`
+
+## Checklist for New Components
+
+- [ ] Reachable via keyboard
+- [ ] Visible focus indicator
+- [ ] Correct ARIA role and attributes
+- [ ] Accessible name (label, `aria-label`, or visible text)
+- [ ] Contrast 4.5:1 for text, 3:1 for UI
+- [ ] Tested with axe (no violations)
+- [ ] Tested in light and dark mode
+- [ ] Tested at 200% zoom
+- [ ] No focus traps outside of intentional dialogs
+- [ ] Story tagged with `tags: ["a11y"]`
+
+## Related
+
+- [Theming](/docs/en-theming--docs) — token-driven contrast
+- [Internationalization](/docs/en-internationalization--docs) — locale and direction
+- [Component Guidelines](/docs/en-component-guidelines--docs) — a11y patterns

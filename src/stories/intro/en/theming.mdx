@@ -1,0 +1,154 @@
+﻿---
+title: English/Theming
+---
+
+# Theming
+
+Chaos UI uses CSS custom properties (CSS variables) to drive all visual styling. Every component reads from a single source of truth so you can re-theme the entire library without touching component code.
+
+## How Theming Works
+
+All design tokens live in `app/globals.css` (or your `styles.css` entry) under `:root` and `.dark` selectors. Tailwind CSS 4 references these variables via `oklch()` color space.
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  /* ... */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  /* ... */
+}
+```
+
+## Light & Dark Mode
+
+Chaos UI supports two modes out of the box:
+
+- **Light** — `:root` defaults
+- **Dark** — `.dark` selector override
+
+In Next.js apps, toggle using `next-themes`:
+
+```tsx
+import { ThemeProvider } from "next-themes"
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <ThemeProvider attribute="class">{children}</ThemeProvider>
+}
+```
+
+Add a toggle:
+
+```tsx
+import { useTheme } from "next-themes"
+
+const { theme, setTheme } = useTheme()
+<button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+  Toggle theme
+</button>
+```
+
+## Custom Themes
+
+Override any token to build a custom brand theme. Only override the variables that differ from the default — everything else cascades.
+
+```css
+:root {
+  --primary: oklch(0.45 0.18 264);       /* brand purple */
+  --primary-foreground: oklch(0.99 0 0);
+  --brand-500: oklch(0.55 0.20 264);
+}
+```
+
+### Brand Color Scales
+
+The `brand-*` scale is a 50–950 ramp. Replace the full ramp to rebrand the entire UI:
+
+```css
+:root {
+  --brand-50:  oklch(0.97 0.02 264);
+  --brand-100: oklch(0.93 0.04 264);
+  --brand-200: oklch(0.87 0.07 264);
+  --brand-300: oklch(0.79 0.10 264);
+  --brand-400: oklch(0.68 0.15 264);
+  --brand-500: oklch(0.55 0.20 264);
+  --brand-600: oklch(0.46 0.20 264);
+  --brand-700: oklch(0.38 0.17 264);
+  --brand-800: oklch(0.30 0.13 264);
+  --brand-900: oklch(0.22 0.09 264);
+  --brand-950: oklch(0.14 0.05 264);
+}
+```
+
+### Status Colors
+
+Override status semantics to match your brand:
+
+```css
+:root {
+  --success: oklch(0.65 0.18 145);
+  --warning: oklch(0.75 0.15 80);
+  --info:    oklch(0.65 0.15 230);
+  --destructive: oklch(0.55 0.22 25);
+}
+```
+
+## Radius Tokens
+
+All components share a single `--radius` base. The Tailwind `rounded-*` scale is derived from it:
+
+```css
+:root {
+  --radius: 0.5rem;   /* 8px */
+}
+```
+
+| Class | Computation | Example (radius=0.5rem) |
+|-------|-------------|-------------------------|
+| `rounded-sm` | `radius * 0.6` | 4.8px |
+| `rounded-md` | `radius * 0.8` | 6.4px |
+| `rounded-lg` | `radius`       | 8px |
+| `rounded-xl` | `radius * 1.4` | 11.2px |
+| `rounded-2xl` | `radius * 1.8` | 14.4px |
+
+## Component-Level Overrides
+
+For one-off tweaks, pass `className` and use Tailwind utilities:
+
+```tsx
+<Button className="rounded-none bg-brand-700">Squared</Button>
+```
+
+For structural overrides, use `style` with CSS variables:
+
+```tsx
+<Card style={{ "--primary": "oklch(0.55 0.2 264)" } as React.CSSProperties}>
+  Themed card
+</Card>
+```
+
+## Storybook Toolbar
+
+The Storybook toolbar exposes a light/dark/system switch. Components re-render instantly so you can verify contrast and palette in both modes.
+
+## Best Practices
+
+1. **Override at the token level** — never hardcode hex values inside components
+2. **Keep the same token name** for the same semantic role across themes
+3. **Verify contrast** in both light and dark modes (WCAG 2.1 AA = 4.5:1)
+4. **Persist user preference** in `localStorage` (handled by `next-themes`)
+5. **Test with brand-500** as the primary action color — it's the most visible token
+
+## Related
+
+- [Design Tokens](/docs/en-design-tokens--docs) — full token reference
+- [Component Guidelines](/docs/en-component-guidelines--docs) — token usage rules
+- [Accessibility](/docs/en-accessibility--docs) — contrast and theming a11y

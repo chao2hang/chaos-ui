@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import { useMemo } from "react";
 import { LanguagesIcon, CheckIcon } from "@/components/ui/icons";
 import { useTranslation } from "react-i18next";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuLabel,
@@ -78,10 +78,12 @@ export function LanguageSwitcher({
         <span className="text-xs">{current?.nativeLabel ?? current?.code}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align} className="w-56">
-        <DropdownMenuLabel>
-          {t("languageSwitcher.selectLanguage")}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>
+            {t("languageSwitcher.selectLanguage")}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+        </DropdownMenuGroup>
         {options.map((opt) => (
           <DropdownMenuItem
             key={opt.code}

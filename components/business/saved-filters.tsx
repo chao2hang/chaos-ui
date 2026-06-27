@@ -13,6 +13,7 @@ import { Input } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -73,9 +74,10 @@ export function SavedFilters({
           <ChevronDownIcon className="size-3.5 opacity-50" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-64">
-          <DropdownMenuLabel>{resolvedLabel}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {filters.length === 0 ? (
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>{resolvedLabel}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {filters.length === 0 ? (
             <div className="px-2 py-6 text-center text-xs text-muted-foreground">
               {t("savedFilters.empty")}
             </div>
@@ -134,6 +136,7 @@ export function SavedFilters({
               </DropdownMenuItem>
             ))
           )}
+          </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -144,10 +147,12 @@ export function SavedFilters({
             {t("savedFilters.saveCurrent")}
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-64 p-3">
-            <DropdownMenuLabel>
-              {t("savedFilters.nameAndSave")}
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>
+                {t("savedFilters.nameAndSave")}
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+            </DropdownMenuGroup>
             <div className="flex flex-col gap-2 p-1">
               <Input
                 value={name}

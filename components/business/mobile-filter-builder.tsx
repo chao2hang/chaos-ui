@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { FilterBuilder } from "@/components/business/filter-builder"
 import { cn } from "@/lib/utils"
 

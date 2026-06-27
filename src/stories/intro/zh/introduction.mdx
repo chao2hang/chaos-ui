@@ -1,0 +1,99 @@
+﻿---
+title: 中文/简介
+---
+
+# Chaos UI 设计系统
+
+基于 React 19、TypeScript 5.9 和 Tailwind CSS 4 构建的企业级组件设计系统。
+
+## 概览
+
+Chaos UI 是一个为构建现代 Web 应用而设计的综合组件库，提供：
+
+- **60+ UI 组件** — 生产就绪的基础组件
+- **14+ 业务组件** — 领域专用组件
+- **3+ 布局组件** — 页面级布局
+- **完整 TypeScript 支持** — 严格类型安全
+- **暗色模式开箱即用** — 内置暗色模式支持
+- **AI 友好文档** — 针对 LLM 消费优化
+
+## 技术栈
+
+| 技术 | 用途 |
+|------|------|
+| React 19 | UI 框架 |
+| TypeScript 5.9 | 类型安全 |
+| Tailwind CSS 4 | 样式 |
+| @base-ui/react | 基础 UI 原语 |
+| shadcn/ui | 组件模式 |
+| Lucide React | 图标 |
+| Storybook 10 | 文档 |
+
+## 快速开始
+
+```bash
+# 安装依赖
+npm install
+
+# 启动 Storybook
+npm run dev
+
+# 构建 Storybook 生产版本
+npm run build-storybook
+```
+
+## 项目结构
+
+```
+src/
+├── intro/           # 简介与指南
+├── components/      # UI 组件故事
+├── business/        # 业务组件故事
+├── layout/          # 布局组件故事
+└── utils/           # 文档工具
+```
+
+## 为 AI 助手设计
+
+此 Storybook 专为 AI 友好而设计：
+
+- **llms.txt** — 供 LLM 消费的结构化文本
+- **MDX 文档** — 丰富的组件文档
+- **TypeScript 类型** — 完整的类型信息
+- **JSDoc 注释** — 内联代码文档
+- **MCP 集成** — 模型上下文协议支持
+
+## 组件分类
+
+### 表单控件
+Button、Input、Textarea、Select、Checkbox、Radio Group、Switch、Date Picker、Color Picker
+
+### 数据展示
+Card、Badge、Avatar、Table、DataTable、AdvancedDataTable、Tag、StatusTag
+
+### 反馈
+Alert、Toast、Skeleton、Progress、Empty State、Spinner
+
+### 导航
+Tabs、Breadcrumb、Pagination、Navigation Menu、Sidebar、Stepper
+
+### 弹层
+Dialog、Sheet、Drawer、Popover、Tooltip、Hover Card、Dropdown Menu
+
+### 布局
+Grid、Stack、Container、Splitter、Form Grid、Form Section
+
+### 高级
+Browse Input、User Browse、Department Browse、Tree View、Tree Select、Form List、Virtual List、Virtual Table、KPI Panel
+
+## 设计原则
+
+1. **一致性** — 所有组件统一的设计令牌
+2. **无障碍** — 符合 WCAG 2.1 AA 标准
+3. **可定制** — 通过 CSS 变量实现主题化
+4. **高性能** — 针对生产环境优化
+5. **类型安全** — 完整的 TypeScript 支持
+
+## 许可证
+
+仅供内部使用。

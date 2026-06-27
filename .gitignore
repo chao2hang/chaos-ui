@@ -57,6 +57,15 @@ next-env.d.ts
 playwright-report/
 test-results/
 
+# local scripts and reports
+/output/
+*.sh
+/reguser.js
+VISUAL_TEST_REPORT.md
+
+# dependency-cruiser output
+.depcruise.*
+
 # pnpm
 .pnpm-store/
 

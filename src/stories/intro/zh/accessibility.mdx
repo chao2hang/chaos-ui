@@ -1,0 +1,160 @@
+﻿---
+title: 中文/无障碍
+---
+
+# 无障碍
+
+Chaos UI 以 **WCAG 2.1 AA 级**合规为目标。每个组件在设计、构建和测试阶段均考虑了屏幕阅读器、键盘导航和对比度。
+
+## 标准
+
+- **WCAG 2.1 AA** 作为基线
+- **WAI-ARIA 1.2** 模式用于复杂组件
+- **键盘对等** — 每个交互元素都可在不使用鼠标的情况下到达和操作
+- **RTL 支持** — 组件与方向无关，在 `dir="rtl"` 下正确翻转
+
+## 颜色与对比度
+
+| 元素 | 最低比率 | 目标 |
+|------|----------|------|
+| 正文文字 | 4.5:1 | 尽可能达到 AAA 7:1 |
+| 大号文字（≥18.66px 粗体/24px 常规） | 3:1 | AA |
+| UI 组件与图形对象 | 3:1 | AA |
+| 焦点指示器 | 相邻颜色 3:1 | AA |
+
+使用语义令牌 — 它们已在明暗模式下预调对比度：
+
+```tsx
+// ✅ 使用语义令牌（对比度已验证）
+<p className="text-foreground">正文</p>
+<p className="text-muted-foreground">次要</p>
+
+// ❌ 避免使用原始颜色工具类显示文字
+<p className="text-gray-500">正文</p>
+```
+
+## 键盘导航
+
+每个交互元素必须：
+
+1. 可通过 Tab **到达**，遵循逻辑阅读顺序
+2. 具有**可见焦点环**（`focus-visible:ring-ring/50`）
+3. 可通过 Enter **激活**（按钮/复选框还需 Space）
+4. 模态对话框内捕获焦点，关闭时返回触发元素
+5. 提供**逃生键** — `Esc` 关闭弹层
+
+焦点可见样式模式：
+
+```tsx
+className="focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+```
+
+## ARIA 模式
+
+Chaos UI 使用 `@base-ui/react` 作为原语，开箱即用提供正确的 ARIA 角色和属性。除非有特定原因，否则不要覆盖。
+
+| 组件 | 角色 | 关键属性 |
+|------|------|----------|
+| `Dialog` | `dialog` | `aria-modal`、`aria-labelledby`、`aria-describedby` |
+| `Sheet` | `dialog` | 同 Dialog |
+| `Popover` | `dialog` | 触发器上 `aria-expanded` |
+| `Tooltip` | `tooltip` | 内容 `role="tooltip"` |
+| `Tabs` | `tablist` / `tab` / `tabpanel` | `aria-selected`、`aria-controls` |
+| `Menu` | `menu` / `menuitem` | `aria-expanded`、`aria-haspopup` |
+| `Switch` | `switch` | `aria-checked` |
+| `RadioGroup` | `radiogroup` / `radio` | `aria-checked` |
+
+## 表单
+
+表单字段必须始终有无障碍标签。使用 `<Label>` 或 `aria-label` / `aria-labelledby`：
+
+```tsx
+<div>
+  <Label htmlFor="email">邮箱</Label>
+  <Input id="email" type="email" aria-describedby="email-hint" />
+  <p id="email-hint" className="text-sm text-muted-foreground">
+    我们绝不会泄露您的邮箱地址。
+  </p>
+</div>
+```
+
+校验状态：
+
+```tsx
+<Input
+  aria-invalid={hasError}
+  aria-describedby={hasError ? "email-error" : "email-hint"}
+  className="aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
+/>
+```
+
+## 仅图标按钮
+
+始终提供无障碍名称：
+
+```tsx
+<Button variant="ghost" size="icon" aria-label="关闭对话框">
+  <X className="h-4 w-4" />
+</Button>
+```
+
+## 屏幕阅读器专用内容
+
+使用 `sr-only` 为屏幕阅读器用户提供视觉上冗余但语义上必要的上下文：
+
+```tsx
+<Button>
+  <Trash className="h-4 w-4" />
+  <span className="sr-only">删除项目</span>
+</Button>
+```
+
+## 实时区域
+
+Toast 和通知使用 `aria-live` 礼节级别：
+
+```tsx
+<div role="status" aria-live="polite">  {/* 非紧急 */}
+<div role="alert" aria-live="assertive"> {/* 紧急，可打断 */}
+```
+
+## 测试
+
+### 自动化
+
+- **`@storybook/addon-a11y`** — 在每个 story 上运行 axe-core
+- 添加 `tags: ["a11y"]` 在 a11y 面板中显示违规
+
+### 手动
+
+- **纯键盘走查** — Tab、Shift+Tab、Enter、Space、Esc、箭头键
+- **屏幕阅读器冒烟测试** — VoiceOver (macOS)、NVDA (Windows)、Orca (Linux)
+- **200% 缩放** — 内容必须保持可读和可操作
+- **高对比度模式** — 验证焦点环和边框仍然可见
+
+## 国际化与 RTL
+
+无障碍与国际化在方向与区域上存在交叉：
+
+- 使用逻辑 CSS 属性（`ms-*`、`me-*`、`ps-*`、`pe-*`）代替物理方向（`ml-*`、`mr-*`）
+- 在 `dir="rtl"` 下测试组件
+- 避免内嵌 `text-left` / `text-right` — 优先使用 `text-start` / `text-end`
+
+## 新组件检查清单
+
+- [ ] 可通过键盘访问
+- [ ] 可见焦点指示器
+- [ ] 正确的 ARIA 角色和属性
+- [ ] 无障碍名称（标签、`aria-label` 或可见文本）
+- [ ] 文字对比度 4.5:1，UI 对比度 3:1
+- [ ] 通过 axe 测试（无违规）
+- [ ] 明暗模式下均已测试
+- [ ] 200% 缩放下已测试
+- [ ] 除有意对话框外无焦点陷阱
+- [ ] Story 标记 `tags: ["a11y"]`
+
+## 相关
+
+- [主题化](/docs/zh-theming--docs) — 令牌驱动的对比度
+- [国际化](/docs/zh-internationalization--docs) — 区域与方向
+- [组件规范](/docs/zh-component-guidelines--docs) — 无障碍模式
