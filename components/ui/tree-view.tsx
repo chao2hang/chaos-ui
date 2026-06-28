@@ -14,6 +14,19 @@ interface TreeNode {
   disabled?: boolean;
 }
 
+interface FieldNames {
+  /** Key field name / 键名字段，默认 "id" */
+  key?: string;
+  /** Label field name / 标签字段名，默认 "label" */
+  label?: string;
+  /** Children field name / 子节点字段名，默认 "children" */
+  children?: string;
+  /** Disabled field name / 禁用字段名，默认 "disabled" */
+  disabled?: string;
+  /** Icon field name / 图标字段名，默认 "icon" */
+  icon?: string;
+}
+
 interface TreeViewProps {
   data: TreeNode[];
   selectedIds?: string[];
@@ -26,6 +39,37 @@ interface TreeViewProps {
   showIcon?: boolean;
   disabled?: boolean;
   className?: string;
+  /** Field name mapping for backend data / 后端数据字段映射 */
+  fieldNames?: FieldNames;
+}
+
+function normalizeNode(
+  raw: Record<string, unknown>,
+  fields: Required<Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">>
+): TreeNode {
+  return {
+    id: String(raw[fields.key] ?? ""),
+    label: String(raw[fields.label] ?? ""),
+    ...(Array.isArray(raw[fields.children])
+      ? { children: (raw[fields.children] as Record<string, unknown>[]).map((c) => normalizeNode(c, fields)) }
+      : {}),
+    disabled: Boolean(raw[fields.disabled]),
+    icon: raw[fields.icon] as React.ReactNode | undefined,
+  };
+}
+
+function normalizeData(
+  data: unknown[],
+  fieldNames?: FieldNames
+): TreeNode[] {
+  const fields: Required<Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">> = {
+    key: fieldNames?.key ?? "id",
+    label: fieldNames?.label ?? "label",
+    children: fieldNames?.children ?? "children",
+    disabled: fieldNames?.disabled ?? "disabled",
+    icon: fieldNames?.icon ?? "icon",
+  };
+  return (data as Record<string, unknown>[]).map((raw) => normalizeNode(raw, fields));
 }
 
 function TreeViewItem({
@@ -135,7 +179,10 @@ function TreeView({
   showIcon = true,
   disabled = false,
   className,
+  fieldNames,
 }: TreeViewProps) {
+  const normalizedData = React.useMemo(() => fieldNames ? normalizeData(data, fieldNames) : (data as TreeNode[]), [data, fieldNames]);
+
   const [uncontrolledSelectedIds, setUncontrolledSelectedIds] =
     React.useState<string[]>(defaultSelectedIds);
   const [uncontrolledExpandedIds, setUncontrolledExpandedIds] =
@@ -171,7 +218,7 @@ function TreeView({
 
   return (
     <div data-slot="tree-view" className={cn("space-y-0.5", className)}>
-      {data.map((node) => (
+      {normalizedData.map((node) => (
         <TreeViewItem
           key={node.id}
           node={node}

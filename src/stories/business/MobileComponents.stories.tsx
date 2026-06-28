@@ -1,34 +1,34 @@
 "use client";
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileButton } from "@/components/business/mobile-button";
-import { MobileInput } from "@/components/business/mobile-input";
-import { MobileTextarea } from "@/components/business/mobile-textarea";
-import { MobileSelect } from "@/components/business/mobile-select";
-import { MobileDialog } from "@/components/business/mobile-dialog";
-import { MobileSheet } from "@/components/business/mobile-sheet";
-import { MobileCard } from "@/components/business/mobile-card";
-import { MobileKPICard } from "@/components/business/mobile-kpi-card";
-import { MobileDataTable } from "@/components/business/mobile-data-table";
-import { MobileForm } from "@/components/business/mobile-form";
-import { MobileFormField } from "@/components/business/mobile-form-field";
-import { MobileEmptyState } from "@/components/business/mobile-empty-state";
-import { MobileNavigation } from "@/components/business/mobile-navigation";
-import { MobileTabs } from "@/components/business/mobile-tabs";
-import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
-import { MobileAuthLayout } from "@/components/business/mobile-auth-layout";
-import { MobileBottomNav } from "@/components/business/mobile-bottom-nav";
-import { MobileFilterBuilder } from "@/components/business/mobile-filter-builder";
-import { MobileFormWizard } from "@/components/business/mobile-form-wizard";
-import { MobileKanban } from "@/components/business/mobile-kanban";
-import { MobilePageHeader } from "@/components/business/mobile-page-header";
-import { PullToRefresh as MobilePullToRefresh } from "@/components/business/mobile-pull-to-refresh";
+import { MobileButton } from "@/components/mobile/mobile-button";
+import { MobileInput } from "@/components/mobile/mobile-input";
+import { MobileTextarea } from "@/components/mobile/mobile-textarea";
+import { MobileSelect } from "@/components/mobile/mobile-select";
+import { MobileDialog } from "@/components/mobile/mobile-dialog";
+import { MobileSheet } from "@/components/mobile/mobile-sheet";
+import { MobileCard } from "@/components/mobile/mobile-card";
+import { MobileKPICard } from "@/components/mobile/mobile-kpi-card";
+import { MobileDataTable } from "@/components/mobile/mobile-data-table";
+import { MobileForm } from "@/components/mobile/mobile-form";
+import { MobileFormField } from "@/components/mobile/mobile-form-field";
+import { MobileEmptyState } from "@/components/mobile/mobile-empty-state";
+import { MobileNavigation } from "@/components/mobile/mobile-navigation";
+import { MobileTabs } from "@/components/mobile/mobile-tabs";
+import { MobileDashboardLayout } from "@/components/mobile/mobile-dashboard-layout";
+import { MobileAuthLayout } from "@/components/mobile/mobile-auth-layout";
+import { MobileBottomNav } from "@/components/mobile/mobile-bottom-nav";
+import { MobileFilterBuilder } from "@/components/mobile/mobile-filter-builder";
+import { MobileFormWizard } from "@/components/mobile/mobile-form-wizard";
+import { MobileKanban } from "@/components/mobile/mobile-kanban";
+import { MobilePageHeader } from "@/components/mobile/mobile-page-header";
+import { PullToRefresh as MobilePullToRefresh } from "@/components/mobile/mobile-pull-to-refresh";
 import {
   MobileCardSkeleton,
   MobileDetailSkeleton,
   MobileListItemSkeleton,
-} from "@/components/business/mobile-skeleton";
-import { SwipeActions as MobileSwipeActions } from "@/components/business/mobile-swipe-actions";
+} from "@/components/mobile/mobile-skeleton";
+import { SwipeActions as MobileSwipeActions } from "@/components/mobile/mobile-swipe-actions";
 import { ResponsivePreview } from "@/components/business/responsive-preview";
 import {
   DollarSignIcon,

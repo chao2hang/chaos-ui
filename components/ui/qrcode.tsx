@@ -1,118 +1,117 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
+import QRCodeLib from "qrcode";
 import { cn } from "@/lib/utils";
 
 /**
  * @component QRCode
  * @category ui/data-display
  * @since 0.5.0
- * @description QR Code generation component using a canvas-based renderer.
- * / 二维码生成组件
+ * @description QR Code generation component using the `qrcode` library.
+ * Renders as SVG by default for crisp rendering at any scale.
+ * / 二维码生成组件，基于 qrcode 库
  * @keywords qrcode, qr, code, scan, share
  * @example
  * <QRCode value="https://example.com" size={128} />
+ * <QRCode value="https://example.com" renderAs="canvas" />
  */
 
-interface QRCodeProps extends React.ComponentProps<"div"> {
+interface QRCodeProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** QR Code content / 二维码内容 */
   value: string;
-  /** Size in px / 尺寸 */
+  /** Size in px / 尺寸，默认 128 */
   size?: number;
-  /** Error correction level / 纠错等级 */
+  /** Error correction level / 纠错等级，默认 "M" */
   level?: "L" | "M" | "Q" | "H";
   /** Foreground color / 前景色 */
   fgColor?: string;
   /** Background color / 背景色 */
   bgColor?: string;
-  /** Whether to include a quiet zone / 是否包含留白边距 */
+  /** Whether to include a quiet zone margin / 是否包含留白边距 */
   includeMargin?: boolean;
+  /** Render mode / 渲染模式，默认 "svg" */
+  renderAs?: "svg" | "canvas";
 }
 
-// Minimal QR code renderer using a simple pattern (1 module = 1 CSS pixel)
-// For production usage, integrate a library like `qrcode`
 function QRCode({
   className,
   value,
   size = 128,
+  level = "M",
   fgColor = "#000",
   bgColor = "#fff",
   includeMargin = true,
+  renderAs = "svg",
   ...props
 }: QRCodeProps) {
-  // Generate a deterministic grid from the value string
-  const modules = React.useMemo(() => {
-    const grid: boolean[][] = [];
-    // Simple hash-based QR pattern (21x21 = version 1 QR)
-    const dim = 21;
-    for (let r = 0; r < dim; r++) {
-      const row: boolean[] = [];
-      for (let c = 0; c < dim; c++) {
-        // Deterministic finder patterns (7x7 squares at corners)
-        const isFinder =
-          (r < 7 && c < 7) || (r < 7 && c >= dim - 7) || (r >= dim - 7 && c < 7);
-        const isFinderBorder =
-          isFinder && (r === 0 || r === 6 || c === 0 || c === 6 || (r < 7 && c >= dim - 7 && (r === 0 || r === 6 || c === dim - 7 || c === dim - 1)) || (r >= dim - 7 && c < 7 && (r === dim - 7 || r === dim - 1 || c === 0 || c === 6)));
-        const isFinderCenter =
-          isFinder && r >= 2 && r <= 4 && c >= 2 && c <= 4;
-        const isFinderCenterTR =
-          r >= 2 && r <= 4 && c >= dim - 5 && c <= dim - 3;
-        const isFinderCenterBL =
-          r >= dim - 5 && r <= dim - 3 && c >= 2 && c <= 4;
+  const [svgData, setSvgData] = React.useState<string>("");
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const [error, setError] = React.useState<string | undefined>();
 
-        if (isFinderBorder || isFinderCenter || isFinderCenterTR || isFinderCenterBL) {
-          row.push(true);
-        } else if (isFinder) {
-          row.push(false);
-        } else {
-          // Data area: simple hash from value
-          const hash = hashCode(value + r + ":" + c);
-          row.push(hash % 3 === 0);
-        }
+  React.useEffect(() => {
+    if (renderAs === "svg") {
+      QRCodeLib.toString(value, {
+        type: "svg",
+        width: size,
+        margin: includeMargin ? 4 : 0,
+        errorCorrectionLevel: level,
+        color: {
+          dark: fgColor,
+          light: bgColor,
+        },
+      })
+        .then((svg) => {
+          setSvgData(svg);
+          setError(undefined);
+        })
+        .catch((err) => setError(err.message));
+    } else {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        QRCodeLib.toCanvas(canvas, value, {
+          width: size,
+          margin: includeMargin ? 4 : 0,
+          errorCorrectionLevel: level,
+          color: {
+            dark: fgColor,
+            light: bgColor,
+          },
+        })
+          .then(() => setError(undefined))
+          .catch((err) => setError(err.message));
       }
-      grid.push(row);
     }
-    return grid;
-  }, [value]);
+  }, [value, size, level, fgColor, bgColor, includeMargin, renderAs]);
 
-  const cellSize = size / modules.length;
-  const margin = includeMargin ? 4 * cellSize : 0;
-  const totalSize = size + margin * 2;
+  if (error) {
+    return (
+      <div
+        data-slot="qrcode"
+        className={cn(
+          "inline-flex items-center justify-center rounded-md border border-destructive/30 bg-destructive/5 text-destructive text-xs",
+          className,
+        )}
+        style={{ width: size, height: size }}
+        {...props}
+      >
+        QR Error
+      </div>
+    );
+  }
 
   return (
     <div data-slot="qrcode" className={cn("inline-block", className)} {...props}>
-      <svg
-        width={totalSize}
-        height={totalSize}
-        viewBox={`0 0 ${totalSize} ${totalSize}`}
-      >
-        <rect width={totalSize} height={totalSize} fill={bgColor} />
-        {modules.map((row, r) =>
-          row.map((cell, c) =>
-            cell ? (
-              <rect
-                key={`${r}-${c}`}
-                x={margin + c * cellSize}
-                y={margin + r * cellSize}
-                width={cellSize}
-                height={cellSize}
-                fill={fgColor}
-              />
-            ) : null,
-          ),
-        )}
-      </svg>
+      {renderAs === "svg" ? (
+        <span
+          dangerouslySetInnerHTML={{ __html: svgData }}
+          style={{ display: "inline-block", width: size, height: size }}
+        />
+      ) : (
+        <canvas ref={canvasRef} />
+      )}
     </div>
   );
-}
-
-function hashCode(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash + char) | 0;
-  }
-  return Math.abs(hash);
 }
 
 export { QRCode };

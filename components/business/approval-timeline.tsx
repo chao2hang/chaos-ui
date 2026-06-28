@@ -19,9 +19,21 @@ export interface ApprovalStep {
   note?: string;
 }
 
+export interface ApprovalTimelineTexts {
+  statusApproved?: string;
+  statusPending?: string;
+  statusRejected?: string;
+  statusSkipped?: string;
+}
+
 export interface ApprovalTimelineProps {
   steps: ApprovalStep[];
   className?: string;
+  /**
+   * Override i18n strings. When provided, useTranslation is skipped.
+   * / 覆盖 i18n 字符串，传入后跳过 useTranslation
+   */
+  texts?: ApprovalTimelineTexts;
 }
 
 const statusIcon = {
@@ -38,14 +50,35 @@ const statusVariant = {
   skipped: "default",
 } as const;
 
-export function ApprovalTimeline({ steps, className }: ApprovalTimelineProps) {
-  const { t } = useTranslation("transfer");
+export function ApprovalTimeline({ steps, className, texts: textsProp }: ApprovalTimelineProps) {
+  const defaultTexts: Record<string, string> = {
+    approved: "Approved",
+    pending: "Pending",
+    rejected: "Rejected",
+    skipped: "Skipped",
+  };
+
+  const statusTextMap: Record<ApprovalStepStatus, string | undefined> = {
+    approved: textsProp?.statusApproved,
+    pending: textsProp?.statusPending,
+    rejected: textsProp?.statusRejected,
+    skipped: textsProp?.statusSkipped,
+  };
+
+  const hasI18n = !textsProp;
+  // Only call useTranslation if no texts prop provided
+  const { t } = hasI18n ? useTranslation("transfer") : { t: (k: string) => k };
+
   return (
     <Timeline
       data-slot="approval-timeline"
       className={cn("max-w-2xl", className)}
     >
-      {steps.map((step) => (
+      {steps.map((step) => {
+        const statusLabel = textsProp
+          ? (statusTextMap[step.status] ?? (defaultTexts as Record<string, string>)[step.status] ?? step.status)
+          : t(`approvalTimeline.status.${step.status}` as string, String(defaultTexts[step.status] ?? step.status));
+        return (
         <TimelineItem
           key={step.id}
           icon={statusIcon[step.status]}
@@ -53,7 +86,7 @@ export function ApprovalTimeline({ steps, className }: ApprovalTimelineProps) {
             <span className="inline-flex items-center gap-2">
               {step.title}
               <Badge variant="outline">
-                {t(`approvalTimeline.status.${step.status}`)}
+                {statusLabel}
               </Badge>
             </span>
           }
@@ -66,7 +99,8 @@ export function ApprovalTimeline({ steps, className }: ApprovalTimelineProps) {
           time={step.time}
           variant={statusVariant[step.status]}
         />
-      ))}
+      );
+      })}
     </Timeline>
   );
 }

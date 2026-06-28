@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Combobox, type ComboboxOption } from "@/components/business/combobox";
+import { Combobox, type ComboboxOption } from "@/components/ui/combobox";
 
 const assigneeOptions: ComboboxOption[] = [
   {

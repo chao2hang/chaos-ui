@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { MobilePageHeader } from "@/components/business/mobile-page-header";
+import { MobilePageHeader } from "@/components/mobile/mobile-page-header";
 
 interface MobileDashboardLayoutProps {
   children: React.ReactNode;

@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui";
 import { ScrollArea } from "@/components/ui";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
 import { useTranslation } from "react-i18next";
-import { EmptyState } from "@/components/business/empty-state";
+import { EmptyState } from "@/components/ui/empty-state";
 import { formatRelativeTime } from "@/lib/format";
 
 export interface NotificationItem {

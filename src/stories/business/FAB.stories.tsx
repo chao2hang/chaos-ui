@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MessageSquareIcon, PlusIcon, UploadIcon } from "@/components/ui/icons";
-import { Fab, FabSpeedDial } from "@/components/business/fab";
+import { Fab, FabSpeedDial } from "@/components/ui/fab";
 
 const meta = {
   title: "Business/FAB",

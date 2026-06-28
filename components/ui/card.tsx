@@ -5,12 +5,18 @@ import { cn } from "@/lib/utils"
 function Card({
   className,
   size = "default",
+  flush,
   ...props
-}: React.ComponentProps<"div"> & { size?: "default" | "sm" }) {
+}: React.ComponentProps<"div"> & {
+  size?: "default" | "sm"
+  /** Remove padding on CardContent for edge-to-edge tables / 内容通栏 */
+  flush?: boolean
+}) {
   return (
     <div
       data-slot="card"
       data-size={size}
+      {...(flush ? { "data-flush": "" } : {})}
       className={cn(
         "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
         className
@@ -90,7 +96,12 @@ function CardContent({
   return (
     <div
       data-slot="card-content"
-      className={cn(flush ? "" : "px-(--card-spacing)", className)}
+      className={cn(
+        flush ? "" : "px-(--card-spacing)",
+        // When parent Card has flush, also remove padding via group variant
+        "group-data-[flush]/card:px-0",
+        className,
+      )}
       {...props}
     />
   )

@@ -1,50 +1,60 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { DataTable, type Column } from "@/components/business/data-table"
-import { StatusTag } from "@/components/business/status-tag"
+import type { Meta, StoryObj } from "@storybook/react";
+import { DataTable } from "@/components/business/data-table";
 
 interface Order {
-  id: string
-  customer: string
-  email: string
-  amount: number
-  status: string
-  date: string
+  id: string;
+  name: string;
+  amount: number;
+  status: string;
+  date: string;
 }
 
-const mockData: Order[] = [
-  { id: "ORD-001", customer: "Alice Johnson", email: "alice@example.com", amount: 250.0, status: "completed", date: "2024-01-15" },
-  { id: "ORD-002", customer: "Bob Smith", email: "bob@example.com", amount: 120.5, status: "pending", date: "2024-01-16" },
-  { id: "ORD-003", customer: "Carol White", email: "carol@example.com", amount: 89.99, status: "approved", date: "2024-01-17" },
-  { id: "ORD-004", customer: "Dave Brown", email: "dave@example.com", amount: 340.0, status: "rejected", date: "2024-01-18" },
-]
+const sampleData: Order[] = [
+  { id: "1", name: "Order A", amount: 1200, status: "pending", date: "2024-01-15" },
+  { id: "2", name: "Order B", amount: 3400, status: "completed", date: "2024-01-14" },
+  { id: "3", name: "Order C", amount: 560, status: "cancelled", date: "2024-01-13" },
+];
 
-const columns: Column<Order>[] = [
-  { key: "id", header: "Order ID" },
-  { key: "customer", header: "Customer" },
-  { key: "email", header: "Email" },
-  { key: "amount", header: "Amount", render: (row) => `$${row.amount.toFixed(2)}` },
-  { key: "status", header: "Status", render: (row) => <StatusTag status={row.status} size="sm" /> },
-  { key: "date", header: "Date" },
-]
-
-const meta = {
+const meta: Meta<typeof DataTable> = {
   title: "Business/DataTable",
   component: DataTable,
-  tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof DataTable>
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj
+export default meta;
+type Story = StoryObj<typeof DataTable>;
 
 export const Default: Story = {
-  render: () => <DataTable<Order> columns={columns} data={mockData} />,
-}
-
-export const WithRowClick: Story = {
-  render: () => <DataTable<Order> columns={columns} data={mockData} onRowClick={(row) => alert(`Clicked: ${row.id}`)} />,
-}
+  args: {
+    columns: [
+      { key: "name", title: "Name" },
+      { key: "amount", title: "Amount" },
+      { key: "status", title: "Status" },
+      { key: "date", title: "Date" },
+    ],
+    dataSource: sampleData,
+      },
+};
 
 export const Empty: Story = {
-  render: () => <DataTable<Order> columns={columns} data={[]} />,
-}
+  args: {
+    columns: [
+      { key: "name", title: "Name" },
+      { key: "amount", title: "Amount" },
+    ],
+    dataSource: [],
+  },
+};
 
+export const Sortable: Story = {
+  args: {
+    columns: [
+      { key: "name", title: "Name", sortable: true },
+      { key: "amount", title: "Amount", sortable: true },
+      { key: "status", title: "Status" },
+      { key: "date", title: "Date", sortable: true },
+    ],
+    dataSource: sampleData,
+        sortable: true,
+  },
+};

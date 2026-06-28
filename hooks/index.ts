@@ -1,4 +1,4 @@
-﻿export { useBreakpoint, useIsBreakpoint } from "./use-breakpoint";
+export { useBreakpoint, useIsBreakpoint } from "./use-breakpoint";
 export type { Breakpoint } from "./use-breakpoint";
 export { useEventListener } from "./use-event-listener";
 export { useKey, useKeyCombo } from "./use-key";
@@ -39,3 +39,8 @@ export { useCrud } from "./use-crud";
 export type { UseCrudConfig, UseCrudReturn } from "./use-crud";
 export { usePageTitle } from "./use-page-title";
 export type { UsePageTitleOptions } from "./use-page-title";
+
+export { useConfirmAsync } from "./use-confirm-async";
+export type { ConfirmOptions } from "./use-confirm-async";
+export { useFieldValidation } from "./use-field-validation";
+export type { ValidationRule, UseFieldValidationOptions } from "./use-field-validation";

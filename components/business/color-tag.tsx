@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
@@ -9,12 +9,13 @@ import { cn } from "@/lib/utils";
  * @since 0.5.0
  * @description Semantic color tag — replaces project-side colorTag() utility
  * with a proper component. Maps well-known color keys to consistent styles.
- * / 语义颜色标签，替代项目侧 colorTag() 工具
+ * Includes antd migration colors (blue, red, orange, gold, cyan, green, processing).
+ * / 语义颜色标签，替代项目侧 colorTag() 工具，含 antd 迁移色
  * @keywords tag, color, status, badge, semantic
  * @example
- * <ColorTag color="success">正常</ColorTag>
- * <ColorTag color="warning">待审核</ColorTag>
- * <ColorTag color="error">失败</ColorTag>
+ * <ColorTag color="success">Active</ColorTag>
+ * <ColorTag color="processing">Processing</ColorTag>
+ * <ColorTag color="gold">VIP</ColorTag>
  */
 
 type ColorTagColor =
@@ -24,7 +25,15 @@ type ColorTagColor =
   | "warning"
   | "error"
   | "info"
-  | "muted";
+  | "muted"
+  // antd migration colors / antd 迁移色
+  | "blue"
+  | "red"
+  | "orange"
+  | "gold"
+  | "cyan"
+  | "green"
+  | "processing";
 
 const colorConfig: Record<ColorTagColor, { bg: string; text: string; border: string }> = {
   default: {
@@ -61,6 +70,42 @@ const colorConfig: Record<ColorTagColor, { bg: string; text: string; border: str
     bg: "bg-muted/50",
     text: "text-muted-foreground",
     border: "border-muted",
+  },
+  // antd migration colors
+  blue: {
+    bg: "bg-blue-50 dark:bg-blue-950",
+    text: "text-blue-700 dark:text-blue-300",
+    border: "border-blue-200 dark:border-blue-900",
+  },
+  red: {
+    bg: "bg-red-50 dark:bg-red-950",
+    text: "text-red-700 dark:text-red-300",
+    border: "border-red-200 dark:border-red-900",
+  },
+  orange: {
+    bg: "bg-orange-50 dark:bg-orange-950",
+    text: "text-orange-700 dark:text-orange-300",
+    border: "border-orange-200 dark:border-orange-900",
+  },
+  gold: {
+    bg: "bg-yellow-50 dark:bg-yellow-950",
+    text: "text-yellow-700 dark:text-yellow-300",
+    border: "border-yellow-200 dark:border-yellow-900",
+  },
+  cyan: {
+    bg: "bg-cyan-50 dark:bg-cyan-950",
+    text: "text-cyan-700 dark:text-cyan-300",
+    border: "border-cyan-200 dark:border-cyan-900",
+  },
+  green: {
+    bg: "bg-emerald-50 dark:bg-emerald-950",
+    text: "text-emerald-700 dark:text-emerald-300",
+    border: "border-emerald-200 dark:border-emerald-900",
+  },
+  processing: {
+    bg: "bg-blue-50 dark:bg-blue-950",
+    text: "text-blue-700 dark:text-blue-300",
+    border: "border-blue-200 dark:border-blue-900",
   },
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { Tour, type TourStep } from "@/components/business/tour"
+import { Tour, type TourStep } from "@/components/ui/tour"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 

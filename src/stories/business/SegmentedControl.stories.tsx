@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { BarChart3Icon, CalendarIcon, TableIcon } from "@/components/ui/icons";
-import { SegmentedControl } from "@/components/business/segmented-control";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 
 const viewOptions = [
   { value: "table", label: "Table", icon: <TableIcon /> },

@@ -1,4 +1,11 @@
 "use client";
+
+/**
+ * @deprecated Use SearchTable or DataTable instead — they are now powered by @tanstack/react-table
+ * and support sorting, filtering, sticky columns, expandable rows, and column visibility.
+ * AdvancedDataTable is kept for backward compatibility and will be removed in a future version.
+ */
+
 import * as React from "react";
 import {
   Table,
@@ -18,7 +25,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from "@/components/ui";
-import { EmptyState } from "@/components/business/empty-state";
+import { EmptyState } from "@/components/ui/empty-state";
 import { cn } from "@/lib/utils";
 import {
   ArrowUpDownIcon,

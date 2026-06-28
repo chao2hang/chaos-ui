@@ -1,3 +1,5 @@
+﻿"use client";
+
 import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -10,39 +12,22 @@ type Status =
   | "cancelled";
 
 const statusConfig: Record<Status, { label: string; className: string }> = {
-  draft: {
-    label: "Draft",
-    className: "bg-muted text-muted-foreground",
-  },
-  pending: {
-    label: "Pending",
-    className: "bg-warning/15 text-warning",
-  },
-  approved: {
-    label: "Approved",
-    className: "bg-info/15 text-info",
-  },
-  rejected: {
-    label: "Rejected",
-    className: "bg-destructive/10 text-destructive",
-  },
-  completed: {
-    label: "Completed",
-    className: "bg-success/15 text-success",
-  },
-  cancelled: {
-    label: "Cancelled",
-    className: "bg-muted text-muted-foreground line-through",
-  },
+  draft: { label: "Draft", className: "bg-muted text-muted-foreground" },
+  pending: { label: "Pending", className: "bg-warning/15 text-warning" },
+  approved: { label: "Approved", className: "bg-info/15 text-info" },
+  rejected: { label: "Rejected", className: "bg-destructive/10 text-destructive" },
+  completed: { label: "Completed", className: "bg-success/15 text-success" },
+  cancelled: { label: "Cancelled", className: "bg-muted text-muted-foreground line-through" },
 };
 
-function StatusTag({
-  status,
-  size = "default",
-}: {
+interface StatusTagProps {
   status: Status | string;
   size?: "sm" | "default";
-}) {
+  /** Custom label — overrides the default status label / 自定义标签文本 */
+  label?: string;
+}
+
+function StatusTag({ status, size = "default", label }: StatusTagProps) {
   const key = status.toLowerCase() as Status;
   const config = statusConfig[key] ?? {
     label: status,
@@ -56,10 +41,10 @@ function StatusTag({
         size === "sm" && "h-4 px-1.5 text-[0.65rem]",
       )}
     >
-      {config.label}
+      {label ?? config.label}
     </Badge>
   );
 }
 
 export { StatusTag, statusConfig };
-export type { Status };
+export type { Status, StatusTagProps };

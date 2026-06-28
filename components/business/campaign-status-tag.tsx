@@ -1,3 +1,5 @@
+﻿"use client";
+
 import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +15,8 @@ export type CampaignStatus =
 export interface CampaignStatusTagProps {
   status: CampaignStatus;
   size?: "sm" | "default";
+  /** Custom label — overrides the default status label / 自定义标签文本 */
+  label?: string;
   className?: string;
 }
 
@@ -23,19 +27,14 @@ const statusMeta: Record<CampaignStatus, { label: string; className: string }> =
     active: { label: "Active", className: "bg-success/15 text-success" },
     paused: { label: "Paused", className: "bg-warning/15 text-warning" },
     completed: { label: "Completed", className: "bg-primary/10 text-primary" },
-    failed: {
-      label: "Failed",
-      className: "bg-destructive/10 text-destructive",
-    },
-    archived: {
-      label: "Archived",
-      className: "bg-secondary text-secondary-foreground",
-    },
+    failed: { label: "Failed", className: "bg-destructive/10 text-destructive" },
+    archived: { label: "Archived", className: "bg-secondary text-secondary-foreground" },
   };
 
 export function CampaignStatusTag({
   status,
   size = "default",
+  label,
   className,
 }: CampaignStatusTagProps) {
   const meta = statusMeta[status];
@@ -49,7 +48,7 @@ export function CampaignStatusTag({
         className,
       )}
     >
-      {meta.label}
+      {label ?? meta.label}
     </Badge>
   );
 }

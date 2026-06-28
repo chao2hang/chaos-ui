@@ -245,7 +245,7 @@ function CrudPage<T = Record<string, unknown>>({
       </div>
 
       <SearchTable<T>
-        filterFields={filterFields}
+        filterFields={filterFields ?? undefined}
         columns={enhancedColumns}
         dataSource={dataSource}
         rowKey={rowKey}
@@ -254,7 +254,7 @@ function CrudPage<T = Record<string, unknown>>({
         onReset={onReset}
         onPageChange={onPageChange}
         loading={loading}
-        rowSelection={rowSelection}
+        rowSelection={rowSelection ?? undefined}
       />
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
