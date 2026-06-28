@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DatePicker } from "@/components/ui/date-picker";
+import { DateRangePicker } from "@/components/business/date-range-picker";
 
 /**
  * @component FilterBar
@@ -183,10 +184,10 @@ function FilterBar({
 
       case "dateRange":
         return (
-          <DatePicker
-            value={val as Date | undefined}
-            onChange={(date) => handleChange(field.name, date)}
-            disabled={field.disabled}
+          <DateRangePicker
+            value={(val as { from?: Date; to?: Date } | undefined) as any}
+            onChange={(range) => handleChange(field.name, range)}
+            disabled={field.disabled ?? false}
             className="w-full"
           />
         );

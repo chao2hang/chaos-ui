@@ -399,3 +399,21 @@ export type {
   MenuItemProps,
 } from "./menu";
 export * from "./icons";
+export { Cascader } from "./cascader";
+export type { CascaderProps, CascaderOption } from "./cascader";
+export { Image, ImageGroup } from "./image";
+export type { ImageProps } from "./image";
+export { Tag, TagGroup } from "./tag";
+export type { TagProps, TagColor } from "./tag";
+export { Result } from "./result";
+export type { ResultProps, ResultStatus } from "./result";
+export { Statistic } from "./statistic";
+export type { StatisticProps } from "./statistic";
+export { QRCode } from "./qrcode";
+export type { QRCodeProps } from "./qrcode";
+export { AutoComplete } from "./autocomplete";
+export type { AutoCompleteProps, AutoCompleteOption } from "./autocomplete";
+export { Mentions } from "./mentions";
+export type { MentionsProps, MentionOption } from "./mentions";
+export { Countdown } from "./countdown";
+export type { CountdownProps, CountdownFormat } from "./countdown";

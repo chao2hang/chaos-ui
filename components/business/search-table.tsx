@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 
@@ -39,14 +39,21 @@ import {
  *   onSearch={handleSearch}
  *   onPageChange={handlePageChange}
  * />
+ *
+ * // Generic usage — eliminates `as unknown as` casts:
+ * <SearchTable<Company>
+ *   columns={[{ key: 'name', title: 'Name', render: (v, r) => r.name }]}
+ *   dataSource={companies}
+ * />
  */
 
-interface SearchTableColumn {
-  key: string;
+/** Generic column definition — render receives typed value & record */
+interface SearchTableColumn<T = Record<string, unknown>> {
+  key: keyof T & string;
   title: React.ReactNode;
   width?: number | string;
   align?: "left" | "center" | "right";
-  render?: (value: unknown, row: Record<string, unknown>, index: number) => React.ReactNode;
+  render?: (value: T[keyof T], row: T, index: number) => React.ReactNode;
   fixed?: "left" | "right";
 }
 
@@ -56,15 +63,19 @@ interface PaginationConfig {
   total: number;
 }
 
-interface SearchTableProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+/** Keep the legacy non-generic alias for backward compat */
+type SearchTableColumnLegacy = SearchTableColumn<Record<string, unknown>>;
+
+interface SearchTableProps<T = Record<string, unknown>>
+  extends Omit<React.ComponentProps<"div">, "onChange"> {
   /** Filter field configs / 筛选字段配置 */
   filterFields?: FilterField[] | undefined;
   /** Table columns / 表格列定义 */
-  columns: SearchTableColumn[];
+  columns: SearchTableColumn<T>[];
   /** Table data / 表格数据 */
-  dataSource?: Record<string, unknown>[] | undefined;
+  dataSource?: T[] | undefined;
   /** Row key field / 行 key 字段 */
-  rowKey?: string | undefined;
+  rowKey?: keyof T & string | undefined;
   /** Pagination config / 分页配置 */
   pagination?: PaginationConfig | false | undefined;
   /** Search callback / 搜索回调 */
@@ -86,12 +97,12 @@ interface SearchTableProps extends Omit<React.ComponentProps<"div">, "onChange">
   } | undefined;
 }
 
-function SearchTable({
+function SearchTable<T = Record<string, unknown>>({
   className,
   filterFields,
   columns,
-  dataSource = [],
-  rowKey = "id",
+  dataSource = [] as T[],
+  rowKey = "id" as keyof T & string,
   pagination,
   onSearch,
   onReset,
@@ -101,7 +112,7 @@ function SearchTable({
   size = "md",
   rowSelection,
   ...props
-}: SearchTableProps) {
+}: SearchTableProps<T>) {
   const sizePadding =
     size === "sm" ? "px-2 py-1.5" : size === "lg" ? "px-4 py-3" : "px-3 py-2";
 
@@ -155,8 +166,14 @@ function SearchTable({
           )}
           <PaginationItem>
             <PaginationNext
-              onClick={() => current < totalPages && onPageChange?.(current + 1, pageSize)}
-              className={current >= totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+              onClick={() =>
+                current < totalPages && onPageChange?.(current + 1, pageSize)
+              }
+              className={
+                current >= totalPages
+                  ? "pointer-events-none opacity-50"
+                  : "cursor-pointer"
+              }
             />
           </PaginationItem>
         </PaginationContent>
@@ -185,13 +202,18 @@ function SearchTable({
                     checked={
                       dataSource.length > 0 &&
                       dataSource.every((row) =>
-                        rowSelection.selectedRowKeys.includes(row[rowKey] as string | number),
+                        rowSelection.selectedRowKeys.includes(
+                          (row as Record<string, unknown>)[rowKey] as string | number,
+                        ),
                       )
                     }
                     onChange={(e) => {
                       if (e.target.checked) {
                         rowSelection.onChange(
-                          dataSource.map((row) => row[rowKey] as string | number),
+                          dataSource.map(
+                            (row) =>
+                              (row as Record<string, unknown>)[rowKey] as string | number,
+                          ),
                         );
                       } else {
                         rowSelection.onChange([]);
@@ -242,7 +264,8 @@ function SearchTable({
               </TableRow>
             ) : (
               dataSource.map((row, index) => {
-                const key = row[rowKey] as string | number;
+                const record = row as Record<string, unknown>;
+                const key = record[rowKey] as string | number;
                 const isSelected = rowSelection?.selectedRowKeys.includes(key);
                 return (
                   <TableRow
@@ -275,7 +298,10 @@ function SearchTable({
                             col.align === "right" && "text-right",
                           )}
                         >
-                          {col.render ? col.render(val, row, index) : (val as React.ReactNode) ?? "—"}
+                          {col.fixed && "sticky " + (col.fixed === "left" ? "left-0 z-[1] bg-inherit" : "right-0 z-[1] bg-inherit")}
+                          {col.render
+                            ? col.render(val, row, index)
+                            : (val as React.ReactNode) ?? "—"}
                         </TableCell>
                       );
                     })}
@@ -293,4 +319,9 @@ function SearchTable({
 }
 
 export { SearchTable };
-export type { SearchTableProps, SearchTableColumn, PaginationConfig };
+export type {
+  SearchTableProps,
+  SearchTableColumn,
+  SearchTableColumnLegacy,
+  PaginationConfig,
+};

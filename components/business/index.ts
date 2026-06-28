@@ -1,4 +1,4 @@
-export * from "./activity-feed";
+﻿export * from "./activity-feed";
 export * from "./advanced-data-table";
 export * from "./advanced-search";
 export * from "./approval-timeline";
@@ -86,6 +86,7 @@ export * from "./responsive-preview";
 export * from "./role-assignment";
 export * from "./saved-filters";
 export * from "./search-table";
+export type { PaginationConfig } from "./search-table";
 export * from "./segmented-control";
 export * from "./stat-card";
 export * from "./stat-card-row";
@@ -97,3 +98,6 @@ export * from "./user-menu";
 export * from "./utm-builder";
 export * from "./version-history";
 export * from "./watermark";
+export * from "./auth-guard";
+
+export * from "./color-tag";

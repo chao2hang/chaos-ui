@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
@@ -50,7 +50,10 @@ function BreadcrumbLink({
     defaultTagName: "a",
     props: mergeProps<"a">(
       {
-        className: cn("transition-colors hover:text-foreground", className),
+        className: cn(
+          "cursor-pointer transition-colors hover:text-foreground",
+          className,
+        ),
       },
       props,
     ),

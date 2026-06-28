@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
@@ -35,6 +35,19 @@ const variantI18n = {
   },
 };
 
+interface EmptyStateProps {
+  variant?: string;
+  icon?: React.ElementType;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
+  className?: string;
+  /** Center vertically with min-height, replacing outer flex wrapper / 垂直居中布局 */
+  centered?: boolean;
+  /** Fill the parent container height / 充满父容器高度 */
+  fullPage?: boolean;
+}
+
 function EmptyState({
   variant = "default",
   icon: iconProp,
@@ -42,14 +55,9 @@ function EmptyState({
   description: descProp,
   action,
   className,
-}: {
-  variant?: string;
-  icon?: React.ElementType;
-  title?: string;
-  description?: string;
-  action?: React.ReactNode;
-  className?: string;
-}) {
+  centered,
+  fullPage,
+}: EmptyStateProps) {
   const { t } = useTranslation("data");
   const config =
     (variantConfig as Record<string, { icon: React.ElementType }>)[variant] ??
@@ -64,6 +72,8 @@ function EmptyState({
     <div
       className={cn(
         "flex flex-col items-center justify-center py-12 text-center",
+        centered && "items-center justify-center min-h-[400px]",
+        fullPage && "min-h-svh",
         className,
       )}
     >
@@ -80,3 +90,4 @@ function EmptyState({
 }
 
 export { EmptyState, variantConfig };
+export type { EmptyStateProps };

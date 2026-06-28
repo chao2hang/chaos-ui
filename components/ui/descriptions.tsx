@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 
@@ -9,12 +9,13 @@ import { cn } from "@/lib/utils";
  * @category ui/primitives
  * @since 0.2.0
  * @description 描述列表组件 / Description list component (antd Descriptions equivalent)
- * @keywords descriptions, detail, info, display, list
+ * @keywords descriptions, detail, info, display, list, compact
  * @example
  * <Descriptions title="User Info" column={2} items={[
  *   { label: "Name", value: "John" },
  *   { label: "Age", value: 30 },
  * ]} />
+ * <Descriptions variant="compact" column={3} items={[...]} />
  */
 
 interface DescriptionItem {
@@ -39,6 +40,8 @@ interface DescriptionsProps extends Omit<React.ComponentProps<"div">, "title"> {
   bordered?: boolean;
   /** Size / 大小 */
   size?: "sm" | "default" | "lg";
+  /** Display variant / 显示变体 */
+  variant?: "default" | "compact" | "inline";
   /** Colon after label / 标签后冒号 */
   colon?: boolean;
   /** Items to display / 描述项列表 */
@@ -55,6 +58,12 @@ const sizeMap: Record<string, string> = {
   lg: "text-base px-4 py-3",
 };
 
+const compactSizeMap: Record<string, string> = {
+  sm: "text-xs px-1.5 py-1",
+  default: "text-xs px-2 py-1.5",
+  lg: "text-sm px-3 py-2",
+};
+
 function Descriptions({
   className,
   title,
@@ -63,6 +72,7 @@ function Descriptions({
   layout = "horizontal",
   bordered = true,
   size = "default",
+  variant = "default",
   colon = true,
   items = [],
   contentStyle,
@@ -70,7 +80,37 @@ function Descriptions({
   ...props
 }: DescriptionsProps) {
   const cols = typeof column === "number" ? column : 3;
-  const sizeClass = sizeMap[size];
+  const resolvedSize = variant === "compact" ? compactSizeMap[size] : sizeMap[size];
+
+  // Inline variant: label and value on same line
+  if (variant === "inline") {
+    return (
+      <div
+        data-slot="descriptions"
+        className={cn("w-full", className)}
+        {...props}
+      >
+        {(title || extra) && (
+          <div className="mb-3 flex items-center justify-between">
+            {title && (
+              <h3 className="text-base font-semibold text-foreground">{title}</h3>
+            )}
+            {extra && <div>{extra}</div>}
+          </div>
+        )}
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+          {items.map((item, index) => (
+            <div key={index} className="flex gap-1.5">
+              <span className="font-medium text-muted-foreground">
+                {item.label}{colon && ":"}
+              </span>
+              <span className="text-foreground">{item.value ?? "—"}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -101,13 +141,13 @@ function Descriptions({
             <React.Fragment key={index}>
               <div
                 className={cn(
-                  sizeClass,
+                  resolvedSize,
                   "font-medium text-muted-foreground",
                   bordered
                     ? "border-b border-r border-border bg-muted/30"
                     : "pb-1",
                   layout === "vertical" && "border-r-0",
-                  colon && "after:content-[':']",
+                  colon && "after:content-[\":\"]",
                 )}
                 style={{
                   gridColumn: span > 1 ? `span ${span}` : undefined,
@@ -119,7 +159,7 @@ function Descriptions({
               {layout === "horizontal" && (
                 <div
                   className={cn(
-                    sizeClass,
+                    resolvedSize,
                     "text-foreground",
                     bordered
                       ? "border-b border-border"

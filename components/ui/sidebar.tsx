@@ -23,6 +23,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { PanelLeftIcon } from "@/components/ui/icons";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
@@ -635,19 +641,64 @@ function SidebarMenuSkeleton({
   );
 }
 
-function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
+function SidebarMenuSub({
+  className,
+  children,
+  icon,
+  label,
+  ...props
+}: React.ComponentProps<"ul"> & {
+  /** Icon for the trigger in icon-mode */
+  icon?: React.ReactNode;
+  /** Label for the trigger in icon-mode */
+  label?: React.ReactNode;
+}) {
+  const { state } = useSidebar();
+
+  // In icon-collapsed mode, render sub-items inside a DropdownMenu
+  // instead of hiding them entirely
+  if (state === "collapsed") {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          render={
+            <SidebarMenuSubButton size="md" isActive={false}>
+              {icon ?? <span className="size-4" />}
+              {label && <span>{label}</span>}
+            </SidebarMenuSubButton>
+          }
+        />
+        <DropdownMenuContent side="right" align="start" className="min-w-48">
+          {React.Children.map(children, (child) => {
+            if (React.isValidElement(child) && child.type === SidebarMenuSubItem) {
+              return (
+                <DropdownMenuItem className="cursor-pointer">
+                  {child}
+                </DropdownMenuItem>
+              );
+            }
+            return child;
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
   return (
     <ul
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
+        "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </ul>
   );
 }
+
 
 function SidebarMenuSubItem({
   className,
@@ -663,6 +714,22 @@ function SidebarMenuSubItem({
   );
 }
 
+const sidebarMenuSubButtonVariants = cva(
+  "flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+  {
+    variants: {
+      size: {
+        sm: "h-6 text-xs gap-1 px-1.5",
+        md: "h-8 text-sm",
+        lg: "h-10 text-sm",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  },
+);
+
 function SidebarMenuSubButton({
   render,
   size = "md",
@@ -671,17 +738,14 @@ function SidebarMenuSubButton({
   ...props
 }: useRender.ComponentProps<"a"> &
   React.ComponentProps<"a"> & {
-    size?: "sm" | "md";
+    size?: "sm" | "md" | "lg";
     isActive?: boolean;
-  }) {
+  } & VariantProps<typeof sidebarMenuSubButtonVariants>) {
   return useRender({
     defaultTagName: "a",
     props: mergeProps<"a">(
       {
-        className: cn(
-          "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-sm data-[size=sm]:text-xs data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
-          className,
-        ),
+        className: cn(sidebarMenuSubButtonVariants({ size }), className),
       },
       props,
     ),
@@ -694,6 +758,7 @@ function SidebarMenuSubButton({
     },
   });
 }
+
 
 export {
   Sidebar,
@@ -714,6 +779,7 @@ export {
   SidebarMenuSkeleton,
   SidebarMenuSub,
   SidebarMenuSubButton,
+  sidebarMenuSubButtonVariants,
   SidebarMenuSubItem,
   SidebarProvider,
   SidebarRail,

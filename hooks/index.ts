@@ -1,4 +1,4 @@
-export { useBreakpoint, useIsBreakpoint } from "./use-breakpoint";
+﻿export { useBreakpoint, useIsBreakpoint } from "./use-breakpoint";
 export type { Breakpoint } from "./use-breakpoint";
 export { useEventListener } from "./use-event-listener";
 export { useKey, useKeyCombo } from "./use-key";
@@ -35,3 +35,7 @@ export {
   getStoredLocale,
 } from "./use-locale";
 export type { SupportedLocale } from "./use-locale";
+export { useCrud } from "./use-crud";
+export type { UseCrudConfig, UseCrudReturn } from "./use-crud";
+export { usePageTitle } from "./use-page-title";
+export type { UsePageTitleOptions } from "./use-page-title";

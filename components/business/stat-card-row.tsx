@@ -146,18 +146,28 @@ function StatCardRow({
   const cols = columns ?? responsiveColsMap;
   const totalCols = cols.xl ?? cols.lg ?? 4;
 
-  const gridColsClass = cn(
-    "grid gap-4",
-    cols.xs && `grid-cols-${cols.xs}`,
-    cols.sm && `sm:grid-cols-${cols.sm}`,
-    cols.md && `md:grid-cols-${cols.md}`,
-    cols.lg && `lg:grid-cols-${cols.lg}`,
-    cols.xl && `xl:grid-cols-${cols.xl}`,
-  );
+  
+  // Use inline style for dynamic columns to avoid Tailwind purge issues
+  
+  // Safelist: these specific classes must be present for Tailwind to include them
+  // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6
+  // sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
+  const safelistClasses = [
+    "grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4", "grid-cols-5", "grid-cols-6",
+  ];
+  
+  // Use resolved class names instead of template literals
+  const xsClass = cols.xs ? safelistClasses[Math.min(cols.xs, 6) - 1] : "";
+  const smClass = cols.sm && cols.sm <= 6 ? (cols.sm === 1 ? "sm:grid-cols-1" : cols.sm === 2 ? "sm:grid-cols-2" : cols.sm === 3 ? "sm:grid-cols-3" : cols.sm === 4 ? "sm:grid-cols-4" : cols.sm === 5 ? "sm:grid-cols-5" : "sm:grid-cols-6") : "";
+  const mdClass = cols.md && cols.md <= 6 ? (cols.md === 1 ? "md:grid-cols-1" : cols.md === 2 ? "md:grid-cols-2" : cols.md === 3 ? "md:grid-cols-3" : cols.md === 4 ? "md:grid-cols-4" : cols.md === 5 ? "md:grid-cols-5" : "md:grid-cols-6") : "";
+  const lgClass = cols.lg && cols.lg <= 6 ? (cols.lg === 1 ? "lg:grid-cols-1" : cols.lg === 2 ? "lg:grid-cols-2" : cols.lg === 3 ? "lg:grid-cols-3" : cols.lg === 4 ? "lg:grid-cols-4" : cols.lg === 5 ? "lg:grid-cols-5" : "lg:grid-cols-6") : "";
+  const xlClass = cols.xl && cols.xl <= 6 ? (cols.xl === 1 ? "xl:grid-cols-1" : cols.xl === 2 ? "xl:grid-cols-2" : cols.xl === 3 ? "xl:grid-cols-3" : cols.xl === 4 ? "xl:grid-cols-4" : cols.xl === 5 ? "xl:grid-cols-5" : "xl:grid-cols-6") : "";
+  
+  const resolvedGridClass = cn("grid gap-4", xsClass, smClass, mdClass, lgClass, xlClass);
 
   if (loading) {
     return (
-      <div className={cn(gridColsClass, className)} {...props}>
+      <div className={cn(resolvedGridClass, className)} {...props}>
         {Array.from({ length: totalCols }).map((_, i) => (
           <Card key={i}>
             <CardHeader>
@@ -176,7 +186,7 @@ function StatCardRow({
   return (
     <div
       data-slot="stat-card-row"
-      className={cn(gridColsClass, className)}
+      className={cn(resolvedGridClass, className)}
       {...props}
     >
       {cards.map((card, index) => {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 
@@ -7,42 +7,41 @@ import * as React from "react";
  * @category ui/primitives
  * @since 0.2.0
  * @description 全局配置 Provider / Global configuration provider (antd ConfigProvider equivalent)
- * @keywords config, provider, theme, locale, prefix
+ * Supports scrollbar theme and CSS variable injection.
+ * @keywords config, provider, theme, locale, prefix, scrollbar
  * @example
- * <ConfigProvider locale="zh-CN" theme={{ primaryColor: "#1677ff" }}>
+ * <ConfigProvider locale="zh-CN" theme={{ scrollbar: "thin" }}>
  *   <App />
  * </ConfigProvider>
  */
 
+interface ScrollbarConfig {
+  /** Scrollbar style: "thin" (narrow track), "default", or "none" (hidden) / 滚动条样式 */
+  variant?: "thin" | "default" | "none";
+  /** Custom thumb color override (CSS color) / 自定义滑块颜色 */
+  thumbColor?: string;
+  /** Custom thumb hover color / 自定义滑块 hover 颜色 */
+  thumbHoverColor?: string;
+}
+
 interface ThemeConfig {
-  /** Primary color / 主色调 */
   primaryColor?: string;
-  /** Border radius / 圆角 */
   borderRadius?: number;
-  /** Whether to use dark mode / 是否暗黑模式 */
   darkMode?: boolean;
-  /** Component size / 组件大小 */
   componentSize?: "sm" | "default" | "lg";
-  /** Custom CSS variables / 自定义 CSS 变量 */
+  /** Scrollbar theme / 滚动条主题 */
+  scrollbar?: ScrollbarConfig | "thin" | "default" | "none";
   cssVars?: Record<string, string>;
 }
 
 interface ConfigContextValue {
-  /** Locale string / 语言 */
   locale?: string | undefined;
-  /** Direction (ltr/rtl) / 方向 */
   direction?: "ltr" | "rtl" | undefined;
-  /** Theme config / 主题配置 */
   theme?: ThemeConfig | undefined;
-  /** Class name prefix / 类名前缀 */
   prefixCls?: string | undefined;
-  /** Whether to disable animations / 是否禁用动画 */
   disableAnimation?: boolean | undefined;
-  /** Custom render empty / 自定义空状态渲染 */
   renderEmpty?: ((componentName?: string) => React.ReactNode) | undefined;
-  /** Form configuration / 表单配置 */
   form?: {
-    /** Whether to validate messages are customized / 自定义校验消息 */
     validateMessages?: Record<string, string>;
   } | undefined;
 }
@@ -52,6 +51,15 @@ const ConfigContext = React.createContext<ConfigContextValue>({
   direction: "ltr",
   prefixCls: "chaos",
 });
+
+/** Resolve shorthand scrollbar config */
+function resolveScrollbarConfig(
+  sb: ScrollbarConfig | "thin" | "default" | "none" | undefined,
+): ScrollbarConfig | undefined {
+  if (!sb) return undefined;
+  if (typeof sb === "string") return { variant: sb };
+  return sb;
+}
 
 function ConfigProvider({
   locale = "zh-CN",
@@ -86,6 +94,27 @@ function ConfigProvider({
     if (theme.borderRadius !== undefined) {
       vars["--radius"] = `${theme.borderRadius}px`;
     }
+
+    // Scrollbar theme CSS variables
+    const scrollbarConfig = resolveScrollbarConfig(theme.scrollbar);
+    if (scrollbarConfig) {
+      if (scrollbarConfig.variant === "none") {
+        vars["--scrollbar-width"] = "none";
+      } else if (scrollbarConfig.variant === "thin") {
+        vars["--scrollbar-width"] = "thin";
+      }
+      if (scrollbarConfig.thumbColor) {
+        vars["--scrollbar-thumb"] = scrollbarConfig.thumbColor;
+      } else {
+        // Defaults that work in both light and dark modes
+        vars["--scrollbar-thumb"] = "rgba(15, 23, 42, 0.18)";
+        vars["--scrollbar-thumb-hover"] = "rgba(15, 23, 42, 0.3)";
+      }
+      if (scrollbarConfig.thumbHoverColor) {
+        vars["--scrollbar-thumb-hover"] = scrollbarConfig.thumbHoverColor;
+      }
+    }
+
     if (theme.cssVars) {
       Object.assign(vars, theme.cssVars);
     }
@@ -111,4 +140,4 @@ function useConfig(): ConfigContextValue {
 }
 
 export { ConfigProvider, useConfig, ConfigContext };
-export type { ConfigContextValue, ThemeConfig };
+export type { ConfigContextValue, ThemeConfig, ScrollbarConfig };

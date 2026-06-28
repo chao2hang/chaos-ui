@@ -2,7 +2,7 @@ import * as React from "react";
 import { Label } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-function FormField({
+function LabeledField({
   label,
   description,
   error,
@@ -34,4 +34,7 @@ function FormField({
   );
 }
 
-export { FormField };
+/** @deprecated Use LabeledField — FormField renamed to avoid collision with ui/Form's FormField */
+export { LabeledField };
+/** @deprecated Use LabeledField instead */
+export { LabeledField as FormField };

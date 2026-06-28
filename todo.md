@@ -1,4 +1,4 @@
-# Chaos UI 企业级组件库 — 完善 TODO
+﻿# Chaos UI 企业级组件库 — 完善 TODO
 
 > 目标:将 `D:\Projects\qxyfoods\chaos_style` 升级为生产级企业 UI 组件库,服务于 `qxy-mop` 及后续所有业务系统。
 > 验收对象:人(开发者/设计师)+ AI(Copilot/Codex/Cursor/本地模型)
@@ -2656,3 +2656,62 @@ export type { ComponentNameProps } from "./component-name.types";
 - Mantine 单组件目录规范: https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/core/src/components/Button
 
 - 主消费项目:`D:\Projects\qxyfoods\qxy-mop`
+
+
+---
+
+## 十九、Sidebar 侧边栏高度修复（P0）
+
+> **问题**：SidebarProvider 渲染的 wrapper div 用 min-h-full，当消费方（qxy-mop 等）的 <html>/<body> 未显式设 h-full 时，侧边栏无法撑满视口高度，导致侧边栏随内容滚动、不固定。
+> **根因**：min-h-full 依赖父级链高度，但 Web 默认 html/body 高度为 auto（内容撑开），不是 100vh。
+
+### 19.1 SidebarProvider wrapper（源码 components/ui/sidebar.tsx）
+- [ ] **P0** SidebarProvider wrapper div 的 min-h-full 改为 h-dvh（100dvh，动态视口高度，移动端键盘弹出时自适应；桌面端等同于 100vh）
+- [ ] **P0** 添加 overflow-hidden 到 wrapper div，防止整页滚动（应由 SidebarInset 内容区独立滚动）
+- [ ] **P1** 在 SidebarInset 上补 overflow-auto，确保内容区独立滚动（目前 SidebarInset 只有 lex-1 无 overflow 处理）
+
+**修改位置**：components/ui/sidebar.tsx — SidebarProvider 返回的 div 及 SidebarInset 组件
+
+**修改前**：
+`	sx
+// SidebarProvider
+className={cn(
+  "group/sidebar-wrapper relative flex min-h-full w-full ...",
+  className,
+)}
+
+// SidebarInset
+className={cn(
+  "relative flex w-full flex-1 flex-col bg-background ...",
+  className,
+)}
+`
+
+**修改后**：
+`	sx
+// SidebarProvider
+className={cn(
+  "group/sidebar-wrapper relative flex h-dvh w-full overflow-hidden has-data-[variant=inset]:bg-sidebar",
+  className,
+)}
+
+// SidebarInset
+className={cn(
+  "relative flex w-full flex-1 flex-col overflow-auto bg-background ...",
+  className,
+)}
+`
+
+### 19.2 下游消费方同步（qxy-mop）
+- [ ] **P0** chaos-ui 发版后，qxy-mop 升级 @qxyfoods/chaos-ui 依赖
+- [ ] **P1** qxy-mop rontend/src/app/layout.tsx — <body> 无需再手动加 h-full overflow-hidden（由组件库自行保证）
+- [ ] **P1** qxy-mop rontend/src/app/(dashboard)/layout.tsx — 内容区 div 从 className="flex-1 bg-muted p-4" 改为 className="flex-1 bg-muted p-4"（SidebarInset 已自带 overflow-auto，此处无需改）
+
+### 19.3 测试
+- [ ] **P0** Sidebar Story — 增加「全屏高度固定」Story，验证侧边栏 h-dvh 不随内容滚动
+- [ ] **P0** Sidebar Story — 移动端验证 100dvh 在虚拟键盘弹出时的正确收缩
+- [ ] **P0** qxy-mop 本地验证 — 升级后侧边栏固定 + 内容区独立滚动 + 折叠/展开正常
+
+### 19.4 兼容性
+- h-dvh 浏览器支持：Chrome 108+ / Firefox 107+ / Safari 15.4+ / Edge 108+（均已 ≥ 2 年，覆盖率 > 97%）
+- 如需兼容更老浏览器，fallback：h-screen（100vh）+ 移动端 JS 补丁

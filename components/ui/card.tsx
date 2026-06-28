@@ -1,4 +1,4 @@
-import * as React from "react"
+﻿import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -33,12 +33,22 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({
+  className,
+  size,
+  ...props
+}: React.ComponentProps<"div"> & {
+  /** Explicit size override independent of Card size / 独立于 Card 的尺寸 */
+  size?: "sm" | "default"
+}) {
   return (
     <div
       data-slot="card-title"
       className={cn(
-        "font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm",
+        "font-heading leading-snug font-medium",
+        size === "sm"
+          ? "text-sm"
+          : "text-base group-data-[size=sm]/card:text-sm",
         className
       )}
       {...props}
@@ -69,11 +79,18 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+function CardContent({
+  className,
+  flush,
+  ...props
+}: React.ComponentProps<"div"> & {
+  /** Remove horizontal padding for edge-to-edge content like tables / 内容通栏，去掉水平内边距 */
+  flush?: boolean
+}) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-(--card-spacing)", className)}
+      className={cn(flush ? "" : "px-(--card-spacing)", className)}
       {...props}
     />
   )
@@ -93,21 +110,43 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 /**
- * CardSection — titled section header within a Card.
- * Replaces the repeated `<div style={{ padding:'8px 12px', borderBottom:'1px solid #f2f3f5', fontWeight:600, fontSize:14 }}>`
- * pattern. Use multiple CardSection children to partition card content.
- * `last:border-b-0` avoids a dangling border before CardFooter.
+ * CardSection — titled section within a Card.
+ * Supports `title` and `actions` props to replace the repeated 3 inline
+ * patterns (CardHeader+CardTitle / Tailwind div / Flex+title+Button).
+ * Render as a header row when `title` or `actions` is provided;
+ * otherwise renders as a plain bordered partition div.
  */
-function CardSection({ className, ...props }: React.ComponentProps<"div">) {
+function CardSection({
+  className,
+  title,
+  actions,
+  children,
+  ...props
+}: React.ComponentProps<"div"> & {
+  /** Section title text / 区块标题 */
+  title?: React.ReactNode
+  /** Right-side action area / 右侧操作区 */
+  actions?: React.ReactNode
+}) {
   return (
     <div
       data-slot="card-section"
       className={cn(
-        "border-b border-border px-3 py-2 text-sm font-medium last:border-b-0",
+        "border-b border-border last:border-b-0",
         className
       )}
       {...props}
-    />
+    >
+      {title != null || actions != null ? (
+        <div className="flex items-center justify-between px-3 py-2">
+          <span className="text-sm font-semibold">
+            {title}
+          </span>
+          {actions && <div className="flex items-center gap-2">{actions}</div>}
+        </div>
+      ) : null}
+      {children}
+    </div>
   )
 }
 

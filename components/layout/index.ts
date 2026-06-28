@@ -1,4 +1,4 @@
-export * from "./app-shell";
+﻿export * from "./app-shell";
 export * from "./auth-layout";
 export * from "./blank-layout";
 export * from "./dashboard-layout";
@@ -9,3 +9,4 @@ export * from "./admin-sider";
 export * from "./admin-header";
 export * from "./admin-tabs";
 export * from "./admin-breadcrumb";
+export * from "./master-detail-layout";

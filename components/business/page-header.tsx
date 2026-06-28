@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,19 +14,38 @@ interface BreadcrumbItemType {
   href?: string;
 }
 
+interface PageHeaderProps {
+  title: string;
+  description?: string;
+  breadcrumbItems?: BreadcrumbItemType[];
+  /** Action area — accepts ReactNode or Button array / 操作区，支持 ReactNode 或 Button 数组 */
+  actions?: React.ReactNode;
+  /** Primary action (highlighted) / 主要操作按钮 */
+  primaryAction?: React.ReactNode;
+  /** Secondary actions (displayed after primary) / 次要操作列表 */
+  secondaryActions?: React.ReactNode[];
+  className?: string;
+}
+
 function PageHeader({
   title,
   description,
   breadcrumbItems,
   actions,
+  primaryAction,
+  secondaryActions,
   className,
-}: {
-  title: string;
-  description?: string;
-  breadcrumbItems?: BreadcrumbItemType[];
-  actions?: React.ReactNode;
-  className?: string;
-}) {
+}: PageHeaderProps) {
+  // Compose actions from primaryAction/secondaryActions if no explicit actions
+  const resolvedActions = actions ?? (
+    primaryAction || secondaryActions?.length ? (
+      <div className="flex items-center gap-2">
+        {secondaryActions}
+        {primaryAction}
+      </div>
+    ) : undefined
+  );
+
   return (
     <div className={cn("space-y-2", className)}>
       {breadcrumbItems && breadcrumbItems.length > 0 && (
@@ -59,11 +78,11 @@ function PageHeader({
             <p className="text-muted-foreground">{description}</p>
           )}
         </div>
-        {actions && <div className="flex items-center gap-2">{actions}</div>}
+        {resolvedActions && <div className="flex items-center gap-2">{resolvedActions}</div>}
       </div>
     </div>
   );
 }
 
 export { PageHeader };
-export type { BreadcrumbItemType };
+export type { BreadcrumbItemType, PageHeaderProps };

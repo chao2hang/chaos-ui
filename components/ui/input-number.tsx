@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 
@@ -37,12 +37,22 @@ interface InputNumberProps
   readOnly?: boolean;
   /** Input size / 输入框大小 */
   size?: "sm" | "default" | "lg";
-  /** Change callback / 变更回调 */
-  onChange?: (value: number | null) => void;
+  /**
+   * Change callback. When `nullAsUndefined` is true, empty values
+   * emit `undefined` instead of `null` — matching typical form state.
+   * / 变更回调。开启 nullAsUndefined 后空值返回 undefined 而非 null
+   */
+  onChange?: (value: number | null | undefined) => void;
   /** Parser to transform display value / 解析函数 */
   parser?: (displayValue: string) => number;
   /** Formatter to format display value / 格式化函数 */
   formatter?: (value: number | undefined) => string;
+  /**
+   * Emit `undefined` instead of `null` for empty values.
+   * Eliminates the `v ?? undefined` boilerplate in form handlers.
+   * / 空值返回 undefined 而非 null，消除 v ?? undefined 模板代码
+   */
+  nullAsUndefined?: boolean;
 }
 
 function InputNumber({
@@ -60,6 +70,7 @@ function InputNumber({
   onChange,
   parser,
   formatter,
+  nullAsUndefined = false,
   ...props
 }: InputNumberProps) {
   const [internalValue, setInternalValue] = React.useState<number | null>(
@@ -95,7 +106,7 @@ function InputNumber({
   const updateValue = (val: number | null) => {
     if (val === null || isNaN(val)) {
       if (!isControlled) setInternalValue(null);
-      onChange?.(null);
+      onChange?.(nullAsUndefined ? undefined : null);
       return;
     }
     const clamped = applyPrecision(clamp(val));
