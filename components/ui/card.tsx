@@ -92,6 +92,25 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * CardSection — titled section header within a Card.
+ * Replaces the repeated `<div style={{ padding:'8px 12px', borderBottom:'1px solid #f2f3f5', fontWeight:600, fontSize:14 }}>`
+ * pattern. Use multiple CardSection children to partition card content.
+ * `last:border-b-0` avoids a dangling border before CardFooter.
+ */
+function CardSection({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-section"
+      className={cn(
+        "border-b border-border px-3 py-2 text-sm font-medium last:border-b-0",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   Card,
   CardHeader,
@@ -100,4 +119,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardSection,
 }

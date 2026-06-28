@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -44,14 +45,43 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  icon,
+  iconRight,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & {
+    /** Leading icon, rendered before children / 前置图标 */
+    icon?: React.ReactNode
+    /** Trailing icon, rendered after children / 后置图标 */
+    iconRight?: React.ReactNode
+  }) {
+  const hasIcon = icon != null || iconRight != null
+
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {hasIcon ? (
+        <>
+          {icon != null && (
+            <span data-icon="inline-start" className="shrink-0">
+              {icon}
+            </span>
+          )}
+          {children}
+          {iconRight != null && (
+            <span data-icon="inline-end" className="shrink-0">
+              {iconRight}
+            </span>
+          )}
+        </>
+      ) : (
+        children
+      )}
+    </ButtonPrimitive>
   )
 }
 

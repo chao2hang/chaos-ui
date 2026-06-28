@@ -48,6 +48,7 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardSection,
 } from "./card";
 export {
   Carousel,
@@ -97,6 +98,7 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogBody,
   DialogDescription,
   DialogFooter,
   DialogHeader,
@@ -393,6 +395,7 @@ export type {
   MenuClickInfo,
   MenuMode,
   MenuTheme,
+  MenuSize,
   MenuItemProps,
 } from "./menu";
 export * from "./icons";

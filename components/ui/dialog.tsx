@@ -148,11 +148,27 @@ function DialogDescription({
   );
 }
 
+/**
+ * DialogBody — content layout region between DialogHeader and DialogFooter.
+ * Provides flex-column + gap + vertical padding so forms and content
+ * don't need manual `style={{ display:'flex', flexDirection:'column', gap:12 }}`.
+ */
+function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-body"
+      className={cn("flex flex-col gap-3 py-4", className)}
+      {...props}
+    />
+  );
+}
+
 export {
   Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
+  DialogBody,
   DialogFooter,
   DialogHeader,
   DialogOverlay,

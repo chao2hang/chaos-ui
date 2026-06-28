@@ -23,9 +23,22 @@ type BizStatus =
   | "rejected"
   | "rejected_mid";
 
+/**
+ * Status config entry shape — allows projects to override / extend color mappings.
+ * Exposed so consumers can build their own `StatusConfig` from the defaults.
+ */
+interface StatusConfigEntry {
+  label: string;
+  color: string;
+  dot: string;
+  icon?: React.ElementType;
+}
+
+type StatusConfig = Record<string, StatusConfigEntry>;
+
 interface BizStatusTagProps extends React.ComponentProps<"span"> {
-  /** Business status / 业务状态 */
-  status: BizStatus;
+  /** Business status / 业务状态（内置 5 种，也可传入自定义字符串配合 statusConfig） */
+  status: BizStatus | (string & {});
   /** Tag size / 标签大小 */
   size?: "sm" | "md" | "lg";
   /** Whether to show icon / 是否显示图标 */
@@ -34,12 +47,15 @@ interface BizStatusTagProps extends React.ComponentProps<"span"> {
   label?: string;
   /** Whether to show dot instead of icon / 是否显示圆点 */
   dot?: boolean;
+  /**
+   * Custom status config — merged over defaults.
+   * Override existing statuses or add entirely new ones.
+   * / 自定义状态配置，合并覆盖默认值，可覆盖已有状态或新增自定义状态
+   */
+  statusConfig?: Partial<StatusConfig>;
 }
 
-const statusConfig: Record<
-  BizStatus,
-  { label: string; color: string; dot: string; icon: React.ElementType }
-> = {
+const defaultStatusConfig: StatusConfig = {
   draft: {
     label: "Draft",
     color:
@@ -77,6 +93,14 @@ const statusConfig: Record<
   },
 };
 
+/** Fallback for unknown status strings / 未知状态的回退配置 */
+const fallbackConfig: StatusConfigEntry = {
+  label: "",
+  color: "bg-muted text-muted-foreground border-muted",
+  dot: "bg-muted-foreground",
+  icon: AlertCircle,
+};
+
 const sizeConfig: Record<
   NonNullable<BizStatusTagProps["size"]>,
   string
@@ -93,10 +117,15 @@ function BizStatusTag({
   showIcon = true,
   label,
   dot = false,
+  statusConfig: customConfig,
   ...props
 }: BizStatusTagProps) {
-  const config = statusConfig[status];
-  const Icon = config.icon;
+  const mergedConfig = { ...defaultStatusConfig, ...customConfig };
+  const config = mergedConfig[status] ?? {
+    ...fallbackConfig,
+    label: fallbackConfig.label || status,
+  };
+  const Icon = config.icon ?? AlertCircle;
 
   return (
     <span
@@ -122,5 +151,5 @@ function BizStatusTag({
   );
 }
 
-export { BizStatusTag };
-export type { BizStatusTagProps, BizStatus };
+export { BizStatusTag, defaultStatusConfig };
+export type { BizStatusTagProps, BizStatus, StatusConfigEntry, StatusConfig };

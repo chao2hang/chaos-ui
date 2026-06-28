@@ -13,6 +13,7 @@
  * <Menu
  *   mode="inline"
  *   theme="dark"
+ *   size="md"
  *   selectedKeys={['user']}
  *   items={[
  *     { key: 'home', label: '首页', icon: <HomeIcon /> },
@@ -43,6 +44,7 @@ import { cn } from "@/lib/utils";
 
 export type MenuMode = "inline" | "vertical" | "horizontal";
 export type MenuTheme = "light" | "dark";
+export type MenuSize = "sm" | "md" | "lg";
 
 export interface MenuItemConfig {
   key: string;
@@ -80,6 +82,8 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, "onCl
   defaultOpenKeys?: string[];
   /** Whether to allow multiple selection / 是否支持多选 */
   multiple?: boolean;
+/** Menu item size / 菜单项尺寸 */
+  size?: MenuSize;
   /** Whether items are selectable / 是否可选择 */
   selectable?: boolean;
   /** Whether to show collapse arrow for inline submenus / inline 模式下是否显示折叠箭头 */
@@ -104,6 +108,7 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, "onCl
 interface MenuContextValue {
   mode: MenuMode;
   theme: MenuTheme;
+  size: MenuSize;
   selectedKeys: string[];
   openKeys: string[];
   inlineCollapsed: boolean;
@@ -148,11 +153,21 @@ const themeClasses: Record<MenuTheme, { root: string; item: string; subTrigger: 
   },
 };
 
+const sizeClasses: Record<
+  MenuSize,
+  { item: string; icon: string; gap: string; indentBase: number }
+> = {
+  sm: { item: "h-7 px-2 text-xs", icon: "size-3.5", gap: "gap-1.5", indentBase: 6 },
+  md: { item: "h-9 px-3", icon: "size-4", gap: "gap-2", indentBase: 8 },
+  lg: { item: "h-11 px-4 text-base", icon: "size-5", gap: "gap-2.5", indentBase: 10 },
+};
+
 const Menu = React.forwardRef<HTMLElement, MenuProps>(
   (
     {
       mode = "vertical",
       theme = "light",
+      size = "md",
       selectedKeys: controlledSelected,
       defaultSelectedKeys = [],
       openKeys: controlledOpen,
@@ -241,6 +256,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
     const ctx: MenuContextValue = {
       mode,
       theme,
+      size,
       selectedKeys: currentSelected,
       openKeys: currentOpen,
       inlineCollapsed,
@@ -275,7 +291,8 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
     }
 
     const rootClass = cn(
-      "relative text-sm",
+      "relative",
+      sizeClasses[size].item.includes("text-xs") ? "text-xs" : sizeClasses[size].item.includes("text-base") ? "text-base" : "text-sm",
       mode === "horizontal"
         ? "flex items-center gap-1"
         : mode === "inline"
@@ -348,7 +365,7 @@ function ItemFromConfig({
   const isSelected = ctx.selectedKeys.includes(config.key);
   const indentStyle =
     ctx.mode === "inline" && !ctx.inlineCollapsed
-      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + 8}px` }
+      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
       : undefined;
 
   React.useEffect(() => {
@@ -360,7 +377,7 @@ function ItemFromConfig({
       <li
         role="group"
         data-slot="menu-group"
-        className={cn("px-2 py-1 text-xs font-semibold text-muted-foreground", tc.item)}
+        className={cn("py-1 text-xs font-semibold text-muted-foreground", ctx.size === "lg" ? "px-4" : "px-2", tc.item)}
       >
         {config.title ?? config.label}
       </li>
@@ -403,8 +420,9 @@ function ItemFromConfig({
           });
         }}
         className={cn(
-          "w-full flex items-center gap-2 rounded-md text-left outline-none transition-colors",
-          ctx.mode === "horizontal" ? "h-9 px-3" : "h-8 px-2",
+          "w-full flex items-center rounded-md text-left outline-none transition-colors",
+          sizeClasses[ctx.size].item,
+          sizeClasses[ctx.size].gap,
           tc.item,
           isSelected ? tc.itemActive : tc.itemHover,
           config.danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
@@ -414,7 +432,7 @@ function ItemFromConfig({
         data-selected={isSelected || undefined}
       >
         {config.icon && (
-          <span className="inline-flex size-4 shrink-0 items-center justify-center">
+          <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
             {config.icon}
           </span>
         )}
@@ -469,8 +487,9 @@ function SubMenuContent({
       onClick={handleToggle}
       onMouseEnter={handleHover}
       className={cn(
-        "w-full flex items-center gap-2 rounded-md text-left outline-none transition-colors",
-        ctx.mode === "horizontal" ? "h-9 px-3" : "h-8 px-2",
+        "w-full flex items-center rounded-md text-left outline-none transition-colors",
+        sizeClasses[ctx.size].item,
+        sizeClasses[ctx.size].gap,
         tc.subTrigger,
         isSelected ? tc.itemActive : tc.itemHover,
         config.danger && "text-destructive data-[selected=true]:bg-destructive/10",
@@ -480,7 +499,7 @@ function SubMenuContent({
       data-selected={isSelected || undefined}
     >
       {config.icon && (
-        <span className="inline-flex size-4 shrink-0 items-center justify-center">
+        <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
           {config.icon}
         </span>
       )}
@@ -590,7 +609,7 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
   const inlineMode = ctx.mode === "inline";
   const indentStyle =
     inlineMode && !ctx.inlineCollapsed
-      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + 8}px` }
+      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
       : style;
 
   const handleToggle = (e: React.MouseEvent) => {
@@ -611,8 +630,9 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
       disabled={disabled}
       onClick={handleToggle}
       className={cn(
-        "w-full flex items-center gap-2 rounded-md text-left outline-none transition-colors",
-        ctx.mode === "horizontal" ? "h-9 px-3" : "h-8 px-2",
+        "w-full flex items-center rounded-md text-left outline-none transition-colors",
+        sizeClasses[ctx.size].item,
+        sizeClasses[ctx.size].gap,
         tc.subTrigger,
         isSelected ? tc.itemActive : tc.itemHover,
         disabled && "pointer-events-none opacity-50",
@@ -622,7 +642,7 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
       data-selected={isSelected || undefined}
     >
       {icon && (
-        <span className="inline-flex size-4 shrink-0 items-center justify-center">
+        <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
           {icon}
         </span>
       )}
@@ -672,7 +692,7 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
     const isSelected = ctx.selectedKeys.includes(itemKey);
     const indentStyle =
       ctx.mode === "inline" && !ctx.inlineCollapsed
-        ? { paddingLeft: `${ctx.level * ctx.inlineIndent + 8}px` }
+        ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
         : style;
 
     return (
@@ -694,8 +714,9 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
             });
           }}
           className={cn(
-            "w-full flex items-center gap-2 rounded-md text-left outline-none transition-colors",
-            ctx.mode === "horizontal" ? "h-9 px-3" : "h-8 px-2",
+            "w-full flex items-center rounded-md text-left outline-none transition-colors",
+            sizeClasses[ctx.size].item,
+            sizeClasses[ctx.size].gap,
             tc.item,
             isSelected ? tc.itemActive : tc.itemHover,
             danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
@@ -707,7 +728,7 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
           {...rest}
         >
           {icon && (
-            <span className="inline-flex size-4 shrink-0 items-center justify-center">
+            <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
               {icon}
             </span>
           )}
@@ -746,7 +767,8 @@ function ItemGroup({ title, children }: ItemGroupProps) {
     <li role="group" data-slot="menu-group" className="py-1">
       <div
         className={cn(
-          "px-2 py-1 text-xs font-semibold text-muted-foreground",
+          "py-1 text-xs font-semibold text-muted-foreground",
+          ctx.size === "lg" ? "px-4" : "px-2",
           tc.item,
         )}
       >

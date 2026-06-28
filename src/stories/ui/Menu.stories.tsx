@@ -19,6 +19,7 @@ const meta: Meta<typeof Menu> = {
   argTypes: {
     mode: { control: "select", options: ["inline", "vertical", "horizontal"] },
     theme: { control: "select", options: ["light", "dark"] },
+    size: { control: "select", options: ["sm", "md", "lg"] },
     selectable: { control: "boolean" },
     multiple: { control: "boolean" },
     inlineCollapsed: { control: "boolean" },
@@ -27,6 +28,7 @@ const meta: Meta<typeof Menu> = {
   args: {
     mode: "inline",
     theme: "light",
+    size: "md",
     selectable: true,
     multiple: false,
     inlineCollapsed: false,
@@ -202,6 +204,21 @@ export const Controlled: Story = {
     <div className="w-[256px] rounded-lg border p-2">
       <Menu {...args} />
       <p className="mt-2 text-xs text-muted-foreground">受控模式: selectedKeys=&#123;['users']&#125; openKeys=&#123;['system']&#125;</p>
+    </div>
+  ),
+};
+
+export const SizeVariants: Story = {
+  render: () => (
+    <div className="flex gap-8">
+      {(["sm", "md", "lg"] as const).map((s) => (
+        <div key={s} className="w-[256px]">
+          <p className="mb-2 text-xs font-medium text-muted-foreground">size="{s}"</p>
+          <div className="rounded-lg border p-2">
+            <Menu mode="inline" theme="light" size={s} items={demoItems} defaultSelectedKeys={["home"]} defaultOpenKeys={["system"]} />
+          </div>
+        </div>
+      ))}
     </div>
   ),
 };
