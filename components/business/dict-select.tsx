@@ -50,7 +50,7 @@ interface DictSelectProps extends Omit<React.ComponentProps<"div">, "onChange"> 
   /** Selected value / 选中值 */
   value?: string | number;
   /** Value change callback / 值变更回调 */
-  onChange?: (value: string | number) => void;
+  onChange?: (value: string | number | undefined) => void;
   /** Placeholder / 占位文本 */
   placeholder?: string;
   /** Whether to allow clear / 是否允许清除 */
@@ -161,6 +161,13 @@ function DictSelect({
         value={value !== undefined ? String(value) : undefined}
             onValueChange={(v) => {
               if (v === null || v === undefined) return;
+              // The clear option uses value="" — emit undefined (clear semantics)
+              // instead of an empty string, which would collide with real empty
+              // values and mislead consumers expecting null/undefined on clear.
+              if (v === "") {
+                onChange?.(undefined);
+                return;
+              }
               const original = internalOptions.find((o) => String(o.value) === v);
               onChange?.(original?.value ?? v);
             }}
