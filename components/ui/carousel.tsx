@@ -45,6 +45,7 @@ function Carousel({
 
   const goTo = React.useCallback(
     (i: number) => {
+      if (total <= 0) return;
       const next = loop
         ? ((i % total) + total) % total
         : Math.min(Math.max(0, i), total - 1);
@@ -95,7 +96,7 @@ function CarouselContent({
           "flex transition-transform duration-300 ease-out",
           className,
         )}
-        style={{ transform: `translateX(-${(index * 100) / total}%)` }}
+        style={{ transform: `translateX(-${total > 0 ? (index * 100) / total : 0}%)` }}
         {...props}
       >
         {children}
@@ -110,7 +111,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="carousel-item"
       className={cn("shrink-0 grow-0 basis-full", className)}
-      style={{ width: `${100 / total}%` }}
+      style={{ width: `${total > 0 ? 100 / total : 100}%` }}
       {...props}
     />
   );
