@@ -46,10 +46,12 @@ function Spin({
   className,
   contentClassName,
 }: SpinProps) {
-  const [show, setShow] = React.useState(spinning);
+  const [show, setShow] = React.useState(spinning && delay === 0);
 
   React.useEffect(() => {
     if (spinning && delay > 0) {
+      // Hide during the delay window, then show after it elapses.
+      setShow(false);
       const timer = setTimeout(() => setShow(true), delay);
       return () => clearTimeout(timer);
     }
