@@ -47,9 +47,13 @@ function BackTop({
   position = { right: 24, bottom: 48 },
 }: BackTopProps) {
   const [visible, setVisible] = React.useState(false);
+  // Hold the latest target fn in a ref so the scroll listener effect doesn't
+  // re-bind every render (target is a function whose identity changes inline).
+  const targetRef = React.useRef(target);
+  targetRef.current = target;
 
   const scrollToTop = () => {
-    const targetEl = target?.() ?? window;
+    const targetEl = targetRef.current?.() ?? window;
     if (targetEl === window) {
       const start = window.scrollY;
       const startTime = performance.now();
@@ -68,21 +72,21 @@ function BackTop({
   };
 
   const handleScroll = React.useCallback(() => {
-    const targetEl = target?.() ?? window;
+    const targetEl = targetRef.current?.() ?? window;
     const scrollTop =
       targetEl === window
         ? window.scrollY
         : (targetEl as HTMLElement).scrollTop;
     setVisible(scrollTop > visibilityHeight);
-  }, [visibilityHeight, target]);
+  }, [visibilityHeight]);
 
   React.useEffect(() => {
-    const targetEl = target?.() ?? window;
+    const targetEl = targetRef.current?.() ?? window;
     targetEl.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => targetEl.removeEventListener("scroll", handleScroll);
-  }, [handleScroll, target]);
+  }, [handleScroll]);
 
   if (!visible) return null;
 
