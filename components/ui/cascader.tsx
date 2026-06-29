@@ -35,6 +35,11 @@ interface CascaderProps {
   className?: string;
   /** Display mode / 展示模式 */
   displayRender?: (labels: string[], selectedOptions: CascaderOption[]) => string;
+  /**
+   * Fire onChange when selecting a non-leaf (intermediate) level too.
+   * / 选择任意层（含中间层）都触发 onChange，而非仅叶子节点
+   */
+  changeOnSelect?: boolean;
 }
 
 function Cascader({
@@ -45,18 +50,26 @@ function Cascader({
   disabled = false,
   className,
   displayRender,
+  changeOnSelect = false,
 }: CascaderProps) {
   const [open, setOpen] = React.useState(false);
   const [activeColumns, setActiveColumns] = React.useState<CascaderOption[][]>([options]);
 
+  // Keep latest options in a ref so the effect below doesn't depend on the
+  // `options` array reference (inline arrays recreate every render → infinite
+  // loop: effect → setActiveColumns → re-render → new options ref → effect).
+  const optionsRef = React.useRef(options);
+  optionsRef.current = options;
+
   // Build active columns from value
   React.useEffect(() => {
+    const opts = optionsRef.current;
     if (value.length === 0) {
-      setActiveColumns([options]);
+      setActiveColumns([opts]);
       return;
     }
-    const cols: CascaderOption[][] = [options];
-    let current = options;
+    const cols: CascaderOption[][] = [opts];
+    let current = opts;
     for (const v of value) {
       const found = current.find((o) => o.value === v);
       if (found?.children) {
@@ -67,7 +80,10 @@ function Cascader({
       }
     }
     setActiveColumns(cols);
-  }, [value, options]);
+    // Intentionally only depend on `value`; options changes are picked up via
+    // the ref (options is typically static; dynamic options should use a `key`
+    // to remount). Depending on `options` directly loops on inline arrays.
+  }, [value]);
 
   // Get selected labels
   const selectedLabels = React.useMemo(() => {
@@ -100,6 +116,10 @@ function Cascader({
       const newCols = activeColumns.slice(0, colIndex + 1);
       newCols.push(option.children);
       setActiveColumns(newCols);
+      // changeOnSelect: also emit the value up to this (intermediate) level.
+      if (changeOnSelect) {
+        onChange?.(newValue.slice(0, colIndex + 1), getSelectedOptions(newValue.slice(0, colIndex + 1), options));
+      }
       // Don't close — user needs to pick the next level
     } else {
       // Leaf node — close and fire onChange
