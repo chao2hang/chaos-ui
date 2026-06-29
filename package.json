@@ -1,6 +1,6 @@
 {
   "name": "@qxyfoods/chaos-ui",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "type": "module",
   "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
   "license": "MIT",
