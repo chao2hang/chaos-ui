@@ -13,21 +13,26 @@ import {
 } from "@/components/ui"
 import { Skeleton } from "@/components/ui"
 
-interface ColumnDef {
+interface ColumnDef<T = Record<string, unknown>> {
   key: string
   title: string
-  dataIndex?: string
+  dataIndex?: keyof T & string
   width?: number | string
-  render?: (value: unknown, record: Record<string, unknown>, index: number) => React.ReactNode
+  /**
+   * Cell renderer. `value` is typed as `T[keyof T]` (the union of field values)
+   * so consumers don't need `as` casts for the common case.
+   * / 单元格渲染，value 类型为 T 的字段值联合，减少 as 断言
+   */
+  render?: (value: T[keyof T], record: T, index: number) => React.ReactNode
   ellipsis?: boolean
   align?: "left" | "center" | "right"
   fixed?: "left" | "right"
 }
 
-interface SearchTableProps {
-  columns: ColumnDef[]
-  dataSource: Record<string, unknown>[]
-  rowKey?: string
+interface SearchTableProps<T = Record<string, unknown>> {
+  columns: ColumnDef<T>[]
+  dataSource: T[]
+  rowKey?: keyof T & string
   loading?: boolean
   pagination?: false | {
     current: number
@@ -37,7 +42,7 @@ interface SearchTableProps {
   } | undefined
   emptyText?: string
   /** Callback when a row is clicked */
-  onRow?: (record: Record<string, unknown>, index: number) => {
+  onRow?: (record: T, index: number) => {
     onClick?: () => void
     [key: string]: unknown
   }
@@ -48,11 +53,20 @@ interface SearchTableProps {
  * 搜索 + 表格组合（不含弹窗）。
  * 对标 qxy-mop 所有列表页的标准布局。
  *
+ * 泛型 `<T>` 让 columns/render/dataSource 类型联动，消除消费方的 `as` 断言：
+ *
+ * ```tsx
+ * const cols: ColumnDef<Company>[] = [
+ *   { key: "isActive", title: "状态", render: (v) => v },
+ * ]
+ * <SearchTable<Company> columns={cols} dataSource={companies} />
+ * ```
+ *
  * @component SearchTable
  * @category business/crud
  * @since 0.2.0
  */
-function SearchTable({
+function SearchTable<T extends Record<string, unknown> = Record<string, unknown>>({
   columns,
   dataSource,
   rowKey = "id",
@@ -61,15 +75,15 @@ function SearchTable({
   emptyText = "暂无数据",
   onRow,
   className,
-}: SearchTableProps) {
+}: SearchTableProps<T>) {
   const alignClass: Record<string, string> = {
     left: "text-left",
     center: "text-center",
     right: "text-right",
   }
 
-  const getValue = (record: Record<string, unknown>, col: ColumnDef) => {
-    const key = col.dataIndex || col.key
+  const getValue = (record: T, col: ColumnDef<T>) => {
+    const key = (col.dataIndex || col.key) as keyof T
     return record[key]
   }
 
