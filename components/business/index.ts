@@ -115,7 +115,6 @@ export * from "./user-menu";
 export * from "./utm-builder";
 export * from "./version-history";
 export * from "./watermark";
-export * from "./auth-guard";
 
 export * from "./color-tag";
 

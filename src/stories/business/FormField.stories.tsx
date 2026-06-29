@@ -1,46 +1,46 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FormField } from "@/components/business/form-field"
+import { LabeledField } from "@/components/business/form-field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 const meta = {
   title: "Business/FormField",
-  component: FormField,
+  component: LabeledField,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof FormField>
+} satisfies Meta<typeof LabeledField>
 
 export default meta
 type Story = StoryObj
 
 export const WithInput: Story = {
   render: () => (
-    <FormField label="Email" description="We'll never share your email" required>
+    <LabeledField label="Email" description="We'll never share your email" required>
       <Input type="email" placeholder="Enter your email" />
-    </FormField>
+    </LabeledField>
   ),
 }
 
 export const WithTextarea: Story = {
   render: () => (
-    <FormField label="Message" description="Your feedback helps us improve" required>
+    <LabeledField label="Message" description="Your feedback helps us improve" required>
       <Textarea placeholder="Type your message..." />
-    </FormField>
+    </LabeledField>
   ),
 }
 
 export const WithError: Story = {
   render: () => (
-    <FormField label="Username" error="Username is already taken" required>
+    <LabeledField label="Username" error="Username is already taken" required>
       <Input defaultValue="john" aria-invalid />
-    </FormField>
+    </LabeledField>
   ),
 }
 
 export const Optional: Story = {
   render: () => (
-    <FormField label="Bio" description="Tell us about yourself (optional)">
+    <LabeledField label="Bio" description="Tell us about yourself (optional)">
       <Textarea placeholder="A short bio..." />
-    </FormField>
+    </LabeledField>
   ),
 }
 

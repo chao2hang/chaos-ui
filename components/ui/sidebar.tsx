@@ -29,7 +29,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { PanelLeftIcon } from "@/components/ui/icons";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
+import { PanelLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -646,12 +651,30 @@ function SidebarMenuSub({
   children,
   icon,
   label,
+  collapsible = false,
+  trigger,
+  open,
+  defaultOpen,
+  onOpenChange,
   ...props
 }: React.ComponentProps<"ul"> & {
-  /** Icon for the trigger in icon-mode */
+  /** Icon for the trigger in icon-mode / icon 折叠模式 trigger 图标 */
   icon?: React.ReactNode;
-  /** Label for the trigger in icon-mode */
+  /** Label for the trigger in icon-mode / icon 折叠模式 trigger 文案 */
   label?: React.ReactNode;
+  /**
+   * Enable collapsible sub-menu (expanded mode only).
+   * 开启后子 <ul> 包一层 Collapsible，trigger 由 `trigger` prop 提供。
+   */
+  collapsible?: boolean;
+  /** Trigger content (usually a <SidebarMenuButton>). / trigger 内容 */
+  trigger?: React.ReactNode;
+  /** Controlled open state / 受控展开状态 */
+  open?: boolean;
+  /** Uncontrolled default open / 非受控默认展开 */
+  defaultOpen?: boolean;
+  /** Open change callback / 展开状态变更回调 */
+  onOpenChange?: (open: boolean) => void;
 }) {
   const { state } = useSidebar();
 
@@ -681,6 +704,46 @@ function SidebarMenuSub({
           })}
         </DropdownMenuContent>
       </DropdownMenu>
+    );
+  }
+
+  // Collapsible sub-menu: wrap trigger + <ul> in a Collapsible.
+  // 手风琴（多组互斥）由消费方在 SidebarMenu 层维护 openKeys，组件不内置。
+  if (collapsible) {
+    return (
+      <Collapsible
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+        className="group/menu-sub-collapsible"
+      >
+        <CollapsibleTrigger
+          render={
+            <SidebarMenuButton className="w-full justify-between" />
+          }
+        >
+          {trigger ?? (
+            <>
+              {icon ?? <span className="size-4" />}
+              {label && <span>{label}</span>}
+            </>
+          )}
+          <ChevronRightIcon className="ml-auto size-4 transition-transform duration-200 group-data-[panel-open]/menu-sub-collapsible:rotate-90" />
+        </CollapsibleTrigger>
+        <CollapsibleContent keepMounted={false}>
+          <ul
+            data-slot="sidebar-menu-sub"
+            data-sidebar="menu-sub"
+            className={cn(
+              "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
+              className,
+            )}
+            {...props}
+          >
+            {children}
+          </ul>
+        </CollapsibleContent>
+      </Collapsible>
     );
   }
 

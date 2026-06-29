@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FormField } from "@/components/business/form-field"
+import { LabeledField } from "@/components/business/form-field"
 import { cn } from "@/lib/utils"
 
 interface MobileFormFieldProps {
@@ -15,7 +15,7 @@ interface MobileFormFieldProps {
 
 function MobileFormField({ className, ...props }: MobileFormFieldProps) {
   return (
-    <FormField
+    <LabeledField
       className={cn("space-y-2", className)}
       {...props}
     />

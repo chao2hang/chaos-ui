@@ -16,4 +16,4 @@
 
 `next.ts` 仍保留 — 它跨 ui/business/layout 三个域聚合,是 Next.js demo 专用入口,无法收敛到单 barrel。
 
-历史文件已归档至 `__deprecated__/`,供查阅。
+历史归档空壳已删除（1.0 前清理死代码）。

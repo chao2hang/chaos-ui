@@ -238,7 +238,11 @@ function List({ className, ...props }: React.ComponentProps<"ul">) {
   );
 }
 
-/** @internal */
+/**
+ * Typography — namespace aggregating all typography primitives (H1–H6, Text,
+ * Paragraph, Blockquote, InlineCode, ...). Public API; also re-exported as
+ * individual named components.
+ */
 const Typography = {
   H1,
   H2,

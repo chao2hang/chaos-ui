@@ -34,7 +34,11 @@ function LabeledField({
   );
 }
 
-/** @deprecated Use LabeledField — FormField renamed to avoid collision with ui/Form's FormField */
+/**
+ * LabeledField — simple label + content + description/error wrapper.
+ *
+ * Note: Previously also exported as `FormField`, which collided with the
+ * react-hook-form-based `FormField` from `@/components/ui/form`. The alias
+ * was removed to resolve the naming conflict — use `LabeledField` directly.
+ */
 export { LabeledField };
-/** @deprecated Use LabeledField instead */
-export { LabeledField as FormField };
