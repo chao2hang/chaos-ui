@@ -50,12 +50,16 @@ function Affix({
   const [placeholderStyle, setPlaceholderStyle] = React.useState<
     React.CSSProperties
   >({});
+  // Hold latest target fn in a ref so the scroll effect doesn't re-bind every
+  // render (target is a function whose identity changes inline).
+  const targetRef = React.useRef(target);
+  targetRef.current = target;
 
   const handleScroll = React.useCallback(() => {
     if (!wrapperRef.current || disabled) return;
 
     const rect = wrapperRef.current.getBoundingClientRect();
-    const targetEl = target?.() ?? window;
+    const targetEl = targetRef.current?.() ?? window;
     let isAffixed = false;
 
     if (offsetTop !== undefined) {
@@ -78,18 +82,21 @@ function Affix({
       setAffixed(isAffixed);
       onChange?.(isAffixed);
       if (isAffixed) {
+        // Capture the original left so the fixed element stays at its
+        // horizontal position (position:fixed without left jumps to viewport 0).
         setPlaceholderStyle({
           width: rect.width,
           height: rect.height,
+          left: rect.left,
         });
       } else {
         setPlaceholderStyle({});
       }
     }
-  }, [affixed, disabled, offsetTop, offsetBottom, onChange, target]);
+  }, [affixed, disabled, offsetTop, offsetBottom, onChange]);
 
   React.useEffect(() => {
-    const targetEl = target?.() ?? window;
+    const targetEl = targetRef.current?.() ?? window;
     targetEl.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
     handleScroll();
@@ -98,21 +105,21 @@ function Affix({
       targetEl.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [handleScroll, target]);
+  }, [handleScroll]);
 
   const affixStyle: React.CSSProperties = affixed
     ? offsetTop !== undefined
       ? {
           position: "fixed",
           top: offsetTop,
-          left: placeholderStyle.width ? undefined : 0,
+          left: placeholderStyle.left,
           width: placeholderStyle.width,
           zIndex: 50,
         }
       : {
           position: "fixed",
           bottom: offsetBottom,
-          left: placeholderStyle.width ? undefined : 0,
+          left: placeholderStyle.left,
           width: placeholderStyle.width,
           zIndex: 50,
         }
