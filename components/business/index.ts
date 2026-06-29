@@ -46,6 +46,12 @@ export * from "./data-table";
 export * from "./date-range-picker";
 export * from "./diff-viewer";
 export * from "./dict-select";
+export {
+  RemoteSelect,
+  type RemoteSelectProps,
+  type RemoteOption,
+  type RemoteFetcher,
+} from "./remote-select";
 export * from "./empty-state";
 export * from "./error-boundary";
 export * from "./expense-line-editor";
