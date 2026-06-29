@@ -45,6 +45,10 @@ interface MasterDetailLayoutProps extends React.ComponentProps<"div"> {
   onMasterOpenChange?: (open: boolean) => void
   /** Custom toggle button (defaults to a hamburger Menu button) / 自定义切换按钮 */
   masterToggle?: React.ReactNode
+  /**
+   * Also collapse master on desktop (not just mobile). / 桌面端也支持折叠 master
+   */
+  collapsibleDesktop?: boolean
 }
 
 const gapMap = {
@@ -64,6 +68,7 @@ function MasterDetailLayout({
   defaultMasterOpen = false,
   onMasterOpenChange,
   masterToggle,
+  collapsibleDesktop = false,
   ...props
 }: MasterDetailLayoutProps) {
   const [internalOpen, setInternalOpen] = React.useState(defaultMasterOpen)
@@ -106,7 +111,10 @@ function MasterDetailLayout({
       type="button"
       aria-label="Toggle master"
       onClick={() => setOpen(!open)}
-      className="inline-flex size-9 items-center justify-center rounded-md border bg-background text-foreground hover:bg-muted md:hidden"
+      className={cn(
+        "inline-flex size-9 items-center justify-center rounded-md border bg-background text-foreground hover:bg-muted",
+        collapsibleDesktop ? "" : "md:hidden",
+      )}
     >
       <MenuIcon className="size-4" />
     </button>
@@ -118,19 +126,23 @@ function MasterDetailLayout({
       className={cn("flex flex-col md:flex-row", gapMap[gap], className)}
       {...props}
     >
-      {/* Mobile toggle (hidden on desktop where master is always visible) */}
-      <div className="md:hidden">{toggle}</div>
+      {/* Toggle: always visible on mobile; on desktop only when collapsibleDesktop */}
+      <div className={collapsibleDesktop ? "" : "md:hidden"}>{toggle}</div>
 
       {/* Master: desktop static aside + mobile drawer overlay */}
       <aside
         style={sidebarStyle}
         className={cn(
-          // desktop: static column
-          "shrink-0 md:overflow-y-auto md:border-r md:w-auto md:static md:translate-x-0 md:bg-transparent md:p-0",
+          // desktop: static column (collapses to 0 width when collapsibleDesktop + closed)
+          "shrink-0 md:overflow-y-auto md:border-r md:static md:bg-transparent md:p-0 md:transition-all md:duration-200",
+          collapsibleDesktop
+            ? open
+              ? "md:w-auto md:translate-x-0 md:opacity-100"
+              : "md:!w-0 md:!max-w-0 md:overflow-hidden md:opacity-0 md:border-r-0"
+            : "md:w-auto md:translate-x-0",
           // mobile: fixed drawer
           "fixed inset-y-0 left-0 z-50 w-[85vw] max-w-[320px] border-r bg-background p-3 shadow-lg transition-transform duration-200",
           open ? "translate-x-0" : "-translate-x-full",
-          "md:!translate-x-0",
         )}
       >
         <div style={sidebarInnerStyle}>{sidebar}</div>
