@@ -1,0 +1,103 @@
+"use client";
+
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+
+import { Badge } from "@/components/ui";
+import { Checkbox } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export interface RoleAssignmentPrincipal {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+export interface RoleAssignmentRole {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export type RoleAssignmentValue = Record<string, string[]>;
+
+export interface RoleAssignmentProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
+  principals: RoleAssignmentPrincipal[];
+  roles: RoleAssignmentRole[];
+  value: RoleAssignmentValue;
+  onChange?: (value: RoleAssignmentValue) => void;
+  readOnly?: boolean;
+}
+
+export function RoleAssignment({
+  principals,
+  roles,
+  value,
+  onChange,
+  readOnly,
+  className,
+  ...props
+}: RoleAssignmentProps) {
+  const { t } = useTranslation("transfer");
+  const toggle = (principalId: string, roleId: string) => {
+    if (readOnly) return;
+    const current = value[principalId] ?? [];
+    const next = current.includes(roleId)
+      ? current.filter((item) => item !== roleId)
+      : [...current, roleId];
+    onChange?.({ ...value, [principalId]: next });
+  };
+
+  return (
+    <div
+      data-slot="role-assignment"
+      className={cn("space-y-3", className)}
+      {...props}
+    >
+      {principals.map((principal) => (
+        <div key={principal.id} className="rounded-lg border p-4">
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <div>
+              <p className="text-sm font-medium">{principal.name}</p>
+              {principal.description && (
+                <p className="text-xs text-muted-foreground">
+                  {principal.description}
+                </p>
+              )}
+            </div>
+            <Badge variant="outline">
+              {(value[principal.id] ?? []).length} {t("roleAssignment.roles")}
+            </Badge>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {roles.map((role) => (
+              <label
+                key={role.id}
+                className="flex items-start gap-2 rounded-md border p-3"
+              >
+                <Checkbox
+                  checked={(value[principal.id] ?? []).includes(role.id)}
+                  disabled={readOnly}
+                  onCheckedChange={() => toggle(principal.id, role.id)}
+                />
+                <span>
+                  <span className="block text-sm font-medium">
+                    {role.label}
+                  </span>
+                  {role.description && (
+                    <span className="block text-xs text-muted-foreground">
+                      {role.description}
+                    </span>
+                  )}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -1,0 +1,113 @@
+---
+title: English/Installation
+description: How to install Chaos UI in your project
+---
+
+# Installation
+
+Chaos UI is available as an npm package: `@qxyfoods/chaos-ui`.
+
+## Requirements
+
+- React >= 19.0.0
+- Node.js >= 22.0.0
+- Tailwind CSS 4 (recommended)
+
+## Install
+
+**npm**
+
+```bash
+npm install @qxyfoods/chaos-ui
+```
+
+**yarn**
+
+```bash
+yarn add @qxyfoods/chaos-ui
+```
+
+**pnpm**
+
+```bash
+pnpm add @qxyfoods/chaos-ui
+```
+
+## Peer Dependencies
+
+Install the required peer dependencies:
+
+```bash
+npm install react@^19 react-dom@^19
+```
+
+For Next.js projects:
+
+```bash
+npm install next@^16 next-themes@^0.4
+```
+
+## Import Styles
+
+Import the CSS file in your app entry point:
+
+```tsx
+import "@qxyfoods/chaos-ui/styles.css";
+```
+
+## Tailwind Configuration (Optional)
+
+If you use Tailwind CSS, extend your config to include Chaos UI's design tokens:
+
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+export default {
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@qxyfoods/chaos-ui/dist/**/*.{js,cjs}",
+  ],
+} satisfies Config;
+```
+
+## Usage
+
+```tsx
+import { Button, Input, Dialog } from "@qxyfoods/chaos-ui";
+
+function App() {
+  return (
+    <div>
+      <Button variant="default">Click me</Button>
+      <Input placeholder="Enter text" />
+    </div>
+  );
+}
+```
+
+## Subpath Imports
+
+For tree-shaking, use subpath imports:
+
+```tsx
+// Import only UI primitives
+import { Button } from "@qxyfoods/chaos-ui/ui";
+
+// Import only hooks
+import { useDebounce } from "@qxyfoods/chaos-ui/hooks";
+
+// Import only lib utilities
+import { cn } from "@qxyfoods/chaos-ui/lib";
+
+// Import only business components
+import { DataTable } from "@qxyfoods/chaos-ui/business";
+```
+
+## TypeScript
+
+Chaos UI is built with TypeScript and ships with full type definitions. No additional `@types` packages needed.
+
+```tsx
+import type { ButtonProps } from "@qxyfoods/chaos-ui/ui";
+```

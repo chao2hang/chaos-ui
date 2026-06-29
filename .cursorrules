@@ -1,0 +1,44 @@
+# Cursor Rules — Chaos UI
+
+You are working on Chaos UI (`@qxyfoods/chaos-ui`), an enterprise React component library.
+
+## Tech Stack
+- React 19, Next.js 16, TypeScript 5.9, Tailwind CSS 4
+- @base-ui/react for primitives, cva for variants, tailwind-merge for class merging
+- Storybook 10 for component development
+- Vitest + Testing Library for tests
+
+## Code Style
+- Named exports only (no default exports)
+- `@/` import alias for project-local source
+- `cn()` from `@/lib/utils` for className merging
+- `data-slot` attribute on root element of each component
+- JSDoc comments on all exports: `@component`, `@category`, `@since`, `@example`
+
+## Component Structure
+```tsx
+import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority"
+
+const componentVariants = cva("base", { variants: {}, defaultVariants: {} })
+
+function Component({ className, ...props }: React.ComponentProps<"div"> & VariantProps<typeof componentVariants>) {
+  return <div data-slot="component" className={cn(componentVariants({ className }))} {...props} />
+}
+
+export { Component, componentVariants }
+```
+
+## File Locations
+- UI primitives: `components/ui/`
+- Business components: `components/business/`
+- Layout components: `components/layout/`
+- Hooks: `hooks/`
+- Lib utils: `lib/`
+- Stories: `src/`
+
+## Verification
+- `npm run check` (typecheck + lint + css lint + dep check)
+- `npm test` (vitest)
+- `npm run build-storybook`
+- `npm run build:pkg`

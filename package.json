@@ -1,20 +1,214 @@
 {
-  "name": "chaos-ui-workspace",
-  "private": true,
+  "name": "@qxyfoods/chaos-ui",
+  "version": "0.1.9",
+  "type": "module",
+  "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "components",
+    "tailwind",
+    "radix",
+    "base-ui",
+    "enterprise",
+    "erp",
+    "component-library",
+    "storybook"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qxyfoods/chaos-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qxyfoods/chaos-ui/issues"
+  },
+  "homepage": "https://github.com/qxyfoods/chaos-ui#readme",
+  "author": "Chaos UI Team",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "sideEffects": [
+    "./styles.css",
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./ui": {
+      "types": "./dist/ui.d.ts",
+      "import": "./dist/ui.js",
+      "require": "./dist/ui.cjs"
+    },
+    "./ui/icons": {
+      "types": "./dist/ui/icons.d.ts",
+      "import": "./dist/ui/icons.js",
+      "require": "./dist/ui/icons.cjs"
+    },
+    "./ui-icons": {
+      "types": "./dist/ui-icons.d.ts",
+      "import": "./dist/ui-icons.js",
+      "require": "./dist/ui-icons.cjs"
+    },
+    "./business": {
+      "types": "./dist/business.d.ts",
+      "import": "./dist/business.js",
+      "require": "./dist/business.cjs"
+    },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.js",
+      "require": "./dist/hooks.cjs"
+    },
+    "./lib": {
+      "types": "./dist/lib.d.ts",
+      "import": "./dist/lib.js",
+      "require": "./dist/lib.cjs"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js",
+      "require": "./dist/next.cjs"
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.qxy1828.com",
+    "access": "restricted"
+  },
   "engines": {
     "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+    "npm": ">=10.0.0"
   },
-  "packageManager": "pnpm@11.5.0",
+  "funding": {
+    "type": "qxyfoods",
+    "url": "https://github.com/sponsors/qxyfoods"
+  },
+  "packageManager": "npm@11.10.1",
   "scripts": {
-    "dev": "pnpm --filter chaos-ui-docs storybook",
-    "build": "pnpm --filter chaos-design-ui build && pnpm --filter chaos-ui-docs build",
-    "build:lib": "pnpm --filter chaos-design-ui build",
-    "storybook": "pnpm --filter chaos-ui-docs storybook",
-    "build-storybook": "pnpm --filter chaos-ui-docs build-storybook",
-    "test-storybook": "pnpm --filter chaos-ui-docs test-storybook",
-    "lint": "pnpm --filter chaos-ui-docs lint",
-    "audit": "pnpm audit --prod",
-    "audit:fix": "pnpm audit --prod --fix"
+    "dev": "storybook dev -p 6006",
+    "app:dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:css": "stylelint \"**/*.css\" --allow-empty-input",
+    "lint:css:fix": "stylelint \"**/*.css\" --allow-empty-input --fix",
+    "lint:deps": "depcruise --config .dependency-cruiser.cjs components/ hooks/ lib/ app/",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run lint:css && npm run lint:deps",
+    "build:pkg": "tsup",
+    "pack:dry": "npm pack --dry-run",
+    "prepack": "npm run build:pkg",
+    "prepublishOnly": "npm run check && npm run test && npm run build:pkg",
+    "format": "prettier --write \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test-storybook": "vitest --project=storybook",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky",
+    "audit": "npm audit --omit=dev",
+    "audit:fix": "npm audit fix --omit=dev"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.5.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "5.4.0",
+    "@radix-ui/react-slot": "1.2.5",
+    "@tanstack/react-query": "5.101.0",
+    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-virtual": "^3.14.2",
+    "axios": "1.17.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "cmdk": "1.1.1",
+    "date-fns": "4.4.0",
+    "i18next": "^26.3.1",
+    "lucide-react": "1.17.0",
+    "qrcode": "^1.5.4",
+    "react-colorful": "^5.7.0",
+    "react-day-picker": "10.0.1",
+    "react-dropzone": "^15.0.0",
+    "react-hook-form": "7.78.0",
+    "react-i18next": "^17.0.8",
+    "recharts": "^3.8.1",
+    "shadcn": "4.11.0",
+    "sonner": "2.0.7",
+    "tailwind-merge": "3.6.0",
+    "tw-animate-css": "1.4.0",
+    "vaul": "1.1.2",
+    "zod": "4.4.3",
+    "zustand": "5.0.14"
+  },
+  "peerDependencies": {
+    "next": ">=16.0.0",
+    "next-themes": ">=0.4.0",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "next-themes": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@chaos/eslint-plugin": "file:./eslint-plugin-chaos",
+    "@chromatic-com/storybook": "^5.2.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@storybook/addon-a11y": "^10.4.3",
+    "@storybook/addon-docs": "^10.4.3",
+    "@storybook/addon-mcp": "^0.6.0",
+    "@storybook/addon-vitest": "^10.4.3",
+    "@storybook/nextjs-vite": "^10.4.3",
+    "@tailwindcss/postcss": "4.3.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "25.9.2",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitest/coverage-v8": "^4.1.9",
+    "dependency-cruiser": "^16.0.0",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.9",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-storybook": "^10.4.3",
+    "husky": "^9.0.0",
+    "jsdom": "^25.0.1",
+    "lint-staged": "^15.0.0",
+    "next": "16.2.9",
+    "next-themes": "0.4.6",
+    "playwright": "^1.60.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "storybook": "^10.4.3",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "tailwindcss": "4.3.0",
+    "tsup": "^8.5.1",
+    "typescript": "5.9.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   }
 }

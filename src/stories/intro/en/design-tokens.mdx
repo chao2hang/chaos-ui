@@ -1,0 +1,132 @@
+﻿---
+title: English/Design Tokens
+---
+
+# Design Tokens
+
+Chaos UI uses CSS custom properties for all design tokens, enabling consistent theming and easy customization.
+
+## Color Tokens
+
+### Semantic Colors
+
+| Token | Usage | CSS Variable |
+|-------|-------|--------------|
+| `background` | Page background | `--background` |
+| `foreground` | Default text | `--foreground` |
+| `primary` | Primary actions | `--primary` |
+| `primary-foreground` | Text on primary | `--primary-foreground` |
+| `secondary` | Secondary actions | `--secondary` |
+| `secondary-foreground` | Text on secondary | `--secondary-foreground` |
+| `muted` | Subtle backgrounds | `--muted` |
+| `muted-foreground` | Subtle text | `--muted-foreground` |
+| `accent` | Hover states | `--accent` |
+| `accent-foreground` | Text on accent | `--accent-foreground` |
+| `destructive` | Destructive actions | `--destructive` |
+| `destructive-foreground` | Text on destructive | `--destructive-foreground` |
+
+### Status Colors
+
+| Token | Usage | CSS Variable |
+|-------|-------|--------------|
+| `success` | Success states | `--success` |
+| `success-foreground` | Text on success | `--success-foreground` |
+| `warning` | Warning states | `--warning` |
+| `warning-foreground` | Text on warning | `--warning-foreground` |
+| `info` | Info states | `--info` |
+| `info-foreground` | Text on info | `--info-foreground` |
+
+### Brand Colors
+
+A professional blue palette from 50 to 950:
+
+| Token | Usage |
+|-------|-------|
+| `brand-50` | Lightest tint |
+| `brand-100` | Very light |
+| `brand-200` | Light |
+| `brand-300` | Light medium |
+| `brand-400` | Medium light |
+| `brand-500` | Base brand |
+| `brand-600` | Medium dark |
+| `brand-700` | Dark medium |
+| `brand-800` | Dark |
+| `brand-900` | Very dark |
+| `brand-950` | Darkest shade |
+
+### Border & Input
+
+| Token | Usage | CSS Variable |
+|-------|-------|--------------|
+| `border` | Default borders | `--border` |
+| `input` | Input borders | `--input` |
+| `ring` | Focus rings | `--ring` |
+| `surface` | Elevated surfaces | `--surface` |
+| `surface-foreground` | Text on surface | `--surface-foreground` |
+
+## Spacing Scale
+
+Chaos UI uses Tailwind's default spacing scale:
+
+| Class | Size | Pixels |
+|-------|------|--------|
+| `p-1` | 1 | 4px |
+| `p-2` | 2 | 8px |
+| `p-3` | 3 | 12px |
+| `p-4` | 4 | 16px |
+| `p-6` | 6 | 24px |
+| `p-8` | 8 | 32px |
+
+## Border Radius
+
+| Class | Value | Usage |
+|-------|-------|-------|
+| `rounded-sm` | `radius * 0.6` | Small elements |
+| `rounded-md` | `radius * 0.8` | Inputs, selects |
+| `rounded-lg` | `radius` | Cards, dialogs |
+| `rounded-xl` | `radius * 1.4` | Modals |
+| `rounded-2xl` | `radius * 1.8` | Large surfaces |
+| `rounded-full` | 9999px | Pills, avatars |
+
+## Typography
+
+| Class | Size | Line Height |
+|-------|------|-------------|
+| `text-xs` | 0.75rem | 1rem |
+| `text-sm` | 0.875rem | 1.25rem |
+| `text-base` | 1rem | 1.5rem |
+| `text-lg` | 1.125rem | 1.75rem |
+| `text-xl` | 1.25rem | 1.75rem |
+| `text-2xl` | 1.5rem | 2rem |
+| `text-3xl` | 1.875rem | 2.25rem |
+
+### Font Weights
+
+| Class | Weight |
+|-------|--------|
+| `font-normal` | 400 |
+| `font-medium` | 500 |
+| `font-semibold` | 600 |
+| `font-bold` | 700 |
+
+## Shadows
+
+| Class | Usage |
+|-------|-------|
+| `shadow-xs` | Subtle elevation |
+| `shadow-sm` | Small elevation |
+| `shadow-md` | Medium elevation |
+| `shadow-lg` | Large elevation |
+| `shadow-xl` | Extra large |
+| `shadow-2xl` | Maximum elevation |
+
+## Component Sizes
+
+Chaos UI components use a consistent sizing system:
+
+| Size | Height | Usage |
+|------|--------|-------|
+| `xs` | 24px (h-6) | Compact UI |
+| `sm` | 28px (h-7) | Dense layouts |
+| `default` | 32px (h-8) | Standard UI |
+| `lg` | 36px (h-9) | Prominent UI |

@@ -1,0 +1,15 @@
+Chaos UI is an enterprise React component library.
+
+Primary component surface:
+- Storybook is the main browser for UI, business, and layout components.
+- Start Storybook with `npm run dev`.
+- Open http://localhost:6006 after startup.
+
+Application shell:
+- Start the Next.js app with `npm run app:dev` only when app-shell behavior is needed.
+
+Package manager:
+- Use npm as the canonical install and script runner.
+- Use `package-lock.json` as the lockfile.
+
+Do not restore the old `/styleguide` app as the primary component browser.

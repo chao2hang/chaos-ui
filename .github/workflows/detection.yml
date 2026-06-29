@@ -1,0 +1,108 @@
+name: Chaos UI Detection Pipeline
+
+on:
+  pull_request:
+    branches: [main, master, develop]
+  push:
+    branches: [main, master]
+
+jobs:
+  # ─── L1: TypeScript 类型检查 ───
+  typecheck:
+    name: TypeScript 类型检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npx tsc --noEmit
+
+  # ─── L2: ESLint 语义检测 ───
+  eslint:
+    name: ESLint 检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+
+  # ─── L3: Stylelint 样式检测 ───
+  stylelint:
+    name: Stylelint 样式检测
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npx stylelint "**/*.css" --allow-empty-input
+
+  # ─── L4: Dependency Cruiser 导入约束 ───
+  depcruise:
+    name: 导入依赖检测
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npx depcruise --config .dependency-cruiser.cjs components/ hooks/ lib/ app/
+
+  # ─── L5: Storybook 构建验证 ───
+  storybook-build:
+    name: Storybook 构建
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build-storybook
+
+  # ─── L6: 测试 + 覆盖率 ───
+  test:
+    name: 单元测试 + 覆盖率
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npx vitest run --coverage
+      - name: 检查覆盖率阈值
+        run: |
+          npx vitest run --coverage --coverage.thresholds.lines=60
+
+  # ─── L7: 无障碍扫描 (axe-core) ───
+  a11y:
+    name: 可访问性检测
+    runs-on: ubuntu-latest
+    needs: storybook-build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build-storybook
+      - name: 启动 Storybook 并扫描
+        run: |
+          npx serve storybook-static -p 6006 &
+          sleep 3
+          npx @axe-core/cli http://localhost:6006 --exit

@@ -1,0 +1,45 @@
+import type { Meta, StoryObj } from "@storybook/react"
+import { StatusTag } from "@/components/business/status-tag"
+
+const meta = {
+  title: "Business/StatusTag",
+  component: StatusTag,
+  tags: ["autodocs", "a11y"],
+  argTypes: {
+    status: {
+      control: { type: "select" },
+      options: ["draft", "pending", "approved", "rejected", "completed", "cancelled"],
+    },
+    size: {
+      control: { type: "select" },
+      options: ["sm", "default"],
+    },
+  },
+} satisfies Meta<typeof StatusTag>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Draft: Story = { args: { status: "draft" } }
+export const Pending: Story = { args: { status: "pending" } }
+export const Approved: Story = { args: { status: "approved" } }
+export const Rejected: Story = { args: { status: "rejected" } }
+export const Completed: Story = { args: { status: "completed" } }
+export const Cancelled: Story = { args: { status: "cancelled" } }
+
+export const AllStatuses: Story = {
+  args: {
+    status: "draft",
+  },
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <StatusTag status="draft" />
+      <StatusTag status="pending" />
+      <StatusTag status="approved" />
+      <StatusTag status="rejected" />
+      <StatusTag status="completed" />
+      <StatusTag status="cancelled" />
+    </div>
+  ),
+}
+

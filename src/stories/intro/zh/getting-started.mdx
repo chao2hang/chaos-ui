@@ -1,0 +1,124 @@
+﻿---
+title: 中文/快速开始
+---
+
+# 快速开始
+
+在项目中使用 Chaos UI 组件的快速指南。
+
+## 安装
+
+```bash
+npm install
+```
+
+## 开发
+
+```bash
+# 在 6006 端口启动 Storybook 文档
+npm run dev
+
+# 启动 Next.js 开发服务器
+npm run app:dev
+
+# 构建生产版本
+npm run build
+
+# 构建 Storybook 部署版本
+npm run build-storybook
+
+# 运行代码检查
+npm run lint
+```
+
+## 基本用法
+
+导入组件并在代码中使用：
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export default function Page() {
+  return (
+    <div>
+      <Button variant="default">点击我</Button>
+    </div>
+  )
+}
+```
+
+## 组件剖析
+
+每个 Chaos UI 组件遵循一致的模式：
+
+```tsx
+import { cn } from '@/lib/utils'
+
+// 1. 导入组件
+import { Button } from '@/components/ui/button'
+
+// 2. 使用 TypeScript 属性
+function MyComponent() {
+  return (
+    <Button
+      variant="default"      // 变体属性
+      size="md"              // 尺寸属性
+      disabled={false}       // 状态属性
+      onClick={() => {}}     // 事件处理
+    >
+      按钮文字
+    </Button>
+  )
+}
+```
+
+## 样式
+
+Chaos UI 使用 Tailwind CSS 4 与 CSS 自定义属性。所有组件接受 `className` 属性用于自定义样式：
+
+```tsx
+<Button className="mt-4 w-full">
+  全宽按钮
+</Button>
+```
+
+使用 `cn()` 工具函数合并类名：
+
+```tsx
+import { cn } from '@/lib/utils'
+
+<Button className={cn(
+  "基础类名",
+  isActive && "激活类名",
+  className
+)}>
+```
+
+## 主题化
+
+Chaos UI 通过 CSS 变量支持明暗模式。可在 Storybook 工具栏切换。
+
+### 自定义主题
+
+在 `globals.css` 中覆盖 CSS 变量：
+
+```css
+:root {
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+}
+```
+
+## TypeScript
+
+所有组件均有完整类型定义。直接导入类型：
+
+```tsx
+import { Button, type ButtonProps } from '@/components/ui/button'
+```
+
+## 下一步
+
+- 浏览[组件库](/docs)查看所有可用组件
+- 阅读[设计令牌](/docs/zh-design-tokens--docs)指南
+- 查看[组件规范](/docs/zh-component-guidelines--docs)了解最佳实践

@@ -1,0 +1,11 @@
+{
+  "notificationCenter.title": "Notifications",
+  "notificationCenter.emptyText": "No notifications",
+  "notificationCenter.emptyDescription": "No new notifications",
+  "notificationCenter.markRead": "Mark as read",
+  "notificationCenter.markAllRead": "Mark all read",
+  "notificationCenter.clear": "Clear",
+  "notificationCenter.unreadCount": "{{count}} unread",
+  "notificationCenter.ariaLabel": "Notifications {{unreadText}}",
+  "notificationCenter.ariaLabelUnread": "{{count}} unread"
+}

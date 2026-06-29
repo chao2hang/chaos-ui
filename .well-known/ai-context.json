@@ -1,0 +1,66 @@
+{
+  "project": {
+    "name": "@qxyfoods/chaos-ui",
+    "version": "0.1.0",
+    "type": "react-component-library",
+    "language": "typescript",
+    "framework": "react",
+    "metaFramework": "nextjs",
+    "styling": "tailwindcss",
+    "uiPrimitives": "@base-ui/react",
+    "packageManager": "npm",
+    "nodeVersion": ">=22.0.0"
+  },
+  "techStack": {
+    "react": "19",
+    "nextjs": "16",
+    "typescript": "5.9",
+    "tailwindcss": "4",
+    "storybook": "10",
+    "vitest": "4",
+    "tsup": "8"
+  },
+  "structure": {
+    "uiComponents": "components/ui/",
+    "businessComponents": "components/business/",
+    "layoutComponents": "components/layout/",
+    "hooks": "hooks/",
+    "lib": "lib/",
+    "stories": "src/",
+    "demo": "app/",
+    "packageEntry": "package/"
+  },
+  "exports": [
+    ".",
+    "./ui",
+    "./ui/icons",
+    "./ui-icons",
+    "./business",
+    "./hooks",
+    "./lib",
+    "./next",
+    "./styles.css"
+  ],
+  "commands": {
+    "dev": "storybook dev -p 6006",
+    "app:dev": "next dev",
+    "check": "npm run typecheck && npm run lint && npm run lint:css && npm run lint:deps",
+    "test": "vitest run",
+    "build:pkg": "tsup",
+    "build-storybook": "storybook build"
+  },
+  "conventions": {
+    "imports": "@/ alias for project-local source",
+    "exports": "named exports only",
+    "variants": "class-variance-authority (cva)",
+    "classNameMerge": "cn() from @/lib/utils",
+    "componentId": "data-slot attribute on root element",
+    "commits": "conventional commits (feat/fix/docs/style/refactor/perf/test/build/ci/chore/revert)"
+  },
+  "designTokens": {
+    "colors": "CSS custom properties (--primary, --secondary, --destructive, etc.)",
+    "darkMode": ".dark class on root",
+    "borderRadius": "--radius, --radius-sm, --radius-md, --radius-lg",
+    "i18n": "i18next with zh/en locales"
+  }
+}

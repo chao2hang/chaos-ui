@@ -1,0 +1,23 @@
+{
+  "heatmapCalendar.less": "少",
+  "heatmapCalendar.more": "多",
+  "heatmapCalendar.monthLabel": "{{count}}月",
+  "heatmapCalendar.day.mon": "一",
+  "heatmapCalendar.day.tue": "二",
+  "heatmapCalendar.day.wed": "三",
+  "heatmapCalendar.day.thu": "四",
+  "heatmapCalendar.day.fri": "五",
+  "heatmapCalendar.day.sat": "六",
+  "heatmapCalendar.day.sun": "日",
+  "metricTrend.changeLabel": "vs 上期",
+  "campaignCard.spent": "spent",
+  "budgetPacing.card.title": "Budget pacing",
+  "budgetPacing.spentOf": "spent of",
+  "budgetPacing.used": "used",
+  "budgetPacing.remaining": "Remaining",
+  "budgetPacing.forecast": "Forecast",
+  "budgetPacing.status.under": "Under pace",
+  "budgetPacing.status.onTrack": "On track",
+  "budgetPacing.status.over": "Over pace",
+  "budgetPacing.status.exhausted": "Exhausted"
+}

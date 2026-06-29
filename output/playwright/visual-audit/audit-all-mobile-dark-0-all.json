@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-06-14T01:00:22.054Z",
+  "filters": {
+    "group": "all",
+    "device": "mobile",
+    "theme": "dark",
+    "offset": 0,
+    "limit": 0
+  },
+  "scannedDocs": 139,
+  "plannedCombos": 139,
+  "scannedCombos": 139,
+  "issueDocs": 6,
+  "issueCombos": 6,
+  "summary": [
+    {
+      "id": "components-departmentbrowse--docs",
+      "title": "Components/DepartmentBrowse",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-departmentbrowse--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    },
+    {
+      "id": "components-treeselect--docs",
+      "title": "Components/TreeSelect",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-treeselect--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    },
+    {
+      "id": "components-userbrowse--docs",
+      "title": "Components/UserBrowse",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog",
+      "url": "http://localhost:6006/iframe.html?id=components-userbrowse--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    },
+    {
+      "id": "business-errorpage--docs",
+      "title": "Business/ErrorPage",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button",
+      "url": "http://localhost:6006/iframe.html?id=business-errorpage--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    },
+    {
+      "id": "business-errorboundary--docs",
+      "title": "Business/ErrorBoundary",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Error: Revenue widget failed to load\n    at BrokenWidget (http://localhost:6006/src/business/ErrorBoundary.stories.tsx:5:8)\n    at Object.react_stack_bottom_frame (http://localhost:6006/node_modules/.cache/storybook/10.4.4/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps",
+      "url": "http://localhost:6006/iframe.html?id=business-errorboundary--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    },
+    {
+      "id": "business-themetoggle--docs",
+      "title": "Business/ThemeToggle",
+      "combos": [
+        "mobile/dark"
+      ],
+      "firstIssue": "Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).",
+      "url": "http://localhost:6006/iframe.html?id=business-themetoggle--docs&viewMode=docs&globals=theme:dark;device:mobile"
+    }
+  ],
+  "results": [
+    {
+      "id": "components-departmentbrowse--docs",
+      "title": "Components/DepartmentBrowse",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=components-departmentbrowse--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 5,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 85,
+        "storyIssues": [],
+        "dark": true,
+        "device": "mobile",
+        "text": "DepartmentBrowse Select department... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select dep"
+      }
+    },
+    {
+      "id": "components-treeselect--docs",
+      "title": "Components/TreeSelect",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=components-treeselect--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 4,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 85,
+        "storyIssues": [],
+        "dark": true,
+        "device": "mobile",
+        "text": "TreeSelect Select... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select...\" - disabled boole"
+      }
+    },
+    {
+      "id": "components-userbrowse--docs",
+      "title": "Components/UserBrowse",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=components-userbrowse--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Dialog"
+      ],
+      "metrics": {
+        "docsStoryCount": 6,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 85,
+        "storyIssues": [],
+        "dark": true,
+        "device": "mobile",
+        "text": "UserBrowse Select user... Show code Copy code Name Description Default Control value union - - defaultValue union - - placeholder string \"Select user...\" - disa"
+      }
+    },
+    {
+      "id": "business-errorpage--docs",
+      "title": "Business/ErrorPage",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=business-errorpage--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button"
+      ],
+      "metrics": {
+        "docsStoryCount": 4,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 140,
+        "storyIssues": [],
+        "dark": true,
+        "device": "mobile",
+        "text": "ErrorPage 404 页面不存在 抱歉，您访问的页面已被移动或不存在。 返回首页 Show code Copy code Name Description Default Control status union 404 status 403 404 500 503 showBack boolean true F"
+      }
+    },
+    {
+      "id": "business-errorboundary--docs",
+      "title": "Business/ErrorBoundary",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=business-errorboundary--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Error: Revenue widget failed to load\n    at BrokenWidget (http://localhost:6006/src/business/ErrorBoundary.stories.tsx:5:8)\n    at Object.react_stack_bottom_frame (http://localhost:6006/node_modules/.cache/storybook/10.4.4/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps"
+      ],
+      "metrics": {
+        "docsStoryCount": 3,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 18,
+        "storyIssues": [],
+        "dark": true,
+        "device": "mobile",
+        "text": "ErrorBoundary 组件出错了 Revenue widget failed to load 重试 Show code Copy code Name Description Default Control fallback union - - onError (error: Error, info: React."
+      }
+    },
+    {
+      "id": "business-themetoggle--docs",
+      "title": "Business/ThemeToggle",
+      "combo": "mobile/dark",
+      "url": "http://localhost:6006/iframe.html?id=business-themetoggle--docs&viewMode=docs&globals=theme:dark;device:mobile",
+      "errors": [
+        "Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)."
+      ],
+      "metrics": {
+        "docsStoryCount": 4,
+        "hasErrorDisplay": false,
+        "hasNoPreview": false,
+        "pageOverflowX": 131,
+        "storyIssues": [],
+        "dark": false,
+        "device": "mobile",
+        "text": "ThemeToggle Toggle theme Show code Copy code Name Description Default Control className string - Set string showSystem boolean true Set boolean align union \"end"
+      }
+    }
+  ]
+}

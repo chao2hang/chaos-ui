@@ -1,0 +1,167 @@
+﻿---
+title: 中文/国际化
+---
+
+# 国际化
+
+Chaos UI 内置 i18n 层，基于 [i18next](https://www.i18next.com/) 和 [react-i18next](https://react.i18next.com/)。内置两种区域设置：`zh-CN`（默认）和 `en-US`。
+
+## 配置
+
+配置位于 `lib/i18n/config.ts`：
+
+```ts
+i18n.use(initReactI18next).init({
+  lng: "zh-CN",
+  fallbackLng: "zh-CN",
+  defaultNS: "common",
+  interpolation: { escapeValue: false },
+  returnObjects: false,
+});
+```
+
+- **默认语言**：`zh-CN`
+- **回退语言**：`zh-CN`
+- **默认命名空间**：`common`
+
+## 命名空间
+
+翻译按 13 个命名空间划分，每个命名空间对应一个功能区域：
+
+| 命名空间 | 用途 |
+|----------|------|
+| `common` | 通用 UI 字符串（保存、取消、确认等） |
+| `ui` | 组件级标签（按钮、输入框、对话框） |
+| `error` | 错误消息与校验反馈 |
+| `data` | 数据表格、列表、搜索、排序、筛选 |
+| `chart` | 图表标题、坐标轴标签、图例 |
+| `cookie` | Cookie 同意横幅 |
+| `language` | 语言选择器标签 |
+| `marketing` | 营销文案与号召性用语 |
+| `mobile` | 移动端专用文案 |
+| `navigation` | 菜单、侧边栏、面包屑 |
+| `notification` | Toast 与通知消息 |
+| `tour` | 产品引导步骤 |
+| `transfer` | 穿梭框组件 |
+| `upload` | 文件上传状态 |
+
+## 文件结构
+
+```
+lib/i18n/
+├── config.ts                    # i18next 初始化
+├── provider.tsx                 # React Provider
+├── index.ts                     # 重新导出
+└── resources/
+    ├── zh/                      # 中文（zh-CN）
+    │   ├── common.json
+    │   ├── ui.json
+    │   └── ...
+    └── en/                      # 英文（en-US）
+        ├── common.json
+        ├── ui.json
+        └── ...
+```
+
+## Provider
+
+使用 `I18nProvider`（位于 `lib/i18n/provider.tsx`）包裹应用：
+
+```tsx
+import { I18nProvider } from "@/lib/i18n"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+## 在组件中使用
+
+```tsx
+import { useTranslation } from "react-i18next";
+
+function MyComponent() {
+  const { t } = useTranslation("common");
+  return <Button>{t("actions.save")}</Button>;
+}
+```
+
+使用多个命名空间：
+
+```tsx
+const { t } = useTranslation(["common", "ui"]);
+return <p>{t("common:actions.save")}</p>;
+```
+
+## 切换语言
+
+运行时切换活动语言：
+
+```ts
+import i18n from "@/lib/i18n";
+i18n.changeLanguage("en-US");
+```
+
+或通过 hook：
+
+```tsx
+import { useTranslation } from "react-i18next";
+
+const { i18n } = useTranslation();
+<button onClick={() => i18n.changeLanguage("en-US")}>English</button>
+```
+
+## 添加新命名空间
+
+1. 在 `lib/i18n/resources/zh/<name>.json` 和 `lib/i18n/resources/en/<name>.json` 创建具有相同键树的文件。
+2. 在 `lib/i18n/config.ts` 中导入两个文件并添加到 `resources` 对象。
+3. 使用：`useTranslation("<name>")`。
+
+```ts
+// lib/i18n/config.ts
+import marketingZh from "./resources/zh/marketing.json";
+import marketingEn from "./resources/en/marketing.json";
+
+const resources = {
+  "zh-CN": { ..., marketing: marketingZh },
+  "en-US": { ..., marketing: marketingEn },
+};
+```
+
+## 添加新语言
+
+1. 创建文件夹 `lib/i18n/resources/<locale>/` 并复制每个命名空间文件。
+2. 翻译每个键。
+3. 在 `config.ts` 中注册：
+
+```ts
+import ja from "./resources/ja/common.json";
+
+const resources = {
+  "zh-CN": { ... },
+  "en-US": { ... },
+  "ja-JP": { common: ja },
+};
+```
+
+4. 根据需要更新 `lng` 和 `fallbackLng`。
+
+## 最佳实践
+
+1. **绝不硬编码面向用户的字符串** — 始终通过 `t()`
+2. **使用语义化键名**，而非字面文本：`t("actions.save")` 而非 `t("保存")`
+3. **保持命名空间聚焦** — 不要将所有内容放入 `common`
+4. **使用命名占位符插值值**：`t("welcome", { name: "Alex" })`
+5. **用缺失键测试**以确保 `fallbackLng` 正确回退
+6. **保持 `zh-CN` 和 `en-US` 键一致** — 相同的 JSON 树，不同的值
+
+## 相关
+
+- [无障碍](/docs/zh-accessibility--docs) — 区域与方向
+- [组件规范](/docs/zh-component-guidelines--docs) — i18n 规则

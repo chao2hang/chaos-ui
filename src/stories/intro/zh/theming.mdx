@@ -1,0 +1,154 @@
+﻿---
+title: 中文/主题化
+---
+
+# 主题化
+
+Chaos UI 通过 CSS 自定义属性（CSS 变量）驱动所有视觉样式。每个组件都从单一事实源读取，因此可以在不修改组件代码的情况下重新主题化整个库。
+
+## 主题化原理
+
+所有设计令牌位于 `app/globals.css`（或你的 `styles.css` 入口）的 `:root` 和 `.dark` 选择器下。Tailwind CSS 4 通过 `oklch()` 色彩空间引用这些变量。
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  /* ... */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  /* ... */
+}
+```
+
+## 明暗模式
+
+Chaos UI 开箱即支持两种模式：
+
+- **亮色** — `:root` 默认值
+- **暗色** — `.dark` 选择器覆盖
+
+在 Next.js 应用中，使用 `next-themes` 切换：
+
+```tsx
+import { ThemeProvider } from "next-themes"
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <ThemeProvider attribute="class">{children}</ThemeProvider>
+}
+```
+
+添加切换按钮：
+
+```tsx
+import { useTheme } from "next-themes"
+
+const { theme, setTheme } = useTheme()
+<button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+  切换主题
+</button>
+```
+
+## 自定义主题
+
+覆盖任意令牌即可构建自定义品牌主题。只需覆盖与默认值不同的变量，其余自动级联。
+
+```css
+:root {
+  --primary: oklch(0.45 0.18 264);       /* 品牌紫色 */
+  --primary-foreground: oklch(0.99 0 0);
+  --brand-500: oklch(0.55 0.20 264);
+}
+```
+
+### 品牌色阶
+
+`brand-*` 色阶是 50–950 的渐变。替换整个色阶即可重塑整个 UI 的品牌：
+
+```css
+:root {
+  --brand-50:  oklch(0.97 0.02 264);
+  --brand-100: oklch(0.93 0.04 264);
+  --brand-200: oklch(0.87 0.07 264);
+  --brand-300: oklch(0.79 0.10 264);
+  --brand-400: oklch(0.68 0.15 264);
+  --brand-500: oklch(0.55 0.20 264);
+  --brand-600: oklch(0.46 0.20 264);
+  --brand-700: oklch(0.38 0.17 264);
+  --brand-800: oklch(0.30 0.13 264);
+  --brand-900: oklch(0.22 0.09 264);
+  --brand-950: oklch(0.14 0.05 264);
+}
+```
+
+### 状态色
+
+覆盖状态语义以匹配你的品牌：
+
+```css
+:root {
+  --success: oklch(0.65 0.18 145);
+  --warning: oklch(0.75 0.15 80);
+  --info:    oklch(0.65 0.15 230);
+  --destructive: oklch(0.55 0.22 25);
+}
+```
+
+## 圆角令牌
+
+所有组件共享单一的 `--radius` 基准。Tailwind 的 `rounded-*` 比例由此派生：
+
+```css
+:root {
+  --radius: 0.5rem;   /* 8px */
+}
+```
+
+| 类名 | 计算方式 | 示例（radius=0.5rem） |
+|------|----------|----------------------|
+| `rounded-sm` | `radius * 0.6` | 4.8px |
+| `rounded-md` | `radius * 0.8` | 6.4px |
+| `rounded-lg` | `radius`       | 8px |
+| `rounded-xl` | `radius * 1.4` | 11.2px |
+| `rounded-2xl` | `radius * 1.8` | 14.4px |
+
+## 组件级覆盖
+
+对于一次性调整，传入 `className` 并使用 Tailwind 工具类：
+
+```tsx
+<Button className="rounded-none bg-brand-700">直角</Button>
+```
+
+对于结构性覆盖，使用 `style` 配合 CSS 变量：
+
+```tsx
+<Card style={{ "--primary": "oklch(0.55 0.2 264)" } as React.CSSProperties}>
+  主题化卡片
+</Card>
+```
+
+## Storybook 工具栏
+
+Storybook 工具栏提供亮色/暗色/系统切换。组件即时重新渲染，便于在两种模式下验证对比度与配色。
+
+## 最佳实践
+
+1. **在令牌层覆盖** — 绝不在组件内硬编码 hex 值
+2. **跨主题保持同一令牌名** 对应同一语义角色
+3. **验证明暗模式下的对比度**（WCAG 2.1 AA = 4.5:1）
+4. **将用户偏好持久化**到 `localStorage`（由 `next-themes` 处理）
+5. **以 brand-500 作为主要操作色进行测试** — 它是最显眼的令牌
+
+## 相关
+
+- [设计令牌](/docs/zh-design-tokens--docs) — 完整令牌参考
+- [组件规范](/docs/zh-component-guidelines--docs) — 令牌使用规则
+- [无障碍](/docs/zh-accessibility--docs) — 主题化对比度

@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules/
+/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,7 +12,7 @@ node_modules/
 
 # testing
 /coverage
-storybook-static/
+.playwright-mcp/
 
 # next.js
 /.next/
@@ -20,25 +20,25 @@ storybook-static/
 
 # production
 /build
-dist/
+/dist
+/storybook-static/
 
 # misc
 .DS_Store
 *.pem
-*.log
-*.tgz
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
-.env
-.env.*
-!.env.example
+.env*
+
+# local npm config (contains auth tokens)
+.npmrc
 
 # vercel
 .vercel
@@ -47,18 +47,33 @@ pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local indexes
+.codegraph/
+
+# generated review artifacts
+.detection/
+*.tmp
+*.temp
+*.tgz
+*-full.png
+*-timeline.png
+playwright-report/
+test-results/
+
+# local scripts and reports
+/output/
+*.sh
+/reguser.js
+VISUAL_TEST_REPORT.md
+
+# dependency-cruiser output
+.depcruise.*
+
 # pnpm
 .pnpm-store/
-
-# Playwright MCP artifacts
-.playwright-mcp/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
-Thumbs.db
-Desktop.ini
