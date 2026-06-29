@@ -40,6 +40,7 @@ const eslintConfig = defineConfig([
   // Override default ignores of eslint-config-next.
   globalIgnores([
     ".next/**",
+    "**/.next/**",
     "out/**",
     "output/**",
     "build/**",
@@ -49,6 +50,12 @@ const eslintConfig = defineConfig([
     ".playwright-mcp/**",
     ".detection/**",
     "next-env.d.ts",
+    "apps/docs/.next/**",
+    "apps/docs/@/**",
+    "apps/docs/scripts/**",
+    "apps/docs/src/**",
+    "apps/docs/app/**",
+    "packages/chaos-design-ui/**",
   ]),
   storybookPluginEntry,
   // Chaos UI 自定义规则
