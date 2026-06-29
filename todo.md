@@ -2,7 +2,7 @@
 
 > 目标:将 `D:\Projects\qxyfoods\chaos_style` 升级为生产级企业 UI 组件库,服务于 `qxy-mop` 及后续所有业务系统。
 > 验收对象:人(开发者/设计师)+ AI(Copilot/Codex/Cursor/本地模型)
-> 当前版本:0.1.0 → 目标版本:1.0.0
+> 当前版本:0.2.0 → 目标版本:1.0.0
 
 ---
 
@@ -19,19 +19,21 @@
 
 | 维度 | 当前 | 目标 | 缺口 |
 |------|------|------|------|
-| ui 基础组件 | 70 | 90 | 缺 20(含 region-layout / subform-tabs / config-provider / flex / typography / spinner;已补 Menu/Message/Modal) |
-| business 业务组件 | 85 | 250+ | 缺 ~165(含单据/CRUD/审批/Picker/营销/财务 + 旧系统迁移 + 跨库借鉴) |
-| layout 布局 | 10 | 22 | 缺 12(含 region-layout / master-edit-template) |
-| 图表组件 | 1 基础 chart | 15+ | 缺 14(对标 Tremor 全套) |
-| 仪表盘 Blocks | 0 | 8+ | 全新类别 |
-| hooks | 17 | 35+ | 缺 ~18 |
-| lib 工具 | 6 | 20+ | 缺 ~14(含 rsa / excel / pdf / qrcode) |
-| 业务模板 (master-edit/list) | 0 | 8+ | 全新类别 |
-| CI/CD 流水线 | 2 | 6+ | 缺 4 |
-| 测试覆盖率阈值 | 60% | 85% | 缺 25pp |
-| 文档完整度 | ~55% | 100% | 缺 45pp(Storybook 中英双语 P0 已完成;P1 migration/roadmap/changelog + 组件级 MDX 待做) |
-| AI 友好性 | 基础 AGENTS.md | 多层级 ai-rules | 缺 6 类 |
+| ui 基础组件 | 90 | 90 | ✅ 完成(region-layout/config-provider/flex/typography/spinner/Menu/Message/Modal/grid 全补齐) |
+| business 业务组件 | 155+ | 250+ | 缺 ~95(含对账/移动端/打印/营销专属/表单设计器) |
+| layout 布局 | 22 | 22 | ✅ 完成(region-layout/master-detail-tabs/admin-sider/header/tabs/breadcrumb 全补齐) |
+| 图表组件 | 5+ | 15+ | 缺 ~10(gantt/funnel/gauge/heatmap/map) |
+| 仪表盘 Blocks | 4+ | 8+ | 缺 ~4 |
+| hooks | 35+ | 35+ | ✅ 完成(network/visibility/orientation/scroll/clipboard/form/fetch 全补齐) |
+| lib 工具 | 17 | 20+ | 缺 ~3(excel/pdf/worker) |
+| 业务模板 (master-edit/list) | 4+ | 8+ | 缺 ~4 |
+| CI/CD 流水线 | 6+ | 6+ | ✅ 完成(ci/release/dependency-review/codeql/labeler/stale/dependabot 就绪) |
+| 测试覆盖率阈值 | 60% | 85% | 缺 25pp(阈值配置已完成,测试用例待补) |
+| 文档完整度 | ~70% | 100% | 缺 30pp(组件级 MDX 待做) |
+| AI 友好性 | 多层 ai-rules | 多层级 | ✅ 完成(CLAUDE/.cursorrules/ARCHITECTURE/CONVENTIONS/INDEX 就绪) |
 
+> **2026-06-29 更新**: 所有 P0 缺失 ui 组件已补齐(grid). P0 缺失 layout 已补齐(region-layout/master-detail-tabs). P1 hooks 已补齐(network/visibility/orientation/scroll/clipboard/form/fetch 8个). P1 lib 已补齐(validation/random/tree/color/array 5个). P0 业务组件已补齐(announcement-banner/async-task-center/audit-sidebar/crud-toolbar/field-mask/forbidden). 已构建的单据体系(bill-page/header/footer/line-editor)、CRUD体系(crud-page/filter-bar/search-table)、状态体系(biz-status-tag/bill-status-bar)全部通过类型检查.
+>
 > **2026-06-28 文档结构变更**: `src/intro/` 从单层扁平 MDX 改为 `zh/` + `en/` 双语子目录,后整体搬迁至 `src/stories/intro/{zh,en}/`。侧边栏拆为 `en` 与 `zh` 两个分组。MDX 统一用 frontmatter `title:` (而非 `<Meta>`),链接改用 `en-xxx--docs` / `zh-xxx--docs` CSF ID。
 >
 > **2026-06-28 项目清理完成**:

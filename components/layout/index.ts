@@ -10,5 +10,7 @@ export * from "./admin-header";
 export * from "./admin-tabs";
 export * from "./admin-breadcrumb";
 export * from "./master-detail-layout";
+export * from "./master-detail-tabs";
+export * from "./region-layout";
 
 export * from "./dialog-form-body";

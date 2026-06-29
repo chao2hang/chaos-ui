@@ -40,3 +40,10 @@ export {
   type Role,
 } from "./permissions";
 export { ChaosI18nProvider, i18n } from "./i18n";
+
+// P1 lib utilities
+export * from "./validation";
+export * from "./random";
+export * from "./tree";
+export * from "./color";
+export * from "./array";

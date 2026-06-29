@@ -7,7 +7,7 @@
 [![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4)](https://tailwindcss.com/)
-[![Storybook](https://img.shields.io/badge/Storybook-10-ff4785)](https://storybook.js.org/)
+[![Storybook](https://img.shields.io/badge/Storybook-10.4-ff4785)](https://storybook.js.org/)
 
 ## 简介
 
@@ -15,11 +15,11 @@ Chaos UI 是服务于清香园（QXY Foods）所有业务系统的企业级 Reac
 
 ### 核心特性
 
-- 🎨 **81+ UI 基础组件** — 覆盖表单、布局、反馈、导航、数据展示全场景
-- 🏢 **85+ 业务组件** — 单据体系、CRUD 模板、审批流、看板、图表
-- 📐 **10+ 布局组件** — 后台管理、认证、仪表盘、详情页布局
-- 🪝 **23+ React Hooks** — 状态管理、副作用、响应式、反馈命令式 API
-- 🔧 **11+ 工具库** — 存储、事件总线、下载、Cookie、URL、格式化、API 客户端
+- 🎨 **103 UI 基础组件** — 覆盖表单、布局、反馈、导航、数据展示全场景
+- 🏢 **80 业务组件** — 单据体系、CRUD 模板、审批流、看板、图表
+- 📐 **15 布局组件** — 后台管理、认证、仪表盘、详情页布局
+- 🪝 **28 React Hooks** — 状态管理、副作用、响应式、反馈命令式 API
+- 🔧 **7+ 工具库** — 存储、事件总线、下载、Cookie、URL、格式化、API 客户端
 - 🌍 **i18n 国际化** — 内置中文/英文，支持扩展
 - 🎯 **TypeScript 优先** — 完整类型定义
 - ♿ **无障碍** — WAI-ARIA 标准，WCAG AA 对比度
@@ -82,17 +82,17 @@ function App() {
 
 ## 组件清单
 
-### UI 基础组件 (81+)
+### UI 基础组件 (103)
 
-Accordion, Alert, AlertDialog, Affix, AspectRatio, Avatar, BackTop, Badge, Breadcrumb, BrowseInput, Button, Calendar, Card, Carousel, Checkbox, Collapsible, ColorPicker, Command, ConfigProvider, ContextMenu, DatePicker, Descriptions, Dialog, Divider, Dot, Drawer, DropdownMenu, FileUpload, Flex, Form, FormGrid, FormList, FormSection, GridLayout, HoverCard, Input, InputGroup, InputNumber, InputSearch, Kbd, KPIPanel, Label, Menubar, NavigationMenu, OTPField, PageContainer, Pagination, Popconfirm, Popover, Progress, RadioGroup, Resizable, ScrollArea, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Sonner, Space, Spinner, SplitPane, Spin, Stepper, Switch, Table, Tabs, TagsInput, Textarea, Timeline, Toggle, ToggleGroup, Tooltip, TreeSelect, TreeView, Typography, UserBrowse, VirtualList, VirtualTable
+Accordion, Affix, Alert, AlertDialog, Anchor, AspectRatio, Autocomplete, Avatar, BackTop, Badge, Breadcrumb, BrowseInput, Button, Calendar, Card, Carousel, Cascader, Checkbox, Collapsible, ColorPicker, Combobox, Command, ConfigProvider, ContextMenu, Countdown, DatePicker, DepartmentBrowse, Descriptions, Dialog, Divider, Dot, Drawer, DropdownMenu, EmptyState, FAB, FileUpload, Flex, Form, FormGrid, FormList, FormSection, GridLayout, HoverCard, Image, Input, InputGroup, InputNumber, InputSearch, Kbd, KPIPanel, Label, List, Mentions, Menu, Menubar, MessageProvider, ModalProvider, NavigationMenu, Notification, OTPField, PageContainer, Pagination, Popconfirm, Popover, Progress, QRCode, RadioGroup, Rating, Resizable, Result, ScrollArea, SegmentedControl, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Sonner, Space, Spin, Spinner, SplitPane, Statistic, Stepper, Switch, Table, Tabs, Tag, TagsInput, Textarea, Timeline, Toggle, ToggleGroup, Tooltip, Tour, TreeSelect, TreeView, Typography, UserBrowse, VirtualList, VirtualTable, Watermark
 
-### 业务组件 (85+)
+### 业务组件 (80)
 
-DataTable, AdvancedDataTable, PivotTable, KanbanBoard, KpiCard, StatCard, Chart, Gauge, MetricTrend, HeatmapCalendar, ExportButton, FileUploadManager, BulkImportWizard, ApprovalTimeline, PermissionMatrix, RoleAssignment, CampaignCard, CampaignCalendar, UtmBuilder, EmptyState, ErrorBoundary, LoadingPage, ConfirmDialog, Tour, Watermark, CommandPalette, NotificationCenter, PageHeader, Rating, Transfer, 更多...
+ActivityFeed, AdvancedDataTable, AdvancedSearch, ApprovalTimeline, AudienceSegmentBuilder, AuditLog, AuthGuard, AvatarGroup, BillFooter, BillHeader, BillPage, BillStatusBar, BizStatusTag, BudgetPacingCard, BulkActionsToolbar, BulkImportWizard, CampaignCalendar, CampaignCard, CampaignStatusTag, ChannelPicker, Chart, Chip, CodeBlock, ColorTag, Combobox, CommandPalette, ConfirmDialog, CookieBanner, CreativePreview, CrudPage, DataTable, DateRangePicker, DictSelect, DiffViewer, EmptyState, ErrorBoundary, ErrorPage, ExpenseLineEditor, ExperimentSummary, ExportButton, FAB, FileUploadManager, FilterBar, FilterBuilder, FormField, FormWizard, Gauge, HeatmapCalendar, InlineEdit, JsonViewer, KanbanBoard, KpiCard, LanguageSwitcher, LineEditor, LoadingPage, MetricTrend, MultiSelect, NotificationCenter, OrderLineEditor, PageHeader, PermissionMatrix, PivotTable, PromptDialog, Rating, ResponsivePreview, RoleAssignment, SavedFilters, SearchTable, SegmentedControl, StatCard, StatCardRow, StatusTag, ThemeToggle, TimePicker, Tour, Transfer, UserMenu, UtmBuilder, VersionHistory, Watermark
 
-### 布局组件 (10+)
+### 布局组件 (15)
 
-AppShell, AuthLayout, BlankLayout, DashboardLayout, DetailLayout, ErrorLayout, PrintLayout, PublicLayout, TopBar
+AdminBreadcrumb, AdminHeader, AdminSider, AdminTabs, AppShell, AuthLayout, BlankLayout, DashboardLayout, DetailLayout, DialogFormBody, ErrorLayout, MasterDetailLayout, PrintLayout, PublicLayout, TopBar
 
 ## 开发
 

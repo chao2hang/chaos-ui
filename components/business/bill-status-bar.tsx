@@ -1,221 +1,115 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Check, X, Clock } from "lucide-react";
+import * as React from "react"
+import { cn } from "@/lib/utils"
 
-import { cn } from "@/lib/utils";
+interface BillStatusStep {
+  label: string
+  status: "completed" | "current" | "pending" | "rejected"
+  description?: string
+}
+
+interface BillStatusBarProps {
+  steps: BillStatusStep[]
+  /** Horizontal (inline) or vertical */
+  direction?: "horizontal" | "vertical"
+  className?: string
+}
+
+const stepDotClasses: Record<string, string> = {
+  completed: "bg-green-500 border-green-500",
+  current: "bg-blue-500 border-blue-500",
+  pending: "bg-transparent border-gray-300 dark:border-gray-600",
+  rejected: "bg-red-500 border-red-500",
+}
+
+const stepTextClasses: Record<string, string> = {
+  completed: "text-green-700 dark:text-green-400",
+  current: "text-blue-700 dark:text-blue-400 font-semibold",
+  pending: "text-muted-foreground",
+  rejected: "text-red-700 dark:text-red-400",
+}
 
 /**
+ * 单据状态进度条 —— 纵向/横向展示审批流转节点。
+ * 对标 qxy-mop 审批场景。
+ *
  * @component BillStatusBar
  * @category business/status
  * @since 0.2.0
- * @description 单据状态进度条(展示审批节点流程) / Bill status progress bar showing approval workflow
- * @keywords bill, status, progress, approval, stepper, timeline
- * @example
- * <BillStatusBar
- *   steps={[
- *     { title: 'Submit', status: 'done' },
- *     { title: 'Review', status: 'current' },
- *     { title: 'Approve', status: 'pending' },
- *   ]}
- * />
  */
-
-type StepStatus = "done" | "current" | "pending" | "rejected";
-
-interface BillStatusStep {
-  /** Step title / 步骤标题 */
-  title: React.ReactNode;
-  /** Step description / 步骤描述 */
-  description?: React.ReactNode;
-  /** Step status / 步骤状态 */
-  status: StepStatus;
-  /** Step timestamp / 时间戳 */
-  time?: string;
-  /** Operator / 操作人 */
-  operator?: string;
-}
-
-interface BillStatusBarProps extends React.ComponentProps<"div"> {
-  /** Status steps / 状态步骤 */
-  steps: BillStatusStep[];
-  /** Layout direction / 布局方向 */
-  direction?: "horizontal" | "vertical";
-  /** Whether to show connector line / 是否显示连接线 */
-  showConnector?: boolean;
-}
-
-const stepIconConfig: Record<
-  StepStatus,
-  { bg: string; text: string; icon?: React.ElementType }
-> = {
-  done: {
-    bg: "bg-green-500",
-    text: "text-white",
-    icon: Check,
-  },
-  current: {
-    bg: "bg-blue-500",
-    text: "text-white",
-    icon: Clock,
-  },
-  pending: {
-    bg: "bg-muted",
-    text: "text-muted-foreground",
-  },
-  rejected: {
-    bg: "bg-red-500",
-    text: "text-white",
-    icon: X,
-  },
-};
-
-function BillStatusBar({
-  className,
-  steps,
-  direction = "horizontal",
-  showConnector = true,
-  ...props
-}: BillStatusBarProps) {
-  const isVertical = direction === "vertical";
-
-  return (
-    <div
-      data-slot="bill-status-bar"
-      className={cn(
-        "flex",
-        isVertical ? "flex-col gap-0" : "flex-row items-start gap-0",
-        className,
-      )}
-      {...props}
-    >
-      {steps.map((step, index) => {
-        const config = stepIconConfig[step.status];
-        const Icon = config.icon;
-        const isLast = index === steps.length - 1;
-
-        return (
-          <React.Fragment key={index}>
-            <div
-              className={cn(
-                "flex",
-                isVertical
-                  ? "flex-row gap-3 pb-6"
-                  : "flex-1 flex-col items-center",
-              )}
-            >
-              {/* Icon + connector for horizontal */}
+function BillStatusBar({ steps, direction = "horizontal", className }: BillStatusBarProps) {
+  if (direction === "vertical") {
+    return (
+      <div className={cn("flex flex-col", className)}>
+        {steps.map((step, i) => (
+          <div key={i} className="flex gap-3">
+            <div className="flex flex-col items-center">
               <div
                 className={cn(
-                  "flex items-center",
-                  isVertical ? "flex-col" : "w-full",
+                  "size-3 rounded-full border-2",
+                  stepDotClasses[step.status],
                 )}
-              >
-                {isVertical && (
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={cn(
-                        "flex size-8 shrink-0 items-center justify-center rounded-full",
-                        config.bg,
-                        config.text,
-                      )}
-                    >
-                      {Icon ? <Icon className="size-4" /> : index + 1}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground">
-                        {step.title}
-                      </div>
-                      {step.description && (
-                        <div className="text-xs text-muted-foreground">
-                          {step.description}
-                        </div>
-                      )}
-                      {(step.operator || step.time) && (
-                        <div className="mt-0.5 text-xs text-muted-foreground">
-                          {step.operator}
-                          {step.operator && step.time && " · "}
-                          {step.time}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {!isVertical && (
-                  <div className="flex w-full items-center">
-                    {showConnector && index > 0 && (
-                      <div
-                        className={cn(
-                          "h-0.5 flex-1",
-                          step.status === "done"
-                            ? "bg-green-500"
-                            : "bg-border",
-                        )}
-                      />
-                    )}
-                    <div
-                      className={cn(
-                        "flex size-8 shrink-0 items-center justify-center rounded-full",
-                        config.bg,
-                        config.text,
-                      )}
-                    >
-                      {Icon ? <Icon className="size-4" /> : index + 1}
-                    </div>
-                    {showConnector && !isLast && (
-                      <div
-                        className={cn(
-                          "h-0.5 flex-1",
-                          step.status === "done"
-                            ? "bg-green-500"
-                            : step.status === "rejected"
-                              ? "bg-red-500"
-                              : "bg-border",
-                        )}
-                      />
-                    )}
-                  </div>
-                )}
-
-                {!isVertical && (
-                  <div className="mt-2 text-center">
-                    <div className="text-sm font-medium text-foreground">
-                      {step.title}
-                    </div>
-                    {step.description && (
-                      <div className="text-xs text-muted-foreground">
-                        {step.description}
-                      </div>
-                    )}
-                    {(step.operator || step.time) && (
-                      <div className="mt-0.5 text-xs text-muted-foreground">
-                        {step.operator}
-                        {step.operator && step.time && " · "}
-                        {step.time}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* Vertical connector */}
-              {isVertical && showConnector && !isLast && (
+              />
+              {i < steps.length - 1 && (
                 <div
                   className={cn(
-                    "ml-4 w-0.5 self-stretch",
-                    step.status === "done" ? "bg-green-500" : "bg-border",
+                    "my-1 w-0.5 flex-1",
+                    step.status === "completed"
+                      ? "bg-green-500"
+                      : "bg-gray-200 dark:bg-gray-700",
                   )}
-                  style={{ minHeight: "1.5rem" }}
                 />
               )}
             </div>
-          </React.Fragment>
-        );
-      })}
+            <div className="pb-6">
+              <p className={cn("text-sm leading-none", stepTextClasses[step.status])}>
+                {step.label}
+              </p>
+              {step.description && (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {step.description}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("flex items-center", className)}>
+      {steps.map((step, i) => (
+        <React.Fragment key={i}>
+          <div className="flex items-center gap-2">
+            <div
+              className={cn(
+                "size-3 rounded-full border-2 shrink-0",
+                stepDotClasses[step.status],
+              )}
+            />
+            <div className="min-w-0">
+              <p className={cn("text-sm truncate", stepTextClasses[step.status])}>
+                {step.label}
+              </p>
+            </div>
+          </div>
+          {i < steps.length - 1 && (
+            <div
+              className={cn(
+                "mx-2 h-0.5 w-12 shrink-0",
+                step.status === "completed"
+                  ? "bg-green-500"
+                  : "bg-gray-200 dark:bg-gray-700",
+              )}
+            />
+          )}
+        </React.Fragment>
+      ))}
     </div>
-  );
+  )
 }
 
-export { BillStatusBar };
-export type { BillStatusBarProps, BillStatusStep, StepStatus };
+export { BillStatusBar }
+export type { BillStatusBarProps, BillStatusStep }

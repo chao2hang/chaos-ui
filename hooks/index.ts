@@ -44,3 +44,12 @@ export { useConfirmAsync, ConfirmProvider, confirmAsync, useConfirmContext } fro
 export type { ConfirmOptions, ConfirmProviderProps } from "./use-confirm-async";
 export { useFieldValidation } from "./use-field-validation";
 export type { ValidationRule, UseFieldValidationOptions } from "./use-field-validation";
+
+// P1 hooks — network, visibility, orientation, clipboard, form, fetch
+export { useNetworkStatus } from "./use-network-status";
+export { useVisibilityChange } from "./use-visibility-change";
+export { useWindowSize } from "./use-window-size";
+export { useScroll, useScrollDirection } from "./use-scroll";
+export { useOrientation } from "./use-orientation";
+export { useClipboard } from "./use-clipboard";
+export { useForm } from "./use-form";

@@ -1,107 +1,104 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { ArrowLeft } from "lucide-react";
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui"
+import { Skeleton } from "@/components/ui"
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+export type BillStatus = "draft" | "pending" | "approved" | "rejected"
 
-/**
- * @component BillPage
- * @category business/bill
- * @since 0.2.0
- * @description 单据页面骨架 / Bill page skeleton with header, content, and footer
- * @keywords bill, page, document, form, skeleton
- * @example
- * <BillPage title="费用申请" status="draft" onBack={() => history.back()} actions={<Button>Submit</Button>}>
- *   <Content />
- * </BillPage>
- */
-
-type BillStatus = "draft" | "pending" | "approved" | "rejected";
-
-interface BillPageProps extends Omit<React.ComponentProps<"div">, "title"> {
-  /** Bill title / 单据标题 */
-  title?: React.ReactNode;
-  /** Bill subtitle / 单据副标题 */
-  subtitle?: React.ReactNode;
-  /** Bill status / 单据状态 */
-  status?: BillStatus;
-  /** Back callback / 返回回调 */
-  onBack?: () => void;
-  /** Header actions / 头部操作 */
-  actions?: React.ReactNode;
-  /** Loading state / 加载状态 */
-  loading?: boolean;
-  /** Footer content (action bar) / 底部内容 */
-  footer?: React.ReactNode;
-  /** Whether to show back button / 是否显示返回按钮 */
-  showBack?: boolean;
+interface BillPageProps {
+  /** 单据标题 */
+  title: React.ReactNode
+  /** 副标题（如单据编号） */
+  subtitle?: React.ReactNode
+  /** 当前单据状态 */
+  status?: BillStatus
+  /** 返回回调 */
+  onBack?: () => void
+  /** 顶部右侧操作区 */
+  actions?: React.ReactNode
+  /** 加载态 */
+  loading?: boolean
+  /** 额外 className */
+  className?: string
+  children: React.ReactNode
 }
 
-const statusConfig: Record<BillStatus, { label: string; color: string }> = {
-  draft: { label: "Draft", color: "bg-muted text-muted-foreground" },
-  pending: { label: "Pending", color: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300" },
-  approved: { label: "Approved", color: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300" },
-  rejected: { label: "Rejected", color: "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300" },
-};
+const statusLabels: Record<BillStatus, string> = {
+  draft: "草稿",
+  pending: "审批中",
+  approved: "已通过",
+  rejected: "已驳回",
+}
 
+const statusVariants: Record<BillStatus, string> = {
+  draft: "bg-muted text-muted-foreground",
+  pending: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  approved: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  rejected: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+}
+
+/**
+ * 单据页面骨架 —— 统一单据页的页头 + 内容区 + 底部操作栏结构。
+ * 对标 qxy-mop 所有 page.tsx 的模板。
+ *
+ * @component BillPage
+ * @category business/bills
+ * @since 0.2.0
+ */
 function BillPage({
-  className,
   title,
   subtitle,
   status,
   onBack,
   actions,
   loading = false,
-  footer,
-  showBack = true,
+  className,
   children,
-  ...props
 }: BillPageProps) {
   return (
-    <div
-      data-slot="bill-page"
-      className={cn("flex min-h-full flex-col bg-background", className)}
-      {...props}
-    >
+    <div className={cn("flex h-full flex-col", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border px-6 py-4">
+      <div className="flex items-center justify-between border-b px-6 py-3">
         <div className="flex items-center gap-3">
-          {showBack && onBack && (
-            <Button variant="ghost" size="icon" onClick={onBack} aria-label="Back">
-              <ArrowLeft className="size-5" />
+          {onBack && (
+            <Button variant="ghost" size="icon-sm" onClick={onBack}>
+              <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
             </Button>
           )}
           <div>
             {loading ? (
-              <Skeleton className="h-6 w-40" />
+              <Skeleton className="h-6 w-48" />
             ) : (
-              <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+              <h1 className="text-lg font-semibold">{title}</h1>
             )}
-            {subtitle && (
-              <p className="mt-0.5 text-sm text-muted-foreground">{subtitle}</p>
-            )}
+            {loading ? (
+              <Skeleton className="mt-1 h-4 w-32" />
+            ) : subtitle ? (
+              <p className="text-sm text-muted-foreground">{subtitle}</p>
+            ) : null}
           </div>
           {status && !loading && (
-            <span
-              className={cn(
-                "rounded-md px-2 py-0.5 text-xs font-medium",
-                statusConfig[status].color,
-              )}
-            >
-              {statusConfig[status].label}
+            <span className={cn("ml-2 inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium", statusVariants[status])}>
+              {statusLabels[status]}
             </span>
           )}
         </div>
-        {actions && <div className="flex items-center gap-2">{actions}</div>}
+        {actions && !loading ? (
+          <div className="flex items-center gap-2">{actions}</div>
+        ) : loading ? (
+          <Skeleton className="h-8 w-64" />
+        ) : null}
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-auto p-6">
         {loading ? (
           <div className="space-y-4">
+            <Skeleton className="h-8 w-1/3" />
             <Skeleton className="h-32 w-full" />
             <Skeleton className="h-32 w-full" />
           </div>
@@ -109,16 +106,9 @@ function BillPage({
           children
         )}
       </div>
-
-      {/* Footer */}
-      {footer && (
-        <div className="flex items-center justify-end gap-2 border-t border-border bg-muted/30 px-6 py-3">
-          {footer}
-        </div>
-      )}
     </div>
-  );
+  )
 }
 
-export { BillPage };
-export type { BillPageProps };
+export { BillPage }
+export type { BillPageProps }
