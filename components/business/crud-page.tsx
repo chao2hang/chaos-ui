@@ -37,6 +37,12 @@ interface CrudPageProps {
   onDialogOpenChange?: (open: boolean) => void
   editingRecord?: Record<string, unknown> | null
   actions?: React.ReactNode
+  /** Built-in refresh button (shown when onRefresh provided). / 内置刷新按钮 */
+  onRefresh?: () => void
+  /** Built-in add button (shown when onAdd provided). / 内置新增按钮 */
+  onAdd?: () => void
+  /** Edit a record (sets editingRecord + opens dialog). / 编辑记录 */
+  onEdit?: (record: Record<string, unknown>) => void
   onSearch: (values: Record<string, unknown>) => void
   onDelete?: (record: Record<string, unknown>) => void
   onSubmit?: (values: Record<string, unknown>) => void
@@ -186,6 +192,9 @@ function CrudPage({
   onDialogOpenChange,
   editingRecord,
   actions,
+  onRefresh,
+  onAdd,
+  onEdit,
   onSearch,
   onDelete,
   onSubmit,
@@ -193,7 +202,7 @@ function CrudPage({
 }: CrudPageProps) {
   // Enrich columns with operation column
   const enrichedColumns = React.useMemo(() => {
-    if (!onDelete && !onSubmit) return columns
+    if (!onDelete && !onSubmit && !onEdit) return columns
     return [
       ...columns,
       {
@@ -203,12 +212,14 @@ function CrudPage({
         align: "center" as const,
         render: (_: unknown, record: Record<string, unknown>) => (
           <div className="flex items-center justify-center gap-1">
-            {onSubmit && (
+            {(onSubmit || onEdit) && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  onDialogOpenChange?.(true)
+                  // Prefer onEdit (sets editingRecord) over raw dialog open.
+                  if (onEdit) onEdit(record)
+                  else onDialogOpenChange?.(true)
                 }}
               >
                 编辑
@@ -228,7 +239,24 @@ function CrudPage({
         ),
       },
     ]
-  }, [columns, onDelete, onSubmit, onDialogOpenChange])
+  }, [columns, onDelete, onSubmit, onEdit, onDialogOpenChange])
+
+  // Built-in standard actions (refresh + add) so each page doesn't hand-write
+  // the same icon/size/variant. Custom `actions` render alongside.
+  const builtinActions = (
+    <>
+      {onRefresh && (
+        <Button variant="outline" size="sm" onClick={onRefresh}>
+          刷新
+        </Button>
+      )}
+      {onAdd && (
+        <Button size="sm" onClick={onAdd}>
+          新增
+        </Button>
+      )}
+    </>
+  )
 
   return (
     <PageContainer className={className}>
@@ -238,8 +266,11 @@ function CrudPage({
         <FilterBar fields={filterFields} onSearch={onSearch} />
       </div>
 
-      {actions && (
-        <div className="mb-3 flex items-center gap-2">{actions}</div>
+      {(actions || onRefresh || onAdd) && (
+        <div className="mb-3 flex items-center gap-2">
+          {builtinActions}
+          {actions}
+        </div>
       )}
 
       <SearchTable
