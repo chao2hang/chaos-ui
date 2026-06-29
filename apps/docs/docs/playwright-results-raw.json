@@ -1,0 +1,4287 @@
+[
+  {
+    "id": "business-activityfeed--default",
+    "status": "ok",
+    "durationMs": 2614,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-activityfeed--docs",
+    "status": "ok",
+    "durationMs": 1855,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-advanceddatatable--default",
+    "status": "ok",
+    "durationMs": 1866,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-advanceddatatable--docs",
+    "status": "ok",
+    "durationMs": 2039,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-advanceddatatable--large-dataset",
+    "status": "ok",
+    "durationMs": 1685,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-advanceddatatable--with-row-click",
+    "status": "ok",
+    "durationMs": 1605,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-calendar--all-variants",
+    "status": "ok",
+    "durationMs": 1649,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-calendar--event-detail-example",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-calendar--gantt-example",
+    "status": "ok",
+    "durationMs": 1652,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-calendar--month-example",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-calendar--time-slots-example",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--area-example",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--bar-example",
+    "status": "ok",
+    "durationMs": 1645,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--composed-example",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--empty",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--funnel-example",
+    "status": "ok",
+    "durationMs": 1651,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--heatmap-example",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--line-example",
+    "status": "ok",
+    "durationMs": 1609,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--loading",
+    "status": "ok",
+    "durationMs": 1633,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--pie-example",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--radar-example",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--radial-example",
+    "status": "ok",
+    "durationMs": 1609,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--sankey-example",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--scatter-example",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--treemap-example",
+    "status": "ok",
+    "durationMs": 1610,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-charts--waterfall-example",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--all-variants",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--approval-example",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--audit-example",
+    "status": "ok",
+    "durationMs": 1650,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--chat-example",
+    "status": "ok",
+    "durationMs": 1615,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--comments-example",
+    "status": "ok",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-collaboration--presence-example",
+    "status": "ok",
+    "durationMs": 1615,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-connectionstatus--banner",
+    "status": "ok",
+    "durationMs": 1610,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-connectionstatus--docs",
+    "status": "ok",
+    "durationMs": 1738,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-connectionstatus--inline",
+    "status": "ok",
+    "durationMs": 1850,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-connectionstatus--offline",
+    "status": "ok",
+    "durationMs": 1707,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-connectionstatus--toast",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-datatable--default",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-datatable--docs",
+    "status": "ok",
+    "durationMs": 1640,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-datatable--empty",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-datatable--with-row-click",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-emptystate--default",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-emptystate--docs",
+    "status": "ok",
+    "durationMs": 1707,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-emptystate--empty",
+    "status": "ok",
+    "durationMs": 1729,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-emptystate--error",
+    "status": "title-error",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-emptystate--search",
+    "status": "ok",
+    "durationMs": 1898,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-fileuploadmanager--default",
+    "status": "ok",
+    "durationMs": 1778,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-fileuploadmanager--docs",
+    "status": "ok",
+    "durationMs": 1706,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-filterbuilder--default",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-filterbuilder--docs",
+    "status": "ok",
+    "durationMs": 1745,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-filterbuilder--with-initial-filters",
+    "status": "ok",
+    "durationMs": 1774,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--all-variants",
+    "status": "ok",
+    "durationMs": 1634,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--autosave-states",
+    "status": "ok",
+    "durationMs": 1673,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--dirty-warning-demo",
+    "status": "ok",
+    "durationMs": 1770,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--error-summary-demo",
+    "status": "title-error",
+    "durationMs": 1705,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formfield--docs",
+    "status": "ok",
+    "durationMs": 1819,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--field-group-demo",
+    "status": "ok",
+    "durationMs": 1857,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formfield--optional",
+    "status": "ok",
+    "durationMs": 1699,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formfield--with-error",
+    "status": "title-error",
+    "durationMs": 1754,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formfield--with-input",
+    "status": "ok",
+    "durationMs": 1928,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formfield--with-textarea",
+    "status": "ok",
+    "durationMs": 1715,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--progress-demo",
+    "status": "ok",
+    "durationMs": 1839,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--repeater-demo",
+    "status": "ok",
+    "durationMs": 1992,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-form--step-summary-demo",
+    "status": "ok",
+    "durationMs": 1896,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formwizard--default",
+    "status": "ok",
+    "durationMs": 1710,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-formwizard--docs",
+    "status": "ok",
+    "durationMs": 1636,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-heavy--all-variants",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-heavy--code-editor-example",
+    "status": "ok",
+    "durationMs": 1651,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-heavy--rich-text-example",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kanbanboard--default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kanbanboard--docs",
+    "status": "ok",
+    "durationMs": 1662,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kanbanboard--empty",
+    "status": "ok",
+    "durationMs": 1640,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--docs",
+    "status": "ok",
+    "durationMs": 1779,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--growth",
+    "status": "ok",
+    "durationMs": 1748,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--no-change",
+    "status": "ok",
+    "durationMs": 1645,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--revenue",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--users",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--with-sparkline",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-kpicard--with-target",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--all-variants",
+    "status": "ok",
+    "durationMs": 1656,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--audio-example",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--gallery-example",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--gallery-five-col",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--pdf-example",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-media--video-example",
+    "status": "ok",
+    "durationMs": 1657,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-microinteractions--all-variants",
+    "status": "ok",
+    "durationMs": 1776,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-microinteractions--animated-number-example",
+    "status": "ok",
+    "durationMs": 1645,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-microinteractions--coach-mark-example",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-microinteractions--confetti-example",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-microinteractions--density-example",
+    "status": "ok",
+    "durationMs": 1630,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--all-variants",
+    "status": "ok",
+    "durationMs": 1610,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--anchor-example",
+    "status": "ok",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--dock-example",
+    "status": "ok",
+    "durationMs": 1609,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--dock-vertical-example",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--search-input-example",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-navigation--top-loader-example",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pageheader--default",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pageheader--docs",
+    "status": "ok",
+    "durationMs": 1643,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pageheader--with-actions",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pageheader--with-breadcrumb",
+    "status": "ok",
+    "durationMs": 1605,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--all-variants",
+    "status": "ok",
+    "durationMs": 1628,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--faq-example",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--forgot-password-example",
+    "status": "ok",
+    "durationMs": 1610,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--inbox-example",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <HeadManagerProvider>\n      <PageRouterProvider>\n        <StyleRegistry>\n          <hookified storyGlobals={{}} componentId=\"business-p...\" title=\"Business/P...\" kind=\"Business/P...\" ...>\n            <div className=\"h-[500px] ...\">\n              <InboxList items={[...]} selected=\"1\" onSelect={function bound dispatchSetState} onStar={function onStar}>\n                <div data-slot=\"inbox-list\" className=\"flex h-ful...\">\n                  <div>\n                  <div className=\"flex-1 ove...\">\n>                   <button\n>                     type=\"button\"\n>                     onClick={function onClick}\n>                     className=\"flex w-full items-start gap-2 border-b px-3 py-2.5 text-left transition-colors hover:...\"\n>                   >\n                      <div>\n                      <div>\n                      <Button variant=\"ghost\" size=\"icon-xs\" onClick={function onClick} className=\"text-warning\" ...>\n                        <Button data-slot=\"button\" className={\"group/bu...\"} onClick={function onClick} aria-label=\"取消星标\">\n>                         <button\n>                           type=\"button\"\n>                           onClick={function}\n>                           onMouseDown={function}\n>                           onKeyDown={function}\n>                           onKeyUp={function}\n>                           onPointerDown={function}\n>                           tabIndex={0}\n>                           disabled={false}\n>                           data-slot=\"button\"\n>                           aria-label=\"取消星标\"\n>                           ref={function}\n>                           className={\"group/button inline-flex shrink-0 items-center justify-center border border-t...\"}\n>                         >\n                      ...\n                    ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--onboarding-example",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--pricing-example",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--profile-example",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--settings-example",
+    "status": "ok",
+    "durationMs": 1615,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--sign-in-example",
+    "status": "ok",
+    "durationMs": 1684,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--sign-up-example",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-pages--testimonials-example",
+    "status": "ok",
+    "durationMs": 1675,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statcard--default",
+    "status": "ok",
+    "durationMs": 1664,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statcard--docs",
+    "status": "ok",
+    "durationMs": 1792,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statcard--down-trend",
+    "status": "ok",
+    "durationMs": 1876,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statcard--no-icon",
+    "status": "ok",
+    "durationMs": 1647,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--all-statuses",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--approved",
+    "status": "ok",
+    "durationMs": 1612,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--cancelled",
+    "status": "ok",
+    "durationMs": 1629,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--completed",
+    "status": "ok",
+    "durationMs": 1632,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--docs",
+    "status": "ok",
+    "durationMs": 1728,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--draft",
+    "status": "ok",
+    "durationMs": 1671,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--pending",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "business-statustag--rejected",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "component-guidelines--docs",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-accordion--default",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [
+      "Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}. true collapsible collapsible true collapsible"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-accordion--docs",
+    "status": "ok",
+    "durationMs": 1715,
+    "navError": null,
+    "consoleErrors": [
+      "Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}. true collapsible collapsible true collapsible"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-accordion--faq",
+    "status": "ok",
+    "durationMs": 1790,
+    "navError": null,
+    "consoleErrors": [
+      "Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}. true collapsible collapsible true collapsible"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-accordion--multiple",
+    "status": "ok",
+    "durationMs": 1658,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--all-variants",
+    "status": "ok",
+    "durationMs": 1732,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--default",
+    "status": "ok",
+    "durationMs": 1738,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--destructive",
+    "status": "ok",
+    "durationMs": 1794,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alertdialog--default",
+    "status": "ok",
+    "durationMs": 1647,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alertdialog--destructive",
+    "status": "ok",
+    "durationMs": 1860,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alertdialog--docs",
+    "status": "ok",
+    "durationMs": 1816,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--docs",
+    "status": "ok",
+    "durationMs": 1907,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": [
+      "net::ERR_ABORTED http://localhost:6006/sb-common-assets/nunito-sans-bold.woff2",
+      "net::ERR_ABORTED http://localhost:6006/sb-common-assets/nunito-sans-regular.woff2"
+    ]
+  },
+  {
+    "id": "components-alert--info",
+    "status": "ok",
+    "durationMs": 1850,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--success",
+    "status": "ok",
+    "durationMs": 1809,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--warning",
+    "status": "ok",
+    "durationMs": 1908,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-alert--without-icon",
+    "status": "ok",
+    "durationMs": 1879,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-avatar--default",
+    "status": "ok",
+    "durationMs": 1700,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-avatar--docs",
+    "status": "ok",
+    "durationMs": 1728,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-avatar--group",
+    "status": "ok",
+    "durationMs": 1682,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-avatar--sizes",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-avatar--with-fallback",
+    "status": "ok",
+    "durationMs": 1616,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--all-variants",
+    "status": "ok",
+    "durationMs": 1720,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--default",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--destructive",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--docs",
+    "status": "ok",
+    "durationMs": 1755,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--ghost",
+    "status": "ok",
+    "durationMs": 1663,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--link",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--outline",
+    "status": "ok",
+    "durationMs": 1739,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-badge--secondary",
+    "status": "ok",
+    "durationMs": 1635,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-breadcrumb--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-breadcrumb--docs",
+    "status": "ok",
+    "durationMs": 1704,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-breadcrumb--long",
+    "status": "ok",
+    "durationMs": 1681,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-breadcrumb--with-icons",
+    "status": "ok",
+    "durationMs": 1630,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--default",
+    "status": "ok",
+    "durationMs": 1641,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--disabled",
+    "status": "ok",
+    "durationMs": 1636,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--docs",
+    "status": "ok",
+    "durationMs": 1735,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--interactive",
+    "status": "ok",
+    "durationMs": 1682,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--read-only",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--small",
+    "status": "ok",
+    "durationMs": 1628,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-browseinput--with-value",
+    "status": "ok",
+    "durationMs": 1690,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--all-sizes",
+    "status": "ok",
+    "durationMs": 1748,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--all-variants",
+    "status": "ok",
+    "durationMs": 1655,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--default",
+    "status": "ok",
+    "durationMs": 1690,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--destructive",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--disabled",
+    "status": "ok",
+    "durationMs": 1630,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--docs",
+    "status": "ok",
+    "durationMs": 1786,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--ghost",
+    "status": "ok",
+    "durationMs": 1693,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--icon-only",
+    "status": "ok",
+    "durationMs": 1641,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--large",
+    "status": "ok",
+    "durationMs": 1650,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--link",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--loading",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--outline",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--secondary",
+    "status": "ok",
+    "durationMs": 1628,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--small",
+    "status": "ok",
+    "durationMs": 1629,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-button--with-icon",
+    "status": "ok",
+    "durationMs": 1635,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-calendar--default",
+    "status": "ok",
+    "durationMs": 1673,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-calendar--docs",
+    "status": "ok",
+    "durationMs": 1764,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-calendar--multiple",
+    "status": "ok",
+    "durationMs": 1686,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-calendar--range",
+    "status": "ok",
+    "durationMs": 1813,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-calendar--with-selected-date",
+    "status": "ok",
+    "durationMs": 1773,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--all-sizes",
+    "status": "ok",
+    "durationMs": 1649,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--default",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--docs",
+    "status": "ok",
+    "durationMs": 1756,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--small",
+    "status": "ok",
+    "durationMs": 1683,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--with-action",
+    "status": "ok",
+    "durationMs": 1629,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--with-badge",
+    "status": "ok",
+    "durationMs": 1652,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-card--with-footer",
+    "status": "ok",
+    "durationMs": 1692,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--checkbox-group",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--checked",
+    "status": "ok",
+    "durationMs": 1638,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--default",
+    "status": "ok",
+    "durationMs": 1632,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--disabled",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--disabled-checked",
+    "status": "ok",
+    "durationMs": 1646,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--docs",
+    "status": "ok",
+    "durationMs": 1758,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-checkbox--with-label",
+    "status": "ok",
+    "durationMs": 1682,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-collapsible--default",
+    "status": "ok",
+    "durationMs": 1638,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <PageRouterProvider>\n      <StyleRegistry>\n        <hookified storyGlobals={{}} componentId=\"components...\" title=\"Components...\" kind=\"Components...\" ...>\n          <Collapsible className=\"w-[350px] ...\">\n            <CollapsibleRoot data-slot=\"collapsible\" className=\"w-[350px] ...\">\n              <div data-closed=\"\" data-slot=\"collapsible\" ref={null} className=\"w-[350px] ...\">\n                <div className=\"flex items...\">\n                  <h4>\n                  <CollapsibleTrigger asChild={true}>\n                    <CollapsibleTrigger data-slot=\"collapsibl...\" asChild={true}>\n>                     <button\n>                       type=\"button\"\n>                       onClick={function}\n>                       onMouseDown={function}\n>                       onKeyDown={function}\n>                       onKeyUp={function}\n>                       onPointerDown={function}\n>                       tabIndex={0}\n>                       aria-disabled={false}\n>                       aria-controls={undefined}\n>                       aria-expanded={false}\n>                       data-slot=\"collapsible-trigger\"\n>                       asChild={true}\n>                       ref={function}\n>                     >\n                        <Button variant=\"ghost\" size=\"sm\">\n                          <Button data-slot=\"button\" className={\"group/bu...\"}>\n>                           <button\n>                             type=\"button\"\n>                             onClick={function}\n>                             onMouseDown={function}\n>                             onKeyDown={function}\n>                             onKeyUp={function}\n>                             onPointerDown={function}\n>                             tabIndex={0}\n>                             disabled={false}\n>                             data-slot=\"button\"\n>                             ref={function}\n>                             className={\"group/button inline-flex shrink-0 items-center justify-center border border...\"}\n>                           >\n                ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-collapsible--docs",
+    "status": "ok",
+    "durationMs": 1630,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <PageRouterProvider>\n      <StyleRegistry>\n        <hookified storyGlobals={{}} componentId=\"components...\" title=\"Components...\" kind=\"Components...\" ...>\n          <Collapsible className=\"w-[350px] ...\">\n            <CollapsibleRoot data-slot=\"collapsible\" className=\"w-[350px] ...\">\n              <div data-closed=\"\" data-slot=\"collapsible\" ref={null} className=\"w-[350px] ...\">\n                <div className=\"flex items...\">\n                  <h4>\n                  <CollapsibleTrigger asChild={true}>\n                    <CollapsibleTrigger data-slot=\"collapsibl...\" asChild={true}>\n>                     <button\n>                       type=\"button\"\n>                       onClick={function}\n>                       onMouseDown={function}\n>                       onKeyDown={function}\n>                       onKeyUp={function}\n>                       onPointerDown={function}\n>                       tabIndex={0}\n>                       aria-disabled={false}\n>                       aria-controls={undefined}\n>                       aria-expanded={false}\n>                       data-slot=\"collapsible-trigger\"\n>                       asChild={true}\n>                       ref={function}\n>                     >\n                        <Button variant=\"ghost\" size=\"sm\">\n                          <Button data-slot=\"button\" className={\"group/bu...\"}>\n>                           <button\n>                             type=\"button\"\n>                             onClick={function}\n>                             onMouseDown={function}\n>                             onKeyDown={function}\n>                             onKeyUp={function}\n>                             onPointerDown={function}\n>                             tabIndex={0}\n>                             disabled={false}\n>                             data-slot=\"button\"\n>                             ref={function}\n>                             className={\"group/button inline-flex shrink-0 items-center justify-center border border...\"}\n>                           >\n                ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-colorpicker--default",
+    "status": "ok",
+    "durationMs": 1646,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-colorpicker--docs",
+    "status": "ok",
+    "durationMs": 1787,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-colorpicker--with-preview",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-command--default",
+    "status": "ok",
+    "durationMs": 1737,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-command--dialog",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-command--docs",
+    "status": "ok",
+    "durationMs": 1640,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-departmentbrowse--default",
+    "status": "ok",
+    "durationMs": 1638,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/DepartmentBrowse.stories.tsx:14:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-departmentbrowse--disabled",
+    "status": "ok",
+    "durationMs": 1634,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=30baf4cc:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-departmentbrowse--docs",
+    "status": "ok",
+    "durationMs": 1714,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/DepartmentBrowse.stories.tsx:14:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=30baf4cc:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/DepartmentBrowse.stories.tsx:38:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-departmentbrowse--multiple",
+    "status": "ok",
+    "durationMs": 1677,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/DepartmentBrowse.stories.tsx:38:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-departmentbrowse--with-default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at DepartmentBrowse (http://localhost:6006/components/ui/department-browse.tsx:213:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=30baf4cc:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=30baf4cc:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=30baf4cc:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dialog--default",
+    "status": "ok",
+    "durationMs": 1615,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dialog--docs",
+    "status": "ok",
+    "durationMs": 1680,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dialog--with-form",
+    "status": "ok",
+    "durationMs": 1643,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dialog--without-close-button",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-drawer--default",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-drawer--docs",
+    "status": "ok",
+    "durationMs": 1612,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dropdownmenu--default",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dropdownmenu--docs",
+    "status": "ok",
+    "durationMs": 1683,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dropdownmenu--with-checkboxes",
+    "status": "ok",
+    "durationMs": 1608,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-dropdownmenu--with-radio",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-fileupload--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-fileupload--docs",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-fileupload--dropzone",
+    "status": "ok",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formgrid--default",
+    "status": "ok",
+    "durationMs": 1679,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formgrid--docs",
+    "status": "ok",
+    "durationMs": 1816,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formgrid--three-columns",
+    "status": "ok",
+    "durationMs": 1735,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formgrid--with-span",
+    "status": "ok",
+    "durationMs": 1648,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formlist--default",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formlist--docs",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formlist--with-max-items",
+    "status": "ok",
+    "durationMs": 1629,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formsection--collapsible",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formsection--default",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formsection--docs",
+    "status": "ok",
+    "durationMs": 1668,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-formsection--required",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-gridlayout--auto-columns",
+    "status": "ok",
+    "durationMs": 1645,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-gridlayout--default",
+    "status": "ok",
+    "durationMs": 1636,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-gridlayout--docs",
+    "status": "ok",
+    "durationMs": 1686,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-gridlayout--four-columns",
+    "status": "ok",
+    "durationMs": 1632,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-gridlayout--with-span",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-hovercard--default",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-hovercard--docs",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <a> a \n\n  ...\n    <StyleRegistry>\n      <hookified storyGlobals={{}} componentId=\"components...\" title=\"Components...\" kind=\"Components...\" ...>\n        <HoverCard>\n          <PreviewCardRoot data-slot=\"hover-card\">\n            <FloatingTree>\n              <PreviewCardRootComponent data-slot=\"hover-card\">\n                <HoverCardTrigger asChild={true}>\n                  <PreviewCardTrigger data-slot=\"hover-card...\" asChild={true}>\n>                   <a\n>                     onPointerDown={function}\n>                     onPointerEnter={function}\n>                     onMouseMove={function}\n>                     onMouseLeave={function}\n>                     onFocus={function}\n>                     onBlur={function}\n>                     onMouseEnter={function}\n>                     id=\"base-ui-_r_d_\"\n>                     data-slot=\"hover-card-trigger\"\n>                     asChild={true}\n>                     ref={function}\n>                   >\n>                     <a href=\"#\" className=\"text-sm font-medium underline\">\n                ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. a <a>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-hovercard--user-profile",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <a> a \n\n  ...\n    <StyleRegistry>\n      <hookified storyGlobals={{}} componentId=\"components...\" title=\"Components...\" kind=\"Components...\" ...>\n        <HoverCard>\n          <PreviewCardRoot data-slot=\"hover-card\">\n            <FloatingTree>\n              <PreviewCardRootComponent data-slot=\"hover-card\">\n                <HoverCardTrigger asChild={true}>\n                  <PreviewCardTrigger data-slot=\"hover-card...\" asChild={true}>\n>                   <a\n>                     onPointerDown={function}\n>                     onPointerEnter={function}\n>                     onMouseMove={function}\n>                     onMouseLeave={function}\n>                     onFocus={function}\n>                     onBlur={function}\n>                     onMouseEnter={function}\n>                     id=\"base-ui-_r_1_\"\n>                     data-slot=\"hover-card-trigger\"\n>                     asChild={true}\n>                     ref={function}\n>                   >\n>                     <a href=\"#\" className=\"text-sm font-medium underline\">\n                ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. a <a>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--all-states",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--default",
+    "status": "ok",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--disabled",
+    "status": "ok",
+    "durationMs": 1634,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--docs",
+    "status": "ok",
+    "durationMs": 1733,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--email",
+    "status": "ok",
+    "durationMs": 1672,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-inputgroup--docs",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-inputgroup--email",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-inputgroup--with-icon",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-inputgroup--with-text",
+    "status": "ok",
+    "durationMs": 1735,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--invalid",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--number",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--password",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--required",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--search",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--with-icon",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--with-label",
+    "status": "ok",
+    "durationMs": 1677,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-input--with-value",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-kpipanel--default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-kpipanel--docs",
+    "status": "ok",
+    "durationMs": 1714,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-kpipanel--small",
+    "status": "ok",
+    "durationMs": 1690,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-kpipanel--two-columns",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-label--default",
+    "status": "ok",
+    "durationMs": 1609,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-label--disabled",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-label--docs",
+    "status": "ok",
+    "durationMs": 1712,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-label--required",
+    "status": "ok",
+    "durationMs": 1676,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-label--with-input",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-navigationmenu--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-navigationmenu--docs",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagecontainer--default",
+    "status": "ok",
+    "durationMs": 1612,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagecontainer--docs",
+    "status": "ok",
+    "durationMs": 1629,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagecontainer--small",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagination--default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagination--docs",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-pagination--simple",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-popover--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-popover--docs",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-popover--with-form",
+    "status": "ok",
+    "durationMs": 1607,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-progress--all-states",
+    "status": "ok",
+    "durationMs": 1612,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-progress--complete",
+    "status": "ok",
+    "durationMs": 1665,
+    "navError": null,
+    "consoleErrors": [
+      "%c manager %c received %cstoryRenderPhaseChanged%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785 ",
+      "%c manager %c received %cstoryRendered%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785 ",
+      "%c manager %c received %cstorybook/highlight/remove%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00 ",
+      "%c manager %c received %cchromaui/addon-visual-tests/highlightIgnored/count%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00 ",
+      "%c manager %c received %cstorybook/docs/snippet-rendered%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FFAE00 ",
+      "%c manager %c received %cstoryRenderPhaseChanged%c but was unable to determine the source of the event color: #37D5D3; background: black  color: #FF4785 "
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": [
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_radio.js?v=235f032c",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_radio-group.js?v=b13c1cf6"
+    ]
+  },
+  {
+    "id": "components-progress--default",
+    "status": "ok",
+    "durationMs": 2102,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-progress--docs",
+    "status": "ok",
+    "durationMs": 1927,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": [
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/client-Bpwnh2mB.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_radio-group.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_input.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_radio.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_popover.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/class-variance-authority.js?v=8ebbe979",
+      "net::ERR_ABORTED http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/@base-ui_react_button.js?v=8ebbe979"
+    ]
+  },
+  {
+    "id": "components-progress--empty",
+    "status": "ok",
+    "durationMs": 1686,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-radiogroup--default",
+    "status": "ok",
+    "durationMs": 1640,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-radiogroup--disabled",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-radiogroup--docs",
+    "status": "ok",
+    "durationMs": 1638,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-radiogroup--with-description",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-scrollarea--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-scrollarea--docs",
+    "status": "ok",
+    "durationMs": 1723,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-scrollarea--horizontal",
+    "status": "ok",
+    "durationMs": 1678,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-select--default",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-select--disabled",
+    "status": "ok",
+    "durationMs": 1637,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-select--docs",
+    "status": "ok",
+    "durationMs": 1693,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-select--small",
+    "status": "ok",
+    "durationMs": 1675,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-select--with-groups",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-separator--docs",
+    "status": "ok",
+    "durationMs": 1656,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-separator--horizontal",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-separator--in-menu",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-separator--vertical",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sheet--bottom",
+    "status": "ok",
+    "durationMs": 1710,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sheet--docs",
+    "status": "ok",
+    "durationMs": 1712,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sheet--left",
+    "status": "ok",
+    "durationMs": 1715,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sheet--right",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sheet--top",
+    "status": "ok",
+    "durationMs": 1606,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sidebar--default",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-sidebar--docs",
+    "status": "ok",
+    "durationMs": 1612,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--card-skeleton",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--circle",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--default",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--docs",
+    "status": "ok",
+    "durationMs": 1711,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--list-skeleton",
+    "status": "ok",
+    "durationMs": 1707,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-skeleton--rectangle",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-splitpane--custom-size",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-splitpane--docs",
+    "status": "ok",
+    "durationMs": 1659,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-splitpane--horizontal",
+    "status": "ok",
+    "durationMs": 1645,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-splitpane--vertical",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--all-complete",
+    "status": "ok",
+    "durationMs": 1639,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--all-steps",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--default",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--docs",
+    "status": "ok",
+    "durationMs": 1714,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--step-2",
+    "status": "ok",
+    "durationMs": 1667,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-stepper--vertical",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--checked",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--disabled",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--disabled-checked",
+    "status": "ok",
+    "durationMs": 1610,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--docs",
+    "status": "ok",
+    "durationMs": 1697,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--settings",
+    "status": "ok",
+    "durationMs": 1759,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--small",
+    "status": "ok",
+    "durationMs": 1664,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-switch--with-label",
+    "status": "ok",
+    "durationMs": 2947,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-table--default",
+    "status": "ok",
+    "durationMs": 2231,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": [
+      "net::ERR_ABORTED http://localhost:6006/iframe.html?id=components-switch--with-label&viewMode=story"
+    ]
+  },
+  {
+    "id": "components-table--docs",
+    "status": "ok",
+    "durationMs": 1734,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-table--simple",
+    "status": "ok",
+    "durationMs": 1828,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tabs--default",
+    "status": "ok",
+    "durationMs": 1701,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tabs--docs",
+    "status": "ok",
+    "durationMs": 1752,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tabs--line-variant",
+    "status": "ok",
+    "durationMs": 1741,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tabs--vertical",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tabs--with-buttons",
+    "status": "ok",
+    "durationMs": 1696,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tagsinput--default",
+    "status": "ok",
+    "durationMs": 1685,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tagsinput--docs",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tagsinput--with-default",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--comment",
+    "status": "ok",
+    "durationMs": 1697,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--default",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--disabled",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--docs",
+    "status": "ok",
+    "durationMs": 1783,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--invalid",
+    "status": "ok",
+    "durationMs": 1707,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--with-label",
+    "status": "ok",
+    "durationMs": 1639,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-textarea--with-value",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-timeline--activity",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-timeline--compound",
+    "status": "ok",
+    "durationMs": 1727,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-timeline--default",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-timeline--docs",
+    "status": "ok",
+    "durationMs": 1704,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toaster--default",
+    "status": "ok",
+    "durationMs": 1713,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toaster--docs",
+    "status": "ok",
+    "durationMs": 1625,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--default",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--disabled",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--docs",
+    "status": "ok",
+    "durationMs": 1731,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-togglegroup--docs",
+    "status": "ok",
+    "durationMs": 1729,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-togglegroup--multiple",
+    "status": "ok",
+    "durationMs": 1675,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-togglegroup--single",
+    "status": "ok",
+    "durationMs": 1608,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-togglegroup--with-text",
+    "status": "ok",
+    "durationMs": 1613,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--outline",
+    "status": "ok",
+    "durationMs": 1639,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--pressed",
+    "status": "ok",
+    "durationMs": 1624,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--toolbar",
+    "status": "ok",
+    "durationMs": 1615,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-toggle--with-icon",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--all-sides",
+    "status": "ok",
+    "durationMs": 1621,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--bottom",
+    "status": "ok",
+    "durationMs": 1618,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--default",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--docs",
+    "status": "ok",
+    "durationMs": 1711,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--left",
+    "status": "ok",
+    "durationMs": 1724,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-tooltip--right",
+    "status": "ok",
+    "durationMs": 1619,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeselect--default",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/TreeSelect.stories.tsx:35:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeselect--docs",
+    "status": "ok",
+    "durationMs": 1691,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/TreeSelect.stories.tsx:35:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/TreeSelect.stories.tsx:55:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=8ebbe979:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeselect--multiple",
+    "status": "ok",
+    "durationMs": 1609,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/TreeSelect.stories.tsx:55:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeselect--with-default",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at TreeSelect (http://localhost:6006/components/ui/tree-select.tsx:174:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=8ebbe979:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeview--default",
+    "status": "ok",
+    "durationMs": 1617,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeview--docs",
+    "status": "ok",
+    "durationMs": 1715,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeview--with-checkboxes",
+    "status": "ok",
+    "durationMs": 1669,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-treeview--without-icons",
+    "status": "ok",
+    "durationMs": 1627,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--default",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:14:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--disabled",
+    "status": "ok",
+    "durationMs": 1622,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=8ebbe979:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--docs",
+    "status": "ok",
+    "durationMs": 1739,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:14:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=8ebbe979:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:38:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6",
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:56:26)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--multiple",
+    "status": "ok",
+    "durationMs": 1672,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:38:27)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--with-default",
+    "status": "ok",
+    "durationMs": 1620,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/node_modules/.pnpm/@storybook+react@10.4.3_@ty_b9e3722a2d4d73658d9946fc016cf9b0/node_modules/@storybook/react/dist/_browser-chunks/chunk-L3JF7GGZ.js?v=8ebbe979:66:16)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-userbrowse--with-max-count",
+    "status": "ok",
+    "durationMs": 1611,
+    "navError": null,
+    "consoleErrors": [
+      "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at DialogTrigger (http://localhost:6006/components/ui/dialog.tsx:18:23)\n    at UserBrowse (http://localhost:6006/components/ui/user-browse.tsx:84:29)\n    at Object.render [as originalStoryFn] (http://localhost:6006/src/components/UserBrowse.stories.tsx:56:26)\n    at undecoratedStoryFn (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:31027:47)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at StyledJsxDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:154:86)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at ImageDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:34:215)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6\n    at RouterDecorator (http://localhost:6006/node_modules/.pnpm/@storybook+nextjs-vite@10.4_cfb3bfd86c800606814d21a590cf3af6/node_modules/@storybook/nextjs-vite/dist/_browser-chunks/chunk-4ZRKYE2G.js?v=8ebbe979:149:66)\n    at hookified (http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:15118:16)\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30967:22\n    at http://localhost:6006/node_modules/.cache/storybook/10.4.3/1c3385a5d25e538d10b518b310c74d3ca2690b6aaffeadccd74da79736171f86/sb-vite/deps/storybook_internal_preview_runtime.js?v=8ebbe979:30978:6"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtuallist--default",
+    "status": "ok",
+    "durationMs": 1634,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtuallist--docs",
+    "status": "ok",
+    "durationMs": 1833,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtuallist--large-dataset",
+    "status": "ok",
+    "durationMs": 3411,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtuallist--with-loading",
+    "status": "ok",
+    "durationMs": 1865,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtualtable--default",
+    "status": "ok",
+    "durationMs": 1759,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtualtable--docs",
+    "status": "ok",
+    "durationMs": 1828,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtualtable--large-dataset",
+    "status": "ok",
+    "durationMs": 3484,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "components-virtualtable--with-row-click",
+    "status": "ok",
+    "durationMs": 2016,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "design-tokens--docs",
+    "status": "ok",
+    "durationMs": 1792,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "getting-started--docs",
+    "status": "ok",
+    "durationMs": 1631,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "introduction--docs",
+    "status": "ok",
+    "durationMs": 1614,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-authlayout--default",
+    "status": "ok",
+    "durationMs": 1699,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-authlayout--docs",
+    "status": "ok",
+    "durationMs": 1769,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-authlayout--sign-up",
+    "status": "ok",
+    "durationMs": 1787,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-dashboardlayout--default",
+    "status": "ok",
+    "durationMs": 1817,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-dashboardlayout--docs",
+    "status": "ok",
+    "durationMs": 1789,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-dashboardlayout--orders",
+    "status": "ok",
+    "durationMs": 1670,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-detaillayout--default",
+    "status": "ok",
+    "durationMs": 1644,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-detaillayout--docs",
+    "status": "ok",
+    "durationMs": 1760,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "layouts-detaillayout--with-tabs",
+    "status": "ok",
+    "durationMs": 1684,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--docs",
+    "status": "ok",
+    "durationMs": 1768,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-auth-layouts",
+    "status": "ok",
+    "durationMs": 1724,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-buttons",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-cards",
+    "status": "ok",
+    "durationMs": 1628,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-dashboard-layouts",
+    "status": "ok",
+    "durationMs": 1724,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-data-tables",
+    "status": "ok",
+    "durationMs": 1746,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-dialogs",
+    "status": "ok",
+    "durationMs": 1751,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <hookified storyGlobals={{}} componentId=\"mobile-com...\" title=\"Mobile/Com...\" kind=\"Mobile/Com...\" ...>\n      <ResponsivePreview device=\"mobile\">\n        <div className=\"flex flex-...\">\n          <div>\n          <div className=\"border rou...\" style={{width:375, ...}}>\n            <div className=\"w-full h-f...\">\n              <div className=\"p-4 space-y-4\">\n                <MobileDialog title=\"Confirm Ac...\" description=\"Are you su...\" trigger={<MobileButton>} ...>\n                  <Dialog open={undefined} onOpenChange={undefined}>\n                    <DialogRoot data-slot=\"dialog\" open={undefined} onOpenChange={undefined}>\n                      <DialogTrigger asChild={true}>\n                        <DialogTrigger data-slot=\"dialog-tri...\" asChild={true}>\n>                         <button\n>                           type=\"button\"\n>                           onClick={function}\n>                           onMouseDown={function}\n>                           onKeyDown={function}\n>                           onKeyUp={function}\n>                           onPointerDown={function}\n>                           tabIndex={0}\n>                           disabled={false}\n>                           data-base-ui-click-trigger=\"\"\n>                           id=\"base-ui-_r_1_\"\n>                           aria-haspopup=\"dialog\"\n>                           aria-expanded={false}\n>                           aria-controls={undefined}\n>                           data-slot=\"dialog-trigger\"\n>                           asChild={true}\n>                           ref={function}\n>                         >\n                            <MobileButton>\n                              <Button className=\"h-12 px-6 ...\">\n                                <Button data-slot=\"button\" className={\"group/bu...\"}>\n>                                 <button\n>                                   type=\"button\"\n>                                   onClick={function}\n>                                   onMouseDown={function}\n>                                   onKeyDown={function}\n>                                   onKeyUp={function}\n>                                   onPointerDown={function}\n>                                   tabIndex={0}\n>                                   disabled={false}\n>                                   data-slot=\"button\"\n>                                   ref={function}\n>                                   className={\"group/button inline-flex shrink-0 items-center justify-center rounded...\"}\n>                                 >\n                      ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-empty-states",
+    "status": "ok",
+    "durationMs": 1764,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-forms",
+    "status": "ok",
+    "durationMs": 1688,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-inputs",
+    "status": "ok",
+    "durationMs": 1626,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-navigations",
+    "status": "ok",
+    "durationMs": 1623,
+    "navError": null,
+    "consoleErrors": [
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-sheets",
+    "status": "ok",
+    "durationMs": 1636,
+    "navError": null,
+    "consoleErrors": [
+      "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <hookified storyGlobals={{}} componentId=\"mobile-com...\" title=\"Mobile/Com...\" kind=\"Mobile/Com...\" ...>\n      <ResponsivePreview device=\"mobile\">\n        <div className=\"flex flex-...\">\n          <div>\n          <div className=\"border rou...\" style={{width:375, ...}}>\n            <div className=\"w-full h-f...\">\n              <div className=\"p-4 space-y-4\">\n                <MobileSheet title=\"Bottom Sheet\" description=\"Swipe down...\" trigger={<MobileButton>}>\n                  <Sheet open={undefined} onOpenChange={undefined}>\n                    <DialogRoot data-slot=\"sheet\" open={undefined} onOpenChange={undefined}>\n                      <SheetTrigger asChild={true}>\n                        <DialogTrigger data-slot=\"sheet-trigger\" asChild={true}>\n>                         <button\n>                           type=\"button\"\n>                           onClick={function}\n>                           onMouseDown={function}\n>                           onKeyDown={function}\n>                           onKeyUp={function}\n>                           onPointerDown={function}\n>                           tabIndex={0}\n>                           disabled={false}\n>                           data-base-ui-click-trigger=\"\"\n>                           id=\"base-ui-_r_1_\"\n>                           aria-haspopup=\"dialog\"\n>                           aria-expanded={false}\n>                           aria-controls={undefined}\n>                           data-slot=\"sheet-trigger\"\n>                           asChild={true}\n>                           ref={function}\n>                         >\n                            <MobileButton variant=\"outline\">\n                              <Button className=\"h-12 px-6 ...\" variant=\"outline\">\n                                <Button data-slot=\"button\" className={\"group/bu...\"}>\n>                                 <button\n>                                   type=\"button\"\n>                                   onClick={function}\n>                                   onMouseDown={function}\n>                                   onKeyDown={function}\n>                                   onKeyUp={function}\n>                                   onPointerDown={function}\n>                                   tabIndex={0}\n>                                   disabled={false}\n>                                   data-slot=\"button\"\n>                                   ref={function}\n>                                   className={\"group/button inline-flex shrink-0 items-center justify-center rounded...\"}\n>                                 >\n                      ...\n",
+      "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>",
+      "React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. asChild aschild"
+    ],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  },
+  {
+    "id": "mobile-components--mobile-tabs-demo",
+    "status": "ok",
+    "durationMs": 1688,
+    "navError": null,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "requestFailed": []
+  }
+]

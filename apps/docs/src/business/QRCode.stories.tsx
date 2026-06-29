@@ -1,0 +1,56 @@
+import type { Meta, StoryObj } from "@storybook/react"
+import { QRCode } from "@/components/business/qr-code"
+
+const meta = {
+  title: "Business/QRCode",
+  component: QRCode,
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+  args: {
+    value: "https://example.com",
+  },
+} satisfies Meta<typeof QRCode>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {}
+
+export const CustomSize: Story = {
+  args: {
+    value: "https://example.com",
+    size: 300,
+  },
+}
+
+export const ErrorCorrectionLevels: Story = {
+  render: () => (
+    <div className="flex items-start gap-4">
+      <div className="text-center">
+        <QRCode value="https://example.com" level="L" size={120} />
+        <p className="mt-1 text-xs text-muted-foreground">L (Low)</p>
+      </div>
+      <div className="text-center">
+        <QRCode value="https://example.com" level="M" size={120} />
+        <p className="mt-1 text-xs text-muted-foreground">M (Medium)</p>
+      </div>
+      <div className="text-center">
+        <QRCode value="https://example.com" level="Q" size={120} />
+        <p className="mt-1 text-xs text-muted-foreground">Q (Quartile)</p>
+      </div>
+      <div className="text-center">
+        <QRCode value="https://example.com" level="H" size={120} />
+        <p className="mt-1 text-xs text-muted-foreground">H (High)</p>
+      </div>
+    </div>
+  ),
+}
+
+export const Dark: Story = {
+  args: {
+    value: "https://example.com",
+    fgColor: "#ffffff",
+    bgColor: "#1a1a1a",
+  },
+  parameters: { backgrounds: { default: "dark" } },
+}

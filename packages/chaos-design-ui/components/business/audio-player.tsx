@@ -1,0 +1,103 @@
+"use client"
+import * as React from "react"
+import {
+  MediaPlayer,
+  MediaOutlet,
+  MediaPlayButton,
+  MediaMuteButton,
+  MediaTimeSlider,
+  MediaVolumeSlider,
+  MediaTime,
+  MediaBufferingIndicator,
+} from "@vidstack/react"
+import { PlayIcon, PauseIcon, Volume2Icon, VolumeXIcon, SkipBackIcon, SkipForwardIcon, Loader2Icon } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+
+export interface AudioPlayerProps {
+  src: string
+  title?: string
+  artist?: string
+  cover?: string
+  className?: string
+}
+
+export function AudioPlayer({ src, title, artist, cover, className }: AudioPlayerProps) {
+  return (
+    <div
+      data-slot="audio-player"
+      className={cn("flex items-center gap-3 rounded-md border bg-card p-3", className)}
+    >
+      <MediaPlayer
+        src={src}
+        className="group contents"
+      >
+        <MediaOutlet className="hidden" />
+
+        {cover && <img src={cover} alt={title ?? "cover"} className="size-12 rounded object-cover" />}
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <MediaBufferingIndicator className="flex items-center">
+              <Loader2Icon className="size-3 animate-spin text-muted-foreground" />
+            </MediaBufferingIndicator>
+            <div className="truncate text-sm font-medium">{title}</div>
+          </div>
+          {artist && <div className="truncate text-xs text-muted-foreground">{artist}</div>}
+
+          <div className="mt-1.5 flex items-center gap-1">
+            <MediaTimeSlider className="group/slider relative flex h-4 flex-1 cursor-pointer items-center">
+              <div className="relative h-1 w-full rounded-full bg-muted">
+                <div className="absolute inset-y-0 left-0 rounded-full bg-primary h-full" style={{ width: "var(--slider-fill-percent)" }} />
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-3 rounded-full bg-primary opacity-0 group-hover/slider:opacity-100 shadow-sm" style={{ left: "var(--slider-pointer-percent)" }} />
+              </div>
+            </MediaTimeSlider>
+            <span className="w-20 text-right text-[0.65rem] tabular-nums text-muted-foreground">
+              <MediaTime type="current" />
+              <span> / </span>
+              <MediaTime type="duration" />
+            </span>
+          </div>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-0.5">
+          <AudioSeekButton seconds={-10} icon={<SkipBackIcon />} label="后退 10 秒" />
+          <MediaPlayButton className="flex size-8 items-center justify-center rounded-full hover:bg-accent transition-colors">
+            <PlayIcon className="size-4 group-data-[paused]:block hidden" />
+            <PauseIcon className="size-4 group-data-[paused]:hidden" />
+          </MediaPlayButton>
+          <AudioSeekButton seconds={10} icon={<SkipForwardIcon />} label="前进 10 秒" />
+          <MediaMuteButton className="flex size-7 items-center justify-center rounded-full hover:bg-accent transition-colors">
+            <Volume2Icon className="size-4 group-data-[muted]:hidden" />
+            <VolumeXIcon className="size-4 hidden group-data-[muted]:block" />
+          </MediaMuteButton>
+          <MediaVolumeSlider className="group/vol relative flex h-7 w-16 cursor-pointer items-center">
+            <div className="relative h-1 w-full rounded-full bg-muted">
+              <div className="absolute inset-y-0 left-0 rounded-full bg-foreground h-full" style={{ width: "var(--slider-fill-percent)" }} />
+              <div className="absolute top-1/2 size-3 -translate-y-1/2 -translate-x-1/2 rounded-full bg-foreground opacity-0 group-hover/vol:opacity-100 shadow-sm" style={{ left: "var(--slider-pointer-percent)" }} />
+            </div>
+          </MediaVolumeSlider>
+        </div>
+      </MediaPlayer>
+    </div>
+  )
+}
+
+function AudioSeekButton({ seconds, icon, label }: { seconds: number; icon: React.ReactNode; label: string }) {
+  return (
+    <Button
+      variant="ghost"
+      size="icon-xs"
+      className="text-muted-foreground hover:text-foreground"
+      onClick={(e) => {
+        const player = (e.currentTarget as HTMLElement).closest("media-player") as HTMLElement & { currentTime: number; duration: number }
+        if (player) {
+          player.currentTime = Math.max(0, Math.min(player.currentTime + seconds, player.duration || Infinity))
+        }
+      }}
+      aria-label={label}
+    >
+      {icon}
+    </Button>
+  )
+}
