@@ -32,7 +32,10 @@
   "files": [
     "dist",
     "styles.css",
+    "styles.css.d.ts",
     "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
     "THIRD_PARTY_NOTICES.md"
   ],
   "sideEffects": [
@@ -80,7 +83,10 @@
       "import": "./dist/next.js",
       "require": "./dist/next.cjs"
     },
-    "./styles.css": "./styles.css",
+    "./styles.css": {
+      "types": "./styles.css.d.ts",
+      "default": "./styles.css"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
