@@ -11,16 +11,13 @@ const external = [
   "@dnd-kit/core",
   "@dnd-kit/sortable",
   "@dnd-kit/utilities",
-  "@hookform/resolvers",
   "@radix-ui/react-slot",
-  "@tanstack/react-query",
   "@tanstack/react-table",
   "@tanstack/react-virtual",
   "axios",
   "class-variance-authority",
   "clsx",
   "cmdk",
-  "date-fns",
   "i18next",
   "lucide-react",
   "react-colorful",
@@ -32,8 +29,6 @@ const external = [
   "sonner",
   "tailwind-merge",
   "vaul",
-  "zod",
-  "zustand",
 ];
 
 export default defineConfig({
