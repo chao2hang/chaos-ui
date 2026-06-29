@@ -41,6 +41,14 @@ const buttonVariants = cva(
   }
 )
 
+export type ButtonProps = ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & {
+    /** Leading icon, rendered before children / 前置图标 */
+    icon?: React.ReactNode
+    /** Trailing icon, rendered after children / 后置图标 */
+    iconRight?: React.ReactNode
+  }
+
 function Button({
   className,
   variant = "default",
@@ -49,13 +57,7 @@ function Button({
   iconRight,
   children,
   ...props
-}: ButtonPrimitive.Props &
-  VariantProps<typeof buttonVariants> & {
-    /** Leading icon, rendered before children / 前置图标 */
-    icon?: React.ReactNode
-    /** Trailing icon, rendered after children / 后置图标 */
-    iconRight?: React.ReactNode
-  }) {
+}: ButtonProps) {
   const hasIcon = icon != null || iconRight != null
 
   return (

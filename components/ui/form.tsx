@@ -69,7 +69,9 @@ function useFormField() {
   }
 }
 
-function FormItem({ className, ...props }: React.ComponentProps<"div">) {
+export type FormItemProps = React.ComponentProps<"div">
+
+function FormItem({ className, ...props }: FormItemProps) {
   const id = React.useId()
 
   return (
@@ -83,13 +85,15 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+export type FormLabelProps = React.ComponentProps<typeof Label> & {
+  required?: boolean
+}
+
 function FormLabel({
   className,
   required,
   ...props
-}: React.ComponentProps<typeof Label> & {
-  required?: boolean
-}) {
+}: FormLabelProps) {
   const { error, formItemId } = useFormField()
 
   return (
@@ -106,7 +110,9 @@ function FormLabel({
   )
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
+export type FormControlProps = React.ComponentProps<typeof Slot>
+
+function FormControl({ ...props }: FormControlProps) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
   return (
@@ -124,7 +130,9 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   )
 }
 
-function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
+export type FormDescriptionProps = React.ComponentProps<"p">
+
+function FormDescription({ className, ...props }: FormDescriptionProps) {
   const { formDescriptionId } = useFormField()
 
   return (
@@ -137,7 +145,9 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
-function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+export type FormMessageProps = React.ComponentProps<"p">
+
+function FormMessage({ className, ...props }: FormMessageProps) {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message ?? "") : props.children
 

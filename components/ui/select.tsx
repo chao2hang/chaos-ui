@@ -22,7 +22,9 @@ function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
   );
 }
 
-function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
+export type SelectValueProps = SelectPrimitive.Value.Props;
+
+function SelectValue({ className, ...props }: SelectValueProps) {
   return (
     <SelectPrimitive.Value
       data-slot="select-value"
@@ -32,14 +34,16 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   );
 }
 
+export type SelectTriggerProps = SelectPrimitive.Trigger.Props & {
+  size?: "sm" | "default";
+};
+
 function SelectTrigger({
   className,
   size = "default",
   children,
   ...props
-}: SelectPrimitive.Trigger.Props & {
-  size?: "sm" | "default";
-}) {
+}: SelectTriggerProps) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
@@ -60,6 +64,12 @@ function SelectTrigger({
   );
 }
 
+export type SelectContentProps = SelectPrimitive.Popup.Props &
+  Pick<
+    SelectPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
+  >;
+
 function SelectContent({
   className,
   children,
@@ -69,11 +79,7 @@ function SelectContent({
   alignOffset = 0,
   alignItemWithTrigger = true,
   ...props
-}: SelectPrimitive.Popup.Props &
-  Pick<
-    SelectPrimitive.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
-  >) {
+}: SelectContentProps) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Positioner
@@ -115,11 +121,13 @@ function SelectLabel({
   );
 }
 
+export type SelectItemProps = SelectPrimitive.Item.Props;
+
 function SelectItem({
   className,
   children,
   ...props
-}: SelectPrimitive.Item.Props) {
+}: SelectItemProps) {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"

@@ -8,7 +8,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "./icons";
 
-function Dialog({ ...props }: DialogPrimitive.Root.Props) {
+export type DialogProps = DialogPrimitive.Root.Props;
+
+function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
@@ -40,14 +42,16 @@ function DialogOverlay({
   );
 }
 
+export type DialogContentProps = DialogPrimitive.Popup.Props & {
+  showCloseButton?: boolean;
+};
+
 function DialogContent({
   className,
   children,
   showCloseButton = true,
   ...props
-}: DialogPrimitive.Popup.Props & {
-  showCloseButton?: boolean;
-}) {
+}: DialogContentProps) {
   const { t } = useTranslation("ui");
   return (
     <DialogPortal>
@@ -81,7 +85,9 @@ function DialogContent({
   );
 }
 
-function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
+export type DialogHeaderProps = React.ComponentProps<"div">;
+
+function DialogHeader({ className, ...props }: DialogHeaderProps) {
   return (
     <div
       data-slot="dialog-header"
@@ -91,14 +97,16 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+export type DialogFooterProps = React.ComponentProps<"div"> & {
+  showCloseButton?: boolean;
+};
+
 function DialogFooter({
   className,
   showCloseButton = false,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
-  showCloseButton?: boolean;
-}) {
+}: DialogFooterProps) {
   const { t } = useTranslation("ui");
   return (
     <div
@@ -119,7 +127,9 @@ function DialogFooter({
   );
 }
 
-function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
+export type DialogTitleProps = DialogPrimitive.Title.Props;
+
+function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
@@ -132,10 +142,12 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   );
 }
 
+export type DialogDescriptionProps = DialogPrimitive.Description.Props;
+
 function DialogDescription({
   className,
   ...props
-}: DialogPrimitive.Description.Props) {
+}: DialogDescriptionProps) {
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
@@ -153,7 +165,9 @@ function DialogDescription({
  * Provides flex-column + gap + vertical padding so forms and content
  * don't need manual `style={{ display:'flex', flexDirection:'column', gap:12 }}`.
  */
-function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
+export type DialogBodyProps = React.ComponentProps<"div">;
+
+function DialogBody({ className, ...props }: DialogBodyProps) {
   return (
     <div
       data-slot="dialog-body"

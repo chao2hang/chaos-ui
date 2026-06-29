@@ -41,6 +41,7 @@ export {
 export { BrowseInput, browseInputVariants } from "./browse-input";
 export type { BrowseInputProps } from "./browse-input";
 export { Button, buttonVariants } from "./button";
+export type { ButtonProps } from "./button";
 export { Calendar, CalendarDayButton } from "./calendar";
 export {
   Card,
@@ -61,6 +62,7 @@ export {
   CarouselDots,
 } from "./carousel";
 export { Checkbox } from "./checkbox";
+export type { CheckboxProps } from "./checkbox";
 export {
   Collapsible,
   CollapsibleTrigger,
@@ -109,6 +111,15 @@ export {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
+export type {
+  DialogProps,
+  DialogContentProps,
+  DialogHeaderProps,
+  DialogFooterProps,
+  DialogBodyProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+} from "./dialog";
 export { Dot, dotVariants } from "./dot";
 export {
   Drawer,
@@ -156,6 +167,13 @@ export {
   FormMessage,
   useFormField,
 } from "./form";
+export type {
+  FormItemProps,
+  FormLabelProps,
+  FormControlProps,
+  FormDescriptionProps,
+  FormMessageProps,
+} from "./form";
 export { GridLayout, GridItem, gridLayoutVariants } from "./grid-layout";
 export type { GridLayoutProps, GridItemProps } from "./grid-layout";
 export { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
@@ -168,6 +186,7 @@ export {
   InputGroupTextarea,
 } from "./input-group";
 export { Input } from "./input";
+export type { InputProps } from "./input";
 export { Kbd, KbdGroup, kbdVariants } from "./kbd";
 export { KPIPanel, KPICard } from "./kpi-panel";
 export type { KPIItem, KPIPanelProps } from "./kpi-panel";
@@ -239,6 +258,12 @@ export {
   SelectTrigger,
   SelectValue,
 } from "./select";
+export type {
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectValueProps,
+} from "./select";
 export { Separator } from "./separator";
 export {
   Sheet,
@@ -288,6 +313,7 @@ export { SplitPane } from "./split-pane";
 export type { SplitPaneProps } from "./split-pane";
 export { Stepper, Step } from "./stepper";
 export { Switch } from "./switch";
+export type { SwitchProps } from "./switch";
 export {
   Table,
   TableHeader,
@@ -298,6 +324,16 @@ export {
   TableCell,
   TableCaption,
 } from "./table";
+export type {
+  TableProps,
+  TableHeaderProps,
+  TableBodyProps,
+  TableFooterProps,
+  TableRowProps,
+  TableHeadProps,
+  TableCellProps,
+  TableCaptionProps,
+} from "./table";
 export {
   Tabs,
   TabsList,
@@ -307,6 +343,7 @@ export {
 } from "./tabs";
 export { TagsInput } from "./tags-input";
 export { Textarea } from "./textarea";
+export type { TextareaProps } from "./textarea";
 export {
   Timeline,
   TimelineItem,
