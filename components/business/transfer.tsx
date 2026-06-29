@@ -103,10 +103,18 @@ export function Transfer({
     );
   };
 
+  const toggleAllSource = (select: boolean) => {
+    setSelectedSource(select ? filteredSource.map((i) => i.key) : []);
+  };
+
   const toggleTarget = (key: string) => {
     setSelectedTarget((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
     );
+  };
+
+  const toggleAllTarget = (select: boolean) => {
+    setSelectedTarget(select ? filteredTarget.map((i) => i.key) : []);
   };
 
   return (
@@ -123,6 +131,7 @@ export function Transfer({
         items={filteredSource}
         selected={selectedSource}
         onToggle={toggleSource}
+        onToggleAll={toggleAllSource}
         searchable={searchable}
         searchValue={searchLeft}
         onSearchChange={setSearchLeft}
@@ -157,6 +166,7 @@ export function Transfer({
         items={filteredTarget}
         selected={selectedTarget}
         onToggle={toggleTarget}
+        onToggleAll={toggleAllTarget}
         searchable={searchable}
         searchValue={searchRight}
         onSearchChange={setSearchRight}
@@ -173,6 +183,7 @@ function TransferPanel({
   items,
   selected,
   onToggle,
+  onToggleAll,
   searchable,
   searchValue,
   onSearchChange,
@@ -184,6 +195,8 @@ function TransferPanel({
   items: TransferItem[];
   selected: string[];
   onToggle: (key: string) => void;
+  /** Select/clear all items at once (avoids N×setState from forEach toggle). */
+  onToggleAll?: (select: boolean) => void;
   searchable: boolean;
   searchValue: string;
   onSearchChange: (v: string) => void;
@@ -195,27 +208,8 @@ function TransferPanel({
   const allSelected =
     items.length > 0 && items.every((i) => selected.includes(i.key));
   const someSelected = items.some((i) => selected.includes(i.key));
-  const toggleTimerRef = React.useRef<number | null>(null);
-
-  const clearPendingToggle = React.useCallback(() => {
-    if (toggleTimerRef.current) {
-      window.clearTimeout(toggleTimerRef.current);
-      toggleTimerRef.current = null;
-    }
-  }, []);
-
-  React.useEffect(() => () => clearPendingToggle(), [clearPendingToggle]);
-
-  const queueToggle = (key: string) => {
-    clearPendingToggle();
-    toggleTimerRef.current = window.setTimeout(() => {
-      onToggle(key);
-      toggleTimerRef.current = null;
-    }, 180);
-  };
 
   const moveItem = (item: TransferItem) => {
-    clearPendingToggle();
     if (disabled || item.disabled) return;
     onMoveItem?.(item.key);
   };
@@ -255,14 +249,7 @@ function TransferPanel({
                 ? "border-primary bg-primary/50 text-primary-foreground hover:bg-primary/50"
                 : "border-input",
           )}
-          onClick={() => {
-            if (allSelected)
-              items.forEach((i) => selected.includes(i.key) && onToggle(i.key));
-            else
-              items.forEach(
-                (i) => !selected.includes(i.key) && onToggle(i.key),
-              );
-          }}
+          onClick={() => onToggleAll?.(!allSelected)}
         >
           {allSelected && <CheckIcon className="size-3" />}
           {!allSelected && someSelected && (
@@ -291,7 +278,7 @@ function TransferPanel({
             >
               <Checkbox
                 checked={selected.includes(item.key)}
-                onCheckedChange={() => queueToggle(item.key)}
+                onCheckedChange={() => onToggle(item.key)}
                 disabled={item.disabled || disabled}
               />
               <div className="min-w-0 flex-1 truncate">
