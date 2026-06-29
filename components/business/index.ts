@@ -101,3 +101,10 @@ export * from "./watermark";
 export * from "./auth-guard";
 
 export * from "./color-tag";
+
+// Layout components re-exported for convenience / 便捷导出布局组件
+export { DialogFormBody, FormStack } from "@/components/layout/dialog-form-body";
+export type { DialogFormBodyProps, FormStackProps } from "@/components/layout/dialog-form-body";
+export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
+export { AuthLayout } from "@/components/layout/auth-layout";
+export type { AuthLayoutProps } from "@/components/layout/auth-layout";

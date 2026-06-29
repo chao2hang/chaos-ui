@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import { usePagination } from "@/hooks/use-pagination";
@@ -18,8 +18,18 @@ import { useMessage } from "@/hooks/use-message";
  *   fetcher: (page, pageSize, keyword) => api.list({ page, pageSize, keyword }),
  *   emptyForm: { id: 0, name: "", shortName: "" },
  *   rowKey: "id",
+ *   successMessage: { create: "公司创建成功", update: "更新成功", delete: "已删除" },
  * });
  */
+
+/** Per-operation success messages / 按操作分别配置成功消息 */
+interface SuccessMessageMap {
+  create?: string;
+  update?: string;
+  delete?: string;
+}
+
+type SuccessMessage = string | false | SuccessMessageMap;
 
 interface UseCrudConfig<T, F = Partial<T>> {
   fetcher: (page: number, pageSize: number, keyword: string) => Promise<{ list: T[]; total: number }>;
@@ -30,8 +40,29 @@ interface UseCrudConfig<T, F = Partial<T>> {
   /** Empty form template — type F, independent of T's required fields / 空表单模板 */
   emptyForm: F;
   defaultPageSize?: number;
-  successMessage?: string | false;
+  /**
+   * Success message after create/update/delete.
+   * - `string` — used for all operations
+   * - `false` — disable success messages
+   * - `{ create?, update?, delete? }` — per-operation messages
+   * / 成功提示：字符串=全部, false=禁用, 对象=按操作分别配置
+   */
+  successMessage?: SuccessMessage;
   deleteConfirmTitle?: string;
+}
+
+function getSuccessMsg(
+  msg: SuccessMessage | undefined,
+  action: "create" | "update" | "delete",
+  fallback: string,
+): string | false {
+  if (msg === false) return false;
+  if (msg === undefined) return fallback;
+  if (typeof msg === "string") return msg;
+  // msg is SuccessMessageMap
+  const specific = msg[action];
+  if (specific !== undefined) return specific;
+  return fallback;
 }
 
 interface UseCrudReturn<T, F = Partial<T>> {
@@ -119,10 +150,12 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     try {
       if (isEdit && editing && onUpdate) {
         await onUpdate((editing as any)[rowKey] as string | number, form);
-        if (successMessage !== false) message.success(successMessage ?? "Updated successfully");
+        const msg = getSuccessMsg(successMessage, "update", "Updated successfully");
+        if (msg !== false) message.success(msg);
       } else if (onCreate) {
         await onCreate(form);
-        if (successMessage !== false) message.success(successMessage ?? "Created successfully");
+        const msg = getSuccessMsg(successMessage, "create", "Created successfully");
+        if (msg !== false) message.success(msg);
       }
       setModalOpen(false);
       await fetchData();
@@ -138,7 +171,8 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
       if (!confirmed) return;
       try {
         await onDelete((record as any)[rowKey] as string | number);
-        if (successMessage !== false) message.success("Deleted successfully");
+        const msg = getSuccessMsg(successMessage, "delete", "Deleted successfully");
+        if (msg !== false) message.success(msg);
         await fetchData();
       } catch {
         message.error("Delete failed");
@@ -156,4 +190,4 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
 }
 
 export { useCrud };
-export type { UseCrudConfig, UseCrudReturn };
+export type { UseCrudConfig, UseCrudReturn, SuccessMessage, SuccessMessageMap };

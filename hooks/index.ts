@@ -40,7 +40,7 @@ export type { UseCrudConfig, UseCrudReturn } from "./use-crud";
 export { usePageTitle } from "./use-page-title";
 export type { UsePageTitleOptions } from "./use-page-title";
 
-export { useConfirmAsync } from "./use-confirm-async";
-export type { ConfirmOptions } from "./use-confirm-async";
+export { useConfirmAsync, ConfirmProvider, confirmAsync, useConfirmContext } from "./use-confirm-async";
+export type { ConfirmOptions, ConfirmProviderProps } from "./use-confirm-async";
 export { useFieldValidation } from "./use-field-validation";
 export type { ValidationRule, UseFieldValidationOptions } from "./use-field-validation";

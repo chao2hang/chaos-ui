@@ -49,6 +49,14 @@ export interface SearchTableColumn<T = Record<string, unknown>> {
   title: React.ReactNode;
   width?: number | string;
   align?: "left" | "center" | "right";
+  /**
+   * Column render function. Value type is T[keyof T] by default (union of all
+   * field values). For precise per-column types, use SearchTableDataColumn<K>
+   * explicitly:
+   *   const col: SearchTableDataColumn<Product, "price"> = { key: "price", ... }
+   *   // render(value) is now number, not T[keyof T]
+   * / 列渲染函数，默认 value 为联合类型，可用 SearchTableDataColumn 获得精确类型
+   */
   render?: (value: T[keyof T], row: T, index: number) => React.ReactNode;
   fixed?: "left" | "right";
   sortable?: boolean;
@@ -58,6 +66,31 @@ export interface SearchTableColumn<T = Record<string, unknown>> {
   /** Built-in column type for auto-formatting / 内置列类型自动格式化 */
   type?: "currency" | "percent" | "date";
   /** Currency code for type="currency" / 货币代码 */
+  currency?: string;
+}
+
+/** Data column with precise value type for a specific key K of T.
+ * Use when you need type-safe render(value) matching the field type.
+ * / 数据字段列，value 类型精确匹配字段类型
+ * @example
+ * const col: SearchTableDataColumn<Product, "price"> = {
+ *   key: "price",
+ *   title: "Price",
+ *   render: (value) => <Currency value={value} />, // value: number
+ * }
+ **/
+export interface SearchTableDataColumn<T, K extends keyof T = keyof T> {
+  key: K & string;
+  title: React.ReactNode;
+  width?: number | string;
+  align?: "left" | "center" | "right";
+  render?: (value: T[K], row: T, index: number) => React.ReactNode;
+  fixed?: "left" | "right";
+  sortable?: boolean;
+  filterable?: boolean;
+  visible?: boolean;
+  minWidth?: number;
+  type?: "currency" | "percent" | "date";
   currency?: string;
 }
 
