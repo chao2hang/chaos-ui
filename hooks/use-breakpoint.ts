@@ -23,8 +23,12 @@ const breakpoints = {
 
 export type Breakpoint = keyof typeof breakpoints;
 
-export function useBreakpoint(): Breakpoint {
-  const [breakpoint, setBreakpoint] = React.useState<Breakpoint>("lg");
+export function useBreakpoint(): Breakpoint | undefined {
+  // Start undefined so SSR and first client render match (avoids hydration
+  // mismatch from assuming "lg" server-side while the real width differs).
+  const [breakpoint, setBreakpoint] = React.useState<Breakpoint | undefined>(
+    undefined,
+  );
 
   React.useEffect(() => {
     const updateBreakpoint = () => {
@@ -47,6 +51,8 @@ export function useBreakpoint(): Breakpoint {
 
 export function useIsBreakpoint(breakpoint: Breakpoint): boolean {
   const current = useBreakpoint();
+  // Before hydration (undefined) return false — safer than assuming a default.
+  if (!current) return false;
   const order: Breakpoint[] = ["xs", "sm", "md", "lg", "xl", "2xl"];
   return order.indexOf(current) >= order.indexOf(breakpoint);
 }
