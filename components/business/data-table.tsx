@@ -160,7 +160,9 @@ function DataTable<T = Record<string, unknown>>({
           ) : (
             table.getRowModel().rows.map((row) => {
               const record = row.original as Record<string, unknown>;
-              const key = record[rowKey] as string | number;
+              // Fall back to row index when rowKey is missing/undefined so rows
+              // don't share an undefined React key (which breaks diffing/sort/expand).
+              const key = (record[rowKey] ?? row.index) as string | number;
               const isExpanded = expanded[String(key)] ?? false;
               return (
                 <React.Fragment key={key}>
