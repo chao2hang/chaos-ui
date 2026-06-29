@@ -28,17 +28,20 @@ const headingSizeMap: Record<HeadingLevel, string> = {
 
 function createHeading(level: HeadingLevel) {
   const Tag = `h${level}` as React.ElementType;
-  const Heading = React.forwardRef<
-    HTMLHeadingElement,
-    React.ComponentProps<"h1">
-  >(({ className, ...props }, ref) => (
-    <Tag
-      ref={ref}
-      data-slot={`h${level}`}
-      className={cn(headingSizeMap[level], className)}
-      {...props}
-    />
-  ));
+  function Heading({
+    ref,
+    className,
+    ...props
+  }: React.ComponentPropsWithRef<"h1">) {
+    return (
+      <Tag
+        ref={ref}
+        data-slot={`h${level}`}
+        className={cn(headingSizeMap[level], className)}
+        {...props}
+      />
+    );
+  }
   Heading.displayName = `Typography.H${level}`;
   return Heading;
 }

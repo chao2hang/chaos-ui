@@ -306,7 +306,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
       <MenuContext.Provider value={ctx}>
         {mode === "horizontal" ? (
           <nav
-            ref={ref as React.Ref<HTMLElement>}
+            ref={ref as unknown as React.Ref<HTMLElement>}
             role="menubar"
             data-slot="menu"
             data-mode={mode}
@@ -318,7 +318,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
           </nav>
         ) : (
           <ul
-            ref={ref as React.Ref<HTMLElement> as React.Ref<HTMLUListElement>}
+            ref={ref as unknown as React.Ref<HTMLUListElement>}
             role="menu"
             data-slot="menu"
             data-mode={mode}
