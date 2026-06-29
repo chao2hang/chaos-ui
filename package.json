@@ -117,7 +117,7 @@
     "build:pkg": "tsup",
     "pack:dry": "npm pack --dry-run",
     "prepack": "npm run build:pkg",
-    "prepublishOnly": "npm run check && npm run test && npm run build:pkg",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run check:no-bom",
     "format": "prettier --write \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,css,md,mdx,json,yml}\"",
     "storybook": "storybook dev -p 6006",
