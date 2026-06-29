@@ -4,12 +4,14 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-interface AppShellProps extends React.ComponentProps<"div"> {
+export interface AppShellProps extends React.ComponentProps<"div"> {
   header?: React.ReactNode;
   sidebar?: React.ReactNode;
   aside?: React.ReactNode;
   footer?: React.ReactNode;
   sidebarWidth?: number;
+  /** Width when sidebar is collapsed (desktop). / 折叠时侧栏宽度 */
+  collapsedWidth?: number;
   asideWidth?: number;
   sidebarCollapsible?: boolean;
   defaultCollapsed?: boolean;
@@ -22,6 +24,7 @@ export function AppShell({
   aside,
   footer,
   sidebarWidth = 240,
+  collapsedWidth = 0,
   asideWidth = 280,
   sidebarCollapsible = true,
   defaultCollapsed = false,
@@ -33,7 +36,7 @@ export function AppShell({
   const { t } = useTranslation("navigation");
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const currentWidth = collapsed ? 0 : sidebarWidth;
+  const currentWidth = collapsed ? collapsedWidth : sidebarWidth;
 
   return (
     <div
@@ -84,8 +87,8 @@ export function AppShell({
                 variant === "floating" &&
                   "md:m-2 md:rounded-lg md:border md:shadow-sm",
               )}
-              style={{ width: currentWidth || sidebarWidth }}
-              aria-hidden={collapsed}
+              style={{ width: currentWidth }}
+              aria-hidden={collapsed && collapsedWidth === 0}
             >
               <div className="flex-1 overflow-y-auto">{sidebar}</div>
               {sidebarCollapsible && (
