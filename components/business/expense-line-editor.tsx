@@ -12,14 +12,16 @@ import { Input } from "@/components/ui/input";
  * @component ExpenseLineEditor
  * @category business/bill
  * @since 0.2.0
- * @description 费用明细专版(基于 line-editor,内置摘要/金额/合计) / Expense detail line editor with summary, amount, total
- * @keywords expense, line, editor, detail, amount, total
+ * @description 费用明细专版(基于 line-editor,内置摘要/金额/合计)。
+ * 支持受控（传 data）与非受控（传 defaultData，组件自管 lines 状态）两种模式，
+ * 非受控模式让 expense/apply 等页面不必每次手写 useState。
+ * / Expense detail line editor; controlled or uncontrolled (built-in lines state).
+ * @keywords expense, line, editor, detail, amount, total, uncontrolled
  * @example
- * <ExpenseLineEditor
- *   data={lines}
- *   onChange={setLines}
- *   categories={[{ label: 'Travel', value: 'travel' }]}
- * />
+ * // 非受控（推荐）：组件自管 lines
+ * <ExpenseLineEditor defaultData={lines} onChange={setLines} categories={cats} />
+ * // 受控：
+ * <ExpenseLineEditor data={lines} onChange={setLines} categories={cats} />
  */
 
 interface ExpenseLine {
@@ -37,8 +39,15 @@ interface CategoryOption {
 }
 
 interface ExpenseLineEditorProps extends Omit<React.ComponentProps<"div">, "onChange"> {
-  /** Line data / 明细数据 */
-  data: ExpenseLine[];
+  /**
+   * Line data (controlled). Omit to use uncontrolled mode with `defaultData`.
+   * / 明细数据（受控）；不传则走非受控模式（配合 defaultData）
+   */
+  data?: ExpenseLine[];
+  /**
+   * Initial line data for uncontrolled mode. / 非受控模式初始数据
+   */
+  defaultData?: ExpenseLine[];
   /** Data change callback / 数据变更回调 */
   onChange?: (data: ExpenseLine[]) => void;
   /** Expense category options / 费用类别选项 */
@@ -55,7 +64,8 @@ interface ExpenseLineEditorProps extends Omit<React.ComponentProps<"div">, "onCh
 
 function ExpenseLineEditor({
   className,
-  data,
+  data: controlledData,
+  defaultData = [],
   onChange,
   categories = [],
   readOnly = false,
@@ -64,6 +74,11 @@ function ExpenseLineEditor({
   currency = "¥",
   ...props
 }: ExpenseLineEditorProps) {
+  // Uncontrolled mode: manage lines internally so consumers (expense/apply
+  // pages) don't need to wire useState themselves.
+  const isControlled = controlledData !== undefined;
+  const [internalData, setInternalData] = React.useState<ExpenseLine[]>(defaultData);
+  const data = isControlled ? controlledData : internalData;
   // @ts-expect-error skeleton column types — will be fixed when fully implemented
   const columns: LineEditorColumn[] = React.useMemo(
     () => [
@@ -145,7 +160,9 @@ function ExpenseLineEditor({
   );
 
   const handleChange = (newData: Record<string, any>[]) => {
-    onChange?.(newData as ExpenseLine[]);
+    const next = newData as ExpenseLine[];
+    if (!isControlled) setInternalData(next);
+    onChange?.(next);
   };
 
   const totalAmount = data.reduce(
