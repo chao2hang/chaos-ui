@@ -1,0 +1,26 @@
+[
+  {
+    "name": "UI entry (index.js, gzip)",
+    "path": "dist/index.js",
+    "limit": "120 KB",
+    "gzip": true
+  },
+  {
+    "name": "Business entry (business.js, gzip)",
+    "path": "dist/business.js",
+    "limit": "180 KB",
+    "gzip": true
+  },
+  {
+    "name": "Hooks entry (hooks.js, gzip)",
+    "path": "dist/hooks.js",
+    "limit": "30 KB",
+    "gzip": true
+  },
+  {
+    "name": "Lib entry (lib.js, gzip)",
+    "path": "dist/lib.js",
+    "limit": "30 KB",
+    "gzip": true
+  }
+]
