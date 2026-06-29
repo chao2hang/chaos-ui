@@ -49,7 +49,7 @@ jobs:
       - run: npm test
 
   build-package:
-    name: Build Package
+    name: Build Package + Smoke + Size
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +58,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build:pkg
+      - run: npm run prepack
+      - name: Smoke test (tarball integrity)
+        run: npm run smoke
 
   build-storybook:
     name: Build Storybook

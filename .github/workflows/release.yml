@@ -25,14 +25,20 @@ jobs:
 
       - run: npm ci
 
-      - name: Run checks
-        run: npm run check
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Run tests
         run: npm test
 
-      - name: Build package
-        run: npm run build:pkg
+      - name: Check no-BOM
+        run: npm run check:no-bom
+
+      - name: Smoke test (tarball integrity)
+        run: npm run smoke
+
+      - name: Build package (+ size-limit)
+        run: npm run prepack
 
       - name: Build Storybook
         run: npm run build-storybook
