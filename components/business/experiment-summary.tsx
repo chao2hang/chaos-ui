@@ -89,10 +89,10 @@ export function ExperimentSummary({
                     </span>
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums">
-                    {variant.sampleSize.toLocaleString()}
+                    {(variant.sampleSize ?? 0).toLocaleString()}
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums">
-                    {variant.conversionRate.toFixed(2)}%
+                    {(variant.conversionRate ?? 0).toFixed(2)}%
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums">
                     {variant.lift === undefined
