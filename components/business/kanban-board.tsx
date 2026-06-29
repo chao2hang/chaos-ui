@@ -94,7 +94,20 @@ function KanbanBoard({
       const itemIndex = srcCol.items.findIndex((item) => item.id === active.id);
       if (itemIndex === -1) return;
       const [item] = srcCol.items.splice(itemIndex, 1);
-      if (item) dstCol.items.push(item);
+      if (!item) return;
+      if (overData.type === "column") {
+        // Dropped on the column container itself (empty area) → append to end.
+        dstCol.items.push(item);
+      } else {
+        // Dropped on a card in the destination column → insert at that card's
+        // position (preserve drop location instead of always pushing to end).
+        const overIndex = dstCol.items.findIndex((it) => it.id === over.id);
+        if (overIndex === -1) {
+          dstCol.items.push(item);
+        } else {
+          dstCol.items.splice(overIndex, 0, item);
+        }
+      }
     }
 
     onColumnsChange?.(newColumns);
