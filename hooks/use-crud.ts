@@ -182,12 +182,15 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
 
   // setFilters: shallow-merge patch and reset to page 1 so the new filter
   // takes effect immediately (don't stay on a now-empty high page).
+  // Depend on the stable `pagination.setPage` (not the whole `pagination`
+  // object, which is recreated every render and would make setFilters
+  // identity unstable — breaking consumers who put setFilters in their deps).
   const setFilters = React.useCallback(
     (patch: Filters) => {
       setFiltersState((prev) => ({ ...prev, ...patch }));
       pagination.setPage(1);
     },
-    [pagination],
+    [pagination.setPage],
   );
 
   const resetFilters = React.useCallback(
@@ -195,7 +198,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
       setFiltersState(next);
       pagination.setPage(1);
     },
-    [pagination],
+    [pagination.setPage],
   );
 
   const handleAdd = React.useCallback(() => {
