@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-06-30
+
+### 组件功能性缺陷修复（25 项审计，修 20）
+
+P0 崩溃：
+- `Carousel`：total=0 时 transform/width NaN 崩溃（兜底 0/100）。
+- `useEventListener`：options 对象依赖致每次渲染重绑（ref 持有）。
+- `AutoComplete`：open 仅由 options.length 决定，受控 options 异步到达面板无法开（effect 跟随）。
+
+P1 功能错误：
+- `Transfer`：全选 forEach toggle → 一次性 onToggleAll；queueToggle 180ms 防抖丢项 → 立即 toggle。
+- `DictSelect`：清除项传空字符串 → onChange(undefined)（**BREAKING**：onChange 类型含 undefined）。
+- `RemoteSelect`：选中后 options 变化致 label 丢失 → selectedOptionRef 缓存。
+- `useCrud`：setFilters 依赖 pagination（每渲染新对象）致引用不稳 → 依赖 setPage（稳定）。
+- `DataTable`：缺 rowKey 时 undefined key → 回退 row.index。
+- `KanbanBoard`：跨列拖拽总 push 末尾 → 用 over.id splice 插入正确位置。
+- `Cascader`：中间层不触发 onChange → 新增 changeOnSelect；另修 options 内联致 effect 无限循环（ref）。
+- `PullToRefresh`：stale 闭包 + 未 preventDefault → ref + preventDefault。
+- `Anchor`：onActiveChange/activeKey 致 scroll 监听风暴 → ref。
+- `BackTop`：target 函数引用致重绑 → ref。
+- `Affix`：fixed 丢 left 坐标 → 记录 rect.left；target ref。
+- `Spin`：delay>0 时初始 show=true（未隐藏）→ 初始 false + delay 后 true。
+
+P2 体验/边界：
+- `useCountdown`：结束后 interval 不停 → clearInterval（含 NaN target 处理）。
+- `useBreakpoint`：初始 "lg" SSR hydration mismatch → 初始 undefined（**BREAKING**：返回 Breakpoint | undefined）。
+- `MasterDetailLayout`：桌面折叠态 master 仍占位 → 新增 collapsibleDesktop。
+- `AppShell`：折叠后 aside 宽度不塌缩 → 新增 collapsedWidth。
+- `experiment-summary`：conversionRate/sampleSize 未防 null → ?? 0。
+
+### 测试
+- 新增 18 个组件/hook 测试文件（carousel/use-event-listener/autocomplete/transfer/
+  dict-select/remote-select/use-crud/data-table/kanban-board/cascader/
+  pull-to-refresh/anchor/back-top/affix/spin/use-countdown/use-breakpoint/
+  master-detail-layout/app-shell/experiment-summary）。
+- 测试数 47 → 118（32 files）。
+
 ## [0.4.0] — 2026-06-30
 
 ### 新功能
