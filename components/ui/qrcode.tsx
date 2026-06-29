@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import QRCodeLib from "qrcode";
+import { toString as qrToString, toCanvas as qrToCanvas } from "qrcode";
 import { cn } from "@/lib/utils";
 
 /**
@@ -51,7 +51,7 @@ function QRCode({
 
   React.useEffect(() => {
     if (renderAs === "svg") {
-      QRCodeLib.toString(value, {
+      qrToString(value, {
         type: "svg",
         width: size,
         margin: includeMargin ? 4 : 0,
@@ -61,15 +61,15 @@ function QRCode({
           light: bgColor,
         },
       })
-        .then((svg) => {
+        .then((svg: string) => {
           setSvgData(svg);
           setError(undefined);
         })
-        .catch((err) => setError(err.message));
+        .catch((err: { message: string }) => setError(err.message));
     } else {
       const canvas = canvasRef.current;
       if (canvas) {
-        QRCodeLib.toCanvas(canvas, value, {
+        qrToCanvas(canvas, value, {
           width: size,
           margin: includeMargin ? 4 : 0,
           errorCorrectionLevel: level,
@@ -79,7 +79,7 @@ function QRCode({
           },
         })
           .then(() => setError(undefined))
-          .catch((err) => setError(err.message));
+          .catch((err: { message: string }) => setError(err.message));
       }
     }
   }, [value, size, level, fgColor, bgColor, includeMargin, renderAs]);
