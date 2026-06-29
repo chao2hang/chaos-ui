@@ -47,6 +47,13 @@ function Anchor({
   );
   const activeKey = controlledActiveKey ?? internalActiveKey;
   const containerRef = React.useRef<HTMLElement | Window | null>(null);
+  // Hold latest activeKey + onActiveChange in refs so the scroll handler effect
+  // doesn't depend on them — otherwise an unmemoized onActiveChange or each
+  // activeKey change re-binds the scroll listener every scroll event (storm).
+  const activeKeyRef = React.useRef(activeKey);
+  activeKeyRef.current = activeKey;
+  const onActiveChangeRef = React.useRef(onActiveChange);
+  onActiveChangeRef.current = onActiveChange;
 
   React.useEffect(() => {
     containerRef.current = getContainer?.() ?? window;
@@ -64,9 +71,9 @@ function Anchor({
         if (el) {
           const rect = el.getBoundingClientRect();
           if (rect.top <= offsetTop) {
-            if (item.key !== activeKey) {
+            if (item.key !== activeKeyRef.current) {
               setInternalActiveKey(item.key);
-              onActiveChange?.(item.key);
+              onActiveChangeRef.current?.(item.key);
             }
             return;
           }
@@ -77,7 +84,9 @@ function Anchor({
     container.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [items, offsetTop, activeKey, onActiveChange]);
+    // Only re-bind when items/offsetTop/getContainer change — not on activeKey
+    // or onActiveChange (held in refs).
+  }, [items, offsetTop, getContainer]);
 
   const handleClick = (item: AnchorItem) => (e: React.MouseEvent) => {
     e.preventDefault();
