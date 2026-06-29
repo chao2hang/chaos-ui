@@ -26,6 +26,8 @@ interface LineColumn {
   render?: (value: unknown, row: Record<string, unknown>, index: number) => React.ReactNode
   /** 自定义编辑组件 */
   editRender?: (value: unknown, row: Record<string, unknown>, onChange: (val: unknown) => void) => React.ReactNode
+  /** 自定义编辑器组件 (alias, used by order/expense line editors) */
+  renderEditor?: (value: unknown, row: Record<string, unknown>, index: number, onChange: (val: unknown) => void) => React.ReactNode
   /** 对齐方式 */
   align?: "left" | "center" | "right"
   /** 默认值（新增行时） */
@@ -40,20 +42,22 @@ interface LineEditorProps {
   /** 数据变更回调 */
   onChange?: (data: Record<string, unknown>[]) => void
   /** 最少行数（默认 1） */
-  minRows?: number
+  minRows?: number | undefined
   /** 最多行数 */
-  maxRows?: number
+  maxRows?: number | undefined
   /** 行标识 key */
-  rowKey?: string
+  rowKey?: string | undefined
   /** 底部汇总渲染 */
-  footer?: React.ReactNode
+  footer?: React.ReactNode | undefined
   /** 合计行自动计算（指定哪些列需要汇总） */
-  summaryKeys?: string[]
+  summaryKeys?: string[] | undefined
   /** 是否只读 */
-  readOnly?: boolean
+  readOnly?: boolean | undefined
   /** 加载态 */
-  loading?: boolean
-  className?: string
+  loading?: boolean | undefined
+  /** 空状态文案 */
+  emptyText?: string | undefined
+  className?: string | undefined
 }
 
 /**
@@ -263,4 +267,4 @@ function LineEditor({
 }
 
 export { LineEditor }
-export type { LineEditorProps, LineColumn }
+export type { LineEditorProps, LineColumn, LineColumn as LineEditorColumn }
