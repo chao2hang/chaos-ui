@@ -30,10 +30,14 @@ export function PullToRefresh({
     refreshingText ?? t("pullToRefresh.refreshing");
   const resolvedPullText = pullText ?? t("pullToRefresh.pull");
   const resolvedReleaseText = releaseText ?? t("pullToRefresh.release");
-  const [startY, setStartY] = React.useState(0);
   const [distance, setDistance] = React.useState(0);
   const [refreshing, setRefreshing] = React.useState(false);
-  const [enabled, setEnabled] = React.useState(false);
+  // Use refs for touch state read across move/end handlers — React event
+  // handlers rebuild every render, and state updates are async, so end would
+  // read stale distance/enabled from the closure.
+  const startYRef = React.useRef(0);
+  const distanceRef = React.useRef(0);
+  const enabledRef = React.useRef(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -42,33 +46,41 @@ export function PullToRefresh({
     if (!el || el.scrollTop > 0) return;
     const touch = e.touches[0];
     if (!touch) return;
-    setStartY(touch.clientY);
-    setEnabled(true);
+    startYRef.current = touch.clientY;
+    enabledRef.current = true;
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    if (!enabled || disabled || refreshing) return;
+    if (!enabledRef.current || disabled || refreshing) return;
     const touch = e.touches[0];
     if (!touch) return;
-    const dy = touch.clientY - startY;
+    const dy = touch.clientY - startYRef.current;
     if (dy > 0) {
-      setDistance(Math.min(dy * 0.5, threshold * 1.5));
+      // Prevent native scroll so the pull displacement isn't fighting the
+      // browser's own scroll (caused jitter / double displacement).
+      if (e.cancelable) e.preventDefault();
+      const next = Math.min(dy * 0.5, threshold * 1.5);
+      distanceRef.current = next;
+      setDistance(next);
     }
   };
 
   const onTouchEnd = async () => {
-    if (!enabled) return;
-    setEnabled(false);
-    if (distance >= threshold && !refreshing) {
+    if (!enabledRef.current) return;
+    enabledRef.current = false;
+    const pulled = distanceRef.current;
+    if (pulled >= threshold && !refreshing) {
       setRefreshing(true);
       try {
         await onRefresh();
       } finally {
         setRefreshing(false);
         setDistance(0);
+        distanceRef.current = 0;
       }
     } else {
       setDistance(0);
+      distanceRef.current = 0;
     }
   };
 
@@ -115,7 +127,7 @@ export function PullToRefresh({
       <div
         style={{
           transform: `translateY(${distance}px)`,
-          transition: enabled ? "none" : "transform 0.2s",
+          transition: enabledRef.current ? "none" : "transform 0.2s",
         }}
       >
         {children}
