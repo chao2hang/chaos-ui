@@ -125,6 +125,20 @@ export {
   type StatusMapping,
 } from "./status-badge";
 
+// Top-level convenience re-exports of lib utilities so consumers don't import
+// from the internal `./lib` path. message + format* are the most-used.
+// / 顶层便捷导出：消费方不再从内部 ./lib 路径引入 message / format*。
+export {
+  message,
+  formatCurrency,
+  formatDate,
+  formatDateTime,
+  formatNumber,
+  formatPercent,
+  formatRelativeTime,
+} from "../../lib";
+export type { MessageOptions, MessageType } from "../../lib";
+
 // Layout components re-exported for convenience / 便捷导出布局组件
 export {
   DialogFormBody,
