@@ -80,6 +80,12 @@ function App() {
 | `@qxyfoods/chaos-ui/next` | Next.js 专用组件 |
 | `@qxyfoods/chaos-ui/styles.css` | 主题样式 |
 
+> **Note**: `MessageProvider` / `Toaster` / `ThemeToggle` 从 `@qxyfoods/chaos-ui/next` 引入（而非主入口），因为它们依赖 `next-themes`（optional peer）。非 Next.js 项目使用主入口不会因此拉入 `next-themes`。
+> ```ts
+> import { ModalProvider } from "@qxyfoods/chaos-ui";
+> import { MessageProvider, Toaster, ThemeToggle } from "@qxyfoods/chaos-ui/next";
+> ```
+
 ## 组件清单
 
 ### UI 基础组件 (103)

@@ -9,7 +9,7 @@
  * @example
  * ```tsx
  * // app/layout.tsx
- * import { MessageProvider } from '@qxyfoods/chaos-ui';
+ * import { MessageProvider } from '@qxyfoods/chaos-ui/next';
  *
  * export default function RootLayout({ children }) {
  *   return (

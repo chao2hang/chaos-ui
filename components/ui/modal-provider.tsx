@@ -10,7 +10,8 @@
  * @example
  * ```tsx
  * // app/layout.tsx
- * import { ModalProvider, MessageProvider } from '@qxyfoods/chaos-ui';
+ * import { ModalProvider } from '@qxyfoods/chaos-ui';
+ * import { MessageProvider } from '@qxyfoods/chaos-ui/next';
  *
  * export default function RootLayout({ children }) {
  *   return (
