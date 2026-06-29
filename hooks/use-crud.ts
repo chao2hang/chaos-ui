@@ -11,15 +11,26 @@ import { useMessage } from "@/hooks/use-message";
  * @description Generic CRUD state manager. Uses separate type params for
  * the data row (T) and the form (F), so interfaces with optional fields
  * like `shortName?: string` work without type errors.
- * / 通用 CRUD 状态管理 hook，分离行类型和表单类型避免反向推断
- * @keywords crud, hook, pagination, form, modal, state
+ *
+ * Supports multi-field filtering (`filters`) and pre-submit validation
+ * (`onValidate`), replacing the per-page useAsync + usePagination + useEffect
+ * boilerplate duplicated across business list pages.
+ * / 通用 CRUD 状态管理 hook，分离行类型和表单类型，支持多字段筛选与提交前校验。
+ * @keywords crud, hook, pagination, form, modal, state, filter, validate
  * @example
  * const crud = useCrud<Company, Partial<Company>>({
- *   fetcher: (page, pageSize, keyword) => api.list({ page, pageSize, keyword }),
+ *   fetcher: (page, pageSize, filters) =>
+ *     api.list({ page, pageSize, ...filters }),
+ *   filterFields: [
+ *     { name: "keyword", type: "search" },
+ *     { name: "status", type: "select", options: [...] },
+ *   ],
+ *   onValidate: (form) => (form.code ? null : "请填写必填项"),
  *   emptyForm: { id: 0, name: "", shortName: "" },
  *   rowKey: "id",
  *   successMessage: { create: "公司创建成功", update: "更新成功", delete: "已删除" },
  * });
+ * crud.setFilters({ keyword: "x", status: "OPEN" });
  */
 
 /** Per-operation success messages / 按操作分别配置成功消息 */
@@ -31,8 +42,31 @@ interface SuccessMessageMap {
 
 type SuccessMessage = string | false | SuccessMessageMap;
 
+/** Filter field descriptor (drives generated filter UI). / 筛选字段描述 */
+interface FilterField {
+  name: string;
+  type: "search" | "select";
+  /** Options for `select` type / select 类型的选项 */
+  options?: { label: string; value: string | number }[];
+  /** Placeholder / 占位文案 */
+  placeholder?: string;
+}
+
+/** Aggregated filter values (string-keyed). / 筛选值聚合 */
+type Filters = Record<string, unknown>;
+
 interface UseCrudConfig<T, F = Partial<T>> {
-  fetcher: (page: number, pageSize: number, keyword: string) => Promise<{ list: T[]; total: number }>;
+  /**
+   * Fetcher receives page, pageSize, and the current filters object.
+   * Replaces the old single-`keyword` signature so multi-filter pages
+   * (keyword + status + categoryId + ...) don't need hand-rolled wiring.
+   * / 获取数据，filters 替代旧的单 keyword 签名
+   */
+  fetcher: (
+    page: number,
+    pageSize: number,
+    filters: Filters,
+  ) => Promise<{ list: T[]; total: number }>;
   onCreate?: (form: F) => Promise<unknown>;
   onUpdate?: (id: string | number, form: F) => Promise<unknown>;
   onDelete?: (id: string | number) => Promise<unknown>;
@@ -40,6 +74,16 @@ interface UseCrudConfig<T, F = Partial<T>> {
   /** Empty form template — type F, independent of T's required fields / 空表单模板 */
   emptyForm: F;
   defaultPageSize?: number;
+  /**
+   * Pre-submit validation. Return an error message string to block submit
+   * (shown via message.error), or `null` to proceed.
+   * / 提交前校验：返回错误文案拦截提交，null 放行
+   */
+  onValidate?: (form: F) => string | null;
+  /** Filter field descriptors (for generated filter UI). / 筛选字段描述 */
+  filterFields?: FilterField[];
+  /** Initial filter values. / 初始筛选值 */
+  defaultFilters?: Filters;
   /**
    * Success message after create/update/delete.
    * - `string` — used for all operations
@@ -69,8 +113,15 @@ interface UseCrudReturn<T, F = Partial<T>> {
   data: T[];
   total: number;
   loading: boolean;
-  keyword: string;
-  setKeyword: (v: string) => void;
+  /** Current filter values / 当前筛选值 */
+  filters: Filters;
+  /**
+   * Merge a partial patch into filters (shallow merge) and reset to page 1.
+   * / 合并筛选值（浅合并）并重置到第 1 页
+   */
+  setFilters: (patch: Filters) => void;
+  /** Replace filters entirely and reset to page 1. / 整体替换筛选值 */
+  resetFilters: (next: Filters) => void;
   pagination: ReturnType<typeof usePagination>;
   modalOpen: boolean;
   setModalOpen: (v: boolean) => void;
@@ -98,11 +149,13 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     rowKey = "id" as keyof T & string,
     emptyForm,
     defaultPageSize = 20,
+    onValidate,
+    defaultFilters = {},
     successMessage,
     deleteConfirmTitle,
   } = config;
 
-  const [keyword, setKeyword] = React.useState("");
+  const [filters, setFiltersState] = React.useState<Filters>(defaultFilters);
   const [data, setData] = React.useState<T[]>([]);
   const [total, setTotal] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -117,15 +170,33 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   const fetchData = React.useCallback(async () => {
     setLoading(true);
     try {
-      const result = await fetcher(pagination.page, pagination.pageSize, keyword);
+      const result = await fetcher(pagination.page, pagination.pageSize, filters);
       setData(result.list);
       setTotal(result.total);
     } finally {
       setLoading(false);
     }
-  }, [fetcher, pagination.page, pagination.pageSize, keyword]);
+  }, [fetcher, pagination.page, pagination.pageSize, filters]);
 
   React.useEffect(() => { fetchData(); }, [fetchData]);
+
+  // setFilters: shallow-merge patch and reset to page 1 so the new filter
+  // takes effect immediately (don't stay on a now-empty high page).
+  const setFilters = React.useCallback(
+    (patch: Filters) => {
+      setFiltersState((prev) => ({ ...prev, ...patch }));
+      pagination.setPage(1);
+    },
+    [pagination],
+  );
+
+  const resetFilters = React.useCallback(
+    (next: Filters) => {
+      setFiltersState(next);
+      pagination.setPage(1);
+    },
+    [pagination],
+  );
 
   const handleAdd = React.useCallback(() => {
     setEditing(null);
@@ -147,6 +218,14 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   );
 
   const handleSubmit = React.useCallback(async () => {
+    // Pre-submit validation: block + notify on failure.
+    if (onValidate) {
+      const error = onValidate(form);
+      if (error) {
+        message.error(error);
+        return;
+      }
+    }
     try {
       if (isEdit && editing && onUpdate) {
         await onUpdate((editing as any)[rowKey] as string | number, form);
@@ -162,7 +241,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     } catch {
       message.error("Operation failed");
     }
-  }, [editing, form, isEdit, onCreate, onUpdate, rowKey, fetchData, message, successMessage]);
+  }, [editing, form, isEdit, onCreate, onUpdate, onValidate, rowKey, fetchData, message, successMessage]);
 
   const handleDelete = React.useCallback(
     async (record: T) => {
@@ -182,7 +261,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   );
 
   return {
-    data, total, loading, keyword, setKeyword, pagination,
+    data, total, loading, filters, setFilters, resetFilters, pagination,
     modalOpen, setModalOpen, editing, form, setForm, updateFormField,
     handleAdd, handleEdit, handleSubmit, handleDelete,
     refresh: fetchData, isEdit,
@@ -190,4 +269,4 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
 }
 
 export { useCrud };
-export type { UseCrudConfig, UseCrudReturn, SuccessMessage, SuccessMessageMap };
+export type { UseCrudConfig, UseCrudReturn, SuccessMessage, SuccessMessageMap, FilterField, Filters };
