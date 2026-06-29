@@ -80,3 +80,10 @@ VISUAL_TEST_REPORT.md
 
 # tooling scratch
 .workbuddy/
+
+# scratch scripts/logs
+analyze_*.py
+extract_tools.py
+mcp_calls.txt
+.codegraph/daemon.pid
+bash_cmds.txt
