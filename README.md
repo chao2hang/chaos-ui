@@ -86,6 +86,32 @@ function App() {
 > import { MessageProvider, Toaster, ThemeToggle } from "@qxyfoods/chaos-ui/next";
 > ```
 
+### 暗色模式
+
+`styles.css` 内置 `.dark` 主题变量。消费方用 `next-themes`（optional peer）即可接入：
+
+```tsx
+// app/layout.tsx
+import { ThemeProvider } from "next-themes";
+import "@qxyfoods/chaos-ui/styles.css";
+import { ThemeToggle } from "@qxyfoods/chaos-ui/next";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+`ThemeToggle` 提供「亮色 / 暗色 / 跟随系统」三态切换，`styles.css` 的 `.dark` 变量自动生效。
+
 ## 组件清单
 
 ### UI 基础组件 (103)
