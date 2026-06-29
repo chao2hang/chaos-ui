@@ -1,3 +1,5 @@
+"use client";
+
 export * from "./activity-feed";
 export * from "./advanced-data-table";
 export * from "./advanced-search";
@@ -5,7 +7,12 @@ export * from "./announcement-banner";
 export * from "./approval-timeline";
 export * from "./async-task-center";
 export * from "./audience-segment-builder";
-export { AuditLog, type AuditLogStatus, type AuditLogEntry, type AuditLogProps } from "./audit-log";
+export {
+  AuditLog,
+  type AuditLogStatus,
+  type AuditLogEntry,
+  type AuditLogProps,
+} from "./audit-log";
 export * from "./audit-sidebar";
 export * from "./auth-guard";
 export * from "./avatar-group";
@@ -28,7 +35,11 @@ export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
 export * from "./cookie-banner";
-export { CrudPage, type CrudPageProps, type FormField as CrudFormField } from "./crud-page";
+export {
+  CrudPage,
+  type CrudPageProps,
+  type FormField as CrudFormField,
+} from "./crud-page";
 export * from "./crud-toolbar";
 export * from "./creative-preview";
 export * from "./data-table";
@@ -109,8 +120,14 @@ export * from "./auth-guard";
 export * from "./color-tag";
 
 // Layout components re-exported for convenience / 便捷导出布局组件
-export { DialogFormBody, FormStack } from "@/components/layout/dialog-form-body";
-export type { DialogFormBodyProps, FormStackProps } from "@/components/layout/dialog-form-body";
+export {
+  DialogFormBody,
+  FormStack,
+} from "@/components/layout/dialog-form-body";
+export type {
+  DialogFormBodyProps,
+  FormStackProps,
+} from "@/components/layout/dialog-form-body";
 export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 export { AuthLayout } from "@/components/layout/auth-layout";
 export type { AuthLayoutProps } from "@/components/layout/auth-layout";

@@ -1,3 +1,5 @@
+"use client";
+
 export {
   Accordion,
   AccordionItem,
@@ -432,14 +434,16 @@ export { Combobox, type ComboboxOption } from "./combobox";
 
 export { Fab, FabSpeedDial } from "./fab";
 
-
 // New UI components
 export { Anchor } from "./anchor";
 export type { AnchorItem, AnchorProps } from "./anchor";
 export { List as DataList, ListHeader, ListItem, ListFooter } from "./list";
 export type { ListProps as DataListProps, ListItemProps } from "./list";
 export { Notification } from "./notification";
-export type { NotificationType as NotificationVariant, NotificationProps } from "./notification";
+export type {
+  NotificationType as NotificationVariant,
+  NotificationProps,
+} from "./notification";
 
 // Grid system
 export { Row, Col } from "./grid";

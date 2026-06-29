@@ -1,3 +1,5 @@
+"use client";
+
 export { useBreakpoint, useIsBreakpoint } from "./use-breakpoint";
 export type { Breakpoint } from "./use-breakpoint";
 export { useEventListener } from "./use-event-listener";
@@ -6,7 +8,10 @@ export type { KeyFilter, KeyHandler, UseKeyOptions } from "./use-key";
 export { useMessage } from "./use-message";
 export type { MessageInstance, MessageOptions } from "./use-message";
 export { useNotification } from "./use-notification";
-export type { NotificationInstance, NotificationOptions } from "./use-notification";
+export type {
+  NotificationInstance,
+  NotificationOptions,
+} from "./use-notification";
 export { useModal, ModalRenderer } from "./use-modal";
 export type { ModalInstance, ModalOptions } from "./use-modal";
 export { useAsync } from "./use-async";
@@ -40,10 +45,18 @@ export type { UseCrudConfig, UseCrudReturn } from "./use-crud";
 export { usePageTitle } from "./use-page-title";
 export type { UsePageTitleOptions } from "./use-page-title";
 
-export { useConfirmAsync, ConfirmProvider, confirmAsync, useConfirmContext } from "./use-confirm-async";
+export {
+  useConfirmAsync,
+  ConfirmProvider,
+  confirmAsync,
+  useConfirmContext,
+} from "./use-confirm-async";
 export type { ConfirmOptions, ConfirmProviderProps } from "./use-confirm-async";
 export { useFieldValidation } from "./use-field-validation";
-export type { ValidationRule, UseFieldValidationOptions } from "./use-field-validation";
+export type {
+  ValidationRule,
+  UseFieldValidationOptions,
+} from "./use-field-validation";
 
 // P1 hooks — network, visibility, orientation, clipboard, form, fetch
 export { useNetworkStatus } from "./use-network-status";

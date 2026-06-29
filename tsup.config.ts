@@ -14,6 +14,7 @@ const external = [
   "@hookform/resolvers",
   "@radix-ui/react-slot",
   "@tanstack/react-query",
+  "@tanstack/react-table",
   "@tanstack/react-virtual",
   "axios",
   "class-variance-authority",
@@ -53,11 +54,16 @@ export default defineConfig({
     },
   },
   clean: true,
-  splitting: true,
+  // preserve-modules: 关闭 treeshake/splitting，逐文件输出。
+  // 理由：组件库需逐文件保留 "use client" 指令（treeshake+splitting 会把多模块
+  // 合并进共享 chunk，丢弃文件级 "use client"，导致 Next App Router RSC 接入即崩）。
+  // tree-shaking 交给消费方 bundler（Next/webpack/vite）在模块粒度做，效果优于库内预打包。
+  // 参考：shadcn/ui、Radix、Mantine 均保留模块边界。
+  splitting: false,
+  treeshake: false,
   sourcemap: true,
   silent: false,
   target: "es2020",
-  treeshake: { preset: "smallest" },
   external,
   outExtension({ format }) {
     return {
