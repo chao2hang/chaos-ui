@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";

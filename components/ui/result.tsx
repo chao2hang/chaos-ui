@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import { CheckCircle2, XCircle, AlertTriangle, Lock, SearchX } from "lucide-react";

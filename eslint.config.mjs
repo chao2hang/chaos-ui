@@ -212,6 +212,14 @@ const eslintConfig = defineConfig([
       "no-console": "off",
     },
   },
+  {
+    // scripts/ 下的工具脚本需要 console 输出诊断信息。
+    files: ["scripts/**/*.mjs"],
+    rules: {
+      "no-console": "off",
+      "import/no-anonymous-default-export": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

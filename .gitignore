@@ -77,3 +77,6 @@ VISUAL_TEST_REPORT.md
 .idea/
 *.swp
 *.swo
+
+# tooling scratch
+.workbuddy/

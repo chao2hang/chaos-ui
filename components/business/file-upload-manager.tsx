@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import * as React from "react";
 import { FileUpload, Button, Badge, Progress } from "@/components/ui";
 import { Trash2Icon, GridIcon, ListIcon } from "@/components/ui/icons";
