@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-06-30
+
+### 新功能
+
+- `ExpenseLineEditor` 非受控模式（`defaultData`，组件内置 lines 状态）；
+  `data` 改为可选，消费方不必每次手写 useState。
+- 暗色模式接入文档（README）：消费方用 next-themes `ThemeProvider` +
+  `ThemeToggle`，`.dark` 变量自动生效。
+
+### 质量与工具
+
+- 8 个核心组件测试（input/textarea/checkbox/switch/table/dialog/select/
+  form），测试数 24→47（12 files），覆盖率从仅 lib 扩展到核心 UI。
+- `size-limit` 体积门槛（index≤120KB/business≤180KB/hooks≤30KB/lib≤30KB
+  gzip），接入 `prepack`（build 后检查）。
+- `changesets` 集成：`.changeset/config.json` + `changeset`/`version`/
+  `release:changeset` 脚本，PR 累积变更、release 自动 bump+CHANGELOG。
+- CI `build-package` job 改为 `prepack`（build+size）+ smoke test；
+  `release.yml` 门禁对齐 prepublishOnly（typecheck+test+no-bom+smoke+prepack），
+  避免既有 lint 债阻断发布。
+- eslint `globalIgnores` 补 `apps/docs/.next`、`apps/docs/src`、
+  `packages/chaos-design-ui` 等，lint problems 10541→234（消除生成产物误报）。
+
+### 重构
+
+- `Typography` 的 `createHeading` 从 `React.forwardRef` 迁移到函数组件 +
+  ref prop（React 19 风格）。
+- `menu.tsx` 双重 `as` 断言改为 `as unknown as`（更规范的类型断言）。
+
 ## [0.3.0] — 2026-06-30
 
 ### 生产可用性修复（P0 阻断性）
