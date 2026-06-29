@@ -65,9 +65,10 @@ function AutoComplete({
 
   const handleChange = (val: string) => {
     if (!isControlled) setInternalValue(val);
+    // Input changes both the value (onChange) and triggers a search (onSearch).
+    // Consumers use onSearch to filter options; onChange to track the input value.
     onChange?.(val);
     onSearch?.(val);
-    setOpen(val.length > 0 && options.length > 0);
     setHighlightIndex(-1);
   };
 
@@ -79,6 +80,17 @@ function AutoComplete({
     onSelect?.(option.value, option);
     setOpen(false);
   };
+
+  // Open panel when there is input + options available. Using an effect (instead
+  // of deriving open purely from options.length in handleChange) ensures the
+  // panel re-opens when controlled options arrive asynchronously after a search.
+  React.useEffect(() => {
+    if (currentValue.length > 0 && options.length > 0) {
+      setOpen(true);
+    } else if (options.length === 0) {
+      setOpen(false);
+    }
+  }, [currentValue, options]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!open || options.length === 0) return;
