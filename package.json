@@ -127,8 +127,8 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "prepare": "husky",
-    "audit": "npm audit --omit=dev",
-    "audit:fix": "npm audit fix --omit=dev"
+    "audit": "npm audit --omit=dev --registry=https://registry.npmjs.org",
+    "audit:fix": "npm audit fix --omit=dev --registry=https://registry.npmjs.org"
   },
   "dependencies": {
     "@base-ui/react": "1.5.0",

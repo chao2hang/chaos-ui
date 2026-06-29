@@ -27,7 +27,7 @@ interface DialogFormBodyProps extends React.ComponentProps<"div"> {
 
 function DialogFormBody({
   className,
-  gap = 4,
+  gap = 3,
   ...props
 }: DialogFormBodyProps) {
   const gapStyle: string | number =
