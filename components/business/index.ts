@@ -118,6 +118,13 @@ export * from "./watermark";
 
 export * from "./color-tag";
 
+export {
+  StatusBadge,
+  type StatusBadgeProps,
+  type StatusPreset,
+  type StatusMapping,
+} from "./status-badge";
+
 // Layout components re-exported for convenience / 便捷导出布局组件
 export {
   DialogFormBody,
