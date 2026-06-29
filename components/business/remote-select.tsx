@@ -126,8 +126,16 @@ export function RemoteSelect({
     return () => clearTimeout(handle);
   }, [keyword, open, fetcher, debounceMs, cache, minKeywordLength, initialOptions]);
 
-  // Keep selected label visible when closed.
-  const selected = options.find((o) => String(o.value) === String(value));
+  // Cache the selected option so the trigger label survives searches that
+  // replace `options` (the selected item may no longer be in the result list).
+  const selectedOptionRef = React.useRef<RemoteOption | undefined>(undefined);
+  const selectedFromOptions = options.find(
+    (o) => String(o.value) === String(value),
+  );
+  // Prefer the freshly-found option (keeps label in sync if it changes),
+  // fall back to the cached one when it's no longer in `options`.
+  const selected = selectedFromOptions ?? selectedOptionRef.current;
+  if (selectedFromOptions) selectedOptionRef.current = selectedFromOptions;
 
   // SelectTrigger only supports "sm" | "default"; map our size prop.
   const triggerSize = size === "sm" ? "sm" : "default";
@@ -137,7 +145,12 @@ export function RemoteSelect({
       <Select
         value={value !== undefined ? String(value) : undefined}
         onValueChange={(v) => {
-          if (v != null) onChange?.(v);
+          if (v != null) {
+            // Cache the chosen option so its label persists after later searches.
+            const chosen = options.find((o) => String(o.value) === String(v));
+            if (chosen) selectedOptionRef.current = chosen;
+            onChange?.(v);
+          }
         }}
         open={open}
         onOpenChange={setOpen}
