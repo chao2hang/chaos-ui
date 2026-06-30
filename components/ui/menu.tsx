@@ -427,6 +427,7 @@ function ItemFromConfig({
           isSelected ? tc.itemActive : tc.itemHover,
           config.danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
           config.disabled && "pointer-events-none opacity-50",
+          ctx.inlineCollapsed && "justify-center",
         )}
         style={indentStyle}
         data-selected={isSelected || undefined}
@@ -436,7 +437,7 @@ function ItemFromConfig({
             {config.icon}
           </span>
         )}
-        <span className="flex-1 truncate">{config.label}</span>
+        {!ctx.inlineCollapsed && <span className="flex-1 truncate">{config.label}</span>}
       </button>
     </li>
   );
@@ -494,6 +495,7 @@ function SubMenuContent({
         isSelected ? tc.itemActive : tc.itemHover,
         config.danger && "text-destructive data-[selected=true]:bg-destructive/10",
         config.disabled && "pointer-events-none opacity-50",
+        ctx.inlineCollapsed && "justify-center",
       )}
       style={indentStyle}
       data-selected={isSelected || undefined}
@@ -503,20 +505,22 @@ function SubMenuContent({
           {config.icon}
         </span>
       )}
-      <span className="flex-1 truncate">{config.label}</span>
-      <ChevronRightIcon
-        className={cn(
-          "size-4 shrink-0 transition-transform text-muted-foreground",
-          inlineMode && isOpen && "rotate-90",
-        )}
-      />
+      {!ctx.inlineCollapsed && <span className="flex-1 truncate">{config.label}</span>}
+      {!ctx.inlineCollapsed && (
+        <ChevronRightIcon
+          className={cn(
+            "size-4 shrink-0 transition-transform text-muted-foreground",
+            inlineMode && isOpen && "rotate-90",
+          )}
+        />
+      )}
     </button>
   );
 
   if (ctx.mode === "horizontal") {
     // Horizontal submenu: render as popup
     return (
-      <li role="none" data-slot="menu-submenu" data-key={config.key}>
+      <li role="none" data-slot="menu-submenu" data-key={config.key} className="relative">
         {trigger}
         {isOpen && (
           <div
@@ -547,9 +551,10 @@ function SubMenuContent({
       data-slot="menu-submenu"
       data-key={config.key}
       data-open={isOpen || undefined}
+      className={!inlineMode ? "relative" : undefined}
     >
       {trigger}
-      {inlineMode && isOpen && (
+      {inlineMode && isOpen && !ctx.inlineCollapsed && (
         <ul
           role="menu"
           data-slot="menu-sub-content"
@@ -636,6 +641,7 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
         tc.subTrigger,
         isSelected ? tc.itemActive : tc.itemHover,
         disabled && "pointer-events-none opacity-50",
+        ctx.inlineCollapsed && "justify-center",
         className,
       )}
       style={indentStyle}
@@ -646,23 +652,38 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
           {icon}
         </span>
       )}
-      <span className="flex-1 truncate">{title}</span>
-      <ChevronRightIcon
-        className={cn(
-          "size-4 shrink-0 transition-transform text-muted-foreground",
-          inlineMode && isOpen && "rotate-90",
-        )}
-      />
+      {!ctx.inlineCollapsed && <span className="flex-1 truncate">{title}</span>}
+      {!ctx.inlineCollapsed && (
+        <ChevronRightIcon
+          className={cn(
+            "size-4 shrink-0 transition-transform text-muted-foreground",
+            inlineMode && isOpen && "rotate-90",
+          )}
+        />
+      )}
     </button>
   );
 
   return (
-    <li role="none" data-slot="menu-submenu" data-key={subKey} data-open={isOpen || undefined}>
+    <li role="none" data-slot="menu-submenu" data-key={subKey} data-open={isOpen || undefined} className={!inlineMode ? "relative" : undefined}>
       {trigger}
-      {inlineMode && isOpen && (
+      {inlineMode && isOpen && !ctx.inlineCollapsed && (
         <ul role="menu" data-slot="menu-sub-content" className={cn("list-none m-0 p-0", tc.subBg)}>
           <MenuContext.Provider value={childContext}>{children}</MenuContext.Provider>
         </ul>
+      )}
+      {!inlineMode && isOpen && (
+        <div
+          className={cn(
+            "absolute left-full top-0 z-50 ml-1 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+          )}
+        >
+          <MenuContext.Provider value={childContext}>
+            <ul role="menu" data-slot="menu-sub-content" className="list-none m-0 p-0">
+              {children}
+            </ul>
+          </MenuContext.Provider>
+        </div>
       )}
     </li>
   );
@@ -721,6 +742,7 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
             isSelected ? tc.itemActive : tc.itemHover,
             danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
             disabled && "pointer-events-none opacity-50",
+            ctx.inlineCollapsed && "justify-center",
             className,
           )}
           style={indentStyle}
@@ -732,7 +754,7 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
               {icon}
             </span>
           )}
-          <span className="flex-1 truncate">{children}</span>
+          {!ctx.inlineCollapsed && <span className="flex-1 truncate">{children}</span>}
         </button>
       </li>
     );
