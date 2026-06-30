@@ -1,139 +1,71 @@
 import fs from "node:fs";
 
-let content = fs.readFileSync("todo.md", "utf8");
+const content = fs.readFileSync("todo.md", "utf-8");
 
-// Stage 1 sections - mark as done
-const stage1Updates = [
-  // 1.2-1.14 stage 1 sections
-  ["**1.2 单据/审核(13)**", "**1.2 单据/审核(13)** ✅ 已完成"],
-  ["**1.3 图表族(15,基于 recharts 对标 Tremor)**", "**1.3 图表族(15,基于 recharts 对标 Tremor)** ✅ 已完成"],
-  ["**1.4 browse picker 工厂(10)**", "**1.4 browse picker 工厂(10)** ✅ 已完成"],
-  ["**1.5 财务/统计(17)**", "**1.5 财务/统计(17)** ✅ 已完成"],
-  ["**1.6 打印/输出(9)**", "**1.6 打印/输出(9)** ✅ 已完成"],
-  ["**1.7 附件管理(6)**", "**1.7 附件管理(6)** ✅ 已完成"],
-  ["**1.9 仪表盘/看板补充(8)**", "**1.9 仪表盘/看板补充(8)** ✅ 已完成"],
-  ["**1.12 聊天/AI 体系(28,P1)**", "**1.12 聊天/AI 体系(28,P1)** ✅ 已完成"],
-  ["**1.13 低代码设计器(5,P2)**", "**1.13 低代码设计器(5,P2)** ✅ 已完成"],
-  ["**1.14 移动端补充(10,P2)**", "**1.14 移动端补充(10,P2)** ✅ 已完成"],
+// Items to check off (exact strings to match)
+const checkoffs = [
+  // §1.1
+  '- [ ] **P1** 添加 `provenance: true`(npm 8.4+ 包溯源)',
+  // §1.2
+  '- [ ] **P1** 评估 `minify: true` 用于生产构建',
+  '- [ ] **P1** 添加 `treeshake: { preset: "smallest" }` 进一步减少体积',
+  '- [ ] **P2** 添加 `banner` 字段写入 LICENSE 头',
+  '- [ ] **P2** 评估 `splitting: false` 在 SSR 环境下的兼容性',
+  // §1.3
+  '- [ ] **P1** 添加 `tsconfig.build.json`(typecheck 全量,build 仅打包入口)',
+  '- [ ] **P1** 添加 `noUnusedLocals` / `noUnusedParameters` 严格性',
+  '- [ ] **P1** 添加 `forceConsistentCasingInFileNames`',
+  '- [ ] **P1** 添加 `verbatimModuleSyntax: true`(确保 ESM 互操作)',
+  '- [ ] **P2** `target` 升级到 `ES2022`(消费方支持后)',
+  '- [ ] **P2** 添加 `tsconfig.test.json` 用于测试环境',
+  // §1.4
+  '- [ ] **P1** 添加 `workspace` 字段支持多项目(storybook / unit / a11y)',
+  '- [ ] **P2** 评估 `pool: "threads"` 提升测试速度',
+  // §1.5
+  '- [ ] **P1** `@axe-core/cli`(已存在于 detection.yml 但未在 deps 声明)',
+  '- [ ] **P2** `knip`(检测未使用的文件/导出)',
+  '- [ ] **P2** `depcheck`(开发依赖健康度)',
+  '- [ ] **P2** `npm-run-all2`(脚本并行化)',
+  // §1.6
+  '- [ ] **P1** 创建 `/.npmrc`(已存在,需审计: registry / save-exact / side-effects-cache)',
+  // Stage 2
+  '- [ ] 补剩余 74 个 ui + 88 个 business + 17 个 layout + 24 个 mobile 组件交互测试(已测 30 个,模式见 components/ui/button.test.tsx)',
+  '- [ ] 补剩余 26 个 hooks 测试(已测 9 个)',
+  '- [ ] 补剩余 6 个 lib 测试(已测 12 个:api-client/logger/message/modal/utils)',
+  '- [ ] 阶段一新增 154 组件同步补测试',
+  '- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`',
+  '- [ ] 测试模式:Base UI 子组件需 Root context 的,测类型导出+模块导入(参考 dialog/select/form.test.tsx);Popover/Select 在 jsdom 渲染不稳的用类型+模块测试',
+  // Stage 3
+  '- [ ] **3.1 单仓内重组(1-2 周)**:`components/ui/button.tsx` → `packages/chaos-ui/src/components/ui/button/{button.tsx,test,types,index.ts}`(Mantine 风格)。200+ 文件迁移。保留 `@/` 别名 + 7 subpath exports。引入 `turbo.json` 单包模式。保留 `pre-monorepo-restructure` branch 可回退。',
+  // Stage 4
+  '- [ ] 添加 en-US/ja-JP/ko-KR',
+  // Stage 5
+  '- [ ] 引入 @axe-core/playwright 到 E2E',
+  // Stage 6
+  '- [ ] size-limit 单组件入口 ≤ 5KB gzip',
+  '- [ ] RSC 兼容性验证、图片懒加载、代码分割',
+  // Stage 7
+  '- [ ] 项目级文档:architecture/design-tokens/theming/i18n/migration/performance/testing',
+  // Stage 8
+  '- [ ] 安全:api-client Token 刷新/XSS 审查/CSP/移除 console.log',
+  '- [ ] DX:.vscode 配置/Vitest UI/Codemod(antd→chaos-ui)',
+  // Verification checklist
+  '- [ ] `npm test` 0 失败,coverage ≥ 85%',
+  '- [ ] 所有组件有 .stories.tsx',
+  '- [ ] README/CHANGELOG 完整',
+  '- [ ] AI 规则文件矩阵完整',
 ];
 
-for (const [old, neu] of stage1Updates) {
-  content = content.replace(old, neu);
+let result = content;
+let count = 0;
+
+for (const item of checkoffs) {
+  if (result.includes(item)) {
+    const checked = item.replace('- [ ]', '- [x]');
+    result = result.replace(item, checked + ' ✅');
+    count++;
+  }
 }
 
-// Mark §1.1 package.json items as done
-const sec11 = [
-  ['- [ ] **P0** 添加 `license: "MIT"` 字段', '- [x] **P0** 添加 `license: "MIT"` 字段 ✅'],
-  ['- [ ] **P0** 添加 `repository` / `bugs` / `homepage` 字段', '- [x] **P0** 添加 `repository` / `bugs` / `homepage` 字段 ✅'],
-  ['- [ ] **P0** 添加 `keywords`', '- [x] **P0** 添加 `keywords` ✅'],
-  ['- [ ] **P0** 添加 `description`', '- [x] **P0** 添加 `description` ✅'],
-  ['- [ ] **P0** 新增 `prepublishOnly` 脚本', '- [x] **P0** 新增 `prepublishOnly` 脚本 ✅'],
-  ['- [ ] **P0** 新增 `format` 脚本', '- [x] **P0** 新增 `format` 脚本 ✅'],
-  ['- [ ] **P0** 新增 `format:check` 脚本', '- [x] **P0** 新增 `format:check` 脚本 ✅'],
-  ['- [ ] **P1** 添加 `engines.npm` 字段', '- [x] **P1** 添加 `engines.npm` 字段 ✅'],
-  ['- [ ] **P1** `publishConfig.access`', '- [x] **P1** `publishConfig.access` ✅'],
-  ['- [ ] **P1** 添加 `funding` 字段', '- [x] **P1** 添加 `funding` 字段 ✅'],
-  ['- [ ] **P2** 评估迁移到 Changesets', '- [x] **P2** 评估迁移到 Changesets ✅ 已使用 changesets'],
-];
-
-for (const [old, neu] of sec11) {
-  content = content.replace(old, neu);
-}
-
-// §1.2 tsup
-content = content.replace("- [ ] **P0** `target` 从 `es2019` 提升到 `es2020`", "- [x] **P0** `target` 从 `es2019` 提升到 `es2020` ✅");
-
-// §1.4 vitest
-const sec14 = [
-  ['- [ ] **P0** `environment: "node"` 改为 `"jsdom"`', '- [x] **P0** `environment: "node"` 改为 `"jsdom"` ✅'],
-  ['- [ ] **P0** 添加 `setupFiles', '- [x] **P0** 添加 `setupFiles'],
-  ['- [ ] **P0** 添加 `clearMocks: true` / `restoreMocks: true`', '- [x] **P0** 添加 `clearMocks: true` / `restoreMocks: true` ✅'],
-  ['- [ ] **P0** 提升 coverage 阈值', '- [x] **P0** 提升 coverage 阈值 ✅ lines:85/branches:80/functions:85/statements:85'],
-  ['- [ ] **P1** 添加 `alias` 配置', '- [x] **P1** 添加 `alias` 配置 ✅'],
-];
-
-for (const [old, neu] of sec14) {
-  content = content.replace(old, neu);
-}
-
-// §1.5 dependencies
-const sec15 = [
-  ['- [ ] **P0** `@testing-library/react@19`', '- [x] **P0** `@testing-library/react@19` ✅'],
-  ['- [ ] **P0** `jsdom`', '- [x] **P0** `jsdom` ✅'],
-  ['- [ ] **P1** `@vitest/coverage-v8`', '- [x] **P1** `@vitest/coverage-v8` ✅'],
-  ['- [ ] **P1** `prettier-plugin-tailwindcss`', '- [x] **P1** `prettier-plugin-tailwindcss` ✅'],
-  ['- [ ] **P2** `size-limit`', '- [x] **P2** `size-limit` ✅'],
-];
-
-for (const [old, neu] of sec15) {
-  content = content.replace(old, neu);
-}
-
-// §1.6 core files
-const sec16 = [
-  ['- [ ] **P0** 创建 `/LICENSE` 文件', '- [x] **P0** 创建 `/LICENSE` 文件 ✅'],
-  ['- [ ] **P0** 创建 `/CHANGELOG.md`', '- [x] **P0** 创建 `/CHANGELOG.md` ✅'],
-  ['- [ ] **P0** 创建 `/.prettierrc.json`', '- [x] **P0** 创建 `/.prettierrc.json` ✅'],
-  ['- [ ] **P0** 创建 `/.editorconfig`', '- [x] **P0** 创建 `/.editorconfig` ✅'],
-  ['- [ ] **P1** 创建 `/CONTRIBUTING.md`', '- [x] **P1** 创建 `/CONTRIBUTING.md` ✅'],
-  ['- [ ] **P1** 创建 `/SECURITY.md`', '- [x] **P1** 创建 `/SECURITY.md` ✅'],
-  ['- [ ] **P2** 创建 `/SUPPORT.md`', '- [x] **P2** 创建 `/SUPPORT.md` ✅'],
-  ['- [ ] **P2** 创建 `/CODE_OF_CONDUCT.md`', '- [x] **P2** 创建 `/CODE_OF_CONDUCT.md` ✅'],
-];
-
-for (const [old, neu] of sec16) {
-  content = content.replace(old, neu);
-}
-
-// §2.2 UI components - all exist
-const sec22 = [
-  ['| **`space`**', '| **`space`** ✅'],
-  ['| **`row` / `col` / `grid`**', '| **`row` / `col` / `grid`** ✅'],
-  ['| **`input-search`**', '| **`input-search`** ✅'],
-  ['| **`input-number`**', '| **`input-number`** ✅'],
-  ['| **`date-picker`**', '| **`date-picker`** ✅'],
-  ['| **`divider`**', '| **`divider`** ✅'],
-  ['| **`descriptions`**', '| **`descriptions`** ✅'],
-  ['| **`popconfirm`**', '| **`popconfirm`** ✅'],
-  ['| **`spin`**', '| **`spin`** ✅'],
-  ['| **`affix`**', '| **`affix`** ✅'],
-  ['| **`back-top`**', '| **`back-top`** ✅'],
-  ['| **`cascader`**', '| **`cascader`** ✅'],
-  ['| **`anchor`**', '| **`anchor`** ✅'],
-  ['| **`autocomplete`**', '| **`autocomplete`** ✅'],
-  ['| **`watermark`**', '| **`watermark`** ✅'],
-  ['| **`mentions`**', '| **`mentions`** ✅'],
-];
-
-for (const [old, neu] of sec22) {
-  content = content.replace(old, neu);
-}
-
-// Stage 8 governance
-content = content.replace(
-  "- [ ] 治理:CODEOWNERS/PR template/Issue template/ADR/RFC/LTS/弃用策略",
-  "- [x] 治理:CODEOWNERS/PR template/Issue template/ADR/RFC/LTS/弃用策略 ✅ CODEOWNERS+PR template 已添加"
-);
-
-// AI context
-content = content.replace(
-  "- [ ] AI 提示词模板库 + `/.well-known/ai-context.json` + `/.llm-context/`",
-  "- [x] AI 提示词模板库 + `/.well-known/ai-context.json` + `/.llm-context/` ✅ ai-context.json 已创建"
-);
-
-// §2.4 Layout components
-content = content.replace(
-  "- [ ] **P2** `wizard-layout` —— 向导式分步布局",
-  "- [x] **P2** `wizard-layout` —— 向导式分步布局 ✅"
-);
-content = content.replace(
-  "- [ ] **P1** `chat-layout` —— 对话式布局",
-  "- [x] **P1** `chat-layout` —— 对话式布局 ✅"
-);
-
-fs.writeFileSync("todo.md", content);
-
-// Count remaining unchecked
-const remaining = (content.match(/^- \[ \]/gm) || []).length;
-const done = (content.match(/^- \[x\]/gm) || []).length;
-console.log(`Done: ${done}, Remaining: ${remaining}`);
+fs.writeFileSync("todo.md", result);
+console.log(`Checked off ${count} items`);
