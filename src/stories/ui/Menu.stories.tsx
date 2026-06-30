@@ -50,6 +50,16 @@ const demoItems = [
     children: [
       { key: "users", label: "用户管理", icon: <UsersIcon className="size-4" /> },
       { key: "roles", label: "角色管理", icon: <ShieldCheckIcon className="size-4" /> },
+      {
+        key: "permissions",
+        label: "权限管理",
+        icon: <ShieldCheckIcon className="size-4" />,
+        children: [
+          { key: "role-permissions", label: "角色权限" },
+          { key: "user-permissions", label: "用户权限" },
+          { key: "resource-permissions", label: "资源权限" },
+        ],
+      },
       { key: "notifications", label: "通知设置", icon: <BellIcon className="size-4" /> },
     ],
   },
@@ -77,7 +87,7 @@ export const InlineLight: Story = {
     theme: "light",
     items: demoItems,
     defaultSelectedKeys: ["home"],
-    defaultOpenKeys: ["system"],
+    defaultOpenKeys: ["system", "permissions"],
   },
   render: (args: React.ComponentProps<typeof Menu>) => (
     <div className="w-[256px] rounded-lg border p-2">
@@ -147,7 +157,7 @@ export const ChildComponentAPI: Story = {
     mode: "inline",
     theme: "light",
     defaultSelectedKeys: ["home"],
-    defaultOpenKeys: ["system"],
+    defaultOpenKeys: ["system", "permissions"],
   },
   render: (args: React.ComponentProps<typeof Menu>) => (
     <div className="w-[256px] rounded-lg border p-2">
@@ -166,6 +176,15 @@ export const ChildComponentAPI: Story = {
           <MenuItem key="roles" icon={<ShieldCheckIcon className="size-4" />}>
             角色管理
           </MenuItem>
+          <MenuSubMenu
+            key="permissions"
+            title="权限管理"
+            icon={<ShieldCheckIcon className="size-4" />}
+          >
+            <MenuItem key="role-permissions">角色权限</MenuItem>
+            <MenuItem key="user-permissions">用户权限</MenuItem>
+            <MenuItem key="resource-permissions">资源权限</MenuItem>
+          </MenuSubMenu>
         </MenuSubMenu>
         <MenuDivider />
         <MenuItemGroup title="报表">
@@ -198,7 +217,7 @@ export const CollapsibleControlled: Story = {
     const [collapsed, setCollapsed] = React.useState(false);
     return (
       <div className="space-y-4">
-        <div className={collapsed ? "w-[64px]" : "w-[256px]"} className="transition-all duration-300">
+        <div className={cn("transition-all duration-300", collapsed ? "w-[64px]" : "w-[256px]")}>
           <div className="rounded-lg border overflow-hidden">
             <Menu
               mode="inline"
@@ -250,6 +269,21 @@ export const Controlled: Story = {
     <div className="w-[256px] rounded-lg border p-2">
       <Menu {...args} />
       <p className="mt-2 text-xs text-muted-foreground">受控模式: selectedKeys=&#123;[&apos;users&apos;]&#125; openKeys=&#123;[&apos;system&apos;]&#125;</p>
+    </div>
+  ),
+};
+
+export const ThreeLevelNesting: Story = {
+  args: {
+    mode: "inline",
+    theme: "light",
+    items: demoItems,
+    defaultSelectedKeys: ["role-permissions"],
+    defaultOpenKeys: ["system", "permissions"],
+  },
+  render: (args: React.ComponentProps<typeof Menu>) => (
+    <div className="w-[280px] rounded-lg border p-2">
+      <Menu {...args} />
     </div>
   ),
 };

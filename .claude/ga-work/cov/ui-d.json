@@ -1,0 +1,18 @@
+[
+  "components/ui/menu.tsx",
+  "components/ui/sequence-input.tsx",
+  "components/ui/kpi-panel.tsx",
+  "components/ui/slider.tsx",
+  "components/ui/image.tsx",
+  "components/ui/list.tsx",
+  "components/ui/otp-field.tsx",
+  "components/ui/tooltip.tsx",
+  "components/ui/form.tsx",
+  "components/ui/alert.tsx",
+  "components/ui/collapsible.tsx",
+  "components/ui/descriptions.tsx",
+  "components/ui/grid-layout.tsx",
+  "components/ui/hover-card.tsx",
+  "components/ui/input-group.tsx",
+  "components/ui/page-container.tsx"
+]

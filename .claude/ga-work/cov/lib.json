@@ -1,0 +1,10 @@
+[
+  "lib/security.ts",
+  "lib/api-client.ts",
+  "lib/message.ts",
+  "lib/modal.ts",
+  "lib/modal-store.tsx",
+  "lib/logger.ts",
+  "lib/worker.ts",
+  "lib/url.ts"
+]

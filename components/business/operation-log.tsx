@@ -1,17 +1,20 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { formatDateTime } from "@/lib/format";
+import { UserIcon } from "@/components/ui/icons";
 
 /**
  * @component OperationLog
  * @category business/bill
  * @since 0.7.0
- * @description 操作日志列表
+ * @description 操作日志列表 — 以时间线形式展示单据/系统的操作动作、操作人、时间与详情。
  * @keywords operation, log
+ * @param logs 日志条目数组，每项含 id/action/operator/timestamp/detail
+ * @param className 根节点额外类名
  * @example
- * <OperationLog />
+ * <OperationLog logs={[{ id:"1", action:"审批通过", operator:"李四", timestamp:"2026-01-01T09:00:00Z" }]} />
  */
-
 interface OperationLogProps {
   logs: Array<{
     id: string;
@@ -23,11 +26,45 @@ interface OperationLogProps {
   className?: string;
 }
 
-function OperationLog({ className }: OperationLogProps) {
+function OperationLog({ logs, className }: OperationLogProps) {
   return (
-    <div data-slot="operation-log" className={cn("", className)}>
-      {null}
-    </div>
+    <ol
+      data-slot="operation-log"
+      className={cn("flex flex-col gap-3", className)}
+      role="list"
+    >
+      {logs.map((log) => (
+        <li key={log.id} className="relative flex gap-3 pl-5">
+          <span
+            aria-hidden="true"
+            className="absolute left-0 top-1.5 size-2 rounded-full bg-primary ring-2 ring-primary/20"
+          />
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5">
+              <span className="text-sm font-medium">{log.action}</span>
+              <time
+                className="text-xs text-muted-foreground tabular-nums"
+                dateTime={log.timestamp}
+              >
+                {formatDateTime(log.timestamp)}
+              </time>
+            </div>
+            <div className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
+              <UserIcon className="size-3" />
+              <span>{log.operator}</span>
+            </div>
+            {log.detail ? (
+              <p className="mt-1 text-xs text-muted-foreground">{log.detail}</p>
+            ) : null}
+          </div>
+        </li>
+      ))}
+      {logs.length === 0 ? (
+        <li className="py-4 text-center text-sm text-muted-foreground">
+          暂无操作日志
+        </li>
+      ) : null}
+    </ol>
   );
 }
 

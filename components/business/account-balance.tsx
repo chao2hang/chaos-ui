@@ -1,32 +1,34 @@
 "use client";
-
 import { cn } from "@/lib/utils";
-
+import { formatCurrency } from "@/lib/format";
+import { ArrowDownRightIcon, ArrowUpRightIcon } from "@/components/ui";
 /**
  * @component AccountBalance
  * @category business/finance
  * @since 0.7.0
  * @description 账户余额
- * @keywords account, balance
- * @example
- * <AccountBalance />
  */
-
 interface AccountBalanceProps {
-  balance: number;
+balance: number;
   currency?: string;
   label?: string;
   trend?: number;
   className?: string;
 }
-
-function AccountBalance({ className }: AccountBalanceProps) {
+function AccountBalance({ balance, currency = "CNY", label = "账户余额", trend, className }: AccountBalanceProps) {
+  const positive = (trend ?? 0) >= 0;
   return (
-    <div data-slot="account-balance" className={cn("", className)}>
-      {null}
+    <div data-slot="account-balance" className={cn("flex flex-col gap-1 rounded-lg border bg-card p-4", className)}>
+      <span className="text-xs text-muted-foreground">{label}</span>
+      <span className="text-2xl font-semibold tabular-nums">{formatCurrency(balance, currency)}</span>
+      {trend !== undefined && (
+        <span className={cn("flex items-center gap-1 text-xs font-medium", positive ? "text-emerald-600" : "text-red-600")} aria-label={`趋势 ${trend}%`}>
+          {positive ? <ArrowUpRightIcon className="size-3.5" /> : <ArrowDownRightIcon className="size-3.5" />}
+          {Math.abs(trend)}%
+        </span>
+      )}
     </div>
   );
 }
-
 export { AccountBalance };
 export type { AccountBalanceProps };

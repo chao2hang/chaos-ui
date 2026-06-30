@@ -1,0 +1,18 @@
+[
+  "components/ui/statistic.tsx",
+  "components/ui/tree-view.tsx",
+  "components/ui/date-picker.tsx",
+  "components/ui/department-browse.tsx",
+  "components/ui/form-list.tsx",
+  "components/ui/split-pane.tsx",
+  "components/ui/tags-input.tsx",
+  "components/ui/grid.tsx",
+  "components/ui/user-browse.tsx",
+  "components/ui/virtual-list.tsx",
+  "components/ui/calendar.tsx",
+  "components/ui/config-provider.tsx",
+  "components/ui/dropdown-menu.tsx",
+  "components/ui/popconfirm.tsx",
+  "components/ui/qrcode.tsx",
+  "components/ui/virtual-table.tsx"
+]

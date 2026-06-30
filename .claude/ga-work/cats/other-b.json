@@ -1,0 +1,138 @@
+[
+  {
+    "name": "photo-audit",
+    "comp": "PhotoAudit",
+    "path": "components/business/photo-audit.tsx",
+    "props": "PhotoAuditProps",
+    "body": "photos: Array<{ src: string; alt?: string }>;\n  onApprove?: (idx: number) => void;\n  onReject?: (idx: number, reason: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "preference-panel",
+    "comp": "PreferencePanel",
+    "path": "components/business/preference-panel.tsx",
+    "props": "PreferencePanelProps",
+    "body": "open: boolean;\n  onOpenChange: (open: boolean) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "promotion-rule-card",
+    "comp": "PromotionRuleCard",
+    "path": "components/business/promotion-rule-card.tsx",
+    "props": "PromotionRuleCardProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "quick-entry-grid",
+    "comp": "QuickEntryGrid",
+    "path": "components/business/quick-entry-grid.tsx",
+    "props": "QuickEntryGridProps",
+    "body": "entries: Array<{\n    id: string;\n    icon?: React.ReactNode;\n    label: string;\n    onClick: () => void;\n  }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "rebut-node-select",
+    "comp": "RebutNodeSelect",
+    "path": "components/business/rebut-node-select.tsx",
+    "props": "RebutNodeSelectProps",
+    "body": "nodes: Array<{ id: string; name: string }>;\n  onSelect?: (nodeId: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "reconciliation-summary",
+    "comp": "ReconciliationSummary",
+    "path": "components/business/reconciliation-summary.tsx",
+    "props": "ReconciliationSummaryProps",
+    "body": "totalAmount: number;\n  matchedAmount: number;\n  unmatchedAmount: number;\n  matchedCount: number;\n  unmatchedCount: number;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "resource-schedule",
+    "comp": "ResourceSchedule",
+    "path": "components/business/resource-schedule.tsx",
+    "props": "ResourceScheduleProps",
+    "body": "resources: Array<{ id: string; name: string }>;\n  bookings: Array<{\n    resourceId: string;\n    start: string;\n    end: string;\n    title: string;\n  }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "serial-number-manager",
+    "comp": "SerialNumberManager",
+    "path": "components/business/serial-number-manager.tsx",
+    "props": "SerialNumberManagerProps",
+    "body": "rules: Array<{\n    prefix: string;\n    dateFormat: string;\n    zeroFill: number;\n    separator: string;\n  }>;\n  onChange?: (rules: unknown[]) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "settlement-status-tag",
+    "comp": "SettlementStatusTag",
+    "path": "components/business/settlement-status-tag.tsx",
+    "props": "SettlementStatusTagProps",
+    "body": "status: \"unsettled\" | \"partial\" | \"settled\" | \"overdue\";\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "sign-action-button",
+    "comp": "SignActionButton",
+    "path": "components/business/sign-action-button.tsx",
+    "props": "SignActionButtonProps",
+    "body": "onSign?: () => void;\n  signed?: boolean;\n  label?: string;\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "tab-crud-page",
+    "comp": "TabCrudPage",
+    "path": "components/business/tab-crud-page.tsx",
+    "props": "TabCrudPageProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "tab-pin",
+    "comp": "TabPin",
+    "path": "components/business/tab-pin.tsx",
+    "props": "TabPinProps",
+    "body": "id: string;\n  label: string;\n  pinned?: boolean;\n  onPin?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "target-progress",
+    "comp": "TargetProgress",
+    "path": "components/business/target-progress.tsx",
+    "props": "TargetProgressProps",
+    "body": "target: number;\n  actual: number;\n  period?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "timeline-view",
+    "comp": "TimelineView",
+    "path": "components/business/timeline-view.tsx",
+    "props": "TimelineViewProps",
+    "body": "events: Array<{\n    id: string;\n    date: string;\n    title: string;\n    description?: string;\n  }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "tracking",
+    "comp": "Tracking",
+    "path": "components/business/tracking.tsx",
+    "props": "TrackingProps",
+    "body": "target: number;\n  actual: number;\n  label?: string;\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "tree-crud-page",
+    "comp": "TreeCrudPage",
+    "path": "components/business/tree-crud-page.tsx",
+    "props": "TreeCrudPageProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "writeoff-flow",
+    "comp": "WriteoffFlow",
+    "path": "components/business/writeoff-flow.tsx",
+    "props": "WriteoffFlowProps",
+    "body": "steps: Array<{ id: string; name: string; status: string; amount?: number }>;\n  className?: string;",
+    "useClient": true
+  }
+]

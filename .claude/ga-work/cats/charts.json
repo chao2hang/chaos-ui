@@ -1,0 +1,210 @@
+[
+  {
+    "name": "area-chart",
+    "comp": "AreaChart",
+    "path": "components/business/area-chart.tsx",
+    "props": "AreaChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "bar-chart",
+    "comp": "BarChart",
+    "path": "components/business/bar-chart.tsx",
+    "props": "BarChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "bar-list-card",
+    "comp": "BarListCard",
+    "path": "components/business/bar-list-card.tsx",
+    "props": "BarListCardProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "calendar-view",
+    "comp": "CalendarView",
+    "path": "components/business/calendar-view.tsx",
+    "props": "CalendarViewProps",
+    "body": "events: Array<{ id: string; date: string; title: string; color?: string }>;\n  onDateSelect?: (date: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "callout",
+    "comp": "Callout",
+    "path": "components/business/callout.tsx",
+    "props": "CalloutProps",
+    "body": "title?: string;\n  children: React.ReactNode;\n  variant?: \"default\" | \"info\" | \"success\" | \"warning\" | \"error\";\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "chart-card",
+    "comp": "ChartCard",
+    "path": "components/business/chart-card.tsx",
+    "props": "ChartCardProps",
+    "body": "title: string;\n  description?: string;\n  children: React.ReactNode;\n  footer?: React.ReactNode;\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "chart-suite",
+    "comp": "ChartSuite",
+    "path": "components/business/chart-suite.tsx",
+    "props": "ChartSuiteProps",
+    "body": "type: \"line\" | \"bar\" | \"pie\" | \"radar\" | \"scatter\";\n  data: unknown[];\n  xField?: string;\n  yField?: string;\n  series?: string;\n  height?: number;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "delta-bar",
+    "comp": "DeltaBar",
+    "path": "components/business/delta-bar.tsx",
+    "props": "DeltaBarProps",
+    "body": "value: number;\n  maxValue?: number;\n  label?: string;\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "donut-card",
+    "comp": "DonutCard",
+    "path": "components/business/donut-card.tsx",
+    "props": "DonutCardProps",
+    "body": "data: Array<{ label: string; value: number; color: string }>;\n  centerLabel?: string;\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "donut-chart",
+    "comp": "DonutChart",
+    "path": "components/business/donut-chart.tsx",
+    "props": "DonutChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "funnel-chart",
+    "comp": "FunnelChart",
+    "path": "components/business/funnel-chart.tsx",
+    "props": "FunnelChartProps",
+    "body": "data: Array<{ label: string; value: number; color?: string }>;\n  height?: number;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "gantt-chart",
+    "comp": "GanttChart",
+    "path": "components/business/gantt-chart.tsx",
+    "props": "GanttChartProps",
+    "body": "tasks: Array<{\n    id: string;\n    name: string;\n    start: string;\n    end: string;\n    progress?: number;\n  }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "gauge-chart",
+    "comp": "GaugeChart",
+    "path": "components/business/gauge-chart.tsx",
+    "props": "GaugeChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "heatmap-chart",
+    "comp": "HeatmapChart",
+    "path": "components/business/heatmap-chart.tsx",
+    "props": "HeatmapChartProps",
+    "body": "data: Array<{ x: string; y: string; value: number }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "line-chart",
+    "comp": "LineChart",
+    "path": "components/business/line-chart.tsx",
+    "props": "LineChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "map-chart",
+    "comp": "MapChart",
+    "path": "components/business/map-chart.tsx",
+    "props": "MapChartProps",
+    "body": "region: string;\n  data: Array<{ name: string; value: number }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "pie-chart",
+    "comp": "PieChart",
+    "path": "components/business/pie-chart.tsx",
+    "props": "PieChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "radar-chart",
+    "comp": "RadarChart",
+    "path": "components/business/radar-chart.tsx",
+    "props": "RadarChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "radial-chart",
+    "comp": "RadialChart",
+    "path": "components/business/radial-chart.tsx",
+    "props": "RadialChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "sankey-chart",
+    "comp": "SankeyChart",
+    "path": "components/business/sankey-chart.tsx",
+    "props": "SankeyChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "scatter-chart",
+    "comp": "ScatterChart",
+    "path": "components/business/scatter-chart.tsx",
+    "props": "ScatterChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "spark-chart",
+    "comp": "SparkChart",
+    "path": "components/business/spark-chart.tsx",
+    "props": "SparkChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "stat-card-with-delta",
+    "comp": "StatCardWithDelta",
+    "path": "components/business/stat-card-with-delta.tsx",
+    "props": "StatCardWithDeltaProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "stat-card-with-sparkline",
+    "comp": "StatCardWithSparkline",
+    "path": "components/business/stat-card-with-sparkline.tsx",
+    "props": "StatCardWithSparklineProps",
+    "body": "label: string;\n  value: string | number;\n  trend?: number;\n  sparklineData?: number[];\n  className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "treemap-chart",
+    "comp": "TreemapChart",
+    "path": "components/business/treemap-chart.tsx",
+    "props": "TreemapChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "waterfall-chart",
+    "comp": "WaterfallChart",
+    "path": "components/business/waterfall-chart.tsx",
+    "props": "WaterfallChartProps",
+    "body": "className?: string;",
+    "useClient": true
+  }
+]

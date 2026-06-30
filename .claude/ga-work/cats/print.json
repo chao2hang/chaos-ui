@@ -1,0 +1,26 @@
+[
+  {
+    "name": "print-service",
+    "comp": "PrintService",
+    "path": "components/business/print-service.tsx",
+    "props": "PrintServiceProps",
+    "body": "className?: string;",
+    "useClient": false
+  },
+  {
+    "name": "print-template-builder",
+    "comp": "PrintTemplateBuilder",
+    "path": "components/business/print-template-builder.tsx",
+    "props": "PrintTemplateBuilderProps",
+    "body": "template?: unknown;\n  onChange?: (template: unknown) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "template-download",
+    "comp": "TemplateDownload",
+    "path": "components/business/template-download.tsx",
+    "props": "TemplateDownloadProps",
+    "body": "url: string;\n  label?: string;\n  className?: string;",
+    "useClient": false
+  }
+]

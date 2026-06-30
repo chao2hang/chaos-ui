@@ -2,19 +2,31 @@
   "permissions": {
     "allow": [
       "Bash(npm run typecheck)",
+      "Bash(npm run typecheck *)",
       "Bash(npm run type-check)",
       "Bash(npm run lint)",
+      "Bash(npm run lint *)",
+      "Bash(npm run check *)",
       "Bash(npm test)",
+      "Bash(npm test *)",
+      "Bash(npx vitest run *)",
+      "Bash(npx eslint *)",
       "Bash(npm view *)",
       "Bash(npm search *)",
       "mcp__codegraph__codegraph_search",
       "mcp__codegraph__codegraph_explore",
       "mcp__codegraph__codegraph_context",
+      "mcp__codegraph__codegraph_files",
+      "mcp__codegraph__codegraph_status",
       "mcp__serena__get_symbols_overview",
+      "mcp__serena__initial_instructions",
       "mcp__filesystem__list_directory_with_sizes",
+      "mcp__filesystem__list_directory",
       "mcp__filesystem__read_text_file",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__query-docs"
+      "mcp__context7__query-docs",
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__playwright__browser_navigate"
     ]
   }
 }

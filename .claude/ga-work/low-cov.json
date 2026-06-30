@@ -1,0 +1,1832 @@
+[
+  {
+    "pct": 0,
+    "path": "components/business/activity-feed.tsx",
+    "total": 21,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/business/campaign-calendar.tsx",
+    "total": 13,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/business/campaign-card.tsx",
+    "total": 5,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/business/form-field.tsx",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/business/page-header.tsx",
+    "total": 4,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/business/stat-card.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/layout/blank-layout.tsx",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/layout/detail-layout.tsx",
+    "total": 3,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/layout/error-layout.tsx",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/layout/print-layout.tsx",
+    "total": 10,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/layout/public-layout.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-auth-layout.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-bottom-nav.tsx",
+    "total": 7,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-button.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-card.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-dashboard-layout.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-data-table.tsx",
+    "total": 11,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-dialog.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-empty-state.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-filter-builder.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-form-field.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-form-wizard.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-form.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-input.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-kanban.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-kpi-card.tsx",
+    "total": 5,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-navigation.tsx",
+    "total": 3,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-page-header.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-select.tsx",
+    "total": 5,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-sheet.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-skeleton.tsx",
+    "total": 3,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-swipe-actions.tsx",
+    "total": 53,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-tabs.tsx",
+    "total": 4,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/mobile/mobile-textarea.tsx",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/accordion.tsx",
+    "total": 4,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/aspect-ratio.tsx",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/breadcrumb.tsx",
+    "total": 9,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/divider.tsx",
+    "total": 5,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/input-search.tsx",
+    "total": 23,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/pagination.tsx",
+    "total": 7,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/skeleton.tsx",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "components/ui/stepper.tsx",
+    "total": 5,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "hooks/index.ts",
+    "total": 1,
+    "covered": 0
+  },
+  {
+    "pct": 0,
+    "path": "lib/security.ts",
+    "total": 2,
+    "covered": 0
+  },
+  {
+    "pct": 1,
+    "path": "components/business/advanced-data-table.tsx",
+    "total": 74,
+    "covered": 1
+  },
+  {
+    "pct": 1,
+    "path": "components/business/export-button.tsx",
+    "total": 75,
+    "covered": 1
+  },
+  {
+    "pct": 1,
+    "path": "components/business/pivot-table.tsx",
+    "total": 68,
+    "covered": 1
+  },
+  {
+    "pct": 1,
+    "path": "components/ui/tour.tsx",
+    "total": 74,
+    "covered": 1
+  },
+  {
+    "pct": 1,
+    "path": "components/ui/tree-select.tsx",
+    "total": 71,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/crud-page.tsx",
+    "total": 45,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/date-range-picker.tsx",
+    "total": 46,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/heatmap-calendar.tsx",
+    "total": 65,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/kanban-board.tsx",
+    "total": 58,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/line-editor.tsx",
+    "total": 49,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/multi-select.tsx",
+    "total": 47,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/business/time-picker.tsx",
+    "total": 48,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/layout/admin-tabs.tsx",
+    "total": 48,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "components/ui/cascader.tsx",
+    "total": 59,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "hooks/use-clipboard.ts",
+    "total": 44,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "hooks/use-field-validation.ts",
+    "total": 44,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "hooks/use-hotkeys.ts",
+    "total": 41,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "hooks/use-modal.tsx",
+    "total": 41,
+    "covered": 1
+  },
+  {
+    "pct": 2,
+    "path": "lib/api-client.ts",
+    "total": 53,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/code-block.tsx",
+    "total": 37,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/confirm-dialog.tsx",
+    "total": 34,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/cookie-banner.tsx",
+    "total": 36,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/expense-line-editor.tsx",
+    "total": 29,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/filter-bar.tsx",
+    "total": 36,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/form-wizard.tsx",
+    "total": 36,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/inline-edit.tsx",
+    "total": 30,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/json-viewer.tsx",
+    "total": 34,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/order-line-editor.tsx",
+    "total": 39,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/business/prompt-dialog.tsx",
+    "total": 33,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/layout/admin-sider.tsx",
+    "total": 32,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/affix.tsx",
+    "total": 34,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/combobox.tsx",
+    "total": 38,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/image-viewer.tsx",
+    "total": 38,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/mentions.tsx",
+    "total": 38,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/qrcode-display.tsx",
+    "total": 29,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/statistic.tsx",
+    "total": 29,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "components/ui/tree-view.tsx",
+    "total": 37,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "hooks/use-infinite-scroll.ts",
+    "total": 35,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "hooks/use-intersection-observer.ts",
+    "total": 34,
+    "covered": 1
+  },
+  {
+    "pct": 3,
+    "path": "hooks/use-key.ts",
+    "total": 36,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/business/data-table.tsx",
+    "total": 27,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/business/file-upload-manager.tsx",
+    "total": 28,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/ui/date-picker.tsx",
+    "total": 23,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/ui/department-browse.tsx",
+    "total": 57,
+    "covered": 2
+  },
+  {
+    "pct": 4,
+    "path": "components/ui/form-list.tsx",
+    "total": 23,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/ui/split-pane.tsx",
+    "total": 27,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "components/ui/tags-input.tsx",
+    "total": 28,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "hooks/use-copy-to-clipboard.ts",
+    "total": 24,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "hooks/use-local-storage.ts",
+    "total": 27,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "hooks/use-network-status.ts",
+    "total": 28,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "hooks/use-notification.ts",
+    "total": 26,
+    "covered": 1
+  },
+  {
+    "pct": 4,
+    "path": "hooks/use-scroll.ts",
+    "total": 24,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/business/attachment-uploader.tsx",
+    "total": 21,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/business/command-palette.tsx",
+    "total": 41,
+    "covered": 2
+  },
+  {
+    "pct": 5,
+    "path": "components/business/saved-filters.tsx",
+    "total": 21,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/business/search-table.tsx",
+    "total": 19,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/layout/admin-breadcrumb.tsx",
+    "total": 20,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/layout/top-bar.tsx",
+    "total": 22,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/ui/grid.tsx",
+    "total": 22,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "components/ui/user-browse.tsx",
+    "total": 42,
+    "covered": 2
+  },
+  {
+    "pct": 5,
+    "path": "components/ui/virtual-list.tsx",
+    "total": 20,
+    "covered": 1
+  },
+  {
+    "pct": 5,
+    "path": "hooks/use-throttle.ts",
+    "total": 19,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/business/advanced-search.tsx",
+    "total": 17,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/business/permission-matrix.tsx",
+    "total": 16,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/business/permission-wrapper.tsx",
+    "total": 18,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/business/utm-builder.tsx",
+    "total": 36,
+    "covered": 2
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/calendar.tsx",
+    "total": 18,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/config-provider.tsx",
+    "total": 34,
+    "covered": 2
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/dropdown-menu.tsx",
+    "total": 16,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/popconfirm.tsx",
+    "total": 17,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/qrcode.tsx",
+    "total": 18,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "components/ui/virtual-table.tsx",
+    "total": 18,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "hooks/use-click-outside.ts",
+    "total": 17,
+    "covered": 1
+  },
+  {
+    "pct": 6,
+    "path": "hooks/use-confirm-async.tsx",
+    "total": 47,
+    "covered": 3
+  },
+  {
+    "pct": 6,
+    "path": "lib/message.ts",
+    "total": 34,
+    "covered": 2
+  },
+  {
+    "pct": 7,
+    "path": "components/business/error-boundary.tsx",
+    "total": 14,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "components/business/filter-builder.tsx",
+    "total": 28,
+    "covered": 2
+  },
+  {
+    "pct": 7,
+    "path": "components/business/gauge.tsx",
+    "total": 28,
+    "covered": 2
+  },
+  {
+    "pct": 7,
+    "path": "components/business/import-dialog.tsx",
+    "total": 15,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "components/ui/context-menu.tsx",
+    "total": 15,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "components/ui/countdown.tsx",
+    "total": 15,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "components/ui/fab.tsx",
+    "total": 29,
+    "covered": 2
+  },
+  {
+    "pct": 7,
+    "path": "components/ui/fullscreen-toggle.tsx",
+    "total": 14,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "hooks/use-orientation.ts",
+    "total": 14,
+    "covered": 1
+  },
+  {
+    "pct": 7,
+    "path": "lib/modal.ts",
+    "total": 15,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/business/approval-flow.tsx",
+    "total": 24,
+    "covered": 2
+  },
+  {
+    "pct": 8,
+    "path": "components/business/language-switcher.tsx",
+    "total": 13,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/business/metric-trend.tsx",
+    "total": 24,
+    "covered": 2
+  },
+  {
+    "pct": 8,
+    "path": "components/business/role-assignment.tsx",
+    "total": 13,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/ui/barcode-display.tsx",
+    "total": 12,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/ui/command.tsx",
+    "total": 13,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/ui/file-upload.tsx",
+    "total": 12,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "components/ui/sequence-preview.tsx",
+    "total": 12,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "hooks/use-step.ts",
+    "total": 13,
+    "covered": 1
+  },
+  {
+    "pct": 8,
+    "path": "hooks/use-window-size.ts",
+    "total": 12,
+    "covered": 1
+  },
+  {
+    "pct": 9,
+    "path": "components/business/batch-print-dialog.tsx",
+    "total": 11,
+    "covered": 1
+  },
+  {
+    "pct": 9,
+    "path": "components/business/creative-preview.tsx",
+    "total": 11,
+    "covered": 1
+  },
+  {
+    "pct": 9,
+    "path": "components/business/field-mask.tsx",
+    "total": 22,
+    "covered": 2
+  },
+  {
+    "pct": 9,
+    "path": "components/ui/drawer.tsx",
+    "total": 11,
+    "covered": 1
+  },
+  {
+    "pct": 9,
+    "path": "components/ui/rating.tsx",
+    "total": 23,
+    "covered": 2
+  },
+  {
+    "pct": 9,
+    "path": "hooks/use-mobile.ts",
+    "total": 11,
+    "covered": 1
+  },
+  {
+    "pct": 9,
+    "path": "hooks/use-visibility-change.ts",
+    "total": 11,
+    "covered": 1
+  },
+  {
+    "pct": 10,
+    "path": "components/business/loading-page.tsx",
+    "total": 10,
+    "covered": 1
+  },
+  {
+    "pct": 10,
+    "path": "components/business/theme-toggle.tsx",
+    "total": 10,
+    "covered": 1
+  },
+  {
+    "pct": 10,
+    "path": "components/ui/alert-dialog.tsx",
+    "total": 10,
+    "covered": 1
+  },
+  {
+    "pct": 10,
+    "path": "components/ui/timeline.tsx",
+    "total": 10,
+    "covered": 1
+  },
+  {
+    "pct": 11,
+    "path": "components/ui/navigation-menu.tsx",
+    "total": 9,
+    "covered": 1
+  },
+  {
+    "pct": 11,
+    "path": "components/ui/sidebar.tsx",
+    "total": 88,
+    "covered": 10
+  },
+  {
+    "pct": 12,
+    "path": "components/ui/modal-provider.tsx",
+    "total": 26,
+    "covered": 3
+  },
+  {
+    "pct": 13,
+    "path": "components/business/async-task-center.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 13,
+    "path": "components/business/audit-log.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 13,
+    "path": "components/business/channel-picker.tsx",
+    "total": 24,
+    "covered": 3
+  },
+  {
+    "pct": 13,
+    "path": "components/business/crud-toolbar.tsx",
+    "total": 8,
+    "covered": 1
+  },
+  {
+    "pct": 13,
+    "path": "components/business/error-page.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 13,
+    "path": "components/business/notification-center.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 13,
+    "path": "components/business/stat-card-row.tsx",
+    "total": 8,
+    "covered": 1
+  },
+  {
+    "pct": 13,
+    "path": "components/layout/master-detail-tabs.tsx",
+    "total": 8,
+    "covered": 1
+  },
+  {
+    "pct": 13,
+    "path": "components/ui/browse-input.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 13,
+    "path": "components/ui/menu.tsx",
+    "total": 136,
+    "covered": 17
+  },
+  {
+    "pct": 13,
+    "path": "hooks/use-permission.tsx",
+    "total": 15,
+    "covered": 2
+  },
+  {
+    "pct": 14,
+    "path": "components/business/async-task-trigger.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/business/audience-segment-builder.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/business/auth-guard.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/business/bulk-actions-toolbar.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/business/print-button.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/layout/admin-header.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "components/ui/sequence-input.tsx",
+    "total": 7,
+    "covered": 1
+  },
+  {
+    "pct": 14,
+    "path": "hooks/use-media-query.ts",
+    "total": 22,
+    "covered": 3
+  },
+  {
+    "pct": 15,
+    "path": "components/business/announcement-banner.tsx",
+    "total": 20,
+    "covered": 3
+  },
+  {
+    "pct": 15,
+    "path": "components/business/global-loading.tsx",
+    "total": 13,
+    "covered": 2
+  },
+  {
+    "pct": 16,
+    "path": "hooks/use-locale.tsx",
+    "total": 25,
+    "covered": 4
+  },
+  {
+    "pct": 17,
+    "path": "components/business/bill-footer.tsx",
+    "total": 6,
+    "covered": 1
+  },
+  {
+    "pct": 17,
+    "path": "components/business/bill-header.tsx",
+    "total": 6,
+    "covered": 1
+  },
+  {
+    "pct": 17,
+    "path": "components/business/version-history.tsx",
+    "total": 6,
+    "covered": 1
+  },
+  {
+    "pct": 17,
+    "path": "components/ui/kpi-panel.tsx",
+    "total": 6,
+    "covered": 1
+  },
+  {
+    "pct": 17,
+    "path": "components/ui/slider.tsx",
+    "total": 6,
+    "covered": 1
+  },
+  {
+    "pct": 17,
+    "path": "lib/modal-store.tsx",
+    "total": 42,
+    "covered": 7
+  },
+  {
+    "pct": 18,
+    "path": "components/business/approval-timeline.tsx",
+    "total": 11,
+    "covered": 2
+  },
+  {
+    "pct": 19,
+    "path": "components/ui/image.tsx",
+    "total": 16,
+    "covered": 3
+  },
+  {
+    "pct": 20,
+    "path": "components/business/kpi-card.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 20,
+    "path": "components/business/responsive-preview.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 20,
+    "path": "components/layout/dialog-form-body.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 20,
+    "path": "components/ui/list.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 20,
+    "path": "components/ui/otp-field.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 20,
+    "path": "components/ui/tooltip.tsx",
+    "total": 5,
+    "covered": 1
+  },
+  {
+    "pct": 21,
+    "path": "lib/logger.ts",
+    "total": 14,
+    "covered": 3
+  },
+  {
+    "pct": 22,
+    "path": "components/business/chart.tsx",
+    "total": 18,
+    "covered": 4
+  },
+  {
+    "pct": 22,
+    "path": "components/business/status-badge.tsx",
+    "total": 9,
+    "covered": 2
+  },
+  {
+    "pct": 23,
+    "path": "components/ui/form.tsx",
+    "total": 26,
+    "covered": 6
+  },
+  {
+    "pct": 25,
+    "path": "components/business/budget-pacing-card.tsx",
+    "total": 16,
+    "covered": 4
+  },
+  {
+    "pct": 25,
+    "path": "components/business/diff-viewer.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/layout/auth-layout.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/alert.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/collapsible.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/descriptions.tsx",
+    "total": 12,
+    "covered": 3
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/grid-layout.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/hover-card.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/input-group.tsx",
+    "total": 12,
+    "covered": 3
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/page-container.tsx",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/space.tsx",
+    "total": 8,
+    "covered": 2
+  },
+  {
+    "pct": 25,
+    "path": "components/ui/tag.tsx",
+    "total": 8,
+    "covered": 2
+  },
+  {
+    "pct": 25,
+    "path": "hooks/use-page-title.ts",
+    "total": 4,
+    "covered": 1
+  },
+  {
+    "pct": 27,
+    "path": "components/ui/empty-state.tsx",
+    "total": 11,
+    "covered": 3
+  },
+  {
+    "pct": 29,
+    "path": "components/business/audit-sidebar.tsx",
+    "total": 7,
+    "covered": 2
+  },
+  {
+    "pct": 29,
+    "path": "components/business/biz-status-tag.tsx",
+    "total": 7,
+    "covered": 2
+  },
+  {
+    "pct": 29,
+    "path": "components/business/chat-command-menu.tsx",
+    "total": 28,
+    "covered": 8
+  },
+  {
+    "pct": 29,
+    "path": "components/business/dashboard-grid.tsx",
+    "total": 7,
+    "covered": 2
+  },
+  {
+    "pct": 30,
+    "path": "components/business/chat-feedback.tsx",
+    "total": 30,
+    "covered": 9
+  },
+  {
+    "pct": 30,
+    "path": "components/business/mobile-signature.tsx",
+    "total": 80,
+    "covered": 24
+  },
+  {
+    "pct": 30,
+    "path": "hooks/use-print.ts",
+    "total": 46,
+    "covered": 14
+  },
+  {
+    "pct": 31,
+    "path": "components/business/chat-mention-picker.tsx",
+    "total": 26,
+    "covered": 8
+  },
+  {
+    "pct": 32,
+    "path": "components/ui/autocomplete.tsx",
+    "total": 47,
+    "covered": 15
+  },
+  {
+    "pct": 33,
+    "path": "components/business/bulk-import-wizard.tsx",
+    "total": 6,
+    "covered": 2
+  },
+  {
+    "pct": 33,
+    "path": "components/business/dict-select.tsx",
+    "total": 52,
+    "covered": 17
+  },
+  {
+    "pct": 33,
+    "path": "components/business/edit-toolbar.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/business/user-menu.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/form-grid.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/kbd.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/keyboard-shortcut.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/message-provider.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/radio-group.tsx",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 33,
+    "path": "components/ui/segmented-control.tsx",
+    "total": 6,
+    "covered": 2
+  },
+  {
+    "pct": 33,
+    "path": "hooks/use-form.ts",
+    "total": 3,
+    "covered": 1
+  },
+  {
+    "pct": 35,
+    "path": "components/business/chat-artifact-panel.tsx",
+    "total": 20,
+    "covered": 7
+  },
+  {
+    "pct": 35,
+    "path": "components/business/form-designer.tsx",
+    "total": 49,
+    "covered": 17
+  },
+  {
+    "pct": 35,
+    "path": "components/business/remote-select.tsx",
+    "total": 52,
+    "covered": 18
+  },
+  {
+    "pct": 36,
+    "path": "components/business/chat-voice-message.tsx",
+    "total": 44,
+    "covered": 16
+  },
+  {
+    "pct": 36,
+    "path": "components/ui/notification.tsx",
+    "total": 11,
+    "covered": 4
+  },
+  {
+    "pct": 38,
+    "path": "components/business/avatar-group.tsx",
+    "total": 8,
+    "covered": 3
+  },
+  {
+    "pct": 38,
+    "path": "components/business/bill-status-bar.tsx",
+    "total": 8,
+    "covered": 3
+  },
+  {
+    "pct": 39,
+    "path": "components/business/chat-model-switcher.tsx",
+    "total": 18,
+    "covered": 7
+  },
+  {
+    "pct": 39,
+    "path": "hooks/use-crud.ts",
+    "total": 83,
+    "covered": 32
+  },
+  {
+    "pct": 40,
+    "path": "components/business/mobile-camera.tsx",
+    "total": 40,
+    "covered": 16
+  },
+  {
+    "pct": 40,
+    "path": "components/business/status-tag.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 40,
+    "path": "components/ui/color-picker.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 40,
+    "path": "components/ui/form-section.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 40,
+    "path": "components/ui/result.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 40,
+    "path": "components/ui/sonner.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 40,
+    "path": "components/ui/toggle-group.tsx",
+    "total": 5,
+    "covered": 2
+  },
+  {
+    "pct": 41,
+    "path": "components/business/dynamic-form-builder.tsx",
+    "total": 41,
+    "covered": 17
+  },
+  {
+    "pct": 42,
+    "path": "components/business/chat-code-block.tsx",
+    "total": 12,
+    "covered": 5
+  },
+  {
+    "pct": 42,
+    "path": "components/ui/resizable.tsx",
+    "total": 65,
+    "covered": 27
+  },
+  {
+    "pct": 44,
+    "path": "components/business/chat-streaming-text.tsx",
+    "total": 18,
+    "covered": 8
+  },
+  {
+    "pct": 44,
+    "path": "components/business/policy-line-editor.tsx",
+    "total": 25,
+    "covered": 11
+  },
+  {
+    "pct": 44,
+    "path": "components/business/sign-action-button.tsx",
+    "total": 9,
+    "covered": 4
+  },
+  {
+    "pct": 45,
+    "path": "components/ui/select.tsx",
+    "total": 11,
+    "covered": 5
+  },
+  {
+    "pct": 45,
+    "path": "lib/worker.ts",
+    "total": 40,
+    "covered": 18
+  },
+  {
+    "pct": 46,
+    "path": "components/business/promotion-rule-editor.tsx",
+    "total": 26,
+    "covered": 12
+  },
+  {
+    "pct": 47,
+    "path": "components/business/chat-tool-call-block.tsx",
+    "total": 17,
+    "covered": 8
+  },
+  {
+    "pct": 47,
+    "path": "components/business/sales-target-editor.tsx",
+    "total": 30,
+    "covered": 14
+  },
+  {
+    "pct": 47,
+    "path": "hooks/use-websocket.ts",
+    "total": 43,
+    "covered": 20
+  },
+  {
+    "pct": 49,
+    "path": "components/business/mobile-qrcode-scanner.tsx",
+    "total": 61,
+    "covered": 30
+  },
+  {
+    "pct": 50,
+    "path": "components/business/campaign-status-tag.tsx",
+    "total": 4,
+    "covered": 2
+  },
+  {
+    "pct": 50,
+    "path": "components/business/chat-branch.tsx",
+    "total": 24,
+    "covered": 12
+  },
+  {
+    "pct": 50,
+    "path": "components/business/chat-message-input.tsx",
+    "total": 30,
+    "covered": 15
+  },
+  {
+    "pct": 50,
+    "path": "components/business/chat-shell.tsx",
+    "total": 8,
+    "covered": 4
+  },
+  {
+    "pct": 50,
+    "path": "components/business/color-tag.tsx",
+    "total": 6,
+    "covered": 3
+  },
+  {
+    "pct": 50,
+    "path": "components/business/forbidden.tsx",
+    "total": 2,
+    "covered": 1
+  },
+  {
+    "pct": 50,
+    "path": "components/layout/dashboard-layout.tsx",
+    "total": 4,
+    "covered": 2
+  },
+  {
+    "pct": 50,
+    "path": "components/layout/region-layout.tsx",
+    "total": 2,
+    "covered": 1
+  },
+  {
+    "pct": 50,
+    "path": "components/ui/dot.tsx",
+    "total": 2,
+    "covered": 1
+  },
+  {
+    "pct": 50,
+    "path": "components/ui/menubar.tsx",
+    "total": 2,
+    "covered": 1
+  },
+  {
+    "pct": 50,
+    "path": "components/ui/mobile-swipe-action.tsx",
+    "total": 44,
+    "covered": 22
+  },
+  {
+    "pct": 51,
+    "path": "components/business/department-picker.tsx",
+    "total": 49,
+    "covered": 25
+  },
+  {
+    "pct": 51,
+    "path": "components/business/form-designer-runtime.tsx",
+    "total": 37,
+    "covered": 19
+  },
+  {
+    "pct": 51,
+    "path": "components/business/product-category-picker.tsx",
+    "total": 49,
+    "covered": 25
+  },
+  {
+    "pct": 51,
+    "path": "components/business/region-picker.tsx",
+    "total": 49,
+    "covered": 25
+  },
+  {
+    "pct": 51,
+    "path": "components/business/workflow-designer.tsx",
+    "total": 53,
+    "covered": 27
+  },
+  {
+    "pct": 51,
+    "path": "lib/url.ts",
+    "total": 61,
+    "covered": 31
+  },
+  {
+    "pct": 52,
+    "path": "components/ui/input-number.tsx",
+    "total": 60,
+    "covered": 31
+  },
+  {
+    "pct": 53,
+    "path": "components/business/mobile-tab-bar.tsx",
+    "total": 17,
+    "covered": 9
+  },
+  {
+    "pct": 53,
+    "path": "components/ui/carousel.tsx",
+    "total": 47,
+    "covered": 25
+  },
+  {
+    "pct": 54,
+    "path": "components/business/cost-center-picker.tsx",
+    "total": 28,
+    "covered": 15
+  },
+  {
+    "pct": 54,
+    "path": "components/business/distributor-picker.tsx",
+    "total": 28,
+    "covered": 15
+  },
+  {
+    "pct": 54,
+    "path": "components/business/employee-picker.tsx",
+    "total": 28,
+    "covered": 15
+  },
+  {
+    "pct": 54,
+    "path": "components/business/sku-picker.tsx",
+    "total": 28,
+    "covered": 15
+  },
+  {
+    "pct": 54,
+    "path": "components/business/warehouse-picker.tsx",
+    "total": 28,
+    "covered": 15
+  },
+  {
+    "pct": 55,
+    "path": "components/business/company-picker.tsx",
+    "total": 29,
+    "covered": 16
+  },
+  {
+    "pct": 55,
+    "path": "components/business/rule-editor.tsx",
+    "total": 33,
+    "covered": 18
+  },
+  {
+    "pct": 55,
+    "path": "components/business/transfer.tsx",
+    "total": 77,
+    "covered": 42
+  },
+  {
+    "pct": 55,
+    "path": "components/layout/app-shell.tsx",
+    "total": 11,
+    "covered": 6
+  },
+  {
+    "pct": 56,
+    "path": "components/business/chat-markdown-renderer.tsx",
+    "total": 86,
+    "covered": 48
+  },
+  {
+    "pct": 56,
+    "path": "components/business/marketing-activity-form.tsx",
+    "total": 18,
+    "covered": 10
+  },
+  {
+    "pct": 56,
+    "path": "components/business/mobile-picker.tsx",
+    "total": 27,
+    "covered": 15
+  },
+  {
+    "pct": 56,
+    "path": "components/ui/back-top.tsx",
+    "total": 32,
+    "covered": 18
+  },
+  {
+    "pct": 56,
+    "path": "hooks/use-sse.ts",
+    "total": 27,
+    "covered": 15
+  },
+  {
+    "pct": 57,
+    "path": "components/business/customer-picker.tsx",
+    "total": 35,
+    "covered": 20
+  },
+  {
+    "pct": 57,
+    "path": "components/ui/avatar.tsx",
+    "total": 7,
+    "covered": 4
+  },
+  {
+    "pct": 57,
+    "path": "components/ui/flex.tsx",
+    "total": 7,
+    "covered": 4
+  },
+  {
+    "pct": 57,
+    "path": "components/ui/popover.tsx",
+    "total": 7,
+    "covered": 4
+  },
+  {
+    "pct": 58,
+    "path": "components/business/city-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/company-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/fee-type-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/price-adjust-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/print-template-builder.tsx",
+    "total": 26,
+    "covered": 15
+  },
+  {
+    "pct": 58,
+    "path": "components/business/product-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/sales-order-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/shipping-way-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/warehouse-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 58,
+    "path": "components/business/writeoff-browse.tsx",
+    "total": 31,
+    "covered": 18
+  },
+  {
+    "pct": 59,
+    "path": "components/business/customer-browse.tsx",
+    "total": 32,
+    "covered": 19
+  }
+]

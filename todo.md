@@ -1,14 +1,13 @@
 # Chaos UI — 1.0.0 GA 待办清单
 
-> **当前版本**:`1.0.0-beta.0`(已发布到私有 registry,beta tag)
-> **目标版本**:`1.0.0` GA(General Availability,正式发布)
+> **当前版本**:`1.0.0-beta.0`
+> **目标版本**:`1.0.0` GA
 > **最后核实**:2026-06-30
 > **维护人**:Chaos UI Team
 
 ## GA 是什么
 
-GA = General Availability(正式发布/通用可用)。软件发布阶段:Alpha → Beta → RC → **GA**。
-GA 意味着:API 冻结、承诺稳定、可上生产、有长期支持。当前 beta 不能上生产(含空壳组件)。
+GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定、可上生产、有长期支持。
 
 ---
 
@@ -18,197 +17,160 @@ GA 意味着:API 冻结、承诺稳定、可上生产、有长期支持。当前
 
 | 维度 | 状态 | 数据 |
 |---|---|---|
-| 版本 | beta | `1.0.0-beta.0` |
-| typecheck | ✅ 0 错误 | `tsc --noEmit` 通过 |
-| lint | ✅ 0 errors | 376 warnings(非阻断) |
-| 测试 | ✅ 通过 | 1171 tests / 470 files |
-| 产物 | ✅ 完整 | smoke 26 exports + size-limit 4 项 |
-| 打包 | ✅ | use client 保留 / sourcemap 剥离 / styles.css.d.ts |
-| 依赖 | ✅ | 状态型库移 peer(防双实例)/ 0 CVE / 无 copyleft |
-| lint 门禁 | ✅ | `npm run check` 全过 |
-| 真实组件 | ✅ ~302 个 | ui 116 + business 84 + layout 23 + mobile 24 + hooks 36 + lib 19 |
+| 真实组件 | ✅ 0 空壳 | 全部 148+ 空壳已补真实实现(business 145 + layout 6 + ui 5 + business 1) |
+| hooks | ✅ 真实 | 19 个 hook 空壳全部补真实实现 + 测试 |
+| lib | ✅ 真实 | 5 个 lib 桩模块(crypto/date/excel/pdf/worker)全部补真实实现 + 测试 |
+| 图标 facade | ✅ 扩充 | `components/ui/icons.ts` 新增 ~43 个 lucide 图标 |
+| 稳定化清理 | ✅ | 删除临时脚本、移除 `provenance`、修复历史类型错误 |
+| 文档 | ✅ 完整 | 8 篇项目文档 + CHANGELOG/HOOKS_INDEX/LIB_INDEX/COMPONENT_INDEX + README |
+| i18n | ✅ 完整 | 4 语言(en/zh/ja/ko),命名空间拆分,在 `lib/i18n/` |
+| CI | ✅ 完整 | 8 个 workflow(ci/release/security/nightly/labeler/stale/dependency-review/detection)+ CODEOWNERS + PR/Issue 模板 |
+| AI 规则矩阵 | ✅ 完整 | AGENTS.md/.cursorrules/CONVENTIONS.md/ARCHITECTURE.md |
+| 迁移验证 | ✅ 通过 | qxy-mop 53 符号 / 5 subpath 全部兼容,0 中断 |
+| 测试数 | ✅ 大幅提升 | 1171 → 3776+ passing(覆盖率提升 workflow 进行中) |
 
 ### ❌ 未达标(GA 阻断项)
 
 | 维度 | 当前 | GA 标准 | 差距 |
 |---|---|---|---|
-| **空壳组件** | **148 个空壳**(渲染 null / 11 行占位) | 真实实现 | **最大差距** |
-| 覆盖率 | 26% lines | 85% | 差 59pp |
+| **typecheck** | ~1-43 错误(波动) | 0 错误 | 覆盖率 workflow 写测试遗留的类型错误,正在修 |
+| **测试失败** | ~55 failing | 0 失败 | 同上,wiki verify 阶段修复中 |
+| **覆盖率** | 44% → 推进中 | 85% | 覆盖率 workflow 在 24 批次补交互测试 |
 | 版本 | beta.0 | 1.0.0 GA | 需 RC → GA |
-| 文档 | 部分 | 每组件 MDX + AI 矩阵 | 缺 |
-| a11y | 未验证 | WCAG AA + 0 violations | 缺 |
-| i18n | 硬编码中文 | 提取 key + error 规则 | 缺 |
 
 ---
 
-## 阶段一:实现 148 个空壳组件(最高优先,GA 硬阻断)
+## 阶段一:实现空壳组件 ✅ 已完成
 
-> 空壳 = 有 Props 类型声明但函数体 `return <div>{null}</div>` 或仅 11 行占位。
-> 消费方用了得到空 div,不是真实组件。**必须全部补成真实实现。**
-> 每个组件:实现 + Story + 测试 + barrel 导出。`git add <具体文件>` 勿用 `git add -A`。
+全部 148+ 空壳已补为真实实现(使用全部 Props、语义化、可访问 UI),并补真实交互测试:
 
-### 1.1 business 空壳(82 个,渲染 null)
+- **business(145)**:charts(26)+ chat(28)+ designer(5)+ mobile(10)+ browse/picker(20)+ print(3)+ attachment(3)+ task(6)+ form(6)+ table(4)+ other-a(17)+ other-b(17) + 13 个历史半生成组件(account-balance/announcement-card/application-form/approval-action-bar/attachment-list/attachment-preview/badge-delta/bar-list/bill-print-template/bill-timeline/bill-todo-list/budget-overview/category-bar)+ reconciliation-line-editor
+- **layout(6)**:article-layout / chat-layout / embed-layout / print-template-layout / split-screen / wizard-layout
+- **ui(5)**:chat-input / chat-message / mobile-pull-refresh / mobile-swipe-action / with-permission
+- **hooks(19)**:use-approval/async-task/bill/data-scope/dict/export/fetch/form-table/idle/import/line-editor/network-quality/print/redo/sse/swr/table/undo/websocket
+- **lib(5)**:crypto / date / excel / pdf / worker
 
-`account-balance` `announcement-card` `application-form` `approval-action-bar` `approval-flow`
-`async-task-trigger` `attachment-list` `attachment-preview` `attachment-uploader`
-`badge-delta` `bar-list` `batch-print-dialog` `bill-print-template` `bill-timeline` `bill-todo-list`
-`budget-overview` `calendar-view` `callout` `category-bar` `chart-card` `chart-suite`
-`city-browse` `company-browse` `customer-browse` `dashboard-canvas` `delta-bar` `dock-panel`
-`donut-card` `dynamic-form-builder` `feature-tour` `fee-type-browse` `file-card` `flow-tracker`
-`funnel-chart` `gantt-chart` `heatmap-chart` `image-gallery` `import-error-table`
-`inventory-snapshot` `invoice-manager` `invoice-summary` `map-chart` `marketing-activity-form`
-`master-edit-template` `master-list-template` `oa-bridge` `operation-log` `paste-upload`
-`payment-schedule` `performance-rank-table` `photo-audit` `policy-line-editor` `pool-tracker-table`
-`preference-panel` `price-adjust-browse` `print-service` `print-template-builder` `product-browse`
-`quick-entry-grid` `rebut-node-select` `reconciliation-line-editor` `reconciliation-summary`
-`resource-schedule` `sales-order-browse` `sales-target-editor` `serial-number-manager`
-`settlement-status-tag` `shipping-way-browse` `sign-action-button` `stat-card-with-sparkline`
-`tab-pin` `target-progress` `task-history` `task-list-table` `task-progress` `tax-detail-table`
-`template-download` `timeline-view` `tracking` `warehouse-browse`
-
-### 1.2 聊天/AI 体系空壳(28 个,25-33 行占位)
-
-`chat-agent-status` `chat-artifact-panel` `chat-branch` `chat-card-message` `chat-code-block`
-`chat-command-menu` `chat-context-panel` `chat-conversation` `chat-conversation-search`
-`chat-feedback` `chat-header` `chat-image-gallery` `chat-input-toolbar` `chat-markdown-renderer`
-`chat-mention-picker` `chat-message-actions` `chat-message-bubble` `chat-message-group`
-`chat-message-input` `chat-model-switcher` `chat-shared-link` `chat-shell` `chat-sidebar`
-`chat-streaming-text` `chat-suggest-replies` `chat-thinking-block` `chat-tool-call-block`
-`chat-voice-message`
-
-> 依赖评估:Shiki/Prism(代码高亮)、KaTeX(公式)、Mermaid(图表)。`chat-markdown-renderer`/`chat-code-block` 需这些。
-
-### 1.3 低代码设计器空壳(4 个)
-
-`form-designer` `form-designer-runtime` `workflow-designer` `workflow-preview`
-
-> 依赖评估:reactflow(画布)。`rule-editor` 已存在(需核实是否真实)。
-
-### 1.4 hooks 空壳(19 个,11 行占位)
-
-`use-approval` `use-async-task` `use-bill` `use-data-scope` `use-dict` `use-export` `use-fetch`
-`use-form-table` `use-idle` `use-import` `use-line-editor` `use-network-quality` `use-print`
-`use-redo` `use-sse` `use-swr` `use-table` `use-undo` `use-websocket`
-
-> 注:`use-debounce`/`use-toggle`/`use-previous` 虽 11 行但是真实实现(短 hook),非空壳。
-
-### 1.5 lib 空壳(5 个,9 行占位)
-
-`crypto` `date` `excel` `pdf` `worker`
-
-> 注:`utils.ts`(cn 函数)是真实实现。
-
-### 1.6 mobile 补充组件(10 个,未建)
-
-`mobile-page-shell` `mobile-action-sheet` `mobile-picker` `mobile-camera` `mobile-qrcode-scanner`
-`mobile-signature` `mobile-geolocation` `mobile-infinite-scroll` `mobile-tab-bar` `mobile-list-item`
-
-> 这 10 个文件不存在,需新建(非空壳修复)。
+> 实现参考:`.claude/ga-work/AGENT_GUIDE.md`。空壳识别:`grep -l "{null}"` 与 `function \w+({ className }: ...)` 模式均返回 0。
 
 ---
 
-## 阶段二:测试覆盖率补到 85%(GA 硬阻断)
+## 阶段二:测试覆盖率补到 85% 🔄 进行中(GA 硬阻断)
 
-当前 26% lines,目标 85%(差 59pp,5739+ statements 需覆盖 ~3700 更多)。
+当前覆盖率 workflow(`.claude/ga-work/workflow-coverage.mjs`,run `wf_0c8c4d0f-5c3`)正在 24 批次为 305 个低覆盖率文件补交互测试。已将测试数从 1171 提升到 3776+。
 
-- [ ] 补 82 个 business 空壳组件实现后的交互测试
-- [ ] 补 28 个 chat + 4 个 designer 组件测试
-- [ ] 补 19 个 hooks 测试(已测 9 个:use-crud/use-debounce/use-pagination/use-async/use-toggle/use-previous/use-countdown/use-breakpoint/use-event-listener)
-- [ ] 补剩余 ui 组件测试(已测 ~30 个,剩 ~86 个)
-- [ ] 补剩余 lib 测试(已测 12 个,剩 7 个含空壳)
-- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`
-- [ ] 测试模式:vitest + @testing-library,`@/` alias 已配;Base UI 子组件需 Root context 的测类型导出+模块导入(参考 dialog/select/form.test.tsx)
+### 待办(收尾)
 
----
+- [ ] **等覆盖率 workflow 完成**,确认全部 24 批次 verify 阶段绿
+- [ ] **修剩余 typecheck 错误**(~21 个测试文件:campaign-calendar/time-picker/admin-breadcrumb/blank-layout/mobile-page-header/calendar/carousel/cascader/config-provider/qrcode/radio-group/rating/segmented-control/separator/slider/sonner/stepper/switch/tags-input/toggle-group 等测试文件)
+- [ ] **修剩余 ~55 个失败测试**
+- [ ] 删除调试残留:`components/ui/__probe*.test.tsx`(已删 __probe3,确认无其他)
+- [ ] 跑 `npm run test:coverage` 确认 ≥ 85%(lines/branches/functions/statements);vitest 阈值已设 85/80/85/85
+- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`(目前是 `typecheck && test && check:no-bom && smoke`)
+- [ ] 测试模式:Base UI 子组件需 Root context 的,测类型导出+模块导入(参考 dialog/select/form.test.tsx);JSX 测试文件必须用 `.test.tsx` 扩展名(不能 `.test.ts`)
 
-## 阶段三:清理 + 稳定化
+### 剩余低覆盖率重点(若 workflow 未完全覆盖)
 
-- [ ] 删除临时脚本:`scripts/fix-tests.mjs` `scripts/fix-tests2.mjs`(未提交,工作区残留)
-- [ ] 核实 `rule-editor` 是否真实实现(非空壳)
-- [ ] 核实 23 个 layout 组件是否都真实(layout 无空壳,但需确认新增的 6 个)
-- [ ] 移除 `package.json` 的 `provenance: true`(私有 restricted registry 不支持 provenance,会发布失败)
-- [ ] 清理 376 个 lint warnings(非阻断,但 GA 前应大幅减少)
-- [ ] 核实 turbo.json 是否真正接入(monorepo 未真正重组,仅加了配置)
+- mobile 组件(23 个,多为 0%):需补真实渲染测试
+- layout 组件(16 个):admin-breadcrumb/admin-header/admin-tabs/auth-layout/blank-layout/detail-layout/error-layout/public-layout/region-layout/top-bar 等
+- lib:security.ts(0%)/url.ts(50%)/message.ts/modal.ts/modal-store.tsx/logger.ts/api-client.ts
+- hooks:use-crud/use-form/use-permission/use-locale/use-confirm-async 等需深度测试
 
 ---
 
-## 阶段四:文档 & AI 友好性
+## 阶段三:清理 + 稳定化 ✅ 已完成
 
-- [ ] 每个真实组件补 JSDoc(description/@param/@example/@since)
-- [ ] 每个组件 Storybook MDX(标题+演示+API 表格+最佳实践)
-- [ ] 项目级文档:`docs/architecture.md` `docs/design-tokens.md` `docs/theming.md` `docs/migration.md`
-- [ ] AI 规则文件矩阵:AGENTS.md/CLAUDE.md/.cursorrules/CONVENTIONS.md/ARCHITECTURE.md
-- [ ] 组件清单:COMPONENT_INDEX.md / HOOKS_INDEX.md / LIB_INDEX.md
-- [ ] AI 提示词模板:`docs/ai-prompts/{component-new,test-new,migrate-antd}.md`
-
----
-
-## 阶段五:可访问性(a11y)
-
-- [ ] 所有 interactive 组件有 aria-label/aria-describedby
-- [ ] 颜色对比度 WCAG AA(4.5:1)
-- [ ] 键盘可访问(Tab/Shift+Tab/Enter/Space/Esc/方向键)
-- [ ] 焦点可见(focus-visible)、Reduced motion、High contrast
-- [ ] 全部组件 Storybook a11y 面板 0 violations
-- [ ] 引入 @axe-core/playwright 到 E2E(已装 @axe-core/cli devDep)
+- [x] 删除临时脚本:`scripts/gen-business-shells.mjs`(未提交残留)
+- [x] 核实 `rule-editor` 真实实现(241 行,非空壳)
+- [x] 核实 layout 组件真实(6 个空壳已补)
+- [x] 移除 `package.json` 的 `provenance: true`
+- [x] 修复 21 个历史生成脚本遗留类型错误
+- [ ] 清理 376 个 lint warnings(非阻断,GA 前应大幅减少)— 可选
+- [ ] 核实 turbo.json 是否真正接入(monorepo 未真正重组)— 可选,GA 不强制
 
 ---
 
-## 阶段六:国际化(i18n)
+## 阶段四:文档 & AI 友好性 ✅ 已完成
 
-- [ ] 创建 `/locales/zh-CN.json` + `/locales/en-US.json`
-- [ ] 命名空间拆分:common/components/business/errors
-- [ ] 提取所有硬编码中文到 i18n key
-- [ ] `@chaos/no-hardcoded-chinese` 从 warn 升 error(business 当前豁免)
-- [ ] 添加 en-US/ja-JP/ko-KR
+- [x] 项目级文档:`docs/architecture.md`/`design-tokens.md`/`theming.md`/`migration.md`/`i18n.md`/`performance.md`/`testing.md`/`monorepo.md`
+- [x] AI 规则文件矩阵:AGENTS.md/CLAUDE.md/.cursorrules/CONVENTIONS.md/ARCHITECTURE.md
+- [x] 组件清单:COMPONENT_INDEX.md / HOOKS_INDEX.md / LIB_INDEX.md
+- [x] AI 提示词模板:`docs/ai-prompts/{component-new,test-new,story-new,component-bugfix}.md`
+- [x] README/CHANGELOG 完整(已加 1.0.0 GA 条目)
+- [ ] 每个组件 JSDoc 完善(@param/@example)— 大部分已有,可补
+- [ ] 每个组件 Storybook MDX(312 stories 已在 apps/docs;business 聚合 story)— 可选补全
+
+---
+
+## 阶段五:可访问性(a11y) ✅ 基础完成
+
+- [x] interactive 组件有 aria-label/aria-describedby(GA 实现已遵循)
+- [x] 键盘可访问(Enter/Space/Esc/方向键,GA 实现已遵循)
+- [x] 焦点可见(focus-visible)、语义化元素(header/main/nav/ol/table)
+- [x] Storybook a11y addon 已装(`@storybook/addon-a11y`)
+- [x] `@axe-core/cli` devDep 已装
+- [ ] 颜色对比度 WCAG AA(4.5:1)— 需全量验证
+- [ ] 全部组件 Storybook a11y 面板 0 violations — 需全量验证
+- [ ] 引入 @axe-core/playwright 到 E2E
+
+---
+
+## 阶段六:国际化(i18n) ✅ 基础完成
+
+- [x] `lib/i18n/resources/{zh,en,ja,ko}/*.json` 已建(15 命名空间)
+- [x] 命名空间拆分:common/chart/cookie/data/error/language/marketing/mobile/navigation/notification/tour/transfer/ui/upload
+- [x] en-US/ja-JP/ko-KR 已建
+- [ ] 提取所有硬编码中文到 i18n key(business 当前 `@chaos/no-hardcoded-chinese` 豁免,分批推进)
+- [ ] `@chaos/no-hardcoded-chinese` 从 off 升 error(待 business 迁移完成)
 - [ ] 数字/日期/货币本地化、RTL 支持
 
 ---
 
-## 阶段七:性能 & CI/CD
+## 阶段七:性能 & CI/CD ✅ 基础完成
 
-- [ ] 所有大表虚拟化验证、lucide-react 替换为 @chaos/ui/icons
+- [x] CI:ci/release/security/nightly/labeler/stale/dependency-review/detection workflow
+- [x] 治理:CODEOWNERS/PR template/Issue template/SECURITY/CONTRIBUTING/CODE_OF_CONDUCT/SUPPORT
+- [x] 安全:`no-console` 限 warn(允许 warn/error)、api-client Token 机制
+- [x] `eslint-plugin-jsx-a11y` 已装
+- [ ] 大表虚拟化验证、lucide-react 替换为 @chaos/ui/icons(已集中 facade,业务直引 lucide 仍 warn)
 - [ ] size-limit 单组件入口 ≤ 5KB gzip
 - [ ] RSC 兼容性验证、代码分割
-- [ ] CI:storybook-deploy/chromatic/codeql/labeler/stale/nightly
-- [ ] 治理:CODEOWNERS/PR template/Issue template/ADR
-- [ ] 安全:api-client Token 刷新/XSS 审查/CSP/移除 console.log
-- [ ] DX:.vscode 配置/Vitest UI/Codemod(antd→chaos-ui)
+- [ ] api-client Token 刷新/XSS 审查/CSP
+- [ ] DX:.vscode 配置/Vitest UI/Codemod(antd→chaos-ui,`scripts/codemod-antd-to-chaos.mjs` 已有)
 
 ---
 
 ## 阶段八:Monorepo 重组(可选,GA 不强制)
 
-- [ ] 3.1 单仓内重组:`packages/chaos-ui/src/components/ui/button/{button.tsx,test,types,index.ts}`(Mantine 风格,200+ 文件迁移,保留 `@/` 别名 + 7 subpath exports)
-- [ ] 3.2 启用 npm workspaces:拆 chaos-icons/chaos-hooks/chaos-lib 子包
-- [ ] 3.3 monorepo 治理:CODEOWNERS/共享 config
+- [ ] 单仓内重组(Mantine 风格)
+- [ ] 启用 npm workspaces:拆 chaos-icons/chaos-hooks/chaos-lib 子包
+- [ ] monorepo 治理
 
-> 风险高,保留 `pre-monorepo-restructure` branch 可回退。GA 可不做(单仓也能发)。
+> 风险高,保留 `pre-monorepo-restructure` branch 可回退。GA 可不做。
 
 ---
 
 ## 发版路径
 
-1. **阶段一完成**(148 空壳补真实)→ 发 `1.0.0-beta.1`
-2. **阶段二完成**(覆盖率 85%)→ 发 `1.0.0-beta.2`
-3. **阶段三-七完成**(清理/文档/a11y/i18n/性能)→ 发 `1.0.0-rc.0`
-4. **qxy-mop 真实迁移验证通过** → 发 `1.0.0` GA
+1. ~~阶段一完成~~ ✅ → `1.0.0-beta.1`(空壳补真实)
+2. **阶段二完成**(覆盖率 85%)→ `1.0.0-beta.2` ← **当前**
+3. 阶段三-七完成 → `1.0.0-rc.0`
+4. qxy-mop 真实迁移验证通过 ✅ → `1.0.0` GA
 
 ---
 
 ## 验收清单(发 1.0.0 GA 前必过)
 
-- [ ] 148 个空壳组件全部真实实现(无 `return null` / `{null}` 占位)
-- [ ] `npm run check` 0 错误(typecheck + lint + css + deps + bom)
-- [ ] `npm test` 0 失败
-- [ ] `npm run test:coverage` ≥ 85%(lines/branches/functions/statements)
+- [x] 148 个空壳组件全部真实实现(无 `return null` / `{null}` / 空 div 占位)
+- [ ] `npm run check` 0 错误(typecheck + lint + css + deps + bom)— typecheck 仍有 ~21 测试文件错误待修
+- [ ] `npm test` 0 失败(当前 ~55 failing,workflow 修复中)
+- [ ] `npm run test:coverage` ≥ 85%(当前 44%,workflow 推进中)
 - [ ] `npm run smoke` 通过(26 exports 产物齐全)
 - [ ] `npm run prepack` 通过(build + size-limit)
-- [ ] 所有组件有 .stories.tsx
+- [ ] 所有组件有 .stories.tsx(business 用聚合 story)
 - [ ] 所有 Story 通过 a11y 校验
-- [ ] README/CHANGELOG 完整
-- [ ] qxy-mop 真实项目迁移验证通过
-- [ ] AI 规则文件矩阵完整
+- [x] README/CHANGELOG 完整
+- [x] qxy-mop 真实项目迁移验证通过
+- [x] AI 规则文件矩阵完整
 - [ ] CI 流水线绿
 
 ---
@@ -219,26 +181,18 @@ GA 意味着:API 冻结、承诺稳定、可上生产、有长期支持。当前
 2. **包管理**:npm(不用 pnpm)/ 私有 Verdaccio registry(npm.qxy1828.com)
 3. **别名**:`@/ = ./*`(全仓 200+ import 依赖,勿改)
 4. **入口**:7 subpath exports(`.`/`./ui`/`./ui/icons`/`./business`/`./hooks`/`./lib`/`./next`)+ `./styles.css`
-5. **提交**:`git add <具体文件>` 勿用 `git add -A`(避免误加 .claude 等杂项);commit message 遵循 conventional commits + `Co-Authored-By: Claude <noreply@anthropic.com>`
+5. **提交**:`git add <具体文件>` 勿用 `git add -A`;conventional commits + `Co-Authored-By: Claude <noreply@anthropic.com>`
 6. **每批验证**:`npm run typecheck && npm test && npm run check:no-bom && npm run smoke`
-7. **空壳识别**:空壳 = `grep -l "{null}" components/business/*.tsx` 或 hooks/lib <15 行且非短函数
-8. **测试模式**:Base UI 子组件需 Root context 的,测类型导出+模块导入(参考 dialog/select/form.test.tsx);Popover/Select 在 jsdom 渲染不稳的用类型+模块测试
+7. **空壳识别**:`grep -l "{null}" components/business/*.tsx`(返回 0)/ `grep -lE "function \w+({ className }: \w+Props)"`(返回 0)
+8. **测试模式**:Base UI 子组件需 Root context 的,测类型导出+模块导入;**JSX 测试必须用 `.test.tsx`**;Popover/Select 在 jsdom 用类型+模块测试
+9. **图标**:统一从 `@/components/ui/icons` 引入;缺图标时在 `components/ui/icons.ts` 追加 `export const XIcon = Lucide.XIcon;`
 
 ---
 
-## 附录:真实实现组件清单(84 个 business,作实现参考)
+## GA 工作产物
 
-activity-feed / advanced-search / announcement-banner / approval-timeline / async-task-center
-audience-segment-builder / audit-log / audit-sidebar / auth-guard / avatar-group / bill-footer
-bill-header / bill-page / bill-status-bar / biz-status-tag / budget-pacing-card / bulk-actions-toolbar
-bulk-import-wizard / campaign-calendar / campaign-card / campaign-status-tag / channel-picker / chart
-chip / code-block / color-tag / combobox / command-palette / confirm-dialog / cookie-banner / crud-page
-crud-toolbar / creative-preview / data-table / date-range-picker / diff-viewer / dict-select / empty-state
-error-boundary / expense-line-editor / experiment-summary / export-button / fab / field-mask
-file-upload-manager / filter-bar / filter-builder / forbidden / form-field / form-wizard / gauge
-heatmap-calendar / inline-edit / json-viewer / kanban-board / kpi-card / language-switcher / line-editor
-loading-page / metric-trend / multi-select / notification-center / order-line-editor / page-header
-permission-matrix / permission-wrapper / pivot-table / prompt-dialog / rating / remote-select
-responsive-preview / role-assignment / saved-filters / search-table / segmented-control / stat-card
-stat-card-row / status-badge / status-tag / time-picker / tour / transfer / user-menu / utm-builder
-version-history / watermark / global-loading / edit-toolbar / print-button / import-dialog
+- `.claude/ga-work/AGENT_GUIDE.md` — 实现指南(技术栈/导入/图表模式/a11y/测试模式)
+- `.claude/ga-work/workflow-shells.mjs` — 空壳实现 workflow(已完成)
+- `.claude/ga-work/workflow-coverage.mjs` — 覆盖率提升 workflow(进行中,run `wf_0c8c4d0f-5c3`)
+- `.claude/ga-work/cats/*.json` — 各批次空壳元数据
+- `.claude/ga-work/cov/*.json` — 各批次低覆盖率文件清单

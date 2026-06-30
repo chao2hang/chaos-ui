@@ -1,0 +1,17 @@
+[
+  "components/business/saved-filters.tsx",
+  "components/business/search-table.tsx",
+  "components/business/advanced-search.tsx",
+  "components/business/permission-matrix.tsx",
+  "components/business/permission-wrapper.tsx",
+  "components/business/utm-builder.tsx",
+  "components/business/error-boundary.tsx",
+  "components/business/filter-builder.tsx",
+  "components/business/gauge.tsx",
+  "components/business/import-dialog.tsx",
+  "components/business/approval-flow.tsx",
+  "components/business/language-switcher.tsx",
+  "components/business/metric-trend.tsx",
+  "components/business/role-assignment.tsx",
+  "components/business/batch-print-dialog.tsx"
+]

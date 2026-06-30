@@ -1,0 +1,17 @@
+[
+  "components/business/rule-editor.tsx",
+  "components/business/transfer.tsx",
+  "components/business/chat-markdown-renderer.tsx",
+  "components/business/marketing-activity-form.tsx",
+  "components/business/mobile-picker.tsx",
+  "components/business/customer-picker.tsx",
+  "components/business/city-browse.tsx",
+  "components/business/company-browse.tsx",
+  "components/business/fee-type-browse.tsx",
+  "components/business/price-adjust-browse.tsx",
+  "components/business/print-template-builder.tsx",
+  "components/business/product-browse.tsx",
+  "components/business/sales-order-browse.tsx",
+  "components/business/shipping-way-browse.tsx",
+  "components/business/warehouse-browse.tsx"
+]

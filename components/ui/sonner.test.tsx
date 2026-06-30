@@ -1,8 +1,48 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+import { render } from "@testing-library/react";
 import { Toaster } from "./sonner";
+
+// next-themes useTheme returns theme from context; in jsdom without a
+// provider it returns undefined, which the component coerces to "system".
+// We verify the component renders without crashing and forwards props.
 
 describe("sonner", () => {
   it("exports Toaster", () => {
     expect(Toaster).toBeDefined();
+  });
+
+  it("renders without crashing", () => {
+    const { container } = render(<Toaster />);
+    // Sonner renders an <section> with aria-label; assert the DOM got something.
+    expect(container.firstChild).not.toBeNull();
+  });
+
+  it("renders a toast region with aria-label Notifications", () => {
+    const { container } = render(<Toaster />);
+    // sonner renders <section aria-label="Notifications ..."> as the live region.
+    const region = container.querySelector('section[aria-label]');
+    expect(region).not.toBeNull();
+    expect(region?.getAttribute("aria-label")).toContain("Notification");
+  });
+
+  it("applies the toaster group className", () => {
+    const { container } = render(<Toaster />);
+    const section = container.querySelector("section");
+    expect(section?.className).toContain("toaster");
+    expect(section?.className).toContain("group");
+  });
+
+  it("forwards extra props to the underlying Sonner toaster", () => {
+    const { container } = render(<Toaster position="bottom-left" />);
+    // sonner applies position as a data attribute / style on the section.
+    const section = container.querySelector("section");
+    expect(section).not.toBeNull();
+    // position is rendered somewhere; assert the section exists with the prop applied.
+    expect(section?.getAttribute("data-position") ?? "").toContain("bottom-left");
+  });
+
+  it("module is importable", async () => {
+    const mod = await import("@/components/ui/sonner");
+    expect(mod.Toaster).toBeDefined();
   });
 });

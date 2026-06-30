@@ -1,0 +1,13 @@
+[
+  "components/mobile/mobile-input.tsx",
+  "components/mobile/mobile-kanban.tsx",
+  "components/mobile/mobile-kpi-card.tsx",
+  "components/mobile/mobile-navigation.tsx",
+  "components/mobile/mobile-page-header.tsx",
+  "components/mobile/mobile-select.tsx",
+  "components/mobile/mobile-sheet.tsx",
+  "components/mobile/mobile-skeleton.tsx",
+  "components/mobile/mobile-swipe-actions.tsx",
+  "components/mobile/mobile-tabs.tsx",
+  "components/mobile/mobile-textarea.tsx"
+]

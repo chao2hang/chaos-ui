@@ -1,0 +1,18 @@
+[
+  "components/ui/accordion.tsx",
+  "components/ui/aspect-ratio.tsx",
+  "components/ui/breadcrumb.tsx",
+  "components/ui/divider.tsx",
+  "components/ui/input-search.tsx",
+  "components/ui/pagination.tsx",
+  "components/ui/skeleton.tsx",
+  "components/ui/stepper.tsx",
+  "components/ui/tour.tsx",
+  "components/ui/tree-select.tsx",
+  "components/ui/cascader.tsx",
+  "components/ui/affix.tsx",
+  "components/ui/combobox.tsx",
+  "components/ui/image-viewer.tsx",
+  "components/ui/mentions.tsx",
+  "components/ui/qrcode-display.tsx"
+]

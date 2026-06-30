@@ -1,0 +1,13 @@
+[
+  "components/ui/resizable.tsx",
+  "components/ui/select.tsx",
+  "components/ui/dot.tsx",
+  "components/ui/menubar.tsx",
+  "components/ui/mobile-swipe-action.tsx",
+  "components/ui/input-number.tsx",
+  "components/ui/carousel.tsx",
+  "components/ui/back-top.tsx",
+  "components/ui/avatar.tsx",
+  "components/ui/flex.tsx",
+  "components/ui/popover.tsx"
+]

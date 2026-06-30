@@ -1,0 +1,12 @@
+[
+  "hooks/index.ts",
+  "hooks/use-clipboard.ts",
+  "hooks/use-field-validation.ts",
+  "hooks/use-hotkeys.ts",
+  "hooks/use-modal.tsx",
+  "hooks/use-infinite-scroll.ts",
+  "hooks/use-intersection-observer.ts",
+  "hooks/use-key.ts",
+  "hooks/use-copy-to-clipboard.ts",
+  "hooks/use-local-storage.ts"
+]

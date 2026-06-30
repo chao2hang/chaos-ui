@@ -1,33 +1,30 @@
 "use client";
-
 import { cn } from "@/lib/utils";
-
+import { Button } from "@/components/ui/button";
+import { CheckIcon, XIcon, SendIcon } from "@/components/ui";
 /**
  * @component ApprovalActionBar
  * @category business/bill
  * @since 0.7.0
  * @description 审批操作栏
- * @keywords approval, action, bar
- * @example
- * <ApprovalActionBar />
  */
-
 interface ApprovalActionBarProps {
-  onApprove?: () => void;
+onApprove?: () => void;
   onReject?: () => void;
   onTransfer?: () => void;
   status?: string;
   loading?: boolean;
   className?: string;
 }
-
-function ApprovalActionBar({ className }: ApprovalActionBarProps) {
+function ApprovalActionBar({ onApprove, onReject, onTransfer, status, loading, className }: ApprovalActionBarProps) {
   return (
-    <div data-slot="approval-action-bar" className={cn("", className)}>
-      {null}
+    <div data-slot="approval-action-bar" className={cn("flex items-center gap-2 rounded-lg border bg-card p-3", className)}>
+      {status && <span className="mr-auto text-sm text-muted-foreground">当前状态：{status}</span>}
+      {onTransfer && <Button variant="outline" onClick={onTransfer} disabled={loading}><SendIcon className="size-4" />转交</Button>}
+      {onReject && <Button variant="destructive" onClick={onReject} disabled={loading}><XIcon className="size-4" />驳回</Button>}
+      {onApprove && <Button onClick={onApprove} disabled={loading}><CheckIcon className="size-4" />通过</Button>}
     </div>
   );
 }
-
 export { ApprovalActionBar };
 export type { ApprovalActionBarProps };

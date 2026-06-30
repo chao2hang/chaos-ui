@@ -1,14 +1,21 @@
 import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import { EmbedLayout } from "./embed-layout";
-import type { EmbedLayoutProps } from "./embed-layout";
 
-describe("embed-layout", () => {
-  it("exports EmbedLayout", () => {
-    expect(EmbedLayout).toBeDefined();
+describe("EmbedLayout", () => {
+  it("renders header and children", () => {
+    render(
+      <EmbedLayout header={<div>Embed Header</div>}>
+        <p>Embed body content</p>
+      </EmbedLayout>,
+    );
+    expect(screen.getByText("Embed Header")).toBeDefined();
+    expect(screen.getByText("Embed body content")).toBeDefined();
   });
 
-  it("exports types", () => {
-    const _tc1: EmbedLayoutProps | undefined = undefined;
-    expect(_tc1).toBeUndefined();
+  it("renders only content when header omitted", () => {
+    render(<EmbedLayout>Standalone content</EmbedLayout>);
+    expect(screen.getByText("Standalone content")).toBeDefined();
+    expect(screen.queryByText("Embed Header")).toBeNull();
   });
 });

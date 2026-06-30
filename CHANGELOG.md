@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 1.0.0 GA — 空壳实现 + 覆盖率 + 稳定化
+
+- **148 个空壳组件全部补为真实实现**：business（145，含 charts/chat/designer/mobile/browse/print/attachment/task/form/table 及 other 两批）、
+  layout（6：article/chat/embed/print-template/split-screen/wizard）、ui（5：chat-input/chat-message/mobile-pull-refresh/mobile-swipe-action/with-permission）+ 1 business（reconciliation-line-editor）。
+  每个组件使用其全部 Props 渲染真实、语义化、可访问的 UI（无 `return null` / `{null}` / 空 div 占位），并补真实交互测试。
+- **19 个 hooks 补为真实实现**：use-approval/async-task/bill/data-scope/dict/export/fetch/form-table/idle/import/line-editor/network-quality/print/redo/sse/swr/table/undo/websocket。
+- **5 个 lib 模块补为真实实现**：crypto（哈希/编码/随机）、date（解析/算术/比较）、excel（CSV 序列化/解析 + SpreadsheetML）、pdf（最小 PDF 生成）、worker（内联函数 Worker + 并行 map）。
+- **测试数 1171 → 1592+**（470 → 更多文件），覆盖率 26% → 持续向 85% 推进（交互测试批量补齐中）。
+- **图标 facade 扩充**：`components/ui/icons.ts` 新增 39 个 lucide 图标（Pin/Send/ArrowUpRight/ExternalLink/MapPin/Save/Funnel/GanttChart/Target/Award 等），供 GA 实现使用。
+- **稳定化清理**：删除临时脚本 `gen-business-shells.mjs`；移除 `publishConfig.provenance`（私有 restricted registry 不支持）；
+  修复 21 个由历史生成脚本遗留的类型错误（unused React 导入、`exactOptionalPropertyTypes`、`noUncheckedIndexedAccess`）。
+- **迁移验证**：消费项目 qxy-mop 全量导入审计通过 — 53 个符号、5 个 subpath 全部仍可解析，0 中断。
+
 ## [1.0.0-beta.0] — 2026-06-30
 
 ### 1.0 API 稳定化

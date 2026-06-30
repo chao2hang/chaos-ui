@@ -1,0 +1,226 @@
+[
+  {
+    "name": "chat-agent-status",
+    "comp": "ChatAgentStatus",
+    "path": "components/business/chat-agent-status.tsx",
+    "props": "ChatAgentStatusProps",
+    "body": "status: \"idle\" | \"thinking\" | \"acting\" | \"waiting\" | \"done\";\n  label?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-artifact-panel",
+    "comp": "ChatArtifactPanel",
+    "path": "components/business/chat-artifact-panel.tsx",
+    "props": "ChatArtifactPanelProps",
+    "body": "title?: string;\n  type?: string;\n  content?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-branch",
+    "comp": "ChatBranch",
+    "path": "components/business/chat-branch.tsx",
+    "props": "ChatBranchProps",
+    "body": "branches: Array<{ id: string; label: string; active?: boolean }>;\n  onSelect?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-card-message",
+    "comp": "ChatCardMessage",
+    "path": "components/business/chat-card-message.tsx",
+    "props": "ChatCardMessageProps",
+    "body": "title: string;\n  description?: string;\n  thumbnail?: string;\n  metadata?: Array<{ label: string; value: string }>;\n  actions?: React.ReactNode;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-code-block",
+    "comp": "ChatCodeBlock",
+    "path": "components/business/chat-code-block.tsx",
+    "props": "ChatCodeBlockProps",
+    "body": "code: string;\n  language?: string;\n  filename?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-command-menu",
+    "comp": "ChatCommandMenu",
+    "path": "components/business/chat-command-menu.tsx",
+    "props": "ChatCommandMenuProps",
+    "body": "commands: Array<{ id: string; label: string; description?: string }>;\n  onSelect?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-context-panel",
+    "comp": "ChatContextPanel",
+    "path": "components/business/chat-context-panel.tsx",
+    "props": "ChatContextPanelProps",
+    "body": "context: Array<{ label: string; value: string }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-conversation",
+    "comp": "ChatConversation",
+    "path": "components/business/chat-conversation.tsx",
+    "props": "ChatConversationProps",
+    "body": "messages: Array<{ id: string; role: string; content: string; time?: string }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-conversation-search",
+    "comp": "ChatConversationSearch",
+    "path": "components/business/chat-conversation-search.tsx",
+    "props": "ChatConversationSearchProps",
+    "body": "query: string;\n  onQueryChange?: (q: string) => void;\n  results?: Array<{ id: string; title: string; snippet: string }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-feedback",
+    "comp": "ChatFeedback",
+    "path": "components/business/chat-feedback.tsx",
+    "props": "ChatFeedbackProps",
+    "body": "onLike?: () => void;\n  onDislike?: () => void;\n  onComment?: (text: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-header",
+    "comp": "ChatHeader",
+    "path": "components/business/chat-header.tsx",
+    "props": "ChatHeaderProps",
+    "body": "title: string;\n  subtitle?: string;\n  status?: string;\n  actions?: React.ReactNode;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-image-gallery",
+    "comp": "ChatImageGallery",
+    "path": "components/business/chat-image-gallery.tsx",
+    "props": "ChatImageGalleryProps",
+    "body": "images: Array<{ src: string; alt?: string }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-input-toolbar",
+    "comp": "ChatInputToolbar",
+    "path": "components/business/chat-input-toolbar.tsx",
+    "props": "ChatInputToolbarProps",
+    "body": "tools: Array<{ id: string; icon?: React.ReactNode; label: string }>;\n  onToolClick?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-markdown-renderer",
+    "comp": "ChatMarkdownRenderer",
+    "path": "components/business/chat-markdown-renderer.tsx",
+    "props": "ChatMarkdownRendererProps",
+    "body": "content: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-mention-picker",
+    "comp": "ChatMentionPicker",
+    "path": "components/business/chat-mention-picker.tsx",
+    "props": "ChatMentionPickerProps",
+    "body": "users: Array<{ id: string; name: string; avatar?: string }>;\n  onSelect?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-message-actions",
+    "comp": "ChatMessageActions",
+    "path": "components/business/chat-message-actions.tsx",
+    "props": "ChatMessageActionsProps",
+    "body": "onReply?: () => void;\n  onCopy?: () => void;\n  onDelete?: () => void;\n  onRegenerate?: () => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-message-bubble",
+    "comp": "ChatMessageBubble",
+    "path": "components/business/chat-message-bubble.tsx",
+    "props": "ChatMessageBubbleProps",
+    "body": "role: \"user\" | \"assistant\" | \"system\";\n  content: string;\n  avatar?: React.ReactNode;\n  name?: string;\n  time?: string;\n  status?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-message-group",
+    "comp": "ChatMessageGroup",
+    "path": "components/business/chat-message-group.tsx",
+    "props": "ChatMessageGroupProps",
+    "body": "sender: string;\n  avatar?: React.ReactNode;\n  messages: Array<{ id: string; content: string; time?: string }>;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-message-input",
+    "comp": "ChatMessageInput",
+    "path": "components/business/chat-message-input.tsx",
+    "props": "ChatMessageInputProps",
+    "body": "value?: string;\n  onChange?: (val: string) => void;\n  onSend?: () => void;\n  placeholder?: string;\n  disabled?: boolean;\n  maxLength?: number;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-model-switcher",
+    "comp": "ChatModelSwitcher",
+    "path": "components/business/chat-model-switcher.tsx",
+    "props": "ChatModelSwitcherProps",
+    "body": "models: Array<{ id: string; name: string; description?: string }>;\n  activeId?: string;\n  onSwitch?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-shared-link",
+    "comp": "ChatSharedLink",
+    "path": "components/business/chat-shared-link.tsx",
+    "props": "ChatSharedLinkProps",
+    "body": "url: string;\n  title?: string;\n  description?: string;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-shell",
+    "comp": "ChatShell",
+    "path": "components/business/chat-shell.tsx",
+    "props": "ChatShellProps",
+    "body": "sidebar?: React.ReactNode;\n  header?: React.ReactNode;\n  children?: React.ReactNode;\n  detailPanel?: React.ReactNode;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-sidebar",
+    "comp": "ChatSidebar",
+    "path": "components/business/chat-sidebar.tsx",
+    "props": "ChatSidebarProps",
+    "body": "conversations: Array<{\n    id: string;\n    title: string;\n    unread?: number;\n    lastMessage?: string;\n    time?: string;\n  }>;\n  activeId?: string;\n  onSelect?: (id: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-streaming-text",
+    "comp": "ChatStreamingText",
+    "path": "components/business/chat-streaming-text.tsx",
+    "props": "ChatStreamingTextProps",
+    "body": "chunks: string[];\n  isStreaming?: boolean;\n  speed?: number;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-suggest-replies",
+    "comp": "ChatSuggestReplies",
+    "path": "components/business/chat-suggest-replies.tsx",
+    "props": "ChatSuggestRepliesProps",
+    "body": "suggestions: string[];\n  onSelect?: (suggestion: string) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-thinking-block",
+    "comp": "ChatThinkingBlock",
+    "path": "components/business/chat-thinking-block.tsx",
+    "props": "ChatThinkingBlockProps",
+    "body": "content: string;\n  duration?: number;\n  collapsed?: boolean;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-tool-call-block",
+    "comp": "ChatToolCallBlock",
+    "path": "components/business/chat-tool-call-block.tsx",
+    "props": "ChatToolCallBlockProps",
+    "body": "toolName: string;\n  toolInput?: unknown;\n  toolOutput?: unknown;\n  status: \"calling\" | \"success\" | \"error\";\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "chat-voice-message",
+    "comp": "ChatVoiceMessage",
+    "path": "components/business/chat-voice-message.tsx",
+    "props": "ChatVoiceMessageProps",
+    "body": "duration: number;\n  src?: string;\n  className?: string;",
+    "useClient": true
+  }
+]

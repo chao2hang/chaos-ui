@@ -1,0 +1,42 @@
+[
+  {
+    "name": "form-designer",
+    "comp": "FormDesigner",
+    "path": "components/business/form-designer.tsx",
+    "props": "FormDesignerProps",
+    "body": "fields: Array<{\n    id: string;\n    type: string;\n    label: string;\n    required?: boolean;\n  }>;\n  onChange?: (fields: unknown[]) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "form-designer-runtime",
+    "comp": "FormDesignerRuntime",
+    "path": "components/business/form-designer-runtime.tsx",
+    "props": "FormDesignerRuntimeProps",
+    "body": "schema: unknown;\n  value?: Record<string, unknown>;\n  onChange?: (val: Record<string, unknown>) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "rule-editor",
+    "comp": "RuleEditor",
+    "path": "components/business/rule-editor.tsx",
+    "props": "RuleEditorProps",
+    "body": "rules: Array<{\n    id: string;\n    field: string;\n    operator: string;\n    value: unknown;\n    action: string;\n  }>;\n  onChange?: (rules: unknown[]) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "workflow-designer",
+    "comp": "WorkflowDesigner",
+    "path": "components/business/workflow-designer.tsx",
+    "props": "WorkflowDesignerProps",
+    "body": "nodes: Array<{ id: string; type: string; name: string }>;\n  edges: Array<{ from: string; to: string }>;\n  onChange?: (config: unknown) => void;\n  className?: string;",
+    "useClient": true
+  },
+  {
+    "name": "workflow-preview",
+    "comp": "WorkflowPreview",
+    "path": "components/business/workflow-preview.tsx",
+    "props": "WorkflowPreviewProps",
+    "body": "nodes: Array<{ id: string; name: string; status?: string }>;\n  edges: Array<{ from: string; to: string }>;\n  className?: string;",
+    "useClient": true
+  }
+]

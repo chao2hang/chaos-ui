@@ -15,6 +15,49 @@ describe("Anchor", () => {
   });
 
   it("renders nav with anchor links", () => {
+    const { container, getByText } = render(
+      <Anchor
+        items={[
+          { key: "a", href: "#a", label: "Alpha" },
+          { key: "b", href: "#b", label: "Beta" },
+        ]}
+      />,
+    );
+    expect(container.querySelector('[data-slot="anchor"]')).not.toBeNull();
+    expect(container.querySelectorAll("a").length).toBe(2);
+    expect(getByText("Alpha")).toBeDefined();
+  });
+
+  it("renders level 2/3 indented classes", () => {
+    const { container } = render(
+      <Anchor
+        items={[
+          { key: "a", href: "#a", label: "A", level: 2 },
+          { key: "b", href: "#b", label: "B", level: 3 },
+        ]}
+      />,
+    );
+    const links = container.querySelectorAll("a");
+    expect(links[0]?.className).toContain("pl-6");
+    expect(links[1]?.className).toContain("pl-9");
+  });
+
+  it("uses controlled activeKey to style the active link", () => {
+    const { container } = render(
+      <Anchor
+        activeKey="b"
+        items={[
+          { key: "a", href: "#a", label: "A" },
+          { key: "b", href: "#b", label: "B" },
+        ]}
+      />,
+    );
+    const links = container.querySelectorAll("a");
+    expect(links[0]?.className).toContain("text-muted-foreground");
+    expect(links[1]?.className).toContain("bg-muted");
+  });
+
+  it("defaults activeKey to first item", () => {
     const { container } = render(
       <Anchor
         items={[
@@ -23,16 +66,13 @@ describe("Anchor", () => {
         ]}
       />,
     );
-    expect(container.querySelector('[data-slot="anchor"]')).not.toBeNull();
-    expect(container.querySelectorAll("a").length).toBe(2);
+    const links = container.querySelectorAll("a");
+    expect(links[0]?.className).toContain("bg-muted");
   });
 
   it("click handler calls onActiveChange + preventDefault", () => {
-    // Anchor's handleClick looks up document.querySelector(href); provide a
-    // matching element so the click reaches onActiveChange.
     const target = document.createElement("div");
     target.id = "a";
-    // jsdom does not implement scrollIntoView; mock it so handleClick works.
     target.scrollIntoView = vi.fn();
     document.body.appendChild(target);
 
@@ -46,8 +86,37 @@ describe("Anchor", () => {
     const link = container.querySelector("a") as HTMLAnchorElement;
     fireEvent.click(link);
     expect(onActiveChange).toHaveBeenCalledWith("a");
+    expect(target.scrollIntoView).toHaveBeenCalled();
 
     document.body.removeChild(target);
+  });
+
+  it("does not scroll/call onActiveChange when target element is missing", () => {
+    const onActiveChange = vi.fn();
+    const { container } = render(
+      <Anchor
+        items={[{ key: "x", href: "#missing", label: "X" }]}
+        onActiveChange={onActiveChange}
+      />,
+    );
+    const link = container.querySelector("a") as HTMLAnchorElement;
+    fireEvent.click(link);
+    // No matching element → el is null → onActiveChange not called.
+    expect(onActiveChange).not.toHaveBeenCalled();
+  });
+
+  it("uses getContainer for scroll listening", () => {
+    const fakeContainer = document.createElement("div");
+    const addSpy = vi.spyOn(fakeContainer, "addEventListener");
+    render(
+      <Anchor
+        getContainer={() => fakeContainer}
+        items={[{ key: "a", href: "#a", label: "A" }]}
+      />,
+    );
+    expect(addSpy).toHaveBeenCalledWith("scroll", expect.any(Function), {
+      passive: true,
+    });
   });
 
   it("module is importable", async () => {
