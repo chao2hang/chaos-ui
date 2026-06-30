@@ -1,66 +1,39 @@
 {
-  "project": {
-    "name": "@qxyfoods/chaos-ui",
-    "version": "0.1.0",
-    "type": "react-component-library",
-    "language": "typescript",
-    "framework": "react",
-    "metaFramework": "nextjs",
-    "styling": "tailwindcss",
-    "uiPrimitives": "@base-ui/react",
-    "packageManager": "npm",
-    "nodeVersion": ">=22.0.0"
-  },
-  "techStack": {
-    "react": "19",
-    "nextjs": "16",
-    "typescript": "5.9",
-    "tailwindcss": "4",
-    "storybook": "10",
-    "vitest": "4",
-    "tsup": "8"
-  },
-  "structure": {
-    "uiComponents": "components/ui/",
-    "businessComponents": "components/business/",
-    "layoutComponents": "components/layout/",
-    "hooks": "hooks/",
-    "lib": "lib/",
-    "stories": "src/",
-    "demo": "app/",
-    "packageEntry": "package/"
-  },
-  "exports": [
-    ".",
-    "./ui",
-    "./ui/icons",
-    "./ui-icons",
-    "./business",
-    "./hooks",
-    "./lib",
-    "./next",
-    "./styles.css"
-  ],
-  "commands": {
-    "dev": "storybook dev -p 6006",
-    "app:dev": "next dev",
-    "check": "npm run typecheck && npm run lint && npm run lint:css && npm run lint:deps",
-    "test": "vitest run",
-    "build:pkg": "tsup",
-    "build-storybook": "storybook build"
+  "name": "Chaos UI",
+  "version": "1.0.0-beta.0",
+  "description": "Enterprise-grade React/Next.js component library for ERP & business systems",
+  "type": "library",
+  "framework": "react",
+  "language": "typescript",
+  "styling": "tailwindcss",
+  "packageManager": "npm",
+  "entryPoints": {
+    "ui": "components/ui/index.ts",
+    "business": "components/business/index.ts",
+    "hooks": "hooks/index.ts",
+    "lib": "lib/index.ts"
   },
   "conventions": {
     "imports": "@/ alias for project-local source",
-    "exports": "named exports only",
-    "variants": "class-variance-authority (cva)",
-    "classNameMerge": "cn() from @/lib/utils",
-    "componentId": "data-slot attribute on root element",
-    "commits": "conventional commits (feat/fix/docs/style/refactor/perf/test/build/ci/chore/revert)"
+    "exports": "named exports only (no default exports)",
+    "variants": "cva for component variants",
+    "className": "cn() from @/lib/utils for merging",
+    "primitives": "@base-ui/react for headless components",
+    "identification": "data-slot attribute on root element",
+    "docs": "JSDoc with @component/@category/@since/@example"
   },
-  "designTokens": {
-    "colors": "CSS custom properties (--primary, --secondary, --destructive, etc.)",
-    "darkMode": ".dark class on root",
-    "borderRadius": "--radius, --radius-sm, --radius-md, --radius-lg",
-    "i18n": "i18next with zh/en locales"
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "test": "vitest run",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run lint:css && npm run lint:deps && npm run check:no-bom",
+    "build:pkg": "tsup",
+    "build-storybook": "storybook build"
+  },
+  "indexes": {
+    "components": "./COMPONENT_INDEX.md",
+    "hooks": "./HOOKS_INDEX.md",
+    "lib": "./LIB_INDEX.md"
   }
 }

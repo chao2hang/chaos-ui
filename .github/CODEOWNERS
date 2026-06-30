@@ -1,0 +1,39 @@
+# CODEOWNERS
+# Each entry maps a path pattern to the team/user responsible for review.
+
+# Default owner
+* @chaos-ui-team
+
+# UI primitives
+/components/ui/ @chaos-ui-team
+
+# Business components
+/components/business/ @chaos-ui-team
+
+# Layout components
+/components/layout/ @chaos-ui-team
+
+# Hooks
+/hooks/ @chaos-ui-team
+
+# Lib utilities
+/lib/ @chaos-ui-team
+
+# Build & config
+/tsup.config.ts @chaos-ui-team
+/tsconfig.json @chaos-ui-team
+/vitest.config.ts @chaos-ui-team
+/package.json @chaos-ui-team
+
+# CI/CD
+/.github/ @chaos-ui-team
+
+# Storybook
+/.storybook/ @chaos-ui-team
+/src/stories/ @chaos-ui-team
+
+# Styles
+/styles.css @chaos-ui-team
+
+# i18n
+/lib/i18n/ @chaos-ui-team

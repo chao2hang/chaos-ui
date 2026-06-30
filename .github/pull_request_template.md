@@ -1,47 +1,43 @@
-## Description
+## Summary
 
 <!-- Brief description of what this PR does -->
 
-## Type of Change
+## Type
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Refactoring (no functional changes)
-- [ ] Performance improvement
-- [ ] Test addition/improvement
+- [ ] feat — New feature
+- [ ] fix — Bug fix
+- [ ] refactor — Code refactoring
+- [ ] docs — Documentation
+- [ ] test — Tests
+- [ ] chore — Build/config/CI
+- [ ] breaking — Breaking change
 
-## Changes Made
+## Scope
 
-<!-- List the key changes -->
-
--
--
--
+- [ ] UI (`components/ui`)
+- [ ] Business (`components/business`)
+- [ ] Layout (`components/layout`)
+- [ ] Hooks
+- [ ] Lib
+- [ ] Styles
+- [ ] Storybook
+- [ ] CI/CD
+- [ ] Other
 
 ## Checklist
 
-- [ ] Code follows the project's coding conventions (see `CONVENTIONS.md`)
-- [ ] Self-review completed
-- [ ] Comments added for complex logic
-- [ ] Corresponding changes to documentation made
-- [ ] Tests added/updated for new functionality
-- [ ] `npm run check` passes (typecheck + lint + css lint + dep check)
+- [ ] `npm run typecheck` passes
+- [ ] `npm run lint` passes (0 errors)
 - [ ] `npm test` passes
-- [ ] `npm run build-storybook` succeeds
-- [ ] `npm run build:pkg` succeeds
-- [ ] No new ESLint warnings/errors
-- [ ] Commit messages follow Conventional Commits
+- [ ] Story added/updated (if component)
+- [ ] JSDoc `@component` / `@since` / `@example` added
+- [ ] Barrel export added
+- [ ] No hardcoded secrets/URLs
 
-## Screenshots/Recordings
+## Breaking Changes
 
-<!-- If applicable, add screenshots or recordings -->
+<!-- If breaking, describe migration path -->
 
-## Related Issues
+## Screenshot / Storybook
 
-<!-- Link related issues: Closes #123, Refs #456 -->
-
-## Additional Notes
-
-<!-- Any other information that reviewers should know -->
+<!-- Link to Storybook story or attach screenshot -->
