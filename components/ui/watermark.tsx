@@ -33,16 +33,20 @@ export function Watermark({
   const resolvedText = text ?? t("watermark.default");
   const [tiles, setTiles] = React.useState<{ x: number; y: number }[]>([]);
 
+  // Destructure gap into stable primitives so the effect doesn't re-run when
+  // the caller passes an inline array (new reference every render → recompute
+  // tiles + rebind resize listener every render).
+  const [gapX, gapY] = gap;
+
   React.useEffect(() => {
     if (!fullPage) return;
     const compute = () => {
-      const [gx, gy] = gap;
-      const cols = Math.ceil(window.innerWidth / gx) + 1;
-      const rows = Math.ceil(window.innerHeight / gy) + 1;
+      const cols = Math.ceil(window.innerWidth / gapX) + 1;
+      const rows = Math.ceil(window.innerHeight / gapY) + 1;
       const next: { x: number; y: number }[] = [];
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          next.push({ x: c * gx, y: r * gy });
+          next.push({ x: c * gapX, y: r * gapY });
         }
       }
       setTiles(next);
@@ -50,7 +54,7 @@ export function Watermark({
     compute();
     window.addEventListener("resize", compute);
     return () => window.removeEventListener("resize", compute);
-  }, [fullPage, gap]);
+  }, [fullPage, gapX, gapY]);
 
   if (!fullPage) {
     return (
@@ -99,8 +103,8 @@ export function Watermark({
           style={{
             left: t.x,
             top: t.y,
-            width: gap[0],
-            height: gap[1],
+            width: gapX,
+            height: gapY,
             transform: `rotate(${rotate}deg)`,
             display: "flex",
             alignItems: "center",
