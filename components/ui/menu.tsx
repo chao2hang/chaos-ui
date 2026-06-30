@@ -121,9 +121,10 @@ interface MenuContextValue {
   selectable: boolean;
   multiple: boolean;
   onItemClick: (info: MenuClickInfo) => void;
-  onItemToggle: (key: string) => void;
+  onItemToggle: (key: string, parentKey?: string) => void;
   registerItem: (key: string, config: MenuItemConfig) => void;
   level: number;
+  parentKey?: string;
 }
 
 const MenuContext = React.createContext<MenuContextValue | null>(null);
@@ -254,12 +255,23 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
     );
 
     const onItemToggle = React.useCallback(
-      (key: string) => {
+      (key: string, parentKey?: string) => {
         const isOpen = currentOpen.includes(key);
-        const next = isOpen ? currentOpen.filter((k) => k !== key) : [...currentOpen, key];
+        let next: string[];
+        if (isOpen) {
+          next = currentOpen.filter((k) => k !== key);
+        } else if (mode === "vertical") {
+          // Accordion: close siblings at the same level
+          const siblings = parentKey
+            ? itemsRef.current.get(parentKey)?.children?.map((c) => c.key) ?? []
+            : items?.map((i) => i.key) ?? [];
+          next = currentOpen.filter((k) => !siblings.includes(k)).concat(key);
+        } else {
+          next = [...currentOpen, key];
+        }
         updateOpen(next);
       },
-      [currentOpen, updateOpen],
+      [currentOpen, items, mode, updateOpen],
     );
 
     const handleCollapseToggle = React.useCallback(() => {
@@ -500,12 +512,12 @@ function SubMenuContent({
 }) {
   const ctx = useMenuContext("Menu.SubMenu");
   const inlineMode = ctx.mode === "inline";
-  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1 };
+  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1, parentKey: config.key };
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (config.disabled) return;
-    ctx.onItemToggle(config.key);
+    ctx.onItemToggle(config.key, ctx.parentKey);
   };
 
   const handleHover = (e: React.MouseEvent) => {
@@ -513,7 +525,7 @@ function SubMenuContent({
     e.stopPropagation();
     if (config.disabled) return;
     if (!ctx.openKeys.includes(config.key)) {
-      ctx.onItemToggle(config.key);
+      ctx.onItemToggle(config.key, ctx.parentKey);
     }
   };
 
@@ -660,10 +672,10 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (disabled) return;
-    ctx.onItemToggle(subKey);
+    ctx.onItemToggle(subKey, ctx.parentKey);
   };
 
-  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1 };
+  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1, parentKey: subKey };
 
   const trigger = (
     <button
