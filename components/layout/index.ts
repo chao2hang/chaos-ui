@@ -14,3 +14,6 @@ export * from "./master-detail-tabs";
 export * from "./region-layout";
 
 export * from "./dialog-form-body";
+// --- auto-generated: layout ---
+export * from "./wizard-layout";
+export * from "./chat-layout";
