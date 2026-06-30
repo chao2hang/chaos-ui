@@ -1,0 +1,69 @@
+# Auto-labeler configuration for PRs
+# Docs: https://github.com/actions/labeler
+
+"type: feat":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "components/**"
+          - "hooks/**"
+          - "lib/**"
+
+"type: fix":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "components/**/*.test.tsx"
+          - "hooks/**/*.test.ts"
+          - "lib/**/*.test.ts"
+
+"type: docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "**/*.mdx"
+          - "src/stories/**"
+
+"type: ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/labeler.yml"
+
+"type: chore":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "package.json"
+          - "package-lock.json"
+          - "tsconfig.json"
+          - ".eslintrc*"
+          - ".prettierrc*"
+          - ".stylelintrc*"
+
+"area: ui":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "components/ui/**"
+
+"area: business":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "components/business/**"
+
+"area: layout":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "components/layout/**"
+
+"area: hooks":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "hooks/**"
+
+"area: lib":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "lib/**"
+
+"area: i18n":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "lib/i18n/**"

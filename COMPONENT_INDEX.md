@@ -1,198 +1,243 @@
-# Component Index — Chaos UI
+# Chaos UI Component Index
 
-> Machine-readable component catalog for AI assistants and developers.
+> Auto-generated component catalog. Last updated: 2026-06-30.
 
-## UI Primitives (`components/ui/`)
+## UI (111)
 
-| Component | File | Category | Since |
-|-----------|------|----------|-------|
-| Accordion | accordion.tsx | ui/disclosure | 0.1.0 |
-| Alert | alert.tsx | ui/feedback | 0.1.0 |
-| AlertDialog | alert-dialog.tsx | ui/overlay | 0.1.0 |
-| AspectRatio | aspect-ratio.tsx | ui/layout | 0.1.0 |
-| Affix | affix.tsx | ui/layout | 0.2.0 |
-| Avatar | avatar.tsx | ui/media | 0.1.0 |
-| BackTop | back-top.tsx | ui/navigation | 0.2.0 |
-| Badge | badge.tsx | ui/display | 0.1.0 |
-| Breadcrumb | breadcrumb.tsx | ui/navigation | 0.1.0 |
-| BrowseInput | browse-input.tsx | ui/input | 0.1.0 |
-| Button | button.tsx | ui/action | 0.1.0 |
-| Calendar | calendar.tsx | ui/input | 0.1.0 |
-| Card | card.tsx | ui/layout | 0.1.0 |
-| Carousel | carousel.tsx | ui/media | 0.1.0 |
-| Checkbox | checkbox.tsx | ui/input | 0.1.0 |
-| Collapsible | collapsible.tsx | ui/disclosure | 0.1.0 |
-| ColorPicker | color-picker.tsx | ui/input | 0.1.0 |
-| Command | command.tsx | ui/overlay | 0.1.0 |
-| ConfigProvider | config-provider.tsx | ui/provider | 0.2.0 |
-| ContextMenu | context-menu.tsx | ui/overlay | 0.1.0 |
-| DatePicker | date-picker.tsx | ui/input | 0.2.0 |
-| DepartmentBrowse | department-browse.tsx | ui/input | 0.1.0 |
-| Descriptions | descriptions.tsx | ui/display | 0.2.0 |
-| Dialog | dialog.tsx | ui/overlay | 0.1.0 |
-| Divider | divider.tsx | ui/layout | 0.2.0 |
-| Dot | dot.tsx | ui/display | 0.1.0 |
-| Drawer | drawer.tsx | ui/overlay | 0.1.0 |
-| DropdownMenu | dropdown-menu.tsx | ui/overlay | 0.1.0 |
-| FileUpload | file-upload.tsx | ui/input | 0.1.0 |
-| Flex | flex.tsx | ui/layout | 0.2.0 |
-| Form | form.tsx | ui/input | 0.1.0 |
-| FormGrid | form-grid.tsx | ui/layout | 0.1.0 |
-| FormList | form-list.tsx | ui/input | 0.1.0 |
-| FormSection | form-section.tsx | ui/layout | 0.1.0 |
-| GridLayout | grid-layout.tsx | ui/layout | 0.1.0 |
-| HoverCard | hover-card.tsx | ui/overlay | 0.1.0 |
-| Input | input.tsx | ui/input | 0.1.0 |
-| InputGroup | input-group.tsx | ui/input | 0.1.0 |
-| InputNumber | input-number.tsx | ui/input | 0.2.0 |
-| InputSearch | input-search.tsx | ui/input | 0.2.0 |
-| Kbd | kbd.tsx | ui/display | 0.1.0 |
-| KPIPanel | kpi-panel.tsx | ui/display | 0.1.0 |
-| Label | label.tsx | ui/input | 0.1.0 |
-| Menubar | menubar.tsx | ui/navigation | 0.1.0 |
-| NavigationMenu | navigation-menu.tsx | ui/navigation | 0.1.0 |
-| OTPField | otp-field.tsx | ui/input | 0.1.0 |
-| PageContainer | page-container.tsx | ui/layout | 0.1.0 |
-| Pagination | pagination.tsx | ui/navigation | 0.1.0 |
-| Popconfirm | popconfirm.tsx | ui/overlay | 0.2.0 |
-| Popover | popover.tsx | ui/overlay | 0.1.0 |
-| Progress | progress.tsx | ui/feedback | 0.1.0 |
-| RadioGroup | radio-group.tsx | ui/input | 0.1.0 |
-| Resizable | resizable.tsx | ui/layout | 0.1.0 |
-| ScrollArea | scroll-area.tsx | ui/layout | 0.1.0 |
-| Select | select.tsx | ui/input | 0.1.0 |
-| Separator | separator.tsx | ui/layout | 0.1.0 |
-| Sheet | sheet.tsx | ui/overlay | 0.1.0 |
-| Sidebar | sidebar.tsx | ui/navigation | 0.1.0 |
-| Skeleton | skeleton.tsx | ui/feedback | 0.1.0 |
-| Slider | slider.tsx | ui/input | 0.1.0 |
-| Sonner (Toaster) | sonner.tsx | ui/feedback | 0.1.0 |
-| Space | space.tsx | ui/layout | 0.2.0 |
-| Spinner | spinner.tsx | ui/feedback | 0.2.0 |
-| SplitPane | split-pane.tsx | ui/layout | 0.1.0 |
-| Spin | spin.tsx | ui/feedback | 0.2.0 |
-| Stepper | stepper.tsx | ui/navigation | 0.1.0 |
-| Switch | switch.tsx | ui/input | 0.1.0 |
-| Table | table.tsx | ui/display | 0.1.0 |
-| Tabs | tabs.tsx | ui/navigation | 0.1.0 |
-| TagsInput | tags-input.tsx | ui/input | 0.1.0 |
-| Textarea | textarea.tsx | ui/input | 0.1.0 |
-| Timeline | timeline.tsx | ui/display | 0.1.0 |
-| Toggle | toggle.tsx | ui/input | 0.1.0 |
-| ToggleGroup | toggle-group.tsx | ui/input | 0.1.0 |
-| Tooltip | tooltip.tsx | ui/overlay | 0.1.0 |
-| TreeSelect | tree-select.tsx | ui/input | 0.1.0 |
-| TreeView | tree-view.tsx | ui/display | 0.1.0 |
-| Typography | typography.tsx | ui/display | 0.2.0 |
-| UserBrowse | user-browse.tsx | ui/input | 0.1.0 |
-| VirtualList | virtual-list.tsx | ui/display | 0.1.0 |
-| VirtualTable | virtual-table.tsx | ui/display | 0.1.0 |
-| Icons | icons.ts | ui/media | 0.1.0 |
+| Component         | Path                                |
+| ----------------- | ----------------------------------- |
+| accordion         | components/ui/accordion.tsx         |
+| affix             | components/ui/affix.tsx             |
+| alert-dialog      | components/ui/alert-dialog.tsx      |
+| alert             | components/ui/alert.tsx             |
+| anchor            | components/ui/anchor.tsx            |
+| aspect-ratio      | components/ui/aspect-ratio.tsx      |
+| autocomplete      | components/ui/autocomplete.tsx      |
+| avatar            | components/ui/avatar.tsx            |
+| back-top          | components/ui/back-top.tsx          |
+| badge             | components/ui/badge.tsx             |
+| barcode-display   | components/ui/barcode-display.tsx   |
+| breadcrumb        | components/ui/breadcrumb.tsx        |
+| browse-input      | components/ui/browse-input.tsx      |
+| button            | components/ui/button.tsx            |
+| calendar          | components/ui/calendar.tsx          |
+| card              | components/ui/card.tsx              |
+| carousel          | components/ui/carousel.tsx          |
+| cascader          | components/ui/cascader.tsx          |
+| checkbox          | components/ui/checkbox.tsx          |
+| collapsible       | components/ui/collapsible.tsx       |
+| color-picker      | components/ui/color-picker.tsx      |
+| combobox          | components/ui/combobox.tsx          |
+| command           | components/ui/command.tsx           |
+| config-provider   | components/ui/config-provider.tsx   |
+| context-menu      | components/ui/context-menu.tsx      |
+| countdown         | components/ui/countdown.tsx         |
+| date-picker       | components/ui/date-picker.tsx       |
+| department-browse | components/ui/department-browse.tsx |
+| descriptions      | components/ui/descriptions.tsx      |
+| dialog            | components/ui/dialog.tsx            |
+| divider           | components/ui/divider.tsx           |
+| dot               | components/ui/dot.tsx               |
+| drawer            | components/ui/drawer.tsx            |
+| dropdown-menu     | components/ui/dropdown-menu.tsx     |
+| empty-state       | components/ui/empty-state.tsx       |
+| fab               | components/ui/fab.tsx               |
+| file-upload       | components/ui/file-upload.tsx       |
+| flex              | components/ui/flex.tsx              |
+| form-grid         | components/ui/form-grid.tsx         |
+| form-list         | components/ui/form-list.tsx         |
+| form-section      | components/ui/form-section.tsx      |
+| form              | components/ui/form.tsx              |
+| fullscreen-toggle | components/ui/fullscreen-toggle.tsx |
+| grid-layout       | components/ui/grid-layout.tsx       |
+| grid              | components/ui/grid.tsx              |
+| hover-card        | components/ui/hover-card.tsx        |
+| image-viewer      | components/ui/image-viewer.tsx      |
+| image             | components/ui/image.tsx             |
+| input-group       | components/ui/input-group.tsx       |
+| input-number      | components/ui/input-number.tsx      |
+| input-search      | components/ui/input-search.tsx      |
+| input             | components/ui/input.tsx             |
+| kbd               | components/ui/kbd.tsx               |
+| keyboard-shortcut | components/ui/keyboard-shortcut.tsx |
+| kpi-panel         | components/ui/kpi-panel.tsx         |
+| label             | components/ui/label.tsx             |
+| list              | components/ui/list.tsx              |
+| mentions          | components/ui/mentions.tsx          |
+| menu              | components/ui/menu.tsx              |
+| menubar           | components/ui/menubar.tsx           |
+| message-provider  | components/ui/message-provider.tsx  |
+| modal-provider    | components/ui/modal-provider.tsx    |
+| navigation-menu   | components/ui/navigation-menu.tsx   |
+| notification      | components/ui/notification.tsx      |
+| otp-field         | components/ui/otp-field.tsx         |
+| page-container    | components/ui/page-container.tsx    |
+| pagination        | components/ui/pagination.tsx        |
+| popconfirm        | components/ui/popconfirm.tsx        |
+| popover           | components/ui/popover.tsx           |
+| progress          | components/ui/progress.tsx          |
+| qrcode-display    | components/ui/qrcode-display.tsx    |
+| qrcode            | components/ui/qrcode.tsx            |
+| radio-group       | components/ui/radio-group.tsx       |
+| rating            | components/ui/rating.tsx            |
+| resizable         | components/ui/resizable.tsx         |
+| result            | components/ui/result.tsx            |
+| scroll-area       | components/ui/scroll-area.tsx       |
+| segmented-control | components/ui/segmented-control.tsx |
+| select            | components/ui/select.tsx            |
+| separator         | components/ui/separator.tsx         |
+| sequence-input    | components/ui/sequence-input.tsx    |
+| sequence-preview  | components/ui/sequence-preview.tsx  |
+| sheet             | components/ui/sheet.tsx             |
+| sidebar           | components/ui/sidebar.tsx           |
+| skeleton          | components/ui/skeleton.tsx          |
+| slider            | components/ui/slider.tsx            |
+| sonner            | components/ui/sonner.tsx            |
+| space             | components/ui/space.tsx             |
+| spin              | components/ui/spin.tsx              |
+| spinner           | components/ui/spinner.tsx           |
+| split-pane        | components/ui/split-pane.tsx        |
+| statistic         | components/ui/statistic.tsx         |
+| stepper           | components/ui/stepper.tsx           |
+| switch            | components/ui/switch.tsx            |
+| table             | components/ui/table.tsx             |
+| tabs              | components/ui/tabs.tsx              |
+| tag               | components/ui/tag.tsx               |
+| tags-input        | components/ui/tags-input.tsx        |
+| textarea          | components/ui/textarea.tsx          |
+| timeline          | components/ui/timeline.tsx          |
+| toggle-group      | components/ui/toggle-group.tsx      |
+| toggle            | components/ui/toggle.tsx            |
+| tooltip           | components/ui/tooltip.tsx           |
+| tour              | components/ui/tour.tsx              |
+| tree-select       | components/ui/tree-select.tsx       |
+| tree-view         | components/ui/tree-view.tsx         |
+| typography        | components/ui/typography.tsx        |
+| user-browse       | components/ui/user-browse.tsx       |
+| virtual-list      | components/ui/virtual-list.tsx      |
+| virtual-table     | components/ui/virtual-table.tsx     |
+| watermark         | components/ui/watermark.tsx         |
 
-## Business Components (`components/business/`)
+## Business (93)
 
-| Component | File | Domain |
-|-----------|------|--------|
-| ActivityFeed | activity-feed.tsx | analytics |
-| AdvancedDataTable | advanced-data-table.tsx | data |
-| AdvancedSearch | advanced-search.tsx | analytics |
-| ApprovalTimeline | approval-timeline.tsx | approval |
-| AudienceSegmentBuilder | audience-segment-builder.tsx | marketing |
-| AuditLog | audit-log.tsx | analytics |
-| AvatarGroup | avatar-group.tsx | general |
-| BudgetPacingCard | budget-pacing-card.tsx | marketing |
-| BulkActionsToolbar | bulk-actions-toolbar.tsx | data |
-| BulkImportWizard | bulk-import-wizard.tsx | upload |
-| CampaignCalendar | campaign-calendar.tsx | marketing |
-| CampaignCard | campaign-card.tsx | marketing |
-| CampaignStatusTag | campaign-status-tag.tsx | marketing |
-| ChannelPicker | channel-picker.tsx | marketing |
-| Chart | chart.tsx | chart |
-| Chip | chip.tsx | general |
-| CodeBlock | code-block.tsx | general |
-| Combobox | combobox.tsx | general |
-| CommandPalette | command-palette.tsx | general |
-| ConfirmDialog | confirm-dialog.tsx | feedback |
-| CookieBanner | cookie-banner.tsx | theme |
-| CreativePreview | creative-preview.tsx | marketing |
-| DataTable | data-table.tsx | data |
-| DateRangePicker | date-range-picker.tsx | general |
-| DiffViewer | diff-viewer.tsx | analytics |
-| EmptyState | empty-state.tsx | feedback |
-| ErrorBoundary | error-boundary.tsx | feedback |
-| ErrorPage | error-page.tsx | feedback |
-| ExperimentSummary | experiment-summary.tsx | marketing |
-| ExportButton | export-button.tsx | general |
-| Fab | fab.tsx | general |
-| FileUploadManager | file-upload-manager.tsx | upload |
-| FilterBuilder | filter-builder.tsx | analytics |
-| FormField | form-field.tsx | general |
-| FormWizard | form-wizard.tsx | general |
-| Gauge | gauge.tsx | chart |
-| HeatmapCalendar | heatmap-calendar.tsx | chart |
-| InlineEdit | inline-edit.tsx | general |
-| JsonViewer | json-viewer.tsx | general |
-| KanbanBoard | kanban-board.tsx | general |
-| KpiCard | kpi-card.tsx | general |
-| LanguageSwitcher | language-switcher.tsx | theme |
-| LoadingPage | loading-page.tsx | feedback |
-| MetricTrend | metric-trend.tsx | chart |
-| MobileAuthLayout | mobile-auth-layout.tsx | mobile |
-| MobileBottomNav | mobile-bottom-nav.tsx | mobile |
-| MobileButton | mobile-button.tsx | mobile |
-| MobileCard | mobile-card.tsx | mobile |
-| MobileDashboardLayout | mobile-dashboard-layout.tsx | mobile |
-| MobileDataTable | mobile-data-table.tsx | mobile |
-| MobileDialog | mobile-dialog.tsx | mobile |
-| MobileEmptyState | mobile-empty-state.tsx | mobile |
-| MobileFilterBuilder | mobile-filter-builder.tsx | mobile |
-| MobileFormField | mobile-form-field.tsx | mobile |
-| MobileFormWizard | mobile-form-wizard.tsx | mobile |
-| MobileForm | mobile-form.tsx | mobile |
-| MobileInput | mobile-input.tsx | mobile |
-| MobileKanban | mobile-kanban.tsx | mobile |
-| MobileKpiCard | mobile-kpi-card.tsx | mobile |
-| MobileNavigation | mobile-navigation.tsx | mobile |
-| MobilePageHeader | mobile-page-header.tsx | mobile |
-| MobilePullToRefresh | mobile-pull-to-refresh.tsx | mobile |
-| MobileSelect | mobile-select.tsx | mobile |
-| MobileSheet | mobile-sheet.tsx | mobile |
-| MobileSkeleton | mobile-skeleton.tsx | mobile |
-| MobileSwipeActions | mobile-swipe-actions.tsx | mobile |
-| MobileTabs | mobile-tabs.tsx | mobile |
-| MobileTextarea | mobile-textarea.tsx | mobile |
-| MultiSelect | multi-select.tsx | general |
-| NotificationCenter | notification-center.tsx | general |
-| PageHeader | page-header.tsx | general |
-| PermissionMatrix | permission-matrix.tsx | approval |
-| PivotTable | pivot-table.tsx | data |
-| PromptDialog | prompt-dialog.tsx | feedback |
-| Rating | rating.tsx | general |
-| ResponsivePreview | responsive-preview.tsx | general |
-| RoleAssignment | role-assignment.tsx | approval |
-| SavedFilters | saved-filters.tsx | analytics |
-| SegmentedControl | segmented-control.tsx | general |
-| StatCard | stat-card.tsx | general |
-| StatusTag | status-tag.tsx | general |
-| ThemeToggle | theme-toggle.tsx | theme |
-| TimePicker | time-picker.tsx | general |
-| Tour | tour.tsx | feedback |
-| Transfer | transfer.tsx | general |
-| UserMenu | user-menu.tsx | general |
-| UtmBuilder | utm-builder.tsx | marketing |
-| VersionHistory | version-history.tsx | analytics |
-| Watermark | watermark.tsx | feedback |
+| Component                | Path                                             |
+| ------------------------ | ------------------------------------------------ |
+| activity-feed            | components/business/activity-feed.tsx            |
+| advanced-data-table      | components/business/advanced-data-table.tsx      |
+| advanced-search          | components/business/advanced-search.tsx          |
+| announcement-banner      | components/business/announcement-banner.tsx      |
+| approval-timeline        | components/business/approval-timeline.tsx        |
+| async-task-center        | components/business/async-task-center.tsx        |
+| audience-segment-builder | components/business/audience-segment-builder.tsx |
+| audit-log                | components/business/audit-log.tsx                |
+| audit-sidebar            | components/business/audit-sidebar.tsx            |
+| auth-guard               | components/business/auth-guard.tsx               |
+| avatar-group             | components/business/avatar-group.tsx             |
+| bill-footer              | components/business/bill-footer.tsx              |
+| bill-header              | components/business/bill-header.tsx              |
+| bill-page                | components/business/bill-page.tsx                |
+| bill-status-bar          | components/business/bill-status-bar.tsx          |
+| biz-status-tag           | components/business/biz-status-tag.tsx           |
+| budget-pacing-card       | components/business/budget-pacing-card.tsx       |
+| bulk-actions-toolbar     | components/business/bulk-actions-toolbar.tsx     |
+| bulk-import-wizard       | components/business/bulk-import-wizard.tsx       |
+| campaign-calendar        | components/business/campaign-calendar.tsx        |
+| campaign-card            | components/business/campaign-card.tsx            |
+| campaign-status-tag      | components/business/campaign-status-tag.tsx      |
+| channel-picker           | components/business/channel-picker.tsx           |
+| chart                    | components/business/chart.tsx                    |
+| chip                     | components/business/chip.tsx                     |
+| code-block               | components/business/code-block.tsx               |
+| color-tag                | components/business/color-tag.tsx                |
+| combobox                 | components/business/combobox.tsx                 |
+| command-palette          | components/business/command-palette.tsx          |
+| confirm-dialog           | components/business/confirm-dialog.tsx           |
+| cookie-banner            | components/business/cookie-banner.tsx            |
+| creative-preview         | components/business/creative-preview.tsx         |
+| crud-page                | components/business/crud-page.tsx                |
+| crud-toolbar             | components/business/crud-toolbar.tsx             |
+| data-table               | components/business/data-table.tsx               |
+| date-range-picker        | components/business/date-range-picker.tsx        |
+| dict-select              | components/business/dict-select.tsx              |
+| diff-viewer              | components/business/diff-viewer.tsx              |
+| edit-toolbar             | components/business/edit-toolbar.tsx             |
+| empty-state              | components/business/empty-state.tsx              |
+| error-boundary           | components/business/error-boundary.tsx           |
+| error-page               | components/business/error-page.tsx               |
+| expense-line-editor      | components/business/expense-line-editor.tsx      |
+| experiment-summary       | components/business/experiment-summary.tsx       |
+| export-button            | components/business/export-button.tsx            |
+| fab                      | components/business/fab.tsx                      |
+| field-mask               | components/business/field-mask.tsx               |
+| file-upload-manager      | components/business/file-upload-manager.tsx      |
+| filter-bar               | components/business/filter-bar.tsx               |
+| filter-builder           | components/business/filter-builder.tsx           |
+| forbidden                | components/business/forbidden.tsx                |
+| form-field               | components/business/form-field.tsx               |
+| form-wizard              | components/business/form-wizard.tsx              |
+| gauge                    | components/business/gauge.tsx                    |
+| global-loading           | components/business/global-loading.tsx           |
+| heatmap-calendar         | components/business/heatmap-calendar.tsx         |
+| import-dialog            | components/business/import-dialog.tsx            |
+| inline-edit              | components/business/inline-edit.tsx              |
+| json-viewer              | components/business/json-viewer.tsx              |
+| kanban-board             | components/business/kanban-board.tsx             |
+| kpi-card                 | components/business/kpi-card.tsx                 |
+| language-switcher        | components/business/language-switcher.tsx        |
+| line-editor              | components/business/line-editor.tsx              |
+| loading-page             | components/business/loading-page.tsx             |
+| metric-trend             | components/business/metric-trend.tsx             |
+| multi-select             | components/business/multi-select.tsx             |
+| notification-center      | components/business/notification-center.tsx      |
+| order-line-editor        | components/business/order-line-editor.tsx        |
+| page-header              | components/business/page-header.tsx              |
+| permission-matrix        | components/business/permission-matrix.tsx        |
+| permission-wrapper       | components/business/permission-wrapper.tsx       |
+| pivot-table              | components/business/pivot-table.tsx              |
+| print-button             | components/business/print-button.tsx             |
+| prompt-dialog            | components/business/prompt-dialog.tsx            |
+| rating                   | components/business/rating.tsx                   |
+| remote-select            | components/business/remote-select.tsx            |
+| responsive-preview       | components/business/responsive-preview.tsx       |
+| role-assignment          | components/business/role-assignment.tsx          |
+| saved-filters            | components/business/saved-filters.tsx            |
+| search-table             | components/business/search-table.tsx             |
+| segmented-control        | components/business/segmented-control.tsx        |
+| stat-card-row            | components/business/stat-card-row.tsx            |
+| stat-card                | components/business/stat-card.tsx                |
+| status-badge             | components/business/status-badge.tsx             |
+| status-tag               | components/business/status-tag.tsx               |
+| theme-toggle             | components/business/theme-toggle.tsx             |
+| time-picker              | components/business/time-picker.tsx              |
+| tour                     | components/business/tour.tsx                     |
+| transfer                 | components/business/transfer.tsx                 |
+| user-menu                | components/business/user-menu.tsx                |
+| utm-builder              | components/business/utm-builder.tsx              |
+| version-history          | components/business/version-history.tsx          |
+| watermark                | components/business/watermark.tsx                |
 
-## Layout Components (`components/layout/`)
+## Layout (17)
 
-| Component | File |
-|-----------|------|
-| AppShell | app-shell.tsx |
-| AuthLayout | auth-layout.tsx |
-| BlankLayout | blank-layout.tsx |
-| DashboardLayout | dashboard-layout.tsx |
-| DetailLayout | detail-layout.tsx |
-| ErrorLayout | error-layout.tsx |
-| PrintLayout | print-layout.tsx |
-| PublicLayout | public-layout.tsx |
-| TopBar | top-bar.tsx |
+| Component            | Path                                       |
+| -------------------- | ------------------------------------------ |
+| admin-breadcrumb     | components/layout/admin-breadcrumb.tsx     |
+| admin-header         | components/layout/admin-header.tsx         |
+| admin-sider          | components/layout/admin-sider.tsx          |
+| admin-tabs           | components/layout/admin-tabs.tsx           |
+| app-shell            | components/layout/app-shell.tsx            |
+| auth-layout          | components/layout/auth-layout.tsx          |
+| blank-layout         | components/layout/blank-layout.tsx         |
+| dashboard-layout     | components/layout/dashboard-layout.tsx     |
+| detail-layout        | components/layout/detail-layout.tsx        |
+| dialog-form-body     | components/layout/dialog-form-body.tsx     |
+| error-layout         | components/layout/error-layout.tsx         |
+| master-detail-layout | components/layout/master-detail-layout.tsx |
+| master-detail-tabs   | components/layout/master-detail-tabs.tsx   |
+| print-layout         | components/layout/print-layout.tsx         |
+| public-layout        | components/layout/public-layout.tsx        |
+| region-layout        | components/layout/region-layout.tsx        |
+| top-bar              | components/layout/top-bar.tsx              |
+
+---
+
+**Total**: 221 components
