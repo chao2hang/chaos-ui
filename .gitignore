@@ -73,7 +73,9 @@ VISUAL_TEST_REPORT.md
 .pnpm-store/
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo

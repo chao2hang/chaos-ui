@@ -47,3 +47,4 @@ export * from "./random";
 export * from "./tree";
 export * from "./color";
 export * from "./array";
+export { cspHeaders } from "./security";

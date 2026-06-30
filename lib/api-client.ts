@@ -17,6 +17,8 @@ export interface ApiClientConfig {
   baseURL?: string;
   timeout?: number;
   getToken?: () => string | null | Promise<string | null>;
+  refreshToken?: () => Promise<string | null>;
+  onTokenExpired?: () => void;
   onError?: (error: ApiError) => void;
   showErrorToast?: boolean;
 }
@@ -29,6 +31,8 @@ export class ApiClient {
       baseURL = "/api",
       timeout = 30000,
       getToken,
+      refreshToken,
+      onTokenExpired,
       onError,
       showErrorToast = true,
     } = config;
@@ -47,11 +51,26 @@ export class ApiClient {
 
     this.instance.interceptors.response.use(
       (res) => res,
-      (
+      async (
         err: AxiosError<{ message?: string; code?: string; details?: unknown }>,
       ) => {
         const status = err.response?.status ?? 0;
         const data = err.response?.data;
+
+        // Token refresh on 401
+        if (status === 401 && refreshToken && err.config) {
+          try {
+            const newToken = await refreshToken();
+            if (newToken && err.config.headers) {
+              err.config.headers.set("Authorization", `Bearer ${newToken}`);
+              return this.instance.request(err.config);
+            }
+          } catch {
+            // Refresh failed — fall through to error handling
+          }
+          onTokenExpired?.();
+        }
+
         const apiError: ApiError = {
           status,
           ...(data?.code !== undefined ? { code: data.code } : {}),
