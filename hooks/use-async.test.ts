@@ -14,7 +14,14 @@ describe("useAsync", () => {
     const fn = vi.fn(async () => {
       throw new Error("fail");
     });
-    const { result } = renderHook(() => useAsync(fn));
+    const { result } = renderHook(() => useAsync(fn, false));
+    await act(async () => {
+      try {
+        await result.current.run();
+      } catch {
+        // useAsync catches internally; swallow to avoid unhandled rejection
+      }
+    });
     await waitFor(() => expect(result.current.status).toBe("error"));
     expect(result.current.error).toBeInstanceOf(Error);
   });
