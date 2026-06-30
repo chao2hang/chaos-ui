@@ -87,7 +87,8 @@ describe("tabs", () => {
       </Tabs>,
     );
     fireEvent.click(screen.getByText("B"));
-    expect(onValueChange).toHaveBeenCalledWith("b");
+    expect(onValueChange).toHaveBeenCalled();
+    expect(onValueChange.mock.calls[0]?.[0]).toBe("b");
   });
 
   it("respects controlled value", () => {
