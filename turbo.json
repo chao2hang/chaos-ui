@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/package.json", "tsconfig.json"],
+  "globalEnv": ["NODE_ENV", "CI"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "storybook-static/**"],
+      "env": []
+    },
+    "build:pkg": {
+      "dependsOn": ["^build:pkg"],
+      "outputs": ["dist/**"]
+    },
+    "build-storybook": {
+      "dependsOn": ["^build-storybook"],
+      "outputs": ["storybook-static/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "lint:css": {
+      "dependsOn": ["^lint:css"]
+    },
+    "lint:deps": {
+      "dependsOn": ["^lint:deps"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "outputs": ["coverage/**"]
+    },
+    "test:coverage": {
+      "dependsOn": ["^test:coverage"],
+      "outputs": ["coverage/**"]
+    },
+    "check": {
+      "dependsOn": ["typecheck", "lint", "lint:css", "lint:deps"]
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

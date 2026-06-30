@@ -224,6 +224,7 @@
     "@axe-core/cli": "^4.10.1",
     "knip": "^5.60.0",
     "depcheck": "^1.4.7",
-    "npm-run-all2": "^8.0.0"
+    "npm-run-all2": "^8.0.0",
+    "turbo": "^2.5.0"
   }
 }
