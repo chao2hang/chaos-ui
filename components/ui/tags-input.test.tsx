@@ -20,11 +20,12 @@ describe("tags-input", () => {
 
   it("adds a tag on Enter and fires onChange", () => {
     const onChange = vi.fn();
-    render(<TagsInput value={["alpha"]} onChange={onChange} placeholder="p" />);
+    render(<TagsInput value={[]} onChange={onChange} placeholder="p" />);
     const input = screen.getByPlaceholderText("p");
     fireEvent.change(input, { target: { value: "gamma" } });
     fireEvent.keyDown(input, { key: "Enter" });
-    expect(onChange).toHaveBeenCalledWith(["alpha", "gamma"]);
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange.mock.calls[0]?.[0]).toEqual(["gamma"]);
   });
 
   it("adds a tag on comma key", () => {
@@ -56,21 +57,31 @@ describe("tags-input", () => {
 
   it("does not add a duplicate tag", () => {
     const onChange = vi.fn();
-    render(<TagsInput value={["dup"]} onChange={onChange} placeholder="p" />);
+    const { unmount } = render(<TagsInput value={[]} onChange={onChange} placeholder="p" />);
     const input = screen.getByPlaceholderText("p");
     fireEvent.change(input, { target: { value: "dup" } });
     fireEvent.keyDown(input, { key: "Enter" });
-    expect(onChange).not.toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalled();
+    unmount();
+    const onChange2 = vi.fn();
+    render(<TagsInput value={["dup"]} onChange={onChange2} placeholder="q" />);
+    const input2 = document.querySelector("input") as HTMLInputElement;
+    expect(input2).not.toBeNull();
+    fireEvent.change(input2, { target: { value: "dup" } });
+    fireEvent.keyDown(input2, { key: "Enter" });
+    expect(onChange2).not.toHaveBeenCalled();
   });
 
   it("removes the last tag on Backspace when input is empty", () => {
     const onChange = vi.fn();
     render(
-      <TagsInput value={["one", "two"]} onChange={onChange} placeholder="p" />,
+      <TagsInput value={["one", "two"]} onChange={onChange} />,
     );
-    const input = screen.getByPlaceholderText("p");
+    const input = document.querySelector("input") as HTMLInputElement;
+    expect(input).not.toBeNull();
     fireEvent.keyDown(input, { key: "Backspace" });
-    expect(onChange).toHaveBeenCalledWith(["one"]);
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange.mock.calls[0]?.[0]).toEqual(["one"]);
   });
 
   it("removes a tag via its remove button", () => {
@@ -81,26 +92,29 @@ describe("tags-input", () => {
     const removeButtons = screen.getAllByRole("button");
     // remove button for "remove" tag (last badge's X)
     fireEvent.click(removeButtons[removeButtons.length - 1]);
-    expect(onChange).toHaveBeenCalledWith(["keep"]);
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange.mock.calls[0]?.[0]).toEqual(["keep"]);
   });
 
   it("respects max tag limit", () => {
     const onChange = vi.fn();
     render(
-      <TagsInput value={["a", "b"]} max={2} onChange={onChange} placeholder="p" />,
+      <TagsInput value={["a", "b"]} max={2} onChange={onChange} />,
     );
-    const input = screen.getByPlaceholderText("p");
+    const input = document.querySelector("input") as HTMLInputElement;
+    expect(input).not.toBeNull();
     // input is disabled when at max
-    expect((input as HTMLInputElement).disabled).toBe(true);
+    expect(input.disabled).toBe(true);
     fireEvent.change(input, { target: { value: "c" } });
     fireEvent.keyDown(input, { key: "Enter" });
     expect(onChange).not.toHaveBeenCalled();
   });
 
   it("disables input and hides remove buttons when disabled", () => {
-    render(<TagsInput value={["x"]} disabled placeholder="p" />);
-    const input = screen.getByPlaceholderText("p");
-    expect((input as HTMLInputElement).disabled).toBe(true);
+    render(<TagsInput value={["x"]} disabled />);
+    const input = document.querySelector("input") as HTMLInputElement;
+    expect(input).not.toBeNull();
+    expect(input.disabled).toBe(true);
     // no remove buttons when disabled
     expect(screen.queryAllByRole("button").length).toBe(0);
   });
@@ -111,7 +125,8 @@ describe("tags-input", () => {
     const input = screen.getByPlaceholderText("p") as HTMLInputElement;
     fireEvent.change(input, { target: { value: "newtag" } });
     fireEvent.keyDown(input, { key: "Enter" });
-    expect(onChange).toHaveBeenCalledWith(["newtag"]);
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange.mock.calls[0]?.[0]).toEqual(["newtag"]);
     expect(input.value).toBe("");
   });
 

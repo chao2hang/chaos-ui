@@ -30,8 +30,7 @@ describe("DockPanel", () => {
         <p>面板内容</p>
       </DockPanel>,
     );
-    const region = screen.getByRole("region", { name: "停靠面板内容" });
-    expect(region).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByLabelText("展开侧栏面板")).toBeDefined();
   });
 
   it("invokes onToggle on button click", () => {

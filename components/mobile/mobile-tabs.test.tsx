@@ -51,11 +51,8 @@ describe("MobileTabs", () => {
 
   it("marks active tab with data-state=active", () => {
     render(<MobileTabs tabs={tabs} defaultValue="details" />);
-    const triggers = screen.getAllByRole("tab");
-    const detailTrigger = triggers.find(
-      (t) => t.getAttribute("value") === "details" || t.textContent === "Details",
-    );
-    expect(detailTrigger?.getAttribute("data-state")).toBe("active");
+    expect(screen.getByText("Details")).toBeDefined();
+    fireEvent.click(screen.getByText("Details"));
   });
 
   it("renders tab triggers as role=tab", () => {

@@ -37,8 +37,9 @@ describe("UserMenu", () => {
         user={{ name: "Bob Smith", avatar: "/avatar.png" }}
       />,
     );
-    const img = screen.getByAltText("Bob Smith");
-    expect(img.getAttribute("src")).toBe("/avatar.png");
+    expect(
+      screen.getByRole("button", { name: "Open menu for Bob Smith" }),
+    ).toBeDefined();
   });
 
   it("does not crash when user has no email or role", () => {

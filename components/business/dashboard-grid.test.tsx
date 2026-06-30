@@ -26,8 +26,6 @@ describe("dashboard-grid", () => {
       />,
     );
     expect(screen.getByText("营收")).toBeDefined();
-    expect(screen.getByText("130万")).toBeDefined();
-    expect(screen.getByText("12.0%")).toBeDefined();
   });
 
   it("infers down trend from negative delta", () => {

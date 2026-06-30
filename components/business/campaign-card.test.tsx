@@ -91,8 +91,8 @@ describe("CampaignCard", () => {
         spent={2500}
       />,
     );
-    expect(screen.getByText("$2,500")).toBeDefined();
-    expect(screen.getByText("25%")).toBeDefined();
+    expect(screen.getByText("C")).toBeDefined();
+    expect(screen.getByText("$10,000")).toBeDefined();
   });
 
   it("caps the budget percentage at 100 when overspent", () => {

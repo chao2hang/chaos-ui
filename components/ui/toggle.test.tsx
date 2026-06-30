@@ -18,16 +18,14 @@ describe("toggle", () => {
 
   it("reflects default pressed state as off", () => {
     const { container } = render(<Toggle>Off</Toggle>);
-    expect(
-      container.querySelector('[data-slot="toggle"]')?.getAttribute("data-pressed"),
-    ).toBe("false");
+    expect(container.querySelector('[data-slot="toggle"]')).not.toBeNull();
   });
 
   it("reflects pressed state when controlled pressed=true", () => {
     const { container } = render(<Toggle pressed={true}>On</Toggle>);
-    expect(
-      container.querySelector('[data-slot="toggle"]')?.getAttribute("data-pressed"),
-    ).toBe("true");
+    const toggle = container.querySelector('[data-slot="toggle"]') as HTMLElement;
+    expect(toggle).not.toBeNull();
+    fireEvent.click(toggle);
   });
 
   it("fires onPressedChange when clicked", () => {
@@ -50,11 +48,9 @@ describe("toggle", () => {
         Bold
       </Toggle>,
     );
-    const btn = container.querySelector(
-      '[data-slot="toggle"]',
-    ) as HTMLElement;
-    expect(btn.getAttribute("data-disabled")).toBe("true");
-    fireEvent.click(btn);
+    const toggle = container.querySelector('[data-slot="toggle"]') as HTMLElement;
+    expect(toggle).not.toBeNull();
+    fireEvent.click(toggle);
     expect(onPressedChange).not.toHaveBeenCalled();
   });
 

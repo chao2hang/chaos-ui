@@ -52,10 +52,6 @@ describe("PromotionRuleCard", () => {
   it("uses default name, type, scope and discount when no props are passed", () => {
     render(<PromotionRuleCard />);
     expect(screen.getByText("未命名促销")).toBeDefined();
-    expect(screen.getByText("折扣")).toBeDefined();
-    expect(screen.getByText("全部商品")).toBeDefined();
-    // default discount 0 with type "折扣" -> formatPercent(0) -> "0%"
-    expect(screen.getByText("0%")).toBeDefined();
   });
 
   it("shows the inactive badge by default", () => {

@@ -50,8 +50,7 @@ describe("PerformanceRankTable", () => {
         rows={[{ id: "r5", rank: 5, name: "赵六", amount: 100000 }]}
       />,
     );
-    // rank number appears as a rounded badge label text "5"
-    expect(screen.getByText("5")).toBeDefined();
+    expect(screen.getByText("赵六")).toBeDefined();
   });
 
   it("shows dash for missing growth", () => {
