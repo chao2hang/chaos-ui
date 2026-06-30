@@ -55,12 +55,19 @@ export default defineConfig({
   // tree-shaking 交给消费方 bundler（Next/webpack/vite）在模块粒度做，效果优于库内预打包。
   // 参考：shadcn/ui、Radix、Mantine 均保留模块边界。
   splitting: false,
+  // treeshake 交给消费方 bundler（splitting: false 时库内 treeshake 无实际效果）
+  // 保留 false 以维持文件级 "use client" 指令完整性
   treeshake: false,
   // 发布物关闭 sourcemap：防源码随 tarball 泄露 + 体积从 1.6MB 降到 ~400KB。
-  // 本地调试可用 `tsup --sourcemap` 临时开启。
   sourcemap: false,
   silent: false,
   target: "es2020",
+  // 生产构建启用压缩，减小包体积
+  minify: true,
+  // LICENSE 头
+  banner: {
+    js: "/*\n * Chaos UI - Enterprise React Component Library\n * Copyright (c) 2026 qxyfoods\n * MIT License\n */",
+  },
   external,
   outExtension({ format }) {
     return {

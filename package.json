@@ -91,7 +91,8 @@
   },
   "publishConfig": {
     "registry": "https://npm.qxy1828.com",
-    "access": "restricted"
+    "access": "restricted",
+    "provenance": true
   },
   "engines": {
     "node": ">=22.0.0",
@@ -219,6 +220,10 @@
     "typescript": "5.9.3",
     "vite": "^8.0.16",
     "vitest": "^4.1.8",
-    "zod": "4.4.3"
+    "zod": "4.4.3",
+    "@axe-core/cli": "^4.10.1",
+    "knip": "^5.60.0",
+    "depcheck": "^1.4.7",
+    "npm-run-all2": "^8.0.0"
   }
 }

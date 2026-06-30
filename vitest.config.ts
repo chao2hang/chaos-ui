@@ -16,6 +16,9 @@ export default defineConfig({
     setupFiles: ["./vitest.setup.ts"],
     clearMocks: true,
     restoreMocks: true,
+    pool: "threads",
+    // workspace: 支持 storybook / unit / a11y 多项目（未来扩展）
+    // workspace: ["./vitest.config.ts", "./apps/docs/vitest.config.ts"],
     // apps/docs/@ 是 monorepo 重构引入的"影子副本"（非发布源码，含 88 个空测试），
     // 测它等于测非发布代码。apps/docs 有自己的 vitest.config（Storybook project）。
     // packages/chaos-design-ui 是独立的姊妹包，有自己的 package.json，不应被根 test 跑。

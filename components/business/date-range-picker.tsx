@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { DateRange } from "react-day-picker";
+import type { DateRange } from "react-day-picker";
 import { CalendarIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { useTranslation } from "react-i18next";
 import { formatDate } from "@/lib/format";
