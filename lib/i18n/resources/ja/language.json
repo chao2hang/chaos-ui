@@ -1,0 +1,14 @@
+{
+  "languageSwitcher.selectLanguage": "Select language",
+  "languageSwitcher.switchLanguage": "Switch language",
+  "language.zhCN": "简体中文",
+  "language.zhCN.label": "Chinese (Simplified)",
+  "language.zhTW": "繁體中文",
+  "language.zhTW.label": "Chinese (Traditional)",
+  "language.enUS": "English",
+  "language.enUS.label": "English (US)",
+  "language.jaJP": "日本語",
+  "language.jaJP.label": "Japanese",
+  "language.koKR": "한국어",
+  "language.koKR.label": "Korean"
+}

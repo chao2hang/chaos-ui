@@ -1,0 +1,20 @@
+{
+  "bulkImportWizard.upload": "Upload",
+  "bulkImportWizard.mapFields": "Map fields",
+  "bulkImportWizard.validate": "Validate",
+  "bulkImportWizard.complete": "Complete",
+  "bulkImportWizard.uploadTitle": "Upload a CSV or spreadsheet",
+  "bulkImportWizard.uploadDescription": "Import contacts, products, or campaign records in bulk.",
+  "bulkImportWizard.selectFile": "Select file",
+  "bulkImportWizard.mapsTo": "maps to",
+  "bulkImportWizard.importComplete": "Import complete",
+  "bulkImportWizard.recordsImported": "{{count}} records were imported successfully.",
+  "bulkImportWizard.continue": "Continue",
+  "exportButton.label": "Export",
+  "exportButton.csv": "CSV",
+  "exportButton.xlsx": "Excel",
+  "exportButton.json": "JSON",
+  "exportButton.pdf": "PDF",
+  "exportButton.print": "Print",
+  "exportButton.popupBlocked": "Please allow popups to use the print feature"
+}

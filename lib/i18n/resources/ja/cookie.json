@@ -1,0 +1,9 @@
+{
+  "cookieBanner.title": "Cookie notice",
+  "cookieBanner.description": "We use cookies to improve your experience. Click \"Accept\" to enable all features, or customize in settings.",
+  "cookieBanner.accept": "Accept all",
+  "cookieBanner.reject": "Essential only",
+  "cookieBanner.policy": "Privacy policy",
+  "cookieBanner.ariaLabel": "Cookie preferences",
+  "cookieBanner.close": "Close"
+}
