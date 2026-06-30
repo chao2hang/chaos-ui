@@ -66,3 +66,14 @@ export { useScroll, useScrollDirection } from "./use-scroll";
 export { useOrientation } from "./use-orientation";
 export { useClipboard } from "./use-clipboard";
 export { useForm } from "./use-form";
+
+// P0 hooks — auth/permission
+export {
+  PermissionProvider,
+  usePermission,
+  PermissionContext,
+} from "./use-permission";
+export type {
+  PermissionProviderProps,
+  PermissionContextValue,
+} from "./use-permission";
