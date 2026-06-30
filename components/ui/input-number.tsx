@@ -129,9 +129,12 @@ function InputNumber({
 
   const handleStep = (direction: "up" | "down") => {
     if (disabled || readOnly) return;
-    const base = currentValue ?? 0;
-    const next =
-      direction === "up" ? base + step : base - step;
+    // When there's no current value, start stepping from min (if finite) so
+    // that "up" from empty lands at min+step rather than 0+step (which could
+    // skip past min when min > 0).
+    const fallback = Number.isFinite(min) ? min : 0;
+    const base = currentValue ?? fallback;
+    const next = direction === "up" ? base + step : base - step;
     updateValue(next);
   };
 
