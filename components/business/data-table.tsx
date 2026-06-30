@@ -79,16 +79,19 @@ function DataTable<T = Record<string, unknown>>({
         header: col.title,
         size: typeof col.width === "number" ? col.width : 150,
         enableSorting: sortable || !!col.sortable,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- tanstack CellContext typing conflicts with our generic Column<T>
         cell: (info: any) =>
           col.render
             ? col.render(info.getValue(), info.row.original, info.row.index)
             : (info.getValue() as React.ReactNode) ?? "—",
       })),
     [columns, sortable],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ColumnDef<T> accessorKey typing workaround
   ) as any;
 
   const table = useReactTable({
     data: dataSource,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columns: tanstackColumns as any,
     state: { sorting },
     onSortingChange: setSorting,

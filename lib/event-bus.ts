@@ -9,7 +9,7 @@
  * eventBus.off('user:login');
  */
 
-type EventHandler<T = any> = (payload: T) => void;
+type EventHandler<T = unknown> = (payload: T) => void;
 
 class EventBus {
   private handlers: Map<string, Set<EventHandler>> = new Map();
@@ -20,7 +20,7 @@ class EventBus {
    * @param handler Event handler
    * @returns Unsubscribe function
    */
-  on<T = any>(event: string, handler: EventHandler<T>): () => void {
+  on<T = unknown>(event: string, handler: EventHandler<T>): () => void {
     if (!this.handlers.has(event)) {
       this.handlers.set(event, new Set());
     }
@@ -32,7 +32,7 @@ class EventBus {
   /**
    * Subscribe to an event once (auto-unsubscribe after first call) / 订阅一次
    */
-  once<T = any>(event: string, handler: EventHandler<T>): () => void {
+  once<T = unknown>(event: string, handler: EventHandler<T>): () => void {
     const wrapper: EventHandler<T> = (payload) => {
       handler(payload);
       this.off(event, wrapper);
@@ -45,7 +45,7 @@ class EventBus {
    * @param event Event name
    * @param handler Specific handler (if omitted, removes all handlers for the event)
    */
-  off<T = any>(event: string, handler?: EventHandler<T>): void {
+  off<T = unknown>(event: string, handler?: EventHandler<T>): void {
     if (!handler) {
       this.handlers.delete(event);
       return;
@@ -56,7 +56,7 @@ class EventBus {
   /**
    * Emit an event / 触发事件
    */
-  emit<T = any>(event: string, payload?: T): void {
+  emit<T = unknown>(event: string, payload?: T): void {
     const handlers = this.handlers.get(event);
     if (!handlers) return;
     handlers.forEach((handler) => {

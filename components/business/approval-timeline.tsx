@@ -66,8 +66,10 @@ export function ApprovalTimeline({ steps, className, texts: textsProp }: Approva
   };
 
   const hasI18n = !textsProp;
-  // Only call useTranslation if no texts prop provided
-  const { t } = hasI18n ? useTranslation("transfer") : { t: (k: string) => k };
+  // Always call useTranslation unconditionally (rules-of-hooks); ignore its
+  // result when explicit texts are provided.
+  const { t: tI18n } = useTranslation("transfer");
+  const t = hasI18n ? tI18n : (k: string) => k;
 
   return (
     <Timeline

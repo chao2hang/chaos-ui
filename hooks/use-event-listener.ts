@@ -30,7 +30,7 @@ export function useEventListener(
 export function useEventListener(
   target: HTMLElement | Window | Document | MediaQueryList | null | undefined,
   eventName: string,
-  handler: (event: any) => void,
+  handler: (event: Event) => void,
   options?: AddEventListenerOptions,
 ): void {
   const handlerRef = React.useRef(handler);

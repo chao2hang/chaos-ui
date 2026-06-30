@@ -203,7 +203,7 @@ export const Controlled: Story = {
   render: (args: React.ComponentProps<typeof Menu>) => (
     <div className="w-[256px] rounded-lg border p-2">
       <Menu {...args} />
-      <p className="mt-2 text-xs text-muted-foreground">受控模式: selectedKeys=&#123;['users']&#125; openKeys=&#123;['system']&#125;</p>
+      <p className="mt-2 text-xs text-muted-foreground">受控模式: selectedKeys=&#123;[&apos;users&apos;]&#125; openKeys=&#123;[&apos;system&apos;]&#125;</p>
     </div>
   ),
 };
@@ -213,7 +213,7 @@ export const SizeVariants: Story = {
     <div className="flex gap-8">
       {(["sm", "md", "lg"] as const).map((s) => (
         <div key={s} className="w-[256px]">
-          <p className="mb-2 text-xs font-medium text-muted-foreground">size="{s}"</p>
+          <p className="mb-2 text-xs font-medium text-muted-foreground">size=&quot;{s}&quot;</p>
           <div className="rounded-lg border p-2">
             <Menu mode="inline" theme="light" size={s} items={demoItems} defaultSelectedKeys={["home"]} defaultOpenKeys={["system"]} />
           </div>

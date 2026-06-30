@@ -231,7 +231,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     }
     try {
       if (isEdit && editing && onUpdate) {
-        await onUpdate((editing as any)[rowKey] as string | number, form);
+        await onUpdate(editing[rowKey] as string | number, form);
         const msg = getSuccessMsg(successMessage, "update", "Updated successfully");
         if (msg !== false) message.success(msg);
       } else if (onCreate) {
@@ -252,7 +252,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
       const confirmed = globalThis.confirm?.(deleteConfirmTitle ?? "Are you sure you want to delete this item?");
       if (!confirmed) return;
       try {
-        await onDelete((record as any)[rowKey] as string | number);
+        await onDelete(record[rowKey] as string | number);
         const msg = getSuccessMsg(successMessage, "delete", "Deleted successfully");
         if (msg !== false) message.success(msg);
         await fetchData();

@@ -71,6 +71,7 @@ function AdminSider({
   ...props
 }: AdminSiderProps) {
   const [internalSelected, setInternalSelected] = React.useState(selectedKey);
+  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(new Set());
   const current = selectedKey ?? internalSelected;
 
   const handleItemClick = (item: MenuItem) => {
@@ -82,7 +83,15 @@ function AdminSider({
   const renderMenuItem = (item: MenuItem, level = 0) => {
     const isSelected = current === item.key;
     const hasChildren = item.children && item.children.length > 0;
-    const [expanded, setExpanded] = React.useState(false);
+    const expanded = expandedKeys.has(item.key);
+    const toggleExpanded = () => {
+      setExpandedKeys((prev) => {
+        const next = new Set(prev);
+        if (next.has(item.key)) next.delete(item.key);
+        else next.add(item.key);
+        return next;
+      });
+    };
 
     return (
       <React.Fragment key={item.key}>
@@ -91,7 +100,7 @@ function AdminSider({
           onClick={(e) => {
             if (!item.href) e.preventDefault();
             if (hasChildren && collapsed === false) {
-              setExpanded(!expanded);
+              toggleExpanded();
             }
             handleItemClick(item);
           }}

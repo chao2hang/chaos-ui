@@ -166,7 +166,7 @@ function OrderLineEditor({
   );
 
   // Auto-fill price when SKU changes
-  const handleChange = (newData: Record<string, any>[]) => {
+  const handleChange = (newData: Record<string, unknown>[]) => {
     const enriched = newData.map((row) => {
       if (row.sku) {
         const skuOption = skuOptions.find((o) => o.value === row.sku);

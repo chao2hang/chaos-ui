@@ -89,7 +89,7 @@ function ExpenseLineEditor({
               title: "Category",
               width: 150,
               editable: !readOnly,
-              renderEditor: (value: any, _row: any, _index: number, onCellChange: (v: any) => void) => (
+              renderEditor: (value: unknown, _row: Record<string, unknown>, _index: number, onCellChange: (v: unknown) => void) => (
                 <select
                   value={String(value ?? "")}
                   onChange={(e) => onCellChange(e.target.value)}
@@ -103,9 +103,9 @@ function ExpenseLineEditor({
                   ))}
                 </select>
               ),
-              render: (value: any) => {
+              render: (value: unknown) => {
                 const cat = categories.find((c) => c.value === value);
-                return cat?.label ?? value ?? "—";
+                return cat?.label ?? (value as React.ReactNode) ?? "—";
               },
             } satisfies LineEditorColumn,
           ]
@@ -159,7 +159,7 @@ function ExpenseLineEditor({
     [categories, readOnly, currency],
   );
 
-  const handleChange = (newData: Record<string, any>[]) => {
+  const handleChange = (newData: Record<string, unknown>[]) => {
     const next = newData as ExpenseLine[];
     if (!isControlled) setInternalData(next);
     onChange?.(next);

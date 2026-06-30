@@ -141,11 +141,18 @@ export function useModal(): ModalInstance {
     </Dialog>
   );
 
-  // Attach the modal element to the instance for rendering
+  // Attach the modal element to the instance for rendering.
+  // useCallback returns a function whose type can't declare extra props in TS,
+  // so we cast to attach the `.modal` render node (read by ModalRenderer).
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (confirm as any).modal = modal;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (info as any).modal = modal;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (warning as any).modal = modal;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (success as any).modal = modal;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (error as any).modal = modal;
 
   return {
@@ -168,6 +175,7 @@ export function useModal(): ModalInstance {
  */
 export function ModalRenderer({ modal }: { modal: ModalInstance }) {
   // The modal element is attached to the confirm function
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const element = (modal.confirm as any).modal;
   return <>{element}</>;
 }

@@ -56,7 +56,7 @@ function List({
   );
 }
 
-interface ListHeaderProps extends React.ComponentProps<"div"> {}
+type ListHeaderProps = React.ComponentProps<"div">;
 
 function ListHeader({ className, ...props }: ListHeaderProps) {
   return (
@@ -122,7 +122,7 @@ function ListItem({
   );
 }
 
-interface ListFooterProps extends React.ComponentProps<"div"> {}
+type ListFooterProps = React.ComponentProps<"div">;
 
 function ListFooter({ className, ...props }: ListFooterProps) {
   return (

@@ -41,8 +41,10 @@ export interface ModalConfirmOptions {
   onCancel?: () => void;
 }
 
-export interface ModalAlertOptions
-  extends Omit<ModalConfirmOptions, "okVariant" | "cancelText" | "onCancel"> {}
+export type ModalAlertOptions = Omit<
+  ModalConfirmOptions,
+  "okVariant" | "cancelText" | "onCancel"
+>;
 
 type ModalAPI = {
   confirm: (options: ModalConfirmOptions) => void;
