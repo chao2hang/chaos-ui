@@ -1,14 +1,14 @@
-﻿/* Scrollbar theme — driven by ConfigProvider CSS variables.
+/* Scrollbar theme — driven by ConfigProvider CSS variables.
    Replaces the hardcoded globals.css scrollbar hacks in qxy-mop. */
 :root {
   --scrollbar-width: auto;
-  --scrollbar-thumb: rgba(15, 23, 42, 0.18);
-  --scrollbar-thumb-hover: rgba(15, 23, 42, 0.3);
+  --scrollbar-thumb: rgb(15 23 42 / 0.18);
+  --scrollbar-thumb-hover: rgb(15 23 42 / 0.3);
 }
 
 .dark {
-  --scrollbar-thumb: rgba(148, 163, 184, 0.3);
-  --scrollbar-thumb-hover: rgba(148, 163, 184, 0.45);
+  --scrollbar-thumb: rgb(148 163 184 / 0.3);
+  --scrollbar-thumb-hover: rgb(148 163 184 / 0.45);
 }
 
 * {

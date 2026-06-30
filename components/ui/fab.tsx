@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
+import { Button } from "@/components/ui/button";
 import { ChevronUpIcon } from "@/components/ui/icons";
 
 interface FabProps extends React.ComponentProps<typeof Button> {

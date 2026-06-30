@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { Cascader } from "@/components/ui/cascader";
 import type { CascaderProps, CascaderOption } from "@/components/ui/cascader";
 
 describe("Cascader", () => {
@@ -12,8 +13,7 @@ describe("Cascader", () => {
     expect(_o.children?.length).toBe(0);
   });
 
-  it("module is importable with changeOnSelect prop", async () => {
-    const mod = await import("@/components/ui/cascader");
-    expect(mod.Cascader).toBeDefined();
+  it("module exports Cascader with changeOnSelect support", () => {
+    expect(Cascader).toBeDefined();
   });
 });

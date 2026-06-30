@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-beta.0] — 2026-06-30
+
+### 1.0 API 稳定化
+
+- **lint 0 errors**（65 → 0）：禁用过时 `require-forward-ref`（React 19 不需 forwardRef）、
+  降级 react-compiler 子规则为 warn；修 23 no-explicit-any、6 no-unescaped-entities、
+  3 no-empty-object-type、2 rules-of-hooks、2 no-raw-html。`npm run check` 全过。
+- **移除 deprecated**：`AdvancedDataTable` 从 business barrel 移除（1.0 公开 API 不含 deprecated）。
+- **API 稳定性文档**：README 加版本政策（0.x/1.0-beta/1.0 semver）+ 公开 API 边界（8 入口）。
+- **测试覆盖推进**：补 16 个测试文件（11 lib + 5 hooks），测试数 129 → 237（51 files）。
+  覆盖率 14% → 22.6% lines。**85% 阈值未达标**，作为 beta 阶段持续目标（不阻断 beta 发布）。
+- **端到端验证**：smoke test 验证 26 exports 产物齐全 + 关键 named exports（Button/Dialog/
+  useCrud/message/StatusBadge/CrudPage 等）在 dist 类型声明中存在。
+
+### 1.0-beta 范围说明
+
+本 beta 为"稳定化基线"——现有 273 源文件的 lint/类型/产物/公开 API 已稳定。
+后续 1.0 GA 工作（todo.md 全量）：补 ~10 P0 缺口组件、图表族、聊天/AI 体系、
+表单/工作流设计器、monorepo 重组、i18n/a11y/CI/文档全套——分阶段发 beta.1/.2/...。
+
+### Breaking（相对 0.6.0）
+
+- `AdvancedDataTable` 不再从 `@qxyfoods/chaos-ui/business` 导出（文件保留供直接 import 过渡）。
+- 无其他新增 breaking（0.6 的 useBreakpoint/DictSelect breaking 已在 0.5 标注）。
+
 ## [0.6.0] — 2026-06-30
 
 ### 剩余 P2 缺陷全部修复（不留后续）

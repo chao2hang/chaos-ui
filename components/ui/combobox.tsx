@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/icons";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Button, Input } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export interface ComboboxOption {
   value: string;
