@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { Menu, MenuItem, MenuSubMenu, MenuDivider, MenuItemGroup } from "@/components/ui/menu";
+import { cn } from "@/lib/utils";
 import {
   HomeIcon,
   SettingsIcon,
