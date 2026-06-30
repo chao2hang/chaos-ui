@@ -1,7 +1,8 @@
 "use client";
 
 export * from "./activity-feed";
-export * from "./advanced-data-table";
+// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
+// The file remains for backward-compat direct imports but is not part of the 1.0 public API.
 export * from "./advanced-search";
 export * from "./announcement-banner";
 export * from "./approval-timeline";

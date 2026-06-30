@@ -27,6 +27,16 @@ Chaos UI 是服务于清香园（QXY Foods）所有业务系统的企业级 Reac
 - 🌙 **暗色模式** — 基于 CSS 变量的一键切换
 - 📦 **Tree-shaking** — 7 个子路径导出，按需引入
 
+## 版本与 API 稳定性
+
+| 版本 | 含义 |
+|---|---|
+| `0.x` | 开发期，API 可能在 minor 间 break（已发生 useBreakpoint/DictSelect 等 breaking） |
+| `1.0.0-beta.x` | **API 冻结候选**：公开 API 趋稳，可试用，仍可能有 bug 修复与小调整 |
+| `1.0.0` | 稳定版，遵循 semver：minor 加功能向后兼容，patch 仅修 bug |
+
+**1.0 公开 API 边界**：`@qxyfoods/chaos-ui`、`/ui`、`/ui/icons`、`/business`、`/hooks`、`/lib`、`/next`、`/styles.css` 这 8 个入口的导出为公开 API。`AdvancedDataTable` 等已标 `@deprecated` 的组件从公开 barrel 移除（文件保留供直接 import 过渡）。Breaking change 会先在 CHANGELOG 标注并在一个 minor 周期保留 deprecated 别名。
+
 ## 安装
 
 ```bash
