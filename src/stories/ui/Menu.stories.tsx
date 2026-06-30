@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import * as React from "react";
 import { Menu, MenuItem, MenuSubMenu, MenuDivider, MenuItemGroup } from "@/components/ui/menu";
 import {
   HomeIcon,
@@ -188,6 +189,51 @@ export const Collapsed: Story = {
   render: (args: React.ComponentProps<typeof Menu>) => (
     <div className="w-[64px] rounded-lg overflow-hidden">
       <Menu {...args} />
+    </div>
+  ),
+};
+
+export const CollapsibleControlled: Story = {
+  render: () => {
+    const [collapsed, setCollapsed] = React.useState(false);
+    return (
+      <div className="space-y-4">
+        <div className={collapsed ? "w-[64px]" : "w-[256px]"} className="transition-all duration-300">
+          <div className="rounded-lg border overflow-hidden">
+            <Menu
+              mode="inline"
+              theme="light"
+              collapsible
+              inlineCollapsed={collapsed}
+              onCollapse={setCollapsed}
+              items={demoItems}
+              defaultSelectedKeys={["home"]}
+              defaultOpenKeys={["system"]}
+            />
+          </div>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          当前状态: {collapsed ? "已折叠" : "已展开"}
+        </p>
+      </div>
+    );
+  },
+};
+
+export const CollapsibleUncontrolled: Story = {
+  render: () => (
+    <div className="w-[256px]">
+      <div className="rounded-lg border overflow-hidden">
+        <Menu
+          mode="inline"
+          theme="light"
+          collapsible
+          items={demoItems}
+          defaultSelectedKeys={["home"]}
+          defaultOpenKeys={["system"]}
+          onCollapse={(collapsed) => console.log("Menu collapsed:", collapsed)}
+        />
+      </div>
     </div>
   ),
 };

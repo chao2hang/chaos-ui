@@ -39,7 +39,7 @@
  */
 
 import * as React from "react";
-import { ChevronRightIcon } from "@/components/ui/icons";
+import { ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 export type MenuMode = "inline" | "vertical" | "horizontal";
@@ -92,6 +92,10 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, "onCl
   inlineIndent?: number;
   /** Trigger for opening submenu in inline mode (only 'click' supported) / 触发方式 */
   triggerSubMenuAction?: "click" | "hover";
+  /** Whether to show collapse toggle button / 是否显示折叠切换按钮 */
+  collapsible?: boolean;
+  /** Called when collapse state changes / 折叠状态变化时触发 */
+  onCollapse?: (collapsed: boolean) => void;
   /** Menu item configs (antd style) / 菜单项配置 (antd 风格) */
   items?: MenuItemConfig[];
   /** Called on menu item click / 点击菜单项回调 */
@@ -174,9 +178,11 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
       defaultOpenKeys = [],
       multiple = false,
       selectable = true,
-      inlineCollapsed = false,
+      inlineCollapsed: controlledCollapsed,
       inlineIndent = 24,
       triggerSubMenuAction = "click",
+      collapsible = false,
+      onCollapse,
       items,
       onClick,
       onOpenChange,
@@ -190,10 +196,13 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
   ) => {
     const [internalSelected, setInternalSelected] = React.useState<string[]>(defaultSelectedKeys);
     const [internalOpen, setInternalOpen] = React.useState<string[]>(defaultOpenKeys);
+    const [internalCollapsed, setInternalCollapsed] = React.useState(false);
     const isSelectedControlled = controlledSelected !== undefined;
     const isOpenControlled = controlledOpen !== undefined;
+    const isCollapsedControlled = controlledCollapsed !== undefined;
     const currentSelected = isSelectedControlled ? controlledSelected : internalSelected;
     const currentOpen = isOpenControlled ? controlledOpen : internalOpen;
+    const currentCollapsed = isCollapsedControlled ? controlledCollapsed : internalCollapsed;
 
     // Registry for items-prop-based menu (so we can fire onClick via items)
     const itemsRef = React.useRef<Map<string, MenuItemConfig>>(new Map());
@@ -253,13 +262,21 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
       [currentOpen, updateOpen],
     );
 
+    const handleCollapseToggle = React.useCallback(() => {
+      const nextCollapsed = !currentCollapsed;
+      if (!isCollapsedControlled) {
+        setInternalCollapsed(nextCollapsed);
+      }
+      onCollapse?.(nextCollapsed);
+    }, [currentCollapsed, isCollapsedControlled, onCollapse]);
+
     const ctx: MenuContextValue = {
       mode,
       theme,
       size,
       selectedKeys: currentSelected,
       openKeys: currentOpen,
-      inlineCollapsed,
+      inlineCollapsed: currentCollapsed,
       inlineIndent,
       triggerSubMenuAction,
       selectable,
@@ -317,16 +334,39 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
             {content}
           </nav>
         ) : (
-          <ul
-            ref={ref as unknown as React.Ref<HTMLUListElement>}
-            role="menu"
-            data-slot="menu"
-            data-mode={mode}
-            data-theme={theme}
-            className={cn(rootClass, "list-none m-0 p-0")}
-          >
-            {content}
-          </ul>
+          <div className="relative">
+            <ul
+              ref={ref as unknown as React.Ref<HTMLUListElement>}
+              role="menu"
+              data-slot="menu"
+              data-mode={mode}
+              data-theme={theme}
+              className={cn(rootClass, "list-none m-0 p-0")}
+            >
+              {content}
+            </ul>
+            {collapsible && mode === "inline" && (
+              <button
+                type="button"
+                onClick={handleCollapseToggle}
+                className={cn(
+                  "absolute bottom-0 left-0 right-0 flex items-center justify-center border-t transition-colors",
+                  sizeClasses[size].item,
+                  tc.item,
+                  tc.itemHover,
+                  "border-border",
+                )}
+                aria-label={currentCollapsed ? "展开菜单" : "收起菜单"}
+                title={currentCollapsed ? "展开菜单" : "收起菜单"}
+              >
+                {currentCollapsed ? (
+                  <ChevronsRightIcon className={cn("shrink-0", sizeClasses[size].icon)} />
+                ) : (
+                  <ChevronsLeftIcon className={cn("shrink-0", sizeClasses[size].icon)} />
+                )}
+              </button>
+            )}
+          </div>
         )}
       </MenuContext.Provider>
     );
