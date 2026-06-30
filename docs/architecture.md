@@ -1,0 +1,81 @@
+# Architecture
+
+## Overview
+
+Chaos UI is a Storybook-first React/Next.js enterprise component library for ERP & business systems.
+
+## Tech Stack
+
+- **React 19** + **Next.js 16** (App Router)
+- **TypeScript 5.9** (strict mode, exactOptionalPropertyTypes, verbatimModuleSyntax)
+- **Tailwind CSS 4** (design tokens via CSS custom properties)
+- **@base-ui/react** (headless primitives)
+- **Storybook 10** (component development & documentation)
+- **Vitest 4** (unit/integration testing)
+- **tsup** (package bundling)
+
+## Directory Structure
+
+```
+components/ui/         → UI primitives (button, input, dialog, etc.)
+components/business/   → Business components (data-table, kanban, charts)
+components/layout/     → Layout components (app-shell, dashboard-layout)
+hooks/                 → React hooks (use-debounce, use-toggle, etc.)
+lib/                   → Utilities (cn, api-client, format, i18n)
+src/                   → Storybook stories and MDX docs
+app/                   → Next.js demo app
+package/               → Package entry points (re-exports)
+```
+
+## Key Patterns
+
+### Component Structure
+
+- Named exports only (no default exports)
+- `cva` for component variants
+- `cn()` for className merging
+- `data-slot` attribute for component identification
+- JSDoc with `@component`, `@category`, `@since`, `@example`
+
+### Import Convention
+
+- `@/` alias for project-local source (e.g., `@/lib/utils`, `@/components/ui/button`)
+- External dependencies imported by package name
+
+### State Management
+
+- Context API for global state (permissions, loading, theme)
+- React hooks for local state
+- No external state management library
+
+### Styling
+
+- Tailwind CSS 4 utility classes
+- CSS custom properties for design tokens
+- `class-variance-authority` (cva) for variant definitions
+- `tailwind-merge` for intelligent class merging
+
+## Build Pipeline
+
+1. **Development**: `npm run dev` → Storybook on port 6006
+2. **Type checking**: `npx tsc --noEmit`
+3. **Linting**: `npm run lint` (ESLint) + `npm run lint:css` (Stylelint)
+4. **Testing**: `npm test` (Vitest) + `npm run test:coverage`
+5. **Package build**: `npm run build:pkg` (tsup)
+6. **Storybook build**: `npm run build-storybook`
+7. **Verification**: `npm run check` (typecheck + lint + css + deps + bom)
+8. **Smoke test**: `npm run smoke`
+
+## Package Exports
+
+The library exposes 7 subpath exports:
+
+- `@qxyfoods/chaos-ui` (main)
+- `@qxyfoods/chaos-ui/ui`
+- `@qxyfoods/chaos-ui/ui/icons`
+- `@qxyfoods/chaos-ui/ui-icons`
+- `@qxyfoods/chaos-ui/business`
+- `@qxyfoods/chaos-ui/hooks`
+- `@qxyfoods/chaos-ui/lib`
+- `@qxyfoods/chaos-ui/next`
+- `@qxyfoods/chaos-ui/styles.css`
