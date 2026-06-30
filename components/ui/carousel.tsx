@@ -12,6 +12,8 @@ interface CarouselContextValue {
   next: () => void;
   prev: () => void;
   loop?: boolean;
+  /** CarouselContent reports its item count here. */
+  setTotal: (n: number) => void;
 }
 
 const CarouselContext = React.createContext<CarouselContextValue | null>(null);
@@ -40,7 +42,9 @@ function Carousel({
   children,
   ...props
 }: CarouselProps) {
-  const total = React.useMemo(() => React.Children.count(children), [children]);
+  // total is reported by CarouselContent (the actual item count), not the
+  // count of Carousel's direct children (which includes CarouselContent/Dots).
+  const [total, setTotal] = React.useState(0);
   const [index, setIndex] = React.useState(defaultIndex);
 
   const goTo = React.useCallback(
@@ -65,7 +69,7 @@ function Carousel({
   }, [autoplay, interval, next]);
 
   return (
-    <CarouselContext.Provider value={{ index, total, goTo, next, prev, loop }}>
+    <CarouselContext.Provider value={{ index, total, goTo, next, prev, loop, setTotal }}>
       <div
         data-slot="carousel"
         className={cn("relative w-full", className)}
@@ -87,7 +91,13 @@ function CarouselContent({
   children,
   ...props
 }: React.ComponentProps<"div">) {
-  const { total, index } = useCarousel();
+  const { total, index, setTotal } = useCarousel();
+  // Report the actual CarouselItem count (this component's children) up to the
+  // Carousel so total reflects items, not the Carousel's direct children.
+  const itemCount = React.Children.count(children);
+  React.useEffect(() => {
+    setTotal(itemCount);
+  }, [itemCount, setTotal]);
   return (
     <div className="overflow-hidden">
       <div

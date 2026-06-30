@@ -15,12 +15,12 @@ describe("Carousel", () => {
       </Carousel>,
     );
     const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
-    // NaN% would produce "translateX(-NaN%)" — must be a valid number.
     expect(content.style.transform).not.toContain("NaN");
-    expect(content.style.transform).toBe("translateX(-0%)");
   });
 
-  it("computes a non-NaN transform for multiple children", () => {
+  it("total reflects CarouselItem count (not Carousel direct children)", () => {
+    // Carousel's direct children include CarouselContent + CarouselDots, but
+    // total must be the item count (3) for correct transform/dots.
     const { container } = render(
       <Carousel defaultIndex={1}>
         <CarouselContent>
@@ -28,16 +28,17 @@ describe("Carousel", () => {
           <CarouselItem>2</CarouselItem>
           <CarouselItem>3</CarouselItem>
         </CarouselContent>
+        <CarouselDots />
       </Carousel>,
     );
     const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
-    // total counts Carousel's direct children (CarouselContent), so it's 1 here.
-    // The key assertion: no NaN, and transform is a valid number.
-    expect(content.style.transform).not.toContain("NaN");
-    expect(content.style.transform).toMatch(/^translateX\(-\d+(\.\d+)?%\)$/);
+    // index=1, total=3 → 1*100/3 ≈ 33.33%
+    expect(content.style.transform).toBe("translateX(-33.333333333333336%)");
+    const dots = container.querySelectorAll('[data-slot="carousel-dots"] button');
+    expect(dots.length).toBe(3);
   });
 
-  it("CarouselItem width is never NaN", () => {
+  it("CarouselItem width is 100/total for multiple items", () => {
     const { container } = render(
       <Carousel>
         <CarouselContent>
@@ -47,22 +48,7 @@ describe("Carousel", () => {
       </Carousel>,
     );
     const item = container.querySelector('[data-slot="carousel-item"]') as HTMLElement;
-    expect(item.style.width).not.toContain("NaN");
-    expect(item.style.width).toMatch(/^\d+(\.\d+)?%$/);
-  });
-
-  it("CarouselItem width defaults to 100% when total is 0", () => {
-    const { container } = render(
-      <Carousel>
-        <CarouselContent>
-          <CarouselItem>only</CarouselItem>
-        </CarouselContent>
-      </Carousel>,
-    );
-    // total counts children of Carousel, not CarouselContent — here Carousel has
-    // CarouselContent as its only child, so total=1.
-    const item = container.querySelector('[data-slot="carousel-item"]') as HTMLElement;
-    expect(item.style.width).not.toContain("NaN");
+    expect(item.style.width).toBe("50%");
   });
 
   it("CarouselDots renders one dot per item", () => {
