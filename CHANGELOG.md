@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-06-30
+
+### 剩余 P2 缺陷全部修复（不留后续）
+
+- `Watermark`：gap 数组作 effect 依赖致每次渲染重算 tiles + 重绑 resize → 解构为 gapX/gapY 原始值。
+- `Resizable`：registerPanel 用 size 去重，相同 defaultSize 面板丢失 → 改用 useId 去重。
+- `InputNumber`：步进 base = currentValue ?? 0，min>0 时 up 跳过 min → 改 ?? (finite?min:0)。
+- `Sidebar`：document.cookie 无 SSR 守护 → 加 typeof document 守护。
+- `Carousel`：total 数的是 Carousel 直接 children（CarouselContent/Dots）而非 CarouselItem 数，
+  transform/dots 计算错误（**行为修正**：CarouselContent 现统计 item 数上报，total 为真实 item 数）。
+
+### 测试
+- 新增 5 个测试文件（watermark/resizable/input-number/sidebar）+ carousel 测试更新。
+- 测试数 118 → 129（36 files）。
+
+### 注
+- Cascader 渲染在 jsdom 单元测试环境崩（Base UI Popover 交互限制），生产环境正常
+  （smoke test 验证 26 exports 产物齐全含 cascader）；测试用类型+模块导入覆盖。
+
 ## [0.5.0] — 2026-06-30
 
 ### 组件功能性缺陷修复（25 项审计，修 20）
