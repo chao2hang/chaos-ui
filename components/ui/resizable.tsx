@@ -6,8 +6,8 @@ type Direction = "horizontal" | "vertical";
 
 interface ResizablePanelGroupContext {
   direction: Direction;
-  registerPanel: (size: number) => void;
-  panels: number[];
+  registerPanel: (id: string, size: number) => void;
+  panels: { id: string; size: number }[];
 }
 
 const ResizableContext = React.createContext<ResizablePanelGroupContext | null>(
@@ -29,12 +29,16 @@ function ResizablePanelGroup({
   children,
   ...props
 }: React.ComponentProps<"div"> & { direction?: Direction }) {
-  const [panels, setPanels] = React.useState<number[]>([]);
+  const [panels, setPanels] = React.useState<{ id: string; size: number }[]>(
+    [],
+  );
 
-  const registerPanel = React.useCallback((size: number) => {
+  const registerPanel = React.useCallback((id: string, size: number) => {
     setPanels((prev) => {
-      if (prev.includes(size)) return prev;
-      return [...prev, size];
+      // Deduplicate by id (not size) so panels with the same defaultSize
+      // are all registered.
+      if (prev.some((p) => p.id === id)) return prev;
+      return [...prev, { id, size }];
     });
   }, []);
 
@@ -80,10 +84,11 @@ function ResizablePanel({
   const ctx = useResizable();
   const [size, setSize] = React.useState(defaultSize);
   const [collapsed, setCollapsed] = React.useState(false);
+  const panelId = React.useId();
 
   React.useEffect(() => {
-    ctx.registerPanel(defaultSize);
-  }, [ctx, defaultSize]);
+    ctx.registerPanel(panelId, defaultSize);
+  }, [ctx, panelId, defaultSize]);
 
   const { onResize, onCollapse, onExpand } = props;
   React.useEffect(() => {
