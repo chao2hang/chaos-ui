@@ -38,6 +38,8 @@ export {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 } from "./breadcrumb";
+export { BarcodeDisplay } from "./barcode-display";
+export type { BarcodeDisplayProps } from "./barcode-display";
 export { BrowseInput, browseInputVariants } from "./browse-input";
 export type { BrowseInputProps } from "./browse-input";
 export { Button, buttonVariants } from "./button";
@@ -174,9 +176,13 @@ export type {
   FormDescriptionProps,
   FormMessageProps,
 } from "./form";
+export { FullscreenToggle } from "./fullscreen-toggle";
+export type { FullscreenToggleProps } from "./fullscreen-toggle";
 export { GridLayout, GridItem, gridLayoutVariants } from "./grid-layout";
 export type { GridLayoutProps, GridItemProps } from "./grid-layout";
 export { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
+export { ImageViewer } from "./image-viewer";
+export type { ImageViewerProps, ImageViewerImage } from "./image-viewer";
 export {
   InputGroup,
   InputGroupAddon,
@@ -187,6 +193,8 @@ export {
 } from "./input-group";
 export { Input } from "./input";
 export type { InputProps } from "./input";
+export { KeyboardShortcut } from "./keyboard-shortcut";
+export type { KeyboardShortcutProps } from "./keyboard-shortcut";
 export { Kbd, KbdGroup, kbdVariants } from "./kbd";
 export { KPIPanel, KPICard } from "./kpi-panel";
 export type { KPIItem, KPIPanelProps } from "./kpi-panel";
@@ -239,6 +247,8 @@ export {
   ProgressLabel,
   ProgressValue,
 } from "./progress";
+export { QrCodeDisplay } from "./qrcode-display";
+export type { QrCodeDisplayProps } from "./qrcode-display";
 export { RadioGroup, RadioGroupItem } from "./radio-group";
 export {
   ResizablePanelGroup,
@@ -264,6 +274,10 @@ export type {
   SelectItemProps,
   SelectValueProps,
 } from "./select";
+export { SequenceInput } from "./sequence-input";
+export type { SequenceInputProps } from "./sequence-input";
+export { SequencePreview } from "./sequence-preview";
+export type { SequencePreviewProps } from "./sequence-preview";
 export { Separator } from "./separator";
 export {
   Sheet,
