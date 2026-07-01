@@ -92,25 +92,27 @@ export function MultiSelect({
                   <Badge
                     key={v}
                     variant="secondary"
-                    className="gap-1 pr-0.5 text-xs"
+                    className="h-5 gap-0.5 pr-0.5 text-xs"
                   >
-                    {opt?.label ?? v}
-                    <span
-                      role="button"
+                    <span className="max-w-[80px] truncate">
+                      {opt?.label ?? v}
+                    </span>
+                    <button
+                      type="button"
                       aria-label={t("multiSelect.remove")}
                       onClick={(e) => {
                         e.stopPropagation();
                         toggle(v);
                       }}
-                      className="ml-0.5 rounded-sm p-0.5 hover:bg-muted"
+                      className="hover:bg-muted inline-flex size-3.5 shrink-0 items-center justify-center rounded-full opacity-60 hover:opacity-100"
                     >
-                      <XIcon className="size-3" />
-                    </span>
+                      <XIcon className="size-2.5" />
+                    </button>
                   </Badge>
                 );
               })}
               {overflow > 0 && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="h-5 text-xs">
                   +{overflow}
                 </Badge>
               )}
@@ -119,17 +121,17 @@ export function MultiSelect({
         </div>
         <div className="flex items-center gap-1">
           {clearable && value.length > 0 && (
-            <span
-              role="button"
+            <button
+              type="button"
               aria-label={t("multiSelect.clearAll")}
               onClick={(e) => {
                 e.stopPropagation();
                 onChange?.([]);
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded-full opacity-50 hover:opacity-100"
             >
-              <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
-            </span>
+              <XIcon className="size-3" />
+            </button>
           )}
           <ChevronDownIcon className="size-4 opacity-50" />
         </div>
@@ -204,14 +206,14 @@ function MultiSelectPanel({
       </div>
       <div className="max-h-64 overflow-y-auto p-1">
         {grouped.length === 0 && (
-          <div className="px-2 py-6 text-center text-sm text-muted-foreground">
+          <div className="text-muted-foreground px-2 py-6 text-center text-sm">
             {emptyText}
           </div>
         )}
         {grouped.map(([group, items]) => (
           <div key={group || "_default"}>
             {group && (
-              <div className="px-2 py-1 text-xs font-medium text-muted-foreground">
+              <div className="text-muted-foreground px-2 py-1 text-xs font-medium">
                 {group}
               </div>
             )}
@@ -244,7 +246,7 @@ function MultiSelectPanel({
                   <span className="flex-1 truncate">
                     {opt.label}
                     {opt.description && (
-                      <span className="ml-2 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-2 text-xs">
                         {opt.description}
                       </span>
                     )}
