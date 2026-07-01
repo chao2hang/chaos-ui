@@ -15,8 +15,6 @@ const EMPTY: (string | number)[] = [];
 const ZJ_HZ: (string | number)[] = ["zhejiang", "hangzhou"];
 const ZJ_HZ_XH: (string | number)[] = ["zhejiang", "hangzhou", "xihu"];
 const ZJ: (string | number)[] = ["zhejiang"];
-const JS_NJ: (string | number)[] = ["jiangsu", "nanjing"];
-const LONELY: (string | number)[] = ["lonely"];
 
 const tree: CascaderOption[] = [
   {
@@ -118,7 +116,9 @@ describe("Cascader", () => {
     // In uncontrolled mode the emitted path is sparse ([null,null,"xihu"]) and
     // selectedOptions cannot traverse the null holes, so assert loosely that the
     // leaf value is present in the emitted value array.
-    const emittedValue = onChange.mock.calls[0]?.[0] as (string | number | null)[];
+    const emittedValue = onChange.mock.calls[0]?.[0] as (
+      string | number | null
+    )[];
     expect(emittedValue.includes("xihu")).toBe(true);
     // panel closes after leaf selection
     await waitFor(() => expect(screen.queryByText("West Lake")).toBeNull());
@@ -127,7 +127,12 @@ describe("Cascader", () => {
   it("changeOnSelect fires onChange when selecting a non-leaf", async () => {
     const onChange = vi.fn();
     render(
-      <Cascader options={tree} value={EMPTY} onChange={onChange} changeOnSelect />,
+      <Cascader
+        options={tree}
+        value={EMPTY}
+        onChange={onChange}
+        changeOnSelect
+      />,
     );
     fireEvent.click(screen.getByText("Please select"));
     await waitFor(() => expect(screen.getByText("Zhejiang")).toBeDefined());
@@ -159,7 +164,9 @@ describe("Cascader", () => {
     await waitFor(() => expect(screen.getByText("Nanjing")).toBeDefined());
     fireEvent.click(screen.getByText("Nanjing"));
     await waitFor(() => expect(onChange).toHaveBeenCalled());
-    const emittedValue = onChange.mock.calls[0]?.[0] as (string | number | null)[];
+    const emittedValue = onChange.mock.calls[0]?.[0] as (
+      string | number | null
+    )[];
     expect(emittedValue.includes("nanjing")).toBe(true);
     await waitFor(() => expect(screen.queryByText("Nanjing")).toBeNull());
   });
@@ -184,7 +191,8 @@ describe("Cascader", () => {
     const zjButtons = screen.getAllByText("Zhejiang");
     const panelBtn = zjButtons
       .map((el) => el.closest("button"))
-      .find((btn) => btn?.className.includes("bg-accent")) as HTMLElement | undefined;
+      .find((btn) => btn?.className.includes("bg-accent")) as
+      HTMLElement | undefined;
     expect(panelBtn).toBeDefined();
   });
 
@@ -200,7 +208,9 @@ describe("Cascader", () => {
 
   it("renders placeholder text styling when no selection", () => {
     const { container } = render(<Cascader options={tree} value={EMPTY} />);
-    const trigger = screen.getByText("Please select").closest("button") as HTMLElement;
+    const trigger = screen
+      .getByText("Please select")
+      .closest("button") as HTMLElement;
     expect(trigger.className).toContain("text-muted-foreground");
     expect(container).toBeDefined();
   });
@@ -208,13 +218,15 @@ describe("Cascader", () => {
   it("displayRender receives selectedOptions array", () => {
     const displayRender = vi.fn((labels: string[]) => labels.join("|"));
     render(
-      <Cascader options={tree} value={ZJ_HZ_XH} displayRender={displayRender} />,
+      <Cascader
+        options={tree}
+        value={ZJ_HZ_XH}
+        displayRender={displayRender}
+      />,
     );
     expect(displayRender).toHaveBeenCalledWith(
       ["Zhejiang", "Hangzhou", "West Lake"],
-      expect.arrayContaining([
-        expect.objectContaining({ value: "xihu" }),
-      ]),
+      expect.arrayContaining([expect.objectContaining({ value: "xihu" })]),
     );
   });
 });

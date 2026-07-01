@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { Toaster } from "./sonner";
 
@@ -20,7 +20,7 @@ describe("sonner", () => {
   it("renders a toast region with aria-label Notifications", () => {
     const { container } = render(<Toaster />);
     // sonner renders <section aria-label="Notifications ..."> as the live region.
-    const region = container.querySelector('section[aria-label]');
+    const region = container.querySelector("section[aria-label]");
     expect(region).not.toBeNull();
     expect(region?.getAttribute("aria-label")).toContain("Notification");
   });

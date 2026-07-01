@@ -122,6 +122,24 @@ const eslintConfig = defineConfig([
     },
   },
   {
+    // 测试文件中使用原生 <button>/<input> 是为了测试交互,不适用组件库规则
+    files: ["**/*.test.{ts,tsx}"],
+    rules: {
+      "@chaos/no-raw-html-button": "off",
+      "@chaos/no-raw-html-elements": "off",
+      "@chaos/no-deep-imports": "off",
+      "@chaos/no-missing-story": "off",
+      "@chaos/no-hardcoded-chinese": "off",
+    },
+  },
+  {
+    // 临时覆盖率检查脚本(cjs),使用 require 是合法的
+    files: ["cov-check.cjs", "cov-detail.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
+  {
     // CreativePreview 支持任意活动素材 URL；不把 Next image 域名约束带入 React-safe business 入口。
     files: ["components/business/creative-preview.tsx"],
     rules: {

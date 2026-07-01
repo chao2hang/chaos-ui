@@ -12,10 +12,18 @@ function Probe() {
   return (
     <div>
       <span data-testid="count">{permissions.length}</span>
-      <span data-testid="single">{hasPermission("order:create") ? "yes" : "no"}</span>
-      <span data-testid="any">{hasAny(["order:create", "x:missing"]) ? "yes" : "no"}</span>
-      <span data-testid="all">{hasAll(["order:create", "order:read"]) ? "yes" : "no"}</span>
-      <span data-testid="any-missing">{hasAny(["a:missing", "b:missing"]) ? "yes" : "no"}</span>
+      <span data-testid="single">
+        {hasPermission("order:create") ? "yes" : "no"}
+      </span>
+      <span data-testid="any">
+        {hasAny(["order:create", "x:missing"]) ? "yes" : "no"}
+      </span>
+      <span data-testid="all">
+        {hasAll(["order:create", "order:read"]) ? "yes" : "no"}
+      </span>
+      <span data-testid="any-missing">
+        {hasAny(["a:missing", "b:missing"]) ? "yes" : "no"}
+      </span>
     </div>
   );
 }
@@ -56,7 +64,11 @@ describe("use-permission", () => {
   it("hasAll returns false when a permission is missing", () => {
     function AllProbe() {
       const { hasAll } = usePermission();
-      return <span data-testid="all2">{hasAll(["order:create", "missing:perm"]) ? "yes" : "no"}</span>;
+      return (
+        <span data-testid="all2">
+          {hasAll(["order:create", "missing:perm"]) ? "yes" : "no"}
+        </span>
+      );
     }
     render(
       <PermissionProvider permissions={["order:create"]}>
@@ -71,7 +83,9 @@ describe("use-permission", () => {
       const { hasPermission, hasAny, hasAll, permissions } = usePermission();
       return (
         <div>
-          <span data-testid="d-perm">{hasPermission("anything") ? "yes" : "no"}</span>
+          <span data-testid="d-perm">
+            {hasPermission("anything") ? "yes" : "no"}
+          </span>
           <span data-testid="d-any">{hasAny(["x"]) ? "yes" : "no"}</span>
           <span data-testid="d-all">{hasAll(["x", "y"]) ? "yes" : "no"}</span>
           <span data-testid="d-count">{permissions.length}</span>
@@ -86,8 +100,16 @@ describe("use-permission", () => {
   });
 
   it("recomputes checks when permissions prop changes", () => {
-    function Wrapper({ perms, children }: { perms: string[]; children: ReactNode }) {
-      return <PermissionProvider permissions={perms}>{children}</PermissionProvider>;
+    function Wrapper({
+      perms,
+      children,
+    }: {
+      perms: string[];
+      children: ReactNode;
+    }) {
+      return (
+        <PermissionProvider permissions={perms}>{children}</PermissionProvider>
+      );
     }
     const { rerender } = render(
       <Wrapper perms={["order:create"]}>
@@ -105,10 +127,10 @@ describe("use-permission", () => {
   });
 
   it("re-renders consumers on interaction within provider", () => {
-    let granted = false;
+    const grantedRef = { current: false };
     function ToggleChild() {
       const { hasPermission } = usePermission();
-      granted = hasPermission("p");
+      grantedRef.current = hasPermission("p");
       return <button type="button">noop</button>;
     }
     const { rerender } = render(
@@ -116,14 +138,14 @@ describe("use-permission", () => {
         <ToggleChild />
       </PermissionProvider>,
     );
-    expect(granted).toBe(true);
+    expect(grantedRef.current).toBe(true);
     fireEvent.click(screen.getByText("noop"));
     rerender(
       <PermissionProvider permissions={[]}>
         <ToggleChild />
       </PermissionProvider>,
     );
-    expect(granted).toBe(false);
+    expect(grantedRef.current).toBe(false);
   });
 
   it("hasAny returns false for an empty array", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import {
   Slider,
   SliderControl,
@@ -65,20 +65,14 @@ describe("Slider", () => {
   });
 
   it("applies custom className to root", () => {
-    const { container } = render(
-      <Slider defaultValue={0} className="w-64" />,
-    );
-    const el = container.querySelector(
-      '[data-slot="slider"]',
-    ) as HTMLElement;
+    const { container } = render(<Slider defaultValue={0} className="w-64" />);
+    const el = container.querySelector('[data-slot="slider"]') as HTMLElement;
     expect(el.className).toContain("w-64");
   });
 
   it("marks disabled state on root", () => {
     const { container } = render(<Slider defaultValue={10} disabled />);
-    const el = container.querySelector(
-      '[data-slot="slider"]',
-    ) as HTMLElement;
+    const el = container.querySelector('[data-slot="slider"]') as HTMLElement;
     expect(el.getAttribute("data-disabled")).not.toBeNull();
   });
 
@@ -107,9 +101,7 @@ describe("Slider", () => {
   // sanity touch so fireEvent is referenced
   it("does not throw on keydown at the root", () => {
     const { container } = render(<Slider defaultValue={50} />);
-    const root = container.querySelector(
-      '[data-slot="slider"]',
-    ) as HTMLElement;
+    const root = container.querySelector('[data-slot="slider"]') as HTMLElement;
     fireEvent.keyDown(root, { key: "ArrowRight" });
     expect(root).not.toBeNull();
   });

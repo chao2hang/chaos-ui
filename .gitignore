@@ -59,6 +59,9 @@ next-env.d.ts
 *-timeline.png
 playwright-report/
 test-results/
+test-results.json
+cov-check.cjs
+cov-detail.cjs
 
 # local scripts and reports
 /output/
@@ -82,6 +85,7 @@ VISUAL_TEST_REPORT.md
 
 # tooling scratch
 .workbuddy/
+.claude/ga-work/
 
 # scratch scripts/logs
 analyze_*.py

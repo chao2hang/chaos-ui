@@ -57,7 +57,7 @@ describe("stepper", () => {
   });
 
   it("shows no connector after the last step", () => {
-    const { container } = render(
+    render(
       <Stepper activeStep={0}>
         <Step>Only</Step>
       </Stepper>,

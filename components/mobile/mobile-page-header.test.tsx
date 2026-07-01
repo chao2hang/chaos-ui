@@ -1,4 +1,3 @@
-import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import {
@@ -27,10 +26,7 @@ describe("MobilePageHeader", () => {
     render(
       <MobilePageHeader
         title="Detail"
-        breadcrumbItems={[
-          { label: "Home", href: "/" },
-          { label: "Detail" },
-        ]}
+        breadcrumbItems={[{ label: "Home", href: "/" }, { label: "Detail" }]}
       />,
     );
     expect(screen.getByText("Home")).toBeDefined();
@@ -60,7 +56,7 @@ describe("MobilePageHeader", () => {
     render(<MobilePageHeader title="T" onMenu={onMenu} />);
     // two buttons? only menu here. find by clicking the menu button
     const buttons = screen.getAllByRole("button");
-    fireEvent.click(buttons[buttons.length - 1]);
+    fireEvent.click(buttons[buttons.length - 1]!);
     expect(onMenu).toHaveBeenCalled();
   });
 
@@ -99,8 +95,8 @@ describe("MobilePageHeader", () => {
     expect(screen.getByText("Export")).toBeDefined();
     // back + menu buttons
     const buttons = screen.getAllByRole("button");
-    fireEvent.click(buttons[0]);
-    fireEvent.click(buttons[buttons.length - 1]);
+    fireEvent.click(buttons[0]!);
+    fireEvent.click(buttons[buttons.length - 1]!);
     expect(onBack).toHaveBeenCalled();
     expect(onMenu).toHaveBeenCalled();
   });

@@ -62,12 +62,15 @@ describe("CampaignCalendar", () => {
   });
 
   it("shows a +N more indicator when a day has more than 3 events", () => {
-    const events: CampaignCalendarEvent[] = Array.from({ length: 5 }, (_, i) => ({
-      id: `e${i}`,
-      name: `Event ${i}`,
-      date: new Date(2026, 5, 15),
-      status: "draft" as const,
-    }));
+    const events: CampaignCalendarEvent[] = Array.from(
+      { length: 5 },
+      (_, i) => ({
+        id: `e${i}`,
+        name: `Event ${i}`,
+        date: new Date(2026, 5, 15),
+        status: "draft" as const,
+      }),
+    );
     render(<CampaignCalendar month={new Date(2026, 5, 1)} events={events} />);
     expect(screen.getByText("+2 more")).toBeDefined();
     expect(screen.getByText("Event 0")).toBeDefined();
@@ -83,7 +86,7 @@ describe("CampaignCalendar", () => {
     expect(grids.length).toBeGreaterThanOrEqual(2);
     const dayGrid = grids[1];
     // leading + daysInMonth = 1 + 30 = 31 cells
-    expect(dayGrid.children.length).toBe(31);
+    expect(dayGrid!.children.length).toBe(31);
   });
 
   it("renders weekday text inside the header grid", () => {

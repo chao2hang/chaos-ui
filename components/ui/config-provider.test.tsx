@@ -1,10 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import {
-  ConfigProvider,
-  useConfig,
-  ConfigContext,
-} from "./config-provider";
+import { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
 import type {
   ConfigContextValue,
   ThemeConfig,
@@ -55,9 +51,7 @@ describe("config-provider", () => {
     );
     expect(
       (
-        container.querySelector(
-          '[data-slot="config-provider"]',
-        ) as HTMLElement
+        container.querySelector('[data-slot="config-provider"]') as HTMLElement
       ).getAttribute("dir"),
     ).toBe("rtl");
   });
@@ -69,11 +63,8 @@ describe("config-provider", () => {
       </ConfigProvider>,
     );
     expect(
-      (
-        container.querySelector(
-          '[data-slot="config-provider"]',
-        ) as HTMLElement
-      ).className,
+      (container.querySelector('[data-slot="config-provider"]') as HTMLElement)
+        .className,
     ).toContain("dark");
   });
 
@@ -84,19 +75,14 @@ describe("config-provider", () => {
       </ConfigProvider>,
     );
     expect(
-      (
-        container.querySelector(
-          '[data-slot="config-provider"]',
-        ) as HTMLElement
-      ).className,
+      (container.querySelector('[data-slot="config-provider"]') as HTMLElement)
+        .className,
     ).not.toContain("dark");
   });
 
   it("injects primary color and border radius as CSS variables", () => {
     const { container } = render(
-      <ConfigProvider
-        theme={{ primaryColor: "#ff0000", borderRadius: 8 }}
-      >
+      <ConfigProvider theme={{ primaryColor: "#ff0000", borderRadius: 8 }}>
         <span>x</span>
       </ConfigProvider>,
     );
@@ -243,7 +229,7 @@ describe("useConfig", () => {
     );
     expect(captured!.theme?.primaryColor).toBe("#000");
     expect(typeof captured!.renderEmpty).toBe("function");
-    expect(captured!.form?.validateMessages.required).toBe("req");
+    expect(captured!.form?.validateMessages!.required).toBe("req");
   });
 
   it("ConfigContext.Provider can override value directly", () => {

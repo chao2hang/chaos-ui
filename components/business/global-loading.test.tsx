@@ -47,9 +47,7 @@ describe("global-loading", () => {
       </GlobalLoadingProvider>,
     );
     expect(screen.getByText("app content")).toBeDefined();
-    expect(
-      container.querySelector('[data-slot="global-loading"]'),
-    ).toBeNull();
+    expect(container.querySelector('[data-slot="global-loading"]')).toBeNull();
   });
 
   it("renders the overlay after show() with a tip", () => {
@@ -61,7 +59,7 @@ describe("global-loading", () => {
         </button>
       );
     }
-    const { container } = render(
+    const { container: _container } = render(
       <GlobalLoadingProvider>
         <Consumer />
       </GlobalLoadingProvider>,
@@ -113,9 +111,7 @@ describe("global-loading", () => {
       container.querySelector('[data-slot="global-loading"]'),
     ).not.toBeNull();
     fireEvent.click(screen.getByText("hide"));
-    expect(
-      container.querySelector('[data-slot="global-loading"]'),
-    ).toBeNull();
+    expect(container.querySelector('[data-slot="global-loading"]')).toBeNull();
   });
 
   it("provides visible=false in default context when used outside provider", () => {

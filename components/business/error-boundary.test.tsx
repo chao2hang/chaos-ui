@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import type { ReactElement } from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { ErrorBoundary } from "./error-boundary";
 
 function Boom({ shouldThrow }: { shouldThrow?: boolean }) {
@@ -106,7 +106,7 @@ describe("error-boundary", () => {
       if (throwIt) throw new Error("toggle boom");
       return <div data-testid="ok">recovered</div>;
     }
-    const { rerender } = render(
+    const { rerender: _rerender } = render(
       <ErrorBoundary>
         <Toggle throwIt />
       </ErrorBoundary>,

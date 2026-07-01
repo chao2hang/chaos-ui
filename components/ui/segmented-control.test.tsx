@@ -6,7 +6,7 @@ const opts = [
   { value: "day", label: "Day" },
   { value: "week", label: "Week" },
   { value: "month", label: "Month" },
-] as const;
+];
 
 describe("SegmentedControl", () => {
   it("exports SegmentedControl", () => {
@@ -33,11 +33,9 @@ describe("SegmentedControl", () => {
     const { container } = render(
       <SegmentedControl options={opts} defaultValue="week" />,
     );
-    const items = container.querySelectorAll(
-      '[data-slot="toggle-group-item"]',
-    );
-    expect(items[1].getAttribute("data-pressed")).not.toBeNull();
-    expect(items[0].getAttribute("data-pressed")).toBeNull();
+    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
+    expect(items[1]!.getAttribute("data-pressed")).not.toBeNull();
+    expect(items[0]!.getAttribute("data-pressed")).toBeNull();
   });
 
   it("fires onChange when an option is clicked", () => {
@@ -84,9 +82,7 @@ describe("SegmentedControl", () => {
     const { container } = render(
       <SegmentedControl options={opts} defaultValue="day" disabled />,
     );
-    const items = container.querySelectorAll(
-      '[data-slot="toggle-group-item"]',
-    );
+    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
     items.forEach((it) => {
       expect(it.getAttribute("data-disabled")).not.toBeNull();
     });
@@ -102,10 +98,8 @@ describe("SegmentedControl", () => {
         defaultValue="a"
       />,
     );
-    const items = container.querySelectorAll(
-      '[data-slot="toggle-group-item"]',
-    );
-    expect(items[1].getAttribute("data-disabled")).not.toBeNull();
-    expect(items[0].getAttribute("data-disabled")).toBeNull();
+    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
+    expect(items[1]!.getAttribute("data-disabled")).not.toBeNull();
+    expect(items[0]!.getAttribute("data-disabled")).toBeNull();
   });
 });

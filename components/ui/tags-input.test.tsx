@@ -57,7 +57,9 @@ describe("tags-input", () => {
 
   it("does not add a duplicate tag", () => {
     const onChange = vi.fn();
-    const { unmount } = render(<TagsInput value={[]} onChange={onChange} placeholder="p" />);
+    const { unmount } = render(
+      <TagsInput value={[]} onChange={onChange} placeholder="p" />,
+    );
     const input = screen.getByPlaceholderText("p");
     fireEvent.change(input, { target: { value: "dup" } });
     fireEvent.keyDown(input, { key: "Enter" });
@@ -74,9 +76,7 @@ describe("tags-input", () => {
 
   it("removes the last tag on Backspace when input is empty", () => {
     const onChange = vi.fn();
-    render(
-      <TagsInput value={["one", "two"]} onChange={onChange} />,
-    );
+    render(<TagsInput value={["one", "two"]} onChange={onChange} />);
     const input = document.querySelector("input") as HTMLInputElement;
     expect(input).not.toBeNull();
     fireEvent.keyDown(input, { key: "Backspace" });
@@ -87,20 +87,22 @@ describe("tags-input", () => {
   it("removes a tag via its remove button", () => {
     const onChange = vi.fn();
     render(
-      <TagsInput value={["keep", "remove"]} onChange={onChange} placeholder="p" />,
+      <TagsInput
+        value={["keep", "remove"]}
+        onChange={onChange}
+        placeholder="p"
+      />,
     );
     const removeButtons = screen.getAllByRole("button");
     // remove button for "remove" tag (last badge's X)
-    fireEvent.click(removeButtons[removeButtons.length - 1]);
+    fireEvent.click(removeButtons[removeButtons.length - 1]!);
     expect(onChange).toHaveBeenCalled();
     expect(onChange.mock.calls[0]?.[0]).toEqual(["keep"]);
   });
 
   it("respects max tag limit", () => {
     const onChange = vi.fn();
-    render(
-      <TagsInput value={["a", "b"]} max={2} onChange={onChange} />,
-    );
+    render(<TagsInput value={["a", "b"]} max={2} onChange={onChange} />);
     const input = document.querySelector("input") as HTMLInputElement;
     expect(input).not.toBeNull();
     // input is disabled when at max

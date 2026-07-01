@@ -2,7 +2,7 @@
 
 > **当前版本**:`1.0.0-beta.0`
 > **目标版本**:`1.0.0` GA
-> **最后核实**:2026-07-01
+> **最后核实**:2026-07-01 (测试全绿后更新)
 > **维护人**:Chaos UI Team
 
 ## GA 是什么
@@ -11,32 +11,33 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 
 ---
 
-## 当前真实状态(2026-06-30 核实)
+## 当前真实状态(2026-07-01 核实)
 
 ### ✅ 已达标
 
-| 维度 | 状态 | 数据 |
-|---|---|---|
-| 真实组件 | ✅ 0 空壳 | 全部 148+ 空壳已补真实实现(business 145 + layout 6 + ui 5 + business 1) |
-| hooks | ✅ 真实 | 19 个 hook 空壳全部补真实实现 + 测试 |
-| lib | ✅ 真实 | 5 个 lib 桩模块(crypto/date/excel/pdf/worker)全部补真实实现 + 测试 |
-| 图标 facade | ✅ 扩充 | `components/ui/icons.ts` 新增 ~43 个 lucide 图标 |
-| 稳定化清理 | ✅ | 删除临时脚本、移除 `provenance`、修复历史类型错误 |
-| 文档 | ✅ 完整 | 8 篇项目文档 + CHANGELOG/HOOKS_INDEX/LIB_INDEX/COMPONENT_INDEX + README |
-| i18n | ✅ 完整 | 4 语言(en/zh/ja/ko),命名空间拆分,在 `lib/i18n/` |
-| CI | ✅ 完整 | 8 个 workflow(ci/release/security/nightly/labeler/stale/dependency-review/detection)+ CODEOWNERS + PR/Issue 模板 |
-| AI 规则矩阵 | ✅ 完整 | AGENTS.md/.cursorrules/CONVENTIONS.md/ARCHITECTURE.md |
-| 迁移验证 | ✅ 通过 | qxy-mop 53 符号 / 5 subpath 全部兼容,0 中断 |
-| 测试数 | ✅ 大幅提升 | 1171 → 3776+ passing(覆盖率提升 workflow 进行中) |
+| 维度        | 状态        | 数据                                                                                                             |
+| ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| 真实组件    | ✅ 0 空壳   | 全部 148+ 空壳已补真实实现(business 145 + layout 6 + ui 5 + business 1)                                          |
+| hooks       | ✅ 真实     | 19 个 hook 空壳全部补真实实现 + 测试                                                                             |
+| lib         | ✅ 真实     | 5 个 lib 桩模块(crypto/date/excel/pdf/worker)全部补真实实现 + 测试                                               |
+| 图标 facade | ✅ 扩充     | `components/ui/icons.ts` 新增 ~43 个 lucide 图标                                                                 |
+| 稳定化清理  | ✅          | 删除临时脚本、移除 `provenance`、修复历史类型错误                                                                |
+| 文档        | ✅ 完整     | 8 篇项目文档 + CHANGELOG/HOOKS_INDEX/LIB_INDEX/COMPONENT_INDEX + README                                          |
+| i18n        | ✅ 完整     | 4 语言(en/zh/ja/ko),命名空间拆分,在 `lib/i18n/`                                                                  |
+| CI          | ✅ 完整     | 8 个 workflow(ci/release/security/nightly/labeler/stale/dependency-review/detection)+ CODEOWNERS + PR/Issue 模板 |
+| AI 规则矩阵 | ✅ 完整     | AGENTS.md/.cursorrules/CONVENTIONS.md/ARCHITECTURE.md                                                            |
+| 迁移验证    | ✅ 通过     | qxy-mop 53 符号 / 5 subpath 全部兼容,0 中断                                                                      |
+| smoke 测试  | ✅ 通过     | 26 exports 产物齐全,无 sourcemap 泄漏                                                                            |
+| 测试数      | ✅ 大幅提升 | 1171 → 3834 passing(487 文件全部通过,0 failures)                                                                 |
 
 ### ❌ 未达标(GA 阻断项)
 
-| 维度 | 当前 | GA 标准 | 差距 |
-|---|---|---|---|
-| **typecheck** | ~1-43 错误(波动) | 0 错误 | 覆盖率 workflow 写测试遗留的类型错误,正在修 |
-| **测试失败** | ~55 failing | 0 失败 | 同上,wiki verify 阶段修复中 |
-| **覆盖率** | 44% → 推进中 | 85% | 覆盖率 workflow 在 24 批次补交互测试 |
-| 版本 | beta.0 | 1.0.0 GA | 需 RC → GA |
+| 维度          | 当前                                                       | GA 标准     | 差距                                                                                                                                                        |
+| ------------- | ---------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **typecheck** | 45 错误(23 个测试文件)                                     | 0 错误      | 3 类:未使用 import(TS6133,~15 个)/readonly 赋值(TS4104,8 个)/可能 undefined+类型不匹配(~19 个);重灾区:segmented-control(10)/rating(6)/mobile-page-header(4) |
+| **测试失败**  | ✅ 0 failing                                               | 0 失败      | 6 Agent 并行修复 26 文件,45→0 failures,487 文件全部通过                                                                                                     |
+| **覆盖率**    | Stmts 68.22% / Branch 58.86% / Funcs 65.53% / Lines 70.39% | 85/80/85/85 | 覆盖率 workflow 已将 lines 从 44%→70%,但距阈值仍差 ~15%(lines)/~21%(branches)                                                                               |
+| 版本          | beta.0                                                     | 1.0.0 GA    | 需 RC → GA                                                                                                                                                  |
 
 ---
 
@@ -56,13 +57,13 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 
 ## 阶段二:测试覆盖率补到 85% 🔄 进行中(GA 硬阻断)
 
-当前覆盖率 workflow(`.claude/ga-work/workflow-coverage.mjs`,run `wf_0c8c4d0f-5c3`)正在 24 批次为 305 个低覆盖率文件补交互测试。已将测试数从 1171 提升到 3776+。
+覆盖率 workflow 已将 lines 从 44% 提升到 70.39%,测试数从 1171 提升到 3804+。但距 85% 阈值仍有显著差距,需继续补测试。
 
 ### 待办(收尾)
 
-- [ ] **等覆盖率 workflow 完成**,确认全部 24 批次 verify 阶段绿
-- [ ] **修剩余 typecheck 错误**(~21 个测试文件:campaign-calendar/time-picker/admin-breadcrumb/blank-layout/mobile-page-header/calendar/carousel/cascader/config-provider/qrcode/radio-group/rating/segmented-control/separator/slider/sonner/stepper/switch/tags-input/toggle-group 等测试文件)
-- [ ] **修剩余 ~55 个失败测试**
+- [ ] **继续补测试提升覆盖率**至 85%(当前 Stmts 68.22% / Branch 58.86% / Funcs 65.53% / Lines 70.39%)
+- [ ] **修 45 个 typecheck 错误**(23 个测试文件,3 类:①未使用 import TS6133 ~15 个→删未用变量;②readonly 赋值 TS4104 8 个→加 `as` 断言或改 mutable;③可能 undefined+类型不匹配 ~19 个→加 null check/修类型;重灾区:segmented-control 10 个/rating 6 个/mobile-page-header 4 个)
+- [x] **修失败测试** — ✅ 已完成(6 Agent 并行修复 26 文件,45→0 failures)
 - [ ] 删除调试残留:`components/ui/__probe*.test.tsx`(已删 __probe3,确认无其他)
 - [ ] 跑 `npm run test:coverage` 确认 ≥ 85%(lines/branches/functions/statements);vitest 阈值已设 85/80/85/85
 - [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`(目前是 `typecheck && test && check:no-bom && smoke`)
@@ -161,10 +162,10 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 ## 验收清单(发 1.0.0 GA 前必过)
 
 - [x] 148 个空壳组件全部真实实现(无 `return null` / `{null}` / 空 div 占位)
-- [ ] `npm run check` 0 错误(typecheck + lint + css + deps + bom)— typecheck 仍有 ~21 测试文件错误待修
-- [ ] `npm test` 0 失败(当前 ~55 failing,workflow 修复中)
-- [ ] `npm run test:coverage` ≥ 85%(当前 44%,workflow 推进中)
-- [ ] `npm run smoke` 通过(26 exports 产物齐全)
+- [ ] `npm run check` 0 错误(typecheck + lint + css + deps + bom)— typecheck 仍有 45 错误(23 测试文件)
+- [x] `npm test` 0 失败 — ✅ 487 文件全部通过,3834 tests passed
+- [ ] `npm run test:coverage` ≥ 85%(当前 Stmts 68.22% / Branch 58.86% / Funcs 65.53% / Lines 70.39%)
+- [x] `npm run smoke` 通过(26 exports 产物齐全)
 - [ ] `npm run prepack` 通过(build + size-limit)
 - [ ] 所有组件有 .stories.tsx(business 用聚合 story)
 - [ ] 所有 Story 通过 a11y 校验

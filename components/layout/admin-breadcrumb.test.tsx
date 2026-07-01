@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { AdminBreadcrumb } from "./admin-breadcrumb";
 import type { AdminBreadcrumbProps } from "./admin-breadcrumb";
 
@@ -80,10 +80,7 @@ describe("admin-breadcrumb", () => {
     render(
       <AdminBreadcrumb
         pathname="/ignored"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Reports" },
-        ]}
+        items={[{ label: "Home", href: "/" }, { label: "Reports" }]}
       />,
     );
     expect(screen.getByText("Home")).toBeDefined();
@@ -99,10 +96,7 @@ describe("admin-breadcrumb", () => {
   it("renders a custom separator node", () => {
     render(
       <AdminBreadcrumb
-        items={[
-          { label: "A", href: "/a" },
-          { label: "B" },
-        ]}
+        items={[{ label: "A", href: "/a" }, { label: "B" }]}
         separator={">"}
       />,
     );
@@ -111,10 +105,7 @@ describe("admin-breadcrumb", () => {
 
   it("applies className to the nav element", () => {
     const { container } = render(
-      <AdminBreadcrumb
-        items={[{ label: "Home" }]}
-        className="custom-bc"
-      />,
+      <AdminBreadcrumb items={[{ label: "Home" }]} className="custom-bc" />,
     );
     const nav = container.querySelector("nav");
     expect(nav?.classList.contains("custom-bc")).toBe(true);
@@ -136,9 +127,7 @@ describe("admin-breadcrumb", () => {
   });
 
   it("items with undefined href render as current page", () => {
-    render(
-      <AdminBreadcrumb items={[{ label: "Only", href: undefined }]} />,
-    );
+    render(<AdminBreadcrumb items={[{ label: "Only", href: undefined }]} />);
     const only = screen.getByText("Only");
     expect(only.getAttribute("aria-current")).toBe("page");
   });

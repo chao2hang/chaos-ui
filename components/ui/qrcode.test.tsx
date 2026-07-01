@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { QRCode } from "./qrcode";
 import type { QRCodeProps } from "./qrcode";
@@ -10,9 +10,7 @@ describe("QRCode", () => {
 
   it("renders a container with data-slot", async () => {
     const { container } = render(<QRCode value="https://example.com" />);
-    expect(
-      container.querySelector('[data-slot="qrcode"]'),
-    ).not.toBeNull();
+    expect(container.querySelector('[data-slot="qrcode"]')).not.toBeNull();
     // svg data is set asynchronously
     await waitFor(() => {
       const span = container.querySelector(
@@ -47,19 +45,13 @@ describe("QRCode", () => {
     await waitFor(() => {
       expect(screen.getByText("QR Error")).toBeDefined();
     });
-    const errEl = document.querySelector(
-      '[data-slot="qrcode"]',
-    ) as HTMLElement;
+    const errEl = document.querySelector('[data-slot="qrcode"]') as HTMLElement;
     expect(errEl.className).toContain("border-destructive");
   });
 
   it("applies custom className", () => {
-    const { container } = render(
-      <QRCode value="x" className="my-qr" />,
-    );
-    const el = container.querySelector(
-      '[data-slot="qrcode"]',
-    ) as HTMLElement;
+    const { container } = render(<QRCode value="x" className="my-qr" />);
+    const el = container.querySelector('[data-slot="qrcode"]') as HTMLElement;
     expect(el.className).toContain("my-qr");
   });
 

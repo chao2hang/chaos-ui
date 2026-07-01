@@ -10,7 +10,10 @@ import {
 } from "./carousel";
 
 vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string, opts?: unknown) => k, i18n: { language: "en" } }),
+  useTranslation: () => ({
+    t: (k: string, _opts?: unknown) => k,
+    i18n: { language: "en" },
+  }),
 }));
 
 describe("Carousel", () => {
@@ -20,7 +23,9 @@ describe("Carousel", () => {
         <CarouselContent />
       </Carousel>,
     );
-    const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
+    const content = container.querySelector(
+      '[data-slot="carousel-content"]',
+    ) as HTMLElement;
     expect(content.style.transform).not.toContain("NaN");
     expect(content.style.transform).toBe("translateX(-0%)");
   });
@@ -36,9 +41,13 @@ describe("Carousel", () => {
         <CarouselDots />
       </Carousel>,
     );
-    const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
+    const content = container.querySelector(
+      '[data-slot="carousel-content"]',
+    ) as HTMLElement;
     expect(content.style.transform).toBe("translateX(-33.333333333333336%)");
-    const dots = container.querySelectorAll('[data-slot="carousel-dots"] button');
+    const dots = container.querySelectorAll(
+      '[data-slot="carousel-dots"] button',
+    );
     expect(dots.length).toBe(3);
   });
 
@@ -51,7 +60,9 @@ describe("Carousel", () => {
         </CarouselContent>
       </Carousel>,
     );
-    const item = container.querySelector('[data-slot="carousel-item"]') as HTMLElement;
+    const item = container.querySelector(
+      '[data-slot="carousel-item"]',
+    ) as HTMLElement;
     expect(item.style.width).toBe("50%");
   });
 
@@ -65,7 +76,9 @@ describe("Carousel", () => {
         <CarouselDots />
       </Carousel>,
     );
-    const dots = container.querySelectorAll('[data-slot="carousel-dots"] button');
+    const dots = container.querySelectorAll(
+      '[data-slot="carousel-dots"] button',
+    );
     expect(dots.length).toBe(2);
   });
 
@@ -83,7 +96,9 @@ describe("Carousel", () => {
       </Carousel>,
     );
     // start at index 0
-    const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
+    const content = container.querySelector(
+      '[data-slot="carousel-content"]',
+    ) as HTMLElement;
     expect(content.style.transform).toBe("translateX(-0%)");
 
     const nextBtn = getByRole("button", { name: "carousel.next" });
@@ -112,7 +127,9 @@ describe("Carousel", () => {
     fireEvent.click(nextBtn);
     // 3 items, index 2 → next → ((3 % 3)+3)%3 = 0
     expect(onIndexChange).toHaveBeenLastCalledWith(0);
-    const content = container.querySelector('[data-slot="carousel-content"]') as HTMLElement;
+    const content = container.querySelector(
+      '[data-slot="carousel-content"]',
+    ) as HTMLElement;
     expect(content.style.transform).toBe("translateX(-0%)");
   });
 
@@ -144,7 +161,9 @@ describe("Carousel", () => {
         <CarouselDots />
       </Carousel>,
     );
-    const dots = container.querySelectorAll('[data-slot="carousel-dots"] button');
+    const dots = container.querySelectorAll(
+      '[data-slot="carousel-dots"] button',
+    );
     fireEvent.click(dots[1]!);
     expect(onIndexChange).toHaveBeenLastCalledWith(1);
   });
@@ -159,7 +178,9 @@ describe("Carousel", () => {
         </CarouselContent>
       </Carousel>,
     );
-    const root = container.querySelector('[data-slot="carousel"]') as HTMLElement;
+    const root = container.querySelector(
+      '[data-slot="carousel"]',
+    ) as HTMLElement;
     fireEvent.keyDown(root, { key: "ArrowRight" });
     expect(onIndexChange).toHaveBeenLastCalledWith(1);
     fireEvent.keyDown(root, { key: "ArrowLeft" });
@@ -193,7 +214,9 @@ describe("Carousel", () => {
         <CarouselDots />
       </Carousel>,
     );
-    const dots = container.querySelectorAll('[data-slot="carousel-dots"] button');
+    const dots = container.querySelectorAll(
+      '[data-slot="carousel-dots"] button',
+    );
     expect((dots[1] as HTMLElement).className).toContain("bg-primary");
     expect((dots[0] as HTMLElement).className).toContain("bg-primary/30");
   });

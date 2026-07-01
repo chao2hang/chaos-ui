@@ -28,14 +28,10 @@ describe("toggle-group", () => {
         <ToggleGroupItem value="a">A</ToggleGroupItem>
       </ToggleGroup>,
     );
-    const group = container.querySelector(
-      '[data-slot="toggle-group"]',
-    );
+    const group = container.querySelector('[data-slot="toggle-group"]');
     expect(group?.getAttribute("data-variant")).toBe("outline");
     // item inherits variant from context
-    const item = container.querySelector(
-      '[data-slot="toggle-group-item"]',
-    );
+    const item = container.querySelector('[data-slot="toggle-group-item"]');
     expect(item?.getAttribute("data-variant")).toBe("outline");
   });
 
@@ -97,14 +93,12 @@ describe("toggle-group", () => {
 
   it("reflects defaultValue pressed state on items", () => {
     const { container } = render(
-      <ToggleGroup defaultValue="a">
+      <ToggleGroup defaultValue={["a"]}>
         <ToggleGroupItem value="a">A</ToggleGroupItem>
         <ToggleGroupItem value="b">B</ToggleGroupItem>
       </ToggleGroup>,
     );
-    const items = container.querySelectorAll(
-      '[data-slot="toggle-group-item"]',
-    );
+    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
     expect(items.length).toBe(2);
   });
 
@@ -116,9 +110,7 @@ describe("toggle-group", () => {
         </ToggleGroupItem>
       </ToggleGroup>,
     );
-    const item = container.querySelector(
-      '[data-slot="toggle-group-item"]',
-    );
+    const item = container.querySelector('[data-slot="toggle-group-item"]');
     expect(item?.getAttribute("data-variant")).toBe("outline");
     expect(item?.getAttribute("data-size")).toBe("lg");
   });
