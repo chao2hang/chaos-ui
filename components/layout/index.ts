@@ -28,3 +28,7 @@ export { PublicLayout } from "./public-layout";
 export { SplitScreen } from "./split-screen";
 export type { SplitScreenProps } from "./split-screen";
 export { TopBar } from "./top-bar";
+
+// ─── AdminShell (0.8.0) ──────────────────────────────────────────
+export { AdminShell } from "./admin-shell";
+export type { AdminShellProps } from "./admin-shell";

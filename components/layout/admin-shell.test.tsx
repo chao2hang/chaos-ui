@@ -1,0 +1,102 @@
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { AdminShell } from "./admin-shell";
+
+// Mock react-i18next since AppShell uses useTranslation.
+import { vi } from "vitest";
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+}));
+
+describe("AdminShell", () => {
+  it("exports AdminShell", () => {
+    expect(AdminShell).toBeDefined();
+  });
+
+  it("renders with children", () => {
+    const { container } = render(
+      <AdminShell>
+        <p>Dashboard Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByText("Dashboard Content")).toBeDefined();
+    expect(container.querySelector('[data-slot="admin-shell"]')).not.toBeNull();
+  });
+
+  it("renders logo in sider when provided", () => {
+    render(
+      <AdminShell logo={<span data-testid="logo">MyApp</span>}>
+        <p>Content</p>
+      </AdminShell>,
+    );
+    const logos = screen.getAllByTestId("logo");
+    expect(logos.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("renders menu items when provided", () => {
+    render(
+      <AdminShell
+        menuItems={[{ key: "home", label: "Home" }]}
+        defaultCollapsed={false}
+      >
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByText("Home")).toBeDefined();
+  });
+
+  it("renders tabs when provided", () => {
+    render(
+      <AdminShell tabs={[{ key: "tab1", label: "Tab 1" }]} activeTabKey="tab1">
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByText("Tab 1")).toBeDefined();
+  });
+
+  it("renders without user menu when user is not provided", () => {
+    const { container } = render(
+      <AdminShell>
+        <p>Content</p>
+      </AdminShell>,
+    );
+    // No user menu should be present; header should not have the UserMenu trigger.
+    expect(container.querySelector('[aria-label*="Open menu"]')).toBeNull();
+  });
+
+  it("renders with user prop without crashing", () => {
+    const { container } = render(
+      <AdminShell user={{ name: "Admin", email: "admin@test.com" }}>
+        <p>Content</p>
+      </AdminShell>,
+    );
+    // Just verify the shell renders without crashing.
+    expect(container.querySelector('[data-slot="admin-shell"]')).not.toBeNull();
+  });
+
+  it("renders search input when showSearch is true", () => {
+    render(
+      <AdminShell showSearch searchPlaceholder="Find...">
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByPlaceholderText("Find...")).toBeDefined();
+  });
+
+  it("renders breadcrumb when provided", () => {
+    render(
+      <AdminShell
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Dashboard" }]}
+      >
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByText("Home")).toBeDefined();
+    expect(screen.getByText("Dashboard")).toBeDefined();
+  });
+
+  it("module is importable", async () => {
+    const mod = await import("./admin-shell");
+    expect(mod.AdminShell).toBeDefined();
+  });
+});

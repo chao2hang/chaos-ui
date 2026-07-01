@@ -21,7 +21,12 @@ interface ChatConversationSearchProps {
   className?: string;
 }
 
-function ChatConversationSearch({ query, onQueryChange, results = [], className }: ChatConversationSearchProps) {
+function ChatConversationSearch({
+  query,
+  onQueryChange,
+  results = [],
+  className,
+}: ChatConversationSearchProps) {
   return (
     <div
       data-slot="chat-conversation-search"
@@ -30,7 +35,10 @@ function ChatConversationSearch({ query, onQueryChange, results = [], className 
       aria-label="Search conversations"
     >
       <div className="relative">
-        <SearchIcon className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+        <SearchIcon
+          className="text-muted-foreground absolute top-1/2 left-2 size-4 -translate-y-1/2"
+          aria-hidden
+        />
         <Input
           type="search"
           value={query}
@@ -42,11 +50,13 @@ function ChatConversationSearch({ query, onQueryChange, results = [], className 
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
         {query.trim().length === 0 ? (
-          <p className="px-2 py-3 text-center text-xs text-muted-foreground">Type to search</p>
+          <p className="text-muted-foreground px-2 py-3 text-center text-xs">
+            Type to search
+          </p>
         ) : results.length === 0 ? (
-          <p className="flex flex-col items-center gap-1 px-2 py-4 text-center text-xs text-muted-foreground">
+          <p className="text-muted-foreground flex flex-col items-center gap-1 px-2 py-4 text-center text-xs">
             <SearchXIcon className="size-5" aria-hidden />
-            No results for "{query}"
+            No results for &ldquo;{query}&rdquo;
           </p>
         ) : (
           <ul role="list" className="flex flex-col gap-0.5">
@@ -54,10 +64,14 @@ function ChatConversationSearch({ query, onQueryChange, results = [], className 
               <li key={r.id}>
                 <button
                   type="button"
-                  className="flex w-full flex-col gap-0.5 rounded-md px-2 py-1.5 text-left hover:bg-muted"
+                  className="hover:bg-muted flex w-full flex-col gap-0.5 rounded-md px-2 py-1.5 text-left"
                 >
-                  <span className="truncate text-sm font-medium text-foreground">{r.title}</span>
-                  <span className="line-clamp-2 text-xs text-muted-foreground">{r.snippet}</span>
+                  <span className="text-foreground truncate text-sm font-medium">
+                    {r.title}
+                  </span>
+                  <span className="text-muted-foreground line-clamp-2 text-xs">
+                    {r.snippet}
+                  </span>
                 </button>
               </li>
             ))}

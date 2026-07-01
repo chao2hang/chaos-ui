@@ -512,3 +512,26 @@ export { MobileSwipeAction } from "./mobile-swipe-action";
 export type { MobileSwipeActionProps } from "./mobile-swipe-action";
 export { WithPermission } from "./with-permission";
 export type { WithPermissionProps } from "./with-permission";
+
+// ─── P0/P1 new components (0.8.0) ────────────────────────────────
+export { Icon } from "./icon";
+export type { IconProps, IconSize } from "./icon";
+export { Transfer } from "./transfer";
+export type { TransferItem } from "./transfer";
+export { TimePicker, formatTimeInput } from "./time-picker";
+export { PictureWall, PictureCard } from "./file-upload";
+export type { UploadFile } from "./file-upload";
+export { InfiniteScroll } from "./infinite-scroll";
+export type { InfiniteScrollProps } from "./infinite-scroll";
+export { Masonry } from "./masonry";
+export type { MasonryProps, ColumnConfig } from "./masonry";
+export { NativeSelect } from "./native-select";
+export type {
+  NativeSelectProps,
+  NativeSelectOption,
+  NativeSelectGroup,
+} from "./native-select";
+export { Message } from "./message";
+export type { MessageProps, MessageVariant } from "./message";
+export { Direction } from "./direction";
+export type { DirectionProps, DirectionValue } from "./direction";
