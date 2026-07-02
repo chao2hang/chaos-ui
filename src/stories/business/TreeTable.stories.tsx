@@ -185,6 +185,7 @@ export const Selectable: Story = {
 
 /** Large dataset with 100+ rows and deep nesting. */
 export const LargeDataset: Story = {
+  args: {} as any,
   render: () => {
     const buildTree = (prefix: string, depth: number, breadth: number): OrgNode[] => {
       if (depth <= 0) return [];
@@ -195,7 +196,7 @@ export const LargeDataset: Story = {
           name: `Node ${id}`,
           role: `Level ${4 - depth}`,
           headcount: Math.floor(Math.random() * 50) + 1,
-          children: depth > 1 ? buildTree(id, depth - 1, 3) : undefined,
+          children: depth > 1 ? buildTree(id, depth - 1, 3) : [],
         };
       });
     };

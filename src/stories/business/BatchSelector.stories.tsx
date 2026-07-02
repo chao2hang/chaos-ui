@@ -111,31 +111,31 @@ type Story = StoryObj<typeof meta>;
 
 /** Default single-mode selector */
 export const Default: Story = {
-  args: {},
+  args: {} as any,
   render: (args) => <SingleSelectExample {...args} />,
-};
+} as Story;
 
 /** Multiple selection mode with checkboxes */
 export const MultipleMode: Story = {
-  args: {},
+  args: {} as any,
   render: (args) => <MultiSelectExample {...args} />,
-};
+} as Story;
 
 /** With status badges visible */
 export const WithStatus: Story = {
-  args: {},
+  args: {} as any,
   render: (args) => <MultiSelectExample {...args} showStatus />,
-};
+} as Story;
 
 /** With inline metadata display for selected items */
 export const WithMetadata: Story = {
-  args: {},
+  args: {} as any,
   render: (args) => <MultiSelectExample {...args} showMetadata />,
-};
+} as Story;
 
 /** Dark mode */
 export const DarkMode: Story = {
-  args: {},
+  args: {} as any,
   render: (args) => <MultiSelectExample {...args} showStatus showMetadata />,
   parameters: {
     themes: { themeOverride: "dark" },

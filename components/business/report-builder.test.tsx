@@ -107,7 +107,7 @@ describe("ReportBuilder", () => {
   it("delete button removes widget", async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
-    render(<ReportBuilder widgets={[sampleWidgets[0]]} definitions={testDefinitions} onChange={onChange} />)
+    render(<ReportBuilder widgets={[sampleWidgets[0]!]} definitions={testDefinitions} onChange={onChange} />)
 
     await user.click(screen.getByTestId("delete-widget-w1"))
     expect(onChange).toHaveBeenCalledTimes(1)

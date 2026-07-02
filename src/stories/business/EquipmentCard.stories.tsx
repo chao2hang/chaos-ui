@@ -33,7 +33,7 @@ export const Default: Story = {
 };
 
 export const AllStatuses: Story = {
-  args: {},
+  args: {} as any,
   render: () => (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {(["running", "idle", "maintenance", "fault", "offline"] as EquipmentStatus[]).map(

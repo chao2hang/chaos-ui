@@ -103,14 +103,14 @@ describe("CommissionCalculator", () => {
     const onChange = vi.fn();
     render(<CommissionCalculator tiers={tiers} deals={deals} onDealsChange={onChange} />);
     fireEvent.click(screen.getByText("Add Deal"));
-    expect(onChange.mock.calls[0]![0]!!.length).toBe(4);
+    expect(onChange.mock.calls[0]![0]!.length).toBe(4);
   });
 
   it("calls onDealsChange when removing deal", () => {
     const onChange = vi.fn();
     render(<CommissionCalculator tiers={tiers} deals={deals} onDealsChange={onChange} />);
     fireEvent.click(screen.getAllByLabelText("Remove deal")[0]!);
-    expect(onChange.mock.calls[0]![0]!!.length).toBe(2);
+    expect(onChange.mock.calls[0]![0]!.length).toBe(2);
   });
 
   it("applies custom className", () => {

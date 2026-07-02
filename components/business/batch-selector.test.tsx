@@ -227,7 +227,7 @@ describe("BatchSelector", () => {
     fireEvent.click(screen.getByLabelText("Select B-2024-002"));
     fireEvent.click(screen.getByText("OK"));
     expect(onChange).toHaveBeenCalled();
-    const [ids, nodes] = onChange.mock.calls[0];
+    const [ids, nodes] = onChange.mock.calls[0]!;
     expect(ids).toContain("b1");
     expect(ids).toContain("b2");
     expect(nodes.length).toBe(2);

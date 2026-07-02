@@ -3,6 +3,11 @@ import { render } from "@testing-library/react";
 import { OrgChart } from "@/components/business/org-chart";
 import type { OrgNode, OrgEdge } from "@/components/business/org-chart";
 
+const { useState: useMockState } = await vi.hoisted(async () => {
+  const React = await import("react");
+  return { useState: React.useState };
+});
+
 const nodes: OrgNode[] = [
   { id: "1", name: "Alice", title: "CEO" },
   { id: "2", name: "Bob", title: "CTO" },
@@ -33,13 +38,11 @@ vi.mock("@xyflow/react", () => ({
   Handle: () => <div />,
   Position: { Top: "top", Bottom: "bottom" },
   useNodesState: (init: any) => {
-    const React = require("react");
-    const [s, set] = React.useState(init);
+    const [s, set] = useMockState(init);
     return [s, set, vi.fn()];
   },
   useEdgesState: (init: any) => {
-    const React = require("react");
-    const [s, set] = React.useState(init);
+    const [s, set] = useMockState(init);
     return [s, set, vi.fn()];
   },
 }));

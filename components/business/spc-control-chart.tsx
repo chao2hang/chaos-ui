@@ -154,8 +154,11 @@ function SPCControlChart({
 
   // Compute statistics
   const values = samples.map((s) => s.value);
-  const cl = centerLine ?? mean(values);
-  const sd = sigma ?? stdDev(values, cl);
+  const { cl, sd } = React.useMemo(() => {
+    const computedCl = centerLine ?? mean(values);
+    const computedSd = sigma ?? stdDev(values, computedCl);
+    return { cl: computedCl, sd: computedSd };
+  }, [centerLine, sigma, values]);
   const computedUCL = ucl ?? cl + 3 * sd;
   const computedLCL = lcl ?? cl - 3 * sd;
 

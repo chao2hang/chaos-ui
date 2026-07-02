@@ -482,7 +482,7 @@ function NotificationRuleBuilder({
               value={rule.priority ?? "normal"}
               onChange={(e) => {
                 if (e.target.value) {
-                  update({ priority: e.target.value as NotificationRule["priority"] });
+                  update({ priority: e.target.value } as Partial<NotificationRule>);
                 }
               }}
               disabled={readOnly}

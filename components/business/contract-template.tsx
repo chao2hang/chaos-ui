@@ -853,7 +853,7 @@ function ContractTemplate({
                   value={currentMetadata.status ?? ""}
                   onValueChange={(value) => {
                     if (value) {
-                      handleMetadataChange({ status: value as ContractMetadata["status"] });
+                      handleMetadataChange({ status: value } as Partial<ContractMetadata>);
                     }
                   }}
                   disabled={readOnly}
