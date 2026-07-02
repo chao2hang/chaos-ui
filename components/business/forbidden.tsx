@@ -33,6 +33,7 @@ function Forbidden({
 }: ForbiddenProps) {
   return (
     <div
+      data-slot="forbidden"
       className={cn(
         "flex flex-col items-center justify-center",
         "rounded-lg border border-dashed border-border",

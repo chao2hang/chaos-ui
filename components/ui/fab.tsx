@@ -18,6 +18,15 @@ const positionClass: Record<NonNullable<FabProps["position"]>, string> = {
   "bottom-center": "left-1/2 -translate-x-1/2",
 };
 
+/**
+ * @component Fab
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Floating Action Button fixed to the screen edge for primary actions / 固定在屏幕边缘的浮动操作按钮，用于主要操作
+ * @keywords fab, floating, action, button, fixed
+ * @example
+ * <Fab icon={<PlusIcon />} position="bottom-right" />
+ */
 export function Fab({
   icon,
   label,
@@ -56,6 +65,15 @@ interface FabSpeedDialProps {
   position?: "bottom-right" | "bottom-left";
 }
 
+/**
+ * @component FabSpeedDial
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Floating action button that expands into a radial menu of speed-dial actions / 展开为放射状快捷菜单的浮动操作按钮
+ * @keywords fab, speed-dial, radial, menu, floating, actions
+ * @example
+ * <FabSpeedDial icon={<PlusIcon />} actions={[{ icon: <EditIcon />, label: "Edit", onClick: () => {} }]} />
+ */
 export function FabSpeedDial({
   icon,
   actions,
@@ -75,7 +93,7 @@ export function FabSpeedDial({
         <div className="flex flex-col-reverse items-end gap-2">
           {actions.map((a, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className="rounded-md bg-foreground/90 px-2 py-1 text-xs text-background shadow-md">
+              <span className="bg-foreground/90 text-background rounded-md px-2 py-1 text-xs shadow-md">
                 {a.label}
               </span>
               <Button
@@ -112,6 +130,15 @@ interface BackTopProps {
   className?: string;
 }
 
+/**
+ * @component BackTop
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Button that appears after scrolling past a threshold, scrolls back to top / 滚动超过阈值后出现的返回顶部按钮
+ * @keywords back-top, scroll, top, button, navigation
+ * @example
+ * <BackTop threshold={300} />
+ */
 export function BackTop({ threshold = 400, target, className }: BackTopProps) {
   const { t } = useTranslation("navigation");
   const [visible, setVisible] = React.useState(false);
@@ -144,7 +171,7 @@ export function BackTop({ threshold = 400, target, className }: BackTopProps) {
       size="icon"
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-4 right-4 z-30 rounded-full shadow-md",
+        "fixed right-4 bottom-4 z-30 rounded-full shadow-md",
         className,
       )}
       aria-label={t("fab.backTop")}

@@ -21,6 +21,15 @@ interface CookieBannerProps {
   className?: string;
 }
 
+/**
+ * @component CookieBanner
+ * @category business/ux
+ * @since 0.2.0
+ * @description GDPR-style cookie consent banner with accept, reject, dismiss, and privacy policy link / GDPR 风格的 Cookie 同意横幅，支持接受、拒绝、关闭和隐私政策链接
+ * @keywords cookie, consent, gdpr, privacy, banner, notice
+ * @example
+ * <CookieBanner onAccept={() => {}} onReject={() => {}} policyUrl="/privacy" />
+ */
 export function CookieBanner({
   open,
   onAccept,
@@ -104,15 +113,15 @@ export function CookieBanner({
       role="dialog"
       aria-label={t("cookieBanner.ariaLabel")}
       className={cn(
-        "fixed z-50 flex w-[min(640px,calc(100vw-2rem))] flex-col gap-3 rounded-lg border bg-popover p-4 shadow-xl sm:flex-row sm:items-center",
+        "bg-popover fixed z-50 flex w-[min(640px,calc(100vw-2rem))] flex-col gap-3 rounded-lg border p-4 shadow-xl sm:flex-row sm:items-center",
         positionClass[position],
         className,
       )}
     >
-      <CookieIcon className="size-5 shrink-0 text-muted-foreground" />
+      <CookieIcon className="text-muted-foreground size-5 shrink-0" />
       <div className="flex-1 space-y-1">
         <p className="text-sm font-medium">{resolvedTitle}</p>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           {resolvedDescription}
           {policyUrl && (
             <>

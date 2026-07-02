@@ -39,6 +39,15 @@ interface ChipProps extends React.ComponentProps<"span"> {
   icon?: React.ReactNode;
 }
 
+/**
+ * @component Chip
+ * @category business/ux
+ * @since 0.2.0
+ * @description Compact tag/pill with optional icon, remove button, and multiple color variants / 紧凑型标签组件，支持图标、移除按钮和多种颜色变体
+ * @keywords chip, tag, badge, pill, removable
+ * @example
+ * <Chip variant="primary" removable onRemove={() => {}}>Label</Chip>
+ */
 export function Chip({
   variant = "default",
   size = "default",

@@ -27,6 +27,15 @@ interface PageHeaderProps {
   className?: string;
 }
 
+/**
+ * @component PageHeader
+ * @category business/ux
+ * @since 0.2.0
+ * @description Page header with breadcrumb navigation, title, description, and action buttons / 页面标题栏，包含面包屑导航、标题、描述和操作按钮
+ * @keywords page, header, breadcrumb, title, actions
+ * @example
+ * <PageHeader title="Dashboard" description="Overview of your workspace" breadcrumbItems={items} primaryAction={<Button>Create</Button>} />
+ */
 function PageHeader({
   title,
   description,
@@ -47,7 +56,7 @@ function PageHeader({
   );
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div data-slot="page-header" className={cn("space-y-2", className)}>
       {breadcrumbItems && breadcrumbItems.length > 0 && (
         <Breadcrumb>
           <BreadcrumbList>

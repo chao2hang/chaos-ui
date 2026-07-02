@@ -58,7 +58,7 @@ function FieldMask({
   const display = canView || visible ? value : maskFn(value)
 
   return (
-    <span className={cn("inline-flex items-center gap-1.5 font-mono text-sm", className)}>
+    <span data-slot="field-mask" className={cn("inline-flex items-center gap-1.5 font-mono text-sm", className)}>
       <span className="select-none">{display}</span>
       {!canView && (
         <Button

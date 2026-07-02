@@ -112,7 +112,7 @@ function ProductCategoryPicker({
   }, [options, query]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover data-slot="product-category-picker" open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
           <Button

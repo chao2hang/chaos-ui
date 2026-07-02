@@ -32,6 +32,23 @@ interface CarouselProps extends React.ComponentProps<"div"> {
   onIndexChange?: (index: number) => void;
 }
 
+/**
+ * @component Carousel
+ * @category ui/shell
+ * @since 0.2.0
+ * @description A slideshow component for cycling through content with autoplay, looping, and navigation / 轮播组件，支持自动播放、循环和导航控制
+ * @keywords carousel, slider, slideshow, autoplay, loop
+ * @example
+ * <Carousel loop autoplay>
+ *   <CarouselContent>
+ *     <CarouselItem>Slide 1</CarouselItem>
+ *     <CarouselItem>Slide 2</CarouselItem>
+ *   </CarouselContent>
+ *   <CarouselPrevious />
+ *   <CarouselNext />
+ *   <CarouselDots />
+ * </Carousel>
+ */
 function Carousel({
   defaultIndex = 0,
   loop = true,
@@ -69,7 +86,9 @@ function Carousel({
   }, [autoplay, interval, next]);
 
   return (
-    <CarouselContext.Provider value={{ index, total, goTo, next, prev, loop, setTotal }}>
+    <CarouselContext.Provider
+      value={{ index, total, goTo, next, prev, loop, setTotal }}
+    >
       <div
         data-slot="carousel"
         className={cn("relative w-full", className)}
@@ -86,6 +105,17 @@ function Carousel({
   );
 }
 
+/**
+ * @component CarouselContent
+ * @category ui/shell
+ * @since 0.2.0
+ * @description The scrollable track that contains CarouselItem children / 包含轮播项的滚动轨道
+ * @keywords carousel, content, track, slider
+ * @example
+ * <CarouselContent>
+ *   <CarouselItem>Slide 1</CarouselItem>
+ * </CarouselContent>
+ */
 function CarouselContent({
   className,
   children,
@@ -106,7 +136,9 @@ function CarouselContent({
           "flex transition-transform duration-300 ease-out",
           className,
         )}
-        style={{ transform: `translateX(-${total > 0 ? (index * 100) / total : 0}%)` }}
+        style={{
+          transform: `translateX(-${total > 0 ? (index * 100) / total : 0}%)`,
+        }}
         {...props}
       >
         {children}
@@ -115,6 +147,15 @@ function CarouselContent({
   );
 }
 
+/**
+ * @component CarouselItem
+ * @category ui/shell
+ * @since 0.2.0
+ * @description A single slide within a CarouselContent / 轮播中的单个幻灯片
+ * @keywords carousel, slide, item
+ * @example
+ * <CarouselItem>Slide content</CarouselItem>
+ */
 function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   const { total } = useCarousel();
   return (
@@ -127,6 +168,15 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * @component CarouselPrevious
+ * @category ui/shell
+ * @since 0.2.0
+ * @description Button to navigate to the previous slide / 切换到上一张幻灯片的按钮
+ * @keywords carousel, previous, navigation, arrow
+ * @example
+ * <CarouselPrevious />
+ */
 function CarouselPrevious({
   className,
   ...props
@@ -140,7 +190,7 @@ function CarouselPrevious({
       size="icon"
       onClick={prev}
       className={cn(
-        "absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full",
+        "absolute top-1/2 left-2 z-10 -translate-y-1/2 rounded-full",
         className,
       )}
       {...props}
@@ -151,6 +201,15 @@ function CarouselPrevious({
   );
 }
 
+/**
+ * @component CarouselNext
+ * @category ui/shell
+ * @since 0.2.0
+ * @description Button to navigate to the next slide / 切换到下一张幻灯片的按钮
+ * @keywords carousel, next, navigation, arrow
+ * @example
+ * <CarouselNext />
+ */
 function CarouselNext({
   className,
   ...props
@@ -164,7 +223,7 @@ function CarouselNext({
       size="icon"
       onClick={next}
       className={cn(
-        "absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full",
+        "absolute top-1/2 right-2 z-10 -translate-y-1/2 rounded-full",
         className,
       )}
       {...props}
@@ -175,6 +234,15 @@ function CarouselNext({
   );
 }
 
+/**
+ * @component CarouselDots
+ * @category ui/shell
+ * @since 0.2.0
+ * @description Dot indicators showing current slide position with click-to-navigate / 显示当前位置的圆点指示器，可点击跳转
+ * @keywords carousel, dots, indicator, pagination
+ * @example
+ * <CarouselDots />
+ */
 function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
   const { t } = useTranslation("ui");
   const { total, index, goTo } = useCarousel();

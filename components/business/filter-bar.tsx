@@ -113,7 +113,7 @@ function FilterBar({
   }
 
   const content = (
-    <div className={cn("flex flex-wrap items-end gap-3", className)} onKeyDown={handleKeyDown}>
+    <div data-slot="filter-bar" className={cn("flex flex-wrap items-end gap-3", className)} onKeyDown={handleKeyDown}>
       {visibleFields.map((field) => (
         <div key={field.key} className="flex flex-col gap-1">
           <label className="text-xs font-medium text-muted-foreground">
@@ -146,7 +146,7 @@ function FilterBar({
 
   if (layout === "card") {
     return (
-      <Card>
+      <Card data-slot="filter-bar">
         <CardContent className="pt-4">{content}</CardContent>
       </Card>
     )

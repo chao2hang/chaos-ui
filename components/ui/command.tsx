@@ -15,6 +15,20 @@ import {
 import { InputGroup, InputGroupAddon } from "@/components/ui/input-group";
 import { CheckIcon, SearchIcon } from "./icons";
 
+/**
+ * @component Command
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Root container for a command palette / keyboard-driven command menu / 键盘驱动的命令面板根容器
+ * @keywords command, palette, search, cmdk, keyboard
+ * @example
+ * <Command>
+ *   <CommandInput placeholder="Type a command..." />
+ *   <CommandList>
+ *     <CommandItem>Profile</CommandItem>
+ *   </CommandList>
+ * </Command>
+ */
 function Command({
   className,
   ...props
@@ -23,7 +37,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground",
+        "bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-xl! p-1",
         className,
       )}
       {...props}
@@ -31,6 +45,18 @@ function Command({
   );
 }
 
+/**
+ * @component CommandDialog
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Command palette wrapped in a modal dialog with title and description / 包裹在模态对话框中的命令面板
+ * @keywords command, dialog, modal, palette, search
+ * @example
+ * <CommandDialog open={open} onOpenChange={setOpen}>
+ *   <CommandInput />
+ *   <CommandList>...</CommandList>
+ * </CommandDialog>
+ */
 function CommandDialog({
   title,
   description,
@@ -67,13 +93,22 @@ function CommandDialog({
   );
 }
 
+/**
+ * @component CommandInput
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Search input for filtering command items, with a search icon addon / 用于过滤命令项的搜索输入框，带搜索图标插件
+ * @keywords command, input, search, filter, text
+ * @example
+ * <CommandInput placeholder="Search commands..." />
+ */
 function CommandInput({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div data-slot="command-input-wrapper" className="p-1 pb-0">
-      <InputGroup className="h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:pl-2!">
+      <InputGroup className="border-input/30 bg-input/30 h-8! rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2!">
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
@@ -90,6 +125,17 @@ function CommandInput({
   );
 }
 
+/**
+ * @component CommandList
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Scrollable container for command items with keyboard navigation support / 支持键盘导航的可滚动命令项容器
+ * @keywords command, list, scroll, items, container
+ * @example
+ * <CommandList>
+ *   <CommandItem>Action 1</CommandItem>
+ * </CommandList>
+ */
 function CommandList({
   className,
   ...props
@@ -106,6 +152,15 @@ function CommandList({
   );
 }
 
+/**
+ * @component CommandEmpty
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Shown when no command items match the current search query / 当前搜索无匹配项时显示的空状态
+ * @keywords command, empty, no results, placeholder
+ * @example
+ * <CommandEmpty>No results found.</CommandEmpty>
+ */
 function CommandEmpty({
   className,
   ...props
@@ -119,6 +174,17 @@ function CommandEmpty({
   );
 }
 
+/**
+ * @component CommandGroup
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Groups related command items under a common heading / 将相关命令项分组在公共标题下
+ * @keywords command, group, heading, category, section
+ * @example
+ * <CommandGroup heading="Actions">
+ *   <CommandItem>Copy</CommandItem>
+ * </CommandGroup>
+ */
 function CommandGroup({
   className,
   ...props
@@ -127,7 +193,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground",
+        "text-foreground **:[[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium",
         className,
       )}
       {...props}
@@ -135,6 +201,15 @@ function CommandGroup({
   );
 }
 
+/**
+ * @component CommandSeparator
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Visual divider between command groups or items / 命令组或命令项之间的视觉分隔线
+ * @keywords command, separator, divider, hr
+ * @example
+ * <CommandSeparator />
+ */
 function CommandSeparator({
   className,
   ...props
@@ -142,12 +217,24 @@ function CommandSeparator({
   return (
     <CommandPrimitive.Separator
       data-slot="command-separator"
-      className={cn("-mx-1 h-px bg-border", className)}
+      className={cn("bg-border -mx-1 h-px", className)}
       {...props}
     />
   );
 }
 
+/**
+ * @component CommandItem
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Selectable item in a command palette with keyboard navigation and check icon on selection / 命令面板中可选择项，支持键盘导航和选中标记
+ * @keywords command, item, select, action, option
+ * @example
+ * <CommandItem onSelect={() => console.log("selected")}>
+ *   Profile
+ *   <CommandShortcut>Ctrl+P</CommandShortcut>
+ * </CommandItem>
+ */
 function CommandItem({
   className,
   children,
@@ -157,7 +244,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-selected:*:[svg]:text-foreground",
+        "group/command-item data-selected:bg-muted data-selected:text-foreground data-selected:*:[svg]:text-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -168,6 +255,15 @@ function CommandItem({
   );
 }
 
+/**
+ * @component CommandShortcut
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Displays a keyboard shortcut badge inside a CommandItem / 在命令项中显示快捷键标识
+ * @keywords command, shortcut, keyboard, badge, keybind
+ * @example
+ * <CommandShortcut>Ctrl+K</CommandShortcut>
+ */
 function CommandShortcut({
   className,
   ...props
@@ -176,7 +272,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground group-data-selected/command-item:text-foreground",
+        "text-muted-foreground group-data-selected/command-item:text-foreground ml-auto text-xs tracking-widest",
         className,
       )}
       {...props}

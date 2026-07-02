@@ -51,6 +51,15 @@ function colorAt(colors: string[], i: number): string {
   return colors[i % colors.length] ?? defaultColors[0] ?? "var(--chart-1)";
 }
 
+/**
+ * @component ChartContainer
+ * @category business/charts
+ * @since 0.2.0
+ * @description Responsive container wrapper for Recharts charts / Recharts 图表的响应式容器包装
+ * @keywords chart, container, responsive, recharts
+ * @example
+ * <ChartContainer><LineChart data={[]} categories={[]} index="" /></ChartContainer>
+ */
 function ChartContainer({
   children,
   className,
@@ -59,7 +68,10 @@ function ChartContainer({
   className?: string;
 }) {
   return (
-    <div className={cn("h-[350px] w-full min-w-0", className)}>
+    <div
+      className={cn("h-[350px] w-full min-w-0", className)}
+      data-slot="chart-container"
+    >
       <ResponsiveContainer width="100%" height="100%">
         {children}
       </ResponsiveContainer>
@@ -67,6 +79,15 @@ function ChartContainer({
   );
 }
 
+/**
+ * @component ChartTooltip
+ * @category business/charts
+ * @since 0.2.0
+ * @description Custom styled tooltip for Recharts with optional value formatter / Recharts 自定义样式悬浮提示，支持值格式化
+ * @keywords chart, tooltip, recharts, hover, formatter
+ * @example
+ * <Tooltip content={<ChartTooltip />} />
+ */
 function ChartTooltip({
   active,
   payload,
@@ -80,8 +101,8 @@ function ChartTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border bg-popover p-2 shadow-md text-sm">
-      <p className="font-medium mb-1">{label}</p>
+    <div className="bg-popover rounded-lg border p-2 text-sm shadow-md">
+      <p className="mb-1 font-medium">{label}</p>
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2">
           <div
@@ -98,6 +119,15 @@ function ChartTooltip({
   );
 }
 
+/**
+ * @component LineChart
+ * @category business/charts
+ * @since 0.2.0
+ * @description Line chart wrapper around Recharts with branded styling and tooltip support / 基于 Recharts 的折线图封装，品牌配色与悬浮提示
+ * @keywords chart, line, trend, recharts, visualization
+ * @example
+ * <LineChart data={[{ name: "Jan", value: 100 }]} categories={["value"]} index="name" />
+ */
 function LineChart({
   data,
   categories,
@@ -148,6 +178,15 @@ function LineChart({
   );
 }
 
+/**
+ * @component BarChart
+ * @category business/charts
+ * @since 0.2.0
+ * @description Bar chart wrapper around Recharts with optional stacked mode and branded styling / 基于 Recharts 的柱状图封装，支持堆叠模式和品牌配色
+ * @keywords chart, bar, stacked, recharts, visualization
+ * @example
+ * <BarChart data={[{ name: "Q1", sales: 400 }]} categories={["sales"]} index="name" />
+ */
 function BarChart({
   data,
   categories,
@@ -200,6 +239,15 @@ function BarChart({
   );
 }
 
+/**
+ * @component AreaChart
+ * @category business/charts
+ * @since 0.2.0
+ * @description Area chart wrapper around Recharts with fill opacity and branded styling / 基于 Recharts 的面积图封装，半透明填充与品牌配色
+ * @keywords chart, area, trend, recharts, visualization
+ * @example
+ * <AreaChart data={[{ name: "Jan", revenue: 2000 }]} categories={["revenue"]} index="name" />
+ */
 function AreaChart({
   data,
   categories,
@@ -251,6 +299,15 @@ function AreaChart({
   );
 }
 
+/**
+ * @component PieChart
+ * @category business/charts
+ * @since 0.2.0
+ * @description Pie chart wrapper around Recharts with segmented coloring and label support / 基于 Recharts 的饼图封装，分段着色与标签
+ * @keywords chart, pie, donut, recharts, visualization
+ * @example
+ * <PieChart data={[{ name: "Ads", value: 400 }]} category="value" index="name" />
+ */
 function PieChart({
   data,
   category,

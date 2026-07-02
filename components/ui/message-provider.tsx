@@ -40,15 +40,11 @@ export interface MessageProviderProps {
 }
 
 export function MessageProvider(props: MessageProviderProps = {}) {
-  const {
-    position = "top-right",
-    visibleToasts = 5,
-  } = props;
+  const { position = "top-right", visibleToasts = 5 } = props;
 
   return (
-    <Toaster
-      position={position}
-      visibleToasts={visibleToasts}
-    />
+    <div data-slot="message-provider">
+      <Toaster position={position} visibleToasts={visibleToasts} />
+    </div>
   );
 }

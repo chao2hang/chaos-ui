@@ -71,6 +71,20 @@ const defaultUsers: User[] = [
   },
 ];
 
+/**
+ * @component UserBrowse
+ * @category ui/user
+ * @since 0.2.0
+ * @description User picker dialog with search, avatar display, single/multi-select, and department badges / 用户选择器对话框，支持搜索、头像显示、单选/多选和部门标签
+ * @keywords user, browse, picker, select, avatar, department, 用户选择
+ * @example
+ * <UserBrowse
+ *   users={userList}
+ *   value={selectedUser}
+ *   onChange={setSelectedUser}
+ *   multiple
+ * />
+ */
 function UserBrowse({
   value: controlledValue,
   defaultValue,
@@ -143,8 +157,8 @@ function UserBrowse({
           render={
             <div
               className={cn(
-                "flex min-h-8 w-full items-center gap-1 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors",
-                "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
+                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
                 disabled && "cursor-not-allowed opacity-50",
@@ -170,7 +184,7 @@ function UserBrowse({
                         e.stopPropagation();
                         handleRemove(user.id);
                       }}
-                      className="ml-0.5 rounded-full hover:bg-muted"
+                      className="hover:bg-muted ml-0.5 rounded-full"
                     >
                       <XIcon className="size-3" />
                       <span className="sr-only">Remove</span>
@@ -180,7 +194,7 @@ function UserBrowse({
               ))}
             </div>
           ) : (
-            <span className="flex-1 text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground flex-1">{placeholder}</span>
           )}
           {value.length > 0 && !disabled && (
             <Button
@@ -199,7 +213,7 @@ function UserBrowse({
             <DialogTitle>Select User</DialogTitle>
           </DialogHeader>
           <div className="relative">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -215,7 +229,7 @@ function UserBrowse({
                   <div
                     key={user.id}
                     className={cn(
-                      "flex items-center gap-3 rounded-md p-2 cursor-pointer hover:bg-muted",
+                      "hover:bg-muted flex cursor-pointer items-center gap-3 rounded-md p-2",
                       isSelected && "bg-muted",
                     )}
                     onClick={() => handleSelect(user)}
@@ -227,12 +241,12 @@ function UserBrowse({
                         <UserIcon className="size-4" />
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium">
                         {user.name}
                       </p>
                       {user.email && (
-                        <p className="text-xs text-muted-foreground truncate">
+                        <p className="text-muted-foreground truncate text-xs">
                           {user.email}
                         </p>
                       )}
@@ -246,15 +260,15 @@ function UserBrowse({
                 );
               })}
               {filteredUsers.length === 0 && (
-                <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                  <UserIcon className="size-8 mb-2" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                  <UserIcon className="mb-2 size-8" />
                   <p className="text-sm">No users found</p>
                 </div>
               )}
             </div>
           </ScrollArea>
           {multiple && (
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between text-sm">
               <span>{value.length} user(s) selected</span>
               {maxCount && <span>Max: {maxCount}</span>}
             </div>

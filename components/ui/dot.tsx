@@ -1,6 +1,6 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const dotVariants = cva("inline-block rounded-full", {
   variants: {
@@ -23,8 +23,17 @@ const dotVariants = cva("inline-block rounded-full", {
     },
   },
   defaultVariants: { size: "default", variant: "default", pulse: false },
-})
+});
 
+/**
+ * @component Dot
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Small colored status indicator with size, variant, and optional pulse animation / 小彩色状态指示器，支持尺寸、颜色变体和可选的脉冲动画
+ * @keywords dot, indicator, status, badge, pulse
+ * @example
+ * <Dot variant="success" pulse />
+ */
 function Dot({
   className,
   size,
@@ -38,7 +47,7 @@ function Dot({
       className={cn(dotVariants({ size, variant, pulse }), className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Dot, dotVariants }
+export { Dot, dotVariants };

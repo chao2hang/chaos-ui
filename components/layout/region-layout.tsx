@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 interface RegionLayoutProps {
   /** Top region (header) */
-  top?: React.ReactNode
+  top?: React.ReactNode;
   /** Left panel */
-  left?: React.ReactNode
+  left?: React.ReactNode;
   /** Main content area */
-  main: React.ReactNode
+  main: React.ReactNode;
   /** Right panel */
-  right?: React.ReactNode
+  right?: React.ReactNode;
   /** Bottom region (footer) */
-  bottom?: React.ReactNode
+  bottom?: React.ReactNode;
   /** Left panel width */
-  leftWidth?: number | string
+  leftWidth?: number | string;
   /** Right panel width */
-  rightWidth?: number | string
+  rightWidth?: number | string;
   /** Resizable left panel */
-  resizableLeft?: boolean
+  resizableLeft?: boolean;
   /** Resizable right panel */
-  resizableRight?: boolean
+  resizableRight?: boolean;
   /** Gutters */
-  gap?: number
-  className?: string
+  gap?: number;
+  className?: string;
 }
 
 /**
@@ -49,7 +49,10 @@ function RegionLayout({
   className,
 }: RegionLayoutProps) {
   return (
-    <div className={cn("flex h-full flex-col", className)}>
+    <div
+      data-slot="region-layout"
+      className={cn("flex h-full flex-col", className)}
+    >
       {/* Top */}
       {top && <div className="shrink-0">{top}</div>}
 
@@ -59,7 +62,10 @@ function RegionLayout({
         {left && (
           <aside
             className="shrink-0 overflow-auto border-r"
-            style={{ width: leftWidth, resize: resizableLeft ? "horizontal" : undefined }}
+            style={{
+              width: leftWidth,
+              resize: resizableLeft ? "horizontal" : undefined,
+            }}
           >
             {left}
           </aside>
@@ -72,7 +78,10 @@ function RegionLayout({
         {right && (
           <aside
             className="shrink-0 overflow-auto border-l"
-            style={{ width: rightWidth, resize: resizableRight ? "horizontal" : undefined }}
+            style={{
+              width: rightWidth,
+              resize: resizableRight ? "horizontal" : undefined,
+            }}
           >
             {right}
           </aside>
@@ -82,8 +91,8 @@ function RegionLayout({
       {/* Bottom */}
       {bottom && <div className="shrink-0 border-t">{bottom}</div>}
     </div>
-  )
+  );
 }
 
-export { RegionLayout }
-export type { RegionLayoutProps }
+export { RegionLayout };
+export type { RegionLayoutProps };

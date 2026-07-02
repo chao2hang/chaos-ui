@@ -44,6 +44,15 @@ const modeIcons: Record<
   ad: ImageIcon,
 };
 
+/**
+ * @component CreativePreview
+ * @category business/ux
+ * @since 0.2.0
+ * @description Preview creative content across email, push, social, and ad channels with desktop/mobile viewport switching / 跨渠道创意内容预览，支持邮件、推送、社交和广告模式及桌面/移动端视口切换
+ * @keywords creative, preview, email, push, social, ad, viewport
+ * @example
+ * <CreativePreview mode="email" title="Welcome Email" body="Hello world" />
+ */
 export function CreativePreview({
   mode,
   viewport = "desktop",
@@ -80,7 +89,7 @@ export function CreativePreview({
             <TabsContent key={item} value={item}>
               <div
                 className={cn(
-                  "mx-auto rounded-xl border bg-background p-4 shadow-xs",
+                  "bg-background mx-auto rounded-xl border p-4 shadow-xs",
                   item === "mobile" ? "max-w-[360px]" : "max-w-2xl",
                 )}
               >
@@ -136,7 +145,7 @@ function MediaBlock({ imageUrl }: { imageUrl?: string }) {
     );
   }
   return (
-    <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-muted text-muted-foreground">
+    <div className="bg-muted text-muted-foreground flex aspect-video w-full items-center justify-center rounded-lg">
       <ImageIcon className="size-8" />
     </div>
   );
@@ -157,16 +166,16 @@ function EmailFrame({
 }) {
   return (
     <div className="space-y-4">
-      <div className="border-b pb-3 text-xs text-muted-foreground">
+      <div className="text-muted-foreground border-b pb-3 text-xs">
         From: {from}
       </div>
       <MediaBlock {...(imageUrl !== undefined ? { imageUrl } : {})} />
       <div>
         <h3 className="text-xl font-semibold">{title}</h3>
-        {body && <p className="mt-2 text-sm text-muted-foreground">{body}</p>}
+        {body && <p className="text-muted-foreground mt-2 text-sm">{body}</p>}
       </div>
       {cta && (
-        <div className="inline-flex rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground">
+        <div className="bg-primary text-primary-foreground inline-flex rounded-md px-3 py-2 text-sm">
           {cta}
         </div>
       )}
@@ -176,9 +185,9 @@ function EmailFrame({
 
 function PushFrame({ title, body }: { title: string; body?: string }) {
   return (
-    <div className="rounded-xl border bg-muted/30 p-3">
+    <div className="bg-muted/30 rounded-xl border p-3">
       <div className="text-sm font-medium">{title}</div>
-      {body && <div className="mt-1 text-sm text-muted-foreground">{body}</div>}
+      {body && <div className="text-muted-foreground mt-1 text-sm">{body}</div>}
     </div>
   );
 }
@@ -197,12 +206,12 @@ function SocialFrame({
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 text-sm font-medium">
-        <span className="size-8 rounded-full bg-primary/15" />
+        <span className="bg-primary/15 size-8 rounded-full" />
         {from}
       </div>
       <div>
         <div className="font-medium">{title}</div>
-        {body && <p className="mt-1 text-sm text-muted-foreground">{body}</p>}
+        {body && <p className="text-muted-foreground mt-1 text-sm">{body}</p>}
       </div>
       <MediaBlock {...(imageUrl !== undefined ? { imageUrl } : {})} />
     </div>
@@ -227,14 +236,14 @@ function AdFrame({
       <MediaBlock {...(imageUrl !== undefined ? { imageUrl } : {})} />
       <div className="flex flex-col justify-center">
         {eyebrow && (
-          <div className="text-xs font-medium uppercase text-muted-foreground">
+          <div className="text-muted-foreground text-xs font-medium uppercase">
             {eyebrow}
           </div>
         )}
         <h3 className="mt-1 text-xl font-semibold">{title}</h3>
-        {body && <p className="mt-2 text-sm text-muted-foreground">{body}</p>}
+        {body && <p className="text-muted-foreground mt-2 text-sm">{body}</p>}
         {cta && (
-          <div className="mt-4 inline-flex w-fit rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground">
+          <div className="bg-primary text-primary-foreground mt-4 inline-flex w-fit rounded-md px-3 py-2 text-sm">
             {cta}
           </div>
         )}

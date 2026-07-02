@@ -26,6 +26,24 @@ interface VirtualTableProps<T> {
   emptyComponent?: React.ReactNode;
 }
 
+/**
+ * @component VirtualTable
+ * @category ui/layout
+ * @since 0.2.0
+ * @description High-performance virtualized table with sticky header, column definitions, and row click support / 基于 TanStack Virtual 的高性能虚拟表格，支持固定表头、列定义和行点击
+ * @keywords virtual, table, grid, scroll, performance, 虚拟表格
+ * @example
+ * <VirtualTable
+ *   columns={[
+ *     { key: "name", header: "Name", width: 200 },
+ *     { key: "status", header: "Status", render: (row) => <Badge>{row.status}</Badge> },
+ *   ]}
+ *   data={rows}
+ *   estimateRowHeight={40}
+ *   height={400}
+ *   onRowClick={(row) => console.log(row)}
+ * />
+ */
 function VirtualTable<T>({
   columns,
   data,
@@ -63,7 +81,7 @@ function VirtualTable<T>({
   if (data.length === 0 && !loading) {
     return (
       emptyComponent || (
-        <div className="flex items-center justify-center p-8 text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-center p-8">
           No data
         </div>
       )
@@ -75,7 +93,7 @@ function VirtualTable<T>({
       ref={parentRef}
       data-slot="virtual-table"
       className={cn(
-        "relative w-full overflow-auto rounded-md border bg-background text-sm",
+        "bg-background relative w-full overflow-auto rounded-md border text-sm",
         className,
       )}
       style={{ height, width }}
@@ -83,7 +101,7 @@ function VirtualTable<T>({
       <div
         data-slot="virtual-table-header"
         role="row"
-        className="sticky top-0 z-10 grid border-b bg-background font-medium text-foreground"
+        className="bg-background text-foreground sticky top-0 z-10 grid border-b font-medium"
         style={{ gridTemplateColumns }}
       >
         {columns.map((column) => (
@@ -115,7 +133,7 @@ function VirtualTable<T>({
               ref={(node) => virtualizer.measureElement(node)}
               role="row"
               className={cn(
-                "absolute left-0 grid w-full border-b transition-colors hover:bg-muted/50",
+                "hover:bg-muted/50 absolute left-0 grid w-full border-b transition-colors",
                 onRowClick && "cursor-pointer",
               )}
               style={{

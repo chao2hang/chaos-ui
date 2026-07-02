@@ -141,7 +141,7 @@ export function RemoteSelect({
   const triggerSize = size === "sm" ? "sm" : "default";
 
   return (
-    <div className={cn("w-full", className)} {...props}>
+    <div data-slot="remote-select" className={cn("w-full", className)} {...props}>
       <Select
         value={value !== undefined ? String(value) : undefined}
         onValueChange={(v) => {

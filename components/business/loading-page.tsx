@@ -11,6 +11,15 @@ interface LoadingPageProps extends React.ComponentProps<"div"> {
   variant?: "spinner" | "dots" | "pulse";
 }
 
+/**
+ * @component LoadingPage
+ * @category business/ux
+ * @since 0.2.0
+ * @description Centered loading page with spinner, dots, or pulse variants and optional title/description / 居中加载页面，支持旋转、弹跳点或脉冲动画变体，可选标题和描述
+ * @keywords loading, page, spinner, dots, pulse, placeholder
+ * @example
+ * <LoadingPage title="Loading..." variant="spinner" />
+ */
 export function LoadingPage({
   title,
   description,
@@ -76,6 +85,17 @@ interface FullPageLoaderProps {
   children?: React.ReactNode;
 }
 
+/**
+ * @component FullPageLoader
+ * @category business/ux
+ * @since 0.2.0
+ * @description Full-screen overlay loader with backdrop blur, useful for route transitions or data fetching / 全屏叠加加载器，带背景模糊效果，适用于路由切换或数据加载场景
+ * @keywords loading, fullscreen, overlay, spinner, backdrop
+ * @example
+ * <FullPageLoader show={isLoading}>
+ *   <PageContent />
+ * </FullPageLoader>
+ */
 export function FullPageLoader({ show = true, children }: FullPageLoaderProps) {
   if (!show) return <>{children}</>;
   return (

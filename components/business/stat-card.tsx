@@ -7,6 +7,15 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
+/**
+ * @component StatCard
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description Dashboard stat card displaying a title, value, trend indicator, and optional icon / 仪表盘统计卡片，展示标题、数值、趋势指示和可选图标
+ * @keywords stat, card, dashboard, metric, trend, kpi
+ * @example
+ * <StatCard title="Revenue" value="$12,345" change="+12.5%" changeType="positive" icon={DollarSignIcon} />
+ */
 function StatCard({
   title,
   value,
@@ -30,7 +39,7 @@ function StatCard({
         : MinusIcon;
 
   return (
-    <Card className={cn(className)}>
+    <Card data-slot="stat-card" className={cn(className)}>
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}

@@ -42,6 +42,15 @@ interface BrowseInputProps
   showBrowseButton?: boolean;
 }
 
+/**
+ * @component BrowseInput
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description An input field combined with browse/search and clear action buttons / 带有浏览/搜索和清除按钮的组合输入框
+ * @keywords browse, input, search, picker, lookup
+ * @example
+ * <BrowseInput placeholder="Search..." onBrowse={() => openPicker()} onChange={(v) => console.log(v)} />
+ */
 function BrowseInput({
   className,
   size,
@@ -93,7 +102,7 @@ function BrowseInput({
         disabled={disabled}
         readOnly={readOnly}
         required={required}
-        className="border-0 bg-transparent focus-visible:ring-0 h-full"
+        className="h-full border-0 bg-transparent focus-visible:ring-0"
       />
       {showClearButton && value && !disabled && !readOnly && (
         <Button

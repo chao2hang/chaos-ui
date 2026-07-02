@@ -1,56 +1,67 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@/components/ui"
-import { PageContainer, PageHeader } from "@/components/ui"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui"
-import { FilterBar, type FilterField } from "./filter-bar"
-import { SearchTable, type ColumnDef } from "./search-table"
+import * as React from "react";
+import { Button } from "@/components/ui";
+import { PageContainer, PageHeader } from "@/components/ui";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui";
+import { FilterBar, type FilterField } from "./filter-bar";
+import { SearchTable, type ColumnDef } from "./search-table";
 
 interface FormField {
-  key: string
-  label: string
-  type?: "input" | "select" | "number" | "date" | "textarea" | "custom"
-  required?: boolean
-  placeholder?: string
-  options?: { label: string; value: string }[]
-  render?: (value: unknown, onChange: (val: unknown) => void) => React.ReactNode
-  defaultValue?: unknown
+  key: string;
+  label: string;
+  type?: "input" | "select" | "number" | "date" | "textarea" | "custom";
+  required?: boolean;
+  placeholder?: string;
+  options?: { label: string; value: string }[];
+  render?: (
+    value: unknown,
+    onChange: (val: unknown) => void,
+  ) => React.ReactNode;
+  defaultValue?: unknown;
 }
 
 interface CrudPageProps {
-  title: string
-  filterFields: FilterField[]
-  columns: ColumnDef[]
-  dataSource: Record<string, unknown>[]
-  rowKey?: string
-  loading?: boolean
-  pagination?: false | {
-    current: number
-    pageSize: number
-    total: number
-    onChange: (page: number, pageSize: number) => void
-  } | undefined
-  formFields?: FormField[]
-  formTitle?: string
-  dialogOpen?: boolean
-  onDialogOpenChange?: (open: boolean) => void
-  editingRecord?: Record<string, unknown> | null
-  actions?: React.ReactNode
+  title: string;
+  filterFields: FilterField[];
+  columns: ColumnDef[];
+  dataSource: Record<string, unknown>[];
+  rowKey?: string;
+  loading?: boolean;
+  pagination?:
+    | false
+    | {
+        current: number;
+        pageSize: number;
+        total: number;
+        onChange: (page: number, pageSize: number) => void;
+      }
+    | undefined;
+  formFields?: FormField[];
+  formTitle?: string;
+  dialogOpen?: boolean;
+  onDialogOpenChange?: (open: boolean) => void;
+  editingRecord?: Record<string, unknown> | null;
+  actions?: React.ReactNode;
   /** Built-in refresh button (shown when onRefresh provided). / 内置刷新按钮 */
-  onRefresh?: () => void
+  onRefresh?: () => void;
   /** Built-in add button (shown when onAdd provided). / 内置新增按钮 */
-  onAdd?: () => void
+  onAdd?: () => void;
   /** Edit a record (sets editingRecord + opens dialog). / 编辑记录 */
-  onEdit?: (record: Record<string, unknown>) => void
-  onSearch: (values: Record<string, unknown>) => void
-  onDelete?: (record: Record<string, unknown>) => void
-  onSubmit?: (values: Record<string, unknown>) => void
+  onEdit?: (record: Record<string, unknown>) => void;
+  onSearch: (values: Record<string, unknown>) => void;
+  onDelete?: (record: Record<string, unknown>) => void;
+  onSubmit?: (values: Record<string, unknown>) => void;
   rowSelection?: {
-    selectedRowKeys: string[]
-    onChange: (keys: string[]) => void
-  }
-  className?: string
+    selectedRowKeys: string[];
+    onChange: (keys: string[]) => void;
+  };
+  className?: string;
 }
 
 /** Internal form dialog that remounts via key, avoiding useEffect setState */
@@ -62,84 +73,90 @@ function FormDialog({
   record,
   onSubmit,
 }: {
-  open?: boolean | undefined
-  onOpenChange?: ((open: boolean) => void) | undefined
-  title: string
-  fields: FormField[]
-  record?: Record<string, unknown> | null | undefined
-  onSubmit?: ((values: Record<string, unknown>) => void) | undefined
+  open?: boolean | undefined;
+  onOpenChange?: ((open: boolean) => void) | undefined;
+  title: string;
+  fields: FormField[];
+  record?: Record<string, unknown> | null | undefined;
+  onSubmit?: ((values: Record<string, unknown>) => void) | undefined;
 }) {
   const initial = React.useMemo(() => {
-    if (record) return { ...record }
-    const init: Record<string, unknown> = {}
+    if (record) return { ...record };
+    const init: Record<string, unknown> = {};
     fields.forEach((f) => {
-      if (f.defaultValue !== undefined) init[f.key] = f.defaultValue
-    })
-    return init
-  }, [record, fields])
+      if (f.defaultValue !== undefined) init[f.key] = f.defaultValue;
+    });
+    return init;
+  }, [record, fields]);
 
-  const [values, setValues] = React.useState(initial)
+  const [values, setValues] = React.useState(initial);
 
   const handleChange = (key: string, value: unknown) => {
-    setValues((prev) => ({ ...prev, [key]: value }))
-  }
+    setValues((prev) => ({ ...prev, [key]: value }));
+  };
 
   const renderField = (field: FormField) => {
     if (field.render) {
-      return field.render(values[field.key], (val) => handleChange(field.key, val))
+      return field.render(values[field.key], (val) =>
+        handleChange(field.key, val),
+      );
     }
 
-    const value = values[field.key]
+    const value = values[field.key];
 
     if (field.type === "select" && field.options) {
       return (
         <select
-          className="h-9 w-full rounded-md border bg-background px-3 text-sm"
+          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
           value={String(value ?? "")}
           onChange={(e) => handleChange(field.key, e.target.value || undefined)}
         >
-          <option value="">{field.placeholder || `请选择${field.label}`}</option>
+          <option value="">
+            {field.placeholder || `请选择${field.label}`}
+          </option>
           {field.options.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
           ))}
         </select>
-      )
+      );
     }
 
     if (field.type === "textarea") {
       return (
         <textarea
-          className="min-h-[80px] w-full rounded-md border bg-background px-3 py-2 text-sm"
+          className="bg-background min-h-[80px] w-full rounded-md border px-3 py-2 text-sm"
           placeholder={field.placeholder}
           value={String(value ?? "")}
           onChange={(e) => handleChange(field.key, e.target.value)}
         />
-      )
+      );
     }
 
     if (field.type === "number") {
       return (
         <input
           type="number"
-          className="h-9 w-full rounded-md border bg-background px-3 text-sm"
+          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
           placeholder={field.placeholder}
           value={value != null ? String(value) : ""}
-          onChange={(e) => handleChange(field.key, e.target.valueAsNumber || undefined)}
+          onChange={(e) =>
+            handleChange(field.key, e.target.valueAsNumber || undefined)
+          }
         />
-      )
+      );
     }
 
     return (
       <input
-        className="h-9 w-full rounded-md border bg-background px-3 text-sm"
+        className="bg-background h-9 w-full rounded-md border px-3 text-sm"
         placeholder={field.placeholder}
         value={String(value ?? "")}
         onChange={(e) => handleChange(field.key, e.target.value)}
       />
-    )
-  }
+    );
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -162,13 +179,11 @@ function FormDialog({
           <Button variant="outline" onClick={() => onOpenChange?.(false)}>
             取消
           </Button>
-          <Button onClick={() => onSubmit?.(values)}>
-            确定
-          </Button>
+          <Button onClick={() => onSubmit?.(values)}>确定</Button>
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 /**
@@ -202,7 +217,7 @@ function CrudPage({
 }: CrudPageProps) {
   // Enrich columns with operation column
   const enrichedColumns = React.useMemo(() => {
-    if (!onDelete && !onSubmit && !onEdit) return columns
+    if (!onDelete && !onSubmit && !onEdit) return columns;
     return [
       ...columns,
       {
@@ -218,8 +233,8 @@ function CrudPage({
                 size="sm"
                 onClick={() => {
                   // Prefer onEdit (sets editingRecord) over raw dialog open.
-                  if (onEdit) onEdit(record)
-                  else onDialogOpenChange?.(true)
+                  if (onEdit) onEdit(record);
+                  else onDialogOpenChange?.(true);
                 }}
               >
                 编辑
@@ -238,8 +253,8 @@ function CrudPage({
           </div>
         ),
       },
-    ]
-  }, [columns, onDelete, onSubmit, onEdit, onDialogOpenChange])
+    ];
+  }, [columns, onDelete, onSubmit, onEdit, onDialogOpenChange]);
 
   // Built-in standard actions (refresh + add) so each page doesn't hand-write
   // the same icon/size/variant. Custom `actions` render alongside.
@@ -256,10 +271,10 @@ function CrudPage({
         </Button>
       )}
     </>
-  )
+  );
 
   return (
-    <PageContainer className={className}>
+    <PageContainer data-slot="crud-page" className={className}>
       <PageHeader title={title} />
 
       <div className="mb-4">
@@ -283,7 +298,11 @@ function CrudPage({
 
       {formFields && (
         <FormDialog
-          key={editingRecord ? `edit-${String(editingRecord[rowKey] ?? "")}` : `new-${dialogOpen ? "1" : "0"}`}
+          key={
+            editingRecord
+              ? `edit-${String(editingRecord[rowKey] ?? "")}`
+              : `new-${dialogOpen ? "1" : "0"}`
+          }
           open={dialogOpen}
           onOpenChange={onDialogOpenChange}
           title={formTitle}
@@ -293,8 +312,8 @@ function CrudPage({
         />
       )}
     </PageContainer>
-  )
+  );
 }
 
-export { CrudPage }
-export type { CrudPageProps, FormField }
+export { CrudPage };
+export type { CrudPageProps, FormField };

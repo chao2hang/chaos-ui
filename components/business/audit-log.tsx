@@ -48,6 +48,15 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
+/**
+ * @component AuditLog
+ * @category business/bill
+ * @since 0.2.0
+ * @description Scrollable list of audit entries with actor info, expandable details, and status badges / 可展开详情的审计日志列表，包含操作人信息和状态标签
+ * @keywords audit, log, history, tracking, activity
+ * @example
+ * <AuditLog entries={[{ id: "1", actor: { name: "Admin" }, action: "Updated", target: "Campaign", timestamp: "2024-01-01" }]} />
+ */
 export function AuditLog({
   entries,
   emptyText,
@@ -63,7 +72,7 @@ export function AuditLog({
       <div
         data-slot="audit-log"
         className={cn(
-          "rounded-lg border p-6 text-center text-sm text-muted-foreground",
+          "text-muted-foreground rounded-lg border p-6 text-center text-sm",
           className,
         )}
         {...props}
@@ -99,7 +108,7 @@ export function AuditLog({
                   )}
                 </div>
                 {entry.actor.description && (
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     {entry.actor.description}
                   </p>
                 )}
@@ -108,13 +117,13 @@ export function AuditLog({
                   <span className="font-medium">{entry.target}</span>
                 </p>
                 {hasDetails && isExpanded && (
-                  <div className="mt-3 rounded-md bg-muted/50 p-3 text-xs text-muted-foreground">
+                  <div className="bg-muted/50 text-muted-foreground mt-3 rounded-md p-3 text-xs">
                     {entry.details}
                   </div>
                 )}
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                <time className="text-xs text-muted-foreground">
+                <time className="text-muted-foreground text-xs">
                   {entry.timestamp}
                 </time>
                 {hasDetails && (

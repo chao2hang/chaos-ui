@@ -33,6 +33,17 @@ interface FormSectionProps
   extra?: React.ReactNode;
 }
 
+/**
+ * @component FormSection
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description A collapsible form section with title, description, and variant styling for grouping related form fields / 可折叠的表单分区，带标题、描述和样式变体，用于分组相关表单字段
+ * @keywords form, section, collapsible, group, card
+ * @example
+ * <FormSection title="Basic Info" description="Fill in your details" collapsible>
+ *   <Input placeholder="Name" />
+ * </FormSection>
+ */
 function FormSection({
   className,
   variant,
@@ -64,13 +75,13 @@ function FormSection({
         >
           <div className="space-y-0.5">
             {title && (
-              <h3 className="text-sm font-medium leading-none">
+              <h3 className="text-sm leading-none font-medium">
                 {title}
                 {required && <span className="text-destructive ml-1">*</span>}
               </h3>
             )}
             {description && (
-              <p className="text-xs text-muted-foreground">{description}</p>
+              <p className="text-muted-foreground text-xs">{description}</p>
             )}
           </div>
           <div className="flex items-center gap-2">
@@ -78,7 +89,7 @@ function FormSection({
             {collapsible && (
               <ChevronDownIcon
                 className={cn(
-                  "size-4 text-muted-foreground transition-transform",
+                  "text-muted-foreground size-4 transition-transform",
                   collapsed && "-rotate-90",
                 )}
               />

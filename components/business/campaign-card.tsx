@@ -48,6 +48,15 @@ function formatBudget(value: number, currency: string) {
   }).format(value);
 }
 
+/**
+ * @component CampaignCard
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description Card displaying campaign details including status, channels, budget pacing, and key metrics / 展示营销活动详情（状态、渠道、预算进度、核心指标）的卡片
+ * @keywords campaign, card, marketing, budget, metrics, pacing
+ * @example
+ * <CampaignCard name="Summer Sale" status="active" channels={["email", "social"]} budget={5000} spent={2300} />
+ */
 export function CampaignCard({
   name,
   description,
@@ -76,7 +85,7 @@ export function CampaignCard({
         </CardAction>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex flex-wrap gap-3 text-xs">
           <span className="inline-flex items-center gap-1">
             <RadioTowerIcon className="size-3.5" />
             {channels.join(", ")}
@@ -96,7 +105,7 @@ export function CampaignCard({
         </div>
         {budgetPercent !== undefined && (
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex justify-between text-xs">
               <span>
                 {formatBudget(spent, currency)} {t("campaignCard.spent")}
               </span>
@@ -109,14 +118,14 @@ export function CampaignCard({
           <div className="grid gap-2 sm:grid-cols-3">
             {metrics.map((metric) => (
               <div key={metric.label} className={cn("rounded-lg border p-3")}>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-muted-foreground text-xs">
                   {metric.label}
                 </div>
                 <div className="text-lg font-semibold tabular-nums">
                   {metric.value}
                 </div>
                 {metric.helper && (
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {metric.helper}
                   </div>
                 )}

@@ -13,6 +13,15 @@ type ManagedFile = {
   progress?: number;
 };
 
+/**
+ * @component FileUploadManager
+ * @category business/ux
+ * @since 0.2.0
+ * @description File upload manager with list/grid views, progress tracking, and drag-and-drop support / 文件上传管理器，支持列表/网格视图、进度追踪及拖拽上传
+ * @keywords file, upload, manager, progress, drag, drop
+ * @example
+ * <FileUploadManager files={files} onFilesChange={setFiles} />
+ */
 function FileUploadManager({
   files = [],
   onFilesChange,
@@ -56,7 +65,7 @@ function FileUploadManager({
   };
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div data-slot="file-upload-manager" className={cn("space-y-4", className)}>
       <FileUpload
         onDrop={handleDrop}
         {...(accept !== undefined ? { accept } : {})}

@@ -19,6 +19,21 @@ interface VirtualListProps<T> {
   emptyComponent?: React.ReactNode;
 }
 
+/**
+ * @component VirtualList
+ * @category ui/layout
+ * @since 0.2.0
+ * @description High-performance virtualized list using TanStack Virtual for rendering large datasets / 基于 TanStack Virtual 的高性能虚拟列表，用于渲染大数据集
+ * @keywords virtual, list, scroll, performance, lazy, 虚拟列表
+ * @example
+ * <VirtualList
+ *   data={items}
+ *   renderItem={(item, i) => <div>{item.name}</div>}
+ *   estimateSize={40}
+ *   height={400}
+ *   onEndReached={loadMore}
+ * />
+ */
 function VirtualList<T>({
   data,
   renderItem,
@@ -62,7 +77,7 @@ function VirtualList<T>({
   if (data.length === 0 && !loading) {
     return (
       emptyComponent || (
-        <div className="flex items-center justify-center p-8 text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-center p-8">
           No data
         </div>
       )

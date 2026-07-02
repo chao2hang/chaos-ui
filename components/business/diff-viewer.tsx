@@ -29,6 +29,15 @@ const badgeVariant: Record<
   unchanged: "outline",
 };
 
+/**
+ * @component DiffViewer
+ * @category business/data
+ * @since 0.2.0
+ * @description Side-by-side diff viewer for comparing field-level changes with type badges (added/removed/changed) / 并排差异对比视图，展示字段级变更并标记变更类型
+ * @keywords diff, compare, changes, data, audit
+ * @example
+ * <DiffViewer items={[{ field: "name", before: "Old", after: "New" }]} />
+ */
 export function DiffViewer({
   items,
   beforeLabel = "Before",

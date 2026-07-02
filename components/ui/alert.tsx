@@ -26,6 +26,18 @@ interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
+/**
+ * @component Alert
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Displays a contextual feedback message with optional icon and variant / 显示带图标和样式的上下文反馈消息
+ * @keywords alert, message, notification, feedback, warning
+ * @example
+ * <Alert variant="info" icon={<InfoIcon />}>
+ *   <AlertTitle>Information</AlertTitle>
+ *   <AlertDescription>This is an info message.</AlertDescription>
+ * </Alert>
+ */
 function Alert({ className, variant, icon, children, ...props }: AlertProps) {
   return (
     <div
@@ -38,7 +50,7 @@ function Alert({ className, variant, icon, children, ...props }: AlertProps) {
       {icon && (
         <div
           data-slot="alert-icon"
-          className="mt-0.5 flex size-6 shrink-0 items-center justify-center text-current [&>svg]:size-6 [&>svg]:stroke-2"
+          className="self-stretch flex items-center justify-center text-current [&>svg]:size-6 [&>svg]:stroke-[1.75]"
         >
           {icon}
         </div>
@@ -50,6 +62,15 @@ function Alert({ className, variant, icon, children, ...props }: AlertProps) {
   );
 }
 
+/**
+ * @component AlertTitle
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description The heading element of an Alert / 提示组件的标题
+ * @keywords alert, title, heading
+ * @example
+ * <AlertTitle>Important Notice</AlertTitle>
+ */
 function AlertTitle({
   className,
   ...props
@@ -57,12 +78,21 @@ function AlertTitle({
   return (
     <h5
       data-slot="alert-title"
-      className={cn("mb-1 font-medium leading-5 tracking-tight", className)}
+      className={cn("mb-1 leading-5 font-medium tracking-tight text-current", className)}
       {...props}
     />
   );
 }
 
+/**
+ * @component AlertDescription
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description The body text content of an Alert / 提示组件的正文内容
+ * @keywords alert, description, content, body
+ * @example
+ * <AlertDescription>Detailed message about the alert.</AlertDescription>
+ */
 function AlertDescription({
   className,
   ...props
@@ -70,7 +100,7 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn("text-sm leading-relaxed [&_p]:leading-relaxed", className)}
+      className={cn("text-sm leading-relaxed text-current/80 [&_p]:leading-relaxed", className)}
       {...props}
     />
   );

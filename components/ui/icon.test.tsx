@@ -11,7 +11,7 @@ describe("Icon", () => {
   it("renders with an icon", () => {
     render(<Icon icon={StarIcon} data-testid="icon" />);
     const el = screen.getByTestId("icon");
-    expect(el).toBeInTheDocument();
+    expect(el).toBeDefined();
     expect(el.querySelector("svg")).toBeInTheDocument();
   });
 

@@ -4,6 +4,15 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { XIcon } from "@/components/ui/icons";
 
+/**
+ * @component TagsInput
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Multi-value tag input with add/remove via keyboard, comma or Enter / 多值标签输入框，通过键盘、逗号或回车添加/删除标签
+ * @keywords tags, input, multi-value, chips, 标签输入
+ * @example
+ * <TagsInput value={tags} onChange={setTags} placeholder="Add tag..." />
+ */
 function TagsInput({
   value = [],
   onChange,
@@ -47,9 +56,10 @@ function TagsInput({
 
   return (
     <div
+      data-slot="tags-input"
       className={cn(
         "flex min-h-8 flex-wrap items-center gap-1.5 rounded-md border bg-transparent px-2 py-1 text-sm",
-        disabled && "opacity-50 cursor-not-allowed",
+        disabled && "cursor-not-allowed opacity-50",
         className,
       )}
       onClick={() => inputRef.current?.focus()}
@@ -64,7 +74,7 @@ function TagsInput({
                 e.stopPropagation();
                 removeTag(i);
               }}
-              className="ml-0.5 rounded-full hover:bg-muted-foreground/20"
+              className="hover:bg-muted-foreground/20 ml-0.5 rounded-full"
             >
               <XIcon className="size-3" />
             </button>
@@ -78,7 +88,7 @@ function TagsInput({
         onKeyDown={handleKeyDown}
         placeholder={value.length === 0 ? placeholder : ""}
         disabled={disabled || !!(max && value.length >= max)}
-        className="flex-1 min-w-[80px] bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+        className="placeholder:text-muted-foreground min-w-[80px] flex-1 bg-transparent outline-none disabled:cursor-not-allowed"
       />
     </div>
   );

@@ -89,7 +89,7 @@ function EmployeePicker({
   }, [options, query]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover data-slot="employee-picker" open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
           <Button

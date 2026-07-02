@@ -17,6 +17,15 @@ interface SparklineProps {
   fill?: boolean;
 }
 
+/**
+ * @component Sparkline
+ * @category business/charts
+ * @since 0.2.0
+ * @description Minimal SVG sparkline chart for inline data visualization with optional fill / 轻量级 SVG 迷你折线图，用于内联数据可视化，支持可选填充
+ * @keywords sparkline, chart, svg, line, mini, trend
+ * @example
+ * <Sparkline data={[10, 20, 15, 30, 25]} />
+ */
 export function Sparkline({
   data,
   width = 80,
@@ -86,6 +95,15 @@ const formatFns: Record<
   currency: (v) => formatNumber(v, { style: "currency", currency: "CNY" }),
 };
 
+/**
+ * @component MetricTrend
+ * @category business/charts
+ * @since 0.2.0
+ * @description Metric card with trend indicator, sparkline, and change badge; supports number/percent/compact/currency formatting / 指标趋势卡片，含趋势指示器、迷你折线图和变化标记，支持数字/百分比/紧凑/货币格式化
+ * @keywords metric, trend, sparkline, card, change, kpi, chart
+ * @example
+ * <MetricTrend label="Active Users" value={1234} change={12} sparklineData={[10,20,15,30]} />
+ */
 export function MetricTrend({
   label,
   value,

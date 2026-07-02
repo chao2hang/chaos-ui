@@ -10,6 +10,15 @@ import {
   Loader2Icon,
 } from "@/components/ui/icons";
 
+/**
+ * @component Toaster
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Toast notification renderer using Sonner, themed with application icons and colors / 基于 Sonner 的吐司通知渲染器，使用应用图标和颜色主题化
+ * @keywords toast, sonner, notification, feedback, alert, 通知, 吐司
+ * @example
+ * <Toaster />
+ */
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme } = useTheme();
   const resolvedTheme = (theme ?? "system") as NonNullable<
@@ -20,6 +29,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
     <Sonner
       theme={resolvedTheme}
       className="toaster group"
+      data-slot="sonner"
       icons={{
         success: <CircleCheckIcon className="size-4" />,
         info: <InfoIcon className="size-4" />,

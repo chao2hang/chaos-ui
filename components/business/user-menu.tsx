@@ -42,6 +42,15 @@ interface UserMenuProps {
   className?: string;
 }
 
+/**
+ * @component UserMenu
+ * @category business/ux
+ * @since 0.2.0
+ * @description Avatar dropdown menu with user info, profile/settings links, custom actions, and sign-out / 头像下拉菜单，包含用户信息、个人资料/设置链接、自定义操作和退出登录
+ * @keywords user, menu, avatar, dropdown, profile, settings, signout
+ * @example
+ * <UserMenu user={currentUser} onProfile={goToProfile} onSignOut={handleSignOut} />
+ */
 export function UserMenu({
   user,
   actions = [],
@@ -76,14 +85,14 @@ export function UserMenu({
         <DropdownMenuGroup>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col gap-0.5">
-              <p className="text-sm font-medium leading-none">{user.name}</p>
+              <p className="text-sm leading-none font-medium">{user.name}</p>
               {user.email && (
-                <p className="text-xs leading-none text-muted-foreground">
+                <p className="text-muted-foreground text-xs leading-none">
                   {user.email}
                 </p>
               )}
               {user.role && (
-                <p className="mt-1 text-xs leading-none text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-xs leading-none">
                   {user.role}
                 </p>
               )}

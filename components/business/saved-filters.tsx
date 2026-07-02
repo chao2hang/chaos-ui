@@ -39,6 +39,15 @@ interface SavedFiltersProps {
   label?: string;
 }
 
+/**
+ * @component SavedFilters
+ * @category business/ux
+ * @since 0.2.0
+ * @description Dropdown menu to manage saved filter presets — apply, pin, delete, and save new filters / 管理已保存筛选预设的下拉菜单，支持应用、置顶、删除和保存新筛选
+ * @keywords saved, filters, preset, dropdown, bookmark
+ * @example
+ * <SavedFilters filters={items} activeId={currentId} onApply={handleApply} onSave={handleSave} onDelete={handleDelete} />
+ */
 export function SavedFilters({
   filters,
   activeId,

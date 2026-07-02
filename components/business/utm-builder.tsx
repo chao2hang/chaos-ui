@@ -55,6 +55,15 @@ function buildUrl(value: UTMBuilderValue) {
   }
 }
 
+/**
+ * @component UTMBuilder
+ * @category business/ux
+ * @since 0.2.0
+ * @description Form builder for constructing UTM-tagged campaign URLs with copy-to-clipboard / 构建带 UTM 参数的营销活动链接的表单构建器，支持一键复制
+ * @keywords utm, builder, campaign, url, marketing, tracking
+ * @example
+ * <UTMBuilder value={defaultParams} onChange={(value, url) => console.log(url)} />
+ */
 export function UTMBuilder({ value, onChange, className }: UTMBuilderProps) {
   const { t } = useTranslation("marketing");
   const [form, setForm] = React.useState<UTMBuilderValue>({
@@ -118,9 +127,9 @@ export function UTMBuilder({ value, onChange, className }: UTMBuilderProps) {
             onChange={(v) => update("term", v)}
           />
         </div>
-        <div className="rounded-lg border bg-muted/30 p-3">
+        <div className="bg-muted/30 rounded-lg border p-3">
           <div className="mb-2 flex items-center justify-between gap-2">
-            <span className="text-xs font-medium text-muted-foreground">
+            <span className="text-muted-foreground text-xs font-medium">
               {t("utmBuilder.resultUrl")}
             </span>
             <Button
@@ -133,7 +142,7 @@ export function UTMBuilder({ value, onChange, className }: UTMBuilderProps) {
               <CopyIcon />
             </Button>
           </div>
-          <p className={cn("break-all text-xs", !result && "text-destructive")}>
+          <p className={cn("text-xs break-all", !result && "text-destructive")}>
             {result || t("utmBuilder.invalidUrl")}
           </p>
         </div>
@@ -142,6 +151,13 @@ export function UTMBuilder({ value, onChange, className }: UTMBuilderProps) {
   );
 }
 
+/**
+ * @component Field
+ * @category business/ux
+ * @since 0.2.0
+ * @description Internal form field wrapper for UTMBuilder with label and input / UTMBuilder 内部表单字段包装器，包含标签和输入框
+ * @keywords field, form, input, label, utm, internal
+ */
 function Field({
   label,
   value,

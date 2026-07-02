@@ -27,6 +27,15 @@ interface StatusTagProps {
   label?: string;
 }
 
+/**
+ * @component StatusTag
+ * @category business/ux
+ * @since 0.2.0
+ * @description Color-coded status badge for workflow states (draft, pending, approved, rejected, completed, cancelled) / 带颜色编码的工作流状态徽章（草稿、待处理、已批准、已拒绝、已完成、已取消）
+ * @keywords status, tag, badge, workflow, state
+ * @example
+ * <StatusTag status="approved" />
+ */
 function StatusTag({ status, size = "default", label }: StatusTagProps) {
   const key = status.toLowerCase() as Status;
   const config = statusConfig[key] ?? {
@@ -36,6 +45,7 @@ function StatusTag({ status, size = "default", label }: StatusTagProps) {
 
   return (
     <Badge
+      data-slot="status-tag"
       className={cn(
         config.className,
         size === "sm" && "h-4 px-1.5 text-[0.65rem]",

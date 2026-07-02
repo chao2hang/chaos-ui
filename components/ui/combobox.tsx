@@ -10,7 +10,11 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export interface ComboboxOption {
   value: string;
@@ -36,6 +40,19 @@ interface ComboboxProps {
   renderOption?: (option: ComboboxOption) => React.ReactNode;
 }
 
+/**
+ * @component Combobox
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Searchable select dropdown with keyboard navigation and clearable selection / 带搜索、键盘导航和可清除选择的下拉选择框
+ * @keywords combobox, select, search, autocomplete, dropdown
+ * @example
+ * <Combobox
+ *   options={[{ value: "react", label: "React" }]}
+ *   value={selected}
+ *   onChange={setSelected}
+ * />
+ */
 export function Combobox({
   options,
   value,
@@ -59,7 +76,7 @@ export function Combobox({
   const selected = options.find((o) => o.value === value);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} data-slot="combobox">
       <PopoverTrigger
         render={
           <Button
@@ -87,7 +104,7 @@ export function Combobox({
                 e.stopPropagation();
                 onChange?.(undefined);
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -113,6 +130,15 @@ export function Combobox({
   );
 }
 
+/**
+ * @component ComboboxPanel
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Internal panel rendering the search input and grouped option list for Combobox / 组合框内部面板，渲染搜索输入和分组选项列表
+ * @keywords combobox, panel, search, options, internal
+ * @example
+ * <ComboboxPanel options={[...]} value={val} onChange={fn} onClose={fn} />
+ */
 function ComboboxPanel({
   options,
   value,
@@ -177,14 +203,14 @@ function ComboboxPanel({
       )}
       <div className="max-h-64 overflow-y-auto p-1">
         {grouped.length === 0 && (
-          <div className="px-2 py-6 text-center text-sm text-muted-foreground">
+          <div className="text-muted-foreground px-2 py-6 text-center text-sm">
             {emptyText}
           </div>
         )}
         {grouped.map(([group, items]) => (
           <div key={group || "_default"}>
             {group && (
-              <div className="px-2 py-1 text-xs font-medium text-muted-foreground">
+              <div className="text-muted-foreground px-2 py-1 text-xs font-medium">
                 {group}
               </div>
             )}

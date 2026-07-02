@@ -258,6 +258,12 @@ export * from "./chat-thinking-block";
 export * from "./chat-tool-call-block";
 export * from "./chat-code-block";
 export * from "./chat-markdown-renderer";
+export * from "./rich-text-editor";
+export * from "./org-chart";
+export * from "./pdf-viewer";
+export * from "./color-board";
+export * from "./markdown-editor";
+export * from "./cron-editor";
 export * from "./chat-card-message";
 export * from "./chat-image-gallery";
 export * from "./chat-voice-message";
@@ -292,6 +298,24 @@ export * from "./mobile-geolocation";
 export * from "./mobile-infinite-scroll";
 export * from "./mobile-tab-bar";
 export * from "./mobile-list-item";
+
+// ─── P1 new business components ──────────────────────────────────
+export * from "./tree-table";
+export * from "./editable-tree-table";
+export * from "./diff-viewer-table";
+export * from "./address-picker";
+export * from "./batch-selector";
+export * from "./shift-calendar";
+export * from "./equipment-card";
+export * from "./maintenance-log";
+export * from "./quality-inspection-form";
+export * from "./inventory-alert-list";
+export * from "./unit-converter";
+export * from "./formula-editor";
+export * from "./report-builder";
+export * from "./dashboard-designer";
+export * from "./contract-template";
+export * from "./browse-dialog";
 
 export { AdvancedDataTable } from "./advanced-data-table";
 export type { AdvancedDataTableProps } from "./advanced-data-table";
@@ -373,3 +397,42 @@ export { WarehousePicker } from "./warehouse-picker";
 export type { WarehousePickerProps } from "./warehouse-picker";
 export { WaterfallChart } from "./waterfall-chart";
 export type { WaterfallChartProps } from "./waterfall-chart";
+
+// ─── P2 new business components ───────────────────────────────────
+
+// P2-A: General business components
+export * from "./gantt-chart-pro";
+export * from "./journal-entry-editor";
+export * from "./bom-tree-editor";
+export * from "./supplier-scorecard";
+export * from "./multi-currency-input";
+export * from "./import-mapping-wizard";
+export * from "./audit-trail-diff";
+export * from "./notification-rule-builder";
+
+// P2-B: System-specific business components
+export * from "./leave-request-form";
+export * from "./meeting-room-booking";
+export * from "./attendance-calendar";
+export { PurchaseOrderEditor } from "./purchase-order-editor";
+export type { PurchaseOrderEditorProps, POLineItem } from "./purchase-order-editor";
+export * from "./stock-transfer-dialog";
+export * from "./ar-ap-aging-table";
+export * from "./lead-pipeline-board";
+export * from "./quotation-line-editor";
+export * from "./customer-360-card";
+export * from "./spc-control-chart";
+export * from "./oee-dashboard";
+export { BatchGenealogyTree } from "./batch-genealogy-tree";
+export type { BatchGenealogyTreeProps } from "./batch-genealogy-tree";
+export * from "./work-order-card";
+
+// P2-C: Nice-to-have business components
+export * from "./seal-stamp-registry";
+export * from "./vehicle-booking";
+export * from "./commission-calculator";
+export * from "./territory-map";
+export * from "./label-designer";
+export * from "./iot-sensor-grid";
+export * from "./compliance-checklist";
+export * from "./i18n-form-field";

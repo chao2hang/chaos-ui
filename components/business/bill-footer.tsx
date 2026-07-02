@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
 
-type BillStatus = "draft" | "pending" | "approved" | "rejected"
+type BillStatus = "draft" | "pending" | "approved" | "rejected";
 
 interface BillFooterProps {
   /** 单据状态 */
-  status: BillStatus
+  status: BillStatus;
   /** 存草稿 */
-  onSaveDraft?: () => void
+  onSaveDraft?: () => void;
   /** 提交 */
-  onSubmit?: () => void
+  onSubmit?: () => void;
   /** 取消 */
-  onCancel?: () => void
+  onCancel?: () => void;
   /** 审批通过 */
-  onApprove?: () => void
+  onApprove?: () => void;
   /** 驳回 */
-  onReject?: () => void
+  onReject?: () => void;
   /** 撤回 */
-  onRecall?: () => void
+  onRecall?: () => void;
   /** 打印 */
-  onPrint?: () => void
+  onPrint?: () => void;
   /** 作废 */
-  onVoid?: () => void
+  onVoid?: () => void;
   /** 加载态 */
-  loading?: boolean
+  loading?: boolean;
   /** 额外操作 */
-  extra?: React.ReactNode
-  className?: string
+  extra?: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -72,7 +72,7 @@ function BillFooter({
         </Button>
       )}
     </>
-  )
+  );
 
   const renderPending = status === "pending" && (
     <>
@@ -92,7 +92,7 @@ function BillFooter({
         </Button>
       )}
     </>
-  )
+  );
 
   const renderApproved = status === "approved" && (
     <>
@@ -102,12 +102,17 @@ function BillFooter({
         </Button>
       )}
       {onVoid && (
-        <Button variant="outline" className="text-destructive" onClick={onVoid} disabled={loading}>
+        <Button
+          variant="outline"
+          className="text-destructive"
+          onClick={onVoid}
+          disabled={loading}
+        >
           作废
         </Button>
       )}
     </>
-  )
+  );
 
   const renderRejected = status === "rejected" && (
     <>
@@ -117,18 +122,27 @@ function BillFooter({
         </Button>
       )}
       {onVoid && (
-        <Button variant="outline" className="text-destructive" onClick={onVoid} disabled={loading}>
+        <Button
+          variant="outline"
+          className="text-destructive"
+          onClick={onVoid}
+          disabled={loading}
+        >
           作废
         </Button>
       )}
     </>
-  )
+  );
 
   return (
-    <div className={cn("flex items-center justify-between border-t bg-background px-6 py-3", className)}>
-      <div className="flex items-center gap-2">
-        {extra}
-      </div>
+    <div
+      data-slot="bill-footer"
+      className={cn(
+        "bg-background flex items-center justify-between border-t px-6 py-3",
+        className,
+      )}
+    >
+      <div className="flex items-center gap-2">{extra}</div>
       <div className="flex items-center gap-2">
         {renderDraft}
         {renderPending}
@@ -136,8 +150,8 @@ function BillFooter({
         {renderRejected}
       </div>
     </div>
-  )
+  );
 }
 
-export { BillFooter }
-export type { BillFooterProps }
+export { BillFooter };
+export type { BillFooterProps };

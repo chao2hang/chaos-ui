@@ -18,9 +18,18 @@ const variantConfig = {
 
 const defaultTexts: Record<string, { title: string; description: string }> = {
   default: { title: "No data", description: "There are no items to display." },
-  search: { title: "No results", description: "Try adjusting your search or filter criteria." },
-  error: { title: "Something went wrong", description: "An error occurred while loading data." },
-  network: { title: "No connection", description: "Check your internet connection and try again." },
+  search: {
+    title: "No results",
+    description: "Try adjusting your search or filter criteria.",
+  },
+  error: {
+    title: "Something went wrong",
+    description: "An error occurred while loading data.",
+  },
+  network: {
+    title: "No connection",
+    description: "Check your internet connection and try again.",
+  },
 };
 
 export interface EmptyStateTexts {
@@ -44,6 +53,15 @@ interface EmptyStateProps {
   texts?: EmptyStateTexts;
 }
 
+/**
+ * @component EmptyState
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Placeholder displayed when data is empty, with icon, title, description, and optional action / 数据为空时显示的占位符，含图标、标题、描述和可选操作
+ * @keywords empty, state, placeholder, no-data, feedback, zero-state
+ * @example
+ * <EmptyState variant="search" title="No results" description="Try a different query" />
+ */
 function EmptyState({
   variant = "default",
   icon: iconProp,
@@ -63,32 +81,38 @@ function EmptyState({
     variantConfig.default;
   const Icon = iconProp ?? config.icon;
 
-  const fallback = defaultTexts[variant] ?? defaultTexts.default ?? { title: '', description: '' };
+  const fallback = defaultTexts[variant] ??
+    defaultTexts.default ?? { title: "", description: "" };
 
-  const title = titleProp
-    ?? textsProp?.title
-    ?? (hasI18n ? t(`emptyState.${variant}.title`, fallback.title) : fallback.title);
+  const title =
+    titleProp ??
+    textsProp?.title ??
+    (hasI18n
+      ? t(`emptyState.${variant}.title`, fallback.title)
+      : fallback.title);
 
-  const description = descProp
-    ?? textsProp?.description
-    ?? (hasI18n
+  const description =
+    descProp ??
+    textsProp?.description ??
+    (hasI18n
       ? t(`emptyState.${variant}.description`, fallback.description)
       : fallback.description);
 
   return (
     <div
+      data-slot="empty-state"
       className={cn(
         "flex flex-col items-center justify-center py-12 text-center",
-        centered && "items-center justify-center min-h-[400px]",
+        centered && "min-h-[400px] items-center justify-center",
         fullPage && "min-h-svh",
         className,
       )}
     >
-      <div className="flex size-12 items-center justify-center rounded-full bg-muted">
-        <Icon className="size-6 text-muted-foreground" />
+      <div className="bg-muted flex size-12 items-center justify-center rounded-full">
+        <Icon className="text-muted-foreground size-6" />
       </div>
       <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-      <p className="mt-1 text-sm text-muted-foreground max-w-sm">
+      <p className="text-muted-foreground mt-1 max-w-sm text-sm">
         {description}
       </p>
       {action && <div className="mt-4">{action}</div>}

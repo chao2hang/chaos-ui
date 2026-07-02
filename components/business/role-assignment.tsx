@@ -32,6 +32,15 @@ export interface RoleAssignmentProps extends Omit<
   readOnly?: boolean;
 }
 
+/**
+ * @component RoleAssignment
+ * @category business/bill
+ * @since 0.2.0
+ * @description Assign roles to principals (users/groups) with checkbox toggles / 为主体质（用户/组）分配角色，支持复选框切换
+ * @keywords role, assignment, principal, user, group, permission
+ * @example
+ * <RoleAssignment principals={users} roles={roles} value={assignments} onChange={setAssignments} />
+ */
 export function RoleAssignment({
   principals,
   roles,

@@ -64,6 +64,18 @@ function useSidebar() {
   return context;
 }
 
+/**
+ * @component SidebarProvider
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Context provider for sidebar state management with keyboard shortcut support / 侧边栏状态管理的上下文提供者，支持键盘快捷键
+ * @keywords sidebar, provider, context, navigation, 侧边栏
+ * @example
+ * <SidebarProvider>
+ *   <Sidebar>...</Sidebar>
+ *   <SidebarInset>...</SidebarInset>
+ * </SidebarProvider>
+ */
 function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -151,7 +163,7 @@ function SidebarProvider({
           } as React.CSSProperties
         }
         className={cn(
-          "group/sidebar-wrapper relative flex h-dvh w-full overflow-hidden has-data-[variant=inset]:bg-sidebar",
+          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar relative flex h-dvh w-full overflow-hidden",
           className,
         )}
         {...props}
@@ -162,6 +174,26 @@ function SidebarProvider({
   );
 }
 
+/**
+ * @component Sidebar
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Collapsible sidebar navigation panel with mobile sheet support and icon-only mode / 可折叠侧边栏导航面板，支持移动端抽屉和只显示图标模式
+ * @keywords sidebar, navigation, collapsible, mobile, 侧边栏
+ * @example
+ * <SidebarProvider>
+ *   <Sidebar>
+ *     <SidebarHeader />
+ *     <SidebarContent>
+ *       <SidebarMenu>
+ *         <SidebarMenuItem>
+ *           <SidebarMenuButton>Item</SidebarMenuButton>
+ *         </SidebarMenuItem>
+ *       </SidebarMenu>
+ *     </SidebarContent>
+ *   </Sidebar>
+ * </SidebarProvider>
+ */
 function Sidebar({
   side = "left",
   variant = "sidebar",
@@ -182,7 +214,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
+          "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
           className,
         )}
         {...props}
@@ -200,7 +232,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -220,7 +252,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer hidden text-sidebar-foreground md:block"
+      className="group peer text-sidebar-foreground hidden md:block"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
@@ -255,7 +287,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
+          className="bg-sidebar group-data-[variant=floating]:ring-sidebar-border flex size-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1"
         >
           {children}
         </div>
@@ -264,6 +296,15 @@ function Sidebar({
   );
 }
 
+/**
+ * @component SidebarTrigger
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Button to toggle the sidebar open/collapsed state / 用于切换侧边栏展开/折叠状态的按钮
+ * @keywords sidebar, trigger, toggle, hamburger, 侧边栏触发
+ * @example
+ * <SidebarTrigger />
+ */
 function SidebarTrigger({
   className,
   onClick,
@@ -290,6 +331,15 @@ function SidebarTrigger({
   );
 }
 
+/**
+ * @component SidebarRail
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Thin drag handle along the sidebar edge for resizing / 侧边栏边缘的细拖动条，用于调整宽度
+ * @keywords sidebar, rail, resize, drag, 侧边栏拖拽
+ * @example
+ * <SidebarRail />
+ */
 function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
   const { toggleSidebar } = useSidebar();
 
@@ -302,10 +352,10 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
+        "hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full",
         "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
         "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
         className,
@@ -315,12 +365,23 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
   );
 }
 
+/**
+ * @component SidebarInset
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Main content area adjacent to the sidebar that adapts to sidebar state / 侧边栏旁边的主内容区域，自适应侧边栏状态
+ * @keywords sidebar, inset, main, content, 侧边栏内容区
+ * @example
+ * <SidebarInset>
+ *   <main>Content</main>
+ * </SidebarInset>
+ */
 function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col overflow-auto bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+        "bg-background relative flex w-full flex-1 flex-col overflow-auto md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className,
       )}
       {...props}
@@ -328,6 +389,15 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
   );
 }
 
+/**
+ * @component SidebarInput
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Search input field styled for the sidebar / 侧边栏中的搜索输入框
+ * @keywords sidebar, input, search, 侧边栏搜索
+ * @example
+ * <SidebarInput placeholder="Search..." />
+ */
 function SidebarInput({
   className,
   ...props
@@ -336,12 +406,23 @@ function SidebarInput({
     <Input
       data-slot="sidebar-input"
       data-sidebar="input"
-      className={cn("h-8 w-full bg-background shadow-none", className)}
+      className={cn("bg-background h-8 w-full shadow-none", className)}
       {...props}
     />
   );
 }
 
+/**
+ * @component SidebarHeader
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Header section within the sidebar / 侧边栏的头部区域
+ * @keywords sidebar, header, 侧边栏头部
+ * @example
+ * <SidebarHeader>
+ *   <SidebarMenuButton>App Name</SidebarMenuButton>
+ * </SidebarHeader>
+ */
 function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -353,6 +434,17 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * @component SidebarFooter
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Footer section within the sidebar, typically for user info or actions / 侧边栏的底部区域，通常放置用户信息或操作按钮
+ * @keywords sidebar, footer, 侧边栏底部
+ * @example
+ * <SidebarFooter>
+ *   <SidebarMenuButton>Settings</SidebarMenuButton>
+ * </SidebarFooter>
+ */
 function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -364,6 +456,15 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * @component SidebarSeparator
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Visual separator line within the sidebar / 侧边栏内的视觉分割线
+ * @keywords sidebar, separator, divider, 侧边栏分割线
+ * @example
+ * <SidebarSeparator />
+ */
 function SidebarSeparator({
   className,
   ...props
@@ -372,12 +473,23 @@ function SidebarSeparator({
     <Separator
       data-slot="sidebar-separator"
       data-sidebar="separator"
-      className={cn("mx-2 w-auto bg-sidebar-border", className)}
+      className={cn("bg-sidebar-border mx-2 w-auto", className)}
       {...props}
     />
   );
 }
 
+/**
+ * @component SidebarContent
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Scrollable content area of the sidebar / 侧边栏的可滚动内容区域
+ * @keywords sidebar, content, scrollable, 侧边栏内容
+ * @example
+ * <SidebarContent>
+ *   <SidebarMenu>...</SidebarMenu>
+ * </SidebarContent>
+ */
 function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -392,6 +504,18 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * @component SidebarGroup
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Logical grouping container for sidebar menu items / 侧边栏菜单项的逻辑分组容器
+ * @keywords sidebar, group, 侧边栏分组
+ * @example
+ * <SidebarGroup>
+ *   <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+ *   <SidebarMenu>...</SidebarMenu>
+ * </SidebarGroup>
+ */
 function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -403,6 +527,15 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * @component SidebarGroupLabel
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Label heading for a sidebar group, hidden in icon-collapsed mode / 侧边栏分组的标签标题，图标折叠模式下隐藏
+ * @keywords sidebar, group, label, heading, 侧边栏分组标题
+ * @example
+ * <SidebarGroupLabel>Main Menu</SidebarGroupLabel>
+ */
 function SidebarGroupLabel({
   className,
   render,
@@ -427,6 +560,17 @@ function SidebarGroupLabel({
   });
 }
 
+/**
+ * @component SidebarGroupAction
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Action button positioned at the top-right of a sidebar group / 侧边栏分组右上角的操作按钮
+ * @keywords sidebar, group, action, button, 侧边栏分组操作
+ * @example
+ * <SidebarGroupAction>
+ *   <PlusIcon />
+ * </SidebarGroupAction>
+ */
 function SidebarGroupAction({
   className,
   render,
@@ -451,6 +595,17 @@ function SidebarGroupAction({
   });
 }
 
+/**
+ * @component SidebarGroupContent
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Content wrapper for a sidebar group / 侧边栏分组的内容包装器
+ * @keywords sidebar, group, content, 侧边栏分组内容
+ * @example
+ * <SidebarGroupContent>
+ *   <SidebarMenu>...</SidebarMenu>
+ * </SidebarGroupContent>
+ */
 function SidebarGroupContent({
   className,
   ...props
@@ -465,6 +620,19 @@ function SidebarGroupContent({
   );
 }
 
+/**
+ * @component SidebarMenu
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Unordered list container for sidebar menu items / 侧边栏菜单项的无序列表容器
+ * @keywords sidebar, menu, list, 侧边栏菜单
+ * @example
+ * <SidebarMenu>
+ *   <SidebarMenuItem>
+ *     <SidebarMenuButton>Dashboard</SidebarMenuButton>
+ *   </SidebarMenuItem>
+ * </SidebarMenu>
+ */
 function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
@@ -476,6 +644,17 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
   );
 }
 
+/**
+ * @component SidebarMenuItem
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Individual list item within a sidebar menu / 侧边栏菜单中的单个列表项
+ * @keywords sidebar, menu, item, 侧边栏菜单项
+ * @example
+ * <SidebarMenuItem>
+ *   <SidebarMenuButton>Settings</SidebarMenuButton>
+ * </SidebarMenuItem>
+ */
 function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
@@ -509,6 +688,18 @@ const sidebarMenuButtonVariants = cva(
   },
 );
 
+/**
+ * @component SidebarMenuButton
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Interactive button/link for a sidebar menu item with optional tooltip in collapsed mode / 侧边栏菜单项的可交互按钮/链接，折叠模式下可选工具提示
+ * @keywords sidebar, menu, button, link, 侧边栏菜单按钮
+ * @example
+ * <SidebarMenuButton tooltip="Dashboard">
+ *   <HomeIcon />
+ *   <span>Dashboard</span>
+ * </SidebarMenuButton>
+ */
 function SidebarMenuButton({
   render,
   isActive = false,
@@ -563,6 +754,17 @@ function SidebarMenuButton({
   );
 }
 
+/**
+ * @component SidebarMenuAction
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Small action button positioned within a sidebar menu item / 侧边栏菜单项中的小型操作按钮
+ * @keywords sidebar, menu, action, button, 侧边栏菜单操作
+ * @example
+ * <SidebarMenuAction showOnHover>
+ *   <MoreIcon />
+ * </SidebarMenuAction>
+ */
 function SidebarMenuAction({
   className,
   render,
@@ -593,6 +795,15 @@ function SidebarMenuAction({
   });
 }
 
+/**
+ * @component SidebarMenuBadge
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Badge/count indicator placed inside a sidebar menu item / 侧边栏菜单项内的徽章/计数指示器
+ * @keywords sidebar, menu, badge, count, notification, 侧边栏菜单徽章
+ * @example
+ * <SidebarMenuBadge>3</SidebarMenuBadge>
+ */
 function SidebarMenuBadge({
   className,
   ...props
@@ -602,7 +813,7 @@ function SidebarMenuBadge({
       data-slot="sidebar-menu-badge"
       data-sidebar="menu-badge"
       className={cn(
-        "pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-data-active/menu-button:text-sidebar-accent-foreground",
+        "text-sidebar-foreground peer-hover/menu-button:text-sidebar-accent-foreground peer-data-active/menu-button:text-sidebar-accent-foreground pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums select-none group-data-[collapsible=icon]:hidden peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1",
         className,
       )}
       {...props}
@@ -610,6 +821,15 @@ function SidebarMenuBadge({
   );
 }
 
+/**
+ * @component SidebarMenuSkeleton
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Loading placeholder skeleton for a sidebar menu item / 侧边栏菜单项的加载占位骨架
+ * @keywords sidebar, menu, skeleton, loading, placeholder, 侧边栏菜单骨架
+ * @example
+ * <SidebarMenuSkeleton showIcon />
+ */
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
@@ -648,6 +868,19 @@ function SidebarMenuSkeleton({
   );
 }
 
+/**
+ * @component SidebarMenuSub
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Nested sub-menu list within the sidebar, supports collapsible mode and dropdown fallback in icon-only mode / 侧边栏内的嵌套子菜单列表，支持折叠模式和图标模式下的下拉菜单回退
+ * @keywords sidebar, sub-menu, nested, collapsible, dropdown, 侧边栏子菜单
+ * @example
+ * <SidebarMenuSub collapsible trigger={<SidebarMenuButton>Products</SidebarMenuButton>}>
+ *   <SidebarMenuSubItem>
+ *     <SidebarMenuSubButton>Category A</SidebarMenuSubButton>
+ *   </SidebarMenuSubItem>
+ * </SidebarMenuSub>
+ */
 function SidebarMenuSub({
   className,
   children,
@@ -695,7 +928,10 @@ function SidebarMenuSub({
         />
         <DropdownMenuContent side="right" align="start" className="min-w-48">
           {React.Children.map(children, (child) => {
-            if (React.isValidElement(child) && child.type === SidebarMenuSubItem) {
+            if (
+              React.isValidElement(child) &&
+              child.type === SidebarMenuSubItem
+            ) {
               return (
                 <DropdownMenuItem className="cursor-pointer">
                   {child}
@@ -720,9 +956,7 @@ function SidebarMenuSub({
         className="group/menu-sub-collapsible"
       >
         <CollapsibleTrigger
-          render={
-            <SidebarMenuButton className="w-full justify-between" />
-          }
+          render={<SidebarMenuButton className="w-full justify-between" />}
         >
           {trigger ?? (
             <>
@@ -737,7 +971,7 @@ function SidebarMenuSub({
             data-slot="sidebar-menu-sub"
             data-sidebar="menu-sub"
             className={cn(
-              "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
+              "border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
               className,
             )}
             {...props}
@@ -754,7 +988,7 @@ function SidebarMenuSub({
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
+        "border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
         className,
       )}
       {...props}
@@ -764,7 +998,17 @@ function SidebarMenuSub({
   );
 }
 
-
+/**
+ * @component SidebarMenuSubItem
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Individual list item within a sidebar sub-menu / 侧边栏子菜单中的单个列表项
+ * @keywords sidebar, sub-menu, item, 侧边栏子菜单项
+ * @example
+ * <SidebarMenuSubItem>
+ *   <SidebarMenuSubButton>Item</SidebarMenuSubButton>
+ * </SidebarMenuSubItem>
+ */
 function SidebarMenuSubItem({
   className,
   ...props
@@ -795,6 +1039,17 @@ const sidebarMenuSubButtonVariants = cva(
   },
 );
 
+/**
+ * @component SidebarMenuSubButton
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Interactive link/button for a sidebar sub-menu item / 侧边栏子菜单项的可交互链接/按钮
+ * @keywords sidebar, sub-menu, button, link, 侧边栏子菜单按钮
+ * @example
+ * <SidebarMenuSubButton href="/products/category-a">
+ *   <span>Category A</span>
+ * </SidebarMenuSubButton>
+ */
 function SidebarMenuSubButton({
   render,
   size = "md",
@@ -823,7 +1078,6 @@ function SidebarMenuSubButton({
     },
   });
 }
-
 
 export {
   Sidebar,

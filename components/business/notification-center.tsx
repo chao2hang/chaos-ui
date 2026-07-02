@@ -37,6 +37,15 @@ const typeStyles: Record<NonNullable<NotificationItem["type"]>, string> = {
   error: "bg-destructive/15 text-destructive",
 };
 
+/**
+ * @component NotificationCenter
+ * @category business/ux
+ * @since 0.2.0
+ * @description Notification bell with popover panel, unread badge, mark-read/clear-all actions, and type-styled indicators / 通知铃铛组件，含弹出面板、未读标记、已读/清空操作和类型样式指示器
+ * @keywords notification, bell, popover, unread, badge, alert
+ * @example
+ * <NotificationCenter notifications={[{ id: "1", title: "Hello", timestamp: Date.now() }]} />
+ */
 export function NotificationCenter({
   notifications,
   onMarkRead,
@@ -54,7 +63,7 @@ export function NotificationCenter({
     emptyText === "暂无通知" ? t("notificationCenter.emptyText") : emptyText;
 
   return (
-    <Popover>
+    <Popover data-slot="notification-center">
       <PopoverTrigger
         render={
           <Button

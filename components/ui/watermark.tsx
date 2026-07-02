@@ -17,6 +17,16 @@ interface WatermarkProps {
   color?: string;
 }
 
+/**
+ * @component Watermark
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Tiled watermark overlay with text or image, supporting full-page and container modes / 平铺水印覆盖层，支持文本或图片，可全页面或容器内显示
+ * @keywords watermark, overlay, tiled, security, 水印
+ * @example
+ * <Watermark text="Confidential" />
+ * <Watermark image="/logo.png" fullPage={false} />
+ */
 export function Watermark({
   text,
   image,
@@ -75,7 +85,7 @@ export function Watermark({
             <img src={image} alt="" style={{ opacity, maxWidth: "60%" }} />
           ) : (
             <span
-              className="whitespace-nowrap font-medium select-none"
+              className="font-medium whitespace-nowrap select-none"
               style={{ color, fontSize, opacity }}
             >
               {resolvedText}
@@ -115,7 +125,7 @@ export function Watermark({
             <img src={image} alt="" style={{ opacity, maxHeight: "60%" }} />
           ) : (
             <span
-              className="whitespace-nowrap font-medium select-none"
+              className="font-medium whitespace-nowrap select-none"
               style={{ color, fontSize, opacity }}
             >
               {resolvedText}

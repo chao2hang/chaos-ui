@@ -27,10 +27,25 @@ const statusMeta: Record<CampaignStatus, { label: string; className: string }> =
     active: { label: "Active", className: "bg-success/15 text-success" },
     paused: { label: "Paused", className: "bg-warning/15 text-warning" },
     completed: { label: "Completed", className: "bg-primary/10 text-primary" },
-    failed: { label: "Failed", className: "bg-destructive/10 text-destructive" },
-    archived: { label: "Archived", className: "bg-secondary text-secondary-foreground" },
+    failed: {
+      label: "Failed",
+      className: "bg-destructive/10 text-destructive",
+    },
+    archived: {
+      label: "Archived",
+      className: "bg-secondary text-secondary-foreground",
+    },
   };
 
+/**
+ * @component CampaignStatusTag
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description Colored badge indicating campaign lifecycle status (draft, active, completed, etc.) / 营销活动生命周期状态标签（草稿、进行中、已完成等）
+ * @keywords campaign, status, tag, badge, lifecycle
+ * @example
+ * <CampaignStatusTag status="active" />
+ */
 export function CampaignStatusTag({
   status,
   size = "default",
@@ -41,6 +56,7 @@ export function CampaignStatusTag({
 
   return (
     <Badge
+      data-slot="campaign-status-tag"
       variant="secondary"
       className={cn(
         size === "sm" && "h-4 px-1.5 text-[0.65rem]",

@@ -16,6 +16,15 @@ interface ThemeToggleProps {
   align?: "start" | "center" | "end";
 }
 
+/**
+ * @component ThemeToggle
+ * @category business/ux
+ * @since 0.2.0
+ * @description Dropdown toggle for switching between light, dark, and system theme modes / 下拉切换按钮，用于在浅色、深色和跟随系统主题间切换
+ * @keywords theme, toggle, dark, light, system, mode
+ * @example
+ * <ThemeToggle showSystem />
+ */
 export function ThemeToggle({
   className,
   showSystem = true,
@@ -62,6 +71,15 @@ export function ThemeToggle({
   );
 }
 
+/**
+ * @component useResolvedTheme
+ * @category business/ux
+ * @since 0.2.0
+ * @description Hook that resolves the effective theme ("light" or "dark") from next-themes, accounting for system preference / 从 next-themes 解析实际生效的主题（"light" 或 "dark"），考虑系统偏好设置
+ * @keywords theme, hook, resolved, dark, light, system
+ * @example
+ * const theme = useResolvedTheme();
+ */
 export function useResolvedTheme(): "light" | "dark" {
   const { theme, resolvedTheme } = useTheme();
   if (theme === "system") return (resolvedTheme ?? "light") as "light" | "dark";

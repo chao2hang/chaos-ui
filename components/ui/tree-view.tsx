@@ -45,33 +45,47 @@ interface TreeViewProps {
 
 function normalizeNode(
   raw: Record<string, unknown>,
-  fields: Required<Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">>
+  fields: Required<
+    Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">
+  >,
 ): TreeNode {
   return {
     id: String(raw[fields.key] ?? ""),
     label: String(raw[fields.label] ?? ""),
     ...(Array.isArray(raw[fields.children])
-      ? { children: (raw[fields.children] as Record<string, unknown>[]).map((c) => normalizeNode(c, fields)) }
+      ? {
+          children: (raw[fields.children] as Record<string, unknown>[]).map(
+            (c) => normalizeNode(c, fields),
+          ),
+        }
       : {}),
     disabled: Boolean(raw[fields.disabled]),
     icon: raw[fields.icon] as React.ReactNode | undefined,
   };
 }
 
-function normalizeData(
-  data: unknown[],
-  fieldNames?: FieldNames
-): TreeNode[] {
-  const fields: Required<Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">> = {
+function normalizeData(data: unknown[], fieldNames?: FieldNames): TreeNode[] {
+  const fields: Required<
+    Pick<FieldNames, "key" | "label" | "children" | "disabled" | "icon">
+  > = {
     key: fieldNames?.key ?? "id",
     label: fieldNames?.label ?? "label",
     children: fieldNames?.children ?? "children",
     disabled: fieldNames?.disabled ?? "disabled",
     icon: fieldNames?.icon ?? "icon",
   };
-  return (data as Record<string, unknown>[]).map((raw) => normalizeNode(raw, fields));
+  return (data as Record<string, unknown>[]).map((raw) =>
+    normalizeNode(raw, fields),
+  );
 }
 
+/**
+ * @component TreeViewItem
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Internal recursive tree node renderer with expand/collapse, checkbox, and icon / 内部递归树节点渲染器，支持展开/折叠、复选框和图标
+ * @keywords tree, view, item, node, 树视图项
+ */
 function TreeViewItem({
   node,
   level = 0,
@@ -102,9 +116,9 @@ function TreeViewItem({
     <div>
       <div
         className={cn(
-          "flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-muted transition-colors",
+          "hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 transition-colors",
           isSelected && "bg-muted",
-          isDisabled && "opacity-50 cursor-not-allowed",
+          isDisabled && "cursor-not-allowed opacity-50",
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         onClick={() => !isDisabled && onSelect(node.id)}
@@ -134,7 +148,7 @@ function TreeViewItem({
           <Checkbox checked={isSelected} disabled={isDisabled} />
         )}
         {showIcon && (
-          <span className="shrink-0 text-muted-foreground">
+          <span className="text-muted-foreground shrink-0">
             {node.icon ||
               (hasChildren ? (
                 <FolderIcon className="size-4" />
@@ -143,7 +157,7 @@ function TreeViewItem({
               ))}
           </span>
         )}
-        <span className="flex-1 text-sm truncate">{node.label}</span>
+        <span className="flex-1 truncate text-sm">{node.label}</span>
       </div>
       {hasChildren && isExpanded && (
         <div>
@@ -167,6 +181,20 @@ function TreeViewItem({
   );
 }
 
+/**
+ * @component TreeView
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Hierarchical tree view with expand/collapse, optional checkboxes, and field name mapping for backend data / 层级树视图，支持展开/折叠、可选复选框和后端数据字段映射
+ * @keywords tree, view, hierarchy, expand, checkbox, 树视图
+ * @example
+ * <TreeView
+ *   data={treeData}
+ *   selectedIds={selected}
+ *   onSelect={setSelected}
+ *   showCheckbox
+ * />
+ */
 function TreeView({
   data,
   selectedIds: controlledSelectedIds,
@@ -181,7 +209,10 @@ function TreeView({
   className,
   fieldNames,
 }: TreeViewProps) {
-  const normalizedData = React.useMemo(() => fieldNames ? normalizeData(data, fieldNames) : (data as TreeNode[]), [data, fieldNames]);
+  const normalizedData = React.useMemo(
+    () => (fieldNames ? normalizeData(data, fieldNames) : (data as TreeNode[])),
+    [data, fieldNames],
+  );
 
   const [uncontrolledSelectedIds, setUncontrolledSelectedIds] =
     React.useState<string[]>(defaultSelectedIds);

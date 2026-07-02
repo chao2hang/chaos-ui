@@ -18,6 +18,17 @@ export interface AppShellProps extends React.ComponentProps<"div"> {
   variant?: "default" | "floating" | "sticky";
 }
 
+/**
+ * @component AppShell
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Core application shell with header, collapsible sidebar (mobile-responsive drawer + desktop collapse), optional aside panel, and footer / 核心应用外壳，包含头部、可折叠侧栏（移动端抽屉式 + 桌面端折叠）、可选的侧边面板和页脚
+ * @keywords app-shell, layout, sidebar, header, footer, aside, collapsible, responsive, admin
+ * @example
+ * <AppShell header={<TopBar />} sidebar={<SideNav />} aside={<ActivityPanel />} footer={<Footer />}>
+ *   <Outlet />
+ * </AppShell>
+ */
 export function AppShell({
   header,
   sidebar,
@@ -43,13 +54,13 @@ export function AppShell({
       data-slot="app-shell"
       data-variant={variant}
       data-sidebar-collapsed={collapsed}
-      className={cn("flex min-h-screen flex-col bg-background", className)}
+      className={cn("bg-background flex min-h-screen flex-col", className)}
       {...props}
     >
       {header && (
         <header
           className={cn(
-            "z-30 flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
+            "bg-background/95 supports-[backdrop-filter]:bg-background/80 z-30 flex h-14 items-center border-b backdrop-blur",
             variant === "sticky" && "sticky top-0",
           )}
         >
@@ -81,8 +92,8 @@ export function AppShell({
             )}
             <aside
               className={cn(
-                "z-40 flex shrink-0 flex-col border-r bg-background",
-                "fixed inset-y-0 left-0 top-14 transition-transform md:static md:translate-x-0",
+                "bg-background z-40 flex shrink-0 flex-col border-r",
+                "fixed inset-y-0 top-14 left-0 transition-transform md:static md:translate-x-0",
                 mobileOpen ? "translate-x-0" : "-translate-x-full",
                 variant === "floating" &&
                   "md:m-2 md:rounded-lg md:border md:shadow-sm",
@@ -97,7 +108,7 @@ export function AppShell({
                   variant="ghost"
                   size="sm"
                   onClick={() => setCollapsed((v) => !v)}
-                  className="m-2 hidden h-8 text-xs text-muted-foreground md:inline-flex"
+                  className="text-muted-foreground m-2 hidden h-8 text-xs md:inline-flex"
                   aria-label={
                     collapsed
                       ? t("appShell.expandSidebar")
@@ -113,7 +124,7 @@ export function AppShell({
         <main className="flex-1 overflow-y-auto">{children}</main>
         {aside && (
           <aside
-            className="hidden shrink-0 overflow-y-auto border-l bg-background lg:block"
+            className="bg-background hidden shrink-0 overflow-y-auto border-l lg:block"
             style={{ width: asideWidth }}
           >
             {aside}
@@ -121,7 +132,7 @@ export function AppShell({
         )}
       </div>
       {footer && (
-        <footer className="border-t bg-background/95 px-4 py-3 text-xs text-muted-foreground">
+        <footer className="bg-background/95 text-muted-foreground border-t px-4 py-3 text-xs">
           {footer}
         </footer>
       )}

@@ -35,6 +35,15 @@ interface MultiSelectProps {
   clearable?: boolean;
 }
 
+/**
+ * @component MultiSelect
+ * @category business/picker
+ * @since 0.2.0
+ * @description Multi-select dropdown with search, grouped options, badge overflow, and clearable selection / 多选下拉组件，支持搜索、分组选项、标记溢出和可清除选择
+ * @keywords multi, select, dropdown, search, picker, tags
+ * @example
+ * <MultiSelect options={[{ value: "1", label: "Option 1" }]} value={selected} onChange={setSelected} />
+ */
 export function MultiSelect({
   options,
   value = [],
@@ -67,7 +76,7 @@ export function MultiSelect({
   const overflow = value.length - maxCount;
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover data-slot="multi-select" open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
           <Button

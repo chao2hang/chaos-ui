@@ -3,7 +3,11 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 /**
  * @component AutoComplete
@@ -109,7 +113,11 @@ function AutoComplete({
   };
 
   return (
-    <Popover open={open && options.length > 0} onOpenChange={setOpen}>
+    <Popover
+      open={open && options.length > 0}
+      onOpenChange={setOpen}
+      data-slot="autocomplete"
+    >
       <PopoverTrigger
         render={
           <Input
@@ -134,7 +142,7 @@ function AutoComplete({
             className={cn(
               "flex w-full items-center rounded-sm px-2 py-1.5 text-sm outline-none",
               idx === highlightIndex && "bg-accent",
-              option.disabled && "opacity-50 pointer-events-none",
+              option.disabled && "pointer-events-none opacity-50",
             )}
             onClick={() => handleSelect(option)}
             onMouseEnter={() => setHighlightIndex(idx)}

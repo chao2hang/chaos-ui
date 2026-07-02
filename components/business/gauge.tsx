@@ -21,6 +21,15 @@ const variantStroke: Record<NonNullable<GaugeProps["variant"]>, string> = {
   destructive: "stroke-destructive",
 }
 
+/**
+ * @component Gauge
+ * @category business/charts
+ * @since 0.2.0
+ * @description SVG arc gauge meter displaying a value within a min-max range with variant coloring / SVG 弧形仪表盘，在最小最大值范围内显示数值并支持变体着色
+ * @keywords gauge, meter, arc, svg, progress, chart
+ * @example
+ * <Gauge value={75} min={0} max={100} variant="success" label="CPU" />
+ */
 export function Gauge({
   value,
   min = 0,
@@ -103,6 +112,15 @@ interface RadialProgressProps extends React.ComponentProps<"div"> {
   variant?: "default" | "success" | "warning" | "destructive"
 }
 
+/**
+ * @component RadialProgress
+ * @category business/charts
+ * @since 0.2.0
+ * @description Compact radial progress indicator displaying a percentage with variant coloring / 紧凑型径向进度指示器，以百分比显示并支持变体着色
+ * @keywords radial, progress, circle, percentage, indicator
+ * @example
+ * <RadialProgress value={65} variant="success" />
+ */
 export function RadialProgress({
   value,
   size = 48,

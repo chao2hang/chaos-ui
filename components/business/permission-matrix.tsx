@@ -39,6 +39,15 @@ export interface PermissionMatrixProps extends Omit<
   readOnly?: boolean;
 }
 
+/**
+ * @component PermissionMatrix
+ * @category business/bill
+ * @since 0.2.0
+ * @description Role-based permission matrix with toggle checkboxes / 基于角色的权限矩阵，支持复选框切换
+ * @keywords permission, role, matrix, checkbox, acl
+ * @example
+ * <PermissionMatrix roles={roles} resources={resources} value={value} onChange={setValue} />
+ */
 export function PermissionMatrix({
   roles,
   resources,

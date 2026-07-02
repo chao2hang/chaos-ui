@@ -88,7 +88,7 @@ function SearchTable<T extends Record<string, unknown> = Record<string, unknown>
   }
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div data-slot="search-table" className={cn("space-y-2", className)}>
       <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>

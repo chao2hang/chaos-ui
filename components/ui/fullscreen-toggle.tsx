@@ -58,6 +58,7 @@ function FullscreenToggle({
       onClick={toggle}
       className={cn(className)}
       aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+      data-slot="fullscreen-toggle"
     >
       {isFullscreen ? <MinimizeIcon /> : <MaximizeIcon />}
     </Button>

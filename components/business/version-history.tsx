@@ -24,6 +24,15 @@ export interface VersionHistoryProps extends React.ComponentProps<"div"> {
   onRestore?: (version: VersionHistoryItem) => void;
 }
 
+/**
+ * @component VersionHistory
+ * @category business/bill
+ * @since 0.2.0
+ * @description Vertical timeline displaying version history entries with restore action / 垂直时间线，展示版本历史条目并支持恢复操作
+ * @keywords version, history, timeline, restore, audit, changelog
+ * @example
+ * <VersionHistory versions={items} onRestore={handleRestore} />
+ */
 export function VersionHistory({
   versions,
   onRestore,
@@ -40,10 +49,10 @@ export function VersionHistory({
       {versions.map((version, index) => (
         <div key={version.id} className="relative rounded-lg border p-4">
           {index < versions.length - 1 && (
-            <span className="absolute left-[calc(1rem+0.375rem)] top-[calc(1rem+0.25rem+0.375rem)] h-[calc(100%+0.75rem+2px)] w-px bg-border" />
+            <span className="bg-border absolute top-[calc(1rem+0.25rem+0.375rem)] left-[calc(1rem+0.375rem)] h-[calc(100%+0.75rem+2px)] w-px" />
           )}
           <div className="flex items-start gap-3">
-            <span className="relative z-10 mt-1 size-3 rounded-full border-2 border-background bg-primary" />
+            <span className="border-background bg-primary relative z-10 mt-1 size-3 rounded-full border-2" />
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-sm font-medium">{version.title}</p>
@@ -56,14 +65,14 @@ export function VersionHistory({
                   </Badge>
                 )}
               </div>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="text-muted-foreground mt-1 text-xs">
                 {version.author} · {version.timestamp}
               </p>
               {version.description && (
                 <p className="mt-2 text-sm">{version.description}</p>
               )}
               {version.changes && (
-                <ul className="mt-2 list-disc space-y-1 pl-4 text-xs text-muted-foreground">
+                <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-4 text-xs">
                   {version.changes.map((change) => (
                     <li key={change}>{change}</li>
                   ))}

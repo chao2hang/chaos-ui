@@ -82,6 +82,15 @@ function tokenize(code: string, language: string): React.ReactNode[] {
   return result;
 }
 
+/**
+ * @component CodeBlock
+ * @category business/data
+ * @since 0.2.0
+ * @description Syntax-highlighted code block with line numbers, copy button, and filename header / 语法高亮代码块，支持行号、复制按钮和文件名头
+ * @keywords code, syntax, highlight, copy, diff, code-block
+ * @example
+ * <CodeBlock code="const x = 1;" language="js" filename="app.js" />
+ */
 export function CodeBlock({
   code,
   language,
@@ -134,7 +143,7 @@ export function CodeBlock({
         </Button>
       )}
       <pre
-        className="overflow-auto p-3 text-xs font-mono leading-relaxed"
+        className="overflow-auto p-3 font-mono text-xs leading-relaxed"
         style={{ maxHeight }}
       >
         <code>
@@ -148,7 +157,7 @@ export function CodeBlock({
                     highlightLines.includes(i + 1) && "bg-zinc-800/60",
                   )}
                 >
-                  <span className="select-none pr-4 text-right text-zinc-600 w-8 shrink-0">
+                  <span className="w-8 shrink-0 pr-4 text-right text-zinc-600 select-none">
                     {i + 1}
                   </span>
                   <span className="flex-1 whitespace-pre">

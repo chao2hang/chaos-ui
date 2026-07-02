@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Card, CardContent } from "@/components/ui"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui";
 
 interface BillHeaderField {
   /** 字段标签 */
-  label: string
+  label: string;
   /** 渲染字段内容（可以是值或自定义 ReactNode） */
-  value: React.ReactNode
+  value: React.ReactNode;
   /** 该字段占多少列（默认 1，在 4 列中为 1/4） */
-  span?: number
+  span?: number;
   /** 是否隐藏（常用于条件字段） */
-  hidden?: boolean
+  hidden?: boolean;
 }
 
 interface BillHeaderProps {
   /** 字段配置数组 */
-  fields: BillHeaderField[]
+  fields: BillHeaderField[];
   /** 标题 */
-  title?: React.ReactNode
+  title?: React.ReactNode;
   /** 卡片标题右侧操作 */
-  extra?: React.ReactNode
+  extra?: React.ReactNode;
   /** 列数（1-6，默认根据 span 自动计算，最大 4） */
-  columns?: 1 | 2 | 3 | 4
+  columns?: 1 | 2 | 3 | 4;
   /** 只读模式 */
-  readOnly?: boolean
+  readOnly?: boolean;
   /** 加载态 */
-  loading?: boolean
-  className?: string
+  loading?: boolean;
+  className?: string;
 }
 
 /**
@@ -47,22 +47,22 @@ function BillHeader({
   loading = false,
   className,
 }: Omit<BillHeaderProps, "readOnly">) {
-  const visibleFields = fields.filter((f) => !f.hidden)
+  const visibleFields = fields.filter((f) => !f.hidden);
 
   const gridCols: Record<number, string> = {
     1: "grid-cols-1",
     2: "grid-cols-2",
     3: "grid-cols-3",
     4: "grid-cols-4",
-  }
+  };
 
   return (
-    <Card className={className}>
+    <Card data-slot="bill-header" className={className}>
       <CardContent className="pt-6">
         {/* Title row */}
         {(title || extra) && (
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+            <h3 className="text-foreground text-sm font-semibold">{title}</h3>
             {extra && <div>{extra}</div>}
           </div>
         )}
@@ -77,12 +77,12 @@ function BillHeader({
                 field.span && field.span > 1 && `col-span-${field.span}`,
               )}
             >
-              <dt className="mb-1 text-xs font-medium text-muted-foreground">
+              <dt className="text-muted-foreground mb-1 text-xs font-medium">
                 {field.label}
               </dt>
-              <dd className="text-sm text-foreground break-words">
+              <dd className="text-foreground text-sm break-words">
                 {loading ? (
-                  <span className="inline-block h-4 w-24 animate-pulse rounded bg-muted" />
+                  <span className="bg-muted inline-block h-4 w-24 animate-pulse rounded" />
                 ) : (
                   field.value
                 )}
@@ -92,15 +92,15 @@ function BillHeader({
 
           {/* Empty state */}
           {visibleFields.length === 0 && !loading && (
-            <p className="col-span-full text-sm text-muted-foreground">
+            <p className="text-muted-foreground col-span-full text-sm">
               暂无单据信息
             </p>
           )}
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
-export { BillHeader }
-export type { BillHeaderProps, BillHeaderField }
+export { BillHeader };
+export type { BillHeaderProps, BillHeaderField };

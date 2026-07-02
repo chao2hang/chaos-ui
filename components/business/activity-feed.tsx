@@ -19,6 +19,15 @@ interface ActivityItem {
   variant?: "default" | "success" | "warning" | "destructive" | "info";
 }
 
+/**
+ * @component ActivityFeed
+ * @category business/ux
+ * @since 0.2.0
+ * @description Chronological activity feed with timeline layout and grouped by day / 按天分组的活动时间线
+ * @keywords activity, timeline, feed, history
+ * @example
+ * <ActivityFeed items={[{ user: "Alice", action: "created campaign", time: new Date().toISOString() }]} />
+ */
 function ActivityFeed({
   items = [],
   onLoadMore,
@@ -56,7 +65,7 @@ function ActivityFeed({
     if (groupItems.length === 0) return null;
     return (
       <div className="mb-6">
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h4 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
           {title}
         </h4>
         <Timeline>
@@ -77,7 +86,7 @@ function ActivityFeed({
                   <span className="font-medium">{item.user}</span>{" "}
                   <span className="text-muted-foreground">{item.action}</span>
                 </p>
-                <time className="text-xs text-muted-foreground">
+                <time className="text-muted-foreground text-xs">
                   {new Date(item.time).toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
@@ -92,7 +101,7 @@ function ActivityFeed({
   };
 
   return (
-    <div className={cn(className)}>
+    <div data-slot="activity-feed" className={cn(className)}>
       {renderGroup("Today", groups.today ?? [])}
       {renderGroup("Yesterday", groups.yesterday ?? [])}
       {renderGroup("Earlier", groups.earlier ?? [])}
@@ -101,13 +110,13 @@ function ActivityFeed({
           variant="outline"
           size="sm"
           onClick={onLoadMore}
-          className="w-full mt-2"
+          className="mt-2 w-full"
         >
           Load more
         </Button>
       )}
       {items.length === 0 && (
-        <p className="text-sm text-muted-foreground text-center py-8">
+        <p className="text-muted-foreground py-8 text-center text-sm">
           No activity yet.
         </p>
       )}

@@ -42,6 +42,15 @@ export interface AdvancedSearchProps extends Omit<
   onSaveSearch?: (values: AdvancedSearchValues) => void;
 }
 
+/**
+ * @component AdvancedSearch
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-field search form with saved search support and query filtering / 支持多字段过滤和保存搜索条件的高级搜索表单
+ * @keywords search, filter, saved-search, query, advanced
+ * @example
+ * <AdvancedSearch fields={[{ key: "status", label: "Status", options: [{ value: "active", label: "Active" }] }]} />
+ */
 export function AdvancedSearch({
   fields,
   savedSearches = [],
@@ -75,7 +84,7 @@ export function AdvancedSearch({
             {t("advancedSearch.label")}
           </Label>
           <div className="relative">
-            <SearchIcon className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2 size-4 -translate-y-1/2" />
             <Input
               id="advanced-search-query"
               className="pl-8"
@@ -110,7 +119,7 @@ export function AdvancedSearch({
       </div>
       {savedSearches.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {t("advancedSearch.saved")}
           </span>
           {savedSearches.map((saved) => (
@@ -119,7 +128,7 @@ export function AdvancedSearch({
               type="button"
               variant="ghost"
               size="sm"
-              className="h-auto rounded-full p-0 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="focus-visible:ring-ring/50 h-auto rounded-full p-0 outline-none focus-visible:ring-3"
               onClick={() => setValues(saved.values)}
             >
               <Badge variant="outline">{saved.label}</Badge>

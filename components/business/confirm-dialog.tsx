@@ -25,6 +25,15 @@ interface ConfirmDialogProps {
   icon?: React.ReactNode;
 }
 
+/**
+ * @component ConfirmDialog
+ * @category business/ux
+ * @since 0.2.0
+ * @description Confirmation dialog with title, description, and confirm/cancel actions, supporting destructive variant / 确认对话框，支持标题、描述和确认/取消操作，支持危险操作样式
+ * @keywords confirm, dialog, modal, destructive, prompt
+ * @example
+ * <ConfirmDialog open={true} title="Delete?" onConfirm={async () => {}} />
+ */
 export function ConfirmDialog({
   open,
   onOpenChange,
@@ -68,10 +77,14 @@ export function ConfirmDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent showCloseButton={false} className="sm:max-w-sm">
+      <DialogContent
+        data-slot="confirm-dialog"
+        showCloseButton={false}
+        className="sm:max-w-sm"
+      >
         <DialogHeader>
           <div className="flex items-start gap-3">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted">
+            <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
               {icon ?? <AlertTriangleIcon className="size-4" />}
             </div>
             <div className="flex flex-col gap-1.5">
@@ -109,6 +122,16 @@ interface ConfirmOptions {
   variant?: "default" | "destructive";
 }
 
+/**
+ * @component useConfirm
+ * @category business/ux
+ * @since 0.2.0
+ * @description Hook returning a Promise-based confirm function for programmatic confirmation dialogs / 返回 Promise 确认函数的 Hook，用于编程式调用确认对话框
+ * @keywords confirm, hook, promise, dialog, prompt
+ * @example
+ * const [confirm, close] = useConfirm();
+ * const ok = await confirm({ title: "Delete?" });
+ */
 export function useConfirm(): [
   (options: ConfirmOptions) => Promise<boolean>,
   () => void,
@@ -142,6 +165,15 @@ export function useConfirm(): [
   return [confirm, close as () => void] as const;
 }
 
+/**
+ * @component ConfirmDialogContainer
+ * @category business/ux
+ * @since 0.2.0
+ * @description Container component that wires ConfirmDialog with useConfirm hook state / 将 ConfirmDialog 与 useConfirm 状态连接的容器组件
+ * @keywords confirm, dialog, container, hook, bridge
+ * @example
+ * <ConfirmDialogContainer state={state} onClose={(result) => console.log(result)} />
+ */
 export function ConfirmDialogContainer({
   state,
   onClose,

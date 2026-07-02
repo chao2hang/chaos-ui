@@ -18,6 +18,17 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
+/**
+ * @component ErrorBoundary
+ * @category business/ux
+ * @since 0.2.0
+ * @description React error boundary with customizable fallback UI and retry support / React 错误边界组件，支持自定义降级 UI 和重试功能
+ * @keywords error, boundary, fallback, retry, resilience
+ * @example
+ * <ErrorBoundary fallback={<div>Something went wrong</div>}>
+ *   <App />
+ * </ErrorBoundary>
+ */
 export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState

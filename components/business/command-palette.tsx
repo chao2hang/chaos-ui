@@ -45,6 +45,15 @@ interface CommandPaletteProps {
 const flatten = (groups: CommandGroup[]): CommandItem[] =>
   groups.flatMap((g) => g.items);
 
+/**
+ * @component CommandPalette
+ * @category business/ux
+ * @since 0.2.0
+ * @description Keyboard-driven command palette (Cmd+K) with grouped items, search, and shortcut display / 键盘驱动的命令面板，支持分组、搜索和快捷键显示
+ * @keywords command, palette, search, keyboard, shortcut, cmdk
+ * @example
+ * <CommandPalette groups={[{ id: "actions", label: "Actions", items: [{ id: "new", label: "New", onSelect: () => {} }] }]} />
+ */
 export function CommandPalette({
   open,
   onOpenChange,
@@ -100,6 +109,7 @@ export function CommandPalette({
       {trigger && <DialogTrigger render={trigger} />}
       <DialogContent
         showCloseButton={false}
+        data-slot="command-palette"
         className="max-w-xl gap-0 overflow-hidden p-0 sm:max-w-xl"
       >
         <DialogTitle className="sr-only">
@@ -116,14 +126,14 @@ export function CommandPalette({
             <SearchIcon className="size-4 shrink-0 opacity-50" />
             <CommandPrimitive.Input
               placeholder={resolvedPlaceholder}
-              className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              className="placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
             />
             {showShortcut && (
               <KbdGroup className="ml-auto">{parseShortcut(shortcut)}</KbdGroup>
             )}
           </div>
           <CommandPrimitive.List className="max-h-80 overflow-y-auto p-1">
-            <CommandPrimitive.Empty className="px-3 py-8 text-center text-sm text-muted-foreground">
+            <CommandPrimitive.Empty className="text-muted-foreground px-3 py-8 text-center text-sm">
               {resolvedEmptyText}
             </CommandPrimitive.Empty>
             {groups.map((group) => (
@@ -139,13 +149,13 @@ export function CommandPalette({
                     {...(item.disabled !== undefined
                       ? { disabled: item.disabled }
                       : {})}
-                    className="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+                    className="data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
                   >
                     {item.icon}
                     <div className="flex-1 truncate">
                       <div className="truncate">{item.label}</div>
                       {item.description && (
-                        <div className="truncate text-xs text-muted-foreground">
+                        <div className="text-muted-foreground truncate text-xs">
                           {item.description}
                         </div>
                       )}
@@ -165,7 +175,7 @@ export function CommandPalette({
             ))}
           </CommandPrimitive.List>
           {allItems.length > 0 && (
-            <div className="flex items-center justify-between border-t px-3 py-2 text-[0.65rem] text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between border-t px-3 py-2 text-[0.65rem]">
               <span>
                 {t("commandPalette.totalItems", { count: allItems.length })}
               </span>

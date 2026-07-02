@@ -40,6 +40,7 @@ function PrintButton({
 
   return (
     <Button
+      data-slot="print-button"
       variant={variant}
       size={size}
       icon={icon ?? <PrinterIcon />}

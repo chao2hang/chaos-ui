@@ -42,6 +42,15 @@ type KanbanDragData = {
   type?: "card" | "column";
 };
 
+/**
+ * @component KanbanBoard
+ * @category business/ux
+ * @since 0.2.0
+ * @description Drag-and-drop Kanban board with sortable columns and cards, cross-column movement, and collapsible columns / 拖拽式看板，支持可排序列和卡片、跨列移动及可折叠列
+ * @keywords kanban, board, drag, drop, dnd, sortable, columns
+ * @example
+ * <KanbanBoard columns={[{ id: "todo", title: "Todo", items: [] }]} />
+ */
 function KanbanBoard({
   columns,
   onColumnsChange,
@@ -115,6 +124,7 @@ function KanbanBoard({
 
   return (
     <DndContext
+      data-slot="kanban-board"
       sensors={sensors}
       collisionDetection={closestCorners}
       onDragEnd={handleDragEnd}

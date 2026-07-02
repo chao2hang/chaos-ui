@@ -3,7 +3,11 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 /**
  * @component Mentions
@@ -98,7 +102,11 @@ function Mentions({
   };
 
   return (
-    <Popover open={open && options.length > 0} onOpenChange={setOpen}>
+    <Popover
+      open={open && options.length > 0}
+      onOpenChange={setOpen}
+      data-slot="mentions"
+    >
       <PopoverTrigger
         render={
           <Textarea
@@ -123,7 +131,7 @@ function Mentions({
             className={cn(
               "flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none",
               idx === highlightIndex && "bg-accent",
-              option.disabled && "opacity-50 pointer-events-none",
+              option.disabled && "pointer-events-none opacity-50",
             )}
             onClick={() => handleSelect(option)}
             onMouseEnter={() => setHighlightIndex(idx)}

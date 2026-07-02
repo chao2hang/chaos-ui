@@ -28,6 +28,15 @@ export interface AudienceSegmentBuilderProps {
   className?: string;
 }
 
+/**
+ * @component AudienceSegmentBuilder
+ * @category business/ux
+ * @since 0.2.0
+ * @description Compose audience groups from reusable segments and rule-based filters / 通过复用群体和规则筛选组合目标用户群
+ * @keywords audience, segment, filter, targeting, users
+ * @example
+ * <AudienceSegmentBuilder fields={[{ key: "country", label: "Country" }]} segments={[{ key: "vip", title: "VIP" }]} />
+ */
 export function AudienceSegmentBuilder({
   fields,
   segments,

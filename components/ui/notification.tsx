@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { XIcon, CheckCircleIcon, AlertCircleIcon, AlertTriangleIcon, InfoIcon } from "@/components/ui/icons";
+import {
+  XIcon,
+  CheckCircleIcon,
+  AlertCircleIcon,
+  AlertTriangleIcon,
+  InfoIcon,
+} from "@/components/ui/icons";
 
 type NotificationType = "info" | "success" | "warning" | "error";
 
@@ -24,9 +30,12 @@ const iconMap: Record<NotificationType, React.ReactNode> = {
 
 const typeStyles: Record<NotificationType, string> = {
   info: "bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:border-blue-900",
-  success: "bg-green-50 text-green-800 border-green-200 dark:bg-green-950 dark:text-green-200 dark:border-green-900",
-  warning: "bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-900",
-  error: "bg-red-50 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-200 dark:border-red-900",
+  success:
+    "bg-green-50 text-green-800 border-green-200 dark:bg-green-950 dark:text-green-200 dark:border-green-900",
+  warning:
+    "bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-900",
+  error:
+    "bg-red-50 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-200 dark:border-red-900",
 };
 
 const iconColor: Record<NotificationType, string> = {
@@ -36,6 +45,17 @@ const iconColor: Record<NotificationType, string> = {
   error: "text-red-600 dark:text-red-300",
 };
 
+/**
+ * @component Notification
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description A notification banner for displaying status messages with type variants / 状态通知横幅，支持信息、成功、警告、错误四种类型
+ * @keywords notification, alert, banner, toast, feedback, message
+ * @example
+ * <Notification type="success" title="Success" closable>
+ *   Operation completed successfully.
+ * </Notification>
+ */
 function Notification({
   type = "info",
   closable = true,
@@ -71,17 +91,15 @@ function Notification({
       <span className={cn("mt-0.5 shrink-0", iconColor[type])}>
         {icon ?? iconMap[type]}
       </span>
-      <div className="flex-1 min-w-0">
-        {title && (
-          <div className="mb-1 font-medium">{title}</div>
-        )}
+      <div className="min-w-0 flex-1">
+        {title && <div className="mb-1 font-medium">{title}</div>}
         <div>{children}</div>
       </div>
       {closable && (
         <button
           type="button"
           onClick={handleClose}
-          className="shrink-0 rounded-md p-0.5 opacity-70 hover:opacity-100 transition-opacity"
+          className="shrink-0 rounded-md p-0.5 opacity-70 transition-opacity hover:opacity-100"
           aria-label="Close"
         >
           <XIcon className="size-4" />

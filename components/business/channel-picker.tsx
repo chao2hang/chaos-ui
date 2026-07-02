@@ -14,12 +14,7 @@ import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 export type MarketingChannel =
-  | "email"
-  | "sms"
-  | "push"
-  | "social"
-  | "ads"
-  | "offline";
+  "email" | "sms" | "push" | "social" | "ads" | "offline";
 
 export interface ChannelOption {
   value: MarketingChannel;
@@ -57,6 +52,15 @@ const channelIcons: Record<
   offline: RadioTowerIcon,
 };
 
+/**
+ * @component ChannelPicker
+ * @category business/picker
+ * @since 0.2.0
+ * @description Grid-based marketing channel selector with icon buttons, supporting single or multiple selection / 营销渠道选择器，图标按钮网格布局，支持单选和多选
+ * @keywords channel, picker, marketing, email, sms, push, social, ads
+ * @example
+ * <ChannelPicker value="email" onChange={(v) => console.log(v)} />
+ */
 export function ChannelPicker({
   value,
   onChange,

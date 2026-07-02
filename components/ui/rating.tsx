@@ -21,6 +21,15 @@ const sizeMap = {
   lg: "size-7",
 } as const;
 
+/**
+ * @component Rating
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Star rating component with half-star and read-only support / 星级评分组件，支持半星和只读模式
+ * @keywords rating, star, score, review, half-star, evaluation
+ * @example
+ * <Rating defaultValue={3.5} max={5} allowHalf onChange={(v) => console.log(v)} />
+ */
 export function Rating({
   value,
   defaultValue,
@@ -89,7 +98,7 @@ export function Rating({
                 "transition-colors",
                 filled || half
                   ? "fill-yellow-400 text-yellow-400"
-                  : "fill-transparent text-muted-foreground/40",
+                  : "text-muted-foreground/40 fill-transparent",
                 iconClassName,
               )}
             />

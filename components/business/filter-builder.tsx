@@ -30,6 +30,15 @@ type FilterRule = {
   value: string;
 };
 
+/**
+ * @component FilterBuilder
+ * @category business/ux
+ * @since 0.2.0
+ * @description Visual query builder for constructing AND/OR filter rules with field, operator, and value inputs / 可视化查询构建器，通过字段、运算符和值输入构建 AND/OR 过滤规则
+ * @keywords filter, query, builder, search, where, condition
+ * @example
+ * <FilterBuilder fields={[{ key: "name", label: "Name" }]} onChange={handleChange} />
+ */
 function FilterBuilder({
   fields,
   onChange,
@@ -70,7 +79,7 @@ function FilterBuilder({
   };
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div data-slot="filter-builder" className={cn("space-y-3", className)}>
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium">{t("filterBuilder.where")}</span>
         <Select

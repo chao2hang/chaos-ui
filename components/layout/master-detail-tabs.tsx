@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui";
 
 interface MasterDetailTabsProps {
-  master: React.ReactNode
-  details: Record<string, { label: string; content: React.ReactNode }>
-  activeDetail?: string
-  onDetailChange?: (key: string) => void
-  masterWidth?: string
-  className?: string
+  master: React.ReactNode;
+  details: Record<string, { label: string; content: React.ReactNode }>;
+  activeDetail?: string;
+  onDetailChange?: (key: string) => void;
+  masterWidth?: string;
+  className?: string;
 }
 
 /**
@@ -28,17 +28,31 @@ function MasterDetailTabs({
   masterWidth = "40%",
   className,
 }: MasterDetailTabsProps) {
-  const detailKeys = Object.keys(details)
-  const [active, setActive] = React.useState(activeDetail || detailKeys[0] || "")
+  const detailKeys = Object.keys(details);
+  const [active, setActive] = React.useState(
+    activeDetail || detailKeys[0] || "",
+  );
 
   return (
-    <div className={cn("flex h-full flex-col gap-0 lg:flex-row", className)}>
-      <div className="shrink-0 overflow-auto border-r lg:w-[40%]" style={{ width: masterWidth }}>
+    <div
+      data-slot="master-detail-tabs"
+      className={cn("flex h-full flex-col gap-0 lg:flex-row", className)}
+    >
+      <div
+        className="shrink-0 overflow-auto border-r lg:w-[40%]"
+        style={{ width: masterWidth }}
+      >
         {master}
       </div>
 
       <div className="flex flex-1 flex-col overflow-hidden">
-        <Tabs value={active} onValueChange={(v) => { setActive(v); onDetailChange?.(v) }}>
+        <Tabs
+          value={active}
+          onValueChange={(v) => {
+            setActive(v);
+            onDetailChange?.(v);
+          }}
+        >
           <div className="border-b px-4 pt-2">
             <TabsList>
               {detailKeys.map((key) => (
@@ -49,15 +63,19 @@ function MasterDetailTabs({
             </TabsList>
           </div>
           {detailKeys.map((key) => (
-            <TabsContent key={key} value={key} className="flex-1 overflow-auto p-4 m-0">
+            <TabsContent
+              key={key}
+              value={key}
+              className="m-0 flex-1 overflow-auto p-4"
+            >
               {details[key]!.content}
             </TabsContent>
           ))}
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
 
-export { MasterDetailTabs }
-export type { MasterDetailTabsProps }
+export { MasterDetailTabs };
+export type { MasterDetailTabsProps };

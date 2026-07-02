@@ -156,7 +156,7 @@ function DictSelect({
   }
 
   return (
-    <div className={cn("w-full", className)} {...props}>
+    <div data-slot="dict-select" className={cn("w-full", className)} {...props}>
       <Select
         value={value !== undefined ? String(value) : undefined}
             onValueChange={(v) => {

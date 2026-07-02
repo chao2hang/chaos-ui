@@ -35,6 +35,20 @@ interface TourProps {
   className?: string;
 }
 
+/**
+ * @component Tour
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Step-by-step guided product tour overlay with spotlight, navigation, and localStorage persistence / 逐步引导式产品导览覆盖层，带有聚焦高亮、导航和 localStorage 持久化
+ * @keywords tour, onboarding, guide, walkthrough, spotlight, 导览, 引导
+ * @example
+ * <Tour
+ *   steps={[
+ *     { target: "#dashboard", title: "Dashboard", description: "Your overview" },
+ *   ]}
+ *   onComplete={() => console.log("tour done")}
+ * />
+ */
 export function Tour({
   steps,
   open,
@@ -136,7 +150,7 @@ export function Tour({
       />
       <div
         aria-hidden
-        className="fixed z-[9999] rounded-md ring-4 ring-primary/60 transition-all"
+        className="ring-primary/60 fixed z-[9999] rounded-md ring-4 transition-all"
         style={{
           top: rect.top - 4,
           left: rect.left - 4,
@@ -168,7 +182,7 @@ export function Tour({
           </div>
         </CardHeader>
         {step.description && (
-          <CardContent className="text-sm text-muted-foreground">
+          <CardContent className="text-muted-foreground text-sm">
             {step.description}
           </CardContent>
         )}

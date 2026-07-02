@@ -12,6 +12,17 @@ interface ResponsivePreviewProps {
   className?: string;
 }
 
+/**
+ * @component ResponsivePreview
+ * @category business/ux
+ * @since 0.2.0
+ * @description Preview content at mobile, tablet, or desktop viewport sizes in a framed container / 在移动端、平板或桌面视口尺寸的框架容器中预览内容
+ * @keywords responsive, preview, mobile, tablet, desktop, viewport
+ * @example
+ * <ResponsivePreview device="mobile">
+ *   <MyComponent />
+ * </ResponsivePreview>
+ */
 function ResponsivePreview({
   children,
   device = "desktop",
@@ -34,7 +45,7 @@ function ResponsivePreview({
   const size = deviceSizes[device];
 
   return (
-    <div className={cn("flex flex-col items-center gap-2", className)}>
+    <div data-slot="responsive-preview" className={cn("flex flex-col items-center gap-2", className)}>
       {showLabel && (
         <div className="text-xs text-muted-foreground font-medium">
           {size.label} ({size.width} × {size.height})

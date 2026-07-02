@@ -27,6 +27,19 @@ const sizeMap = {
   lg: "h-9 px-4 text-sm",
 } as const;
 
+/**
+ * @component SegmentedControl
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description A toggle-based segmented control for selecting one option from a set / 分段控制器，基于切换按钮从一组选项中选择一个
+ * @keywords segmented, control, toggle, switch, tabs, options, select
+ * @example
+ * <SegmentedControl
+ *   options={[{ value: "day", label: "Day" }, { value: "week", label: "Week" }]}
+ *   defaultValue="day"
+ *   onChange={(v) => console.log(v)}
+ * />
+ */
 export function SegmentedControl<T extends string>({
   options,
   value,
@@ -46,7 +59,7 @@ export function SegmentedControl<T extends string>({
       }}
       orientation={orientation}
       className={cn(
-        "inline-flex items-center rounded-md border bg-muted/30 p-0.5",
+        "bg-muted/30 inline-flex items-center rounded-md border p-0.5",
         orientation === "vertical" && "flex-col items-stretch",
         className,
       )}
@@ -57,7 +70,7 @@ export function SegmentedControl<T extends string>({
           value={opt.value}
           disabled={disabled || opt.disabled}
           className={cn(
-            "rounded-sm border-0 bg-transparent shadow-none transition-all data-[pressed]:bg-background data-[pressed]:shadow-xs",
+            "data-[pressed]:bg-background rounded-sm border-0 bg-transparent shadow-none transition-all data-[pressed]:shadow-xs",
             sizeMap[size],
           )}
         >

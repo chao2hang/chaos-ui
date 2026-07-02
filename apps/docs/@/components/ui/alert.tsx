@@ -54,7 +54,7 @@ function AlertTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingEle
   return (
     <h5
       data-slot="alert-title"
-      className={cn("font-medium leading-5 tracking-tight", className)}
+      className={cn("font-medium leading-5 tracking-tight text-current", className)}
       {...props}
     />
   )

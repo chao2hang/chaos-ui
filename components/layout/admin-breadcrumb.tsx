@@ -59,7 +59,9 @@ function AdminBreadcrumb({
     let currentPath = "";
     segments.forEach((segment) => {
       currentPath += `/${segment}`;
-      const label = routeLabels[segment] ?? segment.charAt(0).toUpperCase() + segment.slice(1);
+      const label =
+        routeLabels[segment] ??
+        segment.charAt(0).toUpperCase() + segment.slice(1);
       result.push({ label, href: currentPath });
     });
 
@@ -74,11 +76,17 @@ function AdminBreadcrumb({
   if (computedItems.length === 0) return null;
 
   return (
-    <Breadcrumb className={cn(className)} {...props}>
+    <Breadcrumb
+      data-slot="admin-breadcrumb"
+      className={cn(className)}
+      {...props}
+    >
       <BreadcrumbList>
         {computedItems.map((item, index) => (
           <React.Fragment key={index}>
-            {index > 0 && <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>}
+            {index > 0 && (
+              <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>
+            )}
             <BreadcrumbItem>
               {item.href ? (
                 <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>

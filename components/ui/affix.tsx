@@ -47,9 +47,8 @@ function Affix({
 }: AffixProps) {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [affixed, setAffixed] = React.useState(false);
-  const [placeholderStyle, setPlaceholderStyle] = React.useState<
-    React.CSSProperties
-  >({});
+  const [placeholderStyle, setPlaceholderStyle] =
+    React.useState<React.CSSProperties>({});
   // Hold latest target fn in a ref so the scroll effect doesn't re-bind every
   // render (target is a function whose identity changes inline).
   const targetRef = React.useRef(target);
@@ -126,7 +125,12 @@ function Affix({
     : {};
 
   return (
-    <div ref={wrapperRef} className={wrapperClassName} style={placeholderStyle}>
+    <div
+      ref={wrapperRef}
+      className={wrapperClassName}
+      style={placeholderStyle}
+      data-slot="affix"
+    >
       <div className={cn(affixed && className)} style={affixStyle}>
         {children}
       </div>

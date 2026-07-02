@@ -40,6 +40,15 @@ interface KPIPanelProps
   columns?: 1 | 2 | 3 | 4;
 }
 
+/**
+ * @component KPIPanel
+ * @category ui/shell
+ * @since 0.2.0
+ * @description A dashboard panel that renders a configurable grid of KPI cards with optional trend indicators / 仪表盘面板，渲染可配置的 KPI 卡片网格，支持趋势指示器
+ * @keywords kpi, dashboard, panel, metrics, trend, analytics
+ * @example
+ * <KPIPanel columns={3} items={[{ label: "Revenue", value: "$12,345", change: 12.5, trend: "up" }]} />
+ */
 function KPIPanel({
   className,
   size,
@@ -67,6 +76,15 @@ function KPIPanel({
   );
 }
 
+/**
+ * @component KPICard
+ * @category ui/shell
+ * @since 0.2.0
+ * @description A single KPI metric card displaying a label, value, trend icon, and percentage change / 单个 KPI 指标卡片，显示标签、数值、趋势图标和百分比变化
+ * @keywords kpi, card, metric, trend, indicator
+ * @example
+ * <KPICard item={{ label: "Orders", value: 256, change: 8.3, trend: "up" }} size="default" />
+ */
 function KPICard({
   item,
   size,
@@ -94,7 +112,7 @@ function KPICard({
       className={cn(kpiCardVariants({ size: size ?? undefined }))}
     >
       <div className="flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">{item.label}</p>
+        <p className="text-muted-foreground text-sm">{item.label}</p>
         {item.icon && (
           <span className="text-muted-foreground">{item.icon}</span>
         )}
@@ -124,7 +142,7 @@ function KPICard({
             </span>
           )}
           {item.changeLabel && (
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground text-xs">
               {item.changeLabel}
             </span>
           )}

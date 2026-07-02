@@ -21,6 +21,15 @@ export interface InlineEditProps extends Omit<
   renderValue?: (value: string) => React.ReactNode;
 }
 
+/**
+ * @component InlineEdit
+ * @category business/ux
+ * @since 0.2.0
+ * @description Inline text editing with click-to-edit, validation, and save/cancel actions; supports single-line and multiline modes / 内联文本编辑组件，支持点击编辑、验证和保存/取消操作，兼容单行和多行模式
+ * @keywords inline, edit, text, input, validation
+ * @example
+ * <InlineEdit value="Hello" onSave={(v) => console.log(v)} />
+ */
 export function InlineEdit({
   value,
   placeholder = "Empty",

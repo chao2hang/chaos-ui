@@ -3,7 +3,11 @@
 import * as React from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 /**
  * @component Cascader
@@ -28,13 +32,19 @@ interface CascaderOption {
 
 interface CascaderProps {
   value?: (string | number)[];
-  onChange?: (value: (string | number)[], selectedOptions: CascaderOption[]) => void;
+  onChange?: (
+    value: (string | number)[],
+    selectedOptions: CascaderOption[],
+  ) => void;
   options: CascaderOption[];
   placeholder?: string;
   disabled?: boolean;
   className?: string;
   /** Display mode / 展示模式 */
-  displayRender?: (labels: string[], selectedOptions: CascaderOption[]) => string;
+  displayRender?: (
+    labels: string[],
+    selectedOptions: CascaderOption[],
+  ) => string;
   /**
    * Fire onChange when selecting a non-leaf (intermediate) level too.
    * / 选择任意层（含中间层）都触发 onChange，而非仅叶子节点
@@ -53,7 +63,9 @@ function Cascader({
   changeOnSelect = false,
 }: CascaderProps) {
   const [open, setOpen] = React.useState(false);
-  const [activeColumns, setActiveColumns] = React.useState<CascaderOption[][]>([options]);
+  const [activeColumns, setActiveColumns] = React.useState<CascaderOption[][]>([
+    options,
+  ]);
 
   // Keep latest options in a ref so the effect below doesn't depend on the
   // `options` array reference (inline arrays recreate every render → infinite
@@ -105,10 +117,7 @@ function Cascader({
     ? displayRender(selectedLabels, getSelectedOptions(value, options))
     : selectedLabels.join(" / ") || placeholder;
 
-  const handleSelect = (
-    colIndex: number,
-    option: CascaderOption,
-  ) => {
+  const handleSelect = (colIndex: number, option: CascaderOption) => {
     const newValue = value.slice(0, colIndex);
     newValue[colIndex] = option.value;
 
@@ -118,35 +127,41 @@ function Cascader({
       setActiveColumns(newCols);
       // changeOnSelect: also emit the value up to this (intermediate) level.
       if (changeOnSelect) {
-        onChange?.(newValue.slice(0, colIndex + 1), getSelectedOptions(newValue.slice(0, colIndex + 1), options));
+        onChange?.(
+          newValue.slice(0, colIndex + 1),
+          getSelectedOptions(newValue.slice(0, colIndex + 1), options),
+        );
       }
       // Don't close — user needs to pick the next level
     } else {
       // Leaf node — close and fire onChange
       setActiveColumns(activeColumns.slice(0, colIndex + 1));
-      onChange?.(newValue.slice(0, colIndex + 1), getSelectedOptions(newValue.slice(0, colIndex + 1), options));
+      onChange?.(
+        newValue.slice(0, colIndex + 1),
+        getSelectedOptions(newValue.slice(0, colIndex + 1), options),
+      );
       setOpen(false);
     }
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} data-slot="cascader">
       <PopoverTrigger
         render={
           <button
             type="button"
             disabled={disabled}
             className={cn(
-              "flex h-9 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 text-sm",
+              "border-input flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 text-sm",
               !selectedLabels.length && "text-muted-foreground",
-              disabled && "opacity-50 cursor-not-allowed",
+              disabled && "cursor-not-allowed opacity-50",
               className,
             )}
           />
         }
       >
         <span className="truncate">{displayText}</span>
-        <ChevronRight className="size-4 opacity-50 rotate-90" />
+        <ChevronRight className="size-4 rotate-90 opacity-50" />
       </PopoverTrigger>
       <PopoverContent align="start" className="w-auto p-0">
         <div className="flex min-w-[480px]">
@@ -163,15 +178,15 @@ function Cascader({
                     type="button"
                     disabled={option.disabled}
                     className={cn(
-                      "flex w-full items-center justify-between px-3 py-2 text-sm hover:bg-accent",
+                      "hover:bg-accent flex w-full items-center justify-between px-3 py-2 text-sm",
                       isSelected && "bg-accent font-medium",
-                      option.disabled && "opacity-50 pointer-events-none",
+                      option.disabled && "pointer-events-none opacity-50",
                     )}
                     onClick={() => handleSelect(colIdx, option)}
                   >
                     <span className="truncate">{option.label}</span>
                     {option.children?.length && (
-                      <ChevronLeft className="size-3.5 opacity-40 rotate-180" />
+                      <ChevronLeft className="size-3.5 rotate-180 opacity-40" />
                     )}
                   </button>
                 );

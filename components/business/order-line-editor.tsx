@@ -201,7 +201,7 @@ function OrderLineEditor({
   );
 
   return (
-    <div className={cn("w-full", className)} {...props}>
+    <div data-slot="order-line-editor" className={cn("w-full", className)} {...props}>
       <LineEditor
         columns={columns}
         data={data}

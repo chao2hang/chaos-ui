@@ -49,7 +49,7 @@ function StatCardRow({ cards, columns, className }: StatCardRowProps) {
   }
 
   return (
-    <div className={cn("grid gap-4", colClasses, className)}>
+    <div data-slot="stat-card-row" className={cn("grid gap-4", colClasses, className)}>
       {cards.map((card, index) => (
         <Card
           key={index}

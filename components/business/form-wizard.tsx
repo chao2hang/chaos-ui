@@ -15,6 +15,15 @@ type WizardRenderContext = {
   errors: Record<string, string>;
 };
 
+/**
+ * @component FormWizard
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-step form wizard with stepper navigation, per-step validation, and progressive data collection / 多步骤表单向导，支持步骤导航、逐步验证和渐进式数据收集
+ * @keywords form, wizard, multi-step, stepper, validation
+ * @example
+ * <FormWizard steps={[{ title: "Step 1", render: (ctx) => <Input onChange={e => ctx.updateField("name", e.target.value)} /> }]} />
+ */
 function FormWizard({
   steps,
   onComplete,
@@ -71,7 +80,7 @@ function FormWizard({
   };
 
   return (
-    <div className={cn("space-y-6", className)}>
+    <div data-slot="form-wizard" className={cn("space-y-6", className)}>
       <Stepper activeStep={currentStep}>
         {steps.map((s) => (
           <Step key={s.title}>{s.title}</Step>

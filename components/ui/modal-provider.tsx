@@ -52,11 +52,11 @@ import {
 } from "@/components/ui/icons";
 
 const kindIcons: Record<string, React.ReactNode> = {
-  confirm: <AlertCircleIcon className="size-5 text-primary" />,
+  confirm: <AlertCircleIcon className="text-primary size-5" />,
   info: <InfoIcon className="size-5 text-blue-500" />,
   warning: <TriangleAlertIcon className="size-5 text-amber-500" />,
   success: <CircleCheckIcon className="size-5 text-emerald-500" />,
-  error: <OctagonXIcon className="size-5 text-destructive" />,
+  error: <OctagonXIcon className="text-destructive size-5" />,
 };
 
 const kindOkText: Record<string, string> = {
@@ -135,7 +135,9 @@ function ImperativeModal({ config }: { config: ImperativeModalConfig }) {
             </Button>
           )}
           <Button
-            variant={config.okVariant === "destructive" ? "destructive" : "default"}
+            variant={
+              config.okVariant === "destructive" ? "destructive" : "default"
+            }
             onClick={handleOk}
             disabled={loading}
           >
@@ -151,10 +153,10 @@ export function ModalProvider() {
   const modals = useImperativeModals();
 
   return (
-    <>
+    <div data-slot="modal-provider">
       {modals.map((config) => (
         <ImperativeModal key={config.id} config={config} />
       ))}
-    </>
+    </div>
   );
 }

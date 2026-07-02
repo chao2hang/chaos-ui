@@ -23,6 +23,20 @@ function useResizable() {
   return ctx;
 }
 
+/**
+ * @component ResizablePanelGroup
+ * @category ui/layout
+ * @since 0.2.0
+ * @description Container that manages resizable panel groups with drag handles in horizontal or vertical orientation / 可调整大小的面板组容器，支持水平和垂直方向的拖拽分隔
+ * @keywords resizable, panel, layout, split, drag, resize
+ * @example
+ * <ResizablePanelGroup direction="horizontal">
+ *   <ResizablePanel defaultSize={30}>
+ *     <ResizableHandle />
+ *   </ResizablePanel>
+ *   <ResizablePanel defaultSize={70} />
+ * </ResizablePanelGroup>
+ */
 function ResizablePanelGroup({
   direction = "horizontal",
   className,
@@ -71,6 +85,17 @@ interface ResizablePanelProps extends React.ComponentProps<"div"> {
   onResize?: (size: number) => void;
 }
 
+/**
+ * @component ResizablePanel
+ * @category ui/layout
+ * @since 0.2.0
+ * @description A resizable panel within a ResizablePanelGroup with configurable size constraints and collapsible support / 可调整大小的面板，支持尺寸约束和折叠功能
+ * @keywords resizable, panel, collapsible, min-size, max-size, layout
+ * @example
+ * <ResizablePanel defaultSize={50} minSize={20} maxSize={80} collapsible>
+ *   Content
+ * </ResizablePanel>
+ */
 function ResizablePanel({
   defaultSize = 50,
   minSize = 10,
@@ -172,6 +197,15 @@ function useResizableHandle() {
   return ctx;
 }
 
+/**
+ * @component ResizableHandle
+ * @category ui/layout
+ * @since 0.2.0
+ * @description Draggable handle separating resizable panels with double-click collapse/expand support / 可拖拽的分隔手柄，支持双击折叠/展开面板
+ * @keywords resizable, handle, drag, divider, splitter, collapse
+ * @example
+ * <ResizableHandle withHandle />
+ */
 function ResizableHandle({
   withHandle = false,
   className,
@@ -239,9 +273,9 @@ function ResizableHandle({
       onPointerDown={onPointerDown}
       onDoubleClick={onDoubleClick}
       className={cn(
-        "relative flex shrink-0 items-center justify-center bg-border transition-colors hover:bg-primary/50 active:bg-primary",
+        "bg-border hover:bg-primary/50 active:bg-primary relative flex shrink-0 items-center justify-center transition-colors",
         direction === "horizontal"
-          ? "w-px h-full cursor-col-resize"
+          ? "h-full w-px cursor-col-resize"
           : "h-px w-full cursor-row-resize",
         className,
       )}
@@ -250,13 +284,13 @@ function ResizableHandle({
       {withHandle && (
         <div
           className={cn(
-            "z-10 flex items-center justify-center rounded-sm border bg-background shadow-xs",
+            "bg-background z-10 flex items-center justify-center rounded-sm border shadow-xs",
             direction === "horizontal" ? "h-6 w-2.5" : "h-2.5 w-6",
           )}
         >
           <div
             className={cn(
-              "rounded-sm bg-muted-foreground/50",
+              "bg-muted-foreground/50 rounded-sm",
               direction === "horizontal" ? "h-3 w-0.5" : "h-0.5 w-3",
             )}
           />

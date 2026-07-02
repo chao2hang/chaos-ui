@@ -164,7 +164,7 @@ function LineEditor({
   }
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div data-slot="line-editor" className={cn("space-y-2", className)}>
       <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>

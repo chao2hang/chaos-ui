@@ -42,6 +42,13 @@ interface TreeSelectProps {
   className?: string;
 }
 
+/**
+ * @component TreeSelectItem
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Internal recursive tree node renderer with expand/collapse and selection / 内部递归树节点渲染器，支持展开/折叠和选中
+ * @keywords tree, select, item, node, 树选项
+ */
 function TreeSelectItem({
   node,
   level = 0,
@@ -68,9 +75,9 @@ function TreeSelectItem({
     <div>
       <div
         className={cn(
-          "flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-muted transition-colors",
+          "hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 transition-colors",
           isSelected && "bg-muted",
-          isDisabled && "opacity-50 cursor-not-allowed",
+          isDisabled && "cursor-not-allowed opacity-50",
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         onClick={() => !isDisabled && onSelect(node)}
@@ -97,7 +104,7 @@ function TreeSelectItem({
           <div className="size-4" />
         )}
         {multiple && <Checkbox checked={isSelected} disabled={isDisabled} />}
-        <span className="shrink-0 text-muted-foreground">
+        <span className="text-muted-foreground shrink-0">
           {node.icon ||
             (hasChildren ? (
               <FolderIcon className="size-4" />
@@ -105,7 +112,7 @@ function TreeSelectItem({
               <FileIcon className="size-4" />
             ))}
         </span>
-        <span className="flex-1 text-sm truncate">{node.label}</span>
+        <span className="flex-1 truncate text-sm">{node.label}</span>
       </div>
       {hasChildren && isExpanded && (
         <div>
@@ -138,6 +145,20 @@ function findNodeById(nodes: TreeNode[], id: string): TreeNode | undefined {
   return undefined;
 }
 
+/**
+ * @component TreeSelect
+ * @category ui/navigation
+ * @since 0.2.0
+ * @description Dropdown tree picker with search, single/multi-select, and badge display / 下拉树选择器，支持搜索、单选/多选和标签显示
+ * @keywords tree, select, dropdown, picker, hierarchy, 树选择器
+ * @example
+ * <TreeSelect
+ *   data={treeData}
+ *   value={selected}
+ *   onChange={setSelected}
+ *   multiple
+ * />
+ */
 function TreeSelect({
   value: controlledValue,
   defaultValue,
@@ -238,8 +259,8 @@ function TreeSelect({
           render={
             <div
               className={cn(
-                "flex min-h-8 w-full items-center gap-1 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors",
-                "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
+                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
                 disabled && "cursor-not-allowed opacity-50",
@@ -259,7 +280,7 @@ function TreeSelect({
                         e.stopPropagation();
                         handleRemove(id);
                       }}
-                      className="ml-0.5 rounded-full hover:bg-muted"
+                      className="hover:bg-muted ml-0.5 rounded-full"
                     >
                       <XIcon className="size-3" />
                       <span className="sr-only">Remove</span>
@@ -269,7 +290,7 @@ function TreeSelect({
               ))}
             </div>
           ) : (
-            <span className="flex-1 text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground flex-1">{placeholder}</span>
           )}
           {value.length > 0 && !disabled && (
             <Button
@@ -288,7 +309,7 @@ function TreeSelect({
             <DialogTitle>Select</DialogTitle>
           </DialogHeader>
           <div className="relative">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -310,15 +331,15 @@ function TreeSelect({
                 />
               ))}
               {filteredData.length === 0 && (
-                <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                  <FolderIcon className="size-8 mb-2" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                  <FolderIcon className="mb-2 size-8" />
                   <p className="text-sm">No items found</p>
                 </div>
               )}
             </div>
           </ScrollArea>
           {multiple && (
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between text-sm">
               <span>{value.length} item(s) selected</span>
               {maxCount && <span>Max: {maxCount}</span>}
             </div>

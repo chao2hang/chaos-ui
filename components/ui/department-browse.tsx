@@ -80,6 +80,13 @@ const defaultDepartments: Department[] = [
   },
 ];
 
+/**
+ * @component DepartmentTreeItem
+ * @category ui/user
+ * @since 0.2.0
+ * @description Internal recursive tree item for rendering a department node with expand/collapse and checkbox / 内部递归树项，渲染带展开/折叠和复选框的部门节点
+ * @keywords department, tree, item, internal, recursive
+ */
 function DepartmentTreeItem({
   department,
   selectedIds,
@@ -99,7 +106,7 @@ function DepartmentTreeItem({
     <div>
       <div
         className={cn(
-          "flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-muted",
+          "hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5",
           isSelected && "bg-muted",
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
@@ -126,11 +133,11 @@ function DepartmentTreeItem({
           <div className="size-4" />
         )}
         <Checkbox checked={isSelected} />
-        <BuildingIcon className="size-4 text-muted-foreground" />
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium truncate">{department.name}</p>
+        <BuildingIcon className="text-muted-foreground size-4" />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium">{department.name}</p>
           {department.code && (
-            <p className="text-xs text-muted-foreground">{department.code}</p>
+            <p className="text-muted-foreground text-xs">{department.code}</p>
           )}
         </div>
       </div>
@@ -151,6 +158,20 @@ function DepartmentTreeItem({
   );
 }
 
+/**
+ * @component DepartmentBrowse
+ * @category ui/user
+ * @since 0.2.0
+ * @description Department tree picker with search, single/multiple selection, and hierarchical tree view / 部门树选择器，支持搜索、单选/多选和层级树视图
+ * @keywords department, browse, tree, picker, organization, hierarchy
+ * @example
+ * <DepartmentBrowse
+ *   departments={departments}
+ *   value={selected}
+ *   onChange={setSelected}
+ *   multiple
+ * />
+ */
 function DepartmentBrowse({
   value: controlledValue,
   defaultValue,
@@ -245,8 +266,8 @@ function DepartmentBrowse({
           render={
             <div
               className={cn(
-                "flex min-h-8 w-full items-center gap-1 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors",
-                "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
+                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
                 disabled && "cursor-not-allowed opacity-50",
@@ -267,7 +288,7 @@ function DepartmentBrowse({
                         e.stopPropagation();
                         handleRemove(dept.id);
                       }}
-                      className="ml-0.5 rounded-full hover:bg-muted"
+                      className="hover:bg-muted ml-0.5 rounded-full"
                     >
                       <XIcon className="size-3" />
                       <span className="sr-only">Remove</span>
@@ -277,7 +298,7 @@ function DepartmentBrowse({
               ))}
             </div>
           ) : (
-            <span className="flex-1 text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground flex-1">{placeholder}</span>
           )}
           {value.length > 0 && !disabled && (
             <Button
@@ -296,7 +317,7 @@ function DepartmentBrowse({
             <DialogTitle>Select Department</DialogTitle>
           </DialogHeader>
           <div className="relative">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -315,15 +336,15 @@ function DepartmentBrowse({
                 />
               ))}
               {filteredDepartments.length === 0 && (
-                <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                  <BuildingIcon className="size-8 mb-2" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                  <BuildingIcon className="mb-2 size-8" />
                   <p className="text-sm">No departments found</p>
                 </div>
               )}
             </div>
           </ScrollArea>
           {multiple && (
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between text-sm">
               <span>{value.length} department(s) selected</span>
               {maxCount && <span>Max: {maxCount}</span>}
             </div>

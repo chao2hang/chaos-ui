@@ -535,3 +535,15 @@ export { Message } from "./message";
 export type { MessageProps, MessageVariant } from "./message";
 export { Direction } from "./direction";
 export type { DirectionProps, DirectionValue } from "./direction";
+
+// ─── P0/P1 new UI components ─────────────────────────────────────
+export { SplitButton } from "./split-button";
+export type { SplitButtonProps } from "./split-button";
+export { SignaturePad } from "./signature-pad";
+export type { SignaturePadProps, SignaturePadHandle } from "./signature-pad";
+export { IconPicker } from "./icon-picker";
+export type { IconPickerProps, IconItem } from "./icon-picker";
+export { NumberTicker } from "./number-ticker";
+export type { NumberTickerProps } from "./number-ticker";
+export { KeyboardShortcutDialog } from "./keyboard-shortcut-dialog";
+export type { KeyboardShortcutDialogProps, ShortcutGroup, ShortcutItem } from "./keyboard-shortcut-dialog";

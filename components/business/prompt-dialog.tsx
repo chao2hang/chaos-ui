@@ -26,6 +26,15 @@ interface PromptDialogProps {
   inputType?: "text" | "email" | "password" | "number";
 }
 
+/**
+ * @component PromptDialog
+ * @category business/ux
+ * @since 0.2.0
+ * @description Modal dialog for collecting a single text input from the user / 模态对话框，用于收集用户的单行文本输入
+ * @keywords prompt, dialog, input, modal, confirm
+ * @example
+ * <PromptDialog open={open} onOpenChange={setOpen} onConfirm={(value) => console.log(value)} />
+ */
 export function PromptDialog({
   open,
   onOpenChange,
@@ -47,7 +56,7 @@ export function PromptDialog({
   const resolvedCancelText =
     cancelText === "取消" ? t("promptDialog.cancel") : cancelText;
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog data-slot="prompt-dialog" open={open} onOpenChange={onOpenChange}>
       {open && (
         <PromptDialogBody
           title={resolvedTitle}
@@ -67,6 +76,13 @@ export function PromptDialog({
   );
 }
 
+/**
+ * @component PromptDialogBody
+ * @category business/ux
+ * @since 0.2.0
+ * @description Internal body component for PromptDialog rendering the input form / PromptDialog 的内部表单渲染组件
+ * @keywords prompt, dialog, form, input, internal
+ */
 function PromptDialogBody({
   title,
   description,

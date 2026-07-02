@@ -83,6 +83,15 @@ function getPresets(
   ];
 }
 
+/**
+ * @component DateRangePicker
+ * @category business/picker
+ * @since 0.2.0
+ * @description Calendar-based date range picker with preset ranges and multi-month view / 基于日历的日期范围选择器，支持预设范围和多月视图
+ * @keywords date, range, picker, calendar, preset
+ * @example
+ * <DateRangePicker value={range} onChange={setRange} />
+ */
 export function DateRangePicker({
   value,
   onChange,

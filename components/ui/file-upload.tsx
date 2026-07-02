@@ -10,6 +10,15 @@ import {
   AlertCircleIcon,
 } from "@/components/ui/icons";
 
+/**
+ * @component FileUpload
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Drag-and-drop file upload area with accept and max size constraints / 拖放文件上传区域，支持文件类型和大小限制
+ * @keywords file, upload, drag, drop, dropzone
+ * @example
+ * <FileUpload onDrop={(files) => console.log(files)} maxFiles={5} />
+ */
 function FileUpload({
   onDrop,
   accept,
@@ -69,6 +78,15 @@ function FileUpload({
   );
 }
 
+/**
+ * @component FileList
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Displays a list of uploaded files with status, progress, and remove action / 显示已上传文件列表，含状态、进度和移除操作
+ * @keywords file, list, upload, status, progress
+ * @example
+ * <FileList files={files} onRemove={(i) => removeFile(i)} />
+ */
 function FileList({
   files = [],
   onRemove,
@@ -128,10 +146,14 @@ export { FileUpload, FileList };
 // ─── PictureWall / PictureCard ────────────────────────────────────────
 
 /**
+ * @component PictureWall
  * @category ui/data-entry
- * @since 0.8.0
+ * @since 0.2.0
+ * @description Image upload grid showing thumbnails with upload progress and remove actions / 图片上传网格，展示缩略图及上传进度和删除操作
+ * @keywords picture, upload, image, grid, gallery, thumbnail
+ * @example
+ * <PictureWall fileList={images} onChange={setImages} maxCount={8} />
  */
-
 export interface UploadFile {
   uid: string;
   name: string;
@@ -159,6 +181,15 @@ function nextUid() {
   return `upload-${++_uid}-${Date.now()}`;
 }
 
+/**
+ * @component PictureWall
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Image upload grid showing thumbnails with upload progress and remove actions / 图片上传网格，展示缩略图及上传进度和删除操作
+ * @keywords picture, upload, image, grid, gallery, thumbnail
+ * @example
+ * <PictureWall fileList={images} onChange={setImages} maxCount={8} />
+ */
 function PictureWall({
   fileList = [],
   onChange,
@@ -282,6 +313,15 @@ function PictureWall({
   );
 }
 
+/**
+ * @component PictureCard
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Single-image upload card with preview, hover actions, and upload progress / 单图上传卡片，支持预览、悬停操作和上传进度
+ * @keywords picture, card, upload, image, single, preview
+ * @example
+ * <PictureCard fileList={images} onChange={setImages} />
+ */
 // PictureCard reuses PictureWallProps directly — no additional props yet
 function PictureCard({
   fileList = [],

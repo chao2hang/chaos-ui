@@ -40,6 +40,15 @@ const stepIndex: Record<BulkImportStep, number> = {
   complete: 3,
 };
 
+/**
+ * @component BulkImportWizard
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-step import wizard with upload, field mapping, validation preview, and completion steps / 多步骤批量导入向导，包含上传、字段映射、校验和完成步骤
+ * @keywords import, bulk, wizard, upload, mapping, validation
+ * @example
+ * <BulkImportWizard step="upload" onUpload={() => {}} onContinue={() => {}} />
+ */
 export function BulkImportWizard({
   step = "upload",
   filename,
@@ -68,12 +77,12 @@ export function BulkImportWizard({
 
       {step === "upload" && (
         <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed p-8 text-center">
-          <UploadIcon className="size-8 text-muted-foreground" />
+          <UploadIcon className="text-muted-foreground size-8" />
           <div>
             <p className="text-sm font-medium">
               {t("bulkImportWizard.uploadTitle")}
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {t("bulkImportWizard.uploadDescription")}
             </p>
           </div>
@@ -86,7 +95,7 @@ export function BulkImportWizard({
       {step === "mapping" && (
         <div className="space-y-3">
           <div className="flex items-center gap-2 text-sm">
-            <FileSpreadsheetIcon className="size-4 text-muted-foreground" />
+            <FileSpreadsheetIcon className="text-muted-foreground size-4" />
             <span>{filename ?? "audience-import.csv"}</span>
           </div>
           <div className="grid gap-2">
@@ -116,7 +125,7 @@ export function BulkImportWizard({
                 className="flex items-center justify-between gap-3 p-3 text-sm"
               >
                 <span>Row {row.row}</span>
-                <span className="flex-1 text-muted-foreground">
+                <span className="text-muted-foreground flex-1">
                   {row.message}
                 </span>
                 <Badge
@@ -138,12 +147,12 @@ export function BulkImportWizard({
 
       {step === "complete" && (
         <div className="flex flex-col items-center justify-center gap-3 rounded-lg border p-8 text-center">
-          <CheckCircle2Icon className="size-10 text-success" />
+          <CheckCircle2Icon className="text-success size-10" />
           <div>
             <p className="text-sm font-medium">
               {t("bulkImportWizard.importComplete")}
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {t("bulkImportWizard.recordsImported", {
                 count: importedCount ?? 0,
               })}

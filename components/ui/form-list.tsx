@@ -26,6 +26,15 @@ interface FormListProps<T extends FormListItem> {
   className?: string;
 }
 
+/**
+ * @component FormList
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description A dynamic form list allowing users to add, remove, and optionally reorder repeated form items / 动态表单列表，允许用户添加、删除并可选择性地对重复的表单项进行排序
+ * @keywords form, list, dynamic, add, remove, sortable
+ * @example
+ * <FormList renderItem={(item, index) => <Input placeholder={`Item ${index + 1}`} />} />
+ */
 function FormList<T extends FormListItem>({
   value: controlledValue,
   defaultValue = [],
@@ -83,13 +92,13 @@ function FormList<T extends FormListItem>({
               <span className="sr-only">Drag to reorder</span>
             </Button>
           )}
-          <div className="flex-1 min-w-0">{renderItem(item, index)}</div>
+          <div className="min-w-0 flex-1">{renderItem(item, index)}</div>
           {!disabled && canRemove && (
             <Button
               variant="ghost"
               size="icon-xs"
               onClick={() => handleRemove(index)}
-              className="mt-1 shrink-0 text-muted-foreground hover:text-destructive"
+              className="text-muted-foreground hover:text-destructive mt-1 shrink-0"
             >
               <TrashIcon className="size-3" />
               <span className="sr-only">Remove item</span>
@@ -104,7 +113,7 @@ function FormList<T extends FormListItem>({
           onClick={handleAdd}
           className="w-full"
         >
-          <PlusIcon className="size-4 mr-1" />
+          <PlusIcon className="mr-1 size-4" />
           {addButtonText}
         </Button>
       )}

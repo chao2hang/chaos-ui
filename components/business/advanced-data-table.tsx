@@ -55,6 +55,15 @@ interface AdvancedDataTableProps {
   className?: string;
 }
 
+/**
+ * @component AdvancedDataTable
+ * @category business/data
+ * @since 0.2.0
+ * @description Searchable, sortable, paginated data table with row selection and column visibility controls / 支持搜索、排序、分页、行选择和列可见性控制的数据表格
+ * @keywords data-table, pagination, sorting, filtering, column-visibility, selection
+ * @example
+ * <AdvancedDataTable columns={[{ key: "name", header: "Name" }]} data={[{ name: "Item" }]} />
+ */
 function AdvancedDataTable({
   columns,
   data,
@@ -139,11 +148,11 @@ function AdvancedDataTable({
   };
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div data-slot="advanced-data-table" className={cn("space-y-3", className)}>
       <div className="flex items-center gap-2">
         {searchable && (
-          <div className="relative flex-1 max-w-sm">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="relative max-w-sm flex-1">
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               placeholder={searchPlaceholder}
               value={search}
@@ -151,13 +160,13 @@ function AdvancedDataTable({
                 setSearch(e.target.value);
                 setPage(0);
               }}
-              className="pl-8 h-8"
+              className="h-8 pl-8"
             />
           </div>
         )}
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" size="sm" />}>
-            <Columns3Icon className="size-4 mr-1" />
+            <Columns3Icon className="mr-1 size-4" />
             Columns
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -204,7 +213,7 @@ function AdvancedDataTable({
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="h-auto px-0 py-0 font-medium hover:text-foreground"
+                        className="hover:text-foreground h-auto px-0 py-0 font-medium"
                         onClick={() => toggleSort(col.key as string)}
                       >
                         {col.header}
@@ -252,7 +261,7 @@ function AdvancedDataTable({
               </TableBody>
             </Table>
           </div>
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex items-center justify-between text-sm">
             <span>{sorted.length} row(s) total</span>
             <div className="flex items-center gap-2">
               <Button

@@ -5,6 +5,15 @@ import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from "@/components/ui/icons";
 
+/**
+ * @component KPICard
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description KPI metric card with value, trend indicator, sparkline chart, and progress bar / KPI 指标卡片，展示数值、趋势指示、迷你折线图和进度条
+ * @keywords kpi, metric, card, trend, sparkline, progress, dashboard
+ * @example
+ * <KPICard title="Revenue" value="$12,345" change="+12%" changeType="positive" sparkline={data} />
+ */
 function KPICard({
   title,
   value,
@@ -41,7 +50,7 @@ function KPICard({
   const TrendIcon = trendIcons[changeType] ?? ArrowUpIcon;
 
   return (
-    <Card className={cn(className)}>
+    <Card data-slot="kpi-card" className={cn(className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}

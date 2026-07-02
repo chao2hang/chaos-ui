@@ -45,6 +45,17 @@ const navItems = [
   { title: "Settings", icon: SettingsIcon, href: "#" },
 ];
 
+/**
+ * @component DashboardLayout
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Full dashboard shell with collapsible sidebar navigation, breadcrumb header, search/notification actions, and user avatar footer / 完整仪表板外壳，包含可折叠侧栏导航、面包屑头部、搜索/通知操作和用户头像页脚
+ * @keywords dashboard, layout, sidebar, navigation, breadcrumb, admin
+ * @example
+ * <DashboardLayout title="Orders">
+ *   <OrderTable />
+ * </DashboardLayout>
+ */
 function DashboardLayout({
   children,
   title,
@@ -53,14 +64,14 @@ function DashboardLayout({
   title?: string;
 }) {
   return (
-    <SidebarProvider>
+    <SidebarProvider data-slot="dashboard-layout">
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2 px-2 py-1">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+            <div className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg text-sm font-bold">
               A
             </div>
-            <span className="font-semibold text-lg">Acme</span>
+            <span className="text-lg font-semibold">Acme</span>
           </div>
         </SidebarHeader>
         <SidebarSeparator />
@@ -93,7 +104,7 @@ function DashboardLayout({
             </Avatar>
             <div className="flex flex-col">
               <span className="text-sm font-medium">John Doe</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-muted-foreground text-xs">
                 john@acme.com
               </span>
             </div>

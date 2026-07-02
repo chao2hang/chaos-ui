@@ -183,7 +183,7 @@ function ExpenseLineEditor({
   );
 
   return (
-    <div className={cn("w-full", className)} {...props}>
+    <div data-slot="expense-line-editor" className={cn("w-full", className)} {...props}>
       <LineEditor
         columns={columns}
         data={data}

@@ -25,10 +25,18 @@ const external = [
   "react-dropzone",
   "react-hook-form",
   "react-i18next",
+  "react-pdf",
   "recharts",
   "sonner",
   "tailwind-merge",
   "vaul",
+  "@tiptap/react",
+  "@tiptap/starter-kit",
+  "@tiptap/extension-link",
+  "@tiptap/extension-image",
+  "@tiptap/extension-placeholder",
+  "@xyflow/react",
+  "cronstrue",
 ];
 
 export default defineConfig({

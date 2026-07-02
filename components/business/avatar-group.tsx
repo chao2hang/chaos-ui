@@ -32,6 +32,15 @@ const ringMap = {
   xl: "ring-2",
 } as const;
 
+/**
+ * @component AvatarGroup
+ * @category business/ux
+ * @since 0.2.0
+ * @description Overlapping avatar cluster with overflow indicator, supporting multiple sizes / 重叠头像组，支持溢出显示和多种尺寸
+ * @keywords avatar, group, users, overflow, stack
+ * @example
+ * <AvatarGroup users={[{ name: "Alice" }, { name: "Bob" }]} max={3} />
+ */
 export function AvatarGroup({
   users,
   max = 4,
@@ -57,7 +66,7 @@ export function AvatarGroup({
           className={cn(
             sizeMap[size],
             ringMap[size],
-            "border border-background",
+            "border-background border",
           )}
           title={u.name}
         >
@@ -71,7 +80,7 @@ export function AvatarGroup({
           variant="ghost"
           onClick={onOverflowClick}
           className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-full border border-background bg-muted font-medium text-muted-foreground",
+            "border-background bg-muted text-muted-foreground inline-flex shrink-0 items-center justify-center rounded-full border font-medium",
             sizeMap[size],
             ringMap[size],
           )}

@@ -49,6 +49,15 @@ function aggregate(values: number[], type: Aggregation): number {
   }
 }
 
+/**
+ * @component PivotTable
+ * @category business/data
+ * @since 0.2.0
+ * @description Interactive pivot table with row/column totals and search filtering / 交互式透视表，支持行列合计与搜索筛选
+ * @keywords pivot, table, aggregation, sum, count, avg, min, max
+ * @example
+ * <PivotTable data={rows} rowField="product" columnField="region" valueField="sales" aggregation="sum" />
+ */
 export function PivotTable<T extends Record<string, unknown>>({
   data,
   rowField,

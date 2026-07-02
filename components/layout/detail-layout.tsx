@@ -10,6 +10,17 @@ interface DetailTab {
   content: React.ReactNode;
 }
 
+/**
+ * @component DetailLayout
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Detail page layout with title, back button, action bar, and optional tabbed content sections for record details or settings pages / 详情页布局，包含标题、返回按钮、操作栏和可选选项卡内容区域，适用于记录详情或设置页面
+ * @keywords detail, layout, tabs, back-button, action-bar, record
+ * @example
+ * <DetailLayout title="Order #1234" subtitle="Created on 2024-01-01" onBack={handleBack} actions={<SaveButton />}>
+ *   <OrderDetails />
+ * </DetailLayout>
+ */
 function DetailLayout({
   title,
   subtitle,
@@ -28,7 +39,10 @@ function DetailLayout({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col gap-6", className)}>
+    <div
+      data-slot="detail-layout"
+      className={cn("flex flex-col gap-6", className)}
+    >
       <div className="flex items-start gap-4">
         {onBack && (
           <Button
@@ -43,7 +57,7 @@ function DetailLayout({
         <div className="flex-1">
           <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
           {subtitle && (
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
+            <p className="text-muted-foreground text-sm">{subtitle}</p>
           )}
         </div>
         {actions && <div className="flex items-center gap-2">{actions}</div>}

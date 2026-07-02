@@ -30,6 +30,15 @@ interface LanguageSwitcherProps {
   align?: "start" | "center" | "end";
 }
 
+/**
+ * @component LanguageSwitcher
+ * @category business/ux
+ * @since 0.2.0
+ * @description Dropdown language switcher with i18n integration, configurable options, and current-locale detection / 下拉语言切换器，集成国际化、可配置选项和当前语言检测
+ * @keywords language, locale, i18n, switcher, dropdown
+ * @example
+ * <LanguageSwitcher />
+ */
 export function LanguageSwitcher({
   value: valueProp,
   onChange: onChangeProp,
@@ -63,7 +72,7 @@ export function LanguageSwitcher({
   const current = options.find((o) => o.code === value) ?? options[0];
 
   return (
-    <DropdownMenu>
+    <DropdownMenu data-slot="language-switcher">
       <DropdownMenuTrigger
         render={
           <Button

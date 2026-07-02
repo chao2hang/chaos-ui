@@ -177,6 +177,10 @@ export const SquareIcon = Lucide.SquareIcon;
 export const TargetIcon = Lucide.TargetIcon;
 export const WalletIcon = Lucide.WalletIcon;
 export const ZapIcon = Lucide.ZapIcon;
+// --- P2 supplementary icons ---
+export const CarIcon = Lucide.CarIcon;
+export const GlobeIcon = Lucide.GlobeIcon;
+export const LayersIcon = Lucide.LayersIcon;
 // --- chat batch supplementary icons ---
 export const BrainIcon = Lucide.BrainIcon;
 export const ChevronsLeftIcon = Lucide.ChevronsLeftIcon;
@@ -189,3 +193,16 @@ export const ThumbsDownIcon = Lucide.ThumbsDownIcon;
 export const ThumbsUpIcon = Lucide.ThumbsUpIcon;
 export const Volume2Icon = Lucide.Volume2Icon;
 export const WandSparklesIcon = Lucide.WandSparklesIcon;
+// --- supplementary icons (added for RichTextEditor / PDFViewer / ColorBoard / MarkdownEditor / CronEditor) ---
+export const BoldIcon = Lucide.BoldIcon;
+export const ItalicIcon = Lucide.ItalicIcon;
+export const ListOrderedIcon = Lucide.ListOrderedIcon;
+export const QuoteIcon = Lucide.QuoteIcon;
+export const UndoIcon = Lucide.UndoIcon;
+export const RedoIcon = Lucide.RedoIcon;
+export const Heading1Icon = Lucide.Heading1Icon;
+export const Heading2Icon = Lucide.Heading2Icon;
+export const StrikethroughIcon = Lucide.StrikethroughIcon;
+export const ZoomInIcon = Lucide.ZoomInIcon;
+export const ZoomOutIcon = Lucide.ZoomOutIcon;
+export const PipetteIcon = Lucide.PipetteIcon;

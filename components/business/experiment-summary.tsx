@@ -28,6 +28,15 @@ export interface ExperimentSummaryProps {
   className?: string;
 }
 
+/**
+ * @component ExperimentSummary
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description A/B experiment summary card showing variant comparison with conversion rates, lift, and winner badges / A/B 实验摘要卡片，展示变体对比、转化率、提升幅度及优胜标记
+ * @keywords experiment, ab-test, variant, conversion, summary
+ * @example
+ * <ExperimentSummary name="Homepage Test" variants={[{ id: "a", name: "Control", sampleSize: 1000, conversionRate: 3.2 }]} />
+ */
 export function ExperimentSummary({
   name,
   status = "running",

@@ -23,6 +23,15 @@ interface TopBarProps extends React.ComponentProps<"header"> {
   className?: string;
 }
 
+/**
+ * @component TopBar
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Responsive top navigation bar with logo, dropdown mega-menus, mobile hamburger drawer, and action slots / 响应式顶部导航栏，包含 Logo、下拉菜单、移动端汉堡抽屉和操作区插槽
+ * @keywords top-bar, navigation, header, mega-menu, responsive, mobile, admin
+ * @example
+ * <TopBar logo={<Brand />} nav={navItems} actions={<UserMenu />} variant="bordered" />
+ */
 export function TopBar({
   logo: logoProp,
   logoHref = "/",
@@ -47,7 +56,7 @@ export function TopBar({
         sticky && "sticky top-0",
         variant === "bordered" && "border-b",
         variant === "default" &&
-          "border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
+          "bg-background/95 supports-[backdrop-filter]:bg-background/80 border-b backdrop-blur",
         variant === "transparent" && "bg-transparent",
         className,
       )}
@@ -79,7 +88,7 @@ export function TopBar({
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="text-muted-foreground hover:bg-muted hover:text-foreground inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
                 aria-expanded={megaOpen === item.href}
               >
                 {item.icon}
@@ -87,12 +96,12 @@ export function TopBar({
                 <ChevronDownIcon className="size-3.5" />
               </Button>
               {megaOpen === item.href && (
-                <div className="absolute left-0 top-full z-50 min-w-48 rounded-md border bg-popover p-1 shadow-md">
+                <div className="bg-popover absolute top-full left-0 z-50 min-w-48 rounded-md border p-1 shadow-md">
                   {item.children.map((child) => (
                     <Link
                       key={child.href}
                       href={child.href}
-                      className="block rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+                      className="hover:bg-accent hover:text-accent-foreground block rounded-sm px-2 py-1.5 text-sm"
                     >
                       {child.label}
                     </Link>
@@ -104,7 +113,7 @@ export function TopBar({
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="text-muted-foreground hover:bg-muted hover:text-foreground rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
             >
               {item.label}
             </Link>
@@ -113,14 +122,14 @@ export function TopBar({
       </nav>
       <div className="ml-auto hidden items-center gap-2 sm:flex">{actions}</div>
       {open && (
-        <div className="fixed inset-x-0 top-14 z-40 border-b bg-background p-4 md:hidden">
+        <div className="bg-background fixed inset-x-0 top-14 z-40 border-b p-4 md:hidden">
           <nav className="flex flex-col gap-1">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
+                className="hover:bg-muted rounded-md px-3 py-2 text-sm font-medium"
               >
                 {item.label}
               </Link>
@@ -137,6 +146,15 @@ export function TopBar({
   );
 }
 
+/**
+ * @component MegaMenu
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Hover-triggered mega dropdown menu with grouped items, icons, and descriptions, suitable for complex navigation / 悬停触发的超级下拉菜单，包含分组项、图标和描述，适用于复杂导航结构
+ * @keywords mega-menu, dropdown, navigation, hover, grouped, admin
+ * @example
+ * <MegaMenu trigger="Products" groups={[{ label: "Food", items: [{ label: "Snacks", href: "#", description: "All snacks" }] }]} />
+ */
 export function MegaMenu({
   trigger,
   groups,
@@ -166,7 +184,7 @@ export function MegaMenu({
         variant="ghost"
         size="sm"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium"
         aria-expanded={open}
       >
         {trigger}
@@ -175,14 +193,14 @@ export function MegaMenu({
       {open && (
         <div
           className={cn(
-            "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2",
+            "absolute top-full left-1/2 z-50 -translate-x-1/2 pt-2",
             className,
           )}
         >
-          <div className="grid min-w-96 gap-6 rounded-lg border bg-popover p-6 shadow-lg md:grid-cols-2">
+          <div className="bg-popover grid min-w-96 gap-6 rounded-lg border p-6 shadow-lg md:grid-cols-2">
             {groups.map((g) => (
               <div key={g.label} className="space-y-2">
-                <h3 className="text-xs font-semibold text-muted-foreground">
+                <h3 className="text-muted-foreground text-xs font-semibold">
                   {g.label}
                 </h3>
                 <ul className="space-y-1">
@@ -190,10 +208,10 @@ export function MegaMenu({
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="flex items-start gap-3 rounded-md p-2 hover:bg-accent"
+                        className="hover:bg-accent flex items-start gap-3 rounded-md p-2"
                       >
                         {item.icon && (
-                          <span className="mt-0.5 text-muted-foreground">
+                          <span className="text-muted-foreground mt-0.5">
                             {item.icon}
                           </span>
                         )}
@@ -202,7 +220,7 @@ export function MegaMenu({
                             {item.label}
                           </div>
                           {item.description && (
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-muted-foreground text-xs">
                               {item.description}
                             </div>
                           )}

@@ -55,6 +55,15 @@ function downloadBlob(blob: Blob, filename: string) {
   URL.revokeObjectURL(url);
 }
 
+/**
+ * @component ExportButton
+ * @category business/ux
+ * @since 0.2.0
+ * @description Data export button supporting CSV, XLSX, JSON, PDF, and print formats with column mapping and custom callbacks / 数据导出按钮，支持 CSV/XLSX/JSON/PDF/打印格式，含列映射和自定义回调
+ * @keywords export, download, csv, xlsx, json, pdf, print
+ * @example
+ * <ExportButton data={rows} filename="report" formats={["csv", "xlsx"]} />
+ */
 export function ExportButton<T extends Record<string, unknown>>({
   data,
   filename = "export",
@@ -168,6 +177,7 @@ export function ExportButton<T extends Record<string, unknown>>({
     if (!onlyFormat) return null;
     return (
       <Button
+        data-slot="export-button"
         variant={variant}
         size={size}
         className={className}
@@ -191,7 +201,7 @@ export function ExportButton<T extends Record<string, unknown>>({
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu data-slot="export-button">
       <DropdownMenuTrigger
         render={
           <Button variant={variant} size={size} className={cn(className)} />

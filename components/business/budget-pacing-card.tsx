@@ -89,6 +89,15 @@ function formatMoney(value: number, currency: string) {
   }).format(value);
 }
 
+/**
+ * @component BudgetPacingCard
+ * @category business/finance
+ * @since 0.2.0
+ * @description Card displaying budget vs. actual spend with pacing status, progress bar, and forecast / 展示预算消耗进度、状态和预估的卡片组件
+ * @keywords budget, pacing, finance, spending, forecast, progress
+ * @example
+ * <BudgetPacingCard budget={10000} spent={4500} status="on-track" />
+ */
 export function BudgetPacingCard({
   title,
   budget,
@@ -129,13 +138,13 @@ export function BudgetPacingCard({
             <div className="text-2xl font-semibold tabular-nums">
               {formatMoney(spent, currency)}
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               {t("budgetPacing.spentOf", texts)} {formatMoney(budget, currency)}
             </div>
           </div>
           <div className="text-right text-sm">
             <div className="font-medium tabular-nums">{percent}%</div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               {t("budgetPacing.used", texts)}
             </div>
           </div>
@@ -143,7 +152,7 @@ export function BudgetPacingCard({
         <Progress value={percent} />
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg border p-3">
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               {t("budgetPacing.remaining", texts)}
             </div>
             <div className="font-medium tabular-nums">
@@ -151,7 +160,7 @@ export function BudgetPacingCard({
             </div>
           </div>
           <div className="rounded-lg border p-3">
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               {t("budgetPacing.forecast", texts)}
             </div>
             <div className="font-medium tabular-nums">

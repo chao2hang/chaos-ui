@@ -2,6 +2,17 @@ import * as React from "react";
 import { Label } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
+/**
+ * @component LabeledField
+ * @category business/ux
+ * @since 0.2.0
+ * @description Simple label + content + description/error wrapper for form fields / 表单字段的标签、内容、描述和错误提示包装组件
+ * @keywords form, field, label, error, description
+ * @example
+ * <LabeledField label="Email" required error="Invalid email">
+ *   <Input />
+ * </LabeledField>
+ */
 function LabeledField({
   label,
   description,
@@ -18,7 +29,7 @@ function LabeledField({
   className?: string;
 }) {
   return (
-    <div className={cn("space-y-1.5", className)}>
+    <div data-slot="form-field" className={cn("space-y-1.5", className)}>
       {label && (
         <Label>
           {label}
@@ -34,11 +45,4 @@ function LabeledField({
   );
 }
 
-/**
- * LabeledField — simple label + content + description/error wrapper.
- *
- * Note: Previously also exported as `FormField`, which collided with the
- * react-hook-form-based `FormField` from `@/components/ui/form`. The alias
- * was removed to resolve the naming conflict — use `LabeledField` directly.
- */
 export { LabeledField };

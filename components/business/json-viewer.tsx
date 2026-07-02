@@ -170,6 +170,15 @@ function JsonNode({
   );
 }
 
+/**
+ * @component JsonViewer
+ * @category business/data
+ * @since 0.2.0
+ * @description Collapsible JSON tree viewer with syntax highlighting, copy-to-clipboard, and configurable collapse depth / 可折叠的 JSON 树形查看器，支持语法高亮、复制到剪贴板和可配置折叠深度
+ * @keywords json, viewer, tree, syntax, highlight, data
+ * @example
+ * <JsonViewer data={{ name: "John", age: 30 }} />
+ */
 export function JsonViewer({
   data,
   defaultCollapsedDepth = 3,

@@ -97,7 +97,7 @@ function Popconfirm({
   }
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} data-slot="popconfirm">
       <PopoverTrigger render={children as React.ReactElement} />
       <PopoverContent
         side={side}
@@ -106,15 +106,13 @@ function Popconfirm({
       >
         <div className="flex flex-col gap-1">
           {title && <PopoverTitle>{title}</PopoverTitle>}
-          {description && <PopoverDescription>{description}</PopoverDescription>}
+          {description && (
+            <PopoverDescription>{description}</PopoverDescription>
+          )}
         </div>
         <div className="mt-3 flex justify-end gap-2">
           {showCancel && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCancel}
-            >
+            <Button variant="outline" size="sm" onClick={handleCancel}>
               {cancelText}
             </Button>
           )}

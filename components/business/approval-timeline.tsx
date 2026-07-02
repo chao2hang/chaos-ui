@@ -5,10 +5,7 @@ import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 export type ApprovalStepStatus =
-  | "approved"
-  | "pending"
-  | "rejected"
-  | "skipped";
+  "approved" | "pending" | "rejected" | "skipped";
 
 export interface ApprovalStep {
   id: string;
@@ -50,7 +47,20 @@ const statusVariant = {
   skipped: "default",
 } as const;
 
-export function ApprovalTimeline({ steps, className, texts: textsProp }: ApprovalTimelineProps) {
+/**
+ * @component ApprovalTimeline
+ * @category business/bill
+ * @since 0.2.0
+ * @description Visual approval workflow timeline showing step status (approved, pending, rejected, skipped) / 审批流程可视化时间线，展示各节点审批状态
+ * @keywords approval, timeline, workflow, review, steps
+ * @example
+ * <ApprovalTimeline steps={[{ id: "1", title: "Manager", approver: "Alice", status: "approved" }]} />
+ */
+export function ApprovalTimeline({
+  steps,
+  className,
+  texts: textsProp,
+}: ApprovalTimelineProps) {
   const defaultTexts: Record<string, string> = {
     approved: "Approved",
     pending: "Pending",
@@ -78,30 +88,33 @@ export function ApprovalTimeline({ steps, className, texts: textsProp }: Approva
     >
       {steps.map((step) => {
         const statusLabel = textsProp
-          ? (statusTextMap[step.status] ?? (defaultTexts as Record<string, string>)[step.status] ?? step.status)
-          : t(`approvalTimeline.status.${step.status}` as string, String(defaultTexts[step.status] ?? step.status));
+          ? (statusTextMap[step.status] ??
+            (defaultTexts as Record<string, string>)[step.status] ??
+            step.status)
+          : t(
+              `approvalTimeline.status.${step.status}` as string,
+              String(defaultTexts[step.status] ?? step.status),
+            );
         return (
-        <TimelineItem
-          key={step.id}
-          icon={statusIcon[step.status]}
-          title={
-            <span className="inline-flex items-center gap-2">
-              {step.title}
-              <Badge variant="outline">
-                {statusLabel}
-              </Badge>
-            </span>
-          }
-          description={
-            <span>
-              {step.approver}
-              {step.note ? ` · ${step.note}` : ""}
-            </span>
-          }
-          time={step.time}
-          variant={statusVariant[step.status]}
-        />
-      );
+          <TimelineItem
+            key={step.id}
+            icon={statusIcon[step.status]}
+            title={
+              <span className="inline-flex items-center gap-2">
+                {step.title}
+                <Badge variant="outline">{statusLabel}</Badge>
+              </span>
+            }
+            description={
+              <span>
+                {step.approver}
+                {step.note ? ` · ${step.note}` : ""}
+              </span>
+            }
+            time={step.time}
+            variant={statusVariant[step.status]}
+          />
+        );
       })}
     </Timeline>
   );

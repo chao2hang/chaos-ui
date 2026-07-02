@@ -99,7 +99,7 @@ function PermissionButton({
 
   if (!authorized) {
     return (
-      <span title={unauthorizedTooltip} className="inline-flex">
+      <span data-slot="permission-wrapper-button" title={unauthorizedTooltip} className="inline-flex">
         <Button {...props} disabled className={cn("opacity-50", className)}>
           {children}
         </Button>

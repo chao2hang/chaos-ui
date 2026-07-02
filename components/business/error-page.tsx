@@ -95,6 +95,15 @@ const STATUS_META = {
   }
 >;
 
+/**
+ * @component ErrorPage
+ * @category business/ux
+ * @since 0.2.0
+ * @description Full-featured error page for 403/404/500/503 status codes with context panel, i18n, and navigation actions / 全功能错误页面，支持 403/404/500/503 状态码，含上下文面板、国际化及导航操作
+ * @keywords error, 403, 404, 500, 503, page, status
+ * @example
+ * <ErrorPage status={404} />
+ */
 export function ErrorPage({
   status = 404,
   title,
@@ -240,14 +249,41 @@ export function ErrorPage({
   );
 }
 
+/**
+ * @component NotFound
+ * @category business/ux
+ * @since 0.2.0
+ * @description Convenience wrapper for ErrorPage with status 404 / ErrorPage 的 404 便捷包装
+ * @keywords error, 404, not found
+ * @example
+ * <NotFound />
+ */
 function NotFound() {
   return <ErrorPage status={404} />;
 }
 
+/**
+ * @component InternalError
+ * @category business/ux
+ * @since 0.2.0
+ * @description Convenience wrapper for ErrorPage with status 500 / ErrorPage 的 500 便捷包装
+ * @keywords error, 500, server, internal
+ * @example
+ * <InternalError />
+ */
 function InternalError() {
   return <ErrorPage status={500} />;
 }
 
+/**
+ * @component Unauthorized
+ * @category business/ux
+ * @since 0.2.0
+ * @description Convenience wrapper for ErrorPage with status 403 / ErrorPage 的 403 便捷包装
+ * @keywords error, 403, unauthorized, access
+ * @example
+ * <Unauthorized />
+ */
 function Unauthorized() {
   return <ErrorPage status={403} />;
 }

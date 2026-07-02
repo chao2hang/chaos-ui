@@ -54,6 +54,15 @@ function buildMatrix(
   return map;
 }
 
+/**
+ * @component HeatmapCalendar
+ * @category business/charts
+ * @since 0.2.0
+ * @description GitHub-style heatmap calendar chart for visualizing daily activity data with configurable color stops / GitHub 风格的热力日历图，用于可视化每日活动数据，支持自定义颜色阶梯
+ * @keywords heatmap, calendar, chart, contribution, daily, activity
+ * @example
+ * <HeatmapCalendar data={[{ date: "2025-01-01", value: 5 }]} />
+ */
 export function HeatmapCalendar({
   data,
   startDate,

@@ -79,7 +79,7 @@ function PreferencePanel({ open, onOpenChange, className }: PreferencePanelProps
   };
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+    <Sheet data-slot="preference-panel" open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className={cn("w-full sm:max-w-sm", className)}>
         <SheetHeader>
           <SheetTitle>偏好设置</SheetTitle>
