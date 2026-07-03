@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["file:///C:/Developer/workspace/design/chaos_style/node_modules/.pnpm/next%4016.2.9_%40babel%2Bcore%407.2_1142e53145b8313024f0c22f27c8b564/node_modules/next/app.js"],"sourcesContent":["module.exports = require('./dist/pages/_app')\n"],"names":["module","exports"],"mappings":"AAAAA,OAAOC,OAAO","ignoreList":[0]}}]
-}
