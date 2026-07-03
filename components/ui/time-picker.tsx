@@ -2,15 +2,19 @@
 import * as React from "react";
 import { ClockIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
+} from "@/components/ui/select";
 import { formatTime } from "@/lib/format";
 
 /**

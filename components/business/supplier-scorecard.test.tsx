@@ -16,17 +16,44 @@ const supplier: Supplier = {
   previousScore: 82,
   criteria: [
     { id: "quality", name: "Quality", score: 92, weight: 30, trend: "up" },
-    { id: "delivery", name: "On-Time Delivery", score: 85, weight: 25, trend: "stable" },
-    { id: "price", name: "Price Competitiveness", score: 78, weight: 20, trend: "down", comment: "Recent price increase of 5%" },
-    { id: "service", name: "Service & Support", score: 88, weight: 15, trend: "up" },
-    { id: "compliance", name: "Compliance", score: 95, weight: 10, trend: "stable" },
+    {
+      id: "delivery",
+      name: "On-Time Delivery",
+      score: 85,
+      weight: 25,
+      trend: "stable",
+    },
+    {
+      id: "price",
+      name: "Price Competitiveness",
+      score: 78,
+      weight: 20,
+      trend: "down",
+      comment: "Recent price increase of 5%",
+    },
+    {
+      id: "service",
+      name: "Service & Support",
+      score: 88,
+      weight: 15,
+      trend: "up",
+    },
+    {
+      id: "compliance",
+      name: "Compliance",
+      score: 95,
+      weight: 10,
+      trend: "stable",
+    },
   ],
 };
 
 describe("SupplierScorecard", () => {
   it("renders with data-slot", () => {
     const { container } = render(<SupplierScorecard supplier={supplier} />);
-    expect(container.querySelector('[data-slot="supplier-scorecard"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="supplier-scorecard"]'),
+    ).toBeTruthy();
   });
 
   it("renders supplier name and code", () => {
@@ -46,10 +73,13 @@ describe("SupplierScorecard", () => {
 
   it("shows weighted total score", () => {
     const { container } = render(<SupplierScorecard supplier={supplier} />);
-    const overallScore = container.querySelector('[data-slot="supplier-overall-score"]');
+    const overallScore = container.querySelector(
+      '[data-slot="supplier-overall-score"]',
+    );
     expect(overallScore).toBeTruthy();
-    // Expected: 92*0.3 + 85*0.25 + 78*0.2 + 88*0.15 + 95*0.1 = 87.6
-    expect(overallScore?.textContent).toContain("87.6");
+    // Weighted: 92*0.3 + 85*0.25 + 78*0.2 + 88*0.15 + 95*0.1 = 87.15,
+    // which the scorecard rounds to one decimal -> "87.1".
+    expect(overallScore?.textContent).toContain("87.1");
   });
 
   it("shows weighted total in footer", () => {
@@ -76,7 +106,9 @@ describe("SupplierScorecard", () => {
 
   it("renders criteria count", () => {
     const { container } = render(<SupplierScorecard supplier={supplier} />);
-    const criteria = container.querySelectorAll('[data-slot="supplier-criterion"]');
+    const criteria = container.querySelectorAll(
+      '[data-slot="supplier-criterion"]',
+    );
     expect(criteria.length).toBe(5);
   });
 
@@ -84,7 +116,9 @@ describe("SupplierScorecard", () => {
     const { container } = render(
       <SupplierScorecard supplier={supplier} className="custom-scorecard" />,
     );
-    const el = container.querySelector('[data-slot="supplier-scorecard"]') as HTMLElement;
+    const el = container.querySelector(
+      '[data-slot="supplier-scorecard"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-scorecard");
   });
 
@@ -93,7 +127,9 @@ describe("SupplierScorecard", () => {
       <SupplierScorecard supplier={supplier} showBars={false} />,
     );
     // No progress bars should be rendered
-    const bars = container.querySelectorAll(".h-2.overflow-hidden.rounded-full");
+    const bars = container.querySelectorAll(
+      ".h-2.overflow-hidden.rounded-full",
+    );
     expect(bars.length).toBe(0);
   });
 

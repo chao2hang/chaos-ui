@@ -130,6 +130,22 @@ const eslintConfig = defineConfig([
       "@chaos/no-deep-imports": "off",
       "@chaos/no-missing-story": "off",
       "@chaos/no-hardcoded-chinese": "off",
+      // mock 实现需要泛化类型签名,any 是合理的
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+  {
+    // stories 展示组件用法,props 示例需要 any 来覆盖变体
+    files: ["src/stories/**/*.stories.@(js|jsx|ts|tsx)"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+  {
+    // business 组件中的 placeholder 文案包含引号,允许不转义(纯展示文本)
+    files: ["components/business/{bom-tree-editor,journal-entry-editor,meeting-room-booking}.tsx"],
+    rules: {
+      "react/no-unescaped-entities": "off",
     },
   },
   {

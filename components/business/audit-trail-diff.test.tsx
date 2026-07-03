@@ -4,38 +4,66 @@ import { AuditTrailDiff } from "./audit-trail-diff";
 import type { AuditChangeEntry } from "./audit-trail-diff";
 
 vi.mock("@/components/ui/icons", () => ({
-  SearchIcon: (p: Record<string, unknown>) => <svg data-testid="search" {...p} />,
-  FilterIcon: (p: Record<string, unknown>) => <svg data-testid="filter" {...p} />,
+  SearchIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="search" {...p} />
+  ),
+  FilterIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="filter" {...p} />
+  ),
   UserIcon: (p: Record<string, unknown>) => <svg data-testid="user" {...p} />,
   ClockIcon: (p: Record<string, unknown>) => <svg data-testid="clock" {...p} />,
-  ArrowRightIcon: (p: Record<string, unknown>) => <svg data-testid="arrow-right" {...p} />,
+  ArrowRightIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="arrow-right" {...p} />
+  ),
 }));
 
 const entries: AuditChangeEntry[] = [
   {
-    id: "1", entityType: "PurchaseOrder", entityId: "PO-2026-001",
-    field: "status", fieldLabel: "Status", action: "update",
-    oldValue: "Draft", newValue: "Submitted",
-    user: "Alice Chen", timestamp: "2026-07-01T10:00:00Z",
+    id: "1",
+    entityType: "PurchaseOrder",
+    entityId: "PO-2026-001",
+    field: "status",
+    fieldLabel: "Status",
+    action: "update",
+    oldValue: "Draft",
+    newValue: "Submitted",
+    user: "Alice Chen",
+    timestamp: "2026-07-01T10:00:00Z",
     section: "Header",
   },
   {
-    id: "2", entityType: "PurchaseOrder", entityId: "PO-2026-001",
-    field: "totalAmount", fieldLabel: "Total Amount", action: "update",
-    oldValue: "5000", newValue: "7500",
-    user: "Alice Chen", timestamp: "2026-07-01T10:05:00Z",
+    id: "2",
+    entityType: "PurchaseOrder",
+    entityId: "PO-2026-001",
+    field: "totalAmount",
+    fieldLabel: "Total Amount",
+    action: "update",
+    oldValue: "5000",
+    newValue: "7500",
+    user: "Alice Chen",
+    timestamp: "2026-07-01T10:05:00Z",
   },
   {
-    id: "3", entityType: "Invoice", entityId: "INV-2026-042",
-    field: "", action: "create",
+    id: "3",
+    entityType: "Invoice",
+    entityId: "INV-2026-042",
+    field: "",
+    action: "create",
     newValue: "Invoice created",
-    user: "Bob Smith", timestamp: "2026-07-01T11:00:00Z",
+    user: "Bob Smith",
+    timestamp: "2026-07-01T11:00:00Z",
   },
   {
-    id: "4", entityType: "Vendor", entityId: "V-100",
-    field: "isActive", fieldLabel: "Active", action: "delete",
-    oldValue: "true", newValue: "",
-    user: "Carol Wu", timestamp: "2026-07-01T14:00:00Z",
+    id: "4",
+    entityType: "Vendor",
+    entityId: "V-100",
+    field: "isActive",
+    fieldLabel: "Active",
+    action: "delete",
+    oldValue: "true",
+    newValue: "",
+    user: "Carol Wu",
+    timestamp: "2026-07-01T14:00:00Z",
     reason: "Vendor no longer in business",
   },
 ];
@@ -43,7 +71,9 @@ const entries: AuditChangeEntry[] = [
 describe("AuditTrailDiff", () => {
   it("renders with data-slot", () => {
     const { container } = render(<AuditTrailDiff entries={entries} />);
-    expect(container.querySelector('[data-slot="audit-trail-diff"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="audit-trail-diff"]'),
+    ).toBeTruthy();
   });
 
   it("renders all entries", () => {
@@ -54,7 +84,8 @@ describe("AuditTrailDiff", () => {
 
   it("shows action badges", () => {
     render(<AuditTrailDiff entries={entries} />);
-    expect(screen.getByText("Updated")).toBeTruthy();
+    // Two entries have action "update", so the "Updated" badge repeats.
+    expect(screen.getAllByText("Updated").length).toBeGreaterThan(0);
     expect(screen.getByText("Created")).toBeTruthy();
     expect(screen.getByText("Deleted")).toBeTruthy();
   });
@@ -84,7 +115,8 @@ describe("AuditTrailDiff", () => {
 
   it("shows entity column by default", () => {
     render(<AuditTrailDiff entries={entries} />);
-    expect(screen.getByText("PurchaseOrder")).toBeTruthy();
+    // Two entries share the "PurchaseOrder" entity type, so it repeats.
+    expect(screen.getAllByText("PurchaseOrder").length).toBeGreaterThan(0);
     expect(screen.getByText("Invoice")).toBeTruthy();
     expect(screen.getByText("Vendor")).toBeTruthy();
   });
@@ -108,7 +140,9 @@ describe("AuditTrailDiff", () => {
     const { container } = render(
       <AuditTrailDiff entries={entries} className="custom-audit" />,
     );
-    const el = container.querySelector('[data-slot="audit-trail-diff"]') as HTMLElement;
+    const el = container.querySelector(
+      '[data-slot="audit-trail-diff"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-audit");
   });
 

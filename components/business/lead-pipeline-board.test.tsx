@@ -11,20 +11,58 @@ const stages: PipelineStage[] = [
 ];
 
 const deals: Deal[] = [
-  { id: "d1", customer: "Acme Corp", title: "ERP License", value: 50000, stageId: "s1", owner: "Alice", priority: "high" },
-  { id: "d2", customer: "Globex Inc", title: "Cloud Migration", value: 120000, stageId: "s2", owner: "Bob", priority: "medium" },
-  { id: "d3", customer: "Initech", title: "Consulting", value: 30000, stageId: "s3", owner: "Carol", priority: "low" },
-  { id: "d4", customer: "Umbrella Co", title: "Hardware", value: 80000, stageId: "s4", owner: "Dave", priority: "high" },
+  {
+    id: "d1",
+    customer: "Acme Corp",
+    title: "ERP License",
+    value: 50000,
+    stageId: "s1",
+    owner: "Alice",
+    priority: "high",
+  },
+  {
+    id: "d2",
+    customer: "Globex Inc",
+    title: "Cloud Migration",
+    value: 120000,
+    stageId: "s2",
+    owner: "Bob",
+    priority: "medium",
+  },
+  {
+    id: "d3",
+    customer: "Initech",
+    title: "Consulting",
+    value: 30000,
+    stageId: "s3",
+    owner: "Carol",
+    priority: "low",
+  },
+  {
+    id: "d4",
+    customer: "Umbrella Co",
+    title: "Hardware",
+    value: 80000,
+    stageId: "s4",
+    owner: "Dave",
+    priority: "high",
+  },
 ];
 
 describe("LeadPipelineBoard", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<LeadPipelineBoard stages={stages} deals={deals} />);
-    expect(container.querySelector('[data-slot="lead-pipeline-board"]')).toBeTruthy();
+    const { container } = render(
+      <LeadPipelineBoard stages={stages} deals={deals} />,
+    );
+    expect(
+      container.querySelector('[data-slot="lead-pipeline-board"]'),
+    ).toBeTruthy();
   });
 
   it("renders all stage columns", () => {
-    const { container } = render(<LeadPipelineBoard stages={stages} deals={deals} />);
+    const { container } = render(
+      <LeadPipelineBoard stages={stages} deals={deals} />,
+    );
     const cols = container.querySelectorAll('[data-slot="pipeline-column"]');
     expect(cols.length).toBe(4);
   });
@@ -65,7 +103,8 @@ describe("LeadPipelineBoard", () => {
 
   it("shows deal count per column", () => {
     render(<LeadPipelineBoard stages={stages} deals={deals} />);
-    expect(screen.getByText("1 deals")).toBeTruthy();
+    // Each of the 4 deals lands in its own stage, so every column shows "1 deals".
+    expect(screen.getAllByText("1 deals").length).toBe(4);
   });
 
   it("shows empty column message", () => {
@@ -78,7 +117,9 @@ describe("LeadPipelineBoard", () => {
 
   it("calls onDealClick when card clicked", () => {
     const onClick = vi.fn();
-    const { container } = render(<LeadPipelineBoard stages={stages} deals={deals} onDealClick={onClick} />);
+    const { container } = render(
+      <LeadPipelineBoard stages={stages} deals={deals} onDealClick={onClick} />,
+    );
     const cards = container.querySelectorAll('[data-slot="deal-card"]');
     fireEvent.click(cards[0]!);
     expect(onClick).toHaveBeenCalledWith(expect.objectContaining({ id: "d1" }));
@@ -86,9 +127,15 @@ describe("LeadPipelineBoard", () => {
 
   it("calls onDealMove on drop", () => {
     const onMove = vi.fn();
-    const { container } = render(<LeadPipelineBoard stages={stages} deals={deals} onDealMove={onMove} />);
-    const dealCard = container.querySelector('[data-slot="deal-card"]') as HTMLElement;
-    const targetCol = container.querySelectorAll('[data-slot="pipeline-column"]')![1];
+    const { container } = render(
+      <LeadPipelineBoard stages={stages} deals={deals} onDealMove={onMove} />,
+    );
+    const dealCard = container.querySelector(
+      '[data-slot="deal-card"]',
+    ) as HTMLElement;
+    const targetCol = container.querySelectorAll(
+      '[data-slot="pipeline-column"]',
+    )![1];
 
     // Simulate drag events
     fireEvent.dragStart(dealCard);
@@ -99,8 +146,16 @@ describe("LeadPipelineBoard", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<LeadPipelineBoard stages={stages} deals={deals} className="my-pipeline" />);
-    const el = container.querySelector('[data-slot="lead-pipeline-board"]') as HTMLElement;
+    const { container } = render(
+      <LeadPipelineBoard
+        stages={stages}
+        deals={deals}
+        className="my-pipeline"
+      />,
+    );
+    const el = container.querySelector(
+      '[data-slot="lead-pipeline-board"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-pipeline");
   });
 

@@ -18,13 +18,17 @@ const inControl = genSamples(1, 25);
 const outOfControl: SPCSample[] = [
   ...genSamples(1, 10),
   { label: "S11", value: 60 }, // way beyond 3σ (if σ ~ 1)
-  ...genSamples(1, 10).slice(0, 10).map((s, i) => ({ label: `S${12 + i}`, value: s.value })),
+  ...genSamples(1, 10)
+    .slice(0, 10)
+    .map((s, i) => ({ label: `S${12 + i}`, value: s.value })),
 ];
 
 describe("SPCControlChart", () => {
   it("renders with data-slot", () => {
     const { container } = render(<SPCControlChart samples={inControl} />);
-    expect(container.querySelector('[data-slot="spc-control-chart"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="spc-control-chart"]'),
+    ).toBeTruthy();
   });
 
   it("renders chart title", () => {
@@ -39,12 +43,14 @@ describe("SPCControlChart", () => {
 
   it("renders CL badge", () => {
     render(<SPCControlChart samples={inControl} unit="mm" />);
-    expect(screen.getByText(/CL:/)).toBeTruthy();
+    // CL label appears both in the header badge and the SVG center-line label.
+    expect(screen.getAllByText(/CL:/).length).toBeGreaterThan(0);
   });
 
   it("renders sigma badge", () => {
     render(<SPCControlChart samples={inControl} />);
-    expect(screen.getByText(/σ:/)).toBeTruthy();
+    // The σ badge and the ±2σ axis labels both contain "σ:".
+    expect(screen.getAllByText(/σ:/).length).toBeGreaterThan(0);
   });
 
   it("renders Cpk badge", () => {
@@ -72,36 +78,61 @@ describe("SPCControlChart", () => {
   });
 
   it("detects out-of-control violations", () => {
-    render(<SPCControlChart samples={outOfControl} centerLine={50} sigma={1} />);
+    render(
+      <SPCControlChart samples={outOfControl} centerLine={50} sigma={1} />,
+    );
     expect(screen.getByText(/Out of control/)).toBeTruthy();
   });
 
   it("shows violation count badge", () => {
-    const { container } = render(<SPCControlChart samples={outOfControl} centerLine={50} sigma={1} />);
+    const { container } = render(
+      <SPCControlChart samples={outOfControl} centerLine={50} sigma={1} />,
+    );
     const badge = container.querySelector('[data-slot="violation-badge"]');
     expect(badge).toBeTruthy();
   });
 
   it("accepts custom UCL/LCL", () => {
-    render(<SPCControlChart samples={inControl} centerLine={50} sigma={2} ucl={56} lcl={44} />);
+    render(
+      <SPCControlChart
+        samples={inControl}
+        centerLine={50}
+        sigma={2}
+        ucl={56}
+        lcl={44}
+      />,
+    );
     expect(screen.getByText(/UCL: 56\.00/)).toBeTruthy();
     expect(screen.getByText(/LCL: 44\.00/)).toBeTruthy();
   });
 
   it("accepts unit suffix", () => {
-    render(<SPCControlChart samples={inControl} unit="mm" centerLine={50} sigma={1} />);
-    expect(screen.getByText(/CL: 50\.00mm/)).toBeTruthy();
+    render(
+      <SPCControlChart
+        samples={inControl}
+        unit="mm"
+        centerLine={50}
+        sigma={1}
+      />,
+    );
+    expect(screen.getAllByText(/CL: 50\.00mm/).length).toBeGreaterThan(0);
   });
 
   it("applies custom className", () => {
-    const { container } = render(<SPCControlChart samples={inControl} className="my-spc" />);
-    const el = container.querySelector('[data-slot="spc-control-chart"]') as HTMLElement;
+    const { container } = render(
+      <SPCControlChart samples={inControl} className="my-spc" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="spc-control-chart"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-spc");
   });
 
   it("handles empty samples gracefully", () => {
     const { container } = render(<SPCControlChart samples={[]} />);
-    expect(container.querySelector('[data-slot="spc-control-chart"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="spc-control-chart"]'),
+    ).toBeTruthy();
   });
 
   it("handles single sample", () => {

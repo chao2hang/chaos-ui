@@ -4,17 +4,54 @@ import { LabelDesigner } from "./label-designer";
 import type { LabelField, LabelSize } from "./label-designer";
 
 const fields: LabelField[] = [
-  { id: "f1", type: "text", label: "Product Name", sampleValue: "Widget Pro 2000", x: 5, y: 5, width: 50, height: 6, fontSize: 10 },
-  { id: "f2", type: "barcode", label: "SKU Barcode", sampleValue: "6901234567890", x: 5, y: 15, width: 50, height: 12 },
-  { id: "f3", type: "qrcode", label: "QR Link", sampleValue: "https://example.com/p/123", x: 40, y: 30, width: 15, height: 15 },
+  {
+    id: "f1",
+    type: "text",
+    label: "Product Name",
+    sampleValue: "Widget Pro 2000",
+    x: 5,
+    y: 5,
+    width: 50,
+    height: 6,
+    fontSize: 10,
+  },
+  {
+    id: "f2",
+    type: "barcode",
+    label: "SKU Barcode",
+    sampleValue: "6901234567890",
+    x: 5,
+    y: 15,
+    width: 50,
+    height: 12,
+  },
+  {
+    id: "f3",
+    type: "qrcode",
+    label: "QR Link",
+    sampleValue: "https://example.com/p/123",
+    x: 40,
+    y: 30,
+    width: 15,
+    height: 15,
+  },
 ];
 
-const size: LabelSize = { id: "medium", label: "60×40mm", width: 60, height: 40 };
+const size: LabelSize = {
+  id: "medium",
+  label: "60×40mm",
+  width: 60,
+  height: 40,
+};
 
 describe("LabelDesigner", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<LabelDesigner fields={fields} labelSize={size} />);
-    expect(container.querySelector('[data-slot="label-designer"]')).toBeTruthy();
+    const { container } = render(
+      <LabelDesigner fields={fields} labelSize={size} />,
+    );
+    expect(
+      container.querySelector('[data-slot="label-designer"]'),
+    ).toBeTruthy();
   });
 
   it("renders field type palette buttons", () => {
@@ -27,21 +64,27 @@ describe("LabelDesigner", () => {
   });
 
   it("renders label preview area", () => {
-    const { container } = render(<LabelDesigner fields={fields} labelSize={size} />);
+    const { container } = render(
+      <LabelDesigner fields={fields} labelSize={size} />,
+    );
     expect(container.querySelector('[data-slot="label-preview"]')).toBeTruthy();
   });
 
   it("renders all field elements in preview", () => {
-    const { container } = render(<LabelDesigner fields={fields} labelSize={size} />);
+    const { container } = render(
+      <LabelDesigner fields={fields} labelSize={size} />,
+    );
     const fieldEls = container.querySelectorAll('[data-slot="label-field"]');
     expect(fieldEls.length).toBe(3);
   });
 
   it("renders size preset buttons", () => {
     render(<LabelDesigner fields={fields} labelSize={size} />);
-    expect(screen.getByText("40×30mm")).toBeTruthy();
-    expect(screen.getByText("60×40mm")).toBeTruthy();
-    expect(screen.getByText("100×60mm")).toBeTruthy();
+    // Each preset button shows the size label as both its name span and its
+    // "width×height" span, so each size string appears in multiple elements.
+    expect(screen.getAllByText("40×30mm").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("60×40mm").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("100×60mm").length).toBeGreaterThan(0);
   });
 
   it("shows empty state when no fields", () => {
@@ -57,7 +100,9 @@ describe("LabelDesigner", () => {
   });
 
   it("shows properties panel when field selected", () => {
-    const { container } = render(<LabelDesigner fields={fields} labelSize={size} />);
+    const { container } = render(
+      <LabelDesigner fields={fields} labelSize={size} />,
+    );
     // Click on a field
     const fieldEls = container.querySelectorAll('[data-slot="label-field"]');
     fireEvent.click(fieldEls[0]!);
@@ -67,25 +112,46 @@ describe("LabelDesigner", () => {
 
   it("calls onFieldsChange when adding field", () => {
     const onChange = vi.fn();
-    render(<LabelDesigner fields={fields} labelSize={size} onFieldsChange={onChange} />);
+    render(
+      <LabelDesigner
+        fields={fields}
+        labelSize={size}
+        onFieldsChange={onChange}
+      />,
+    );
     fireEvent.click(screen.getByText("Text"));
     expect(onChange.mock.calls[0]![0]!.length).toBe(4);
   });
 
   it("calls onSizeChange when selecting size", () => {
     const onSizeChange = vi.fn();
-    render(<LabelDesigner fields={fields} labelSize={size} onSizeChange={onSizeChange} />);
-    fireEvent.click(screen.getByText("40×30mm"));
+    render(
+      <LabelDesigner
+        fields={fields}
+        labelSize={size}
+        onSizeChange={onSizeChange}
+      />,
+    );
+    fireEvent.click(screen.getAllByText("40×30mm")[0]!);
     expect(onSizeChange).toHaveBeenCalled();
   });
 
   it("renders print button when onPrint provided", () => {
-    render(<LabelDesigner fields={fields} labelSize={size} onPrint={() => {}} />);
+    render(
+      <LabelDesigner fields={fields} labelSize={size} onPrint={() => {}} />,
+    );
     expect(screen.getByText("Print Label")).toBeTruthy();
   });
 
   it("does not render print button in read-only mode", () => {
-    render(<LabelDesigner fields={fields} labelSize={size} onPrint={() => {}} readOnly />);
+    render(
+      <LabelDesigner
+        fields={fields}
+        labelSize={size}
+        onPrint={() => {}}
+        readOnly
+      />,
+    );
     expect(screen.queryByText("Print Label")).toBeNull();
   });
 
@@ -97,12 +163,17 @@ describe("LabelDesigner", () => {
 
   it("renders label size badge", () => {
     render(<LabelDesigner fields={fields} labelSize={size} />);
-    expect(screen.getByText("60×40mm")).toBeTruthy();
+    // "60×40mm" is rendered by the preview badge and the medium preset button.
+    expect(screen.getAllByText("60×40mm").length).toBeGreaterThan(0);
   });
 
   it("applies custom className", () => {
-    const { container } = render(<LabelDesigner fields={fields} labelSize={size} className="my-label" />);
-    const el = container.querySelector('[data-slot="label-designer"]') as HTMLElement;
+    const { container } = render(
+      <LabelDesigner fields={fields} labelSize={size} className="my-label" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="label-designer"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-label");
   });
 });

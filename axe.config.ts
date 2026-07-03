@@ -40,7 +40,7 @@ export const axeConfig = {
   exclude: [
     '[data-slot="portal"]',
     '[data-slot="popover-content"]',
-    '[data-radix-popper-content-wrapper"]',
+    "[data-radix-popper-content-wrapper]",
   ],
 };
 

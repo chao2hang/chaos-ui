@@ -78,8 +78,16 @@ function FormDesignerRuntime({
   const [data, setData] = React.useState<Record<string, unknown>>(value);
 
   // Keep internal state in sync when the controlled `value` prop changes.
+  // NOTE: the parent passing a new object literal on each render (e.g.
+  // `<FormDesignerRuntime {...} />` with no `value` prop uses the default
+  // `{}`, re-created on every call) would otherwise re-fire this effect
+  // every render and trigger an infinite update loop. We compare by JSON
+  // value (cheap for small form-state objects) so structurally identical
+  // values preserve an existing reference and skip the redundant setData.
   React.useEffect(() => {
-    setData(value);
+    setData((prev) =>
+      JSON.stringify(prev) === JSON.stringify(value) ? prev : value,
+    );
   }, [value]);
 
   const setValue = (id: string, next: unknown) => {
@@ -94,10 +102,7 @@ function FormDesignerRuntime({
   };
 
   return (
-    <div
-      data-slot="form-designer-runtime"
-      className={cn("w-full", className)}
-    >
+    <div data-slot="form-designer-runtime" className={cn("w-full", className)}>
       <Card>
         <CardHeader>
           <CardTitle>表单填写</CardTitle>
@@ -105,7 +110,7 @@ function FormDesignerRuntime({
         <form onSubmit={handleSubmit}>
           <CardContent className="flex flex-col gap-4">
             {fields.length === 0 ? (
-              <p className="py-6 text-center text-sm text-muted-foreground">
+              <p className="text-muted-foreground py-6 text-center text-sm">
                 暂无可填写的字段。
               </p>
             ) : (
@@ -138,10 +143,7 @@ function FormDesignerRuntime({
                             aria-label={field.label}
                             onChange={(event) => {
                               const raw = event.target.value;
-                              setValue(
-                                field.id,
-                                raw === "" ? "" : Number(raw),
-                              );
+                              setValue(field.id, raw === "" ? "" : Number(raw));
                             }}
                           />
                         );
@@ -207,7 +209,7 @@ function FormDesignerRuntime({
                       <Label htmlFor={field.id}>
                         {field.label}
                         {field.required ? (
-                          <span className="ml-0.5 text-destructive">*</span>
+                          <span className="text-destructive ml-0.5">*</span>
                         ) : null}
                       </Label>
                       <div id={field.id}>{control()}</div>

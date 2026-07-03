@@ -22,8 +22,24 @@ const tree: BatchNode = {
       date: "2026-06-25",
       operator: "Bob",
       children: [
-        { batchNo: "RAW-001", product: "Steel Plate 2mm", type: "raw", quantity: 1000, unit: "kg", date: "2026-06-20", status: "released" },
-        { batchNo: "RAW-002", product: "Aluminum Bar", type: "raw", quantity: 500, unit: "m", date: "2026-06-20", status: "released" },
+        {
+          batchNo: "RAW-001",
+          product: "Steel Plate 2mm",
+          type: "raw",
+          quantity: 1000,
+          unit: "kg",
+          date: "2026-06-20",
+          status: "released",
+        },
+        {
+          batchNo: "RAW-002",
+          product: "Aluminum Bar",
+          type: "raw",
+          quantity: 500,
+          unit: "m",
+          date: "2026-06-20",
+          status: "released",
+        },
       ],
     },
     {
@@ -36,7 +52,15 @@ const tree: BatchNode = {
       operator: "Carol",
       status: "quarantine",
       children: [
-        { batchNo: "RAW-003", product: "Circuit Board", type: "raw", quantity: 500, unit: "pcs", date: "2026-06-22", status: "released" },
+        {
+          batchNo: "RAW-003",
+          product: "Circuit Board",
+          type: "raw",
+          quantity: 500,
+          unit: "pcs",
+          date: "2026-06-22",
+          status: "released",
+        },
       ],
     },
   ],
@@ -54,7 +78,9 @@ const simpleTree: BatchNode = {
 describe("BatchGenealogyTree", () => {
   it("renders with data-slot", () => {
     const { container } = render(<BatchGenealogyTree root={simpleTree} />);
-    expect(container.querySelector('[data-slot="batch-genealogy-tree"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="batch-genealogy-tree"]'),
+    ).toBeTruthy();
   });
 
   it("renders title", () => {
@@ -101,24 +127,30 @@ describe("BatchGenealogyTree", () => {
 
   it("renders status badges", () => {
     render(<BatchGenealogyTree root={tree} />);
-    expect(screen.getByText("Released")).toBeTruthy();
-    expect(screen.getByText("Quarantine")).toBeTruthy();
+    // Multiple raw batches are "released", so the badge text repeats.
+    expect(screen.getAllByText("Released").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Quarantine").length).toBeGreaterThan(0);
   });
 
   it("calls onBatchClick when node clicked", () => {
     const onClick = vi.fn();
-    const { container } = render(<BatchGenealogyTree root={tree} onBatchClick={onClick} />);
+    const { container } = render(
+      <BatchGenealogyTree root={tree} onBatchClick={onClick} />,
+    );
     const nodes = container.querySelectorAll('[data-slot="batch-node"]');
     fireEvent.click(nodes[0]!);
-    expect(onClick).toHaveBeenCalledWith(expect.objectContaining({ batchNo: "FG-2026-001" }));
+    expect(onClick).toHaveBeenCalledWith(
+      expect.objectContaining({ batchNo: "FG-2026-001" }),
+    );
   });
 
   it("renders legend", () => {
     render(<BatchGenealogyTree root={simpleTree} />);
-    expect(screen.getByText("Raw Material")).toBeTruthy();
-    expect(screen.getByText("WIP")).toBeTruthy();
-    expect(screen.getByText("Finished")).toBeTruthy();
-    expect(screen.getByText("Scrap")).toBeTruthy();
+    // Legend entries share text with the per-node type labels, so use getAll.
+    expect(screen.getAllByText("Raw Material").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("WIP").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Finished").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Scrap").length).toBeGreaterThan(0);
   });
 
   it("renders product names", () => {
@@ -129,8 +161,12 @@ describe("BatchGenealogyTree", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<BatchGenealogyTree root={simpleTree} className="my-tree" />);
-    const el = container.querySelector('[data-slot="batch-genealogy-tree"]') as HTMLElement;
+    const { container } = render(
+      <BatchGenealogyTree root={simpleTree} className="my-tree" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="batch-genealogy-tree"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-tree");
   });
 });

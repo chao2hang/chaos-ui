@@ -16,9 +16,10 @@
  */
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { readdir } from "node:fs/promises";
 
-const root = new URL("../", import.meta.url).pathname.replace(/^\//, "");
+const root = fileURLToPath(new URL("../", import.meta.url));
 const pkgPath = join(root, "package.json");
 const pkg = JSON.parse(await readFile(pkgPath, "utf8"));
 

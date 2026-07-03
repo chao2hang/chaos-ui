@@ -4,25 +4,48 @@ import { I18nFormField } from "./i18n-form-field";
 import type { LocaleTranslation } from "./i18n-form-field";
 
 const translations: LocaleTranslation[] = [
-  { locale: "en-US", label: "English", text: "Welcome to our store", isSource: true, flag: "🇺🇸" },
+  {
+    locale: "en-US",
+    label: "English",
+    text: "Welcome to our store",
+    isSource: true,
+    flag: "🇺🇸",
+  },
   { locale: "zh-CN", label: "中文", text: "欢迎光临我们的商店", flag: "🇨🇳" },
   { locale: "ja-JP", label: "日本語", text: "", flag: "🇯🇵" },
-  { locale: "ko-KR", label: "한국어", text: "저희 상점에 오신 것을 환영합니다", flag: "🇰🇷" },
+  {
+    locale: "ko-KR",
+    label: "한국어",
+    text: "저희 상점에 오신 것을 환영합니다",
+    flag: "🇰🇷",
+  },
 ];
 
 describe("I18nFormField", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<I18nFormField fieldKey="home.welcome" translations={translations} />);
-    expect(container.querySelector('[data-slot="i18n-form-field"]')).toBeTruthy();
+    const { container } = render(
+      <I18nFormField fieldKey="home.welcome" translations={translations} />,
+    );
+    expect(
+      container.querySelector('[data-slot="i18n-form-field"]'),
+    ).toBeTruthy();
   });
 
   it("renders field key", () => {
-    render(<I18nFormField fieldKey="home.welcome" translations={translations} />);
+    render(
+      <I18nFormField fieldKey="home.welcome" translations={translations} />,
+    );
     expect(screen.getByText("home.welcome")).toBeTruthy();
   });
 
   it("renders label", () => {
-    render(<I18nFormField fieldKey="home.welcome" label="Welcome Message" translations={translations} />);
+    render(
+      <I18nFormField
+        fieldKey="home.welcome"
+        label="Welcome Message"
+        translations={translations}
+      />,
+    );
     expect(screen.getByText("Welcome Message")).toBeTruthy();
   });
 
@@ -51,7 +74,9 @@ describe("I18nFormField", () => {
   });
 
   it("shows source reference when editing non-source", () => {
-    const { container } = render(<I18nFormField fieldKey="key" translations={translations} />);
+    const { container } = render(
+      <I18nFormField fieldKey="key" translations={translations} />,
+    );
     // Click on zh-CN tab
     fireEvent.click(screen.getByText("中文"));
     const ref = container.querySelector('[data-slot="source-reference"]');
@@ -60,7 +85,9 @@ describe("I18nFormField", () => {
   });
 
   it("does not show source reference when editing source", () => {
-    const { container } = render(<I18nFormField fieldKey="key" translations={translations} />);
+    const { container } = render(
+      <I18nFormField fieldKey="key" translations={translations} />,
+    );
     // English is active by default and is source
     const ref = container.querySelector('[data-slot="source-reference"]');
     expect(ref).toBeNull();
@@ -68,25 +95,42 @@ describe("I18nFormField", () => {
 
   it("calls onTranslationChange when text edited", () => {
     const onChange = vi.fn();
-    render(<I18nFormField fieldKey="key" translations={translations} onTranslationChange={onChange} />);
+    render(
+      <I18nFormField
+        fieldKey="key"
+        translations={translations}
+        onTranslationChange={onChange}
+      />,
+    );
     const input = screen.getByDisplayValue("Welcome to our store");
     fireEvent.change(input, { target: { value: "Welcome!" } });
     expect(onChange).toHaveBeenCalledWith("en-US", "Welcome!");
   });
 
   it("renders textarea in multiline mode", () => {
-    render(<I18nFormField fieldKey="key" translations={translations} multiline />);
+    render(
+      <I18nFormField fieldKey="key" translations={translations} multiline />,
+    );
     const textarea = screen.getByRole("textbox");
     expect(textarea.tagName).toBe("TEXTAREA");
   });
 
   it("renders character count when maxLength set", () => {
-    render(<I18nFormField fieldKey="key" translations={translations} maxLength={50} />);
-    expect(screen.getByText(/23 \/ 50/)).toBeTruthy();
+    render(
+      <I18nFormField
+        fieldKey="key"
+        translations={translations}
+        maxLength={50}
+      />,
+    );
+    // Default active locale is en-US ("Welcome to our store" = 20 chars).
+    expect(screen.getByText(/20 \/ 50/)).toBeTruthy();
   });
 
   it("disables input in read-only mode", () => {
-    render(<I18nFormField fieldKey="key" translations={translations} readOnly />);
+    render(
+      <I18nFormField fieldKey="key" translations={translations} readOnly />,
+    );
     const input = screen.getByDisplayValue("Welcome to our store");
     expect(input).toBeDisabled();
   });
@@ -99,8 +143,16 @@ describe("I18nFormField", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<I18nFormField fieldKey="key" translations={translations} className="my-i18n" />);
-    const el = container.querySelector('[data-slot="i18n-form-field"]') as HTMLElement;
+    const { container } = render(
+      <I18nFormField
+        fieldKey="key"
+        translations={translations}
+        className="my-i18n"
+      />,
+    );
+    const el = container.querySelector(
+      '[data-slot="i18n-form-field"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-i18n");
   });
 });

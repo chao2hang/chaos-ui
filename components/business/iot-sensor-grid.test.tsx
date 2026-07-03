@@ -4,17 +4,79 @@ import { IotSensorGrid } from "./iot-sensor-grid";
 import type { Sensor } from "./iot-sensor-grid";
 
 const sensors: Sensor[] = [
-  { id: "s1", name: "Temp Sensor 01", location: "Warehouse A", type: "temperature", value: 22.5, unit: "°C", minThreshold: 10, maxThreshold: 35, batteryLevel: 85, signalStrength: 90, lastUpdate: "2s ago" },
-  { id: "s2", name: "Humidity 02", location: "Warehouse B", type: "humidity", value: 68, unit: "%", minThreshold: 30, maxThreshold: 70, batteryLevel: 45, signalStrength: 60, lastUpdate: "5s ago" },
-  { id: "s3", name: "Pressure 01", location: "Line 3", type: "pressure", value: 2.1, unit: "bar", minThreshold: 1.5, maxThreshold: 3.0, batteryLevel: 15, signalStrength: 30, lastUpdate: "1m ago" },
-  { id: "s4", name: "CO2 Monitor", location: "Office", type: "co2", value: 1200, unit: "ppm", minThreshold: 0, maxThreshold: 1000, batteryLevel: 70, signalStrength: 80, lastUpdate: "3s ago" },
-  { id: "s5", name: "Vibration 01", location: "Pump Room", type: "vibration", value: 0.5, unit: "mm/s", minThreshold: 0, maxThreshold: 2.0, batteryLevel: 90, signalStrength: 95, status: "offline" },
+  {
+    id: "s1",
+    name: "Temp Sensor 01",
+    location: "Warehouse A",
+    type: "temperature",
+    value: 22.5,
+    unit: "°C",
+    minThreshold: 10,
+    maxThreshold: 35,
+    batteryLevel: 85,
+    signalStrength: 90,
+    lastUpdate: "2s ago",
+  },
+  {
+    id: "s2",
+    name: "Humidity 02",
+    location: "Warehouse B",
+    type: "humidity",
+    value: 68,
+    unit: "%",
+    minThreshold: 30,
+    maxThreshold: 70,
+    batteryLevel: 45,
+    signalStrength: 60,
+    lastUpdate: "5s ago",
+  },
+  {
+    id: "s3",
+    name: "Pressure 01",
+    location: "Line 3",
+    type: "pressure",
+    value: 2.1,
+    unit: "bar",
+    minThreshold: 1.5,
+    maxThreshold: 3.0,
+    batteryLevel: 15,
+    signalStrength: 30,
+    lastUpdate: "1m ago",
+  },
+  {
+    id: "s4",
+    name: "CO2 Monitor",
+    location: "Office",
+    type: "co2",
+    value: 1200,
+    unit: "ppm",
+    minThreshold: 0,
+    maxThreshold: 1000,
+    batteryLevel: 70,
+    signalStrength: 80,
+    lastUpdate: "3s ago",
+  },
+  {
+    id: "s5",
+    name: "Vibration 01",
+    location: "Pump Room",
+    type: "vibration",
+    value: 0.5,
+    unit: "mm/s",
+    minThreshold: 0,
+    maxThreshold: 2.0,
+    batteryLevel: 90,
+    signalStrength: 95,
+    status: "offline",
+  },
 ];
 
 describe("IotSensorGrid", () => {
   it("renders with data-slot", () => {
     const { container } = render(<IotSensorGrid sensors={sensors} />);
-    expect(container.querySelector('[data-slot="iot-sensor-grid"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="iot-sensor-grid"]'),
+    ).toBeTruthy();
   });
 
   it("renders title", () => {
@@ -68,7 +130,9 @@ describe("IotSensorGrid", () => {
 
   it("renders signal strength", () => {
     render(<IotSensorGrid sensors={sensors} />);
-    expect(screen.getByText("90%")).toBeTruthy();
+    // "90%" collides: sensor s1 has signalStrength 90, and s5 has batteryLevel
+    // 90 (both rendered as "<n>%"), so it appears more than once.
+    expect(screen.getAllByText("90%").length).toBeGreaterThan(0);
     expect(screen.getByText("60%")).toBeTruthy();
   });
 
@@ -80,7 +144,9 @@ describe("IotSensorGrid", () => {
 
   it("renders live indicator dot", () => {
     const { container } = render(<IotSensorGrid sensors={sensors} />);
-    expect(container.querySelector('[data-slot="live-indicator"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="live-indicator"]'),
+    ).toBeTruthy();
   });
 
   it("renders sensor cards", () => {
@@ -91,7 +157,9 @@ describe("IotSensorGrid", () => {
 
   it("calls onSensorClick when card clicked", () => {
     const onClick = vi.fn();
-    const { container } = render(<IotSensorGrid sensors={sensors} onSensorClick={onClick} />);
+    const { container } = render(
+      <IotSensorGrid sensors={sensors} onSensorClick={onClick} />,
+    );
     const cards = container.querySelectorAll('[data-slot="sensor-card"]');
     fireEvent.click(cards[0]!);
     expect(onClick).toHaveBeenCalledWith(expect.objectContaining({ id: "s1" }));
@@ -103,8 +171,12 @@ describe("IotSensorGrid", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<IotSensorGrid sensors={sensors} className="my-iot" />);
-    const el = container.querySelector('[data-slot="iot-sensor-grid"]') as HTMLElement;
+    const { container } = render(
+      <IotSensorGrid sensors={sensors} className="my-iot" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="iot-sensor-grid"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-iot");
   });
 });

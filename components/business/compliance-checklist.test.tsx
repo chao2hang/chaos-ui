@@ -4,18 +4,71 @@ import { ComplianceChecklist } from "./compliance-checklist";
 import type { ComplianceItem } from "./compliance-checklist";
 
 const items: ComplianceItem[] = [
-  { id: "i1", code: "ISO-4.1", description: "Quality policy documented and communicated", category: "Quality Management", status: "compliant", owner: "Alice", dueDate: "2026-06-01", evidence: "QM-POL-001", risk: "low" },
-  { id: "i2", code: "ISO-6.2", description: "Quality objectives established", category: "Quality Management", status: "in_progress", owner: "Bob", dueDate: "2026-07-15", risk: "medium" },
-  { id: "i3", code: "GDPR-7", description: "Data subject access request procedure", category: "Data Privacy", status: "non_compliant", owner: "Carol", dueDate: "2026-06-30", risk: "high", notes: "Need legal review" },
-  { id: "i4", code: "GDPR-17", description: "Right to erasure implemented", category: "Data Privacy", status: "pending", dueDate: "2026-08-01" },
-  { id: "i5", code: "SOC-1.1", description: "Access control policy", category: "Security", status: "compliant", owner: "Dave", evidence: "SEC-POL-005" },
-  { id: "i6", code: "SOC-2.3", description: "Encryption at rest", category: "Security", status: "not_applicable", notes: "No on-prem storage" },
+  {
+    id: "i1",
+    code: "ISO-4.1",
+    description: "Quality policy documented and communicated",
+    category: "Quality Management",
+    status: "compliant",
+    owner: "Alice",
+    dueDate: "2026-06-01",
+    evidence: "QM-POL-001",
+    risk: "low",
+  },
+  {
+    id: "i2",
+    code: "ISO-6.2",
+    description: "Quality objectives established",
+    category: "Quality Management",
+    status: "in_progress",
+    owner: "Bob",
+    dueDate: "2026-07-15",
+    risk: "medium",
+  },
+  {
+    id: "i3",
+    code: "GDPR-7",
+    description: "Data subject access request procedure",
+    category: "Data Privacy",
+    status: "non_compliant",
+    owner: "Carol",
+    dueDate: "2026-06-30",
+    risk: "high",
+    notes: "Need legal review",
+  },
+  {
+    id: "i4",
+    code: "GDPR-17",
+    description: "Right to erasure implemented",
+    category: "Data Privacy",
+    status: "pending",
+    dueDate: "2026-08-01",
+  },
+  {
+    id: "i5",
+    code: "SOC-1.1",
+    description: "Access control policy",
+    category: "Security",
+    status: "compliant",
+    owner: "Dave",
+    evidence: "SEC-POL-005",
+  },
+  {
+    id: "i6",
+    code: "SOC-2.3",
+    description: "Encryption at rest",
+    category: "Security",
+    status: "not_applicable",
+    notes: "No on-prem storage",
+  },
 ];
 
 describe("ComplianceChecklist", () => {
   it("renders with data-slot", () => {
     const { container } = render(<ComplianceChecklist items={items} />);
-    expect(container.querySelector('[data-slot="compliance-checklist"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="compliance-checklist"]'),
+    ).toBeTruthy();
   });
 
   it("renders title", () => {
@@ -55,15 +108,20 @@ describe("ComplianceChecklist", () => {
 
   it("renders item descriptions", () => {
     render(<ComplianceChecklist items={items} />);
-    expect(screen.getByText("Quality policy documented and communicated")).toBeTruthy();
-    expect(screen.getByText("Data subject access request procedure")).toBeTruthy();
+    expect(
+      screen.getByText("Quality policy documented and communicated"),
+    ).toBeTruthy();
+    expect(
+      screen.getByText("Data subject access request procedure"),
+    ).toBeTruthy();
   });
 
   it("renders risk labels", () => {
     render(<ComplianceChecklist items={items} />);
-    expect(screen.getByText("low risk")).toBeTruthy();
-    expect(screen.getByText("medium risk")).toBeTruthy();
-    expect(screen.getByText("high risk")).toBeTruthy();
+    // Source renders risk labels as "Low risk" / "Medium risk" / "High risk".
+    expect(screen.getByText("Low risk")).toBeTruthy();
+    expect(screen.getByText("Medium risk")).toBeTruthy();
+    expect(screen.getByText("High risk")).toBeTruthy();
   });
 
   it("renders owner names", () => {
@@ -93,15 +151,21 @@ describe("ComplianceChecklist", () => {
 
   it("calls onItemClick when item clicked", () => {
     const onClick = vi.fn();
-    const { container } = render(<ComplianceChecklist items={items} onItemClick={onClick} />);
+    const { container } = render(
+      <ComplianceChecklist items={items} onItemClick={onClick} />,
+    );
     const itemEls = container.querySelectorAll('[data-slot="compliance-item"]');
     fireEvent.click(itemEls[0]!);
     expect(onClick).toHaveBeenCalledWith(expect.objectContaining({ id: "i1" }));
   });
 
   it("renders status dropdowns when onStatusChange provided", () => {
-    const { container } = render(<ComplianceChecklist items={items} onStatusChange={() => {}} />);
-    const selects = container.querySelectorAll('select[aria-label="Status selector"]');
+    const { container } = render(
+      <ComplianceChecklist items={items} onStatusChange={() => {}} />,
+    );
+    const selects = container.querySelectorAll(
+      'select[aria-label="Status selector"]',
+    );
     expect(selects.length).toBeGreaterThan(0);
   });
 
@@ -116,8 +180,12 @@ describe("ComplianceChecklist", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<ComplianceChecklist items={items} className="my-compliance" />);
-    const el = container.querySelector('[data-slot="compliance-checklist"]') as HTMLElement;
+    const { container } = render(
+      <ComplianceChecklist items={items} className="my-compliance" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="compliance-checklist"]',
+    ) as HTMLElement;
     expect(el.className).toContain("my-compliance");
   });
 });

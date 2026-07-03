@@ -5,18 +5,42 @@ import type { QuotationLine } from "./quotation-line-editor";
 
 vi.mock("@/components/ui/icons", () => ({
   PlusIcon: (p: Record<string, unknown>) => <svg data-testid="plus" {...p} />,
-  Trash2Icon: (p: Record<string, unknown>) => <svg data-testid="trash" {...p} />,
+  Trash2Icon: (p: Record<string, unknown>) => (
+    <svg data-testid="trash" {...p} />
+  ),
 }));
 
 const lines: QuotationLine[] = [
-  { id: "1", productCode: "P-001", productName: "Widget A", quantity: 10, unit: "pcs", unitCost: 30, unitPrice: 50, discountPct: 0, taxRate: 13 },
-  { id: "2", productCode: "P-002", productName: "Widget B", quantity: 5, unit: "box", unitCost: 80, unitPrice: 120, discountPct: 10, taxRate: 13 },
+  {
+    id: "1",
+    productCode: "P-001",
+    productName: "Widget A",
+    quantity: 10,
+    unit: "pcs",
+    unitCost: 30,
+    unitPrice: 50,
+    discountPct: 0,
+    taxRate: 13,
+  },
+  {
+    id: "2",
+    productCode: "P-002",
+    productName: "Widget B",
+    quantity: 5,
+    unit: "box",
+    unitCost: 80,
+    unitPrice: 120,
+    discountPct: 10,
+    taxRate: 13,
+  },
 ];
 
 describe("QuotationLineEditor", () => {
   it("renders with data-slot", () => {
     const { container } = render(<QuotationLineEditor lines={lines} />);
-    expect(container.querySelector('[data-slot="quotation-line-editor"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="quotation-line-editor"]'),
+    ).toBeTruthy();
   });
 
   it("renders quote number", () => {
@@ -31,16 +55,18 @@ describe("QuotationLineEditor", () => {
   });
 
   it("calculates line total with discount", () => {
-    const { container } = render(<QuotationLineEditor lines={lines} />);
+    render(<QuotationLineEditor lines={lines} />);
     // Line 1: 10 * 50 * (1 - 0) = 500
     // Line 2: 5 * 120 * (1 - 0.10) = 540
-    expect(container.querySelector('[data-slot="quotation-subtotal"]')?.textContent).toContain("1,040");
+    // subtotal = 500 + 540 = 1,040 (footer + summary both render it).
+    expect(screen.getAllByText("¥1,040.00").length).toBeGreaterThan(0);
   });
 
   it("calculates profit margin", () => {
-    const { container } = render(<QuotationLineEditor lines={lines} />);
-    // Line 1: cost=300, price=500, profit=200, margin=40%
-    expect(container.querySelector('[data-slot="quotation-margin"]')?.textContent).toContain("40");
+    render(<QuotationLineEditor lines={lines} />);
+    // Overall: cost=700, subtotal=1,040, profit=340, margin=340/1,040 = 32.7%.
+    // Rendered as "Margin: 32.7%" in the summary and "32.7%" in the footer.
+    expect(screen.getAllByText("32.7%").length).toBeGreaterThan(0);
   });
 
   it("calls onLinesChange when adding line", () => {
@@ -69,6 +95,6 @@ describe("QuotationLineEditor", () => {
 
   it("renders empty state when no lines", () => {
     render(<QuotationLineEditor lines={[]} />);
-    expect(screen.getByText(/No lines/i)).toBeTruthy();
+    expect(screen.getByText(/No line items/i)).toBeTruthy();
   });
 });

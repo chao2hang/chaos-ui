@@ -42,27 +42,18 @@ describe("KPICard", () => {
   });
 
   it("renders neutral changeType without crash", () => {
-    render(
-      <KPICard title="X" value="1" change="0%" changeType="neutral" />,
-    );
+    render(<KPICard title="X" value="1" change="0%" changeType="neutral" />);
     expect(screen.getByText("0%")).toBeDefined();
   });
 
   it("renders negative changeType", () => {
-    render(
-      <KPICard title="X" value="1" change="-3%" changeType="negative" />,
-    );
+    render(<KPICard title="X" value="1" change="-3%" changeType="negative" />);
     expect(screen.getByText("-3%")).toBeDefined();
   });
 
   it("renders target progress bar and label", () => {
     const { container } = render(
-      <KPICard
-        title="Goal"
-        value="42"
-        target={42}
-        targetLabel="Completion"
-      />,
+      <KPICard title="Goal" value="42" target={42} targetLabel="Completion" />,
     );
     expect(screen.getByText("Completion")).toBeDefined();
     expect(screen.getByText("42%")).toBeDefined();
@@ -87,7 +78,9 @@ describe("KPICard", () => {
     // recharts ResponsiveContainer needs a measured size; in jsdom it renders
     // no svg but must not throw. Assert the sparkline wrapper div is present
     // and the card value still renders.
-    expect(container.querySelector('[data-slot="card"]')).not.toBeNull();
+    // KPICard labels its Card with data-slot="kpi-card" (overriding Card's
+    // default "card" slot via props), so query that slot.
+    expect(container.querySelector('[data-slot="kpi-card"]')).not.toBeNull();
     expect(screen.getByText("1")).toBeDefined();
   });
 

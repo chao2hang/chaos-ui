@@ -5,9 +5,15 @@ import type { JournalEntryLine, AccountOption } from "./journal-entry-editor";
 
 vi.mock("@/components/ui/icons", () => ({
   PlusIcon: (p: Record<string, unknown>) => <svg data-testid="plus" {...p} />,
-  Trash2Icon: (p: Record<string, unknown>) => <svg data-testid="trash" {...p} />,
-  CheckCircle2Icon: (p: Record<string, unknown>) => <svg data-testid="check" {...p} />,
-  AlertCircleIcon: (p: Record<string, unknown>) => <svg data-testid="alert" {...p} />,
+  Trash2Icon: (p: Record<string, unknown>) => (
+    <svg data-testid="trash" {...p} />
+  ),
+  CheckCircle2Icon: (p: Record<string, unknown>) => (
+    <svg data-testid="check" {...p} />
+  ),
+  AlertCircleIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="alert" {...p} />
+  ),
 }));
 
 const accounts: AccountOption[] = [
@@ -18,18 +24,34 @@ const accounts: AccountOption[] = [
 
 const balancedLines: JournalEntryLine[] = [
   { id: "1", accountCode: "1001", accountName: "Cash", debit: 1000, credit: 0 },
-  { id: "2", accountCode: "4001", accountName: "Revenue", debit: 0, credit: 1000 },
+  {
+    id: "2",
+    accountCode: "4001",
+    accountName: "Revenue",
+    debit: 0,
+    credit: 1000,
+  },
 ];
 
 const unbalancedLines: JournalEntryLine[] = [
   { id: "1", accountCode: "1001", accountName: "Cash", debit: 1000, credit: 0 },
-  { id: "2", accountCode: "4001", accountName: "Revenue", debit: 0, credit: 500 },
+  {
+    id: "2",
+    accountCode: "4001",
+    accountName: "Revenue",
+    debit: 0,
+    credit: 500,
+  },
 ];
 
 describe("JournalEntryEditor", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<JournalEntryEditor lines={balancedLines} accounts={accounts} />);
-    expect(container.querySelector('[data-slot="journal-entry-editor"]')).toBeTruthy();
+    const { container } = render(
+      <JournalEntryEditor lines={balancedLines} accounts={accounts} />,
+    );
+    expect(
+      container.querySelector('[data-slot="journal-entry-editor"]'),
+    ).toBeTruthy();
   });
 
   it("shows balanced badge when debit equals credit", () => {
@@ -44,13 +66,19 @@ describe("JournalEntryEditor", () => {
 
   it("displays total debit and credit", () => {
     render(<JournalEntryEditor lines={balancedLines} accounts={accounts} />);
-    const debitTotal = screen.getByText("¥1,000.00");
-    expect(debitTotal).toBeTruthy();
+    // Total debit and total credit are both 1,000, so the formatted string repeats.
+    expect(screen.getAllByText("¥1,000.00").length).toBe(2);
   });
 
   it("calls onChange when add line button is clicked", () => {
     const onChange = vi.fn();
-    render(<JournalEntryEditor lines={balancedLines} accounts={accounts} onChange={onChange} />);
+    render(
+      <JournalEntryEditor
+        lines={balancedLines}
+        accounts={accounts}
+        onChange={onChange}
+      />,
+    );
     fireEvent.click(screen.getByText("Add Line"));
     expect(onChange).toHaveBeenCalledTimes(1);
     const newLines = onChange.mock.calls[0]![0]!;
@@ -59,7 +87,13 @@ describe("JournalEntryEditor", () => {
 
   it("calls onChange when remove button is clicked", () => {
     const onChange = vi.fn();
-    render(<JournalEntryEditor lines={balancedLines} accounts={accounts} onChange={onChange} />);
+    render(
+      <JournalEntryEditor
+        lines={balancedLines}
+        accounts={accounts}
+        onChange={onChange}
+      />,
+    );
     const removeButtons = screen.getAllByLabelText("Remove line");
     fireEvent.click(removeButtons[0]!);
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -70,9 +104,21 @@ describe("JournalEntryEditor", () => {
   it("entering debit clears credit on same line", () => {
     const onChange = vi.fn();
     const linesWithCredit: JournalEntryLine[] = [
-      { id: "1", accountCode: "1001", accountName: "Cash", debit: 0, credit: 500 },
+      {
+        id: "1",
+        accountCode: "1001",
+        accountName: "Cash",
+        debit: 0,
+        credit: 500,
+      },
     ];
-    render(<JournalEntryEditor lines={linesWithCredit} accounts={accounts} onChange={onChange} />);
+    render(
+      <JournalEntryEditor
+        lines={linesWithCredit}
+        accounts={accounts}
+        onChange={onChange}
+      />,
+    );
     const debitInputs = screen.getAllByLabelText("Debit amount");
     fireEvent.change(debitInputs[0]!, { target: { value: "300" } });
     const updated = onChange.mock.calls[0]![0]! as JournalEntryLine[];
@@ -98,7 +144,9 @@ describe("JournalEntryEditor", () => {
   });
 
   it("shows voucher number when provided", () => {
-    render(<JournalEntryEditor lines={balancedLines} voucherNo="JV-2026-001" />);
+    render(
+      <JournalEntryEditor lines={balancedLines} voucherNo="JV-2026-001" />,
+    );
     expect(screen.getByText(/JV-2026-001/)).toBeTruthy();
   });
 
@@ -106,7 +154,9 @@ describe("JournalEntryEditor", () => {
     const { container } = render(
       <JournalEntryEditor lines={balancedLines} className="custom-je" />,
     );
-    const el = container.querySelector('[data-slot="journal-entry-editor"]') as HTMLElement;
+    const el = container.querySelector(
+      '[data-slot="journal-entry-editor"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-je");
   });
 

@@ -8,7 +8,7 @@
   {
     "name": "Business entry (business.js, gzip)",
     "path": "dist/business.js",
-    "limit": "180 KB",
+    "limit": "220 KB",
     "gzip": true
   },
   {

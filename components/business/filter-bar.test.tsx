@@ -87,9 +87,7 @@ describe("filter-bar", () => {
 
   it("fires onSearch on Enter keydown in input", () => {
     const onSearch = vi.fn();
-    render(
-      <FilterBar fields={baseFields.slice(0, 1)} onSearch={onSearch} />,
-    );
+    render(<FilterBar fields={baseFields.slice(0, 1)} onSearch={onSearch} />);
     const input = screen.getByPlaceholderText("输入姓名");
     fireEvent.change(input, { target: { value: "x" } });
     fireEvent.keyDown(input, { key: "Enter" });
@@ -164,6 +162,11 @@ describe("filter-bar", () => {
         layout="card"
       />,
     );
-    expect(container.querySelector('[data-slot="card"]')).not.toBeNull();
+    // In the card layout, FilterBar wraps content in <Card data-slot="filter-bar">
+    // (which overrides Card's default "card" slot), so confirm the Card wrap via
+    // the CardContent child slot that only appears in this layout.
+    expect(
+      container.querySelector('[data-slot="card-content"]'),
+    ).not.toBeNull();
   });
 });

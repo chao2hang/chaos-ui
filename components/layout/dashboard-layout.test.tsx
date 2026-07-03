@@ -93,8 +93,11 @@ describe("dashboard-layout", () => {
         <div>content</div>
       </DashboardLayout>,
     );
+    // DashboardLayout passes data-slot="dashboard-layout" to SidebarProvider,
+    // whose wrapper div carries that slot (SidebarProvider's default
+    // "sidebar-wrapper" slot is overridden by the spread prop).
     expect(
-      container.querySelector('[data-slot="sidebar-wrapper"]'),
+      container.querySelector('[data-slot="dashboard-layout"]'),
     ).not.toBeNull();
   });
 });

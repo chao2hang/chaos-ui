@@ -4,13 +4,23 @@ import { BOMTreeEditor } from "./bom-tree-editor";
 import type { BOMItem } from "./bom-tree-editor";
 
 vi.mock("@/components/ui/icons", () => ({
-  ChevronRightIcon: (p: Record<string, unknown>) => <svg data-testid="chevron-right" {...p} />,
-  ChevronDownIcon: (p: Record<string, unknown>) => <svg data-testid="chevron-down" {...p} />,
+  ChevronRightIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-right" {...p} />
+  ),
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
   PlusIcon: (p: Record<string, unknown>) => <svg data-testid="plus" {...p} />,
-  Trash2Icon: (p: Record<string, unknown>) => <svg data-testid="trash" {...p} />,
+  Trash2Icon: (p: Record<string, unknown>) => (
+    <svg data-testid="trash" {...p} />
+  ),
   CopyIcon: (p: Record<string, unknown>) => <svg data-testid="copy" {...p} />,
-  PackageIcon: (p: Record<string, unknown>) => <svg data-testid="package" {...p} />,
-  LayersIcon: (p: Record<string, unknown>) => <svg data-testid="layers" {...p} />,
+  PackageIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="package" {...p} />
+  ),
+  LayersIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="layers" {...p} />
+  ),
 }));
 
 const bomItems: BOMItem[] = [
@@ -57,7 +67,9 @@ const bomItems: BOMItem[] = [
 describe("BOMTreeEditor", () => {
   it("renders with data-slot", () => {
     const { container } = render(<BOMTreeEditor items={bomItems} />);
-    expect(container.querySelector('[data-slot="bom-tree-editor"]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="bom-tree-editor"]'),
+    ).toBeTruthy();
   });
 
   it("renders top-level items", () => {
@@ -68,18 +80,29 @@ describe("BOMTreeEditor", () => {
 
   it("shows expand button for items with children", () => {
     render(<BOMTreeEditor items={bomItems} />);
-    const expandBtns = screen.getAllByLabelText("Expand");
-    expect(expandBtns.length).toBeGreaterThanOrEqual(1);
+    // Subassemblies render a toggle button. By default items with children
+    // start expanded, so the button reads "Collapse"; toggling yields "Expand".
+    // Use queryAll variants so an absent label does not throw before we union.
+    const toggleBtns = [
+      ...screen.queryAllByLabelText("Expand"),
+      ...screen.queryAllByLabelText("Collapse"),
+    ];
+    expect(toggleBtns.length).toBeGreaterThanOrEqual(1);
   });
 
-  it("expands children when toggle is clicked", () => {
+  it("expands/collapses children when toggle is clicked", () => {
     render(<BOMTreeEditor items={bomItems} />);
-    // Initially children are hidden
+    // Subassemblies start expanded, so children are visible initially.
+    expect(screen.getByDisplayValue("A-101")).toBeTruthy();
+    expect(screen.getByDisplayValue("A-102")).toBeTruthy();
+    // Collapse the first subassembly.
+    const collapseBtn = screen.getAllByLabelText("Collapse")[0]!;
+    fireEvent.click(collapseBtn);
     expect(screen.queryByDisplayValue("A-101")).toBeNull();
-    // Click expand
-    const expandBtn = screen.getAllByLabelText("Expand")[0];
-    fireEvent.click(expandBtn!);
-    // Now children are visible
+    expect(screen.queryByDisplayValue("A-102")).toBeNull();
+    // Re-expand it.
+    const expandBtn = screen.getAllByLabelText("Expand")[0]!;
+    fireEvent.click(expandBtn);
     expect(screen.getByDisplayValue("A-101")).toBeTruthy();
     expect(screen.getByDisplayValue("A-102")).toBeTruthy();
   });
@@ -141,14 +164,18 @@ describe("BOMTreeEditor", () => {
   it("shows type badges", () => {
     render(<BOMTreeEditor items={bomItems} />);
     expect(screen.getByText("Sub-assembly")).toBeTruthy();
-    expect(screen.getByText("Material")).toBeTruthy();
+    // Multiple rows are typed "Material" (expanded children included), so the
+    // badge text appears more than once.
+    expect(screen.getAllByText("Material").length).toBeGreaterThan(0);
   });
 
   it("applies custom className", () => {
     const { container } = render(
       <BOMTreeEditor items={bomItems} className="custom-bom" />,
     );
-    const el = container.querySelector('[data-slot="bom-tree-editor"]') as HTMLElement;
+    const el = container.querySelector(
+      '[data-slot="bom-tree-editor"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-bom");
   });
 
