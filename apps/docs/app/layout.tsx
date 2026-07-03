@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,10 +18,22 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Chaos UI",
+    default: "Chaos UI — Enterprise Component Library",
     template: "%s | Chaos UI",
   },
-  description: "Enterprise component design system",
+  description:
+    "Chaos UI is an enterprise-grade React 19 + Next.js component library for ERP & business systems. 148+ components, 19 hooks, 5 utility modules. Built with Tailwind CSS 4 and shadcn/ui.",
+  keywords: [
+    "React",
+    "Next.js",
+    "component library",
+    "ERP",
+    "UI components",
+    "design system",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "TypeScript",
+  ],
 };
 
 export default function RootLayout({
@@ -34,8 +48,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <TooltipProvider>{children}</TooltipProvider>
-        <Toaster richColors position="top-right" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+          </TooltipProvider>
+          <Toaster richColors position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );
