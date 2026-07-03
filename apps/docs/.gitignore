@@ -1,0 +1,18 @@
+# Next.js build output
+.next/
+
+# Dependencies
+node_modules/
+
+# Storybook build
+storybook-static/
+
+# Temporary files
+*.txt
+!*.d.ts
+page-output.html
+page-final.html
+
+# OS
+.DS_Store
+Thumbs.db
