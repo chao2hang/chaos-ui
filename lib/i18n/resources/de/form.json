@@ -1,0 +1,13 @@
+{
+  "submit": "Absenden",
+  "reset": "Zurücksetzen",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "required": "Erforderlich",
+  "optional": "Optional",
+  "validation.required": "Dieses Feld ist erforderlich",
+  "validation.email": "Ungültige E-Mail",
+  "selectPlaceholder": "Auswählen...",
+  "searchPlaceholder": "Suchen...",
+  "noResults": "Keine Ergebnisse"
+}

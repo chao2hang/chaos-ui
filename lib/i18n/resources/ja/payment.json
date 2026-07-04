@@ -1,0 +1,11 @@
+{
+  "pay": "支払う",
+  "amount": "金額",
+  "currency": "通貨",
+  "selectMethod": "支払方法を選択",
+  "confirmPay": "支払確認",
+  "paySuccess": "支払成功",
+  "payFail": "支払失敗",
+  "balance": "残高",
+  "refund": "返金"
+}

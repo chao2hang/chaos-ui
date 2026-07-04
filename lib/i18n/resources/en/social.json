@@ -1,0 +1,11 @@
+{
+  "share": "Share",
+  "shareTo": "Share to {{platform}}",
+  "copyLink": "Copy Link",
+  "linkCopied": "Link Copied",
+  "invite": "Invite",
+  "inviteDesc": "Invite friends to join",
+  "wechat": "WeChat",
+  "weibo": "Weibo",
+  "qq": "QQ"
+}

@@ -80,7 +80,7 @@ const eslintConfig = defineConfig([
     rules: {
       "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-unused-vars": "off",
-      "@chaos/no-hardcoded-chinese": "off",
+      "@chaos/no-hardcoded-chinese": "warn",
     },
   },
   {
@@ -118,7 +118,7 @@ const eslintConfig = defineConfig([
     // business 组件保留兼容默认文案；i18n 迁移分批推进。
     files: ["components/business/**/*.{ts,tsx}", "lib/api-client.ts"],
     rules: {
-      "@chaos/no-hardcoded-chinese": "off",
+      "@chaos/no-hardcoded-chinese": "warn",
     },
   },
   {
@@ -129,7 +129,7 @@ const eslintConfig = defineConfig([
       "@chaos/no-raw-html-elements": "off",
       "@chaos/no-deep-imports": "off",
       "@chaos/no-missing-story": "off",
-      "@chaos/no-hardcoded-chinese": "off",
+      "@chaos/no-hardcoded-chinese": "warn",
       // mock 实现需要泛化类型签名,any 是合理的
       "@typescript-eslint/no-explicit-any": "off",
     },

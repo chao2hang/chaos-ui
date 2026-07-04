@@ -1,0 +1,11 @@
+{
+  "share": "공유",
+  "shareTo": "{{platform}}에 공유",
+  "copyLink": "링크 복사",
+  "linkCopied": "링크 복사됨",
+  "invite": "초대",
+  "inviteDesc": "친구 초대",
+  "wechat": "WeChat",
+  "weibo": "Weibo",
+  "qq": "QQ"
+}

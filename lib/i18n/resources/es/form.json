@@ -1,0 +1,13 @@
+{
+  "submit": "Enviar",
+  "reset": "Restablecer",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "required": "Requerido",
+  "optional": "Opcional",
+  "validation.required": "Este campo es requerido",
+  "validation.email": "Correo inválido",
+  "selectPlaceholder": "Seleccionar...",
+  "searchPlaceholder": "Buscar...",
+  "noResults": "Sin resultados"
+}

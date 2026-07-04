@@ -1,0 +1,8 @@
+{
+  "zoomIn": "Zoom In",
+  "zoomOut": "Zoom Out",
+  "locate": "Locate",
+  "searchPlaceholder": "Search location...",
+  "noResults": "No location found",
+  "loading": "Loading map..."
+}

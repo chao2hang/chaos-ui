@@ -1,0 +1,8 @@
+{
+  "dialog.close": "Fermer",
+  "dialog.closeButton": "Fermer",
+  "schemaForm.submit": "Enregistrer",
+  "schemaForm.reset": "Réinitialiser",
+  "schemaForm.selectPlaceholder": "Sélectionner...",
+  "schemaForm.submitting": "Enregistrement..."
+}

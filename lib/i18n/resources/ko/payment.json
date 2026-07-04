@@ -1,0 +1,11 @@
+{
+  "pay": "결제",
+  "amount": "금액",
+  "currency": "통화",
+  "selectMethod": "결제 수단 선택",
+  "confirmPay": "결제 확인",
+  "paySuccess": "결제 성공",
+  "payFail": "결제 실패",
+  "balance": "잔액",
+  "refund": "환불"
+}

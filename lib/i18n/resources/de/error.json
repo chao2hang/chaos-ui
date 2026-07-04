@@ -1,0 +1,7 @@
+{
+  "notFound": "Seite nicht gefunden",
+  "forbidden": "Zugriff verweigert",
+  "serverError": "Serverfehler",
+  "retry": "Wiederholen",
+  "goBack": "Zurück"
+}

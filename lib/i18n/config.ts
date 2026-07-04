@@ -15,6 +15,11 @@ import tourZh from "./resources/zh/tour.json";
 import transferZh from "./resources/zh/transfer.json";
 import uiZh from "./resources/zh/ui.json";
 import uploadZh from "./resources/zh/upload.json";
+import formZh from "./resources/zh/form.json";
+import codeEditorZh from "./resources/zh/code-editor.json";
+import paymentZh from "./resources/zh/payment.json";
+import socialZh from "./resources/zh/social.json";
+import mapZh from "./resources/zh/map.json";
 import chartEn from "./resources/en/chart.json";
 import commonEn from "./resources/en/common.json";
 import cookieEn from "./resources/en/cookie.json";
@@ -29,6 +34,11 @@ import tourEn from "./resources/en/tour.json";
 import transferEn from "./resources/en/transfer.json";
 import uiEn from "./resources/en/ui.json";
 import uploadEn from "./resources/en/upload.json";
+import formEn from "./resources/en/form.json";
+import codeEditorEn from "./resources/en/code-editor.json";
+import paymentEn from "./resources/en/payment.json";
+import socialEn from "./resources/en/social.json";
+import mapEn from "./resources/en/map.json";
 import chartJa from "./resources/ja/chart.json";
 import commonJa from "./resources/ja/common.json";
 import cookieJa from "./resources/ja/cookie.json";
@@ -43,6 +53,11 @@ import tourJa from "./resources/ja/tour.json";
 import transferJa from "./resources/ja/transfer.json";
 import uiJa from "./resources/ja/ui.json";
 import uploadJa from "./resources/ja/upload.json";
+import formJa from "./resources/ja/form.json";
+import codeEditorJa from "./resources/ja/code-editor.json";
+import paymentJa from "./resources/ja/payment.json";
+import socialJa from "./resources/ja/social.json";
+import mapJa from "./resources/ja/map.json";
 import chartKo from "./resources/ko/chart.json";
 import commonKo from "./resources/ko/common.json";
 import cookieKo from "./resources/ko/cookie.json";
@@ -57,6 +72,33 @@ import tourKo from "./resources/ko/tour.json";
 import transferKo from "./resources/ko/transfer.json";
 import uiKo from "./resources/ko/ui.json";
 import uploadKo from "./resources/ko/upload.json";
+import formKo from "./resources/ko/form.json";
+import codeEditorKo from "./resources/ko/code-editor.json";
+import paymentKo from "./resources/ko/payment.json";
+import socialKo from "./resources/ko/social.json";
+import mapKo from "./resources/ko/map.json";
+
+// --- New languages (fr, es, de, ar) ---
+import commonFr from "./resources/fr/common.json";
+import uiFr from "./resources/fr/ui.json";
+import formFr from "./resources/fr/form.json";
+import errorFr from "./resources/fr/error.json";
+import navigationFr from "./resources/fr/navigation.json";
+import commonEs from "./resources/es/common.json";
+import uiEs from "./resources/es/ui.json";
+import formEs from "./resources/es/form.json";
+import errorEs from "./resources/es/error.json";
+import navigationEs from "./resources/es/navigation.json";
+import commonDe from "./resources/de/common.json";
+import uiDe from "./resources/de/ui.json";
+import formDe from "./resources/de/form.json";
+import errorDe from "./resources/de/error.json";
+import navigationDe from "./resources/de/navigation.json";
+import commonAr from "./resources/ar/common.json";
+import uiAr from "./resources/ar/ui.json";
+import formAr from "./resources/ar/form.json";
+import errorAr from "./resources/ar/error.json";
+import navigationAr from "./resources/ar/navigation.json";
 
 const resources = {
   "zh-CN": {
@@ -74,6 +116,11 @@ const resources = {
     transfer: transferZh,
     ui: uiZh,
     upload: uploadZh,
+    form: formZh,
+    "code-editor": codeEditorZh,
+    payment: paymentZh,
+    social: socialZh,
+    map: mapZh,
   },
   "en-US": {
     chart: chartEn,
@@ -90,6 +137,11 @@ const resources = {
     transfer: transferEn,
     ui: uiEn,
     upload: uploadEn,
+    form: formEn,
+    "code-editor": codeEditorEn,
+    payment: paymentEn,
+    social: socialEn,
+    map: mapEn,
   },
   "ja-JP": {
     chart: chartJa,
@@ -106,6 +158,11 @@ const resources = {
     transfer: transferJa,
     ui: uiJa,
     upload: uploadJa,
+    form: formJa,
+    "code-editor": codeEditorJa,
+    payment: paymentJa,
+    social: socialJa,
+    map: mapJa,
   },
   "ko-KR": {
     chart: chartKo,
@@ -122,13 +179,55 @@ const resources = {
     transfer: transferKo,
     ui: uiKo,
     upload: uploadKo,
+    form: formKo,
+    "code-editor": codeEditorKo,
+    payment: paymentKo,
+    social: socialKo,
+    map: mapKo,
+  },
+  "fr-FR": {
+    common: commonFr,
+    ui: uiFr,
+    form: formFr,
+    error: errorFr,
+    navigation: navigationFr,
+  },
+  "es-ES": {
+    common: commonEs,
+    ui: uiEs,
+    form: formEs,
+    error: errorEs,
+    navigation: navigationEs,
+  },
+  "de-DE": {
+    common: commonDe,
+    ui: uiDe,
+    form: formDe,
+    error: errorDe,
+    navigation: navigationDe,
+  },
+  "ar-SA": {
+    common: commonAr,
+    ui: uiAr,
+    form: formAr,
+    error: errorAr,
+    navigation: navigationAr,
   },
 };
 
 i18n.use(initReactI18next).init({
   lng: "zh-CN",
   fallbackLng: "zh-CN",
-  supportedLngs: ["zh-CN", "en-US", "ja-JP", "ko-KR"],
+  supportedLngs: [
+    "zh-CN",
+    "en-US",
+    "ja-JP",
+    "ko-KR",
+    "fr-FR",
+    "es-ES",
+    "de-DE",
+    "ar-SA",
+  ],
   resources,
   defaultNS: "common",
   interpolation: {

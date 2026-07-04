@@ -1,0 +1,18 @@
+{
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
+  "close": "Fermer",
+  "search": "Rechercher",
+  "clear": "Effacer",
+  "save": "Enregistrer",
+  "delete": "Supprimer",
+  "apply": "Appliquer",
+  "copy": "Copier",
+  "remove": "Retirer",
+  "retry": "Réessayer",
+  "back": "Retour",
+  "next": "Suivant",
+  "previous": "Précédent",
+  "loading": "Chargement...",
+  "noData": "Aucune donnée"
+}

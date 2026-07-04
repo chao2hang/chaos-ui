@@ -1,0 +1,22 @@
+{
+  "submit": "Submit",
+  "reset": "Reset",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "Required",
+  "optional": "Optional",
+  "validation.required": "This field is required",
+  "validation.email": "Enter a valid email address",
+  "validation.minLength": "At least {{min}} characters",
+  "validation.maxLength": "At most {{max}} characters",
+  "validation.pattern": "Invalid format",
+  "validation.number": "Enter a number",
+  "validation.integer": "Enter an integer",
+  "validation.url": "Enter a valid URL",
+  "validation.phone": "Enter a valid phone number",
+  "validation.idCard": "Enter a valid ID card number",
+  "validation.bankCard": "Enter a valid bank card number",
+  "selectPlaceholder": "Select...",
+  "searchPlaceholder": "Search...",
+  "noResults": "No results"
+}

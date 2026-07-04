@@ -1,0 +1,22 @@
+{
+  "submit": "保存",
+  "reset": "リセット",
+  "save": "保存",
+  "cancel": "キャンセル",
+  "required": "必須",
+  "optional": "任意",
+  "validation.required": "必須項目です",
+  "validation.email": "有効なメールアドレスを入力してください",
+  "validation.minLength": "{{min}}文字以上必要です",
+  "validation.maxLength": "{{max}}文字以内で入力してください",
+  "validation.pattern": "形式が正しくありません",
+  "validation.number": "数字を入力してください",
+  "validation.integer": "整数を入力してください",
+  "validation.url": "有効なURLを入力してください",
+  "validation.phone": "有効な電話番号を入力してください",
+  "validation.idCard": "有効な身分証明書番号を入力してください",
+  "validation.bankCard": "有効な銀行カード番号を入力してください",
+  "selectPlaceholder": "選択...",
+  "searchPlaceholder": "検索...",
+  "noResults": "結果なし"
+}

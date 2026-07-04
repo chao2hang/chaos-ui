@@ -1,0 +1,8 @@
+{
+  "zoomIn": "확대",
+  "zoomOut": "축소",
+  "locate": "위치",
+  "searchPlaceholder": "장소 검색...",
+  "noResults": "장소를 찾을 수 없음",
+  "loading": "지도 로딩 중..."
+}

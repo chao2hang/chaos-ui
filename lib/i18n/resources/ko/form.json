@@ -1,0 +1,22 @@
+{
+  "submit": "저장",
+  "reset": "재설정",
+  "save": "저장",
+  "cancel": "취소",
+  "required": "필수",
+  "optional": "선택",
+  "validation.required": "필수 항목입니다",
+  "validation.email": "유효한 이메일을 입력하세요",
+  "validation.minLength": "최소 {{min}}자 이상",
+  "validation.maxLength": "최대 {{max}}자 이하",
+  "validation.pattern": "형식이 올바르지 않습니다",
+  "validation.number": "숫자를 입력하세요",
+  "validation.integer": "정수를 입력하세요",
+  "validation.url": "유효한 URL을 입력하세요",
+  "validation.phone": "유효한 전화번호를 입력하세요",
+  "validation.idCard": "유효한 신분증 번호를 입력하세요",
+  "validation.bankCard": "유효한 은행 카드 번호를 입력하세요",
+  "selectPlaceholder": "선택...",
+  "searchPlaceholder": "검색...",
+  "noResults": "결과 없음"
+}

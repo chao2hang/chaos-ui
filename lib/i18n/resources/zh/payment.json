@@ -1,0 +1,11 @@
+{
+  "pay": "支付",
+  "amount": "金额",
+  "currency": "货币",
+  "selectMethod": "选择支付方式",
+  "confirmPay": "确认支付",
+  "paySuccess": "支付成功",
+  "payFail": "支付失败",
+  "balance": "余额",
+  "refund": "退款"
+}

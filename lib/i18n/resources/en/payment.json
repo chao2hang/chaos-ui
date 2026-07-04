@@ -1,0 +1,11 @@
+{
+  "pay": "Pay",
+  "amount": "Amount",
+  "currency": "Currency",
+  "selectMethod": "Select payment method",
+  "confirmPay": "Confirm Payment",
+  "paySuccess": "Payment Successful",
+  "payFail": "Payment Failed",
+  "balance": "Balance",
+  "refund": "Refund"
+}

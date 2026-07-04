@@ -1,0 +1,13 @@
+{
+  "submit": "إرسال",
+  "reset": "إعادة تعيين",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "required": "مطلوب",
+  "optional": "اختياري",
+  "validation.required": "هذا الحقل مطلوب",
+  "validation.email": "بريد إلكتروني غير صالح",
+  "selectPlaceholder": "اختيار...",
+  "searchPlaceholder": "بحث...",
+  "noResults": "لا توجد نتائج"
+}

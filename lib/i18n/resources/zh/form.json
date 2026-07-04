@@ -1,0 +1,22 @@
+{
+  "submit": "提交",
+  "reset": "重置",
+  "save": "保存",
+  "cancel": "取消",
+  "required": "必填",
+  "optional": "可选",
+  "validation.required": "此项为必填",
+  "validation.email": "请输入有效的邮箱地址",
+  "validation.minLength": "至少需要 {{min}} 个字符",
+  "validation.maxLength": "最多 {{max}} 个字符",
+  "validation.pattern": "格式不正确",
+  "validation.number": "请输入数字",
+  "validation.integer": "请输入整数",
+  "validation.url": "请输入有效的 URL",
+  "validation.phone": "请输入有效的手机号",
+  "validation.idCard": "请输入有效的身份证号",
+  "validation.bankCard": "请输入有效的银行卡号",
+  "selectPlaceholder": "请选择",
+  "searchPlaceholder": "搜索...",
+  "noResults": "无匹配结果"
+}
