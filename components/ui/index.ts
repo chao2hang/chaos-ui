@@ -176,6 +176,13 @@ export type {
   FormDescriptionProps,
   FormMessageProps,
 } from "./form";
+export { SchemaForm } from "./schema-form";
+export type {
+  SchemaFormProps,
+  SchemaFormFieldOverride,
+  SchemaFormFieldType,
+  SchemaFormFieldOption,
+} from "./schema-form";
 export { FullscreenToggle } from "./fullscreen-toggle";
 export type { FullscreenToggleProps } from "./fullscreen-toggle";
 export { GridLayout, GridItem, gridLayoutVariants } from "./grid-layout";
@@ -546,4 +553,8 @@ export type { IconPickerProps, IconItem } from "./icon-picker";
 export { NumberTicker } from "./number-ticker";
 export type { NumberTickerProps } from "./number-ticker";
 export { KeyboardShortcutDialog } from "./keyboard-shortcut-dialog";
-export type { KeyboardShortcutDialogProps, ShortcutGroup, ShortcutItem } from "./keyboard-shortcut-dialog";
+export type {
+  KeyboardShortcutDialogProps,
+  ShortcutGroup,
+  ShortcutItem,
+} from "./keyboard-shortcut-dialog";

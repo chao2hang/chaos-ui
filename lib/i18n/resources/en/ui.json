@@ -20,5 +20,9 @@
   "multiSelect.clearAll": "Clear all",
   "commandDialog.title": "Command Palette",
   "commandDialog.description": "Search for a command to run...",
-  "chip.remove": "Remove"
+  "chip.remove": "Remove",
+  "schemaForm.submit": "Save",
+  "schemaForm.reset": "Reset",
+  "schemaForm.selectPlaceholder": "Select...",
+  "schemaForm.submitting": "Saving..."
 }

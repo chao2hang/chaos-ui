@@ -20,5 +20,9 @@
   "multiSelect.clearAll": "Clear all",
   "commandDialog.title": "Command Palette",
   "commandDialog.description": "Search for a command to run...",
-  "chip.remove": "Remove"
+  "chip.remove": "Remove",
+  "schemaForm.submit": "저장",
+  "schemaForm.reset": "재설정",
+  "schemaForm.selectPlaceholder": "선택...",
+  "schemaForm.submitting": "저장 중..."
 }

@@ -66,6 +66,8 @@ export { useScroll, useScrollDirection } from "./use-scroll";
 export { useOrientation } from "./use-orientation";
 export { useClipboard } from "./use-clipboard";
 export { useForm } from "./use-form";
+export { useFormSchema, zodResolverAdapter } from "./use-form-schema";
+export type { UseFormSchemaOptions } from "./use-form-schema";
 
 // P0 hooks — auth/permission
 export {
