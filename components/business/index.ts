@@ -37,6 +37,7 @@ export * from "./channel-picker";
 export * from "./chart";
 export * from "./chip";
 export * from "./code-block";
+export * from "./code-editor";
 export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
@@ -74,6 +75,7 @@ export * from "./form-wizard";
 export * from "./gauge";
 export * from "./heatmap-calendar";
 export * from "./inline-edit";
+export * from "./json-editor";
 export * from "./json-viewer";
 export * from "./kanban-board";
 export * from "./kpi-card";
@@ -117,6 +119,7 @@ export * from "./role-assignment";
 export * from "./saved-filters";
 export { SearchTable, type SearchTableProps } from "./search-table";
 export * from "./segmented-control";
+export { SqlEditor, type SqlEditorProps } from "./sql-editor";
 export * from "./stat-card";
 export * from "./stat-card-row";
 export * from "./status-tag";
@@ -415,7 +418,10 @@ export * from "./leave-request-form";
 export * from "./meeting-room-booking";
 export * from "./attendance-calendar";
 export { PurchaseOrderEditor } from "./purchase-order-editor";
-export type { PurchaseOrderEditorProps, POLineItem } from "./purchase-order-editor";
+export type {
+  PurchaseOrderEditorProps,
+  POLineItem,
+} from "./purchase-order-editor";
 export * from "./stock-transfer-dialog";
 export * from "./ar-ap-aging-table";
 export * from "./lead-pipeline-board";
