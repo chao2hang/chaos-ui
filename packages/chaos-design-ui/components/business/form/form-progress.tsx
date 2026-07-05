@@ -2,13 +2,14 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-interface FormProgressProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+interface FormProgressProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "ref"> {
   current: number
   total: number
   labels?: string[]
   className?: string
   showLabels?: boolean
   variant?: "bar" | "steps" | "dots"
+  ref?: React.Ref<HTMLElement>
 }
 
 export function FormProgress({
@@ -18,13 +19,20 @@ export function FormProgress({
   className,
   showLabels = true,
   variant = "bar",
+  ref,
   ...props
 }: FormProgressProps) {
   const pct = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0
+  const settledRef = ref ?? null
 
   if (variant === "bar") {
     return (
-      <div data-slot="form-progress" className={cn("space-y-1.5", className)} {...props}>
+      <div
+        data-slot="form-progress"
+        ref={settledRef as React.Ref<HTMLDivElement> | null}
+        className={cn("space-y-1.5", className)}
+        {...props}
+      >
         {showLabels && (
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>{labels?.[current - 1] ?? `步骤 ${current}`}</span>
@@ -47,7 +55,12 @@ export function FormProgress({
 
   if (variant === "dots") {
     return (
-      <div data-slot="form-progress" className={cn("flex items-center gap-1.5", className)} {...props}>
+      <div
+        data-slot="form-progress"
+        ref={settledRef as React.Ref<HTMLDivElement> | null}
+        className={cn("flex items-center gap-1.5", className)}
+        {...props}
+      >
         {Array.from({ length: total }).map((_, i) => (
           <span
             key={i}
@@ -62,7 +75,12 @@ export function FormProgress({
   }
 
   return (
-    <ol data-slot="form-progress" className={cn("flex items-center gap-2", className)} {...props}>
+    <ol
+      data-slot="form-progress"
+      ref={settledRef as React.Ref<HTMLOListElement> | null}
+      className={cn("flex items-center gap-2", className)}
+      {...(props as React.OlHTMLAttributes<HTMLOListElement>)}
+    >
       {Array.from({ length: total }).map((_, i) => {
         const done = i < current
         const active = i === current - 1

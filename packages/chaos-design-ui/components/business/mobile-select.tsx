@@ -19,8 +19,14 @@ interface MobileSelectProps {
 }
 
 function MobileSelect({ options, value, onValueChange, placeholder, disabled, className }: MobileSelectProps) {
+  const handleValueChange = React.useCallback(
+    (next: string | null) => {
+      if (next != null) onValueChange?.(next)
+    },
+    [onValueChange]
+  )
   return (
-    <Select value={value} onValueChange={onValueChange} disabled={disabled}>
+    <Select value={value ?? null} onValueChange={handleValueChange} disabled={disabled}>
       <SelectTrigger
         className={cn(
           "h-12 px-4 text-base w-full",

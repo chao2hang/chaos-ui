@@ -37,14 +37,21 @@ export function rate(name: WebVitalName, value: number): "good" | "needs-improve
 
 let counter = 0
 
-function emit(metric: Omit<WebVitalMetric, "id" | "rating" | "entries" | "navigationType" | "delta"> & { entries?: PerformanceEntry[] }) {
+type EmittedMetric = Pick<WebVitalMetric, "name" | "value"> & {
+  entries?: PerformanceEntry[]
+  delta?: number
+}
+
+function emit(metric: EmittedMetric) {
+  const { name, value, entries, delta } = metric
   const payload: WebVitalMetric = {
     id: `v${Date.now()}-${counter++}`,
-    delta: metric.delta ?? 0,
+    name,
+    value,
+    delta: delta ?? 0,
     navigationType: "navigate",
-    entries: metric.entries ?? [],
-    ...metric,
-    rating: rate(metric.name, metric.value),
+    entries: entries ?? [],
+    rating: rate(name, value),
   }
   reporters.forEach((r) => r(payload))
 }

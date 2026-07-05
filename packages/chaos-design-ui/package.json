@@ -73,6 +73,7 @@
     "@uiw/react-codemirror": "^4.25.10",
     "@vidstack/react": "^0.6.15",
     "@xyflow/react": "^12.11.0",
+    "@faker-js/faker": "^9.0.0",
     "axios": "1.17.0",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "0.7.1",

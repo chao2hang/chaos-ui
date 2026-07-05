@@ -33,7 +33,7 @@ export function Transfer({
   dataSource,
   targetKeys = [],
   onChange,
-  titles = ["源列表", "目标列表"],
+  titles = ["Source", "Target"],
   searchable = true,
   filterOption = defaultFilter,
   render,
@@ -41,8 +41,8 @@ export function Transfer({
   className,
   oneWay = false,
 }: TransferProps) {
-  const [selectedSource, setSelectedSource] = React.useState<string[]>([])
-  const [selectedTarget, setSelectedTarget] = React.useState<string[]>([])
+  const [selectedSource, setSelectedSource] = React.useState<Set<string>>(() => new Set())
+  const [selectedTarget, setSelectedTarget] = React.useState<Set<string>>(() => new Set())
   const [searchLeft, setSearchLeft] = React.useState("")
   const [searchRight, setSearchRight] = React.useState("")
 
@@ -55,48 +55,74 @@ export function Transfer({
     [dataSource, targetKeys]
   )
 
-  const filteredSource = source.filter((s) => filterOption(searchLeft, s))
-  const filteredTarget = target.filter((s) => filterOption(searchRight, s))
+  const filteredSource = React.useMemo(
+    () => source.filter((s) => filterOption(searchLeft, s)),
+    [source, searchLeft, filterOption]
+  )
+  const filteredTarget = React.useMemo(
+    () => target.filter((s) => filterOption(searchRight, s)),
+    [target, searchRight, filterOption]
+  )
 
-  const moveToTarget = () => {
+  const moveToTarget = React.useCallback(() => {
     if (disabled) return
     const next = Array.from(new Set([...targetKeys, ...selectedSource]))
     onChange?.(next)
-    setSelectedSource([])
-  }
+    setSelectedSource(new Set())
+  }, [disabled, targetKeys, selectedSource, onChange])
 
-  const moveToSource = () => {
+  const moveToSource = React.useCallback(() => {
     if (disabled) return
-    const next = targetKeys.filter((k) => !selectedTarget.includes(k))
+    const next = targetKeys.filter((k) => !selectedTarget.has(k))
     onChange?.(next)
-    setSelectedTarget([])
-  }
+    setSelectedTarget(new Set())
+  }, [disabled, targetKeys, selectedTarget, onChange])
 
-  const moveSingleToTarget = (key: string) => {
-    if (disabled) return
-    const next = Array.from(new Set([...targetKeys, key]))
-    onChange?.(next)
-    setSelectedSource((prev) => prev.filter((k) => k !== key))
-  }
+  const moveSingleToTarget = React.useCallback(
+    (key: string) => {
+      if (disabled) return
+      const next = Array.from(new Set([...targetKeys, key]))
+      onChange?.(next)
+      setSelectedSource((prev) => {
+        const s = new Set(prev)
+        s.delete(key)
+        return s
+      })
+    },
+    [disabled, targetKeys, onChange],
+  )
 
-  const moveSingleToSource = (key: string) => {
-    if (disabled) return
-    const next = targetKeys.filter((k) => k !== key)
-    onChange?.(next)
-    setSelectedTarget((prev) => prev.filter((k) => k !== key))
-  }
+  const moveSingleToSource = React.useCallback(
+    (key: string) => {
+      if (disabled) return
+      const next = targetKeys.filter((k) => k !== key)
+      onChange?.(next)
+      setSelectedTarget((prev) => {
+        const s = new Set(prev)
+        s.delete(key)
+        return s
+      })
+    },
+    [disabled, targetKeys, onChange],
+  )
 
-  const toggleSource = (key: string) => {
-    setSelectedSource((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+  const toggleSource = React.useCallback((key: string) => {
+    setSelectedSource((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }, [])
 
-  const toggleTarget = (key: string) => {
-    setSelectedTarget((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+  const toggleTarget = React.useCallback((key: string) => {
+    setSelectedTarget((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }, [])
 
   return (
     <div
@@ -120,8 +146,8 @@ export function Transfer({
           variant="outline"
           size="icon"
           onClick={moveToTarget}
-          disabled={selectedSource.length === 0 || disabled}
-          aria-label="添加到目标"
+	          disabled={selectedSource.size === 0 || disabled}
+	          aria-label="Move to target"
         >
           <ChevronRightIcon />
         </Button>
@@ -130,8 +156,8 @@ export function Transfer({
             variant="outline"
             size="icon"
             onClick={moveToSource}
-            disabled={selectedTarget.length === 0 || disabled}
-            aria-label="移回源"
+	            disabled={selectedTarget.size === 0 || disabled}
+	            aria-label="Move to source"
           >
             <ChevronLeftIcon />
           </Button>
@@ -167,7 +193,7 @@ function TransferPanel({
 }: {
   title: string
   items: TransferItem[]
-  selected: string[]
+  selected: Set<string>
   onToggle: (key: string) => void
   onItemDoubleClick?: (key: string) => void
   searchable: boolean
@@ -176,15 +202,15 @@ function TransferPanel({
   render?: (item: TransferItem) => React.ReactNode
   disabled?: boolean
 }) {
-  const allSelected = items.length > 0 && items.every((i) => selected.includes(i.key))
-  const someSelected = items.some((i) => selected.includes(i.key))
+  const allSelected = items.length > 0 && items.every((i) => selected.has(i.key))
+  const someSelected = !allSelected && items.some((i) => selected.has(i.key))
 
   return (
     <div className="flex h-72 w-full flex-col rounded-md border">
       <div className="flex items-center justify-between border-b px-3 py-2 text-sm font-medium">
         <span>{title}</span>
         <span className="text-xs text-muted-foreground">
-          {selected.length}/{items.length}
+	          {selected.size}/{items.length}
         </span>
       </div>
       {searchable && (
@@ -193,7 +219,7 @@ function TransferPanel({
           <Input
             value={searchValue}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="搜索..."
+	            placeholder="Search..."
             className="h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
           />
         </div>
@@ -201,11 +227,11 @@ function TransferPanel({
       <div className="flex items-center border-b px-3 py-1.5">
         <button
           type="button"
-          aria-label="全选"
-          onClick={() => {
-            if (allSelected) items.forEach((i) => selected.includes(i.key) && onToggle(i.key))
-            else items.forEach((i) => !selected.includes(i.key) && onToggle(i.key))
-          }}
+	          aria-label="Select all"
+	          onClick={() => {
+	            if (allSelected) items.forEach((i) => selected.has(i.key) && onToggle(i.key))
+	            else items.forEach((i) => !selected.has(i.key) && onToggle(i.key))
+	          }}
           disabled={disabled || items.length === 0}
           className={cn(
             "flex size-4 items-center justify-center rounded-[4px] border transition-colors",
@@ -221,11 +247,11 @@ function TransferPanel({
             <span className="block h-0.5 w-2 bg-primary-foreground" />
           )}
         </button>
-        <span className="ml-2 text-xs text-muted-foreground">全选</span>
+	        <span className="ml-2 text-xs text-muted-foreground">Select all</span>
       </div>
       <div className="flex-1 overflow-y-auto p-1">
         {items.length === 0 ? (
-          <div className="px-2 py-6 text-center text-sm text-muted-foreground">无数据</div>
+	          <div className="px-2 py-6 text-center text-sm text-muted-foreground">No data</div>
         ) : (
           items.map((item) => (
             <label
@@ -241,8 +267,8 @@ function TransferPanel({
                 }
               }}
             >
-              <Checkbox
-                checked={selected.includes(item.key)}
+	              <Checkbox
+	                checked={selected.has(item.key)}
                 onCheckedChange={() => onToggle(item.key)}
                 disabled={item.disabled || disabled}
               />

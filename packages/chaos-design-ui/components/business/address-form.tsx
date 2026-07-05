@@ -18,7 +18,7 @@ const addressSchema = z.object({
 
 type AddressValue = z.infer<typeof addressSchema>
 
-interface AddressFormProps extends React.ComponentProps<"form"> {
+interface AddressFormProps extends Omit<React.ComponentProps<"form">, "onChange"> {
   value?: AddressValue
   onChange?: (value: AddressValue) => void
   country?: string

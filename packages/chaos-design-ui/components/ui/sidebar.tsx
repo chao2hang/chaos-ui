@@ -73,24 +73,32 @@ function SidebarProvider({
   // We use openProp and setOpenProp for control from outside the component.
   const [_open, _setOpen] = React.useState(defaultOpen)
   const open = openProp ?? _open
+  // 把 open 保存到 ref,让 setOpen / toggleSidebar 不依赖 open,
+  // 避免每次开关都重建 setOpen → 重建 toggleSidebar → 重新订阅键盘快捷键。
+  const openRef = React.useRef(open)
+  openRef.current = open
+
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
-      const openState = typeof value === "function" ? value(open) : value
+      const openState =
+        typeof value === "function" ? value(openRef.current) : value
       if (setOpenProp) {
         setOpenProp(openState)
       } else {
         _setOpen(openState)
       }
 
-      // This sets the cookie to keep the sidebar state.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+      // Persist sidebar state via cookie (guarded for SSR/prerender).
+      if (typeof document !== "undefined") {
+        document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+      }
     },
-    [setOpenProp, open]
+    [setOpenProp]
   )
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
+    return isMobile ? setOpenMobile((o) => !o) : setOpen((o) => !o)
   }, [isMobile, setOpen, setOpenMobile])
 
   // Adds a keyboard shortcut to toggle the sidebar.
@@ -531,11 +539,8 @@ function SidebarMenuButton({
     return comp
   }
 
-  if (typeof tooltip === "string") {
-    tooltip = {
-      children: tooltip,
-    }
-  }
+  const tooltipProps: React.ComponentProps<typeof TooltipContent> =
+    typeof tooltip === "string" ? { children: tooltip } : tooltip
 
   return (
     <Tooltip>
@@ -544,7 +549,7 @@ function SidebarMenuButton({
         side="right"
         align="center"
         hidden={state !== "collapsed" || isMobile}
-        {...tooltip}
+        {...tooltipProps}
       />
     </Tooltip>
   )
@@ -600,15 +605,13 @@ function SidebarMenuBadge({
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
+  width = "60%",
   ...props
 }: React.ComponentProps<"div"> & {
   showIcon?: boolean
+  /** 骨架宽度,默认 "60%"。建议传入固定值避免 SSR/CSR hydration mismatch。 */
+  width?: string
 }) {
-  // Random width between 50 to 90%.
-  const [width] = React.useState(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  })
-
   return (
     <div
       data-slot="sidebar-menu-skeleton"

@@ -24,22 +24,30 @@ export function useOnlineStatus(): boolean {
 export function useConnectionType(): string | null {
   const [type, setType] = React.useState<string | null>(() => {
     if (typeof navigator === "undefined") return null
-    const conn = (navigator as unknown as { connection?: { effectiveType?: string } }).connection
+    const conn = (
+      navigator as unknown as { connection?: NetworkConnectionLike }
+    ).connection
     return conn?.effectiveType ?? null
   })
 
   React.useEffect(() => {
     if (typeof navigator === "undefined") return
-    const conn = (navigator as unknown as { connection?: { effectiveType?: string; addEventListener?: (e: string, cb: () => void) => void } }).connection
+    const conn = (
+      navigator as unknown as { connection?: NetworkConnectionLike }
+    ).connection
     if (!conn?.addEventListener) return
     const update = () => setType(conn.effectiveType ?? null)
     conn.addEventListener("change", update)
     return () => {
-      if (typeof conn.removeEventListener === "function") {
-        conn.removeEventListener("change", update)
-      }
+      conn.removeEventListener?.("change", update)
     }
   }, [])
 
   return type
+}
+
+interface NetworkConnectionLike {
+  effectiveType?: string
+  addEventListener?: (type: string, cb: () => void) => void
+  removeEventListener?: (type: string, cb: () => void) => void
 }

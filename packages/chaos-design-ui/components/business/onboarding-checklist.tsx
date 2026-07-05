@@ -11,7 +11,7 @@ export interface OnboardingStep {
   optional?: boolean
 }
 
-interface OnboardingChecklistProps extends React.ComponentProps<"div"> {
+interface OnboardingChecklistProps extends Omit<React.ComponentProps<"div">, "onToggle"> {
   steps: OnboardingStep[]
   completedIds?: string[]
   onToggle?: (id: string, completed: boolean) => void
@@ -61,8 +61,8 @@ export function OnboardingChecklist({
               </div>
               {s.optional && !isDone && <span className="text-[0.65rem] text-muted-foreground">可选</span>}
               {s.href && (
-                <Button variant="ghost" size="xs" asChild={false}>
-                  <a href={s.href}>开始</a>
+                <Button variant="ghost" size="xs" render={<a href={s.href} />}>
+                  开始
                 </Button>
               )}
             </li>

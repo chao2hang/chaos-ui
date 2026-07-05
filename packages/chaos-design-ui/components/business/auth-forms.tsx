@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-interface SignInFormProps extends React.ComponentProps<"form"> {
+interface SignInFormProps extends Omit<React.ComponentProps<"form">, "onSubmit"> {
   onSubmit?: (values: { email: string; password: string; remember?: boolean }) => void
   ssoProviders?: Array<{ id: string; label: string; icon?: React.ReactNode }>
   signupHref?: string
@@ -68,7 +68,7 @@ export function SignInForm({ onSubmit, ssoProviders, signupHref, forgotHref, cla
   )
 }
 
-interface SignUpFormProps extends React.ComponentProps<"form"> {
+interface SignUpFormProps extends Omit<React.ComponentProps<"form">, "onSubmit"> {
   onSubmit?: (values: { name: string; email: string; password: string }) => void
   signinHref?: string
   className?: string
@@ -108,7 +108,7 @@ export function SignUpForm({ onSubmit, signinHref, className, ...props }: SignUp
   )
 }
 
-interface ForgotPasswordFormProps extends React.ComponentProps<"form"> {
+interface ForgotPasswordFormProps extends Omit<React.ComponentProps<"form">, "onSubmit"> {
   onSubmit?: (email: string) => void
   className?: string
 }

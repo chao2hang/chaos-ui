@@ -113,7 +113,8 @@ export function getApiClient(config?: ApiClientConfig): ApiClient {
 export async function safeRequest<T>(fn: () => Promise<T>, fallback?: T): Promise<T | undefined> {
   try {
     return await fn()
-  } catch {
+  } catch (err) {
+    logger.warn("safeRequest fallback used", err)
     return fallback
   }
 }

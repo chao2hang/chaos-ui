@@ -36,7 +36,7 @@ interface TreeSelectProps {
   className?: string
 }
 
-function TreeSelectItem({
+const TreeSelectItem = React.memo(function TreeSelectItem({
   node,
   level = 0,
   selectedIds,
@@ -111,18 +111,7 @@ function TreeSelectItem({
       )}
     </div>
   )
-}
-
-function findNodeById(nodes: TreeNode[], id: string): TreeNode | undefined {
-  for (const node of nodes) {
-    if (node.id === id) return node
-    if (node.children) {
-      const found = findNodeById(node.children, id)
-      if (found) return found
-    }
-  }
-  return undefined
-}
+})
 
 function TreeSelect({
   value: controlledValue,
@@ -137,7 +126,7 @@ function TreeSelect({
 }: TreeSelectProps) {
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState("")
-  const [expandedIds, setExpandedIds] = React.useState<string[]>([])
+  const [expandedIds, setExpandedIds] = React.useState<Set<string>>(() => new Set())
   const [uncontrolledValue, setUncontrolledValue] = React.useState<string[]>(
     Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
   )
@@ -160,7 +149,7 @@ function TreeSelect({
         if (matches || filteredChildren.length > 0) {
           acc.push({
             ...node,
-            children: filteredChildren.length > 0 ? filteredChildren : node.children,
+            children: filteredChildren.length > 0 ? filteredChildren : undefined,
           })
         }
         return acc
@@ -169,43 +158,65 @@ function TreeSelect({
     return filter(data)
   }, [data, search])
 
-  const handleToggleExpand = (id: string) => {
-    setExpandedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    )
-  }
+  const handleToggleExpand = React.useCallback((id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }, [])
 
-  const handleSelect = (node: TreeNode) => {
-    let newValue: string[]
-    if (multiple) {
-      const isSelected = value.includes(node.id)
-      newValue = isSelected
-        ? value.filter((id) => id !== node.id)
-        : [...value, node.id]
-    } else {
-      newValue = [node.id]
-      setOpen(false)
+  const handleSelect = React.useCallback(
+    (node: TreeNode) => {
+      let newValue: string[]
+      if (multiple) {
+        const isSelected = value.includes(node.id)
+        if (isSelected) {
+          newValue = value.filter((id) => id !== node.id)
+        } else {
+          if (maxCount && value.length >= maxCount) return
+          newValue = [...value, node.id]
+        }
+      } else {
+        newValue = [node.id]
+        setOpen(false)
+      }
+      setUncontrolledValue(newValue)
+      onChange?.(multiple ? newValue : newValue[0])
+    },
+    [multiple, value, maxCount, onChange],
+  )
+
+  const handleRemove = React.useCallback(
+    (id: string) => {
+      const newValue = value.filter((v) => v !== id)
+      setUncontrolledValue(newValue)
+      onChange?.(multiple ? newValue : newValue[0])
+    },
+    [value, multiple, onChange],
+  )
+
+  const handleClear = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation()
+      setUncontrolledValue([])
+      onChange?.(multiple ? [] : undefined)
+    },
+    [multiple, onChange],
+  )
+
+  const labelMap = React.useMemo(() => {
+    const map = new Map<string, string>()
+    const walk = (nodes: TreeNode[]) => {
+      for (const node of nodes) {
+        map.set(node.id, node.label)
+        if (node.children) walk(node.children)
+      }
     }
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
-
-  const handleRemove = (id: string) => {
-    const newValue = value.filter((v) => v !== id)
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
-
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setUncontrolledValue([])
-    onChange?.(multiple ? [] : undefined)
-  }
-
-  const getLabelById = (id: string): string => {
-    const node = findNodeById(data, id)
-    return node?.label || id
-  }
+    walk(data)
+    return map
+  }, [data])
 
   return (
     <div data-slot="tree-select" className={cn("w-full", className)}>
@@ -227,8 +238,8 @@ function TreeSelect({
           {value.length > 0 ? (
             <div className="flex flex-1 flex-wrap gap-1">
               {value.map((id) => (
-                <Badge key={id} variant="secondary" className="gap-1">
-                  <span>{getLabelById(id)}</span>
+	                <Badge key={id} variant="secondary" className="gap-1">
+	                  <span>{labelMap.get(id) ?? id}</span>
                   {!disabled && (
                     <button
                       onClick={(e) => {
@@ -278,8 +289,8 @@ function TreeSelect({
                 <TreeSelectItem
                   key={node.id}
                   node={node}
-                  selectedIds={selectedIdsSet}
-                  expandedIds={new Set(expandedIds)}
+	                  selectedIds={selectedIdsSet}
+	                  expandedIds={expandedIds}
                   onToggleExpand={handleToggleExpand}
                   onSelect={handleSelect}
                   multiple={multiple}

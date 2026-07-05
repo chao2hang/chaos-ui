@@ -38,7 +38,7 @@ const paymentSchema = z.object({
 
 type PaymentData = z.infer<typeof paymentSchema>
 
-interface PaymentFormProps extends React.ComponentProps<"form"> {
+interface PaymentFormProps extends Omit<React.ComponentProps<"form">, "onSubmit"> {
   onSubmit?: (data: PaymentData) => void
   className?: string
 }

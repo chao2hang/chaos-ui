@@ -80,7 +80,7 @@ const defaultDepartments: Department[] = [
   },
 ]
 
-function DepartmentTreeItem({
+const DepartmentTreeItem = React.memo(function DepartmentTreeItem({
   department,
   selectedIds,
   onSelect,
@@ -92,7 +92,7 @@ function DepartmentTreeItem({
   level?: number
 }) {
   const [expanded, setExpanded] = React.useState(level < 2)
-  const hasChildren = department.children && department.children.length > 0
+  const hasChildren = Boolean(department.children?.length)
   const isSelected = selectedIds.has(department.id)
 
   return (
@@ -111,7 +111,7 @@ function DepartmentTreeItem({
             size="icon-xs"
             onClick={(e) => {
               e.stopPropagation()
-              setExpanded(!expanded)
+              setExpanded((prev) => !prev)
             }}
             className="shrink-0"
           >
@@ -146,7 +146,7 @@ function DepartmentTreeItem({
       )}
     </div>
   )
-}
+})
 
 function DepartmentBrowse({
   value: controlledValue,
@@ -182,12 +182,12 @@ function DepartmentBrowse({
       return depts.reduce<Department[]>((acc, dept) => {
         const matches =
           dept.name.toLowerCase().includes(q) ||
-          dept.code?.toLowerCase().includes(q)
+          Boolean(dept.code?.toLowerCase().includes(q))
         const filteredChildren = dept.children ? filter(dept.children) : []
         if (matches || filteredChildren.length > 0) {
           acc.push({
             ...dept,
-            children: filteredChildren.length > 0 ? filteredChildren : dept.children,
+            children: filteredChildren.length > 0 ? filteredChildren : undefined,
           })
         }
         return acc
@@ -196,32 +196,44 @@ function DepartmentBrowse({
     return filter(departments)
   }, [departments, search])
 
-  const handleSelect = (dept: Department) => {
-    let newValue: Department[]
-    if (multiple) {
-      const isSelected = value.some((d) => d.id === dept.id)
-      newValue = isSelected
-        ? value.filter((d) => d.id !== dept.id)
-        : [...value, dept]
-    } else {
-      newValue = [dept]
-      setOpen(false)
-    }
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+  const handleSelect = React.useCallback(
+    (dept: Department) => {
+      let newValue: Department[]
+      if (multiple) {
+        const isSelected = value.some((d) => d.id === dept.id)
+        if (isSelected) {
+          newValue = value.filter((d) => d.id !== dept.id)
+        } else {
+          if (maxCount && value.length >= maxCount) return
+          newValue = [...value, dept]
+        }
+      } else {
+        newValue = [dept]
+        setOpen(false)
+      }
+      setUncontrolledValue(newValue)
+      onChange?.(multiple ? newValue : newValue[0])
+    },
+    [multiple, value, maxCount, onChange],
+  )
 
-  const handleRemove = (deptId: string) => {
-    const newValue = value.filter((d) => d.id !== deptId)
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+  const handleRemove = React.useCallback(
+    (deptId: string) => {
+      const newValue = value.filter((d) => d.id !== deptId)
+      setUncontrolledValue(newValue)
+      onChange?.(multiple ? newValue : newValue[0])
+    },
+    [value, multiple, onChange],
+  )
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setUncontrolledValue([])
-    onChange?.(multiple ? [] : undefined)
-  }
+  const handleClear = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation()
+      setUncontrolledValue([])
+      onChange?.(multiple ? [] : undefined)
+    },
+    [multiple, onChange],
+  )
 
   return (
     <div data-slot="department-browse" className={cn("w-full", className)}>

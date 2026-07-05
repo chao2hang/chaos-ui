@@ -16,11 +16,11 @@ import {
 export type Aggregation = "sum" | "count" | "avg" | "min" | "max"
 
 const AGG_LABELS: Record<Aggregation, string> = {
-  sum: "求和",
-  count: "计数",
-  avg: "平均",
-  min: "最小",
-  max: "最大",
+  sum: "Sum",
+  count: "Count",
+  avg: "Average",
+  min: "Min",
+  max: "Max",
 }
 
 interface PivotTableProps<T extends Record<string, unknown>> {
@@ -50,9 +50,9 @@ function aggregate(values: number[], type: Aggregation): number {
     case "avg":
       return values.reduce((a, b) => a + b, 0) / values.length
     case "min":
-      return Math.min(...values)
+      return values.reduce((a, b) => Math.min(a, b), Infinity)
     case "max":
-      return Math.max(...values)
+      return values.reduce((a, b) => Math.max(a, b), -Infinity)
   }
 }
 
@@ -69,8 +69,8 @@ export function PivotTable<T extends Record<string, unknown>>({
   filter,
   formatValue,
   heatmap,
-  emptyLabel = "无数据",
-  searchPlaceholder = "搜索行...",
+  emptyLabel = "No data",
+  searchPlaceholder = "Search rows...",
 }: PivotTableProps<T>) {
   const [aggregationInternal, setAggregationInternal] = React.useState<Aggregation>(aggregationProp)
   const aggregation = onAggregationChange ? aggregationProp : aggregationInternal
@@ -120,46 +120,48 @@ export function PivotTable<T extends Record<string, unknown>>({
 
   const format = formatValue ?? ((v) => v.toLocaleString("zh-CN", { maximumFractionDigits: 2 }))
 
-  const getCell = (row: string, col: string) => {
-    const arr = matrix.cellMap.get(`${row}|${col}`) ?? []
-    return aggregate(arr, aggregation)
-  }
-
-  const rowTotals = React.useMemo(() =>
-    matrix.rows.map((r) => {
-      const allValues: number[] = []
+  const cellValues = React.useMemo(() => {
+    const map = new Map<string, number>()
+    for (const r of matrix.rows) {
       for (const c of matrix.cols) {
         const arr = matrix.cellMap.get(`${r}|${c}`) ?? []
-        allValues.push(...arr)
+        map.set(`${r}|${c}`, aggregate(arr, aggregation))
       }
-      return aggregate(allValues, aggregation)
-    }), [matrix, aggregation])
+    }
+    return map
+  }, [matrix, aggregation])
+
+  const getCell = (row: string, col: string) =>
+    cellValues.get(`${row}|${col}`) ?? 0
+
+  const rowTotals = React.useMemo(() =>
+    matrix.rows.map((r) =>
+      aggregate(
+        matrix.cols.flatMap((c) => matrix.cellMap.get(`${r}|${c}`) ?? []),
+        aggregation,
+      ),
+    ), [matrix, aggregation])
 
   const colTotals = React.useMemo(() =>
-    matrix.cols.map((c) => {
-      const allValues: number[] = []
-      for (const r of matrix.rows) {
-        const arr = matrix.cellMap.get(`${r}|${c}`) ?? []
-        allValues.push(...arr)
-      }
-      return aggregate(allValues, aggregation)
-    }), [matrix, aggregation])
+    matrix.cols.map((c) =>
+      aggregate(
+        matrix.rows.flatMap((r) => matrix.cellMap.get(`${r}|${c}`) ?? []),
+        aggregation,
+      ),
+    ), [matrix, aggregation])
 
   const grandTotal = colTotals.reduce((a, b) => a + b, 0)
 
   const heatmapRange = React.useMemo(() => {
-    if (!heatmap || matrix.rows.length === 0 || matrix.cols.length === 0) return { min: 0, max: 1 }
+    if (!heatmap || cellValues.size === 0) return { min: 0, max: 1 }
     let min = Infinity
     let max = -Infinity
-    for (const r of matrix.rows) {
-      for (const c of matrix.cols) {
-        const v = getCell(r, c)
-        if (v < min) min = v
-        if (v > max) max = v
-      }
+    for (const v of cellValues.values()) {
+      if (v < min) min = v
+      if (v > max) max = v
     }
     return { min, max }
-  }, [heatmap, matrix, getCell])
+  }, [heatmap, cellValues])
 
   const heatmapColor = (value: number) => {
     if (heatmapRange.max === heatmapRange.min) return ""
@@ -201,7 +203,7 @@ export function PivotTable<T extends Record<string, unknown>>({
               type="button"
               onClick={() => setSearch("")}
               className="absolute right-1 top-1/2 -translate-y-1/2 rounded p-0.5 text-muted-foreground hover:text-foreground"
-              aria-label="清除搜索"
+              aria-label="Clear search"
             >
               <XIcon className="size-3" />
             </button>
@@ -294,10 +296,10 @@ export function PivotTable<T extends Record<string, unknown>>({
                       scrolled && "shadow-[2px_0_4px_-2px_rgba(0,0,0,0.15)]",
                     )}
                   >
-                    合计
-                  </td>
-                  {colTotals.map((t, i) => (
-                    <td key={i} className="px-3 py-2 text-right tabular-nums">
+	                  Total
+	                </td>
+	                  {colTotals.map((t, i) => (
+	                    <td key={matrix.cols[i]} className="px-3 py-2 text-right tabular-nums">
                       {format(t)}
                     </td>
                   ))}

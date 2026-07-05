@@ -20,7 +20,12 @@ interface MobileDialogProps {
 function MobileDialog({ children, title, description, trigger, actions, open, onOpenChange, className }: MobileDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
+      {trigger && (
+        <DialogTrigger
+          render={trigger as React.ReactElement}
+          data-slot="mobile-dialog-trigger"
+        />
+      )}
       <DialogContent
         className={cn(
           "max-w-full inset-0 rounded-none p-0 translate-x-0 translate-y-0",

@@ -21,7 +21,12 @@ interface MobileSheetProps {
 function MobileSheet({ children, title, description, trigger, actions, side = "bottom", open, onOpenChange, className }: MobileSheetProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
+      {trigger && (
+        <SheetTrigger
+          render={trigger as React.ReactElement}
+          data-slot="mobile-sheet-trigger"
+        />
+      )}
       <SheetContent
         side={side}
         className={cn(

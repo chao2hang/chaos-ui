@@ -68,6 +68,8 @@ export function VideoPlayer({
   const longPressTimerRef = React.useRef<number | null>(null)
   const touchStartRef = React.useRef<{ x: number; y: number; time: number } | null>(null)
   const isDraggingRef = React.useRef(false)
+  // 长按倍速播放之前用户的 playbackRate(用于 touchEnd 恢复,避免覆盖用户的 2x 选择)
+  const rateBeforeLongPressRef = React.useRef<number>(1)
 
   // 清理隐藏计时器
   const clearHideTimer = React.useCallback(() => {
@@ -137,7 +139,12 @@ export function VideoPlayer({
   const seek = React.useCallback((seconds: number) => {
     const video = videoRef.current
     if (!video) return
-    const maxTime = duration || video.duration || Infinity
+    const maxTime =
+      Number.isFinite(duration) && duration > 0
+        ? duration
+        : Number.isFinite(video.duration)
+          ? video.duration
+          : Number.POSITIVE_INFINITY
     video.currentTime = Math.max(0, Math.min(video.currentTime + seconds, maxTime))
   }, [duration])
 
@@ -145,7 +152,12 @@ export function VideoPlayer({
   const seekTo = React.useCallback((ratio: number) => {
     const video = videoRef.current
     if (!video) return
-    const maxTime = duration || video.duration || 0
+    const maxTime =
+      Number.isFinite(duration) && duration > 0
+        ? duration
+        : Number.isFinite(video.duration)
+          ? video.duration
+          : 0
     if (maxTime > 0) {
       video.currentTime = ratio * maxTime
     }
@@ -193,7 +205,7 @@ export function VideoPlayer({
     const onRateChange = () => setPlaybackRate(video.playbackRate)
     const onWaiting = () => setIsLoading(true)
     const onCanPlay = () => setIsLoading(false)
-    const onError = () => setError("视频加载失败")
+    const onError = () => setError("Video load failed")
     const onFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement)
 
     video.addEventListener("play", onPlay)
@@ -258,10 +270,11 @@ export function VideoPlayer({
     // 记录触摸起始位置（用于判断长按）
     touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() }
 
-    // 启动长按计时器（500ms 后触发倍速）
+    // 启动长按计时器(500ms 后触发倍速)
     longPressTimerRef.current = window.setTimeout(() => {
       const video = videoRef.current
       if (video && isPlaying) {
+        rateBeforeLongPressRef.current = video.playbackRate
         video.playbackRate = 3
         setIsLongPress(true)
       }
@@ -303,11 +316,11 @@ export function VideoPlayer({
       longPressTimerRef.current = null
     }
 
-    // 如果正在长按倍速，恢复原速
+    // 如果正在长按倍速,恢复长按前的倍速(保留用户在右键菜单设定的值)
     if (isLongPress) {
       const video = videoRef.current
       if (video) {
-        video.playbackRate = 1
+        video.playbackRate = rateBeforeLongPressRef.current
       }
       setIsLongPress(false)
     }
@@ -385,32 +398,6 @@ export function VideoPlayer({
     }
   }, [contextMenu, closeContextMenu])
 
-  if (error) {
-    return (
-      <div
-        data-slot="video-player"
-        className={cn(
-          "relative flex aspect-video w-full items-center justify-center rounded-lg bg-black",
-          className,
-        )}
-      >
-        <div className="flex flex-col items-center gap-3 text-white/60">
-          <div className="text-sm">{error}</div>
-          <button
-            onClick={() => {
-              setError(null)
-              setIsLoading(true)
-              videoRef.current?.load()
-            }}
-            className="rounded bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-white/20"
-          >
-            重试
-          </button>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div
       ref={containerRef}
@@ -433,19 +420,37 @@ export function VideoPlayer({
       onTouchEnd={handleTouchEnd}
       tabIndex={0}
       role="application"
-      aria-label={title || "视频播放器"}
+      aria-label={title || "Video player"}
     >
       <video
         ref={videoRef}
         src={src}
         poster={poster}
-        className="block h-full w-full"
+        className={cn("block h-full w-full", error && "hidden")}
         preload="metadata"
         playsInline
         autoPlay={autoplay}
         loop={loop}
         muted={muted}
       />
+
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black">
+          <div className="flex flex-col items-center gap-3 text-white/60">
+            <div className="text-sm">{error}</div>
+            <button
+              onClick={() => {
+                setError(null)
+                setIsLoading(true)
+                videoRef.current?.load()
+              }}
+              className="rounded bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-white/20"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
 
       {isLoading && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -461,7 +466,7 @@ export function VideoPlayer({
               togglePlay()
             }}
             className="flex size-16 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur transition-transform hover:scale-110"
-            aria-label="播放"
+            aria-label="Play"
           >
             <Play className="size-8 ml-1" fill="currentColor" />
           </button>
@@ -473,7 +478,7 @@ export function VideoPlayer({
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-white backdrop-blur">
             <Zap className="size-5 text-yellow-400" />
-            <span className="text-sm font-medium">3x 倍速播放中</span>
+            <span className="text-sm font-medium">3x speed</span>
           </div>
         </div>
       )}
@@ -522,7 +527,7 @@ export function VideoPlayer({
                 seek(-10)
               }}
               className="flex size-8 items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-              aria-label="后退 10 秒"
+              aria-label="Back 10s"
             >
               <SkipBack className="size-4" />
             </button>
@@ -533,7 +538,7 @@ export function VideoPlayer({
                 togglePlay()
               }}
               className="flex size-8 items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-              aria-label={isPlaying ? "暂停" : "播放"}
+              aria-label={isPlaying ? "Pause" : "Play"}
             >
               {isPlaying ? <Pause className="size-4" /> : <Play className="size-4 ml-0.5" />}
             </button>
@@ -544,7 +549,7 @@ export function VideoPlayer({
                 seek(10)
               }}
               className="flex size-8 items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-              aria-label="前进 10 秒"
+              aria-label="Forward 10s"
             >
               <SkipForward className="size-4" />
             </button>
@@ -556,7 +561,7 @@ export function VideoPlayer({
                   toggleMute()
                 }}
                 className="flex size-8 shrink-0 items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-                aria-label={isMuted ? "取消静音" : "静音"}
+                aria-label={isMuted ? "Unmute" : "Mute"}
               >
                 {isMuted || volume === 0 ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
               </button>
@@ -571,7 +576,7 @@ export function VideoPlayer({
                     onChange={handleVolumeChange}
                     onClick={(e) => e.stopPropagation()}
                     className="h-1 w-20 cursor-pointer appearance-none rounded-full bg-white/30 accent-primary"
-                    aria-label="音量"
+                    aria-label="Volume"
                   />
                 </div>
               </div>
@@ -595,7 +600,7 @@ export function VideoPlayer({
                 toggleFullscreen()
               }}
               className="flex size-8 items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-              aria-label={isFullscreen ? "退出全屏" : "全屏"}
+              aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
             >
               {isFullscreen ? <Minimize className="size-4" /> : <Maximize className="size-4" />}
             </button>
@@ -617,7 +622,7 @@ export function VideoPlayer({
             }}
           >
             {isPlaying ? <Pause className="size-4" /> : <Play className="size-4" />}
-            <span>{isPlaying ? "暂停" : "播放"}</span>
+            <span>{isPlaying ? "Pause" : "Play"}</span>
           </button>
           <button
             className="flex w-full items-center gap-2 px-3 py-2 hover:bg-white/10"
@@ -627,7 +632,7 @@ export function VideoPlayer({
             }}
           >
             {isMuted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
-            <span>{isMuted ? "取消静音" : "静音"}</span>
+            <span>{isMuted ? "Unmute" : "Mute"}</span>
           </button>
           <div className="my-1 h-px bg-white/10" />
           <button
@@ -638,7 +643,7 @@ export function VideoPlayer({
             }}
           >
             <RotateCcw className="size-4" />
-            <span>后退 10 秒</span>
+            <span>Back 10s</span>
           </button>
           <button
             className="flex w-full items-center gap-2 px-3 py-2 hover:bg-white/10"
@@ -651,7 +656,7 @@ export function VideoPlayer({
             }}
           >
             <Gauge className="size-4" />
-            <span>{playbackRate === 1 ? "2x 倍速" : "1x 正常"}</span>
+            <span>{playbackRate === 1 ? "2x speed" : "1x normal"}</span>
           </button>
           <div className="my-1 h-px bg-white/10" />
           <button
@@ -662,7 +667,7 @@ export function VideoPlayer({
             }}
           >
             {isFullscreen ? <Minimize className="size-4" /> : <Maximize className="size-4" />}
-            <span>{isFullscreen ? "退出全屏" : "全屏"}</span>
+            <span>{isFullscreen ? "Exit fullscreen" : "Fullscreen"}</span>
           </button>
           <button
             className="flex w-full items-center gap-2 px-3 py-2 hover:bg-white/10"
@@ -674,7 +679,7 @@ export function VideoPlayer({
             }}
           >
             <PictureInPicture className="size-4" />
-            <span>画中画</span>
+            <span>Picture-in-picture</span>
           </button>
         </div>
       )}

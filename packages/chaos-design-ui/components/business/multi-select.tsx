@@ -37,9 +37,9 @@ export function MultiSelect({
   options,
   value = [],
   onChange,
-  placeholder = "选择多个...",
-  searchPlaceholder = "搜索...",
-  emptyText = "未找到结果",
+  placeholder = "Select...",
+  searchPlaceholder = "Search...",
+  emptyText = "No results found",
   disabled,
   className,
   maxCount = 3,
@@ -47,14 +47,24 @@ export function MultiSelect({
   clearable = true,
 }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false)
-  const toggle = (val: string) => {
-    if (value.includes(val)) {
-      onChange?.(value.filter((v) => v !== val))
-    } else {
-      if (maxSelected && value.length >= maxSelected) return
-      onChange?.([...value, val])
-    }
-  }
+  const valueSet = React.useMemo(() => new Set(value), [value])
+  const optionMap = React.useMemo(() => {
+    const map = new Map<string, MultiSelectOption>()
+    for (const o of options) map.set(o.value, o)
+    return map
+  }, [options])
+
+  const toggle = React.useCallback(
+    (val: string) => {
+      if (valueSet.has(val)) {
+        onChange?.(value.filter((v) => v !== val))
+      } else {
+        if (maxSelected && value.length >= maxSelected) return
+        onChange?.([...value, val])
+      }
+    },
+    [value, valueSet, maxSelected, onChange],
+  )
 
   const visibleValues = value.slice(0, maxCount)
   const overflow = value.length - maxCount
@@ -80,7 +90,7 @@ export function MultiSelect({
           ) : (
             <>
               {visibleValues.map((v) => {
-                const opt = options.find((o) => o.value === v)
+	                const opt = optionMap.get(v)
                 return (
                   <Badge
                     key={v}
@@ -90,7 +100,7 @@ export function MultiSelect({
                     {opt?.label ?? v}
                     <span
                       role="button"
-                      aria-label="移除"
+	              aria-label="Remove"
                       onClick={(e) => {
                         e.stopPropagation()
                         toggle(v)
@@ -114,7 +124,7 @@ export function MultiSelect({
           {clearable && value.length > 0 && (
             <span
               role="button"
-              aria-label="清除全部"
+	              aria-label="Clear all"
               onClick={(e) => {
                 e.stopPropagation()
                 onChange?.([])
@@ -130,8 +140,9 @@ export function MultiSelect({
       <PopoverContent className="w-[var(--anchor-width)] p-0" align="start">
         {open && (
           <MultiSelectPanel
-            options={options}
-            value={value}
+	            options={options}
+	            value={value}
+	            valueSet={valueSet}
             onToggle={toggle}
             searchPlaceholder={searchPlaceholder}
             emptyText={emptyText}
@@ -145,12 +156,14 @@ export function MultiSelect({
 function MultiSelectPanel({
   options,
   value,
+  valueSet,
   onToggle,
   searchPlaceholder,
   emptyText,
 }: {
   options: MultiSelectOption[]
   value: string[]
+  valueSet: Set<string>
   onToggle: (val: string) => void
   searchPlaceholder: string
   emptyText: string
@@ -205,7 +218,7 @@ function MultiSelectPanel({
               <div className="px-2 py-1 text-xs font-medium text-muted-foreground">{group}</div>
             )}
             {items.map((opt) => {
-              const isSelected = value.includes(opt.value)
+	              const isSelected = valueSet.has(opt.value)
               return (
                 <button
                   key={opt.value}

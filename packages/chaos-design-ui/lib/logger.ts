@@ -23,10 +23,12 @@ function emit(level: LogLevel, fn: (...a: unknown[]) => void, args: unknown[]) {
 }
 
 export const logger = {
-  level: currentLevel as LogLevel,
+  /** 当前日志级别(只读,通过 setLevel 修改) */
+  get level(): LogLevel {
+    return currentLevel
+  },
   setLevel(level: LogLevel) {
     currentLevel = level
-    this.level = level
   },
   debug: (...args: unknown[]) => emit("debug", console.debug, args),
   info: (...args: unknown[]) => emit("info", console.info, args),

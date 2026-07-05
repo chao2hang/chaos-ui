@@ -18,7 +18,7 @@ export interface InboxItem {
   labels?: string[]
 }
 
-interface InboxListProps extends React.ComponentProps<"div"> {
+interface InboxListProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
   items: InboxItem[]
   selected?: string
   onSelect?: (id: string) => void

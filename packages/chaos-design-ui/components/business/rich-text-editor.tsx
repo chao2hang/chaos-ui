@@ -42,6 +42,10 @@ export function RichTextEditor({
   className,
   ...props
 }: RichTextEditorProps) {
+  // 跟踪上一次同步给外部的 HTML,避免受控模式下 onChange→value 回灌→
+  // effect 再 setContent→光标重置到末尾的经典死循环。
+  const lastSyncedHtmlRef = React.useRef<string>(value)
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -53,7 +57,13 @@ export function RichTextEditor({
     ],
     content: value,
     editable,
-    onUpdate: ({ editor }) => onChange?.(editor.getHTML()),
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML()
+      // 记录本次 onChange 通知出去的 HTML。父组件把它当 value 传回时
+      // effect 比对会发现"上次同步的 === 推回来的",不再触发 setContent。
+      lastSyncedHtmlRef.current = html
+      onChange?.(html)
+    },
     editorProps: {
       attributes: {
         style: `min-height: ${minHeight}px`,
@@ -63,7 +73,10 @@ export function RichTextEditor({
   })
 
   React.useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
+    if (!editor) return
+    // 只有当外部 value 与"上次同步出去的 HTML"不同时,才是真正的外部更新,才推回编辑器。
+    if (value !== lastSyncedHtmlRef.current && value !== editor.getHTML()) {
+      lastSyncedHtmlRef.current = value
       editor.commands.setContent(value)
     }
   }, [editor, value])
@@ -129,9 +142,8 @@ function RichTextToolbar({ editor, onUpload }: { editor: Editor; onUpload: Uploa
         <PopoverTrigger
           render={
             <ToolButton
-              onClick={() => setLinkOpen(true)}
               active={editor.isActive("link")}
-              icon={editor.isActive("link") ? <LinkIcon /> : <LinkIcon />}
+              icon={<LinkIcon />}
               title="链接"
             />
           }
@@ -162,14 +174,6 @@ function RichTextToolbar({ editor, onUpload }: { editor: Editor; onUpload: Uploa
 
       <ToolButton onClick={() => setImageOpen(true)} icon={<ImageIcon />} title="图片" />
       <ToolButton onClick={() => setAttachOpen(true)} icon={<PaperclipIcon />} title="附件" />
-
-      <input
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={() => setImageOpen(true)}
-        data-image-input
-      />
 
       <div className="mx-1 h-4 w-px bg-muted-foreground/20" />
       <ToolButton onClick={() => editor.chain().focus().undo().run()} icon={<UndoIcon />} title="撤销" />
@@ -574,7 +578,8 @@ function AttachmentDialogContent({
     onOpenChange(false)
   }
 
-  const allReady = files.length > 0 && files.every((f) => (f.url || f.error) && !inserting)
+  const allReady =
+    files.length > 0 && files.every((f) => Boolean(f.url) && !f.error) && !inserting
   const readyCount = files.filter((f) => f.url && !f.error).length
 
   return (
@@ -673,7 +678,7 @@ function ToolButton({
   icon,
   title,
 }: {
-  onClick: () => void
+  onClick?: () => void
   active?: boolean
   icon: React.ReactNode
   title: string

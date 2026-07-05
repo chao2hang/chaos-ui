@@ -100,7 +100,8 @@ function ResizablePanel({
   ...props
 }: ResizablePanelProps) {
   const ctx = useResizable()
-  const panelIdRef = React.useRef(`panel-${React.useId()}`)
+  const generatedId = React.useId()
+  const panelIdRef = React.useRef(`panel-${generatedId}`)
   const panelId = panelIdRef.current
   const [size, setSizeState] = React.useState(defaultSize)
   const [collapsed, setCollapsed] = React.useState(false)
@@ -108,6 +109,11 @@ function ResizablePanel({
   sizeRef.current = size
   const collapsedRef = React.useRef(collapsed)
   collapsedRef.current = collapsed
+
+  const onCollapseRef = React.useRef(onCollapse)
+  onCollapseRef.current = onCollapse
+  const onExpandRef = React.useRef(onExpand)
+  onExpandRef.current = onExpand
 
   const setSize = React.useCallback(
     (v: number) => {
@@ -119,13 +125,13 @@ function ResizablePanel({
 
   const collapse = React.useCallback(() => {
     setCollapsed(true)
-    onCollapse?.()
-  }, [onCollapse])
+    onCollapseRef.current?.()
+  }, [])
 
   const expand = React.useCallback(() => {
     setCollapsed(false)
-    onExpand?.()
-  }, [onExpand])
+    onExpandRef.current?.()
+  }, [])
 
   const store = React.useMemo<PanelStore>(
     () => ({
@@ -180,10 +186,17 @@ function ResizableHandle({
   const startSize = React.useRef(0)
   const targetPanelRef = React.useRef<PanelStore | null>(null)
 
+  const ctxRef = React.useRef(ctx)
+  ctxRef.current = ctx
+  const dirRef = React.useRef(direction)
+  dirRef.current = direction
+
   const onPointerDown = React.useCallback(
     (e: React.PointerEvent) => {
       e.preventDefault()
       const handleEl = ref.current
+      const currentCtx = ctxRef.current
+      const currentDir = dirRef.current
       if (!handleEl) return
       const prevEl = handleEl.previousElementSibling as HTMLElement | null
       const nextEl = handleEl.nextElementSibling as HTMLElement | null
@@ -191,11 +204,11 @@ function ResizableHandle({
       const prevId = prevEl.getAttribute("data-panel-id")
       const nextId = nextEl.getAttribute("data-panel-id")
       if (!prevId || !nextId) return
-      const prevStore = ctx.getPanel(prevId)
-      const nextStore = ctx.getPanel(nextId)
+      const prevStore = currentCtx.getPanel(prevId)
+      const nextStore = currentCtx.getPanel(nextId)
       if (!prevStore || !nextStore) return
 
-      startPos.current = direction === "horizontal" ? e.clientX : e.clientY
+      startPos.current = currentDir === "horizontal" ? e.clientX : e.clientY
       const startPrev = prevStore.getSize()
       const startNext = nextStore.getSize()
       const container = handleEl.parentElement
@@ -203,16 +216,13 @@ function ResizableHandle({
 
       const onMove = (ev: PointerEvent) => {
         const rect = container.getBoundingClientRect()
-        const total = direction === "horizontal" ? rect.width : rect.height
-        const delta = ((direction === "horizontal" ? ev.clientX : ev.clientY) - startPos.current) / total
+        const total = currentDir === "horizontal" ? rect.width : rect.height
+        const delta = ((currentDir === "horizontal" ? ev.clientX : ev.clientY) - startPos.current) / total
         const deltaPct = delta * 100
-        // Clamp prev against its min/max
         const newPrev = Math.min(Math.max(startPrev + deltaPct, prevStore.minSize), prevStore.maxSize)
         const actualDelta = newPrev - startPrev
         const newNext = startNext - actualDelta
-        // Clamp next against its min/max
         const clampedNext = Math.min(Math.max(newNext, nextStore.minSize), nextStore.maxSize)
-        // If next was clamped, adjust prev to compensate
         const finalPrev = startPrev + actualDelta - (clampedNext - newNext)
         const finalClampedPrev = Math.min(Math.max(finalPrev, prevStore.minSize), prevStore.maxSize)
         prevStore.setSize(finalClampedPrev)
@@ -227,7 +237,7 @@ function ResizableHandle({
       document.addEventListener("pointermove", onMove)
       document.addEventListener("pointerup", onUp)
     },
-    [direction, ctx]
+    [],
   )
 
   const onDoubleClick = React.useCallback(() => {
@@ -235,11 +245,11 @@ function ResizableHandle({
     if (!panelEl) return
     const panelId = panelEl.getAttribute("data-panel-id")
     if (!panelId) return
-    const store = ctx.getPanel(panelId)
+    const store = ctxRef.current.getPanel(panelId)
     if (!store?.collapsible) return
     if (store.collapsed) store.expand()
     else store.collapse()
-  }, [ctx])
+  }, [])
 
   return (
     <div

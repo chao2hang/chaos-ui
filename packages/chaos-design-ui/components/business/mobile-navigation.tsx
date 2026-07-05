@@ -20,28 +20,29 @@ function MobileNavigation({ items, className }: MobileNavigationProps) {
   return (
     <ScrollArea className={cn("w-full", className)}>
       <div className="flex gap-2 p-2">
-        {items.map((item, index) => (
-          <Button
-            key={index}
-            variant={item.active ? "default" : "outline"}
-            size="sm"
-            className="shrink-0"
-            onClick={item.onClick}
-            asChild={!!item.href}
-          >
-            {item.href ? (
-              <a href={item.href}>
-                {item.icon && <item.icon className="size-4 mr-1" />}
-                {item.label}
-              </a>
-            ) : (
-              <>
-                {item.icon && <item.icon className="size-4 mr-1" />}
-                {item.label}
-              </>
-            )}
-          </Button>
-        ))}
+        {items.map((item, index) => {
+          const content = (
+            <>
+              {item.icon && <item.icon className="size-4 mr-1" />}
+              {item.label}
+            </>
+          )
+          return (
+            <Button
+              key={index}
+              variant={item.active ? "default" : "outline"}
+              size="sm"
+              className="shrink-0"
+              onClick={item.onClick}
+              nativeButton={!item.href}
+              render={
+                item.href ? <a href={item.href}>{content}</a> : undefined
+              }
+            >
+              {!item.href ? content : null}
+            </Button>
+          )
+        })}
       </div>
     </ScrollArea>
   )
