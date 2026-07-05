@@ -1,0 +1,2081 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - generic [ref=f3e3]:
+      - link "C Chaos UI" [ref=f3e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e5]: C
+        - generic [ref=f3e6]: Chaos UI
+      - navigation [ref=f3e7]:
+        - link "安装" [ref=f3e8] [cursor=pointer]:
+          - /url: "#install"
+        - link "特性" [ref=f3e9] [cursor=pointer]:
+          - /url: "#features"
+        - link "组件" [ref=f3e10] [cursor=pointer]:
+          - /url: "#components"
+      - generic [ref=f3e11]:
+        - button "EN" [ref=f3e12]:
+          - img
+          - generic [ref=f3e13]: EN
+        - button "Toggle theme" [ref=f3e14]:
+          - img
+        - link "Storybook" [ref=f3e15] [cursor=pointer]:
+          - /url: /storybook
+          - button "Storybook" [ref=f3e16]:
+            - text: Storybook
+            - img
+  - main [ref=f3e17]:
+    - generic [ref=f3e18]:
+      - generic [ref=f3e22]:
+        - generic [ref=f3e23]:
+          - generic [ref=f3e24]: ·
+          - text: Component Catalog
+        - heading "组件总览Components · 192" [level=1] [ref=f3e25]:
+          - text: 组件总览
+          - generic [ref=f3e26]: Components · 192
+        - paragraph [ref=f3e27]: 按分区浏览全部组件,支持按 name / 中文名 / 描述 搜索。各分区点击锚滚定位, 详情页 MDX 正在陆续上线(批次1覆盖 30 个高频组件),其余暂可前往 Storybook 查看。
+        - generic [ref=f3e28]:
+          - link "10 通用" [ref=f3e29] [cursor=pointer]:
+            - /url: "#general"
+            - generic [ref=f3e30]: "10"
+            - generic [ref=f3e31]: 通用
+          - link "7 布局" [ref=f3e32] [cursor=pointer]:
+            - /url: "#layout"
+            - generic [ref=f3e33]: "7"
+            - generic [ref=f3e34]: 布局
+          - link "7 导航" [ref=f3e35] [cursor=pointer]:
+            - /url: "#navigation"
+            - generic [ref=f3e36]: "7"
+            - generic [ref=f3e37]: 导航
+          - link "18 表单" [ref=f3e38] [cursor=pointer]:
+            - /url: "#form"
+            - generic [ref=f3e39]: "18"
+            - generic [ref=f3e40]: 表单
+          - link "12 数据展示" [ref=f3e41] [cursor=pointer]:
+            - /url: "#datadisplay"
+            - generic [ref=f3e42]: "12"
+            - generic [ref=f3e43]: 数据展示
+          - link "12 反馈" [ref=f3e44] [cursor=pointer]:
+            - /url: "#feedback"
+            - generic [ref=f3e45]: "12"
+            - generic [ref=f3e46]: 反馈
+          - link "117 业务" [ref=f3e47] [cursor=pointer]:
+            - /url: "#business"
+            - generic [ref=f3e48]: "117"
+            - generic [ref=f3e49]: 业务
+          - link "9 系统布局" [ref=f3e50] [cursor=pointer]:
+            - /url: "#system-layout"
+            - generic [ref=f3e51]: "9"
+            - generic [ref=f3e52]: 系统布局
+      - generic [ref=f3e54]:
+        - generic [ref=f3e55]:
+          - generic [ref=f3e56]: 搜索组件 / Search components
+          - generic [ref=f3e57]:
+            - generic:
+              - img
+            - searchbox "搜索组件 / Search components" [ref=f3e58]
+          - paragraph [ref=f3e59]: 命中 192 / 192 个组件
+        - navigation "Components by category" [ref=f3e60]:
+          - link "通用 · General 10" [ref=f3e61] [cursor=pointer]:
+            - /url: "#general"
+            - text: 通用
+            - generic [ref=f3e62]: · General
+            - generic [ref=f3e63]: "10"
+          - link "布局 · Layout 7" [ref=f3e64] [cursor=pointer]:
+            - /url: "#layout"
+            - text: 布局
+            - generic [ref=f3e65]: · Layout
+            - generic [ref=f3e66]: "7"
+          - link "导航 · Navigation 7" [ref=f3e67] [cursor=pointer]:
+            - /url: "#navigation"
+            - text: 导航
+            - generic [ref=f3e68]: · Navigation
+            - generic [ref=f3e69]: "7"
+          - link "表单 · Form 18" [ref=f3e70] [cursor=pointer]:
+            - /url: "#form"
+            - text: 表单
+            - generic [ref=f3e71]: · Form
+            - generic [ref=f3e72]: "18"
+          - link "数据展示 · DataDisplay 12" [ref=f3e73] [cursor=pointer]:
+            - /url: "#datadisplay"
+            - text: 数据展示
+            - generic [ref=f3e74]: · DataDisplay
+            - generic [ref=f3e75]: "12"
+          - link "反馈 · Feedback 12" [ref=f3e76] [cursor=pointer]:
+            - /url: "#feedback"
+            - text: 反馈
+            - generic [ref=f3e77]: · Feedback
+            - generic [ref=f3e78]: "12"
+          - link "业务 · Business 117" [ref=f3e79] [cursor=pointer]:
+            - /url: "#business"
+            - text: 业务
+            - generic [ref=f3e80]: · Business
+            - generic [ref=f3e81]: "117"
+          - link "系统布局 · System Layout 9" [ref=f3e82] [cursor=pointer]:
+            - /url: "#system-layout"
+            - text: 系统布局
+            - generic [ref=f3e83]: · System Layout
+            - generic [ref=f3e84]: "9"
+        - generic [ref=f3e85]:
+          - generic [ref=f3e86]:
+            - heading "通用" [level=2] [ref=f3e87]
+            - generic [ref=f3e88]: · General (10)
+          - generic [ref=f3e89]:
+            - link "Accordion 通用 折叠面板 折叠面板 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e90] [cursor=pointer]:
+              - /url: /components/General/accordion
+              - generic [ref=f3e91]:
+                - heading "Accordion" [level=3] [ref=f3e92]
+                - generic [ref=f3e93]: 通用
+              - paragraph [ref=f3e94]: 折叠面板
+              - paragraph [ref=f3e95]: 折叠面板 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e96]:
+                - text: Browse in Storybook
+                - generic [ref=f3e97]: ↗
+            - link "BrowseInput 通用 浏览输入 浏览输入 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e98] [cursor=pointer]:
+              - /url: /components/General/browse-input
+              - generic [ref=f3e99]:
+                - heading "BrowseInput" [level=3] [ref=f3e100]
+                - generic [ref=f3e101]: 通用
+              - paragraph [ref=f3e102]: 浏览输入
+              - paragraph [ref=f3e103]: 浏览输入 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e104]:
+                - text: Browse in Storybook
+                - generic [ref=f3e105]: ↗
+            - link "Button 通用 按钮 按钮 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e106] [cursor=pointer]:
+              - /url: /components/General/button
+              - generic [ref=f3e107]:
+                - heading "Button" [level=3] [ref=f3e108]
+                - generic [ref=f3e109]: 通用
+              - paragraph [ref=f3e110]: 按钮
+              - paragraph [ref=f3e111]: 按钮 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e112]:
+                - text: Browse in Storybook
+                - generic [ref=f3e113]: ↗
+            - link "Calendar 通用 日历 日历 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e114] [cursor=pointer]:
+              - /url: /components/General/calendar
+              - generic [ref=f3e115]:
+                - heading "Calendar" [level=3] [ref=f3e116]
+                - generic [ref=f3e117]: 通用
+              - paragraph [ref=f3e118]: 日历
+              - paragraph [ref=f3e119]: 日历 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e120]:
+                - text: Browse in Storybook
+                - generic [ref=f3e121]: ↗
+            - link "Carousel 通用 轮播 轮播 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e122] [cursor=pointer]:
+              - /url: /components/General/carousel
+              - generic [ref=f3e123]:
+                - heading "Carousel" [level=3] [ref=f3e124]
+                - generic [ref=f3e125]: 通用
+              - paragraph [ref=f3e126]: 轮播
+              - paragraph [ref=f3e127]: 轮播 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e128]:
+                - text: Browse in Storybook
+                - generic [ref=f3e129]: ↗
+            - link "Collapsible 通用 折叠 折叠 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e130] [cursor=pointer]:
+              - /url: /components/General/collapsible
+              - generic [ref=f3e131]:
+                - heading "Collapsible" [level=3] [ref=f3e132]
+                - generic [ref=f3e133]: 通用
+              - paragraph [ref=f3e134]: 折叠
+              - paragraph [ref=f3e135]: 折叠 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e136]:
+                - text: Browse in Storybook
+                - generic [ref=f3e137]: ↗
+            - link "ContextMenu 通用 右键菜单 右键菜单 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e138] [cursor=pointer]:
+              - /url: /components/General/context-menu
+              - generic [ref=f3e139]:
+                - heading "ContextMenu" [level=3] [ref=f3e140]
+                - generic [ref=f3e141]: 通用
+              - paragraph [ref=f3e142]: 右键菜单
+              - paragraph [ref=f3e143]: 右键菜单 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e144]:
+                - text: Browse in Storybook
+                - generic [ref=f3e145]: ↗
+            - link "DepartmentBrowse 通用 部门选择 部门选择 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e146] [cursor=pointer]:
+              - /url: /components/General/department-browse
+              - generic [ref=f3e147]:
+                - heading "DepartmentBrowse" [level=3] [ref=f3e148]
+                - generic [ref=f3e149]: 通用
+              - paragraph [ref=f3e150]: 部门选择
+              - paragraph [ref=f3e151]: 部门选择 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e152]:
+                - text: Browse in Storybook
+                - generic [ref=f3e153]: ↗
+            - link "DropdownMenu 通用 下拉菜单 下拉菜单 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e154] [cursor=pointer]:
+              - /url: /components/General/dropdown-menu
+              - generic [ref=f3e155]:
+                - heading "DropdownMenu" [level=3] [ref=f3e156]
+                - generic [ref=f3e157]: 通用
+              - paragraph [ref=f3e158]: 下拉菜单
+              - paragraph [ref=f3e159]: 下拉菜单 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e160]:
+                - text: Browse in Storybook
+                - generic [ref=f3e161]: ↗
+            - link "UserBrowse 通用 用户选择 用户选择 — 通用基础组件,适合在各种场景下复用。 Browse in Storybook" [ref=f3e162] [cursor=pointer]:
+              - /url: /components/General/user-browse
+              - generic [ref=f3e163]:
+                - heading "UserBrowse" [level=3] [ref=f3e164]
+                - generic [ref=f3e165]: 通用
+              - paragraph [ref=f3e166]: 用户选择
+              - paragraph [ref=f3e167]: 用户选择 — 通用基础组件,适合在各种场景下复用。
+              - button "Browse in Storybook" [ref=f3e168]:
+                - text: Browse in Storybook
+                - generic [ref=f3e169]: ↗
+        - generic [ref=f3e170]:
+          - generic [ref=f3e171]:
+            - heading "布局" [level=2] [ref=f3e172]
+            - generic [ref=f3e173]: · Layout (7)
+          - generic [ref=f3e174]:
+            - link "AspectRatio 布局 宽高比 宽高比 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e175] [cursor=pointer]:
+              - /url: /components/Layout/aspect-ratio
+              - generic [ref=f3e176]:
+                - heading "AspectRatio" [level=3] [ref=f3e177]
+                - generic [ref=f3e178]: 布局
+              - paragraph [ref=f3e179]: 宽高比
+              - paragraph [ref=f3e180]: 宽高比 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e181]:
+                - text: Browse in Storybook
+                - generic [ref=f3e182]: ↗
+            - link "GridLayout 布局 栅格布局 栅格布局 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e183] [cursor=pointer]:
+              - /url: /components/Layout/grid-layout
+              - generic [ref=f3e184]:
+                - heading "GridLayout" [level=3] [ref=f3e185]
+                - generic [ref=f3e186]: 布局
+              - paragraph [ref=f3e187]: 栅格布局
+              - paragraph [ref=f3e188]: 栅格布局 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e189]:
+                - text: Browse in Storybook
+                - generic [ref=f3e190]: ↗
+            - link "PageContainer 布局 页面容器 页面容器 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e191] [cursor=pointer]:
+              - /url: /components/Layout/page-container
+              - generic [ref=f3e192]:
+                - heading "PageContainer" [level=3] [ref=f3e193]
+                - generic [ref=f3e194]: 布局
+              - paragraph [ref=f3e195]: 页面容器
+              - paragraph [ref=f3e196]: 页面容器 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e197]:
+                - text: Browse in Storybook
+                - generic [ref=f3e198]: ↗
+            - link "Resizable 布局 可调尺寸 可调尺寸 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e199] [cursor=pointer]:
+              - /url: /components/Layout/resizable
+              - generic [ref=f3e200]:
+                - heading "Resizable" [level=3] [ref=f3e201]
+                - generic [ref=f3e202]: 布局
+              - paragraph [ref=f3e203]: 可调尺寸
+              - paragraph [ref=f3e204]: 可调尺寸 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e205]:
+                - text: Browse in Storybook
+                - generic [ref=f3e206]: ↗
+            - link "ScrollArea 布局 滚动区域 滚动区域 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e207] [cursor=pointer]:
+              - /url: /components/Layout/scroll-area
+              - generic [ref=f3e208]:
+                - heading "ScrollArea" [level=3] [ref=f3e209]
+                - generic [ref=f3e210]: 布局
+              - paragraph [ref=f3e211]: 滚动区域
+              - paragraph [ref=f3e212]: 滚动区域 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e213]:
+                - text: Browse in Storybook
+                - generic [ref=f3e214]: ↗
+            - link "Separator 布局 分割线 分割线 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e215] [cursor=pointer]:
+              - /url: /components/Layout/separator
+              - generic [ref=f3e216]:
+                - heading "Separator" [level=3] [ref=f3e217]
+                - generic [ref=f3e218]: 布局
+              - paragraph [ref=f3e219]: 分割线
+              - paragraph [ref=f3e220]: 分割线 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e221]:
+                - text: Browse in Storybook
+                - generic [ref=f3e222]: ↗
+            - link "SplitPane 布局 分割面板 分割面板 — 布局组件,用于组织页面结构。 Browse in Storybook" [ref=f3e223] [cursor=pointer]:
+              - /url: /components/Layout/split-pane
+              - generic [ref=f3e224]:
+                - heading "SplitPane" [level=3] [ref=f3e225]
+                - generic [ref=f3e226]: 布局
+              - paragraph [ref=f3e227]: 分割面板
+              - paragraph [ref=f3e228]: 分割面板 — 布局组件,用于组织页面结构。
+              - button "Browse in Storybook" [ref=f3e229]:
+                - text: Browse in Storybook
+                - generic [ref=f3e230]: ↗
+        - generic [ref=f3e231]:
+          - generic [ref=f3e232]:
+            - heading "导航" [level=2] [ref=f3e233]
+            - generic [ref=f3e234]: · Navigation (7)
+          - generic [ref=f3e235]:
+            - link "Breadcrumb 导航 面包屑 面包屑 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e236] [cursor=pointer]:
+              - /url: /components/Navigation/breadcrumb
+              - generic [ref=f3e237]:
+                - heading "Breadcrumb" [level=3] [ref=f3e238]
+                - generic [ref=f3e239]: 导航
+              - paragraph [ref=f3e240]: 面包屑
+              - paragraph [ref=f3e241]: 面包屑 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e242]:
+                - text: Browse in Storybook
+                - generic [ref=f3e243]: ↗
+            - link "Menubar 导航 菜单栏 菜单栏 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e244] [cursor=pointer]:
+              - /url: /components/Navigation/menubar
+              - generic [ref=f3e245]:
+                - heading "Menubar" [level=3] [ref=f3e246]
+                - generic [ref=f3e247]: 导航
+              - paragraph [ref=f3e248]: 菜单栏
+              - paragraph [ref=f3e249]: 菜单栏 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e250]:
+                - text: Browse in Storybook
+                - generic [ref=f3e251]: ↗
+            - link "NavigationMenu 导航 导航菜单 导航菜单 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e252] [cursor=pointer]:
+              - /url: /components/Navigation/navigation-menu
+              - generic [ref=f3e253]:
+                - heading "NavigationMenu" [level=3] [ref=f3e254]
+                - generic [ref=f3e255]: 导航
+              - paragraph [ref=f3e256]: 导航菜单
+              - paragraph [ref=f3e257]: 导航菜单 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e258]:
+                - text: Browse in Storybook
+                - generic [ref=f3e259]: ↗
+            - link "Pagination 导航 分页 分页 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e260] [cursor=pointer]:
+              - /url: /components/Navigation/pagination
+              - generic [ref=f3e261]:
+                - heading "Pagination" [level=3] [ref=f3e262]
+                - generic [ref=f3e263]: 导航
+              - paragraph [ref=f3e264]: 分页
+              - paragraph [ref=f3e265]: 分页 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e266]:
+                - text: Browse in Storybook
+                - generic [ref=f3e267]: ↗
+            - link "Sidebar 导航 侧边栏 侧边栏 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e268] [cursor=pointer]:
+              - /url: /components/Navigation/sidebar
+              - generic [ref=f3e269]:
+                - heading "Sidebar" [level=3] [ref=f3e270]
+                - generic [ref=f3e271]: 导航
+              - paragraph [ref=f3e272]: 侧边栏
+              - paragraph [ref=f3e273]: 侧边栏 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e274]:
+                - text: Browse in Storybook
+                - generic [ref=f3e275]: ↗
+            - link "Stepper 导航 步骤条 步骤条 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e276] [cursor=pointer]:
+              - /url: /components/Navigation/stepper
+              - generic [ref=f3e277]:
+                - heading "Stepper" [level=3] [ref=f3e278]
+                - generic [ref=f3e279]: 导航
+              - paragraph [ref=f3e280]: 步骤条
+              - paragraph [ref=f3e281]: 步骤条 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e282]:
+                - text: Browse in Storybook
+                - generic [ref=f3e283]: ↗
+            - link "Tabs 导航 标签页 标签页 — 导航组件,用于在页面或视图之间切换。 Browse in Storybook" [ref=f3e284] [cursor=pointer]:
+              - /url: /components/Navigation/tabs
+              - generic [ref=f3e285]:
+                - heading "Tabs" [level=3] [ref=f3e286]
+                - generic [ref=f3e287]: 导航
+              - paragraph [ref=f3e288]: 标签页
+              - paragraph [ref=f3e289]: 标签页 — 导航组件,用于在页面或视图之间切换。
+              - button "Browse in Storybook" [ref=f3e290]:
+                - text: Browse in Storybook
+                - generic [ref=f3e291]: ↗
+        - generic [ref=f3e292]:
+          - generic [ref=f3e293]:
+            - heading "表单" [level=2] [ref=f3e294]
+            - generic [ref=f3e295]: · Form (18)
+          - generic [ref=f3e296]:
+            - link "Checkbox 表单 复选框 复选框 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e297] [cursor=pointer]:
+              - /url: /components/Form/checkbox
+              - generic [ref=f3e298]:
+                - heading "Checkbox" [level=3] [ref=f3e299]
+                - generic [ref=f3e300]: 表单
+              - paragraph [ref=f3e301]: 复选框
+              - paragraph [ref=f3e302]: 复选框 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e303]:
+                - text: Browse in Storybook
+                - generic [ref=f3e304]: ↗
+            - link "ColorPicker 表单 颜色选择器 颜色选择器 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e305] [cursor=pointer]:
+              - /url: /components/Form/color-picker
+              - generic [ref=f3e306]:
+                - heading "ColorPicker" [level=3] [ref=f3e307]
+                - generic [ref=f3e308]: 表单
+              - paragraph [ref=f3e309]: 颜色选择器
+              - paragraph [ref=f3e310]: 颜色选择器 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e311]:
+                - text: Browse in Storybook
+                - generic [ref=f3e312]: ↗
+            - link "FileUpload 表单 文件上传 文件上传 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e313] [cursor=pointer]:
+              - /url: /components/Form/file-upload
+              - generic [ref=f3e314]:
+                - heading "FileUpload" [level=3] [ref=f3e315]
+                - generic [ref=f3e316]: 表单
+              - paragraph [ref=f3e317]: 文件上传
+              - paragraph [ref=f3e318]: 文件上传 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e319]:
+                - text: Browse in Storybook
+                - generic [ref=f3e320]: ↗
+            - link "FormGrid 表单 表单栅格 表单栅格 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e321] [cursor=pointer]:
+              - /url: /components/Form/form-grid
+              - generic [ref=f3e322]:
+                - heading "FormGrid" [level=3] [ref=f3e323]
+                - generic [ref=f3e324]: 表单
+              - paragraph [ref=f3e325]: 表单栅格
+              - paragraph [ref=f3e326]: 表单栅格 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e327]:
+                - text: Browse in Storybook
+                - generic [ref=f3e328]: ↗
+            - link "FormList 表单 表单列表 表单列表 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e329] [cursor=pointer]:
+              - /url: /components/Form/form-list
+              - generic [ref=f3e330]:
+                - heading "FormList" [level=3] [ref=f3e331]
+                - generic [ref=f3e332]: 表单
+              - paragraph [ref=f3e333]: 表单列表
+              - paragraph [ref=f3e334]: 表单列表 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e335]:
+                - text: Browse in Storybook
+                - generic [ref=f3e336]: ↗
+            - link "FormSection 表单 表单分组 表单分组 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e337] [cursor=pointer]:
+              - /url: /components/Form/form-section
+              - generic [ref=f3e338]:
+                - heading "FormSection" [level=3] [ref=f3e339]
+                - generic [ref=f3e340]: 表单
+              - paragraph [ref=f3e341]: 表单分组
+              - paragraph [ref=f3e342]: 表单分组 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e343]:
+                - text: Browse in Storybook
+                - generic [ref=f3e344]: ↗
+            - link "Input 表单 输入框 输入框 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e345] [cursor=pointer]:
+              - /url: /components/Form/input
+              - generic [ref=f3e346]:
+                - heading "Input" [level=3] [ref=f3e347]
+                - generic [ref=f3e348]: 表单
+              - paragraph [ref=f3e349]: 输入框
+              - paragraph [ref=f3e350]: 输入框 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e351]:
+                - text: Browse in Storybook
+                - generic [ref=f3e352]: ↗
+            - link "InputGroup 表单 输入组 输入组 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e353] [cursor=pointer]:
+              - /url: /components/Form/input-group
+              - generic [ref=f3e354]:
+                - heading "InputGroup" [level=3] [ref=f3e355]
+                - generic [ref=f3e356]: 表单
+              - paragraph [ref=f3e357]: 输入组
+              - paragraph [ref=f3e358]: 输入组 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e359]:
+                - text: Browse in Storybook
+                - generic [ref=f3e360]: ↗
+            - link "OtpField 表单 OTP 输入 OTP 输入 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e361] [cursor=pointer]:
+              - /url: /components/Form/otp-field
+              - generic [ref=f3e362]:
+                - heading "OtpField" [level=3] [ref=f3e363]
+                - generic [ref=f3e364]: 表单
+              - paragraph [ref=f3e365]: OTP 输入
+              - paragraph [ref=f3e366]: OTP 输入 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e367]:
+                - text: Browse in Storybook
+                - generic [ref=f3e368]: ↗
+            - link "RadioGroup 表单 单选组 单选组 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e369] [cursor=pointer]:
+              - /url: /components/Form/radio-group
+              - generic [ref=f3e370]:
+                - heading "RadioGroup" [level=3] [ref=f3e371]
+                - generic [ref=f3e372]: 表单
+              - paragraph [ref=f3e373]: 单选组
+              - paragraph [ref=f3e374]: 单选组 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e375]:
+                - text: Browse in Storybook
+                - generic [ref=f3e376]: ↗
+            - link "Select 表单 选择器 选择器 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e377] [cursor=pointer]:
+              - /url: /components/Form/select
+              - generic [ref=f3e378]:
+                - heading "Select" [level=3] [ref=f3e379]
+                - generic [ref=f3e380]: 表单
+              - paragraph [ref=f3e381]: 选择器
+              - paragraph [ref=f3e382]: 选择器 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e383]:
+                - text: Browse in Storybook
+                - generic [ref=f3e384]: ↗
+            - link "Slider 表单 滑块 滑块 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e385] [cursor=pointer]:
+              - /url: /components/Form/slider
+              - generic [ref=f3e386]:
+                - heading "Slider" [level=3] [ref=f3e387]
+                - generic [ref=f3e388]: 表单
+              - paragraph [ref=f3e389]: 滑块
+              - paragraph [ref=f3e390]: 滑块 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e391]:
+                - text: Browse in Storybook
+                - generic [ref=f3e392]: ↗
+            - link "Switch 表单 开关 开关 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e393] [cursor=pointer]:
+              - /url: /components/Form/switch
+              - generic [ref=f3e394]:
+                - heading "Switch" [level=3] [ref=f3e395]
+                - generic [ref=f3e396]: 表单
+              - paragraph [ref=f3e397]: 开关
+              - paragraph [ref=f3e398]: 开关 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e399]:
+                - text: Browse in Storybook
+                - generic [ref=f3e400]: ↗
+            - link "TagsInput 表单 标签输入 标签输入 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e401] [cursor=pointer]:
+              - /url: /components/Form/tags-input
+              - generic [ref=f3e402]:
+                - heading "TagsInput" [level=3] [ref=f3e403]
+                - generic [ref=f3e404]: 表单
+              - paragraph [ref=f3e405]: 标签输入
+              - paragraph [ref=f3e406]: 标签输入 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e407]:
+                - text: Browse in Storybook
+                - generic [ref=f3e408]: ↗
+            - link "Textarea 表单 文本域 文本域 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e409] [cursor=pointer]:
+              - /url: /components/Form/textarea
+              - generic [ref=f3e410]:
+                - heading "Textarea" [level=3] [ref=f3e411]
+                - generic [ref=f3e412]: 表单
+              - paragraph [ref=f3e413]: 文本域
+              - paragraph [ref=f3e414]: 文本域 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e415]:
+                - text: Browse in Storybook
+                - generic [ref=f3e416]: ↗
+            - link "Toggle 表单 开关 开关 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e417] [cursor=pointer]:
+              - /url: /components/Form/toggle
+              - generic [ref=f3e418]:
+                - heading "Toggle" [level=3] [ref=f3e419]
+                - generic [ref=f3e420]: 表单
+              - paragraph [ref=f3e421]: 开关
+              - paragraph [ref=f3e422]: 开关 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e423]:
+                - text: Browse in Storybook
+                - generic [ref=f3e424]: ↗
+            - link "ToggleGroup 表单 按钮组 按钮组 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e425] [cursor=pointer]:
+              - /url: /components/Form/toggle-group
+              - generic [ref=f3e426]:
+                - heading "ToggleGroup" [level=3] [ref=f3e427]
+                - generic [ref=f3e428]: 表单
+              - paragraph [ref=f3e429]: 按钮组
+              - paragraph [ref=f3e430]: 按钮组 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e431]:
+                - text: Browse in Storybook
+                - generic [ref=f3e432]: ↗
+            - link "TreeSelect 表单 树选择 树选择 — 表单控件,用于采集结构化的用户输入。 Browse in Storybook" [ref=f3e433] [cursor=pointer]:
+              - /url: /components/Form/tree-select
+              - generic [ref=f3e434]:
+                - heading "TreeSelect" [level=3] [ref=f3e435]
+                - generic [ref=f3e436]: 表单
+              - paragraph [ref=f3e437]: 树选择
+              - paragraph [ref=f3e438]: 树选择 — 表单控件,用于采集结构化的用户输入。
+              - button "Browse in Storybook" [ref=f3e439]:
+                - text: Browse in Storybook
+                - generic [ref=f3e440]: ↗
+        - generic [ref=f3e441]:
+          - generic [ref=f3e442]:
+            - heading "数据展示" [level=2] [ref=f3e443]
+            - generic [ref=f3e444]: · DataDisplay (12)
+          - generic [ref=f3e445]:
+            - link "Avatar 数据展示 头像 头像 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e446] [cursor=pointer]:
+              - /url: /components/DataDisplay/avatar
+              - generic [ref=f3e447]:
+                - heading "Avatar" [level=3] [ref=f3e448]
+                - generic [ref=f3e449]: 数据展示
+              - paragraph [ref=f3e450]: 头像
+              - paragraph [ref=f3e451]: 头像 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e452]:
+                - text: Browse in Storybook
+                - generic [ref=f3e453]: ↗
+            - link "Badge 数据展示 徽标 徽标 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e454] [cursor=pointer]:
+              - /url: /components/DataDisplay/badge
+              - generic [ref=f3e455]:
+                - heading "Badge" [level=3] [ref=f3e456]
+                - generic [ref=f3e457]: 数据展示
+              - paragraph [ref=f3e458]: 徽标
+              - paragraph [ref=f3e459]: 徽标 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e460]:
+                - text: Browse in Storybook
+                - generic [ref=f3e461]: ↗
+            - link "Card 数据展示 卡片 卡片 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e462] [cursor=pointer]:
+              - /url: /components/DataDisplay/card
+              - generic [ref=f3e463]:
+                - heading "Card" [level=3] [ref=f3e464]
+                - generic [ref=f3e465]: 数据展示
+              - paragraph [ref=f3e466]: 卡片
+              - paragraph [ref=f3e467]: 卡片 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e468]:
+                - text: Browse in Storybook
+                - generic [ref=f3e469]: ↗
+            - link "Dot 数据展示 小圆点 小圆点 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e470] [cursor=pointer]:
+              - /url: /components/DataDisplay/dot
+              - generic [ref=f3e471]:
+                - heading "Dot" [level=3] [ref=f3e472]
+                - generic [ref=f3e473]: 数据展示
+              - paragraph [ref=f3e474]: 小圆点
+              - paragraph [ref=f3e475]: 小圆点 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e476]:
+                - text: Browse in Storybook
+                - generic [ref=f3e477]: ↗
+            - link "Kbd 数据展示 键盘按键 键盘按键 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e478] [cursor=pointer]:
+              - /url: /components/DataDisplay/kbd
+              - generic [ref=f3e479]:
+                - heading "Kbd" [level=3] [ref=f3e480]
+                - generic [ref=f3e481]: 数据展示
+              - paragraph [ref=f3e482]: 键盘按键
+              - paragraph [ref=f3e483]: 键盘按键 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e484]:
+                - text: Browse in Storybook
+                - generic [ref=f3e485]: ↗
+            - link "KpiPanel 数据展示 KPI 面板 KPI 面板 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e486] [cursor=pointer]:
+              - /url: /components/DataDisplay/kpi-panel
+              - generic [ref=f3e487]:
+                - heading "KpiPanel" [level=3] [ref=f3e488]
+                - generic [ref=f3e489]: 数据展示
+              - paragraph [ref=f3e490]: KPI 面板
+              - paragraph [ref=f3e491]: KPI 面板 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e492]:
+                - text: Browse in Storybook
+                - generic [ref=f3e493]: ↗
+            - link "Label 数据展示 标签 标签 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e494] [cursor=pointer]:
+              - /url: /components/DataDisplay/label
+              - generic [ref=f3e495]:
+                - heading "Label" [level=3] [ref=f3e496]
+                - generic [ref=f3e497]: 数据展示
+              - paragraph [ref=f3e498]: 标签
+              - paragraph [ref=f3e499]: 标签 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e500]:
+                - text: Browse in Storybook
+                - generic [ref=f3e501]: ↗
+            - link "Table 数据展示 表格 表格 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e502] [cursor=pointer]:
+              - /url: /components/DataDisplay/table
+              - generic [ref=f3e503]:
+                - heading "Table" [level=3] [ref=f3e504]
+                - generic [ref=f3e505]: 数据展示
+              - paragraph [ref=f3e506]: 表格
+              - paragraph [ref=f3e507]: 表格 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e508]:
+                - text: Browse in Storybook
+                - generic [ref=f3e509]: ↗
+            - link "Timeline 数据展示 时间线 时间线 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e510] [cursor=pointer]:
+              - /url: /components/DataDisplay/timeline
+              - generic [ref=f3e511]:
+                - heading "Timeline" [level=3] [ref=f3e512]
+                - generic [ref=f3e513]: 数据展示
+              - paragraph [ref=f3e514]: 时间线
+              - paragraph [ref=f3e515]: 时间线 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e516]:
+                - text: Browse in Storybook
+                - generic [ref=f3e517]: ↗
+            - link "TreeView 数据展示 树视图 树视图 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e518] [cursor=pointer]:
+              - /url: /components/DataDisplay/tree-view
+              - generic [ref=f3e519]:
+                - heading "TreeView" [level=3] [ref=f3e520]
+                - generic [ref=f3e521]: 数据展示
+              - paragraph [ref=f3e522]: 树视图
+              - paragraph [ref=f3e523]: 树视图 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e524]:
+                - text: Browse in Storybook
+                - generic [ref=f3e525]: ↗
+            - link "VirtualList 数据展示 虚拟列表 虚拟列表 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e526] [cursor=pointer]:
+              - /url: /components/DataDisplay/virtual-list
+              - generic [ref=f3e527]:
+                - heading "VirtualList" [level=3] [ref=f3e528]
+                - generic [ref=f3e529]: 数据展示
+              - paragraph [ref=f3e530]: 虚拟列表
+              - paragraph [ref=f3e531]: 虚拟列表 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e532]:
+                - text: Browse in Storybook
+                - generic [ref=f3e533]: ↗
+            - link "VirtualTable 数据展示 虚拟表格 虚拟表格 — 数据展示组件,用于呈现结构化信息。 Browse in Storybook" [ref=f3e534] [cursor=pointer]:
+              - /url: /components/DataDisplay/virtual-table
+              - generic [ref=f3e535]:
+                - heading "VirtualTable" [level=3] [ref=f3e536]
+                - generic [ref=f3e537]: 数据展示
+              - paragraph [ref=f3e538]: 虚拟表格
+              - paragraph [ref=f3e539]: 虚拟表格 — 数据展示组件,用于呈现结构化信息。
+              - button "Browse in Storybook" [ref=f3e540]:
+                - text: Browse in Storybook
+                - generic [ref=f3e541]: ↗
+        - generic [ref=f3e542]:
+          - generic [ref=f3e543]:
+            - heading "反馈" [level=2] [ref=f3e544]
+            - generic [ref=f3e545]: · Feedback (12)
+          - generic [ref=f3e546]:
+            - link "Alert 反馈 警告提示 警告提示 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e547] [cursor=pointer]:
+              - /url: /components/Feedback/alert
+              - generic [ref=f3e548]:
+                - heading "Alert" [level=3] [ref=f3e549]
+                - generic [ref=f3e550]: 反馈
+              - paragraph [ref=f3e551]: 警告提示
+              - paragraph [ref=f3e552]: 警告提示 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e553]:
+                - text: Browse in Storybook
+                - generic [ref=f3e554]: ↗
+            - link "AlertDialog 反馈 警告对话框 警告对话框 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e555] [cursor=pointer]:
+              - /url: /components/Feedback/alert-dialog
+              - generic [ref=f3e556]:
+                - heading "AlertDialog" [level=3] [ref=f3e557]
+                - generic [ref=f3e558]: 反馈
+              - paragraph [ref=f3e559]: 警告对话框
+              - paragraph [ref=f3e560]: 警告对话框 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e561]:
+                - text: Browse in Storybook
+                - generic [ref=f3e562]: ↗
+            - link "Command 反馈 命令面板 命令面板 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e563] [cursor=pointer]:
+              - /url: /components/Feedback/command
+              - generic [ref=f3e564]:
+                - heading "Command" [level=3] [ref=f3e565]
+                - generic [ref=f3e566]: 反馈
+              - paragraph [ref=f3e567]: 命令面板
+              - paragraph [ref=f3e568]: 命令面板 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e569]:
+                - text: Browse in Storybook
+                - generic [ref=f3e570]: ↗
+            - link "Dialog 反馈 对话框 对话框 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e571] [cursor=pointer]:
+              - /url: /components/Feedback/dialog
+              - generic [ref=f3e572]:
+                - heading "Dialog" [level=3] [ref=f3e573]
+                - generic [ref=f3e574]: 反馈
+              - paragraph [ref=f3e575]: 对话框
+              - paragraph [ref=f3e576]: 对话框 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e577]:
+                - text: Browse in Storybook
+                - generic [ref=f3e578]: ↗
+            - link "Drawer 反馈 抽屉 抽屉 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e579] [cursor=pointer]:
+              - /url: /components/Feedback/drawer
+              - generic [ref=f3e580]:
+                - heading "Drawer" [level=3] [ref=f3e581]
+                - generic [ref=f3e582]: 反馈
+              - paragraph [ref=f3e583]: 抽屉
+              - paragraph [ref=f3e584]: 抽屉 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e585]:
+                - text: Browse in Storybook
+                - generic [ref=f3e586]: ↗
+            - link "HoverCard 反馈 悬停卡片 悬停卡片 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e587] [cursor=pointer]:
+              - /url: /components/Feedback/hover-card
+              - generic [ref=f3e588]:
+                - heading "HoverCard" [level=3] [ref=f3e589]
+                - generic [ref=f3e590]: 反馈
+              - paragraph [ref=f3e591]: 悬停卡片
+              - paragraph [ref=f3e592]: 悬停卡片 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e593]:
+                - text: Browse in Storybook
+                - generic [ref=f3e594]: ↗
+            - link "Popover 反馈 气泡卡片 气泡卡片 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e595] [cursor=pointer]:
+              - /url: /components/Feedback/popover
+              - generic [ref=f3e596]:
+                - heading "Popover" [level=3] [ref=f3e597]
+                - generic [ref=f3e598]: 反馈
+              - paragraph [ref=f3e599]: 气泡卡片
+              - paragraph [ref=f3e600]: 气泡卡片 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e601]:
+                - text: Browse in Storybook
+                - generic [ref=f3e602]: ↗
+            - link "Progress 反馈 进度条 进度条 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e603] [cursor=pointer]:
+              - /url: /components/Feedback/progress
+              - generic [ref=f3e604]:
+                - heading "Progress" [level=3] [ref=f3e605]
+                - generic [ref=f3e606]: 反馈
+              - paragraph [ref=f3e607]: 进度条
+              - paragraph [ref=f3e608]: 进度条 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e609]:
+                - text: Browse in Storybook
+                - generic [ref=f3e610]: ↗
+            - link "Sheet 反馈 抽屉 抽屉 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e611] [cursor=pointer]:
+              - /url: /components/Feedback/sheet
+              - generic [ref=f3e612]:
+                - heading "Sheet" [level=3] [ref=f3e613]
+                - generic [ref=f3e614]: 反馈
+              - paragraph [ref=f3e615]: 抽屉
+              - paragraph [ref=f3e616]: 抽屉 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e617]:
+                - text: Browse in Storybook
+                - generic [ref=f3e618]: ↗
+            - link "Skeleton 反馈 骨架屏 骨架屏 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e619] [cursor=pointer]:
+              - /url: /components/Feedback/skeleton
+              - generic [ref=f3e620]:
+                - heading "Skeleton" [level=3] [ref=f3e621]
+                - generic [ref=f3e622]: 反馈
+              - paragraph [ref=f3e623]: 骨架屏
+              - paragraph [ref=f3e624]: 骨架屏 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e625]:
+                - text: Browse in Storybook
+                - generic [ref=f3e626]: ↗
+            - link "Sonner 反馈 消息提示 消息提示 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e627] [cursor=pointer]:
+              - /url: /components/Feedback/sonner
+              - generic [ref=f3e628]:
+                - heading "Sonner" [level=3] [ref=f3e629]
+                - generic [ref=f3e630]: 反馈
+              - paragraph [ref=f3e631]: 消息提示
+              - paragraph [ref=f3e632]: 消息提示 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e633]:
+                - text: Browse in Storybook
+                - generic [ref=f3e634]: ↗
+            - link "Tooltip 反馈 文字提示 文字提示 — 反馈层组件,用于瞬态用户通知或确认。 Browse in Storybook" [ref=f3e635] [cursor=pointer]:
+              - /url: /components/Feedback/tooltip
+              - generic [ref=f3e636]:
+                - heading "Tooltip" [level=3] [ref=f3e637]
+                - generic [ref=f3e638]: 反馈
+              - paragraph [ref=f3e639]: 文字提示
+              - paragraph [ref=f3e640]: 文字提示 — 反馈层组件,用于瞬态用户通知或确认。
+              - button "Browse in Storybook" [ref=f3e641]:
+                - text: Browse in Storybook
+                - generic [ref=f3e642]: ↗
+        - generic [ref=f3e643]:
+          - generic [ref=f3e644]:
+            - heading "业务" [level=2] [ref=f3e645]
+            - generic [ref=f3e646]: · Business (117)
+          - generic [ref=f3e647]:
+            - link "ActivityFeed 业务 动态流 动态流 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e648] [cursor=pointer]:
+              - /url: /components/Business/activity-feed
+              - generic [ref=f3e649]:
+                - heading "ActivityFeed" [level=3] [ref=f3e650]
+                - generic [ref=f3e651]: 业务
+              - paragraph [ref=f3e652]: 动态流
+              - paragraph [ref=f3e653]: 动态流 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e654]:
+                - text: Browse in Storybook
+                - generic [ref=f3e655]: ↗
+            - link "AddressForm 业务 地址表单 地址表单 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e656] [cursor=pointer]:
+              - /url: /components/Business/address-form
+              - generic [ref=f3e657]:
+                - heading "AddressForm" [level=3] [ref=f3e658]
+                - generic [ref=f3e659]: 业务
+              - paragraph [ref=f3e660]: 地址表单
+              - paragraph [ref=f3e661]: 地址表单 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e662]:
+                - text: Browse in Storybook
+                - generic [ref=f3e663]: ↗
+            - link "AdvancedDataTable 业务 增强数据表 增强数据表 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e664] [cursor=pointer]:
+              - /url: /components/Business/advanced-data-table
+              - generic [ref=f3e665]:
+                - heading "AdvancedDataTable" [level=3] [ref=f3e666]
+                - generic [ref=f3e667]: 业务
+              - paragraph [ref=f3e668]: 增强数据表
+              - paragraph [ref=f3e669]: 增强数据表 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e670]:
+                - text: Browse in Storybook
+                - generic [ref=f3e671]: ↗
+            - link "Anchor 业务 锚点 锚点 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e672] [cursor=pointer]:
+              - /url: /components/Business/anchor
+              - generic [ref=f3e673]:
+                - heading "Anchor" [level=3] [ref=f3e674]
+                - generic [ref=f3e675]: 业务
+              - paragraph [ref=f3e676]: 锚点
+              - paragraph [ref=f3e677]: 锚点 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e678]:
+                - text: Browse in Storybook
+                - generic [ref=f3e679]: ↗
+            - link "AnimatedNumber 业务 AnimatedNumber AnimatedNumber — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e680] [cursor=pointer]:
+              - /url: /components/Business/animated-number
+              - generic [ref=f3e681]:
+                - heading "AnimatedNumber" [level=3] [ref=f3e682]
+                - generic [ref=f3e683]: 业务
+              - paragraph [ref=f3e684]: AnimatedNumber
+              - paragraph [ref=f3e685]: AnimatedNumber — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e686]:
+                - text: Browse in Storybook
+                - generic [ref=f3e687]: ↗
+            - link "ApprovalFlow 业务 ApprovalFlow ApprovalFlow — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e688] [cursor=pointer]:
+              - /url: /components/Business/approval-flow
+              - generic [ref=f3e689]:
+                - heading "ApprovalFlow" [level=3] [ref=f3e690]
+                - generic [ref=f3e691]: 业务
+              - paragraph [ref=f3e692]: ApprovalFlow
+              - paragraph [ref=f3e693]: ApprovalFlow — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e694]:
+                - text: Browse in Storybook
+                - generic [ref=f3e695]: ↗
+            - link "AudioPlayer 业务 AudioPlayer AudioPlayer — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e696] [cursor=pointer]:
+              - /url: /components/Business/audio-player
+              - generic [ref=f3e697]:
+                - heading "AudioPlayer" [level=3] [ref=f3e698]
+                - generic [ref=f3e699]: 业务
+              - paragraph [ref=f3e700]: AudioPlayer
+              - paragraph [ref=f3e701]: AudioPlayer — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e702]:
+                - text: Browse in Storybook
+                - generic [ref=f3e703]: ↗
+            - link "AuditLog 业务 审计日志 审计日志 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e704] [cursor=pointer]:
+              - /url: /components/Business/audit-log
+              - generic [ref=f3e705]:
+                - heading "AuditLog" [level=3] [ref=f3e706]
+                - generic [ref=f3e707]: 业务
+              - paragraph [ref=f3e708]: 审计日志
+              - paragraph [ref=f3e709]: 审计日志 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e710]:
+                - text: Browse in Storybook
+                - generic [ref=f3e711]: ↗
+            - link "AuthForms 业务 认证表单 认证表单 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e712] [cursor=pointer]:
+              - /url: /components/Business/auth-forms
+              - generic [ref=f3e713]:
+                - heading "AuthForms" [level=3] [ref=f3e714]
+                - generic [ref=f3e715]: 业务
+              - paragraph [ref=f3e716]: 认证表单
+              - paragraph [ref=f3e717]: 认证表单 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e718]:
+                - text: Browse in Storybook
+                - generic [ref=f3e719]: ↗
+            - link "AvatarGroup 业务 头像组 头像组 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e720] [cursor=pointer]:
+              - /url: /components/Business/avatar-group
+              - generic [ref=f3e721]:
+                - heading "AvatarGroup" [level=3] [ref=f3e722]
+                - generic [ref=f3e723]: 业务
+              - paragraph [ref=f3e724]: 头像组
+              - paragraph [ref=f3e725]: 头像组 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e726]:
+                - text: Browse in Storybook
+                - generic [ref=f3e727]: ↗
+            - link "Banner 业务 Banner Banner — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e728] [cursor=pointer]:
+              - /url: /components/Business/banner
+              - generic [ref=f3e729]:
+                - heading "Banner" [level=3] [ref=f3e730]
+                - generic [ref=f3e731]: 业务
+              - paragraph [ref=f3e732]: Banner
+              - paragraph [ref=f3e733]: Banner — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e734]:
+                - text: Browse in Storybook
+                - generic [ref=f3e735]: ↗
+            - link "BarcodeDisplay 业务 BarcodeDisplay BarcodeDisplay — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e736] [cursor=pointer]:
+              - /url: /components/Business/barcode-display
+              - generic [ref=f3e737]:
+                - heading "BarcodeDisplay" [level=3] [ref=f3e738]
+                - generic [ref=f3e739]: 业务
+              - paragraph [ref=f3e740]: BarcodeDisplay
+              - paragraph [ref=f3e741]: BarcodeDisplay — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e742]:
+                - text: Browse in Storybook
+                - generic [ref=f3e743]: ↗
+            - link "BulkActionsToolbar 业务 批量操作工具栏 批量操作工具栏 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e744] [cursor=pointer]:
+              - /url: /components/Business/bulk-actions-toolbar
+              - generic [ref=f3e745]:
+                - heading "BulkActionsToolbar" [level=3] [ref=f3e746]
+                - generic [ref=f3e747]: 业务
+              - paragraph [ref=f3e748]: 批量操作工具栏
+              - paragraph [ref=f3e749]: 批量操作工具栏 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e750]:
+                - text: Browse in Storybook
+                - generic [ref=f3e751]: ↗
+            - link "Chart 业务 图表 图表 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e752] [cursor=pointer]:
+              - /url: /components/Business/chart
+              - generic [ref=f3e753]:
+                - heading "Chart" [level=3] [ref=f3e754]
+                - generic [ref=f3e755]: 业务
+              - paragraph [ref=f3e756]: 图表
+              - paragraph [ref=f3e757]: 图表 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e758]:
+                - text: Browse in Storybook
+                - generic [ref=f3e759]: ↗
+            - link "Chat 业务 Chat Chat — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e760] [cursor=pointer]:
+              - /url: /components/Business/chat
+              - generic [ref=f3e761]:
+                - heading "Chat" [level=3] [ref=f3e762]
+                - generic [ref=f3e763]: 业务
+              - paragraph [ref=f3e764]: Chat
+              - paragraph [ref=f3e765]: Chat — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e766]:
+                - text: Browse in Storybook
+                - generic [ref=f3e767]: ↗
+            - link "Chip 业务 标签块 标签块 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e768] [cursor=pointer]:
+              - /url: /components/Business/chip
+              - generic [ref=f3e769]:
+                - heading "Chip" [level=3] [ref=f3e770]
+                - generic [ref=f3e771]: 业务
+              - paragraph [ref=f3e772]: 标签块
+              - paragraph [ref=f3e773]: 标签块 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e774]:
+                - text: Browse in Storybook
+                - generic [ref=f3e775]: ↗
+            - link "CoachMark 业务 CoachMark CoachMark — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e776] [cursor=pointer]:
+              - /url: /components/Business/coach-mark
+              - generic [ref=f3e777]:
+                - heading "CoachMark" [level=3] [ref=f3e778]
+                - generic [ref=f3e779]: 业务
+              - paragraph [ref=f3e780]: CoachMark
+              - paragraph [ref=f3e781]: CoachMark — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e782]:
+                - text: Browse in Storybook
+                - generic [ref=f3e783]: ↗
+            - link "CodeBlock 业务 代码块 代码块 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e784] [cursor=pointer]:
+              - /url: /components/Business/code-block
+              - generic [ref=f3e785]:
+                - heading "CodeBlock" [level=3] [ref=f3e786]
+                - generic [ref=f3e787]: 业务
+              - paragraph [ref=f3e788]: 代码块
+              - paragraph [ref=f3e789]: 代码块 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e790]:
+                - text: Browse in Storybook
+                - generic [ref=f3e791]: ↗
+            - link "CodeEditor 业务 CodeEditor CodeEditor — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e792] [cursor=pointer]:
+              - /url: /components/Business/code-editor
+              - generic [ref=f3e793]:
+                - heading "CodeEditor" [level=3] [ref=f3e794]
+                - generic [ref=f3e795]: 业务
+              - paragraph [ref=f3e796]: CodeEditor
+              - paragraph [ref=f3e797]: CodeEditor — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e798]:
+                - text: Browse in Storybook
+                - generic [ref=f3e799]: ↗
+            - link "Combobox 业务 组合选择 组合选择 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e800] [cursor=pointer]:
+              - /url: /components/Business/combobox
+              - generic [ref=f3e801]:
+                - heading "Combobox" [level=3] [ref=f3e802]
+                - generic [ref=f3e803]: 业务
+              - paragraph [ref=f3e804]: 组合选择
+              - paragraph [ref=f3e805]: 组合选择 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e806]:
+                - text: Browse in Storybook
+                - generic [ref=f3e807]: ↗
+            - link "CommandPalette 业务 命令面板 命令面板 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e808] [cursor=pointer]:
+              - /url: /components/Business/command-palette
+              - generic [ref=f3e809]:
+                - heading "CommandPalette" [level=3] [ref=f3e810]
+                - generic [ref=f3e811]: 业务
+              - paragraph [ref=f3e812]: 命令面板
+              - paragraph [ref=f3e813]: 命令面板 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e814]:
+                - text: Browse in Storybook
+                - generic [ref=f3e815]: ↗
+            - link "CommentThread 业务 CommentThread CommentThread — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e816] [cursor=pointer]:
+              - /url: /components/Business/comment-thread
+              - generic [ref=f3e817]:
+                - heading "CommentThread" [level=3] [ref=f3e818]
+                - generic [ref=f3e819]: 业务
+              - paragraph [ref=f3e820]: CommentThread
+              - paragraph [ref=f3e821]: CommentThread — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e822]:
+                - text: Browse in Storybook
+                - generic [ref=f3e823]: ↗
+            - link "Confetti 业务 Confetti Confetti — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e824] [cursor=pointer]:
+              - /url: /components/Business/confetti
+              - generic [ref=f3e825]:
+                - heading "Confetti" [level=3] [ref=f3e826]
+                - generic [ref=f3e827]: 业务
+              - paragraph [ref=f3e828]: Confetti
+              - paragraph [ref=f3e829]: Confetti — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e830]:
+                - text: Browse in Storybook
+                - generic [ref=f3e831]: ↗
+            - link "ConfirmDialog 业务 确认对话框 确认对话框 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e832] [cursor=pointer]:
+              - /url: /components/Business/confirm-dialog
+              - generic [ref=f3e833]:
+                - heading "ConfirmDialog" [level=3] [ref=f3e834]
+                - generic [ref=f3e835]: 业务
+              - paragraph [ref=f3e836]: 确认对话框
+              - paragraph [ref=f3e837]: 确认对话框 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e838]:
+                - text: Browse in Storybook
+                - generic [ref=f3e839]: ↗
+            - link "ConnectionStatus 业务 ConnectionStatus ConnectionStatus — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e840] [cursor=pointer]:
+              - /url: /components/Business/connection-status
+              - generic [ref=f3e841]:
+                - heading "ConnectionStatus" [level=3] [ref=f3e842]
+                - generic [ref=f3e843]: 业务
+              - paragraph [ref=f3e844]: ConnectionStatus
+              - paragraph [ref=f3e845]: ConnectionStatus — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e846]:
+                - text: Browse in Storybook
+                - generic [ref=f3e847]: ↗
+            - link "CookieBanner 业务 Cookie 横幅 Cookie 横幅 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e848] [cursor=pointer]:
+              - /url: /components/Business/cookie-banner
+              - generic [ref=f3e849]:
+                - heading "CookieBanner" [level=3] [ref=f3e850]
+                - generic [ref=f3e851]: 业务
+              - paragraph [ref=f3e852]: Cookie 横幅
+              - paragraph [ref=f3e853]: Cookie 横幅 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e854]:
+                - text: Browse in Storybook
+                - generic [ref=f3e855]: ↗
+            - link "CopyButton 业务 CopyButton CopyButton — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e856] [cursor=pointer]:
+              - /url: /components/Business/copy-button
+              - generic [ref=f3e857]:
+                - heading "CopyButton" [level=3] [ref=f3e858]
+                - generic [ref=f3e859]: 业务
+              - paragraph [ref=f3e860]: CopyButton
+              - paragraph [ref=f3e861]: CopyButton — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e862]:
+                - text: Browse in Storybook
+                - generic [ref=f3e863]: ↗
+            - link "CreditCardInput 业务 CreditCardInput CreditCardInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e864] [cursor=pointer]:
+              - /url: /components/Business/credit-card-input
+              - generic [ref=f3e865]:
+                - heading "CreditCardInput" [level=3] [ref=f3e866]
+                - generic [ref=f3e867]: 业务
+              - paragraph [ref=f3e868]: CreditCardInput
+              - paragraph [ref=f3e869]: CreditCardInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e870]:
+                - text: Browse in Storybook
+                - generic [ref=f3e871]: ↗
+            - link "CurrencyInput 业务 CurrencyInput CurrencyInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e872] [cursor=pointer]:
+              - /url: /components/Business/currency-input
+              - generic [ref=f3e873]:
+                - heading "CurrencyInput" [level=3] [ref=f3e874]
+                - generic [ref=f3e875]: 业务
+              - paragraph [ref=f3e876]: CurrencyInput
+              - paragraph [ref=f3e877]: CurrencyInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e878]:
+                - text: Browse in Storybook
+                - generic [ref=f3e879]: ↗
+            - link "DataTable 业务 数据表 数据表 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e880] [cursor=pointer]:
+              - /url: /components/Business/data-table
+              - generic [ref=f3e881]:
+                - heading "DataTable" [level=3] [ref=f3e882]
+                - generic [ref=f3e883]: 业务
+              - paragraph [ref=f3e884]: 数据表
+              - paragraph [ref=f3e885]: 数据表 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e886]:
+                - text: Browse in Storybook
+                - generic [ref=f3e887]: ↗
+            - link "DateRangePicker 业务 日期范围选择器 日期范围选择器 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e888] [cursor=pointer]:
+              - /url: /components/Business/date-range-picker
+              - generic [ref=f3e889]:
+                - heading "DateRangePicker" [level=3] [ref=f3e890]
+                - generic [ref=f3e891]: 业务
+              - paragraph [ref=f3e892]: 日期范围选择器
+              - paragraph [ref=f3e893]: 日期范围选择器 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e894]:
+                - text: Browse in Storybook
+                - generic [ref=f3e895]: ↗
+            - link "DensitySwitcher 业务 DensitySwitcher DensitySwitcher — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e896] [cursor=pointer]:
+              - /url: /components/Business/density-switcher
+              - generic [ref=f3e897]:
+                - heading "DensitySwitcher" [level=3] [ref=f3e898]
+                - generic [ref=f3e899]: 业务
+              - paragraph [ref=f3e900]: DensitySwitcher
+              - paragraph [ref=f3e901]: DensitySwitcher — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e902]:
+                - text: Browse in Storybook
+                - generic [ref=f3e903]: ↗
+            - link "Dock 业务 Dock Dock — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e904] [cursor=pointer]:
+              - /url: /components/Business/dock
+              - generic [ref=f3e905]:
+                - heading "Dock" [level=3] [ref=f3e906]
+                - generic [ref=f3e907]: 业务
+              - paragraph [ref=f3e908]: Dock
+              - paragraph [ref=f3e909]: Dock — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e910]:
+                - text: Browse in Storybook
+                - generic [ref=f3e911]: ↗
+            - link "EmptyState 业务 空状态 空状态 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e912] [cursor=pointer]:
+              - /url: /components/Business/empty-state
+              - generic [ref=f3e913]:
+                - heading "EmptyState" [level=3] [ref=f3e914]
+                - generic [ref=f3e915]: 业务
+              - paragraph [ref=f3e916]: 空状态
+              - paragraph [ref=f3e917]: 空状态 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e918]:
+                - text: Browse in Storybook
+                - generic [ref=f3e919]: ↗
+            - link "ErrorBoundary 业务 错误边界 错误边界 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e920] [cursor=pointer]:
+              - /url: /components/Business/error-boundary
+              - generic [ref=f3e921]:
+                - heading "ErrorBoundary" [level=3] [ref=f3e922]
+                - generic [ref=f3e923]: 业务
+              - paragraph [ref=f3e924]: 错误边界
+              - paragraph [ref=f3e925]: 错误边界 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e926]:
+                - text: Browse in Storybook
+                - generic [ref=f3e927]: ↗
+            - link "ErrorPage 业务 错误页 错误页 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e928] [cursor=pointer]:
+              - /url: /components/Business/error-page
+              - generic [ref=f3e929]:
+                - heading "ErrorPage" [level=3] [ref=f3e930]
+                - generic [ref=f3e931]: 业务
+              - paragraph [ref=f3e932]: 错误页
+              - paragraph [ref=f3e933]: 错误页 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e934]:
+                - text: Browse in Storybook
+                - generic [ref=f3e935]: ↗
+            - link "ExportButton 业务 导出按钮 导出按钮 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e936] [cursor=pointer]:
+              - /url: /components/Business/export-button
+              - generic [ref=f3e937]:
+                - heading "ExportButton" [level=3] [ref=f3e938]
+                - generic [ref=f3e939]: 业务
+              - paragraph [ref=f3e940]: 导出按钮
+              - paragraph [ref=f3e941]: 导出按钮 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e942]:
+                - text: Browse in Storybook
+                - generic [ref=f3e943]: ↗
+            - link "Fab 业务 悬浮按钮 悬浮按钮 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e944] [cursor=pointer]:
+              - /url: /components/Business/fab
+              - generic [ref=f3e945]:
+                - heading "Fab" [level=3] [ref=f3e946]
+                - generic [ref=f3e947]: 业务
+              - paragraph [ref=f3e948]: 悬浮按钮
+              - paragraph [ref=f3e949]: 悬浮按钮 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e950]:
+                - text: Browse in Storybook
+                - generic [ref=f3e951]: ↗
+            - link "FeatureGate 业务 FeatureGate FeatureGate — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e952] [cursor=pointer]:
+              - /url: /components/Business/feature-gate
+              - generic [ref=f3e953]:
+                - heading "FeatureGate" [level=3] [ref=f3e954]
+                - generic [ref=f3e955]: 业务
+              - paragraph [ref=f3e956]: FeatureGate
+              - paragraph [ref=f3e957]: FeatureGate — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e958]:
+                - text: Browse in Storybook
+                - generic [ref=f3e959]: ↗
+            - link "FileUploadManager 业务 上传管理 上传管理 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e960] [cursor=pointer]:
+              - /url: /components/Business/file-upload-manager
+              - generic [ref=f3e961]:
+                - heading "FileUploadManager" [level=3] [ref=f3e962]
+                - generic [ref=f3e963]: 业务
+              - paragraph [ref=f3e964]: 上传管理
+              - paragraph [ref=f3e965]: 上传管理 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e966]:
+                - text: Browse in Storybook
+                - generic [ref=f3e967]: ↗
+            - link "FilterBuilder 业务 条件构建器 条件构建器 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e968] [cursor=pointer]:
+              - /url: /components/Business/filter-builder
+              - generic [ref=f3e969]:
+                - heading "FilterBuilder" [level=3] [ref=f3e970]
+                - generic [ref=f3e971]: 业务
+              - paragraph [ref=f3e972]: 条件构建器
+              - paragraph [ref=f3e973]: 条件构建器 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e974]:
+                - text: Browse in Storybook
+                - generic [ref=f3e975]: ↗
+            - link "FormField 业务 表单字段 表单字段 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e976] [cursor=pointer]:
+              - /url: /components/Business/form-field
+              - generic [ref=f3e977]:
+                - heading "FormField" [level=3] [ref=f3e978]
+                - generic [ref=f3e979]: 业务
+              - paragraph [ref=f3e980]: 表单字段
+              - paragraph [ref=f3e981]: 表单字段 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e982]:
+                - text: Browse in Storybook
+                - generic [ref=f3e983]: ↗
+            - link "FormWizard 业务 表单向导 表单向导 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e984] [cursor=pointer]:
+              - /url: /components/Business/form-wizard
+              - generic [ref=f3e985]:
+                - heading "FormWizard" [level=3] [ref=f3e986]
+                - generic [ref=f3e987]: 业务
+              - paragraph [ref=f3e988]: 表单向导
+              - paragraph [ref=f3e989]: 表单向导 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e990]:
+                - text: Browse in Storybook
+                - generic [ref=f3e991]: ↗
+            - link "Gauge 业务 仪表盘 仪表盘 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e992] [cursor=pointer]:
+              - /url: /components/Business/gauge
+              - generic [ref=f3e993]:
+                - heading "Gauge" [level=3] [ref=f3e994]
+                - generic [ref=f3e995]: 业务
+              - paragraph [ref=f3e996]: 仪表盘
+              - paragraph [ref=f3e997]: 仪表盘 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e998]:
+                - text: Browse in Storybook
+                - generic [ref=f3e999]: ↗
+            - link "HeatmapCalendar 业务 热力日历 热力日历 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1000] [cursor=pointer]:
+              - /url: /components/Business/heatmap-calendar
+              - generic [ref=f3e1001]:
+                - heading "HeatmapCalendar" [level=3] [ref=f3e1002]
+                - generic [ref=f3e1003]: 业务
+              - paragraph [ref=f3e1004]: 热力日历
+              - paragraph [ref=f3e1005]: 热力日历 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1006]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1007]: ↗
+            - link "ImageGallery 业务 ImageGallery ImageGallery — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1008] [cursor=pointer]:
+              - /url: /components/Business/image-gallery
+              - generic [ref=f3e1009]:
+                - heading "ImageGallery" [level=3] [ref=f3e1010]
+                - generic [ref=f3e1011]: 业务
+              - paragraph [ref=f3e1012]: ImageGallery
+              - paragraph [ref=f3e1013]: ImageGallery — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1014]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1015]: ↗
+            - link "InboxList 业务 InboxList InboxList — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1016] [cursor=pointer]:
+              - /url: /components/Business/inbox-list
+              - generic [ref=f3e1017]:
+                - heading "InboxList" [level=3] [ref=f3e1018]
+                - generic [ref=f3e1019]: 业务
+              - paragraph [ref=f3e1020]: InboxList
+              - paragraph [ref=f3e1021]: InboxList — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1022]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1023]: ↗
+            - link "InvoicePreview 业务 InvoicePreview InvoicePreview — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1024] [cursor=pointer]:
+              - /url: /components/Business/invoice-preview
+              - generic [ref=f3e1025]:
+                - heading "InvoicePreview" [level=3] [ref=f3e1026]
+                - generic [ref=f3e1027]: 业务
+              - paragraph [ref=f3e1028]: InvoicePreview
+              - paragraph [ref=f3e1029]: InvoicePreview — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1030]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1031]: ↗
+            - link "JsonViewer 业务 JSON 查看器 JSON 查看器 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1032] [cursor=pointer]:
+              - /url: /components/Business/json-viewer
+              - generic [ref=f3e1033]:
+                - heading "JsonViewer" [level=3] [ref=f3e1034]
+                - generic [ref=f3e1035]: 业务
+              - paragraph [ref=f3e1036]: JSON 查看器
+              - paragraph [ref=f3e1037]: JSON 查看器 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1038]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1039]: ↗
+            - link "KanbanBoard 业务 看板 看板 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1040] [cursor=pointer]:
+              - /url: /components/Business/kanban-board
+              - generic [ref=f3e1041]:
+                - heading "KanbanBoard" [level=3] [ref=f3e1042]
+                - generic [ref=f3e1043]: 业务
+              - paragraph [ref=f3e1044]: 看板
+              - paragraph [ref=f3e1045]: 看板 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1046]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1047]: ↗
+            - link "KpiCard 业务 KPI 卡片 KPI 卡片 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1048] [cursor=pointer]:
+              - /url: /components/Business/kpi-card
+              - generic [ref=f3e1049]:
+                - heading "KpiCard" [level=3] [ref=f3e1050]
+                - generic [ref=f3e1051]: 业务
+              - paragraph [ref=f3e1052]: KPI 卡片
+              - paragraph [ref=f3e1053]: KPI 卡片 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1054]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1055]: ↗
+            - link "LanguageSwitcher 业务 语言切换 语言切换 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1056] [cursor=pointer]:
+              - /url: /components/Business/language-switcher
+              - generic [ref=f3e1057]:
+                - heading "LanguageSwitcher" [level=3] [ref=f3e1058]
+                - generic [ref=f3e1059]: 业务
+              - paragraph [ref=f3e1060]: 语言切换
+              - paragraph [ref=f3e1061]: 语言切换 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1062]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1063]: ↗
+            - link "LoadingPage 业务 加载页 加载页 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1064] [cursor=pointer]:
+              - /url: /components/Business/loading-page
+              - generic [ref=f3e1065]:
+                - heading "LoadingPage" [level=3] [ref=f3e1066]
+                - generic [ref=f3e1067]: 业务
+              - paragraph [ref=f3e1068]: 加载页
+              - paragraph [ref=f3e1069]: 加载页 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1070]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1071]: ↗
+            - link "MapView 业务 地图视图 地图视图 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1072] [cursor=pointer]:
+              - /url: /components/Business/map-view
+              - generic [ref=f3e1073]:
+                - heading "MapView" [level=3] [ref=f3e1074]
+                - generic [ref=f3e1075]: 业务
+              - paragraph [ref=f3e1076]: 地图视图
+              - paragraph [ref=f3e1077]: 地图视图 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1078]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1079]: ↗
+            - link "Marketing 业务 Marketing Marketing — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1080] [cursor=pointer]:
+              - /url: /components/Business/marketing
+              - generic [ref=f3e1081]:
+                - heading "Marketing" [level=3] [ref=f3e1082]
+                - generic [ref=f3e1083]: 业务
+              - paragraph [ref=f3e1084]: Marketing
+              - paragraph [ref=f3e1085]: Marketing — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1086]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1087]: ↗
+            - link "MaskInput 业务 MaskInput MaskInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1088] [cursor=pointer]:
+              - /url: /components/Business/mask-input
+              - generic [ref=f3e1089]:
+                - heading "MaskInput" [level=3] [ref=f3e1090]
+                - generic [ref=f3e1091]: 业务
+              - paragraph [ref=f3e1092]: MaskInput
+              - paragraph [ref=f3e1093]: MaskInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1094]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1095]: ↗
+            - link "MetricTrend 业务 指标趋势 指标趋势 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1096] [cursor=pointer]:
+              - /url: /components/Business/metric-trend
+              - generic [ref=f3e1097]:
+                - heading "MetricTrend" [level=3] [ref=f3e1098]
+                - generic [ref=f3e1099]: 业务
+              - paragraph [ref=f3e1100]: 指标趋势
+              - paragraph [ref=f3e1101]: 指标趋势 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1102]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1103]: ↗
+            - link "MobileAuthLayout 业务 MobileAuthLayout MobileAuthLayout — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1104] [cursor=pointer]:
+              - /url: /components/Business/mobile-auth-layout
+              - generic [ref=f3e1105]:
+                - heading "MobileAuthLayout" [level=3] [ref=f3e1106]
+                - generic [ref=f3e1107]: 业务
+              - paragraph [ref=f3e1108]: MobileAuthLayout
+              - paragraph [ref=f3e1109]: MobileAuthLayout — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1110]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1111]: ↗
+            - link "MobileBottomNav 业务 MobileBottomNav MobileBottomNav — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1112] [cursor=pointer]:
+              - /url: /components/Business/mobile-bottom-nav
+              - generic [ref=f3e1113]:
+                - heading "MobileBottomNav" [level=3] [ref=f3e1114]
+                - generic [ref=f3e1115]: 业务
+              - paragraph [ref=f3e1116]: MobileBottomNav
+              - paragraph [ref=f3e1117]: MobileBottomNav — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1118]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1119]: ↗
+            - link "MobileButton 业务 MobileButton MobileButton — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1120] [cursor=pointer]:
+              - /url: /components/Business/mobile-button
+              - generic [ref=f3e1121]:
+                - heading "MobileButton" [level=3] [ref=f3e1122]
+                - generic [ref=f3e1123]: 业务
+              - paragraph [ref=f3e1124]: MobileButton
+              - paragraph [ref=f3e1125]: MobileButton — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1126]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1127]: ↗
+            - link "MobileCard 业务 MobileCard MobileCard — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1128] [cursor=pointer]:
+              - /url: /components/Business/mobile-card
+              - generic [ref=f3e1129]:
+                - heading "MobileCard" [level=3] [ref=f3e1130]
+                - generic [ref=f3e1131]: 业务
+              - paragraph [ref=f3e1132]: MobileCard
+              - paragraph [ref=f3e1133]: MobileCard — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1134]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1135]: ↗
+            - link "MobileChartFallback 业务 MobileChartFallback MobileChartFallback — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1136] [cursor=pointer]:
+              - /url: /components/Business/mobile-chart-fallback
+              - generic [ref=f3e1137]:
+                - heading "MobileChartFallback" [level=3] [ref=f3e1138]
+                - generic [ref=f3e1139]: 业务
+              - paragraph [ref=f3e1140]: MobileChartFallback
+              - paragraph [ref=f3e1141]: MobileChartFallback — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1142]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1143]: ↗
+            - link "MobileDashboardLayout 业务 MobileDashboardLayout MobileDashboardLayout — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1144] [cursor=pointer]:
+              - /url: /components/Business/mobile-dashboard-layout
+              - generic [ref=f3e1145]:
+                - heading "MobileDashboardLayout" [level=3] [ref=f3e1146]
+                - generic [ref=f3e1147]: 业务
+              - paragraph [ref=f3e1148]: MobileDashboardLayout
+              - paragraph [ref=f3e1149]: MobileDashboardLayout — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1150]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1151]: ↗
+            - link "MobileDataTable 业务 MobileDataTable MobileDataTable — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1152] [cursor=pointer]:
+              - /url: /components/Business/mobile-data-table
+              - generic [ref=f3e1153]:
+                - heading "MobileDataTable" [level=3] [ref=f3e1154]
+                - generic [ref=f3e1155]: 业务
+              - paragraph [ref=f3e1156]: MobileDataTable
+              - paragraph [ref=f3e1157]: MobileDataTable — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1158]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1159]: ↗
+            - link "MobileDialog 业务 移动端对话框 移动端对话框 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1160] [cursor=pointer]:
+              - /url: /components/Business/mobile-dialog
+              - generic [ref=f3e1161]:
+                - heading "MobileDialog" [level=3] [ref=f3e1162]
+                - generic [ref=f3e1163]: 业务
+              - paragraph [ref=f3e1164]: 移动端对话框
+              - paragraph [ref=f3e1165]: 移动端对话框 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1166]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1167]: ↗
+            - link "MobileEmptyState 业务 MobileEmptyState MobileEmptyState — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1168] [cursor=pointer]:
+              - /url: /components/Business/mobile-empty-state
+              - generic [ref=f3e1169]:
+                - heading "MobileEmptyState" [level=3] [ref=f3e1170]
+                - generic [ref=f3e1171]: 业务
+              - paragraph [ref=f3e1172]: MobileEmptyState
+              - paragraph [ref=f3e1173]: MobileEmptyState — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1174]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1175]: ↗
+            - link "MobileFilterBuilder 业务 MobileFilterBuilder MobileFilterBuilder — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1176] [cursor=pointer]:
+              - /url: /components/Business/mobile-filter-builder
+              - generic [ref=f3e1177]:
+                - heading "MobileFilterBuilder" [level=3] [ref=f3e1178]
+                - generic [ref=f3e1179]: 业务
+              - paragraph [ref=f3e1180]: MobileFilterBuilder
+              - paragraph [ref=f3e1181]: MobileFilterBuilder — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1182]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1183]: ↗
+            - link "MobileForm 业务 MobileForm MobileForm — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1184] [cursor=pointer]:
+              - /url: /components/Business/mobile-form
+              - generic [ref=f3e1185]:
+                - heading "MobileForm" [level=3] [ref=f3e1186]
+                - generic [ref=f3e1187]: 业务
+              - paragraph [ref=f3e1188]: MobileForm
+              - paragraph [ref=f3e1189]: MobileForm — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1190]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1191]: ↗
+            - link "MobileFormAutosave 业务 MobileFormAutosave MobileFormAutosave — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1192] [cursor=pointer]:
+              - /url: /components/Business/mobile-form-autosave
+              - generic [ref=f3e1193]:
+                - heading "MobileFormAutosave" [level=3] [ref=f3e1194]
+                - generic [ref=f3e1195]: 业务
+              - paragraph [ref=f3e1196]: MobileFormAutosave
+              - paragraph [ref=f3e1197]: MobileFormAutosave — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1198]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1199]: ↗
+            - link "MobileFormField 业务 MobileFormField MobileFormField — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1200] [cursor=pointer]:
+              - /url: /components/Business/mobile-form-field
+              - generic [ref=f3e1201]:
+                - heading "MobileFormField" [level=3] [ref=f3e1202]
+                - generic [ref=f3e1203]: 业务
+              - paragraph [ref=f3e1204]: MobileFormField
+              - paragraph [ref=f3e1205]: MobileFormField — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1206]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1207]: ↗
+            - link "MobileFormStepper 业务 MobileFormStepper MobileFormStepper — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1208] [cursor=pointer]:
+              - /url: /components/Business/mobile-form-stepper
+              - generic [ref=f3e1209]:
+                - heading "MobileFormStepper" [level=3] [ref=f3e1210]
+                - generic [ref=f3e1211]: 业务
+              - paragraph [ref=f3e1212]: MobileFormStepper
+              - paragraph [ref=f3e1213]: MobileFormStepper — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1214]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1215]: ↗
+            - link "MobileFormWizard 业务 MobileFormWizard MobileFormWizard — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1216] [cursor=pointer]:
+              - /url: /components/Business/mobile-form-wizard
+              - generic [ref=f3e1217]:
+                - heading "MobileFormWizard" [level=3] [ref=f3e1218]
+                - generic [ref=f3e1219]: 业务
+              - paragraph [ref=f3e1220]: MobileFormWizard
+              - paragraph [ref=f3e1221]: MobileFormWizard — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1222]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1223]: ↗
+            - link "MobileInput 业务 MobileInput MobileInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1224] [cursor=pointer]:
+              - /url: /components/Business/mobile-input
+              - generic [ref=f3e1225]:
+                - heading "MobileInput" [level=3] [ref=f3e1226]
+                - generic [ref=f3e1227]: 业务
+              - paragraph [ref=f3e1228]: MobileInput
+              - paragraph [ref=f3e1229]: MobileInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1230]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1231]: ↗
+            - link "MobileKanban 业务 MobileKanban MobileKanban — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1232] [cursor=pointer]:
+              - /url: /components/Business/mobile-kanban
+              - generic [ref=f3e1233]:
+                - heading "MobileKanban" [level=3] [ref=f3e1234]
+                - generic [ref=f3e1235]: 业务
+              - paragraph [ref=f3e1236]: MobileKanban
+              - paragraph [ref=f3e1237]: MobileKanban — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1238]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1239]: ↗
+            - link "MobileKpiCard 业务 MobileKpiCard MobileKpiCard — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1240] [cursor=pointer]:
+              - /url: /components/Business/mobile-kpi-card
+              - generic [ref=f3e1241]:
+                - heading "MobileKpiCard" [level=3] [ref=f3e1242]
+                - generic [ref=f3e1243]: 业务
+              - paragraph [ref=f3e1244]: MobileKpiCard
+              - paragraph [ref=f3e1245]: MobileKpiCard — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1246]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1247]: ↗
+            - link "MobileNavigation 业务 移动导航 移动导航 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1248] [cursor=pointer]:
+              - /url: /components/Business/mobile-navigation
+              - generic [ref=f3e1249]:
+                - heading "MobileNavigation" [level=3] [ref=f3e1250]
+                - generic [ref=f3e1251]: 业务
+              - paragraph [ref=f3e1252]: 移动导航
+              - paragraph [ref=f3e1253]: 移动导航 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1254]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1255]: ↗
+            - link "MobilePageHeader 业务 MobilePageHeader MobilePageHeader — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1256] [cursor=pointer]:
+              - /url: /components/Business/mobile-page-header
+              - generic [ref=f3e1257]:
+                - heading "MobilePageHeader" [level=3] [ref=f3e1258]
+                - generic [ref=f3e1259]: 业务
+              - paragraph [ref=f3e1260]: MobilePageHeader
+              - paragraph [ref=f3e1261]: MobilePageHeader — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1262]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1263]: ↗
+            - link "MobilePullToRefresh 业务 MobilePullToRefresh MobilePullToRefresh — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1264] [cursor=pointer]:
+              - /url: /components/Business/mobile-pull-to-refresh
+              - generic [ref=f3e1265]:
+                - heading "MobilePullToRefresh" [level=3] [ref=f3e1266]
+                - generic [ref=f3e1267]: 业务
+              - paragraph [ref=f3e1268]: MobilePullToRefresh
+              - paragraph [ref=f3e1269]: MobilePullToRefresh — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1270]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1271]: ↗
+            - link "MobileSelect 业务 移动选择 移动选择 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1272] [cursor=pointer]:
+              - /url: /components/Business/mobile-select
+              - generic [ref=f3e1273]:
+                - heading "MobileSelect" [level=3] [ref=f3e1274]
+                - generic [ref=f3e1275]: 业务
+              - paragraph [ref=f3e1276]: 移动选择
+              - paragraph [ref=f3e1277]: 移动选择 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1278]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1279]: ↗
+            - link "MobileSheet 业务 移动抽屉 移动抽屉 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1280] [cursor=pointer]:
+              - /url: /components/Business/mobile-sheet
+              - generic [ref=f3e1281]:
+                - heading "MobileSheet" [level=3] [ref=f3e1282]
+                - generic [ref=f3e1283]: 业务
+              - paragraph [ref=f3e1284]: 移动抽屉
+              - paragraph [ref=f3e1285]: 移动抽屉 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1286]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1287]: ↗
+            - link "MobileSkeleton 业务 MobileSkeleton MobileSkeleton — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1288] [cursor=pointer]:
+              - /url: /components/Business/mobile-skeleton
+              - generic [ref=f3e1289]:
+                - heading "MobileSkeleton" [level=3] [ref=f3e1290]
+                - generic [ref=f3e1291]: 业务
+              - paragraph [ref=f3e1292]: MobileSkeleton
+              - paragraph [ref=f3e1293]: MobileSkeleton — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1294]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1295]: ↗
+            - link "MobileSwipeActions 业务 MobileSwipeActions MobileSwipeActions — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1296] [cursor=pointer]:
+              - /url: /components/Business/mobile-swipe-actions
+              - generic [ref=f3e1297]:
+                - heading "MobileSwipeActions" [level=3] [ref=f3e1298]
+                - generic [ref=f3e1299]: 业务
+              - paragraph [ref=f3e1300]: MobileSwipeActions
+              - paragraph [ref=f3e1301]: MobileSwipeActions — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1302]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1303]: ↗
+            - link "MobileTabs 业务 MobileTabs MobileTabs — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1304] [cursor=pointer]:
+              - /url: /components/Business/mobile-tabs
+              - generic [ref=f3e1305]:
+                - heading "MobileTabs" [level=3] [ref=f3e1306]
+                - generic [ref=f3e1307]: 业务
+              - paragraph [ref=f3e1308]: MobileTabs
+              - paragraph [ref=f3e1309]: MobileTabs — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1310]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1311]: ↗
+            - link "MobileTextarea 业务 MobileTextarea MobileTextarea — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1312] [cursor=pointer]:
+              - /url: /components/Business/mobile-textarea
+              - generic [ref=f3e1313]:
+                - heading "MobileTextarea" [level=3] [ref=f3e1314]
+                - generic [ref=f3e1315]: 业务
+              - paragraph [ref=f3e1316]: MobileTextarea
+              - paragraph [ref=f3e1317]: MobileTextarea — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1318]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1319]: ↗
+            - link "MultiSelect 业务 MultiSelect MultiSelect — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1320] [cursor=pointer]:
+              - /url: /components/Business/multi-select
+              - generic [ref=f3e1321]:
+                - heading "MultiSelect" [level=3] [ref=f3e1322]
+                - generic [ref=f3e1323]: 业务
+              - paragraph [ref=f3e1324]: MultiSelect
+              - paragraph [ref=f3e1325]: MultiSelect — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1326]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1327]: ↗
+            - link "NotificationCenter 业务 NotificationCenter NotificationCenter — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1328] [cursor=pointer]:
+              - /url: /components/Business/notification-center
+              - generic [ref=f3e1329]:
+                - heading "NotificationCenter" [level=3] [ref=f3e1330]
+                - generic [ref=f3e1331]: 业务
+              - paragraph [ref=f3e1332]: NotificationCenter
+              - paragraph [ref=f3e1333]: NotificationCenter — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1334]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1335]: ↗
+            - link "OnboardingChecklist 业务 新手清单 新手清单 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1336] [cursor=pointer]:
+              - /url: /components/Business/onboarding-checklist
+              - generic [ref=f3e1337]:
+                - heading "OnboardingChecklist" [level=3] [ref=f3e1338]
+                - generic [ref=f3e1339]: 业务
+              - paragraph [ref=f3e1340]: 新手清单
+              - paragraph [ref=f3e1341]: 新手清单 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1342]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1343]: ↗
+            - link "OrgChart 业务 OrgChart OrgChart — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1344] [cursor=pointer]:
+              - /url: /components/Business/org-chart
+              - generic [ref=f3e1345]:
+                - heading "OrgChart" [level=3] [ref=f3e1346]
+                - generic [ref=f3e1347]: 业务
+              - paragraph [ref=f3e1348]: OrgChart
+              - paragraph [ref=f3e1349]: OrgChart — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1350]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1351]: ↗
+            - link "PageHeader 业务 页头 页头 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1352] [cursor=pointer]:
+              - /url: /components/Business/page-header
+              - generic [ref=f3e1353]:
+                - heading "PageHeader" [level=3] [ref=f3e1354]
+                - generic [ref=f3e1355]: 业务
+              - paragraph [ref=f3e1356]: 页头
+              - paragraph [ref=f3e1357]: 页头 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1358]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1359]: ↗
+            - link "PaymentForm 业务 支付表单 支付表单 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1360] [cursor=pointer]:
+              - /url: /components/Business/payment-form
+              - generic [ref=f3e1361]:
+                - heading "PaymentForm" [level=3] [ref=f3e1362]
+                - generic [ref=f3e1363]: 业务
+              - paragraph [ref=f3e1364]: 支付表单
+              - paragraph [ref=f3e1365]: 支付表单 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1366]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1367]: ↗
+            - link "PdfViewer 业务 PdfViewer PdfViewer — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1368] [cursor=pointer]:
+              - /url: /components/Business/pdf-viewer
+              - generic [ref=f3e1369]:
+                - heading "PdfViewer" [level=3] [ref=f3e1370]
+                - generic [ref=f3e1371]: 业务
+              - paragraph [ref=f3e1372]: PdfViewer
+              - paragraph [ref=f3e1373]: PdfViewer — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1374]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1375]: ↗
+            - link "PhoneInput 业务 PhoneInput PhoneInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1376] [cursor=pointer]:
+              - /url: /components/Business/phone-input
+              - generic [ref=f3e1377]:
+                - heading "PhoneInput" [level=3] [ref=f3e1378]
+                - generic [ref=f3e1379]: 业务
+              - paragraph [ref=f3e1380]: PhoneInput
+              - paragraph [ref=f3e1381]: PhoneInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1382]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1383]: ↗
+            - link "PivotTable 业务 透视表 透视表 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1384] [cursor=pointer]:
+              - /url: /components/Business/pivot-table
+              - generic [ref=f3e1385]:
+                - heading "PivotTable" [level=3] [ref=f3e1386]
+                - generic [ref=f3e1387]: 业务
+              - paragraph [ref=f3e1388]: 透视表
+              - paragraph [ref=f3e1389]: 透视表 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1390]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1391]: ↗
+            - link "PresenceIndicators 业务 PresenceIndicators PresenceIndicators — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1392] [cursor=pointer]:
+              - /url: /components/Business/presence-indicators
+              - generic [ref=f3e1393]:
+                - heading "PresenceIndicators" [level=3] [ref=f3e1394]
+                - generic [ref=f3e1395]: 业务
+              - paragraph [ref=f3e1396]: PresenceIndicators
+              - paragraph [ref=f3e1397]: PresenceIndicators — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1398]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1399]: ↗
+            - link "Profile 业务 Profile Profile — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1400] [cursor=pointer]:
+              - /url: /components/Business/profile
+              - generic [ref=f3e1401]:
+                - heading "Profile" [level=3] [ref=f3e1402]
+                - generic [ref=f3e1403]: 业务
+              - paragraph [ref=f3e1404]: Profile
+              - paragraph [ref=f3e1405]: Profile — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1406]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1407]: ↗
+            - link "PromptDialog 业务 提示对话框 提示对话框 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1408] [cursor=pointer]:
+              - /url: /components/Business/prompt-dialog
+              - generic [ref=f3e1409]:
+                - heading "PromptDialog" [level=3] [ref=f3e1410]
+                - generic [ref=f3e1411]: 业务
+              - paragraph [ref=f3e1412]: 提示对话框
+              - paragraph [ref=f3e1413]: 提示对话框 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1414]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1415]: ↗
+            - link "QrCode 业务 QrCode QrCode — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1416] [cursor=pointer]:
+              - /url: /components/Business/qr-code
+              - generic [ref=f3e1417]:
+                - heading "QrCode" [level=3] [ref=f3e1418]
+                - generic [ref=f3e1419]: 业务
+              - paragraph [ref=f3e1420]: QrCode
+              - paragraph [ref=f3e1421]: QrCode — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1422]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1423]: ↗
+            - link "Rating 业务 评分 评分 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1424] [cursor=pointer]:
+              - /url: /components/Business/rating
+              - generic [ref=f3e1425]:
+                - heading "Rating" [level=3] [ref=f3e1426]
+                - generic [ref=f3e1427]: 业务
+              - paragraph [ref=f3e1428]: 评分
+              - paragraph [ref=f3e1429]: 评分 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1430]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1431]: ↗
+            - link "ResponsivePreview 业务 响应式预览 响应式预览 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1432] [cursor=pointer]:
+              - /url: /components/Business/responsive-preview
+              - generic [ref=f3e1433]:
+                - heading "ResponsivePreview" [level=3] [ref=f3e1434]
+                - generic [ref=f3e1435]: 业务
+              - paragraph [ref=f3e1436]: 响应式预览
+              - paragraph [ref=f3e1437]: 响应式预览 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1438]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1439]: ↗
+            - link "RichTextEditor 业务 RichTextEditor RichTextEditor — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1440] [cursor=pointer]:
+              - /url: /components/Business/rich-text-editor
+              - generic [ref=f3e1441]:
+                - heading "RichTextEditor" [level=3] [ref=f3e1442]
+                - generic [ref=f3e1443]: 业务
+              - paragraph [ref=f3e1444]: RichTextEditor
+              - paragraph [ref=f3e1445]: RichTextEditor — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1446]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1447]: ↗
+            - link "SavedFilters 业务 已存筛选 已存筛选 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1448] [cursor=pointer]:
+              - /url: /components/Business/saved-filters
+              - generic [ref=f3e1449]:
+                - heading "SavedFilters" [level=3] [ref=f3e1450]
+                - generic [ref=f3e1451]: 业务
+              - paragraph [ref=f3e1452]: 已存筛选
+              - paragraph [ref=f3e1453]: 已存筛选 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1454]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1455]: ↗
+            - link "ScheduleView 业务 ScheduleView ScheduleView — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1456] [cursor=pointer]:
+              - /url: /components/Business/schedule-view
+              - generic [ref=f3e1457]:
+                - heading "ScheduleView" [level=3] [ref=f3e1458]
+                - generic [ref=f3e1459]: 业务
+              - paragraph [ref=f3e1460]: ScheduleView
+              - paragraph [ref=f3e1461]: ScheduleView — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1462]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1463]: ↗
+            - link "SearchInput 业务 SearchInput SearchInput — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1464] [cursor=pointer]:
+              - /url: /components/Business/search-input
+              - generic [ref=f3e1465]:
+                - heading "SearchInput" [level=3] [ref=f3e1466]
+                - generic [ref=f3e1467]: 业务
+              - paragraph [ref=f3e1468]: SearchInput
+              - paragraph [ref=f3e1469]: SearchInput — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1470]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1471]: ↗
+            - link "SegmentedControl 业务 分段控件 分段控件 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1472] [cursor=pointer]:
+              - /url: /components/Business/segmented-control
+              - generic [ref=f3e1473]:
+                - heading "SegmentedControl" [level=3] [ref=f3e1474]
+                - generic [ref=f3e1475]: 业务
+              - paragraph [ref=f3e1476]: 分段控件
+              - paragraph [ref=f3e1477]: 分段控件 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1478]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1479]: ↗
+            - link "SettingsLayout 业务 SettingsLayout SettingsLayout — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1480] [cursor=pointer]:
+              - /url: /components/Business/settings-layout
+              - generic [ref=f3e1481]:
+                - heading "SettingsLayout" [level=3] [ref=f3e1482]
+                - generic [ref=f3e1483]: 业务
+              - paragraph [ref=f3e1484]: SettingsLayout
+              - paragraph [ref=f3e1485]: SettingsLayout — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1486]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1487]: ↗
+            - link "SignaturePad 业务 签名板 签名板 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1488] [cursor=pointer]:
+              - /url: /components/Business/signature-pad
+              - generic [ref=f3e1489]:
+                - heading "SignaturePad" [level=3] [ref=f3e1490]
+                - generic [ref=f3e1491]: 业务
+              - paragraph [ref=f3e1492]: 签名板
+              - paragraph [ref=f3e1493]: 签名板 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1494]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1495]: ↗
+            - link "StatCard 业务 统计卡 统计卡 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1496] [cursor=pointer]:
+              - /url: /components/Business/stat-card
+              - generic [ref=f3e1497]:
+                - heading "StatCard" [level=3] [ref=f3e1498]
+                - generic [ref=f3e1499]: 业务
+              - paragraph [ref=f3e1500]: 统计卡
+              - paragraph [ref=f3e1501]: 统计卡 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1502]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1503]: ↗
+            - link "StatusTag 业务 状态标签 状态标签 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1504] [cursor=pointer]:
+              - /url: /components/Business/status-tag
+              - generic [ref=f3e1505]:
+                - heading "StatusTag" [level=3] [ref=f3e1506]
+                - generic [ref=f3e1507]: 业务
+              - paragraph [ref=f3e1508]: 状态标签
+              - paragraph [ref=f3e1509]: 状态标签 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1510]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1511]: ↗
+            - link "ThemeToggle 业务 主题切换 主题切换 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1512] [cursor=pointer]:
+              - /url: /components/Business/theme-toggle
+              - generic [ref=f3e1513]:
+                - heading "ThemeToggle" [level=3] [ref=f3e1514]
+                - generic [ref=f3e1515]: 业务
+              - paragraph [ref=f3e1516]: 主题切换
+              - paragraph [ref=f3e1517]: 主题切换 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1518]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1519]: ↗
+            - link "TimePicker 业务 时间选择 时间选择 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1520] [cursor=pointer]:
+              - /url: /components/Business/time-picker
+              - generic [ref=f3e1521]:
+                - heading "TimePicker" [level=3] [ref=f3e1522]
+                - generic [ref=f3e1523]: 业务
+              - paragraph [ref=f3e1524]: 时间选择
+              - paragraph [ref=f3e1525]: 时间选择 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1526]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1527]: ↗
+            - link "TopLoader 业务 TopLoader TopLoader — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1528] [cursor=pointer]:
+              - /url: /components/Business/top-loader
+              - generic [ref=f3e1529]:
+                - heading "TopLoader" [level=3] [ref=f3e1530]
+                - generic [ref=f3e1531]: 业务
+              - paragraph [ref=f3e1532]: TopLoader
+              - paragraph [ref=f3e1533]: TopLoader — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1534]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1535]: ↗
+            - link "Tour 业务 导览 导览 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1536] [cursor=pointer]:
+              - /url: /components/Business/tour
+              - generic [ref=f3e1537]:
+                - heading "Tour" [level=3] [ref=f3e1538]
+                - generic [ref=f3e1539]: 业务
+              - paragraph [ref=f3e1540]: 导览
+              - paragraph [ref=f3e1541]: 导览 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1542]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1543]: ↗
+            - link "Transfer 业务 穿梭框 穿梭框 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1544] [cursor=pointer]:
+              - /url: /components/Business/transfer
+              - generic [ref=f3e1545]:
+                - heading "Transfer" [level=3] [ref=f3e1546]
+                - generic [ref=f3e1547]: 业务
+              - paragraph [ref=f3e1548]: 穿梭框
+              - paragraph [ref=f3e1549]: 穿梭框 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1550]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1551]: ↗
+            - link "UserMenu 业务 用户菜单 用户菜单 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1552] [cursor=pointer]:
+              - /url: /components/Business/user-menu
+              - generic [ref=f3e1553]:
+                - heading "UserMenu" [level=3] [ref=f3e1554]
+                - generic [ref=f3e1555]: 业务
+              - paragraph [ref=f3e1556]: 用户菜单
+              - paragraph [ref=f3e1557]: 用户菜单 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1558]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1559]: ↗
+            - link "VideoPlayer 业务 VideoPlayer VideoPlayer — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1560] [cursor=pointer]:
+              - /url: /components/Business/video-player
+              - generic [ref=f3e1561]:
+                - heading "VideoPlayer" [level=3] [ref=f3e1562]
+                - generic [ref=f3e1563]: 业务
+              - paragraph [ref=f3e1564]: VideoPlayer
+              - paragraph [ref=f3e1565]: VideoPlayer — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1566]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1567]: ↗
+            - link "Watermark 业务 水印 水印 — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1568] [cursor=pointer]:
+              - /url: /components/Business/watermark
+              - generic [ref=f3e1569]:
+                - heading "Watermark" [level=3] [ref=f3e1570]
+                - generic [ref=f3e1571]: 业务
+              - paragraph [ref=f3e1572]: 水印
+              - paragraph [ref=f3e1573]: 水印 — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1574]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1575]: ↗
+            - link "Workflow 业务 Workflow Workflow — 业务组件,贴合 ERP/营销等垂直场景。 Browse in Storybook" [ref=f3e1576] [cursor=pointer]:
+              - /url: /components/Business/workflow
+              - generic [ref=f3e1577]:
+                - heading "Workflow" [level=3] [ref=f3e1578]
+                - generic [ref=f3e1579]: 业务
+              - paragraph [ref=f3e1580]: Workflow
+              - paragraph [ref=f3e1581]: Workflow — 业务组件,贴合 ERP/营销等垂直场景。
+              - button "Browse in Storybook" [ref=f3e1582]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1583]: ↗
+        - generic [ref=f3e1584]:
+          - generic [ref=f3e1585]:
+            - heading "系统布局" [level=2] [ref=f3e1586]
+            - generic [ref=f3e1587]: · System Layout (9)
+          - generic [ref=f3e1588]:
+            - link "AppShell 系统布局 应用外壳 应用外壳 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1589] [cursor=pointer]:
+              - /url: /components/System%20Layout/app-shell
+              - generic [ref=f3e1590]:
+                - heading "AppShell" [level=3] [ref=f3e1591]
+                - generic [ref=f3e1592]: 系统布局
+              - paragraph [ref=f3e1593]: 应用外壳
+              - paragraph [ref=f3e1594]: 应用外壳 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1595]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1596]: ↗
+            - link "AuthLayout 系统布局 鉴权布局 鉴权布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1597] [cursor=pointer]:
+              - /url: /components/System%20Layout/auth-layout
+              - generic [ref=f3e1598]:
+                - heading "AuthLayout" [level=3] [ref=f3e1599]
+                - generic [ref=f3e1600]: 系统布局
+              - paragraph [ref=f3e1601]: 鉴权布局
+              - paragraph [ref=f3e1602]: 鉴权布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1603]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1604]: ↗
+            - link "BlankLayout 系统布局 空白布局 空白布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1605] [cursor=pointer]:
+              - /url: /components/System%20Layout/blank-layout
+              - generic [ref=f3e1606]:
+                - heading "BlankLayout" [level=3] [ref=f3e1607]
+                - generic [ref=f3e1608]: 系统布局
+              - paragraph [ref=f3e1609]: 空白布局
+              - paragraph [ref=f3e1610]: 空白布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1611]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1612]: ↗
+            - link "DashboardLayout 系统布局 工作台布局 工作台布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1613] [cursor=pointer]:
+              - /url: /components/System%20Layout/dashboard-layout
+              - generic [ref=f3e1614]:
+                - heading "DashboardLayout" [level=3] [ref=f3e1615]
+                - generic [ref=f3e1616]: 系统布局
+              - paragraph [ref=f3e1617]: 工作台布局
+              - paragraph [ref=f3e1618]: 工作台布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1619]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1620]: ↗
+            - link "DetailLayout 系统布局 详情布局 详情布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1621] [cursor=pointer]:
+              - /url: /components/System%20Layout/detail-layout
+              - generic [ref=f3e1622]:
+                - heading "DetailLayout" [level=3] [ref=f3e1623]
+                - generic [ref=f3e1624]: 系统布局
+              - paragraph [ref=f3e1625]: 详情布局
+              - paragraph [ref=f3e1626]: 详情布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1627]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1628]: ↗
+            - link "ErrorLayout 系统布局 错误布局 错误布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1629] [cursor=pointer]:
+              - /url: /components/System%20Layout/error-layout
+              - generic [ref=f3e1630]:
+                - heading "ErrorLayout" [level=3] [ref=f3e1631]
+                - generic [ref=f3e1632]: 系统布局
+              - paragraph [ref=f3e1633]: 错误布局
+              - paragraph [ref=f3e1634]: 错误布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1635]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1636]: ↗
+            - link "PrintLayout 系统布局 打印布局 打印布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1637] [cursor=pointer]:
+              - /url: /components/System%20Layout/print-layout
+              - generic [ref=f3e1638]:
+                - heading "PrintLayout" [level=3] [ref=f3e1639]
+                - generic [ref=f3e1640]: 系统布局
+              - paragraph [ref=f3e1641]: 打印布局
+              - paragraph [ref=f3e1642]: 打印布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1643]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1644]: ↗
+            - link "PublicLayout 系统布局 公共布局 公共布局 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1645] [cursor=pointer]:
+              - /url: /components/System%20Layout/public-layout
+              - generic [ref=f3e1646]:
+                - heading "PublicLayout" [level=3] [ref=f3e1647]
+                - generic [ref=f3e1648]: 系统布局
+              - paragraph [ref=f3e1649]: 公共布局
+              - paragraph [ref=f3e1650]: 公共布局 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1651]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1652]: ↗
+            - link "TopBar 系统布局 顶部栏 顶部栏 — 体系级布局外壳,适用于后台与工作台页面。 Browse in Storybook" [ref=f3e1653] [cursor=pointer]:
+              - /url: /components/System%20Layout/top-bar
+              - generic [ref=f3e1654]:
+                - heading "TopBar" [level=3] [ref=f3e1655]
+                - generic [ref=f3e1656]: 系统布局
+              - paragraph [ref=f3e1657]: 顶部栏
+              - paragraph [ref=f3e1658]: 顶部栏 — 体系级布局外壳,适用于后台与工作台页面。
+              - button "Browse in Storybook" [ref=f3e1659]:
+                - text: Browse in Storybook
+                - generic [ref=f3e1660]: ↗
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e1666] [cursor=pointer]:
+    - img [ref=f3e1667]
+  - alert [ref=f3e1670]
