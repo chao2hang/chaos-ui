@@ -40,15 +40,15 @@ Chaos UI 是服务于清香园（QXY Foods）所有业务系统的企业级 Reac
 ## 安装
 
 ```bash
-npm install @qxyfoods/chaos-ui
+pnpm install @qxyfoods/chaos-ui
 ```
 
 ### Peer Dependencies
 
 ```bash
-npm install react@^19 react-dom@^19
+pnpm install react@^19 react-dom@^19
 # For Next.js projects:
-npm install next@^16 next-themes@^0.4
+pnpm install next@^16 next-themes@^0.4
 ```
 
 ## 快速开始
@@ -145,28 +145,103 @@ AdminBreadcrumb, AdminHeader, AdminSider, AdminTabs, AppShell, AuthLayout, Blank
 
 ```bash
 # 启动 Storybook (端口 6006)
-npm run dev
+pnpm run dev
 
-# 启动 Next.js 演示应用
-npm run app:dev
+# 启动 Next.js 演示应用 (apps/docs 三服务模式)
+cd apps/docs
+pnpm run dev
+# 访问 http://localhost:8080 → Next.js 展示站
+# 访问 http://localhost:8080/storybook → Storybook
 
 # 类型检查 + ESLint + CSS lint + 依赖检查
-npm run check
+pnpm run check
 
 # 运行测试
-npm test
+pnpm test
 
 # 运行测试 + 覆盖率
-npm run test:coverage
+pnpm run test:coverage
 
 # 构建组件包
-npm run build:pkg
+pnpm run build:pkg
 
 # 构建 Storybook
-npm run build-storybook
+pnpm run build-storybook
 
 # 格式化代码
-npm run format
+pnpm run format
+```
+
+## 部署
+
+### 容器化部署 (Docker)
+
+项目使用三服务架构，一个容器内运行反向代理 + Next.js 展示站 + Storybook：
+
+```
+                    容器内部
+                ┌──────────────────┐
+                │                  │
+    :8080 ────►│  proxy-server    │
+                │    (Node.js)     │
+                │      │   │       │
+                │      ▼   ▼       │
+                │  Next.js  Serve  │
+                │  :19951   :6006  │
+                │           │      │
+                │    storybook-static│
+                └──────────────────┘
+```
+
+#### 构建镜像
+
+```bash
+docker build -t chaos-ui:latest .
+```
+
+#### 运行
+
+```bash
+docker run -d \
+  --name chaos-ui \
+  -p 8080:8080 \
+  chaos-ui:latest
+
+# 访问
+#   http://localhost:8080             → Next.js 展示站
+#   http://localhost:8080/storybook   → Storybook 组件库
+```
+
+#### Docker Compose
+
+```bash
+docker compose up -d
+```
+
+### Gitea Actions CI
+
+推送到 `main` 或 `develop` 分支时自动构建 Docker 镜像并推送到 **Gitea Container Registry**：
+
+```bash
+docker login git.nomsg.cn -u <用户名> --password-stdin
+# 密码使用 Gitea 访问令牌（需 write:package 权限）
+
+docker pull git.nomsg.cn/chaos/chaos-ui:latest
+docker run -d --name chaos-ui -p 8080:8080 git.nomsg.cn/chaos/chaos-ui:latest
+```
+
+### 私有 npm 仓库
+
+项目使用自建 npm registry（Verdaccio），地址为 `https://git.nomsg.cn/npm/`，支持：
+
+- **私有包存储**：`@qxyfoods/*`、`@chaos/*` scope 包需认证后发布
+- **代理缓存**：自动从 `registry.npmjs.org` 缓存公共包，加速 CI 安装
+
+```bash
+# 认证（获取 token）
+npm login --registry=https://git.nomsg.cn/npm/
+# 或使用 .npmrc 配置
+echo "//git.nomsg.cn/npm/:_authToken=<token>" >> ~/.npmrc
 ```
 
 ## 技术栈
