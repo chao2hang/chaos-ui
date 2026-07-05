@@ -19,7 +19,7 @@ Steps:
 2. Identify the root cause
 3. Fix the bug while preserving the existing API
 4. Add or update a test case that covers the bug scenario
-5. Run `npm run check` to verify no type/lint errors
-6. Run `npm test` to verify the fix
+5. Run `pnpm run check` to verify no type/lint errors
+6. Run `pnpm test` to verify the fix
 7. Do not break any existing functionality
 ```

@@ -53,7 +53,7 @@ If you discover a security vulnerability in Chaos UI, please report it responsib
 
 ### Dependency Security
 
-- Run `npm audit` regularly.
+- Run `pnpm audit` regularly.
 - Keep dependencies up to date.
 - Review Dependabot PRs promptly.
 

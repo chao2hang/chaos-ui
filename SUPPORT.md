@@ -4,7 +4,7 @@
 
 ### Documentation
 
-- **Storybook**: Run `npm run dev` to start Storybook locally on port 6006.
+- **Storybook**: Run `pnpm run dev` to start Storybook locally on port 6006.
 - **Component Index**: See [COMPONENT_INDEX.md](./COMPONENT_INDEX.md) for the full component catalog.
 - **Hooks Index**: See [HOOKS_INDEX.md](./HOOKS_INDEX.md) for available hooks.
 - **Lib Index**: See [LIB_INDEX.md](./LIB_INDEX.md) for utility modules.

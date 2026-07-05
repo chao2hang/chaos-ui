@@ -15,7 +15,7 @@
  * });
  * ```
  *
- * Install: npm install -D @axe-core/playwright
+ * Install: pnpm install -D @axe-core/playwright
  */
 
 export const axeConfig = {

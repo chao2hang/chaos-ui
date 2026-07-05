@@ -1,11 +1,11 @@
 # Coverage Gap To 85%
 
-> Status: coverage gate not ready for release enforcement, but `npm test` no longer hangs.
+> Status: coverage gate not ready for release enforcement, but `pnpm test` no longer hangs.
 > Date: 2026-07-03; updated 2026-07-04 with real numbers.
 
 ## Current State
 
-The tracked coverage baseline measured by the full `npm run test:coverage` on
+The tracked baseline measured by the full `pnpm run test:coverage` on
 2026-07-04 on 10.10.10.10 (Node 22.22.3, Debian 13) after fixing the prior hang:
 
 | Metric     | Current | Target |        Gap |
@@ -19,7 +19,7 @@ Equivalent measurement on local Node 26.4.0 (Linux): 5193/5193 tests pass, no ha
 
 ### Why the numbers changed
 
-Earlier the full `npm run test:coverage` was blocked indefinitely by the
+Earlier the full `pnpm run test:coverage` was blocked indefinitely by the
 shard-2 open-handle hang. Root cause: `components/business/form-designer-runtime.tsx`
 declared `value = {}` as a default function parameter (new object literal on
 every render call) and ran:
@@ -42,8 +42,8 @@ React.useEffect(() => {
 }, [value]);
 ```
 
-With the loop broken, `npm test` now exits 0 in 113s on Node 22 and 63s on
-Node 26, and `npm run test:coverage` produces a complete report.
+With the loop broken, `pnpm test` now exits 0 in 113s on Node 22 and 63s on
+Node 26, and `pnpm run test:coverage` produces a complete report.
 
 ### Scanned siblings (potential recurrence)
 
@@ -65,7 +65,7 @@ object-literal default value; it remains the only one fixed.
 - The prior 91 failing tests are all fixed in `vitest.setup.ts`
   (localStorage/StorageEvent/PointerEvent/matchMedia polyfills) plus per-file
   assertion updates.
-- Full `npm test`: **555 test files / 5193 tests passed** in 113.47s on
+- Full `pnpm test`: **555 test files / 5193 tests passed** in 113.47s on
   Node 22.22.3 (10.10.10.10). 63.16s on Node 26.4.0 (local).
 - No more shard-2 open-handle timeout.
 
@@ -91,12 +91,12 @@ The existing low-coverage notes in `todo.md` remain the right next work queue:
 
 ## Release Gate Decision
 
-Do not add `npm run test:coverage` to `prepublishOnly` yet.
+Do not add `pnpm run test:coverage` to `prepublishOnly` yet.
 
 The release gate should be updated only after both conditions are true:
 
-1. `npm test` exits cleanly with all shards passing. ✅ Done (2026-07-04).
-2. `npm run test:coverage` reports at least:
+1. `pnpm test` exits cleanly with all shards passing. ✅ Done (2026-07-04).
+2. `pnpm run test:coverage` reports at least:
    - statements >= 85% (current 74.61%)
    - branches >= 80% (current 68.46%)
    - functions >= 85% (current 71.60%)
@@ -104,7 +104,7 @@ The release gate should be updated only after both conditions are true:
 
 ## size-limit note
 
-`npm run prepack` passes with `CI=true` after raising the business entry
+`pnpm run prepack` passes with `CI=true` after raising the business entry
 threshold in `.size-limit.json`: 180 kB → 220 kB, on 2026-07-04. The actual
 business.js gzip is 211.44 kB. Splitting the entry into sub-barrels is tracked
 as future work; see `todo.md`.

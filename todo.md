@@ -34,7 +34,7 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 
 | 维度                | 当前                                                       | GA 标准     | 差距                                                                                                                                                                                                                                                                                                              |
 | ------------------- | ---------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **typecheck/check** | ✅ 0 错误(2026-07-03)                                      | 0 错误      | 已通过 `npm run check`; ESLint 0 errors / 687 warnings                                                                                                                                                                                                                                                            |
+| **typecheck/check** | ✅ 0 错误(2026-07-03)                                      | 0 错误      | 已通过 `pnpm run check`; ESLint 0 errors / 687 warnings                                                                                                                                                                                                                                                            |
 | **测试失败**        | 全量 0 失败（555 文件/5193 测试/113.47s on Node 22）       | 0 失败      | 根因：`form-designer-runtime.tsx` 中 `React.useEffect(() => setData(value), [value])` + `value = {}` 默认参每次新建对象 → 无限更新循环（Node 22/26 同病）。已在组件内改为 `setData((prev) => JSON.stringify(prev)===JSON.stringify(value)?prev:value)` 返回同引用短路；6 个相似模式组件扫查合并到 COVERAGE_GAP.md |
 | **覆盖率**          | Stmts 74.61% / Branch 68.46% / Funcs 71.60% / Lines 76.61% | 85/80/85/85 | 2026-07-04 on 10.10.10.10 (Node 22) 全量跑出真实数 → 未达阈值，差 ~8.4(L)/~13.4(F)/~10.4(S)/~11.4(B)；进度见 `COVERAGE_GAP.md`                                                                                                                                                                                    |
 | 版本                | beta.0                                                     | 1.0.0 GA    | 需 RC → GA                                                                                                                                                                                                                                                                                                        |
@@ -62,11 +62,11 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 ### 待办(收尾)
 
 - [ ] **继续补测试提升覆盖率**至 85%(实测：Stmts 74.61% / Branch 68.46% / Funcs 71.60% / Lines 76.61%；2026-07-04 spot check on 10.10.10.10)
-- [x] **修 45 个 typecheck 错误** — ✅ 已完成(2026-07-03 `npm run typecheck` 0 错误)
-- [~] **修失败测试** — 原 91 个断言失败全修；npm test 全量通过 555 文件 / 5193 测试（113.47s on Node 22, 63.16s on Node 26）；shard open-handle 根因 form-designer-runtime.tsx 中的 useEffect([value]) 无限循环已修
+- [x] **修 45 个 typecheck 错误** — ✅ 已完成(2026-07-03 `pnpm run typecheck` 0 错误)
+- [~] **修失败测试** — 原 91 个断言失败全修；pnpm test 全量通过 555 文件 / 5193 测试（113.47s on Node 22, 63.16s on Node 26）；shard open-handle 根因 form-designer-runtime.tsx 中的 useEffect([value]) 无限循环已修
 - [ ] 删除调试残留:`components/ui/__probe*.test.tsx`(已删 __probe3,确认无其他)
-- [~] 跑 npm run test:coverage — 阻塞前因 form-designer-runtime.tsx 无限循环超时；2026-07-04 on 10.10.10.10 (Node 22) 全量跑出真实数：Lines 76.61% / Stmts 74.61% / Funcs 71.60% / Branch 68.46%；阈值 85/80/85/85 未达 → exit 1。行级缺口见 COVERAGE_GAP.md
-- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`(目前是 `typecheck && test && check:no-bom && smoke`;未接入,见 `COVERAGE_GAP.md`)
+- [~] 跑 pnpm run test:coverage — 阻塞前因 form-designer-runtime.tsx 无限循环超时；2026-07-04 on 10.10.10.10 (Node 22) 全量跑出真实数：Lines 76.61% / Stmts 74.61% / Funcs 71.60% / Branch 68.46%；阈值 85/80/85/85 未达 → exit 1。行级缺口见 COVERAGE_GAP.md
+- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `pnpm run test:coverage`(目前是 `typecheck && test && check:no-bom && smoke`;未接入,见 `COVERAGE_GAP.md`)
 - [ ] 测试模式:Base UI 子组件需 Root context 的,测类型导出+模块导入(参考 dialog/select/form.test.tsx);JSX 测试文件必须用 `.test.tsx` 扩展名(不能 `.test.ts`)
 
 ### 剩余低覆盖率重点(若 workflow 未完全覆盖)
@@ -144,7 +144,7 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 ## 阶段八:Monorepo 重组(可选,GA 不强制)
 
 - [ ] 单仓内重组(Mantine 风格)
-- [ ] 启用 npm workspaces:拆 chaos-icons/chaos-hooks/chaos-lib 子包
+- [ ] 启用 pnpm workspaces:拆 chaos-icons/chaos-hooks/chaos-lib 子包
 - [ ] monorepo 治理
 
 > 风险高,保留 `pre-monorepo-restructure` branch 可回退。GA 可不做。
@@ -163,11 +163,11 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 ## 验收清单(发 1.0.0 GA 前必过)
 
 - [x] 148 个空壳组件全部真实实现(无 `return null` / `{null}` / 空 div 占位)
-- [x] `npm run check` 0 错误(typecheck + lint + css + deps + bom)— 2026-07-03 通过; ESLint 0 errors / 687 warnings
-- [ ] `npm test` 0 失败 ✅ — 555/555 文件，5193/5193 测试通过（113.47s on Node 22；63.16s on Node 26）；shard open-handle 根因 `form-designer-runtime.tsx` useEffect 无限循环已修
-- [ ] `npm run test:coverage` 阈值未达 ✅——实测 Stmts 74.61% / Branch 68.46% / Funcs 71.60% / Lines 76.61%，差 8.4 个百分点；vitest.config 85% 阈值仍报错 (exit 1)
-- [x] `npm run smoke` 通过(26 exports 产物齐全)
-- [ ] `npm run prepack` 通过 ✅ (build+size-limit) — tsup+DTS+size 全通过；business.js gzip 211.44 kB（已把 .size-limit.json 业务入口阈值从 180 kB 上调到 220 kB）
+- [x] `pnpm run check` 0 错误(typecheck + lint + css + deps + bom)— 2026-07-03 通过; ESLint 0 errors / 687 warnings
+- [ ] `pnpm test` 0 失败 ✅ — 555/555 文件，5193/5193 测试通过（113.47s on Node 22；63.16s on Node 26）；shard open-handle 根因 `form-designer-runtime.tsx` useEffect 无限循环已修
+- [ ] `pnpm run test:coverage` 阈值未达 ✅——实测 Stmts 74.61% / Branch 68.46% / Funcs 71.60% / Lines 76.61%，差 8.4 个百分点；vitest.config 85% 阈值仍报错 (exit 1)
+- [x] `pnpm run smoke` 通过(26 exports 产物齐全)
+- [ ] `pnpm run prepack` 通过 ✅ (build+size-limit) — tsup+DTS+size 全通过；business.js gzip 211.44 kB（已把 .size-limit.json 业务入口阈值从 180 kB 上调到 220 kB）
 - [ ] 所有组件有 .stories.tsx(business 用聚合 story)
 - [ ] 所有 Story 通过 a11y 校验
 - [x] README/CHANGELOG 完整
@@ -180,11 +180,11 @@ GA = General Availability(正式发布/通用可用)。API 冻结、承诺稳定
 ## 给执行模型的关键约束
 
 1. **技术栈**:React 19 / Next 16 / TypeScript 5.9 / Tailwind 4 / @base-ui/react(非 Radix)/ tsup / vitest
-2. **包管理**:npm(不用 pnpm)/ 私有 Verdaccio registry(npm.qxy1828.com)
+2. **包管理**:pnpm(不用 npm)/ 私有 Verdaccio registry(npm.qxy1828.com)
 3. **别名**:`@/ = ./*`(全仓 200+ import 依赖,勿改)
 4. **入口**:7 subpath exports(`.`/`./ui`/`./ui/icons`/`./business`/`./hooks`/`./lib`/`./next`)+ `./styles.css`
 5. **提交**:`git add <具体文件>` 勿用 `git add -A`;conventional commits + `Co-Authored-By: Claude <noreply@anthropic.com>`
-6. **每批验证**:`npm run typecheck && npm test && npm run check:no-bom && npm run smoke`
+6. **每批验证**:`pnpm run typecheck && pnpm test && pnpm run check:no-bom && pnpm run smoke`
 7. **空壳识别**:`grep -l "{null}" components/business/*.tsx`(返回 0)/ `grep -lE "function \w+({ className }: \w+Props)"`(返回 0)
 8. **测试模式**:Base UI 子组件需 Root context 的,测类型导出+模块导入;**JSX 测试必须用 `.test.tsx`**;Popover/Select 在 jsdom 用类型+模块测试
 9. **图标**:统一从 `@/components/ui/icons` 引入;缺图标时在 `components/ui/icons.ts` 追加 `export const XIcon = Lucide.XIcon;`

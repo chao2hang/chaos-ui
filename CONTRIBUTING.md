@@ -7,7 +7,7 @@ Thank you for your interest in contributing to **Chaos UI**! This document outli
 ### Prerequisites
 
 - Node.js >= 22.0.0
-- npm >= 11.10.1
+- pnpm >= 9.0.0
 
 ### Setup
 
@@ -17,13 +17,13 @@ git clone <repo-url>
 cd chaos_style
 
 # Install dependencies
-npm install
-
-# Start Storybook (port 6006)
-npm run dev
-
-# Start Next.js demo app
-npm run app:dev
+	pnpm install
+	
+	# Start Storybook (port 6006)
+	pnpm run dev
+	
+	# Start Next.js demo app
+	pnpm run app:dev
 ```
 
 ## Development Workflow
@@ -63,16 +63,16 @@ Before submitting a PR, run:
 
 ```bash
 # Type checking + lint + CSS lint + dependency check
-npm run check
-
-# Run tests with coverage
-npm run test:coverage
-
-# Build Storybook
-npm run build-storybook
-
-# Build package
-npm run build:pkg
+	pnpm run check
+	
+	# Run tests with coverage
+	pnpm run test:coverage
+	
+	# Build Storybook
+	pnpm run build-storybook
+	
+	# Build package
+	pnpm run build:pkg
 ```
 
 ### 5. Commit

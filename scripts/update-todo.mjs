@@ -5,7 +5,7 @@ const content = fs.readFileSync("todo.md", "utf-8");
 // Items to check off (exact strings to match)
 const checkoffs = [
   // §1.1
-  '- [ ] **P1** 添加 `provenance: true`(npm 8.4+ 包溯源)',
+  '- [ ] **P1** 添加 `provenance: true`(pnpm 包溯源)',
   // §1.2
   '- [ ] **P1** 评估 `minify: true` 用于生产构建',
   '- [ ] **P1** 添加 `treeshake: { preset: "smallest" }` 进一步减少体积',
@@ -25,7 +25,7 @@ const checkoffs = [
   '- [ ] **P1** `@axe-core/cli`(已存在于 detection.yml 但未在 deps 声明)',
   '- [ ] **P2** `knip`(检测未使用的文件/导出)',
   '- [ ] **P2** `depcheck`(开发依赖健康度)',
-  '- [ ] **P2** `npm-run-all2`(脚本并行化)',
+  '- [ ] **P2** `concurrently`(脚本并行化)',
   // §1.6
   '- [ ] **P1** 创建 `/.npmrc`(已存在,需审计: registry / save-exact / side-effects-cache)',
   // Stage 2
@@ -33,7 +33,7 @@ const checkoffs = [
   '- [ ] 补剩余 26 个 hooks 测试(已测 9 个)',
   '- [ ] 补剩余 6 个 lib 测试(已测 12 个:api-client/logger/message/modal/utils)',
   '- [ ] 阶段一新增 154 组件同步补测试',
-  '- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `npm run test:coverage`',
+  '- [ ] 覆盖率达 85% 后,`prepublishOnly` 加 `pnpm run test:coverage`',
   '- [ ] 测试模式:Base UI 子组件需 Root context 的,测类型导出+模块导入(参考 dialog/select/form.test.tsx);Popover/Select 在 jsdom 渲染不稳的用类型+模块测试',
   // Stage 3
   '- [ ] **3.1 单仓内重组(1-2 周)**:`components/ui/button.tsx` → `packages/chaos-ui/src/components/ui/button/{button.tsx,test,types,index.ts}`(Mantine 风格)。200+ 文件迁移。保留 `@/` 别名 + 7 subpath exports。引入 `turbo.json` 单包模式。保留 `pre-monorepo-restructure` branch 可回退。',
@@ -50,7 +50,7 @@ const checkoffs = [
   '- [ ] 安全:api-client Token 刷新/XSS 审查/CSP/移除 console.log',
   '- [ ] DX:.vscode 配置/Vitest UI/Codemod(antd→chaos-ui)',
   // Verification checklist
-  '- [ ] `npm test` 0 失败,coverage ≥ 85%',
+  '- [ ] `pnpm test` 0 失败,coverage ≥ 85%',
   '- [ ] 所有组件有 .stories.tsx',
   '- [ ] README/CHANGELOG 完整',
   '- [ ] AI 规则文件矩阵完整',

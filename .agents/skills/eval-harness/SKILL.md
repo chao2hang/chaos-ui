@@ -59,7 +59,7 @@ Deterministic checks using code:
 grep -q "export function handleAuth" src/auth.ts && echo "PASS" || echo "FAIL"
 
 # Check if tests pass
-npm test -- --testPathPattern="auth" && echo "PASS" || echo "FAIL"
+pnpm test -- --testPathPattern="auth" && echo "PASS" || echo "FAIL"
 
 # Check if build succeeds
 npm run build && echo "PASS" || echo "FAIL"
@@ -132,7 +132,7 @@ Write code to pass the defined evals.
 [Run each capability eval, record PASS/FAIL]
 
 # Run regression evals
-npm test -- --testPathPattern="existing"
+pnpm test -- --testPathPattern="existing"
 
 # Generate report
 ```

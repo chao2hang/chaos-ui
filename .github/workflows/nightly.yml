@@ -15,30 +15,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
       - name: Type check
-        run: npm run typecheck
+        run: pnpm run typecheck
 
       - name: Lint
-        run: npm run check
+        run: pnpm run check
 
       - name: Unit tests with coverage
-        run: npm test -- --coverage
+        run: pnpm test -- --coverage
 
       - name: Build package
-        run: npm run prepack
+        run: pnpm run prepack
 
       - name: Smoke test
-        run: npm run smoke
+        run: pnpm run smoke
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: pnpm run build-storybook
 
       - name: Upload coverage artifact
         if: always()

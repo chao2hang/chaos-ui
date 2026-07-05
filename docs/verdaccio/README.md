@@ -48,7 +48,9 @@ cat ~/.pm2/logs/verdaccio-error.log
 
 ## 1. 发布 @qxyfoods/chaos-ui 到私有仓库
 
-### 1.1 在 chaos_style 项目中添加 `.npmrc`
+### 1.1 在 chaos_style 项目中配置 registry
+
+pnpm 和 npm 共用 `.npmrc` 配置：
 
 ```ini
 @qxyfoods:registry=http://10.91.3.253:4873
@@ -58,7 +60,7 @@ cat ~/.pm2/logs/verdaccio-error.log
 ### 1.2 登录（可选，CI 用 token 即可）
 
 ```bash
-npm login --registry=http://10.91.3.253:4873
+pnpm login --registry=http://10.91.3.253:4873
 # Username: chaos
 # Password: ChaosPass2026
 # Email: chaos@qxyfoods.com
@@ -67,13 +69,13 @@ npm login --registry=http://10.91.3.253:4873
 ### 1.3 发布
 
 ```bash
-cd D:\Projects\qxyfoods\chaos_style
+cd /path/to/chaos_style
 
 # 确保包已构建（如果还没构建）
-npm run build:pkg
+pnpm run build:pkg
 
 # 发布
-npm publish
+pnpm publish
 ```
 
 发布成功后访问 http://10.91.3.253:4873/ 即可在 Web UI 中看到 `@qxyfoods/chaos-ui`。
@@ -86,7 +88,7 @@ npm publish
 
 ```bash
 mkdir my-app && cd my-app
-npm init -y
+pnpm init
 ```
 
 ### 2.2 在项目根目录添加 `.npmrc`
@@ -102,7 +104,7 @@ registry=https://registry.npmjs.org/
 ### 2.3 安装 chaos-ui
 
 ```bash
-npm install @qxyfoods/chaos-ui
+pnpm add @qxyfoods/chaos-ui
 ```
 
 ### 2.4 在代码中使用
@@ -127,6 +129,8 @@ node /tmp/reguser.js  # 修改其中的 name/password/email
 npm adduser --registry http://10.91.3.253:4873
 ```
 
+> 注意：Verdaccio 的 `npm adduser` 命令与 pnpm 和 npm 均兼容。
+
 ---
 
 ## 4. CI/CD 中使用
@@ -140,7 +144,7 @@ npm adduser --registry http://10.91.3.253:4873
     echo "//10.91.3.253:4873/:_authToken=${VERDACCIO_TOKEN}" >> .npmrc
 
 - name: 发布
-  run: npm publish
+  run: pnpm publish
 ```
 
 把 `VERDACCIO_TOKEN` 配置为 CI 的 Secret。
@@ -179,7 +183,7 @@ ssh chaos@10.91.3.253 'pm2 restart verdaccio'
 # 升级 Verdaccio
 ssh chaos@10.91.3.253
 export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use 22
-npm install -g verdaccio@latest
+pnpm install -g verdaccio@latest
 pm2 restart verdaccio
 ```
 

@@ -2,16 +2,16 @@
 /**
  * 消费方 smoke test：验证发布产物的完整性与 exports 一致性。
  *
- * 模拟消费方 `npm install @qxyfoods/chaos-ui` 后能否真正 import：
+ * 模拟消费方 `pnpm add @qxyfoods/chaos-ui` 后能否真正 import：
  * 1. 读 package.json exports，提取所有指向 dist 的产物路径
  * 2. 检查每个产物文件在文件系统存在（dist 需先 build）
  * 3. 检查 files 字段声明的关键文件存在（README/LICENSE/styles.css 等）
  * 4. 断言 dist 无 sourcemap 泄漏（.map 不该发布）
  *
- * 不用 `npm pack`（会触发 prepack rebuild 且 stdout 被污染），改为直接
+ * 不用 `pnpm pack`（会触发 prepack rebuild 且 stdout 被污染），改为直接
  * 检查文件系统——消费方 install 后拿到的就是这些文件。
  *
- * 用法：node scripts/smoke-test.mjs（需先 npm run build:pkg）
+ * 用法：node scripts/smoke-test.mjs（需先 pnpm run build:pkg）
  * 退出码：0 = 通过；1 = 失败。
  */
 import { readFile, stat } from "node:fs/promises";
@@ -71,7 +71,7 @@ try {
   const distEntries = await readdir(join(root, "dist"), { recursive: true });
   maps = distEntries.filter((p) => p.endsWith(".map"));
 } catch {
-  errors.push("dist 目录不存在（需先 npm run build:pkg）");
+  errors.push("dist 目录不存在（需先 pnpm run build:pkg）");
 }
 if (maps.length > 0) {
   errors.push(`dist 含 sourcemap（${maps.length} 个）: ${maps.slice(0, 3).join(", ")}`);

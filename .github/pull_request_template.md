@@ -26,9 +26,9 @@
 
 ## Checklist
 
-- [ ] `npm run typecheck` passes
-- [ ] `npm run lint` passes (0 errors)
-- [ ] `npm test` passes
+- [ ] `pnpm run typecheck` passes
+- [ ] `pnpm run lint` passes (0 errors)
+- [ ] `pnpm test` passes
 - [ ] Story added/updated (if component)
 - [ ] JSDoc `@component` / `@since` / `@example` added
 - [ ] Barrel export added

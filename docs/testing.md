@@ -14,8 +14,8 @@ Chaos UI uses **Vitest 4** with **jsdom** environment and **@testing-library/rea
 ## Running Tests
 
 ```bash
-npm test              # Run all tests
-npm run test:coverage # Run with coverage report
+pnpm test              # Run all tests
+pnpm run test:coverage # Run with coverage report
 ```
 
 ## Test File Convention

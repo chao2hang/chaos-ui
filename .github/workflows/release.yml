@@ -17,34 +17,38 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
           registry-url: http://10.91.3.253:4873
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
       - name: Typecheck
-        run: npm run typecheck
+        run: pnpm run typecheck
 
       - name: Run tests
-        run: npm test
+        run: pnpm test
 
       - name: Check no-BOM
-        run: npm run check:no-bom
+        run: pnpm run check:no-bom
 
       - name: Smoke test (tarball integrity)
-        run: npm run smoke
+        run: pnpm run smoke
 
       - name: Build package (+ size-limit)
-        run: npm run prepack
+        run: pnpm run prepack
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: pnpm run build-storybook
 
       - name: Publish to Verdaccio
-        run: npm publish
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
 

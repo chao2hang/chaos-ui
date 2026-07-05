@@ -236,7 +236,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
       - run: npx playwright install --with-deps
       - run: npx playwright test
         env:

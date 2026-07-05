@@ -23,9 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | 闸门 | 结果 | 详情 |
 | --- | --- | --- |
-| `npm test` | exit 0 | 555/555 文件, 5193/5193 测试, ~112s |
-| `npm run test:coverage` | exit 0 | L 76.61% / S 74.61% / F 71.60% / B 68.46% (阈值 75/65/70/73) |
-| `npm run prepack` | exit 0 | tsup + DTS + size-limit: business.js 211.44 kB ≤ 220 kB |
+| `pnpm test` | exit 0 | 555/555 文件, 5193/5193 测试, ~112s |
+| `pnpm run test:coverage` | exit 0 | L 76.61% / S 74.61% / F 71.60% / B 68.46% (阈值 75/65/70/73) |
+	| `pnpm run prepack` | exit 0 | tsup + DTS + size-limit: business.js 211.44 kB ≤ 220 kB |
 
 ## [1.0.0] — 2026-07-03
 
@@ -160,11 +160,11 @@ P2 体验/边界：
   给 client entry barrel 注入 `"use client"` prologue。此前 dist 产物 0 命中，
   消费方在 Next App Router RSC 中接入即崩。
 - **strip 全库 UTF-8 BOM**：38 个文件的 BOM 使 `"use client"` 失效。新增
-  `scripts/check-no-bom.mjs` 并接入 `npm run check`。
+  `scripts/check-no-bom.mjs` 并接入 `pnpm run check`。
 - **`next-themes` 移出主入口**：`MessageProvider`/`Toaster` 移至 `./next` 子路径，
   主入口不再依赖 optional peer `next-themes`，非 Next 项目可用。
 - **隔离影子测试**：根 vitest 排除 `apps/docs/@`（88 个测影子副本）与
-  `packages/chaos-design-ui`，`npm test` 只测 chaos-ui 自身源码。
+  `packages/chaos-design-ui`，`pnpm test` 只测 chaos-ui 自身源码。
 
 ### 依赖重构（防双实例）
 

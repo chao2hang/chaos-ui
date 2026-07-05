@@ -57,14 +57,14 @@ package/               → Package entry points (re-exports)
 
 ## Build Pipeline
 
-1. **Development**: `npm run dev` → Storybook on port 6006
+1. **Development**: `pnpm run dev` → Storybook on port 6006
 2. **Type checking**: `npx tsc --noEmit`
-3. **Linting**: `npm run lint` (ESLint) + `npm run lint:css` (Stylelint)
-4. **Testing**: `npm test` (Vitest) + `npm run test:coverage`
-5. **Package build**: `npm run build:pkg` (tsup)
-6. **Storybook build**: `npm run build-storybook`
-7. **Verification**: `npm run check` (typecheck + lint + css + deps + bom)
-8. **Smoke test**: `npm run smoke`
+3. **Linting**: `pnpm run lint` (ESLint) + `pnpm run lint:css` (Stylelint)
+4. **Testing**: `pnpm test` (Vitest) + `pnpm run test:coverage`
+5. **Package build**: `pnpm run build:pkg` (tsup)
+6. **Storybook build**: `pnpm run build-storybook`
+7. **Verification**: `pnpm run check` (typecheck + lint + css + deps + bom)
+8. **Smoke test**: `pnpm run smoke`
 
 ## Package Exports
 

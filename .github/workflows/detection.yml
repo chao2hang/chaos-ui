@@ -13,11 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
       - run: npx tsc --noEmit
 
   # ─── L2: ESLint 语义检测 ───
@@ -26,12 +29,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
-      - run: npm run lint
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
 
   # ─── L3: Stylelint 样式检测 ───
   stylelint:
@@ -39,11 +45,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
       - run: npx stylelint "**/*.css" --allow-empty-input
 
   # ─── L4: Dependency Cruiser 导入约束 ───
@@ -52,11 +61,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
       - run: npx depcruise --config .dependency-cruiser.cjs components/ hooks/ lib/ app/
 
   # ─── L5: Storybook 构建验证 ───
@@ -65,12 +77,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build-storybook
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build-storybook
 
   # ─── L6: 测试 + 覆盖率 ───
   test:
@@ -78,11 +93,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
       - run: npx vitest run --coverage
       - name: 检查覆盖率阈值
         run: |
@@ -95,12 +113,15 @@ jobs:
     needs: storybook-build
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build-storybook
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build-storybook
       - name: 启动 Storybook 并扫描
         run: |
           npx serve storybook-static -p 6006 &

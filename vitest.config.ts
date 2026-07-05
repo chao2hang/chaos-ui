@@ -22,7 +22,7 @@ export default defineConfig({
     // apps/docs/@ 是 monorepo 重构引入的"影子副本"（非发布源码，含 88 个空测试），
     // 测它等于测非发布代码。apps/docs 有自己的 vitest.config（Storybook project）。
     // packages/chaos-design-ui 是独立的姊妹包，有自己的 package.json，不应被根 test 跑。
-    // 这里排除，让根 npm test 只测 @qxyfoods/chaos-ui 自身源码（components/hooks/lib）。
+    // 这里排除，让根 pnpm test 只测 @qxyfoods/chaos-ui 自身源码（components/hooks/lib）。
     exclude: [
       "**/node_modules/**",
       "**/dist/**",

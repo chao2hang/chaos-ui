@@ -8,18 +8,18 @@ Chaos UI (`@qxyfoods/chaos-ui`) is a Storybook-first React/Next.js enterprise co
 
 - **Current Version**: 0.1.0 → Target: 1.0.0
 - **Tech Stack**: React 19, Next.js 16, TypeScript 5.9, Tailwind CSS 4, @base-ui/react, Storybook 10
-- **Package Manager**: npm 11.10.1
+- **Package Manager**: pnpm 11.3.0
 - **Node**: >= 22.0.0
 
 ## Key Commands
 
 ```bash
-npm run dev          # Start Storybook on port 6006
-npm run app:dev      # Start Next.js demo app
-npm run check        # typecheck + lint + lint:css + lint:deps
-npm run test         # Run vitest tests
-npm run build:pkg    # Build package with tsup
-npm run build-storybook  # Build Storybook for deployment
+pnpm run dev          # Start Storybook on port 6006
+pnpm run app:dev      # Start Next.js demo app
+pnpm run check        # typecheck + lint + lint:css + lint:deps
+pnpm run test         # Run vitest tests
+pnpm run build:pkg    # Build package with tsup
+pnpm run build-storybook  # Build Storybook for deployment
 ```
 
 ## Code Organization
@@ -52,4 +52,4 @@ package/               → Package entry points (re-exports)
 - Treat `storybook-static/` as generated output
 - Preserve existing component APIs unless explicitly asked to change
 - Keep UI implementation in `components/ui`, business components in `components/business`
-- Run `npm run check` before finishing significant changes
+- Run `pnpm run check` before finishing significant changes
