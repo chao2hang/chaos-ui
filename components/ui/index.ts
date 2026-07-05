@@ -20,6 +20,8 @@ export {
   AlertDialogCancel,
 } from "./alert-dialog";
 export { AspectRatio } from "./aspect-ratio";
+export { AudioPlayer } from "./audio-player";
+export type { AudioPlayerProps } from "./audio-player";
 export {
   Avatar,
   AvatarImage,
