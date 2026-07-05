@@ -215,7 +215,11 @@ docker run -d \
 #### Docker Compose
 
 ```bash
+# 方式 A：从 registry 拉取（推荐，一键部署）
 docker compose up -d
+
+# 方式 B：从源码构建
+docker compose up -d --build
 ```
 
 ### Gitea Actions CI
