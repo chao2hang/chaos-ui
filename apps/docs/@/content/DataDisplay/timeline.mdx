@@ -1,0 +1,144 @@
+import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent, TimelineTitle, TimelineDescription, TimelineTime } from "@/components/ui/timeline"
+import { CodeBlock } from "@/components/code-block"
+
+# Timeline 时间线
+
+Chaos UI 时间线组件，用于按时间顺序展示事件、操作记录或步骤流程。
+A timeline component for displaying events, operation records, or step flows in chronological order.
+
+## 何时使用 / When to use
+
+用于展示按时间排序的事件列表：订单物流、操作日志、版本更新记录、步骤引导等。适合需要体现时间先后顺序的场景。
+
+Use for displaying chronologically ordered events: order logistics, operation logs, version history, step guides. Best when temporal sequence matters.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Timeline>
+  <TimelineItem status="completed" title="项目立项" description="确定项目范围和目标" time="2026-01-15" />
+  <TimelineItem status="completed" title="需求分析" description="完成用户调研和需求文档" time="2026-02-20" />
+  <TimelineItem status="current" title="UI 设计" description="进行中：设计组件库视觉规范" time="2026-04-01" />
+  <TimelineItem status="pending" title="开发测试" description="等待中：前后端联调与测试" time="2026-05-10" />
+  <TimelineItem status="pending" title="上线发布" description="等待中：生产环境部署" time="2026-06-15" />
+</Timeline>
+
+<CodeBlock code={`import {
+  Timeline,
+  TimelineItem,
+} from "@/components/ui/timeline"
+
+export function Basic() {
+  return (
+    <Timeline>
+      <TimelineItem
+        status="completed"
+        title="项目立项"
+        description="确定项目范围和目标"
+        time="2026-01-15"
+      />
+      <TimelineItem
+        status="current"
+        title="UI 设计"
+        description="设计组件库视觉规范"
+        time="2026-04-01"
+      />
+      <TimelineItem
+        status="pending"
+        title="开发测试"
+        description="前后端联调与测试"
+        time="2026-05-10"
+      />
+    </Timeline>
+  )
+}`} lang="tsx" />
+
+### 不同状态颜色 / Status Colors
+
+<Timeline>
+  <TimelineItem status="completed" variant="success" title="完成" description="Success variant" />
+  <TimelineItem status="current" variant="default" title="进行中" description="Default variant" />
+  <TimelineItem status="current" variant="warning" title="警告" description="Warning variant" />
+  <TimelineItem status="pending" variant="destructive" title="错误" description="Destructive variant" />
+  <TimelineItem status="pending" variant="info" title="信息" description="Info variant" />
+</Timeline>
+
+<CodeBlock code={`<Timeline>
+  <TimelineItem status="completed" variant="success" title="完成" />
+  <TimelineItem status="current" variant="default" title="进行中" />
+  <TimelineItem status="current" variant="warning" title="警告" />
+  <TimelineItem status="pending" variant="destructive" title="错误" />
+  <TimelineItem status="pending" variant="info" title="信息" />
+</Timeline>`} lang="tsx" />
+
+### 自定义图标 / Custom Icon
+
+<Timeline>
+  <TimelineItem
+    status="completed"
+    icon={() => <span>✅</span>}
+    title="自定义图标"
+    description="使用 icon prop 传入自定义组件"
+  />
+  <TimelineItem
+    status="current"
+    icon={() => <span>🔄</span>}
+    title="进行中"
+    description="每个节点都可以自定义图标"
+  />
+</Timeline>
+
+<CodeBlock code={`<Timeline>
+  <TimelineItem
+    status="completed"
+    icon={() => <span>✅</span>}
+    title="自定义图标"
+    description="使用 icon prop"
+  />
+  <TimelineItem
+    status="current"
+    icon={() => <span>🔄</span>}
+    title="进行中"
+  />
+</Timeline>`} lang="tsx" />
+
+## API
+
+### Timeline
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### TimelineItem
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| status | `'completed' \| 'current' \| 'pending' \| 'default'` | `'default'` | 节点状态（影响图标和颜色） | Node status |
+| variant | `'default' \| 'success' \| 'warning' \| 'destructive' \| 'info'` | `'default'` | 语义颜色变体 | Semantic color variant |
+| icon | `React.ComponentType<{ className?: string }>` | — | 自定义节点图标 | Custom node icon |
+| title | `React.ReactNode` | — | 节点标题 | Node title |
+| description | `React.ReactNode` | — | 节点描述 | Node description |
+| time | `React.ReactNode` | — | 节点时间 | Node time |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### 其他子组件
+
+| 组件 | Props | 描述 |
+|---|---|---|
+| TimelineDot | `variant?: Variant; className?: string` | 自定义节点圆点 |
+| TimelineConnector | `className?: string` | 节点间连接线 |
+| TimelineContent | `React.HTMLAttributes<HTMLDivElement>` | 内容容器 |
+| TimelineTitle | `React.HTMLAttributes<HTMLHeadingElement>` | 标题 |
+| TimelineDescription | `React.HTMLAttributes<HTMLParagraphElement>` | 描述 |
+| TimelineTime | `React.HTMLAttributes<HTMLTimeElement>` | 时间文本 |
+
+## 注意事项
+
+- **status 影响渲染**：`completed` 显示实心绿点+勾号，`current` 显示蓝色圆点+脉冲动画，`pending` 显示灰色空心圆。`default` 无特殊状态。
+- **variant vs status**：`variant` 控制颜色体系，`status` 控制图标样式。两者可组合使用。
+- **自定义子组件**：`TimelineItem` 提供快速用法（title/description/time props），也可以直接使用子组件组合（TimelineDot + TimelineContent + TimelineTitle 等）实现更复杂布局。
+- **无障碍**：Timeline 使用 `<ol>` 列表结构，每个 Item 为 `<li>`。时间使用 `<time>` 元素，有利于语义化。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-timeline--docs)

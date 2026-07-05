@@ -1,0 +1,159 @@
+import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup, AvatarGroupCount } from "@/components/ui/avatar"
+import { CodeBlock } from "@/components/code-block"
+
+# Avatar 头像
+
+Chaos UI 头像组件，基于 Base UI Avatar，用于展示用户头像、图标或首字母缩写。
+A Base UI-powered avatar for displaying user avatars, icons, or initials.
+
+## 何时使用 / When to use
+
+用于用户身份标识：个人资料、评论列表、团队成员展示、导航栏用户入口等。图片加载失败时自动回退到首字母缩写。
+
+Use for user identification: profiles, comment lists, team member display, nav bar user entry. Falls back to initials when image fails to load.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+</div>
+
+<CodeBlock code={`import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+
+export function Basic() {
+  return (
+    <>
+      <Avatar>
+        <AvatarImage src="/user.jpg" alt="@user" />
+        <AvatarFallback>UN</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    </>
+  )
+}`} lang="tsx" />
+
+### 不同尺寸 / Sizes
+
+<div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+  <Avatar size="sm">
+    <AvatarFallback>S</AvatarFallback>
+  </Avatar>
+  <Avatar size="default">
+    <AvatarFallback>M</AvatarFallback>
+  </Avatar>
+  <Avatar size="lg">
+    <AvatarFallback>L</AvatarFallback>
+  </Avatar>
+</div>
+
+<CodeBlock code={`<Avatar size="sm"><AvatarFallback>S</AvatarFallback></Avatar>
+<Avatar size="default"><AvatarFallback>M</AvatarFallback></Avatar>
+<Avatar size="lg"><AvatarFallback>L</AvatarFallback></Avatar>`} lang="tsx" />
+
+### 带状态指示 / With Status Badge
+
+<div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+  <Avatar>
+    <AvatarFallback>ON</AvatarFallback>
+    <AvatarBadge style={{ background: "#22c55e" }} />
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>AW</AvatarFallback>
+    <AvatarBadge style={{ background: "#eab308" }} />
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>OF</AvatarFallback>
+    <AvatarBadge style={{ background: "#94a3b8" }} />
+  </Avatar>
+</div>
+
+<CodeBlock code={`<Avatar>
+  <AvatarFallback>ON</AvatarFallback>
+  <AvatarBadge className="bg-green-500" />
+</Avatar>
+<Avatar>
+  <AvatarFallback>AW</AvatarFallback>
+  <AvatarBadge className="bg-yellow-500" />
+</Avatar>
+<Avatar>
+  <AvatarFallback>OF</AvatarFallback>
+  <AvatarBadge className="bg-gray-400" />
+</Avatar>`} lang="tsx" />
+
+### 头像组 / Group
+
+<div style={{ display: "flex" }}>
+  <AvatarGroup>
+    <Avatar size="sm"><AvatarFallback>A</AvatarFallback></Avatar>
+    <Avatar size="sm"><AvatarFallback>B</AvatarFallback></Avatar>
+    <Avatar size="sm"><AvatarFallback>C</AvatarFallback></Avatar>
+    <AvatarGroupCount>+5</AvatarGroupCount>
+  </AvatarGroup>
+</div>
+
+<CodeBlock code={`<AvatarGroup>
+  <Avatar size="sm"><AvatarFallback>A</AvatarFallback></Avatar>
+  <Avatar size="sm"><AvatarFallback>B</AvatarFallback></Avatar>
+  <Avatar size="sm"><AvatarFallback>C</AvatarFallback></Avatar>
+  <AvatarGroupCount>+5</AvatarGroupCount>
+</AvatarGroup>`} lang="tsx" />
+
+## API
+
+### Avatar
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| size | `'default' \| 'sm' \| 'lg'` | `'default'` | 头像尺寸 | Avatar size |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AvatarImage
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| src | `string` | — | 图片地址 | Image URL |
+| alt | `string` | — | 图片替代文本 | Image alt text |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AvatarFallback
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AvatarBadge
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AvatarGroup
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AvatarGroupCount
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **Fallback 机制**：`AvatarImage` 加载失败或未提供 `src` 时自动显示 `AvatarFallback`。通常填入用户名的首字母缩写。
+- **Badge 定位**：`AvatarBadge` 自动定位在头像右下角，通过 `className` 设置背景色表达不同状态（在线/离开/离线）。
+- **Group 叠放**：`AvatarGroup` 中的头像自动重叠排列，`AvatarGroupCount` 显示剩余数量。
+- **无障碍**：Base UI Avatar 提供 `role="img"` 和 `aria-label` 支持。`AvatarImage` 的 `alt` 属性作为 fallback 时的描述文本。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-avatar--docs)

@@ -1,0 +1,102 @@
+import { Switch } from "@/components/ui/switch"
+import { CodeBlock } from "@/components/code-block"
+
+# Switch 开关
+
+Chaos UI 开关组件，基于 Base UI Switch，用于在两个互斥状态间切换。
+A Base UI-powered toggle switch for toggling between two mutually exclusive states.
+
+## 何时使用 / When to use
+
+用于即时切换某项功能或设置的开/关状态：启用通知、暗黑模式、发布/草稿切换等。与 Checkbox 的区别：Switch 强调即时生效，Checkbox 通常需要配合提交按钮。
+
+Use for toggling a feature or setting on/off: enable notifications, dark mode, publish/draft. Unlike Checkbox, Switch implies immediate effect without a submit button.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+  <Switch id="airplane" />
+  <label htmlFor="airplane">飞行模式 / Airplane mode</label>
+</div>
+
+<CodeBlock code={`import { Switch } from "@/components/ui/switch"
+
+export function Basic() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <Switch id="airplane" />
+      <label htmlFor="airplane">飞行模式</label>
+    </div>
+  )
+}`} lang="tsx" />
+
+### 受控模式 / Controlled
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Switch defaultChecked /> 默认开启
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Switch /> 默认关闭
+  </label>
+</div>
+
+<CodeBlock code={`const [enabled, setEnabled] = React.useState(false)
+
+<Switch
+  checked={enabled}
+  onCheckedChange={setEnabled}
+/>`} lang="tsx" />
+
+### 禁用状态 / Disabled
+
+<div style={{ display: "flex", gap: 12 }}>
+  <label style={{ display: "flex", alignItems: "center", gap: 8, opacity: 0.5 }}>
+    <Switch disabled /> 禁用关闭
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8, opacity: 0.5 }}>
+    <Switch disabled defaultChecked /> 禁用开启
+  </label>
+</div>
+
+<CodeBlock code={`<Switch disabled />
+<Switch disabled defaultChecked />`} lang="tsx" />
+
+### 不同尺寸 / Sizes
+
+<div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Switch size="sm" /> Small
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Switch size="default" /> Default
+  </label>
+</div>
+
+<CodeBlock code={`<Switch size="sm" />
+<Switch size="default" />`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| checked | `boolean` | — | 受控：开关状态 | Controlled checked state |
+| defaultChecked | `boolean` | `false` | 默认开关状态 | Default checked state |
+| onCheckedChange | `(checked: boolean) => void` | — | 状态变化回调 | Callback on checked change |
+| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
+| required | `boolean` | `false` | 必填 | Required |
+| size | `'sm' \| 'default'` | `'default'` | 开关尺寸 | Switch size |
+| name | `string` | — | 表单字段名 | Form field name |
+| value | `string` | — | 表单值 | Form value |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **即时生效**：Switch 的设计理念是"即切即生效"，不依赖额外的保存/提交按钮。如果操作需要确认，考虑使用 Checkbox + 提交按钮的模式。
+- **尺寸选择**：`sm` 适合表格行内等紧凑场景，`default` 适合表单行等标准场景。
+- **无障碍**：Base UI Switch 使用 `<button role="switch">` 实现，键盘支持 Space/Enter 切换，`aria-checked` 反映状态。务必提供 `<label>` 关联。
+- **与 Form 集成**：设置 `name` 和 `value` 后 Switch 可参与原生表单提交。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-switch--docs)

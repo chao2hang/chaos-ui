@@ -1,0 +1,98 @@
+import { Checkbox } from "@/components/ui/checkbox"
+import { CodeBlock } from "@/components/code-block"
+
+# Checkbox 复选框
+
+Chaos UI 复选框组件，基于 Base UI Checkbox，用于多选场景。
+A Base UI-powered checkbox for multiple selection scenarios.
+
+## 何时使用 / When to use
+
+用于在一组选项中允许多选。单独使用时可作开关（如"同意条款"）。与 Checkbox Group 配合实现多选列表。
+
+Use for selecting multiple options from a set. Can be used standalone as a toggle (e.g., "Agree to terms"). Combine with Checkbox Group for multi-select lists.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+  <Checkbox id="terms" />
+  <label htmlFor="terms">同意服务条款 / Accept terms of service</label>
+</div>
+
+<CodeBlock code={`import { Checkbox } from "@/components/ui/checkbox"
+
+export function Basic() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <Checkbox id="terms" />
+      <label htmlFor="terms">同意服务条款</label>
+    </div>
+  )
+}`} lang="tsx" />
+
+### 受控模式 / Controlled
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Checkbox defaultChecked /> 默认选中 / Default checked
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Checkbox checked /> 受控选中 / Controlled checked
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Checkbox /> 未选中 / Unchecked
+  </label>
+</div>
+
+<CodeBlock code={`const [checked, setChecked] = React.useState(false)
+
+<Checkbox
+  checked={checked}
+  onCheckedChange={(val) => setChecked(val === true)}
+/>`} lang="tsx" />
+
+### 禁用状态 / Disabled
+
+<div style={{ display: "flex", gap: 12 }}>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Checkbox disabled /> 禁用未选 / Disabled unchecked
+  </label>
+  <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <Checkbox disabled defaultChecked /> 禁用已选 / Disabled checked
+  </label>
+</div>
+
+<CodeBlock code={`<Checkbox disabled />
+<Checkbox disabled defaultChecked />`} lang="tsx" />
+
+### 不确定状态 / Indeterminate
+
+<label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+  <Checkbox checked="indeterminate" /> 部分选中 / Indeterminate
+</label>
+
+<CodeBlock code={`<Checkbox checked="indeterminate" />`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| checked | `boolean \| 'indeterminate'` | — | 受控：选中状态 | Controlled checked state |
+| defaultChecked | `boolean` | `false` | 默认选中状态 | Default checked state |
+| onCheckedChange | `(checked: boolean \| 'indeterminate') => void` | — | 状态变化回调 | Callback on checked change |
+| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
+| required | `boolean` | `false` | 必填 | Required |
+| name | `string` | — | 表单字段名 | Form field name |
+| value | `string` | — | 表单值 | Form value |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **indeterminate 状态**：表示"部分选中"，典型场景是"全选"checkbox——当列表中部分项被选中时显示 `indeterminate` 状态。
+- **受控 vs 非受控**：传入 `checked` 即为受控，需搭配 `onCheckedChange`。不传 `checked` 用 `defaultChecked` 为非受控。
+- **无障碍**：Base UI Checkbox 使用 `<button role="checkbox">` 实现，天然支持键盘操作 (Space 切换) 和 `aria-checked` 状态反馈。
+- **Label 关联**：务必为 Checkbox 提供 `<label htmlFor={id}>` 关联，或使用 `Label` 组件包裹，以增大点击区域并提升无障碍体验。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-checkbox--docs)

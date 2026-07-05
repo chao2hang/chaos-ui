@@ -1,0 +1,88 @@
+import { Calendar } from "@/components/ui/calendar"
+import { CodeBlock } from "@/components/code-block"
+
+# Calendar 日历
+
+Chaos UI 日历组件，基于 react-day-picker 构建，用于日期选择和展示。
+A date selection and display component built on react-day-picker.
+
+## 何时使用 / When to use
+
+用于日期选择场景：表单中的日期输入、日期范围选择、日程查看等。可作为独立组件或嵌入 DatePicker。
+
+Use for date selection: form date inputs, date range selection, schedule viewing. Can be standalone or embedded in a DatePicker.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Calendar mode="single" />
+
+<CodeBlock code={`import { Calendar } from "@/components/ui/calendar"
+
+export function Basic() {
+  const [date, setDate] = React.useState<Date>()
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+    />
+  )
+}`} lang="tsx" />
+
+### 日期范围 / Range Mode
+
+<Calendar mode="range" />
+
+<CodeBlock code={`const [range, setRange] = React.useState<DateRange>()
+
+<Calendar
+  mode="range"
+  selected={range}
+  onSelect={setRange}
+/>`} lang="tsx" />
+
+### 多选 / Multiple Mode
+
+<Calendar mode="multiple" />
+
+<CodeBlock code={`const [dates, setDates] = React.useState<Date[]>()
+
+<Calendar
+  mode="multiple"
+  selected={dates}
+  onSelect={setDates}
+/>`} lang="tsx" />
+
+### 自定义按钮样式 / Custom Button Variant
+
+<Calendar mode="single" buttonVariant="outline" />
+
+<CodeBlock code={`<Calendar
+  mode="single"
+  buttonVariant="outline"
+/>`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| mode | `'single' \| 'range' \| 'multiple'` | `'single'` | 选择模式 | Selection mode |
+| selected | `Date \| DateRange \| Date[]` | — | 受控：当前选中日期 | Controlled selected date(s) |
+| onSelect | `(date: ...) => void` | — | 选择回调 | Selection callback |
+| defaultMonth | `Date` | — | 默认显示的月份 | Default visible month |
+| buttonVariant | `ButtonVariant` | — | 日历按钮的 variant | Variant for day buttons |
+| showOutsideDays | `boolean` | — | 显示非当前月日期 | Show days from other months |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| ...rest | `DayPickerProps` | — | 透传 react-day-picker 属性 | Passthrough react-day-picker props |
+
+## 注意事项
+
+- **模式差异**：`single` 返回 `Date`，`range` 返回 `{ from, to }`，`multiple` 返回 `Date[]`。
+- **受控模式**：传入 `selected` 即为受控组件，需搭配 `onSelect` 更新状态。
+- **国际化**：react-day-picker 支持通过 `locale` 属性传入国际化配置（日期格式、周起始日等）。
+- **无障碍**：react-day-picker 内置键盘导航 (Arrow keys 切换日期，Enter 选择)，屏幕阅读器友好。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-calendar--docs)

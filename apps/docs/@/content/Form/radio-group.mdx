@@ -1,0 +1,122 @@
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { CodeBlock } from "@/components/code-block"
+
+# RadioGroup 单选组
+
+Chaos UI 单选组组件，基于 Base UI Radio Group，用于从一组选项中选择一项。
+A Base UI-powered radio group for selecting exactly one option from a set.
+
+## 何时使用 / When to use
+
+用于互斥单选场景，选项数量较少（≤5）且需要一次性展示所有选项时优先使用。选项较多时考虑 Select。
+
+Use for mutually exclusive selection when options are few (≤5) and all should be visible. Use Select when there are many options.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<RadioGroup defaultValue="comfortable">
+  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <RadioGroupItem value="comfortable" id="r1" />
+    <label htmlFor="r1">舒适 / Comfortable</label>
+  </div>
+  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <RadioGroupItem value="compact" id="r2" />
+    <label htmlFor="r2">紧凑 / Compact</label>
+  </div>
+  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <RadioGroupItem value="spacious" id="r3" />
+    <label htmlFor="r3">宽敞 / Spacious</label>
+  </div>
+</RadioGroup>
+
+<CodeBlock code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
+export function Basic() {
+  return (
+    <RadioGroup defaultValue="comfortable">
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <RadioGroupItem value="comfortable" id="r1" />
+        <label htmlFor="r1">舒适</label>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <RadioGroupItem value="compact" id="r2" />
+        <label htmlFor="r2">紧凑</label>
+      </div>
+    </RadioGroup>
+  )
+}`} lang="tsx" />
+
+### 受控模式 / Controlled
+
+<RadioGroup value="option-b">
+  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <RadioGroupItem value="option-a" /> Option A
+    </label>
+    <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <RadioGroupItem value="option-b" /> Option B (selected)
+    </label>
+    <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <RadioGroupItem value="option-c" /> Option C
+    </label>
+  </div>
+</RadioGroup>
+
+<CodeBlock code={`const [value, setValue] = React.useState("option-b")
+
+<RadioGroup value={value} onValueChange={setValue}>
+  <RadioGroupItem value="option-a">Option A</RadioGroupItem>
+  <RadioGroupItem value="option-b">Option B</RadioGroupItem>
+  <RadioGroupItem value="option-c">Option C</RadioGroupItem>
+</RadioGroup>`} lang="tsx" />
+
+### 禁用状态 / Disabled
+
+<RadioGroup defaultValue="a">
+  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <RadioGroupItem value="a" /> Available
+    </label>
+    <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <RadioGroupItem value="b" disabled /> Disabled Option
+    </label>
+  </div>
+</RadioGroup>
+
+<CodeBlock code={`<RadioGroup defaultValue="a">
+  <RadioGroupItem value="a">Available</RadioGroupItem>
+  <RadioGroupItem value="b" disabled>Disabled Option</RadioGroupItem>
+</RadioGroup>`} lang="tsx" />
+
+## API
+
+### RadioGroup
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| defaultValue | `string` | — | 默认选中的值 | Default selected value |
+| value | `string` | — | 受控：当前选中的值 | Controlled selected value |
+| onValueChange | `(value: string) => void` | — | 选择回调 | Callback on value change |
+| disabled | `boolean` | `false` | 禁用整组 | Disable entire group |
+| orientation | `'horizontal' \| 'vertical'` | `'vertical'` | 排列方向 | Layout orientation |
+| name | `string` | — | 表单字段名 | Form field name |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### RadioGroupItem
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| value | `string` | — | **必填**，选项值 | **Required** option value |
+| disabled | `boolean` | `false` | 禁用该项 | Disable this item |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **互斥选择**：RadioGroup 内部保证同一时刻只有一项被选中。与 Checkbox 不同，不支持多选。
+- **受控 vs 非受控**：传入 `value` 即为受控模式。多数场景下使用 `defaultValue` 非受控即可。
+- **无障碍**：Base UI Radio Group 遵循 WAI-ARIA Radio Group Pattern——容器使用 `role="radiogroup"`，单项使用 `role="radio"`。键盘支持 Arrow 键在选项间导航。
+- **Label 关联**：务必为每个 RadioGroupItem 提供 `<label htmlFor={id}>` 关联，增大点击区域。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-radio-group--docs)

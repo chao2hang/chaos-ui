@@ -1,0 +1,92 @@
+import { Badge } from "@/components/ui/badge"
+import { CodeBlock } from "@/components/code-block"
+
+# Badge 徽标
+
+Chaos UI 徽标组件，用于标记状态、分类或数量的小型标签。
+A small label for marking status, category, or count.
+
+## 何时使用 / When to use
+
+适合标记状态 (成功/失败/警告)、显示计数、标注分类标签。通常放在其他元素的右上角或内联使用。
+
+Use for status tagging (success/error/warning), counts, or category labels. Typically placed at the top-right of another element or inline.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+  <Badge>Default</Badge>
+  <Badge variant="secondary">Secondary</Badge>
+  <Badge variant="destructive">Destructive</Badge>
+  <Badge variant="outline">Outline</Badge>
+</div>
+
+<CodeBlock code={`import { Badge } from "@/components/ui/badge"
+
+export function Basic() {
+  return (
+    <>
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </>
+  )
+}`} lang="tsx" />
+
+### 颜色变体 / Color Variants
+
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+  <Badge color="success">Success</Badge>
+  <Badge color="warning">Warning</Badge>
+  <Badge color="destructive">Destructive</Badge>
+  <Badge color="info">Info</Badge>
+  <Badge color="neutral">Neutral</Badge>
+</div>
+
+<CodeBlock code={`<Badge color="success">Success</Badge>
+<Badge color="warning">Warning</Badge>
+<Badge color="destructive">Destructive</Badge>
+<Badge color="info">Info</Badge>
+<Badge color="neutral">Neutral</Badge>`} lang="tsx" />
+
+### 可关闭 / Closable
+
+<Badge closable>Closable Badge</Badge>
+
+<CodeBlock code={`<Badge closable>Closable Badge</Badge>`} lang="tsx" />
+
+### 圆点指示 / Dot Indicator
+
+<div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+  <Badge dot color="success">Online</Badge>
+  <Badge dot color="warning">Away</Badge>
+  <Badge dot color="neutral">Offline</Badge>
+</div>
+
+<CodeBlock code={`<Badge dot color="success">Online</Badge>
+<Badge dot color="warning">Away</Badge>
+<Badge dot color="neutral">Offline</Badge>`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| variant | `'default' \| 'secondary' \| 'destructive' \| 'outline'` | `'default'` | 样式变体 | Style variant |
+| color | `'success' \| 'warning' \| 'destructive' \| 'info' \| 'neutral'` | — | 语义颜色 | Semantic color |
+| size | `'default' \| 'sm' \| 'lg'` | `'default'` | 尺寸 | Size |
+| dot | `boolean` | `false` | 仅显示圆点（不显示文字） | Show dot only |
+| closable | `boolean` | `false` | 显示关闭按钮 | Show close button |
+| onClose | `() => void` | — | 关闭回调 | Close callback |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **dot 模式**：`dot` 为 true 时忽略 children，仅渲染彩色圆点。适合状态指示场景。
+- **closable 搭配 onClose**：提供 `closable` 时建议同时提供 `onClose` 处理关闭逻辑，否则点击关闭按钮无效果。
+- **无障碍**：Badge 默认使用 `<span>` 渲染，纯展示性内容。可关闭模式下关闭按钮通过 `aria-label="Close"` 标识。
+- **颜色覆盖**：`color` 和 `variant` 可同时使用，`color` 优先控制色相，`variant` 控制填充/描边风格。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-badge--docs)

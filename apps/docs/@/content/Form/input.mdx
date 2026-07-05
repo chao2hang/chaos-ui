@@ -1,0 +1,85 @@
+import { Input } from "@/components/ui/input"
+import { CodeBlock } from "@/components/code-block"
+
+# Input 输入框
+
+Chaos UI 文本输入框组件，基于原生 `<input>` 元素，支持多种类型和状态。
+A text input component based on the native `<input>` element with multiple types and states.
+
+## 何时使用 / When to use
+
+用于采集用户文本输入：用户名、邮箱、搜索、密码等。与 Form 组件配合可自动校验。
+
+Use for collecting user text input: username, email, search, password, etc. Combine with Form for automatic validation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Input placeholder="请输入内容 / Enter text" />
+
+<CodeBlock code={`import { Input } from "@/components/ui/input"
+
+export function Basic() {
+  return <Input placeholder="请输入内容" />
+}`} lang="tsx" />
+
+### 不同类型 / Types
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <Input type="email" placeholder="Email" />
+  <Input type="password" placeholder="Password" />
+  <Input type="number" placeholder="Number" />
+  <Input type="search" placeholder="Search..." />
+</div>
+
+<CodeBlock code={`<Input type="email" placeholder="Email" />
+<Input type="password" placeholder="Password" />
+<Input type="number" placeholder="Number" />
+<Input type="search" placeholder="Search..." />`} lang="tsx" />
+
+### 禁用与只读 / Disabled & Read Only
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <Input disabled placeholder="Disabled input" />
+  <Input readOnly value="Read only value" />
+</div>
+
+<CodeBlock code={`<Input disabled placeholder="Disabled input" />
+<Input readOnly value="Read only value" />`} lang="tsx" />
+
+### 带前后缀 / With Prefix & Suffix
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <Input prefix="https://" placeholder="example.com" />
+  <Input suffix="@company.com" placeholder="username" />
+  <Input prefix="$" suffix=".00" placeholder="Amount" />
+</div>
+
+<CodeBlock code={`<Input prefix="https://" placeholder="example.com" />
+<Input suffix="@company.com" placeholder="username" />
+<Input prefix="$" suffix=".00" placeholder="Amount" />`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| type | `'text' \| 'email' \| 'password' \| 'number' \| 'search' \| 'tel' \| 'url'` | `'text'` | HTML input 类型 | HTML input type |
+| placeholder | `string` | — | 占位文字 | Placeholder text |
+| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
+| readOnly | `boolean` | `false` | 只读状态 | Read-only state |
+| prefix | `React.ReactNode` | — | 输入框前缀 | Input prefix |
+| suffix | `React.ReactNode` | — | 输入框后缀 | Input suffix |
+| size | `'sm' \| 'default' \| 'lg'` | `'default'` | 输入框尺寸 | Input size |
+| error | `boolean` | `false` | 错误状态（红色边框） | Error state (red border) |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| ...rest | `React.ComponentProps<'input'>` | — | 透传原生 input 属性 | Passthrough native input props |
+
+## 注意事项
+
+- **前后缀**：`prefix`/`suffix` 渲染为视觉装饰，不影响 input 的实际值。如需组合输入组，请使用 `InputGroup`。
+- **error 状态**：设置 `error=true` 时输入框边框变红，配合 Form 组件的校验状态使用。
+- **无障碍**：使用原生 `<input>` 元素，天然支持屏幕阅读器和键盘操作。确保提供 `<label>`（可使用 `Label` 组件）关联。
+- **受控/非受控**：支持 React 的 `value`+`onChange` 受控模式和 `defaultValue` 非受控模式。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-input--docs)

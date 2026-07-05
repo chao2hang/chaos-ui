@@ -1,0 +1,79 @@
+import { Textarea } from "@/components/ui/textarea"
+import { CodeBlock } from "@/components/code-block"
+
+# Textarea 文本域
+
+Chaos UI 多行文本输入组件，基于原生 `<textarea>` 元素，适合长文本输入。
+A multi-line text input based on the native `<textarea>` element for long-form content.
+
+## 何时使用 / When to use
+
+当用户需要输入多行文本时使用：评论、描述、备注、文章摘要等。不适合简短的单行输入（此时应使用 Input）。
+
+Use for multi-line text input: comments, descriptions, notes, article summaries. For short single-line input, use Input instead.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Textarea placeholder="请输入描述 / Enter description" rows={4} />
+
+<CodeBlock code={`import { Textarea } from "@/components/ui/textarea"
+
+export function Basic() {
+  return <Textarea placeholder="请输入描述" rows={4} />
+}`} lang="tsx" />
+
+### 禁用与只读 / Disabled & Read Only
+
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+  <Textarea disabled placeholder="Disabled textarea" rows={3} />
+  <Textarea readOnly value="This is read-only content. 这是只读内容。" rows={3} />
+</div>
+
+<CodeBlock code={`<Textarea disabled placeholder="Disabled textarea" rows={3} />
+<Textarea readOnly value="Read only content" rows={3} />`} lang="tsx" />
+
+### 错误状态 / Error State
+
+<div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+  <Textarea error placeholder="请输入有效内容" rows={3} />
+  <span style={{ color: "#ef4444", fontSize: 12 }}>请输入有效的描述信息</span>
+</div>
+
+<CodeBlock code={`<Textarea error placeholder="请输入有效内容" rows={3} />
+<span style={{ color: "#ef4444" }}>请输入有效的描述信息</span>`} lang="tsx" />
+
+### 字符计数 / Character Count
+
+<Textarea placeholder="最多 200 字 / Max 200 chars" rows={3} maxLength={200} showCount />
+
+<CodeBlock code={`<Textarea
+  placeholder="最多 200 字"
+  rows={3}
+  maxLength={200}
+  showCount
+/>`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| placeholder | `string` | — | 占位文字 | Placeholder text |
+| rows | `number` | `3` | 默认行数 | Default rows |
+| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
+| readOnly | `boolean` | `false` | 只读状态 | Read-only state |
+| error | `boolean` | `false` | 错误状态（红色边框） | Error state (red border) |
+| maxLength | `number` | — | 最大字符数 | Max character count |
+| showCount | `boolean` | `false` | 显示字符计数 | Show character counter |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| ...rest | `React.ComponentProps<'textarea'>` | — | 透传原生 textarea 属性 | Passthrough native textarea props |
+
+## 注意事项
+
+- **可调整大小**：Textarea 默认允许用户拖拽调整大小（CSS `resize: vertical`）。如需禁止，通过 `className` 覆盖 `resize-none`。
+- **字符计数**：`showCount` 仅在设置了 `maxLength` 时才有意义，显示格式为 `{current}/{max}`。
+- **无障碍**：使用原生 `<textarea>` 元素，天然支持键盘和屏幕阅读器。确保关联 `<label>`（使用 `Label` 组件）。
+- **性能**：对于超大文本（>10KB），建议使用受控模式并在 onChange 中做防抖处理。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-textarea--docs)

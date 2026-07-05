@@ -1,0 +1,167 @@
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { CodeBlock } from "@/components/code-block"
+
+# Card 卡片
+
+Chaos UI 卡片容器组件，用于信息分组和内容容器化展示。
+A card container component for information grouping and content presentation.
+
+## 何时使用 / When to use
+
+用于信息分块展示：用户资料卡、产品卡片、统计卡片、设置面板等。Card 提供统一的外观和可选的操作区。
+
+Use for chunked information display: user profiles, product cards, stats cards, settings panels. Card provides consistent styling and optional action areas.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Card style={{ maxWidth: 360 }}>
+  <CardHeader>
+    <CardTitle>Chaos UI</CardTitle>
+    <CardDescription>企业级 React 组件库 / Enterprise React component library</CardDescription>
+  </CardHeader>
+  <CardContent>
+    基于 Tailwind CSS 4 和 Base UI 构建，提供 200+ 高质量组件，
+    覆盖通用、布局、导航、表单、数据展示、反馈、业务等场景。
+  </CardContent>
+  <CardFooter>
+    <Button size="sm">了解更多</Button>
+  </CardFooter>
+</Card>
+
+<CodeBlock code={`import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/card"
+
+export function Basic() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Chaos UI</CardTitle>
+        <CardDescription>企业级 React 组件库</CardDescription>
+      </CardHeader>
+      <CardContent>
+        基于 Tailwind CSS 4 和 Base UI 构建...
+      </CardContent>
+      <CardFooter>
+        <Button size="sm">了解更多</Button>
+      </CardFooter>
+    </Card>
+  )
+}`} lang="tsx" />
+
+### 紧凑尺寸 / Small Size
+
+<Card size="sm" style={{ maxWidth: 320 }}>
+  <CardHeader>
+    <CardTitle>紧凑卡片</CardTitle>
+    <CardDescription>size="sm" 模式下内边距更小，适合列表嵌入</CardDescription>
+  </CardHeader>
+  <CardContent>
+    紧凑模式适合在列表或网格中大量展示的卡片场景。
+  </CardContent>
+</Card>
+
+<CodeBlock code={`<Card size="sm">
+  <CardHeader>
+    <CardTitle>紧凑卡片</CardTitle>
+    <CardDescription>Small padding for list-embedded cards</CardDescription>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+</Card>`} lang="tsx" />
+
+### 带操作区 / With Action Area
+
+<Card style={{ maxWidth: 360 }}>
+  <CardHeader>
+    <CardTitle>项目设置</CardTitle>
+    <CardDescription>管理项目的常规配置</CardDescription>
+    <CardAction>
+      <Button variant="ghost" size="icon-sm">⋯</Button>
+    </CardAction>
+  </CardHeader>
+  <CardContent>
+    项目名称、可见性、成员管理等基础设置。
+  </CardContent>
+  <CardFooter style={{ justifyContent: "flex-end", gap: 8 }}>
+    <Button variant="outline" size="sm">取消</Button>
+    <Button size="sm">保存</Button>
+  </CardFooter>
+</Card>
+
+<CodeBlock code={`<Card>
+  <CardHeader>
+    <CardTitle>项目设置</CardTitle>
+    <CardDescription>管理项目的常规配置</CardDescription>
+    <CardAction>
+      <Button variant="ghost" size="icon-sm">⋯</Button>
+    </CardAction>
+  </CardHeader>
+  <CardContent>内容</CardContent>
+  <CardFooter>
+    <Button variant="outline" size="sm">取消</Button>
+    <Button size="sm">保存</Button>
+  </CardFooter>
+</Card>`} lang="tsx" />
+
+## API
+
+### Card
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| size | `'default' \| 'sm'` | `'default'` | 卡片尺寸 | Card size (controls padding) |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardHeader
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardTitle
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardDescription
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardAction
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardContent
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### CardFooter
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **卡片布局**：Card 渲染为 `<div>`，宽度默认撑满父容器。建议通过 `style={{ maxWidth }}` 或 Tailwind 类限制宽度。
+- **CardAction**：可选的操作区，通常放更多操作菜单（`⋯` 按钮）。渲染在 CardHeader 的右上角。
+- **嵌套**：Card 可以在 CardContent 内嵌套其他组件（Form、Table 等），不受限制。
+- **无障碍**：Card 使用纯 `<div>` 容器，无特殊 ARIA 角色。如需交互式卡片，在外部包裹 `<button>` 或 `<a>` 或使用 `tabIndex` 和键盘事件。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-card--docs)

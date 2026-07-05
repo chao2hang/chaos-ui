@@ -1,0 +1,90 @@
+import { Separator } from "@/components/ui/separator"
+import { CodeBlock } from "@/components/code-block"
+
+# Separator 分割线
+
+Chaos UI 分割线组件，基于 Base UI Separator，支持水平/垂直方向。
+A Base UI-powered separator component supporting both horizontal and vertical orientations.
+
+## 何时使用 / When to use
+
+用于在内容区域之间添加视觉分隔线。水平分割线用于章节分隔，垂直分割线用于水平排列元素之间的分隔。
+
+Use to add visual separators between content regions. Horizontal for section breaks, vertical for inline element separation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ width: "100%" }}>
+  <p>Above the separator / 分隔线上方</p>
+  <Separator />
+  <p style={{ marginTop: 16 }}>Below the separator / 分隔线下方</p>
+</div>
+
+<CodeBlock code={`import { Separator } from "@/components/ui/separator"
+
+export function Basic() {
+  return (
+    <div>
+      <p>Above</p>
+      <Separator />
+      <p>Below</p>
+    </div>
+  )
+}`} lang="tsx" />
+
+### 垂直方向 / Vertical
+
+<div style={{ display: "flex", gap: 12, alignItems: "center", height: 60 }}>
+  <span>Left</span>
+  <Separator orientation="vertical" style={{ height: 32 }} />
+  <span>Middle</span>
+  <Separator orientation="vertical" style={{ height: 32 }} />
+  <span>Right</span>
+</div>
+
+<CodeBlock code={`<div style={{ display: "flex", alignItems: "center" }}>
+  <span>Left</span>
+  <Separator orientation="vertical" />
+  <span>Middle</span>
+  <Separator orientation="vertical" />
+  <span>Right</span>
+</div>`} lang="tsx" />
+
+### 带文字的分割线 / With Label
+
+<div style={{ width: "100%" }}>
+  <Separator label="OR" />
+</div>
+
+<CodeBlock code={`<Separator label="OR" />`} lang="tsx" />
+
+### 装饰性分割线 / Decorative
+
+<Separator decorative />
+<p style={{ marginTop: 12, color: "#64748b", fontSize: 13 }}>
+  decorative 模式下不暴露 role="separator"，适合纯视觉分隔。
+</p>
+
+<CodeBlock code={`<>
+  <Separator decorative />
+  <p>Decorative separator — no ARIA role exposed.</p>
+</>`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | 分割线方向 | Separator orientation |
+| decorative | `boolean` | `false` | 纯装饰性（无 ARIA role） | Purely decorative (no ARIA role) |
+| label | `string` | — | 分割线中间的文字 | Label text in the middle |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **语义 vs 装饰**：默认 `decorative=false` 时，Base UI 渲染 `role="separator"`，屏幕阅读器会将其识别为分隔符。纯视觉用途应设置 `decorative=true` 以避免干扰辅助技术。
+- **垂直方向高度**：`orientation="vertical"` 时，需要设置父容器高度或通过 className/style 指定高度，否则分割线不可见。
+- **label 模式**：`label` 不为空时自动将 `role` 调整为 `presentation`，并渲染文字节点。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-separator--docs)

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CodeBlock } from "@/components/code-block";
 
 type PackageManager = "npm" | "pnpm" | "yarn";
 
@@ -29,38 +28,6 @@ export default function App() {
   return <Button>Click me</Button>;
 }`;
 
-function CodeBlock({ code, language }: { code: string; language?: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="group relative">
-      {language && (
-        <span className="absolute right-12 top-2 text-[10px] uppercase text-muted-foreground">
-          {language}
-        </span>
-      )}
-      <Button
-        variant="ghost"
-        size="icon-xs"
-        className="absolute right-1 top-1 opacity-0 transition-opacity group-hover:opacity-100"
-        onClick={handleCopy}
-        title="Copy to clipboard"
-      >
-        {copied ? <Check className="size-3 text-green-500" /> : <Copy className="size-3" />}
-      </Button>
-      <pre className="overflow-x-auto rounded-lg border bg-muted/50 p-4 text-sm">
-        <code>{code}</code>
-      </pre>
-    </div>
-  );
-}
-
 export function InstallTabs() {
   const [pkg, setPkg] = useState<PackageManager>("npm");
 
@@ -84,7 +51,7 @@ export function InstallTabs() {
             </button>
           ))}
         </div>
-        <CodeBlock code={commands[pkg]} language="bash" />
+        <CodeBlock code={commands[pkg]} lang="bash" />
       </div>
 
       {/* CSS import */}
@@ -95,7 +62,7 @@ export function InstallTabs() {
             CSS Import
           </span>
         </p>
-        <CodeBlock code={cssImport} language="css" />
+        <CodeBlock code={cssImport} lang="css" />
       </div>
 
       {/* Usage example */}
@@ -106,7 +73,7 @@ export function InstallTabs() {
             Usage
           </span>
         </p>
-        <CodeBlock code={usageCode} language="tsx" />
+        <CodeBlock code={usageCode} lang="tsx" />
       </div>
     </div>
   );

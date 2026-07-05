@@ -1,0 +1,120 @@
+import { Toaster } from "@/components/ui/sonner"
+import { CodeBlock } from "@/components/code-block"
+
+# Toast 消息提示
+
+Chaos UI Toast 组件，基于 sonner，用于全局轻量级消息通知。
+A lightweight global notification component built on sonner (toast library).
+
+## 何时使用 / When to use
+
+用于操作后的轻量反馈：成功提示、错误通知、警告信息等。Toast 从屏幕边缘弹出，自动消失，不打断用户操作流。
+
+Use for lightweight post-action feedback: success, error, warning notifications. Toasts pop from the screen edge and auto-dismiss without interrupting user flow.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<CodeBlock code={`import { Toaster } from "@/components/ui/sonner"
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
+
+// 在 layout.tsx 中渲染 Toaster
+export default function Layout({ children }) {
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  )
+}
+
+// 在任意客户端组件中调用
+export function Example() {
+  return (
+    <>
+      <Button onClick={() => toast("操作成功")}>普通提示</Button>
+      <Button onClick={() => toast.success("保存成功")}>成功提示</Button>
+      <Button onClick={() => toast.error("操作失败")}>错误提示</Button>
+    </>
+  )
+}`} lang="tsx" />
+
+### 带描述的提示 / With Description
+
+<CodeBlock code={`toast("文件已上传", {
+  description: "report-final.pdf (2.4 MB) 已成功上传。",
+})
+
+toast.success("发布成功", {
+  description: "你的文章已发布，可通过链接分享。",
+})`} lang="tsx" />
+
+### 带操作的提示 / With Action
+
+<CodeBlock code={`toast("文章已删除", {
+  description: "已移至回收站，30 天后永久删除。",
+  action: {
+    label: "撤销",
+    onClick: () => toast.success("已撤销删除操作"),
+  },
+})
+
+toast.error("网络连接失败", {
+  description: "请检查网络设置后重试。",
+  action: {
+    label: "重试",
+    onClick: () => toast("正在重试..."),
+  },
+})`} lang="tsx" />
+
+### Promise Toast
+
+<CodeBlock code={`const promise = fetchData()
+
+toast.promise(promise, {
+  loading: "加载中...",
+  success: (data) => \`\${data.name} 加载成功\`,
+  error: "加载失败",
+})`} lang="tsx" />
+
+## API
+
+### Toaster
+
+Toaster 是 sonner 的 `Toaster` 封装，接受所有 sonner 的 `ToasterProps`。
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| position | `'top-left' \| 'top-right' \| 'bottom-left' \| 'bottom-right' \| 'top-center' \| 'bottom-center'` | `'bottom-right'` | Toast 位置 | Toast position |
+| richColors | `boolean` | `false` | 启用丰富的语义颜色 | Enable rich semantic colors |
+| expand | `boolean` | `false` | 默认展开所有 toast | Expand all toasts by default |
+| visibleToasts | `number` | `3` | 同时可见的 toast 数量 | Max visible toasts |
+| duration | `number` | `4000` | 自动关闭时间 (ms) | Auto-dismiss duration in ms |
+| ...rest | `ToasterProps` | — | 透传 sonner Toaster 属性 | Passthrough sonner props |
+
+### toast() 函数
+
+`toast(message, options?)` 来自 sonner，支持以下方法：
+
+| 方法 | 描述 |
+|---|---|
+| `toast(message, options?)` | 普通提示 |
+| `toast.success(message, options?)` | 成功提示 |
+| `toast.error(message, options?)` | 错误提示 |
+| `toast.info(message, options?)` | 信息提示 |
+| `toast.warning(message, options?)` | 警告提示 |
+| `toast.loading(message, options?)` | 加载提示（不自动关闭） |
+| `toast.promise(promise, options)` | Promise 进度提示 |
+| `toast.dismiss(id?)` | 关闭指定或全部 toast |
+| `toast.custom(component, options?)` | 自定义 toast 内容 |
+
+## 注意事项
+
+- **Toaster 放置**：`<Toaster />` 需在应用根布局（如 `layout.tsx`）中渲染一次，全局生效。详情页 MDX 示例中省略了 Toaster 渲染。
+- **自动消失**：默认 4 秒后自动消失。`toast.loading` 不会自动消失，需手动调用 `toast.dismiss()`。
+- **Promise toast**：自动处理 loading/success/error 三种状态的 UI 和文字。
+- **无障碍**：sonner 遵循 WAI-ARIA Alert 和 Status 模式，自动设置 `role="status"` 或 `role="alert"`。键盘用户可通过 Escape 关闭 toast。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-sonner--docs)

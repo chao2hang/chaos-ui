@@ -1,0 +1,149 @@
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
+import { CodeBlock } from "@/components/code-block"
+
+# Accordion 折叠面板
+
+Chaos UI 折叠面板组件，基于 Base UI Accordion 构建，支持单项或多项展开。
+A Base UI-powered collapsible panel component with single or multiple expansion modes.
+
+## 何时使用 / When to use
+
+用于内容分组展示，用户可按需展开/折叠以节省空间。适合 FAQ、设置面板、多步骤表单等场景。
+
+Use for grouped content where users expand/collapse sections on demand. Ideal for FAQs, settings panels, and multi-step forms.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Accordion>
+  <AccordionItem value="1">
+    <AccordionTrigger>Section 1 — 什么是 Chaos UI？</AccordionTrigger>
+    <AccordionContent>
+      Chaos UI 是一个企业级 React 组件库，基于 Tailwind CSS 和 Base UI 构建，提供 200+ 组件。
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="2">
+    <AccordionTrigger>Section 2 — 如何安装？</AccordionTrigger>
+    <AccordionContent>
+      使用 npm install chaos-design-ui 即可安装。详见安装页面。
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="3">
+    <AccordionTrigger>Section 3 — 支持哪些框架？</AccordionTrigger>
+    <AccordionContent>
+      目前支持 React 19+ 和 Next.js 16+，基于 Tailwind CSS 4 样式系统。
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+<CodeBlock code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion"
+
+export function Basic() {
+  return (
+    <Accordion>
+      <AccordionItem value="1">
+        <AccordionTrigger>Section 1</AccordionTrigger>
+        <AccordionContent>Content for section 1</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="2">
+        <AccordionTrigger>Section 2</AccordionTrigger>
+        <AccordionContent>Content for section 2</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}`} lang="tsx" />
+
+### 默认展开 / Default Expanded
+
+<Accordion defaultValue="1">
+  <AccordionItem value="1">
+    <AccordionTrigger>默认展开的项</AccordionTrigger>
+    <AccordionContent>此项在页面加载时自动展开。</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="2">
+    <AccordionTrigger>第二项</AccordionTrigger>
+    <AccordionContent>此项初始折叠。</AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+<CodeBlock code={`<Accordion defaultValue="1">
+  <AccordionItem value="1">
+    <AccordionTrigger>默认展开的项</AccordionTrigger>
+    <AccordionContent>此项在页面加载时自动展开。</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="2">
+    <AccordionTrigger>第二项</AccordionTrigger>
+    <AccordionContent>此项初始折叠。</AccordionContent>
+  </AccordionItem>
+</Accordion>`} lang="tsx" />
+
+### 禁用项 / Disabled Item
+
+<Accordion>
+  <AccordionItem value="1">
+    <AccordionTrigger>可用项</AccordionTrigger>
+    <AccordionContent>此项可展开。</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="2" disabled>
+    <AccordionTrigger>禁用项</AccordionTrigger>
+    <AccordionContent>此项被禁用，无法展开。</AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+<CodeBlock code={`<Accordion>
+  <AccordionItem value="1">
+    <AccordionTrigger>可用项</AccordionTrigger>
+    <AccordionContent>此项可展开。</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="2" disabled>
+    <AccordionTrigger>禁用项</AccordionTrigger>
+    <AccordionContent>此项被禁用。</AccordionContent>
+  </AccordionItem>
+</Accordion>`} lang="tsx" />
+
+## API
+
+### Accordion
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| defaultValue | `string` | — | 默认展开的项 value | Default expanded item value |
+| value | `string` | — | 受控模式：当前展开的项 | Controlled expanded item |
+| onValueChange | `(value: string) => void` | — | 展开项变化回调 | Callback when expanded item changes |
+| multiple | `boolean` | `false` | 是否允许多项同时展开 | Allow multiple items expanded |
+| disabled | `boolean` | `false` | 禁用所有项 | Disable all items |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AccordionItem
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| value | `string` | — | **必填**，唯一标识 | **Required** unique identifier |
+| disabled | `boolean` | `false` | 禁用该项 | Disable this item |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AccordionTrigger
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### AccordionContent
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **受控 vs 非受控**：不传 `value` 时为非受控模式（内部状态管理）；传入 `value` + `onValueChange` 时为受控模式。
+- **multiple 模式**：启用后允许多项同时展开，此时 `value` 和 `onValueChange` 对应数组类型（Base UI 原生行为）。
+- **无障碍**：Base UI Accordion 内置 WAI-ARIA 规范——Trigger 使用 `button` 角色并关联 `aria-controls`，Content 使用 `region` 角色。键盘支持 Enter/Space 切换。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-accordion--docs)

@@ -1,7 +1,9 @@
 import type { NextConfig } from "next"
+import createMDX from "@next/mdx"
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -44,4 +46,8 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  // No remark/rehype plugins in batch 1
+})
+
+export default withMDX(nextConfig)

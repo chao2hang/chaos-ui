@@ -1,0 +1,117 @@
+import { Progress } from "@/components/ui/progress"
+import { CodeBlock } from "@/components/code-block"
+
+# Progress 进度条
+
+Chaos UI 进度条组件，基于 Base UI Progress，用于展示操作或任务的完成进度。
+A Base UI-powered progress bar for displaying completion progress of operations or tasks.
+
+## 何时使用 / When to use
+
+用于展示操作进度：文件上传、表单步骤、任务完成度、数据加载等。需要显示确定进度时使用 Progress，不确定进度时使用 Skeleton 或 Spinner。
+
+Use for displaying operation progress: file upload, form steps, task completion, data loading. Use Progress for determinate progress; use Skeleton or Spinner for indeterminate.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+  <Progress value={0} />
+  <Progress value={25} />
+  <Progress value={50} />
+  <Progress value={75} />
+  <Progress value={100} />
+</div>
+
+<CodeBlock code={`import { Progress } from "@/components/ui/progress"
+
+export function Basic() {
+  return (
+    <>
+      <Progress value={0} />
+      <Progress value={25} />
+      <Progress value={50} />
+      <Progress value={75} />
+      <Progress value={100} />
+    </>
+  )
+}`} lang="tsx" />
+
+### 带标签 / With Label
+
+<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+  <div>
+    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4, fontSize: 13 }}>
+      <span>上传进度</span>
+      <span>65%</span>
+    </div>
+    <Progress value={65} />
+  </div>
+  <div>
+    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4, fontSize: 13 }}>
+      <span>任务完成</span>
+      <span>3/5</span>
+    </div>
+    <Progress value={60} />
+  </div>
+</div>
+
+<CodeBlock code={`<div>
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <span>上传进度</span>
+    <span>65%</span>
+  </div>
+  <Progress value={65} />
+</div>`} lang="tsx" />
+
+### 不确定进度 / Indeterminate
+
+<Progress value={null} />
+
+<CodeBlock code={`<Progress value={null} />`} lang="tsx" />
+
+### 颜色变体 / Color Variants
+
+<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+  <Progress value={60} color="default" />
+  <Progress value={80} color="success" />
+  <Progress value={45} color="warning" />
+  <Progress value={30} color="destructive" />
+</div>
+
+<CodeBlock code={`<Progress value={60} color="default" />
+<Progress value={80} color="success" />
+<Progress value={45} color="warning" />
+<Progress value={30} color="destructive" />`} lang="tsx" />
+
+## API
+
+### Progress
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| value | `number \| null` | — | 进度值 (0-100)，null 为不确定模式 | Progress value (0-100), null for indeterminate |
+| color | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | 进度条颜色 | Progress bar color |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| ...rest | `ProgressPrimitive.Root.Props` | — | 透传 Base UI 属性 | Passthrough Base UI props |
+
+### Progress 子组件
+
+| 组件 | Props | 描述 |
+|---|---|---|
+| Progress | `ProgressPrimitive.Root.Props` | 进度条根容器 |
+| ProgressTrack | `ProgressPrimitive.Track.Props` | 进度条轨道（背景） |
+| ProgressIndicator | `ProgressPrimitive.Indicator.Props` | 进度指示器（填充部分） |
+| ProgressLabel | `ProgressPrimitive.Label.Props` | 进度条标签 |
+| ProgressValue | `ProgressPrimitive.Value.Props` | 进度值文本 |
+
+## 注意事项
+
+- **确定 vs 不确定**：传入 `value={number}` 为确定模式（显示具体进度），传入 `value={null}` 为不确定模式（显示动画条纹，表示"进行中但无法确定进度"）。
+- **value 范围**：0–100。超出范围的值会被 clamp 到 0–100。
+- **颜色语义**：`default` 适合普通进度，`success` 适合完成状态，`warning` 适合接近上限，`destructive` 适合异常/超限。
+- **无障碍**：Base UI Progress 使用 `role="progressbar"`、`aria-valuenow`、`aria-valuemin`、`aria-valuemax`、`aria-valuetext`。不确定模式时 `aria-valuenow` 为 undefined。
+- **子组件**：一般直接使用 `Progress` 即可。仅在需要完全自定义布局时才使用子组件组合。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-progress--docs)

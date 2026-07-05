@@ -1,0 +1,147 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { CodeBlock } from "@/components/code-block"
+
+# Tabs 标签页
+
+Chaos UI 标签页组件，基于 Base UI Tabs，用于在同一区域切换不同视图。
+A Base UI-powered tab component for switching between views within the same area.
+
+## 何时使用 / When to use
+
+用于在内容区域内切换多个面板。适合设置页、详情页多视角切换、功能分组等场景。避免在页面级导航使用 Tabs（应使用网站导航）。
+
+Use for switching between panels in a content area. Suitable for settings pages, detail page multi-view switching, feature grouping. Avoid using Tabs for site-level navigation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">概览</TabsTrigger>
+    <TabsTrigger value="tab2">分析</TabsTrigger>
+    <TabsTrigger value="tab3">日志</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1" style={{ padding: "16px 0" }}>
+    概览面板 — 显示关键指标与摘要信息。
+    Overview panel — key metrics and summary.
+  </TabsContent>
+  <TabsContent value="tab2" style={{ padding: "16px 0" }}>
+    分析面板 — 图表与数据洞察。
+    Analytics panel — charts and data insights.
+  </TabsContent>
+  <TabsContent value="tab3" style={{ padding: "16px 0" }}>
+    日志面板 — 操作记录与审计追踪。
+    Logs panel — operation history and audit trail.
+  </TabsContent>
+</Tabs>
+
+<CodeBlock code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+
+export function Basic() {
+  return (
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger value="tab1">概览</TabsTrigger>
+        <TabsTrigger value="tab2">分析</TabsTrigger>
+        <TabsTrigger value="tab3">日志</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">概览内容</TabsContent>
+      <TabsContent value="tab2">分析内容</TabsContent>
+      <TabsContent value="tab3">日志内容</TabsContent>
+    </Tabs>
+  )
+}`} lang="tsx" />
+
+### 受控模式 / Controlled
+
+<Tabs value="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Tab A</TabsTrigger>
+    <TabsTrigger value="tab2">Tab B</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1" style={{ padding: "16px 0" }}>
+    当前激活: Tab A（受控，可通过外部状态切换）
+  </TabsContent>
+  <TabsContent value="tab2" style={{ padding: "16px 0" }}>
+    Tab B content
+  </TabsContent>
+</Tabs>
+
+<CodeBlock code={`const [active, setActive] = React.useState("tab1")
+
+<Tabs value={active} onValueChange={setActive}>
+  <TabsList>
+    <TabsTrigger value="tab1">Tab A</TabsTrigger>
+    <TabsTrigger value="tab2">Tab B</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content A</TabsContent>
+  <TabsContent value="tab2">Content B</TabsContent>
+</Tabs>`} lang="tsx" />
+
+### 禁用标签 / Disabled Tab
+
+<Tabs defaultValue="a">
+  <TabsList>
+    <TabsTrigger value="a">可用</TabsTrigger>
+    <TabsTrigger value="b" disabled>禁用</TabsTrigger>
+    <TabsTrigger value="c">可用</TabsTrigger>
+  </TabsList>
+  <TabsContent value="a" style={{ padding: "16px 0" }}>Content A</TabsContent>
+  <TabsContent value="b" style={{ padding: "16px 0" }}>Content B (disabled — cannot reach via click)</TabsContent>
+  <TabsContent value="c" style={{ padding: "16px 0" }}>Content C</TabsContent>
+</Tabs>
+
+<CodeBlock code={`<Tabs defaultValue="a">
+  <TabsList>
+    <TabsTrigger value="a">可用</TabsTrigger>
+    <TabsTrigger value="b" disabled>禁用</TabsTrigger>
+    <TabsTrigger value="c">可用</TabsTrigger>
+  </TabsList>
+  <TabsContent value="a">Content A</TabsContent>
+  <TabsContent value="b">Content B</TabsContent>
+  <TabsContent value="c">Content C</TabsContent>
+</Tabs>`} lang="tsx" />
+
+## API
+
+### Tabs
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| defaultValue | `string` | — | 默认激活的 tab value | Default active tab value |
+| value | `string` | — | 受控：当前激活的 tab value | Controlled active tab value |
+| onValueChange | `(value: string) => void` | — | 切换回调 | Callback on tab change |
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab 列表方向 | Tab list orientation |
+| disabled | `boolean` | `false` | 禁用所有 tab | Disable all tabs |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### TabsList
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| variant | `'default' \| 'underline' \| 'pills'` | `'default'` | Tab 列表样式变体 | Tab list style variant |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| value | `string` | — | **必填**，对应 TabsContent value | **Required** matches TabsContent value |
+| disabled | `boolean` | `false` | 禁用该 tab | Disable this tab |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+### TabsContent
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| value | `string` | — | **必填**，对应 TabsTrigger value | **Required** matches TabsTrigger value |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+
+## 注意事项
+
+- **Uncontrolled vs Controlled**：不传 `value`=非受控（内部管理），传入 `value`+`onValueChange`=受控。推荐默认使用非受控模式，仅在需要外部控制时切换。
+- **懒加载**：Base UI Tabs 默认仅在首次激活时渲染 Content，后续切换保留 DOM 状态（如滚动位置）。这与 React 的 `display:none` 行为一致，适合表单等需要保留状态的场景。
+- **无障碍**：Base UI Tabs 遵循 WAI-ARIA Tabs Pattern——Tablist 使用 `role="tablist"`，Trigger 使用 `role="tab"`，Content 使用 `role="tabpanel"`。键盘支持 Arrow 键切换。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-tabs--docs)

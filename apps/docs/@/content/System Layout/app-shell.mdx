@@ -1,0 +1,142 @@
+import { AppShell } from "@/components/layout/app-shell"
+import { CodeBlock } from "@/components/code-block"
+
+# AppShell 应用外壳
+
+Chaos UI 应用外壳组件，提供标准的后台应用布局骨架：顶栏 + 侧边栏 + 内容区 + 可选侧面板。
+Standard admin application layout shell: header + sidebar + content + optional aside panel.
+
+## 何时使用 / When to use
+
+用于搭建后台管理系统的主布局。提供 header、sidebar、content、aside 四个核心区域，支持侧边栏折叠和多种布局变体。
+
+Use as the main layout for admin systems. Provides four core areas (header, sidebar, content, aside) with collapsible sidebar and layout variants.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic
+
+<AppShell
+  header={<div style={{ padding: "8px 16px", fontWeight: 600, background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>🅲 Header / 顶栏</div>}
+  sidebar={<div style={{ padding: 12, minHeight: 200 }}>📂 Sidebar / 侧边栏导航</div>}
+  footer={<div style={{ padding: "8px 16px", textAlign: "center", fontSize: 12, color: "#94a3b8", background: "#f8fafc", borderTop: "1px solid #e2e8f0" }}>Footer / 页脚</div>}
+  style={{ border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", minHeight: 200 }}
+>
+  <div style={{ padding: 16 }}>
+    <h3 style={{ margin: 0, fontSize: 18 }}>Main Content 主内容区</h3>
+    <p style={{ color: "#64748b", fontSize: 14 }}>页面主体内容放在这里。</p>
+  </div>
+</AppShell>
+
+<CodeBlock code={`import { AppShell } from "@/components/layout/app-shell"
+
+export function Basic() {
+  return (
+    <AppShell
+      header={<Header />}
+      sidebar={<Sidebar />}
+      footer={<Footer />}
+    >
+      <main>
+        <h1>Page Content</h1>
+        <p>Your page content goes here.</p>
+      </main>
+    </AppShell>
+  )
+}`} lang="tsx" />
+
+### 侧边栏折叠 / Collapsible Sidebar
+
+<AppShell
+  sidebarCollapsible
+  defaultCollapsed={false}
+  sidebarWidth={200}
+  header={<div style={{ padding: "8px 16px", fontWeight: 600, background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>Header</div>}
+  sidebar={<div style={{ padding: 12 }}>📂 Sidebar (可折叠)</div>}
+  style={{ border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", minHeight: 160 }}
+>
+  <div style={{ padding: 16 }}>Content area — sidebar is collapsible</div>
+</AppShell>
+
+<CodeBlock code={`<AppShell
+  sidebarCollapsible
+  defaultCollapsed={false}
+  sidebar={<Sidebar />}
+  header={<Header />}
+>
+  <Content />
+</AppShell>`} lang="tsx" />
+
+### 带侧面板 / With Aside Panel
+
+<AppShell
+  header={<div style={{ padding: "8px 16px", fontWeight: 600, background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>Header</div>}
+  sidebar={<div style={{ padding: 12 }}>📂 Sidebar</div>}
+  aside={<div style={{ padding: 12, background: "#f8fafc", borderLeft: "1px solid #e2e8f0" }}>📋 Aside Panel / 侧面板</div>}
+  asideWidth={220}
+  style={{ border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", minHeight: 160 }}
+>
+  <div style={{ padding: 16 }}>Main content with aside panel</div>
+</AppShell>
+
+<CodeBlock code={`<AppShell
+  header={<Header />}
+  sidebar={<Sidebar />}
+  aside={<DetailsPanel />}
+  asideWidth={260}
+>
+  <Content />
+</AppShell>`} lang="tsx" />
+
+### 不同变体 / Variants
+
+<AppShell
+  variant="default"
+  header={<div style={{ padding: "8px 16px", fontWeight: 600, background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>Header</div>}
+  sidebar={<div style={{ padding: 12 }}>📂 Sidebar</div>}
+  style={{ border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", minHeight: 120, marginBottom: 8 }}
+>
+  <div style={{ padding: 16 }}>variant: default (侧边栏固定)</div>
+</AppShell>
+
+<AppShell
+  variant="floating"
+  header={<div style={{ padding: "8px 16px", fontWeight: 600, background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>Header</div>}
+  sidebar={<div style={{ padding: 12 }}>📂 Sidebar</div>}
+  style={{ border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", minHeight: 120 }}
+>
+  <div style={{ padding: 16 }}>variant: floating (侧边栏悬浮，内容区全宽)</div>
+</AppShell>
+
+<CodeBlock code={`<AppShell variant="default" header={...} sidebar={...}>
+  <Content />
+</AppShell>
+
+<AppShell variant="floating" header={...} sidebar={...}>
+  <Content />
+</AppShell>`} lang="tsx" />
+
+## API
+
+| Prop | Type | Default | Description (zh) | Description (en) |
+|---|---|---|---|---|
+| header | `React.ReactNode` | — | 顶部栏内容 | Header content |
+| sidebar | `React.ReactNode` | — | 侧边栏内容 | Sidebar content |
+| aside | `React.ReactNode` | — | 右侧面板内容 | Aside panel content |
+| footer | `React.ReactNode` | — | 底部栏内容 | Footer content |
+| sidebarWidth | `number` | `240` | 侧边栏宽度 (px) | Sidebar width in px |
+| asideWidth | `number` | `280` | 右侧面板宽度 (px) | Aside panel width in px |
+| sidebarCollapsible | `boolean` | `false` | 侧边栏是否可折叠 | Enable sidebar collapse toggle |
+| defaultCollapsed | `boolean` | `false` | 侧边栏默认折叠状态 | Default collapsed state |
+| variant | `'default' \| 'floating' \| 'sticky'` | `'default'` | 布局变体 | Layout variant |
+| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| ...rest | `React.ComponentProps<'div'>` | — | 透传 div 属性 | Passthrough div props |
+
+## 注意事项
+
+- **布局变体**：`default` 为传统三栏布局，`floating` 为侧边栏悬浮覆盖模式，`sticky` 为侧边栏 sticky 定位。
+- **children**：AppShell 的 children 渲染为内容主区域，可放置任意 React 节点。通常放置 `<main>` 包裹的页面内容。
+- **响应式**：AppShell 本身不处理移动端适配。移动端场景建议使用 DashboardLayout（layout 组件）或自行控制侧边栏的显示/隐藏。
+- **无障碍**：AppShell 渲染为 `<div>`。header/sidebar/aside 区域请自行设置相应的 HTML 语义元素（`<header>`、`<nav>`、`<aside>`）和 ARIA landmark roles。
+
+> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-app-shell--docs)
