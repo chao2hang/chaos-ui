@@ -1,29 +1,40 @@
 #!/bin/sh
 set -e
 
-echo "🚀 Starting Chaos UI Production Server..."
+# ─── Graceful Shutdown ───
+trap 'echo "Shutting down services..."; kill $(jobs -p) 2>/dev/null; wait; exit 0' SIGTERM SIGINT SIGQUIT
 
-# Function to start Next.js docs
-start_nextjs() {
-  echo "📖 Starting Next.js docs on port 3000..."
-  cd /app
-  exec node server.js
-}
+export NODE_ENV=production
+cd /app/apps/docs
 
-# Function to start Storybook static server
-start_storybook() {
-  echo "📚 Starting Storybook on port 6006..."
-  serve -s /app/storybook-static -l 6006 &
-}
+echo ""
+echo "╔══════════════════════════════════════╗"
+echo "║       Chaos UI — Docker              ║"
+echo "╠══════════════════════════════════════╣"
+echo "║  Proxy:     http://localhost:8080     ║"
+echo "║  Next.js:   http://localhost:19951    ║"
+echo "║  Storybook: http://localhost:6006     ║"
+echo "╚══════════════════════════════════════╝"
+echo ""
 
-# Trap signals for graceful shutdown
-trap 'echo "Shutting down..."; kill $(jobs -p); exit 0' SIGTERM SIGINT
+# ─── Next.js Production Server ───
+echo "► Starting Next.js (port 19951)..."
+./node_modules/.bin/next start -p 19951 &
+NEXT_PID=$!
 
-# Start Storybook in background
-start_storybook
+# ─── Storybook Static File Server ───
+echo "► Starting Storybook (port 6006)..."
+serve /app/storybook-static -p 6006 --no-clipboard --cors &
+SERVE_PID=$!
 
-# Wait a moment for storybook to start
-sleep 2
+# ─── Reverse Proxy ───
+echo "► Starting reverse proxy (port 8080)..."
+node proxy-server.mjs &
+PROXY_PID=$!
 
-# Start Next.js (this keeps the container running)
-start_nextjs
+echo ""
+echo "✓ All services started. Access at http://localhost:8080"
+echo ""
+
+# Wait for any process to exit
+wait

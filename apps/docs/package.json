@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -n proxy,next,sb -c cyan,green,magenta \"node proxy-server.mjs\" \"next dev -p 3000\" \"storybook dev -p 6006 --no-open\"",
+    "dev": "concurrently -n proxy,next,sb -c cyan,green,magenta \"node proxy-server.mjs\" \"next dev -p 19951\" \"storybook dev -p 6006 --no-open\"",
     "dev:next": "next dev",
     "dev:storybook": "storybook dev -p 6006",
     "build": "next build",

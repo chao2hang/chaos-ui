@@ -1,9 +1,9 @@
 /**
  * Reverse proxy for single-port development:
- *   /            → Next.js   (localhost:3000)
+ *   /            → Next.js   (localhost:19951)
  *   /storybook/* → Storybook (localhost:6006)
- *   /_next/*     → Next.js   (localhost:3000)
- *   /api/*       → Next.js   (localhost:3000)
+ *   /_next/*     → Next.js   (localhost:19951)
+ *   /api/*       → Next.js   (localhost:19951)
  *
  * Usage: node proxy-server.mjs
  * Then open http://localhost:8080
@@ -13,7 +13,7 @@ import http from "node:http";
 import httpProxy from "http-proxy";
 
 const PORT = 8080;
-const NEXT_PORT = 3000;
+const NEXT_PORT = 19951;
 const STORYBOOK_PORT = 6006;
 
 // --- Proxy instances ---
@@ -31,7 +31,7 @@ const storybookProxy = httpProxy.createProxyServer({
 nextProxy.on("error", (err, _req, res) => {
   if (res?.writeHead) {
     res.writeHead(502, { "Content-Type": "text/plain" });
-    res.end("Next.js dev server is not running. Start it with `next dev -p 3000`.");
+    res.end("Next.js dev server is not running. Start it with `next dev -p 19951`.");
   }
 });
 
