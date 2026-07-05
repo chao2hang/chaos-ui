@@ -311,6 +311,7 @@ export * from "./batch-selector";
 export * from "./shift-calendar";
 export * from "./equipment-card";
 export * from "./maintenance-log";
+export * from "./media-recorder";
 export * from "./quality-inspection-form";
 export * from "./inventory-alert-list";
 export * from "./unit-converter";
