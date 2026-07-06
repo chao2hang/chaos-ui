@@ -408,7 +408,7 @@ export default async function Home() {
                 rel="noopener noreferrer"
                 className="text-foreground font-medium hover:underline"
               >
-                QXY Foods
+                Chaos
               </a>
             </span>
           </div>

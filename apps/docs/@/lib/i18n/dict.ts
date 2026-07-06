@@ -127,7 +127,7 @@ const zh: DictShape = {
     componentsParagraphEn:
       "From primitive UI to business scenarios, layout frameworks to interaction patterns — everything you need.",
     componentsBrowseAll: "浏览全部组件",
-    footerBuiltBy: "Chaos UI · Built by",
+    footerBuiltBy: "Built by",
   },
   components: {
     pageTitle: "组件总览",
@@ -206,7 +206,7 @@ const en: DictShape = {
     componentsParagraphEn:
       "From primitive UI to business scenarios, layout frameworks to interaction patterns — everything you need.",
     componentsBrowseAll: "Browse all components",
-    footerBuiltBy: "Chaos UI · Built by",
+    footerBuiltBy: "Built by",
   },
   components: {
     pageTitle: "Components Overview",
