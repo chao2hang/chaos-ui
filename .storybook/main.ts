@@ -1,4 +1,9 @@
 import type { StorybookConfig } from "@storybook/nextjs-vite";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(__dirname, "..");
 
 const config: StorybookConfig = {
   stories: [
@@ -22,6 +27,13 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...(config.resolve?.alias as Record<string, string> | undefined),
+          "@": projectRoot,
+        },
+      },
       build: {
         ...config.build,
         chunkSizeWarningLimit: 1600,
