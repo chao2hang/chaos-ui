@@ -18,10 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Chaos UI Storybook",
+    default: "Chaos UI",
     template: "%s | Chaos UI",
   },
-  description: "Enterprise component design system documented in Storybook",
+  description:
+    "Enterprise-grade React component library for ERP & business systems",
 };
 
 export default function RootLayout({
@@ -35,7 +36,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <LocaleProvider>
           <ChaosI18nProvider>
             <TooltipProvider>

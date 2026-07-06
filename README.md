@@ -127,6 +127,16 @@ export default function RootLayout({ children }) {
 
 `ThemeToggle` 提供「亮色 / 暗色 / 跟随系统」三态切换，`styles.css` 的 `.dark` 变量自动生效。
 
+## 组件官网 (Docs Site)
+
+`apps/docs` 已升级为 antd 风格的组件官网，提供可搜索的组件总览与 per-component MDX 详情页。
+
+- **入口**: `/components` — 8 分区搜索总览，卡片式跳转
+- **详情页**: `/components/[category]/[slug]` — 基于 MDX 的组件文档（批次1 已完成 30 个高频组件）
+- **启动**: `cd apps/docs && pnpm run dev`，访问 `http://localhost:8080`
+
+> 详细变更见 [CHANGELOG.md](./CHANGELOG.md) 批次1 条目。
+
 ## 组件清单
 
 ### UI 基础组件 (103)

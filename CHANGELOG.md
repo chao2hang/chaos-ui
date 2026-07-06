@@ -5,6 +5,30 @@ All notable changes to **@qxyfoods/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 批次1 — Docs 组件官网改造 (2026-07-05)
+
+### 总览
+将 `apps/docs` 升级为 antd 风格的"组件官网"——可搜索总览 + per-component MDX 详情页。
+
+### 子 Agent 产出
+
+| Agent | 职责 | 状态 |
+|---|---|---|
+| A — MDX 基建 | `next.config.ts` + `mdx-components.tsx` + `CodeBlock` 组件 | ✅ |
+| B — 元数据 + 总览页 | 192 条 component meta + 8 分区 + `/components` 搜索总览 | ✅ |
+| C — 详情页路由 + 30 MDX | `[category]/[slug]` 动态路由 + 30 个高频组件 MDX | ✅ |
+| D — 导航 + 重定向 + 验证 | navLinks 改真路由 + 根 app 重定向 + 全量验证 | ✅ |
+
+### 变更
+- **apps/docs**: 新增 `/components` 总览页 (8 分区、搜索过滤、卡片跳转)
+- **apps/docs**: 新增 `/components/[category]/[slug]` 详情页路由 (30 个 MDX)
+- **apps/docs**: `site-header.tsx` 导航改为 Next.js `<Link>` 客户端路由
+- **app/**: 根 app 页面更新为迁移提示
+- **@/content/**: 新增 `components.meta.ts` (192 条元数据) + 30 个 MDX 文件
+
+### 剩余
+- 批次2: 剩余 162 个组件 MDX 自动生成 + 人工审稿
+
 ## [1.0.1] — 2026-07-04
 
 ### 1.0.1 patch — GA gates 修复

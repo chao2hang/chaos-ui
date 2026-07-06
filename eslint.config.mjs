@@ -1,6 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
-import reactHooks from "eslint-plugin-react-hooks";
 import chaosPlugin from "./eslint-plugin-chaos/index.js";
 
 import { defineConfig, globalIgnores } from "eslint/config";
@@ -196,8 +195,9 @@ const eslintConfig = defineConfig([
   },
   // react-compiler 子规则降级：这些是性能/最佳实践建议（refs-in-render /
   // set-state-in-effect / immutability），库内多处合法模式触发误报，降为 warn 不阻断。
+  // 注意: eslint-config-next 已注册 react-hooks 插件，此处不可重复声明 plugins，
+  // 否则触发 "Cannot redefine plugin react-hooks"。仅保留规则覆盖即可。
   {
-    plugins: { "react-hooks": reactHooks },
     rules: {
       "react-hooks/refs": "warn",
       "react-hooks/set-state-in-effect": "warn",
