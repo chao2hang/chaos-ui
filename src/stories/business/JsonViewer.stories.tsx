@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { JsonViewer } from "@/components/business/json-viewer"
+import type { Meta, StoryObj } from "@storybook/react";
+import { JsonViewer } from "@/components/business/json-viewer";
 
 const campaignPayload = {
   id: "cmp_2026_summer_launch",
@@ -22,36 +22,36 @@ const campaignPayload = {
     startsAt: "2026-06-18T09:00:00+08:00",
     endsAt: null,
   },
-}
+};
 
 const meta = {
   title: "Business/JsonViewer",
   component: JsonViewer,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof JsonViewer>
+} satisfies Meta<typeof JsonViewer>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     data: campaignPayload,
   },
-}
+};
 
 export const Collapsed: Story = {
   args: {
     data: campaignPayload,
     defaultCollapsedDepth: 1,
   },
-}
+};
 
 export const WithoutCopy: Story = {
   args: {
     data: campaignPayload,
     showCopy: false,
   },
-}
+};
 
 export const ArrayData: Story = {
   args: {
@@ -61,11 +61,10 @@ export const ArrayData: Story = {
       { step: "Schedule", completed: false },
     ],
   },
-}
+};
 
 export const Primitive: Story = {
   args: {
     data: "scheduled",
   },
-}
-
+};

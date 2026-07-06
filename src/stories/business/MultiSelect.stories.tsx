@@ -1,6 +1,9 @@
-import * as React from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { MultiSelect, type MultiSelectOption } from "@/components/business/multi-select"
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  MultiSelect,
+  type MultiSelectOption,
+} from "@/components/business/multi-select";
 
 const segmentOptions: MultiSelectOption[] = [
   {
@@ -40,29 +43,32 @@ const segmentOptions: MultiSelectOption[] = [
     disabled: true,
     group: "Compliance",
   },
-]
+];
 
 const meta = {
   title: "Business/MultiSelect",
   component: MultiSelect,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof MultiSelect>
+} satisfies Meta<typeof MultiSelect>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-type MultiSelectProps = React.ComponentProps<typeof MultiSelect>
+export default meta;
+type Story = StoryObj<typeof meta>;
+type MultiSelectProps = React.ComponentProps<typeof MultiSelect>;
 
 function ControlledMultiSelect(args: MultiSelectProps) {
-  const [value, setValue] = React.useState(args.value ?? [])
+  const [value, setValue] = React.useState(args.value ?? []);
 
   return (
     <div className="flex max-w-md flex-col gap-3">
       <MultiSelect {...args} value={value} onChange={setValue} />
-      <p className="text-xs text-muted-foreground">
-        Selected: <span className="font-mono">{value.length ? value.join(", ") : "none"}</span>
+      <p className="text-muted-foreground text-xs">
+        Selected:{" "}
+        <span className="font-mono">
+          {value.length ? value.join(", ") : "none"}
+        </span>
       </p>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -73,7 +79,7 @@ export const Default: Story = {
     searchPlaceholder: "Search segments...",
   },
   render: (args) => <ControlledMultiSelect {...args} />,
-}
+};
 
 export const WithOverflow: Story = {
   args: {
@@ -82,7 +88,7 @@ export const WithOverflow: Story = {
     maxCount: 2,
   },
   render: (args) => <ControlledMultiSelect {...args} />,
-}
+};
 
 export const LimitedSelection: Story = {
   args: {
@@ -92,7 +98,7 @@ export const LimitedSelection: Story = {
     placeholder: "Pick up to two segments",
   },
   render: (args) => <ControlledMultiSelect {...args} />,
-}
+};
 
 export const Disabled: Story = {
   args: {
@@ -100,7 +106,7 @@ export const Disabled: Story = {
     value: ["vip", "sms"],
     disabled: true,
   },
-}
+};
 
 export const Empty: Story = {
   args: {
@@ -109,5 +115,4 @@ export const Empty: Story = {
     emptyText: "No segments found",
   },
   render: (args) => <ControlledMultiSelect {...args} />,
-}
-
+};

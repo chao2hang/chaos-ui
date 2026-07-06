@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Menubar } from "@/components/ui/menubar";
 
 const meta = {
@@ -52,17 +52,17 @@ function MenubarDemo({
             onClick={() => setActiveItem(item)}
             className={
               isVertical
-                ? "rounded-md px-3 py-1 text-left text-sm hover:bg-accent aria-pressed:bg-accent disabled:pointer-events-none"
-                : "rounded-md px-3 py-1 text-sm hover:bg-accent aria-pressed:bg-accent disabled:pointer-events-none"
+                ? "hover:bg-accent aria-pressed:bg-accent rounded-md px-3 py-1 text-left text-sm disabled:pointer-events-none"
+                : "hover:bg-accent aria-pressed:bg-accent rounded-md px-3 py-1 text-sm disabled:pointer-events-none"
             }
           >
             {item}
           </button>
         ))}
       </Menubar>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Active menu:{" "}
-        <span className="font-medium text-foreground">{activeItem}</span>
+        <span className="text-foreground font-medium">{activeItem}</span>
       </p>
     </div>
   );

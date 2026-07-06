@@ -1,9 +1,9 @@
-import * as React from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   NotificationCenter,
   type NotificationItem,
-} from "@/components/business/notification-center"
+} from "@/components/business/notification-center";
 
 const initialNotifications: NotificationItem[] = [
   {
@@ -13,7 +13,10 @@ const initialNotifications: NotificationItem[] = [
     timestamp: new Date(2026, 5, 13, 9, 15),
     type: "success",
     read: false,
-    action: { label: "View", onClick: () => alert("Opening campaign approval") },
+    action: {
+      label: "View",
+      onClick: () => alert("Opening campaign approval"),
+    },
   },
   {
     id: "n-2",
@@ -39,21 +42,21 @@ const initialNotifications: NotificationItem[] = [
     type: "error",
     read: false,
   },
-]
+];
 
 const meta = {
   title: "Business/NotificationCenter",
   component: NotificationCenter,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof NotificationCenter>
+} satisfies Meta<typeof NotificationCenter>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-type NotificationCenterProps = React.ComponentProps<typeof NotificationCenter>
+export default meta;
+type Story = StoryObj<typeof meta>;
+type NotificationCenterProps = React.ComponentProps<typeof NotificationCenter>;
 
 function NotificationCenterDemo(args: NotificationCenterProps) {
-  const [notifications, setNotifications] = React.useState(args.notifications)
-  const [lastClicked, setLastClicked] = React.useState<string | null>(null)
+  const [notifications, setNotifications] = React.useState(args.notifications);
+  const [lastClicked, setLastClicked] = React.useState<string | null>(null);
 
   return (
     <div className="flex min-h-80 justify-end p-6">
@@ -63,29 +66,35 @@ function NotificationCenterDemo(args: NotificationCenterProps) {
           notifications={notifications}
           onMarkRead={(id) => {
             setNotifications((items) =>
-              items.map((item) => (item.id === id ? { ...item, read: true } : item))
-            )
-            args.onMarkRead?.(id)
+              items.map((item) =>
+                item.id === id ? { ...item, read: true } : item,
+              ),
+            );
+            args.onMarkRead?.(id);
           }}
           onMarkAllRead={() => {
-            setNotifications((items) => items.map((item) => ({ ...item, read: true })))
-            args.onMarkAllRead?.()
+            setNotifications((items) =>
+              items.map((item) => ({ ...item, read: true })),
+            );
+            args.onMarkAllRead?.();
           }}
           onClear={() => {
-            setNotifications([])
-            args.onClear?.()
+            setNotifications([]);
+            args.onClear?.();
           }}
           onItemClick={(item) => {
-            setLastClicked(item.title)
-            args.onItemClick?.(item)
+            setLastClicked(item.title);
+            args.onItemClick?.(item);
           }}
         />
         {lastClicked && (
-          <p className="text-xs text-muted-foreground">Last clicked: {lastClicked}</p>
+          <p className="text-muted-foreground text-xs">
+            Last clicked: {lastClicked}
+          </p>
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -93,14 +102,17 @@ export const Default: Story = {
     notifications: initialNotifications,
   },
   render: (args) => <NotificationCenterDemo {...args} />,
-}
+};
 
 export const AllRead: Story = {
   args: {
-    notifications: initialNotifications.map((item) => ({ ...item, read: true })),
+    notifications: initialNotifications.map((item) => ({
+      ...item,
+      read: true,
+    })),
   },
   render: (args) => <NotificationCenterDemo {...args} />,
-}
+};
 
 export const Empty: Story = {
   args: {
@@ -108,5 +120,4 @@ export const Empty: Story = {
     emptyText: "All caught up",
   },
   render: (args) => <NotificationCenterDemo {...args} />,
-}
-
+};

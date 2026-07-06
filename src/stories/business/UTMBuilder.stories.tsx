@@ -1,25 +1,22 @@
-import { useState } from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { UTMBuilder } from "@/components/business/utm-builder"
-import type { UTMBuilderProps } from "@/components/business/utm-builder"
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { UTMBuilder } from "@/components/business/utm-builder";
+import type { UTMBuilderProps } from "@/components/business/utm-builder";
 
 function InteractiveUTMBuilder(args: UTMBuilderProps) {
-  const [resultUrl, setResultUrl] = useState("")
+  const [resultUrl, setResultUrl] = useState("");
 
   return (
     <div className="max-w-3xl space-y-3">
-      <UTMBuilder
-        {...args}
-        onChange={(_, nextUrl) => setResultUrl(nextUrl)}
-      />
-      <div className="rounded-xl border bg-muted/30 p-3 text-xs">
+      <UTMBuilder {...args} onChange={(_, nextUrl) => setResultUrl(nextUrl)} />
+      <div className="bg-muted/30 rounded-xl border p-3 text-xs">
         <span className="font-medium">Latest emitted URL: </span>
-        <span className="break-all text-muted-foreground">
+        <span className="text-muted-foreground break-all">
           {resultUrl || "Edit a field to emit onChange."}
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 const meta = {
@@ -35,14 +32,14 @@ const meta = {
       content: "hero_cta",
     },
   },
-} satisfies Meta<typeof UTMBuilder>
+} satisfies Meta<typeof UTMBuilder>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => <InteractiveUTMBuilder {...args} />,
-}
+};
 
 export const Variants: Story = {
   args: {
@@ -55,5 +52,4 @@ export const Variants: Story = {
     },
   },
   render: (args) => <InteractiveUTMBuilder {...args} />,
-}
-
+};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { BatchSelector } from "@/components/business/batch-selector";
 import type { BatchNode } from "@/components/business/batch-selector";
 
@@ -73,7 +73,7 @@ function MultiSelectExample(args: React.ComponentProps<typeof BatchSelector>) {
         onChange={(ids) => setSelected(ids)}
         mode="multiple"
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected: {selected.join(", ") || "none"}
       </p>
     </div>
@@ -93,7 +93,7 @@ function SingleSelectExample(args: React.ComponentProps<typeof BatchSelector>) {
         mode="single"
         title="Select a Batch"
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected: {selected[0] ?? "none"}
       </p>
     </div>

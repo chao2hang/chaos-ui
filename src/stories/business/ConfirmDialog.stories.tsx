@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { AlertTriangleIcon, ArchiveIcon } from "@/components/ui/icons";
 import { ConfirmDialog } from "@/components/business/confirm-dialog";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ function ConfirmDialogDemo(args: ConfirmDialogProps) {
     <div className="flex min-h-48 flex-col items-start gap-3">
       <Button onClick={() => setOpen(true)}>Open confirmation</Button>
       {confirmed && (
-        <p className="text-sm text-success">
+        <p className="text-success text-sm">
           The confirm action has been recorded.
         </p>
       )}
@@ -58,7 +58,7 @@ export const Destructive: Story = {
       "This action cannot be undone and all linked automations will lose this audience.",
     confirmText: "Delete audience",
     variant: "destructive",
-    icon: <AlertTriangleIcon className="size-4 text-destructive" />,
+    icon: <AlertTriangleIcon className="text-destructive size-4" />,
   },
   render: (args) => <ConfirmDialogDemo {...args} />,
 };

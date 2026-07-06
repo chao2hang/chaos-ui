@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { PrintLayout } from "@/components/layout/print-layout"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
+import type { Meta, StoryObj } from "@storybook/react";
+import { PrintLayout } from "@/components/layout/print-layout";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -10,16 +10,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 const meta = {
   title: "Layouts/PrintLayout",
   component: PrintLayout,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof PrintLayout>
+} satisfies Meta<typeof PrintLayout>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const CustomerInvoice: Story = {
   render: () => (
@@ -28,7 +28,9 @@ export const CustomerInvoice: Story = {
         <div className="flex items-start justify-between">
           <div>
             <p className="text-2xl font-semibold">QXY Foods</p>
-            <p className="text-sm text-neutral-600">Enterprise supply invoice</p>
+            <p className="text-sm text-neutral-600">
+              Enterprise supply invoice
+            </p>
           </div>
           <div className="text-right text-sm">
             <p className="font-medium">Invoice INV-2026-0613</p>
@@ -86,7 +88,7 @@ export const CustomerInvoice: Story = {
       </div>
     </PrintLayout>
   ),
-}
+};
 
 export const PickingManifest: Story = {
   render: () => (
@@ -140,4 +142,4 @@ export const PickingManifest: Story = {
       </div>
     </PrintLayout>
   ),
-}
+};

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { BellIcon, CreditCardIcon, ShieldIcon } from "@/components/ui/icons";
 import { UserMenu, type UserMenuAction } from "@/components/business/user-menu";
 

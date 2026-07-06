@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { AddressPicker } from "@/components/business/address-picker";
 import type { AddressOption } from "@/components/business/address-picker";
 
@@ -17,7 +17,7 @@ function ControlledExample(args: React.ComponentProps<typeof AddressPicker>) {
           setLabels(lbls);
         }}
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected: {labels.join(" / ") || "none"}
       </p>
     </div>
@@ -46,7 +46,7 @@ function FourLevelExample(args: React.ComponentProps<typeof AddressPicker>) {
         onLoad={handleLoad}
         onChange={(codes) => setValue(codes)}
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Codes: {value.join(" > ") || "none"}
       </p>
     </div>

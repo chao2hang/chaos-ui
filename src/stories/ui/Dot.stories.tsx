@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { Dot } from "@/components/ui/dot"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Dot } from "@/components/ui/dot";
 
 const meta = {
   title: "Components/Dot",
@@ -13,7 +13,14 @@ const meta = {
     },
     variant: {
       control: { type: "select" },
-      options: ["default", "primary", "success", "warning", "destructive", "info"],
+      options: [
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "destructive",
+        "info",
+      ],
       description: "The semantic color of the dot",
     },
     pulse: {
@@ -21,20 +28,20 @@ const meta = {
       description: "Whether the dot shows a pulse animation",
     },
   },
-} satisfies Meta<typeof Dot>
+} satisfies Meta<typeof Dot>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Success: Story = {
   args: { variant: "success" },
-}
+};
 
 export const Pulsing: Story = {
   args: { variant: "primary", pulse: true },
-}
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -65,7 +72,7 @@ export const AllVariants: Story = {
       </div>
     </div>
   ),
-}
+};
 
 export const AllSizes: Story = {
   render: () => (
@@ -75,33 +82,32 @@ export const AllSizes: Story = {
       <Dot size="lg" variant="primary" />
     </div>
   ),
-}
+};
 
 export const StatusList: Story = {
   render: () => (
     <div className="w-64 space-y-3 rounded-lg border p-4">
       <div className="flex items-center justify-between text-sm">
         API gateway
-        <span className="flex items-center gap-2 text-muted-foreground">
+        <span className="text-muted-foreground flex items-center gap-2">
           <Dot variant="success" pulse />
           Healthy
         </span>
       </div>
       <div className="flex items-center justify-between text-sm">
         Queue worker
-        <span className="flex items-center gap-2 text-muted-foreground">
+        <span className="text-muted-foreground flex items-center gap-2">
           <Dot variant="warning" />
           Delayed
         </span>
       </div>
       <div className="flex items-center justify-between text-sm">
         Billing sync
-        <span className="flex items-center gap-2 text-muted-foreground">
+        <span className="text-muted-foreground flex items-center gap-2">
           <Dot variant="destructive" />
           Failed
         </span>
       </div>
     </div>
   ),
-}
-
+};

@@ -41,9 +41,11 @@ interface ConfigContextValue {
   prefixCls?: string | undefined;
   disableAnimation?: boolean | undefined;
   renderEmpty?: ((componentName?: string) => React.ReactNode) | undefined;
-  form?: {
-    validateMessages?: Record<string, string>;
-  } | undefined;
+  form?:
+    | {
+        validateMessages?: Record<string, string>;
+      }
+    | undefined;
 }
 
 const ConfigContext = React.createContext<ConfigContextValue>({
@@ -106,9 +108,11 @@ function ConfigProvider({
       if (scrollbarConfig.thumbColor) {
         vars["--scrollbar-thumb"] = scrollbarConfig.thumbColor;
       } else {
-        // Defaults that work in both light and dark modes
-        vars["--scrollbar-thumb"] = "rgba(15, 23, 42, 0.18)";
-        vars["--scrollbar-thumb-hover"] = "rgba(15, 23, 42, 0.3)";
+        // Defaults that work in both light and dark modes.
+        // Format matches styles/scrollbar.css (audit P0 #4): space-separated
+        // rgb() with slash alpha, not legacy comma rgba().
+        vars["--scrollbar-thumb"] = "rgb(15 23 42 / 0.18)";
+        vars["--scrollbar-thumb-hover"] = "rgb(15 23 42 / 0.3)";
       }
       if (scrollbarConfig.thumbHoverColor) {
         vars["--scrollbar-thumb-hover"] = scrollbarConfig.thumbHoverColor;

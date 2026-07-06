@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { ChannelPicker } from "@/components/business/channel-picker";
 import type {
   ChannelPickerProps,
@@ -16,7 +16,7 @@ function SingleChannelExample(args: ChannelPickerProps) {
         value={value as MarketingChannel}
         onChange={(next) => setValue(Array.isArray(next) ? next[0] : next)}
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected channel: {value ?? "none"}
       </p>
     </div>
@@ -40,7 +40,7 @@ function MultiChannelExample(args: ChannelPickerProps) {
           setValue(Array.isArray(next) ? next : next ? [next] : [])
         }
       />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected channels: {value.join(", ") || "none"}
       </p>
     </div>

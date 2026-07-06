@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { CreativePreview } from "@/components/business/creative-preview"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CreativePreview } from "@/components/business/creative-preview";
 
 const creative = {
   title: "Stock the pantry before the weekend rush",
@@ -7,7 +7,7 @@ const creative = {
   body: "Bundle fresh staples with chef-picked sauces and get priority delivery windows this Friday.",
   cta: "Shop bundles",
   from: "Chaos Foods",
-}
+};
 
 const meta = {
   title: "Business/CreativePreview",
@@ -28,12 +28,12 @@ const meta = {
       options: ["desktop", "mobile"],
     },
   },
-} satisfies Meta<typeof CreativePreview>
+} satisfies Meta<typeof CreativePreview>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const DesktopAndMobile: Story = {
   render: () => (
@@ -42,7 +42,7 @@ export const DesktopAndMobile: Story = {
       <CreativePreview mode="push" viewport="mobile" {...creative} />
     </div>
   ),
-}
+};
 
 export const Variants: Story = {
   render: () => (
@@ -51,5 +51,4 @@ export const Variants: Story = {
       <CreativePreview mode="ad" viewport="mobile" {...creative} />
     </div>
   ),
-}
-
+};

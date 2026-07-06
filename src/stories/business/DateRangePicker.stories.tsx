@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import type { DateRange } from "react-day-picker";
 import { DateRangePicker } from "@/components/business/date-range-picker";
 
@@ -28,7 +28,7 @@ function ControlledDateRangePicker(args: DateRangePickerProps) {
         value={value as DateRange}
         onChange={setValue}
       />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Range:{" "}
         <span className="font-mono">
           {value?.from?.toISOString().slice(0, 10) ?? "none"}

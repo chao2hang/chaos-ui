@@ -1,6 +1,6 @@
-import { useState } from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field";
 
 const meta = {
   title: "Components/OTPField",
@@ -24,44 +24,45 @@ const meta = {
       description: "Whether the field is read-only",
     },
   },
-} satisfies Meta<typeof OTPField>
+} satisfies Meta<typeof OTPField>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function OTPInteractiveDemo() {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
 
   return (
     <div className="space-y-3">
       <OTPField length={6} value={value} onValueChange={setValue} />
-      <p className="text-sm text-muted-foreground">
-        Entered code: <span className="font-medium text-foreground">{value || "empty"}</span>
+      <p className="text-muted-foreground text-sm">
+        Entered code:{" "}
+        <span className="text-foreground font-medium">{value || "empty"}</span>
       </p>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
   args: { length: 6 },
-}
+};
 
 export const Filled: Story = {
   args: { length: 6, defaultValue: "482913" },
-}
+};
 
 export const Masked: Story = {
   args: { length: 6, mask: true },
-}
+};
 
 export const InteractiveEntry: Story = {
   args: { length: 6 },
   render: () => <OTPInteractiveDemo />,
-}
+};
 
 export const Disabled: Story = {
   args: { length: 6, defaultValue: "123456", disabled: true },
-}
+};
 
 export const WithSeparator: Story = {
   args: { length: 6 },
@@ -72,5 +73,4 @@ export const WithSeparator: Story = {
       <OTPField length={3} />
     </div>
   ),
-}
-
+};

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { ApprovalTimeline } from "@/components/business/approval-timeline";
 import type { ApprovalStep } from "@/components/business/approval-timeline";
 

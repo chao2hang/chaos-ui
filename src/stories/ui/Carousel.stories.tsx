@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Carousel,
   CarouselContent,
@@ -6,7 +6,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 const meta = {
   title: "Components/Carousel",
@@ -30,17 +30,23 @@ const meta = {
       description: "Autoplay interval in milliseconds",
     },
   },
-} satisfies Meta<typeof Carousel>
+} satisfies Meta<typeof Carousel>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const slides = [
   { title: "Discover", description: "Introduce the new dashboard experience." },
-  { title: "Organize", description: "Group project activity into clear workstreams." },
-  { title: "Report", description: "Share progress with stakeholders in minutes." },
+  {
+    title: "Organize",
+    description: "Group project activity into clear workstreams.",
+  },
+  {
+    title: "Report",
+    description: "Share progress with stakeholders in minutes.",
+  },
   { title: "Launch", description: "Move confidently from review to release." },
-]
+];
 
 function CarouselDemo({
   autoplay = false,
@@ -48,10 +54,10 @@ function CarouselDemo({
   interval = 3000,
   loop = true,
 }: {
-  autoplay?: boolean
-  defaultIndex?: number
-  interval?: number
-  loop?: boolean
+  autoplay?: boolean;
+  defaultIndex?: number;
+  interval?: number;
+  loop?: boolean;
 }) {
   return (
     <Carousel
@@ -59,17 +65,19 @@ function CarouselDemo({
       defaultIndex={defaultIndex}
       interval={interval}
       loop={loop}
-      className="w-full max-w-xl rounded-xl border bg-card shadow-sm"
+      className="bg-card w-full max-w-xl rounded-xl border shadow-sm"
     >
       <CarouselContent className="w-[400%]">
         {slides.map((slide, index) => (
           <CarouselItem key={slide.title} className="basis-1/4">
-            <div className="flex aspect-video flex-col justify-end gap-2 bg-muted p-8">
-              <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            <div className="bg-muted flex aspect-video flex-col justify-end gap-2 p-8">
+              <div className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                 Step {index + 1}
               </div>
               <div className="text-2xl font-semibold">{slide.title}</div>
-              <p className="max-w-sm text-sm text-muted-foreground">{slide.description}</p>
+              <p className="text-muted-foreground max-w-sm text-sm">
+                {slide.description}
+              </p>
             </div>
           </CarouselItem>
         ))}
@@ -78,7 +86,7 @@ function CarouselDemo({
       <CarouselNext />
       <CarouselDots />
     </Carousel>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -89,13 +97,12 @@ export const Default: Story = {
     loop: true,
   },
   render: (args) => <CarouselDemo {...args} />,
-}
+};
 
 export const StartOnThirdSlide: Story = {
   render: () => <CarouselDemo defaultIndex={2} />,
-}
+};
 
 export const Autoplay: Story = {
   render: () => <CarouselDemo autoplay interval={2500} />,
-}
-
+};

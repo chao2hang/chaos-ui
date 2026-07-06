@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { Button } from "@/components/ui/button"
-import { CampaignCard } from "@/components/business/campaign-card"
-import type { CampaignCardProps } from "@/components/business/campaign-card"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@/components/ui/button";
+import { CampaignCard } from "@/components/business/campaign-card";
+import type { CampaignCardProps } from "@/components/business/campaign-card";
 
 const metrics = [
   { label: "Revenue", value: "$82.4K", helper: "+18% vs target" },
   { label: "CTR", value: "4.8%", helper: "Top quartile" },
   { label: "Audience", value: "124K", helper: "Qualified users" },
-]
+];
 
 const defaultCampaign: CampaignCardProps = {
   name: "Spring pantry launch",
@@ -18,7 +18,7 @@ const defaultCampaign: CampaignCardProps = {
   budget: 42000,
   spent: 23800,
   metrics,
-}
+};
 
 const meta = {
   title: "Business/CampaignCard",
@@ -28,15 +28,23 @@ const meta = {
   argTypes: {
     status: {
       control: { type: "select" },
-      options: ["draft", "scheduled", "active", "paused", "completed", "failed", "archived"],
+      options: [
+        "draft",
+        "scheduled",
+        "active",
+        "paused",
+        "completed",
+        "failed",
+        "archived",
+      ],
     },
   },
-} satisfies Meta<typeof CampaignCard>
+} satisfies Meta<typeof CampaignCard>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Variants: Story = {
   render: () => (
@@ -71,7 +79,7 @@ export const Variants: Story = {
       />
     </div>
   ),
-}
+};
 
 export const WithActions: Story = {
   args: {
@@ -83,5 +91,4 @@ export const WithActions: Story = {
       </>
     ),
   },
-}
-
+};

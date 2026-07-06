@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export const OperationsConsole: Story = {
         <div className="flex w-full items-center justify-between px-4">
           <div>
             <p className="text-sm font-semibold">QXY Foods Command Center</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               Live production and logistics status
             </p>
           </div>
@@ -54,8 +54,8 @@ export const OperationsConsole: Story = {
               href="#"
               className={
                 item.active
-                  ? "flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground"
-                  : "flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-primary text-primary-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm"
               }
             >
               <item.icon className="size-4" />
@@ -68,7 +68,7 @@ export const OperationsConsole: Story = {
         <div className="space-y-4 p-4">
           <div>
             <p className="text-sm font-medium">Shift Capacity</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               Batch line utilization
             </p>
           </div>
@@ -101,13 +101,13 @@ export const OperationsConsole: Story = {
           ].map(([label, value, description]) => (
             <Card key={label}>
               <CardHeader>
-                <CardTitle className="text-sm font-medium text-muted-foreground">
+                <CardTitle className="text-muted-foreground text-sm font-medium">
                   {label}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-2xl font-semibold">{value}</p>
-                <p className="text-xs text-muted-foreground">{description}</p>
+                <p className="text-muted-foreground text-xs">{description}</p>
               </CardContent>
             </Card>
           ))}
@@ -124,7 +124,7 @@ export const OperationsConsole: Story = {
             ].map((item) => (
               <div key={item} className="rounded-lg border p-3">
                 <p className="text-sm font-medium">{item}</p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   Owner assigned - SLA tracked
                 </p>
               </div>
@@ -150,7 +150,7 @@ export const FloatingWorkspace: Story = {
       }
       sidebar={
         <div className="space-y-3 p-4">
-          <p className="text-xs font-semibold uppercase text-muted-foreground">
+          <p className="text-muted-foreground text-xs font-semibold uppercase">
             Workflow
           </p>
           {[
@@ -163,7 +163,7 @@ export const FloatingWorkspace: Story = {
               key={step}
               className="flex items-center gap-3 rounded-md border p-2 text-sm"
             >
-              <span className="flex size-6 items-center justify-center rounded-full bg-muted text-xs">
+              <span className="bg-muted flex size-6 items-center justify-center rounded-full text-xs">
                 {index + 1}
               </span>
               {step}
@@ -174,7 +174,7 @@ export const FloatingWorkspace: Story = {
       aside={
         <div className="space-y-3 p-4">
           <p className="text-sm font-medium">Review Notes</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Procurement flagged a pricing variance for frozen vegetable SKUs.
             Finance needs margin confirmation before release.
           </p>
@@ -195,7 +195,7 @@ export const FloatingWorkspace: Story = {
             ].map((item) => (
               <div key={item} className="rounded-lg border p-4">
                 <p className="font-medium">{item}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Verified against enterprise policy
                 </p>
               </div>

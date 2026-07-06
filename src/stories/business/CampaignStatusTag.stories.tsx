@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { CampaignStatusTag } from "@/components/business/campaign-status-tag"
-import type { CampaignStatus } from "@/components/business/campaign-status-tag"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
+import type { CampaignStatus } from "@/components/business/campaign-status-tag";
 
 const statuses: CampaignStatus[] = [
   "draft",
@@ -10,7 +10,7 @@ const statuses: CampaignStatus[] = [
   "completed",
   "failed",
   "archived",
-]
+];
 
 const meta = {
   title: "Business/CampaignStatusTag",
@@ -26,16 +26,16 @@ const meta = {
       options: ["sm", "default"],
     },
   },
-} satisfies Meta<typeof CampaignStatusTag>
+} satisfies Meta<typeof CampaignStatusTag>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     status: "active",
   },
-}
+};
 
 export const Variants: Story = {
   args: {
@@ -48,7 +48,7 @@ export const Variants: Story = {
       ))}
     </div>
   ),
-}
+};
 
 export const Compact: Story = {
   args: {
@@ -62,5 +62,4 @@ export const Compact: Story = {
       ))}
     </div>
   ),
-}
-
+};

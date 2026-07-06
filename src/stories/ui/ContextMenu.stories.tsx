@@ -1,5 +1,5 @@
-import { useState } from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -14,36 +14,36 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu"
+} from "@/components/ui/context-menu";
 
 const meta = {
   title: "Components/ContextMenu",
   component: ContextMenu,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof ContextMenu>
+} satisfies Meta<typeof ContextMenu>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function SelectionOptionsDemo() {
   const [columns, setColumns] = useState({
     owner: true,
     status: true,
     dueDate: false,
-  })
-  const [density, setDensity] = useState("comfortable")
+  });
+  const [density, setDensity] = useState("comfortable");
 
   const visibleColumns = [
     columns.owner && "Owner",
     columns.status && "Status",
     columns.dueDate && "Due date",
-  ].filter(Boolean)
+  ].filter(Boolean);
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger className="flex h-44 w-full max-w-80 flex-col items-center justify-center gap-3 rounded-lg border bg-muted/40 p-4 text-center text-sm">
+      <ContextMenuTrigger className="bg-muted/40 flex h-44 w-full max-w-80 flex-col items-center justify-center gap-3 rounded-lg border p-4 text-center text-sm">
         <span className="font-medium">Right-click table settings</span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           {visibleColumns.join(", ")} - {density} density
         </span>
       </ContextMenuTrigger>
@@ -53,19 +53,25 @@ function SelectionOptionsDemo() {
           <ContextMenuSeparator />
           <ContextMenuCheckboxItem
             checked={columns.owner}
-            onCheckedChange={(checked) => setColumns((current) => ({ ...current, owner: checked }))}
+            onCheckedChange={(checked) =>
+              setColumns((current) => ({ ...current, owner: checked }))
+            }
           >
             Owner
           </ContextMenuCheckboxItem>
           <ContextMenuCheckboxItem
             checked={columns.status}
-            onCheckedChange={(checked) => setColumns((current) => ({ ...current, status: checked }))}
+            onCheckedChange={(checked) =>
+              setColumns((current) => ({ ...current, status: checked }))
+            }
           >
             Status
           </ContextMenuCheckboxItem>
           <ContextMenuCheckboxItem
             checked={columns.dueDate}
-            onCheckedChange={(checked) => setColumns((current) => ({ ...current, dueDate: checked }))}
+            onCheckedChange={(checked) =>
+              setColumns((current) => ({ ...current, dueDate: checked }))
+            }
           >
             Due date
           </ContextMenuCheckboxItem>
@@ -77,18 +83,20 @@ function SelectionOptionsDemo() {
         >
           <ContextMenuLabel>Density</ContextMenuLabel>
           <ContextMenuRadioItem value="compact">Compact</ContextMenuRadioItem>
-          <ContextMenuRadioItem value="comfortable">Comfortable</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="comfortable">
+            Comfortable
+          </ContextMenuRadioItem>
           <ContextMenuRadioItem value="spacious">Spacious</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>
-  )
+  );
 }
 
 export const Default: Story = {
   render: () => (
     <ContextMenu>
-      <ContextMenuTrigger className="flex h-44 w-72 items-center justify-center rounded-lg border border-dashed bg-muted/50 text-sm text-muted-foreground">
+      <ContextMenuTrigger className="bg-muted/50 text-muted-foreground flex h-44 w-72 items-center justify-center rounded-lg border border-dashed text-sm">
         Right-click this panel
       </ContextMenuTrigger>
       <ContextMenuContent>
@@ -104,12 +112,12 @@ export const Default: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const WithSubmenu: Story = {
   render: () => (
     <ContextMenu>
-      <ContextMenuTrigger className="flex h-44 w-72 items-center justify-center rounded-lg border bg-card text-sm">
+      <ContextMenuTrigger className="bg-card flex h-44 w-72 items-center justify-center rounded-lg border text-sm">
         Right-click for share actions
       </ContextMenuTrigger>
       <ContextMenuContent>
@@ -127,9 +135,8 @@ export const WithSubmenu: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const SelectionOptions: Story = {
   render: () => <SelectionOptionsDemo />,
-}
-
+};

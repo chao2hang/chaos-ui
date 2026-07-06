@@ -22,6 +22,8 @@ export {
 export { AspectRatio } from "./aspect-ratio";
 export { AudioPlayer } from "./audio-player";
 export type { AudioPlayerProps } from "./audio-player";
+export { VideoPlayer } from "./video-player";
+export type { VideoPlayerProps } from "./video-player";
 export {
   Avatar,
   AvatarImage,

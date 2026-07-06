@@ -1,27 +1,27 @@
-import * as React from "react"
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { PromptDialog } from "@/components/business/prompt-dialog"
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { PromptDialog } from "@/components/business/prompt-dialog";
+import { Button } from "@/components/ui/button";
 
 const meta = {
   title: "Business/PromptDialog",
   component: PromptDialog,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof PromptDialog>
+} satisfies Meta<typeof PromptDialog>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-type PromptDialogProps = React.ComponentProps<typeof PromptDialog>
+export default meta;
+type Story = StoryObj<typeof meta>;
+type PromptDialogProps = React.ComponentProps<typeof PromptDialog>;
 
 function PromptDialogDemo(args: PromptDialogProps) {
-  const [open, setOpen] = React.useState(args.open ?? true)
-  const [value, setValue] = React.useState(args.defaultValue ?? "")
+  const [open, setOpen] = React.useState(args.open ?? true);
+  const [value, setValue] = React.useState(args.defaultValue ?? "");
 
   return (
     <div className="flex min-h-48 flex-col items-start gap-3">
       <Button onClick={() => setOpen(true)}>Open prompt</Button>
       {value && (
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Last submitted: <span className="font-mono">{value}</span>
         </p>
       )}
@@ -30,12 +30,12 @@ function PromptDialogDemo(args: PromptDialogProps) {
         open={open}
         onOpenChange={setOpen}
         onConfirm={(nextValue) => {
-          setValue(nextValue)
-          args.onConfirm?.(nextValue)
+          setValue(nextValue);
+          args.onConfirm?.(nextValue);
         }}
       />
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
@@ -47,7 +47,7 @@ export const Default: Story = {
     confirmText: "Save filter",
   },
   render: (args) => <PromptDialogDemo {...args} />,
-}
+};
 
 export const WithDefaultValue: Story = {
   args: {
@@ -57,7 +57,7 @@ export const WithDefaultValue: Story = {
     confirmText: "Rename",
   },
   render: (args) => <PromptDialogDemo {...args} />,
-}
+};
 
 export const OptionalEmail: Story = {
   args: {
@@ -70,16 +70,16 @@ export const OptionalEmail: Story = {
     confirmText: "Continue",
   },
   render: (args) => <PromptDialogDemo {...args} />,
-}
+};
 
 export const RequiredValidation: Story = {
   args: {
     open: true,
     title: "Required prompt",
-    description: "Click confirm without typing to see the inline validation state.",
+    description:
+      "Click confirm without typing to see the inline validation state.",
     label: "Required value",
     placeholder: "Type something",
     required: true,
   },
-}
-
+};

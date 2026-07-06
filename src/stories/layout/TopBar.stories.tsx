@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { TopBar } from "@/components/layout/top-bar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 
 export const ProductNavigation: Story = {
   render: () => (
-    <div className="min-h-screen bg-muted/30">
+    <div className="bg-muted/30 min-h-screen">
       <TopBar
         logo={
           <span className="flex items-center gap-2">
@@ -64,7 +64,7 @@ export const ProductNavigation: Story = {
       <main className="mx-auto max-w-6xl space-y-4 p-6">
         <div>
           <h1 className="text-2xl font-semibold">Enterprise Navigation</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Top-level access to operational modules, analytics, compliance, and
             support.
           </p>
@@ -77,7 +77,7 @@ export const ProductNavigation: Story = {
           ].map(([label, value]) => (
             <Card key={label}>
               <CardHeader>
-                <CardTitle className="text-sm text-muted-foreground">
+                <CardTitle className="text-muted-foreground text-sm">
                   {label}
                 </CardTitle>
               </CardHeader>
@@ -128,7 +128,7 @@ export const TransparentHero: Story = {
             Shared visibility for suppliers, carriers, and enterprise food
             buyers.
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             Keep everyone aligned on order forecasts, compliance documents,
             cold-chain checkpoints, and finance-ready delivery proof.
           </p>
@@ -147,7 +147,7 @@ export const TransparentHero: Story = {
                 key={label}
                 className="flex items-center justify-between rounded-md border p-3"
               >
-                <span className="text-sm text-muted-foreground">{label}</span>
+                <span className="text-muted-foreground text-sm">{label}</span>
                 <span className="font-semibold">{value}</span>
               </div>
             ))}

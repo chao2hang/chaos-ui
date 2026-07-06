@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { TimePicker } from "@/components/business/time-picker";
 
 const meta = {
@@ -22,7 +22,7 @@ function ControlledTimePicker(args: TimePickerProps) {
         value={(value ?? "") as string}
         onChange={setValue}
       />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Time: <span className="font-mono">{value ?? "none"}</span>
       </p>
     </div>

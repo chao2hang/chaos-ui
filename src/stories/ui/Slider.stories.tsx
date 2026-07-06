@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Slider,
   SliderControl,
@@ -66,7 +66,7 @@ function SliderDemo({
           <SliderThumb aria-label="Value" />
         </SliderControl>
       </Slider>
-      <p className="text-sm text-muted-foreground">Value: {value}</p>
+      <p className="text-muted-foreground text-sm">Value: {value}</p>
     </div>
   );
 }
@@ -89,7 +89,7 @@ function RangeSliderDemo() {
           <SliderThumb aria-label="Maximum value" />
         </SliderControl>
       </Slider>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Range: {value[0]} - {value[1]}
       </p>
     </div>
@@ -113,12 +113,12 @@ function SteppedSliderDemo() {
           <SliderThumb aria-label="Volume" />
         </SliderControl>
       </Slider>
-      <div className="flex justify-between text-xs text-muted-foreground">
+      <div className="text-muted-foreground flex justify-between text-xs">
         <span>0</span>
         <span>50</span>
         <span>100</span>
       </div>
-      <p className="text-sm text-muted-foreground">Value: {value}</p>
+      <p className="text-muted-foreground text-sm">Value: {value}</p>
     </div>
   );
 }

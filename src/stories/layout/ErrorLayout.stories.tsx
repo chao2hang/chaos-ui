@@ -1,32 +1,33 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { ErrorLayout } from "@/components/layout/error-layout"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ErrorLayout } from "@/components/layout/error-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const meta = {
   title: "Layouts/ErrorLayout",
   component: ErrorLayout,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof ErrorLayout>
+} satisfies Meta<typeof ErrorLayout>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const ServiceUnavailable: Story = {
   render: () => (
     <ErrorLayout>
       <Card className="w-full max-w-xl text-center">
         <CardHeader>
-          <div className="mx-auto mb-2 flex size-14 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+          <div className="bg-destructive/10 text-destructive mx-auto mb-2 flex size-14 items-center justify-center rounded-full">
             503
           </div>
           <CardTitle>Warehouse planning is temporarily unavailable</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            The optimization service did not respond before the enterprise timeout window. Existing
-            dispatch plans remain available in read-only mode.
+          <p className="text-muted-foreground text-sm">
+            The optimization service did not respond before the enterprise
+            timeout window. Existing dispatch plans remain available in
+            read-only mode.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <Badge variant="outline">Incident INC-4829</Badge>
@@ -40,7 +41,7 @@ export const ServiceUnavailable: Story = {
       </Card>
     </ErrorLayout>
   ),
-}
+};
 
 export const PermissionRequired: Story = {
   render: () => (
@@ -53,12 +54,14 @@ export const PermissionRequired: Story = {
           <CardTitle>Finance approval role required</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            This margin override contains confidential supplier terms. Ask an administrator to grant
-            the Finance Approver role or continue with the standard price book.
+          <p className="text-muted-foreground text-sm">
+            This margin override contains confidential supplier terms. Ask an
+            administrator to grant the Finance Approver role or continue with
+            the standard price book.
           </p>
-          <div className="rounded-lg border bg-muted/30 p-3 text-sm">
-            Requested resource: <span className="font-medium">Regional margin overrides</span>
+          <div className="bg-muted/30 rounded-lg border p-3 text-sm">
+            Requested resource:{" "}
+            <span className="font-medium">Regional margin overrides</span>
           </div>
           <div className="flex gap-2">
             <Button>Request Access</Button>
@@ -68,4 +71,4 @@ export const PermissionRequired: Story = {
       </Card>
     </ErrorLayout>
   ),
-}
+};

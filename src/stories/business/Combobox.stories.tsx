@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Combobox, type ComboboxOption } from "@/components/ui/combobox";
 
 const assigneeOptions: ComboboxOption[] = [
@@ -56,7 +56,7 @@ function ControlledCombobox(args: ComboboxProps) {
   return (
     <div className="flex max-w-sm flex-col gap-3">
       <Combobox {...args} value={(value ?? "") as string} onChange={setValue} />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Selected value: <span className="font-mono">{value ?? "none"}</span>
       </p>
     </div>
@@ -82,7 +82,7 @@ export const CustomOption: Story = {
       <span className="flex flex-col">
         <span>{option.label}</span>
         {option.description && (
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {option.description}
           </span>
         )}

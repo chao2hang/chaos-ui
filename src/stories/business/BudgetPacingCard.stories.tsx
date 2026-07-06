@@ -1,13 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import { BudgetPacingCard } from "@/components/business/budget-pacing-card"
-import type { BudgetPacingStatus } from "@/components/business/budget-pacing-card"
+import type { Meta, StoryObj } from "@storybook/react";
+import { BudgetPacingCard } from "@/components/business/budget-pacing-card";
+import type { BudgetPacingStatus } from "@/components/business/budget-pacing-card";
 
-const examples: Array<{ status: BudgetPacingStatus; spent: number; forecast: number }> = [
+const examples: Array<{
+  status: BudgetPacingStatus;
+  spent: number;
+  forecast: number;
+}> = [
   { status: "under", spent: 7800, forecast: 24800 },
   { status: "on-track", spent: 22800, forecast: 39800 },
   { status: "over", spent: 36800, forecast: 51200 },
   { status: "exhausted", spent: 43000, forecast: 43000 },
-]
+];
 
 const meta = {
   title: "Business/BudgetPacingCard",
@@ -18,12 +22,12 @@ const meta = {
     spent: 22800,
     forecast: 39800,
   },
-} satisfies Meta<typeof BudgetPacingCard>
+} satisfies Meta<typeof BudgetPacingCard>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Variants: Story = {
   render: () => (
@@ -40,5 +44,4 @@ export const Variants: Story = {
       ))}
     </div>
   ),
-}
-
+};

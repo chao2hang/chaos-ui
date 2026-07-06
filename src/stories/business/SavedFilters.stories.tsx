@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   SavedFilters,
   type SavedFilter,
@@ -77,7 +77,7 @@ function SavedFiltersDemo(args: SavedFiltersProps) {
           args.onPin?.(id);
         }}
       />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Active filter: <span className="font-mono">{activeId ?? "none"}</span>
       </p>
     </div>
