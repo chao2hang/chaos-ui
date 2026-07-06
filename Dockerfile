@@ -9,6 +9,7 @@ WORKDIR /app
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps/docs/package.json apps/docs/package.json
 COPY packages/chaos-design-ui/package.json packages/chaos-design-ui/package.json
+COPY eslint-plugin-chaos/package.json eslint-plugin-chaos/package.json
 RUN pnpm install --frozen-lockfile
 
 # 源码
