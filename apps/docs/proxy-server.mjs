@@ -48,7 +48,20 @@ function isStorybookPath(pathname) {
     pathname.startsWith("/storybook") ||
     pathname.startsWith("/sb-") ||
     pathname === "/runtime~main.iframe.bundle.js" ||
-    pathname === "/virtual-storybook-deps-index-entry.js"
+    pathname === "/virtual-storybook-deps-index-entry.js" ||
+    // Vite dev server absolute-path resources (Storybook v10)
+    pathname.startsWith("/@vite/") ||
+    pathname.startsWith("/@id/") ||
+    pathname.startsWith("/@fs/") ||
+    pathname.startsWith("/virtual:") ||
+    pathname === "/vite-inject-mocker-entry.js" ||
+    pathname.startsWith("/node_modules/") ||
+    pathname.startsWith("/.storybook/") ||
+    // Project source files served by Vite (not valid Next.js routes)
+    pathname.startsWith("/lib/") ||
+    pathname.startsWith("/hooks/") ||
+    pathname.startsWith("/src/") ||
+    pathname === "/app/globals.css"
   );
 }
 
