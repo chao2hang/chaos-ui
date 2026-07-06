@@ -1,0 +1,37 @@
+import { PublicLayout } from "@/components/layout/public-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# PublicLayout
+
+> System-level layout shells for admin pages.
+
+PublicLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a public layout.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PublicLayout } from "@/components/layout/public-layout"
+
+export function Basic() {
+  return <PublicLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### PublicLayout
+
+| Prop            | Type                          | Default | Description                     |
+| --------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`     | `string`                      | —       | Custom CSS class                |
+| `logo`          | `React.ReactNode`             | —       |                                 |
+| `nav`           | `Array<T>`                    | —       |                                 |
+| `footer`        | `React.ReactNode`             | —       |                                 |
+| `headerActions` | `React.ReactNode`             | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

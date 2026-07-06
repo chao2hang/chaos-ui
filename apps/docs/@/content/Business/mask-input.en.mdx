@@ -1,0 +1,40 @@
+import { MaskInput } from "@/components/business/mask-input";
+import { CodeBlock } from "@/components/code-block";
+
+# MaskInput
+
+> Domain-specific business components for ERP scenarios.
+
+MaskInput — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mask input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MaskInput } from "@/components/business/mask-input"
+
+export function Basic() {
+  return <MaskInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### MaskInput
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `mask`        | `string`               | —       |                                   |
+| `value`       | `string`               | —       | Current value (controlled)        |
+| `onChange`    | `() => void`           | —       | Callback when value changes       |
+| `placeholder` | `string`               | —       | Placeholder text                  |
+| `disabled`    | `boolean`              | —       | Whether disabled                  |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

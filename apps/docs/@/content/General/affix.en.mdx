@@ -1,0 +1,50 @@
+import { Affix } from "@/components/ui/affix";
+import { CodeBlock } from "@/components/code-block";
+
+# Affix
+
+> General-purpose primitives used across the app.
+
+Pins an element to a viewport position so it stays visible on scroll.
+
+## When to Use
+
+Use when you need an affix.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Affix } from "@/components/ui/affix"
+
+export function Basic() {
+  return <Affix />
+}`} lang="tsx" />
+
+## Style Variants
+
+**position**
+
+| position       | Description | 默认 |
+| -------------- | ----------- | ---- |
+| `top`          |             |      |
+| `bottom`       |             |      |
+| `top-start`    |             |      |
+| `top-end`      |             |      |
+| `bottom-start` |             |      |
+| `bottom-end`   |             | ✓    |
+
+## API / Props
+
+### Affix
+
+| Prop        | Type                          | Default | Description                               |
+| ----------- | ----------------------------- | ------- | ----------------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                          |
+| `offset`    | `number`                      | `0`     | Offset from the target position in pixels |
+| `target`    | `(...args) => unknown`        | —       | Target container ref to observe scroll    |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes           |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

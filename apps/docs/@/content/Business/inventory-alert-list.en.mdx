@@ -1,0 +1,36 @@
+import { InventoryAlertList } from "@/components/business/inventory-alert-list";
+import { CodeBlock } from "@/components/code-block";
+
+# InventoryAlertList
+
+> Domain-specific business components for ERP scenarios.
+
+InventoryAlertList — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an inventory alert list.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { InventoryAlertList } from "@/components/business/inventory-alert-list"
+
+export function Basic() {
+  return <InventoryAlertList />
+}`} lang="tsx" />
+
+## API / Props
+
+### InventoryAlertList
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `alerts`    | `InventoryAlert[]`            | —       |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

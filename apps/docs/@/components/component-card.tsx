@@ -3,19 +3,25 @@
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { categoryLabelsZh } from "@/content/components.meta";
+import { categoryLabelsZh, categoryLabelsEn } from "@/content/components.meta";
 import type { ComponentMeta } from "@/content/components.meta";
+import { useLocale } from "@/components/locale-provider";
+import { useDict } from "@/hooks/use-dict";
 
 /**
  * Card surface for a single component on the overview grid.
  *
- * Visual: title (name) + subtitle (nameZh) + 2-line descZh + category tag,
- * hover lift + shadow.
+ * Visual: name + secondary name + 2-line description + category tag,
+ * hover lift + shadow. All bilingual fields (name/nameZh, desc/descZh,
+ * category label) switch based on the active locale.
  *
  * Main entry → /components/[category]/[slug]
  * Side entry → Storybook autodocs (only when storybookId present)
  */
 export function ComponentCard({ component }: { component: ComponentMeta }) {
+  const { locale } = useLocale();
+  const dict = useDict();
+  const isEn = locale === "en";
   const categorySlug = encodeURIComponent(component.category);
   const slug = encodeURIComponent(component.slug);
   const detailHref = `/components/${categorySlug}/${slug}`;
@@ -23,27 +29,36 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
     ? `/storybook/?path=/docs/${component.storybookId}`
     : null;
 
+  const categoryLabel = isEn
+    ? categoryLabelsEn[component.category]
+    : categoryLabelsZh[component.category];
+  const primaryName = component.name;
+  const secondaryName = isEn ? undefined : component.nameZh;
+  const description = isEn ? component.desc : component.descZh;
+
   return (
     <Link
       href={detailHref}
-      className="group relative flex h-full flex-col rounded-xl border border-border/60 bg-card p-4 text-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-500/40 hover:shadow-lg dark:hover:border-brand-400/40 dark:hover:shadow-black/40"
+      className="group border-border/60 bg-card hover:border-brand-500/40 dark:hover:border-brand-400/40 relative flex h-full flex-col rounded-xl border p-4 text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-black/40"
     >
       {/* Header: name + category tag */}
       <div className="flex items-start justify-between gap-2">
-        <h3 className="font-mono text-sm font-semibold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400">
-          {component.name}
+        <h3 className="text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 font-mono text-sm font-semibold">
+          {primaryName}
         </h3>
         <Badge variant="outline" className="shrink-0 text-[10px] font-normal">
-          {categoryLabelsZh[component.category]}
+          {categoryLabel}
         </Badge>
       </div>
 
-      {/* Subtitle (Chinese name) */}
-      <p className="mt-1 text-xs text-muted-foreground">{component.nameZh}</p>
+      {/* Subtitle (Chinese name) — hidden in EN */}
+      {secondaryName && (
+        <p className="text-muted-foreground mt-1 text-xs">{secondaryName}</p>
+      )}
 
-      {/* Description (zh, 2-line clamp) */}
-      <p className="mt-2 line-clamp-2 flex-1 text-xs leading-relaxed text-muted-foreground">
-        {component.descZh}
+      {/* Description (2-line clamp) */}
+      <p className="text-muted-foreground mt-2 line-clamp-2 flex-1 text-xs leading-relaxed">
+        {description}
       </p>
 
       {/* Footer: Storybook link (button to avoid <a>-inside-<a>) */}
@@ -55,10 +70,12 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
             e.preventDefault();
             window.open(storybookHref, "_blank", "noopener,noreferrer");
           }}
-          className="mt-3 inline-flex cursor-pointer items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-brand-600 dark:hover:text-brand-400"
+          className="text-muted-foreground hover:text-brand-600 dark:hover:text-brand-400 mt-3 inline-flex cursor-pointer items-center gap-1 text-[11px] transition-colors"
         >
-          Browse in Storybook
-          <span aria-hidden className="text-[10px]">↗</span>
+          {dict.card.browseStorybook}
+          <span aria-hidden className="text-[10px]">
+            ↗
+          </span>
         </button>
       )}
     </Link>
@@ -69,6 +86,8 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
  * Anchor id for the section that the search tabs scroll to.
  * Exposed as a helper so the page and search island share the same convention.
  */
-export function sectionIdForCategory(category: ComponentMeta["category"]): string {
+export function sectionIdForCategory(
+  category: ComponentMeta["category"],
+): string {
   return category.replace(/\s+/g, "-").toLowerCase();
 }

@@ -1,0 +1,44 @@
+import { AppShell } from "@/components/layout/app-shell";
+import { CodeBlock } from "@/components/code-block";
+
+# AppShell
+
+> System-level layout shells for admin pages.
+
+AppShell — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Application shell providing top nav, sidebar, and main area.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AppShell } from "@/components/layout/app-shell"
+
+export function Basic() {
+  return <AppShell />
+}`} lang="tsx" />
+
+## API / Props
+
+### AppShell
+
+| Prop                 | Type                                  | Default   | Description                     |
+| -------------------- | ------------------------------------- | --------- | ------------------------------- |
+| `className`          | `string`                              | —         | Custom CSS class                |
+| `header`             | `React.ReactNode`                     | —         |                                 |
+| `sidebar`            | `React.ReactNode`                     | —         |                                 |
+| `aside`              | `React.ReactNode`                     | —         |                                 |
+| `footer`             | `React.ReactNode`                     | —         |                                 |
+| `sidebarWidth`       | `number`                              | `240`     |                                 |
+| `asideWidth`         | `number`                              | `280`     |                                 |
+| `sidebarCollapsible` | `boolean`                             | `true`    |                                 |
+| `defaultCollapsed`   | `boolean`                             | `false`   |                                 |
+| `variant`            | `"default" \| "floating" \| "sticky"` | `default` | Style variant                   |
+| ...rest              | `React.ComponentProps<"div">`         | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

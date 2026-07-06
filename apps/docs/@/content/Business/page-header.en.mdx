@@ -1,0 +1,35 @@
+import { PageHeader } from "@/components/business/page-header";
+import { CodeBlock } from "@/components/code-block";
+
+# PageHeader
+
+> Domain-specific business components for ERP scenarios.
+
+PageHeader — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a page header.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PageHeader } from "@/components/business/page-header"
+
+export function Basic() {
+  return <PageHeader />
+}`} lang="tsx" />
+
+## API / Props
+
+### PageHeader
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

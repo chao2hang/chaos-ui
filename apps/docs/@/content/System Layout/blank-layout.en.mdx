@@ -1,0 +1,35 @@
+import { BlankLayout } from "@/components/layout/blank-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# BlankLayout
+
+> System-level layout shells for admin pages.
+
+BlankLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a blank layout.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BlankLayout } from "@/components/layout/blank-layout"
+
+export function Basic() {
+  return <BlankLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### BlankLayout
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `centered`  | `boolean`                     | `false` |                                 |
+| `padded`    | `boolean`                     | `true`  |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

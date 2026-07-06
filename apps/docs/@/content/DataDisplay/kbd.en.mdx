@@ -1,0 +1,61 @@
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { CodeBlock } from "@/components/code-block";
+
+# Kbd
+
+> Components for presenting data and content.
+
+Renders a keyboard-key style, used for shortcut hints.
+
+## When to Use
+
+Use when you need a kbd.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Kbd, KbdGroup } from "@/components/ui/kbd"
+
+export function Basic() {
+  return (
+    <Kbd>
+      <KbdGroup>Content</KbdGroup>
+    </Kbd>
+  )
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Kbd size="sm">Sm</Kbd>
+  <Kbd size="default">Default</Kbd>
+  <Kbd size="lg">Lg</Kbd>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `sm`      | Small        |      |
+| `default` | Default size | ✓    |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Kbd
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **复合组件**: 包含 1 个子组件(KbdGroup),使用组合模式按需导入。

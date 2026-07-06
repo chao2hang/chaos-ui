@@ -1,0 +1,43 @@
+import { CrudToolbar } from "@/components/business/crud-toolbar";
+import { CodeBlock } from "@/components/code-block";
+
+# CrudToolbar
+
+> Domain-specific business components for ERP scenarios.
+
+CrudToolbar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a crud toolbar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CrudToolbar } from "@/components/business/crud-toolbar"
+
+export function Basic() {
+  return <CrudToolbar />
+}`} lang="tsx" />
+
+## API / Props
+
+### CrudToolbar
+
+| Prop                | Type                          | Default   | Description                     |
+| ------------------- | ----------------------------- | --------- | ------------------------------- |
+| `className`         | `string`                      | —         | Custom CSS class                |
+| `onAdd`             | `() => void`                  | —         |                                 |
+| `onDelete`          | `() => void`                  | —         |                                 |
+| `onExport`          | `() => void`                  | —         |                                 |
+| `onImport`          | `() => void`                  | —         |                                 |
+| `onRefresh`         | `() => void`                  | —         |                                 |
+| `onSearch`          | `() => void`                  | —         |                                 |
+| `searchPlaceholder` | `string`                      | `搜索...` |                                 |
+| `selectedCount`     | `number`                      | `0`       |                                 |
+| ...rest             | `React.ComponentProps<"div">` | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

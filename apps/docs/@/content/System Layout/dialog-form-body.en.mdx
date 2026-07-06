@@ -1,0 +1,34 @@
+import { DialogFormBody } from "@/components/layout/dialog-form-body";
+import { CodeBlock } from "@/components/code-block";
+
+# DialogFormBody
+
+> System-level layout shells for admin pages.
+
+DialogFormBody — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a dialog form body.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DialogFormBody } from "@/components/layout/dialog-form-body"
+
+export function Basic() {
+  return <DialogFormBody />
+}`} lang="tsx" />
+
+## API / Props
+
+### DialogFormBody
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `scrolling` | `boolean`                     | `true`  |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

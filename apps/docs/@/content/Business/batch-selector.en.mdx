@@ -1,0 +1,40 @@
+import { BatchSelector } from "@/components/business/batch-selector";
+import { CodeBlock } from "@/components/code-block";
+
+# BatchSelector
+
+> Domain-specific business components for ERP scenarios.
+
+BatchSelector — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a batch selector.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BatchSelector } from "@/components/business/batch-selector"
+
+export function Basic() {
+  return <BatchSelector />
+}`} lang="tsx" />
+
+## API / Props
+
+### BatchSelector
+
+| Prop            | Type                          | Default | Description                     |
+| --------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`     | `string`                      | —       | Custom CSS class                |
+| `selectedIds`   | `string[]`                    | —       |                                 |
+| `total`         | `number`                      | —       |                                 |
+| `onSelectAll`   | `() => void`                  | —       |                                 |
+| `onDeselectAll` | `() => void`                  | —       |                                 |
+| `actions`       | `React.ReactNode`             | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

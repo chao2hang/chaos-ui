@@ -1,0 +1,44 @@
+import { UserBrowse } from "@/components/ui/user-browse";
+import { CodeBlock } from "@/components/code-block";
+
+# UserBrowse
+
+> General-purpose primitives used across the app.
+
+UserBrowse — a general-purpose primitives used across the app. from Chaos UI.
+
+## When to Use
+
+Use when you need an user browse.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { UserBrowse } from "@/components/ui/user-browse"
+
+export function Basic() {
+  return <UserBrowse />
+}`} lang="tsx" />
+
+## API / Props
+
+### UserBrowse
+
+| Prop           | Type                   | Default          | Description                       |
+| -------------- | ---------------------- | ---------------- | --------------------------------- |
+| `className`    | `string`               | —                | Custom CSS class                  |
+| `value`        | `User \| User[]`       | —                | Current value (controlled)        |
+| `defaultValue` | `User \| User[]`       | —                | Default value (uncontrolled)      |
+| `placeholder`  | `string`               | `Select user...` | Placeholder text                  |
+| `disabled`     | `boolean`              | —                | Whether disabled                  |
+| `multiple`     | `boolean`              | `false`          | Multiple selection                |
+| `maxCount`     | `number`               | —                |                                   |
+| `users`        | `User[]`               | —                |                                   |
+| `onChange`     | `() => void`           | —                | Callback when value changes       |
+| `onBrowse`     | `() => void`           | —                |                                   |
+| ...rest        | `React.HTMLAttributes` | —                | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

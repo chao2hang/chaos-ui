@@ -1,0 +1,39 @@
+import { ChartEmpty } from "@/components/business/charts/shared/chart-empty";
+import { CodeBlock } from "@/components/code-block";
+
+# ChartEmpty 图表空状态
+
+> 业务组件
+
+图表空状态 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要图表空状态功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ChartEmpty } from "@/components/business/charts/shared/chart-empty"
+
+export function Basic() {
+  return <ChartEmpty />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChartEmpty
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `height`    | `number`               | `320`   | 组件高度          |
+| `message`   | `string`               | —       | 提示消息内容      |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-charts-shared-chart-empty--docs)。

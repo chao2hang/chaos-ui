@@ -1,0 +1,37 @@
+import { ErrorLayout } from "@/components/layout/error-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# ErrorLayout 错误布局
+
+> 系统布局
+
+错误布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+
+## 何时使用
+
+需要错误布局功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ErrorLayout } from "@/components/layout/error-layout"
+
+export function Basic() {
+  return <ErrorLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### ErrorLayout
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-error-layout--docs)。

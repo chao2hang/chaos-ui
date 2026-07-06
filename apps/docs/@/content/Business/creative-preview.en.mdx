@@ -1,0 +1,41 @@
+import { CreativePreview } from "@/components/business/creative-preview";
+import { CodeBlock } from "@/components/code-block";
+
+# CreativePreview
+
+> Domain-specific business components for ERP scenarios.
+
+CreativePreview — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a creative preview.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CreativePreview } from "@/components/business/creative-preview"
+
+export function Basic() {
+  return <CreativePreview />
+}`} lang="tsx" />
+
+## API / Props
+
+### CreativePreview
+
+| Prop          | Type                           | Default    | Description                       |
+| ------------- | ------------------------------ | ---------- | --------------------------------- |
+| `className`   | `string`                       | —          | Custom CSS class                  |
+| `title`       | `string`                       | `创意素材` | Title                             |
+| `type`        | `"image" \| "video" \| "text"` | `image`    | Type                              |
+| `src`         | `string`                       | —          | Source URL                        |
+| `description` | `string`                       | —          | Description text                  |
+| `size`        | `string`                       | —          | Component size                    |
+| `status`      | `string`                       | —          | Status                            |
+| ...rest       | `React.HTMLAttributes`         | —          | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

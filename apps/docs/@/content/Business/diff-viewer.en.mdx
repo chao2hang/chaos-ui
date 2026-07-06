@@ -1,0 +1,39 @@
+import { DiffViewer } from "@/components/business/diff-viewer";
+import { CodeBlock } from "@/components/code-block";
+
+# DiffViewer
+
+> Domain-specific business components for ERP scenarios.
+
+DiffViewer — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a diff viewer.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DiffViewer } from "@/components/business/diff-viewer"
+
+export function Basic() {
+  return <DiffViewer />
+}`} lang="tsx" />
+
+## API / Props
+
+### DiffViewer
+
+| Prop         | Type                          | Default  | Description                     |
+| ------------ | ----------------------------- | -------- | ------------------------------- |
+| `className`  | `string`                      | —        | Custom CSS class                |
+| `left`       | `string`                      | —        |                                 |
+| `right`      | `string`                      | —        |                                 |
+| `leftTitle`  | `string`                      | `修改前` |                                 |
+| `rightTitle` | `string`                      | `修改后` |                                 |
+| ...rest      | `React.ComponentProps<"div">` | —        | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,51 +1,55 @@
-"use client";
-
-import { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { codeToHtml, type BundledLanguage } from "shiki";
+import { CopyButton } from "@/components/copy-button";
 
 interface CodeBlockProps {
   code: string;
-  /** Optional language label shown in the top-right (e.g. "bash", "tsx"). */
+  /** Language for syntax highlighting (e.g. "bash", "tsx", "ts", "json"). */
   lang?: string;
 }
 
 /**
- * Reusable code block with a copy-to-clipboard button.
- * `install-tabs.tsx` and MDX content both reuse this component.
- * Behaviour kept identical to the original inline implementation:
- *  - copy via `navigator.clipboard.writeText`
- *  - 2s "copied" feedback with a green check icon
- *  - copy button hidden until hover (group-hover)
+ * Server-rendered code block with Shiki dual-theme (github-light + github-dark)
+ * highlighting. Falls back to a plain <pre><code> render if the language is
+ * unknown or Shiki throws. The copy button is a small client island that lives
+ * on top via `group` positioning.
+ *
+ * MDX content imports this component directly (`<CodeBlock code lang />`), so
+ * the async server component runs at request/build time — zero JS shipped to
+ * the client for the highlighted markup.
  */
-export function CodeBlock({ code, lang }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+export async function CodeBlock({ code, lang }: CodeBlockProps) {
+  let html: string | null = null;
+  try {
+    html = await codeToHtml(code, {
+      lang: (lang || "text") as BundledLanguage,
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      defaultColor: false,
+    });
+  } catch {
+    html = null;
+  }
 
   return (
-    <div className="group relative">
+    <div className="group relative my-4">
       {lang && (
-        <span className="absolute right-12 top-2 text-[10px] uppercase text-muted-foreground">
+        <span className="text-muted-foreground absolute top-2 right-12 z-10 text-[10px] uppercase">
           {lang}
         </span>
       )}
-      <Button
-        variant="ghost"
-        size="icon-xs"
-        className="absolute right-1 top-1 opacity-0 transition-opacity group-hover:opacity-100"
-        onClick={handleCopy}
-        title="Copy to clipboard"
-      >
-        {copied ? <Check className="size-3 text-green-500" /> : <Copy className="size-3" />}
-      </Button>
-      <pre className="overflow-x-auto rounded-lg border bg-muted/50 p-4 text-sm">
-        <code>{code}</code>
-      </pre>
+      <CopyButton code={code} />
+      {html ? (
+        <div
+          className="shiki-wrap overflow-x-auto rounded-lg border text-sm"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      ) : (
+        <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-sm">
+          <code>{code}</code>
+        </pre>
+      )}
     </div>
   );
 }

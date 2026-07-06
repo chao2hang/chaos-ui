@@ -1,0 +1,40 @@
+import { ChartTooltip } from "@/components/business/charts/shared/chart-tooltip";
+import { CodeBlock } from "@/components/code-block";
+
+# ChartTooltip 图表提示框
+
+> 业务组件
+
+图表提示框 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要图表提示框功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ChartTooltip } from "@/components/business/charts/shared/chart-tooltip"
+
+export function Basic() {
+  return <ChartTooltip />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChartTooltip
+
+| Prop        | Type                    | Default | 说明              |
+| ----------- | ----------------------- | ------- | ----------------- |
+| `className` | `string`                | —       | 自定义样式类名    |
+| `active`    | `boolean`               | —       |                   |
+| `payload`   | `TooltipPayloadEntry[]` | —       |                   |
+| `label`     | `unknown`               | —       | 标签文本          |
+| ...rest     | `React.HTMLAttributes`  | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-charts-shared-chart-tooltip--docs)。

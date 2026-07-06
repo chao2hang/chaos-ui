@@ -1,0 +1,35 @@
+import { MobileInput } from "@/components/business/mobile-input";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileInput
+
+> Domain-specific business components for ERP scenarios.
+
+MobileInput — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileInput } from "@/components/business/mobile-input"
+
+export function Basic() {
+  return <MobileInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileInput
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

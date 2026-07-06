@@ -1,0 +1,35 @@
+import { Toaster } from "@/components/ui/sonner";
+import { CodeBlock } from "@/components/code-block";
+
+# Sonner
+
+> Feedback and status communication to the user.
+
+Opinionated notification component (wraps sonner) stacked in a corner.
+
+## When to Use
+
+Use when you need a sonner.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Toaster } from "@/components/ui/sonner"
+
+export function Basic() {
+  return <Toaster />
+}`} lang="tsx" />
+
+## API / Props
+
+### Toaster
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

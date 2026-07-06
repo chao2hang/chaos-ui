@@ -1,0 +1,46 @@
+import { CrudPage } from "@/components/business/crud-page";
+import { CodeBlock } from "@/components/code-block";
+
+# CrudPage 增删改查页面
+
+> 业务组件
+
+增删改查页面 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要增删改查页面功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CrudPage } from "@/components/business/crud-page"
+
+export function Basic() {
+  return <CrudPage />
+}`} lang="tsx" />
+
+## API / Props
+
+### CrudPage
+
+| Prop           | Type                          | Default    | 说明                  |
+| -------------- | ----------------------------- | ---------- | --------------------- |
+| `className`    | `string`                      | —          | 自定义样式类名        |
+| `title`        | `string`                      | `数据列表` | 标题                  |
+| `toolbar`      | `React.ReactNode`             | —          |                       |
+| `columns`      | `(...args) => unknown`        | —          | 列配置                |
+| `data`         | `Record<string, unknown>[]`   | —          | 数据源                |
+| `total`        | `number`                      | `0`        |                       |
+| `page`         | `number`                      | `1`        |                       |
+| `onPageChange` | `() => void`                  | —          |                       |
+| `onCreate`     | `() => void`                  | —          |                       |
+| ...rest        | `React.ComponentProps<"div">` | —          | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-crud-page--docs)。

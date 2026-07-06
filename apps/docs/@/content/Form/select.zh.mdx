@@ -1,0 +1,55 @@
+import { Select } from "@/components/ui/select";
+import { CodeBlock } from "@/components/code-block";
+
+# Select 选择器
+
+> 表单控件
+
+下拉选项选择器,支持单选/搜索/自定义选项渲染。
+
+## 何时使用
+
+从一组预设选项中选择单个值,选项过多时配合搜索使用。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+
+export function Basic() {
+  return (
+    <Select defaultValue="1">
+      <SelectTrigger><SelectValue /></SelectTrigger>
+      <SelectContent>
+        <SelectItem value="1">Option 1</SelectItem>
+        <SelectItem value="2">Option 2</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}`} lang="tsx" />
+
+### 状态
+
+<CodeBlock
+  code={`<Select>Normal</Select>
+<Select disabled>Disabled</Select>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### Select
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-select--docs)。

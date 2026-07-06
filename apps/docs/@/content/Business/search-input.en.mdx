@@ -1,0 +1,42 @@
+import { SearchInput } from "@/components/business/search-input";
+import { CodeBlock } from "@/components/code-block";
+
+# SearchInput
+
+> Domain-specific business components for ERP scenarios.
+
+SearchInput — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a search input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SearchInput } from "@/components/business/search-input"
+
+export function Basic() {
+  return <SearchInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### SearchInput
+
+| Prop            | Type                   | Default   | Description                       |
+| --------------- | ---------------------- | --------- | --------------------------------- |
+| `className`     | `string`               | —         | Custom CSS class                  |
+| `value`         | `string`               | —         | Current value (controlled)        |
+| `onChange`      | `() => void`           | —         | Callback when value changes       |
+| `onSubmit`      | `() => void`           | —         | Submit handler                    |
+| `results`       | `SearchResult[]`       | —         |                                   |
+| `onResultClick` | `() => void`           | —         |                                   |
+| `placeholder`   | `string`               | `搜索...` | Placeholder text                  |
+| `loading`       | `boolean`              | —         | Loading state                     |
+| ...rest         | `React.HTMLAttributes` | —         | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

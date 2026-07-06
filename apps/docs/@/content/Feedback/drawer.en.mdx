@@ -1,0 +1,46 @@
+import { Drawer } from "@/components/ui/drawer";
+import { CodeBlock } from "@/components/code-block";
+
+# Drawer
+
+> Feedback and status communication to the user.
+
+Panel that slides out from an edge, used for secondary content like details or forms.
+
+## When to Use
+
+A panel sliding from the screen edge for details, forms, or configurations without interrupting the main flow.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer"
+
+export function Basic() {
+  return (
+    <Drawer>
+      <DrawerTrigger>Open</DrawerTrigger>
+      <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Title</DrawerTitle>
+        <DrawerDescription>Description.</DrawerDescription>
+      </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Drawer
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(DrawerPortal, DrawerOverlay, DrawerTrigger, DrawerClose, DrawerContent…),使用组合模式按需导入。

@@ -1,0 +1,84 @@
+import { Flex } from "@/components/ui/flex";
+import { CodeBlock } from "@/components/code-block";
+
+# Flex
+
+> Layout primitives for structuring pages.
+
+Flex — a layout primitives for structuring pages. for structuring page regions.
+
+## When to Use
+
+Use when you need a flex.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Flex } from "@/components/ui/flex"
+
+export function Basic() {
+  return <Flex>Default</Flex>
+}`} lang="tsx" />
+
+## Style Variants
+
+**direction**
+
+| direction        | Description | 默认 |
+| ---------------- | ----------- | ---- |
+| `row`            |             | ✓    |
+| `column`         |             |      |
+| `row-reverse`    |             |      |
+| `column-reverse` |             |      |
+
+**wrap**
+
+| wrap           | Description | 默认 |
+| -------------- | ----------- | ---- |
+| `nowrap`       |             | ✓    |
+| `wrap`         |             |      |
+| `wrap-reverse` |             |      |
+
+**justify**
+
+| justify   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `start`   |             | ✓    |
+| `center`  |             |      |
+| `end`     |             |      |
+| `between` |             |      |
+| `around`  |             |      |
+| `evenly`  |             |      |
+
+**align**
+
+| align      | Description | 默认 |
+| ---------- | ----------- | ---- |
+| `start`    |             |      |
+| `center`   |             |      |
+| `end`      |             |      |
+| `baseline` |             |      |
+| `stretch`  |             | ✓    |
+
+**gap**
+
+| gap    | Description | 默认 |
+| ------ | ----------- | ---- |
+| `none` |             | ✓    |
+| `xs`   |             |      |
+| `sm`   |             |      |
+| `md`   |             |      |
+| `lg`   |             |      |
+| `xl`   |             |      |
+
+## API / Props
+
+### Flex
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

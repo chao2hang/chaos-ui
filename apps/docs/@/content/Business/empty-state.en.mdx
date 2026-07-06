@@ -1,0 +1,40 @@
+import { EmptyState, Config } from "@/components/business/empty-state";
+import { CodeBlock } from "@/components/code-block";
+
+# EmptyState
+
+> Domain-specific business components for ERP scenarios.
+
+Placeholder for empty data states, optionally with a call-to-action.
+
+## When to Use
+
+Use when you need an empty state.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EmptyState, Config } from "@/components/business/empty-state"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <EmptyState />
+  <Config />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### EmptyState
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

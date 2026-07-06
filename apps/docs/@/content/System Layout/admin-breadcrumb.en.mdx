@@ -1,0 +1,35 @@
+import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
+import { CodeBlock } from "@/components/code-block";
+
+# AdminBreadcrumb
+
+> System-level layout shells for admin pages.
+
+AdminBreadcrumb — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need an admin breadcrumb.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb"
+
+export function Basic() {
+  return <AdminBreadcrumb />
+}`} lang="tsx" />
+
+## API / Props
+
+### AdminBreadcrumb
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `items`     | `AdminBreadcrumbItem[]`       | —       | Items / data list               |
+| `separator` | `React.ReactNode`             | `/`     |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

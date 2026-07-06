@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
   ArrowRight,
@@ -20,6 +26,8 @@ import {
   Monitor,
 } from "lucide-react";
 import { InstallTabs } from "@/components/install-tabs";
+import { getServerLocale } from "@/lib/i18n/get-server-locale";
+import { dict, t as tt } from "@/lib/i18n/dict";
 
 /* -------------------------------------------------------------------------- */
 /*  Hero Stats
@@ -95,6 +103,7 @@ const categories = [
   {
     icon: Puzzle,
     title: "UI Primitives 基础组件",
+    titleEn: "UI Primitives",
     count: "60+",
     items: [
       "Button",
@@ -109,11 +118,14 @@ const categories = [
       "Toast",
     ],
     desc: "基于 @base-ui/react 的无障碍底层组件，覆盖表单、数据展示、导航、反馈等全场景。",
+    descEn:
+      "Accessible primitives built on @base-ui/react — covers forms, data display, navigation, and feedback.",
     gradient: "from-brand-500/10 to-brand-600/5",
   },
   {
     icon: Blocks,
     title: "Business 业务组件",
+    titleEn: "Business Components",
     count: "80+",
     items: [
       "DataTable",
@@ -128,11 +140,14 @@ const categories = [
       "ReportBuilder",
     ],
     desc: "面向 ERP 和营销平台的领域组件，涵盖审批流、聊天、报表、仪表盘等垂直场景。",
+    descEn:
+      "Domain components for ERP and marketing platforms — approval flows, chat, reports, dashboards.",
     gradient: "from-emerald-500/10 to-teal-500/5",
   },
   {
     icon: Layers,
     title: "Layout 布局组件",
+    titleEn: "Layout Components",
     count: "15+",
     items: [
       "AdminShell",
@@ -143,6 +158,8 @@ const categories = [
       "WizardLayout",
     ],
     desc: "管理后台、工作台、详情页的布局方案，支持侧边栏、面包屑、标签页等常见布局模式。",
+    descEn:
+      "Layout solutions for admin consoles, workspaces and detail pages — sidebars, breadcrumbs, tabs.",
     gradient: "from-amber-500/10 to-orange-500/5",
   },
 ];
@@ -151,7 +168,11 @@ const categories = [
 /*  Page
 /* -------------------------------------------------------------------------- */
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getServerLocale();
+  const isEn = locale === "en";
+  const t = (path: string) => tt(locale, path);
+
   return (
     <div className="flex flex-col">
       {/* ================================================================ */}
@@ -160,44 +181,50 @@ export default function Home() {
       <section className="relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-100/40 via-background to-background dark:from-brand-950/30 dark:via-background dark:to-background" />
-          <div className="absolute right-0 top-0 size-[500px] translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/5 blur-3xl dark:bg-brand-400/5" />
-          <div className="absolute bottom-0 left-0 size-[400px] -translate-x-1/2 translate-y-1/2 rounded-full bg-brand-400/5 blur-3xl dark:bg-brand-600/5" />
+          <div className="from-brand-100/40 via-background to-background dark:from-brand-950/30 dark:via-background dark:to-background absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]" />
+          <div className="bg-brand-500/5 dark:bg-brand-400/5 absolute top-0 right-0 size-[500px] translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+          <div className="bg-brand-400/5 dark:bg-brand-600/5 absolute bottom-0 left-0 size-[400px] -translate-x-1/2 translate-y-1/2 rounded-full blur-3xl" />
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:pt-32">
+        <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:pt-32">
           <div className="mx-auto max-w-3xl text-center">
             {/* Badge */}
-            <Badge variant="secondary" className="mb-6 gap-1.5 px-3 py-1 text-xs">
+            <Badge
+              variant="secondary"
+              className="mb-6 gap-1.5 px-3 py-1 text-xs"
+            >
               <Sparkles className="size-3" />
               v1.0.0 — Now Available
             </Badge>
 
-            <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              企业级 React 组件库
+            <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+              {t("home.heroTitle")}
               <br />
-              <span className="bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent dark:from-brand-400 dark:to-brand-600">
+              <span className="from-brand-500 to-brand-700 dark:from-brand-400 dark:to-brand-600 bg-gradient-to-r bg-clip-text text-transparent">
                 Chaos UI
               </span>
             </h1>
 
-            <p className="mt-6 text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              面向 ERP & 业务系统的企业级 React 19 组件库。
-              148+ 组件、19 Hooks、5 工具模块，基于 Tailwind CSS 4 和 shadcn/ui 构建。
+            <p className="text-muted-foreground mt-6 text-lg leading-relaxed text-balance sm:text-xl">
+              {t("home.heroParagraph")}
             </p>
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a href="#install">
                 <Button size="lg" className="h-12 gap-2 px-8 text-base">
-                  快速开始
+                  {t("home.ctaQuickStart")}
                   <ArrowRight className="size-4" />
                 </Button>
               </a>
               <a href="/storybook" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="h-12 gap-2 px-8 text-base">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 gap-2 px-8 text-base"
+                >
                   <Command className="size-4" />
-                  浏览组件
+                  {t("home.ctaBrowse")}
                 </Button>
               </a>
             </div>
@@ -207,13 +234,13 @@ export default function Home() {
               {stats.map((stat) => (
                 <div
                   key={stat.value}
-                  className="rounded-xl border bg-card/50 p-4 text-center backdrop-blur-sm"
+                  className="bg-card/50 rounded-xl border p-4 text-center backdrop-blur-sm"
                 >
-                  <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">
+                  <div className="text-brand-600 dark:text-brand-400 text-2xl font-bold">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    {stat.labelZh} · {stat.label}
+                  <div className="text-muted-foreground mt-1 text-xs">
+                    {isEn ? stat.label : stat.labelZh}
                   </div>
                 </div>
               ))}
@@ -231,13 +258,13 @@ export default function Home() {
             <div className="text-center">
               <Badge variant="secondary" className="mb-4">
                 <Zap className="mr-1 size-3" />
-                三步上手
+                {t("home.statsHeading")}
               </Badge>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                安装 & 快速开始
+              <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+                {t("home.installTitle")}
               </h2>
-              <p className="mt-4 text-muted-foreground">
-                选择你喜欢的包管理器，一行命令安装，立即开始使用。
+              <p className="text-muted-foreground mt-4">
+                {t("home.installParagraph")}
               </p>
             </div>
 
@@ -259,7 +286,7 @@ export default function Home() {
               ].map((path) => (
                 <code
                   key={path}
-                  className="rounded-md border bg-muted/50 px-3 py-2 text-xs text-muted-foreground"
+                  className="bg-muted/50 text-muted-foreground rounded-md border px-3 py-2 text-xs"
                 >
                   {path}
                 </code>
@@ -276,13 +303,13 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
-              为什么选择 Chaos UI
+              {t("home.featuresHeading")}
             </Badge>
-            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              为现代企业级应用而设计
+            <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+              {t("home.featuresSubtitle")}
             </h2>
-            <p className="mt-4 text-muted-foreground">
-              从类型安全到暗色模式，从国际化到可访问性 — 每个细节都经过精心打磨。
+            <p className="text-muted-foreground mt-4">
+              {t("home.featuresParagraph")}
             </p>
           </div>
 
@@ -290,10 +317,12 @@ export default function Home() {
             {features.map((feature) => (
               <Card key={feature.title} className="group border-border/60">
                 <CardHeader>
-                  <feature.icon className="mb-2 size-8 text-brand-500 dark:text-brand-400" />
-                  <CardTitle className="text-base">{feature.title}</CardTitle>
+                  <feature.icon className="text-brand-500 dark:text-brand-400 mb-2 size-8" />
+                  <CardTitle className="text-base">
+                    {isEn ? feature.titleEn : feature.title}
+                  </CardTitle>
                   <CardDescription className="text-sm leading-relaxed">
-                    {feature.desc}
+                    {isEn ? feature.descEn : feature.desc}
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -310,13 +339,13 @@ export default function Home() {
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
               <Package className="mr-1 size-3" />
-              组件概览
+              {t("home.componentsOverview")}
             </Badge>
-            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              三大类别，全面覆盖
+            <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+              {t("home.componentsHeading")}
             </h2>
-            <p className="mt-4 text-muted-foreground">
-              从基础 UI 到业务场景，从布局框架到交互模式 — 应有尽有。
+            <p className="text-muted-foreground mt-4">
+              {t("home.componentsParagraph")}
             </p>
           </div>
 
@@ -324,21 +353,23 @@ export default function Home() {
             {categories.map((cat) => (
               <Card
                 key={cat.title}
-                className="relative overflow-hidden border-border/60"
+                className="border-border/60 relative overflow-hidden"
               >
                 <div
                   className={`absolute inset-0 -z-10 bg-gradient-to-br ${cat.gradient}`}
                 />
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <cat.icon className="size-6 text-foreground/70" />
+                    <cat.icon className="text-foreground/70 size-6" />
                     <Badge variant="outline" className="text-xs">
                       {cat.count}
                     </Badge>
                   </div>
-                  <CardTitle className="mt-3 text-lg">{cat.title}</CardTitle>
+                  <CardTitle className="mt-3 text-lg">
+                    {isEn ? cat.titleEn : cat.title}
+                  </CardTitle>
                   <CardDescription className="text-sm leading-relaxed">
-                    {cat.desc}
+                    {isEn ? cat.descEn : cat.desc}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -365,24 +396,24 @@ export default function Home() {
       {/* ================================================================ */}
       <footer className="border-t py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span className="flex size-6 items-center justify-center rounded-md bg-brand-500 text-[10px] font-bold text-white">
+          <div className="text-muted-foreground flex items-center gap-2 text-sm">
+            <span className="bg-brand-500 flex size-6 items-center justify-center rounded-md text-[10px] font-bold text-white">
               C
             </span>
             <span>
-              Chaos UI · Built by{" "}
+              {dict[locale].home.footerBuiltBy}{" "}
               <a
                 href="https://github.com/qxyfoods"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground hover:underline"
+                className="text-foreground font-medium hover:underline"
               >
                 QXY Foods
               </a>
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-4 text-xs">
             <span>MIT License</span>
             <Separator orientation="vertical" className="h-3" />
             <Link href="#" className="hover:text-foreground">

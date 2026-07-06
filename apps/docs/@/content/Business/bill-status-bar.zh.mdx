@@ -1,0 +1,52 @@
+import { BillStatusBar } from "@/components/business/bill-status-bar";
+import { CodeBlock } from "@/components/code-block";
+
+# BillStatusBar 账单状态栏
+
+> 业务组件
+
+账单状态栏 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要账单状态栏功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { BillStatusBar } from "@/components/business/bill-status-bar"
+
+export function Basic() {
+  return <BillStatusBar />
+}`} lang="tsx" />
+
+## 样式变体
+
+**状态**
+
+| status     | 说明 | 默认 |
+| ---------- | ---- | ---- |
+| `draft`    |      | ✓    |
+| `pending`  |      |      |
+| `approved` |      |      |
+| `rejected` |      |      |
+| `paid`     |      |      |
+
+## API / Props
+
+### BillStatusBar
+
+| Prop            | Type                                       | Default | 说明                  |
+| --------------- | ------------------------------------------ | ------- | --------------------- |
+| `className`     | `string`                                   | —       | 自定义样式类名        |
+| `currentStatus` | `"draft" \| "pending" \| "approved" \|...` | —       |                       |
+| ...rest         | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-bill-status-bar--docs)。

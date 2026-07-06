@@ -1,0 +1,35 @@
+import { ExportButton } from "@/components/business/export-button";
+import { CodeBlock } from "@/components/code-block";
+
+# ExportButton
+
+> Domain-specific business components for ERP scenarios.
+
+ExportButton — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an export button.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ExportButton } from "@/components/business/export-button"
+
+export function Basic() {
+  return <ExportButton />
+}`} lang="tsx" />
+
+## API / Props
+
+### ExportButton
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

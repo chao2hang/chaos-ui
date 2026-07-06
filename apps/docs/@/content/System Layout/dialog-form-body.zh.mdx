@@ -1,0 +1,38 @@
+import { DialogFormBody } from "@/components/layout/dialog-form-body";
+import { CodeBlock } from "@/components/code-block";
+
+# DialogFormBody 弹窗表单主体
+
+> 系统布局
+
+弹窗表单主体 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+
+## 何时使用
+
+需要弹窗表单主体功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { DialogFormBody } from "@/components/layout/dialog-form-body"
+
+export function Basic() {
+  return <DialogFormBody />
+}`} lang="tsx" />
+
+## API / Props
+
+### DialogFormBody
+
+| Prop        | Type                          | Default | 说明                  |
+| ----------- | ----------------------------- | ------- | --------------------- |
+| `className` | `string`                      | —       | 自定义样式类名        |
+| `scrolling` | `boolean`                     | `true`  |                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-dialog-form-body--docs)。

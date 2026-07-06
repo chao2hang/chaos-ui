@@ -1,0 +1,39 @@
+import { AuditLog } from "@/components/business/audit-log";
+import { CodeBlock } from "@/components/code-block";
+
+# AuditLog 审计日志
+
+> 业务组件
+
+审计日志 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要审计日志功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { AuditLog } from "@/components/business/audit-log"
+
+export function Basic() {
+  return <AuditLog />
+}`} lang="tsx" />
+
+## API / Props
+
+### AuditLog
+
+| Prop        | Type                         | Default | 说明                 |
+| ----------- | ---------------------------- | ------- | -------------------- |
+| `className` | `string`                     | —       | 自定义样式类名       |
+| `entries`   | `AuditEntry[]`               | —       |                      |
+| ...rest     | `React.ComponentProps<"ol">` | —       | 透传 `<ol>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<ol>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-audit-log--docs)。

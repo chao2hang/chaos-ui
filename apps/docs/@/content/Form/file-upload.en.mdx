@@ -1,0 +1,46 @@
+import { FileUpload, FileList } from "@/components/ui/file-upload";
+import { CodeBlock } from "@/components/code-block";
+
+# FileUpload
+
+> Form controls for user input and data submission.
+
+Click/drag-to-upload supporting multi-select, type restrictions, and preview.
+
+## When to Use
+
+File upload supporting drag & drop, batch upload, and progress feedback.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FileUpload, FileList } from "@/components/ui/file-upload"
+
+export function Basic() {
+  return (
+    <FileUpload>
+      <FileList>Content</FileList>
+    </FileUpload>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### FileUpload
+
+| Prop        | Type                       | Default | Description                       |
+| ----------- | -------------------------- | ------- | --------------------------------- |
+| `className` | `string`                   | —       | Custom CSS class                  |
+| `onDrop`    | `() => void`               | —       |                                   |
+| `accept`    | `Record<string, string[]>` | —       |                                   |
+| `maxFiles`  | `number`                   | `5`     |                                   |
+| `maxSize`   | `number`                   | —       |                                   |
+| `disabled`  | `boolean`                  | —       | Whether disabled                  |
+| `dropzone`  | `boolean`                  | `false` |                                   |
+| ...rest     | `React.HTMLAttributes`     | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(FileList),使用组合模式按需导入。

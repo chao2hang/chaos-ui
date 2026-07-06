@@ -1,0 +1,37 @@
+import { Skeleton } from "@/components/ui/skeleton";
+import { CodeBlock } from "@/components/code-block";
+
+# Skeleton 骨架屏
+
+> 反馈组件
+
+在数据加载完成前提供占位,降低等待焦虑感。
+
+## 何时使用
+
+数据加载中时占位,降低感知等待时间。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Skeleton } from "@/components/ui/skeleton"
+
+export function Basic() {
+  return <Skeleton />
+}`} lang="tsx" />
+
+## API / Props
+
+### Skeleton
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-skeleton--docs)。

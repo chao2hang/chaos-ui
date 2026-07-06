@@ -1,0 +1,43 @@
+import { Avatar } from "@/components/ui/avatar";
+import { CodeBlock } from "@/components/code-block";
+
+# Avatar 头像
+
+> 数据展示
+
+展示用户/实体头像,支持图片、图标、文字三种形式。
+
+## 何时使用
+
+展示用户头像、实体缩略图或品牌 Logo。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Avatar, AvatarImage, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarBadge } from "@/components/ui/avatar"
+
+export function Basic() {
+  return (
+    <Avatar>
+      <AvatarImage>Content</AvatarImage>
+    </Avatar>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Avatar
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 5 个子组件(AvatarImage, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarBadge),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-avatar--docs)。

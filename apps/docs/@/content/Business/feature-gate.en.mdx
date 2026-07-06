@@ -1,0 +1,46 @@
+import {
+  FeatureGate,
+  FeatureEnabled,
+  FeatureFlag,
+  FeatureFlags,
+} from "@/components/business/feature-gate";
+import { CodeBlock } from "@/components/code-block";
+
+# FeatureGate
+
+> Domain-specific business components for ERP scenarios.
+
+FeatureGate — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a feature gate.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FeatureGate, FeatureEnabled, FeatureFlag } from "@/components/business/feature-gate"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <FeatureGate />
+  <FeatureEnabled />
+  <FeatureFlag />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### FeatureGate
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,68 @@
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { CodeBlock } from "@/components/code-block";
+
+# Alert
+
+> Feedback and status communication to the user.
+
+Static (non-overlay) message for noteworthy information. Supports default/info/success/warning/destructive variants.
+
+## When to Use
+
+Show important notices, warnings, errors, or success feedback.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+
+export function Basic() {
+  return (
+    <Alert>
+      <AlertTitle>Title</AlertTitle>
+      <AlertDescription>Alert description goes here.</AlertDescription>
+    </Alert>
+  )
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Alert variant="default">Default</Alert>
+  <Alert variant="info">Info</Alert>
+  <Alert variant="success">Success</Alert>
+  <Alert variant="warning">Warning</Alert>
+  <Alert variant="destructive">Destructive</Alert>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `info`        | Informational style      |      |
+| `success`     | Success style            |      |
+| `warning`     | Warning style            |      |
+| `destructive` | Destructive/danger style |      |
+
+## API / Props
+
+### Alert
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `variant`   | `AlertVariant`         | —       | Style variant                     |
+| `icon`      | `React.ReactNode`      | —       | Icon element                      |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **复合组件**: 包含 2 个子组件(AlertTitle, AlertDescription),使用组合模式按需导入。

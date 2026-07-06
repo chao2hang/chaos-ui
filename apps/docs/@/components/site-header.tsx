@@ -5,21 +5,25 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Languages, ExternalLink } from "lucide-react";
-
-const navLinks = [
-  { href: "#install", label: "安装", labelEn: "Install" },
-  { href: "#features", label: "特性", labelEn: "Features" },
-  { href: "/components", label: "组件", labelEn: "Components" },
-];
+import { useLocale } from "@/components/locale-provider";
+import { useDict } from "@/hooks/use-dict";
 
 export function SiteHeader() {
   const { theme, setTheme } = useTheme();
+  const { locale, toggleLocale } = useLocale();
+  const dict = useDict();
   const [mounted, setMounted] = useState(false);
-  const [locale, setLocale] = useState<"zh" | "en">("zh");
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- standard hydration-mismatch guard for theme toggle
+    setMounted(true);
+  }, []);
 
-  const toggleLocale = () => setLocale((l) => (l === "zh" ? "en" : "zh"));
+  const navLinks = [
+    { href: "#install", label: dict.header.navInstall },
+    { href: "#features", label: dict.header.navFeatures },
+    { href: "/components", label: dict.header.navComponents },
+  ];
 
   return (
     <header className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
@@ -43,7 +47,7 @@ export function SiteHeader() {
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground rounded-md px-3 py-1.5 text-sm transition-colors"
               >
-                {locale === "zh" ? link.label : link.labelEn}
+                {link.label}
               </a>
             ) : (
               <Link
@@ -51,7 +55,7 @@ export function SiteHeader() {
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground rounded-md px-3 py-1.5 text-sm transition-colors"
               >
-                {locale === "zh" ? link.label : link.labelEn}
+                {link.label}
               </Link>
             ),
           )}
@@ -66,11 +70,15 @@ export function SiteHeader() {
             variant="ghost"
             size="icon-sm"
             onClick={toggleLocale}
-            title={locale === "zh" ? "Switch to English" : "切换到中文"}
+            title={
+              locale === "zh" ? dict.header.toggleToEn : dict.header.toggleToZh
+            }
           >
             <Languages className="size-4" />
             <span className="ml-1.5 hidden text-xs font-medium sm:inline">
-              {locale === "zh" ? "EN" : "中文"}
+              {locale === "zh"
+                ? dict.header.langLabelEn
+                : dict.header.langLabelZh}
             </span>
           </Button>
 
@@ -79,7 +87,7 @@ export function SiteHeader() {
             variant="ghost"
             size="icon-sm"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            title="Toggle theme"
+            title={dict.header.themeToggle}
           >
             {mounted && theme === "dark" ? (
               <Sun className="size-4" />

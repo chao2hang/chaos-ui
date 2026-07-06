@@ -1,0 +1,40 @@
+import { JsonViewer } from "@/components/business/json-viewer";
+import { CodeBlock } from "@/components/code-block";
+
+# JsonViewer JSON
+
+> Domain-specific business components for ERP scenarios.
+
+JsonViewer — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a json viewer.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { JsonViewer } from "@/components/business/json-viewer"
+
+export function Basic() {
+  return <JsonViewer />
+}`} lang="tsx" />
+
+## API / Props
+
+### JsonViewer
+
+| Prop                    | Type                   | Default | Description                       |
+| ----------------------- | ---------------------- | ------- | --------------------------------- |
+| `className`             | `string`               | —       | Custom CSS class                  |
+| `data`                  | `unknown`              | —       | Data source                       |
+| `defaultCollapsedDepth` | `number`               | `3`     |                                   |
+| `rootClassName`         | `string`               | —       |                                   |
+| `showCopy`              | `boolean`              | `true`  |                                   |
+| `indentSize`            | `number`               | `2`     |                                   |
+| ...rest                 | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

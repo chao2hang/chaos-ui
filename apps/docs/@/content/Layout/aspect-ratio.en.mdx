@@ -1,0 +1,35 @@
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { CodeBlock } from "@/components/code-block";
+
+# AspectRatio
+
+> Layout primitives for structuring pages.
+
+Container that enforces an aspect ratio; useful for image/video placeholders.
+
+## When to Use
+
+Use when you need an aspect ratio.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+export function Basic() {
+  return <AspectRatio />
+}`} lang="tsx" />
+
+## API / Props
+
+### AspectRatio
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

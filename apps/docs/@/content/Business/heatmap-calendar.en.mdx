@@ -1,0 +1,45 @@
+import { HeatmapCalendar } from "@/components/business/heatmap-calendar";
+import { CodeBlock } from "@/components/code-block";
+
+# HeatmapCalendar
+
+> Domain-specific business components for ERP scenarios.
+
+HeatmapCalendar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a heatmap calendar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { HeatmapCalendar } from "@/components/business/heatmap-calendar"
+
+export function Basic() {
+  return <HeatmapCalendar />
+}`} lang="tsx" />
+
+## API / Props
+
+### HeatmapCalendar
+
+| Prop              | Type                                       | Default | Description                     |
+| ----------------- | ------------------------------------------ | ------- | ------------------------------- |
+| `className`       | `string`                                   | —       | Custom CSS class                |
+| `data`            | `Array<T>`                                 | —       | Data source                     |
+| `startDate`       | `Date`                                     | —       |                                 |
+| `endDate`         | `Date`                                     | —       |                                 |
+| `weekStartsOn`    | `0 \| 1`                                   | `0`     |                                 |
+| `cellSize`        | `number`                                   | `12`    |                                 |
+| `gap`             | `number`                                   | `2`     | Gap between items               |
+| `levels`          | `number`                                   | `5`     |                                 |
+| `legendClassName` | `string`                                   | —       |                                 |
+| `showLegend`      | `boolean`                                  | `true`  |                                 |
+| `colorStops`      | `[string, string, string, string, string]` | —       |                                 |
+| ...rest           | `React.ComponentProps<"div">`              | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

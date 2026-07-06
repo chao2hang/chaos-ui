@@ -1,0 +1,88 @@
+import { NumberTicker } from "@/components/ui/number-ticker";
+import { CodeBlock } from "@/components/code-block";
+
+# NumberTicker
+
+> General-purpose primitives used across the app.
+
+NumberTicker — a general-purpose primitives used across the app. from Chaos UI.
+
+## When to Use
+
+Use when you need a number ticker.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { NumberTicker } from "@/components/ui/number-ticker"
+
+export function Basic() {
+  return <NumberTicker />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <NumberTicker variant="default">Default</NumberTicker>
+  <NumberTicker variant="primary">Primary</NumberTicker>
+  <NumberTicker variant="success">Success</NumberTicker>
+  <NumberTicker variant="warning">Warning</NumberTicker>
+  <NumberTicker variant="destructive">Destructive</NumberTicker>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <NumberTicker size="sm">Sm</NumberTicker>
+  <NumberTicker size="default">Default</NumberTicker>
+  <NumberTicker size="lg">Lg</NumberTicker>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `primary`     | Primary style            |      |
+| `success`     | Success style            |      |
+| `warning`     | Warning style            |      |
+| `destructive` | Destructive/danger style |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+| `xl`      | Extra large  |      |
+
+## API / Props
+
+### NumberTicker
+
+| Prop        | Type                           | Default | Description                      |
+| ----------- | ------------------------------ | ------- | -------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                 |
+| `value`     | `number`                       | —       | Target value                     |
+| `duration`  | `number`                       | `1000`  | Duration of animation in ms      |
+| `decimals`  | `number`                       | `0`     | Decimal places to show           |
+| `prefix`    | `string`                       | —       | Prefix text                      |
+| `suffix`    | `string`                       | —       | Suffix text                      |
+| `easing`    | `boolean`                      | `true`  | Use easing instead of linear     |
+| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,90 @@
+import { Autocomplete } from "@/components/ui/autocomplete";
+import { CodeBlock } from "@/components/code-block";
+
+# Autocomplete 自动完成
+
+> 表单控件
+
+输入框联想下拉,输入时实时建议匹配项。
+
+## 何时使用
+
+需要自动完成功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Autocomplete } from "@/components/ui/autocomplete"
+
+export function Basic() {
+  return <Autocomplete />
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Autocomplete variant="default">Default</Autocomplete>
+  <Autocomplete variant="outline">Outline</Autocomplete>
+</div>`}
+  lang="tsx"
+/>
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Autocomplete size="sm">Sm</Autocomplete>
+  <Autocomplete size="default">Default</Autocomplete>
+  <Autocomplete size="lg">Lg</Autocomplete>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态
+
+<CodeBlock
+  code={`<Autocomplete>Normal</Autocomplete>
+<Autocomplete disabled>Disabled</Autocomplete>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**变体**
+
+| Variant   | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认样式 | ✓    |
+| `outline` | 描边样式 |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### Autocomplete
+
+| Prop            | Type                   | Default | 说明                                 |
+| --------------- | ---------------------- | ------- | ------------------------------------ |
+| `className`     | `string`               | —       | 自定义样式类名                       |
+| `options`       | `string[]`             | —       | Options to suggest                   |
+| `value`         | `string`               | —       | Controlled value                     |
+| `onValueChange` | `() => void`           | —       | Change handler                       |
+| `minChars`      | `number`               | `1`     | Min chars before showing suggestions |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                    |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-autocomplete--docs)。

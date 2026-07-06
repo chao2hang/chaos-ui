@@ -1,0 +1,80 @@
+import { Cascader } from "@/components/ui/cascader";
+import { CodeBlock } from "@/components/code-block";
+
+# Cascader
+
+> Form controls for user input and data submission.
+
+Select from hierarchical linked data such as Province/City/District.
+
+## When to Use
+
+Use when you need a cascader.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Cascader } from "@/components/ui/cascader"
+
+export function Basic() {
+  return <Cascader />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Cascader variant="default">Default</Cascader>
+  <Cascader variant="outline">Outline</Cascader>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Cascader size="sm">Sm</Cascader>
+  <Cascader size="default">Default</Cascader>
+  <Cascader size="lg">Lg</Cascader>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant   | Description    | 默认 |
+| --------- | -------------- | ---- |
+| `default` | Default style  | ✓    |
+| `outline` | Outlined style |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Cascader
+
+| Prop          | Type                   | Default         | Description                       |
+| ------------- | ---------------------- | --------------- | --------------------------------- |
+| `className`   | `string`               | —               | Custom CSS class                  |
+| `options`     | `CascaderOption[]`     | —               | Available options                 |
+| `value`       | `string[]`             | —               | Current value (controlled)        |
+| `onChange`    | `() => void`           | —               | Callback when value changes       |
+| `placeholder` | `string`               | `Please select` | Placeholder text                  |
+| `disabled`    | `boolean`              | —               | Whether disabled                  |
+| ...rest       | `React.HTMLAttributes` | —               | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

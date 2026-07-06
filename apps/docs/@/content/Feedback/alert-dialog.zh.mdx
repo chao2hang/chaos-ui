@@ -1,0 +1,48 @@
+import { AlertDialog } from "@/components/ui/alert-dialog";
+import { CodeBlock } from "@/components/code-block";
+
+# AlertDialog 警告对话框
+
+> 反馈组件
+
+需要用户确认的危险操作对话框,阻断式,含警告样式。
+
+## 何时使用
+
+需要警告对话框功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription } from "@/components/ui/alert-dialog"
+
+export function Basic() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Title</AlertDialogTitle>
+        <AlertDialogDescription>Description.</AlertDialogDescription>
+      </AlertDialogHeader>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### AlertDialog
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 8 个子组件(AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription…),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-alert-dialog--docs)。

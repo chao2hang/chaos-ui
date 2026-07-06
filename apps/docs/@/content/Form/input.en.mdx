@@ -1,0 +1,35 @@
+import { Input } from "@/components/ui/input";
+import { CodeBlock } from "@/components/code-block";
+
+# Input
+
+> Form controls for user input and data submission.
+
+Basic text input via keyboard. Supports prefix/suffix, sizes, and states.
+
+## When to Use
+
+User needs to enter text via keyboard (username, search, single-line descriptions, etc.).
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Input } from "@/components/ui/input"
+
+export function Basic() {
+  return <Input />
+}`} lang="tsx" />
+
+## API / Props
+
+### Input
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。

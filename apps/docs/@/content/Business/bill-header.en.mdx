@@ -1,0 +1,43 @@
+import { BillHeader } from "@/components/business/bill-header";
+import { CodeBlock } from "@/components/code-block";
+
+# BillHeader
+
+> Domain-specific business components for ERP scenarios.
+
+BillHeader — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a bill header.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BillHeader } from "@/components/business/bill-header"
+
+export function Basic() {
+  return <BillHeader />
+}`} lang="tsx" />
+
+## API / Props
+
+### BillHeader
+
+| Prop              | Type                          | Default    | Description                     |
+| ----------------- | ----------------------------- | ---------- | ------------------------------- |
+| `className`       | `string`                      | —          | Custom CSS class                |
+| `companyName`     | `string`                      | `公司名称` |                                 |
+| `companyAddress`  | `string`                      | —          |                                 |
+| `companyPhone`    | `string`                      | —          |                                 |
+| `invoiceNumber`   | `string`                      | —          |                                 |
+| `invoiceDate`     | `string`                      | —          |                                 |
+| `dueDate`         | `string`                      | —          |                                 |
+| `customerName`    | `string`                      | —          |                                 |
+| `customerAddress` | `string`                      | —          |                                 |
+| ...rest           | `React.ComponentProps<"div">` | —          | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

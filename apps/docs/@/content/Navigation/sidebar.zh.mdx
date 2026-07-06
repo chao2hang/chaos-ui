@@ -1,0 +1,84 @@
+import { Sidebar } from "@/components/ui/sidebar";
+import { CodeBlock } from "@/components/code-block";
+
+# Sidebar 侧边栏
+
+> 导航组件
+
+侧边栏 — Chaos UI 的导航组件。
+
+## 何时使用
+
+需要侧边栏功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent } from "@/components/ui/sidebar"
+
+export function Basic() {
+  return (
+    <Sidebar>
+      <SidebarContent>Content</SidebarContent>
+    </Sidebar>
+  )
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Sidebar variant="default">Default</Sidebar>
+  <Sidebar variant="outline">Outline</Sidebar>
+</div>`}
+  lang="tsx"
+/>
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Sidebar size="sm">Sm</Sidebar>
+  <Sidebar size="default">Default</Sidebar>
+  <Sidebar size="lg">Lg</Sidebar>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**变体**
+
+| Variant   | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认样式 | ✓    |
+| `outline` | 描边样式 |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### Sidebar
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 22 个子组件(SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sidebar--docs)。

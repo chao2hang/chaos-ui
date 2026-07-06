@@ -1,0 +1,35 @@
+import { Textarea } from "@/components/ui/textarea";
+import { CodeBlock } from "@/components/code-block";
+
+# Textarea
+
+> Form controls for user input and data submission.
+
+Multi-line plain text editor for comments, feedback, descriptions, etc.
+
+## When to Use
+
+Enter multi-line text such as comments, feedback, or detailed descriptions.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Textarea } from "@/components/ui/textarea"
+
+export function Basic() {
+  return <Textarea />
+}`} lang="tsx" />
+
+## API / Props
+
+### Textarea
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

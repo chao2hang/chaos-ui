@@ -1,0 +1,63 @@
+import { SequencePreview } from "@/components/ui/sequence-preview";
+import { CodeBlock } from "@/components/code-block";
+
+# SequencePreview 序列预览
+
+> 通用基础组件
+
+序列预览 — Chaos UI 的通用基础组件。
+
+## 何时使用
+
+需要序列预览功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { SequencePreview } from "@/components/ui/sequence-preview"
+
+export function Basic() {
+  return <SequencePreview>Default</SequencePreview>
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <SequencePreview size="sm">Sm</SequencePreview>
+  <SequencePreview size="default">Default</SequencePreview>
+  <SequencePreview size="lg">Lg</SequencePreview>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### SequencePreview
+
+| Prop           | Type                          | Default | 说明                                  |
+| -------------- | ----------------------------- | ------- | ------------------------------------- |
+| `className`    | `string`                      | —       | 自定义样式类名                        |
+| `value`        | `string`                      | —       | The sequence value to preview         |
+| `mask`         | `string`                      | `•`     | Character to use for hidden chars     |
+| `visibleChars` | `number`                      | —       | Show only last N chars, mask the rest |
+| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                 |
+
+## 注意事项
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sequence-preview--docs)。

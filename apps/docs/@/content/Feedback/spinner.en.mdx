@@ -1,0 +1,77 @@
+import { Spinner } from "@/components/ui/spinner";
+import { CodeBlock } from "@/components/code-block";
+
+# Spinner
+
+> Feedback and status communication to the user.
+
+Local loading spinner indicating content is being fetched.
+
+## When to Use
+
+Indicate an in-progress operation.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Spinner } from "@/components/ui/spinner"
+
+export function Basic() {
+  return <Spinner>Default</Spinner>
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Spinner variant="default">Default</Spinner>
+  <Spinner variant="muted">Muted</Spinner>
+  <Spinner variant="white">White</Spinner>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Spinner size="sm">Sm</Spinner>
+  <Spinner size="default">Default</Spinner>
+  <Spinner size="lg">Lg</Spinner>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant   | Description   | 默认 |
+| --------- | ------------- | ---- |
+| `default` | Default style | ✓    |
+| `muted`   |               |      |
+| `white`   |               |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+| `xl`      | Extra large  |      |
+
+## API / Props
+
+### Spinner
+
+| Prop        | Type                          | Default      | Description                     |
+| ----------- | ----------------------------- | ------------ | ------------------------------- |
+| `className` | `string`                      | —            | Custom CSS class                |
+| `label`     | `string`                      | `Loading...` | Accessible label                |
+| ...rest     | `React.ComponentProps<"svg">` | —            | Inherits all `<svg>` attributes |
+
+## Notes

@@ -1,0 +1,66 @@
+import { Statistic } from "@/components/ui/statistic";
+import { CodeBlock } from "@/components/code-block";
+
+# Statistic 统计数值
+
+> 数据展示
+
+突出展示某个统计数字,支持千分位、前缀/后缀、动画。
+
+## 何时使用
+
+需要统计数值功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Statistic } from "@/components/ui/statistic"
+
+export function Basic() {
+  return <Statistic>Default</Statistic>
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Statistic size="sm">Sm</Statistic>
+  <Statistic size="default">Default</Statistic>
+  <Statistic size="lg">Lg</Statistic>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### Statistic
+
+| Prop        | Type                          | Default | 说明                            |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名                  |
+| `value`     | `React.ReactNode`             | —       | The value to display            |
+| `title`     | `React.ReactNode`             | —       | Label / title                   |
+| `prefix`    | `React.ReactNode`             | —       | Prefix before value             |
+| `suffix`    | `React.ReactNode`             | —       | Suffix after value              |
+| `precision` | `number`                      | —       | Precision for number formatting |
+| `loading`   | `boolean`                     | `false` | Loading state shows skeleton    |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性           |
+
+## 注意事项
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-statistic--docs)。

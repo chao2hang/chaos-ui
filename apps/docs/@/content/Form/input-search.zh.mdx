@@ -1,0 +1,72 @@
+import { InputSearch } from "@/components/ui/input-search";
+import { CodeBlock } from "@/components/code-block";
+
+# InputSearch 搜索输入
+
+> 表单控件
+
+搜索输入 — Chaos UI 的表单控件。
+
+## 何时使用
+
+需要搜索输入功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { InputSearch } from "@/components/ui/input-search"
+
+export function Basic() {
+  return <InputSearch />
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <InputSearch size="sm">Sm</InputSearch>
+  <InputSearch size="default">Default</InputSearch>
+  <InputSearch size="lg">Lg</InputSearch>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态
+
+<CodeBlock
+  code={`<InputSearch>Normal</InputSearch>
+<InputSearch disabled>Disabled</InputSearch>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### InputSearch
+
+| Prop            | Type                   | Default | 说明                            |
+| --------------- | ---------------------- | ------- | ------------------------------- |
+| `className`     | `string`               | —       | 自定义样式类名                  |
+| `value`         | `string`               | —       | Controlled value                |
+| `onValueChange` | `() => void`           | —       | Change handler                  |
+| `onSearch`      | `() => void`           | —       | Called when search is submitted |
+| `loading`       | `boolean`              | `false` | Whether to show loading spinner |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性               |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-input-search--docs)。

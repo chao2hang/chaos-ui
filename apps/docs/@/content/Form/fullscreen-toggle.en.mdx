@@ -1,0 +1,79 @@
+import { FullscreenToggle } from "@/components/ui/fullscreen-toggle";
+import { CodeBlock } from "@/components/code-block";
+
+# FullscreenToggle
+
+> Form controls for user input and data submission.
+
+FullscreenToggle — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a fullscreen toggle.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FullscreenToggle } from "@/components/ui/fullscreen-toggle"
+
+export function Basic() {
+  return <FullscreenToggle />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <FullscreenToggle variant="default">Default</FullscreenToggle>
+  <FullscreenToggle variant="outline">Outline</FullscreenToggle>
+  <FullscreenToggle variant="ghost">Ghost</FullscreenToggle>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <FullscreenToggle size="sm">Sm</FullscreenToggle>
+  <FullscreenToggle size="default">Default</FullscreenToggle>
+  <FullscreenToggle size="lg">Lg</FullscreenToggle>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant   | Description                 | 默认 |
+| --------- | --------------------------- | ---- |
+| `default` | Default style               |      |
+| `outline` | Outlined style              |      |
+| `ghost`   | Ghost (no background) style | ✓    |
+
+**Size**
+
+| Size      | Description      | 默认 |
+| --------- | ---------------- | ---- |
+| `default` | Default size     |      |
+| `sm`      | Small            |      |
+| `lg`      | Large            |      |
+| `icon`    | Icon-only square | ✓    |
+
+## API / Props
+
+### FullscreenToggle
+
+| Prop        | Type                             | Default | Description                                                        |
+| ----------- | -------------------------------- | ------- | ------------------------------------------------------------------ |
+| `className` | `string`                         | —       | Custom CSS class                                                   |
+| `target`    | `React.RefObject<HTMLElement>`   | —       | Target element to fullscreen. Defaults to document.documentElement |
+| ...rest     | `React.ComponentProps<"button">` | —       | Inherits all `<button>` attributes                                 |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

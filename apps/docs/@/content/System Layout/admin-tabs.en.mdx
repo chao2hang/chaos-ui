@@ -1,0 +1,39 @@
+import { AdminTabs } from "@/components/layout/admin-tabs";
+import { CodeBlock } from "@/components/code-block";
+
+# AdminTabs
+
+> System-level layout shells for admin pages.
+
+AdminTabs — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need an admin tabs.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AdminTabs } from "@/components/layout/admin-tabs"
+
+export function Basic() {
+  return <AdminTabs />
+}`} lang="tsx" />
+
+## API / Props
+
+### AdminTabs
+
+| Prop               | Type                          | Default | Description                     |
+| ------------------ | ----------------------------- | ------- | ------------------------------- |
+| `className`        | `string`                      | —       | Custom CSS class                |
+| `items`            | `AdminTabItem[]`              | —       | Items / data list               |
+| `activeKey`        | `string`                      | —       |                                 |
+| `defaultActiveKey` | `string`                      | —       |                                 |
+| `onChange`         | `() => void`                  | —       | Callback when value changes     |
+| ...rest            | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

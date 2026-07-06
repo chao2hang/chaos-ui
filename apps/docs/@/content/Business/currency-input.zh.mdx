@@ -1,0 +1,43 @@
+import { CurrencyInput } from "@/components/business/currency-input";
+import { CodeBlock } from "@/components/code-block";
+
+# CurrencyInput 货币输入
+
+> 业务组件
+
+货币输入 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要货币输入功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CurrencyInput } from "@/components/business/currency-input"
+
+export function Basic() {
+  return <CurrencyInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### CurrencyInput
+
+| Prop          | Type                   | Default | 说明              |
+| ------------- | ---------------------- | ------- | ----------------- |
+| `className`   | `string`               | —       | 自定义样式类名    |
+| `value`       | `number \| undefined`  | —       | 当前值(受控)      |
+| `onChange`    | `() => void`           | —       | 值变化回调        |
+| `currency`    | `string`               | `USD`   |                   |
+| `locale`      | `string`               | `en-US` |                   |
+| `placeholder` | `string`               | —       | 占位文本          |
+| `disabled`    | `boolean`              | —       | 是否禁用          |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-currency-input--docs)。

@@ -1,0 +1,48 @@
+import { HeatmapCalendar } from "@/components/business/heatmap-calendar";
+import { CodeBlock } from "@/components/code-block";
+
+# HeatmapCalendar 热力日历
+
+> 业务组件
+
+热力日历 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要热力日历功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { HeatmapCalendar } from "@/components/business/heatmap-calendar"
+
+export function Basic() {
+  return <HeatmapCalendar />
+}`} lang="tsx" />
+
+## API / Props
+
+### HeatmapCalendar
+
+| Prop              | Type                                       | Default | 说明                  |
+| ----------------- | ------------------------------------------ | ------- | --------------------- |
+| `className`       | `string`                                   | —       | 自定义样式类名        |
+| `data`            | `Array<T>`                                 | —       | 数据源                |
+| `startDate`       | `Date`                                     | —       |                       |
+| `endDate`         | `Date`                                     | —       |                       |
+| `weekStartsOn`    | `0 \| 1`                                   | `0`     |                       |
+| `cellSize`        | `number`                                   | `12`    |                       |
+| `gap`             | `number`                                   | `2`     | 间距                  |
+| `levels`          | `number`                                   | `5`     |                       |
+| `legendClassName` | `string`                                   | —       |                       |
+| `showLegend`      | `boolean`                                  | `true`  |                       |
+| `colorStops`      | `[string, string, string, string, string]` | —       |                       |
+| ...rest           | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-heatmap-calendar--docs)。

@@ -1,0 +1,38 @@
+import { AdminSider } from "@/components/layout/admin-sider";
+import { CodeBlock } from "@/components/code-block";
+
+# AdminSider
+
+> System-level layout shells for admin pages.
+
+AdminSider — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need an admin sider.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AdminSider } from "@/components/layout/admin-sider"
+
+export function Basic() {
+  return <AdminSider />
+}`} lang="tsx" />
+
+## API / Props
+
+### AdminSider
+
+| Prop        | Type                            | Default | Description                       |
+| ----------- | ------------------------------- | ------- | --------------------------------- |
+| `className` | `string`                        | —       | Custom CSS class                  |
+| `items`     | `AdminSiderItem[]`              | —       | Items / data list                 |
+| `activeKey` | `string`                        | —       |                                   |
+| `onSelect`  | `() => void`                    | —       | Selection handler                 |
+| ...rest     | `React.ComponentProps<"aside">` | —       | Inherits all `<aside>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

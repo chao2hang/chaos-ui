@@ -1,0 +1,39 @@
+import { ShiftCalendar } from "@/components/business/shift-calendar";
+import { CodeBlock } from "@/components/code-block";
+
+# ShiftCalendar
+
+> Domain-specific business components for ERP scenarios.
+
+ShiftCalendar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a shift calendar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ShiftCalendar } from "@/components/business/shift-calendar"
+
+export function Basic() {
+  return <ShiftCalendar />
+}`} lang="tsx" />
+
+## API / Props
+
+### ShiftCalendar
+
+| Prop            | Type                          | Default | Description                     |
+| --------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`     | `string`                      | —       | Custom CSS class                |
+| `shifts`        | `Shift[]`                     | —       |                                 |
+| `year`          | `number`                      | —       |                                 |
+| `month`         | `number`                      | —       |                                 |
+| `onMonthChange` | `() => void`                  | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

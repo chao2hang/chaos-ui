@@ -1,0 +1,150 @@
+import { Typography } from "@/components/ui/typography";
+import { CodeBlock } from "@/components/code-block";
+
+# Typography
+
+> General-purpose primitives used across the app.
+
+Typography — a general-purpose primitives used across the app. from Chaos UI.
+
+## When to Use
+
+Use when you need a typography.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Typography, Title, Paragraph, Text, Link } from "@/components/ui/typography"
+
+export function Basic() {
+  return (
+    <Typography>
+      <Title>Content</Title>
+    </Typography>
+  )
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Typography variant="default">Default</Typography>
+  <Typography variant="muted">Muted</Typography>
+  <Typography variant="destructive">Destructive</Typography>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Typography size="sm">Sm</Typography>
+  <Typography size="default">Default</Typography>
+  <Typography size="lg">Lg</Typography>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**type**
+
+| type        | Description | 默认 |
+| ----------- | ----------- | ---- |
+| `default`   |             | ✓    |
+| `secondary` |             |      |
+| `success`   |             |      |
+| `warning`   |             |      |
+| `danger`    |             |      |
+| `disabled`  |             |      |
+
+**strong**
+
+| strong  | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
+
+**italic**
+
+| italic  | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
+
+**underline**
+
+| underline | Description | 默认 |
+| --------- | ----------- | ---- |
+| `true`    |             | ✓    |
+| `false`   |             |      |
+
+**delete**
+
+| delete  | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
+
+**code**
+
+| code    | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
+
+**mark**
+
+| mark    | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
+
+**keyboard**
+
+| keyboard | Description | 默认 |
+| -------- | ----------- | ---- |
+| `true`   |             | ✓    |
+| `false`  |             |      |
+
+**level**
+
+| level | Description | 默认 |
+| ----- | ----------- | ---- |
+| `1`   |             | ✓    |
+| `2`   |             |      |
+| `3`   |             |      |
+| `4`   |             |      |
+| `5`   |             |      |
+| `6`   |             |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+**Variant**
+
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `muted`       |                          |      |
+| `destructive` | Destructive/danger style |      |
+
+## API / Props
+
+### Typography
+
+| Prop        | Type                           | Default | Description                      |
+| ----------- | ------------------------------ | ------- | -------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                 |
+| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+
+## Notes

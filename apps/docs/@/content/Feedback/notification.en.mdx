@@ -1,0 +1,67 @@
+import { Notification } from "@/components/ui/notification";
+import { CodeBlock } from "@/components/code-block";
+
+# Notification
+
+> Feedback and status communication to the user.
+
+Top-right notification card with richer content and longer duration than toast.
+
+## When to Use
+
+Use when you need a notification.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Notification } from "@/components/ui/notification"
+
+export function Basic() {
+  return <Notification />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Notification variant="default">Default</Notification>
+  <Notification variant="info">Info</Notification>
+  <Notification variant="success">Success</Notification>
+  <Notification variant="warning">Warning</Notification>
+  <Notification variant="destructive">Destructive</Notification>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `info`        | Informational style      |      |
+| `success`     | Success style            |      |
+| `warning`     | Warning style            |      |
+| `destructive` | Destructive/danger style |      |
+
+## API / Props
+
+### Notification
+
+| Prop          | Type                          | Default | Description                              |
+| ------------- | ----------------------------- | ------- | ---------------------------------------- |
+| `className`   | `string`                      | —       | Custom CSS class                         |
+| `title`       | `React.ReactNode`             | —       | Title                                    |
+| `description` | `React.ReactNode`             | —       | Description content                      |
+| `open`        | `boolean`                     | `true`  | Whether the notification is visible      |
+| `onClose`     | `() => void`                  | —       | Called when close button is clicked      |
+| `duration`    | `number`                      | `4500`  | Auto-close duration in ms (0 to disable) |
+| `icon`        | `React.ReactNode`             | —       | Icon to show                             |
+| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes          |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

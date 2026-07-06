@@ -1,0 +1,54 @@
+import { Affix } from "@/components/ui/affix";
+import { CodeBlock } from "@/components/code-block";
+
+# Affix 固钉
+
+> 通用基础组件
+
+将页面元素固定在可视范围某位置,滚动时保持可见。
+
+## 何时使用
+
+需要固钉功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Affix } from "@/components/ui/affix"
+
+export function Basic() {
+  return <Affix />
+}`} lang="tsx" />
+
+## 样式变体
+
+**position**
+
+| position       | 说明 | 默认 |
+| -------------- | ---- | ---- |
+| `top`          |      |      |
+| `bottom`       |      |      |
+| `top-start`    |      |      |
+| `top-end`      |      |      |
+| `bottom-start` |      |      |
+| `bottom-end`   |      | ✓    |
+
+## API / Props
+
+### Affix
+
+| Prop        | Type                          | Default | 说明                                      |
+| ----------- | ----------------------------- | ------- | ----------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名                            |
+| `offset`    | `number`                      | `0`     | Offset from the target position in pixels |
+| `target`    | `(...args) => unknown`        | —       | Target container ref to observe scroll    |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                     |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-affix--docs)。

@@ -1,0 +1,44 @@
+import { CodeBlock } from "@/components/business/code-block";
+
+# CodeBlock 代码块
+
+> 业务组件
+
+代码块 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要代码块功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CodeBlock } from "@/components/business/code-block"
+
+export function Basic() {
+  return <CodeBlock />
+}`} lang="tsx" />
+
+## API / Props
+
+### CodeBlock
+
+| Prop              | Type                          | Default | 说明                  |
+| ----------------- | ----------------------------- | ------- | --------------------- |
+| `className`       | `string`                      | —       | 自定义样式类名        |
+| `code`            | `string`                      | —       |                       |
+| `language`        | `string`                      | —       |                       |
+| `filename`        | `string`                      | —       |                       |
+| `showLineNumbers` | `boolean`                     | `true`  |                       |
+| `showCopy`        | `boolean`                     | `true`  |                       |
+| `highlightLines`  | `number[]`                    | —       |                       |
+| `maxHeight`       | `number`                      | `480`   |                       |
+| ...rest           | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-code-block--docs)。

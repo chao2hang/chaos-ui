@@ -1,0 +1,35 @@
+import { ActivityFeed } from "@/components/business/activity-feed";
+import { CodeBlock } from "@/components/code-block";
+
+# ActivityFeed
+
+> Domain-specific business components for ERP scenarios.
+
+ActivityFeed — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an activity feed.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ActivityFeed } from "@/components/business/activity-feed"
+
+export function Basic() {
+  return <ActivityFeed />
+}`} lang="tsx" />
+
+## API / Props
+
+### ActivityFeed
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

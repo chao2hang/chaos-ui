@@ -1,0 +1,79 @@
+import { BrowseInput } from "@/components/ui/browse-input";
+import { CodeBlock } from "@/components/code-block";
+
+# BrowseInput 浏览输入框
+
+> 表单控件
+
+输入框右侧带浏览按钮,常用于选择文件/目录/业务对象。
+
+## 何时使用
+
+需要浏览输入框功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { BrowseInput } from "@/components/ui/browse-input"
+
+export function Basic() {
+  return <BrowseInput />
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <BrowseInput size="sm">Sm</BrowseInput>
+  <BrowseInput size="default">Default</BrowseInput>
+  <BrowseInput size="lg">Lg</BrowseInput>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态
+
+<CodeBlock
+  code={`<BrowseInput>Normal</BrowseInput>
+<BrowseInput disabled>Disabled</BrowseInput>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### BrowseInput
+
+| Prop               | Type                   | Default     | 说明              |
+| ------------------ | ---------------------- | ----------- | ----------------- |
+| `className`        | `string`               | —           | 自定义样式类名    |
+| `value`            | `string`               | —           | 当前值(受控)      |
+| `defaultValue`     | `string`               | —           | 默认值(非受控)    |
+| `placeholder`      | `string`               | `Select...` | 占位文本          |
+| `disabled`         | `boolean`              | —           | 是否禁用          |
+| `readOnly`         | `boolean`              | —           | 是否只读          |
+| `required`         | `boolean`              | —           | 是否必填          |
+| `onBrowse`         | `() => void`           | —           |                   |
+| `onChange`         | `() => void`           | —           | 值变化回调        |
+| `onClear`          | `() => void`           | —           |                   |
+| `showClearButton`  | `boolean`              | `true`      |                   |
+| `showBrowseButton` | `boolean`              | `true`      |                   |
+| ...rest            | `React.HTMLAttributes` | —           | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-browse-input--docs)。

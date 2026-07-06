@@ -1,0 +1,65 @@
+import { SequenceInput } from "@/components/ui/sequence-input";
+import { CodeBlock } from "@/components/code-block";
+
+# SequenceInput
+
+> Form controls for user input and data submission.
+
+SequenceInput — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a sequence input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SequenceInput } from "@/components/ui/sequence-input"
+
+export function Basic() {
+  return <SequenceInput />
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <SequenceInput size="sm">Sm</SequenceInput>
+  <SequenceInput size="default">Default</SequenceInput>
+  <SequenceInput size="lg">Lg</SequenceInput>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### SequenceInput
+
+| Prop         | Type                                   | Default       | Description                       |
+| ------------ | -------------------------------------- | ------------- | --------------------------------- |
+| `className`  | `string`                               | —             | Custom CSS class                  |
+| `length`     | `number`                               | `6`           | Number of input slots             |
+| `value`      | `string`                               | ``            | Current value (string of digits)  |
+| `onChange`   | `() => void`                           | —             | Called when value changes         |
+| `onComplete` | `() => void`                           | —             | Called when all slots are filled  |
+| `pattern`    | `string`                               | `[a-zA-Z0-9]` | Allowed characters regex          |
+| `type`       | `"text" \| "number" \| "alphanumeric"` | `text`        | Input type                        |
+| `autoFocus`  | `boolean`                              | `false`       | Auto-focus first input            |
+| `disabled`   | `boolean`                              | —             | Whether disabled                  |
+| ...rest      | `React.HTMLAttributes`                 | —             | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

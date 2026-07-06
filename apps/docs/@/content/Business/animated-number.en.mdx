@@ -1,0 +1,41 @@
+import { AnimatedNumber } from "@/components/business/animated-number";
+import { CodeBlock } from "@/components/code-block";
+
+# AnimatedNumber
+
+> Domain-specific business components for ERP scenarios.
+
+AnimatedNumber — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an animated number.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AnimatedNumber } from "@/components/business/animated-number"
+
+export function Basic() {
+  return <AnimatedNumber />
+}`} lang="tsx" />
+
+## API / Props
+
+### AnimatedNumber
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `value`     | `number`               | —       | Current value (controlled)        |
+| `duration`  | `number`               | `1000`  | Duration in milliseconds          |
+| `decimals`  | `number`               | `0`     |                                   |
+| `prefix`    | `string`               | ``      | Prefix content                    |
+| `suffix`    | `string`               | ``      | Suffix content                    |
+| `format`    | `(...args) => unknown` | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

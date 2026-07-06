@@ -1,0 +1,61 @@
+import { Statistic } from "@/components/ui/statistic";
+import { CodeBlock } from "@/components/code-block";
+
+# Statistic
+
+> Components for presenting data and content.
+
+Prominently displays a statistic with thousands separators, prefix/suffix, and animation.
+
+## When to Use
+
+Use when you need a statistic.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Statistic } from "@/components/ui/statistic"
+
+export function Basic() {
+  return <Statistic>Default</Statistic>
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Statistic size="sm">Sm</Statistic>
+  <Statistic size="default">Default</Statistic>
+  <Statistic size="lg">Lg</Statistic>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Statistic
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `value`     | `React.ReactNode`             | —       | The value to display            |
+| `title`     | `React.ReactNode`             | —       | Label / title                   |
+| `prefix`    | `React.ReactNode`             | —       | Prefix before value             |
+| `suffix`    | `React.ReactNode`             | —       | Suffix after value              |
+| `precision` | `number`                      | —       | Precision for number formatting |
+| `loading`   | `boolean`                     | `false` | Loading state shows skeleton    |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes

@@ -1,0 +1,40 @@
+import { EditToolbar } from "@/components/business/edit-toolbar";
+import { CodeBlock } from "@/components/code-block";
+
+# EditToolbar
+
+> Domain-specific business components for ERP scenarios.
+
+EditToolbar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an edit toolbar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EditToolbar } from "@/components/business/edit-toolbar"
+
+export function Basic() {
+  return <EditToolbar />
+}`} lang="tsx" />
+
+## API / Props
+
+### EditToolbar
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `editing`   | `boolean`                     | `false` |                                 |
+| `onEdit`    | `() => void`                  | —       |                                 |
+| `onSave`    | `() => void`                  | —       |                                 |
+| `onCancel`  | `() => void`                  | —       |                                 |
+| `loading`   | `boolean`                     | `false` | Loading state                   |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

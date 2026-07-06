@@ -1,0 +1,42 @@
+import { BarcodeDisplay } from "@/components/business/barcode-display";
+import { CodeBlock } from "@/components/code-block";
+
+# BarcodeDisplay 条形码展示
+
+> 业务组件
+
+条形码展示 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要条形码展示功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { BarcodeDisplay } from "@/components/business/barcode-display"
+
+export function Basic() {
+  return <BarcodeDisplay />
+}`} lang="tsx" />
+
+## API / Props
+
+### BarcodeDisplay
+
+| Prop        | Type                            | Default   | 说明                  |
+| ----------- | ------------------------------- | --------- | --------------------- |
+| `className` | `string`                        | —         | 自定义样式类名        |
+| `value`     | `string`                        | —         | 当前值(受控)          |
+| `format`    | `"CODE128" \| "EAN13" \| "UPC"` | `CODE128` |                       |
+| `width`     | `number`                        | `2`       | 组件宽度              |
+| `height`    | `number`                        | `100`     | 组件高度              |
+| ...rest     | `React.ComponentProps<"div">`   | —         | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-barcode-display--docs)。

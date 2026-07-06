@@ -1,0 +1,77 @@
+import { List } from "@/components/ui/list";
+import { CodeBlock } from "@/components/code-block";
+
+# List 列表
+
+> 数据展示
+
+列表 — Chaos UI 的数据展示。
+
+## 何时使用
+
+需要列表功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { List } from "@/components/ui/list"
+
+export function Basic() {
+  return <List>Default</List>
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <List size="sm">Sm</List>
+  <List size="default">Default</List>
+  <List size="lg">Lg</List>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**类型**
+
+| type        | 说明 | 默认 |
+| ----------- | ---- | ---- |
+| `unordered` |      | ✓    |
+| `ordered`   |      |      |
+| `none`      |      |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+**spacing**
+
+| spacing   | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `default` |      | ✓    |
+| `sm`      |      |      |
+| `lg`      |      |      |
+
+## API / Props
+
+### List
+
+| Prop        | Type                         | Default | 说明                 |
+| ----------- | ---------------------------- | ------- | -------------------- |
+| `className` | `string`                     | —       | 自定义样式类名       |
+| `items`     | `React.ReactNode[]`          | —       | 选项/数据项列表      |
+| ...rest     | `React.ComponentProps<"ul">` | —       | 透传 `<ul>` 原生属性 |
+
+## 注意事项
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<ul>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-list--docs)。

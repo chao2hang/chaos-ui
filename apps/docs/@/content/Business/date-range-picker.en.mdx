@@ -1,0 +1,42 @@
+import { DateRangePicker } from "@/components/business/date-range-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# DateRangePicker
+
+> Domain-specific business components for ERP scenarios.
+
+DateRangePicker — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Select a date range.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DateRangePicker } from "@/components/business/date-range-picker"
+
+export function Basic() {
+  return <DateRangePicker />
+}`} lang="tsx" />
+
+## API / Props
+
+### DateRangePicker
+
+| Prop             | Type                           | Default        | Description                       |
+| ---------------- | ------------------------------ | -------------- | --------------------------------- |
+| `className`      | `string`                       | —              | Custom CSS class                  |
+| `value`          | `DateRange`                    | —              | Current value (controlled)        |
+| `onChange`       | `() => void`                   | —              | Callback when value changes       |
+| `placeholder`    | `string`                       | `选择日期范围` | Placeholder text                  |
+| `numberOfMonths` | `number`                       | `2`            |                                   |
+| `disabled`       | `boolean`                      | —              | Whether disabled                  |
+| `align`          | `"start" \| "center" \| "end"` | `start`        | Alignment                         |
+| `presets`        | `boolean`                      | `true`         |                                   |
+| ...rest          | `React.HTMLAttributes`         | —              | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

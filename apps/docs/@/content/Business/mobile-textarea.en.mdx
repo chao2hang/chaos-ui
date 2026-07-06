@@ -1,0 +1,35 @@
+import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileTextarea
+
+> Domain-specific business components for ERP scenarios.
+
+MobileTextarea — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile textarea.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileTextarea } from "@/components/business/mobile-textarea"
+
+export function Basic() {
+  return <MobileTextarea />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileTextarea
+
+| Prop        | Type                               | Default | Description                          |
+| ----------- | ---------------------------------- | ------- | ------------------------------------ |
+| `className` | `string`                           | —       | Custom CSS class                     |
+| ...rest     | `React.ComponentProps<"textarea">` | —       | Inherits all `<textarea>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

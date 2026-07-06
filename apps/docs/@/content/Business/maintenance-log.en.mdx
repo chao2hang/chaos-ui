@@ -1,0 +1,36 @@
+import { MaintenanceLog } from "@/components/business/maintenance-log";
+import { CodeBlock } from "@/components/code-block";
+
+# MaintenanceLog
+
+> Domain-specific business components for ERP scenarios.
+
+MaintenanceLog — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a maintenance log.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MaintenanceLog } from "@/components/business/maintenance-log"
+
+export function Basic() {
+  return <MaintenanceLog />
+}`} lang="tsx" />
+
+## API / Props
+
+### MaintenanceLog
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `records`   | `MaintenanceRecord[]`         | —       |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,41 @@
+import { QRCodeDisplay } from "@/components/ui/qrcode-display";
+import { CodeBlock } from "@/components/code-block";
+
+# QrcodeDisplay
+
+> Components for presenting data and content.
+
+QrcodeDisplay — a components for presenting data and content. from Chaos UI.
+
+## When to Use
+
+Use when you need a qrcode display.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { QRCodeDisplay } from "@/components/ui/qrcode-display"
+
+export function Basic() {
+  return <QRCodeDisplay />
+}`} lang="tsx" />
+
+## API / Props
+
+### QRCodeDisplay
+
+| Prop            | Type                          | Default   | Description                     |
+| --------------- | ----------------------------- | --------- | ------------------------------- |
+| `className`     | `string`                      | —         | Custom CSS class                |
+| `value`         | `string`                      | —         | Text to encode in QR code       |
+| `size`          | `number`                      | `200`     | Size in pixels                  |
+| `fgColor`       | `string`                      | `#000000` | Foreground color                |
+| `bgColor`       | `string`                      | `#ffffff` | Background color                |
+| `level`         | `"L" \| "M" \| "Q" \| "H"`    | `M`       | Error correction level          |
+| `includeMargin` | `boolean`                     | `true`    | Include margin/padding          |
+| ...rest         | `React.ComponentProps<"div">` | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

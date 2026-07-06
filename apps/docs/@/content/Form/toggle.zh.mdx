@@ -1,0 +1,87 @@
+import { Toggle } from "@/components/ui/toggle";
+import { CodeBlock } from "@/components/code-block";
+
+# Toggle 开关
+
+> 表单控件
+
+开关 — Chaos UI 的表单控件。
+
+## 何时使用
+
+需要开关功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Toggle } from "@/components/ui/toggle"
+
+export function Basic() {
+  return <Toggle />
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Toggle variant="default">Default</Toggle>
+  <Toggle variant="outline">Outline</Toggle>
+</div>`}
+  lang="tsx"
+/>
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Toggle size="sm">Sm</Toggle>
+  <Toggle size="default">Default</Toggle>
+  <Toggle size="lg">Lg</Toggle>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态
+
+<CodeBlock
+  code={`<Toggle>Normal</Toggle>
+<Toggle disabled>Disabled</Toggle>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**变体**
+
+| Variant   | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认样式 | ✓    |
+| `outline` | 描边样式 |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+## API / Props
+
+### Toggle
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-toggle--docs)。

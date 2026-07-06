@@ -1,0 +1,37 @@
+import { PageHeader } from "@/components/business/page-header";
+import { CodeBlock } from "@/components/code-block";
+
+# PageHeader 页面头部
+
+> 业务组件
+
+页面头部 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要页面头部功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PageHeader } from "@/components/business/page-header"
+
+export function Basic() {
+  return <PageHeader />
+}`} lang="tsx" />
+
+## API / Props
+
+### PageHeader
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-page-header--docs)。

@@ -1,0 +1,45 @@
+import { CommandPalette } from "@/components/business/command-palette";
+import { CodeBlock } from "@/components/code-block";
+
+# CommandPalette 命令面板
+
+> 业务组件
+
+命令面板 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要命令面板功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CommandPalette } from "@/components/business/command-palette"
+
+export function Basic() {
+  return <CommandPalette />
+}`} lang="tsx" />
+
+## API / Props
+
+### CommandPalette
+
+| Prop           | Type                   | Default             | 说明              |
+| -------------- | ---------------------- | ------------------- | ----------------- |
+| `className`    | `string`               | —                   | 自定义样式类名    |
+| `open`         | `boolean`              | —                   | 是否打开(受控)    |
+| `onOpenChange` | `() => void`           | —                   | 打开状态变化回调  |
+| `groups`       | `CommandGroup[]`       | —                   |                   |
+| `placeholder`  | `string`               | `输入命令或搜索...` | 占位文本          |
+| `emptyText`    | `string`               | `未找到结果`        |                   |
+| `trigger`      | `React.ReactNode`      | —                   |                   |
+| `shortcut`     | `string`               | `mod+K`             |                   |
+| `showShortcut` | `boolean`              | `true`              |                   |
+| ...rest        | `React.HTMLAttributes` | —                   | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-command-palette--docs)。

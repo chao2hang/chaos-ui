@@ -1,0 +1,35 @@
+import { DashboardLayout } from "@/components/layout/dashboard-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# DashboardLayout
+
+> System-level layout shells for admin pages.
+
+DashboardLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Overall dashboard page layout (sider + header + content area).
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DashboardLayout } from "@/components/layout/dashboard-layout"
+
+export function Basic() {
+  return <DashboardLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### DashboardLayout
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

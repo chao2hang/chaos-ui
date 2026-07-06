@@ -1,0 +1,35 @@
+import { Label } from "@/components/ui/label";
+import { CodeBlock } from "@/components/code-block";
+
+# Label
+
+> Form controls for user input and data submission.
+
+Form field label supporting required asterisk, sizes, and alignment.
+
+## When to Use
+
+Provide an accessible text label for a form control.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Label } from "@/components/ui/label"
+
+export function Basic() {
+  return <Label />
+}`} lang="tsx" />
+
+## API / Props
+
+### Label
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

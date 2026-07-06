@@ -1,0 +1,42 @@
+import { CampaignCalendar } from "@/components/business/campaign-calendar";
+import { CodeBlock } from "@/components/code-block";
+
+# CampaignCalendar 活动日历
+
+> 业务组件
+
+活动日历 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要活动日历功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CampaignCalendar } from "@/components/business/campaign-calendar"
+
+export function Basic() {
+  return <CampaignCalendar />
+}`} lang="tsx" />
+
+## API / Props
+
+### CampaignCalendar
+
+| Prop            | Type                          | Default | 说明                  |
+| --------------- | ----------------------------- | ------- | --------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名        |
+| `events`        | `CampaignEvent[]`             | —       |                       |
+| `year`          | `number`                      | —       |                       |
+| `month`         | `number`                      | —       |                       |
+| `onMonthChange` | `() => void`                  | —       |                       |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-campaign-calendar--docs)。

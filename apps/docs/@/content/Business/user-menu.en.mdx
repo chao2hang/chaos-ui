@@ -1,0 +1,43 @@
+import { UserMenu } from "@/components/business/user-menu";
+import { CodeBlock } from "@/components/code-block";
+
+# UserMenu
+
+> Domain-specific business components for ERP scenarios.
+
+UserMenu — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an user menu.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { UserMenu } from "@/components/business/user-menu"
+
+export function Basic() {
+  return <UserMenu />
+}`} lang="tsx" />
+
+## API / Props
+
+### UserMenu
+
+| Prop           | Type                           | Default | Description                       |
+| -------------- | ------------------------------ | ------- | --------------------------------- |
+| `className`    | `string`                       | —       | Custom CSS class                  |
+| `user`         | `UserMenuUser`                 | —       |                                   |
+| `actions`      | `UserMenuAction[]`             | —       |                                   |
+| `showProfile`  | `boolean`                      | `true`  |                                   |
+| `showSettings` | `boolean`                      | `true`  |                                   |
+| `onProfile`    | `() => void`                   | —       |                                   |
+| `onSettings`   | `() => void`                   | —       |                                   |
+| `onSignOut`    | `() => void`                   | —       |                                   |
+| `align`        | `"start" \| "center" \| "end"` | `end`   | Alignment                         |
+| ...rest        | `React.HTMLAttributes`         | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

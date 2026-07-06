@@ -1,0 +1,40 @@
+import { RemoteSelect } from "@/components/business/remote-select";
+import { CodeBlock } from "@/components/code-block";
+
+# RemoteSelect
+
+> Domain-specific business components for ERP scenarios.
+
+RemoteSelect — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a remote select.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RemoteSelect } from "@/components/business/remote-select"
+
+export function Basic() {
+  return <RemoteSelect />
+}`} lang="tsx" />
+
+## API / Props
+
+### RemoteSelect
+
+| Prop          | Type                   | Default         | Description                       |
+| ------------- | ---------------------- | --------------- | --------------------------------- |
+| `className`   | `string`               | —               | Custom CSS class                  |
+| `value`       | `string`               | —               | Current value (controlled)        |
+| `onChange`    | `() => void`           | —               | Callback when value changes       |
+| `onSearch`    | `(...args) => unknown` | —               |                                   |
+| `placeholder` | `string`               | `搜索并选择...` | Placeholder text                  |
+| `debounceMs`  | `number`               | `300`           |                                   |
+| ...rest       | `React.HTMLAttributes` | —               | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

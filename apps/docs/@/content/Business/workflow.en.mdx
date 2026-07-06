@@ -1,0 +1,46 @@
+import { WorkflowViewer, OrgChart } from "@/components/business/workflow";
+import { CodeBlock } from "@/components/code-block";
+
+# Workflow
+
+> Domain-specific business components for ERP scenarios.
+
+Workflow — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a workflow.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { WorkflowViewer, OrgChart } from "@/components/business/workflow"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <WorkflowViewer />
+  <OrgChart />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### WorkflowViewer
+
+| Prop           | Type                          | Default | Description                     |
+| -------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`    | `string`                      | —       | Custom CSS class                |
+| `nodes`        | `Node<WorkflowNodeData>[]`    | —       |                                 |
+| `edges`        | `Edge[]`                      | —       |                                 |
+| `onNodeClick`  | `() => void`                  | —       |                                 |
+| `showControls` | `boolean`                     | `true`  |                                 |
+| `showMinimap`  | `boolean`                     | `false` |                                 |
+| `height`       | `number`                      | `480`   | Component height                |
+| ...rest        | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

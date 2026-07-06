@@ -1,0 +1,41 @@
+import { CodeBlock } from "@/components/business/code-block";
+
+# CodeBlock
+
+> Domain-specific business components for ERP scenarios.
+
+CodeBlock — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a code block.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CodeBlock } from "@/components/business/code-block"
+
+export function Basic() {
+  return <CodeBlock />
+}`} lang="tsx" />
+
+## API / Props
+
+### CodeBlock
+
+| Prop              | Type                          | Default | Description                     |
+| ----------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`       | `string`                      | —       | Custom CSS class                |
+| `code`            | `string`                      | —       |                                 |
+| `language`        | `string`                      | —       |                                 |
+| `filename`        | `string`                      | —       |                                 |
+| `showLineNumbers` | `boolean`                     | `true`  |                                 |
+| `showCopy`        | `boolean`                     | `true`  |                                 |
+| `highlightLines`  | `number[]`                    | —       |                                 |
+| `maxHeight`       | `number`                      | `480`   |                                 |
+| ...rest           | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

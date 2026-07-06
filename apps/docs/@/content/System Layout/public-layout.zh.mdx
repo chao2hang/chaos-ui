@@ -1,0 +1,41 @@
+import { PublicLayout } from "@/components/layout/public-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# PublicLayout 公共布局
+
+> 系统布局
+
+公共布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+
+## 何时使用
+
+需要公共布局功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PublicLayout } from "@/components/layout/public-layout"
+
+export function Basic() {
+  return <PublicLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### PublicLayout
+
+| Prop            | Type                          | Default | 说明                  |
+| --------------- | ----------------------------- | ------- | --------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名        |
+| `logo`          | `React.ReactNode`             | —       |                       |
+| `nav`           | `Array<T>`                    | —       |                       |
+| `footer`        | `React.ReactNode`             | —       |                       |
+| `headerActions` | `React.ReactNode`             | —       |                       |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-public-layout--docs)。

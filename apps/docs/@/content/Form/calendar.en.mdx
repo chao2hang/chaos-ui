@@ -1,0 +1,48 @@
+import { Calendar, CalendarDayButton } from "@/components/ui/calendar";
+import { CodeBlock } from "@/components/code-block";
+
+# Calendar
+
+> Form controls for user input and data submission.
+
+Calendar-view container for date selection or schedule display.
+
+## When to Use
+
+Display or select dates via a calendar panel.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Calendar, CalendarDayButton } from "@/components/ui/calendar"
+
+export function Basic() {
+  return (
+    <Calendar>
+      <CalendarDayButton>Content</CalendarDayButton>
+    </Calendar>
+  )
+}`} lang="tsx" />
+
+### States
+
+<CodeBlock
+  code={`<Calendar>Normal</Calendar>
+<Calendar disabled>Disabled</Calendar>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### Calendar
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(CalendarDayButton),使用组合模式按需导入。

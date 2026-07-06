@@ -1,0 +1,86 @@
+import { Space } from "@/components/ui/space";
+import { CodeBlock } from "@/components/code-block";
+
+# Space 间距
+
+> 布局组件
+
+间距 — Chaos UI 的布局组件,用于组织页面区域结构。
+
+## 何时使用
+
+需要间距功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Space } from "@/components/ui/space"
+
+export function Basic() {
+  return <Space>Default</Space>
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Space size="xs">Xs</Space>
+  <Space size="sm">Sm</Space>
+  <Space size="lg">Lg</Space>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**方向**
+
+| direction    | 说明 | 默认 |
+| ------------ | ---- | ---- |
+| `horizontal` |      | ✓    |
+| `vertical`   |      |      |
+
+**尺寸**
+
+| Size | 说明 | 默认 |
+| ---- | ---- | ---- |
+| `xs` | 超小 |      |
+| `sm` | 小号 | ✓    |
+| `md` |      |      |
+| `lg` | 大号 |      |
+| `xl` | 超大 |      |
+
+**wrap**
+
+| wrap    | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**对齐**
+
+| align      | 说明 | 默认 |
+| ---------- | ---- | ---- |
+| `start`    |      |      |
+| `center`   |      | ✓    |
+| `end`      |      |      |
+| `baseline` |      |      |
+
+## API / Props
+
+### Space
+
+| Prop        | Type                          | Default | 说明                         |
+| ----------- | ----------------------------- | ------- | ---------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名               |
+| `split`     | `React.ReactNode`             | —       | Split items with a separator |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性        |
+
+## 注意事项
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-space--docs)。

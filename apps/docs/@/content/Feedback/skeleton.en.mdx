@@ -1,0 +1,35 @@
+import { Skeleton } from "@/components/ui/skeleton";
+import { CodeBlock } from "@/components/code-block";
+
+# Skeleton
+
+> Feedback and status communication to the user.
+
+Placeholder shown while data loads; reduces perceived wait time.
+
+## When to Use
+
+Provide placeholder UI while data loads to reduce perceived wait time.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Skeleton } from "@/components/ui/skeleton"
+
+export function Basic() {
+  return <Skeleton />
+}`} lang="tsx" />
+
+## API / Props
+
+### Skeleton
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

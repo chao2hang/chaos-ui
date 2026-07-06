@@ -1,0 +1,73 @@
+import { InputNumber } from "@/components/ui/input-number";
+import { CodeBlock } from "@/components/code-block";
+
+# InputNumber
+
+> Form controls for user input and data submission.
+
+Numeric input with increment/decrement buttons, precision, and range limits.
+
+## When to Use
+
+Use when you need an input number.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { InputNumber } from "@/components/ui/input-number"
+
+export function Basic() {
+  return <InputNumber />
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <InputNumber size="sm">Sm</InputNumber>
+  <InputNumber size="default">Default</InputNumber>
+  <InputNumber size="lg">Lg</InputNumber>
+</div>`}
+  lang="tsx"
+/>
+
+### States
+
+<CodeBlock
+  code={`<InputNumber>Normal</InputNumber>
+<InputNumber disabled>Disabled</InputNumber>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### InputNumber
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `value`       | `number`               | —       | Current value (controlled)        |
+| `onChange`    | `() => void`           | —       | Callback when value changes       |
+| `min`         | `number`               | —       | Minimum value                     |
+| `max`         | `number`               | —       | Maximum value                     |
+| `step`        | `number`               | `1`     | Step value                        |
+| `showStepper` | `boolean`              | `true`  | Show stepper buttons              |
+| `allowEmpty`  | `boolean`              | `false` | Allow empty value                 |
+| `suffix`      | `React.ReactNode`      | —       | Suffix text                       |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

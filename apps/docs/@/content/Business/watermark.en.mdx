@@ -1,0 +1,44 @@
+import { Watermark } from "@/components/business/watermark";
+import { CodeBlock } from "@/components/code-block";
+
+# Watermark
+
+> Domain-specific business components for ERP scenarios.
+
+Overlays specified text/image watermark on content for copyright.
+
+## When to Use
+
+Use when you need a watermark.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Watermark } from "@/components/business/watermark"
+
+export function Basic() {
+  return <Watermark />
+}`} lang="tsx" />
+
+## API / Props
+
+### Watermark
+
+| Prop        | Type                   | Default    | Description                       |
+| ----------- | ---------------------- | ---------- | --------------------------------- |
+| `className` | `string`               | —          | Custom CSS class                  |
+| `text`      | `string`               | `内部资料` |                                   |
+| `image`     | `string`               | —          |                                   |
+| `rotate`    | `number`               | `-22`      |                                   |
+| `gap`       | `[number, number]`     | —          | Gap between items                 |
+| `fontSize`  | `number`               | `14`       |                                   |
+| `fullPage`  | `boolean`              | `true`     |                                   |
+| `zIndex`    | `number`               | `1000`     |                                   |
+| `opacity`   | `number`               | `0.08`     |                                   |
+| `color`     | `string`               | `#000`     | Color theme                       |
+| ...rest     | `React.HTMLAttributes` | —          | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

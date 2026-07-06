@@ -1,0 +1,39 @@
+import { SearchTable } from "@/components/business/search-table";
+import { CodeBlock } from "@/components/code-block";
+
+# SearchTable
+
+> Domain-specific business components for ERP scenarios.
+
+SearchTable — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a search table.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SearchTable } from "@/components/business/search-table"
+
+export function Basic() {
+  return <SearchTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### SearchTable
+
+| Prop                | Type                          | Default   | Description                     |
+| ------------------- | ----------------------------- | --------- | ------------------------------- |
+| `className`         | `string`                      | —         | Custom CSS class                |
+| `columns`           | `SearchTableColumn[]`         | —         | Column configuration            |
+| `data`              | `Record<string, unknown>[]`   | —         | Data source                     |
+| `searchKeys`        | `string[]`                    | —         |                                 |
+| `searchPlaceholder` | `string`                      | `搜索...` |                                 |
+| ...rest             | `React.ComponentProps<"div">` | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

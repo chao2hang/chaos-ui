@@ -1,0 +1,35 @@
+import { PrintLayout } from "@/components/layout/print-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# PrintLayout
+
+> System-level layout shells for admin pages.
+
+PrintLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a print layout.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PrintLayout } from "@/components/layout/print-layout"
+
+export function Basic() {
+  return <PrintLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### PrintLayout
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

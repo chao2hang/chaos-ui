@@ -1,0 +1,40 @@
+import { AvatarGroup } from "@/components/business/avatar-group";
+import { CodeBlock } from "@/components/code-block";
+
+# AvatarGroup
+
+> Domain-specific business components for ERP scenarios.
+
+Stacked group of avatars with a +N overflow indicator.
+
+## When to Use
+
+Use when you need an avatar group.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AvatarGroup } from "@/components/business/avatar-group"
+
+export function Basic() {
+  return <AvatarGroup />
+}`} lang="tsx" />
+
+## API / Props
+
+### AvatarGroup
+
+| Prop              | Type                                | Default   | Description                     |
+| ----------------- | ----------------------------------- | --------- | ------------------------------- |
+| `className`       | `string`                            | —         | Custom CSS class                |
+| `users`           | `AvatarUser[]`                      | —         |                                 |
+| `max`             | `number`                            | `4`       | Maximum value                   |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"` | `default` | Component size                  |
+| `showOverflow`    | `boolean`                           | `true`    |                                 |
+| `onOverflowClick` | `() => void`                        | —         |                                 |
+| ...rest           | `React.ComponentProps<"div">`       | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

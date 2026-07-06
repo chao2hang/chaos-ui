@@ -1,0 +1,72 @@
+import { List } from "@/components/ui/list";
+import { CodeBlock } from "@/components/code-block";
+
+# List
+
+> Components for presenting data and content.
+
+List — a components for presenting data and content. from Chaos UI.
+
+## When to Use
+
+Use when you need a list.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { List } from "@/components/ui/list"
+
+export function Basic() {
+  return <List>Default</List>
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <List size="sm">Sm</List>
+  <List size="default">Default</List>
+  <List size="lg">Lg</List>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**type**
+
+| type        | Description | 默认 |
+| ----------- | ----------- | ---- |
+| `unordered` |             | ✓    |
+| `ordered`   |             |      |
+| `none`      |             |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+**spacing**
+
+| spacing   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `default` |             | ✓    |
+| `sm`      |             |      |
+| `lg`      |             |      |
+
+## API / Props
+
+### List
+
+| Prop        | Type                         | Default | Description                    |
+| ----------- | ---------------------------- | ------- | ------------------------------ |
+| `className` | `string`                     | —       | Custom CSS class               |
+| `items`     | `React.ReactNode[]`          | —       | Items / data list              |
+| ...rest     | `React.ComponentProps<"ul">` | —       | Inherits all `<ul>` attributes |
+
+## Notes

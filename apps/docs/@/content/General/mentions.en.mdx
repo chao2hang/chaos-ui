@@ -1,0 +1,61 @@
+import { Mentions } from "@/components/ui/mentions";
+import { CodeBlock } from "@/components/code-block";
+
+# Mentions
+
+> General-purpose primitives used across the app.
+
+Mentions — a general-purpose primitives used across the app. from Chaos UI.
+
+## When to Use
+
+Use when you need a mentions.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Mentions } from "@/components/ui/mentions"
+
+export function Basic() {
+  return <Mentions />
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Mentions size="sm">Sm</Mentions>
+  <Mentions size="default">Default</Mentions>
+  <Mentions size="lg">Lg</Mentions>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Mentions
+
+| Prop            | Type                          | Default                | Description                                 |
+| --------------- | ----------------------------- | ---------------------- | ------------------------------------------- |
+| `className`     | `string`                      | —                      | Custom CSS class                            |
+| `onSearch`      | `(...args) => unknown`        | —                      | Function to search for users based on query |
+| `onMention`     | `() => void`                  | —                      | Called when a mention is inserted           |
+| `onValueChange` | `() => void`                  | —                      | Called when value changes                   |
+| `placeholder`   | `string`                      | `Type @ to mention...` | Placeholder text                            |
+| ...rest         | `React.ComponentProps<"div">` | —                      | Inherits all `<div>` attributes             |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

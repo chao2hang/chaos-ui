@@ -1,0 +1,46 @@
+import { TopBar, MegaMenu } from "@/components/layout/top-bar";
+import { CodeBlock } from "@/components/code-block";
+
+# TopBar
+
+> System-level layout shells for admin pages.
+
+TopBar — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a top bar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TopBar, MegaMenu } from "@/components/layout/top-bar"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <TopBar />
+  <MegaMenu />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### TopBar
+
+| Prop        | Type                                       | Default    | Description                        |
+| ----------- | ------------------------------------------ | ---------- | ---------------------------------- |
+| `className` | `string`                                   | —          | Custom CSS class                   |
+| `logo`      | `React.ReactNode`                          | `Chaos UI` |                                    |
+| `logoHref`  | `string`                                   | `/`        |                                    |
+| `nav`       | `TopBarItem[]`                             | —          |                                    |
+| `actions`   | `React.ReactNode`                          | —          |                                    |
+| `sticky`    | `boolean`                                  | `true`     |                                    |
+| `variant`   | `"default" \| "transparent" \| "bordered"` | `default`  | Style variant                      |
+| ...rest     | `React.ComponentProps<"header">`           | —          | Inherits all `<header>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -2,8 +2,9 @@
 
 /* @import "tw-animate-css"; */
 
-@source "../../packages/chaos-design-ui/components/ui/*.tsx";
-@source "../../packages/chaos-design-ui/components/layout/*.tsx";
+@source "../mdx-components.tsx";
+@source "../../../packages/chaos-design-ui/components/ui/*.tsx";
+@source "../../../packages/chaos-design-ui/components/layout/*.tsx";
 @source "../app/**/*.tsx";
 @source "../@/components/**/*.tsx";
 
@@ -171,7 +172,7 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 25%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.7 0.2 250);
@@ -185,7 +186,7 @@
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: oklch(1 0 0 / 25%);
   --sidebar-ring: oklch(0.556 0 0);
 
   /* Brand palette (dark mode - lighter) */
@@ -241,6 +242,39 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Shiki dual-theme code blocks (github-light + github-dark).
+   Shiki emits inline CSS variables `--shiki-light`, `--shiki-light-bg`,
+   `--shiki-dark`, `--shiki-dark-bg` on the <pre> and every <span>. We map
+   them to `color` / `background-color` and flip based on the `.dark` root. */
+.shiki-wrap .shiki {
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+}
+
+.shiki-wrap .shiki code {
+  display: block;
+  background-color: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre;
+}
+
+.shiki-wrap .shiki,
+.shiki-wrap .shiki span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.dark .shiki-wrap .shiki,
+.dark .shiki-wrap .shiki span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
 }
 
 /* TopLoader sliding animation */

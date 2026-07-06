@@ -1,0 +1,47 @@
+import { CookieBanner } from "@/components/business/cookie-banner";
+import { CodeBlock } from "@/components/code-block";
+
+# CookieBanner Cookie
+
+> Domain-specific business components for ERP scenarios.
+
+CookieBanner — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a cookie banner.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CookieBanner } from "@/components/business/cookie-banner"
+
+export function Basic() {
+  return <CookieBanner />
+}`} lang="tsx" />
+
+## API / Props
+
+### CookieBanner
+
+| Prop          | Type                                       | Default                                                                        | Description                       |
+| ------------- | ------------------------------------------ | ------------------------------------------------------------------------------ | --------------------------------- |
+| `className`   | `string`                                   | —                                                                              | Custom CSS class                  |
+| `open`        | `boolean`                                  | —                                                                              | Open state (controlled)           |
+| `onAccept`    | `() => void`                               | —                                                                              |                                   |
+| `onReject`    | `() => void`                               | —                                                                              |                                   |
+| `onDismiss`   | `() => void`                               | —                                                                              |                                   |
+| `title`       | `string`                                   | `Cookie 使用提示`                                                              | Title                             |
+| `description` | `React.ReactNode`                          | `我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。` | Description text                  |
+| `acceptText`  | `string`                                   | `接受全部`                                                                     |                                   |
+| `rejectText`  | `string`                                   | `仅必要`                                                                       |                                   |
+| `policyUrl`   | `string`                                   | —                                                                              |                                   |
+| `policyText`  | `string`                                   | `隐私政策`                                                                     |                                   |
+| `storageKey`  | `string`                                   | `cookie-consent`                                                               |                                   |
+| `position`    | `"bottom" \| "top" \| "bottom-right" \...` | `bottom`                                                                       |                                   |
+| ...rest       | `React.HTMLAttributes`                     | —                                                                              | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

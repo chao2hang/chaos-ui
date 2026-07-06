@@ -1,0 +1,41 @@
+import { DensitySwitcher } from "@/components/business/density-switcher";
+import { CodeBlock } from "@/components/code-block";
+
+# DensitySwitcher 密度切换
+
+> 业务组件
+
+密度切换 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要密度切换功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { DensitySwitcher } from "@/components/business/density-switcher"
+
+export function Basic() {
+  return <DensitySwitcher />
+}`} lang="tsx" />
+
+## API / Props
+
+### DensitySwitcher
+
+| Prop        | Type                                      | Default   | 说明              |
+| ----------- | ----------------------------------------- | --------- | ----------------- |
+| `className` | `string`                                  | —         | 自定义样式类名    |
+| `open`      | `boolean`                                 | —         | 是否打开(受控)    |
+| `density`   | `"compact" \| "default" \| "comfortable"` | `default` |                   |
+| `onChange`  | `() => void`                              | —         | 值变化回调        |
+| `size`      | `"sm" \| "default" \| "lg"`               | `default` | 组件尺寸          |
+| ...rest     | `React.HTMLAttributes`                    | —         | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-density-switcher--docs)。

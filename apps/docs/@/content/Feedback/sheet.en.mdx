@@ -1,0 +1,47 @@
+import { Sheet } from "@/components/ui/sheet";
+import { CodeBlock } from "@/components/code-block";
+
+# Sheet
+
+> Feedback and status communication to the user.
+
+Bottom/side panel (common on mobile).
+
+## When to Use
+
+Alias for drawer-style panels; often used for temporary layers on mobile.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
+
+export function Basic() {
+  return (
+    <Sheet>
+      <SheetTrigger>Open</SheetTrigger>
+      <SheetContent>
+      <SheetHeader>
+        <SheetTitle>Title</SheetTitle>
+        <SheetDescription>Description.</SheetDescription>
+      </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Sheet
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 7 个子组件(SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。

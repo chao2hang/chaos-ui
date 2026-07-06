@@ -1,0 +1,41 @@
+import { MobileAuthLayout } from "@/components/business/mobile-auth-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileAuthLayout 移动端认证布局
+
+> 业务组件
+
+移动端认证布局 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要移动端认证布局功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobileAuthLayout } from "@/components/business/mobile-auth-layout"
+
+export function Basic() {
+  return <MobileAuthLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileAuthLayout
+
+| Prop          | Type                   | Default | 说明              |
+| ------------- | ---------------------- | ------- | ----------------- |
+| `className`   | `string`               | —       | 自定义样式类名    |
+| `logo`        | `React.ReactNode`      | —       |                   |
+| `title`       | `string`               | —       | 标题              |
+| `description` | `string`               | —       | 描述文本          |
+| `footer`      | `React.ReactNode`      | —       |                   |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-auth-layout--docs)。

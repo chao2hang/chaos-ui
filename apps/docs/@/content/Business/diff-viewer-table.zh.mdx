@@ -1,0 +1,41 @@
+import { DiffViewerTable } from "@/components/business/diff-viewer-table";
+import { CodeBlock } from "@/components/code-block";
+
+# DiffViewerTable 差异表格查看器
+
+> 业务组件
+
+差异表格查看器 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要差异表格查看器功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { DiffViewerTable } from "@/components/business/diff-viewer-table"
+
+export function Basic() {
+  return <DiffViewerTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### DiffViewerTable
+
+| Prop         | Type                          | Default  | 说明                  |
+| ------------ | ----------------------------- | -------- | --------------------- |
+| `className`  | `string`                      | —        | 自定义样式类名        |
+| `rows`       | `DiffRow[]`                   | —        | 行数据                |
+| `leftTitle`  | `string`                      | `修改前` |                       |
+| `rightTitle` | `string`                      | `修改后` |                       |
+| ...rest      | `React.ComponentProps<"div">` | —        | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-diff-viewer-table--docs)。

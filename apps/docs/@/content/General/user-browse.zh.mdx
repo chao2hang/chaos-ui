@@ -1,0 +1,46 @@
+import { UserBrowse } from "@/components/ui/user-browse";
+import { CodeBlock } from "@/components/code-block";
+
+# UserBrowse 用户选择
+
+> 通用基础组件
+
+用户选择 — Chaos UI 的通用基础组件。
+
+## 何时使用
+
+需要用户选择功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { UserBrowse } from "@/components/ui/user-browse"
+
+export function Basic() {
+  return <UserBrowse />
+}`} lang="tsx" />
+
+## API / Props
+
+### UserBrowse
+
+| Prop           | Type                   | Default          | 说明              |
+| -------------- | ---------------------- | ---------------- | ----------------- |
+| `className`    | `string`               | —                | 自定义样式类名    |
+| `value`        | `User \| User[]`       | —                | 当前值(受控)      |
+| `defaultValue` | `User \| User[]`       | —                | 默认值(非受控)    |
+| `placeholder`  | `string`               | `Select user...` | 占位文本          |
+| `disabled`     | `boolean`              | —                | 是否禁用          |
+| `multiple`     | `boolean`              | `false`          | 是否多选          |
+| `maxCount`     | `number`               | —                |                   |
+| `users`        | `User[]`               | —                |                   |
+| `onChange`     | `() => void`           | —                | 值变化回调        |
+| `onBrowse`     | `() => void`           | —                |                   |
+| ...rest        | `React.HTMLAttributes` | —                | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-user-browse--docs)。

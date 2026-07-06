@@ -1,0 +1,38 @@
+import { FormulaEditor } from "@/components/business/formula-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# FormulaEditor
+
+> Domain-specific business components for ERP scenarios.
+
+FormulaEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a formula editor.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FormulaEditor } from "@/components/business/formula-editor"
+
+export function Basic() {
+  return <FormulaEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### FormulaEditor
+
+| Prop          | Type                          | Default       | Description                     |
+| ------------- | ----------------------------- | ------------- | ------------------------------- |
+| `className`   | `string`                      | —             | Custom CSS class                |
+| `value`       | `string`                      | ``            | Current value (controlled)      |
+| `onChange`    | `() => void`                  | —             | Callback when value changes     |
+| `placeholder` | `string`                      | `输入公式...` | Placeholder text                |
+| ...rest       | `React.ComponentProps<"div">` | —             | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

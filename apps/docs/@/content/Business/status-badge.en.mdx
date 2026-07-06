@@ -1,0 +1,50 @@
+import { StatusBadge } from "@/components/business/status-badge";
+import { CodeBlock } from "@/components/code-block";
+
+# StatusBadge
+
+> Domain-specific business components for ERP scenarios.
+
+StatusBadge — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a status badge.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { StatusBadge } from "@/components/business/status-badge"
+
+export function Basic() {
+  return <StatusBadge />
+}`} lang="tsx" />
+
+## Style Variants
+
+**status**
+
+| status       | Description | 默认 |
+| ------------ | ----------- | ---- |
+| `default`    |             | ✓    |
+| `success`    |             |      |
+| `warning`    |             |      |
+| `error`      |             |      |
+| `info`       |             |      |
+| `processing` |             |      |
+
+## API / Props
+
+### StatusBadge
+
+| Prop        | Type                           | Default | Description                      |
+| ----------- | ------------------------------ | ------- | -------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                 |
+| `label`     | `string`                       | —       | Label text                       |
+| `dot`       | `boolean`                      | `true`  |                                  |
+| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

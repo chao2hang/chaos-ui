@@ -1,0 +1,43 @@
+import { ImportDialog } from "@/components/business/import-dialog";
+import { CodeBlock } from "@/components/code-block";
+
+# ImportDialog 导入对话框
+
+> 业务组件
+
+导入对话框 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要导入对话框功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ImportDialog } from "@/components/business/import-dialog"
+
+export function Basic() {
+  return <ImportDialog />
+}`} lang="tsx" />
+
+## API / Props
+
+### ImportDialog
+
+| Prop           | Type                   | Default                      | 说明              |
+| -------------- | ---------------------- | ---------------------------- | ----------------- |
+| `className`    | `string`               | —                            | 自定义样式类名    |
+| `open`         | `boolean`              | —                            | 是否打开(受控)    |
+| `onOpenChange` | `() => void`           | —                            | 打开状态变化回调  |
+| `onImport`     | `() => void`           | —                            |                   |
+| `title`        | `string`               | `导入数据`                   | 标题              |
+| `description`  | `string`               | `上传文件并预览后再确认导入` | 描述文本          |
+| `accept`       | `string`               | `.xlsx,.csv`                 |                   |
+| ...rest        | `React.HTMLAttributes` | —                            | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-import-dialog--docs)。

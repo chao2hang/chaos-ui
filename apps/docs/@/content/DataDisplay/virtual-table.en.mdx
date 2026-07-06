@@ -1,0 +1,35 @@
+import { VirtualTable } from "@/components/ui/virtual-table";
+import { CodeBlock } from "@/components/code-block";
+
+# VirtualTable
+
+> Components for presenting data and content.
+
+VirtualTable — a components for presenting data and content. from Chaos UI.
+
+## When to Use
+
+Use when you need a virtual table.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { VirtualTable } from "@/components/ui/virtual-table"
+
+export function Basic() {
+  return <VirtualTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### VirtualTable
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

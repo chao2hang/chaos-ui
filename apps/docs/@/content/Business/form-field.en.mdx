@@ -1,0 +1,35 @@
+import { FormField } from "@/components/business/form-field";
+import { CodeBlock } from "@/components/code-block";
+
+# FormField
+
+> Domain-specific business components for ERP scenarios.
+
+FormField — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a form field.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FormField } from "@/components/business/form-field"
+
+export function Basic() {
+  return <FormField />
+}`} lang="tsx" />
+
+## API / Props
+
+### FormField
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

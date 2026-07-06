@@ -1,0 +1,82 @@
+import { InputGroup } from "@/components/ui/input-group";
+import { CodeBlock } from "@/components/code-block";
+
+# InputGroup 输入组
+
+> 表单控件
+
+输入组 — Chaos UI 的表单控件。
+
+## 何时使用
+
+需要输入组功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea } from "@/components/ui/input-group"
+
+export function Basic() {
+  return (
+    <InputGroup>
+      <InputGroupAddon>Content</InputGroupAddon>
+    </InputGroup>
+  )
+}`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <InputGroup size="xs">Xs</InputGroup>
+  <InputGroup size="sm">Sm</InputGroup>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态
+
+<CodeBlock
+  code={`<InputGroup>Normal</InputGroup>
+<InputGroup disabled>Disabled</InputGroup>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**对齐**
+
+| align          | 说明 | 默认 |
+| -------------- | ---- | ---- |
+| `inline-start` |      | ✓    |
+| `inline-end`   |      |      |
+| `block-start`  |      |      |
+| `block-end`    |      |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `xs`      | 超小     | ✓    |
+| `sm`      | 小号     |      |
+| `icon-xs` | 超小图标 |      |
+| `icon-sm` | 小图标   |      |
+
+## API / Props
+
+### InputGroup
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 5 个子组件(InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-input-group--docs)。

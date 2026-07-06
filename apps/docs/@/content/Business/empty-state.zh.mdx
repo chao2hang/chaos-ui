@@ -1,0 +1,42 @@
+import { EmptyState, Config } from "@/components/business/empty-state";
+import { CodeBlock } from "@/components/code-block";
+
+# EmptyState 空状态
+
+> 业务组件
+
+当前没有数据时的占位展示,可搭配引导操作。
+
+## 何时使用
+
+需要空状态功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { EmptyState, Config } from "@/components/business/empty-state"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <EmptyState />
+  <Config />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### EmptyState
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-empty-state--docs)。

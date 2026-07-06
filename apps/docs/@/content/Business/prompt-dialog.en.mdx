@@ -1,0 +1,47 @@
+import { PromptDialog } from "@/components/business/prompt-dialog";
+import { CodeBlock } from "@/components/code-block";
+
+# PromptDialog
+
+> Domain-specific business components for ERP scenarios.
+
+PromptDialog — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a prompt dialog.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PromptDialog } from "@/components/business/prompt-dialog"
+
+export function Basic() {
+  return <PromptDialog />
+}`} lang="tsx" />
+
+## API / Props
+
+### PromptDialog
+
+| Prop           | Type                                       | Default  | Description                       |
+| -------------- | ------------------------------------------ | -------- | --------------------------------- |
+| `className`    | `string`                                   | —        | Custom CSS class                  |
+| `open`         | `boolean`                                  | —        | Open state (controlled)           |
+| `onOpenChange` | `() => void`                               | —        | Callback when open state changes  |
+| `title`        | `string`                                   | `请输入` | Title                             |
+| `description`  | `React.ReactNode`                          | —        | Description text                  |
+| `label`        | `string`                                   | —        | Label text                        |
+| `placeholder`  | `string`                                   | —        | Placeholder text                  |
+| `defaultValue` | `string`                                   | ``       | Default value (uncontrolled)      |
+| `confirmText`  | `string`                                   | `确认`   |                                   |
+| `cancelText`   | `string`                                   | `取消`   |                                   |
+| `onConfirm`    | `() => void`                               | —        |                                   |
+| `required`     | `boolean`                                  | `true`   | Whether required                  |
+| `inputType`    | `"text" \| "email" \| "password" \| "n...` | `text`   |                                   |
+| ...rest        | `React.HTMLAttributes`                     | —        | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

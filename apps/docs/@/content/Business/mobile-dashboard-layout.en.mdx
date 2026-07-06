@@ -1,0 +1,40 @@
+import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileDashboardLayout
+
+> Domain-specific business components for ERP scenarios.
+
+MobileDashboardLayout — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile dashboard layout.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout"
+
+export function Basic() {
+  return <MobileDashboardLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileDashboardLayout
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `title`       | `string`               | —       | Title                             |
+| `description` | `string`               | —       | Description text                  |
+| `actions`     | `React.ReactNode`      | —       |                                   |
+| `onBack`      | `() => void`           | —       |                                   |
+| `onMenu`      | `() => void`           | —       |                                   |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

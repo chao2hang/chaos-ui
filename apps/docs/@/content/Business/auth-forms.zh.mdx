@@ -1,0 +1,51 @@
+import {
+  SignInForm,
+  SignUpForm,
+  ForgotPasswordForm,
+} from "@/components/business/auth-forms";
+import { CodeBlock } from "@/components/code-block";
+
+# AuthForms 认证表单
+
+> 业务组件
+
+认证表单 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+登录、注册、找回密码等认证相关表单。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { SignInForm, SignUpForm, ForgotPasswordForm } from "@/components/business/auth-forms"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <SignInForm />
+  <SignUpForm />
+  <ForgotPasswordForm />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### SignInForm
+
+| Prop           | Type                   | Default | 说明              |
+| -------------- | ---------------------- | ------- | ----------------- |
+| `className`    | `string`               | —       | 自定义样式类名    |
+| `onSubmit`     | `() => void`           | —       | 提交回调          |
+| `ssoProviders` | `Array<T>`             | —       |                   |
+| `signupHref`   | `string`               | —       |                   |
+| `forgotHref`   | `string`               | —       |                   |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-auth-forms--docs)。

@@ -1,0 +1,58 @@
+import { FormGrid, FormGridItem } from "@/components/ui/form-grid";
+import { CodeBlock } from "@/components/code-block";
+
+# FormGrid
+
+> Form controls for user input and data submission.
+
+FormGrid — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a form grid.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FormGrid, FormGridItem } from "@/components/ui/form-grid"
+
+export function Basic() {
+  return (
+    <FormGrid>
+      <FormGridItem>Content</FormGridItem>
+    </FormGrid>
+  )
+}`} lang="tsx" />
+
+## Style Variants
+
+**columns**
+
+| columns | Description | 默认 |
+| ------- | ----------- | ---- |
+| `1`     |             | ✓    |
+| `2`     |             |      |
+| `3`     |             |      |
+| `4`     |             |      |
+
+**gap**
+
+| gap       | Description | 默认 |
+| --------- | ----------- | ---- |
+| `sm`      |             |      |
+| `default` |             | ✓    |
+| `lg`      |             |      |
+
+## API / Props
+
+### FormGrid
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **复合组件**: 包含 1 个子组件(FormGridItem),使用组合模式按需导入。

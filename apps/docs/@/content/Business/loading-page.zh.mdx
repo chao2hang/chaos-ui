@@ -1,0 +1,50 @@
+import {
+  LoadingPage,
+  FullPageLoader,
+} from "@/components/business/loading-page";
+import { CodeBlock } from "@/components/code-block";
+
+# LoadingPage 加载页
+
+> 业务组件
+
+加载页 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要加载页功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { LoadingPage, FullPageLoader } from "@/components/business/loading-page"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <LoadingPage />
+  <FullPageLoader />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### LoadingPage
+
+| Prop          | Type                             | Default     | 说明                  |
+| ------------- | -------------------------------- | ----------- | --------------------- |
+| `className`   | `string`                         | —           | 自定义样式类名        |
+| `title`       | `string`                         | `加载中...` | 标题                  |
+| `description` | `string`                         | —           | 描述文本              |
+| `icon`        | `React.ReactNode`                | —           | 图标元素              |
+| `variant`     | `"spinner" \| "dots" \| "pulse"` | `spinner`   | 样式变体              |
+| ...rest       | `React.ComponentProps<"div">`    | —           | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-loading-page--docs)。

@@ -1,0 +1,45 @@
+import {
+  ConfigProvider,
+  ConfigContext,
+  Config,
+} from "@/components/ui/config-provider";
+import { CodeBlock } from "@/components/code-block";
+
+# ConfigProvider
+
+> General-purpose primitives used across the app.
+
+Provides global configuration (theme, size, i18n, prefix) to the component tree.
+
+## When to Use
+
+Use when you need a config provider.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ConfigProvider, ConfigContext, Config } from "@/components/ui/config-provider"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <ConfigProvider />
+  <ConfigContext />
+  <Config />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### ConfigProvider
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,71 @@
+import { Notification } from "@/components/ui/notification";
+import { CodeBlock } from "@/components/code-block";
+
+# Notification 通知提醒
+
+> 反馈组件
+
+右上角弹出的通知卡片,比 Toast 内容更丰富、驻留更久。
+
+## 何时使用
+
+需要通知提醒功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Notification } from "@/components/ui/notification"
+
+export function Basic() {
+  return <Notification />
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Notification variant="default">Default</Notification>
+  <Notification variant="info">Info</Notification>
+  <Notification variant="success">Success</Notification>
+  <Notification variant="warning">Warning</Notification>
+  <Notification variant="destructive">Destructive</Notification>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**变体**
+
+| Variant       | 说明          | 默认 |
+| ------------- | ------------- | ---- |
+| `default`     | 默认样式      | ✓    |
+| `info`        | 信息提示      |      |
+| `success`     | 成功状态      |      |
+| `warning`     | 警告状态      |      |
+| `destructive` | 危险/删除样式 |      |
+
+## API / Props
+
+### Notification
+
+| Prop          | Type                          | Default | 说明                                     |
+| ------------- | ----------------------------- | ------- | ---------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名                           |
+| `title`       | `React.ReactNode`             | —       | Title                                    |
+| `description` | `React.ReactNode`             | —       | Description content                      |
+| `open`        | `boolean`                     | `true`  | Whether the notification is visible      |
+| `onClose`     | `() => void`                  | —       | Called when close button is clicked      |
+| `duration`    | `number`                      | `4500`  | Auto-close duration in ms (0 to disable) |
+| `icon`        | `React.ReactNode`             | —       | Icon to show                             |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                    |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-notification--docs)。

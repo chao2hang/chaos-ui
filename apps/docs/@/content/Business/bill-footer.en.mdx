@@ -1,0 +1,41 @@
+import { BillFooter } from "@/components/business/bill-footer";
+import { CodeBlock } from "@/components/code-block";
+
+# BillFooter
+
+> Domain-specific business components for ERP scenarios.
+
+BillFooter — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a bill footer.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BillFooter } from "@/components/business/bill-footer"
+
+export function Basic() {
+  return <BillFooter />
+}`} lang="tsx" />
+
+## API / Props
+
+### BillFooter
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `subtotal`  | `number`                      | `0`     |                                 |
+| `tax`       | `number`                      | —       |                                 |
+| `taxRate`   | `number`                      | `0`     |                                 |
+| `total`     | `number`                      | —       |                                 |
+| `notes`     | `string`                      | —       |                                 |
+| `showTax`   | `boolean`                     | `true`  |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

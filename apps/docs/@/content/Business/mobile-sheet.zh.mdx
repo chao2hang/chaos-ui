@@ -1,0 +1,44 @@
+import { MobileSheet } from "@/components/business/mobile-sheet";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileSheet 移动端面板
+
+> 业务组件
+
+移动端面板 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要移动端面板功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobileSheet } from "@/components/business/mobile-sheet"
+
+export function Basic() {
+  return <MobileSheet />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileSheet
+
+| Prop           | Type                                     | Default  | 说明              |
+| -------------- | ---------------------------------------- | -------- | ----------------- |
+| `className`    | `string`                                 | —        | 自定义样式类名    |
+| `title`        | `string`                                 | —        | 标题              |
+| `description`  | `string`                                 | —        | 描述文本          |
+| `trigger`      | `React.ReactNode`                        | —        |                   |
+| `actions`      | `React.ReactNode`                        | —        |                   |
+| `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                   |
+| `open`         | `boolean`                                | —        | 是否打开(受控)    |
+| `onOpenChange` | `() => void`                             | —        | 打开状态变化回调  |
+| ...rest        | `React.HTMLAttributes`                   | —        | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-sheet--docs)。

@@ -1,0 +1,48 @@
+import {
+  ModalProvider,
+  Modal,
+  ModalContext,
+} from "@/components/ui/modal-provider";
+import { CodeBlock } from "@/components/code-block";
+
+# ModalProvider 模态提供者
+
+> 反馈组件
+
+模态提供者 — Chaos UI 的反馈组件。
+
+## 何时使用
+
+需要模态提供者功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ModalProvider, Modal, ModalContext } from "@/components/ui/modal-provider"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <ModalProvider />
+  <Modal />
+  <ModalContext />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### ModalProvider
+
+| Prop        | Type                          | Default | 说明                  |
+| ----------- | ----------------------------- | ------- | --------------------- |
+| `className` | `string`                      | —       | 自定义样式类名        |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-modal-provider--docs)。

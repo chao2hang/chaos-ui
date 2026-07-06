@@ -1,0 +1,46 @@
+import { FormDirtyWarning } from "@/components/business/form/form-dirty-warning";
+import { CodeBlock } from "@/components/code-block";
+
+# FormDirtyWarning 表单未保存提示
+
+> 业务组件
+
+表单未保存提示 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要表单未保存提示功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { FormDirtyWarning } from "@/components/business/form/form-dirty-warning"
+
+export function Basic() {
+  return <FormDirtyWarning />
+}`} lang="tsx" />
+
+## API / Props
+
+### FormDirtyWarning
+
+| Prop           | Type                   | Default                                | 说明              |
+| -------------- | ---------------------- | -------------------------------------- | ----------------- |
+| `className`    | `string`               | —                                      | 自定义样式类名    |
+| `open`         | `boolean`              | —                                      | 是否打开(受控)    |
+| `onOpenChange` | `() => void`           | —                                      | 打开状态变化回调  |
+| `onDiscard`    | `() => void`           | —                                      |                   |
+| `onSave`       | `() => void`           | —                                      |                   |
+| `message`      | `string`               | `您有未保存的更改。是否保存后再离开？` | 提示消息内容      |
+| `saveText`     | `string`               | `保存并继续`                           |                   |
+| `discardText`  | `string`               | `放弃修改`                             |                   |
+| `cancelText`   | `string`               | `取消`                                 |                   |
+| `saving`       | `boolean`              | —                                      |                   |
+| ...rest        | `React.HTMLAttributes` | —                                      | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-form-form-dirty-warning--docs)。

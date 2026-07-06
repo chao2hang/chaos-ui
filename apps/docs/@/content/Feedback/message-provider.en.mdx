@@ -1,0 +1,46 @@
+import {
+  MessageProvider,
+  Message,
+  MessageContext,
+} from "@/components/ui/message-provider";
+import { CodeBlock } from "@/components/code-block";
+
+# MessageProvider
+
+> Feedback and status communication to the user.
+
+MessageProvider — a feedback and status communication to the user. from Chaos UI.
+
+## When to Use
+
+Use when you need a message provider.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MessageProvider, Message, MessageContext } from "@/components/ui/message-provider"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <MessageProvider />
+  <Message />
+  <MessageContext />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MessageProvider
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `max`       | `number`                      | `5`     | Max messages visible at once    |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

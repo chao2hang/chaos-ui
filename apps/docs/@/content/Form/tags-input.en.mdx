@@ -1,0 +1,35 @@
+import { TagsInput } from "@/components/ui/tags-input";
+import { CodeBlock } from "@/components/code-block";
+
+# TagsInput
+
+> Form controls for user input and data submission.
+
+TagsInput — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a tags input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TagsInput } from "@/components/ui/tags-input"
+
+export function Basic() {
+  return <TagsInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### TagsInput
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

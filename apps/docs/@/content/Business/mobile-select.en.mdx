@@ -1,0 +1,40 @@
+import { MobileSelect } from "@/components/business/mobile-select";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileSelect
+
+> Domain-specific business components for ERP scenarios.
+
+MobileSelect — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile select.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileSelect } from "@/components/business/mobile-select"
+
+export function Basic() {
+  return <MobileSelect />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileSelect
+
+| Prop            | Type                   | Default | Description                       |
+| --------------- | ---------------------- | ------- | --------------------------------- |
+| `className`     | `string`               | —       | Custom CSS class                  |
+| `options`       | `MobileSelectOption[]` | —       | Available options                 |
+| `value`         | `string`               | —       | Current value (controlled)        |
+| `onValueChange` | `() => void`           | —       |                                   |
+| `placeholder`   | `string`               | —       | Placeholder text                  |
+| `disabled`      | `boolean`              | —       | Whether disabled                  |
+| ...rest         | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,39 @@
+import { ApprovalFlow } from "@/components/business/approval-flow";
+import { CodeBlock } from "@/components/code-block";
+
+# ApprovalFlow
+
+> Domain-specific business components for ERP scenarios.
+
+ApprovalFlow — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Approval workflow display with node view and approve/reject actions.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ApprovalFlow } from "@/components/business/approval-flow"
+
+export function Basic() {
+  return <ApprovalFlow />
+}`} lang="tsx" />
+
+## API / Props
+
+### ApprovalFlow
+
+| Prop          | Type                          | Default | Description                     |
+| ------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`   | `string`                      | —       | Custom CSS class                |
+| `steps`       | `ApprovalStep[]`              | —       |                                 |
+| `currentStep` | `number`                      | —       |                                 |
+| `onApprove`   | `() => void`                  | —       |                                 |
+| `onReject`    | `() => void`                  | —       |                                 |
+| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

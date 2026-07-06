@@ -1,0 +1,49 @@
+import { Sheet } from "@/components/ui/sheet";
+import { CodeBlock } from "@/components/code-block";
+
+# Sheet 面板
+
+> 反馈组件
+
+抽屉式底部/侧边面板,移动端常用。
+
+## 何时使用
+
+抽屉式面板的别名,常用于移动端临时内容层。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
+
+export function Basic() {
+  return (
+    <Sheet>
+      <SheetTrigger>Open</SheetTrigger>
+      <SheetContent>
+      <SheetHeader>
+        <SheetTitle>Title</SheetTitle>
+        <SheetDescription>Description.</SheetDescription>
+      </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Sheet
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 7 个子组件(SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sheet--docs)。

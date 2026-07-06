@@ -1,0 +1,44 @@
+import { SearchInput } from "@/components/business/search-input";
+import { CodeBlock } from "@/components/code-block";
+
+# SearchInput 搜索输入
+
+> 业务组件
+
+搜索输入 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要搜索输入功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { SearchInput } from "@/components/business/search-input"
+
+export function Basic() {
+  return <SearchInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### SearchInput
+
+| Prop            | Type                   | Default   | 说明              |
+| --------------- | ---------------------- | --------- | ----------------- |
+| `className`     | `string`               | —         | 自定义样式类名    |
+| `value`         | `string`               | —         | 当前值(受控)      |
+| `onChange`      | `() => void`           | —         | 值变化回调        |
+| `onSubmit`      | `() => void`           | —         | 提交回调          |
+| `results`       | `SearchResult[]`       | —         |                   |
+| `onResultClick` | `() => void`           | —         |                   |
+| `placeholder`   | `string`               | `搜索...` | 占位文本          |
+| `loading`       | `boolean`              | —         | 是否加载中        |
+| ...rest         | `React.HTMLAttributes` | —         | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-search-input--docs)。

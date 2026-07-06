@@ -1,0 +1,38 @@
+import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileTextarea 移动端文本域
+
+> 业务组件
+
+移动端文本域 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要移动端文本域功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobileTextarea } from "@/components/business/mobile-textarea"
+
+export function Basic() {
+  return <MobileTextarea />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileTextarea
+
+| Prop        | Type                               | Default | 说明                       |
+| ----------- | ---------------------------------- | ------- | -------------------------- |
+| `className` | `string`                           | —       | 自定义样式类名             |
+| ...rest     | `React.ComponentProps<"textarea">` | —       | 透传 `<textarea>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<textarea>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-textarea--docs)。

@@ -1,0 +1,58 @@
+import { CampaignCard, Labels } from "@/components/business/campaign-card";
+import { CodeBlock } from "@/components/code-block";
+
+# CampaignCard
+
+> Domain-specific business components for ERP scenarios.
+
+CampaignCard — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a campaign card.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CampaignCard, Labels } from "@/components/business/campaign-card"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <CampaignCard />
+  <Labels />
+    </div>
+  )
+}`} lang="tsx" />
+
+## Style Variants
+
+**status**
+
+| status    | Description | 默认 |
+| --------- | ----------- | ---- |
+| `planned` |             | ✓    |
+| `active`  |             |      |
+| `paused`  |             |      |
+| `ended`   |             |      |
+
+## API / Props
+
+### CampaignCard
+
+| Prop         | Type                                       | Default   | Description                       |
+| ------------ | ------------------------------------------ | --------- | --------------------------------- |
+| `className`  | `string`                                   | —         | Custom CSS class                  |
+| `name`       | `string`                                   | —         | Form field name                   |
+| `status`     | `"planned" \| "active" \| "paused" \| ...` | `planned` | Status                            |
+| `startDate`  | `string`                                   | —         |                                   |
+| `endDate`    | `string`                                   | —         |                                   |
+| `budget`     | `number`                                   | —         |                                   |
+| `location`   | `string`                                   | —         |                                   |
+| `reachCount` | `number`                                   | —         |                                   |
+| ...rest      | `React.HTMLAttributes`                     | —         | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,80 @@
+import { Countdown } from "@/components/ui/countdown";
+import { CodeBlock } from "@/components/code-block";
+
+# Countdown
+
+> Components for presenting data and content.
+
+Countdown display; commonly used for SMS verification cooldowns or event timers.
+
+## When to Use
+
+Use when you need a countdown.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Countdown } from "@/components/ui/countdown"
+
+export function Basic() {
+  return <Countdown />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Countdown variant="default">Default</Countdown>
+  <Countdown variant="primary">Primary</Countdown>
+  <Countdown variant="muted">Muted</Countdown>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Countdown size="sm">Sm</Countdown>
+  <Countdown size="default">Default</Countdown>
+  <Countdown size="lg">Lg</Countdown>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant   | Description   | 默认 |
+| --------- | ------------- | ---- |
+| `default` | Default style | ✓    |
+| `primary` | Primary style |      |
+| `muted`   |               |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Countdown
+
+| Prop        | Type                           | Default    | Description                                   |
+| ----------- | ------------------------------ | ---------- | --------------------------------------------- |
+| `className` | `string`                       | —          | Custom CSS class                              |
+| `target`    | `Date \| number \| string`     | —          | Target date/time (ISO string or timestamp)    |
+| `onFinish`  | `() => void`                   | —          | Called when countdown reaches 0               |
+| `format`    | `string`                       | `HH:mm:ss` | Format: D=days, H=hours, M=minutes, S=seconds |
+| ...rest     | `React.ComponentProps<"span">` | —          | Inherits all `<span>` attributes              |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

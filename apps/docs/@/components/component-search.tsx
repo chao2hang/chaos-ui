@@ -2,16 +2,25 @@
 
 import { useId, useMemo, useState } from "react";
 
-import { CATEGORIES, categoryLabelsZh, categoryLabelsEn } from "@/content/components.meta";
+import {
+  CATEGORIES,
+  categoryLabelsZh,
+  categoryLabelsEn,
+} from "@/content/components.meta";
 import type { Category, ComponentMeta } from "@/content/components.meta";
 import { sectionIdForCategory } from "@/components/component-card";
 import { ComponentCard } from "@/components/component-card";
+import { useLocale } from "@/components/locale-provider";
+import { useDict } from "@/hooks/use-dict";
 
 interface ComponentSearchProps {
   components: ComponentMeta[];
 }
 
 export function ComponentSearch({ components }: ComponentSearchProps) {
+  const { locale } = useLocale();
+  const dict = useDict();
+  const isEn = locale === "en";
   const [query, setQuery] = useState("");
   const inputId = useId().replace(/[:]/g, "");
 
@@ -26,7 +35,13 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
         map.get(comp.category)!.push(comp);
         continue;
       }
-      const hay = [comp.name, comp.nameZh, comp.desc, comp.descZh, ...(comp.tags ?? [])]
+      const hay = [
+        comp.name,
+        comp.nameZh,
+        comp.desc,
+        comp.descZh,
+        ...((comp as ComponentMeta & { tags?: string[] }).tags ?? []),
+      ]
         .join(" ")
         .toLowerCase();
       if (hay.includes(normalized)) {
@@ -37,14 +52,18 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
   }, [components, normalized]);
 
   const totalCount = useMemo(
-    () => Array.from(grouped.values()).reduce((sum, list) => sum + list.length, 0),
+    () =>
+      Array.from(grouped.values()).reduce((sum, list) => sum + list.length, 0),
     [grouped],
   );
 
   // Whether a tab has matches → used for tab highlight state.
   const tabState = (cat: Category): { count: number; hasMatches: boolean } => {
     const list = grouped.get(cat) ?? [];
-    return { count: list.length, hasMatches: normalized ? list.length > 0 : true };
+    return {
+      count: list.length,
+      hasMatches: normalized ? list.length > 0 : true,
+    };
   };
 
   return (
@@ -52,12 +71,12 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
       {/* ---------------- Search input ---------------- */}
       <div className="mx-auto w-full max-w-2xl">
         <label htmlFor={inputId} className="sr-only">
-          搜索组件 / Search components
+          {dict.components.searchLabel}
         </label>
         <div className="relative">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+            className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
           >
             {/* inline search glyph (no extra deps) */}
             <svg
@@ -78,26 +97,29 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="搜索 name / nameZh / 描述 / 标签"
-            aria-label="搜索组件 / Search components"
-            className="h-11 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/30 dark:border-input dark:bg-input/30"
+            placeholder={dict.components.searchPlaceholder}
+            aria-label={dict.components.searchLabel}
+            className="border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:border-brand-500 focus-visible:ring-brand-500/30 dark:border-input dark:bg-input/30 h-11 w-full rounded-lg border pr-3 pl-9 text-sm shadow-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
           />
         </div>
-        <p className="mt-2 text-center text-xs text-muted-foreground">
+        <p className="text-muted-foreground mt-2 text-center text-xs">
           {totalCount === 0
-            ? `未找到匹配的组件 / No matching components · ${components.length} total`
-            : `命中 ${totalCount} / ${components.length} 个组件`}
+            ? `${dict.components.noMatchTitle} · ${components.length} total`
+            : isEn
+              ? `${totalCount} ${dict.components.resultHitEn} ${components.length}`
+              : `${dict.components.resultHit} ${totalCount} / ${components.length} ${dict.components.sectionCount}`}
         </p>
       </div>
 
       {/* ---------------- Category tabs ---------------- */}
       <nav
         aria-label="Components by category"
-        className="sticky top-14 z-30 -mx-4 flex flex-wrap items-center justify-center gap-1.5 border-b border-border/40 bg-background/80 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:mx-0 sm:rounded-lg"
+        className="border-border/40 bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-14 z-30 -mx-4 flex flex-wrap items-center justify-center gap-1.5 border-b px-4 py-2 backdrop-blur sm:mx-0 sm:rounded-lg"
       >
         {CATEGORIES.map((cat) => {
           const { count, hasMatches } = tabState(cat);
           const isActive = !normalized || hasMatches;
+          const label = isEn ? categoryLabelsEn[cat] : categoryLabelsZh[cat];
           return (
             <a
               key={cat}
@@ -109,10 +131,7 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
                   : "text-muted-foreground/60 hover:text-muted-foreground")
               }
             >
-              {categoryLabelsZh[cat]}
-              <span className="hidden text-[10px] text-muted-foreground sm:inline">
-                · {categoryLabelsEn[cat]}
-              </span>
+              {label}
               <span
                 className={
                   "ml-1 rounded-full px-1.5 py-0.5 text-[10px] " +
@@ -131,37 +150,45 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
       {/* ---------------- Sections ---------------- */}
       {totalCount === 0 ? (
         <div className="mx-auto max-w-2xl py-20 text-center">
-          <p className="text-base font-medium text-foreground">未找到匹配的组件</p>
-          <p className="mt-1 text-sm text-muted-foreground">No matching components</p>
+          <p className="text-foreground text-base font-medium">
+            {dict.components.noMatchTitle}
+          </p>
+          <p className="text-muted-foreground mt-1 text-sm">
+            {dict.components.noMatchTitleEn}
+          </p>
           <button
             type="button"
             onClick={() => setQuery("")}
-            className="mt-4 rounded-md border border-border px-3 py-1 text-xs text-foreground transition-colors hover:bg-muted"
+            className="border-border text-foreground hover:bg-muted mt-4 rounded-md border px-3 py-1 text-xs transition-colors"
           >
-            清空搜索 / Clear
+            {dict.components.clearSearch}
           </button>
         </div>
       ) : (
         CATEGORIES.map((cat) => {
           const list = grouped.get(cat) ?? [];
           if (list.length === 0) return null;
+          const label = isEn ? categoryLabelsEn[cat] : categoryLabelsZh[cat];
           return (
             <section
               key={cat}
               id={sectionIdForCategory(cat)}
               className="scroll-mt-28"
             >
-              <header className="mb-3 flex items-baseline gap-2 border-b border-border/40 pb-2">
-                <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                  {categoryLabelsZh[cat]}
+              <header className="border-border/40 mb-3 flex items-baseline gap-2 border-b pb-2">
+                <h2 className="text-foreground text-lg font-semibold tracking-tight">
+                  {label}
                 </h2>
-                <span className="text-xs text-muted-foreground">
-                  · {categoryLabelsEn[cat]} ({list.length})
+                <span className="text-muted-foreground text-xs">
+                  ({list.length})
                 </span>
               </header>
               <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
                 {list.map((comp) => (
-                  <ComponentCard key={`${comp.category}-${comp.slug}`} component={comp} />
+                  <ComponentCard
+                    key={`${comp.category}-${comp.slug}`}
+                    component={comp}
+                  />
                 ))}
               </div>
             </section>

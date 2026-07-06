@@ -1,0 +1,37 @@
+import { Toaster } from "@/components/ui/sonner";
+import { CodeBlock } from "@/components/code-block";
+
+# Sonner 通知提示
+
+> 反馈组件
+
+基于 sonner 的 opinionated 通知组件,堆叠展示在角落。
+
+## 何时使用
+
+需要通知提示功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Toaster } from "@/components/ui/sonner"
+
+export function Basic() {
+  return <Toaster />
+}`} lang="tsx" />
+
+## API / Props
+
+### Toaster
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sonner--docs)。

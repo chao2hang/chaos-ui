@@ -1,0 +1,42 @@
+import { AddressForm } from "@/components/business/address-form";
+import { CodeBlock } from "@/components/code-block";
+
+# AddressForm
+
+> Domain-specific business components for ERP scenarios.
+
+AddressForm — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Address entry and editing form.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AddressForm } from "@/components/business/address-form"
+
+export function Basic() {
+  return (
+    <AddressForm
+      onSubmit={(data) => console.log(data)}
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### AddressForm
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `value`     | `AddressValue`         | —       | Current value (controlled)        |
+| `onChange`  | `() => void`           | —       | Callback when value changes       |
+| `country`   | `string`               | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

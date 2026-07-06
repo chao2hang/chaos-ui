@@ -1,0 +1,47 @@
+import {
+  LoadingPage,
+  FullPageLoader,
+} from "@/components/business/loading-page";
+import { CodeBlock } from "@/components/code-block";
+
+# LoadingPage
+
+> Domain-specific business components for ERP scenarios.
+
+LoadingPage — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a loading page.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { LoadingPage, FullPageLoader } from "@/components/business/loading-page"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <LoadingPage />
+  <FullPageLoader />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### LoadingPage
+
+| Prop          | Type                             | Default     | Description                     |
+| ------------- | -------------------------------- | ----------- | ------------------------------- |
+| `className`   | `string`                         | —           | Custom CSS class                |
+| `title`       | `string`                         | `加载中...` | Title                           |
+| `description` | `string`                         | —           | Description text                |
+| `icon`        | `React.ReactNode`                | —           | Icon element                    |
+| `variant`     | `"spinner" \| "dots" \| "pulse"` | `spinner`   | Style variant                   |
+| ...rest       | `React.ComponentProps<"div">`    | —           | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

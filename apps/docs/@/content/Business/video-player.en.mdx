@@ -1,0 +1,41 @@
+import { VideoPlayer } from "@/components/business/video-player";
+import { CodeBlock } from "@/components/code-block";
+
+# VideoPlayer
+
+> Domain-specific business components for ERP scenarios.
+
+VideoPlayer — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Play video content with play/pause, progress, and volume controls.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/business/video-player"
+
+export function Basic() {
+  return <VideoPlayer />
+}`} lang="tsx" />
+
+## API / Props
+
+### VideoPlayer
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `src`       | `string`               | —       | Source URL                        |
+| `poster`    | `string`               | —       |                                   |
+| `title`     | `string`               | —       | Title                             |
+| `autoplay`  | `boolean`              | `false` |                                   |
+| `loop`      | `boolean`              | `false` |                                   |
+| `muted`     | `boolean`              | `false` |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

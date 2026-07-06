@@ -1,0 +1,76 @@
+import { BrowseInput } from "@/components/ui/browse-input";
+import { CodeBlock } from "@/components/code-block";
+
+# BrowseInput
+
+> Form controls for user input and data submission.
+
+Input with a browse button on the right; used for selecting files/directories/business objects.
+
+## When to Use
+
+Use when you need a browse input.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BrowseInput } from "@/components/ui/browse-input"
+
+export function Basic() {
+  return <BrowseInput />
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <BrowseInput size="sm">Sm</BrowseInput>
+  <BrowseInput size="default">Default</BrowseInput>
+  <BrowseInput size="lg">Lg</BrowseInput>
+</div>`}
+  lang="tsx"
+/>
+
+### States
+
+<CodeBlock
+  code={`<BrowseInput>Normal</BrowseInput>
+<BrowseInput disabled>Disabled</BrowseInput>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### BrowseInput
+
+| Prop               | Type                   | Default     | Description                       |
+| ------------------ | ---------------------- | ----------- | --------------------------------- |
+| `className`        | `string`               | —           | Custom CSS class                  |
+| `value`            | `string`               | —           | Current value (controlled)        |
+| `defaultValue`     | `string`               | —           | Default value (uncontrolled)      |
+| `placeholder`      | `string`               | `Select...` | Placeholder text                  |
+| `disabled`         | `boolean`              | —           | Whether disabled                  |
+| `readOnly`         | `boolean`              | —           | Whether read-only                 |
+| `required`         | `boolean`              | —           | Whether required                  |
+| `onBrowse`         | `() => void`           | —           |                                   |
+| `onChange`         | `() => void`           | —           | Callback when value changes       |
+| `onClear`          | `() => void`           | —           |                                   |
+| `showClearButton`  | `boolean`              | `true`      |                                   |
+| `showBrowseButton` | `boolean`              | `true`      |                                   |
+| ...rest            | `React.HTMLAttributes` | —           | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

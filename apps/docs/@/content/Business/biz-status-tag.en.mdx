@@ -1,0 +1,56 @@
+import { BizStatusTag, Labels } from "@/components/business/biz-status-tag";
+import { CodeBlock } from "@/components/code-block";
+
+# BizStatusTag
+
+> Domain-specific business components for ERP scenarios.
+
+BizStatusTag — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a biz status tag.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BizStatusTag, Labels } from "@/components/business/biz-status-tag"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <BizStatusTag />
+  <Labels />
+    </div>
+  )
+}`} lang="tsx" />
+
+## Style Variants
+
+**status**
+
+| status       | Description | 默认 |
+| ------------ | ----------- | ---- |
+| `active`     |             |      |
+| `inactive`   |             |      |
+| `pending`    |             | ✓    |
+| `processing` |             |      |
+| `error`      |             |      |
+| `completed`  |             |      |
+| `cancelled`  |             |      |
+| `warning`    |             |      |
+
+## API / Props
+
+### BizStatusTag
+
+| Prop        | Type                           | Default | Description                      |
+| ----------- | ------------------------------ | ------- | -------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                 |
+| `label`     | `string`                       | —       | Label text                       |
+| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

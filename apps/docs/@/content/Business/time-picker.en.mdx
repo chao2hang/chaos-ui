@@ -1,0 +1,49 @@
+import { TimePicker } from "@/components/business/time-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# TimePicker
+
+> Domain-specific business components for ERP scenarios.
+
+TimePicker — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a time picker.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TimePicker } from "@/components/business/time-picker"
+
+export function Basic() {
+  return <TimePicker />
+}`} lang="tsx" />
+
+### States
+
+<CodeBlock
+  code={`<TimePicker>Normal</TimePicker>
+<TimePicker disabled>Disabled</TimePicker>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### TimePicker
+
+| Prop          | Type                             | Default    | Description                       |
+| ------------- | -------------------------------- | ---------- | --------------------------------- |
+| `className`   | `string`                         | —          | Custom CSS class                  |
+| `value`       | `string`                         | —          | Current value (controlled)        |
+| `onChange`    | `() => void`                     | —          | Callback when value changes       |
+| `step`        | `1 \| 5 \| 10 \| 15 \| 30 \| 60` | `1`        | Step value                        |
+| `format`      | `"12h" \| "24h"`                 | `24h`      |                                   |
+| `disabled`    | `boolean`                        | —          | Whether disabled                  |
+| `placeholder` | `string`                         | `选择时间` | Placeholder text                  |
+| ...rest       | `React.HTMLAttributes`           | —          | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

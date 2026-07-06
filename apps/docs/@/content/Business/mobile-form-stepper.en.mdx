@@ -1,0 +1,39 @@
+import { MobileFormStepper } from "@/components/business/mobile-form-stepper";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileFormStepper
+
+> Domain-specific business components for ERP scenarios.
+
+MobileFormStepper — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile form stepper.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileFormStepper } from "@/components/business/mobile-form-stepper"
+
+export function Basic() {
+  return <MobileFormStepper />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileFormStepper
+
+| Prop          | Type                          | Default | Description                     |
+| ------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`   | `string`                      | —       | Custom CSS class                |
+| `current`     | `number`                      | —       |                                 |
+| `total`       | `number`                      | —       |                                 |
+| `labels`      | `string[]`                    | —       |                                 |
+| `onStepClick` | `() => void`                  | —       |                                 |
+| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

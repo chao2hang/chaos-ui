@@ -1,0 +1,48 @@
+import { Drawer } from "@/components/ui/drawer";
+import { CodeBlock } from "@/components/code-block";
+
+# Drawer 抽屉
+
+> 反馈组件
+
+从屏幕边缘滑出的浮层面板,用于承载详情/表单等次要内容。
+
+## 何时使用
+
+从屏幕边缘滑出的面板,用于承载详情、表单或配置,不打断主流程。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer"
+
+export function Basic() {
+  return (
+    <Drawer>
+      <DrawerTrigger>Open</DrawerTrigger>
+      <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Title</DrawerTitle>
+        <DrawerDescription>Description.</DrawerDescription>
+      </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Drawer
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(DrawerPortal, DrawerOverlay, DrawerTrigger, DrawerClose, DrawerContent…),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-drawer--docs)。

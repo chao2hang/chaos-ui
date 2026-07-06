@@ -1,0 +1,41 @@
+import { Pagination } from "@/components/ui/pagination";
+import { CodeBlock } from "@/components/code-block";
+
+# Pagination 分页
+
+> 导航组件
+
+数据量过多时,用分页分隔展示,每页加载部分数据。
+
+## 何时使用
+
+对大量数据进行分页浏览,避免一次渲染过多内容。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext } from "@/components/ui/pagination"
+
+export function Basic() {
+  return (
+    <Pagination>
+      <PaginationContent>Content</PaginationContent>
+    </Pagination>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Pagination
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **复合组件**: 包含 6 个子组件(PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext…),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-pagination--docs)。

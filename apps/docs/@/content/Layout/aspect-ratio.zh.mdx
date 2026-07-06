@@ -1,0 +1,37 @@
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { CodeBlock } from "@/components/code-block";
+
+# AspectRatio 宽高比
+
+> 布局组件
+
+锁定内容宽高比的容器组件,常用于图片/视频占位。
+
+## 何时使用
+
+需要宽高比功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+export function Basic() {
+  return <AspectRatio />
+}`} lang="tsx" />
+
+## API / Props
+
+### AspectRatio
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-aspect-ratio--docs)。

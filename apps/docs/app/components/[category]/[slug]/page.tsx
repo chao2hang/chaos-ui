@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { components, categoryLabelsZh } from "@/content/components.meta";
+import {
+  components,
+  categoryLabelsZh,
+  categoryLabelsEn,
+} from "@/content/components.meta";
 import type { ComponentMeta } from "@/content/components.meta";
+import { getServerLocale } from "@/lib/i18n/get-server-locale";
+import { dict } from "@/lib/i18n/dict";
+import type { Locale } from "@/lib/i18n/locale";
 
 /* -------------------------------------------------------------------------- */
 /*  All 300 components — static generation for every MDX detail page          */
@@ -44,17 +51,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { category, slug } = await params;
   const meta = findMeta(category, slug);
+  const locale = await getServerLocale();
+  const isEn = locale === "en";
 
   if (!meta) {
-    return { title: "组件未找到 · Chaos UI" };
+    return {
+      title: isEn ? "Component not found · Chaos UI" : "组件未找到 · Chaos UI",
+    };
   }
 
+  const title = isEn ? meta.name : `${meta.name} ${meta.nameZh}`;
+  const description = isEn ? meta.desc : `${meta.desc} / ${meta.descZh}`;
   return {
-    title: `${meta.name} ${meta.nameZh} · Chaos UI`,
-    description: `${meta.desc} / ${meta.descZh}`,
+    title: `${title} · Chaos UI`,
+    description,
     openGraph: {
-      title: `${meta.name} ${meta.nameZh} · Chaos UI`,
-      description: `${meta.desc} / ${meta.descZh}`,
+      title: `${title} · Chaos UI`,
+      description,
     },
   };
 }
@@ -63,23 +76,20 @@ export async function generateMetadata({
 /*  Fallback: meta not found                                                  */
 /* -------------------------------------------------------------------------- */
 
-function NotFoundFallback() {
+function NotFoundFallback({ locale }: { locale: Locale }) {
+  const d = dict[locale];
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-20 text-center">
       <h1 className="text-foreground text-2xl font-bold">
-        组件详情生成中
-        <span className="text-muted-foreground block text-base font-normal">
-          Component page coming soon
-        </span>
+        {d.detail.mdxNotFoundTitle}
       </h1>
       <p className="text-muted-foreground mt-4 max-w-md text-sm">
-        该组件的 MDX 详情页尚未上线（批次2 覆盖剩余 211 个组件）， 当前可前往
-        Storybook 查看交互式文档与所有变体示例。
+        {d.detail.mdxNotFoundDesc}
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Link href="/components" className={outlineLinkClass}>
           <ArrowLeft className="size-3.5" />
-          返回组件总览
+          {d.detail.breadcrumbRoot}
         </Link>
       </div>
     </div>
@@ -90,22 +100,26 @@ function NotFoundFallback() {
 /*  Fallback: MDX file not found                                              */
 /* -------------------------------------------------------------------------- */
 
-function MdxNotFoundFallback({ meta }: { meta: ComponentMeta }) {
+function MdxNotFoundFallback({
+  meta,
+  locale,
+}: {
+  meta: ComponentMeta;
+  locale: Locale;
+}) {
+  const d = dict[locale];
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-20 text-center">
       <h1 className="text-foreground text-2xl font-bold">
         {meta.name} {meta.nameZh}
       </h1>
       <p className="text-muted-foreground mt-4 max-w-md text-sm">
-        MDX 文件未找到，请确认文件路径: @/content/{meta.category}/{meta.slug}
-        .mdx
-        <br />
-        MDX file not found. Please verify the path above.
+        {d.detail.mdxNotFoundDesc}
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Link href="/components" className={outlineLinkClass}>
           <ArrowLeft className="size-3.5" />
-          返回组件总览
+          {d.detail.breadcrumbRoot}
         </Link>
         {meta.storybookId && (
           <a
@@ -114,13 +128,40 @@ function MdxNotFoundFallback({ meta }: { meta: ComponentMeta }) {
             rel="noopener noreferrer"
             className={outlineLinkClass}
           >
-            Storybook 文档
+            {d.detail.storybookLink}
             <ExternalLink className="size-3.5" />
           </a>
         )}
       </div>
     </div>
   );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  MDX loader — locale-aware with fallback                                   */
+/* -------------------------------------------------------------------------- */
+
+async function loadMdx(
+  category: string,
+  slug: string,
+  locale: Locale,
+): Promise<React.ComponentType | null> {
+  // Try the locale-specific MDX first (e.g. `activity-feed.zh.mdx`),
+  // then fall back to the original unsplit file (`activity-feed.mdx`).
+  try {
+    const mod = await import(`@/content/${category}/${slug}.${locale}.mdx`);
+    if ((mod as { default?: React.ComponentType }).default) {
+      return (mod as { default: React.ComponentType }).default;
+    }
+  } catch {
+    // locale-specific file doesn't exist yet — fall through to legacy file
+  }
+  try {
+    const mod = await import(`@/content/${category}/${slug}.mdx`);
+    return (mod as { default?: React.ComponentType }).default ?? null;
+  } catch {
+    return null;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -134,23 +175,23 @@ export default async function ComponentDetailPage({
 }) {
   const { category, slug } = await params;
   const meta = findMeta(category, slug);
+  const locale = await getServerLocale();
+  const d = dict[locale];
 
   if (!meta) {
-    return <NotFoundFallback />;
+    return <NotFoundFallback locale={locale} />;
   }
 
-  // Dynamically load the MDX file
-  let MDXContent: React.ComponentType | null = null;
-  try {
-    const mod = await import(`@/content/${category}/${slug}.mdx`);
-    MDXContent = (mod as { default?: React.ComponentType }).default ?? null;
-  } catch {
-    return <MdxNotFoundFallback meta={meta} />;
-  }
+  const MDXContent = await loadMdx(category, slug, locale);
 
   if (!MDXContent) {
-    return <MdxNotFoundFallback meta={meta} />;
+    return <MdxNotFoundFallback meta={meta} locale={locale} />;
   }
+
+  const categoryLabel =
+    locale === "en"
+      ? categoryLabelsEn[meta.category]
+      : categoryLabelsZh[meta.category];
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
@@ -161,14 +202,14 @@ export default async function ComponentDetailPage({
             href="/components"
             className="hover:text-foreground transition-colors"
           >
-            组件总览
+            {d.detail.breadcrumbRoot}
           </Link>
           <span aria-hidden>/</span>
           <Link
             href={`/components#${category.replace(/\s+/g, "-").toLowerCase()}`}
             className="hover:text-foreground transition-colors"
           >
-            {categoryLabelsZh[meta.category]}
+            {categoryLabel}
           </Link>
           <span aria-hidden>/</span>
           <span className="text-foreground font-medium">{meta.name}</span>
@@ -181,7 +222,7 @@ export default async function ComponentDetailPage({
             rel="noopener noreferrer"
             className={outlineLinkClass}
           >
-            Storybook 文档
+            {d.detail.storybookLink}
             <ExternalLink className="size-3.5" />
           </a>
         )}

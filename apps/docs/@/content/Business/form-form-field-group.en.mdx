@@ -1,0 +1,39 @@
+import { FormFieldGroup } from "@/components/business/form/form-field-group";
+import { CodeBlock } from "@/components/code-block";
+
+# FormFieldGroup
+
+> Domain-specific business components for ERP scenarios.
+
+FormFieldGroup — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a form field group.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FormFieldGroup } from "@/components/business/form/form-field-group"
+
+export function Basic() {
+  return <FormFieldGroup />
+}`} lang="tsx" />
+
+## API / Props
+
+### FormFieldGroup
+
+| Prop          | Type                               | Default | Description                          |
+| ------------- | ---------------------------------- | ------- | ------------------------------------ |
+| `className`   | `string`                           | —       | Custom CSS class                     |
+| `legend`      | `string`                           | —       |                                      |
+| `description` | `string`                           | —       | Description text                     |
+| `required`    | `boolean`                          | —       | Whether required                     |
+| `columns`     | `1 \| 2 \| 3`                      | `1`     | Column configuration                 |
+| ...rest       | `React.ComponentProps<"fieldset">` | —       | Inherits all `<fieldset>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

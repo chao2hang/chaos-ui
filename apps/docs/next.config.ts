@@ -1,5 +1,5 @@
-import type { NextConfig } from "next"
-import createMDX from "@next/mdx"
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -34,7 +34,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
   images: {
     remotePatterns: [
@@ -44,10 +44,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-}
+};
 
 const withMDX = createMDX({
-  // No remark/rehype plugins in batch 1
-})
+  options: {
+    // GitHub-Flavored Markdown: tables, strikethrough, task lists, autolink literals.
+    // Passed as a module specifier string so it serializes for both webpack and Turbopack;
+    // @next/mdx's mdx-js-loader resolves & imports it at compile time.
+    remarkPlugins: ["remark-gfm"],
+  },
+});
 
-export default withMDX(nextConfig)
+export default withMDX(nextConfig);

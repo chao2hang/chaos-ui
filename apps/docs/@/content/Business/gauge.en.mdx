@@ -1,0 +1,49 @@
+import { Gauge, RadialProgress } from "@/components/business/gauge";
+import { CodeBlock } from "@/components/code-block";
+
+# Gauge
+
+> Domain-specific business components for ERP scenarios.
+
+Gauge — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a gauge.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Gauge, RadialProgress } from "@/components/business/gauge"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <Gauge />
+  <RadialProgress />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Gauge
+
+| Prop          | Type                                       | Default   | Description                     |
+| ------------- | ------------------------------------------ | --------- | ------------------------------- |
+| `className`   | `string`                                   | —         | Custom CSS class                |
+| `value`       | `number`                                   | —         | Current value (controlled)      |
+| `min`         | `number`                                   | `0`       | Minimum value                   |
+| `max`         | `number`                                   | `100`     | Maximum value                   |
+| `size`        | `number`                                   | `160`     | Component size                  |
+| `strokeWidth` | `number`                                   | `12`      |                                 |
+| `label`       | `React.ReactNode`                          | —         | Label text                      |
+| `showValue`   | `boolean`                                  | `true`    |                                 |
+| `formatValue` | `(...args) => unknown`                     | —         |                                 |
+| `variant`     | `"default" \| "success" \| "warning" \...` | `default` | Style variant                   |
+| ...rest       | `React.ComponentProps<"div">`              | —         | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

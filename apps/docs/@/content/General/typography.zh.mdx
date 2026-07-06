@@ -1,0 +1,156 @@
+import { Typography } from "@/components/ui/typography";
+import { CodeBlock } from "@/components/code-block";
+
+# Typography 排版
+
+> 通用基础组件
+
+排版 — Chaos UI 的通用基础组件。
+
+## 何时使用
+
+需要排版功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Typography, Title, Paragraph, Text, Link } from "@/components/ui/typography"
+
+export function Basic() {
+  return (
+    <Typography>
+      <Title>Content</Title>
+    </Typography>
+  )
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Typography variant="default">Default</Typography>
+  <Typography variant="muted">Muted</Typography>
+  <Typography variant="destructive">Destructive</Typography>
+</div>`}
+  lang="tsx"
+/>
+
+### 尺寸
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Typography size="sm">Sm</Typography>
+  <Typography size="default">Default</Typography>
+  <Typography size="lg">Lg</Typography>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体
+
+**类型**
+
+| type        | 说明 | 默认 |
+| ----------- | ---- | ---- |
+| `default`   |      | ✓    |
+| `secondary` |      |      |
+| `success`   |      |      |
+| `warning`   |      |      |
+| `danger`    |      |      |
+| `disabled`  |      |      |
+
+**strong**
+
+| strong  | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**italic**
+
+| italic  | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**underline**
+
+| underline | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `true`    |      | ✓    |
+| `false`   |      |      |
+
+**delete**
+
+| delete  | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**code**
+
+| code    | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**mark**
+
+| mark    | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
+
+**keyboard**
+
+| keyboard | 说明 | 默认 |
+| -------- | ---- | ---- |
+| `true`   |      | ✓    |
+| `false`  |      |      |
+
+**层级**
+
+| level | 说明 | 默认 |
+| ----- | ---- | ---- |
+| `1`   |      | ✓    |
+| `2`   |      |      |
+| `3`   |      |      |
+| `4`   |      |      |
+| `5`   |      |      |
+| `6`   |      |      |
+
+**尺寸**
+
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
+
+**变体**
+
+| Variant       | 说明          | 默认 |
+| ------------- | ------------- | ---- |
+| `default`     | 默认样式      | ✓    |
+| `muted`       |               |      |
+| `destructive` | 危险/删除样式 |      |
+
+## API / Props
+
+### Typography
+
+| Prop        | Type                           | Default | 说明                   |
+| ----------- | ------------------------------ | ------- | ---------------------- |
+| `className` | `string`                       | —       | 自定义样式类名         |
+| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 |
+
+## 注意事项
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 1 个子组件(Title),使用组合模式按需导入。
+- **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-typography--docs)。

@@ -1,0 +1,56 @@
+import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field";
+import { CodeBlock } from "@/components/code-block";
+
+# OtpField 验证码输入
+
+> 表单控件
+
+一次性验证码输入框,多格子分别输入数字/字母,自动聚焦下一格。
+
+## 何时使用
+
+一次性验证码/短信验证码输入。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
+
+export function Basic() {
+  return (
+    <OTPField>
+      <OTPFieldSeparator>Content</OTPFieldSeparator>
+    </OTPField>
+  )
+}`} lang="tsx" />
+
+### 状态
+
+<CodeBlock
+  code={`<OTPField>Normal</OTPField>
+<OTPField disabled>Disabled</OTPField>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### OTPField
+
+| Prop             | Type                   | Default | 说明              |
+| ---------------- | ---------------------- | ------- | ----------------- |
+| `className`      | `string`               | —       | 自定义样式类名    |
+| `length`         | `number`               | —       |                   |
+| `value`          | `string`               | —       | 当前值(受控)      |
+| `onValueChange`  | `() => void`           | —       |                   |
+| `mask`           | `boolean`              | `false` |                   |
+| `inputClassName` | `string`               | —       |                   |
+| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(OTPFieldSeparator),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-otp-field--docs)。

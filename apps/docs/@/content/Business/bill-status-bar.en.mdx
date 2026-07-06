@@ -1,0 +1,48 @@
+import { BillStatusBar } from "@/components/business/bill-status-bar";
+import { CodeBlock } from "@/components/code-block";
+
+# BillStatusBar
+
+> Domain-specific business components for ERP scenarios.
+
+BillStatusBar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a bill status bar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BillStatusBar } from "@/components/business/bill-status-bar"
+
+export function Basic() {
+  return <BillStatusBar />
+}`} lang="tsx" />
+
+## Style Variants
+
+**status**
+
+| status     | Description | 默认 |
+| ---------- | ----------- | ---- |
+| `draft`    |             | ✓    |
+| `pending`  |             |      |
+| `approved` |             |      |
+| `rejected` |             |      |
+| `paid`     |             |      |
+
+## API / Props
+
+### BillStatusBar
+
+| Prop            | Type                                       | Default | Description                     |
+| --------------- | ------------------------------------------ | ------- | ------------------------------- |
+| `className`     | `string`                                   | —       | Custom CSS class                |
+| `currentStatus` | `"draft" \| "pending" \| "approved" \|...` | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">`              | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

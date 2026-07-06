@@ -1,0 +1,38 @@
+import { RoleAssignment } from "@/components/business/role-assignment";
+import { CodeBlock } from "@/components/code-block";
+
+# RoleAssignment
+
+> Domain-specific business components for ERP scenarios.
+
+RoleAssignment — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a role assignment.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RoleAssignment } from "@/components/business/role-assignment"
+
+export function Basic() {
+  return <RoleAssignment />
+}`} lang="tsx" />
+
+## API / Props
+
+### RoleAssignment
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `roles`     | `Role[]`                      | —       |                                 |
+| `assigned`  | `string[]`                    | —       |                                 |
+| `onChange`  | `() => void`                  | —       | Callback when value changes     |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

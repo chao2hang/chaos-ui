@@ -1,19 +1,36 @@
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ComponentSearch } from "@/components/component-search";
-import { components, CATEGORIES, categoryLabelsZh, categoryLabelsEn } from "@/content/components.meta";
+import {
+  components,
+  CATEGORIES,
+  categoryLabelsZh,
+  categoryLabelsEn,
+} from "@/content/components.meta";
+import { getServerLocale } from "@/lib/i18n/get-server-locale";
+import { dict } from "@/lib/i18n/dict";
 
-export const metadata: Metadata = {
-  title: "组件总览 · Components · Chaos UI",
-  description:
-    "Chaos UI 组件总览页 — 可搜索的 8 大分区组件目录:General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout。",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const isEn = locale === "en";
+  return {
+    title: isEn
+      ? "Components Overview · Chaos UI"
+      : "组件总览 · Components · Chaos UI",
+    description: isEn
+      ? "Chaos UI components overview — searchable catalog of all 8 categories: General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout."
+      : "Chaos UI 组件总览页 — 可搜索的 8 大分区组件目录:General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout。",
+  };
+}
 
 /**
  * /components — searchable overview of all shipped Chaos UI components.
  * Server Component. Renders a Hero header plus the `<ComponentSearch>` client island.
  */
-export default function ComponentsOverviewPage() {
+export default async function ComponentsOverviewPage() {
+  const locale = await getServerLocale();
+  const isEn = locale === "en";
+  const d = dict[locale];
   const total = components.length;
   const perCat = CATEGORIES.map((c) => ({
     category: c,
@@ -27,24 +44,23 @@ export default function ComponentsOverviewPage() {
       {/* ============================================================== */}
       {/*  Hero                                                          */}
       {/* ============================================================== */}
-      <section className="relative overflow-hidden border-b border-border/40">
+      <section className="border-border/40 relative overflow-hidden border-b">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-100/30 via-background to-background dark:from-brand-950/20 dark:via-background dark:to-background" />
+          <div className="from-brand-100/30 via-background to-background dark:from-brand-950/20 dark:via-background dark:to-background absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]" />
         </div>
-        <div className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pt-16">
+        <div className="mx-auto max-w-6xl px-4 pt-12 pb-10 sm:px-6 sm:pt-16">
           <Badge variant="secondary" className="mb-4 gap-1.5">
             <span aria-hidden>·</span>
             Component Catalog
           </Badge>
-          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-            组件总览
-            <span className="ml-3 align-middle text-lg font-medium text-muted-foreground sm:text-xl">
+          <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+            {d.components.pageTitle}
+            <span className="text-muted-foreground ml-3 align-middle text-lg font-medium sm:text-xl">
               Components · {total}
             </span>
           </h1>
-          <p className="mt-4 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
-            按分区浏览全部组件,支持按 name / 中文名 / 描述 搜索。各分区点击锚滚定位,
-            详情页 MDX 正在陆续上线(批次1覆盖 30 个高频组件),其余暂可前往 Storybook 查看。
+          <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed text-balance sm:text-lg">
+            {d.components.pageDesc}
           </p>
 
           {/* 8-category quick stats */}
@@ -53,13 +69,13 @@ export default function ComponentsOverviewPage() {
               <a
                 key={c.category}
                 href={`#${c.category.replace(/\s+/g, "-").toLowerCase()}`}
-                className="group rounded-lg border border-border/60 bg-card/50 p-3 text-center transition-colors hover:border-brand-500/40 hover:bg-card"
+                className="group border-border/60 bg-card/50 hover:border-brand-500/40 hover:bg-card rounded-lg border p-3 text-center transition-colors"
               >
-                <div className="text-xl font-bold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                <div className="text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 text-xl font-bold">
                   {c.count}
                 </div>
-                <div className="mt-0.5 text-xs text-muted-foreground">
-                  {c.labelZh}
+                <div className="text-muted-foreground mt-0.5 text-xs">
+                  {isEn ? c.labelEn : c.labelZh}
                 </div>
               </a>
             ))}

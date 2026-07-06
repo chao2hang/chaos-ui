@@ -1,0 +1,35 @@
+import { RadarChartComp } from "@/components/business/charts/radar-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# RadarChart
+
+> Domain-specific business components for ERP scenarios.
+
+RadarChart — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a radar chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RadarChartComp } from "@/components/business/charts/radar-chart"
+
+export function Basic() {
+  return <RadarChartComp />
+}`} lang="tsx" />
+
+## API / Props
+
+### RadarChartComp
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

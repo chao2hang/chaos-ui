@@ -1,0 +1,38 @@
+import { EditableTreeTable } from "@/components/business/editable-tree-table";
+import { CodeBlock } from "@/components/code-block";
+
+# EditableTreeTable
+
+> Domain-specific business components for ERP scenarios.
+
+EditableTreeTable — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an editable tree table.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EditableTreeTable } from "@/components/business/editable-tree-table"
+
+export function Basic() {
+  return <EditableTreeTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### EditableTreeTable
+
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `data`      | `TreeNode[]`                  | —       | Data source                     |
+| `columns`   | `Array<T>`                    | —       | Column configuration            |
+| `onChange`  | `() => void`                  | —       | Callback when value changes     |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

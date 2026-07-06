@@ -1,0 +1,43 @@
+import { ColorPicker } from "@/components/ui/color-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# ColorPicker
+
+> Form controls for user input and data submission.
+
+Color selection panel supporting swatches, hex input, and opacity.
+
+## When to Use
+
+Use when you need a color picker.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ColorPicker } from "@/components/ui/color-picker"
+
+export function Basic() {
+  return <ColorPicker />
+}`} lang="tsx" />
+
+### States
+
+<CodeBlock
+  code={`<ColorPicker>Normal</ColorPicker>
+<ColorPicker disabled>Disabled</ColorPicker>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### ColorPicker
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

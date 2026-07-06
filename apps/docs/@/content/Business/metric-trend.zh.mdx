@@ -1,0 +1,52 @@
+import { Sparkline, MetricTrend } from "@/components/business/metric-trend";
+import { CodeBlock } from "@/components/code-block";
+
+# MetricTrend 指标趋势
+
+> 业务组件
+
+指标趋势 — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+需要指标趋势功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Sparkline, MetricTrend } from "@/components/business/metric-trend"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <Sparkline />
+  <MetricTrend />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MetricTrend
+
+| Prop             | Type                                       | Default   | 说明              |
+| ---------------- | ------------------------------------------ | --------- | ----------------- |
+| `className`      | `string`                                   | —         | 自定义样式类名    |
+| `label`          | `string`                                   | —         | 标签文本          |
+| `value`          | `number \| string`                         | —         | 当前值(受控)      |
+| `unit`           | `string`                                   | —         |                   |
+| `change`         | `number`                                   | —         |                   |
+| `changeLabel`    | `string`                                   | `vs 上期` |                   |
+| `format`         | `"number" \| "percent" \| "compact" \|...` | `number`  |                   |
+| `sparklineData`  | `number[]`                                 | —         |                   |
+| `trendDirection` | `"up-good" \| "down-good" \| "neutral"`    | `up-good` |                   |
+| `icon`           | `React.ReactNode`                          | —         | 图标元素          |
+| `loading`        | `boolean`                                  | —         | 是否加载中        |
+| ...rest          | `React.HTMLAttributes`                     | —         | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-metric-trend--docs)。

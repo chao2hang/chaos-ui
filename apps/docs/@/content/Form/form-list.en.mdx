@@ -1,0 +1,35 @@
+import { FormList } from "@/components/ui/form-list";
+import { CodeBlock } from "@/components/code-block";
+
+# FormList
+
+> Form controls for user input and data submission.
+
+FormList — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a form list.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FormList } from "@/components/ui/form-list"
+
+export function Basic() {
+  return <FormList />
+}`} lang="tsx" />
+
+## API / Props
+
+### FormList
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

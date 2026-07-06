@@ -1,0 +1,48 @@
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/hover-card";
+import { CodeBlock } from "@/components/code-block";
+
+# HoverCard
+
+> Components for presenting data and content.
+
+Card that appears on hover; holds more content than Tooltip.
+
+## When to Use
+
+Use when you need a hover card.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Card } from "@/components/ui/hover-card"
+
+export function Basic() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>Card content goes here.</CardContent>
+    </Card>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### HoverCard
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 2 个子组件(HoverCardTrigger, HoverCardContent),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。

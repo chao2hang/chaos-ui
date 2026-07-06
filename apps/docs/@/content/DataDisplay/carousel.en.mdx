@@ -1,0 +1,45 @@
+import { Carousel } from "@/components/ui/carousel";
+import { CodeBlock } from "@/components/code-block";
+
+# Carousel
+
+> Components for presenting data and content.
+
+Rotating flat content set; supports autoplay, dots, and arrows.
+
+## When to Use
+
+Use when you need a carousel.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from "@/components/ui/carousel"
+
+export function Basic() {
+  return (
+    <Carousel>
+      <CarouselContent>Content</CarouselContent>
+    </Carousel>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Carousel
+
+| Prop            | Type                          | Default | Description                     |
+| --------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`     | `string`                      | —       | Custom CSS class                |
+| `defaultIndex`  | `number`                      | `0`     |                                 |
+| `loop`          | `boolean`                     | `true`  |                                 |
+| `autoplay`      | `boolean`                     | `false` |                                 |
+| `interval`      | `number`                      | `5000`  |                                 |
+| `onIndexChange` | `() => void`                  | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 5 个子组件(CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots),使用组合模式按需导入。

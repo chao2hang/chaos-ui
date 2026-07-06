@@ -1,0 +1,51 @@
+import { Table } from "@/components/ui/table";
+import { CodeBlock } from "@/components/code-block";
+
+# Table
+
+> Components for presenting data and content.
+
+Displays row/column data; the fundamental data display component.
+
+## When to Use
+
+Display structured tabular data with sorting, filtering, and pagination.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+
+export function Basic() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Item 1</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Table
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 7 个子组件(TableHeader, TableBody, TableFooter, TableHead, TableRow…),使用组合模式按需导入。

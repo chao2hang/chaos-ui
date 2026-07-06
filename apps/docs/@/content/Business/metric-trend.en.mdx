@@ -1,0 +1,50 @@
+import { Sparkline, MetricTrend } from "@/components/business/metric-trend";
+import { CodeBlock } from "@/components/code-block";
+
+# MetricTrend
+
+> Domain-specific business components for ERP scenarios.
+
+MetricTrend — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a metric trend.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Sparkline, MetricTrend } from "@/components/business/metric-trend"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <Sparkline />
+  <MetricTrend />
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MetricTrend
+
+| Prop             | Type                                       | Default   | Description                       |
+| ---------------- | ------------------------------------------ | --------- | --------------------------------- |
+| `className`      | `string`                                   | —         | Custom CSS class                  |
+| `label`          | `string`                                   | —         | Label text                        |
+| `value`          | `number \| string`                         | —         | Current value (controlled)        |
+| `unit`           | `string`                                   | —         |                                   |
+| `change`         | `number`                                   | —         |                                   |
+| `changeLabel`    | `string`                                   | `vs 上期` |                                   |
+| `format`         | `"number" \| "percent" \| "compact" \|...` | `number`  |                                   |
+| `sparklineData`  | `number[]`                                 | —         |                                   |
+| `trendDirection` | `"up-good" \| "down-good" \| "neutral"`    | `up-good` |                                   |
+| `icon`           | `React.ReactNode`                          | —         | Icon element                      |
+| `loading`        | `boolean`                                  | —         | Loading state                     |
+| ...rest          | `React.HTMLAttributes`                     | —         | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
