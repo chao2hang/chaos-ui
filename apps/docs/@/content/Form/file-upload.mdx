@@ -1,116 +1,52 @@
-import { FileUpload } from "@/components/ui/file-upload"
+import { FileUpload, FileList } from "@/components/ui/file-upload"
 import { CodeBlock } from "@/components/code-block"
 
 # FileUpload 文件上传
 
-Chaos UI 文件上传组件，基于 react-dropzone，支持拖拽和点击上传。
-A file upload component based on react-dropzone with drag-and-drop and click-to-upload support.
+> 表单控件 / Form controls for user input and data submission.
 
-## 何时使用 / When to use
+通过点击或拖拽上传文件,支持多选、类型限制、预览。
+Click/drag-to-upload supporting multi-select, type restrictions, and preview.
 
-用于文件上传场景：图片上传、文档上传、附件管理等。支持拖拽区域和文件列表展示。
+## 何时使用 / When to Use
 
-Use for file upload scenarios: image upload, document upload, attachment management. Supports dropzone area and file list display.
+文件上传组件,支持拖拽、批量上传和进度反馈。
+
+File upload supporting drag & drop, batch upload, and progress feedback.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<FileUpload
-  accept={{ "image/*": [] }}
-  maxFiles={3}
-  maxSize={5 * 1024 * 1024}
-  dropzone
->
-  <div style={{ padding: 32, border: "2px dashed #cbd5e1", borderRadius: 8, textAlign: "center", cursor: "pointer" }}>
-    拖拽文件到此处或点击上传
-    <br />
-    Drag files here or click to upload
-  </div>
-</FileUpload>
-
-<CodeBlock code={`import { FileUpload } from "@/components/ui/file-upload"
+<CodeBlock code={`import { FileUpload, FileList } from "@/components/ui/file-upload"
 
 export function Basic() {
   return (
-    <FileUpload
-      accept={{ "image/*": [] }}
-      maxFiles={3}
-      maxSize={5 * 1024 * 1024}
-      onDrop={(files) => console.log(files)}
-      dropzone
-    >
-      <div>
-        拖拽文件到此处或点击上传
-      </div>
+    <FileUpload>
+      <FileList>Content</FileList>
     </FileUpload>
   )
 }`} lang="tsx" />
 
-### 限制文件类型 / File Type Restriction
 
-<FileUpload
-  accept={{ "application/pdf": [".pdf"], "text/plain": [".txt"] }}
-  dropzone
->
-  <div style={{ padding: 24, border: "2px dashed #cbd5e1", borderRadius: 8, textAlign: "center", cursor: "pointer" }}>
-    仅支持 PDF 和 TXT 文件
-    <br />
-    PDF and TXT files only
-  </div>
-</FileUpload>
-
-<CodeBlock code={`<FileUpload
-  accept={{
-    "application/pdf": [".pdf"],
-    "text/plain": [".txt"],
-  }}
-  onDrop={(files) => console.log(files)}
-  dropzone
->
-  <div>仅支持 PDF 和 TXT 文件</div>
-</FileUpload>`} lang="tsx" />
-
-### 禁用状态 / Disabled
-
-<FileUpload disabled dropzone>
-  <div style={{ padding: 24, border: "2px dashed #e2e8f0", borderRadius: 8, textAlign: "center", opacity: 0.5 }}>
-    上传已禁用 / Upload disabled
-  </div>
-</FileUpload>
-
-<CodeBlock code={`<FileUpload disabled dropzone>
-  <div>上传已禁用</div>
-</FileUpload>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### FileUpload
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| onDrop | `(files: File[]) => void` | — | 文件投放/选择回调 | Callback on file drop/select |
-| accept | `Record<string, string[]>` | — | 允许的文件类型 | Allowed file types (MIME → extensions) |
-| maxFiles | `number` | — | 最大文件数量 | Max number of files |
-| maxSize | `number` | — | 单个文件最大大小 (bytes) | Max size per file in bytes |
-| disabled | `boolean` | `false` | 禁用上传 | Disable upload |
-| dropzone | `boolean` | `false` | 启用拖拽区域（否则仅点击） | Enable dropzone area |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-| children | `React.ReactNode` | — | 拖拽区域内容 | Dropzone area content |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `onDrop` | `() => void` | — |  |
+| `accept` | `Record<string, string[]>` | — |  |
+| `maxFiles` | `number` | `5` |  |
+| `maxSize` | `number` | — |  |
+| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
+| `dropzone` | `boolean` | `false` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### FileList
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| files | `{ name: string; size: number; status?: string; progress?: number }[]` | — | 文件列表数据 | File list data |
-| onRemove | `(index: number) => void` | — | 移除文件回调 | Callback on file remove |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(FileList),使用组合模式按需导入。
 
-## 注意事项
-
-- **accept 格式**：遵循 MIME type 标准，key 为 MIME 类型（如 `"image/*"`），value 为扩展名数组（如 `[".png", ".jpg"]`）。
-- **大小限制**：`maxSize` 单位为 bytes。5MB = `5 * 1024 * 1024`。
-- **dropzone 模式**：启用 `dropzone` 后整个 children 区域变为可拖放区，视觉上建议添加虚线边框提示。
-- **无障碍**：基于 react-dropzone，内部使用 `<input type="file">`，键盘可通过点击区域触发文件选择对话框。确保提供清晰的视觉指示和文案提示。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-file-upload--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-file-upload--docs)。

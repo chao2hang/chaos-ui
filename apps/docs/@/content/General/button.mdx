@@ -3,93 +3,87 @@ import { CodeBlock } from "@/components/code-block"
 
 # Button 按钮
 
-Chaos UI 按钮组件，基于 Base UI 构建，支持多种 variant、size 和语义化状态。
-A Base UI-powered button component with multiple variants, sizes, and semantic states.
+> 通用基础组件 / General-purpose primitives used across the app.
 
-## 何时使用 / When to use
+触发操作或事件,如提交表单、打开对话框、取消操作等。
+Buttons trigger actions or events such as submitting forms, opening dialogs, or cancelling operations.
 
-需要触发操作时使用按钮。支持普通操作、提交表单、链接跳转等场景。选择合适的 variant (default / destructive / outline / secondary / ghost / link) 来表达操作权重。
+## 何时使用 / When to Use
 
-Use a button to trigger an action. Choose the right variant (default / destructive / outline / secondary / ghost / link) to convey action weight.
+点击触发操作,如提交表单、打开弹窗、确认/取消操作。
+
+Clicking triggers an action such as form submission, opening a dialog, or confirming/cancelling.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
-
-<Button>Default Button</Button>
+### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { Button } from "@/components/ui/button"
 
 export function Basic() {
-  return <Button>Default Button</Button>
+  return <Button>Default</Button>
 }`} lang="tsx" />
 
-### 变体 Variants
+### 变体 / Variants
 
-<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+<CodeBlock code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
   <Button variant="default">Default</Button>
-  <Button variant="destructive">Destructive</Button>
   <Button variant="outline">Outline</Button>
   <Button variant="secondary">Secondary</Button>
   <Button variant="ghost">Ghost</Button>
-  <Button variant="link">Link</Button>
-</div>
+  <Button variant="destructive">Destructive</Button>
+</div>`} lang="tsx" />
 
-<CodeBlock code={`<Button variant="default">Default</Button>
-<Button variant="destructive">Destructive</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="link">Link</Button>`} lang="tsx" />
+### 尺寸 / Sizes
 
-### 尺寸 Sizes
-
-<div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-  <Button size="xs">Extra Small</Button>
-  <Button size="sm">Small</Button>
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Button size="xs">Xs</Button>
+  <Button size="sm">Sm</Button>
   <Button size="default">Default</Button>
-  <Button size="lg">Large</Button>
-  <Button size="xl">Extra Large</Button>
-  <Button size="icon-xs"><span>★</span></Button>
-  <Button size="icon-sm"><span>★</span></Button>
-  <Button size="icon"><span>★</span></Button>
-</div>
+  <Button size="lg">Lg</Button>
+</div>`} lang="tsx" />
 
-<CodeBlock code={`<Button size="xs">Extra Small</Button>
-<Button size="sm">Small</Button>
-<Button size="default">Default</Button>
-<Button size="lg">Large</Button>
-<Button size="xl">Extra Large</Button>
-<Button size="icon"><Icon /></Button>`} lang="tsx" />
 
-### 禁用与加载 / Disabled & Loading
+## 样式变体 / Style Variants
 
-<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-  <Button disabled>Disabled</Button>
-  <Button disabled variant="outline">Outline Disabled</Button>
-  <Button disabled variant="ghost">Ghost Disabled</Button>
-</div>
+**变体 / Variant**
 
-<CodeBlock code={`<Button disabled>Disabled</Button>
-<Button disabled variant="outline">Outline Disabled</Button>
-<Button disabled variant="ghost">Ghost Disabled</Button>`} lang="tsx" />
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `outline` | 描边样式 / Outlined style |  |
+| `secondary` | 次要样式 / Secondary action style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| `link` | 链接样式 / Link style |  |
 
-## API
+**尺寸 / Size**
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| variant | `'default' \| 'destructive' \| 'outline' \| 'secondary' \| 'ghost' \| 'link'` | `'default'` | 按钮变体风格 | Button style variant |
-| size | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| 'icon-xs' \| 'icon-sm' \| 'icon'` | `'default'` | 按钮尺寸 | Button size preset |
-| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
-| asChild | `boolean` | `false` | 作为子元素渲染（用于 Link 场景） | Render as child (e.g., for Next.js Link) |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-| ...rest | `ButtonPrimitive.Props` | — | 透传 Base UI Button 原生属性 | Passthrough Base UI Button props |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `xs` | 超小 / Extra small |  |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+| `icon` | 图标正方形 / Icon-only square |  |
+| `icon-xs` | 超小图标 / Extra small icon |  |
+| `icon-sm` | 小图标 / Small icon |  |
+| `icon-lg` | 大图标 / Large icon |  |
 
-## 注意事项
+## API / Props
 
-- **asChild 与路由**：配合 `asChild` 可将按钮渲染为 Next.js `<Link>` 或其他自定义元素，避免 `<a>` 嵌套 `<button>` 的无障碍问题。
-- **无障碍**：Base UI Button 内置键盘支持 (Enter/Space 触发)。disabled 状态下自动移除 tabIndex，但为确保 screen reader 可读，建议保留可见文本。
-- **Variant 语义**：`destructive` 用于删除/不可逆操作；`outline` / `ghost` 用于低权重操作；`link` 用于文本级跳转。
-- **icon 尺寸**：`icon-xs` / `icon-sm` / `icon` 自动设为正方形，适合纯图标按钮场景。
+### Button
 
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-button--docs)
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-button--docs)。

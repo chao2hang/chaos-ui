@@ -1,14 +1,18 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface FormProgressProps extends Omit<React.ComponentProps<"div">, "onChange"> {
-  current: number
-  total: number
-  labels?: string[]
-  className?: string
-  showLabels?: boolean
-  variant?: "bar" | "steps" | "dots"
+interface FormProgressProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onChange" | "ref"
+> {
+  current: number;
+  total: number;
+  labels?: string[];
+  className?: string;
+  showLabels?: boolean;
+  variant?: "bar" | "steps" | "dots";
+  ref?: React.Ref<HTMLElement>;
 }
 
 export function FormProgress({
@@ -18,22 +22,30 @@ export function FormProgress({
   className,
   showLabels = true,
   variant = "bar",
+  ref,
   ...props
 }: FormProgressProps) {
-  const pct = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0
+  const pct =
+    total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0;
+  const settledRef = ref ?? null;
 
   if (variant === "bar") {
     return (
-      <div data-slot="form-progress" className={cn("space-y-1.5", className)} {...props}>
+      <div
+        data-slot="form-progress"
+        ref={settledRef as React.Ref<HTMLDivElement> | null}
+        className={cn("space-y-1.5", className)}
+        {...props}
+      >
         {showLabels && (
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <div className="text-muted-foreground flex items-center justify-between text-xs">
             <span>{labels?.[current - 1] ?? `步骤 ${current}`}</span>
             <span className="tabular-nums">{Math.round(pct)}%</span>
           </div>
         )}
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+        <div className="bg-muted h-1.5 w-full overflow-hidden rounded-full">
           <div
-            className="h-full bg-primary transition-all duration-300"
+            className="bg-primary h-full transition-all duration-300"
             style={{ width: `${pct}%` }}
             role="progressbar"
             aria-valuenow={current}
@@ -42,30 +54,40 @@ export function FormProgress({
           />
         </div>
       </div>
-    )
+    );
   }
 
   if (variant === "dots") {
     return (
-      <div data-slot="form-progress" className={cn("flex items-center gap-1.5", className)} {...props}>
+      <div
+        data-slot="form-progress"
+        ref={settledRef as React.Ref<HTMLDivElement> | null}
+        className={cn("flex items-center gap-1.5", className)}
+        {...props}
+      >
         {Array.from({ length: total }).map((_, i) => (
           <span
             key={i}
             className={cn(
               "h-1.5 flex-1 rounded-full transition-colors",
-              i < current ? "bg-primary" : "bg-muted"
+              i < current ? "bg-primary" : "bg-muted",
             )}
           />
         ))}
       </div>
-    )
+    );
   }
 
   return (
-    <ol data-slot="form-progress" className={cn("flex items-center gap-2", className)} {...props}>
+    <ol
+      data-slot="form-progress"
+      ref={settledRef as React.Ref<HTMLOListElement> | null}
+      className={cn("flex items-center gap-2", className)}
+      {...(props as React.OlHTMLAttributes<HTMLOListElement>)}
+    >
       {Array.from({ length: total }).map((_, i) => {
-        const done = i < current
-        const active = i === current - 1
+        const done = i < current;
+        const active = i === current - 1;
         return (
           <React.Fragment key={i}>
             <li
@@ -74,8 +96,8 @@ export function FormProgress({
                 done
                   ? "bg-primary text-primary-foreground"
                   : active
-                    ? "border-2 border-primary text-primary"
-                    : "border border-muted-foreground/30 text-muted-foreground"
+                    ? "border-primary text-primary border-2"
+                    : "border-muted-foreground/30 text-muted-foreground border",
               )}
             >
               {i + 1}
@@ -87,8 +109,8 @@ export function FormProgress({
               />
             )}
           </React.Fragment>
-        )
+        );
       })}
     </ol>
-  )
+  );
 }

@@ -1,152 +1,41 @@
 import { KPICard } from "@/components/business/kpi-card"
 import { CodeBlock } from "@/components/code-block"
 
-# KPICard KPI 卡片
+# KpiCard KPI 卡片
 
-Chaos UI KPI 指标卡片组件，用于展示关键业务指标及趋势变化。
-A KPI indicator card for displaying key business metrics with trend changes.
+> 业务组件 / Domain-specific business components for ERP scenarios.
 
-## 何时使用 / When to use
+KPI 卡片 — 面向 ERP/企业场景的业务组件。
+KpiCard — a business component for ERP / enterprise scenarios.
 
-用于仪表盘和报表中展示核心指标：营收、用户数、转化率、订单量等。支持显示同比/环比变化、趋势折线图、目标达成率。
+## 何时使用 / When to Use
 
-Use for dashboards and reports: revenue, user count, conversion rate, order volume. Supports YoY/MoM changes, sparkline trends, and target tracking.
+适用于KPI 卡片相关场景。
+
+Use when you need a kpi card.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
-
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
-  <KPICard
-    title="总收入 / Total Revenue"
-    value="¥ 847,290"
-    change="+12.5%"
-    changeType="positive"
-  />
-  <KPICard
-    title="活跃用户 / Active Users"
-    value="24,821"
-    change="+8.2%"
-    changeType="positive"
-  />
-  <KPICard
-    title="转化率 / Conversion Rate"
-    value="3.24%"
-    change="-0.4%"
-    changeType="negative"
-  />
-</div>
+### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { KPICard } from "@/components/business/kpi-card"
 
 export function Basic() {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
-      <KPICard
-        title="总收入"
-        value="¥ 847,290"
-        change="+12.5%"
-        changeType="positive"
-      />
-      <KPICard
-        title="活跃用户"
-        value="24,821"
-        change="+8.2%"
-        changeType="positive"
-      />
-      <KPICard
-        title="转化率"
-        value="3.24%"
-        change="-0.4%"
-        changeType="negative"
-      />
-    </div>
-  )
+  return <KPICard />
 }`} lang="tsx" />
 
-### 带趋势图 / With Sparkline
 
-<KPICard
-  title="月销售额 / Monthly Sales"
-  value="¥ 156,420"
-  change="+5.7%"
-  changeType="positive"
-  changeLabel="vs 上月"
-  sparkline={[
-    { value: 30 }, { value: 40 }, { value: 35 }, { value: 50 },
-    { value: 45 }, { value: 60 }, { value: 55 }, { value: 70 },
-    { value: 65 }, { value: 80 }, { value: 75 }, { value: 90 },
-  ]}
-/>
+## API / Props
 
-<CodeBlock code={`<KPICard
-  title="月销售额"
-  value="¥ 156,420"
-  change="+5.7%"
-  changeType="positive"
-  changeLabel="vs 上月"
-  sparkline={[
-    { value: 30 }, { value: 40 }, { value: 35 }, { value: 50 },
-    { value: 45 }, { value: 60 }, { value: 55 }, { value: 70 },
-    { value: 65 }, { value: 80 }, { value: 75 }, { value: 90 },
-  ]}
-/>`} lang="tsx" />
+### KPICard
 
-### 带目标指标 / With Target
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-<KPICard
-  title="季度目标 / Quarterly Target"
-  value="72%"
-  change="+3.1%"
-  changeType="positive"
-  target={85}
-  targetLabel="目标 / Target: 85%"
-/>
+## 注意事项 / Notes
 
-<CodeBlock code={`<KPICard
-  title="季度目标"
-  value="72%"
-  change="+3.1%"
-  changeType="positive"
-  target={85}
-  targetLabel="目标: 85%"
-/>`} lang="tsx" />
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-### 自定义图标 / Custom Icon
-
-*在客户端组件中传入自定义 `icon` 组件：*
-
-<CodeBlock code={`import { Users } from "lucide-react"
-
-<KPICard
-  title="新用户"
-  value="1,234"
-  change="+15.3%"
-  changeType="positive"
-  icon={Users}
-/>`} lang="tsx" />
-
-## API
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| title | `string` | — | **必填**，指标标题 | **Required** indicator title |
-| value | `string` | — | **必填**，指标数值（预格式化字符串） | **Required** indicator value (pre-formatted) |
-| change | `string` | — | 变化值（如 "+12.5%") | Change value (e.g., "+12.5%") |
-| changeLabel | `string` | — | 变化标签（如 "vs 上月"） | Change label (e.g., "vs last month") |
-| changeType | `'positive' \| 'negative' \| 'neutral'` | `'neutral'` | 变化方向 | Change direction |
-| sparkline | `{ value: number }[]` | — | 趋势折线数据 | Sparkline data points |
-| target | `number` | — | 目标值 (0–100) | Target value (0–100) |
-| targetLabel | `string` | — | 目标标签 | Target label |
-| icon | `React.ElementType` | — | 自定义图标组件 | Custom icon component |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-## 注意事项
-
-- **数值格式化**：`value` 应预格式化为字符串（如 `"¥ 847,290"`、`"24,821"`、`"3.24%"`），KPICard 不负责数值格式化。
-- **change 方向**：`changeType` 控制箭头方向和颜色——`positive` 绿色向上，`negative` 红色向下，`neutral` 灰色横线。
-- **sparkline 格式**：`{ value: number }[]` 数组，value 为相对数值（0–100 范围更佳），会自动缩放到卡片宽度。
-- **target 范围**：`target` 接受 0–100 的百分比数值，渲染为进度条。
-- **无障碍**：KPICard 为纯展示组件，无交互。建议配合语义化 `<section>` 或 `<article>` 包装，为标题添加适当 heading 层级。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-kpi-card--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-kpi-card--docs)。

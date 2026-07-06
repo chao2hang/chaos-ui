@@ -1,185 +1,57 @@
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption, TableFooter } from "@/components/ui/table"
+import { Table } from "@/components/ui/table"
 import { CodeBlock } from "@/components/code-block"
 
 # Table 表格
 
-Chaos UI 表格组件，基于原生 HTML `<table>` 元素，提供统一的样式和语义化结构。
-A semantic table component built on native HTML `<table>` with unified styling.
+> 数据展示 / Components for presenting data and content.
 
-## 何时使用 / When to use
+展示行列数据,最基础的数据展示组件。
+Displays row/column data; the fundamental data display component.
 
-用于展示结构化数据列表。适合简单的数据展示场景。对于复杂功能（排序、筛选、分页），使用 `DataTable` 或 `AdvancedDataTable`。
+## 何时使用 / When to Use
 
-Use for displaying structured data. For complex features (sorting, filtering, pagination), use DataTable or AdvancedDataTable.
+展示结构化行列数据,支持排序、筛选、分页。
+
+Display structured tabular data with sorting, filtering, and pagination.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Table>
-  <TableCaption>示例用户列表 / Example user list</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableHead>姓名 / Name</TableHead>
-      <TableHead>邮箱 / Email</TableHead>
-      <TableHead>角色 / Role</TableHead>
-      <TableHead>状态 / Status</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    {[
-      { name: "张三", email: "zhang@example.com", role: "Admin", status: "Active" },
-      { name: "李四", email: "li@example.com", role: "Editor", status: "Active" },
-      { name: "王五", email: "wang@example.com", role: "Viewer", status: "Inactive" },
-    ].map((row) => (
-      <TableRow key={row.email}>
-        <TableCell>{row.name}</TableCell>
-        <TableCell>{row.email}</TableCell>
-        <TableCell>{row.role}</TableCell>
-        <TableCell>{row.status}</TableCell>
-      </TableRow>
-    ))}
-  </TableBody>
-</Table>
-
-<CodeBlock code={`import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  TableCaption,
-} from "@/components/ui/table"
+<CodeBlock code={`import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 
 export function Basic() {
   return (
     <Table>
-      <TableCaption>用户列表</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead>姓名</TableHead>
-          <TableHead>邮箱</TableHead>
-          <TableHead>角色</TableHead>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((row) => (
-          <TableRow key={row.id}>
-            <TableCell>{row.name}</TableCell>
-            <TableCell>{row.email}</TableCell>
-            <TableCell>{row.role}</TableCell>
-          </TableRow>
-        ))}
+        <TableRow>
+          <TableCell>Item 1</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   )
 }`} lang="tsx" />
 
-### 带页脚 / With Footer
 
-<Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>项目</TableHead>
-      <TableHead>金额</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell>Item A</TableCell>
-      <TableCell>¥100.00</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Item B</TableCell>
-      <TableCell>¥200.00</TableCell>
-    </TableRow>
-  </TableBody>
-  <TableFooter>
-    <TableRow>
-      <TableCell>合计 / Total</TableCell>
-      <TableCell>¥300.00</TableCell>
-    </TableRow>
-  </TableFooter>
-</Table>
+## API / Props
 
-<CodeBlock code={`<Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>项目</TableHead>
-      <TableHead>金额</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    {items.map((item) => (
-      <TableRow key={item.id}>
-        <TableCell>{item.name}</TableCell>
-        <TableCell>{item.amount}</TableCell>
-      </TableRow>
-    ))}
-  </TableBody>
-  <TableFooter>
-    <TableRow>
-      <TableCell>合计</TableCell>
-      <TableCell>¥{total}</TableCell>
-    </TableRow>
-  </TableFooter>
-</Table>`} lang="tsx" />
+### Table
 
-### 空状态 / Empty State
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-<Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>列 A</TableHead>
-      <TableHead>列 B</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell colSpan={2} style={{ textAlign: "center", color: "#94a3b8", padding: "32px 0" }}>
-        暂无数据 / No data
-      </TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+## 注意事项 / Notes
 
-<CodeBlock code={`<Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>列 A</TableHead>
-      <TableHead>列 B</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell colSpan={2} style={{ textAlign: "center" }}>
-        暂无数据
-      </TableCell>
-    </TableRow>
-  </TableBody>
-</Table>`} lang="tsx" />
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 7 个子组件(TableHeader, TableBody, TableFooter, TableHead, TableRow…),使用组合模式按需导入。
 
-## API
-
-| 子组件 | Props | 渲染为 | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| Table | `React.ComponentProps<'table'>` | `<table>` | 表格根容器 | Table root container |
-| TableHeader | `React.ComponentProps<'thead'>` | `<thead>` | 表头容器 | Table head container |
-| TableBody | `React.ComponentProps<'tbody'>` | `<tbody>` | 表体容器 | Table body container |
-| TableFooter | `React.ComponentProps<'tfoot'>` | `<tfoot>` | 表脚容器 | Table footer container |
-| TableRow | `React.ComponentProps<'tr'>` | `<tr>` | 表格行 | Table row |
-| TableHead | `React.ComponentProps<'th'>` | `<th>` | 表头单元格 | Table head cell |
-| TableCell | `React.ComponentProps<'td'>` | `<td>` | 数据单元格 | Table data cell |
-| TableCaption | `React.ComponentProps<'caption'>` | `<caption>` | 表格标题 | Table caption |
-
-所有子组件均接受 `className` 自定义样式。
-
-## 注意事项
-
-- **vs DataTable**：`Table` 是纯展示组件，不含排序/筛选/分页逻辑。需要这些功能时请使用 `DataTable`（业务组件）。
-- **colSpan / rowSpan**：TableCell 支持原生 `colSpan` 和 `rowSpan` 属性，用于合并单元格（如空状态行）。
-- **响应式**：Table 默认不横向滚动。内容较宽时，建议包裹在 `ScrollArea` 中或使用 `overflow-x: auto` 容器。
-- **无障碍**：使用原生 `<table>` 语义元素，屏幕阅读器自动识别表格结构。`TableCaption` 提供表格摘要。表头使用 `<th>` + `scope="col"` 提升语义。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-table--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-table--docs)。

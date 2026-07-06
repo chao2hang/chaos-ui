@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Use system font stack to avoid build-time Google Fonts fetch failures in sandboxed/CI environments.
+// The CSS variables --font-geist-sans and --font-geist-mono are preserved for tailwind theme compatibility.
+const fontSansClass =
+  "font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,'Helvetica_Neue',Arial,sans-serif]";
+const fontMonoClass =
+  "font-[ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation_Mono','Courier_New',monospace]";
 
 export const metadata: Metadata = {
   title: {
@@ -44,10 +40,18 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontSansClass} ${fontMonoClass} h-full antialiased`}
       suppressHydrationWarning
+      style={
+        {
+          "--font-geist-sans":
+            "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+          "--font-geist-mono":
+            "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        } as React.CSSProperties
+      }
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

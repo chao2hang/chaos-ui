@@ -1,108 +1,52 @@
 import { Slider } from "@/components/ui/slider"
 import { CodeBlock } from "@/components/code-block"
 
-# Slider 滑块
+# Slider 滑动输入条
 
-Chaos UI 滑块组件，基于 Base UI Slider，用于在固定范围内选择一个数值或范围。
-A Base UI-powered slider for selecting a value or range within a fixed interval.
+> 表单控件 / Form controls for user input and data submission.
 
-## 何时使用 / When to use
+在区间内拖动选择数值,比输入框更直观。
+Drag to select a numeric value within a range; more visual than an input.
 
-用于在连续或离散范围内选择数值：音量调节、价格范围筛选、亮度调整、评分等。适合不需要精确数值的场景。
+## 何时使用 / When to Use
 
-Use for selecting a value in a continuous or discrete range: volume control, price range filter, brightness, rating. Best when precise numeric input isn't needed.
+在一个连续或离散区间内通过拖拽选择数值。
+
+Select a value from a continuous or discrete range via dragging.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Slider defaultValue={50} style={{ width: "100%" }} />
-
-<CodeBlock code={`import { Slider } from "@/components/ui/slider"
+<CodeBlock code={`import { Slider, SliderControl, SliderTrack, SliderIndicator, SliderThumb } from "@/components/ui/slider"
 
 export function Basic() {
-  return <Slider defaultValue={50} />
+  return (
+    <Slider>
+      <SliderControl>Content</SliderControl>
+    </Slider>
+  )
 }`} lang="tsx" />
 
-### 受控模式 / Controlled
+### 状态 / States
 
-<Slider value={75} min={0} max={100} step={5} style={{ width: "100%" }} />
-<div style={{ marginTop: 8, fontSize: 13, color: "#64748b" }}>
-  Value: 75 (step=5)
-</div>
+<CodeBlock code={`<Slider>Normal</Slider>
+<Slider disabled>Disabled</Slider>`} lang="tsx" />
 
-<CodeBlock code={`const [value, setValue] = React.useState(75)
 
-<Slider
-  value={value}
-  onValueChange={setValue}
-  min={0}
-  max={100}
-  step={5}
-/>`} lang="tsx" />
-
-### 范围选择 / Range
-
-<Slider defaultValue={[20, 80]} style={{ width: "100%" }} />
-<div style={{ marginTop: 8, fontSize: 13, color: "#64748b" }}>
-  Range: 20 — 80
-</div>
-
-<CodeBlock code={`<Slider defaultValue={[20, 80]} />`} lang="tsx" />
-
-### 禁用状态 / Disabled
-
-<Slider defaultValue={30} disabled style={{ width: "100%" }} />
-
-<CodeBlock code={`<Slider defaultValue={30} disabled />`} lang="tsx" />
-
-### 刻度标记 / With Marks
-
-<Slider
-  defaultValue={60}
-  min={0}
-  max={100}
-  step={20}
-  style={{ width: "100%" }}
-/>
-
-<CodeBlock code={`<Slider
-  defaultValue={60}
-  min={0}
-  max={100}
-  step={20}
-/>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Slider
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| defaultValue | `number \| number[]` | — | 默认值 | Default value |
-| value | `number \| number[]` | — | 受控：当前值 | Controlled value |
-| onValueChange | `(value: number \| number[]) => void` | — | 值变化回调 | Callback on value change |
-| min | `number` | `0` | 最小值 | Minimum value |
-| max | `number` | `100` | 最大值 | Maximum value |
-| step | `number` | `1` | 步长 | Step interval |
-| disabled | `boolean` | `false` | 禁用状态 | Disabled state |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### Slider 子组件
+## 注意事项 / Notes
 
-| 组件 | Props | 描述 |
-|---|---|---|
-| Slider | `SliderPrimitive.Root.Props` | 滑块根容器 |
-| SliderControl | `SliderPrimitive.Control.Props` | 滑块控制区 |
-| SliderTrack | `SliderPrimitive.Track.Props` | 滑块轨道 |
-| SliderIndicator | `SliderPrimitive.Indicator.Props` | 已填充轨道 |
-| SliderThumb | `SliderPrimitive.Thumb.Props` | 滑块手柄 |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 4 个子组件(SliderControl, SliderTrack, SliderIndicator, SliderThumb),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-## 注意事项
-
-- **单值 vs 范围**：传入单个数值为单点滑块，传入 `[min, max]` 数组为范围滑块。
-- **步长精度**：`step` 控制拖拽时的精度，同时也影响键盘操作的步进量。设置 `step={0.01}` 可支持小数精度。
-- **无障碍**：Base UI Slider 使用 `<div role="slider">` 实现，键盘支持 Arrow Left/Right 调整数值、Home/End 跳至最小/最大值。确保提供 `aria-label` 或 `aria-labelledby`。
-- **子组件**：一般直接使用 `Slider` 即可，默认包含完整的 Track + Thumb。仅在需要自定义布局时才使用子组件组合。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-slider--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-slider--docs)。

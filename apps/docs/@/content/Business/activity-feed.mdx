@@ -1,0 +1,41 @@
+import { ActivityFeed } from "@/components/business/activity-feed"
+import { CodeBlock } from "@/components/code-block"
+
+# ActivityFeed 动态信息流
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+动态信息流 — 面向 ERP/企业场景的业务组件。
+ActivityFeed — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要动态信息流功能时使用本组件。
+
+Use when you need an activity feed.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ActivityFeed } from "@/components/business/activity-feed"
+
+export function Basic() {
+  return <ActivityFeed />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ActivityFeed
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-activity-feed--docs)。

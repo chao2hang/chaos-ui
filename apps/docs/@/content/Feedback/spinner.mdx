@@ -1,0 +1,80 @@
+import { Spinner } from "@/components/ui/spinner"
+import { CodeBlock } from "@/components/code-block"
+
+# Spinner 加载中
+
+> 反馈组件 / Feedback and status communication to the user.
+
+局部加载状态指示器,表示内容正在加载中。
+Local loading spinner indicating content is being fetched.
+
+## 何时使用 / When to Use
+
+操作进行中时显示加载状态。
+
+Indicate an in-progress operation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Spinner } from "@/components/ui/spinner"
+
+export function Basic() {
+  return <Spinner>Default</Spinner>
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Spinner variant="default">Default</Spinner>
+  <Spinner variant="muted">Muted</Spinner>
+  <Spinner variant="white">White</Spinner>
+</div>`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Spinner size="sm">Sm</Spinner>
+  <Spinner size="default">Default</Spinner>
+  <Spinner size="lg">Lg</Spinner>
+</div>`} lang="tsx" />
+
+
+## 样式变体 / Style Variants
+
+**变体 / Variant**
+
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `muted` |  |  |
+| `white` |  |  |
+
+**尺寸 / Size**
+
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+| `xl` | 超大 / Extra large |  |
+
+## API / Props
+
+### Spinner
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `label` | `string` | `Loading...` | Accessible label |
+| ...rest | `React.ComponentProps<"svg">` | — | 透传 `<svg>` 原生属性 <br/> Inherits all `<svg>` attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<svg>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-spinner--docs)。

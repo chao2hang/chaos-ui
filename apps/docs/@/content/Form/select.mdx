@@ -1,195 +1,56 @@
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup, SelectLabel, SelectSeparator } from "@/components/ui/select"
+import { Select } from "@/components/ui/select"
 import { CodeBlock } from "@/components/code-block"
 
 # Select 选择器
 
-Chaos UI 下拉选择器组件，基于 Base UI Select，支持单选、搜索、分组等。
-A Base UI-powered dropdown select with single selection, search, and grouping.
+> 表单控件 / Form controls for user input and data submission.
 
-## 何时使用 / When to use
+下拉选项选择器,支持单选/搜索/自定义选项渲染。
+Dropdown option selector supporting single-select, search, and custom option rendering.
 
-用于从预定义选项列表中选择一项。当选项 ≤5 个时考虑 RadioGroup，当选项很多或需要搜索时使用 Select。
+## 何时使用 / When to Use
 
-Use for selecting one item from a predefined list. Consider RadioGroup for ≤5 options; use Select when options are many or search is needed.
+从一组预设选项中选择单个值,选项过多时配合搜索使用。
+
+Pick a single value from a predefined list; use search when options are many.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Select>
-  <SelectTrigger style={{ width: 200 }}>
-    <SelectValue placeholder="选择框架 / Pick one" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="react">React</SelectItem>
-    <SelectItem value="vue">Vue</SelectItem>
-    <SelectItem value="angular">Angular</SelectItem>
-    <SelectItem value="svelte">Svelte</SelectItem>
-  </SelectContent>
-</Select>
-
-<CodeBlock code={`import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-} from "@/components/ui/select"
+<CodeBlock code={`import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 
 export function Basic() {
   return (
-    <Select>
-      <SelectTrigger>
-        <SelectValue placeholder="选择框架" />
-      </SelectTrigger>
+    <Select defaultValue="1">
+      <SelectTrigger><SelectValue /></SelectTrigger>
       <SelectContent>
-        <SelectItem value="react">React</SelectItem>
-        <SelectItem value="vue">Vue</SelectItem>
-        <SelectItem value="angular">Angular</SelectItem>
+        <SelectItem value="1">Option 1</SelectItem>
+        <SelectItem value="2">Option 2</SelectItem>
       </SelectContent>
     </Select>
   )
 }`} lang="tsx" />
 
-### 受控模式 / Controlled
+### 状态 / States
 
-<Select value="react">
-  <SelectTrigger style={{ width: 200 }}>
-    <SelectValue />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="react">React</SelectItem>
-    <SelectItem value="vue">Vue</SelectItem>
-    <SelectItem value="angular">Angular</SelectItem>
-  </SelectContent>
-</Select>
+<CodeBlock code={`<Select>Normal</Select>
+<Select disabled>Disabled</Select>`} lang="tsx" />
 
-<CodeBlock code={`const [value, setValue] = React.useState("react")
 
-<Select value={value} onValueChange={setValue}>
-  <SelectTrigger>
-    <SelectValue />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="react">React</SelectItem>
-    <SelectItem value="vue">Vue</SelectItem>
-  </SelectContent>
-</Select>`} lang="tsx" />
-
-### 分组 / Grouped
-
-<Select>
-  <SelectTrigger style={{ width: 260 }}>
-    <SelectValue placeholder="选择语言 / Select language" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectGroup>
-      <SelectLabel>前端 / Frontend</SelectLabel>
-      <SelectItem value="react">React</SelectItem>
-      <SelectItem value="vue">Vue</SelectItem>
-    </SelectGroup>
-    <SelectSeparator />
-    <SelectGroup>
-      <SelectLabel>后端 / Backend</SelectLabel>
-      <SelectItem value="go">Go</SelectItem>
-      <SelectItem value="rust">Rust</SelectItem>
-    </SelectGroup>
-  </SelectContent>
-</Select>
-
-<CodeBlock code={`<Select>
-  <SelectTrigger>
-    <SelectValue placeholder="选择语言" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectGroup>
-      <SelectLabel>前端</SelectLabel>
-      <SelectItem value="react">React</SelectItem>
-      <SelectItem value="vue">Vue</SelectItem>
-    </SelectGroup>
-    <SelectSeparator />
-    <SelectGroup>
-      <SelectLabel>后端</SelectLabel>
-      <SelectItem value="go">Go</SelectItem>
-      <SelectItem value="rust">Rust</SelectItem>
-    </SelectGroup>
-  </SelectContent>
-</Select>`} lang="tsx" />
-
-### 禁用状态 / Disabled
-
-<div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-  <Select disabled>
-    <SelectTrigger style={{ width: 160 }}>
-      <SelectValue placeholder="Disabled" />
-    </SelectTrigger>
-  </Select>
-  <Select>
-    <SelectTrigger style={{ width: 160 }}>
-      <SelectValue placeholder="Partial" />
-    </SelectTrigger>
-    <SelectContent>
-      <SelectItem value="a">Available</SelectItem>
-      <SelectItem value="b" disabled>Disabled Option</SelectItem>
-      <SelectItem value="c">Available</SelectItem>
-    </SelectContent>
-  </Select>
-</div>
-
-<CodeBlock code={`{/* Entire select disabled */}
-<Select disabled>
-  <SelectTrigger><SelectValue placeholder="Disabled" /></SelectTrigger>
-</Select>
-
-{/* Single option disabled */}
-<Select>
-  <SelectContent>
-    <SelectItem value="a">Available</SelectItem>
-    <SelectItem value="b" disabled>Disabled Option</SelectItem>
-  </SelectContent>
-</Select>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Select
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| defaultValue | `string` | — | 默认选中的值 | Default selected value |
-| value | `string` | — | 受控：当前选中的值 | Controlled selected value |
-| onValueChange | `(value: string) => void` | — | 选择回调 | Callback on value change |
-| disabled | `boolean` | `false` | 禁用整个选择器 | Disable entire select |
-| name | `string` | — | 表单字段名（用于原生表单提交） | Form field name |
-| ...rest | `SelectPrimitive.Root.Props` | — | 透传 Base UI 属性 | Passthrough Base UI props |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### SelectTrigger
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| size | `'sm' \| 'default'` | `'default'` | 触发器尺寸 | Trigger size |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-### SelectContent
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| align | `'start' \| 'center' \| 'end'` | `'center'` | 弹出对齐方式 | Popup alignment |
-| side | `'top' \| 'bottom'` | `'bottom'` | 弹出方向 | Popup side |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-### SelectItem
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| value | `string` | — | **必填**，选项值 | **Required** option value |
-| disabled | `boolean` | `false` | 禁用该选项 | Disable this option |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-## 注意事项
-
-- **弹出层定位**：`SelectContent` 使用 Portal 渲染到 `<body>`，通过 `align`/`side` 控制定位。如果弹出层被父容器裁剪，检查父容器的 `overflow` 样式。
-- **SelectValue**：使用 `placeholder` 属性设置未选择时的显示文字。已选择时自动显示对应 `SelectItem` 的 children。
-- **无障碍**：Base UI Select 遵循 WAI-ARIA Listbox Pattern，键盘支持 Enter/Space 打开、Arrow keys 导航、Escape 关闭。
-- **与 Form 集成**：设置 `name` 属性后 Select 可参与原生表单提交。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-select--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-select--docs)。

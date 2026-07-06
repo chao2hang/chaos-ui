@@ -1,13 +1,13 @@
-"use client"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { cn } from "@/lib/utils"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { validateCreditCard } from "@/components/business/credit-card-input"
+"use client";
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { validateCreditCard } from "@/components/business/credit-card-input";
 
 const paymentSchema = z.object({
   cardNumber: z
@@ -19,28 +19,31 @@ const paymentSchema = z.object({
     .string()
     .min(1, "Required")
     .refine((v) => {
-      const n = Number(v)
-      return Number.isInteger(n) && n >= 1 && n <= 12
+      const n = Number(v);
+      return Number.isInteger(n) && n >= 1 && n <= 12;
     }, "Invalid month"),
   expiryYear: z
     .string()
     .min(1, "Required")
     .refine((v) => {
-      const n = Number(v)
-      return Number.isInteger(n) && n >= 2000 && n <= 2099
+      const n = Number(v);
+      return Number.isInteger(n) && n >= 2000 && n <= 2099;
     }, "Invalid year"),
   cvv: z
     .string()
     .min(3, "CVV is required")
     .max(4)
     .regex(/^\d+$/, "Digits only"),
-})
+});
 
-type PaymentData = z.infer<typeof paymentSchema>
+type PaymentData = z.infer<typeof paymentSchema>;
 
-interface PaymentFormProps extends React.ComponentProps<"form"> {
-  onSubmit?: (data: PaymentData) => void
-  className?: string
+interface PaymentFormProps extends Omit<
+  React.ComponentProps<"form">,
+  "onSubmit"
+> {
+  onSubmit?: (data: PaymentData) => void;
+  className?: string;
 }
 
 function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
@@ -53,11 +56,11 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
       expiryYear: "",
       cvv: "",
     },
-  })
+  });
 
   const handleSubmit = form.handleSubmit((data) => {
-    onSubmit?.(data)
-  })
+    onSubmit?.(data);
+  });
 
   return (
     <form
@@ -76,7 +79,9 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
           {...form.register("cardNumber")}
         />
         {form.formState.errors.cardNumber && (
-          <p className="text-xs text-destructive">{form.formState.errors.cardNumber.message}</p>
+          <p className="text-destructive text-xs">
+            {form.formState.errors.cardNumber.message}
+          </p>
         )}
       </div>
 
@@ -89,7 +94,9 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
           {...form.register("cardHolder")}
         />
         {form.formState.errors.cardHolder && (
-          <p className="text-xs text-destructive">{form.formState.errors.cardHolder.message}</p>
+          <p className="text-destructive text-xs">
+            {form.formState.errors.cardHolder.message}
+          </p>
         )}
       </div>
 
@@ -105,7 +112,9 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
             {...form.register("expiryMonth")}
           />
           {form.formState.errors.expiryMonth && (
-            <p className="text-xs text-destructive">{form.formState.errors.expiryMonth.message}</p>
+            <p className="text-destructive text-xs">
+              {form.formState.errors.expiryMonth.message}
+            </p>
           )}
         </div>
         <div className="space-y-1.5">
@@ -119,7 +128,9 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
             {...form.register("expiryYear")}
           />
           {form.formState.errors.expiryYear && (
-            <p className="text-xs text-destructive">{form.formState.errors.expiryYear.message}</p>
+            <p className="text-destructive text-xs">
+              {form.formState.errors.expiryYear.message}
+            </p>
           )}
         </div>
         <div className="space-y-1.5">
@@ -133,7 +144,9 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
             {...form.register("cvv")}
           />
           {form.formState.errors.cvv && (
-            <p className="text-xs text-destructive">{form.formState.errors.cvv.message}</p>
+            <p className="text-destructive text-xs">
+              {form.formState.errors.cvv.message}
+            </p>
           )}
         </div>
       </div>
@@ -142,10 +155,10 @@ function PaymentForm({ onSubmit, className, ...props }: PaymentFormProps) {
         Submit Payment
       </Button>
     </form>
-  )
+  );
 }
 
-PaymentForm.displayName = "PaymentForm"
+PaymentForm.displayName = "PaymentForm";
 
-export { PaymentForm }
-export type { PaymentData, PaymentFormProps }
+export { PaymentForm };
+export type { PaymentData, PaymentFormProps };

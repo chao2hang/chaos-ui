@@ -1,0 +1,70 @@
+import { Popconfirm } from "@/components/ui/popconfirm"
+import { CodeBlock } from "@/components/code-block"
+
+# Popconfirm 气泡确认框
+
+> 反馈组件 / Feedback and status communication to the user.
+
+气泡确认框 — Chaos UI 的反馈组件。
+Popconfirm — a feedback and status communication to the user. from Chaos UI.
+
+## 何时使用 / When to Use
+
+需要气泡确认框功能时使用本组件。
+
+Use when you need a popconfirm.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Popconfirm } from "@/components/ui/popconfirm"
+
+export function Basic() {
+  return <Popconfirm />
+}`} lang="tsx" />
+
+
+## 样式变体 / Style Variants
+
+**对齐 / align**
+
+| align | 说明 / Description | 默认 |
+|---|---|---|
+| `center` |  | ✓ |
+| `start` |  |  |
+| `end` |  |  |
+
+**side / side**
+
+| side | 说明 / Description | 默认 |
+|---|---|---|
+| `top` |  | ✓ |
+| `bottom` |  |  |
+| `left` |  |  |
+| `right` |  |  |
+
+## API / Props
+
+### Popconfirm
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `open` | `boolean` | — | Whether the popconfirm is open |
+| `onOpenChange` | `() => void` | — | Called when open state changes |
+| `title` | `React.ReactNode` | — | Title text |
+| `description` | `React.ReactNode` | — | Description text |
+| `confirmText` | `string` | `Confirm` | Text for confirm button |
+| `cancelText` | `string` | `Cancel` | Text for cancel button |
+| `onConfirm` | `() => void` | — | Called when confirmed |
+| `onCancel` | `() => void` | — | Called when cancelled |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-popconfirm--docs)。

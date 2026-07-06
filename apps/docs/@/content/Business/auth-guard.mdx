@@ -1,0 +1,50 @@
+import { AuthGuard, AuthGuardProvider, Permissions } from "@/components/business/auth-guard"
+import { CodeBlock } from "@/components/code-block"
+
+# AuthGuard 认证守卫
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+认证守卫 — 面向 ERP/企业场景的业务组件。
+AuthGuard — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要认证守卫功能时使用本组件。
+
+Use when you need an auth guard.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { AuthGuard, AuthGuardProvider, Permissions } from "@/components/business/auth-guard"
+
+export function Basic() {
+  return (
+    <AuthGuard>
+      <AuthGuardProvider>Content</AuthGuardProvider>
+    </AuthGuard>
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### AuthGuard
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `permission` | `string \| string[]` | — |  |
+| `permissions` | `string[]` | — |  |
+| `mode` | `"all" \| "any"` | `any` |  |
+| `fallback` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(AuthGuardProvider),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-auth-guard--docs)。

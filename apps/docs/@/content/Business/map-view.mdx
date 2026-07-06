@@ -1,0 +1,48 @@
+import { MapView } from "@/components/business/map-view"
+import { CodeBlock } from "@/components/code-block"
+
+# MapView 地图视图
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+地图视图 — 面向 ERP/企业场景的业务组件。
+MapView — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+在页面中嵌入地图,展示标记点、轨迹和位置信息。
+
+Embed a map showing markers, tracks, and location information.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { MapView } from "@/components/business/map-view"
+
+export function Basic() {
+  return <MapView />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MapView
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `center` | `[number, number]` | — | 地图中心点坐标 [经度, 纬度] <br/> Map center [lng, lat] |
+| `zoom` | `number` | `11` | 缩放级别 <br/> Zoom level |
+| `markers` | `MapMarker[]` | — | 标记点数组 <br/> Array of map markers |
+| `height` | `number \| string` | `400` | 组件高度 <br/> Component height |
+| `apiKey` | `string` | — | 高德地图 JS API key。生产环境必须通过 props 传入,不要硬编码。 |
+| `apiVersion` | `string` | `2.0` | 高德 JS API 版本,默认 "2.0" |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-map-view--docs)。

@@ -1,185 +1,53 @@
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+import { Dialog } from "@/components/ui/dialog"
 import { CodeBlock } from "@/components/code-block"
 
 # Dialog 对话框
 
-Chaos UI 对话框组件，基于 Base UI Dialog，用于重要信息确认和表单模态输入。
-A Base UI-powered modal dialog for confirmations and modal form input.
+> 反馈组件 / Feedback and status communication to the user.
 
-## 何时使用 / When to use
+模态弹出框,用于需要用户处理事务的重要场景,不支持多框叠加。
+Modal popup for critical user interactions; does not support stacking.
 
-用于需要用户关注并交互的模态场景：确认删除、表单填写、详情查看、消息提示等。与 Drawer 的区别：Dialog 居中弹出，适合短内容；Drawer 侧边滑出，适合长内容或多步骤操作。
+## 何时使用 / When to Use
 
-Use for modal interactions requiring user focus: delete confirmation, form filling, detail viewing, alerts. Unlike Drawer (side panel), Dialog is centered — best for short content.
+需要用户处理重要事务,且不希望跳转页面打断工作流时使用模态框。
+
+Use a modal when the user must handle a critical task without leaving the current workflow.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Dialog>
-  <DialogTrigger>
-    <Button>打开对话框 / Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>对话框标题</DialogTitle>
-      <DialogDescription>这是一个对话框的描述内容。</DialogDescription>
-    </DialogHeader>
-    <p>对话框主体内容。可以放置任意 React 元素。</p>
-    <DialogFooter>
-      <DialogClose>
-        <Button variant="outline">取消</Button>
-      </DialogClose>
-      <Button>确认</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
-
-<CodeBlock code={`import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/button"
-import { Button } from "@/components/ui/button"
+<CodeBlock code={`import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
 export function Basic() {
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button>打开对话框</Button>
-      </DialogTrigger>
+      <DialogTrigger>Open</DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>对话框标题</DialogTitle>
-          <DialogDescription>对话框描述内容</DialogDescription>
-        </DialogHeader>
-        <p>主体内容</p>
-        <DialogFooter>
-          <DialogClose>
-            <Button variant="outline">取消</Button>
-          </DialogClose>
-          <Button>确认</Button>
-        </DialogFooter>
+      <DialogHeader>
+        <DialogTitle>Title</DialogTitle>
+        <DialogDescription>Description.</DialogDescription>
+      </DialogHeader>
       </DialogContent>
     </Dialog>
   )
 }`} lang="tsx" />
 
-### 受控模式 / Controlled
 
-<Dialog open>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>受控对话框</DialogTitle>
-      <DialogDescription>open=true 时对话框直接显示，无需 Trigger。</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose>
-        <Button variant="outline">关闭</Button>
-      </DialogClose>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
-
-<CodeBlock code={`const [open, setOpen] = React.useState(false)
-
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>受控对话框</DialogTitle>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose>
-        <Button variant="outline">关闭</Button>
-      </DialogClose>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`} lang="tsx" />
-
-### 确认删除 / Delete Confirmation
-
-<Dialog>
-  <DialogTrigger>
-    <Button variant="destructive" size="sm">删除项目</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>确认删除</DialogTitle>
-      <DialogDescription>此操作不可撤销。确定要删除该项目吗？</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose>
-        <Button variant="outline">取消</Button>
-      </DialogClose>
-      <Button variant="destructive">确认删除</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
-
-<CodeBlock code={`<Dialog>
-  <DialogTrigger>
-    <Button variant="destructive">删除项目</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>确认删除</DialogTitle>
-      <DialogDescription>此操作不可撤销。确定要删除该项目吗？</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose>
-        <Button variant="outline">取消</Button>
-      </DialogClose>
-      <Button variant="destructive">确认删除</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Dialog
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| defaultOpen | `boolean` | `false` | 默认是否打开 | Default open state |
-| open | `boolean` | — | 受控：是否打开 | Controlled open state |
-| onOpenChange | `(open: boolean) => void` | — | 打开状态变化回调 | Callback on open state change |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### DialogContent
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| showCloseButton | `boolean` | `true` | 是否显示右上角关闭按钮 | Show top-right close button |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-### DialogTrigger / DialogClose / DialogTitle / DialogDescription / DialogHeader
-
-| 组件 | Props | 描述 |
-|---|---|---|
-| DialogTrigger | `DialogPrimitive.Trigger.Props` | 打开对话框的触发器 |
-| DialogClose | `DialogPrimitive.Close.Props` | 关闭对话框的触发器 |
-| DialogTitle | `DialogPrimitive.Title.Props` | 对话框标题 |
-| DialogDescription | `DialogPrimitive.Description.Props` | 对话框描述 |
-| DialogHeader | `React.ComponentProps<'div'>` | 标题和描述的容器 |
-
-### DialogFooter
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| showCloseButton | `boolean` | `false` | 是否在 footer 中显示关闭按钮 | Show close button in footer |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-## 注意事项
-
-- **Portal 渲染**：`DialogContent` 通过 Portal 渲染到 `<body>`，不受父容器 `overflow` 或 `z-index` 影响。
-- **遮罩层**：`DialogOverlay`（Backdrop）自动渲染半透明遮罩，点击遮罩默认关闭 Dialog（可通过 Base UI 属性禁用）。
-- **键盘交互**：Escape 关闭对话框，Tab 在对话框内循环聚焦（焦点陷阱）。
-- **无障碍**：Base UI Dialog 遵循 WAI-ARIA Dialog Pattern — `role="dialog"`、`aria-modal="true"`、`aria-labelledby`（关联 Title）、`aria-describedby`（关联 Description）。打开时自动聚焦第一个可聚焦元素。
-- **嵌套 Dialog**：不建议嵌套 Dialog。如需多层模态，使用 Drawer 或 AlertDialog。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-dialog--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-dialog--docs)。

@@ -1,169 +1,52 @@
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "@/components/ui/drawer"
-import { Button } from "@/components/ui/button"
+import { Drawer } from "@/components/ui/drawer"
 import { CodeBlock } from "@/components/code-block"
 
 # Drawer 抽屉
 
-Chaos UI 抽屉组件，基于 vaul，从屏幕边缘滑出的模态面板。
-A modal panel that slides in from the screen edge, built on vaul.
+> 反馈组件 / Feedback and status communication to the user.
 
-## 何时使用 / When to use
+从屏幕边缘滑出的浮层面板,用于承载详情/表单等次要内容。
+Panel that slides out from an edge, used for secondary content like details or forms.
 
-用于侧边模态面板：设置面板、详情面板、多步骤表单、筛选面板等。与 Dialog 的区别：Drawer 侧边滑出，适合长内容或多步骤操作。
+## 何时使用 / When to Use
 
-Use for side modal panels: settings, details, multi-step forms, filter panels. Unlike Dialog (centered modal), Drawer slides from the edge — best for longer content.
+从屏幕边缘滑出的面板,用于承载详情、表单或配置,不打断主流程。
+
+A panel sliding from the screen edge for details, forms, or configurations without interrupting the main flow.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Drawer>
-  <DrawerTrigger>
-    <Button>打开抽屉 / Open Drawer</Button>
-  </DrawerTrigger>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>抽屉标题</DrawerTitle>
-      <DrawerDescription>抽屉的描述内容。</DrawerDescription>
-    </DrawerHeader>
-    <div style={{ padding: "0 16px 16px" }}>
-      <p>抽屉主体内容区域。支持长内容滚动。</p>
-      <p>适合放置表单、详情信息、设置选项等。</p>
-    </div>
-    <DrawerFooter>
-      <Button variant="outline">取消</Button>
-      <Button>确认</Button>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>
-
-<CodeBlock code={`import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-} from "@/components/ui/button"
-import { Button } from "@/components/ui/button"
+<CodeBlock code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer"
 
 export function Basic() {
   return (
     <Drawer>
-      <DrawerTrigger>
-        <Button>打开抽屉</Button>
-      </DrawerTrigger>
+      <DrawerTrigger>Open</DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>抽屉标题</DrawerTitle>
-          <DrawerDescription>抽屉的描述内容</DrawerDescription>
-        </DrawerHeader>
-        <p>抽屉主体内容区域</p>
-        <DrawerFooter>
-          <Button variant="outline">取消</Button>
-          <Button>确认</Button>
-        </DrawerFooter>
+      <DrawerHeader>
+        <DrawerTitle>Title</DrawerTitle>
+        <DrawerDescription>Description.</DrawerDescription>
+      </DrawerHeader>
       </DrawerContent>
     </Drawer>
   )
 }`} lang="tsx" />
 
-### 受控模式 / Controlled
 
-<Drawer open>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>受控抽屉</DrawerTitle>
-      <DrawerDescription>open=true 直接显示，无需 Trigger。</DrawerDescription>
-    </DrawerHeader>
-    <div style={{ padding: "0 16px 16px" }}>
-      受控模式下抽屉的打开/关闭由外部状态管理。
-    </div>
-  </DrawerContent>
-</Drawer>
-
-<CodeBlock code={`const [open, setOpen] = React.useState(false)
-
-<Drawer open={open} onOpenChange={setOpen}>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>受控抽屉</DrawerTitle>
-    </DrawerHeader>
-    <div>受控模式</div>
-  </DrawerContent>
-</Drawer>`} lang="tsx" />
-
-### 禁用关闭遮罩 / Prevent Close on Overlay Click
-
-<Drawer>
-  <DrawerTrigger>
-    <Button variant="outline">无法点击遮罩关闭</Button>
-  </DrawerTrigger>
-  <DrawerContent dismissible={false}>
-    <DrawerHeader>
-      <DrawerTitle>重要操作</DrawerTitle>
-      <DrawerDescription>点击遮罩无法关闭，必须通过按钮操作。</DrawerDescription>
-    </DrawerHeader>
-    <DrawerFooter>
-      <DrawerClose>
-        <Button>完成</Button>
-      </DrawerClose>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>
-
-<CodeBlock code={`<Drawer>
-  <DrawerTrigger>
-    <Button variant="outline">打开</Button>
-  </DrawerTrigger>
-  <DrawerContent dismissible={false}>
-    <DrawerHeader>
-      <DrawerTitle>重要操作</DrawerTitle>
-    </DrawerHeader>
-    <DrawerFooter>
-      <DrawerClose>
-        <Button>完成</Button>
-      </DrawerClose>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Drawer
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| defaultOpen | `boolean` | `false` | 默认是否打开 | Default open state |
-| open | `boolean` | — | 受控：是否打开 | Controlled open state |
-| onOpenChange | `(open: boolean) => void` | — | 打开状态变化回调 | Callback on open state change |
-| dismissible | `boolean` | `true` | 点击遮罩是否关闭 | Allow closing on overlay click |
-| ...rest | `React.ComponentProps<typeof DrawerPrimitive.Root>` | — | 透传 vaul 属性 | Passthrough vaul props |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### DrawerContent
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 9 个子组件(DrawerPortal, DrawerOverlay, DrawerTrigger, DrawerClose, DrawerContent…),使用组合模式按需导入。
 
-### 其他子组件
-
-| 组件 | Props | 描述 |
-|---|---|---|
-| DrawerTrigger | `React.ComponentProps<typeof DrawerPrimitive.Trigger>` | 打开抽屉的触发器 |
-| DrawerClose | `React.ComponentProps<typeof DrawerPrimitive.Close>` | 关闭抽屉的触发器 |
-| DrawerOverlay | `React.ComponentProps<typeof DrawerPrimitive.Overlay>` | 遮罩层 |
-| DrawerHeader | `React.ComponentProps<'div'>` | 标题和描述的容器 |
-| DrawerTitle | `React.ComponentProps<typeof DrawerPrimitive.Title>` | 抽屉标题 |
-| DrawerDescription | `React.ComponentProps<typeof DrawerPrimitive.Description>` | 抽屉描述 |
-| DrawerFooter | `React.ComponentProps<'div'>` | 底部操作区容器 |
-
-## 注意事项
-
-- **vs Dialog**：Drawer 从屏幕边缘滑出（默认底部），适合长内容和多步骤操作。Dialog 居中弹出，适合短内容确认。移动端优先使用 Drawer。
-- **dismissible**：设为 `false` 时点击遮罩不会关闭，适用于必须通过按钮确认才能关闭的场景（如未保存提示）。
-- **无障碍**：基于 vaul（Radix Vaul），遵循 WAI-ARIA Dialog Pattern。Escape 关闭，焦点陷阱。DrawerTitle 和 DrawerDescription 分别关联 `aria-labelledby` 和 `aria-describedby`。
-- **Portal**：Drawer 通过 Portal 渲染，不受父容器样式限制。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-drawer--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-drawer--docs)。

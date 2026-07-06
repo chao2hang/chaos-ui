@@ -1,0 +1,52 @@
+import { Carousel } from "@/components/ui/carousel"
+import { CodeBlock } from "@/components/code-block"
+
+# Carousel 轮播
+
+> 数据展示 / Components for presenting data and content.
+
+一组内容平级轮播展示,支持自动播放、指示点、箭头。
+Rotating flat content set; supports autoplay, dots, and arrows.
+
+## 何时使用 / When to Use
+
+需要轮播功能时使用本组件。
+
+Use when you need a carousel.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from "@/components/ui/carousel"
+
+export function Basic() {
+  return (
+    <Carousel>
+      <CarouselContent>Content</CarouselContent>
+    </Carousel>
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### Carousel
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `defaultIndex` | `number` | `0` |  |
+| `loop` | `boolean` | `true` |  |
+| `autoplay` | `boolean` | `false` |  |
+| `interval` | `number` | `5000` |  |
+| `onIndexChange` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 5 个子组件(CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots),使用组合模式按需导入。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-carousel--docs)。

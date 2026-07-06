@@ -1,0 +1,46 @@
+import { InboxList } from "@/components/business/inbox-list"
+import { CodeBlock } from "@/components/code-block"
+
+# InboxList 收件箱列表
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+收件箱列表 — 面向 ERP/企业场景的业务组件。
+InboxList — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要收件箱列表功能时使用本组件。
+
+Use when you need an inbox list.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { InboxList } from "@/components/business/inbox-list"
+
+export function Basic() {
+  return <InboxList />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### InboxList
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `items` | `InboxItem[]` | — | 选项/数据项列表 <br/> Items / data list |
+| `selected` | `string` | — |  |
+| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
+| `onStar` | `() => void` | — |  |
+| `onSearch` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-inbox-list--docs)。

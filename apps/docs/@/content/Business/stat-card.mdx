@@ -1,0 +1,41 @@
+import { StatCard } from "@/components/business/stat-card"
+import { CodeBlock } from "@/components/code-block"
+
+# StatCard 统计卡片
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+统计卡片 — 面向 ERP/企业场景的业务组件。
+StatCard — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+关键业务指标的卡片式展示,含数值、趋势、对比。
+
+Card-style KPI display with value, trend, and comparison.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { StatCard } from "@/components/business/stat-card"
+
+export function Basic() {
+  return <StatCard />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### StatCard
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-stat-card--docs)。

@@ -1,42 +1,48 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Checkbox } from "@/components/ui/checkbox"
-import { SearchIcon, XIcon, ChevronRightIcon, FolderIcon, FileIcon } from "lucide-react"
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  SearchIcon,
+  XIcon,
+  ChevronRightIcon,
+  FolderIcon,
+  FileIcon,
+} from "lucide-react";
 
 interface TreeNode {
-  id: string
-  label: string
-  icon?: React.ReactNode
-  children?: TreeNode[]
-  disabled?: boolean
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+  children?: TreeNode[];
+  disabled?: boolean;
 }
 
 interface TreeSelectProps {
-  value?: string | string[]
-  defaultValue?: string | string[]
-  placeholder?: string
-  disabled?: boolean
-  multiple?: boolean
-  maxCount?: number
-  data: TreeNode[]
-  onChange?: (value: string | string[] | undefined) => void
-  className?: string
+  value?: string | string[];
+  defaultValue?: string | string[];
+  placeholder?: string;
+  disabled?: boolean;
+  multiple?: boolean;
+  maxCount?: number;
+  data: TreeNode[];
+  onChange?: (value: string | string[] | undefined) => void;
+  className?: string;
 }
 
-function TreeSelectItem({
+const TreeSelectItem = React.memo(function TreeSelectItem({
   node,
   level = 0,
   selectedIds,
@@ -45,26 +51,26 @@ function TreeSelectItem({
   onSelect,
   multiple,
 }: {
-  node: TreeNode
-  level?: number
-  selectedIds: Set<string>
-  expandedIds: Set<string>
-  onToggleExpand: (id: string) => void
-  onSelect: (node: TreeNode) => void
-  multiple?: boolean
+  node: TreeNode;
+  level?: number;
+  selectedIds: Set<string>;
+  expandedIds: Set<string>;
+  onToggleExpand: (id: string) => void;
+  onSelect: (node: TreeNode) => void;
+  multiple?: boolean;
 }) {
-  const hasChildren = node.children && node.children.length > 0
-  const isExpanded = expandedIds.has(node.id)
-  const isSelected = selectedIds.has(node.id)
-  const isDisabled = node.disabled
+  const hasChildren = node.children && node.children.length > 0;
+  const isExpanded = expandedIds.has(node.id);
+  const isSelected = selectedIds.has(node.id);
+  const isDisabled = node.disabled;
 
   return (
     <div>
       <div
         className={cn(
-          "flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-muted transition-colors",
+          "hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 transition-colors",
           isSelected && "bg-muted",
-          isDisabled && "opacity-50 cursor-not-allowed"
+          isDisabled && "cursor-not-allowed opacity-50",
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         onClick={() => !isDisabled && onSelect(node)}
@@ -74,24 +80,32 @@ function TreeSelectItem({
             variant="ghost"
             size="icon-xs"
             onClick={(e) => {
-              e.stopPropagation()
-              onToggleExpand(node.id)
+              e.stopPropagation();
+              onToggleExpand(node.id);
             }}
             disabled={isDisabled}
             className="shrink-0"
           >
             <ChevronRightIcon
-              className={cn("size-3 transition-transform", isExpanded && "rotate-90")}
+              className={cn(
+                "size-3 transition-transform",
+                isExpanded && "rotate-90",
+              )}
             />
           </Button>
         ) : (
           <div className="size-4" />
         )}
         {multiple && <Checkbox checked={isSelected} disabled={isDisabled} />}
-        <span className="shrink-0 text-muted-foreground">
-          {node.icon || (hasChildren ? <FolderIcon className="size-4" /> : <FileIcon className="size-4" />)}
+        <span className="text-muted-foreground shrink-0">
+          {node.icon ||
+            (hasChildren ? (
+              <FolderIcon className="size-4" />
+            ) : (
+              <FileIcon className="size-4" />
+            ))}
         </span>
-        <span className="flex-1 text-sm truncate">{node.label}</span>
+        <span className="flex-1 truncate text-sm">{node.label}</span>
       </div>
       {hasChildren && isExpanded && (
         <div>
@@ -110,19 +124,8 @@ function TreeSelectItem({
         </div>
       )}
     </div>
-  )
-}
-
-function findNodeById(nodes: TreeNode[], id: string): TreeNode | undefined {
-  for (const node of nodes) {
-    if (node.id === id) return node
-    if (node.children) {
-      const found = findNodeById(node.children, id)
-      if (found) return found
-    }
-  }
-  return undefined
-}
+  );
+});
 
 function TreeSelect({
   value: controlledValue,
@@ -135,77 +138,106 @@ function TreeSelect({
   onChange,
   className,
 }: TreeSelectProps) {
-  const [open, setOpen] = React.useState(false)
-  const [search, setSearch] = React.useState("")
-  const [expandedIds, setExpandedIds] = React.useState<string[]>([])
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  const [expandedIds, setExpandedIds] = React.useState<Set<string>>(
+    () => new Set(),
+  );
   const [uncontrolledValue, setUncontrolledValue] = React.useState<string[]>(
-    Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
-  )
+    Array.isArray(defaultValue)
+      ? defaultValue
+      : defaultValue
+        ? [defaultValue]
+        : [],
+  );
 
   const value = controlledValue
     ? Array.isArray(controlledValue)
       ? controlledValue
       : [controlledValue]
-    : uncontrolledValue
+    : uncontrolledValue;
 
-  const selectedIdsSet = React.useMemo(() => new Set(value), [value])
+  const selectedIdsSet = React.useMemo(() => new Set(value), [value]);
 
   const filteredData = React.useMemo(() => {
-    if (!search) return data
-    const q = search.toLowerCase()
+    if (!search) return data;
+    const q = search.toLowerCase();
     const filter = (nodes: TreeNode[]): TreeNode[] => {
       return nodes.reduce<TreeNode[]>((acc, node) => {
-        const matches = node.label.toLowerCase().includes(q)
-        const filteredChildren = node.children ? filter(node.children) : []
+        const matches = node.label.toLowerCase().includes(q);
+        const filteredChildren = node.children ? filter(node.children) : [];
         if (matches || filteredChildren.length > 0) {
           acc.push({
             ...node,
-            children: filteredChildren.length > 0 ? filteredChildren : node.children,
-          })
+            children:
+              filteredChildren.length > 0 ? filteredChildren : undefined,
+          });
         }
-        return acc
-      }, [])
-    }
-    return filter(data)
-  }, [data, search])
+        return acc;
+      }, []);
+    };
+    return filter(data);
+  }, [data, search]);
 
-  const handleToggleExpand = (id: string) => {
-    setExpandedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    )
-  }
+  const handleToggleExpand = React.useCallback((id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
 
-  const handleSelect = (node: TreeNode) => {
-    let newValue: string[]
-    if (multiple) {
-      const isSelected = value.includes(node.id)
-      newValue = isSelected
-        ? value.filter((id) => id !== node.id)
-        : [...value, node.id]
-    } else {
-      newValue = [node.id]
-      setOpen(false)
-    }
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+  const handleSelect = React.useCallback(
+    (node: TreeNode) => {
+      let newValue: string[];
+      if (multiple) {
+        const isSelected = value.includes(node.id);
+        if (isSelected) {
+          newValue = value.filter((id) => id !== node.id);
+        } else {
+          if (maxCount && value.length >= maxCount) return;
+          newValue = [...value, node.id];
+        }
+      } else {
+        newValue = [node.id];
+        setOpen(false);
+      }
+      setUncontrolledValue(newValue);
+      onChange?.(multiple ? newValue : newValue[0]);
+    },
+    [multiple, value, maxCount, onChange],
+  );
 
-  const handleRemove = (id: string) => {
-    const newValue = value.filter((v) => v !== id)
-    setUncontrolledValue(newValue)
-    onChange?.(multiple ? newValue : newValue[0])
-  }
+  const handleRemove = React.useCallback(
+    (id: string) => {
+      const newValue = value.filter((v) => v !== id);
+      setUncontrolledValue(newValue);
+      onChange?.(multiple ? newValue : newValue[0]);
+    },
+    [value, multiple, onChange],
+  );
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setUncontrolledValue([])
-    onChange?.(multiple ? [] : undefined)
-  }
+  const handleClear = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setUncontrolledValue([]);
+      onChange?.(multiple ? [] : undefined);
+    },
+    [multiple, onChange],
+  );
 
-  const getLabelById = (id: string): string => {
-    const node = findNodeById(data, id)
-    return node?.label || id
-  }
+  const labelMap = React.useMemo(() => {
+    const map = new Map<string, string>();
+    const walk = (nodes: TreeNode[]) => {
+      for (const node of nodes) {
+        map.set(node.id, node.label);
+        if (node.children) walk(node.children);
+      }
+    };
+    walk(data);
+    return map;
+  }, [data]);
 
   return (
     <div data-slot="tree-select" className={cn("w-full", className)}>
@@ -214,11 +246,11 @@ function TreeSelect({
           render={
             <div
               className={cn(
-                "flex min-h-8 w-full items-center gap-1 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors",
-                "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
+                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
-                disabled && "cursor-not-allowed opacity-50"
+                disabled && "cursor-not-allowed opacity-50",
               )}
             />
           }
@@ -228,14 +260,14 @@ function TreeSelect({
             <div className="flex flex-1 flex-wrap gap-1">
               {value.map((id) => (
                 <Badge key={id} variant="secondary" className="gap-1">
-                  <span>{getLabelById(id)}</span>
+                  <span>{labelMap.get(id) ?? id}</span>
                   {!disabled && (
                     <button
                       onClick={(e) => {
-                        e.stopPropagation()
-                        handleRemove(id)
+                        e.stopPropagation();
+                        handleRemove(id);
                       }}
-                      className="ml-0.5 rounded-full hover:bg-muted"
+                      className="hover:bg-muted ml-0.5 rounded-full"
                     >
                       <XIcon className="size-3" />
                       <span className="sr-only">Remove</span>
@@ -245,7 +277,7 @@ function TreeSelect({
               ))}
             </div>
           ) : (
-            <span className="flex-1 text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground flex-1">{placeholder}</span>
           )}
           {value.length > 0 && !disabled && (
             <Button
@@ -264,7 +296,7 @@ function TreeSelect({
             <DialogTitle>Select</DialogTitle>
           </DialogHeader>
           <div className="relative">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -279,22 +311,22 @@ function TreeSelect({
                   key={node.id}
                   node={node}
                   selectedIds={selectedIdsSet}
-                  expandedIds={new Set(expandedIds)}
+                  expandedIds={expandedIds}
                   onToggleExpand={handleToggleExpand}
                   onSelect={handleSelect}
                   multiple={multiple}
                 />
               ))}
               {filteredData.length === 0 && (
-                <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                  <FolderIcon className="size-8 mb-2" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                  <FolderIcon className="mb-2 size-8" />
                   <p className="text-sm">No items found</p>
                 </div>
               )}
             </div>
           </ScrollArea>
           {multiple && (
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between text-sm">
               <span>{value.length} item(s) selected</span>
               {maxCount && <span>Max: {maxCount}</span>}
             </div>
@@ -302,8 +334,8 @@ function TreeSelect({
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
 
-export { TreeSelect }
-export type { TreeNode, TreeSelectProps }
+export { TreeSelect };
+export type { TreeNode, TreeSelectProps };

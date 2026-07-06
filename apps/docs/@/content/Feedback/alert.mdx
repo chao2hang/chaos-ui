@@ -1,0 +1,72 @@
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { CodeBlock } from "@/components/code-block"
+
+# Alert 警告提示
+
+> 反馈组件 / Feedback and status communication to the user.
+
+静态展示需要关注的信息,非浮层。支持 default/info/success/warning/destructive 变体。
+Static (non-overlay) message for noteworthy information. Supports default/info/success/warning/destructive variants.
+
+## 何时使用 / When to Use
+
+向用户显示重要提示、警告、错误或成功反馈信息。
+
+Show important notices, warnings, errors, or success feedback.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+
+export function Basic() {
+  return (
+    <Alert>
+      <AlertTitle>Title</AlertTitle>
+      <AlertDescription>Alert description goes here.</AlertDescription>
+    </Alert>
+  )
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Alert variant="default">Default</Alert>
+  <Alert variant="info">Info</Alert>
+  <Alert variant="success">Success</Alert>
+  <Alert variant="warning">Warning</Alert>
+  <Alert variant="destructive">Destructive</Alert>
+</div>`} lang="tsx" />
+
+
+## 样式变体 / Style Variants
+
+**变体 / Variant**
+
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `info` | 信息提示 / Informational style |  |
+| `success` | 成功状态 / Success style |  |
+| `warning` | 警告状态 / Warning style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+
+## API / Props
+
+### Alert
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `variant` | `AlertVariant` | — | 样式变体 <br/> Style variant |
+| `icon` | `React.ReactNode` | — | 图标元素 <br/> Icon element |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 2 个子组件(AlertTitle, AlertDescription),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-alert--docs)。

@@ -3,145 +3,92 @@ import { CodeBlock } from "@/components/code-block"
 
 # GridLayout 栅格布局
 
-Chaos UI 栅格布局组件，基于 CSS Grid 实现，支持响应式列数配置。
-A CSS Grid-based layout component with responsive column configuration.
+> 布局组件 / Layout primitives for structuring pages.
 
-## 何时使用 / When to use
+栅格布局 — Chaos UI 的布局组件,用于组织页面区域结构。
+GridLayout — a layout primitives for structuring pages. for structuring page regions.
 
-用于页面和区块的栅格化布局，支持响应式列数调整。适合仪表盘、卡片列表、表单布局等需要多列排列的场景。
+## 何时使用 / When to Use
 
-Use for grid-based page layouts with responsive columns. Ideal for dashboards, card lists, and form layouts.
+需要栅格布局功能时使用本组件。
+
+Use when you need a grid layout.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
-
-<GridLayout columns={3} gap={16}>
-  {Array.from({ length: 6 }).map((_, i) => (
-    <GridItem key={i}>
-      <div style={{ background: "#e2e8f0", padding: 20, borderRadius: 8, textAlign: "center" }}>
-        Item {i + 1}
-      </div>
-    </GridItem>
-  ))}
-</GridLayout>
+### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { GridLayout, GridItem } from "@/components/ui/grid-layout"
 
 export function Basic() {
   return (
-    <GridLayout columns={3} gap={16}>
-      {items.map((item) => (
-        <GridItem key={item.id}>{item.content}</GridItem>
-      ))}
+    <GridLayout>
+      <GridItem>Content</GridItem>
     </GridLayout>
   )
 }`} lang="tsx" />
 
-### 响应式列数 / Responsive Columns
 
-<GridLayout
-  columns={1}
-  responsive={{ sm: 2, md: 3, lg: 4 }}
-  gap={12}
->
-  {Array.from({ length: 8 }).map((_, i) => (
-    <GridItem key={i}>
-      <div style={{ background: "#dbeafe", padding: 16, borderRadius: 8, textAlign: "center", fontSize: 13 }}>
-        sm:2 md:3 lg:4 → Col {i + 1}
-      </div>
-    </GridItem>
-  ))}
-</GridLayout>
+## 样式变体 / Style Variants
 
-<CodeBlock code={`<GridLayout
-  columns={1}
-  responsive={{ sm: 2, md: 3, lg: 4 }}
-  gap={12}
->
-  <GridItem>Item 1</GridItem>
-  <GridItem>Item 2</GridItem>
-  {/* ... */}
-</GridLayout>`} lang="tsx" />
+**columns / columns**
 
-### 跨列与偏移 / Span & Offset
+| columns | 说明 / Description | 默认 |
+|---|---|---|
+| `1` |  | ✓ |
+| `2` |  |  |
+| `3` |  |  |
+| `4` |  |  |
+| `5` |  |  |
+| `6` |  |  |
+| `12` |  |  |
+| `auto` |  |  |
 
-<GridLayout columns={4} gap={12}>
-  <GridItem span={2}>
-    <div style={{ background: "#fce7f3", padding: 16, borderRadius: 8, textAlign: "center" }}>span=2</div>
-  </GridItem>
-  <GridItem span={1}>
-    <div style={{ background: "#fce7f3", padding: 16, borderRadius: 8, textAlign: "center" }}>span=1</div>
-  </GridItem>
-  <GridItem span={1}>
-    <div style={{ background: "#fce7f3", padding: 16, borderRadius: 8, textAlign: "center" }}>span=1</div>
-  </GridItem>
-  <GridItem span={3}>
-    <div style={{ background: "#ede9fe", padding: 16, borderRadius: 8, textAlign: "center" }}>span=3</div>
-  </GridItem>
-  <GridItem span={1}>
-    <div style={{ background: "#ede9fe", padding: 16, borderRadius: 8, textAlign: "center" }}>span=1</div>
-  </GridItem>
-</GridLayout>
+**gap / gap**
 
-<CodeBlock code={`<GridLayout columns={4} gap={12}>
-  <GridItem span={2}>占 2 列</GridItem>
-  <GridItem span={1}>占 1 列</GridItem>
-  <GridItem span={1}>占 1 列</GridItem>
-  <GridItem span={3}>占 3 列</GridItem>
-  <GridItem span={1}>占 1 列</GridItem>
-</GridLayout>`} lang="tsx" />
+| gap | 说明 / Description | 默认 |
+|---|---|---|
+| `none` |  |  |
+| `sm` |  |  |
+| `default` |  | ✓ |
+| `lg` |  |  |
+| `xl` |  |  |
 
-### 行合并 / Row Span
+**对齐 / align**
 
-<GridLayout columns={3} gap={12}>
-  <GridItem rowSpan={2}>
-    <div style={{ background: "#dcfce7", padding: 16, borderRadius: 8, textAlign: "center", minHeight: 120, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      rowSpan=2
-    </div>
-  </GridItem>
-  <GridItem>
-    <div style={{ background: "#f0fdf4", padding: 16, borderRadius: 8, textAlign: "center" }}>Item 2</div>
-  </GridItem>
-  <GridItem>
-    <div style={{ background: "#f0fdf4", padding: 16, borderRadius: 8, textAlign: "center" }}>Item 3</div>
-  </GridItem>
-</GridLayout>
+| align | 说明 / Description | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  |  |
+| `end` |  |  |
+| `stretch` |  | ✓ |
 
-<CodeBlock code={`<GridLayout columns={3} gap={12}>
-  <GridItem rowSpan={2}>跨 2 行</GridItem>
-  <GridItem>Item 2</GridItem>
-  <GridItem>Item 3</GridItem>
-</GridLayout>`} lang="tsx" />
+**主轴对齐 / justify**
 
-## API
+| justify | 说明 / Description | 默认 |
+|---|---|---|
+| `start` |  | ✓ |
+| `center` |  |  |
+| `end` |  |  |
+| `between` |  |  |
+
+## API / Props
 
 ### GridLayout
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| columns | `number` | `1` | 默认列数 | Default column count |
-| gap | `number` | `16` | 列间距 (px) | Gap between items in px |
-| responsive | `{ sm?: number; md?: number; lg?: number; xl?: number }` | — | 响应式断点列数 | Responsive breakpoint columns |
-| alignItems | `'start' \| 'center' \| 'end' \| 'stretch'` | `'stretch'` | 垂直对齐方式 | Vertical alignment |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-| children | `React.ReactNode` | — | 子项（通常为 GridItem） | Children (usually GridItem) |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `responsive` | `{` | — |  |
+| `sm` | `number` | — |  |
+| `md` | `number` | — |  |
+| `lg` | `number` | — |  |
+| `xl` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### GridItem
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| span | `number` | `1` | 跨列数 | Column span count |
-| rowSpan | `number` | `1` | 跨行数 | Row span count |
-| start | `number` | — | 起始列位置 | Start column position |
-| end | `number` | — | 结束列位置 | End column position |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-| children | `React.ReactNode` | — | 子内容 | Child content |
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 1 个子组件(GridItem),使用组合模式按需导入。
 
-## 注意事项
-
-- **响应式断点**：`responsive` 使用 Tailwind 默认断点 — `sm: 640px, md: 768px, lg: 1024px, xl: 1280px`。未指定断点的列数回退到 `columns` 属性。
-- **跨列优先级**：`start`/`end` 优先级高于 `span`，同时指定时以 `start`/`end` 为准。
-- **无障碍**：GridLayout 和 GridItem 均使用纯 CSS Grid，无特殊 ARIA 需求。若用于列表场景，建议在外层包裹 `role="list"` 并在 GridItem 上加 `role="listitem"`。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-grid-layout--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-grid-layout--docs)。

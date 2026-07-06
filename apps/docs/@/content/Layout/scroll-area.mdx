@@ -1,104 +1,47 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { CodeBlock } from "@/components/code-block"
 
 # ScrollArea 滚动区域
 
-Chaos UI 滚动区域组件，基于 Base UI ScrollArea，为内容溢出提供美观的自定义滚动条。
-A Base UI-powered scrollable container with custom-styled scrollbars.
+> 布局组件 / Layout primitives for structuring pages.
 
-## 何时使用 / When to use
+自定义样式的滚动区域,支持横/纵向滚动条。
+Custom-styled scroll area supporting horizontal/vertical scrollbars.
 
-当内容超出容器高度时，使用 ScrollArea 替代原生 overflow 滚动，提供统一的自定义滚动条样式。适合侧边栏、对话框内容区、日志面板等。
+## 何时使用 / When to Use
 
-Use instead of native overflow scrolling when you need custom scrollbar styling. Ideal for sidebars, dialog content areas, and log panels.
+需要滚动区域功能时使用本组件。
+
+Use when you need a scroll area.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<ScrollArea style={{ height: 180, width: "100%", border: "1px solid #e2e8f0", borderRadius: 8, padding: "0 12px" }}>
-  <div style={{ paddingRight: 16 }}>
-    {Array.from({ length: 20 }).map((_, i) => (
-      <p key={i} style={{ padding: "8px 0", borderBottom: "1px solid #f1f5f9" }}>
-        Item {i + 1} — 滚动查看内容 / Scroll to see more content.
-      </p>
-    ))}
-  </div>
-</ScrollArea>
-
-<CodeBlock code={`import { ScrollArea } from "@/components/ui/scroll-area"
+<CodeBlock code={`import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 export function Basic() {
   return (
-    <ScrollArea style={{ height: 200 }}>
-      {items.map((item) => (
-        <p key={item.id}>{item.text}</p>
-      ))}
-    </ScrollArea>
+    <div className="space-y-4">
+  <ScrollArea />
+  <ScrollBar />
+    </div>
   )
 }`} lang="tsx" />
 
-### 水平滚动 / Horizontal Scroll
 
-<ScrollArea style={{ width: "100%", border: "1px solid #e2e8f0", borderRadius: 8, padding: 12 }}>
-  <div style={{ display: "flex", gap: 8, width: "max-content" }}>
-    {Array.from({ length: 15 }).map((_, i) => (
-      <div key={i} style={{ minWidth: 120, height: 60, background: "#f1f5f9", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>
-        Card {i + 1}
-      </div>
-    ))}
-  </div>
-</ScrollArea>
-
-<CodeBlock code={`<ScrollArea style={{ width: "100%" }}>
-  <div style={{ display: "flex", gap: 8, width: "max-content" }}>
-    {cards.map((card) => (
-      <div key={card.id} style={{ minWidth: 120 }}>
-        {card.content}
-      </div>
-    ))}
-  </div>
-</ScrollArea>`} lang="tsx" />
-
-### 禁用滚动条 / Without Scrollbar
-
-<ScrollArea style={{ height: 150, border: "1px solid #e2e8f0", borderRadius: 8, padding: "0 12px" }} hideScrollbar>
-  {Array.from({ length: 10 }).map((_, i) => (
-    <p key={i} style={{ padding: "6px 0" }}>
-      Line {i + 1} — 内容可滚动但隐藏滚动条。Scrollable but scrollbar hidden.
-    </p>
-  ))}
-</ScrollArea>
-
-<CodeBlock code={`<ScrollArea hideScrollbar style={{ height: 150 }}>
-  {lines.map((line) => (
-    <p key={line.id}>{line.text}</p>
-  ))}
-</ScrollArea>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### ScrollArea
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| hideScrollbar | `boolean` | `false` | 隐藏滚动条（仍可滚动） | Hide scrollbar (still scrollable) |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-| style | `React.CSSProperties` | — | 自定义行内样式 | Custom inline style |
-| ...rest | `ScrollAreaPrimitive.Root.Props` | — | 透传 Base UI 属性 | Passthrough Base UI props |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### ScrollBar
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| orientation | `'horizontal' \| 'vertical'` | — | 滚动条方向 | Scrollbar orientation |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-## 注意事项
-
-- **高度限制**：ScrollArea 需要显式设置高度（通过 `style` 或 `className`），否则不会出现滚动。
-- **base-ui 原生行为**：Base UI ScrollArea 的 `ScrollBar` 一般由 ScrollArea 内部自动管理，无需手动使用。仅在需要自定义滚动条行为时才需直接使用 `ScrollBar`。
-- **无障碍**：Base UI ScrollArea 默认不增加额外 ARIA 属性——原生滚动区域本身对屏幕阅读器友好。`hideScrollbar` 仅视觉隐藏，不影响键盘和屏幕阅读器操作。
-- **性能**：大量列表项建议搭配虚拟列表（如 `VirtualList`），ScrollArea 本身不优化渲染性能。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-scroll-area--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-scroll-area--docs)。

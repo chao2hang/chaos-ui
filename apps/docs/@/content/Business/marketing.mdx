@@ -1,0 +1,50 @@
+import { PricingCard, PricingTable, TestimonialCard, FAQSection } from "@/components/business/marketing"
+import { CodeBlock } from "@/components/code-block"
+
+# Marketing 营销组件
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+营销组件 — 面向 ERP/企业场景的业务组件。
+Marketing — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要营销组件功能时使用本组件。
+
+Use when you need a marketing.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PricingCard, PricingTable, TestimonialCard } from "@/components/business/marketing"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <PricingCard />
+  <PricingTable />
+  <TestimonialCard />
+    </div>
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### PricingCard
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `tier` | `PricingTier` | — |  |
+| `onCta` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-marketing--docs)。

@@ -1,116 +1,47 @@
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
 import { CodeBlock } from "@/components/code-block"
 
-# Collapsible 折叠容器
+# Collapsible 折叠面板
 
-Chaos UI 折叠容器组件，基于 Base UI Collapsible，用于按需显示/隐藏内容区域。
-A Base UI-powered component for showing/hiding content regions on demand.
+> 通用基础组件 / General-purpose primitives used across the app.
 
-## 何时使用 / When to use
+折叠面板 — Chaos UI 的通用基础组件。
+Collapsible — a general-purpose primitives used across the app. from Chaos UI.
 
-用于需要按需展开/折叠的单块内容区域。与 Accordion 的区别：Collapsible 是单个独立容器，无 item 概念，更轻量。
+## 何时使用 / When to Use
 
-Use for a single collapsible content region. Unlike Accordion, Collapsible is a single standalone container — lighter and simpler.
+需要折叠面板功能时使用本组件。
+
+Use when you need a collapsible.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Collapsible>
-  <CollapsibleTrigger style={{ padding: "8px 12px", background: "#f1f5f9", borderRadius: 6, cursor: "pointer", border: "none", fontWeight: 600 }}>
-    ▶ 点击展开 / Click to expand
-  </CollapsibleTrigger>
-  <CollapsibleContent style={{ padding: 12, marginTop: 4 }}>
-    这是折叠区域的内容。可以放置任意 React 组件、表单、列表等。
-    This is the collapsible content area. Put any React components here.
-  </CollapsibleContent>
-</Collapsible>
-
-<CodeBlock code={`import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible"
+<CodeBlock code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
 
 export function Basic() {
   return (
     <Collapsible>
-      <CollapsibleTrigger>
-        点击展开 / Click to expand
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        折叠区域的内容
-      </CollapsibleContent>
+      <CollapsibleContent>Content</CollapsibleContent>
     </Collapsible>
   )
 }`} lang="tsx" />
 
-### 默认展开 / Default Open
 
-<Collapsible defaultOpen>
-  <CollapsibleTrigger style={{ padding: "8px 12px", background: "#f1f5f9", borderRadius: 6, cursor: "pointer", border: "none", fontWeight: 600 }}>
-    ▼ 默认展开 / Opened by default
-  </CollapsibleTrigger>
-  <CollapsibleContent style={{ padding: 12, marginTop: 4 }}>
-    此项在页面加载时自动展开。适合默认显示关键信息的场景。
-    This section is expanded on page load.
-  </CollapsibleContent>
-</Collapsible>
-
-<CodeBlock code={`<Collapsible defaultOpen>
-  <CollapsibleTrigger>
-    ▼ 默认展开
-  </CollapsibleTrigger>
-  <CollapsibleContent>
-    默认展开的内容
-  </CollapsibleContent>
-</Collapsible>`} lang="tsx" />
-
-### 禁用状态 / Disabled
-
-<Collapsible disabled>
-  <CollapsibleTrigger style={{ padding: "8px 12px", background: "#f1f5f9", borderRadius: 6, cursor: "not-allowed", border: "none", fontWeight: 600, opacity: 0.5 }}>
-    ✕ 禁用状态 / Disabled
-  </CollapsibleTrigger>
-  <CollapsibleContent style={{ padding: 12 }}>
-    此项被禁用，无法展开。
-  </CollapsibleContent>
-</Collapsible>
-
-<CodeBlock code={`<Collapsible disabled>
-  <CollapsibleTrigger>禁用状态</CollapsibleTrigger>
-  <CollapsibleContent>被禁用的内容</CollapsibleContent>
-</Collapsible>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Collapsible
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| defaultOpen | `boolean` | `false` | 默认是否展开 | Default expanded state |
-| open | `boolean` | — | 受控：是否展开 | Controlled expanded state |
-| onOpenChange | `(open: boolean) => void` | — | 展开状态变化回调 | Callback on open state change |
-| disabled | `boolean` | `false` | 禁用折叠功能 | Disable the collapsible |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### CollapsibleTrigger
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 2 个子组件(CollapsibleTrigger, CollapsibleContent),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-### CollapsibleContent
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-## 注意事项
-
-- **受控模式**：传入 `open` + `onOpenChange` 进入受控模式，适用于需要外部控制展开/折叠的场景。
-- **vs Accordion**：Collapsible 是单区域折叠，Accordion 是多区域互斥/多选折叠。简单场景优先使用 Collapsible。
-- **无障碍**：Base UI Collapsible 内置 WAI-ARIA 支持——Trigger 使用 `button` 角色，Content 关联 `aria-controls`。展开/折叠状态通过 `data-state` 属性反映。
-- **动画**：Base UI 默认提供展开/折叠的 CSS 过渡动画，可通过覆盖 `data-state` 相关样式自定义。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-collapsible--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-collapsible--docs)。

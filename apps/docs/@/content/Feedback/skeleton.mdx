@@ -1,0 +1,41 @@
+import { Skeleton } from "@/components/ui/skeleton"
+import { CodeBlock } from "@/components/code-block"
+
+# Skeleton 骨架屏
+
+> 反馈组件 / Feedback and status communication to the user.
+
+在数据加载完成前提供占位,降低等待焦虑感。
+Placeholder shown while data loads; reduces perceived wait time.
+
+## 何时使用 / When to Use
+
+数据加载中时占位,降低感知等待时间。
+
+Provide placeholder UI while data loads to reduce perceived wait time.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Skeleton } from "@/components/ui/skeleton"
+
+export function Basic() {
+  return <Skeleton />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### Skeleton
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-skeleton--docs)。

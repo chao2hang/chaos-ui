@@ -1,34 +1,39 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-type Direction = "horizontal" | "vertical"
+type Direction = "horizontal" | "vertical";
 
 interface ResizablePanelGroupContext {
-  direction: Direction
-  registerPanel: (id: string, panel: PanelStore) => void
-  unregisterPanel: (id: string) => void
-  getPanel: (id: string) => PanelStore | undefined
+  direction: Direction;
+  registerPanel: (id: string, panel: PanelStore) => void;
+  unregisterPanel: (id: string) => void;
+  getPanel: (id: string) => PanelStore | undefined;
 }
 
 export interface PanelStore {
-  getSize: () => number
-  setSize: (n: number) => void
-  minSize: number
-  maxSize: number
-  collapsed: boolean
-  collapsedSize: number
-  collapsible: boolean
-  collapse: () => void
-  expand: () => void
+  getSize: () => number;
+  setSize: (n: number) => void;
+  minSize: number;
+  maxSize: number;
+  collapsed: boolean;
+  collapsedSize: number;
+  collapsible: boolean;
+  collapse: () => void;
+  expand: () => void;
 }
 
-const ResizableContext = React.createContext<ResizablePanelGroupContext | null>(null)
+const ResizableContext = React.createContext<ResizablePanelGroupContext | null>(
+  null,
+);
 
 function useResizable() {
-  const ctx = React.useContext(ResizableContext)
-  if (!ctx) throw new Error("Resizable components must be used within ResizablePanelGroup")
-  return ctx
+  const ctx = React.useContext(ResizableContext);
+  if (!ctx)
+    throw new Error(
+      "Resizable components must be used within ResizablePanelGroup",
+    );
+  return ctx;
 }
 
 function ResizablePanelGroup({
@@ -37,22 +42,25 @@ function ResizablePanelGroup({
   children,
   ...props
 }: React.ComponentProps<"div"> & { direction?: Direction }) {
-  const panelsRef = React.useRef(new Map<string, PanelStore>())
+  const panelsRef = React.useRef(new Map<string, PanelStore>());
 
   const registerPanel = React.useCallback((id: string, panel: PanelStore) => {
-    panelsRef.current.set(id, panel)
-  }, [])
+    panelsRef.current.set(id, panel);
+  }, []);
 
   const unregisterPanel = React.useCallback((id: string) => {
-    panelsRef.current.delete(id)
-  }, [])
+    panelsRef.current.delete(id);
+  }, []);
 
-  const getPanel = React.useCallback((id: string) => panelsRef.current.get(id), [])
+  const getPanel = React.useCallback(
+    (id: string) => panelsRef.current.get(id),
+    [],
+  );
 
   const contextValue = React.useMemo(
     () => ({ direction, registerPanel, unregisterPanel, getPanel }),
-    [direction, registerPanel, unregisterPanel, getPanel]
-  )
+    [direction, registerPanel, unregisterPanel, getPanel],
+  );
 
   return (
     <ResizableContext.Provider value={contextValue}>
@@ -62,28 +70,28 @@ function ResizablePanelGroup({
         className={cn(
           "flex h-full w-full",
           direction === "vertical" ? "flex-col" : "flex-row",
-          className
+          className,
         )}
         {...props}
       >
         {children}
       </div>
     </ResizableContext.Provider>
-  )
+  );
 }
 
 interface ResizablePanelProps extends React.ComponentProps<"div"> {
-  defaultSize?: number
-  minSize?: number
-  maxSize?: number
-  collapsible?: boolean
-  collapsedSize?: number
-  onCollapse?: () => void
-  onExpand?: () => void
-  onResize?: (size: number) => void
+  defaultSize?: number;
+  minSize?: number;
+  maxSize?: number;
+  collapsible?: boolean;
+  collapsedSize?: number;
+  onCollapse?: () => void;
+  onExpand?: () => void;
+  onResize?: (size: number) => void;
 }
 
-const PanelIdContext = React.createContext<string | null>(null)
+const PanelIdContext = React.createContext<string | null>(null);
 
 function ResizablePanel({
   defaultSize = 50,
@@ -99,33 +107,39 @@ function ResizablePanel({
   style,
   ...props
 }: ResizablePanelProps) {
-  const ctx = useResizable()
-  const panelIdRef = React.useRef(`panel-${React.useId()}`)
-  const panelId = panelIdRef.current
-  const [size, setSizeState] = React.useState(defaultSize)
-  const [collapsed, setCollapsed] = React.useState(false)
-  const sizeRef = React.useRef(size)
-  sizeRef.current = size
-  const collapsedRef = React.useRef(collapsed)
-  collapsedRef.current = collapsed
+  const ctx = useResizable();
+  const generatedId = React.useId();
+  const panelIdRef = React.useRef(`panel-${generatedId}`);
+  const panelId = panelIdRef.current;
+  const [size, setSizeState] = React.useState(defaultSize);
+  const [collapsed, setCollapsed] = React.useState(false);
+  const sizeRef = React.useRef(size);
+  sizeRef.current = size;
+  const collapsedRef = React.useRef(collapsed);
+  collapsedRef.current = collapsed;
+
+  const onCollapseRef = React.useRef(onCollapse);
+  onCollapseRef.current = onCollapse;
+  const onExpandRef = React.useRef(onExpand);
+  onExpandRef.current = onExpand;
 
   const setSize = React.useCallback(
     (v: number) => {
-      const clamped = Math.min(Math.max(v, minSize), maxSize)
-      setSizeState(clamped)
+      const clamped = Math.min(Math.max(v, minSize), maxSize);
+      setSizeState(clamped);
     },
-    [minSize, maxSize]
-  )
+    [minSize, maxSize],
+  );
 
   const collapse = React.useCallback(() => {
-    setCollapsed(true)
-    onCollapse?.()
-  }, [onCollapse])
+    setCollapsed(true);
+    onCollapseRef.current?.();
+  }, []);
 
   const expand = React.useCallback(() => {
-    setCollapsed(false)
-    onExpand?.()
-  }, [onExpand])
+    setCollapsed(false);
+    onExpandRef.current?.();
+  }, []);
 
   const store = React.useMemo<PanelStore>(
     () => ({
@@ -139,19 +153,28 @@ function ResizablePanel({
       collapse,
       expand,
     }),
-    [setSize, minSize, maxSize, collapsed, collapsedSize, collapsible, collapse, expand]
-  )
+    [
+      setSize,
+      minSize,
+      maxSize,
+      collapsed,
+      collapsedSize,
+      collapsible,
+      collapse,
+      expand,
+    ],
+  );
 
   React.useEffect(() => {
-    ctx.registerPanel(panelId, store)
-    return () => ctx.unregisterPanel(panelId)
-  }, [ctx, panelId, store])
+    ctx.registerPanel(panelId, store);
+    return () => ctx.unregisterPanel(panelId);
+  }, [ctx, panelId, store]);
 
   React.useEffect(() => {
-    onResize?.(collapsed ? collapsedSize : size)
-  }, [size, collapsed, collapsedSize, onResize])
+    onResize?.(collapsed ? collapsedSize : size);
+  }, [size, collapsed, collapsedSize, onResize]);
 
-  const effectiveSize = collapsed ? collapsedSize : size
+  const effectiveSize = collapsed ? collapsedSize : size;
 
   return (
     <PanelIdContext.Provider value={panelId}>
@@ -159,13 +182,18 @@ function ResizablePanel({
         data-slot="resizable-panel"
         data-panel-id={panelId}
         data-collapsed={collapsed}
-        style={{ flexBasis: `${effectiveSize}%`, flexGrow: 0, flexShrink: 0, ...style }}
+        style={{
+          flexBasis: `${effectiveSize}%`,
+          flexGrow: 0,
+          flexShrink: 0,
+          ...style,
+        }}
         className={cn("relative overflow-hidden", className)}
       >
         {children}
       </div>
     </PanelIdContext.Provider>
-  )
+  );
 }
 
 function ResizableHandle({
@@ -173,73 +201,86 @@ function ResizableHandle({
   className,
   ...props
 }: React.ComponentProps<"div"> & { withHandle?: boolean }) {
-  const ctx = useResizable()
-  const { direction } = ctx
-  const ref = React.useRef<HTMLDivElement>(null)
-  const startPos = React.useRef(0)
-  const startSize = React.useRef(0)
-  const targetPanelRef = React.useRef<PanelStore | null>(null)
+  const ctx = useResizable();
+  const { direction } = ctx;
+  const ref = React.useRef<HTMLDivElement>(null);
+  const startPos = React.useRef(0);
+  const startSize = React.useRef(0);
+  const targetPanelRef = React.useRef<PanelStore | null>(null);
 
-  const onPointerDown = React.useCallback(
-    (e: React.PointerEvent) => {
-      e.preventDefault()
-      const handleEl = ref.current
-      if (!handleEl) return
-      const prevEl = handleEl.previousElementSibling as HTMLElement | null
-      const nextEl = handleEl.nextElementSibling as HTMLElement | null
-      if (!prevEl || !nextEl) return
-      const prevId = prevEl.getAttribute("data-panel-id")
-      const nextId = nextEl.getAttribute("data-panel-id")
-      if (!prevId || !nextId) return
-      const prevStore = ctx.getPanel(prevId)
-      const nextStore = ctx.getPanel(nextId)
-      if (!prevStore || !nextStore) return
+  const ctxRef = React.useRef(ctx);
+  ctxRef.current = ctx;
+  const dirRef = React.useRef(direction);
+  dirRef.current = direction;
 
-      startPos.current = direction === "horizontal" ? e.clientX : e.clientY
-      const startPrev = prevStore.getSize()
-      const startNext = nextStore.getSize()
-      const container = handleEl.parentElement
-      if (!container) return
+  const onPointerDown = React.useCallback((e: React.PointerEvent) => {
+    e.preventDefault();
+    const handleEl = ref.current;
+    const currentCtx = ctxRef.current;
+    const currentDir = dirRef.current;
+    if (!handleEl) return;
+    const prevEl = handleEl.previousElementSibling as HTMLElement | null;
+    const nextEl = handleEl.nextElementSibling as HTMLElement | null;
+    if (!prevEl || !nextEl) return;
+    const prevId = prevEl.getAttribute("data-panel-id");
+    const nextId = nextEl.getAttribute("data-panel-id");
+    if (!prevId || !nextId) return;
+    const prevStore = currentCtx.getPanel(prevId);
+    const nextStore = currentCtx.getPanel(nextId);
+    if (!prevStore || !nextStore) return;
 
-      const onMove = (ev: PointerEvent) => {
-        const rect = container.getBoundingClientRect()
-        const total = direction === "horizontal" ? rect.width : rect.height
-        const delta = ((direction === "horizontal" ? ev.clientX : ev.clientY) - startPos.current) / total
-        const deltaPct = delta * 100
-        // Clamp prev against its min/max
-        const newPrev = Math.min(Math.max(startPrev + deltaPct, prevStore.minSize), prevStore.maxSize)
-        const actualDelta = newPrev - startPrev
-        const newNext = startNext - actualDelta
-        // Clamp next against its min/max
-        const clampedNext = Math.min(Math.max(newNext, nextStore.minSize), nextStore.maxSize)
-        // If next was clamped, adjust prev to compensate
-        const finalPrev = startPrev + actualDelta - (clampedNext - newNext)
-        const finalClampedPrev = Math.min(Math.max(finalPrev, prevStore.minSize), prevStore.maxSize)
-        prevStore.setSize(finalClampedPrev)
-        nextStore.setSize(clampedNext)
-      }
+    startPos.current = currentDir === "horizontal" ? e.clientX : e.clientY;
+    const startPrev = prevStore.getSize();
+    const startNext = nextStore.getSize();
+    const container = handleEl.parentElement;
+    if (!container) return;
 
-      const onUp = () => {
-        document.removeEventListener("pointermove", onMove)
-        document.removeEventListener("pointerup", onUp)
-      }
+    const onMove = (ev: PointerEvent) => {
+      const rect = container.getBoundingClientRect();
+      const total = currentDir === "horizontal" ? rect.width : rect.height;
+      const delta =
+        ((currentDir === "horizontal" ? ev.clientX : ev.clientY) -
+          startPos.current) /
+        total;
+      const deltaPct = delta * 100;
+      const newPrev = Math.min(
+        Math.max(startPrev + deltaPct, prevStore.minSize),
+        prevStore.maxSize,
+      );
+      const actualDelta = newPrev - startPrev;
+      const newNext = startNext - actualDelta;
+      const clampedNext = Math.min(
+        Math.max(newNext, nextStore.minSize),
+        nextStore.maxSize,
+      );
+      const finalPrev = startPrev + actualDelta - (clampedNext - newNext);
+      const finalClampedPrev = Math.min(
+        Math.max(finalPrev, prevStore.minSize),
+        prevStore.maxSize,
+      );
+      prevStore.setSize(finalClampedPrev);
+      nextStore.setSize(clampedNext);
+    };
 
-      document.addEventListener("pointermove", onMove)
-      document.addEventListener("pointerup", onUp)
-    },
-    [direction, ctx]
-  )
+    const onUp = () => {
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerup", onUp);
+    };
+
+    document.addEventListener("pointermove", onMove);
+    document.addEventListener("pointerup", onUp);
+  }, []);
 
   const onDoubleClick = React.useCallback(() => {
-    const panelEl = ref.current?.previousElementSibling as HTMLElement | null
-    if (!panelEl) return
-    const panelId = panelEl.getAttribute("data-panel-id")
-    if (!panelId) return
-    const store = ctx.getPanel(panelId)
-    if (!store?.collapsible) return
-    if (store.collapsed) store.expand()
-    else store.collapse()
-  }, [ctx])
+    const panelEl = ref.current?.previousElementSibling as HTMLElement | null;
+    if (!panelEl) return;
+    const panelId = panelEl.getAttribute("data-panel-id");
+    if (!panelId) return;
+    const store = ctxRef.current.getPanel(panelId);
+    if (!store?.collapsible) return;
+    if (store.collapsed) store.expand();
+    else store.collapse();
+  }, []);
 
   return (
     <div
@@ -249,31 +290,31 @@ function ResizableHandle({
       onPointerDown={onPointerDown}
       onDoubleClick={onDoubleClick}
       className={cn(
-        "relative flex shrink-0 items-center justify-center bg-border transition-colors hover:bg-primary/50 active:bg-primary",
+        "bg-border hover:bg-primary/50 active:bg-primary relative flex shrink-0 items-center justify-center transition-colors",
         direction === "horizontal"
-          ? "w-px h-full cursor-col-resize"
+          ? "h-full w-px cursor-col-resize"
           : "h-px w-full cursor-row-resize",
-        className
+        className,
       )}
       {...props}
     >
       {withHandle && (
         <div
           className={cn(
-            "z-10 flex items-center justify-center rounded-sm border bg-background shadow-xs",
-            direction === "horizontal" ? "h-6 w-2.5" : "h-2.5 w-6"
+            "bg-background z-10 flex items-center justify-center rounded-sm border shadow-xs",
+            direction === "horizontal" ? "h-6 w-2.5" : "h-2.5 w-6",
           )}
         >
           <div
             className={cn(
-              "rounded-sm bg-muted-foreground/50",
-              direction === "horizontal" ? "h-3 w-0.5" : "h-0.5 w-3"
+              "bg-muted-foreground/50 rounded-sm",
+              direction === "horizontal" ? "h-3 w-0.5" : "h-0.5 w-3",
             )}
           />
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { ResizablePanelGroup, ResizablePanel, ResizableHandle }
+export { ResizablePanelGroup, ResizablePanel, ResizableHandle };

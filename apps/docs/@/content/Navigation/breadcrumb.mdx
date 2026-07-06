@@ -1,199 +1,46 @@
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage, BreadcrumbEllipsis } from "@/components/ui/breadcrumb"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
 import { CodeBlock } from "@/components/code-block"
 
 # Breadcrumb 面包屑
 
-Chaos UI 面包屑导航组件，帮助用户了解当前位置并提供返回上层路径的快捷方式。
-Breadcrumb navigation to show current location and provide quick back-navigation links.
+> 导航组件 / Navigation components for moving through the app.
 
-## 何时使用 / When to use
+显示当前页面在层级结构中的位置,并能向上返回。
+Displays current location in a hierarchy and provides navigation back up.
 
-当页面层级较深（3 层以上）时，使用面包屑帮助用户定位当前位置并快速返回上级页面。与 Next.js 路由配合良好。
+## 何时使用 / When to Use
 
-Use when the page hierarchy is deep (3+ levels) to help users orient and quickly navigate upward. Works well with Next.js routing.
+显示当前页面在层级结构中的位置,支持快速返回上级。
+
+Indicate the current page location in a hierarchy and provide upward navigation.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
+### 基础用法 / Basic Usage
 
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-
-<CodeBlock code={`import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb"
+<CodeBlock code={`import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 
 export function Basic() {
   return (
     <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
+      <BreadcrumbList>Content</BreadcrumbList>
     </Breadcrumb>
   )
 }`} lang="tsx" />
 
-### 带省略号 / With Ellipsis
 
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">🏠 Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbEllipsis />
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Profile</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-
-<CodeBlock code={`<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbEllipsis />
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Profile</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>`} lang="tsx" />
-
-### Next.js Link 集成 / With Next.js Link
-
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">首页</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/components">组件总览</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>面包屑</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-
-<CodeBlock code={`import Link from "next/link"
-
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink asChild>
-        <Link href="/">首页</Link>
-      </BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink asChild>
-        <Link href="/components">组件总览</Link>
-      </BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>面包屑</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### Breadcrumb
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### BreadcrumbList
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+- **复合组件**: 包含 6 个子组件(BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-### BreadcrumbItem
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-### BreadcrumbLink
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| asChild | `boolean` | `false` | 渲染为子元素（例如 Next.js Link） | Render as child (e.g., Next.js Link) |
-| href | `string` | — | 链接地址 | Link URL |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-### BreadcrumbPage
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-### BreadcrumbSeparator
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-### BreadcrumbEllipsis
-
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
-
-## 注意事项
-
-- **渲染语义**：Breadcrumb 渲染为 `<nav aria-label="Breadcrumb">`，BreadcrumbList 渲染为 `<ol>`，符合面包屑导航的语义规范。
-- **asChild 模式**：`BreadcrumbLink` 支持 `asChild`，可配合 Next.js `<Link>` 或任意自定义 `<a>` 元素使用，避免 `<a>` 嵌套问题。
-- **BreadcrumbPage**：当前页面项使用 `BreadcrumbPage`（`<span>`），不是链接，且视觉上高亮显示。
-- **无障碍**：`aria-current="page"` 自动应用于当前页面项。分隔符使用 `aria-hidden="true"` 避免屏幕阅读器重复朗读。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-breadcrumb--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-breadcrumb--docs)。

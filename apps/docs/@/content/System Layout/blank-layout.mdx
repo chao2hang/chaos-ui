@@ -1,0 +1,43 @@
+import { BlankLayout } from "@/components/layout/blank-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# BlankLayout 空白布局
+
+> 系统布局 / System-level layout shells for admin pages.
+
+空白布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+BlankLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## 何时使用 / When to Use
+
+需要空白布局功能时使用本组件。
+
+Use when you need a blank layout.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { BlankLayout } from "@/components/layout/blank-layout"
+
+export function Basic() {
+  return <BlankLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### BlankLayout
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `centered` | `boolean` | `false` |  |
+| `padded` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-blank-layout--docs)。

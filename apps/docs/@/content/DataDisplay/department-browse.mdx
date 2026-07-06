@@ -1,0 +1,49 @@
+import { DepartmentBrowse } from "@/components/ui/department-browse"
+import { CodeBlock } from "@/components/code-block"
+
+# DepartmentBrowse 部门浏览
+
+> 数据展示 / Components for presenting data and content.
+
+从组织架构中选择部门/人员,支持树状展开、搜索、多选。
+Browse org structure to select departments/people; supports tree expand, search, multi-select.
+
+## 何时使用 / When to Use
+
+需要部门浏览功能时使用本组件。
+
+Use when you need a department browse.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { DepartmentBrowse } from "@/components/ui/department-browse"
+
+export function Basic() {
+  return <DepartmentBrowse />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### DepartmentBrowse
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `value` | `Department \| Department[]` | — | 当前值(受控) <br/> Current value (controlled) |
+| `defaultValue` | `Department \| Department[]` | — | 默认值(非受控) <br/> Default value (uncontrolled) |
+| `placeholder` | `string` | `Select department...` | 占位文本 <br/> Placeholder text |
+| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
+| `multiple` | `boolean` | `false` | 是否多选 <br/> Multiple selection |
+| `maxCount` | `number` | — |  |
+| `departments` | `Department[]` | — |  |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-department-browse--docs)。

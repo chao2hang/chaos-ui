@@ -1,0 +1,45 @@
+import { SettingsLayout } from "@/components/business/settings-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# SettingsLayout 设置布局
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+设置布局 — 面向 ERP/企业场景的业务组件。
+SettingsLayout — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要设置布局功能时使用本组件。
+
+Use when you need a settings layout.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { SettingsLayout } from "@/components/business/settings-layout"
+
+export function Basic() {
+  return <SettingsLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SettingsLayout
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `nav` | `SettingsNavEntry[]` | — |  |
+| `active` | `string` | — |  |
+| `onNavChange` | `() => void` | — |  |
+| `sections` | `SettingsSection[]` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-settings-layout--docs)。

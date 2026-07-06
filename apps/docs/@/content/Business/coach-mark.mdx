@@ -1,0 +1,52 @@
+import { CoachMark } from "@/components/business/coach-mark"
+import { CodeBlock } from "@/components/code-block"
+
+# CoachMark 引导标记
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+引导标记 — 面向 ERP/企业场景的业务组件。
+CoachMark — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要引导标记功能时使用本组件。
+
+Use when you need a coach mark.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { CoachMark } from "@/components/business/coach-mark"
+
+export function Basic() {
+  return <CoachMark />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CoachMark
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
+| `onOpenChange` | `() => void` | — | 打开状态变化回调 <br/> Callback when open state changes |
+| `target` | `HTMLElement \| null` | — | 链接打开目标 <br/> Link target |
+| `title` | `string` | — | 标题 <br/> Title |
+| `description` | `React.ReactNode` | — | 描述文本 <br/> Description text |
+| `placement` | `"top" \| "bottom" \| "left" \| "right"` | `bottom` | 弹出位置 <br/> Placement position |
+| `onNext` | `() => void` | — |  |
+| `onSkip` | `() => void` | — |  |
+| `nextLabel` | `string` | `下一步` |  |
+| `skipLabel` | `string` | `跳过` |  |
+| `showSkip` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-coach-mark--docs)。

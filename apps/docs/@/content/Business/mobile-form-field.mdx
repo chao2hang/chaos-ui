@@ -1,0 +1,45 @@
+import { MobileFormField } from "@/components/business/mobile-form-field"
+import { CodeBlock } from "@/components/code-block"
+
+# MobileFormField 移动端表单字段
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+移动端表单字段 — 面向 ERP/企业场景的业务组件。
+MobileFormField — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要移动端表单字段功能时使用本组件。
+
+Use when you need a mobile form field.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { MobileFormField } from "@/components/business/mobile-form-field"
+
+export function Basic() {
+  return <MobileFormField />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MobileFormField
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `label` | `string` | — | 标签文本 <br/> Label text |
+| `description` | `string` | — | 描述文本 <br/> Description text |
+| `error` | `string` | — |  |
+| `required` | `boolean` | — | 是否必填 <br/> Whether required |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-form-field--docs)。

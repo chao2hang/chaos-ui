@@ -1,116 +1,41 @@
 import { DataTable } from "@/components/business/data-table"
 import { CodeBlock } from "@/components/code-block"
 
-# DataTable 数据表
+# DataTable 数据表格
 
-Chaos UI 数据表组件，提供类型安全的列定义和行数据渲染。
-A type-safe data table component with column definitions and row rendering.
+> 业务组件 / Domain-specific business components for ERP scenarios.
 
-## 何时使用 / When to use
+数据表格 — 面向 ERP/企业场景的业务组件。
+DataTable — a business component for ERP / enterprise scenarios.
 
-用于展示结构化的列表数据，提供列定义和行点击交互。适合需要类型安全和可定制列渲染的数据列表场景。
+## 何时使用 / When to Use
 
-Use for structured list data with column definitions and row click interaction. Best when you need type-safe columns and customizable cell rendering.
+业务数据表格,支持排序、筛选、分页和行操作。
+
+Business data table with sorting, filtering, pagination, and row actions.
 
 ## 代码示例 / Examples
 
-### 基础用法 / Basic
-
-<DataTable
-  columns={[
-    { key: "name", header: "姓名" },
-    { key: "email", header: "邮箱" },
-    { key: "role", header: "角色" },
-  ]}
-  data={[
-    { name: "张三", email: "zhang@example.com", role: "Admin" },
-    { name: "李四", email: "li@example.com", role: "Editor" },
-    { name: "王五", email: "wang@example.com", role: "Viewer" },
-  ]}
-/>
+### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { DataTable } from "@/components/business/data-table"
 
-const columns = [
-  { key: "name", header: "姓名" },
-  { key: "email", header: "邮箱" },
-  { key: "role", header: "角色" },
-]
-
-const data = [
-  { name: "张三", email: "zhang@example.com", role: "Admin" },
-  { name: "李四", email: "li@example.com", role: "Editor" },
-]
-
 export function Basic() {
-  return <DataTable columns={columns} data={data} />
+  return <DataTable />
 }`} lang="tsx" />
 
-### 自定义渲染 / Custom Render
 
-*在客户端组件中使用 `render` 函数自定义单元格：*
-
-<CodeBlock code={`const columns = [
-  { key: "name", header: "姓名" },
-  {
-    key: "status",
-    header: "状态",
-    render: (row) => (
-      <Badge color={row.status === "Active" ? "success" : "neutral"}>
-        {row.status === "Active" ? "● 激活" : "● 未激活"}
-      </Badge>
-    ),
-  },
-]
-
-<DataTable columns={columns} data={data} />`} lang="tsx" />
-
-### 空状态 / Empty State
-
-<DataTable
-  columns={[
-    { key: "name", header: "名称" },
-    { key: "value", header: "值" },
-  ]}
-  data={[]}
-/>
-
-<CodeBlock code={`<DataTable columns={columns} data={[]} />`} lang="tsx" />
-
-### 行点击 / Row Click
-
-*在客户端组件中绑定 `onRowClick`：*
-
-<CodeBlock code={`<DataTable
-  columns={columns}
-  data={data}
-  onRowClick={(row) => console.log("Clicked:", row)}
-/>`} lang="tsx" />
-
-## API
+## API / Props
 
 ### DataTable
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| columns | `Column<T>[]` | — | **必填**，列定义数组 | **Required** column definitions |
-| data | `T[]` | — | **必填**，行数据数组 | **Required** row data array |
-| onRowClick | `(row: T) => void` | — | 行点击回调（客户端组件） | Row click callback (client component) |
-| className | `string` | — | 自定义样式类名 | Custom CSS class |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
-### Column
+## 注意事项 / Notes
 
-| Prop | Type | Default | Description (zh) | Description (en) |
-|---|---|---|---|---|
-| key | `string` | — | **必填**，数据字段名 | **Required** data field key |
-| header | `string` | — | **必填**，表头显示文字 | **Required** column header text |
-| render | `(row: T) => React.ReactNode` | — | 自定义单元格渲染函数 | Custom cell render function |
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-## 注意事项
-
-- **泛型支持**：`DataTable<T>` 是泛型组件，`columns` 和 `data` 共享类型参数 `T`，提供编译时类型安全。
-- **render 函数**：不提供 `render` 时，默认渲染 `row[key]`。`render` 函数只能在客户端组件中使用。
-- **vs Table**：`DataTable` 提供列定义和行交互 API，`Table` 是纯 HTML 表格组件。需要排序/筛选/分页时使用 `AdvancedDataTable`。
-- **无障碍**：DataTable 内部使用 `<table>` 语义元素，表头使用 `<th>`。空状态时显示 `colSpan` 合并单元格提示。
-
-> 完整 Storybook autodocs: [Storybook 文档](?path=/docs/components-data-table--docs)
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-data-table--docs)。

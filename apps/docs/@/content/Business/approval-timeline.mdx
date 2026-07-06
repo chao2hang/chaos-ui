@@ -1,0 +1,43 @@
+import { ApprovalTimeline } from "@/components/business/approval-timeline"
+import { CodeBlock } from "@/components/code-block"
+
+# ApprovalTimeline 审批时间线
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+审批时间线 — 面向 ERP/企业场景的业务组件。
+ApprovalTimeline — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要审批时间线功能时使用本组件。
+
+Use when you need an approval timeline.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ApprovalTimeline } from "@/components/business/approval-timeline"
+
+export function Basic() {
+  return <ApprovalTimeline />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ApprovalTimeline
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `steps` | `ApprovalStep[]` | — |  |
+| ...rest | `React.ComponentProps<"ol">` | — | 透传 `<ol>` 原生属性 <br/> Inherits all `<ol>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<ol>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-approval-timeline--docs)。

@@ -1,0 +1,75 @@
+import { Result } from "@/components/ui/result"
+import { CodeBlock } from "@/components/code-block"
+
+# Result 结果页
+
+> 反馈组件 / Feedback and status communication to the user.
+
+向用户反馈操作结果(成功/失败/警告/404/403),常为整页。
+Feedback for an operation result (success/fail/warning/404/403), typically full-page.
+
+## 何时使用 / When to Use
+
+需要结果页功能时使用本组件。
+
+Use when you need a result.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Result } from "@/components/ui/result"
+
+export function Basic() {
+  return <Result>Default</Result>
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Result size="sm">Sm</Result>
+  <Result size="default">Default</Result>
+  <Result size="lg">Lg</Result>
+</div>`} lang="tsx" />
+
+
+## 样式变体 / Style Variants
+
+**状态 / status**
+
+| status | 说明 / Description | 默认 |
+|---|---|---|
+| `success` |  | ✓ |
+| `error` |  |  |
+| `info` |  |  |
+| `warning` |  |  |
+
+**尺寸 / Size**
+
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+
+## API / Props
+
+### Result
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `status` | `"success" \| "error" \| "info" \| "wa...` | `info` | Status determines default icon and color |
+| `title` | `React.ReactNode` | — | Title text |
+| `subtitle` | `React.ReactNode` | — | Subtitle / description |
+| `icon` | `React.ReactNode` | — | Custom icon override |
+| `extra` | `React.ReactNode` | — | Extra content (e.g., action buttons) |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-result--docs)。

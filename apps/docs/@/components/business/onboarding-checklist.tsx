@@ -1,22 +1,25 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export interface OnboardingStep {
-  id: string
-  title: string
-  description?: string
-  href?: string
-  optional?: boolean
+  id: string;
+  title: string;
+  description?: string;
+  href?: string;
+  optional?: boolean;
 }
 
-interface OnboardingChecklistProps extends React.ComponentProps<"div"> {
-  steps: OnboardingStep[]
-  completedIds?: string[]
-  onToggle?: (id: string, completed: boolean) => void
-  title?: string
-  className?: string
+interface OnboardingChecklistProps extends Omit<
+  React.ComponentProps<"div">,
+  "onToggle"
+> {
+  steps: OnboardingStep[];
+  completedIds?: string[];
+  onToggle?: (id: string, completed: boolean) => void;
+  title?: string;
+  className?: string;
 }
 
 export function OnboardingChecklist({
@@ -27,27 +30,39 @@ export function OnboardingChecklist({
   className,
   ...props
 }: OnboardingChecklistProps) {
-  const completed = steps.filter((s) => completedIds.includes(s.id)).length
-  const pct = steps.length === 0 ? 0 : (completed / steps.length) * 100
+  const completed = steps.filter((s) => completedIds.includes(s.id)).length;
+  const pct = steps.length === 0 ? 0 : (completed / steps.length) * 100;
   return (
-    <div data-slot="onboarding-checklist" className={cn("rounded-md border bg-card p-4", className)} {...props}>
+    <div
+      data-slot="onboarding-checklist"
+      className={cn("bg-card rounded-md border p-4", className)}
+      {...props}
+    >
       <div className="mb-3 flex items-end justify-between">
         <div>
           <h3 className="font-semibold">{title}</h3>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             {completed} / {steps.length} 已完成
           </p>
         </div>
-        <span className="text-2xl font-bold tabular-nums">{Math.round(pct)}%</span>
+        <span className="text-2xl font-bold tabular-nums">
+          {Math.round(pct)}%
+        </span>
       </div>
-      <div className="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-        <div className="h-full bg-primary transition-all" style={{ width: `${pct}%` }} />
+      <div className="bg-muted mb-3 h-1.5 w-full overflow-hidden rounded-full">
+        <div
+          className="bg-primary h-full transition-all"
+          style={{ width: `${pct}%` }}
+        />
       </div>
       <ul className="space-y-1">
         {steps.map((s) => {
-          const isDone = completedIds.includes(s.id)
+          const isDone = completedIds.includes(s.id);
           return (
-            <li key={s.id} className="flex items-center gap-2 rounded px-2 py-1.5 hover:bg-muted/30">
+            <li
+              key={s.id}
+              className="hover:bg-muted/30 flex items-center gap-2 rounded px-2 py-1.5"
+            >
               <input
                 type="checkbox"
                 checked={isDone}
@@ -55,20 +70,35 @@ export function OnboardingChecklist({
                 className="size-4"
                 aria-label={s.title}
               />
-              <div className="flex-1 min-w-0">
-                <div className={cn("text-sm", isDone && "line-through text-muted-foreground")}>{s.title}</div>
-                {s.description && <div className="text-xs text-muted-foreground">{s.description}</div>}
+              <div className="min-w-0 flex-1">
+                <div
+                  className={cn(
+                    "text-sm",
+                    isDone && "text-muted-foreground line-through",
+                  )}
+                >
+                  {s.title}
+                </div>
+                {s.description && (
+                  <div className="text-muted-foreground text-xs">
+                    {s.description}
+                  </div>
+                )}
               </div>
-              {s.optional && !isDone && <span className="text-[0.65rem] text-muted-foreground">可选</span>}
+              {s.optional && !isDone && (
+                <span className="text-muted-foreground text-[0.65rem]">
+                  可选
+                </span>
+              )}
               {s.href && (
-                <Button variant="ghost" size="xs" asChild={false}>
-                  <a href={s.href}>开始</a>
+                <Button variant="ghost" size="xs" render={<a href={s.href} />}>
+                  开始
                 </Button>
               )}
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }

@@ -1,0 +1,53 @@
+import { TopBar, MegaMenu } from "@/components/layout/top-bar"
+import { CodeBlock } from "@/components/code-block"
+
+# TopBar 顶部栏
+
+> 系统布局 / System-level layout shells for admin pages.
+
+顶部栏 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+TopBar — a system-level layout shell for admin/dashboard/auth pages.
+
+## 何时使用 / When to Use
+
+需要顶部栏功能时使用本组件。
+
+Use when you need a top bar.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { TopBar, MegaMenu } from "@/components/layout/top-bar"
+
+export function Basic() {
+  return (
+    <div className="space-y-4">
+  <TopBar />
+  <MegaMenu />
+    </div>
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### TopBar
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `logo` | `React.ReactNode` | `Chaos UI` |  |
+| `logoHref` | `string` | `/` |  |
+| `nav` | `TopBarItem[]` | — |  |
+| `actions` | `React.ReactNode` | — |  |
+| `sticky` | `boolean` | `true` |  |
+| `variant` | `"default" \| "transparent" \| "bordered"` | `default` | 样式变体 <br/> Style variant |
+| ...rest | `React.ComponentProps<"header">` | — | 透传 `<header>` 原生属性 <br/> Inherits all `<header>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<header>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-top-bar--docs)。

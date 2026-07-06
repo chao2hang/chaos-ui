@@ -1,0 +1,47 @@
+import { VideoPlayer } from "@/components/business/video-player"
+import { CodeBlock } from "@/components/code-block"
+
+# VideoPlayer 视频播放器
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+视频播放器 — 面向 ERP/企业场景的业务组件。
+VideoPlayer — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+播放视频内容,支持播放/暂停、进度条、音量控制。
+
+Play video content with play/pause, progress, and volume controls.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/business/video-player"
+
+export function Basic() {
+  return <VideoPlayer />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### VideoPlayer
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `src` | `string` | — | 资源地址 <br/> Source URL |
+| `poster` | `string` | — |  |
+| `title` | `string` | — | 标题 <br/> Title |
+| `autoplay` | `boolean` | `false` |  |
+| `loop` | `boolean` | `false` |  |
+| `muted` | `boolean` | `false` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-video-player--docs)。

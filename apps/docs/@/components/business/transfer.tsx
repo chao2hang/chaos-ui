@@ -1,39 +1,44 @@
-"use client"
-import * as React from "react"
-import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, CheckIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
+"use client";
+import * as React from "react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  SearchIcon,
+  CheckIcon,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export interface TransferItem {
-  key: string
-  label: string
-  description?: string
-  disabled?: boolean
+  key: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
 }
 
 interface TransferProps {
-  dataSource: TransferItem[]
-  targetKeys?: string[]
-  onChange?: (targetKeys: string[]) => void
-  titles?: [string, string]
-  searchable?: boolean
-  filterOption?: (input: string, item: TransferItem) => boolean
-  render?: (item: TransferItem) => React.ReactNode
-  disabled?: boolean
-  className?: string
-  oneWay?: boolean
+  dataSource: TransferItem[];
+  targetKeys?: string[];
+  onChange?: (targetKeys: string[]) => void;
+  titles?: [string, string];
+  searchable?: boolean;
+  filterOption?: (input: string, item: TransferItem) => boolean;
+  render?: (item: TransferItem) => React.ReactNode;
+  disabled?: boolean;
+  className?: string;
+  oneWay?: boolean;
 }
 
 const defaultFilter = (input: string, item: TransferItem) =>
-  item.label.toLowerCase().includes(input.toLowerCase())
+  item.label.toLowerCase().includes(input.toLowerCase());
 
 export function Transfer({
   dataSource,
   targetKeys = [],
   onChange,
-  titles = ["源列表", "目标列表"],
+  titles = ["Source", "Target"],
   searchable = true,
   filterOption = defaultFilter,
   render,
@@ -41,67 +46,101 @@ export function Transfer({
   className,
   oneWay = false,
 }: TransferProps) {
-  const [selectedSource, setSelectedSource] = React.useState<string[]>([])
-  const [selectedTarget, setSelectedTarget] = React.useState<string[]>([])
-  const [searchLeft, setSearchLeft] = React.useState("")
-  const [searchRight, setSearchRight] = React.useState("")
+  const [selectedSource, setSelectedSource] = React.useState<Set<string>>(
+    () => new Set(),
+  );
+  const [selectedTarget, setSelectedTarget] = React.useState<Set<string>>(
+    () => new Set(),
+  );
+  const [searchLeft, setSearchLeft] = React.useState("");
+  const [searchRight, setSearchRight] = React.useState("");
 
   const source = React.useMemo(
     () => dataSource.filter((d) => !targetKeys.includes(d.key)),
-    [dataSource, targetKeys]
-  )
+    [dataSource, targetKeys],
+  );
   const target = React.useMemo(
     () => dataSource.filter((d) => targetKeys.includes(d.key)),
-    [dataSource, targetKeys]
-  )
+    [dataSource, targetKeys],
+  );
 
-  const filteredSource = source.filter((s) => filterOption(searchLeft, s))
-  const filteredTarget = target.filter((s) => filterOption(searchRight, s))
+  const filteredSource = React.useMemo(
+    () => source.filter((s) => filterOption(searchLeft, s)),
+    [source, searchLeft, filterOption],
+  );
+  const filteredTarget = React.useMemo(
+    () => target.filter((s) => filterOption(searchRight, s)),
+    [target, searchRight, filterOption],
+  );
 
-  const moveToTarget = () => {
-    if (disabled) return
-    const next = Array.from(new Set([...targetKeys, ...selectedSource]))
-    onChange?.(next)
-    setSelectedSource([])
-  }
+  const moveToTarget = React.useCallback(() => {
+    if (disabled) return;
+    const next = Array.from(new Set([...targetKeys, ...selectedSource]));
+    onChange?.(next);
+    setSelectedSource(new Set());
+  }, [disabled, targetKeys, selectedSource, onChange]);
 
-  const moveToSource = () => {
-    if (disabled) return
-    const next = targetKeys.filter((k) => !selectedTarget.includes(k))
-    onChange?.(next)
-    setSelectedTarget([])
-  }
+  const moveToSource = React.useCallback(() => {
+    if (disabled) return;
+    const next = targetKeys.filter((k) => !selectedTarget.has(k));
+    onChange?.(next);
+    setSelectedTarget(new Set());
+  }, [disabled, targetKeys, selectedTarget, onChange]);
 
-  const moveSingleToTarget = (key: string) => {
-    if (disabled) return
-    const next = Array.from(new Set([...targetKeys, key]))
-    onChange?.(next)
-    setSelectedSource((prev) => prev.filter((k) => k !== key))
-  }
+  const moveSingleToTarget = React.useCallback(
+    (key: string) => {
+      if (disabled) return;
+      const next = Array.from(new Set([...targetKeys, key]));
+      onChange?.(next);
+      setSelectedSource((prev) => {
+        const s = new Set(prev);
+        s.delete(key);
+        return s;
+      });
+    },
+    [disabled, targetKeys, onChange],
+  );
 
-  const moveSingleToSource = (key: string) => {
-    if (disabled) return
-    const next = targetKeys.filter((k) => k !== key)
-    onChange?.(next)
-    setSelectedTarget((prev) => prev.filter((k) => k !== key))
-  }
+  const moveSingleToSource = React.useCallback(
+    (key: string) => {
+      if (disabled) return;
+      const next = targetKeys.filter((k) => k !== key);
+      onChange?.(next);
+      setSelectedTarget((prev) => {
+        const s = new Set(prev);
+        s.delete(key);
+        return s;
+      });
+    },
+    [disabled, targetKeys, onChange],
+  );
 
-  const toggleSource = (key: string) => {
-    setSelectedSource((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+  const toggleSource = React.useCallback((key: string) => {
+    setSelectedSource((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }, []);
 
-  const toggleTarget = (key: string) => {
-    setSelectedTarget((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-    )
-  }
+  const toggleTarget = React.useCallback((key: string) => {
+    setSelectedTarget((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }, []);
 
   return (
     <div
       data-slot="transfer"
-      className={cn("flex items-stretch gap-2", disabled && "opacity-50", className)}
+      className={cn(
+        "flex items-stretch gap-2",
+        disabled && "opacity-50",
+        className,
+      )}
     >
       <TransferPanel
         title={titles[0]}
@@ -120,8 +159,8 @@ export function Transfer({
           variant="outline"
           size="icon"
           onClick={moveToTarget}
-          disabled={selectedSource.length === 0 || disabled}
-          aria-label="添加到目标"
+          disabled={selectedSource.size === 0 || disabled}
+          aria-label="Move to target"
         >
           <ChevronRightIcon />
         </Button>
@@ -130,8 +169,8 @@ export function Transfer({
             variant="outline"
             size="icon"
             onClick={moveToSource}
-            disabled={selectedTarget.length === 0 || disabled}
-            aria-label="移回源"
+            disabled={selectedTarget.size === 0 || disabled}
+            aria-label="Move to source"
           >
             <ChevronLeftIcon />
           </Button>
@@ -150,7 +189,7 @@ export function Transfer({
         disabled={disabled}
       />
     </div>
-  )
+  );
 }
 
 function TransferPanel({
@@ -165,26 +204,27 @@ function TransferPanel({
   render,
   disabled,
 }: {
-  title: string
-  items: TransferItem[]
-  selected: string[]
-  onToggle: (key: string) => void
-  onItemDoubleClick?: (key: string) => void
-  searchable: boolean
-  searchValue: string
-  onSearchChange: (v: string) => void
-  render?: (item: TransferItem) => React.ReactNode
-  disabled?: boolean
+  title: string;
+  items: TransferItem[];
+  selected: Set<string>;
+  onToggle: (key: string) => void;
+  onItemDoubleClick?: (key: string) => void;
+  searchable: boolean;
+  searchValue: string;
+  onSearchChange: (v: string) => void;
+  render?: (item: TransferItem) => React.ReactNode;
+  disabled?: boolean;
 }) {
-  const allSelected = items.length > 0 && items.every((i) => selected.includes(i.key))
-  const someSelected = items.some((i) => selected.includes(i.key))
+  const allSelected =
+    items.length > 0 && items.every((i) => selected.has(i.key));
+  const someSelected = !allSelected && items.some((i) => selected.has(i.key));
 
   return (
     <div className="flex h-72 w-full flex-col rounded-md border">
       <div className="flex items-center justify-between border-b px-3 py-2 text-sm font-medium">
         <span>{title}</span>
-        <span className="text-xs text-muted-foreground">
-          {selected.length}/{items.length}
+        <span className="text-muted-foreground text-xs">
+          {selected.size}/{items.length}
         </span>
       </div>
       {searchable && (
@@ -193,7 +233,7 @@ function TransferPanel({
           <Input
             value={searchValue}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="搜索..."
+            placeholder="Search..."
             className="h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
           />
         </div>
@@ -201,10 +241,11 @@ function TransferPanel({
       <div className="flex items-center border-b px-3 py-1.5">
         <button
           type="button"
-          aria-label="全选"
+          aria-label="Select all"
           onClick={() => {
-            if (allSelected) items.forEach((i) => selected.includes(i.key) && onToggle(i.key))
-            else items.forEach((i) => !selected.includes(i.key) && onToggle(i.key))
+            if (allSelected)
+              items.forEach((i) => selected.has(i.key) && onToggle(i.key));
+            else items.forEach((i) => !selected.has(i.key) && onToggle(i.key));
           }}
           disabled={disabled || items.length === 0}
           className={cn(
@@ -213,19 +254,21 @@ function TransferPanel({
               ? "border-primary bg-primary text-primary-foreground"
               : someSelected
                 ? "border-primary bg-primary/50 text-primary-foreground"
-                : "border-input"
+                : "border-input",
           )}
         >
           {allSelected && <CheckIcon className="size-3" />}
           {!allSelected && someSelected && (
-            <span className="block h-0.5 w-2 bg-primary-foreground" />
+            <span className="bg-primary-foreground block h-0.5 w-2" />
           )}
         </button>
-        <span className="ml-2 text-xs text-muted-foreground">全选</span>
+        <span className="text-muted-foreground ml-2 text-xs">Select all</span>
       </div>
       <div className="flex-1 overflow-y-auto p-1">
         {items.length === 0 ? (
-          <div className="px-2 py-6 text-center text-sm text-muted-foreground">无数据</div>
+          <div className="text-muted-foreground px-2 py-6 text-center text-sm">
+            No data
+          </div>
         ) : (
           items.map((item) => (
             <label
@@ -233,25 +276,29 @@ function TransferPanel({
               className={cn(
                 "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
                 "hover:bg-accent",
-                item.disabled && "pointer-events-none opacity-50"
+                item.disabled && "pointer-events-none opacity-50",
               )}
               onDoubleClick={() => {
                 if (!item.disabled && !disabled) {
-                  onItemDoubleClick?.(item.key)
+                  onItemDoubleClick?.(item.key);
                 }
               }}
             >
               <Checkbox
-                checked={selected.includes(item.key)}
+                checked={selected.has(item.key)}
                 onCheckedChange={() => onToggle(item.key)}
                 disabled={item.disabled || disabled}
               />
               <div className="flex-1 truncate">
-                {render ? render(item) : (
+                {render ? (
+                  render(item)
+                ) : (
                   <>
                     <div className="truncate">{item.label}</div>
                     {item.description && (
-                      <div className="truncate text-xs text-muted-foreground">{item.description}</div>
+                      <div className="text-muted-foreground truncate text-xs">
+                        {item.description}
+                      </div>
                     )}
                   </>
                 )}
@@ -261,5 +308,5 @@ function TransferPanel({
         )}
       </div>
     </div>
-  )
+  );
 }
