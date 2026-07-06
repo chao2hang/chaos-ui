@@ -16,9 +16,6 @@ concurrency:
 env:
   REGISTRY: git.nomsg.cn
   IMAGE_NAME: chaos/chaos-ui
-  # 注意: 需在 Gitea repo 设置 secrets:
-  #   REGISTRY_USERNAME — Gitea 用户名
-  #   REGISTRY_TOKEN   — Gitea 访问令牌 (scope: write:package)
 
 jobs:
   build:
@@ -55,15 +52,14 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=sha,format=short
-            type=raw,value=latest,enable=${{ github.ref_name == "main" }}
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
 
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: ${{ github.event_name != "pull_request" }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
