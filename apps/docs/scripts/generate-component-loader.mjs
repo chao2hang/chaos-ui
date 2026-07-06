@@ -83,6 +83,7 @@ function generate() {
   console.log(`Parsed ${entries.length} component entries`);
 
   const loaders = [];
+  const businessNames = [];
   const skipped = [];
 
   for (const entry of entries) {
@@ -112,6 +113,13 @@ function generate() {
     }
 
     loaders.push(loader);
+
+    // Business components require concrete data props; the preview host uses
+    // this set to decide whether to skip a bare `<Component />` instantiation
+    // (which would throw at runtime) in favor of the "no live preview" panel.
+    if (relPath.startsWith("business/")) {
+      businessNames.push(`"${mapName}"`);
+    }
   }
 
   if (skipped.length > 0) {
@@ -131,6 +139,15 @@ import dynamic from "next/dynamic";
 export const componentLoaders: Record<string, React.ComponentType<unknown>> = {
 ${loaders.join("\n")}
 };
+
+/**
+ * Names of business components that require concrete data props to render.
+ * The preview host uses this set to skip bare instantiation for names that
+ * are NOT covered by a hand-authored fixture in \`component-previews.tsx\`.
+ */
+export const businessComponentNames: ReadonlySet<string> = new Set([
+${businessNames.map((n) => `  ${n},`).join("\n")}
+]);
 `;
 
   writeFileSync(OUTPUT_PATH, output, "utf-8");
