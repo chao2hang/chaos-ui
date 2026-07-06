@@ -67,6 +67,14 @@ test-results.json
 cov-check.cjs
 cov-detail.cjs
 
+# tracked snapshots / scratch notes
+components-page-snapshot.yml
+page-before-dark.yml
+components-search-button*.yml
+stellar-forging-newton.md
+todo.md
+apps/docs/todo.md
+
 # local scripts and reports
 /output/
 *.sh

@@ -6,7 +6,7 @@
  * @keywords message, toast, notification, feedback
  * @example
  * ```ts
- * import { message } from '@qxyfoods/chaos-ui';
+ * import { message } from '@chaos_team/chaos-ui';
  *
  * message.success('保存成功');
  * message.error('保存失败', { duration: 5 });
@@ -66,9 +66,18 @@ type ToastFn = ((
   content: React.ReactNode,
   options?: MessageOptions,
 ) => MessageType) & {
-  success: (content: React.ReactNode, options?: MessageOptions) => string | number;
-  error: (content: React.ReactNode, options?: MessageOptions) => string | number;
-  warning: (content: React.ReactNode, options?: MessageOptions) => string | number;
+  success: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
+  error: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
+  warning: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
   info: (content: React.ReactNode, options?: MessageOptions) => string | number;
   loading: (
     content: React.ReactNode,
@@ -90,7 +99,8 @@ function buildToastConfig(options?: MessageOptions): Record<string, unknown> {
   const config: Record<string, unknown> = {};
   if (options?.key !== undefined) config.id = options.key;
   if (options?.duration !== undefined) config.duration = options.duration;
-  if (options?.description !== undefined) config.description = options.description;
+  if (options?.description !== undefined)
+    config.description = options.description;
   if (options?.action) {
     config.action = {
       label: options.action.label,
@@ -98,7 +108,8 @@ function buildToastConfig(options?: MessageOptions): Record<string, unknown> {
     };
   }
   if (options?.icon !== undefined) config.icon = options.icon;
-  if (options?.className !== undefined) config.classNames = { toast: options.className };
+  if (options?.className !== undefined)
+    config.classNames = { toast: options.className };
   if (options?.onClick) config.onClick = options.onClick;
   if (options?.onDismiss) config.onDismiss = options.onDismiss;
   if (options?.onAutoClose) config.onAutoClose = options.onAutoClose;

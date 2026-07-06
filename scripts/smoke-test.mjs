@@ -2,7 +2,7 @@
 /**
  * 消费方 smoke test：验证发布产物的完整性与 exports 一致性。
  *
- * 模拟消费方 `pnpm add @qxyfoods/chaos-ui` 后能否真正 import：
+ * 模拟消费方 `pnpm add @chaos_team/chaos-ui` 后能否真正 import：
  * 1. 读 package.json exports，提取所有指向 dist 的产物路径
  * 2. 检查每个产物文件在文件系统存在（dist 需先 build）
  * 3. 检查 files 字段声明的关键文件存在（README/LICENSE/styles.css 等）

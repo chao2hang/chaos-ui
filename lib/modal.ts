@@ -6,7 +6,7 @@
  * @keywords modal, dialog, confirm, imperative, popup
  * @example
  * ```ts
- * import { Modal } from '@qxyfoods/chaos-ui';
+ * import { Modal } from '@chaos_team/chaos-ui';
  *
  * Modal.confirm({
  *   title: '确认删除?',
@@ -78,9 +78,16 @@ function openModal(kind: ModalKind, options: ModalConfirmOptions): void {
 export const Modal: ModalAPI = {
   confirm: (options) => openModal("confirm", options),
   info: (options) => openModal("info", { ...options, cancelText: undefined }),
-  warning: (options) => openModal("warning", { ...options, cancelText: undefined }),
-  success: (options) => openModal("success", { ...options, cancelText: undefined }),
-  error: (options) => openModal("error", { ...options, okVariant: "destructive", cancelText: undefined }),
+  warning: (options) =>
+    openModal("warning", { ...options, cancelText: undefined }),
+  success: (options) =>
+    openModal("success", { ...options, cancelText: undefined }),
+  error: (options) =>
+    openModal("error", {
+      ...options,
+      okVariant: "destructive",
+      cancelText: undefined,
+    }),
   closeAll: () => modalStore.closeAll(),
 };
 

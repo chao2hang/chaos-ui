@@ -3,7 +3,7 @@
 ## Supported Versions
 
 | Version | Supported          |
-|---------|--------------------|
+| ------- | ------------------ |
 | 1.0.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
@@ -14,7 +14,7 @@ If you discover a security vulnerability in Chaos UI, please report it responsib
 ### How to Report
 
 1. **Do NOT open a public GitHub issue.**
-2. Email the security team at: `security@qxyfoods.com`
+2. Email the security team at: `security@chao2hang.com`
 3. Include the following in your report:
    - Description of the vulnerability
    - Steps to reproduce

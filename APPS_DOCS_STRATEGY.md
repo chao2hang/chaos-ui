@@ -12,7 +12,7 @@
 | `apps/docs/@/`                        | **366**                                 | 影子副本（components / hooks / lib）                           |
 | `apps/docs/src/` + `apps/docs/app/`   | **183**                                 | 真正的 Next.js showcase 应用（stories/docs 页面）              |
 | `packages/chaos-design-ui/`           | 303 components + hooks + lib + index.ts | **发布包源码**（pnpm workspace 成员，`name: chaos-design-ui`） |
-| repo 根 `components/` `hooks/` `lib/` | —                                       | 历史遗留 demo 应用源码（`@qxyfoods/chaos-ui` 根 package）      |
+| repo 根 `components/` `hooks/` `lib/` | —                                       | 历史遗留 demo 应用源码（`@chaos_team/chaos-ui` 根 package）    |
 
 ### 1.2 关键事实（diff 实测）
 
@@ -121,7 +121,7 @@ apps/docs/package.json  --("chaos-design-ui": "file:../../packages/chaos-design-
 
 ### 阶段 5：根遗留 demo 应用（可选、独立任务）
 
-- repo 根 `components/` `hooks/` `lib/` `app/`（`@qxyfoods/chaos-ui`）与 `packages/chaos-design-ui/` 已漂移且未被任何发布路径消费，建议**独立工单**评估其去留（不在本 P1 范围）。本策略只要求 docs 不再维护第三份副本。
+- repo 根 `components/` `hooks/` `lib/` `app/`（`@chaos_team/chaos-ui`）与 `packages/chaos-design-ui/` 已漂移且未被任何发布路径消费，建议**独立工单**评估其去留（不在本 P1 范围）。本策略只要求 docs 不再维护第三份副本。
 
 ---
 

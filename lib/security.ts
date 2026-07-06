@@ -3,7 +3,7 @@
  *
  * Usage in next.config.ts:
  * ```ts
- * import { cspHeaders } from "@qxyfoods/chaos-ui/next";
+ * import { cspHeaders } from "@chaos_team/chaos-ui/next";
  *
  * export default {
  *   async headers() {

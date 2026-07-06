@@ -1,5 +1,5 @@
-# Gitea Actions — Docker 镜像构建
-# 推送到 main 或发 PR 时自动构建并推送镜像
+# GitHub Actions — Docker image build
+# Pushes Docker images on main / develop and release tags
 name: Docker Build
 
 on:
@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REGISTRY: git.nomsg.cn
-  IMAGE_NAME: chaos/chaos-ui
+  REGISTRY: ghcr.io
+  IMAGE_NAME: chao2hang/chaos-ui
 
 jobs:
   build:
@@ -34,12 +34,12 @@ jobs:
         with:
           driver-opts: network=ci-services
 
-      - name: Log in to Gitea Container Registry
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: git.nomsg.cn
-          username: chaos
-          password: ${{ secrets.CONTAINER_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata
         id: meta

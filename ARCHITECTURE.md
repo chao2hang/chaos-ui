@@ -6,22 +6,22 @@ Chaos UI is an enterprise-grade React component library built on top of `@base-u
 
 ## Technology Stack
 
-| Layer | Technology | Version |
-|-------|-----------|---------|
-| UI Primitives | @base-ui/react | 1.5.0 |
-| Styling | Tailwind CSS | 4.3.0 |
-| Variants | class-variance-authority | 0.7.1 |
-| Class Merge | tailwind-merge | 3.6.0 |
-| Forms | react-hook-form | 7.78.0 |
-| Validation | zod | 4.4.3 |
-| Data Fetching | @tanstack/react-query | 5.101.0 |
-| State | zustand | 5.0.14 |
-| Routing | Next.js | 16.2.9 |
-| i18n | i18next + react-i18next | 26/17 |
-| Charts | recharts | 3.8.1 |
-| DnD | @dnd-kit | 6.3.1 |
-| Notifications | sonner | 2.0.7 |
-| Drawer | vaul | 1.1.2 |
+| Layer         | Technology               | Version |
+| ------------- | ------------------------ | ------- |
+| UI Primitives | @base-ui/react           | 1.5.0   |
+| Styling       | Tailwind CSS             | 4.3.0   |
+| Variants      | class-variance-authority | 0.7.1   |
+| Class Merge   | tailwind-merge           | 3.6.0   |
+| Forms         | react-hook-form          | 7.78.0  |
+| Validation    | zod                      | 4.4.3   |
+| Data Fetching | @tanstack/react-query    | 5.101.0 |
+| State         | zustand                  | 5.0.14  |
+| Routing       | Next.js                  | 16.2.9  |
+| i18n          | i18next + react-i18next  | 26/17   |
+| Charts        | recharts                 | 3.8.1   |
+| DnD           | @dnd-kit                 | 6.3.1   |
+| Notifications | sonner                   | 2.0.7   |
+| Drawer        | vaul                     | 1.1.2   |
 
 ## Directory Structure
 
@@ -44,16 +44,16 @@ chaos_style/
 
 The library exports 7 subpath entries:
 
-| Export | Entry File | Contents |
-|--------|-----------|----------|
-| `@qxyfoods/chaos-ui` | `package/index.ts` | All (ui + business + hooks + lib) |
-| `@qxyfoods/chaos-ui/ui` | `package/ui.ts` | UI primitives only |
-| `@qxyfoods/chaos-ui/ui/icons` | `package/ui-icons.ts` | Icon exports |
-| `@qxyfoods/chaos-ui/ui-icons` | `package/ui-icons.ts` | Icon exports (alias) |
-| `@qxyfoods/chaos-ui/business` | `package/business.ts` | Business components only |
-| `@qxyfoods/chaos-ui/hooks` | `package/hooks.ts` | Hooks only |
-| `@qxyfoods/chaos-ui/lib` | `package/lib.ts` | Lib utilities only |
-| `@qxyfoods/chaos-ui/next` | `package/next.ts` | Next.js utilities |
+| Export                          | Entry File            | Contents                          |
+| ------------------------------- | --------------------- | --------------------------------- |
+| `@chaos_team/chaos-ui`          | `package/index.ts`    | All (ui + business + hooks + lib) |
+| `@chaos_team/chaos-ui/ui`       | `package/ui.ts`       | UI primitives only                |
+| `@chaos_team/chaos-ui/ui/icons` | `package/ui-icons.ts` | Icon exports                      |
+| `@chaos_team/chaos-ui/ui-icons` | `package/ui-icons.ts` | Icon exports (alias)              |
+| `@chaos_team/chaos-ui/business` | `package/business.ts` | Business components only          |
+| `@chaos_team/chaos-ui/hooks`    | `package/hooks.ts`    | Hooks only                        |
+| `@chaos_team/chaos-ui/lib`      | `package/lib.ts`      | Lib utilities only                |
+| `@chaos_team/chaos-ui/next`     | `package/next.ts`     | Next.js utilities                 |
 
 ## Build System
 

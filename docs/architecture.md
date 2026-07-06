@@ -70,12 +70,12 @@ package/               → Package entry points (re-exports)
 
 The library exposes 7 subpath exports:
 
-- `@qxyfoods/chaos-ui` (main)
-- `@qxyfoods/chaos-ui/ui`
-- `@qxyfoods/chaos-ui/ui/icons`
-- `@qxyfoods/chaos-ui/ui-icons`
-- `@qxyfoods/chaos-ui/business`
-- `@qxyfoods/chaos-ui/hooks`
-- `@qxyfoods/chaos-ui/lib`
-- `@qxyfoods/chaos-ui/next`
-- `@qxyfoods/chaos-ui/styles.css`
+- `@chaos_team/chaos-ui` (main)
+- `@chaos_team/chaos-ui/ui`
+- `@chaos_team/chaos-ui/ui/icons`
+- `@chaos_team/chaos-ui/ui-icons`
+- `@chaos_team/chaos-ui/business`
+- `@chaos_team/chaos-ui/hooks`
+- `@chaos_team/chaos-ui/lib`
+- `@chaos_team/chaos-ui/next`
+- `@chaos_team/chaos-ui/styles.css`

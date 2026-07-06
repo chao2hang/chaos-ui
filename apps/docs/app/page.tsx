@@ -275,14 +275,14 @@ export default async function Home() {
             {/* Subpath exports */}
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {[
-                "@qxyfoods/chaos-ui/ui",
-                "@qxyfoods/chaos-ui/business",
-                "@qxyfoods/chaos-ui/hooks",
-                "@qxyfoods/chaos-ui/lib",
-                "@qxyfoods/chaos-ui/next",
-                "@qxyfoods/chaos-ui/ui-icons",
-                "@qxyfoods/chaos-ui/styles.css",
-                "@qxyfoods/chaos-ui/ui/icons",
+                "@chaos_team/chaos-ui/ui",
+                "@chaos_team/chaos-ui/business",
+                "@chaos_team/chaos-ui/hooks",
+                "@chaos_team/chaos-ui/lib",
+                "@chaos_team/chaos-ui/next",
+                "@chaos_team/chaos-ui/ui-icons",
+                "@chaos_team/chaos-ui/styles.css",
+                "@chaos_team/chaos-ui/ui/icons",
               ].map((path) => (
                 <code
                   key={path}

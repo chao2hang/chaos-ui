@@ -60,6 +60,6 @@ function Button({ className, ...props }) {
 ## Creating a Custom Theme
 
 1. Define your color palette as CSS custom properties
-2. Import `@qxyfoods/chaos-ui/styles.css` in your app
+2. Import `@chaos_team/chaos-ui/styles.css` in your app
 3. Override tokens in your global stylesheet
 4. Use components as normal — they'll automatically pick up your theme

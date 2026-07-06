@@ -35,12 +35,12 @@ Chaos UI 是服务于清香园（QXY Foods）所有业务系统的企业级 Reac
 | `1.0.0-beta.x` | **API 冻结候选**：公开 API 趋稳，可试用，仍可能有 bug 修复与小调整               |
 | `1.0.0`        | 稳定版，遵循 semver：minor 加功能向后兼容，patch 仅修 bug                        |
 
-**1.0 公开 API 边界**：`@qxyfoods/chaos-ui`、`/ui`、`/ui/icons`、`/business`、`/hooks`、`/lib`、`/next`、`/styles.css` 这 8 个入口的导出为公开 API。`AdvancedDataTable` 等已标 `@deprecated` 的组件从公开 barrel 移除（文件保留供直接 import 过渡）。Breaking change 会先在 CHANGELOG 标注并在一个 minor 周期保留 deprecated 别名。
+**1.0 公开 API 边界**：`@chaos_team/chaos-ui`、`/ui`、`/ui/icons`、`/business`、`/hooks`、`/lib`、`/next`、`/styles.css` 这 8 个入口的导出为公开 API。`AdvancedDataTable` 等已标 `@deprecated` 的组件从公开 barrel 移除（文件保留供直接 import 过渡）。Breaking change 会先在 CHANGELOG 标注并在一个 minor 周期保留 deprecated 别名。
 
 ## 安装
 
 ```bash
-pnpm install @qxyfoods/chaos-ui
+pnpm install @chaos_team/chaos-ui
 ```
 
 ### Peer Dependencies
@@ -58,14 +58,14 @@ pnpm install next@^16 next-themes@^0.4
 ```css
 /* globals.css */
 @import "tailwindcss";
-@source "../node_modules/@qxyfoods/chaos-ui";
-@import "@qxyfoods/chaos-ui/styles.css";
+@source "../node_modules/@chaos_team/chaos-ui";
+@import "@chaos_team/chaos-ui/styles.css";
 ```
 
 ### 2. 引入组件
 
 ```tsx
-import { Button, Input, Dialog, DataTable } from "@qxyfoods/chaos-ui";
+import { Button, Input, Dialog, DataTable } from "@chaos_team/chaos-ui";
 
 function App() {
   return (
@@ -79,26 +79,26 @@ function App() {
 
 ### 3. 子路径导出（按需引入）
 
-| 路径                            | 说明               |
-| ------------------------------- | ------------------ |
-| `@qxyfoods/chaos-ui`            | 主入口（全部导出） |
-| `@qxyfoods/chaos-ui/ui`         | UI 基础组件        |
-| `@qxyfoods/chaos-ui/ui/icons`   | 图标导出           |
-| `@qxyfoods/chaos-ui/business`   | 业务组件           |
-| `@qxyfoods/chaos-ui/hooks`      | 自定义 Hooks       |
-| `@qxyfoods/chaos-ui/lib`        | 工具函数和国际化   |
-| `@qxyfoods/chaos-ui/next`       | Next.js 专用组件   |
-| `@qxyfoods/chaos-ui/styles.css` | 主题样式           |
+| 路径                              | 说明               |
+| --------------------------------- | ------------------ |
+| `@chaos_team/chaos-ui`            | 主入口（全部导出） |
+| `@chaos_team/chaos-ui/ui`         | UI 基础组件        |
+| `@chaos_team/chaos-ui/ui/icons`   | 图标导出           |
+| `@chaos_team/chaos-ui/business`   | 业务组件           |
+| `@chaos_team/chaos-ui/hooks`      | 自定义 Hooks       |
+| `@chaos_team/chaos-ui/lib`        | 工具函数和国际化   |
+| `@chaos_team/chaos-ui/next`       | Next.js 专用组件   |
+| `@chaos_team/chaos-ui/styles.css` | 主题样式           |
 
-> **Note**: `MessageProvider` / `Toaster` / `ThemeToggle` 从 `@qxyfoods/chaos-ui/next` 引入（而非主入口），因为它们依赖 `next-themes`（optional peer）。非 Next.js 项目使用主入口不会因此拉入 `next-themes`。
+> **Note**: `MessageProvider` / `Toaster` / `ThemeToggle` 从 `@chaos_team/chaos-ui/next` 引入（而非主入口），因为它们依赖 `next-themes`（optional peer）。非 Next.js 项目使用主入口不会因此拉入 `next-themes`。
 >
 > ```ts
-> import { ModalProvider } from "@qxyfoods/chaos-ui";
+> import { ModalProvider } from "@chaos_team/chaos-ui";
 > import {
 >   MessageProvider,
 >   Toaster,
 >   ThemeToggle,
-> } from "@qxyfoods/chaos-ui/next";
+> } from "@chaos_team/chaos-ui/next";
 > ```
 
 ### 暗色模式
@@ -108,8 +108,8 @@ function App() {
 ```tsx
 // app/layout.tsx
 import { ThemeProvider } from "next-themes";
-import "@qxyfoods/chaos-ui/styles.css";
-import { ThemeToggle } from "@qxyfoods/chaos-ui/next";
+import "@chaos_team/chaos-ui/styles.css";
+import { ThemeToggle } from "@chaos_team/chaos-ui/next";
 
 export default function RootLayout({ children }) {
   return (
@@ -232,30 +232,16 @@ docker compose up -d
 docker compose up -d --build
 ```
 
-### Gitea Actions CI
+### GitHub Actions Release
 
-推送到 `main` 或 `develop` 分支时自动构建 Docker 镜像并推送到 **Gitea Container Registry**：
+Tag pushes trigger the release workflow in `.github/workflows/release.yml`. It builds, tests, and publishes `@chaos_team/chaos-ui` to npmjs.org using the `NPM_TOKEN` secret.
 
-```bash
-docker login git.nomsg.cn -u <用户名> --password-stdin
-# 密码使用 Gitea 访问令牌（需 write:package 权限）
-
-docker pull git.nomsg.cn/chaos/chaos-ui:latest
-docker run -d --name chaos-ui -p 8080:8080 git.nomsg.cn/chaos/chaos-ui:latest
-```
-
-### 私有 npm 仓库
-
-项目使用自建 npm registry（Verdaccio），地址为 `https://git.nomsg.cn/npm/`，支持：
-
-- **私有包存储**：`@qxyfoods/*`、`@chaos/*` scope 包需认证后发布
-- **代理缓存**：自动从 `registry.npmjs.org` 缓存公共包，加速 CI 安装
+### Public npm Publish
 
 ```bash
-# 认证（获取 token）
-npm login --registry=https://git.nomsg.cn/npm/
-# 或使用 .npmrc 配置
-echo "//git.nomsg.cn/npm/:_authToken=<token>" >> ~/.npmrc
+npm install @chaos_team/chaos-ui
+# or
+pnpm add @chaos_team/chaos-ui
 ```
 
 ## 技术栈

@@ -5,7 +5,7 @@
  * Run with: npx tsx scripts/codemod-antd-to-chaos.mjs <path>
  *
  * Supported transformations:
- * - Import paths: `antd` → `@qxyfoods/chaos-ui`
+ * - Import paths: `antd` → `@chaos_team/chaos-ui`
  * - Component names: Modal → Dialog, Tag → Chip, etc.
  */
 
@@ -26,8 +26,8 @@ const componentMap: Record<string, string> = {
 };
 
 const importMap: Record<string, string> = {
-  antd: "@qxyfoods/chaos-ui",
-  "@ant-design/icons": "@qxyfoods/chaos-ui/ui/icons",
+  antd: "@chaos_team/chaos-ui",
+  "@ant-design/icons": "@chaos_team/chaos-ui/ui/icons",
 };
 
 function transformContent(content: string): string {

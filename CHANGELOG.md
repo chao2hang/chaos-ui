@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to **@qxyfoods/chaos-ui** will be documented in this file.
+All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -88,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking（相对 0.6.0）
 
-- `AdvancedDataTable` 不再从 `@qxyfoods/chaos-ui/business` 导出（文件保留供直接 import 过渡）。
+- `AdvancedDataTable` 不再从 `@chaos_team/chaos-ui/business` 导出（文件保留供直接 import 过渡）。
 - 无其他新增 breaking（0.6 的 useBreakpoint/DictSelect breaking 已在 0.5 标注）。
 
 ## [0.6.0] — 2026-06-30
@@ -274,7 +274,7 @@ P2 体验/边界：
 
 ### Added
 
-- Initial release of `@qxyfoods/chaos-ui`.
+- Initial release of `@chaos_team/chaos-ui`.
 - 67 UI primitive components based on `@base-ui/react` + Tailwind CSS.
 - 85 business components.
 - 10 layout components.

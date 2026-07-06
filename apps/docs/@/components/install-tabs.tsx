@@ -5,17 +5,17 @@ import {
 } from "@/components/install-tabs-client";
 
 const commandStrings = {
-  npm: "npm install @qxyfoods/chaos-ui",
-  pnpm: "pnpm add @qxyfoods/chaos-ui",
-  yarn: "yarn add @qxyfoods/chaos-ui",
+  npm: "npm install @chaos_team/chaos-ui",
+  pnpm: "pnpm add @chaos_team/chaos-ui",
+  yarn: "yarn add @chaos_team/chaos-ui",
 } as const;
 
 const cssImportCode = `/* styles.css */
-@import "@qxyfoods/chaos-ui/styles.css";`;
+@import "@chaos_team/chaos-ui/styles.css";`;
 
-const usageCode = `import { Button } from "@qxyfoods/chaos-ui/ui";
-import { useCrud } from "@qxyfoods/chaos-ui/hooks";
-import { cn } from "@qxyfoods/chaos-ui/lib";
+const usageCode = `import { Button } from "@chaos_team/chaos-ui/ui";
+import { useCrud } from "@chaos_team/chaos-ui/hooks";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export default function App() {
   return <Button>Click me</Button>;

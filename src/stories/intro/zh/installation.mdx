@@ -5,7 +5,7 @@ description: 如何在项目中安装 Chaos UI
 
 # 安装
 
-Chaos UI 作为 npm 包提供：`@qxyfoods/chaos-ui`。
+Chaos UI 作为 npm 包提供：`@chaos_team/chaos-ui`。
 
 ## 环境要求
 
@@ -18,19 +18,19 @@ Chaos UI 作为 npm 包提供：`@qxyfoods/chaos-ui`。
 **npm**
 
 ```bash
-npm install @qxyfoods/chaos-ui
+npm install @chaos_team/chaos-ui
 ```
 
 **yarn**
 
 ```bash
-yarn add @qxyfoods/chaos-ui
+yarn add @chaos_team/chaos-ui
 ```
 
 **pnpm**
 
 ```bash
-pnpm add @qxyfoods/chaos-ui
+pnpm add @chaos_team/chaos-ui
 ```
 
 ## 同伴依赖
@@ -52,7 +52,7 @@ npm install next@^16 next-themes@^0.4
 在应用入口引入 CSS 文件：
 
 ```tsx
-import "@qxyfoods/chaos-ui/styles.css";
+import "@chaos_team/chaos-ui/styles.css";
 ```
 
 ## Tailwind 配置（可选）
@@ -66,7 +66,7 @@ import type { Config } from "tailwindcss";
 export default {
   content: [
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@qxyfoods/chaos-ui/dist/**/*.{js,cjs}",
+    "./node_modules/@chaos_team/chaos-ui/dist/**/*.{js,cjs}",
   ],
 } satisfies Config;
 ```
@@ -74,7 +74,7 @@ export default {
 ## 使用方法
 
 ```tsx
-import { Button, Input, Dialog } from "@qxyfoods/chaos-ui";
+import { Button, Input, Dialog } from "@chaos_team/chaos-ui";
 
 function App() {
   return (
@@ -92,16 +92,16 @@ function App() {
 
 ```tsx
 // 仅导入 UI 原语
-import { Button } from "@qxyfoods/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 // 仅导入 hooks
-import { useDebounce } from "@qxyfoods/chaos-ui/hooks";
+import { useDebounce } from "@chaos_team/chaos-ui/hooks";
 
 // 仅导入 lib 工具
-import { cn } from "@qxyfoods/chaos-ui/lib";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 // 仅导入业务组件
-import { DataTable } from "@qxyfoods/chaos-ui/business";
+import { DataTable } from "@chaos_team/chaos-ui/business";
 ```
 
 ## TypeScript
@@ -109,5 +109,5 @@ import { DataTable } from "@qxyfoods/chaos-ui/business";
 Chaos UI 使用 TypeScript 构建，自带完整类型定义，无需额外的 `@types` 包。
 
 ```tsx
-import type { ButtonProps } from "@qxyfoods/chaos-ui/ui";
+import type { ButtonProps } from "@chaos_team/chaos-ui/ui";
 ```

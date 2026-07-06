@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-Chaos UI (`@qxyfoods/chaos-ui`) is a Storybook-first React/Next.js enterprise component library for ERP and business systems (serving `qxy-mop` and future business applications).
+Chaos UI (`@chaos_team/chaos-ui`) is a Storybook-first React/Next.js enterprise component library for ERP and business systems (serving `qxy-mop` and future business applications).
 
 - **Current Version**: 0.1.0 → Target: 1.0.0
 - **Tech Stack**: React 19, Next.js 16, TypeScript 5.9, Tailwind CSS 4, @base-ui/react, Storybook 10

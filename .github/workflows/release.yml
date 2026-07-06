@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: http://verdaccio:4873
+          registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
 
@@ -45,10 +45,10 @@ jobs:
       - name: Build Storybook
         run: pnpm run build-storybook
 
-      - name: Publish to Verdaccio
-        run: pnpm publish
+      - name: Publish to npmjs.org
+        run: pnpm publish --access public --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

@@ -3,14 +3,14 @@
 # 访问地址: http://localhost:8080
 #          http://localhost:8080/storybook
 #
-# 默认从 Gitea Container Registry 拉取预构建镜像。
+# 默认从 GHCR 拉取预构建镜像。
 # 如需从源码构建，取消注释 build 配置并注释 image 配置即可。
 # ─────────────────────────────────────────────────────────────────
 
 services:
   chaos-ui:
     # ── 方式 A: 从 registry 拉取（推荐，一键部署） ──
-    image: git.nomsg.cn/chaos/chaos-ui:latest
+    image: ghcr.io/chao2hang/chaos-ui:latest
 
     # ── 方式 B: 从源码构建（需要 Dockerfile + 源码） ──
     # build:

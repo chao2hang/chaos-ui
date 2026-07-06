@@ -48,7 +48,7 @@
 
 ### Migration Steps
 
-1. Install `@qxyfoods/chaos-ui` and import `styles.css`
+1. Install `@chaos_team/chaos-ui` and import `styles.css`
 2. Replace component imports one by one
 3. Replace `message.*` with `toast.*`
 4. Replace antd `Form` with `react-hook-form` + `Form` / `FormField`
