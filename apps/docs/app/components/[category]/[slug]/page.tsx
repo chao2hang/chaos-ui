@@ -10,6 +10,7 @@ import type { ComponentMeta } from "@/content/components.meta";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
 import { dict } from "@/lib/i18n/dict";
 import type { Locale } from "@/lib/i18n/locale";
+import { ComponentPreview } from "@/components/component-preview";
 
 /* -------------------------------------------------------------------------- */
 /*  All 300 components — static generation for every MDX detail page          */
@@ -146,22 +147,15 @@ async function loadMdx(
   slug: string,
   locale: Locale,
 ): Promise<React.ComponentType | null> {
-  // Try the locale-specific MDX first (e.g. `activity-feed.zh.mdx`),
-  // then fall back to the original unsplit file (`activity-feed.mdx`).
   try {
     const mod = await import(`@/content/${category}/${slug}.${locale}.mdx`);
     if ((mod as { default?: React.ComponentType }).default) {
       return (mod as { default: React.ComponentType }).default;
     }
   } catch {
-    // locale-specific file doesn't exist yet — fall through to legacy file
+    // locale-specific file doesn't exist
   }
-  try {
-    const mod = await import(`@/content/${category}/${slug}.mdx`);
-    return (mod as { default?: React.ComponentType }).default ?? null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -227,6 +221,9 @@ export default async function ComponentDetailPage({
           </a>
         )}
       </div>
+
+      {/* Live component preview */}
+      <ComponentPreview name={meta.name} nameZh={meta.nameZh} />
 
       {/* MDX content */}
       <article>
