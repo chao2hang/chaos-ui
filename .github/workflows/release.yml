@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: http://10.91.3.253:4873
+          registry-url: http://verdaccio:4873
 
       - run: pnpm install --frozen-lockfile
 
