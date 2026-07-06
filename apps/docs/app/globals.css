@@ -1,6 +1,9 @@
 @import "tailwindcss" source(none);
+@import "tw-animate-css";
+@import "../../../styles/scrollbar.css";
 
-/* @import "tw-animate-css"; */
+/* Mirrored from ../../styles.css — see audit C8. Long-term: extract tokens.css shared module. */
+
 
 @source "../mdx-components.tsx";
 @source "../../../packages/chaos-design-ui/components/ui/*.tsx";
@@ -13,7 +16,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -154,6 +157,51 @@
   --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.1), 0 4px 6px -4px oklch(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.25);
+
+  /* Extended tokens — mirrored from ../../styles.css (audit C8) */
+
+  /* selection tokens (drive ::selection) */
+  --selection: oklch(0.87 0.04 250);
+  --selection-foreground: oklch(0.26 0.08 250);
+
+  /* disabled-state tokens (reuse muted surfaces) */
+  --disabled-bg: var(--muted);
+  --disabled-text: var(--muted-foreground);
+  --disabled-border: var(--border);
+
+  /* overlay / mask tokens for Dialog, Drawer, Popover backdrops */
+  --overlay-color: oklch(0 0 0 / 0.5);
+  --mask-color: oklch(0 0 0 / 0.45);
+
+  /* transition duration / easing tokens for consistent motion rhythm */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: var(--duration-base);
+  --transition-function: var(--ease-standard);
+
+  /* typography scale tokens (size-only, complements Tailwind --text-*) */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  /* z-index layering tokens */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-overlay: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  --z-index-toast: 1080;
 }
 
 .dark {
@@ -221,6 +269,12 @@
   --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.4), 0 4px 6px -4px oklch(0 0 0 / 0.3);
   --shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.4), 0 8px 10px -6px oklch(0 0 0 / 0.3);
   --shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.6);
+
+  /* Extended tokens — mirrored from ../../styles.css (audit C8) */
+  --selection: oklch(0.4 0.16 250);
+  --selection-foreground: oklch(0.97 0.01 250);
+  --overlay-color: oklch(0 0 0 / 0.7);
+  --mask-color: oklch(0 0 0 / 0.6);
 }
 
 @layer base {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { ChaosI18nProvider } from "@/lib/i18n/provider";
 import { LocaleProvider } from "@/hooks/use-locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -39,10 +40,17 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <LocaleProvider>
           <ChaosI18nProvider>
-            <TooltipProvider>
-              <Toaster richColors position="top-right" />
-              {children}
-            </TooltipProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <TooltipProvider>
+                <Toaster richColors position="top-right" />
+                {children}
+              </TooltipProvider>
+            </ThemeProvider>
           </ChaosI18nProvider>
         </LocaleProvider>
       </body>

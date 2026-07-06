@@ -1,6 +1,50 @@
-import "@testing-library/jest-dom/vitest"
-import { vi, beforeEach, afterEach } from "vitest"
-import React from "react"
+import "@testing-library/jest-dom/vitest";
+import { vi, beforeEach, afterEach } from "vitest";
+import React from "react";
+
+function createStorage() {
+  const store = new Map<string, string>();
+
+  return {
+    getItem(key: string) {
+      return store.has(key) ? store.get(key)! : null;
+    },
+    setItem(key: string, value: string) {
+      store.set(key, String(value));
+    },
+    removeItem(key: string) {
+      store.delete(key);
+    },
+    clear() {
+      store.clear();
+    },
+    key(index: number) {
+      return Array.from(store.keys())[index] ?? null;
+    },
+    get length() {
+      return store.size;
+    },
+  };
+}
+
+function ensureStorage(name: "localStorage" | "sessionStorage") {
+  if (typeof window === "undefined") return;
+
+  try {
+    const storage = window[name];
+    if (storage) {
+      storage.clear();
+      return;
+    }
+  } catch {
+    // fall through to polyfill
+  }
+
+  Object.defineProperty(window, name, {
+    value: createStorage(),
+    configurable: true,
+  });
+}
 
 if (typeof window !== "undefined" && !window.matchMedia) {
   window.matchMedia = vi.fn().mockImplementation((query: string) => ({
@@ -12,7 +56,7 @@ if (typeof window !== "undefined" && !window.matchMedia) {
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
-  }))
+  }));
 }
 
 if (typeof window !== "undefined" && !window.IntersectionObserver) {
@@ -24,7 +68,7 @@ if (typeof window !== "undefined" && !window.IntersectionObserver) {
     root: null,
     rootMargin: "",
     thresholds: [],
-  })) as unknown as typeof IntersectionObserver
+  })) as unknown as typeof IntersectionObserver;
 }
 
 if (typeof window !== "undefined" && !window.ResizeObserver) {
@@ -32,15 +76,28 @@ if (typeof window !== "undefined" && !window.ResizeObserver) {
     observe: vi.fn(),
     unobserve: vi.fn(),
     disconnect: vi.fn(),
-  }))
+  }));
 }
 
 if (typeof window !== "undefined" && !window.scrollTo) {
-  window.scrollTo = vi.fn()
+  window.scrollTo = vi.fn();
 }
 
 if (typeof Element !== "undefined" && !Element.prototype.scrollIntoView) {
-  Element.prototype.scrollIntoView = vi.fn()
+  Element.prototype.scrollIntoView = vi.fn();
+}
+
+// HTMLDialogElement — jsdom does not implement show/showModal/close (audit C7)
+if (typeof HTMLDialogElement !== "undefined") {
+  HTMLDialogElement.prototype.show ??= function (this: HTMLDialogElement) {
+    this.open = true;
+  };
+  HTMLDialogElement.prototype.showModal ??= function (this: HTMLDialogElement) {
+    this.open = true;
+  };
+  HTMLDialogElement.prototype.close ??= function (this: HTMLDialogElement) {
+    this.open = false;
+  };
 }
 
 vi.mock("next/navigation", () => ({
@@ -55,7 +112,7 @@ vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/"),
   useSearchParams: vi.fn(() => new URLSearchParams()),
   useParams: vi.fn(() => ({})),
-}))
+}));
 
 vi.mock("next-themes", () => ({
   useTheme: vi.fn(() => ({
@@ -66,16 +123,14 @@ vi.mock("next-themes", () => ({
     systemTheme: "light",
   })),
   ThemeProvider: ({ children }: { children: React.ReactNode }) => children,
-}))
+}));
 
 beforeEach(() => {
-  if (typeof window !== "undefined") {
-    window.localStorage.clear()
-    window.sessionStorage.clear()
-  }
-})
+  ensureStorage("localStorage");
+  ensureStorage("sessionStorage");
+});
 
 afterEach(() => {
-  vi.clearAllMocks()
-  vi.useRealTimers()
-})
+  vi.clearAllMocks();
+  vi.useRealTimers();
+});

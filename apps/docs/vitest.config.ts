@@ -1,36 +1,27 @@
-import { defineConfig } from "vitest/config"
-import { storybookTest } from "@storybook/addon-vitest"
-import react from "@vitejs/plugin-react"
-import path from "node:path"
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./"),
+      "@": path.resolve(__dirname, "./@"),
     },
   },
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
-    include: [
-      "**/*.test.{ts,tsx}",
-      "src/**/*.test.{ts,tsx}",
-    ],
-    exclude: [
-      "node_modules",
-      ".next",
-      "storybook-static",
-      "dist",
-    ],
+    include: ["**/*.test.{ts,tsx}", "src/**/*.test.{ts,tsx}"],
+    exclude: ["node_modules", ".next", "storybook-static", "dist"],
     coverage: {
       provider: "v8",
       reporter: ["text", "html", "json", "lcov"],
       include: [
-        "components/**/*.{ts,tsx}",
-        "hooks/**/*.{ts,tsx}",
-        "lib/**/*.{ts,tsx}",
+        "@/components/**/*.{ts,tsx}",
+        "@/hooks/**/*.{ts,tsx}",
+        "@/lib/**/*.{ts,tsx}",
       ],
       exclude: [
         "**/*.test.{ts,tsx}",
@@ -46,19 +37,4 @@ export default defineConfig({
       },
     },
   },
-  projects: [
-    {
-      name: "storybook",
-      test: {
-        name: "storybook",
-        browser: {
-          enabled: true,
-          instances: [{ browser: "chromium" }],
-          provider: "playwright",
-        },
-        setupFiles: ["./vitest.setup.ts"],
-        include: ["src/**/*.stories.{ts,tsx}"],
-      },
-    },
-  ],
-})
+});

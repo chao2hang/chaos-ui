@@ -132,7 +132,7 @@ function AutoComplete({
       />
       <PopoverContent
         align="start"
-        className="w-[var(--radix-popover-trigger-width)] p-1"
+        className="w-[var(--anchor-width,100%)] p-1"
       >
         {options.map((option, idx) => (
           <button
