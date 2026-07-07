@@ -1,18 +1,12 @@
 "use client";
 
-import {
-  Component,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { Component, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   componentLoaders,
   businessComponentNames,
 } from "@/components/component-loader";
 import { componentPreviews } from "@/components/component-previews";
+import { componentStoryPreviews } from "@/components/component-story-previews";
 
 /* -------------------------------------------------------------------------- */
 /*  Preview chrome                                                            */
@@ -42,7 +36,7 @@ function PreviewCard({
         </span>
       </div>
       {/* Preview area */}
-      <div className="flex min-h-[120px] items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--color-muted)_10px,var(--color-muted)_12px)] [background-size:20px_20px] p-8">
+      <div className="flex min-h-[120px] items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--muted)_10px,var(--muted)_12px)] [background-size:20px_20px] p-8">
         {children}
       </div>
     </div>
@@ -70,6 +64,15 @@ function PreviewFallback({ name }: { name: string }) {
       <p className="text-muted-foreground text-sm">
         No live preview available for <code className="text-xs">{name}</code>.
       </p>
+    </div>
+  );
+}
+
+function PreviewChecking() {
+  return (
+    <div className="text-muted-foreground flex items-center gap-2 text-xs">
+      <span className="bg-muted-foreground/25 size-2 animate-pulse rounded-full" />
+      Loading preview…
     </div>
   );
 }
@@ -116,6 +119,14 @@ class PreviewErrorBoundary extends Component<
 /*  We detect that after mount and swap in a friendly missing-preview panel.  */
 /* -------------------------------------------------------------------------- */
 
+type RenderStatus = "checking" | "hasContent" | "empty";
+
+const emptyRenderGraceMs = 900;
+
+function hasMeaningfulContent(el: HTMLElement) {
+  return el.children.length > 0 || Boolean(el.textContent?.trim());
+}
+
 function EmptyRenderSensor({
   name,
   children,
@@ -124,36 +135,49 @@ function EmptyRenderSensor({
   children: ReactNode;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [status, setStatus] = useState<RenderStatus>("checking");
 
-  // `useLayoutEffect` so we measure after commit but before paint on client.
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    // A component that only registers a portal / provider has no rendered
-    // children in its inline slot; treat that as empty.
-    const meaningful = el.children.length > 0 || el.textContent?.trim();
-    setIsEmpty(!meaningful);
-  }, [name]);
 
-  // Re-check on a microtask in case the child renders asynchronously
-  // (e.g. dynamic import hydration).
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      const el = wrapRef.current;
-      if (!el) return;
-      const meaningful = el.children.length > 0 || el.textContent?.trim();
-      setIsEmpty(!meaningful);
+    setStatus("checking");
+
+    const check = () => {
+      if (hasMeaningfulContent(el)) {
+        setStatus("hasContent");
+        return true;
+      }
+      return false;
+    };
+
+    if (check()) return;
+
+    const observer = new MutationObserver(check);
+    observer.observe(el, {
+      childList: true,
+      characterData: true,
+      subtree: true,
     });
-    return () => cancelAnimationFrame(id);
+
+    const timeout = window.setTimeout(() => {
+      if (!check()) setStatus("empty");
+      observer.disconnect();
+    }, emptyRenderGraceMs);
+
+    return () => {
+      window.clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, [name]);
 
   return (
     <>
-      <div ref={wrapRef} style={{ display: isEmpty ? "none" : "contents" }}>
+      <div ref={wrapRef} style={{ display: status === "empty" ? "none" : "contents" }}>
         {children}
       </div>
-      {isEmpty && <PreviewMissing name={name} />}
+      {status === "checking" && <PreviewChecking />}
+      {status === "empty" && <PreviewMissing name={name} />}
     </>
   );
 }
@@ -181,16 +205,29 @@ export function ComponentPreviewImpl({
     );
   }
 
-  // 2. Fall back to the auto-generated loader (bare component instantiation).
+  // 2. Storybook fixtures cover most components without requiring duplicate
+  // docs-only demo code.
+  const StoryPreview = componentStoryPreviews[name];
+  if (StoryPreview) {
+    return (
+      <PreviewErrorBoundary name={name}>
+        <PreviewCard name={name} nameZh={nameZh}>
+          <StoryPreview />
+        </PreviewCard>
+      </PreviewErrorBoundary>
+    );
+  }
+
+  // 3. Fall back to the auto-generated loader (bare component instantiation).
   const Loader = componentLoaders[name];
   if (!Loader) {
     return <PreviewFallback name={name} />;
   }
 
   // Business components need concrete data props (user, rows, …) that a bare
-  // `<Component />` instantiation can't supply. If we don't have a hand-authored
-  // fixture for one, skip rendering entirely — the throw would otherwise
-  // surface in the Next.js dev overlay even though our error boundary catches it.
+  // `<Component />` instantiation can't supply. If we don't have a fixture for
+  // one, skip rendering entirely — the throw would otherwise surface in the
+  // Next.js dev overlay even though our error boundary catches it.
   if (businessComponentNames.has(name)) {
     return <PreviewFallback name={name} />;
   }

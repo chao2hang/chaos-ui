@@ -44,7 +44,7 @@ function MapChart({ region, data, className }: MapChartProps) {
         </span>
       </div>
       <div
-        className="relative h-48 w-full overflow-hidden rounded-md bg-[radial-gradient(circle_at_30%_30%,var(--color-muted),transparent_70%)] ring-1 ring-border"
+        className="relative h-48 w-full overflow-hidden rounded-md bg-[radial-gradient(circle_at_30%_30%,var(--muted),transparent_70%)] ring-1 ring-border"
         role="presentation"
       >
         {data.map((d, i) => {
