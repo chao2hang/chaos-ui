@@ -19,7 +19,22 @@ async function main() {
     const page = await browser.newPage();
 
     console.log(`🔍 Scanning ${TARGET_URL} ...`);
-    await page.goto(TARGET_URL, { waitUntil: "networkidle", timeout: 60000 });
+
+    // Retry until the server is ready (up to 30s)
+    const deadline = Date.now() + 30000;
+    let lastError;
+    while (Date.now() < deadline) {
+      try {
+        await page.goto(TARGET_URL, { waitUntil: "networkidle", timeout: 10000 });
+        lastError = null;
+        break;
+      } catch (e) {
+        lastError = e.message;
+        console.log(`  Waiting for server... (${lastError.slice(0, 60)})`);
+        await new Promise((r) => setTimeout(r, 2000));
+      }
+    }
+    if (lastError) throw new Error(`Server did not become ready: ${lastError}`);
 
     const results = await new AxeBuilder({ page }).analyze();
 

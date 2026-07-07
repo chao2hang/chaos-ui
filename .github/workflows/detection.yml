@@ -112,6 +112,5 @@ jobs:
       - run: pnpm run build-storybook
       - name: 启动 Storybook 并扫描
         run: |
-          npx serve storybook-static -p 6006 &
-          sleep 3
+          npx serve storybook-static -p 6006 --no-clipboard &
           node scripts/a11y-scan.mjs http://localhost:6006
