@@ -1,6 +1,6 @@
 {
   "name": "chaos-design-ui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "description": "Enterprise component design system built with React 19, Tailwind CSS 4, and shadcn/ui",
