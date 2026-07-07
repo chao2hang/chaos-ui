@@ -13,6 +13,16 @@ import * as React from "react";
 import { RocketIcon, SettingsIcon, UserIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { KPIPanel } from "@/components/ui/kpi-panel";
+import { Menu } from "@/components/ui/menu";
+import { Menubar } from "@/components/ui/menubar";
+import { Popconfirm } from "@/components/ui/popconfirm";
+import {
+  MessageProvider,
+  MessageContext,
+} from "@/components/ui/message-provider";
+import { ModalProvider, ModalContext } from "@/components/ui/modal-provider";
+import { KeyboardShortcutDialog } from "@/components/ui/keyboard-shortcut-dialog";
 import {
   Dialog,
   DialogTrigger,
@@ -569,6 +579,80 @@ function ButtonDemo() {
 /*  Below are minimal, hand-curated fixtures that exercise the happy path.    */
 /* -------------------------------------------------------------------------- */
 
+function KPIPanelDemo() {
+  return (
+    <div className="w-full max-w-3xl">
+      <KPIPanel
+        columns={4}
+        items={[
+          {
+            label: "Total Revenue",
+            value: "$45,231.89",
+            change: 20.1,
+            changeLabel: "from last month",
+            icon: <TrendingUpIcon className="size-4" />,
+            trend: "up",
+          },
+          {
+            label: "Active Users",
+            value: "12,450",
+            change: 8.4,
+            changeLabel: "from last week",
+            icon: <UsersIcon className="size-4" />,
+            trend: "up",
+          },
+          {
+            label: "Conversion Rate",
+            value: "4.8%",
+            change: -1.2,
+            changeLabel: "from last month",
+            icon: <FilterIcon className="size-4" />,
+            trend: "down",
+          },
+          {
+            label: "Customer Satisfaction",
+            value: "98%",
+            change: 2.1,
+            changeLabel: "from last quarter",
+            icon: <StarIcon className="size-4" />,
+            trend: "up",
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+function MenuDemo() {
+  return (
+    <div className="w-full max-w-sm rounded-lg border p-2">
+      <Menu
+        mode="inline"
+        selectedKeys={["dashboard"]}
+        items={[
+          { key: "dashboard", label: "Dashboard", shortcut: "⌘D" },
+          {
+            key: "analytics",
+            label: "Analytics",
+            children: [
+              { key: "overview", label: "Overview", shortcut: "⌘1" },
+              { key: "reports", label: "Reports", shortcut: "⌘2" },
+            ],
+          },
+          { key: "settings", label: "Settings" },
+          {
+            key: "danger",
+            label: "Delete workspace",
+            danger: true,
+            shortcut: "⌘⌫",
+          },
+          { key: "disabled", label: "Archived", disabled: true },
+        ]}
+      />
+    </div>
+  );
+}
+
 function ProfileDemo() {
   return (
     <div className="w-full max-w-2xl">
@@ -856,6 +940,119 @@ function ProfileFormDemo() {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Compound / headless component demos                                        */
+/* -------------------------------------------------------------------------- */
+
+function MenubarDemo() {
+  return (
+    <Menubar>
+      <div className="flex items-center gap-1 px-2">
+        <span className="bg-accent cursor-default rounded px-3 py-1 text-sm font-medium">
+          File
+        </span>
+        <span className="text-muted-foreground hover:text-foreground cursor-pointer px-3 py-1 text-sm">
+          Edit
+        </span>
+        <span className="text-muted-foreground hover:text-foreground cursor-pointer px-3 py-1 text-sm">
+          View
+        </span>
+        <span className="text-muted-foreground hover:text-foreground cursor-pointer px-3 py-1 text-sm">
+          Help
+        </span>
+      </div>
+    </Menubar>
+  );
+}
+
+function PopconfirmDemo() {
+  return (
+    <div className="flex items-center gap-4">
+      <Popconfirm title="确认删除？" description="此操作不可撤销。">
+        <Button variant="destructive" size="sm">
+          删除
+        </Button>
+      </Popconfirm>
+    </div>
+  );
+}
+
+function MessageProviderDemo() {
+  return (
+    <MessageProvider>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            const ctx = React.useContext(MessageContext);
+            ctx?.show({ content: "操作成功！", type: "success" });
+          }}
+        >
+          成功消息
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            const ctx = React.useContext(MessageContext);
+            ctx?.show({ content: "操作失败", type: "error" });
+          }}
+        >
+          错误消息
+        </Button>
+      </div>
+    </MessageProvider>
+  );
+}
+
+function ModalProviderDemo() {
+  return (
+    <ModalProvider>
+      <div className="space-y-4 text-center">
+        <p className="text-muted-foreground text-sm">
+          ModalProvider 提供全局弹窗上下文
+        </p>
+        <Button
+          size="sm"
+          onClick={() => {
+            const ctx = React.useContext(ModalContext);
+            ctx?.openModal({
+              title: "示例弹窗",
+              content: <p className="text-sm">管理的弹窗</p>,
+            });
+          }}
+        >
+          打开弹窗
+        </Button>
+      </div>
+    </ModalProvider>
+  );
+}
+
+function KeyboardShortcutDialogDemo() {
+  return (
+    <KeyboardShortcutDialog
+      groups={[
+        {
+          title: "通用",
+          shortcuts: [
+            { keys: ["⌘", "K"], description: "快速搜索" },
+            { keys: ["⌘", "N"], description: "新建" },
+          ],
+        },
+        {
+          title: "编辑",
+          shortcuts: [
+            { keys: ["⌘", "Z"], description: "撤销" },
+            { keys: ["⌘", "F"], description: "查找" },
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Registry                                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -875,6 +1072,12 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   NavigationMenu: NavigationMenuDemo,
   Command: CommandDemo,
   Select: SelectDemo,
+  Menu: MenuDemo,
+  Menubar: MenubarDemo,
+  Popconfirm: PopconfirmDemo,
+  MessageProvider: MessageProviderDemo,
+  ModalProvider: ModalProviderDemo,
+  KeyboardShortcutDialog: KeyboardShortcutDialogDemo,
   Avatar: AvatarDemo,
   Switch: SwitchDemo,
   Checkbox: CheckboxDemo,
@@ -884,6 +1087,7 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   Result: ResultDemo,
 
   /* Business components */
+  KpiPanel: KPIPanelDemo,
   Profile: ProfileDemo,
   ProfileHeader: ProfileDemo,
   ProfileForm: ProfileFormDemo,

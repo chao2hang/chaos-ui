@@ -147,13 +147,16 @@ async function loadMdx(
   slug: string,
   locale: Locale,
 ): Promise<React.ComponentType | null> {
-  try {
-    const mod = await import(`@/content/${category}/${slug}.${locale}.mdx`);
-    if ((mod as { default?: React.ComponentType }).default) {
-      return (mod as { default: React.ComponentType }).default;
+  const locales: Locale[] = [locale, locale === "en" ? "zh" : "en"];
+  for (const loc of locales) {
+    try {
+      const mod = await import(`@/content/${category}/${slug}.${loc}.mdx`);
+      if ((mod as { default?: React.ComponentType }).default) {
+        return (mod as { default: React.ComponentType }).default;
+      }
+    } catch {
+      // locale-specific file doesn't exist, try next
     }
-  } catch {
-    // locale-specific file doesn't exist
   }
   return null;
 }
