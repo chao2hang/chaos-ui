@@ -16,7 +16,8 @@ async function main() {
   let browser;
   try {
     browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage();
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
     console.log(`🔍 Scanning ${TARGET_URL} ...`);
 
@@ -36,7 +37,7 @@ async function main() {
     }
     if (lastError) throw new Error(`Server did not become ready: ${lastError}`);
 
-    const results = await new AxeBuilder({ page }).analyze();
+    const results = await new AxeBuilder({ page }).setLegacyMode().analyze();
 
     if (results.violations.length > 0) {
       console.log(`\n❌ Found ${results.violations.length} accessibility violation(s):\n`);
