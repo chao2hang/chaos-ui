@@ -15,15 +15,15 @@ Chaos UI 是服务于清香园（QXY Foods）所有业务系统的企业级 Reac
 
 ### 核心特性
 
-- 🎨 **103 UI 基础组件** — 覆盖表单、布局、反馈、导航、数据展示全场景
-- 🏢 **80 业务组件** — 单据体系、CRUD 模板、审批流、看板、图表
-- 📐 **15 布局组件** — 后台管理、认证、仪表盘、详情页布局
+- 🧩 **106 UI 基础组件** — 覆盖通用、布局、导航、表单、数据展示、反馈全场景
+- 🏢 **208 业务组件** — 单据体系、CRUD 模板、审批流、图表、移动端组件
+- 📐 **28 布局组件** — 11 通用布局 + 17 后台管理布局（AdminShell、DashboardLayout 等）
 - 🪝 **28 React Hooks** — 状态管理、副作用、响应式、反馈命令式 API
 - 🔧 **7+ 工具库** — 存储、事件总线、下载、Cookie、URL、格式化、API 客户端
 - 🌍 **i18n 国际化** — 内置中文/英文，支持扩展
 - 🎯 **TypeScript 优先** — 完整类型定义
 - ♿ **无障碍** — WAI-ARIA 标准，WCAG AA 对比度
-- 📖 **Storybook 文档** — 交互式组件文档 + 自动 API 提取
+- 📖 **Storybook 文档 + 组件官网** — 交互式组件文档 + 全量组件预览
 - 🌙 **暗色模式** — 基于 CSS 变量的一键切换
 - 📦 **Tree-shaking** — 7 个子路径导出，按需引入
 
@@ -129,27 +129,28 @@ export default function RootLayout({ children }) {
 
 ## 组件官网 (Docs Site)
 
-`apps/docs` 已升级为 antd 风格的组件官网，提供可搜索的组件总览与 per-component MDX 详情页。
+`apps/docs` 是基于 Next.js 的组件官网，提供可搜索的 8 分类组件总览与 331 个组件的全量文档和实时预览。
 
 - **入口**: `/components` — 8 分区搜索总览，卡片式跳转
-- **详情页**: `/components/[category]/[slug]` — 基于 MDX 的组件文档（批次1 已完成 30 个高频组件）
+- **详情页**: `/components/[category]/[slug]` — 基于 MDX 的组件文档 + 实时预览（Storybook 驱动）
+- **预览覆盖**: 331/331 组件，**100%** 有实时预览（Story 或手写 Demo）
 - **启动**: `cd apps/docs && pnpm run dev`，访问 `http://localhost:8080`
-
-> 详细变更见 [CHANGELOG.md](./CHANGELOG.md) 批次1 条目。
 
 ## 组件清单
 
-### UI 基础组件 (103)
+完整的组件目录请访问组件官网或查看 [COMPONENT_INDEX.md](./COMPONENT_INDEX.md)。以下是分类概览：
 
-Accordion, Affix, Alert, AlertDialog, Anchor, AspectRatio, Autocomplete, Avatar, BackTop, Badge, Breadcrumb, BrowseInput, Button, Calendar, Card, Carousel, Cascader, Checkbox, Collapsible, ColorPicker, Combobox, Command, ConfigProvider, ContextMenu, Countdown, DatePicker, DepartmentBrowse, Descriptions, Dialog, Divider, Dot, Drawer, DropdownMenu, EmptyState, FAB, FileUpload, Flex, Form, FormGrid, FormList, FormSection, GridLayout, HoverCard, Image, Input, InputGroup, InputNumber, InputSearch, Kbd, KPIPanel, Label, List, Mentions, Menu, Menubar, MessageProvider, ModalProvider, NavigationMenu, Notification, OTPField, PageContainer, Pagination, Popconfirm, Popover, Progress, QRCode, RadioGroup, Rating, Resizable, Result, ScrollArea, SegmentedControl, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Sonner, Space, Spin, Spinner, SplitPane, Statistic, Stepper, Switch, Table, Tabs, Tag, TagsInput, Textarea, Timeline, Toggle, ToggleGroup, Tooltip, Tour, TreeSelect, TreeView, Typography, UserBrowse, VirtualList, VirtualTable, Watermark
-
-### 业务组件 (80)
-
-ActivityFeed, AdvancedDataTable, AdvancedSearch, ApprovalTimeline, AudienceSegmentBuilder, AuditLog, AuthGuard, AvatarGroup, BillFooter, BillHeader, BillPage, BillStatusBar, BizStatusTag, BudgetPacingCard, BulkActionsToolbar, BulkImportWizard, CampaignCalendar, CampaignCard, CampaignStatusTag, ChannelPicker, Chart, Chip, CodeBlock, ColorTag, Combobox, CommandPalette, ConfirmDialog, CookieBanner, CreativePreview, CrudPage, DataTable, DateRangePicker, DictSelect, DiffViewer, EmptyState, ErrorBoundary, ErrorPage, ExpenseLineEditor, ExperimentSummary, ExportButton, FAB, FileUploadManager, FilterBar, FilterBuilder, FormField, FormWizard, Gauge, HeatmapCalendar, InlineEdit, JsonViewer, KanbanBoard, KpiCard, LanguageSwitcher, LineEditor, LoadingPage, MetricTrend, MultiSelect, NotificationCenter, OrderLineEditor, PageHeader, PermissionMatrix, PivotTable, PromptDialog, Rating, ResponsivePreview, RoleAssignment, SavedFilters, SearchTable, SegmentedControl, StatCard, StatCardRow, StatusTag, ThemeToggle, TimePicker, Tour, Transfer, UserMenu, UtmBuilder, VersionHistory, Watermark
-
-### 布局组件 (15)
-
-AdminBreadcrumb, AdminHeader, AdminSider, AdminTabs, AppShell, AuthLayout, BlankLayout, DashboardLayout, DetailLayout, DialogFormBody, ErrorLayout, MasterDetailLayout, PrintLayout, PublicLayout, TopBar
+| 分类                   | 数量    | 说明                                                           |
+| ---------------------- | ------- | -------------------------------------------------------------- |
+| General 通用           | 12      | Button, Typography, Spin, SplitButton 等                       |
+| Layout 布局            | 11      | Divider, Flex, Grid, Space, PageContainer 等                   |
+| Navigation 导航        | 13      | Tabs, Menu, Breadcrumb, DropdownMenu, Pagination 等            |
+| Form 表单              | 30      | Input, Select, Checkbox, DatePicker, Slider, Switch 等         |
+| DataDisplay 数据展示   | 25      | Table, Accordion, Badge, Card, Carousel, Tag 等                |
+| Feedback 反馈          | 15      | Dialog, Drawer, Sheet, Toast, Alert, Progress 等               |
+| System Layout 系统布局 | 17      | AdminShell, DashboardLayout, AdminHeader 等                    |
+| Business 业务          | 208     | DataTable, CrudPage, ApprovalFlow, Chart, FormField, Mobile 等 |
+| **合计**               | **331** | 所有组件均在文档站有实时预览                                   |
 
 ## 开发
 
@@ -186,7 +187,9 @@ pnpm run format
 
 ### 容器化部署 (Docker)
 
-项目使用三服务架构，一个容器内运行反向代理 + Next.js 展示站 + Storybook：
+Docker 镜像托管在 **GitHub Container Registry**：`ghcr.io/chao2hang/chaos-ui`。推 `main` 分支时自动构建。
+
+容器内运行三服务架构：反向代理 + Next.js 展示站 + Storybook：
 
 ```
                     容器内部
@@ -206,7 +209,7 @@ pnpm run format
 #### 构建镜像
 
 ```bash
-docker build -t chaos-ui:latest .
+docker build -t ghcr.io/chao2hang/chaos-ui:latest .
 ```
 
 #### 运行
