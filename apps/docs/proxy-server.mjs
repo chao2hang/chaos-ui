@@ -45,12 +45,14 @@ storybookProxy.on("error", (err, _req, res) => {
 // --- Route matching ---
 function isStorybookPath(pathname) {
   return (
+    pathname === "/iframe.html" ||
     pathname.startsWith("/storybook") ||
     pathname.startsWith("/sb-") ||
     pathname === "/runtime~main.iframe.bundle.js" ||
     pathname === "/virtual-storybook-deps-index-entry.js" ||
-    pathname === "/index.json" ||
-    pathname.endsWith(".json") ||
+    pathname.startsWith("/project.json") ||
+    pathname.startsWith("/stories.json") ||
+    pathname.startsWith("/metadata.json") ||
     // Vite dev server absolute-path resources (Storybook v10)
     pathname.startsWith("/@vite/") ||
     pathname.startsWith("/@id/") ||
@@ -72,15 +74,15 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
   const pathname = url.pathname;
 
-  if (isStorybookPath(pathname)) {
-    // Rewrite /storybook/xxx → /xxx for Storybook
-    if (pathname.startsWith("/storybook")) {
-      req.url = pathname.slice("/storybook".length) || "/";
-    }
-    storybookProxy.web(req, res);
-  } else {
-    nextProxy.web(req, res);
-  }
+	  if (isStorybookPath(pathname)) {
+	    // Rewrite /storybook/xxx → /xxx for Storybook, preserving query string
+	    if (pathname.startsWith("/storybook")) {
+	      req.url = (pathname.slice("/storybook".length) || "/") + (url.search || "");
+	    }
+	    storybookProxy.web(req, res);
+	  } else {
+	    nextProxy.web(req, res);
+	  }
 });
 
 // --- WebSocket upgrade (Storybook HMR) ---
