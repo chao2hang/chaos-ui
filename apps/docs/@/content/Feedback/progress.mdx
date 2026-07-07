@@ -1,0 +1,46 @@
+import { Progress } from "@/components/ui/progress";
+import { CodeBlock } from "@/components/code-block";
+
+# Progress 进度条
+
+> 反馈组件 / Feedback and status communication to the user.
+
+展示操作的当前进度,告知用户当前状态与剩余时长/进度。
+Shows current progress of an operation.
+
+## 何时使用 / When to Use
+
+展示操作的当前完成进度,提供过程反馈。
+
+Show current completion progress of an operation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Progress, ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue } from "@/components/ui/progress"
+
+export function Basic() {
+  return (
+    <Progress>
+      <ProgressTrack>Content</ProgressTrack>
+    </Progress>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Progress
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 4 个子组件(ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-progress--docs)。

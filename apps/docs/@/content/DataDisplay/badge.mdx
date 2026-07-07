@@ -1,0 +1,68 @@
+import { Badge } from "@/components/ui/badge";
+import { CodeBlock } from "@/components/code-block";
+
+# Badge 徽章
+
+> 数据展示 / Components for presenting data and content.
+
+在右上角展示小数量或状态标记,常用于通知图标、头像、列表项。
+Small status/number indicator pinned to a corner, often used on notification icons, avatars, or list items.
+
+## 何时使用 / When to Use
+
+用于状态、标签、计数、分类等附属信息展示。
+
+Display status, tags, counts, or categorizations as compact pills.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Badge } from "@/components/ui/badge"
+
+export function Basic() {
+  return <Badge>Default</Badge>
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Badge variant="default">Default</Badge>
+  <Badge variant="secondary">Secondary</Badge>
+  <Badge variant="destructive">Destructive</Badge>
+  <Badge variant="outline">Outline</Badge>
+  <Badge variant="ghost">Ghost</Badge>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**变体 / Variant**
+
+| Variant       | 说明 / Description                             | 默认 |
+| ------------- | ---------------------------------------------- | ---- |
+| `default`     | 默认样式 / Default style                       | ✓    |
+| `secondary`   | 次要样式 / Secondary action style              |      |
+| `destructive` | 危险/删除样式 / Destructive/danger style       |      |
+| `outline`     | 描边样式 / Outlined style                      |      |
+| `ghost`       | 幽灵(无背景)样式 / Ghost (no background) style |      |
+| `link`        | 链接样式 / Link style                          |      |
+
+## API / Props
+
+### Badge
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-badge--docs)。

@@ -1,0 +1,70 @@
+import { Image } from "@/components/ui/image";
+import { CodeBlock } from "@/components/code-block";
+
+# Image 图片
+
+> 数据展示 / Components for presenting data and content.
+
+增强的图片组件,支持预览、加载失败占位、懒加载。
+Enhanced image with preview, error fallback, and lazy loading.
+
+## 何时使用 / When to Use
+
+需要图片功能时使用本组件。
+
+Use when you need an image.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Image } from "@/components/ui/image"
+
+export function Basic() {
+  return <Image />
+}`} lang="tsx" />
+
+## 样式变体 / Style Variants
+
+**fit / fit**
+
+| fit       | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `cover`   |                    | ✓    |
+| `contain` |                    |      |
+| `fill`    |                    |      |
+| `none`    |                    |      |
+
+**rounded / rounded**
+
+| rounded   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `none`    |                    |      |
+| `sm`      |                    |      |
+| `default` |                    | ✓    |
+| `lg`      |                    |      |
+| `full`    |                    |      |
+
+## API / Props
+
+### Image
+
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `src`       | `string`                      | —       | 资源地址 <br/> Source URL                                   |
+| `alt`       | `string`                      | —       | 替代文本 <br/> Alternative text                             |
+| `fallback`  | `React.ReactNode`             | —       | Fallback element shown while loading or on error            |
+| `width`     | `number \| string`            | —       | Width                                                       |
+| `height`    | `number \| string`            | —       | Height                                                      |
+| `onError`   | `() => void`                  | —       | Called when image fails to load                             |
+| `onLoad`    | `() => void`                  | —       | Called when image loads successfully                        |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-image--docs)。

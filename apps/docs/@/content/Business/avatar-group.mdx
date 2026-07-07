@@ -1,0 +1,46 @@
+import { AvatarGroup } from "@/components/business/avatar-group";
+import { CodeBlock } from "@/components/code-block";
+
+# AvatarGroup 头像组
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+多个头像堆叠展示,显示剩余数量 +N。
+Stacked group of avatars with a +N overflow indicator.
+
+## 何时使用 / When to Use
+
+需要头像组功能时使用本组件。
+
+Use when you need an avatar group.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { AvatarGroup } from "@/components/business/avatar-group"
+
+export function Basic() {
+  return <AvatarGroup />
+}`} lang="tsx" />
+
+## API / Props
+
+### AvatarGroup
+
+| Prop              | Type                                | Default   | 说明 / Description                                          |
+| ----------------- | ----------------------------------- | --------- | ----------------------------------------------------------- |
+| `className`       | `string`                            | —         | 自定义样式类名 <br/> Custom CSS class                       |
+| `users`           | `AvatarUser[]`                      | —         |                                                             |
+| `max`             | `number`                            | `4`       | 最大值 <br/> Maximum value                                  |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"` | `default` | 组件尺寸 <br/> Component size                               |
+| `showOverflow`    | `boolean`                           | `true`    |                                                             |
+| `onOverflowClick` | `() => void`                        | —         |                                                             |
+| ...rest           | `React.ComponentProps<"div">`       | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-avatar-group--docs)。

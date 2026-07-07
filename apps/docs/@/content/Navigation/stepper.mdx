@@ -1,0 +1,42 @@
+import { Stepper, Step } from "@/components/ui/stepper";
+import { CodeBlock } from "@/components/code-block";
+
+# Stepper 步骤条
+
+> 导航组件 / Navigation components for moving through the app.
+
+水平步骤条,引导用户完成多步骤流程。
+Horizontal stepper guiding users through a multi-step workflow.
+
+## 何时使用 / When to Use
+
+需要步骤条功能时使用本组件。
+
+Use when you need a stepper.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Stepper } from "@/components/ui/stepper"
+
+export function Basic() {
+  return <Stepper>Default</Stepper>
+}`} lang="tsx" />
+
+## API / Props
+
+### Stepper
+
+| Prop          | Type                         | Default      | 说明 / Description                                        |
+| ------------- | ---------------------------- | ------------ | --------------------------------------------------------- |
+| `className`   | `string`                     | —            | 自定义样式类名 <br/> Custom CSS class                     |
+| `activeStep`  | `number`                     | `0`          |                                                           |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Orientation                                |
+| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-stepper--docs)。

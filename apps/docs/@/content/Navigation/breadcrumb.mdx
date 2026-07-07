@@ -1,0 +1,45 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { CodeBlock } from "@/components/code-block";
+
+# Breadcrumb 面包屑
+
+> 导航组件 / Navigation components for moving through the app.
+
+显示当前页面在层级结构中的位置,并能向上返回。
+Displays current location in a hierarchy and provides navigation back up.
+
+## 何时使用 / When to Use
+
+显示当前页面在层级结构中的位置,支持快速返回上级。
+
+Indicate the current page location in a hierarchy and provide upward navigation.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+
+export function Basic() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>Content</BreadcrumbList>
+    </Breadcrumb>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Breadcrumb
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **复合组件**: 包含 6 个子组件(BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-breadcrumb--docs)。

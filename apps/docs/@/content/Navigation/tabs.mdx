@@ -1,0 +1,80 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { CodeBlock } from "@/components/code-block";
+
+# Tabs 标签页
+
+> 导航组件 / Navigation components for moving through the app.
+
+在同一页面切换不同内容区域的平级视图。
+Switch between sibling content views on the same page.
+
+## 何时使用 / When to Use
+
+在同一块区域切换多个平级内容面板,保持上下文连贯。
+
+Switch between multiple sibling content panels while preserving context.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+
+export function Basic() {
+  return (
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Content 1</TabsContent>
+      <TabsContent value="tab2">Content 2</TabsContent>
+    </Tabs>
+  )
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Tabs variant="default">Default</Tabs>
+  <Tabs variant="line">Line</Tabs>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态 / States
+
+<CodeBlock
+  code={`<Tabs>Normal</Tabs>
+<Tabs disabled>Disabled</Tabs>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**变体 / Variant**
+
+| Variant   | 说明 / Description       | 默认 |
+| --------- | ------------------------ | ---- |
+| `default` | 默认样式 / Default style | ✓    |
+| `line`    |                          |      |
+
+## API / Props
+
+### Tabs
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 3 个子组件(TabsList, TabsTrigger, TabsContent),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tabs--docs)。

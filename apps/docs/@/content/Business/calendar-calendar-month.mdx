@@ -1,0 +1,54 @@
+import { CalendarMonth } from "@/components/business/calendar/calendar-month";
+import { CodeBlock } from "@/components/code-block";
+
+# CalendarMonth 日历月视图
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+日历月视图 — 面向 ERP/企业场景的业务组件。
+CalendarMonth — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要日历月视图功能时使用本组件。
+
+Use when you need a calendar month.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { CalendarMonth } from "@/components/business/calendar/calendar-month"
+
+export function Basic() {
+  return <CalendarMonth />
+}`} lang="tsx" />
+
+### 状态 / States
+
+<CodeBlock
+  code={`<CalendarMonth>Normal</CalendarMonth>
+<CalendarMonth disabled>Disabled</CalendarMonth>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### CalendarMonth
+
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `date`         | `Date`                 | —       |                                                           |
+| `events`       | `CalendarEvent[]`      | —       |                                                           |
+| `onDateChange` | `() => void`           | —       |                                                           |
+| `onEventClick` | `() => void`           | —       |                                                           |
+| `onDayClick`   | `() => void`           | —       |                                                           |
+| `locale`       | `string`               | `zh-CN` |                                                           |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-calendar-calendar-month--docs)。

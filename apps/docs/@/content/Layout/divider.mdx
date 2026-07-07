@@ -1,0 +1,81 @@
+import { Divider } from "@/components/ui/divider";
+import { CodeBlock } from "@/components/code-block";
+
+# Divider 分割线
+
+> 布局组件 / Layout primitives for structuring pages.
+
+区隔内容的分割线,支持水平/垂直、含文字。
+Content separator; supports horizontal/vertical and labels.
+
+## 何时使用 / When to Use
+
+需要分割线功能时使用本组件。
+
+Use when you need a divider.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Divider } from "@/components/ui/divider"
+
+export function Basic() {
+  return <Divider>Default</Divider>
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Divider variant="default">Default</Divider>
+  <Divider variant="muted">Muted</Divider>
+  <Divider variant="primary">Primary</Divider>
+  <Divider variant="dashed">Dashed</Divider>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**方向 / orientation**
+
+| orientation  | 说明 / Description | 默认 |
+| ------------ | ------------------ | ---- |
+| `horizontal` |                    | ✓    |
+| `vertical`   |                    |      |
+
+**变体 / Variant**
+
+| Variant   | 说明 / Description       | 默认 |
+| --------- | ------------------------ | ---- |
+| `default` | 默认样式 / Default style | ✓    |
+| `muted`   |                          |      |
+| `primary` | 主要样式 / Primary style |      |
+| `dashed`  |                          |      |
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+
+## API / Props
+
+### Divider
+
+| Prop            | Type                            | Default  | 说明 / Description                                            |
+| --------------- | ------------------------------- | -------- | ------------------------------------------------------------- |
+| `className`     | `string`                        | —        | 自定义样式类名 <br/> Custom CSS class                         |
+| `label`         | `React.ReactNode`               | —        | Optional text in the middle                                   |
+| `labelPosition` | `"left" \| "center" \| "right"` | `center` | Text alignment                                                |
+| `decorative`    | `boolean`                       | `false`  | If true, renders as a decorative separator (no semantic role) |
+| ...rest         | `React.ComponentProps<"div">`   | —        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes   |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-divider--docs)。

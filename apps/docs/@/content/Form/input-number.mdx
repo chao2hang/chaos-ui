@@ -1,0 +1,79 @@
+import { InputNumber } from "@/components/ui/input-number";
+import { CodeBlock } from "@/components/code-block";
+
+# InputNumber 数字输入
+
+> 表单控件 / Form controls for user input and data submission.
+
+专门输入数字的输入框,支持增减按钮、精度、范围限制。
+Numeric input with increment/decrement buttons, precision, and range limits.
+
+## 何时使用 / When to Use
+
+需要数字输入功能时使用本组件。
+
+Use when you need an input number.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { InputNumber } from "@/components/ui/input-number"
+
+export function Basic() {
+  return <InputNumber />
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <InputNumber size="sm">Sm</InputNumber>
+  <InputNumber size="default">Default</InputNumber>
+  <InputNumber size="lg">Lg</InputNumber>
+</div>`}
+  lang="tsx"
+/>
+
+### 状态 / States
+
+<CodeBlock
+  code={`<InputNumber>Normal</InputNumber>
+<InputNumber disabled>Disabled</InputNumber>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+## API / Props
+
+### InputNumber
+
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`       | `number`               | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`    | `() => void`           | —       | 值变化回调 <br/> Callback when value changes              |
+| `min`         | `number`               | —       | 最小值 <br/> Minimum value                                |
+| `max`         | `number`               | —       | 最大值 <br/> Maximum value                                |
+| `step`        | `number`               | `1`     | 步长 <br/> Step value                                     |
+| `showStepper` | `boolean`              | `true`  | Show stepper buttons                                      |
+| `allowEmpty`  | `boolean`              | `false` | Allow empty value                                         |
+| `suffix`      | `React.ReactNode`      | —       | Suffix text                                               |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-input-number--docs)。

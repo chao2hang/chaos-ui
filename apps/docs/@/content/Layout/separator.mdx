@@ -1,0 +1,41 @@
+import { Separator } from "@/components/ui/separator";
+import { CodeBlock } from "@/components/code-block";
+
+# Separator 分隔符
+
+> 布局组件 / Layout primitives for structuring pages.
+
+对内容区进行视觉分隔,通常为细线。
+Visual separator between content areas, typically a thin line.
+
+## 何时使用 / When to Use
+
+在视觉上分隔内容区域或菜单项。
+
+Visually separate content regions or menu items.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Separator } from "@/components/ui/separator"
+
+export function Basic() {
+  return <Separator />
+}`} lang="tsx" />
+
+## API / Props
+
+### Separator
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-separator--docs)。

@@ -1,0 +1,48 @@
+import { ColorPicker } from "@/components/ui/color-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# ColorPicker 颜色选择器
+
+> 表单控件 / Form controls for user input and data submission.
+
+选择颜色的面板控件,支持色板、输入色值、透明度。
+Color selection panel supporting swatches, hex input, and opacity.
+
+## 何时使用 / When to Use
+
+需要颜色选择器功能时使用本组件。
+
+Use when you need a color picker.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ColorPicker } from "@/components/ui/color-picker"
+
+export function Basic() {
+  return <ColorPicker />
+}`} lang="tsx" />
+
+### 状态 / States
+
+<CodeBlock
+  code={`<ColorPicker>Normal</ColorPicker>
+<ColorPicker disabled>Disabled</ColorPicker>`}
+  lang="tsx"
+/>
+
+## API / Props
+
+### ColorPicker
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-color-picker--docs)。

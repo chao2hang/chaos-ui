@@ -1305,13 +1305,21 @@ def discover_sources() -> list:
             else:
                 nameZh = slug.replace("-", " ").title()
             source_path = f"packages/chaos-design-ui/{rel_str}"
+            if "components/ui/" in str(rel):
+                storybook_id = f"components-{slug}--docs"
+            elif "components/layout/" in str(rel):
+                storybook_id = f"layouts-{slug}--docs"
+            elif "components/business/" in str(rel):
+                storybook_id = f"business-{slug}--docs"
+            else:
+                storybook_id = f"components-{slug}--docs"
             entry = {
                 "slug": slug,
                 "name": name,
                 "nameZh": nameZh,
                 "category": category,
                 "sourcePath": source_path,
-                "storybookId": f"components-{slug}--docs",
+                "storybookId": storybook_id,
             }
             if slug in seen_slugs:
                 # Replace previous entry with this one (later subfolders win)

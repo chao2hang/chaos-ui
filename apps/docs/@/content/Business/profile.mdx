@@ -1,0 +1,45 @@
+import { ProfileHeader, ProfileForm } from "@/components/business/profile";
+import { CodeBlock } from "@/components/code-block";
+
+# Profile 个人资料
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+个人资料 — 面向 ERP/企业场景的业务组件。
+Profile — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+需要个人资料功能时使用本组件。
+
+Use when you need a profile.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ProfileHeader } from "@/components/business/profile"
+
+export function Basic() {
+  return <ProfileHeader>Default</ProfileHeader>
+}`} lang="tsx" />
+
+## API / Props
+
+### ProfileHeader
+
+| Prop             | Type                          | Default            | 说明 / Description                                          |
+| ---------------- | ----------------------------- | ------------------ | ----------------------------------------------------------- |
+| `className`      | `string`                      | —                  | 自定义样式类名 <br/> Custom CSS class                       |
+| `user`           | `ProfileHeaderUser`           | —                  |                                                             |
+| `stats`          | `Array<T>`                    | —                  |                                                             |
+| `actions`        | `React.ReactNode`             | —                  |                                                             |
+| `onAvatarUpload` | `() => void`                  | —                  |                                                             |
+| `coverColor`     | `string`                      | `var(--brand-200)` | @default "var(--brand-200)"                                 |
+| ...rest          | `React.ComponentProps<"div">` | —                  | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-profile--docs)。

@@ -1,0 +1,52 @@
+import { Popover } from "@/components/ui/popover";
+import { CodeBlock } from "@/components/code-block";
+
+# Popover 气泡卡片
+
+> 数据展示 / Components for presenting data and content.
+
+点击/悬停触发的浮层卡片,可承载富内容(表单、列表、图表),比 Tooltip 更丰富。
+Click/hover-triggered floating card that can hold rich content (forms, lists, charts); richer than Tooltip.
+
+## 何时使用 / When to Use
+
+点击触发元素弹出的浮动层,承载轻量操作或信息。
+
+A floating layer triggered by click for lightweight actions or information.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverTitle, PopoverDescription } from "@/components/ui/popover"
+
+export function Basic() {
+  return (
+    <Popover>
+      <PopoverTrigger>Open</PopoverTrigger>
+      <PopoverContent>
+      <PopoverHeader>
+        <PopoverTitle>Title</PopoverTitle>
+        <PopoverDescription>Description.</PopoverDescription>
+      </PopoverHeader>
+      </PopoverContent>
+    </Popover>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Popover
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 5 个子组件(PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-popover--docs)。

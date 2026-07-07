@@ -1,0 +1,44 @@
+import { OnboardingChecklist } from "@/components/business/onboarding-checklist";
+import { CodeBlock } from "@/components/code-block";
+
+# OnboardingChecklist 新手任务清单
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+新手任务清单 — 面向 ERP/企业场景的业务组件。
+OnboardingChecklist — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+新手引导任务清单,引导用户完成关键步骤。
+
+Onboarding checklist guiding users through key steps.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { OnboardingChecklist } from "@/components/business/onboarding-checklist"
+
+export function Basic() {
+  return <OnboardingChecklist />
+}`} lang="tsx" />
+
+## API / Props
+
+### OnboardingChecklist
+
+| Prop           | Type                   | Default    | 说明 / Description                                        |
+| -------------- | ---------------------- | ---------- | --------------------------------------------------------- |
+| `className`    | `string`               | —          | 自定义样式类名 <br/> Custom CSS class                     |
+| `steps`        | `OnboardingStep[]`     | —          |                                                           |
+| `completedIds` | `string[]`             | —          |                                                           |
+| `onToggle`     | `() => void`           | —          |                                                           |
+| `title`        | `string`               | `开始使用` | 标题 <br/> Title                                          |
+| ...rest        | `React.HTMLAttributes` | —          | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-onboarding-checklist--docs)。

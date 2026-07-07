@@ -1,0 +1,45 @@
+import { NavigationMenu } from "@/components/ui/navigation-menu";
+import { CodeBlock } from "@/components/code-block";
+
+# NavigationMenu 导航菜单
+
+> 导航组件 / Navigation components for moving through the app.
+
+导航菜单 — Chaos UI 的导航组件。
+NavigationMenu — a navigation components for moving through the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+需要导航菜单功能时使用本组件。
+
+Use when you need a navigation menu.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
+
+export function Basic() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuContent>Content</NavigationMenuContent>
+    </NavigationMenu>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### NavigationMenu
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **复合组件**: 包含 7 个子组件(NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-navigation-menu--docs)。

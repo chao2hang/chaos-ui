@@ -1,0 +1,40 @@
+import { Textarea } from "@/components/ui/textarea";
+import { CodeBlock } from "@/components/code-block";
+
+# Textarea 文本域
+
+> 表单控件 / Form controls for user input and data submission.
+
+多行纯文本编辑控件,适用于评论、反馈、描述等较长内容输入。
+Multi-line plain text editor for comments, feedback, descriptions, etc.
+
+## 何时使用 / When to Use
+
+输入多行文本,如评论、反馈、详细描述。
+
+Enter multi-line text such as comments, feedback, or detailed descriptions.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Textarea } from "@/components/ui/textarea"
+
+export function Basic() {
+  return <Textarea />
+}`} lang="tsx" />
+
+## API / Props
+
+### Textarea
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-textarea--docs)。

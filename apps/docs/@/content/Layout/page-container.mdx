@@ -1,0 +1,89 @@
+import {
+  PageContainer,
+  PageHeader,
+  PageContent,
+} from "@/components/ui/page-container";
+import { CodeBlock } from "@/components/code-block";
+
+# PageContainer 页面容器
+
+> 布局组件 / Layout primitives for structuring pages.
+
+页面容器 — Chaos UI 的布局组件,用于组织页面区域结构。
+PageContainer — a layout primitives for structuring pages. for structuring page regions.
+
+## 何时使用 / When to Use
+
+需要页面容器功能时使用本组件。
+
+Use when you need a page container.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PageContainer, PageHeader, PageContent } from "@/components/ui/page-container"
+
+export function Basic() {
+  return (
+    <PageContainer>
+      <PageContent>Content</PageContent>
+    </PageContainer>
+  )
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <PageContainer size="sm">Sm</PageContainer>
+  <PageContainer size="default">Default</PageContainer>
+  <PageContainer size="lg">Lg</PageContainer>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `sm`      | 小号 / Small            |      |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `lg`      | 大号 / Large            |      |
+| `full`    |                         |      |
+| `none`    |                         |      |
+
+**padding / padding**
+
+| padding   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `none`    |                    |      |
+| `sm`      |                    |      |
+| `default` |                    | ✓    |
+| `lg`      |                    |      |
+
+**center / center**
+
+| center  | 说明 / Description | 默认 |
+| ------- | ------------------ | ---- |
+| `true`  |                    | ✓    |
+| `false` |                    |      |
+
+## API / Props
+
+### PageContainer
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **复合组件**: 包含 2 个子组件(PageHeader, PageContent),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-page-container--docs)。
