@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:next": "next dev -p 19951",
+    "dev:next": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

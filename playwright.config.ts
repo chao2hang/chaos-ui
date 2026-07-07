@@ -2,12 +2,12 @@
  * Playwright configuration for axe-core E2E accessibility testing.
  *
  * Targets the built Storybook in `storybook-static/`, served via a static
- * web server on port 6006. Run `npm run build-storybook` first, then
+ * web server on port 3002. Run `npm run build-storybook` first, then
  * `npx playwright install && npm run test:a11y`.
  */
 import { defineConfig, devices } from "playwright/test";
 
-const PORT = 6006;
+const PORT = 3002;
 const BASE_URL = `http://localhost:${PORT}`;
 
 export default defineConfig({

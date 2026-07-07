@@ -12,19 +12,19 @@ echo "╔═══════════════════════�
 echo "║       Chaos UI — Docker              ║"
 echo "╠══════════════════════════════════════╣"
 echo "║  Proxy:     http://localhost:8080     ║"
-echo "║  Next.js:   http://localhost:19951    ║"
-echo "║  Storybook: http://localhost:6006     ║"
+echo "║  Next.js:   http://localhost:3001    ║"
+echo "║  Storybook: http://localhost:3002    ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
 
 # ─── Next.js Production Server ───
 echo "► Starting Next.js (port 19951)..."
-./node_modules/.bin/next start -p 19951 &
+./node_modules/.bin/next start -p 3001 &
 NEXT_PID=$!
 
 # ─── Storybook Static File Server ───
 echo "► Starting Storybook (port 6006)..."
-serve /app/storybook-static -p 6006 --no-clipboard --cors &
+serve /app/storybook-static -p 3002 --no-clipboard --cors &
 SERVE_PID=$!
 
 # ─── Reverse Proxy ───

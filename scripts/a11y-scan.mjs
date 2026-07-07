@@ -2,7 +2,7 @@
  * Accessibility scan script using Playwright + @axe-core/playwright.
  *
  * Usage: node scripts/a11y-scan.mjs [url]
- * Default: http://localhost:6006
+ * Default: http://localhost:3002
  *
  * Exits with code 1 if accessibility violations are found.
  */
@@ -10,7 +10,7 @@
 import { chromium } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
 
-const TARGET_URL = process.argv[2] || "http://localhost:6006";
+const TARGET_URL = process.argv[2] || "http://localhost:3002";
 
 async function main() {
   let browser;

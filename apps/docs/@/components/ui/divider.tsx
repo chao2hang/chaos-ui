@@ -17,8 +17,8 @@ const dividerVariants = cva("shrink-0", {
     },
     size: {
       default: "",
-      sm: orientation === "horizontal" ? "border-t" : "border-l",
-      lg: orientation === "horizontal" ? "border-t-2" : "border-l-2",
+      sm: "border",
+      lg: "border-2",
     },
   },
   defaultVariants: {

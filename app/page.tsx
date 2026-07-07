@@ -32,10 +32,10 @@ export default function Home() {
           <p>
             Storybook is still available at{" "}
             <Link
-              href="http://localhost:6006"
+              href="http://localhost:3002"
               className="hover:text-foreground underline"
             >
-              localhost:6006
+              localhost:3002
             </Link>
           </p>
           <p>

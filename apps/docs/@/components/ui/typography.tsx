@@ -190,13 +190,26 @@ function Link({ className, variant, children, ...props }: LinkProps) {
 }
 
 // ─── Typography (namespace export) ─────────────────────────────────
+// Typography itself is also a renderable root component for Storybook compatibility.
 
-const Typography = {
+function TypographyRoot({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div data-slot="typography" className={className} {...props}>
+      {children}
+    </div>
+  );
+}
+
+const Typography = Object.assign(TypographyRoot, {
   Title,
   Paragraph,
   Text,
   Link,
-};
+});
 
 export {
   Typography,

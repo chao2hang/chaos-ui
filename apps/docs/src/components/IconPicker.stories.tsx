@@ -11,5 +11,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { placeholder: "Select an icon" },
+  args: {
+    searchPlaceholder: "Select an icon",
+    icons: {
+      smile: "😊",
+      heart: "❤️",
+      star: "⭐",
+      fire: "🔥",
+      thumbsUp: "👍",
+    },
+  },
 };

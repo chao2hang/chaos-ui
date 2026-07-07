@@ -21,10 +21,16 @@ import { ComponentPreview } from "@/components/component-preview";
 /* -------------------------------------------------------------------------- */
 
 function findMeta(category: string, slug: string): ComponentMeta | undefined {
-  return components.find((c) => c.category === category && c.slug === slug);
+  // Next.js may or may not URL-decode route params; try both forms
+  return (
+    components.find((c) => c.category === category && c.slug === slug) ??
+    components.find(
+      (c) => c.category === decodeURIComponent(category) && c.slug === slug,
+    )
+  );
 }
 
-const storybookBase = "/storybook/?path=/docs/";
+const storybookBase = "http://localhost:3002/?path=/docs/";
 
 /* -------------------------------------------------------------------------- */
 /*  Shared link classes                                                       */
@@ -147,10 +153,12 @@ async function loadMdx(
   slug: string,
   locale: Locale,
 ): Promise<React.ComponentType | null> {
+  // Ensure category is URL-decoded for file-system lookup
+  const cat = decodeURIComponent(category);
   const locales: Locale[] = [locale, locale === "en" ? "zh" : "en"];
   for (const loc of locales) {
     try {
-      const mod = await import(`@/content/${category}/${slug}.${loc}.mdx`);
+      const mod = await import(`@/content/${cat}/${slug}.${loc}.mdx`);
       if ((mod as { default?: React.ComponentType }).default) {
         return (mod as { default: React.ComponentType }).default;
       }

@@ -3,7 +3,7 @@
  *
  * Requires `npm run build-storybook` to have produced `storybook-static/`.
  * The Playwright webServer (see playwright.config.ts) serves that directory
- * on http://localhost:6006 so that `iframe.html?id=<storyId>` URLs resolve.
+ * on http://localhost:3002 so that `iframe.html?id=<storyId>` URLs resolve.
  *
  * Run: `npx playwright install && npm run test:a11y`
  */

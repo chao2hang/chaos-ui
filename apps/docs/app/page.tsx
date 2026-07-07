@@ -217,7 +217,7 @@ export default async function Home() {
                   <ArrowRight className="size-4" />
                 </Button>
               </a>
-              <a href="/storybook" target="_blank" rel="noopener noreferrer">
+              <Link href="/components">
                 <Button
                   size="lg"
                   variant="outline"
@@ -226,7 +226,7 @@ export default async function Home() {
                   <Command className="size-4" />
                   {t("home.ctaBrowse")}
                 </Button>
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -421,7 +421,7 @@ export default async function Home() {
             </Link>
             <Separator orientation="vertical" className="h-3" />
             <a
-              href="/storybook"
+              href="http://localhost:3002"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground"

@@ -2,8 +2,9 @@ Chaos UI is an enterprise React component library.
 
 Primary component surface:
 - Storybook is the main browser for UI, business, and layout components.
-- Start Storybook with `npm run dev`.
-- Open http://localhost:6006 after startup.
+- Start Storybook with `npm run storybook`.
+- Open http://localhost:3002 after startup.
+- Start the component docs site with `npm run dev` (port 8080).
 
 Application shell:
 - Start the Next.js app with `npm run app:dev` only when app-shell behavior is needed.

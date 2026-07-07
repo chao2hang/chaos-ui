@@ -15,11 +15,11 @@ npm install
 ## Development
 
 ```bash
-# Start Storybook documentation on port 6006
+# Start component docs site (port 8080)
 npm run dev
 
-# Start Next.js dev server
-npm run app:dev
+# Start Storybook independently (port 3002)
+npm run storybook
 
 # Build for production
 npm run build
@@ -36,14 +36,14 @@ npm run lint
 Import a component and use it in your code:
 
 ```tsx
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   return (
     <div>
       <Button variant="default">Click me</Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -52,23 +52,23 @@ export default function Page() {
 Every Chaos UI component follows a consistent pattern:
 
 ```tsx
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
 // 1. Import the component
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 
 // 2. Use it with TypeScript props
 function MyComponent() {
   return (
     <Button
-      variant="default"      // Variant prop
-      size="md"              // Size prop
-      disabled={false}       // State prop
-      onClick={() => {}}     // Event handler
+      variant="default" // Variant prop
+      size="md" // Size prop
+      disabled={false} // State prop
+      onClick={() => {}} // Event handler
     >
       Button Text
     </Button>
-  )
+  );
 }
 ```
 
@@ -77,9 +77,7 @@ function MyComponent() {
 Chaos UI uses Tailwind CSS 4 with CSS custom properties. All components accept a `className` prop for custom styling:
 
 ```tsx
-<Button className="mt-4 w-full">
-  Full Width Button
-</Button>
+<Button className="mt-4 w-full">Full Width Button</Button>
 ```
 
 Use the `cn()` utility to merge class names:
@@ -114,7 +112,7 @@ Override CSS variables in your `globals.css`:
 All components are fully typed. Import types directly:
 
 ```tsx
-import { Button, type ButtonProps } from '@/components/ui/button'
+import { Button, type ButtonProps } from "@/components/ui/button";
 ```
 
 ## Next Steps

@@ -134,7 +134,8 @@ export default function RootLayout({ children }) {
 - **入口**: `/components` — 8 分区搜索总览，卡片式跳转
 - **详情页**: `/components/[category]/[slug]` — 基于 MDX 的组件文档 + 实时预览（Storybook 驱动）
 - **预览覆盖**: 331/331 组件，**100%** 有实时预览（Story 或手写 Demo）
-- **启动**: `cd apps/docs && pnpm run dev`，访问 `http://localhost:8080`
+- **启动**: `npm run dev`，访问 `http://localhost:8080`
+- **Storybook**: 独立运行于 `http://localhost:3002`，使用 `npm run storybook` 启动
 
 ## 组件清单
 
@@ -155,14 +156,11 @@ export default function RootLayout({ children }) {
 ## 开发
 
 ```bash
-# 启动 Storybook (端口 6006)
-pnpm run dev
+# 启动组件官网 (Next.js + 反向代理, 端口 8080)
+npm run dev
 
-# 启动 Next.js 演示应用 (apps/docs 三服务模式)
-cd apps/docs
-pnpm run dev
-# 访问 http://localhost:8080 → Next.js 展示站
-# 访问 http://localhost:8080/storybook → Storybook
+	# 独立启动 Storybook (端口 3002)
+npm run storybook
 
 # 类型检查 + ESLint + CSS lint + 依赖检查
 pnpm run check
@@ -189,7 +187,7 @@ pnpm run format
 
 Docker 镜像托管在 **GitHub Container Registry**：`ghcr.io/chao2hang/chaos-ui`。推 `main` 分支时自动构建。
 
-容器内运行三服务架构：反向代理 + Next.js 展示站 + Storybook：
+容器内运行双服务：反向代理 + Next.js 展示站，同时通过 `serve` 提供 Storybook 静态文件：
 
 ```
                     容器内部
@@ -197,12 +195,14 @@ Docker 镜像托管在 **GitHub Container Registry**：`ghcr.io/chao2hang/chaos-
                 │                  │
     :8080 ────►│  proxy-server    │
                 │    (Node.js)     │
-                │      │   │       │
-                │      ▼   ▼       │
-                │  Next.js  Serve  │
-                │  :19951   :6006  │
-                │           │      │
-                │    storybook-static│
+                │       │          │
+                │       ▼          │
+	                │   Next.js        │
+	                │   :3001           │
+	                └──────────────────┘
+
+	    :3002 ────►│  serve           │
+                │  storybook-static│
                 └──────────────────┘
 ```
 
@@ -218,11 +218,12 @@ docker build -t ghcr.io/chao2hang/chaos-ui:latest .
 docker run -d \
   --name chaos-ui \
   -p 8080:8080 \
+  -p 3002:3002 \
   chaos-ui:latest
 
 # 访问
 #   http://localhost:8080             → Next.js 展示站
-#   http://localhost:8080/storybook   → Storybook 组件库
+#   http://localhost:3002             → Storybook 组件库
 ```
 
 #### Docker Compose
@@ -233,7 +234,12 @@ docker compose up -d
 
 # 方式 B：从源码构建
 docker compose up -d --build
+
+# 自定义端口
+DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d
 ```
+
+端口可通过环境变量 `DOCS_PORT`（默认 `8080`）和 `STORYBOOK_PORT`（默认 `3002`）配置。
 
 ### GitHub Actions Release
 

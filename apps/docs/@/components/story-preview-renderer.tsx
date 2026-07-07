@@ -2,6 +2,43 @@
 
 import * as React from "react";
 
+// ─── Error boundary for story preview crashes ──────────────────────
+
+type ErrorBoundaryProps = { children: React.ReactNode; name: string };
+type ErrorBoundaryState = { hasError: boolean; errorMessage: string };
+
+class StoryErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false, errorMessage: "" };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, errorMessage: error.message };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex min-h-[120px] items-center justify-center rounded-lg border border-dashed border-destructive/30 bg-destructive/5 p-6 text-center">
+          <div className="text-sm">
+            <p className="font-medium text-destructive">Preview unavailable</p>
+            <p className="text-muted-foreground mt-1 text-xs">
+              {this.props.name} requires specific props to render.{" "}
+              <br className="hidden sm:inline" />
+              View the Storybook docs for examples with data.
+            </p>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 type StoryArgs = Record<string, unknown>;
 
 type Decorator = (
@@ -77,13 +114,17 @@ export function createStoryPreview(mod: unknown): React.ComponentType {
     if (!node) return null;
 
     return (
-      <>
-        {applyDecorators(
-          node,
-          [...(meta?.decorators ?? []), ...(story.decorators ?? [])],
-          args,
-        )}
-      </>
+      <StoryErrorBoundary
+        name={storyModule.default?.component?.displayName ?? storyModule.default?.component?.name ?? "Component"}
+      >
+        <>
+          {applyDecorators(
+            node,
+            [...(meta?.decorators ?? []), ...(story.decorators ?? [])],
+            args,
+          )}
+        </>
+      </StoryErrorBoundary>
     );
   }
 

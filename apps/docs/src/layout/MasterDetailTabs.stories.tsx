@@ -31,7 +31,7 @@ const tabs = [
 
 export const Default: Story = {
   args: {
-    tabs,
+    items: tabs,
     defaultActiveKey: "overview",
   },
 };

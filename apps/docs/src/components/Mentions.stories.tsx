@@ -20,6 +20,6 @@ const users = [
 export const Default: Story = {
   args: {
     placeholder: "Type @ to mention...",
-    suggestions: users,
+    onSearch: async () => users,
   },
 };

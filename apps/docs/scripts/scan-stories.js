@@ -4,7 +4,7 @@ const path = require("path")
 
 const STORY_IDS_FILE = path.join(__dirname, "..", "docs", "story-ids.txt")
 const OUTPUT_FILE = path.join(__dirname, "..", "docs", "playwright-results-raw.json")
-const BASE_URL = "http://localhost:6006"
+const BASE_URL = "http://localhost:3002"
 
 const STORY_NAV_TIMEOUT = 30000
 const SETTLE_DELAY_MS = 1500
@@ -50,7 +50,7 @@ async function main() {
     }
     const onResponse = (res) => {
       const u = res.url()
-      if (u.includes("localhost:6006") && res.status() >= 400) {
+      if (u.includes("localhost:3002") && res.status() >= 400) {
         if (
           u.includes(".stories.") ||
           u.includes("/src/") ||

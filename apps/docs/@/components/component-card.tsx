@@ -26,7 +26,7 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
   const slug = encodeURIComponent(component.slug);
   const detailHref = `/components/${categorySlug}/${slug}`;
   const storybookHref = component.storybookId
-    ? `/storybook/?path=/docs/${component.storybookId}`
+    ? `http://localhost:3002/?path=/docs/${component.storybookId}`
     : null;
 
   const categoryLabel = isEn

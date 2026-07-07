@@ -12,12 +12,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    sequences: ["A001-A100", "B001-B050"],
+    value: "A001-A100, B001-B050",
   },
 };
 
 export const Single: Story = {
   args: {
-    sequences: ["INV-2024-0001 ~ INV-2024-0099"],
+    value: "INV-2024-0001 ~ INV-2024-0099",
   },
 };

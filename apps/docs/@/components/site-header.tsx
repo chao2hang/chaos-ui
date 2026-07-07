@@ -97,7 +97,11 @@ export function SiteHeader() {
           </Button>
 
           {/* Storybook link */}
-          <a href="/storybook" target="_blank" rel="noopener noreferrer">
+          <a
+            href="http://localhost:3002"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               variant="outline"
               size="sm"

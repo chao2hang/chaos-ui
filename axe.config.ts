@@ -7,7 +7,7 @@
  * import { expect } from "@playwright/test";
  *
  * test("page has no a11y violations", async ({ page }) => {
- *   await page.goto("http://localhost:6006");
+ *   await page.goto("http://localhost:3002");
  *   const results = await new AxeBuilder({ page })
  *     .withTags(["wcag2a", "wcag2aa"])
  *     .analyze();

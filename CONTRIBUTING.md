@@ -18,12 +18,12 @@ cd chaos_style
 
 # Install dependencies
 	pnpm install
-	
-	# Start Storybook (port 6006)
-	pnpm run dev
-	
-	# Start Next.js demo app
-	pnpm run app:dev
+
+		# Start Storybook (port 3002)
+		pnpm run storybook
+
+		# Start component docs site (Next.js + proxy, port 8080)
+		pnpm run dev
 ```
 
 ## Development Workflow
@@ -64,13 +64,13 @@ Before submitting a PR, run:
 ```bash
 # Type checking + lint + CSS lint + dependency check
 	pnpm run check
-	
+
 	# Run tests with coverage
 	pnpm run test:coverage
-	
+
 	# Build Storybook
 	pnpm run build-storybook
-	
+
 	# Build package
 	pnpm run build:pkg
 ```
@@ -98,13 +98,13 @@ git commit -m "test(hooks): add use-debounce tests"
 ### Component Structure
 
 ```tsx
-import { cn } from "@/lib/utils"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
 
 const componentVariants = cva("base-classes", {
-  variants: { /* ... */ },
-  defaultVariants: { /* ... */ },
-})
+  variants: {/* ... */},
+  defaultVariants: {/* ... */},
+});
 
 function Component({
   className,
@@ -116,17 +116,17 @@ function Component({
       className={cn(componentVariants({ className }))}
       {...props}
     />
-  )
+  );
 }
 
-export { Component, componentVariants }
+export { Component, componentVariants };
 ```
 
 ### Hook Structure
 
 ```ts
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 
 export function useHook(/* params */): ReturnType {
   // implementation

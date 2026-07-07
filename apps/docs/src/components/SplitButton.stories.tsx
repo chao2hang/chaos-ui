@@ -13,26 +13,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: "Save",
-    menu: {
-      items: [
-        { key: "save", label: "Save" },
-        { key: "save-as", label: "Save As..." },
-        { key: "save-all", label: "Save All" },
-      ],
-    },
+    label: "Save",
+    items: [
+      { key: "save", label: "Save" },
+      { key: "save-as", label: "Save As..." },
+      { key: "save-all", label: "Save All" },
+    ],
   },
 };
 
 export const Primary: Story = {
   args: {
     variant: "primary",
-    children: "Publish",
-    menu: {
-      items: [
-        { key: "publish", label: "Publish Now" },
-        { key: "schedule", label: "Schedule..." },
-      ],
-    },
+    label: "Publish",
+    items: [
+      { key: "publish", label: "Publish Now" },
+      { key: "schedule", label: "Schedule..." },
+    ],
   },
 };

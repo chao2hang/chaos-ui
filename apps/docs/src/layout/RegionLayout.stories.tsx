@@ -13,42 +13,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    regions: [
-      {
-        key: "north",
-        content: (
-          <div className="bg-muted p-4 text-center text-sm">Header Region</div>
-        ),
-      },
-      {
-        key: "center",
-        content: (
-          <div className="bg-background p-8 text-center text-sm">
-            Main Content Region
-          </div>
-        ),
-      },
-      {
-        key: "south",
-        content: (
-          <div className="bg-muted p-4 text-center text-sm">Footer Region</div>
-        ),
-      },
-    ],
+    header: <div className="bg-muted p-4 text-center text-sm">Header</div>,
+    left: <div className="bg-muted p-4 text-sm">Sidebar</div>,
+    right: <div className="bg-muted p-4 text-sm">Info Panel</div>,
+    footer: <div className="bg-muted p-4 text-center text-sm">Footer</div>,
   },
 };
 
-export const WithSidebar: Story = {
-  args: {
-    regions: [
-      {
-        key: "west",
-        content: <div className="bg-muted p-4 text-sm">Sidebar</div>,
-      },
-      {
-        key: "center",
-        content: <div className="bg-background p-8 text-sm">Content</div>,
-      },
-    ],
-  },
+export const ContentOnly: Story = {
+  args: {},
 };
