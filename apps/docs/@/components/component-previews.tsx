@@ -124,6 +124,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Result } from "@/components/ui/result";
 
 /* Business components ----------------------------------------------------- */
 import {
@@ -823,6 +824,17 @@ function BizStatusTagDemo() {
   );
 }
 
+function ResultDemo() {
+  return (
+    <Result
+      status="success"
+      title="提交成功"
+      subtitle="你的配置已保存，可以继续下一步。"
+      extra={<Button size="sm">继续</Button>}
+    />
+  );
+}
+
 function ProfileFormDemo() {
   return (
     <div className="bg-card w-full max-w-md rounded-md border p-6">
@@ -869,6 +881,7 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   RadioGroup: RadioGroupDemo,
   Badge: BadgeDemo,
   Button: ButtonDemo,
+  Result: ResultDemo,
 
   /* Business components */
   Profile: ProfileDemo,

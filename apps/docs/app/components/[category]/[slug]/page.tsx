@@ -82,10 +82,10 @@ function NotFoundFallback({ locale }: { locale: Locale }) {
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-20 text-center">
       <h1 className="text-foreground text-2xl font-bold">
-        {d.detail.mdxNotFoundTitle}
+        {d.detail.notFoundTitle}
       </h1>
       <p className="text-muted-foreground mt-4 max-w-md text-sm">
-        {d.detail.mdxNotFoundDesc}
+        {d.detail.notFoundDesc}
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Link href="/components" className={outlineLinkClass}>

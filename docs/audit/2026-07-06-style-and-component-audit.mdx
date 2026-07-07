@@ -1,0 +1,434 @@
+---
+title: "Chaos UI 样式与组件审计报告"
+date: "2026-07-06"
+audience: "Chaos UI 维护者"
+scope: "chaos_style 主仓只读审计（含 apps/docs 与 packages/chaos-design-ui）"
+status: "仅交付报告，本轮不修改任何源码 / 配置 / 样式 / Story"
+---
+
+# Chaos UI 样式与组件审计报告（2026-07-06）
+
+> **本轮交付物**：本 MDX 文件本身。审计口径为「只读盘点 + 行号定位」，把三份并行 Explore 的发现整合成一份可直接逐项实施的结构化文档。
+>
+> **本轮不做**：不改任何源码 / 配置 / styles；不补 Story；不修任何 bug；不动 git。
+>
+> **时间戳**：2026-07-06。仓库工作树当前已有 `apps/docs` 下若干未提交改动（component-loader / component-map / page / scripts / vitest.*），审计在脏工作树基础上进行。
+
+---
+
+## 0. 概览：项目架构与审计口径
+
+### 0.1 技术栈与分层
+
+| 维度 | 现状 |
+| --- | --- |
+| Tailwind | v4.3，**CSS-first**，无 `tailwind.config.*`；token 通过 `@theme` + `:root` / `.dark` 注入 |
+| 设计 token | OKLCH 语义色 + 7 阶圆角 + 6 阶阴影 + 8 层 z-index + keyframes；`cn()`（clsx + tailwind-merge）+ `cva`（18 个核心组件） |
+| 主题 | `next-themes`，但仅 `apps/docs` 接入 `ThemeProvider`，根 `app/` 未接入（见 A5） |
+| 组件范式 | shadcn "base-nova" 风格：`data-slot` + `cn()` + `cva`，约 95% 一致 |
+| 组件分层 | `components/{ui, business, layout, mobile}`，各子目录有独立 barrel，**无根级 `components/index.ts` 统一入口** |
+| 规模 | 504 个非测试组件（ui 179 / business 316 / layout 24 / mobile 27） |
+| 构建入口 | `tsup` + `package.json` exports；子包 `packages/chaos-design-ui` 镜像部分组件 |
+| Docs 站 | `apps/docs`，动态路由 `app/components/[category]/[slug]/page.tsx`；预览链路 `component-preview-impl.tsx` → `component-loader.ts`（`next/dynamic`）→ `components.meta.ts` 登记表 |
+| Storybook | 双 Storybook：根 `.storybook`（主，a11y=error，i18n Provider）与 `apps/docs/.storybook`（镜像，a11y=todo，TS check 关闭） |
+
+### 0.2 审计口径
+
+- 范围限于 `chaos_style` 主仓；未审计 `apps/docs` 内 docs 组件实现细节与 CI / 部署配置。
+- 行号基于审计时点（2026-07-06）的脏工作树；后续若相关文件被改动，行号需重新定位。
+- 分类：**A** 严重运行时 bug / **B** Storybook 覆盖缺口 / **C** docs 站与登记一致性 / **D** 设计系统层缺失 token / **E** 未消费 dead token / **F** 潜在风险 / **G** 测试覆盖空白。
+- 每类条目附「现象 / 根因 / 文件:行 / 修复建议 / 难度 / 优先级」。
+
+> **与既有审计的关系**：本报告整合自三份并行 Explore 与附件既有摘要，并在整合过程中修正了若干事实偏差，均以「⚠️ 核验修正」标注（如 A1 影响范围、C1 ErrorBoundary 登记现状、C3 slug 冗余计数）。
+
+---
+
+## A 类：严重运行时 Bug
+
+### A1 — `--font-sans` 自引用死循环
+
+- **现象**：`--font-sans: var(--font-sans)` 自引用，CSS 变量解析为无效值（fallback 链断裂），依赖 `font-sans` utility 的元素回退到浏览器默认字体（衬线），与 Geist Sans 设计意图不符。
+- **根因**：`@theme inline` 中把 `--font-sans` 映射到 `var(--font-sans)` 自身，而非 Next.js 注入的 `--font-geist-sans`。`inline` 关键字会在 `:root` 展开引用，形成无限自引用。
+- **文件:行**：
+  - `styles.css:758` — `--font-sans: var(--font-sans);`
+  - `apps/docs/app/globals.css:16` — 同（第 18 行 `--font-heading` 连带失效）
+  - `packages/chaos-design-ui/styles.css:10` — 同（第 12 行 `--font-heading` 连带失效）
+  - ⚠️ **核验修正**：计划描述「影响 4 个 globals」，但 `app/globals.css` 仅 3 行 `@import`（`tailwindcss` / `../styles.css` / `../styles/scrollbar.css`），本身不重复声明 `--font-sans`，其字体继承自被 import 的根 `styles.css`。**实际真源为 3 处**。
+- **修复建议**：三处 `--font-sans: var(--font-sans)` 改为 `--font-sans: var(--font-geist-sans);`（与 `--font-mono: var(--font-geist-mono)` 对齐）。
+- **难度**：🟢 低。**优先级**：**P0**。
+
+### A2 — `--radix-popover-trigger-width` 在 base-ui 项目中不被注入
+
+- **现象**：`Autocomplete` / `Mentions` 的下拉面板宽度与触发器不一致（面板回退到内容宽度或默认宽度），破坏「面板宽度 = 触发器宽度」的视觉契约。
+- **根因**：项目 popover 已从 Radix 迁移到 base-ui，base-ui 不注入 `--radix-popover-trigger-width` 变量，该 `var()` 解析为空。
+- **文件:行**：
+  - `components/ui/autocomplete.tsx:135` — `className="w-[var(--radix-popover-trigger-width)] p-1"`
+  - `components/ui/mentions.tsx:124` — 同
+  - ⚠️ **核验修正**：计划提到「子包镜像」，核验 `packages/chaos-design-ui` 未见独立的 `autocomplete.tsx` / `mentions.tsx` 含该变量（子包 re-export 根实现）。**修复点集中在根 `components/ui/` 2 处**。
+- **修复建议**：改用 base-ui 提供的 `var(--anchor-width)`，并提供 fallback：`w-[var(--anchor-width,100%)] p-1`。修改前需运行时确认当前 base-ui 版本注入的精确变量名。
+- **难度**：🟡 中。**优先级**：**P0**。
+
+### A3 — docs 站缺动画 token / keyframes
+
+- **现象**：docs 站中依赖 `data-[state=open]:animate-in` / `data-[state=closed]:animate-out` 的组件（Dialog / Popover / Tooltip 等）无过渡动画。
+- **根因**：`apps/docs/app/globals.css:3` 把 `@import "tw-animate-css"` 注释掉；且该 globals 用 `@import "tailwindcss" source(none)` 独立入口，不 import 根 `styles.css`，未继承 keyframes / `--animate-*` 段。
+- **文件:行**：`apps/docs/app/globals.css:3`（`/* @import "tw-animate-css"; */`）。
+- **修复建议**：二选一——(a) 取消第 3 行注释；(b) 让 docs globals `@import "../../../styles.css"` 复用根源；(c) 在 docs `@theme` 补齐 keyframes。推荐 (a)。
+- **难度**：🟢 低。**优先级**：**P0**。
+
+### A4 — docs 站缺 `styles/scrollbar.css`
+
+- **现象**：docs 站滚动条为浏览器默认样式，与根 Storybook / 主应用的自定义滚动条不一致。
+- **根因**：根 `app/globals.css:3` 通过 `@import "../styles/scrollbar.css"` 引入；`apps/docs/app/globals.css` 无此 import，且 `apps/docs/styles/` 目录不存在。
+- **文件:行**：`apps/docs/app/globals.css`（缺 import）；根对照 `app/globals.css:3`。
+- **修复建议**：docs globals 增加 `@import "../../../styles/scrollbar.css";`（推荐 re-export 根侧真源，避免漂移）。
+- **难度**：🟢 低。**优先级**：**P0**。
+
+### A5 — 根 `app/layout.tsx` 未接入 `next-themes` ThemeProvider
+
+- **现象**：根 Next.js app（`app/`）无法运行时切换暗色模式；`.dark` class 仅在 docs 站可切换。
+- **根因**：`apps/docs/app/layout.tsx` 已包裹 `ThemeProvider`，根 `app/layout.tsx` 未引入。
+- **文件:行**：`app/layout.tsx`（grep `ThemeProvider` / `next-themes` 均无命中）。
+- **修复建议**：在根 `app/layout.tsx` 包裹 `<ThemeProvider attribute="class" defaultTheme="system" enableSystem>`；或明确「根 app 仅作 landing 无需主题切换」并在 README 备注。
+- **难度**：🟢 低。**优先级**：P0（若根 app 演示暗色）/ P2（若仅 landing）。
+
+---
+
+## B 类：Storybook 覆盖缺口
+
+> 主 Storybook（根 `.storybook`）当前 218 个 story，`tags: ["autodocs"]` 100%，但 `play` 交互函数 **0%**、`argTypes` 仅 17.4%、18.3% story（40 / 218）错误从 `@storybook/nextjs-vite` 导入类型（应为 `@storybook/react`）。
+
+### B1 — UI 组件缺 Story（49 个 ⚠️）
+
+- **⚠️ 核验修正**：附件既有审计口径 **48**；计划口径 **49**，差异 1（可能 include/exclude 了 `audio-player.tsx` 或 `video-player.tsx`）。以实施阶段脚本枚举为准（`ls components/ui/*.tsx` 减去 `src/stories/ui/*.stories.tsx` 覆盖集）。
+- **高频代表**（缺失影响最大）：`date-picker`、`cascader`、`autocomplete`、`popconfirm`、`rating`、`result`、`statistic`、`tag`、`typography`、`watermark`、`divider`、`space`、`image`、`image-viewer`、`audio-player`、`video-player`。
+- **建议批次**：**P1** — 高频 UI（上述 16 项）；**P2** — 剩余长尾。
+
+### B2 — Layout 缺 Story（12 / 24）
+
+12 个 layout 组件无独立 story（layout 测试覆盖 100%，但 story 仅 12 个）：
+
+`admin-breadcrumb`、`admin-header`、`admin-sider`、`admin-tabs`、`article-layout`、`chat-layout`、`embed-layout`、`master-detail-layout`、`master-detail-tabs`、`print-template-layout`、`split-screen`、`wizard-layout`。
+
+**建议批次**：**P1** — layout 是文档站骨架，story 缺口直接影响可视化演示。
+
+### B3 — Mobile 缺独立 Story（3 / 27 无独立，24 由 1 个聚合 story 覆盖）
+
+- 现状：仅一个聚合 story `MobileComponents.stories.tsx` 覆盖 ~24 个；其余 3 个完全无 story（具体名单待实施阶段脚本枚举）。
+- 问题：聚合 story 无法单独定位变体，检索性差；`argTypes` / `play` 无法针对单组件配置。
+- **建议批次**：**P2** — 拆分聚合 story 为独立文件，再补 3 个缺口。
+
+### B4 — Business 缺 Story（约 207 / 321 ⚠️，按子域分组）
+
+- **⚠️ 核验修正**：附件既有审计口径 **约 200**；计划口径 **约 207**。以实施阶段 `find components/business -name '*.tsx' ! -name '*.stories.*' ! -name '*.test.*'` 减去 `find … -name '*.stories.*'` 为准。
+
+| 子域 | 缺口规模 | 代表 | 建议批次 |
+| --- | --- | --- | --- |
+| **chart 矩阵**（所有 `chart-*` 仅聚合 `Charts.stories.tsx`，无单图 story） | 高 | area/bar/line/pie/radar/scatter/sankey/heatmap/treemap/waterfall/composed/funnel/radial + 5 shared | **P0** |
+| **chat / AI 套件**（`chat-*` 全缺） | 高 | chat-message / chat-input / chat-thread / ai-assistant / ai-prompt / … | **P0** |
+| mobile 业务组件 | 中 | mobile-checkout / mobile-swipe-card / mobile-share-sheet / mobile-form-wizard | P1 |
+| 打印 / 附件 | 中 | print-template-layout / attachment-* | P2 |
+| BOM / 制造 | 中 | bom-* / manufacturing-* | P2 |
+| 审批 / 工作流 | 中 | approval-* / workflow-* / workflow-designer | P2 |
+| 财务 | 中 | bill-* / invoice-* / payment-* | P2 |
+| 营销 | 低 | coupon-card / red-packet / invite-link / social-share | P3 |
+| 其他 | 高 | form-designer / browse-dialog / checkout-bar / media-recorder / activity-feed / … | P3 |
+
+> **质量警示**：全库 218 story 中 `play` 交互函数为 0%，`argTypes` 仅 17.4%。即便补齐数量，缺乏交互测试与类型化 args 仍是结构性短板（与 G 类测试空白互为因果）。
+
+---
+
+## C 类：docs 站与登记一致性
+
+### C1 — ErrorBoundary 登记（⚠️ 已修复，本项撤销）
+
+- **计划声称**：`components.meta.ts` 登记 ErrorBoundary，但 `component-loader.ts` / `component-map.ts` / `businessComponentNames` 集合均缺 → 详情页仅显示 `PreviewFallback`。
+- **⚠️ 核验修正**：实际登记齐全。
+  - `apps/docs/@/components/component-loader.ts:224` — `ErrorBoundary: dynamic(() => import("@/components/business/error-boundary").then(m => ({ default: m.ErrorBoundary })), { ssr: false })`
+  - `apps/docs/@/components/component-loader.ts:440` — 在 `businessComponentNames` Set 中
+  - `apps/docs/@/components/component-map.ts:218` — `import { ErrorBoundary } from "@/components/business/error-boundary"`
+  - `apps/docs/@/components/component-map.ts:551` — Map 内登记
+- **结论**：❌ 撤销该项。可能是计划基于旧版工作树；当前脏工作树已修复。**实施阶段跳过 C1**。
+
+### C2 — ui 影子实现与 business 重名（10 对）未在 loader 区分
+
+- **现象**：`apps/docs/@/components/ui/` 与 `apps/docs/@/components/business/` 下存在 10 对同名文件，登记表 / 生成器未显式区分优先级，自动生成器 `findPrimaryExport` 可能误选 ui 影子版本；详情页可能渲染的是「弱版本」而非 business 完整实现。
+- **文件**（每对形如 `apps/docs/@/components/ui/{name}.tsx` + `apps/docs/@/components/business/{name}.tsx`）：`anchor` / `barcode-display` / `combobox` / `empty-state` / `fab` / `rating` / `segmented-control` / `signature-pad` / `tour` / `watermark`。
+- **修复建议**：登记表增加 `sourcePath` 优先级规则（business 优先），或在生成器（`apps/docs/scripts/generate-component-loader.mjs`）中显式排除 ui 影子；或删除已过时的 ui 影子文件。
+- **难度**：🟡 中。**优先级**：**P1**。
+
+### C3 — slug 前缀冗余（27 个 ⚠️，非 31）
+
+- **现象**：`components.meta.ts` 中 slug 由生成器叠加子目录前缀，导致冗余（如 `charts-area-chart`、`form-form-input`）。
+- **⚠️ 核验修正**：实际计数 **27**（`charts-*` 20 个 + `form-form-*` 7 个），非计划所述 31。
+- **文件:行**：`apps/docs/@/content/components.meta.ts` — `slug: 'charts-*'` 首尾行号 `:1658` … `:1848`（20 处）；`slug: 'form-form-*'` 7 处（行号分布于 form 段）。
+- **修复建议**：统一 slug 生成器为 `toKebab(name)`（去掉子目录前缀叠加）。**需评估外部链接兼容性**（若已发布，考虑保留一次性 redirect 或双 slug 过渡）。
+- **难度**：🟡 中。**优先级**：P1。
+
+### C4 — `components/ui/index.ts` MessageProvider 自相矛盾
+
+- **现象**：第 444 行注释称「MessageProvider 移至 `./next` 入口：它依赖 Toaster(sonner) → next-themes，而 next-themes 是 optional peer，留在主入口会让非 Next 项目 import 即崩」，但第 516–517 行仍 `export { MessageProvider }`。
+- **文件:行**：`components/ui/index.ts:444`（注释）+ `:516-517`（仍 export）。
+- **修复建议**：二选一——(a) 删除 516–517 的 export 并保留注释（推荐，与注释意图一致，非 Next 项目安全）；(b) 删除注释并保留 export（需接受非 Next 项目崩溃风险，且需在 docs 说明 peer 依赖）。
+- **难度**：🟢 低。**优先级**：**P1**。
+
+### C5 — `components/business/index.ts` 注释与重复 export
+
+- **现象**：
+  - (a) 第 4 行注释：`// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).`
+  - (b) 但第 340–341 行仍 `export { AdvancedDataTable } from "./advanced-data-table"; export type { AdvancedDataTableProps } ...`
+  - (c) `map-marker` / `map-track` / `map-view` 各重复 `export *` **3 次**（`:193 / :196 / :199` 起，`:194 / :197 / :200`，`:195 / :198 / :201`）。
+- **文件:行**：`components/business/index.ts:4`、`:193-201`、`:340-341`。
+- **修复建议**：
+  - 与 C4 同法：注释与代码取其一；若确认弃用，删除 `:340-341`。
+  - `map-*` 三处重复只保留第一组（`:193-195`）。
+- **难度**：🟢 低。**优先级**：**P1**。
+
+### C6 — `VideoPlayer` 完全孤立
+
+- **现象**：`components/ui/video-player.tsx` 是完整实现，但：
+  - **无 story**（B1 覆盖）
+  - **未在任何 barrel 中 export**（`grep -rn "video-player\|VideoPlayer" components/ui/index.ts components/index.ts` 全部无命中）
+  - `components/index.ts` 根级 barrel 亦不存在
+- **文件**：`components/ui/video-player.tsx`（孤立）；`components/ui/index.ts`（缺 export）。
+- **修复建议**：在 `components/ui/index.ts` 补 `export { VideoPlayer } from "./video-player"` + 类型；补 story；补测试（见 G）。
+- **难度**：🟢 低。**优先级**：**P1**。
+
+### C7 — `apps/docs/vitest.config.ts` 与 `vitest.setup.ts` 不一致
+
+- **现象**：
+  - `vitest.config.ts` 已删除顶层 `import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin"`（工作树 diff 已删），但 `projects` 数组仍保留 `name: "storybook"` 的 browser project（`vitest.config.ts:48-72`），且 `include: ["src/**/*.stories.{ts,tsx}"]` 指向 `apps/docs/src/` — **该目录不存在**，storybook project 永远 include 0 个文件。
+  - `coverage.include` 使用相对路径 `components/**` / `hooks/**` / `lib/**`（`vitest.config.ts:26-45`），但项目源实际在 `@/` alias 下（`apps/docs/@/components/**`）；相对路径解析到 `apps/docs/components/**` 目录不存在，coverage 恒为 0。
+  - `vitest.setup.ts` 已 polyfill `matchMedia` / `IntersectionObserver` / `ResizeObserver` / `scrollTo` / `scrollIntoView`，但**缺 `HTMLDialogElement.prototype.show` / `showModal` polyfill**（jsdom 不实现，Dialog 测试会 throw）以及**缺 `getComputedStyle` 的 jsdom 边缘补丁**（在读取 CSS 变量时返回空字符串）。
+- **文件:行**：`apps/docs/vitest.config.ts:26-45, 48-72`；`apps/docs/vitest.setup.ts:1-120`。
+- **修复建议**：
+  - 删除 `projects` 数组内的 storybook browser project（既然已删 storybookTest import）；或恢复 import 并把 `include` 指向真实存在的 stories 目录。
+  - `coverage.include` 改为 `@/components/**/*.{ts,tsx}` 等，或使用 `apps/docs/@/…` 相对路径。
+  - `vitest.setup.ts` 增补：
+    ```ts
+    if (typeof HTMLDialogElement !== "undefined") {
+      HTMLDialogElement.prototype.show ??= vi.fn(function (this: HTMLDialogElement) { this.open = true })
+      HTMLDialogElement.prototype.showModal ??= vi.fn(function (this: HTMLDialogElement) { this.open = true })
+      HTMLDialogElement.prototype.close ??= vi.fn(function (this: HTMLDialogElement) { this.open = false })
+    }
+    ```
+- **难度**：🟡 中。**优先级**：**P0**（阻塞 docs 站测试与覆盖率报告）。
+
+### C8 — docs globals 与根 `styles.css` token 漂移（缺 39 个扩展 token 类目）
+
+- **现象**：`grep -c` 结果：
+  - `styles.css` 中 `--disabled|--font-size|--ease|--duration|--z-index|--selection|--overlay|--mask|--transition` 命名的 token **39 处**
+  - `apps/docs/app/globals.css` 中 **0 处**
+  - `packages/chaos-design-ui/styles.css` 中 **0 处**
+- **后果**：docs / 子包中任何 `var(--disabled-text)` / `var(--overlay-color)` / `var(--mask-color)` / `var(--transition-fast)` / `var(--z-index-modal)` 等**无法解析**，回退到无效值。
+- **文件:行**：`styles.css`（token 定义源）；`apps/docs/app/globals.css`（缺）；`packages/chaos-design-ui/styles.css`（缺）。
+- **修复建议**：把 docs globals 与子包 styles 改为 `@import "../../../styles.css"`（一次性去重），或把 39 处扩展 token 段落显式镜像。推荐前者。
+- **难度**：🟡 中（`@import` 层级需处理 `source(none)` 兼容与 `@source` 扫描目录）。**优先级**：**P0**。
+
+### C9 — 子包 `packages/chaos-design-ui/styles.css` 与根 `styles.css` token 漂移
+
+- **现象**：子包 styles.css（192 行）仍 `@import "tw-animate-css"` + `@import "shadcn/tailwind.css"`（`packages/chaos-design-ui/styles.css:1-3`），是一份**陈旧副本**，缺 C8 列的所有扩展 token；消费者（如引入 `@chaos_team/chaos-ui/styles.css` 的第三方项目）能力弱。
+- **文件:行**：`packages/chaos-design-ui/styles.css:1-192`（全文陈旧）。
+- **修复建议**：改为 `@import "../../styles.css"` 或在发布构建阶段把根 styles 内联到子包 dist（推荐后者，避免相对路径打包问题）。
+- **难度**：🟡 中。**优先级**：**P0**。
+
+---
+
+## D 类：设计系统层缺失 token（应有但全无）
+
+> 以下 token **在 `@theme` 命名空间中完全缺失**（既未在 `:root` 定义，也无 Tailwind utility 映射），导致组件层只能硬编码 Tailwind 默认值，设计系统层无法统一调优。
+
+| 类目 | 缺失内容 | 影响 |
+| --- | --- | --- |
+| **Spacing scale** | `--spacing-*`（0.5 / 1 / 2 / 4 / 8 …）在 `@theme` 未注册 | 依赖 Tailwind 默认 `spacing`（0.25rem 步进），无法整套换算（如切换 8px baseline） |
+| **字号 utility 映射** | `--text-xs / sm / base / lg / xl / 2xl …` 在 `@theme` 未注册 | 组件层硬编码 `text-sm` / `text-lg` 且无法通过 token 调整 |
+| **line-height / letter-spacing** | 无 token；`styles.css` base 层 h1–h6 硬编码 | 排版一致性依赖各组件自觉，回退风险高 |
+| **z-index 在 `@theme` 注册** | `:root` 有 `--z-index-*`（8 层）但**未映射到 `@theme --z-*`**，Tailwind utility `z-*` 不识别 | 组件多用 `z-50` 硬编码而非 `z-modal` / `z-toast` |
+| **Border width** | 无 `--border-width-*` token；组件硬编码 `border` / `border-2` | 无法整体切换粗细基准 |
+| **Focus ring 指标** | 无 `--focus-ring-width` / `--focus-ring-offset` / `--focus-ring-color` 统一 token | 各组件 `focus-visible:ring-*` 各自为战，a11y 一致性差 |
+| **数据可视化语义 token** | 无 `--chart-positive` / `--chart-negative` / `--chart-grid` / `--chart-axis` / `--chart-tooltip-bg`（仅 `--chart-1..5`） | 财务 / 监控图表无法通过 token 表达语义 |
+| **Density token** | 无 `--density-compact-*` / `--density-comfortable-*` | 无法整体切换紧凑 / 舒适模式 |
+| **Motion 命名空间** | `--duration-*` / `--ease-*` 在 `:root` 定义但**未接入 `@theme --animate-*`**（见 E）；无 `--motion-collapse-in` / `--motion-fade-in` 高阶命名 | 组件多用 `transition-all duration-200` 硬编码 |
+| **`--radius-full` 派生** | 无独立 `--radius-full`（当前依赖 Tailwind `rounded-full = 9999px`） | 圆角 token 谱系不完整 |
+| **`.dark` 显式覆盖缺失** | `.dark` 中未显式覆盖 `--disabled-*` / `--duration-*` / `--ease-*`（这些 token 亮暗色应可差异化） | 暗色模式下禁用态 / 动效感知一致，缺少差异化空间 |
+
+**建议批次**：**P1** — 补 `--spacing-*` / `--text-*` / focus ring / chart 语义色（4 大类）；**P2** — density / motion 高阶命名 / border-width / radius-full；**P3** — `.dark` 差异化覆盖。
+
+---
+
+## E 类：未消费的 Dead Token
+
+> 以下 token **已在 `:root` 定义**，但**未在 `@theme` 命名空间映射**为 Tailwind utility，组件代码全部改用硬编码 Tailwind utility（如 `text-sm` / `z-50` / `duration-200`），导致 token 闲置。
+
+| Token 前缀 | 定义位置 | 现状 |
+| --- | --- | --- |
+| `--font-size-*` | `styles.css` `:root` | 已定义但无 `--text-*` @theme 映射 → 组件用 `text-sm` / `text-base` 硬编码 |
+| `--ease-*` | `styles.css` `:root` | 已定义但无 `@theme --ease-*` 映射 → 组件用 `ease-in-out` 硬编码 |
+| `--duration-*` | `styles.css` `:root` | 已定义但无 `@theme --duration-*` 映射 → 组件用 `duration-200` / `duration-300` 硬编码 |
+| `--z-index-*` | `styles.css` `:root` | 已定义但无 `@theme --z-*` 映射 → 组件用 `z-50` / `z-[9999]` 硬编码 |
+
+- **后果**：token 层已有变量但**不可用**，形成"面子工程"；未来任何设计系统调优（如整体降低动效时长）无法通过修改 token 实现。
+- **修复建议**：在 `styles.css` `@theme inline` 段增加对应映射：
+  ```css
+  @theme inline {
+    --text-xs: var(--font-size-xs);
+    --text-sm: var(--font-size-sm);
+    /* ... */
+    --duration-fast: var(--duration-fast);
+    --ease-in-out: var(--ease-in-out);
+    --z-modal: var(--z-index-modal);
+    --z-toast: var(--z-index-toast);
+    /* ... */
+  }
+  ```
+- **难度**：🟢 低（一次性 mapping）。**优先级**：**P1**。
+
+---
+
+## F 类：潜在风险（待运行时验证）
+
+### F1 — `audio-player.tsx` slider 自定义 CSS 变量（⚠️ 待核验）
+
+- **计划声称**：`audio-player.tsx` 引用 `--slider-fill-percent` / `--slider-pointer-percent`，覆盖 vidstack slider 的裸 div，需运行时验证变量可见性。
+- **⚠️ 核验修正**：`grep -rn "slider-fill-percent|slider-pointer-percent" components/ui/audio-player.tsx` **0 命中**。该变量可能：(a) 已在最近一次重构中移除；(b) 移至其他文件（如 vidstack 主题 css）。**实施阶段需重新定位**或撤销本项。
+- **建议**：先全局 `rg "slider-fill-percent|slider-pointer-percent"` 确认是否存在；若已不存在则撤销 F1。
+
+### F2 — `var(--color-muted)` 在原生 `var()` 上下文解析不稳定
+
+- **现象**：以下文件在 Tailwind 任意值（`bg-[radial-gradient(...var(--color-muted)...)]`）上下文中使用 `var(--color-muted)`，而非 `bg-muted` / `var(--muted)`：
+  - `apps/docs/@/components/component-preview-impl.tsx:45` — `bg-[repeating-linear-gradient(45deg,...,var(--color-muted)_10px,var(--color-muted)_12px)]`
+  - `components/business/map-chart.tsx:47` — `bg-[radial-gradient(circle_at_30%_30%,var(--color-muted),transparent_70%)]`
+- **根因**：`--color-muted` 由 `@theme inline` 映射，理论上 Tailwind v4 应注入；但在「任意值 + 嵌套 var()」上下文中，浏览器解析时机不稳（部分版本下 `@theme inline` 变量在 `:root` 之前未就绪），导致渐变中段色透明。
+- **修复建议**：改用 `bg-muted/30`（如 `:33` 已有正确写法可对照）或改用 `var(--muted)` 语义源变量；运行时在 docs 与 Storybook 双环境验证渐变是否可见。
+- **难度**：🟢 低。**优先级**：P2。
+
+---
+
+## G 类：测试覆盖空白
+
+### G1 — `apps/docs` page.test.tsx 现状与缺口
+
+- **现状**：`apps/docs/app/components/[category]/[slug]/page.test.tsx`（未提交新增）存在；`component-preview-impl.test.tsx`（未提交新增）存在。
+- **缺口**：
+  1. **Happy-path live preview 挂载**：未覆盖「meta 登记 → dynamic loader 解析 → ComponentPreview 渲染」全链路 happy-path；当前若 `dynamic()` 解析失败，fallback 是否走 `PreviewFallback` 无断言。
+  2. **`generateStaticParams` / `generateMetadata` 快照**：未对 27 个 slug（含 charts-/form-form- 前缀冗余的）做参数快照，slug 变更无回归保护。
+  3. **`categoryLabelsZh` 字典 mock 仅 1 键**：`dict` mock 覆盖不足，多 category 切换时 i18n 路径未验证。
+
+### G2 — 组件层测试缺口（既有审计口径）
+
+- **UI**：`audio-player.tsx` / `video-player.tsx` 无测试（2 个）。
+- **Business**：12 个无测试 — `browse-dialog` / `checkout-bar` / `coupon-card` / `invite-link` / `map-marker` / `map-track` / `map-view` / `media-recorder` / `payment-method-selector` / `payment-result` / `red-packet` / `social-share`。
+- **Mobile**：12 / 27 无测试 — `mobile-auth-layout` / `mobile-button` / `mobile-checkout` / `mobile-dashboard-layout` / `mobile-data-table` / `mobile-dialog` / `mobile-filter-builder` / `mobile-form-field` / `mobile-form-wizard` / `mobile-share-sheet` / `mobile-swipe-card` / `mobile-textarea`。
+- **孤儿测试**：`components/business/diag-switch.test.tsx` 无对应源文件，实际 import `./preference-panel` — **测试文件命名错误**（应重命名或删除）。
+- **建议批次**：**P2** — 修正孤儿测试 + 补 ui 2 个；**P3** — 补 business 12 + mobile 12；G1 docs 站测试与 C7 vitest 配置修复**绑定**（先 C7 后 G1）。
+
+---
+
+## 结论与修复优先级矩阵
+
+> 严重度（运行时影响 × 用户感知）× 工作量（小时估）。**P0** 本轮后立即做；**P1** 下一批次；**P2** 排期；**P3** 长尾。
+
+| 优先级 | 类别 | 项 | 一句话 | 工作量 | 建议批次 |
+| --- | --- | --- | --- | --- | --- |
+| **P0** | A | A1 | `--font-sans` 自引用 → `var(--font-geist-sans)`（3 处） | 0.5h | 批次 1 |
+| **P0** | A | A2 | `--radix-popover-trigger-width` → `var(--anchor-width,100%)`（2 处，运行时确认变量名） | 2h | 批次 1 |
+| **P0** | A | A3 | docs 启用 `tw-animate-css`（取消注释 1 行） | 0.5h | 批次 1 |
+| **P0** | A | A4 | docs import `styles/scrollbar.css` | 0.5h | 批次 1 |
+| **P0** | C | C7 | vitest 配置一致化（删 storybook project / 修 coverage include / 补 dialog polyfill） | 3h | 批次 1 |
+| **P0** | C | C8 | docs globals token 漂移 → re-export 根 styles.css | 4h | 批次 1 |
+| **P0** | C | C9 | 子包 styles.css 漂移 → 构建期内联根 styles | 4h | 批次 1 |
+| **P0** | B | B4-chart | chart 矩阵独立 story（14 图 + 5 shared） | 8h | 批次 1 |
+| **P0** | B | B4-chat | chat / AI 套件 story | 8h | 批次 1 |
+| **P1** | C | C2 | ui 影子 vs business 重名 10 对（生成器优先级规则） | 3h | 批次 2 |
+| **P1** | C | C3 | slug 前缀冗余 27 个 → `toKebab(name)`（评估 redirect） | 4h | 批次 2 |
+| **P1** | C | C4 | MessageProvider 注释/代码取其一 | 0.5h | 批次 2 |
+| **P1** | C | C5 | business barrel 删 AdvancedDataTable export + map-* 去重 | 0.5h | 批次 2 |
+| **P1** | C | C6 | VideoPlayer 补 barrel export + story | 1h | 批次 2 |
+| **P1** | A | A5 | 根 app/layout.tsx 接入 ThemeProvider（或文档化放弃） | 1h | 批次 2 |
+| **P1** | D | D-core | 补 `--spacing-*` / `--text-*` / focus ring / chart 语义色 | 6h | 批次 2 |
+| **P1** | E | E-all | dead token → `@theme inline` 映射（4 类） | 2h | 批次 2 |
+| **P1** | B | B1-high | UI 高频 16 个 story（date-picker/cascader/autocomplete/…） | 8h | 批次 2 |
+| **P1** | B | B2 | layout 12 个 story | 4h | 批次 2 |
+| **P2** | D | D-rest | density / motion / border-width / radius-full / .dark 覆盖 | 6h | 批次 3 |
+| **P2** | F | F2 | `var(--color-muted)` → `bg-muted` / `var(--muted)`（2 处） | 1h | 批次 3 |
+| **P2** | B | B1-rest | UI 长尾 33 个 story | 12h | 批次 3 |
+| **P2** | B | B4-rest | business 其余子域 story（mobile / 打印 / BOM / 审批 / 财务） | 16h | 批次 3 |
+| **P2** | G | G1 | docs 站 happy-path / static params / dict mock（依赖 C7 完成） | 6h | 批次 3 |
+| **P2** | G | G2-ui-business | 修正 diag-switch 孤儿测试 + 补 14 个无测试 | 8h | 批次 3 |
+| **P3** | B | B3 | mobile 聚合 story 拆分 + 3 个缺口 | 6h | 批次 4 |
+| **P3** | B | B4-marketing | 营销 / 其他长尾 story | 12h | 批次 4 |
+| **P3** | G | G2-mobile | mobile 12 个无测试补全 | 8h | 批次 4 |
+| **—** | C | C1 | ❌ 撤销（ErrorBoundary 已登记） | — | — |
+| **—** | F | F1 | ❌ 待核验（grep 0 命中，疑似已移除） | — | 实施前确认 |
+
+---
+
+## 附录：缺口源头行号索引
+
+> 关键 7 个文件的具体行号，便于实施阶段直接定位。基于 2026-07-06 脏工作树。
+
+### 1. `styles.css`（根真源）
+- `:758` — `--font-sans: var(--font-sans);`（A1）
+- `:760` — `--font-heading: var(--font-sans);`（A1 连带）
+- `:root` 段 — 39 处 `--disabled|--font-size|--ease|--duration|--z-index|--selection|--overlay|--mask|--transition` token（C8 / D / E 的定义源）
+
+### 2. `apps/docs/app/globals.css`（docs 入口，漂移）
+- `:3` — `/* @import "tw-animate-css"; */`（A3）
+- `:16` — `--font-sans: var(--font-sans);`（A1）
+- `:18` — `--font-heading: var(--font-sans);`（A1 连带）
+- 全文 — 0 处扩展 token（C8）；缺 `styles/scrollbar.css` import（A4）
+
+### 3. `packages/chaos-design-ui/styles.css`（子包，陈旧副本）
+- `:1-3` — `@import "tw-animate-css"; @import "shadcn/tailwind.css";`（C9 陈旧）
+- `:10` — `--font-sans: var(--font-sans);`（A1）
+- `:12` — `--font-heading: var(--font-sans);`（A1 连带）
+- 全文 — 0 处扩展 token（C9）
+
+### 4. `components/ui/autocomplete.tsx` / `components/ui/mentions.tsx`
+- `autocomplete.tsx:135` — `className="w-[var(--radix-popover-trigger-width)] p-1"`（A2）
+- `mentions.tsx:124` — 同（A2）
+
+### 5. `components/ui/index.ts` / `components/business/index.ts`（barrel）
+- `components/ui/index.ts:444` — MessageProvider 注释（C4）
+- `components/ui/index.ts:516-517` — MessageProvider 仍 export（C4）
+- `components/business/index.ts:4` — AdvancedDataTable removed 注释（C5）
+- `components/business/index.ts:193-201` — map-marker/track/view 各重复 export 3 次（C5）
+- `components/business/index.ts:340-341` — AdvancedDataTable 仍 export（C5）
+- `components/ui/index.ts` — 全文无 video-player export（C6）
+
+### 6. `app/layout.tsx` / `apps/docs/app/layout.tsx`
+- `app/layout.tsx` — 无 `ThemeProvider` / `next-themes` import（A5）
+- `apps/docs/app/layout.tsx` — 已包裹 ThemeProvider（对照）
+
+### 7. `apps/docs/vitest.config.ts` / `apps/docs/vitest.setup.ts`
+- `vitest.config.ts:26-45` — `coverage.include` 相对路径未按 `@/` alias 修正（C7）
+- `vitest.config.ts:48-72` — `projects` 数组残留 storybook browser project，`include: ["src/**/*.stories.{ts,tsx}"]` 指向不存在目录（C7）
+- `vitest.setup.ts:1-120` — 缺 `HTMLDialogElement.show/showModal/close` polyfill、缺 `getComputedStyle` CSS 变量补丁（C7）
+
+### 8. `apps/docs/@/content/components.meta.ts`（slug 冗余源头）
+- `:1658` … `:1848` — `slug: 'charts-*'` 20 处（C3）
+- form 段 — `slug: 'form-form-*'` 7 处（C3）
+
+### 9. `apps/docs/@/components/component-preview-impl.tsx` / `components/business/map-chart.tsx`
+- `component-preview-impl.tsx:33` — `bg-muted/30`（正确写法，可对照 F2）
+- `component-preview-impl.tsx:45` — `bg-[repeating-linear-gradient(...var(--color-muted)...)]`（F2 风险）
+- `component-preview-impl.tsx:81 / 176 / 199` — `PreviewErrorBoundary` 自有错误边界（与 C1 ErrorBoundary 是两套实现，注意区分）
+- `map-chart.tsx:47` — `bg-[radial-gradient(...var(--color-muted)...)]`（F2 风险）
+
+---
+
+## 附录 B：核验修正一览（计划 vs 实际）
+
+> 整合三份 Explore 时发现的事实偏差，已在对应条目标注 ⚠️。汇总如下，避免实施阶段误读。
+
+| 条目 | 计划口径 | 核验实际 | 处置 |
+| --- | --- | --- | --- |
+| A1 影响范围 | 4 个 globals | 3 个（`app/globals.css` 仅 import 不重复声明） | 已修正为 3 处 |
+| A2 子包镜像 | 含子包镜像 | 子包 re-export 根实现，无独立文件 | 已修正为 2 处 |
+| C1 ErrorBoundary | loader/map/businessComponentNames 均缺 | 三者均已登记（loader:224/440, map:218/551） | ❌ 撤销该项 |
+| C3 slug 冗余 | 31 个（charts-24 + form-form-7） | 27 个（charts-20 + form-form-7） | 已修正为 27 |
+| F1 audio-player | 引用 `--slider-fill-percent` 等 | grep 0 命中 | 待实施前确认或撤销 |
+
+---
+
+*本报告基于只读审计，未修改任何文件。范围限于 chaos_style 主仓；未审计 apps/docs 内 docs 组件实现细节与 CI / 部署配置。后续实施批次以本报告「修复优先级矩阵」为准逐项落地。*

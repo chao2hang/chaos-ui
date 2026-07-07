@@ -8,2177 +8,337 @@
 import dynamic from "next/dynamic";
 
 export const componentLoaders: Record<string, React.ComponentType<unknown>> = {
-  Accordion: dynamic(
-    () =>
-      import("@/components/ui/accordion").then((m) => ({
-        default: m.Accordion,
-      })),
-    { ssr: false },
-  ),
-  Affix: dynamic(
-    () => import("@/components/ui/affix").then((m) => ({ default: m.Affix })),
-    { ssr: false },
-  ),
-  AlertDialog: dynamic(
-    () =>
-      import("@/components/ui/alert-dialog").then((m) => ({
-        default: m.AlertDialog,
-      })),
-    { ssr: false },
-  ),
-  Alert: dynamic(
-    () => import("@/components/ui/alert").then((m) => ({ default: m.Alert })),
-    { ssr: false },
-  ),
-  AspectRatio: dynamic(
-    () =>
-      import("@/components/ui/aspect-ratio").then((m) => ({
-        default: m.AspectRatio,
-      })),
-    { ssr: false },
-  ),
-  Autocomplete: dynamic(
-    () =>
-      import("@/components/ui/autocomplete").then((m) => ({
-        default: m.Autocomplete,
-      })),
-    { ssr: false },
-  ),
-  Avatar: dynamic(
-    () => import("@/components/ui/avatar").then((m) => ({ default: m.Avatar })),
-    { ssr: false },
-  ),
-  BackTop: dynamic(
-    () =>
-      import("@/components/ui/back-top").then((m) => ({ default: m.BackTop })),
-    { ssr: false },
-  ),
-  Badge: dynamic(
-    () => import("@/components/ui/badge").then((m) => ({ default: m.Badge })),
-    { ssr: false },
-  ),
-  Breadcrumb: dynamic(
-    () =>
-      import("@/components/ui/breadcrumb").then((m) => ({
-        default: m.Breadcrumb,
-      })),
-    { ssr: false },
-  ),
-  BrowseInput: dynamic(
-    () =>
-      import("@/components/ui/browse-input").then((m) => ({
-        default: m.BrowseInput,
-      })),
-    { ssr: false },
-  ),
-  Button: dynamic(
-    () => import("@/components/ui/button").then((m) => ({ default: m.Button })),
-    { ssr: false },
-  ),
-  Calendar: dynamic(
-    () =>
-      import("@/components/ui/calendar").then((m) => ({ default: m.Calendar })),
-    { ssr: false },
-  ),
-  Card: dynamic(
-    () => import("@/components/ui/card").then((m) => ({ default: m.Card })),
-    { ssr: false },
-  ),
-  Carousel: dynamic(
-    () =>
-      import("@/components/ui/carousel").then((m) => ({ default: m.Carousel })),
-    { ssr: false },
-  ),
-  Cascader: dynamic(
-    () =>
-      import("@/components/ui/cascader").then((m) => ({ default: m.Cascader })),
-    { ssr: false },
-  ),
-  Checkbox: dynamic(
-    () =>
-      import("@/components/ui/checkbox").then((m) => ({ default: m.Checkbox })),
-    { ssr: false },
-  ),
-  Collapsible: dynamic(
-    () =>
-      import("@/components/ui/collapsible").then((m) => ({
-        default: m.Collapsible,
-      })),
-    { ssr: false },
-  ),
-  ColorPicker: dynamic(
-    () =>
-      import("@/components/ui/color-picker").then((m) => ({
-        default: m.ColorPicker,
-      })),
-    { ssr: false },
-  ),
-  Command: dynamic(
-    () =>
-      import("@/components/ui/command").then((m) => ({ default: m.Command })),
-    { ssr: false },
-  ),
-  ConfigProvider: dynamic(
-    () =>
-      import("@/components/ui/config-provider").then((m) => ({
-        default: m.ConfigProvider,
-      })),
-    { ssr: false },
-  ),
-  ContextMenu: dynamic(
-    () =>
-      import("@/components/ui/context-menu").then((m) => ({
-        default: m.ContextMenu,
-      })),
-    { ssr: false },
-  ),
-  Countdown: dynamic(
-    () =>
-      import("@/components/ui/countdown").then((m) => ({
-        default: m.Countdown,
-      })),
-    { ssr: false },
-  ),
-  DatePicker: dynamic(
-    () =>
-      import("@/components/ui/date-picker").then((m) => ({
-        default: m.DatePicker,
-      })),
-    { ssr: false },
-  ),
-  DepartmentBrowse: dynamic(
-    () =>
-      import("@/components/ui/department-browse").then((m) => ({
-        default: m.DepartmentBrowse,
-      })),
-    { ssr: false },
-  ),
-  Descriptions: dynamic(
-    () =>
-      import("@/components/ui/descriptions").then((m) => ({
-        default: m.Descriptions,
-      })),
-    { ssr: false },
-  ),
-  Dialog: dynamic(
-    () => import("@/components/ui/dialog").then((m) => ({ default: m.Dialog })),
-    { ssr: false },
-  ),
-  Divider: dynamic(
-    () =>
-      import("@/components/ui/divider").then((m) => ({ default: m.Divider })),
-    { ssr: false },
-  ),
-  Dot: dynamic(
-    () => import("@/components/ui/dot").then((m) => ({ default: m.Dot })),
-    { ssr: false },
-  ),
-  Drawer: dynamic(
-    () => import("@/components/ui/drawer").then((m) => ({ default: m.Drawer })),
-    { ssr: false },
-  ),
-  DropdownMenu: dynamic(
-    () =>
-      import("@/components/ui/dropdown-menu").then((m) => ({
-        default: m.DropdownMenu,
-      })),
-    { ssr: false },
-  ),
-  FileUpload: dynamic(
-    () =>
-      import("@/components/ui/file-upload").then((m) => ({
-        default: m.FileUpload,
-      })),
-    { ssr: false },
-  ),
-  Flex: dynamic(
-    () => import("@/components/ui/flex").then((m) => ({ default: m.Flex })),
-    { ssr: false },
-  ),
-  FormGrid: dynamic(
-    () =>
-      import("@/components/ui/form-grid").then((m) => ({
-        default: m.FormGrid,
-      })),
-    { ssr: false },
-  ),
-  FormList: dynamic(
-    () =>
-      import("@/components/ui/form-list").then((m) => ({
-        default: m.FormList,
-      })),
-    { ssr: false },
-  ),
-  FormSection: dynamic(
-    () =>
-      import("@/components/ui/form-section").then((m) => ({
-        default: m.FormSection,
-      })),
-    { ssr: false },
-  ),
-  Form: dynamic(
-    () => import("@/components/ui/form").then((m) => ({ default: m.Form })),
-    { ssr: false },
-  ),
-  FullscreenToggle: dynamic(
-    () =>
-      import("@/components/ui/fullscreen-toggle").then((m) => ({
-        default: m.FullscreenToggle,
-      })),
-    { ssr: false },
-  ),
-  GridLayout: dynamic(
-    () =>
-      import("@/components/ui/grid-layout").then((m) => ({
-        default: m.GridLayout,
-      })),
-    { ssr: false },
-  ),
-  Grid: dynamic(
-    () => import("@/components/ui/grid").then((m) => ({ default: m.Grid })),
-    { ssr: false },
-  ),
-  HoverCard: dynamic(
-    () =>
-      import("@/components/ui/hover-card").then((m) => ({
-        default: m.HoverCard,
-      })),
-    { ssr: false },
-  ),
-  IconPicker: dynamic(
-    () =>
-      import("@/components/ui/icon-picker").then((m) => ({
-        default: m.IconPicker,
-      })),
-    { ssr: false },
-  ),
-  ImageViewer: dynamic(
-    () =>
-      import("@/components/ui/image-viewer").then((m) => ({
-        default: m.ImageViewer,
-      })),
-    { ssr: false },
-  ),
-  Image: dynamic(
-    () => import("@/components/ui/image").then((m) => ({ default: m.Image })),
-    { ssr: false },
-  ),
-  InputGroup: dynamic(
-    () =>
-      import("@/components/ui/input-group").then((m) => ({
-        default: m.InputGroup,
-      })),
-    { ssr: false },
-  ),
-  InputNumber: dynamic(
-    () =>
-      import("@/components/ui/input-number").then((m) => ({
-        default: m.InputNumber,
-      })),
-    { ssr: false },
-  ),
-  InputSearch: dynamic(
-    () =>
-      import("@/components/ui/input-search").then((m) => ({
-        default: m.InputSearch,
-      })),
-    { ssr: false },
-  ),
-  Input: dynamic(
-    () => import("@/components/ui/input").then((m) => ({ default: m.Input })),
-    { ssr: false },
-  ),
-  Kbd: dynamic(
-    () => import("@/components/ui/kbd").then((m) => ({ default: m.Kbd })),
-    { ssr: false },
-  ),
-  KeyboardShortcutDialog: dynamic(
-    () =>
-      import("@/components/ui/keyboard-shortcut-dialog").then((m) => ({
-        default: m.KeyboardShortcutDialog,
-      })),
-    { ssr: false },
-  ),
-  KeyboardShortcut: dynamic(
-    () =>
-      import("@/components/ui/keyboard-shortcut").then((m) => ({
-        default: m.KeyboardShortcut,
-      })),
-    { ssr: false },
-  ),
-  KpiPanel: dynamic(
-    () =>
-      import("@/components/ui/kpi-panel").then((m) => ({
-        default: m.KPIPanel,
-      })),
-    { ssr: false },
-  ),
-  Label: dynamic(
-    () => import("@/components/ui/label").then((m) => ({ default: m.Label })),
-    { ssr: false },
-  ),
-  List: dynamic(
-    () => import("@/components/ui/list").then((m) => ({ default: m.List })),
-    { ssr: false },
-  ),
-  Mentions: dynamic(
-    () =>
-      import("@/components/ui/mentions").then((m) => ({ default: m.Mentions })),
-    { ssr: false },
-  ),
-  Menu: dynamic(
-    () => import("@/components/ui/menu").then((m) => ({ default: m.Menu })),
-    { ssr: false },
-  ),
-  Menubar: dynamic(
-    () =>
-      import("@/components/ui/menubar").then((m) => ({ default: m.Menubar })),
-    { ssr: false },
-  ),
-  MessageProvider: dynamic(
-    () =>
-      import("@/components/ui/message-provider").then((m) => ({
-        default: m.MessageProvider,
-      })),
-    { ssr: false },
-  ),
-  ModalProvider: dynamic(
-    () =>
-      import("@/components/ui/modal-provider").then((m) => ({
-        default: m.ModalProvider,
-      })),
-    { ssr: false },
-  ),
-  NavigationMenu: dynamic(
-    () =>
-      import("@/components/ui/navigation-menu").then((m) => ({
-        default: m.NavigationMenu,
-      })),
-    { ssr: false },
-  ),
-  Notification: dynamic(
-    () =>
-      import("@/components/ui/notification").then((m) => ({
-        default: m.Notification,
-      })),
-    { ssr: false },
-  ),
-  NumberTicker: dynamic(
-    () =>
-      import("@/components/ui/number-ticker").then((m) => ({
-        default: m.NumberTicker,
-      })),
-    { ssr: false },
-  ),
-  OtpField: dynamic(
-    () =>
-      import("@/components/ui/otp-field").then((m) => ({
-        default: m.OTPField,
-      })),
-    { ssr: false },
-  ),
-  PageContainer: dynamic(
-    () =>
-      import("@/components/ui/page-container").then((m) => ({
-        default: m.PageContainer,
-      })),
-    { ssr: false },
-  ),
-  Pagination: dynamic(
-    () =>
-      import("@/components/ui/pagination").then((m) => ({
-        default: m.Pagination,
-      })),
-    { ssr: false },
-  ),
-  Popconfirm: dynamic(
-    () =>
-      import("@/components/ui/popconfirm").then((m) => ({
-        default: m.Popconfirm,
-      })),
-    { ssr: false },
-  ),
-  Popover: dynamic(
-    () =>
-      import("@/components/ui/popover").then((m) => ({ default: m.Popover })),
-    { ssr: false },
-  ),
-  Progress: dynamic(
-    () =>
-      import("@/components/ui/progress").then((m) => ({ default: m.Progress })),
-    { ssr: false },
-  ),
-  QrcodeDisplay: dynamic(
-    () =>
-      import("@/components/ui/qrcode-display").then((m) => ({
-        default: m.QRCodeDisplay,
-      })),
-    { ssr: false },
-  ),
-  Qrcode: dynamic(
-    () => import("@/components/ui/qrcode").then((m) => ({ default: m.QRCode })),
-    { ssr: false },
-  ),
-  RadioGroup: dynamic(
-    () =>
-      import("@/components/ui/radio-group").then((m) => ({
-        default: m.RadioGroup,
-      })),
-    { ssr: false },
-  ),
-  Resizable: dynamic(
-    () =>
-      import("@/components/ui/resizable").then((m) => ({
-        default: m.ResizablePanelGroup,
-      })),
-    { ssr: false },
-  ),
-  Result: dynamic(
-    () => import("@/components/ui/result").then((m) => ({ default: m.Result })),
-    { ssr: false },
-  ),
-  ScrollArea: dynamic(
-    () =>
-      import("@/components/ui/scroll-area").then((m) => ({
-        default: m.ScrollArea,
-      })),
-    { ssr: false },
-  ),
-  Select: dynamic(
-    () => import("@/components/ui/select").then((m) => ({ default: m.Select })),
-    { ssr: false },
-  ),
-  Separator: dynamic(
-    () =>
-      import("@/components/ui/separator").then((m) => ({
-        default: m.Separator,
-      })),
-    { ssr: false },
-  ),
-  SequenceInput: dynamic(
-    () =>
-      import("@/components/ui/sequence-input").then((m) => ({
-        default: m.SequenceInput,
-      })),
-    { ssr: false },
-  ),
-  SequencePreview: dynamic(
-    () =>
-      import("@/components/ui/sequence-preview").then((m) => ({
-        default: m.SequencePreview,
-      })),
-    { ssr: false },
-  ),
-  Sheet: dynamic(
-    () => import("@/components/ui/sheet").then((m) => ({ default: m.Sheet })),
-    { ssr: false },
-  ),
-  Sidebar: dynamic(
-    () =>
-      import("@/components/ui/sidebar").then((m) => ({ default: m.Sidebar })),
-    { ssr: false },
-  ),
-  Skeleton: dynamic(
-    () =>
-      import("@/components/ui/skeleton").then((m) => ({ default: m.Skeleton })),
-    { ssr: false },
-  ),
-  Slider: dynamic(
-    () => import("@/components/ui/slider").then((m) => ({ default: m.Slider })),
-    { ssr: false },
-  ),
-  Sonner: dynamic(
-    () =>
-      import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
-    { ssr: false },
-  ),
-  Space: dynamic(
-    () => import("@/components/ui/space").then((m) => ({ default: m.Space })),
-    { ssr: false },
-  ),
-  Spin: dynamic(
-    () => import("@/components/ui/spin").then((m) => ({ default: m.Spin })),
-    { ssr: false },
-  ),
-  Spinner: dynamic(
-    () =>
-      import("@/components/ui/spinner").then((m) => ({ default: m.Spinner })),
-    { ssr: false },
-  ),
-  SplitButton: dynamic(
-    () =>
-      import("@/components/ui/split-button").then((m) => ({
-        default: m.SplitButton,
-      })),
-    { ssr: false },
-  ),
-  SplitPane: dynamic(
-    () =>
-      import("@/components/ui/split-pane").then((m) => ({
-        default: m.SplitPane,
-      })),
-    { ssr: false },
-  ),
-  Statistic: dynamic(
-    () =>
-      import("@/components/ui/statistic").then((m) => ({
-        default: m.Statistic,
-      })),
-    { ssr: false },
-  ),
-  Stepper: dynamic(
-    () =>
-      import("@/components/ui/stepper").then((m) => ({ default: m.Stepper })),
-    { ssr: false },
-  ),
-  Switch: dynamic(
-    () => import("@/components/ui/switch").then((m) => ({ default: m.Switch })),
-    { ssr: false },
-  ),
-  Table: dynamic(
-    () => import("@/components/ui/table").then((m) => ({ default: m.Table })),
-    { ssr: false },
-  ),
-  Tabs: dynamic(
-    () => import("@/components/ui/tabs").then((m) => ({ default: m.Tabs })),
-    { ssr: false },
-  ),
-  Tag: dynamic(
-    () => import("@/components/ui/tag").then((m) => ({ default: m.Tag })),
-    { ssr: false },
-  ),
-  TagsInput: dynamic(
-    () =>
-      import("@/components/ui/tags-input").then((m) => ({
-        default: m.TagsInput,
-      })),
-    { ssr: false },
-  ),
-  Textarea: dynamic(
-    () =>
-      import("@/components/ui/textarea").then((m) => ({ default: m.Textarea })),
-    { ssr: false },
-  ),
-  Timeline: dynamic(
-    () =>
-      import("@/components/ui/timeline").then((m) => ({ default: m.Timeline })),
-    { ssr: false },
-  ),
-  ToggleGroup: dynamic(
-    () =>
-      import("@/components/ui/toggle-group").then((m) => ({
-        default: m.ToggleGroup,
-      })),
-    { ssr: false },
-  ),
-  Toggle: dynamic(
-    () => import("@/components/ui/toggle").then((m) => ({ default: m.Toggle })),
-    { ssr: false },
-  ),
-  Tooltip: dynamic(
-    () =>
-      import("@/components/ui/tooltip").then((m) => ({ default: m.Tooltip })),
-    { ssr: false },
-  ),
-  TreeSelect: dynamic(
-    () =>
-      import("@/components/ui/tree-select").then((m) => ({
-        default: m.TreeSelect,
-      })),
-    { ssr: false },
-  ),
-  TreeView: dynamic(
-    () =>
-      import("@/components/ui/tree-view").then((m) => ({
-        default: m.TreeView,
-      })),
-    { ssr: false },
-  ),
-  Typography: dynamic(
-    () =>
-      import("@/components/ui/typography").then((m) => ({
-        default: m.Typography,
-      })),
-    { ssr: false },
-  ),
-  UserBrowse: dynamic(
-    () =>
-      import("@/components/ui/user-browse").then((m) => ({
-        default: m.UserBrowse,
-      })),
-    { ssr: false },
-  ),
-  VirtualList: dynamic(
-    () =>
-      import("@/components/ui/virtual-list").then((m) => ({
-        default: m.VirtualList,
-      })),
-    { ssr: false },
-  ),
-  VirtualTable: dynamic(
-    () =>
-      import("@/components/ui/virtual-table").then((m) => ({
-        default: m.VirtualTable,
-      })),
-    { ssr: false },
-  ),
-  AdminBreadcrumb: dynamic(
-    () =>
-      import("@/components/layout/admin-breadcrumb").then((m) => ({
-        default: m.AdminBreadcrumb,
-      })),
-    { ssr: false },
-  ),
-  AdminHeader: dynamic(
-    () =>
-      import("@/components/layout/admin-header").then((m) => ({
-        default: m.AdminHeader,
-      })),
-    { ssr: false },
-  ),
-  AdminSider: dynamic(
-    () =>
-      import("@/components/layout/admin-sider").then((m) => ({
-        default: m.AdminSider,
-      })),
-    { ssr: false },
-  ),
-  AdminTabs: dynamic(
-    () =>
-      import("@/components/layout/admin-tabs").then((m) => ({
-        default: m.AdminTabs,
-      })),
-    { ssr: false },
-  ),
-  AppShell: dynamic(
-    () =>
-      import("@/components/layout/app-shell").then((m) => ({
-        default: m.AppShell,
-      })),
-    { ssr: false },
-  ),
-  AuthLayout: dynamic(
-    () =>
-      import("@/components/layout/auth-layout").then((m) => ({
-        default: m.AuthLayout,
-      })),
-    { ssr: false },
-  ),
-  BlankLayout: dynamic(
-    () =>
-      import("@/components/layout/blank-layout").then((m) => ({
-        default: m.BlankLayout,
-      })),
-    { ssr: false },
-  ),
-  DashboardLayout: dynamic(
-    () =>
-      import("@/components/layout/dashboard-layout").then((m) => ({
-        default: m.DashboardLayout,
-      })),
-    { ssr: false },
-  ),
-  DetailLayout: dynamic(
-    () =>
-      import("@/components/layout/detail-layout").then((m) => ({
-        default: m.DetailLayout,
-      })),
-    { ssr: false },
-  ),
-  DialogFormBody: dynamic(
-    () =>
-      import("@/components/layout/dialog-form-body").then((m) => ({
-        default: m.DialogFormBody,
-      })),
-    { ssr: false },
-  ),
-  ErrorLayout: dynamic(
-    () =>
-      import("@/components/layout/error-layout").then((m) => ({
-        default: m.ErrorLayout,
-      })),
-    { ssr: false },
-  ),
-  MasterDetailLayout: dynamic(
-    () =>
-      import("@/components/layout/master-detail-layout").then((m) => ({
-        default: m.MasterDetailLayout,
-      })),
-    { ssr: false },
-  ),
-  MasterDetailTabs: dynamic(
-    () =>
-      import("@/components/layout/master-detail-tabs").then((m) => ({
-        default: m.MasterDetailTabs,
-      })),
-    { ssr: false },
-  ),
-  PrintLayout: dynamic(
-    () =>
-      import("@/components/layout/print-layout").then((m) => ({
-        default: m.PrintLayout,
-      })),
-    { ssr: false },
-  ),
-  PublicLayout: dynamic(
-    () =>
-      import("@/components/layout/public-layout").then((m) => ({
-        default: m.PublicLayout,
-      })),
-    { ssr: false },
-  ),
-  RegionLayout: dynamic(
-    () =>
-      import("@/components/layout/region-layout").then((m) => ({
-        default: m.RegionLayout,
-      })),
-    { ssr: false },
-  ),
-  TopBar: dynamic(
-    () =>
-      import("@/components/layout/top-bar").then((m) => ({
-        default: m.TopBar,
-      })),
-    { ssr: false },
-  ),
-  ActivityFeed: dynamic(
-    () =>
-      import("@/components/business/activity-feed").then((m) => ({
-        default: m.ActivityFeed,
-      })),
-    { ssr: false },
-  ),
-  AddressForm: dynamic(
-    () =>
-      import("@/components/business/address-form").then((m) => ({
-        default: m.AddressForm,
-      })),
-    { ssr: false },
-  ),
-  AddressPicker: dynamic(
-    () =>
-      import("@/components/business/address-picker").then((m) => ({
-        default: m.AddressPicker,
-      })),
-    { ssr: false },
-  ),
-  AdvancedDataTable: dynamic(
-    () =>
-      import("@/components/business/advanced-data-table").then((m) => ({
-        default: m.AdvancedDataTable,
-      })),
-    { ssr: false },
-  ),
-  AdvancedSearch: dynamic(
-    () =>
-      import("@/components/business/advanced-search").then((m) => ({
-        default: m.AdvancedSearch,
-      })),
-    { ssr: false },
-  ),
-  Anchor: dynamic(
-    () =>
-      import("@/components/business/anchor").then((m) => ({
-        default: m.Anchor,
-      })),
-    { ssr: false },
-  ),
-  AnimatedNumber: dynamic(
-    () =>
-      import("@/components/business/animated-number").then((m) => ({
-        default: m.AnimatedNumber,
-      })),
-    { ssr: false },
-  ),
-  AnnouncementBanner: dynamic(
-    () =>
-      import("@/components/business/announcement-banner").then((m) => ({
-        default: m.AnnouncementBanner,
-      })),
-    { ssr: false },
-  ),
-  ApprovalFlow: dynamic(
-    () =>
-      import("@/components/business/approval-flow").then((m) => ({
-        default: m.ApprovalFlow,
-      })),
-    { ssr: false },
-  ),
-  ApprovalTimeline: dynamic(
-    () =>
-      import("@/components/business/approval-timeline").then((m) => ({
-        default: m.ApprovalTimeline,
-      })),
-    { ssr: false },
-  ),
-  AsyncTaskCenter: dynamic(
-    () =>
-      import("@/components/business/async-task-center").then((m) => ({
-        default: m.AsyncTaskCenter,
-      })),
-    { ssr: false },
-  ),
-  AudienceSegmentBuilder: dynamic(
-    () =>
-      import("@/components/business/audience-segment-builder").then((m) => ({
-        default: m.AudienceSegmentBuilder,
-      })),
-    { ssr: false },
-  ),
-  AudioPlayer: dynamic(
-    () =>
-      import("@/components/business/audio-player").then((m) => ({
-        default: m.AudioPlayer,
-      })),
-    { ssr: false },
-  ),
-  AuditLog: dynamic(
-    () =>
-      import("@/components/business/audit-log").then((m) => ({
-        default: m.AuditLog,
-      })),
-    { ssr: false },
-  ),
-  AuditSidebar: dynamic(
-    () =>
-      import("@/components/business/audit-sidebar").then((m) => ({
-        default: m.AuditSidebar,
-      })),
-    { ssr: false },
-  ),
-  AuthForms: dynamic(
-    () =>
-      import("@/components/business/auth-forms").then((m) => ({
-        default: m.SignInForm,
-      })),
-    { ssr: false },
-  ),
-  AuthGuard: dynamic(
-    () =>
-      import("@/components/business/auth-guard").then((m) => ({
-        default: m.AuthGuard,
-      })),
-    { ssr: false },
-  ),
-  AvatarGroup: dynamic(
-    () =>
-      import("@/components/business/avatar-group").then((m) => ({
-        default: m.AvatarGroup,
-      })),
-    { ssr: false },
-  ),
-  Banner: dynamic(
-    () =>
-      import("@/components/business/banner").then((m) => ({
-        default: m.Banner,
-      })),
-    { ssr: false },
-  ),
-  BarcodeDisplay: dynamic(
-    () =>
-      import("@/components/business/barcode-display").then((m) => ({
-        default: m.BarcodeDisplay,
-      })),
-    { ssr: false },
-  ),
-  BatchSelector: dynamic(
-    () =>
-      import("@/components/business/batch-selector").then((m) => ({
-        default: m.BatchSelector,
-      })),
-    { ssr: false },
-  ),
-  BillFooter: dynamic(
-    () =>
-      import("@/components/business/bill-footer").then((m) => ({
-        default: m.BillFooter,
-      })),
-    { ssr: false },
-  ),
-  BillHeader: dynamic(
-    () =>
-      import("@/components/business/bill-header").then((m) => ({
-        default: m.BillHeader,
-      })),
-    { ssr: false },
-  ),
-  BillPage: dynamic(
-    () =>
-      import("@/components/business/bill-page").then((m) => ({
-        default: m.BillPage,
-      })),
-    { ssr: false },
-  ),
-  BillStatusBar: dynamic(
-    () =>
-      import("@/components/business/bill-status-bar").then((m) => ({
-        default: m.BillStatusBar,
-      })),
-    { ssr: false },
-  ),
-  BizStatusTag: dynamic(
-    () =>
-      import("@/components/business/biz-status-tag").then((m) => ({
-        default: m.BizStatusTag,
-      })),
-    { ssr: false },
-  ),
-  BudgetPacingCard: dynamic(
-    () =>
-      import("@/components/business/budget-pacing-card").then((m) => ({
-        default: m.BudgetPacingCard,
-      })),
-    { ssr: false },
-  ),
-  BulkActionsToolbar: dynamic(
-    () =>
-      import("@/components/business/bulk-actions-toolbar").then((m) => ({
-        default: m.BulkActionsToolbar,
-      })),
-    { ssr: false },
-  ),
-  BulkImportWizard: dynamic(
-    () =>
-      import("@/components/business/bulk-import-wizard").then((m) => ({
-        default: m.BulkImportWizard,
-      })),
-    { ssr: false },
-  ),
-  CalendarMonth: dynamic(
-    () =>
-      import("@/components/business/calendar/calendar-month").then((m) => ({
-        default: m.CalendarMonth,
-      })),
-    { ssr: false },
-  ),
-  EventDetail: dynamic(
-    () =>
-      import("@/components/business/calendar/event-detail").then((m) => ({
-        default: m.EventDetail,
-      })),
-    { ssr: false },
-  ),
-  GanttChart: dynamic(
-    () =>
-      import("@/components/business/calendar/gantt-chart").then((m) => ({
-        default: m.GanttChart,
-      })),
-    { ssr: false },
-  ),
-  TimeSlotPicker: dynamic(
-    () =>
-      import("@/components/business/calendar/time-slot-picker").then((m) => ({
-        default: m.TimeSlotPicker,
-      })),
-    { ssr: false },
-  ),
-  CampaignCalendar: dynamic(
-    () =>
-      import("@/components/business/campaign-calendar").then((m) => ({
-        default: m.CampaignCalendar,
-      })),
-    { ssr: false },
-  ),
-  CampaignCard: dynamic(
-    () =>
-      import("@/components/business/campaign-card").then((m) => ({
-        default: m.CampaignCard,
-      })),
-    { ssr: false },
-  ),
-  CampaignStatusTag: dynamic(
-    () =>
-      import("@/components/business/campaign-status-tag").then((m) => ({
-        default: m.CampaignStatusTag,
-      })),
-    { ssr: false },
-  ),
-  ChannelPicker: dynamic(
-    () =>
-      import("@/components/business/channel-picker").then((m) => ({
-        default: m.ChannelPicker,
-      })),
-    { ssr: false },
-  ),
-  Chart: dynamic(
-    () =>
-      import("@/components/business/chart").then((m) => ({
-        default: m.LineChart,
-      })),
-    { ssr: false },
-  ),
-  AreaChart: dynamic(
-    () =>
-      import("@/components/business/charts/area-chart").then((m) => ({
-        default: m.AreaChart,
-      })),
-    { ssr: false },
-  ),
-  BarChart: dynamic(
-    () =>
-      import("@/components/business/charts/bar-chart").then((m) => ({
-        default: m.BarChart,
-      })),
-    { ssr: false },
-  ),
-  ChartFrame: dynamic(
-    () =>
-      import("@/components/business/charts/chart-frame").then((m) => ({
-        default: m.ChartFrame,
-      })),
-    { ssr: false },
-  ),
-  ComposedChart: dynamic(
-    () =>
-      import("@/components/business/charts/composed-chart").then((m) => ({
-        default: m.ComposedChartComp,
-      })),
-    { ssr: false },
-  ),
-  FunnelChart: dynamic(
-    () =>
-      import("@/components/business/charts/funnel-chart").then((m) => ({
-        default: m.FunnelChart,
-      })),
-    { ssr: false },
-  ),
-  HeatmapChart: dynamic(
-    () =>
-      import("@/components/business/charts/heatmap-chart").then((m) => ({
-        default: m.HeatmapChart,
-      })),
-    { ssr: false },
-  ),
-  LineChart: dynamic(
-    () =>
-      import("@/components/business/charts/line-chart").then((m) => ({
-        default: m.LineChart,
-      })),
-    { ssr: false },
-  ),
-  PieChart: dynamic(
-    () =>
-      import("@/components/business/charts/pie-chart").then((m) => ({
-        default: m.PieChartComp,
-      })),
-    { ssr: false },
-  ),
-  RadarChart: dynamic(
-    () =>
-      import("@/components/business/charts/radar-chart").then((m) => ({
-        default: m.RadarChartComp,
-      })),
-    { ssr: false },
-  ),
-  RadialChart: dynamic(
-    () =>
-      import("@/components/business/charts/radial-chart").then((m) => ({
-        default: m.RadialChartComp,
-      })),
-    { ssr: false },
-  ),
-  SankeyChart: dynamic(
-    () =>
-      import("@/components/business/charts/sankey-chart").then((m) => ({
-        default: m.SankeyChart,
-      })),
-    { ssr: false },
-  ),
-  ScatterChart: dynamic(
-    () =>
-      import("@/components/business/charts/scatter-chart").then((m) => ({
-        default: m.ScatterChartComp,
-      })),
-    { ssr: false },
-  ),
-  ChartEmpty: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-empty").then((m) => ({
-        default: m.ChartEmpty,
-      })),
-    { ssr: false },
-  ),
-  ChartExport: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-export").then((m) => ({
-        default: m.ChartExportButton,
-      })),
-    { ssr: false },
-  ),
-  ChartFullscreen: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-fullscreen").then(
-        (m) => ({ default: m.ChartFullscreenButton }),
-      ),
-    { ssr: false },
-  ),
-  ChartLegend: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-legend").then((m) => ({
-        default: m.ChartLegend,
-      })),
-    { ssr: false },
-  ),
-  ChartSkeleton: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-skeleton").then(
-        (m) => ({ default: m.ChartSkeleton }),
-      ),
-    { ssr: false },
-  ),
-  ChartTooltip: dynamic(
-    () =>
-      import("@/components/business/charts/shared/chart-tooltip").then((m) => ({
-        default: m.ChartTooltip,
-      })),
-    { ssr: false },
-  ),
-  TreemapChart: dynamic(
-    () =>
-      import("@/components/business/charts/treemap-chart").then((m) => ({
-        default: m.TreemapChart,
-      })),
-    { ssr: false },
-  ),
-  WaterfallChart: dynamic(
-    () =>
-      import("@/components/business/charts/waterfall-chart").then((m) => ({
-        default: m.WaterfallChart,
-      })),
-    { ssr: false },
-  ),
-  Chat: dynamic(
-    () =>
-      import("@/components/business/chat").then((m) => ({
-        default: m.ChatMessageList,
-      })),
-    { ssr: false },
-  ),
-  Chip: dynamic(
-    () =>
-      import("@/components/business/chip").then((m) => ({ default: m.Chip })),
-    { ssr: false },
-  ),
-  CoachMark: dynamic(
-    () =>
-      import("@/components/business/coach-mark").then((m) => ({
-        default: m.CoachMark,
-      })),
-    { ssr: false },
-  ),
-  CodeBlock: dynamic(
-    () =>
-      import("@/components/business/code-block").then((m) => ({
-        default: m.CodeBlock,
-      })),
-    { ssr: false },
-  ),
-  CodeEditor: dynamic(
-    () =>
-      import("@/components/business/code-editor").then((m) => ({
-        default: m.CodeEditor,
-      })),
-    { ssr: false },
-  ),
-  ColorTag: dynamic(
-    () =>
-      import("@/components/business/color-tag").then((m) => ({
-        default: m.ColorTag,
-      })),
-    { ssr: false },
-  ),
-  Combobox: dynamic(
-    () =>
-      import("@/components/business/combobox").then((m) => ({
-        default: m.Combobox,
-      })),
-    { ssr: false },
-  ),
-  CommandPalette: dynamic(
-    () =>
-      import("@/components/business/command-palette").then((m) => ({
-        default: m.CommandPalette,
-      })),
-    { ssr: false },
-  ),
-  CommentThread: dynamic(
-    () =>
-      import("@/components/business/comment-thread").then((m) => ({
-        default: m.CommentThread,
-      })),
-    { ssr: false },
-  ),
-  Confetti: dynamic(
-    () =>
-      import("@/components/business/confetti").then((m) => ({
-        default: m.Confetti,
-      })),
-    { ssr: false },
-  ),
-  ConfirmDialog: dynamic(
-    () =>
-      import("@/components/business/confirm-dialog").then((m) => ({
-        default: m.ConfirmDialog,
-      })),
-    { ssr: false },
-  ),
-  ConnectionStatus: dynamic(
-    () =>
-      import("@/components/business/connection-status").then((m) => ({
-        default: m.ConnectionStatus,
-      })),
-    { ssr: false },
-  ),
-  ContractTemplate: dynamic(
-    () =>
-      import("@/components/business/contract-template").then((m) => ({
-        default: m.ContractTemplate,
-      })),
-    { ssr: false },
-  ),
-  CookieBanner: dynamic(
-    () =>
-      import("@/components/business/cookie-banner").then((m) => ({
-        default: m.CookieBanner,
-      })),
-    { ssr: false },
-  ),
-  CopyButton: dynamic(
-    () =>
-      import("@/components/business/copy-button").then((m) => ({
-        default: m.CopyButton,
-      })),
-    { ssr: false },
-  ),
-  CreativePreview: dynamic(
-    () =>
-      import("@/components/business/creative-preview").then((m) => ({
-        default: m.CreativePreview,
-      })),
-    { ssr: false },
-  ),
-  CreditCardInput: dynamic(
-    () =>
-      import("@/components/business/credit-card-input").then((m) => ({
-        default: m.CreditCardInput,
-      })),
-    { ssr: false },
-  ),
-  CrudPage: dynamic(
-    () =>
-      import("@/components/business/crud-page").then((m) => ({
-        default: m.CrudPage,
-      })),
-    { ssr: false },
-  ),
-  CrudToolbar: dynamic(
-    () =>
-      import("@/components/business/crud-toolbar").then((m) => ({
-        default: m.CrudToolbar,
-      })),
-    { ssr: false },
-  ),
-  CurrencyInput: dynamic(
-    () =>
-      import("@/components/business/currency-input").then((m) => ({
-        default: m.CurrencyInput,
-      })),
-    { ssr: false },
-  ),
-  DashboardDesigner: dynamic(
-    () =>
-      import("@/components/business/dashboard-designer").then((m) => ({
-        default: m.DashboardDesigner,
-      })),
-    { ssr: false },
-  ),
-  DataTable: dynamic(
-    () =>
-      import("@/components/business/data-table").then((m) => ({
-        default: m.DataTable,
-      })),
-    { ssr: false },
-  ),
-  DateRangePicker: dynamic(
-    () =>
-      import("@/components/business/date-range-picker").then((m) => ({
-        default: m.DateRangePicker,
-      })),
-    { ssr: false },
-  ),
-  DensitySwitcher: dynamic(
-    () =>
-      import("@/components/business/density-switcher").then((m) => ({
-        default: m.DensitySwitcher,
-      })),
-    { ssr: false },
-  ),
-  DictSelect: dynamic(
-    () =>
-      import("@/components/business/dict-select").then((m) => ({
-        default: m.DictSelect,
-      })),
-    { ssr: false },
-  ),
-  DiffViewerTable: dynamic(
-    () =>
-      import("@/components/business/diff-viewer-table").then((m) => ({
-        default: m.DiffViewerTable,
-      })),
-    { ssr: false },
-  ),
-  DiffViewer: dynamic(
-    () =>
-      import("@/components/business/diff-viewer").then((m) => ({
-        default: m.DiffViewer,
-      })),
-    { ssr: false },
-  ),
-  Dock: dynamic(
-    () =>
-      import("@/components/business/dock").then((m) => ({ default: m.Dock })),
-    { ssr: false },
-  ),
-  EditToolbar: dynamic(
-    () =>
-      import("@/components/business/edit-toolbar").then((m) => ({
-        default: m.EditToolbar,
-      })),
-    { ssr: false },
-  ),
-  EditableTreeTable: dynamic(
-    () =>
-      import("@/components/business/editable-tree-table").then((m) => ({
-        default: m.EditableTreeTable,
-      })),
-    { ssr: false },
-  ),
-  EmptyState: dynamic(
-    () =>
-      import("@/components/business/empty-state").then((m) => ({
-        default: m.EmptyState,
-      })),
-    { ssr: false },
-  ),
-  EquipmentCard: dynamic(
-    () =>
-      import("@/components/business/equipment-card").then((m) => ({
-        default: m.EquipmentCard,
-      })),
-    { ssr: false },
-  ),
-  ErrorPage: dynamic(
-    () =>
-      import("@/components/business/error-page").then((m) => ({
-        default: m.ErrorPage,
-      })),
-    { ssr: false },
-  ),
-  ExpenseLineEditor: dynamic(
-    () =>
-      import("@/components/business/expense-line-editor").then((m) => ({
-        default: m.ExpenseLineEditor,
-      })),
-    { ssr: false },
-  ),
-  ExperimentSummary: dynamic(
-    () =>
-      import("@/components/business/experiment-summary").then((m) => ({
-        default: m.ExperimentSummary,
-      })),
-    { ssr: false },
-  ),
-  ExportButton: dynamic(
-    () =>
-      import("@/components/business/export-button").then((m) => ({
-        default: m.ExportButton,
-      })),
-    { ssr: false },
-  ),
-  Fab: dynamic(
-    () => import("@/components/business/fab").then((m) => ({ default: m.Fab })),
-    { ssr: false },
-  ),
-  FeatureGate: dynamic(
-    () =>
-      import("@/components/business/feature-gate").then((m) => ({
-        default: m.FeatureGate,
-      })),
-    { ssr: false },
-  ),
-  FieldMask: dynamic(
-    () =>
-      import("@/components/business/field-mask").then((m) => ({
-        default: m.FieldMask,
-      })),
-    { ssr: false },
-  ),
-  FileUploadManager: dynamic(
-    () =>
-      import("@/components/business/file-upload-manager").then((m) => ({
-        default: m.FileUploadManager,
-      })),
-    { ssr: false },
-  ),
-  FilterBar: dynamic(
-    () =>
-      import("@/components/business/filter-bar").then((m) => ({
-        default: m.FilterBar,
-      })),
-    { ssr: false },
-  ),
-  FilterBuilder: dynamic(
-    () =>
-      import("@/components/business/filter-builder").then((m) => ({
-        default: m.FilterBuilder,
-      })),
-    { ssr: false },
-  ),
-  Forbidden: dynamic(
-    () =>
-      import("@/components/business/forbidden").then((m) => ({
-        default: m.Forbidden,
-      })),
-    { ssr: false },
-  ),
-  FormAutosaveIndicator: dynamic(
-    () =>
-      import("@/components/business/form/form-autosave-indicator").then(
-        (m) => ({ default: m.FormAutosaveIndicator }),
-      ),
-    { ssr: false },
-  ),
-  FormDirtyWarning: dynamic(
-    () =>
-      import("@/components/business/form/form-dirty-warning").then((m) => ({
-        default: m.FormDirtyWarning,
-      })),
-    { ssr: false },
-  ),
-  FormErrorSummary: dynamic(
-    () =>
-      import("@/components/business/form/form-error-summary").then((m) => ({
-        default: m.FormErrorSummary,
-      })),
-    { ssr: false },
-  ),
-  FormFieldGroup: dynamic(
-    () =>
-      import("@/components/business/form/form-field-group").then((m) => ({
-        default: m.FormFieldGroup,
-      })),
-    { ssr: false },
-  ),
-  FormProgress: dynamic(
-    () =>
-      import("@/components/business/form/form-progress").then((m) => ({
-        default: m.FormProgress,
-      })),
-    { ssr: false },
-  ),
-  FormRepeater: dynamic(
-    () =>
-      import("@/components/business/form/form-repeater").then((m) => ({
-        default: m.FormRepeater,
-      })),
-    { ssr: false },
-  ),
-  FormStepSummary: dynamic(
-    () =>
-      import("@/components/business/form/form-step-summary").then((m) => ({
-        default: m.FormStepSummary,
-      })),
-    { ssr: false },
-  ),
-  FormField: dynamic(
-    () =>
-      import("@/components/business/form-field").then((m) => ({
-        default: m.FormField,
-      })),
-    { ssr: false },
-  ),
-  FormWizard: dynamic(
-    () =>
-      import("@/components/business/form-wizard").then((m) => ({
-        default: m.FormWizard,
-      })),
-    { ssr: false },
-  ),
-  FormulaEditor: dynamic(
-    () =>
-      import("@/components/business/formula-editor").then((m) => ({
-        default: m.FormulaEditor,
-      })),
-    { ssr: false },
-  ),
-  Gauge: dynamic(
-    () =>
-      import("@/components/business/gauge").then((m) => ({ default: m.Gauge })),
-    { ssr: false },
-  ),
-  GlobalLoading: dynamic(
-    () =>
-      import("@/components/business/global-loading").then((m) => ({
-        default: m.GlobalLoading,
-      })),
-    { ssr: false },
-  ),
-  HeatmapCalendar: dynamic(
-    () =>
-      import("@/components/business/heatmap-calendar").then((m) => ({
-        default: m.HeatmapCalendar,
-      })),
-    { ssr: false },
-  ),
-  ImageGallery: dynamic(
-    () =>
-      import("@/components/business/image-gallery").then((m) => ({
-        default: m.ImageGallery,
-      })),
-    { ssr: false },
-  ),
-  ImportDialog: dynamic(
-    () =>
-      import("@/components/business/import-dialog").then((m) => ({
-        default: m.ImportDialog,
-      })),
-    { ssr: false },
-  ),
-  InboxList: dynamic(
-    () =>
-      import("@/components/business/inbox-list").then((m) => ({
-        default: m.InboxList,
-      })),
-    { ssr: false },
-  ),
-  InlineEdit: dynamic(
-    () =>
-      import("@/components/business/inline-edit").then((m) => ({
-        default: m.InlineEdit,
-      })),
-    { ssr: false },
-  ),
-  InventoryAlertList: dynamic(
-    () =>
-      import("@/components/business/inventory-alert-list").then((m) => ({
-        default: m.InventoryAlertList,
-      })),
-    { ssr: false },
-  ),
-  InvoicePreview: dynamic(
-    () =>
-      import("@/components/business/invoice-preview").then((m) => ({
-        default: m.InvoicePreview,
-      })),
-    { ssr: false },
-  ),
-  JsonViewer: dynamic(
-    () =>
-      import("@/components/business/json-viewer").then((m) => ({
-        default: m.JsonViewer,
-      })),
-    { ssr: false },
-  ),
-  KanbanBoard: dynamic(
-    () =>
-      import("@/components/business/kanban-board").then((m) => ({
-        default: m.KanbanBoard,
-      })),
-    { ssr: false },
-  ),
-  KpiCard: dynamic(
-    () =>
-      import("@/components/business/kpi-card").then((m) => ({
-        default: m.KPICard,
-      })),
-    { ssr: false },
-  ),
-  LanguageSwitcher: dynamic(
-    () =>
-      import("@/components/business/language-switcher").then((m) => ({
-        default: m.LanguageSwitcher,
-      })),
-    { ssr: false },
-  ),
-  LineEditor: dynamic(
-    () =>
-      import("@/components/business/line-editor").then((m) => ({
-        default: m.LineEditor,
-      })),
-    { ssr: false },
-  ),
-  LoadingPage: dynamic(
-    () =>
-      import("@/components/business/loading-page").then((m) => ({
-        default: m.LoadingPage,
-      })),
-    { ssr: false },
-  ),
-  MaintenanceLog: dynamic(
-    () =>
-      import("@/components/business/maintenance-log").then((m) => ({
-        default: m.MaintenanceLog,
-      })),
-    { ssr: false },
-  ),
-  MapView: dynamic(
-    () =>
-      import("@/components/business/map-view").then((m) => ({
-        default: m.MapView,
-      })),
-    { ssr: false },
-  ),
-  Marketing: dynamic(
-    () =>
-      import("@/components/business/marketing").then((m) => ({
-        default: m.PricingCard,
-      })),
-    { ssr: false },
-  ),
-  MaskInput: dynamic(
-    () =>
-      import("@/components/business/mask-input").then((m) => ({
-        default: m.MaskInput,
-      })),
-    { ssr: false },
-  ),
-  MetricTrend: dynamic(
-    () =>
-      import("@/components/business/metric-trend").then((m) => ({
-        default: m.MetricTrend,
-      })),
-    { ssr: false },
-  ),
-  MobileAuthLayout: dynamic(
-    () =>
-      import("@/components/business/mobile-auth-layout").then((m) => ({
-        default: m.MobileAuthLayout,
-      })),
-    { ssr: false },
-  ),
-  MobileBottomNav: dynamic(
-    () =>
-      import("@/components/business/mobile-bottom-nav").then((m) => ({
-        default: m.MobileBottomNav,
-      })),
-    { ssr: false },
-  ),
-  MobileButton: dynamic(
-    () =>
-      import("@/components/business/mobile-button").then((m) => ({
-        default: m.MobileButton,
-      })),
-    { ssr: false },
-  ),
-  MobileCard: dynamic(
-    () =>
-      import("@/components/business/mobile-card").then((m) => ({
-        default: m.MobileCard,
-      })),
-    { ssr: false },
-  ),
-  MobileChartFallback: dynamic(
-    () =>
-      import("@/components/business/mobile-chart-fallback").then((m) => ({
-        default: m.MobileChartFallback,
-      })),
-    { ssr: false },
-  ),
-  MobileDashboardLayout: dynamic(
-    () =>
-      import("@/components/business/mobile-dashboard-layout").then((m) => ({
-        default: m.MobileDashboardLayout,
-      })),
-    { ssr: false },
-  ),
-  MobileDataTable: dynamic(
-    () =>
-      import("@/components/business/mobile-data-table").then((m) => ({
-        default: m.MobileDataTable,
-      })),
-    { ssr: false },
-  ),
-  MobileDialog: dynamic(
-    () =>
-      import("@/components/business/mobile-dialog").then((m) => ({
-        default: m.MobileDialog,
-      })),
-    { ssr: false },
-  ),
-  MobileEmptyState: dynamic(
-    () =>
-      import("@/components/business/mobile-empty-state").then((m) => ({
-        default: m.MobileEmptyState,
-      })),
-    { ssr: false },
-  ),
-  MobileFilterBuilder: dynamic(
-    () =>
-      import("@/components/business/mobile-filter-builder").then((m) => ({
-        default: m.MobileFilterBuilder,
-      })),
-    { ssr: false },
-  ),
-  MobileFormAutosave: dynamic(
-    () =>
-      import("@/components/business/mobile-form-autosave").then((m) => ({
-        default: m.MobileFormAutosave,
-      })),
-    { ssr: false },
-  ),
-  MobileFormField: dynamic(
-    () =>
-      import("@/components/business/mobile-form-field").then((m) => ({
-        default: m.MobileFormField,
-      })),
-    { ssr: false },
-  ),
-  MobileFormStepper: dynamic(
-    () =>
-      import("@/components/business/mobile-form-stepper").then((m) => ({
-        default: m.MobileFormStepper,
-      })),
-    { ssr: false },
-  ),
-  MobileFormWizard: dynamic(
-    () =>
-      import("@/components/business/mobile-form-wizard").then((m) => ({
-        default: m.MobileFormWizard,
-      })),
-    { ssr: false },
-  ),
-  MobileForm: dynamic(
-    () =>
-      import("@/components/business/mobile-form").then((m) => ({
-        default: m.MobileForm,
-      })),
-    { ssr: false },
-  ),
-  MobileInput: dynamic(
-    () =>
-      import("@/components/business/mobile-input").then((m) => ({
-        default: m.MobileInput,
-      })),
-    { ssr: false },
-  ),
-  MobileKanban: dynamic(
-    () =>
-      import("@/components/business/mobile-kanban").then((m) => ({
-        default: m.MobileKanban,
-      })),
-    { ssr: false },
-  ),
-  MobileKpiCard: dynamic(
-    () =>
-      import("@/components/business/mobile-kpi-card").then((m) => ({
-        default: m.MobileKPICard,
-      })),
-    { ssr: false },
-  ),
-  MobileNavigation: dynamic(
-    () =>
-      import("@/components/business/mobile-navigation").then((m) => ({
-        default: m.MobileNavigation,
-      })),
-    { ssr: false },
-  ),
-  MobilePageHeader: dynamic(
-    () =>
-      import("@/components/business/mobile-page-header").then((m) => ({
-        default: m.MobilePageHeader,
-      })),
-    { ssr: false },
-  ),
-  MobilePullToRefresh: dynamic(
-    () =>
-      import("@/components/business/mobile-pull-to-refresh").then((m) => ({
-        default: m.PullToRefresh,
-      })),
-    { ssr: false },
-  ),
-  MobileSelect: dynamic(
-    () =>
-      import("@/components/business/mobile-select").then((m) => ({
-        default: m.MobileSelect,
-      })),
-    { ssr: false },
-  ),
-  MobileSheet: dynamic(
-    () =>
-      import("@/components/business/mobile-sheet").then((m) => ({
-        default: m.MobileSheet,
-      })),
-    { ssr: false },
-  ),
-  MobileSkeleton: dynamic(
-    () =>
-      import("@/components/business/mobile-skeleton").then((m) => ({
-        default: m.MobileListItemSkeleton,
-      })),
-    { ssr: false },
-  ),
-  MobileSwipeActions: dynamic(
-    () =>
-      import("@/components/business/mobile-swipe-actions").then((m) => ({
-        default: m.SwipeActions,
-      })),
-    { ssr: false },
-  ),
-  MobileTabs: dynamic(
-    () =>
-      import("@/components/business/mobile-tabs").then((m) => ({
-        default: m.MobileTabs,
-      })),
-    { ssr: false },
-  ),
-  MobileTextarea: dynamic(
-    () =>
-      import("@/components/business/mobile-textarea").then((m) => ({
-        default: m.MobileTextarea,
-      })),
-    { ssr: false },
-  ),
-  MultiSelect: dynamic(
-    () =>
-      import("@/components/business/multi-select").then((m) => ({
-        default: m.MultiSelect,
-      })),
-    { ssr: false },
-  ),
-  NotificationCenter: dynamic(
-    () =>
-      import("@/components/business/notification-center").then((m) => ({
-        default: m.NotificationCenter,
-      })),
-    { ssr: false },
-  ),
-  OnboardingChecklist: dynamic(
-    () =>
-      import("@/components/business/onboarding-checklist").then((m) => ({
-        default: m.OnboardingChecklist,
-      })),
-    { ssr: false },
-  ),
-  OrderLineEditor: dynamic(
-    () =>
-      import("@/components/business/order-line-editor").then((m) => ({
-        default: m.OrderLineEditor,
-      })),
-    { ssr: false },
-  ),
-  OrgChart: dynamic(
-    () =>
-      import("@/components/business/org-chart").then((m) => ({
-        default: m.OrgChart,
-      })),
-    { ssr: false },
-  ),
-  PageHeader: dynamic(
-    () =>
-      import("@/components/business/page-header").then((m) => ({
-        default: m.PageHeader,
-      })),
-    { ssr: false },
-  ),
-  PaymentForm: dynamic(
-    () =>
-      import("@/components/business/payment-form").then((m) => ({
-        default: m.PaymentForm,
-      })),
-    { ssr: false },
-  ),
-  PdfViewer: dynamic(
-    () =>
-      import("@/components/business/pdf-viewer").then((m) => ({
-        default: m.PDFViewer,
-      })),
-    { ssr: false },
-  ),
-  PermissionMatrix: dynamic(
-    () =>
-      import("@/components/business/permission-matrix").then((m) => ({
-        default: m.PermissionMatrix,
-      })),
-    { ssr: false },
-  ),
-  PermissionWrapper: dynamic(
-    () =>
-      import("@/components/business/permission-wrapper").then((m) => ({
-        default: m.PermissionWrapper,
-      })),
-    { ssr: false },
-  ),
-  PhoneInput: dynamic(
-    () =>
-      import("@/components/business/phone-input").then((m) => ({
-        default: m.PhoneInput,
-      })),
-    { ssr: false },
-  ),
-  PivotTable: dynamic(
-    () =>
-      import("@/components/business/pivot-table").then((m) => ({
-        default: m.PivotTable,
-      })),
-    { ssr: false },
-  ),
-  PresenceIndicators: dynamic(
-    () =>
-      import("@/components/business/presence-indicators").then((m) => ({
-        default: m.PresenceIndicators,
-      })),
-    { ssr: false },
-  ),
-  PrintButton: dynamic(
-    () =>
-      import("@/components/business/print-button").then((m) => ({
-        default: m.PrintButton,
-      })),
-    { ssr: false },
-  ),
-  Profile: dynamic(
-    () =>
-      import("@/components/business/profile").then((m) => ({
-        default: m.ProfileHeader,
-      })),
-    { ssr: false },
-  ),
-  PromptDialog: dynamic(
-    () =>
-      import("@/components/business/prompt-dialog").then((m) => ({
-        default: m.PromptDialog,
-      })),
-    { ssr: false },
-  ),
-  QrCode: dynamic(
-    () =>
-      import("@/components/business/qr-code").then((m) => ({
-        default: m.QRCode,
-      })),
-    { ssr: false },
-  ),
-  QualityInspectionForm: dynamic(
-    () =>
-      import("@/components/business/quality-inspection-form").then((m) => ({
-        default: m.QualityInspectionForm,
-      })),
-    { ssr: false },
-  ),
-  Rating: dynamic(
-    () =>
-      import("@/components/business/rating").then((m) => ({
-        default: m.Rating,
-      })),
-    { ssr: false },
-  ),
-  RemoteSelect: dynamic(
-    () =>
-      import("@/components/business/remote-select").then((m) => ({
-        default: m.RemoteSelect,
-      })),
-    { ssr: false },
-  ),
-  ReportBuilder: dynamic(
-    () =>
-      import("@/components/business/report-builder").then((m) => ({
-        default: m.ReportBuilder,
-      })),
-    { ssr: false },
-  ),
-  ResponsivePreview: dynamic(
-    () =>
-      import("@/components/business/responsive-preview").then((m) => ({
-        default: m.ResponsivePreview,
-      })),
-    { ssr: false },
-  ),
-  RichTextEditor: dynamic(
-    () =>
-      import("@/components/business/rich-text-editor").then((m) => ({
-        default: m.RichTextEditor,
-      })),
-    { ssr: false },
-  ),
-  RoleAssignment: dynamic(
-    () =>
-      import("@/components/business/role-assignment").then((m) => ({
-        default: m.RoleAssignment,
-      })),
-    { ssr: false },
-  ),
-  SavedFilters: dynamic(
-    () =>
-      import("@/components/business/saved-filters").then((m) => ({
-        default: m.SavedFilters,
-      })),
-    { ssr: false },
-  ),
-  ScheduleView: dynamic(
-    () =>
-      import("@/components/business/schedule-view").then((m) => ({
-        default: m.ScheduleView,
-      })),
-    { ssr: false },
-  ),
-  SearchInput: dynamic(
-    () =>
-      import("@/components/business/search-input").then((m) => ({
-        default: m.SearchInput,
-      })),
-    { ssr: false },
-  ),
-  SearchTable: dynamic(
-    () =>
-      import("@/components/business/search-table").then((m) => ({
-        default: m.SearchTable,
-      })),
-    { ssr: false },
-  ),
-  SegmentedControl: dynamic(
-    () =>
-      import("@/components/business/segmented-control").then((m) => ({
-        default: m.SegmentedControl,
-      })),
-    { ssr: false },
-  ),
-  SettingsLayout: dynamic(
-    () =>
-      import("@/components/business/settings-layout").then((m) => ({
-        default: m.SettingsLayout,
-      })),
-    { ssr: false },
-  ),
-  ShiftCalendar: dynamic(
-    () =>
-      import("@/components/business/shift-calendar").then((m) => ({
-        default: m.ShiftCalendar,
-      })),
-    { ssr: false },
-  ),
-  SignaturePad: dynamic(
-    () =>
-      import("@/components/business/signature-pad").then((m) => ({
-        default: m.SignaturePad,
-      })),
-    { ssr: false },
-  ),
-  StatCardRow: dynamic(
-    () =>
-      import("@/components/business/stat-card-row").then((m) => ({
-        default: m.StatCardRow,
-      })),
-    { ssr: false },
-  ),
-  StatCard: dynamic(
-    () =>
-      import("@/components/business/stat-card").then((m) => ({
-        default: m.StatCard,
-      })),
-    { ssr: false },
-  ),
-  StatusBadge: dynamic(
-    () =>
-      import("@/components/business/status-badge").then((m) => ({
-        default: m.StatusBadge,
-      })),
-    { ssr: false },
-  ),
-  StatusTag: dynamic(
-    () =>
-      import("@/components/business/status-tag").then((m) => ({
-        default: m.StatusTag,
-      })),
-    { ssr: false },
-  ),
-  ThemeToggle: dynamic(
-    () =>
-      import("@/components/business/theme-toggle").then((m) => ({
-        default: m.ThemeToggle,
-      })),
-    { ssr: false },
-  ),
-  TimePicker: dynamic(
-    () =>
-      import("@/components/business/time-picker").then((m) => ({
-        default: m.TimePicker,
-      })),
-    { ssr: false },
-  ),
-  TopLoader: dynamic(
-    () =>
-      import("@/components/business/top-loader").then((m) => ({
-        default: m.TopLoader,
-      })),
-    { ssr: false },
-  ),
-  Tour: dynamic(
-    () =>
-      import("@/components/business/tour").then((m) => ({ default: m.Tour })),
-    { ssr: false },
-  ),
-  Transfer: dynamic(
-    () =>
-      import("@/components/business/transfer").then((m) => ({
-        default: m.Transfer,
-      })),
-    { ssr: false },
-  ),
-  TreeTable: dynamic(
-    () =>
-      import("@/components/business/tree-table").then((m) => ({
-        default: m.TreeTable,
-      })),
-    { ssr: false },
-  ),
-  UnitConverter: dynamic(
-    () =>
-      import("@/components/business/unit-converter").then((m) => ({
-        default: m.UnitConverter,
-      })),
-    { ssr: false },
-  ),
-  UserMenu: dynamic(
-    () =>
-      import("@/components/business/user-menu").then((m) => ({
-        default: m.UserMenu,
-      })),
-    { ssr: false },
-  ),
-  UtmBuilder: dynamic(
-    () =>
-      import("@/components/business/utm-builder").then((m) => ({
-        default: m.UtmBuilder,
-      })),
-    { ssr: false },
-  ),
-  VersionHistory: dynamic(
-    () =>
-      import("@/components/business/version-history").then((m) => ({
-        default: m.VersionHistory,
-      })),
-    { ssr: false },
-  ),
-  VideoPlayer: dynamic(
-    () =>
-      import("@/components/business/video-player").then((m) => ({
-        default: m.VideoPlayer,
-      })),
-    { ssr: false },
-  ),
-  Watermark: dynamic(
-    () =>
-      import("@/components/business/watermark").then((m) => ({
-        default: m.Watermark,
-      })),
-    { ssr: false },
-  ),
-  Workflow: dynamic(
-    () =>
-      import("@/components/business/workflow").then((m) => ({
-        default: m.WorkflowViewer,
-      })),
-    { ssr: false },
-  ),
+  Accordion: dynamic(() => import("@/components/ui/accordion").then(m => ({ default: m.Accordion })), { ssr: false }),
+  Affix: dynamic(() => import("@/components/ui/affix").then(m => ({ default: m.Affix })), { ssr: false }),
+  AlertDialog: dynamic(() => import("@/components/ui/alert-dialog").then(m => ({ default: m.AlertDialog })), { ssr: false }),
+  Alert: dynamic(() => import("@/components/ui/alert").then(m => ({ default: m.Alert })), { ssr: false }),
+  AspectRatio: dynamic(() => import("@/components/ui/aspect-ratio").then(m => ({ default: m.AspectRatio })), { ssr: false }),
+  Autocomplete: dynamic(() => import("@/components/ui/autocomplete").then(m => ({ default: m.Autocomplete })), { ssr: false }),
+  Avatar: dynamic(() => import("@/components/ui/avatar").then(m => ({ default: m.Avatar })), { ssr: false }),
+  BackTop: dynamic(() => import("@/components/ui/back-top").then(m => ({ default: m.BackTop })), { ssr: false }),
+  Badge: dynamic(() => import("@/components/ui/badge").then(m => ({ default: m.Badge })), { ssr: false }),
+  Breadcrumb: dynamic(() => import("@/components/ui/breadcrumb").then(m => ({ default: m.Breadcrumb })), { ssr: false }),
+  BrowseInput: dynamic(() => import("@/components/ui/browse-input").then(m => ({ default: m.BrowseInput })), { ssr: false }),
+  Button: dynamic(() => import("@/components/ui/button").then(m => ({ default: m.Button })), { ssr: false }),
+  Calendar: dynamic(() => import("@/components/ui/calendar").then(m => ({ default: m.Calendar })), { ssr: false }),
+  Card: dynamic(() => import("@/components/ui/card").then(m => ({ default: m.Card })), { ssr: false }),
+  Carousel: dynamic(() => import("@/components/ui/carousel").then(m => ({ default: m.Carousel })), { ssr: false }),
+  Cascader: dynamic(() => import("@/components/ui/cascader").then(m => ({ default: m.Cascader })), { ssr: false }),
+  Checkbox: dynamic(() => import("@/components/ui/checkbox").then(m => ({ default: m.Checkbox })), { ssr: false }),
+  Collapsible: dynamic(() => import("@/components/ui/collapsible").then(m => ({ default: m.Collapsible })), { ssr: false }),
+  ColorPicker: dynamic(() => import("@/components/ui/color-picker").then(m => ({ default: m.ColorPicker })), { ssr: false }),
+  Command: dynamic(() => import("@/components/ui/command").then(m => ({ default: m.Command })), { ssr: false }),
+  ConfigProvider: dynamic(() => import("@/components/ui/config-provider").then(m => ({ default: m.ConfigProvider })), { ssr: false }),
+  ContextMenu: dynamic(() => import("@/components/ui/context-menu").then(m => ({ default: m.ContextMenu })), { ssr: false }),
+  Countdown: dynamic(() => import("@/components/ui/countdown").then(m => ({ default: m.Countdown })), { ssr: false }),
+  DatePicker: dynamic(() => import("@/components/ui/date-picker").then(m => ({ default: m.DatePicker })), { ssr: false }),
+  DepartmentBrowse: dynamic(() => import("@/components/ui/department-browse").then(m => ({ default: m.DepartmentBrowse })), { ssr: false }),
+  Descriptions: dynamic(() => import("@/components/ui/descriptions").then(m => ({ default: m.Descriptions })), { ssr: false }),
+  Dialog: dynamic(() => import("@/components/ui/dialog").then(m => ({ default: m.Dialog })), { ssr: false }),
+  Divider: dynamic(() => import("@/components/ui/divider").then(m => ({ default: m.Divider })), { ssr: false }),
+  Dot: dynamic(() => import("@/components/ui/dot").then(m => ({ default: m.Dot })), { ssr: false }),
+  Drawer: dynamic(() => import("@/components/ui/drawer").then(m => ({ default: m.Drawer })), { ssr: false }),
+  DropdownMenu: dynamic(() => import("@/components/ui/dropdown-menu").then(m => ({ default: m.DropdownMenu })), { ssr: false }),
+  FileUpload: dynamic(() => import("@/components/ui/file-upload").then(m => ({ default: m.FileUpload })), { ssr: false }),
+  Flex: dynamic(() => import("@/components/ui/flex").then(m => ({ default: m.Flex })), { ssr: false }),
+  FormGrid: dynamic(() => import("@/components/ui/form-grid").then(m => ({ default: m.FormGrid })), { ssr: false }),
+  FormList: dynamic(() => import("@/components/ui/form-list").then(m => ({ default: m.FormList })), { ssr: false }),
+  FormSection: dynamic(() => import("@/components/ui/form-section").then(m => ({ default: m.FormSection })), { ssr: false }),
+  Form: dynamic(() => import("@/components/ui/form").then(m => ({ default: m.Form })), { ssr: false }),
+  FullscreenToggle: dynamic(() => import("@/components/ui/fullscreen-toggle").then(m => ({ default: m.FullscreenToggle })), { ssr: false }),
+  GridLayout: dynamic(() => import("@/components/ui/grid-layout").then(m => ({ default: m.GridLayout })), { ssr: false }),
+  Grid: dynamic(() => import("@/components/ui/grid").then(m => ({ default: m.Grid })), { ssr: false }),
+  HoverCard: dynamic(() => import("@/components/ui/hover-card").then(m => ({ default: m.HoverCard })), { ssr: false }),
+  IconPicker: dynamic(() => import("@/components/ui/icon-picker").then(m => ({ default: m.IconPicker })), { ssr: false }),
+  ImageViewer: dynamic(() => import("@/components/ui/image-viewer").then(m => ({ default: m.ImageViewer })), { ssr: false }),
+  Image: dynamic(() => import("@/components/ui/image").then(m => ({ default: m.Image })), { ssr: false }),
+  InputGroup: dynamic(() => import("@/components/ui/input-group").then(m => ({ default: m.InputGroup })), { ssr: false }),
+  InputNumber: dynamic(() => import("@/components/ui/input-number").then(m => ({ default: m.InputNumber })), { ssr: false }),
+  InputSearch: dynamic(() => import("@/components/ui/input-search").then(m => ({ default: m.InputSearch })), { ssr: false }),
+  Input: dynamic(() => import("@/components/ui/input").then(m => ({ default: m.Input })), { ssr: false }),
+  Kbd: dynamic(() => import("@/components/ui/kbd").then(m => ({ default: m.Kbd })), { ssr: false }),
+  KeyboardShortcutDialog: dynamic(() => import("@/components/ui/keyboard-shortcut-dialog").then(m => ({ default: m.KeyboardShortcutDialog })), { ssr: false }),
+  KeyboardShortcut: dynamic(() => import("@/components/ui/keyboard-shortcut").then(m => ({ default: m.KeyboardShortcut })), { ssr: false }),
+  KpiPanel: dynamic(() => import("@/components/ui/kpi-panel").then(m => ({ default: m.KPIPanel })), { ssr: false }),
+  Label: dynamic(() => import("@/components/ui/label").then(m => ({ default: m.Label })), { ssr: false }),
+  List: dynamic(() => import("@/components/ui/list").then(m => ({ default: m.List })), { ssr: false }),
+  Mentions: dynamic(() => import("@/components/ui/mentions").then(m => ({ default: m.Mentions })), { ssr: false }),
+  Menu: dynamic(() => import("@/components/ui/menu").then(m => ({ default: m.Menu })), { ssr: false }),
+  Menubar: dynamic(() => import("@/components/ui/menubar").then(m => ({ default: m.Menubar })), { ssr: false }),
+  MessageProvider: dynamic(() => import("@/components/ui/message-provider").then(m => ({ default: m.MessageProvider })), { ssr: false }),
+  ModalProvider: dynamic(() => import("@/components/ui/modal-provider").then(m => ({ default: m.ModalProvider })), { ssr: false }),
+  NavigationMenu: dynamic(() => import("@/components/ui/navigation-menu").then(m => ({ default: m.NavigationMenu })), { ssr: false }),
+  Notification: dynamic(() => import("@/components/ui/notification").then(m => ({ default: m.Notification })), { ssr: false }),
+  NumberTicker: dynamic(() => import("@/components/ui/number-ticker").then(m => ({ default: m.NumberTicker })), { ssr: false }),
+  OtpField: dynamic(() => import("@/components/ui/otp-field").then(m => ({ default: m.OTPField })), { ssr: false }),
+  PageContainer: dynamic(() => import("@/components/ui/page-container").then(m => ({ default: m.PageContainer })), { ssr: false }),
+  Pagination: dynamic(() => import("@/components/ui/pagination").then(m => ({ default: m.Pagination })), { ssr: false }),
+  Popconfirm: dynamic(() => import("@/components/ui/popconfirm").then(m => ({ default: m.Popconfirm })), { ssr: false }),
+  Popover: dynamic(() => import("@/components/ui/popover").then(m => ({ default: m.Popover })), { ssr: false }),
+  Progress: dynamic(() => import("@/components/ui/progress").then(m => ({ default: m.Progress })), { ssr: false }),
+  QrcodeDisplay: dynamic(() => import("@/components/ui/qrcode-display").then(m => ({ default: m.QRCodeDisplay })), { ssr: false }),
+  Qrcode: dynamic(() => import("@/components/ui/qrcode").then(m => ({ default: m.QRCode })), { ssr: false }),
+  RadioGroup: dynamic(() => import("@/components/ui/radio-group").then(m => ({ default: m.RadioGroup })), { ssr: false }),
+  Resizable: dynamic(() => import("@/components/ui/resizable").then(m => ({ default: m.ResizablePanelGroup })), { ssr: false }),
+  Result: dynamic(() => import("@/components/ui/result").then(m => ({ default: m.Result })), { ssr: false }),
+  ScrollArea: dynamic(() => import("@/components/ui/scroll-area").then(m => ({ default: m.ScrollArea })), { ssr: false }),
+  Select: dynamic(() => import("@/components/ui/select").then(m => ({ default: m.Select })), { ssr: false }),
+  Separator: dynamic(() => import("@/components/ui/separator").then(m => ({ default: m.Separator })), { ssr: false }),
+  SequenceInput: dynamic(() => import("@/components/ui/sequence-input").then(m => ({ default: m.SequenceInput })), { ssr: false }),
+  SequencePreview: dynamic(() => import("@/components/ui/sequence-preview").then(m => ({ default: m.SequencePreview })), { ssr: false }),
+  Sheet: dynamic(() => import("@/components/ui/sheet").then(m => ({ default: m.Sheet })), { ssr: false }),
+  Sidebar: dynamic(() => import("@/components/ui/sidebar").then(m => ({ default: m.Sidebar })), { ssr: false }),
+  Skeleton: dynamic(() => import("@/components/ui/skeleton").then(m => ({ default: m.Skeleton })), { ssr: false }),
+  Slider: dynamic(() => import("@/components/ui/slider").then(m => ({ default: m.Slider })), { ssr: false }),
+  Sonner: dynamic(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })), { ssr: false }),
+  Space: dynamic(() => import("@/components/ui/space").then(m => ({ default: m.Space })), { ssr: false }),
+  Spin: dynamic(() => import("@/components/ui/spin").then(m => ({ default: m.Spin })), { ssr: false }),
+  Spinner: dynamic(() => import("@/components/ui/spinner").then(m => ({ default: m.Spinner })), { ssr: false }),
+  SplitButton: dynamic(() => import("@/components/ui/split-button").then(m => ({ default: m.SplitButton })), { ssr: false }),
+  SplitPane: dynamic(() => import("@/components/ui/split-pane").then(m => ({ default: m.SplitPane })), { ssr: false }),
+  Statistic: dynamic(() => import("@/components/ui/statistic").then(m => ({ default: m.Statistic })), { ssr: false }),
+  Stepper: dynamic(() => import("@/components/ui/stepper").then(m => ({ default: m.Stepper })), { ssr: false }),
+  Switch: dynamic(() => import("@/components/ui/switch").then(m => ({ default: m.Switch })), { ssr: false }),
+  Table: dynamic(() => import("@/components/ui/table").then(m => ({ default: m.Table })), { ssr: false }),
+  Tabs: dynamic(() => import("@/components/ui/tabs").then(m => ({ default: m.Tabs })), { ssr: false }),
+  Tag: dynamic(() => import("@/components/ui/tag").then(m => ({ default: m.Tag })), { ssr: false }),
+  TagsInput: dynamic(() => import("@/components/ui/tags-input").then(m => ({ default: m.TagsInput })), { ssr: false }),
+  Textarea: dynamic(() => import("@/components/ui/textarea").then(m => ({ default: m.Textarea })), { ssr: false }),
+  Timeline: dynamic(() => import("@/components/ui/timeline").then(m => ({ default: m.Timeline })), { ssr: false }),
+  ToggleGroup: dynamic(() => import("@/components/ui/toggle-group").then(m => ({ default: m.ToggleGroup })), { ssr: false }),
+  Toggle: dynamic(() => import("@/components/ui/toggle").then(m => ({ default: m.Toggle })), { ssr: false }),
+  Tooltip: dynamic(() => import("@/components/ui/tooltip").then(m => ({ default: m.Tooltip })), { ssr: false }),
+  TreeSelect: dynamic(() => import("@/components/ui/tree-select").then(m => ({ default: m.TreeSelect })), { ssr: false }),
+  TreeView: dynamic(() => import("@/components/ui/tree-view").then(m => ({ default: m.TreeView })), { ssr: false }),
+  Typography: dynamic(() => import("@/components/ui/typography").then(m => ({ default: m.Typography })), { ssr: false }),
+  UserBrowse: dynamic(() => import("@/components/ui/user-browse").then(m => ({ default: m.UserBrowse })), { ssr: false }),
+  VirtualList: dynamic(() => import("@/components/ui/virtual-list").then(m => ({ default: m.VirtualList })), { ssr: false }),
+  VirtualTable: dynamic(() => import("@/components/ui/virtual-table").then(m => ({ default: m.VirtualTable })), { ssr: false }),
+  AdminBreadcrumb: dynamic(() => import("@/components/layout/admin-breadcrumb").then(m => ({ default: m.AdminBreadcrumb })), { ssr: false }),
+  AdminHeader: dynamic(() => import("@/components/layout/admin-header").then(m => ({ default: m.AdminHeader })), { ssr: false }),
+  AdminSider: dynamic(() => import("@/components/layout/admin-sider").then(m => ({ default: m.AdminSider })), { ssr: false }),
+  AdminTabs: dynamic(() => import("@/components/layout/admin-tabs").then(m => ({ default: m.AdminTabs })), { ssr: false }),
+  AppShell: dynamic(() => import("@/components/layout/app-shell").then(m => ({ default: m.AppShell })), { ssr: false }),
+  AuthLayout: dynamic(() => import("@/components/layout/auth-layout").then(m => ({ default: m.AuthLayout })), { ssr: false }),
+  BlankLayout: dynamic(() => import("@/components/layout/blank-layout").then(m => ({ default: m.BlankLayout })), { ssr: false }),
+  DashboardLayout: dynamic(() => import("@/components/layout/dashboard-layout").then(m => ({ default: m.DashboardLayout })), { ssr: false }),
+  DetailLayout: dynamic(() => import("@/components/layout/detail-layout").then(m => ({ default: m.DetailLayout })), { ssr: false }),
+  DialogFormBody: dynamic(() => import("@/components/layout/dialog-form-body").then(m => ({ default: m.DialogFormBody })), { ssr: false }),
+  ErrorLayout: dynamic(() => import("@/components/layout/error-layout").then(m => ({ default: m.ErrorLayout })), { ssr: false }),
+  MasterDetailLayout: dynamic(() => import("@/components/layout/master-detail-layout").then(m => ({ default: m.MasterDetailLayout })), { ssr: false }),
+  MasterDetailTabs: dynamic(() => import("@/components/layout/master-detail-tabs").then(m => ({ default: m.MasterDetailTabs })), { ssr: false }),
+  PrintLayout: dynamic(() => import("@/components/layout/print-layout").then(m => ({ default: m.PrintLayout })), { ssr: false }),
+  PublicLayout: dynamic(() => import("@/components/layout/public-layout").then(m => ({ default: m.PublicLayout })), { ssr: false }),
+  RegionLayout: dynamic(() => import("@/components/layout/region-layout").then(m => ({ default: m.RegionLayout })), { ssr: false }),
+  TopBar: dynamic(() => import("@/components/layout/top-bar").then(m => ({ default: m.TopBar })), { ssr: false }),
+  ActivityFeed: dynamic(() => import("@/components/business/activity-feed").then(m => ({ default: m.ActivityFeed })), { ssr: false }),
+  AddressForm: dynamic(() => import("@/components/business/address-form").then(m => ({ default: m.AddressForm })), { ssr: false }),
+  AddressPicker: dynamic(() => import("@/components/business/address-picker").then(m => ({ default: m.AddressPicker })), { ssr: false }),
+  AdvancedDataTable: dynamic(() => import("@/components/business/advanced-data-table").then(m => ({ default: m.AdvancedDataTable })), { ssr: false }),
+  AdvancedSearch: dynamic(() => import("@/components/business/advanced-search").then(m => ({ default: m.AdvancedSearch })), { ssr: false }),
+  Anchor: dynamic(() => import("@/components/business/anchor").then(m => ({ default: m.Anchor })), { ssr: false }),
+  AnimatedNumber: dynamic(() => import("@/components/business/animated-number").then(m => ({ default: m.AnimatedNumber })), { ssr: false }),
+  AnnouncementBanner: dynamic(() => import("@/components/business/announcement-banner").then(m => ({ default: m.AnnouncementBanner })), { ssr: false }),
+  ApprovalFlow: dynamic(() => import("@/components/business/approval-flow").then(m => ({ default: m.ApprovalFlow })), { ssr: false }),
+  ApprovalTimeline: dynamic(() => import("@/components/business/approval-timeline").then(m => ({ default: m.ApprovalTimeline })), { ssr: false }),
+  AsyncTaskCenter: dynamic(() => import("@/components/business/async-task-center").then(m => ({ default: m.AsyncTaskCenter })), { ssr: false }),
+  AudienceSegmentBuilder: dynamic(() => import("@/components/business/audience-segment-builder").then(m => ({ default: m.AudienceSegmentBuilder })), { ssr: false }),
+  AudioPlayer: dynamic(() => import("@/components/business/audio-player").then(m => ({ default: m.AudioPlayer })), { ssr: false }),
+  AuditLog: dynamic(() => import("@/components/business/audit-log").then(m => ({ default: m.AuditLog })), { ssr: false }),
+  AuditSidebar: dynamic(() => import("@/components/business/audit-sidebar").then(m => ({ default: m.AuditSidebar })), { ssr: false }),
+  AuthForms: dynamic(() => import("@/components/business/auth-forms").then(m => ({ default: m.SignInForm })), { ssr: false }),
+  AuthGuard: dynamic(() => import("@/components/business/auth-guard").then(m => ({ default: m.AuthGuard })), { ssr: false }),
+  AvatarGroup: dynamic(() => import("@/components/business/avatar-group").then(m => ({ default: m.AvatarGroup })), { ssr: false }),
+  Banner: dynamic(() => import("@/components/business/banner").then(m => ({ default: m.Banner })), { ssr: false }),
+  BarcodeDisplay: dynamic(() => import("@/components/business/barcode-display").then(m => ({ default: m.BarcodeDisplay })), { ssr: false }),
+  BatchSelector: dynamic(() => import("@/components/business/batch-selector").then(m => ({ default: m.BatchSelector })), { ssr: false }),
+  BillFooter: dynamic(() => import("@/components/business/bill-footer").then(m => ({ default: m.BillFooter })), { ssr: false }),
+  BillHeader: dynamic(() => import("@/components/business/bill-header").then(m => ({ default: m.BillHeader })), { ssr: false }),
+  BillPage: dynamic(() => import("@/components/business/bill-page").then(m => ({ default: m.BillPage })), { ssr: false }),
+  BillStatusBar: dynamic(() => import("@/components/business/bill-status-bar").then(m => ({ default: m.BillStatusBar })), { ssr: false }),
+  BizStatusTag: dynamic(() => import("@/components/business/biz-status-tag").then(m => ({ default: m.BizStatusTag })), { ssr: false }),
+  BudgetPacingCard: dynamic(() => import("@/components/business/budget-pacing-card").then(m => ({ default: m.BudgetPacingCard })), { ssr: false }),
+  BulkActionsToolbar: dynamic(() => import("@/components/business/bulk-actions-toolbar").then(m => ({ default: m.BulkActionsToolbar })), { ssr: false }),
+  BulkImportWizard: dynamic(() => import("@/components/business/bulk-import-wizard").then(m => ({ default: m.BulkImportWizard })), { ssr: false }),
+  CalendarMonth: dynamic(() => import("@/components/business/calendar/calendar-month").then(m => ({ default: m.CalendarMonth })), { ssr: false }),
+  EventDetail: dynamic(() => import("@/components/business/calendar/event-detail").then(m => ({ default: m.EventDetail })), { ssr: false }),
+  GanttChart: dynamic(() => import("@/components/business/calendar/gantt-chart").then(m => ({ default: m.GanttChart })), { ssr: false }),
+  TimeSlotPicker: dynamic(() => import("@/components/business/calendar/time-slot-picker").then(m => ({ default: m.TimeSlotPicker })), { ssr: false }),
+  CampaignCalendar: dynamic(() => import("@/components/business/campaign-calendar").then(m => ({ default: m.CampaignCalendar })), { ssr: false }),
+  CampaignCard: dynamic(() => import("@/components/business/campaign-card").then(m => ({ default: m.CampaignCard })), { ssr: false }),
+  CampaignStatusTag: dynamic(() => import("@/components/business/campaign-status-tag").then(m => ({ default: m.CampaignStatusTag })), { ssr: false }),
+  ChannelPicker: dynamic(() => import("@/components/business/channel-picker").then(m => ({ default: m.ChannelPicker })), { ssr: false }),
+  Chart: dynamic(() => import("@/components/business/chart").then(m => ({ default: m.LineChart })), { ssr: false }),
+  AreaChart: dynamic(() => import("@/components/business/charts/area-chart").then(m => ({ default: m.AreaChart })), { ssr: false }),
+  BarChart: dynamic(() => import("@/components/business/charts/bar-chart").then(m => ({ default: m.BarChart })), { ssr: false }),
+  ChartFrame: dynamic(() => import("@/components/business/charts/chart-frame").then(m => ({ default: m.ChartFrame })), { ssr: false }),
+  ComposedChart: dynamic(() => import("@/components/business/charts/composed-chart").then(m => ({ default: m.ComposedChartComp })), { ssr: false }),
+  FunnelChart: dynamic(() => import("@/components/business/charts/funnel-chart").then(m => ({ default: m.FunnelChart })), { ssr: false }),
+  HeatmapChart: dynamic(() => import("@/components/business/charts/heatmap-chart").then(m => ({ default: m.HeatmapChart })), { ssr: false }),
+  LineChart: dynamic(() => import("@/components/business/charts/line-chart").then(m => ({ default: m.LineChart })), { ssr: false }),
+  PieChart: dynamic(() => import("@/components/business/charts/pie-chart").then(m => ({ default: m.PieChartComp })), { ssr: false }),
+  RadarChart: dynamic(() => import("@/components/business/charts/radar-chart").then(m => ({ default: m.RadarChartComp })), { ssr: false }),
+  RadialChart: dynamic(() => import("@/components/business/charts/radial-chart").then(m => ({ default: m.RadialChartComp })), { ssr: false }),
+  SankeyChart: dynamic(() => import("@/components/business/charts/sankey-chart").then(m => ({ default: m.SankeyChart })), { ssr: false }),
+  ScatterChart: dynamic(() => import("@/components/business/charts/scatter-chart").then(m => ({ default: m.ScatterChartComp })), { ssr: false }),
+  ChartEmpty: dynamic(() => import("@/components/business/charts/shared/chart-empty").then(m => ({ default: m.ChartEmpty })), { ssr: false }),
+  ChartExport: dynamic(() => import("@/components/business/charts/shared/chart-export").then(m => ({ default: m.ChartExportButton })), { ssr: false }),
+  ChartFullscreen: dynamic(() => import("@/components/business/charts/shared/chart-fullscreen").then(m => ({ default: m.ChartFullscreenButton })), { ssr: false }),
+  ChartLegend: dynamic(() => import("@/components/business/charts/shared/chart-legend").then(m => ({ default: m.ChartLegend })), { ssr: false }),
+  ChartSkeleton: dynamic(() => import("@/components/business/charts/shared/chart-skeleton").then(m => ({ default: m.ChartSkeleton })), { ssr: false }),
+  ChartTooltip: dynamic(() => import("@/components/business/charts/shared/chart-tooltip").then(m => ({ default: m.ChartTooltip })), { ssr: false }),
+  TreemapChart: dynamic(() => import("@/components/business/charts/treemap-chart").then(m => ({ default: m.TreemapChart })), { ssr: false }),
+  WaterfallChart: dynamic(() => import("@/components/business/charts/waterfall-chart").then(m => ({ default: m.WaterfallChart })), { ssr: false }),
+  Chat: dynamic(() => import("@/components/business/chat").then(m => ({ default: m.ChatMessageList })), { ssr: false }),
+  Chip: dynamic(() => import("@/components/business/chip").then(m => ({ default: m.Chip })), { ssr: false }),
+  CoachMark: dynamic(() => import("@/components/business/coach-mark").then(m => ({ default: m.CoachMark })), { ssr: false }),
+  CodeBlock: dynamic(() => import("@/components/business/code-block").then(m => ({ default: m.CodeBlock })), { ssr: false }),
+  CodeEditor: dynamic(() => import("@/components/business/code-editor").then(m => ({ default: m.CodeEditor })), { ssr: false }),
+  ColorTag: dynamic(() => import("@/components/business/color-tag").then(m => ({ default: m.ColorTag })), { ssr: false }),
+  Combobox: dynamic(() => import("@/components/business/combobox").then(m => ({ default: m.Combobox })), { ssr: false }),
+  CommandPalette: dynamic(() => import("@/components/business/command-palette").then(m => ({ default: m.CommandPalette })), { ssr: false }),
+  CommentThread: dynamic(() => import("@/components/business/comment-thread").then(m => ({ default: m.CommentThread })), { ssr: false }),
+  Confetti: dynamic(() => import("@/components/business/confetti").then(m => ({ default: m.Confetti })), { ssr: false }),
+  ConfirmDialog: dynamic(() => import("@/components/business/confirm-dialog").then(m => ({ default: m.ConfirmDialog })), { ssr: false }),
+  ConnectionStatus: dynamic(() => import("@/components/business/connection-status").then(m => ({ default: m.ConnectionStatus })), { ssr: false }),
+  ContractTemplate: dynamic(() => import("@/components/business/contract-template").then(m => ({ default: m.ContractTemplate })), { ssr: false }),
+  CookieBanner: dynamic(() => import("@/components/business/cookie-banner").then(m => ({ default: m.CookieBanner })), { ssr: false }),
+  CopyButton: dynamic(() => import("@/components/business/copy-button").then(m => ({ default: m.CopyButton })), { ssr: false }),
+  CreativePreview: dynamic(() => import("@/components/business/creative-preview").then(m => ({ default: m.CreativePreview })), { ssr: false }),
+  CreditCardInput: dynamic(() => import("@/components/business/credit-card-input").then(m => ({ default: m.CreditCardInput })), { ssr: false }),
+  CrudPage: dynamic(() => import("@/components/business/crud-page").then(m => ({ default: m.CrudPage })), { ssr: false }),
+  CrudToolbar: dynamic(() => import("@/components/business/crud-toolbar").then(m => ({ default: m.CrudToolbar })), { ssr: false }),
+  CurrencyInput: dynamic(() => import("@/components/business/currency-input").then(m => ({ default: m.CurrencyInput })), { ssr: false }),
+  DashboardDesigner: dynamic(() => import("@/components/business/dashboard-designer").then(m => ({ default: m.DashboardDesigner })), { ssr: false }),
+  DataTable: dynamic(() => import("@/components/business/data-table").then(m => ({ default: m.DataTable })), { ssr: false }),
+  DateRangePicker: dynamic(() => import("@/components/business/date-range-picker").then(m => ({ default: m.DateRangePicker })), { ssr: false }),
+  DensitySwitcher: dynamic(() => import("@/components/business/density-switcher").then(m => ({ default: m.DensitySwitcher })), { ssr: false }),
+  DictSelect: dynamic(() => import("@/components/business/dict-select").then(m => ({ default: m.DictSelect })), { ssr: false }),
+  DiffViewerTable: dynamic(() => import("@/components/business/diff-viewer-table").then(m => ({ default: m.DiffViewerTable })), { ssr: false }),
+  DiffViewer: dynamic(() => import("@/components/business/diff-viewer").then(m => ({ default: m.DiffViewer })), { ssr: false }),
+  Dock: dynamic(() => import("@/components/business/dock").then(m => ({ default: m.Dock })), { ssr: false }),
+  EditToolbar: dynamic(() => import("@/components/business/edit-toolbar").then(m => ({ default: m.EditToolbar })), { ssr: false }),
+  EditableTreeTable: dynamic(() => import("@/components/business/editable-tree-table").then(m => ({ default: m.EditableTreeTable })), { ssr: false }),
+  EmptyState: dynamic(() => import("@/components/business/empty-state").then(m => ({ default: m.EmptyState })), { ssr: false }),
+  EquipmentCard: dynamic(() => import("@/components/business/equipment-card").then(m => ({ default: m.EquipmentCard })), { ssr: false }),
+  ErrorBoundary: dynamic(() => import("@/components/business/error-boundary").then(m => ({ default: m.ErrorBoundary })), { ssr: false }),
+  ErrorPage: dynamic(() => import("@/components/business/error-page").then(m => ({ default: m.ErrorPage })), { ssr: false }),
+  ExpenseLineEditor: dynamic(() => import("@/components/business/expense-line-editor").then(m => ({ default: m.ExpenseLineEditor })), { ssr: false }),
+  ExperimentSummary: dynamic(() => import("@/components/business/experiment-summary").then(m => ({ default: m.ExperimentSummary })), { ssr: false }),
+  ExportButton: dynamic(() => import("@/components/business/export-button").then(m => ({ default: m.ExportButton })), { ssr: false }),
+  Fab: dynamic(() => import("@/components/business/fab").then(m => ({ default: m.Fab })), { ssr: false }),
+  FeatureGate: dynamic(() => import("@/components/business/feature-gate").then(m => ({ default: m.FeatureGate })), { ssr: false }),
+  FieldMask: dynamic(() => import("@/components/business/field-mask").then(m => ({ default: m.FieldMask })), { ssr: false }),
+  FileUploadManager: dynamic(() => import("@/components/business/file-upload-manager").then(m => ({ default: m.FileUploadManager })), { ssr: false }),
+  FilterBar: dynamic(() => import("@/components/business/filter-bar").then(m => ({ default: m.FilterBar })), { ssr: false }),
+  FilterBuilder: dynamic(() => import("@/components/business/filter-builder").then(m => ({ default: m.FilterBuilder })), { ssr: false }),
+  Forbidden: dynamic(() => import("@/components/business/forbidden").then(m => ({ default: m.Forbidden })), { ssr: false }),
+  FormAutosaveIndicator: dynamic(() => import("@/components/business/form/form-autosave-indicator").then(m => ({ default: m.FormAutosaveIndicator })), { ssr: false }),
+  FormDirtyWarning: dynamic(() => import("@/components/business/form/form-dirty-warning").then(m => ({ default: m.FormDirtyWarning })), { ssr: false }),
+  FormErrorSummary: dynamic(() => import("@/components/business/form/form-error-summary").then(m => ({ default: m.FormErrorSummary })), { ssr: false }),
+  FormFieldGroup: dynamic(() => import("@/components/business/form/form-field-group").then(m => ({ default: m.FormFieldGroup })), { ssr: false }),
+  FormProgress: dynamic(() => import("@/components/business/form/form-progress").then(m => ({ default: m.FormProgress })), { ssr: false }),
+  FormRepeater: dynamic(() => import("@/components/business/form/form-repeater").then(m => ({ default: m.FormRepeater })), { ssr: false }),
+  FormStepSummary: dynamic(() => import("@/components/business/form/form-step-summary").then(m => ({ default: m.FormStepSummary })), { ssr: false }),
+  FormField: dynamic(() => import("@/components/business/form-field").then(m => ({ default: m.FormField })), { ssr: false }),
+  FormWizard: dynamic(() => import("@/components/business/form-wizard").then(m => ({ default: m.FormWizard })), { ssr: false }),
+  FormulaEditor: dynamic(() => import("@/components/business/formula-editor").then(m => ({ default: m.FormulaEditor })), { ssr: false }),
+  Gauge: dynamic(() => import("@/components/business/gauge").then(m => ({ default: m.Gauge })), { ssr: false }),
+  GlobalLoading: dynamic(() => import("@/components/business/global-loading").then(m => ({ default: m.GlobalLoading })), { ssr: false }),
+  HeatmapCalendar: dynamic(() => import("@/components/business/heatmap-calendar").then(m => ({ default: m.HeatmapCalendar })), { ssr: false }),
+  ImageGallery: dynamic(() => import("@/components/business/image-gallery").then(m => ({ default: m.ImageGallery })), { ssr: false }),
+  ImportDialog: dynamic(() => import("@/components/business/import-dialog").then(m => ({ default: m.ImportDialog })), { ssr: false }),
+  InboxList: dynamic(() => import("@/components/business/inbox-list").then(m => ({ default: m.InboxList })), { ssr: false }),
+  InlineEdit: dynamic(() => import("@/components/business/inline-edit").then(m => ({ default: m.InlineEdit })), { ssr: false }),
+  InventoryAlertList: dynamic(() => import("@/components/business/inventory-alert-list").then(m => ({ default: m.InventoryAlertList })), { ssr: false }),
+  InvoicePreview: dynamic(() => import("@/components/business/invoice-preview").then(m => ({ default: m.InvoicePreview })), { ssr: false }),
+  JsonViewer: dynamic(() => import("@/components/business/json-viewer").then(m => ({ default: m.JsonViewer })), { ssr: false }),
+  KanbanBoard: dynamic(() => import("@/components/business/kanban-board").then(m => ({ default: m.KanbanBoard })), { ssr: false }),
+  KpiCard: dynamic(() => import("@/components/business/kpi-card").then(m => ({ default: m.KPICard })), { ssr: false }),
+  LanguageSwitcher: dynamic(() => import("@/components/business/language-switcher").then(m => ({ default: m.LanguageSwitcher })), { ssr: false }),
+  LineEditor: dynamic(() => import("@/components/business/line-editor").then(m => ({ default: m.LineEditor })), { ssr: false }),
+  LoadingPage: dynamic(() => import("@/components/business/loading-page").then(m => ({ default: m.LoadingPage })), { ssr: false }),
+  MaintenanceLog: dynamic(() => import("@/components/business/maintenance-log").then(m => ({ default: m.MaintenanceLog })), { ssr: false }),
+  MapView: dynamic(() => import("@/components/business/map-view").then(m => ({ default: m.MapView })), { ssr: false }),
+  Marketing: dynamic(() => import("@/components/business/marketing").then(m => ({ default: m.PricingCard })), { ssr: false }),
+  MaskInput: dynamic(() => import("@/components/business/mask-input").then(m => ({ default: m.MaskInput })), { ssr: false }),
+  MetricTrend: dynamic(() => import("@/components/business/metric-trend").then(m => ({ default: m.MetricTrend })), { ssr: false }),
+  MobileAuthLayout: dynamic(() => import("@/components/business/mobile-auth-layout").then(m => ({ default: m.MobileAuthLayout })), { ssr: false }),
+  MobileBottomNav: dynamic(() => import("@/components/business/mobile-bottom-nav").then(m => ({ default: m.MobileBottomNav })), { ssr: false }),
+  MobileButton: dynamic(() => import("@/components/business/mobile-button").then(m => ({ default: m.MobileButton })), { ssr: false }),
+  MobileCard: dynamic(() => import("@/components/business/mobile-card").then(m => ({ default: m.MobileCard })), { ssr: false }),
+  MobileChartFallback: dynamic(() => import("@/components/business/mobile-chart-fallback").then(m => ({ default: m.MobileChartFallback })), { ssr: false }),
+  MobileDashboardLayout: dynamic(() => import("@/components/business/mobile-dashboard-layout").then(m => ({ default: m.MobileDashboardLayout })), { ssr: false }),
+  MobileDataTable: dynamic(() => import("@/components/business/mobile-data-table").then(m => ({ default: m.MobileDataTable })), { ssr: false }),
+  MobileDialog: dynamic(() => import("@/components/business/mobile-dialog").then(m => ({ default: m.MobileDialog })), { ssr: false }),
+  MobileEmptyState: dynamic(() => import("@/components/business/mobile-empty-state").then(m => ({ default: m.MobileEmptyState })), { ssr: false }),
+  MobileFilterBuilder: dynamic(() => import("@/components/business/mobile-filter-builder").then(m => ({ default: m.MobileFilterBuilder })), { ssr: false }),
+  MobileFormAutosave: dynamic(() => import("@/components/business/mobile-form-autosave").then(m => ({ default: m.MobileFormAutosave })), { ssr: false }),
+  MobileFormField: dynamic(() => import("@/components/business/mobile-form-field").then(m => ({ default: m.MobileFormField })), { ssr: false }),
+  MobileFormStepper: dynamic(() => import("@/components/business/mobile-form-stepper").then(m => ({ default: m.MobileFormStepper })), { ssr: false }),
+  MobileFormWizard: dynamic(() => import("@/components/business/mobile-form-wizard").then(m => ({ default: m.MobileFormWizard })), { ssr: false }),
+  MobileForm: dynamic(() => import("@/components/business/mobile-form").then(m => ({ default: m.MobileForm })), { ssr: false }),
+  MobileInput: dynamic(() => import("@/components/business/mobile-input").then(m => ({ default: m.MobileInput })), { ssr: false }),
+  MobileKanban: dynamic(() => import("@/components/business/mobile-kanban").then(m => ({ default: m.MobileKanban })), { ssr: false }),
+  MobileKpiCard: dynamic(() => import("@/components/business/mobile-kpi-card").then(m => ({ default: m.MobileKPICard })), { ssr: false }),
+  MobileNavigation: dynamic(() => import("@/components/business/mobile-navigation").then(m => ({ default: m.MobileNavigation })), { ssr: false }),
+  MobilePageHeader: dynamic(() => import("@/components/business/mobile-page-header").then(m => ({ default: m.MobilePageHeader })), { ssr: false }),
+  MobilePullToRefresh: dynamic(() => import("@/components/business/mobile-pull-to-refresh").then(m => ({ default: m.PullToRefresh })), { ssr: false }),
+  MobileSelect: dynamic(() => import("@/components/business/mobile-select").then(m => ({ default: m.MobileSelect })), { ssr: false }),
+  MobileSheet: dynamic(() => import("@/components/business/mobile-sheet").then(m => ({ default: m.MobileSheet })), { ssr: false }),
+  MobileSkeleton: dynamic(() => import("@/components/business/mobile-skeleton").then(m => ({ default: m.MobileListItemSkeleton })), { ssr: false }),
+  MobileSwipeActions: dynamic(() => import("@/components/business/mobile-swipe-actions").then(m => ({ default: m.SwipeActions })), { ssr: false }),
+  MobileTabs: dynamic(() => import("@/components/business/mobile-tabs").then(m => ({ default: m.MobileTabs })), { ssr: false }),
+  MobileTextarea: dynamic(() => import("@/components/business/mobile-textarea").then(m => ({ default: m.MobileTextarea })), { ssr: false }),
+  MultiSelect: dynamic(() => import("@/components/business/multi-select").then(m => ({ default: m.MultiSelect })), { ssr: false }),
+  NotificationCenter: dynamic(() => import("@/components/business/notification-center").then(m => ({ default: m.NotificationCenter })), { ssr: false }),
+  OnboardingChecklist: dynamic(() => import("@/components/business/onboarding-checklist").then(m => ({ default: m.OnboardingChecklist })), { ssr: false }),
+  OrderLineEditor: dynamic(() => import("@/components/business/order-line-editor").then(m => ({ default: m.OrderLineEditor })), { ssr: false }),
+  OrgChart: dynamic(() => import("@/components/business/org-chart").then(m => ({ default: m.OrgChart })), { ssr: false }),
+  PageHeader: dynamic(() => import("@/components/business/page-header").then(m => ({ default: m.PageHeader })), { ssr: false }),
+  PaymentForm: dynamic(() => import("@/components/business/payment-form").then(m => ({ default: m.PaymentForm })), { ssr: false }),
+  PdfViewer: dynamic(() => import("@/components/business/pdf-viewer").then(m => ({ default: m.PDFViewer })), { ssr: false }),
+  PermissionMatrix: dynamic(() => import("@/components/business/permission-matrix").then(m => ({ default: m.PermissionMatrix })), { ssr: false }),
+  PermissionWrapper: dynamic(() => import("@/components/business/permission-wrapper").then(m => ({ default: m.PermissionWrapper })), { ssr: false }),
+  PhoneInput: dynamic(() => import("@/components/business/phone-input").then(m => ({ default: m.PhoneInput })), { ssr: false }),
+  PivotTable: dynamic(() => import("@/components/business/pivot-table").then(m => ({ default: m.PivotTable })), { ssr: false }),
+  PresenceIndicators: dynamic(() => import("@/components/business/presence-indicators").then(m => ({ default: m.PresenceIndicators })), { ssr: false }),
+  PrintButton: dynamic(() => import("@/components/business/print-button").then(m => ({ default: m.PrintButton })), { ssr: false }),
+  Profile: dynamic(() => import("@/components/business/profile").then(m => ({ default: m.ProfileHeader })), { ssr: false }),
+  PromptDialog: dynamic(() => import("@/components/business/prompt-dialog").then(m => ({ default: m.PromptDialog })), { ssr: false }),
+  QrCode: dynamic(() => import("@/components/business/qr-code").then(m => ({ default: m.QRCode })), { ssr: false }),
+  QualityInspectionForm: dynamic(() => import("@/components/business/quality-inspection-form").then(m => ({ default: m.QualityInspectionForm })), { ssr: false }),
+  Rating: dynamic(() => import("@/components/business/rating").then(m => ({ default: m.Rating })), { ssr: false }),
+  RemoteSelect: dynamic(() => import("@/components/business/remote-select").then(m => ({ default: m.RemoteSelect })), { ssr: false }),
+  ReportBuilder: dynamic(() => import("@/components/business/report-builder").then(m => ({ default: m.ReportBuilder })), { ssr: false }),
+  ResponsivePreview: dynamic(() => import("@/components/business/responsive-preview").then(m => ({ default: m.ResponsivePreview })), { ssr: false }),
+  RichTextEditor: dynamic(() => import("@/components/business/rich-text-editor").then(m => ({ default: m.RichTextEditor })), { ssr: false }),
+  RoleAssignment: dynamic(() => import("@/components/business/role-assignment").then(m => ({ default: m.RoleAssignment })), { ssr: false }),
+  SavedFilters: dynamic(() => import("@/components/business/saved-filters").then(m => ({ default: m.SavedFilters })), { ssr: false }),
+  ScheduleView: dynamic(() => import("@/components/business/schedule-view").then(m => ({ default: m.ScheduleView })), { ssr: false }),
+  SearchInput: dynamic(() => import("@/components/business/search-input").then(m => ({ default: m.SearchInput })), { ssr: false }),
+  SearchTable: dynamic(() => import("@/components/business/search-table").then(m => ({ default: m.SearchTable })), { ssr: false }),
+  SegmentedControl: dynamic(() => import("@/components/business/segmented-control").then(m => ({ default: m.SegmentedControl })), { ssr: false }),
+  SettingsLayout: dynamic(() => import("@/components/business/settings-layout").then(m => ({ default: m.SettingsLayout })), { ssr: false }),
+  ShiftCalendar: dynamic(() => import("@/components/business/shift-calendar").then(m => ({ default: m.ShiftCalendar })), { ssr: false }),
+  SignaturePad: dynamic(() => import("@/components/business/signature-pad").then(m => ({ default: m.SignaturePad })), { ssr: false }),
+  StatCardRow: dynamic(() => import("@/components/business/stat-card-row").then(m => ({ default: m.StatCardRow })), { ssr: false }),
+  StatCard: dynamic(() => import("@/components/business/stat-card").then(m => ({ default: m.StatCard })), { ssr: false }),
+  StatusBadge: dynamic(() => import("@/components/business/status-badge").then(m => ({ default: m.StatusBadge })), { ssr: false }),
+  StatusTag: dynamic(() => import("@/components/business/status-tag").then(m => ({ default: m.StatusTag })), { ssr: false }),
+  ThemeToggle: dynamic(() => import("@/components/business/theme-toggle").then(m => ({ default: m.ThemeToggle })), { ssr: false }),
+  TimePicker: dynamic(() => import("@/components/business/time-picker").then(m => ({ default: m.TimePicker })), { ssr: false }),
+  TopLoader: dynamic(() => import("@/components/business/top-loader").then(m => ({ default: m.TopLoader })), { ssr: false }),
+  Tour: dynamic(() => import("@/components/business/tour").then(m => ({ default: m.Tour })), { ssr: false }),
+  Transfer: dynamic(() => import("@/components/business/transfer").then(m => ({ default: m.Transfer })), { ssr: false }),
+  TreeTable: dynamic(() => import("@/components/business/tree-table").then(m => ({ default: m.TreeTable })), { ssr: false }),
+  UnitConverter: dynamic(() => import("@/components/business/unit-converter").then(m => ({ default: m.UnitConverter })), { ssr: false }),
+  UserMenu: dynamic(() => import("@/components/business/user-menu").then(m => ({ default: m.UserMenu })), { ssr: false }),
+  UtmBuilder: dynamic(() => import("@/components/business/utm-builder").then(m => ({ default: m.UtmBuilder })), { ssr: false }),
+  VersionHistory: dynamic(() => import("@/components/business/version-history").then(m => ({ default: m.VersionHistory })), { ssr: false }),
+  VideoPlayer: dynamic(() => import("@/components/business/video-player").then(m => ({ default: m.VideoPlayer })), { ssr: false }),
+  Watermark: dynamic(() => import("@/components/business/watermark").then(m => ({ default: m.Watermark })), { ssr: false }),
+  Workflow: dynamic(() => import("@/components/business/workflow").then(m => ({ default: m.WorkflowViewer })), { ssr: false }),
 };
 
 /**
@@ -2277,6 +437,7 @@ export const businessComponentNames: ReadonlySet<string> = new Set([
   "EditableTreeTable",
   "EmptyState",
   "EquipmentCard",
+  "ErrorBoundary",
   "ErrorPage",
   "ExpenseLineEditor",
   "ExperimentSummary",

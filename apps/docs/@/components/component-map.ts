@@ -215,6 +215,7 @@ import { EditToolbar } from "@/components/business/edit-toolbar";
 import { EditableTreeTable } from "@/components/business/editable-tree-table";
 import { EmptyState } from "@/components/business/empty-state";
 import { EquipmentCard } from "@/components/business/equipment-card";
+import { ErrorBoundary } from "@/components/business/error-boundary";
 import { ErrorPage } from "@/components/business/error-page";
 import { ExpenseLineEditor } from "@/components/business/expense-line-editor";
 import { ExperimentSummary } from "@/components/business/experiment-summary";
@@ -547,6 +548,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   EditableTreeTable,
   EmptyState,
   EquipmentCard,
+  ErrorBoundary,
   ErrorPage,
   ExpenseLineEditor,
   ExperimentSummary,

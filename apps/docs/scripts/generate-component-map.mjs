@@ -69,8 +69,8 @@ function findExports(filePath) {
     }
   }
 
-  // export function / export const
-  const directRe = /export\s+(?:function|const)\s+(\w+)/g;
+  // export function / export const / export class
+  const directRe = /export\s+(?:function|const|class)\s+(\w+)/g;
   while ((m = directRe.exec(content)) !== null) {
     names.add(m[1]);
   }

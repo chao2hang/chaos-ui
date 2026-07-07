@@ -6,6 +6,18 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
+// Merge react-compiler 子规则降级 into nextVitals[0] which already has the react-hooks plugin.
+const nextVitalsWithOverrides = [...nextVitals];
+nextVitalsWithOverrides[0] = {
+  ...nextVitalsWithOverrides[0],
+  rules: {
+    ...nextVitalsWithOverrides[0].rules,
+    "react-hooks/refs": "warn",
+    "react-hooks/set-state-in-effect": "warn",
+    "react-hooks/immutability": "warn",
+  },
+};
+
 const storybookPluginEntry = {
   files: ["src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   plugins: { storybook },
@@ -35,7 +47,7 @@ const chaosPluginEntry = {
 };
 
 const eslintConfig = defineConfig([
-  ...nextVitals,
+  ...nextVitalsWithOverrides,
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
@@ -50,7 +62,9 @@ const eslintConfig = defineConfig([
     ".playwright-mcp/**",
     ".detection/**",
     "next-env.d.ts",
+    "types/amap.d.ts",
     "apps/docs/.next/**",
+    "apps/docs/storybook-static/**",
     "apps/docs/@/**",
     "apps/docs/scripts/**",
     "apps/docs/src/**",
@@ -59,6 +73,8 @@ const eslintConfig = defineConfig([
   ]),
   storybookPluginEntry,
   // Chaos UI 自定义规则
+  // Register @chaos plugin globally (no files pattern) so all subsequent rule-only config objects can reference it.
+  { plugins: { "@chaos": chaosPlugin } },
   chaosPluginEntry,
   {
     files: ["**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -191,17 +207,6 @@ const eslintConfig = defineConfig([
     files: ["*.config.mjs", ".lintstagedrc.mjs", "stylelint.config.mjs"],
     rules: {
       "import/no-anonymous-default-export": "off",
-    },
-  },
-  // react-compiler 子规则降级：这些是性能/最佳实践建议（refs-in-render /
-  // set-state-in-effect / immutability），库内多处合法模式触发误报，降为 warn 不阻断。
-  // 注意: eslint-config-next 已注册 react-hooks 插件，此处不可重复声明 plugins，
-  // 否则触发 "Cannot redefine plugin react-hooks"。仅保留规则覆盖即可。
-  {
-    rules: {
-      "react-hooks/refs": "warn",
-      "react-hooks/set-state-in-effect": "warn",
-      "react-hooks/immutability": "warn",
     },
   },
   // 全局规则

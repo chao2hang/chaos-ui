@@ -6,6 +6,7 @@ export default {
     "out/**",
     "build/**",
     "storybook-static/**",
+    "apps/docs/storybook-static/**",
     "coverage/**",
     "node_modules/**",
   ],

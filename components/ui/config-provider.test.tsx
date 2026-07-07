@@ -173,11 +173,11 @@ describe("config-provider", () => {
     const root = container.querySelector(
       '[data-slot="config-provider"]',
     ) as HTMLElement;
-    expect(root.style.getPropertyValue("--scrollbar-thumb")).toBe(
-      "rgba(15, 23, 42, 0.18)",
+    expect(root.style.getPropertyValue("--scrollbar-thumb")).toMatch(
+      /rgba\(\s*15\s*,\s*23\s*,\s*42\s*,\s*0?\.18\s*\)|rgb\(\s*15\s+23\s+42\s*\/\s*0?\.18\s*\)/,
     );
-    expect(root.style.getPropertyValue("--scrollbar-thumb-hover")).toBe(
-      "rgba(15, 23, 42, 0.3)",
+    expect(root.style.getPropertyValue("--scrollbar-thumb-hover")).toMatch(
+      /rgba\(\s*15\s*,\s*23\s*,\s*42\s*,\s*0?\.3\s*\)|rgb\(\s*15\s+23\s+42\s*\/\s*0?\.3\s*\)/,
     );
   });
 });

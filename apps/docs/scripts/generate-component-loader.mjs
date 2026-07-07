@@ -57,7 +57,7 @@ function findPrimaryExport(filePath) {
     }
   }
 
-  const directRe = /export\s+(?:function|const)\s+(\w+)/g;
+  const directRe = /export\s+(?:function|const|class)\s+(\w+)/g;
   while ((m = directRe.exec(content)) !== null) {
     names.add(m[1]);
   }
