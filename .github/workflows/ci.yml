@@ -9,88 +9,93 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
-  typecheck:
-    name: TypeScript Check
+  changes:
+    name: Detect changes
     runs-on: ubuntu-latest
+    outputs:
+      storybook: ${{ steps.filter.outputs.storybook }}
+      package: ${{ steps.filter.outputs.package }}
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - id: filter
+        uses: dorny/paths-filter@v3
         with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+          filters: |
+            storybook:
+              - 'components/**'
+              - 'src/stories/**'
+              - '.storybook/**'
+            package:
+              - 'components/**'
+              - 'hooks/**'
+              - 'lib/**'
+              - 'tsup.config.*'
+              - 'package.json'
+
+  typecheck:
+    name: TypeScript Check
+    needs: changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
       - run: pnpm run typecheck
 
   lint:
     name: ESLint + StyleLint + DepCruise
+    needs: changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
       - run: pnpm run lint
       - run: pnpm run lint:css
       - run: pnpm run lint:deps
 
   test:
-    name: Unit Tests
+    name: Unit Tests + Coverage
+    needs: changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
+      - uses: ./.github/actions/setup
+      - run: npx vitest run --coverage --coverage.thresholds.lines=60
 
   build-package:
     name: Build Package + Smoke + Size
+    needs: changes
+    if: needs.changes.outputs.package == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
       - run: pnpm run prepack
       - name: Smoke test (tarball integrity)
         run: pnpm run smoke
 
   build-storybook:
     name: Build Storybook
+    needs: changes
+    if: needs.changes.outputs.storybook == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
       - run: pnpm run build-storybook
+      - name: Upload Storybook artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static/
+          retention-days: 1
 
   commitlint:
     name: Commit Lint
-    runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
         with:
-          fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+          fetch-depth: "0"
       - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
