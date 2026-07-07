@@ -15,11 +15,20 @@ RUN pnpm install --frozen-lockfile
 # 源码
 COPY . .
 
+# 诊断信息
+RUN echo "Node: $(node --version), pnpm: $(pnpm --version)" && \
+    ls -la apps/docs/@/components/component-*.tsx apps/docs/@/components/story-*.tsx 2>&1
+
+# 生成组件元数据文件
+RUN node apps/docs/scripts/generate-component-loader.mjs && \
+    node apps/docs/scripts/generate-component-map.mjs && \
+    node apps/docs/scripts/generate-component-story-previews.mjs
+
 # 构建 Storybook 静态站点
 RUN pnpm run build-storybook
 
 # 构建 Next.js 展示站
-RUN cd apps/docs && pnpm run build
+RUN cd apps/docs && pnpm run build 2>&1
 
 # ─── Runtime Stage ───
 FROM node:22-alpine

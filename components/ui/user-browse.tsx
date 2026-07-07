@@ -152,130 +152,136 @@ function UserBrowse({
 
   return (
     <div data-slot="user-browse" className={cn("w-full", className)}>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger
-          render={
-            <button
-              type="button"
-              className={cn(
-                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
-                "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
-                "disabled:cursor-not-allowed disabled:opacity-50",
-                "dark:bg-input/30",
-                disabled && "cursor-not-allowed opacity-50",
-              )}
-            />
-          }
-          disabled={disabled}
-        >
-          {value.length > 0 ? (
-            <div className="flex flex-1 flex-wrap gap-1">
-              {value.map((user) => (
-                <Badge key={user.id} variant="secondary" className="gap-1">
-                  <Avatar className="size-4">
-                    <AvatarImage src={user.avatar} />
-                    <AvatarFallback className="text-[0.5rem]">
-                      {user.name.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span>{user.name}</span>
-                  {!disabled && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRemove(user.id);
-                      }}
-                      className="hover:bg-muted ml-0.5 rounded-full"
-                    >
-                      <XIcon className="size-3" />
-                      <span className="sr-only">Remove</span>
-                    </button>
-                  )}
-                </Badge>
-              ))}
-            </div>
-          ) : (
-            <span className="text-muted-foreground flex-1">{placeholder}</span>
-          )}
-          {value.length > 0 && !disabled && (
-            <Button
-              variant="ghost"
-              size="icon-xs"
-              onClick={handleClear}
-              className="shrink-0"
-            >
-              <XIcon className="size-3" />
-              <span className="sr-only">Clear all</span>
-            </Button>
-          )}
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Select User</DialogTitle>
-          </DialogHeader>
-          <div className="relative">
-            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
-            <Input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search users..."
-              className="pl-8"
-            />
-          </div>
-          <ScrollArea className="h-[300px]">
-            <div className="space-y-1">
-              {filteredUsers.map((user) => {
-                const isSelected = value.some((u) => u.id === user.id);
-                return (
-                  <div
-                    key={user.id}
-                    className={cn(
-                      "hover:bg-muted flex cursor-pointer items-center gap-3 rounded-md p-2",
-                      isSelected && "bg-muted",
-                    )}
-                    onClick={() => handleSelect(user)}
-                  >
-                    {multiple && <Checkbox checked={isSelected} />}
-                    <Avatar className="size-8">
+      <div
+        className={cn(
+          "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+          "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
+          "disabled:cursor-not-allowed disabled:opacity-50",
+          "dark:bg-input/30",
+          disabled && "cursor-not-allowed opacity-50",
+        )}
+      >
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger
+            render={
+              <button
+                type="button"
+                className="flex flex-1 items-center gap-1 text-left"
+              />
+            }
+            disabled={disabled}
+          >
+            {value.length > 0 ? (
+              <div className="flex flex-1 flex-wrap gap-1">
+                {value.map((user) => (
+                  <Badge key={user.id} variant="secondary" className="gap-1">
+                    <Avatar className="size-4">
                       <AvatarImage src={user.avatar} />
-                      <AvatarFallback>
-                        <UserIcon className="size-4" />
+                      <AvatarFallback className="text-[0.5rem]">
+                        {user.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium">
-                        {user.name}
-                      </p>
-                      {user.email && (
-                        <p className="text-muted-foreground truncate text-xs">
-                          {user.email}
+                    <span>{user.name}</span>
+                    {!disabled && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemove(user.id);
+                        }}
+                        className="hover:bg-muted ml-0.5 rounded-full"
+                      >
+                        <XIcon className="size-3" />
+                        <span className="sr-only">Remove</span>
+                      </button>
+                    )}
+                  </Badge>
+                ))}
+              </div>
+            ) : (
+              <span className="text-muted-foreground flex-1">
+                {placeholder}
+              </span>
+            )}
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Select User</DialogTitle>
+            </DialogHeader>
+            <div className="relative">
+              <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search users..."
+                className="pl-8"
+              />
+            </div>
+            <ScrollArea className="h-[300px]">
+              <div className="space-y-1">
+                {filteredUsers.map((user) => {
+                  const isSelected = value.some((u) => u.id === user.id);
+                  return (
+                    <div
+                      key={user.id}
+                      className={cn(
+                        "hover:bg-muted flex cursor-pointer items-center gap-3 rounded-md p-2",
+                        isSelected && "bg-muted",
+                      )}
+                      onClick={() => handleSelect(user)}
+                    >
+                      {multiple && <Checkbox checked={isSelected} />}
+                      <Avatar className="size-8">
+                        <AvatarImage src={user.avatar} />
+                        <AvatarFallback>
+                          <UserIcon className="size-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium">
+                          {user.name}
                         </p>
+                        {user.email && (
+                          <p className="text-muted-foreground truncate text-xs">
+                            {user.email}
+                          </p>
+                        )}
+                      </div>
+                      {user.department && (
+                        <Badge variant="outline" className="shrink-0">
+                          {user.department}
+                        </Badge>
                       )}
                     </div>
-                    {user.department && (
-                      <Badge variant="outline" className="shrink-0">
-                        {user.department}
-                      </Badge>
-                    )}
+                  );
+                })}
+                {filteredUsers.length === 0 && (
+                  <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                    <UserIcon className="mb-2 size-8" />
+                    <p className="text-sm">No users found</p>
                   </div>
-                );
-              })}
-              {filteredUsers.length === 0 && (
-                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
-                  <UserIcon className="mb-2 size-8" />
-                  <p className="text-sm">No users found</p>
-                </div>
-              )}
-            </div>
-          </ScrollArea>
-          {multiple && (
-            <div className="text-muted-foreground flex items-center justify-between text-sm">
-              <span>{value.length} user(s) selected</span>
-              {maxCount && <span>Max: {maxCount}</span>}
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+                )}
+              </div>
+            </ScrollArea>
+            {multiple && (
+              <div className="text-muted-foreground flex items-center justify-between text-sm">
+                <span>{value.length} user(s) selected</span>
+                {maxCount && <span>Max: {maxCount}</span>}
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+        {value.length > 0 && !disabled && (
+          <Button
+            variant="ghost"
+            size="icon-xs"
+            onClick={handleClear}
+            className="shrink-0"
+          >
+            <XIcon className="size-3" />
+            <span className="sr-only">Clear all</span>
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

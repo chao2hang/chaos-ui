@@ -2,11 +2,11 @@
 node_modules
 .pnpm-store
 
-# Build outputs
-.next
-.storybook-static
-dist
-out
+	# Build outputs
+	.next
+	storybook-static
+	dist
+	out
 
 # Git
 .git
@@ -45,10 +45,11 @@ vitest.shims.d.ts
 eslint.config.*
 .prettierrc*
 prettier.config.*
-tsconfig.json
 postcss.config.*
 tailwind.config.*
 components.json
+# tsconfig.json is needed by Next.js for path resolution (@/ alias)
+!apps/docs/tsconfig.json
 
 # Storybook source (we only need the built output)
 apps/docs/src

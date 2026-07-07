@@ -13,10 +13,12 @@ import AxeBuilder from "@axe-core/playwright";
 const TARGET_URL = process.argv[2] || "http://localhost:6006";
 
 async function main() {
-  const browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage();
-
+  let browser;
   try {
+    browser = await chromium.launch({ headless: true });
+    const page = await browser.newPage();
+
+    console.log(`🔍 Scanning ${TARGET_URL} ...`);
     await page.goto(TARGET_URL, { waitUntil: "networkidle", timeout: 60000 });
 
     const results = await new AxeBuilder({ page }).analyze();
@@ -37,9 +39,14 @@ async function main() {
     await browser.close();
   } catch (err) {
     console.error("❌ Accessibility scan failed:", err.message);
-    await browser.close();
+    if (browser) {
+      try { await browser.close(); } catch {}
+    }
     process.exit(1);
   }
 }
 
-main();
+main().catch((err) => {
+  console.error("❌ Fatal error:", err.message);
+  process.exit(1);
+});
