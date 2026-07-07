@@ -36,11 +36,11 @@ jobs:
       - name: Check no-BOM
         run: pnpm run check:no-bom
 
-      - name: Smoke test (tarball integrity)
-        run: pnpm run smoke
-
       - name: Build package (+ size-limit)
         run: pnpm run prepack
+
+      - name: Smoke test (tarball integrity)
+        run: pnpm run smoke
 
       - name: Build Storybook
         run: pnpm run build-storybook
