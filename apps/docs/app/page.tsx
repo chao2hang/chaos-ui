@@ -28,13 +28,14 @@ import {
 import { InstallTabs } from "@/components/install-tabs";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
 import { dict, t as tt } from "@/lib/i18n/dict";
+import { components } from "@/content/components.meta";
 
 /* -------------------------------------------------------------------------- */
 /*  Hero Stats
 /* -------------------------------------------------------------------------- */
 
 const stats = [
-  { value: "148+", label: "Components", labelZh: "组件" },
+  { value: `${components.length}+`, label: "Components", labelZh: "组件" },
   { value: "19", label: "Hooks", labelZh: "钩子" },
   { value: "5", label: "Utility Modules", labelZh: "工具模块" },
   { value: "8", label: "Subpath Exports", labelZh: "子路径导出" },

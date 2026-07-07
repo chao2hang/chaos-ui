@@ -1,0 +1,80 @@
+import { Descriptions } from "@/components/ui/descriptions";
+import { CodeBlock } from "@/components/code-block";
+
+# Descriptions Ui Descriptions
+
+> 数据展示 / Components for presenting data and content.
+
+Ui Descriptions — Chaos UI 的数据展示。
+Descriptions — a components for presenting data and content. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Descriptions相关场景。
+
+Use when you need a descriptions.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Descriptions } from "@/components/ui/descriptions"
+
+export function Basic() {
+  return <Descriptions>Default</Descriptions>
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Descriptions size="sm">Sm</Descriptions>
+  <Descriptions size="default">Default</Descriptions>
+  <Descriptions size="lg">Lg</Descriptions>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**layout / layout**
+
+| layout       | 说明 / Description | 默认 |
+| ------------ | ------------------ | ---- |
+| `horizontal` |                    | ✓    |
+| `vertical`   |                    |      |
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+**bordered / bordered**
+
+| bordered | 说明 / Description | 默认 |
+| -------- | ------------------ | ---- |
+| `true`   |                    | ✓    |
+| `false`  |                    |      |
+
+## API / Props
+
+### Descriptions
+
+| Prop         | Type                          | Default | 说明 / Description                                          |
+| ------------ | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`  | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `items`      | `DescriptionItem[]`           | —       | 选项/数据项列表 <br/> Items / data list                     |
+| `column`     | `number`                      | `3`     | Column count                                                |
+| `labelWidth` | `string \| number`            | —       | Label width                                                 |
+| ...rest      | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-descriptions--docs)。

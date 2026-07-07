@@ -1,0 +1,44 @@
+import { Forbidden } from "@/components/business/forbidden";
+import { CodeBlock } from "@/components/code-block";
+
+# Forbidden Business Forbidden
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Business Forbidden — 面向 ERP/企业场景的业务组件。
+Forbidden — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Business Forbidden相关场景。
+
+Use when you need a forbidden.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Forbidden } from "@/components/business/forbidden"
+
+export function Basic() {
+  return <Forbidden />
+}`} lang="tsx" />
+
+## API / Props
+
+### Forbidden
+
+| Prop          | Type                          | Default                                  | 说明 / Description                                          |
+| ------------- | ----------------------------- | ---------------------------------------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —                                        | 自定义样式类名 <br/> Custom CSS class                       |
+| `title`       | `string`                      | `403 无权限`                             | 标题 <br/> Title                                            |
+| `description` | `string`                      | `您没有访问此页面的权限，请联系管理员。` | 描述文本 <br/> Description text                             |
+| `action`      | `React.ReactNode`             | —                                        |                                                             |
+| ...rest       | `React.ComponentProps<"div">` | —                                        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-forbidden--docs)。

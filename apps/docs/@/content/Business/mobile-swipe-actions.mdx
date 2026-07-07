@@ -1,4 +1,4 @@
-import { SwipeActions } from "@/components/business/mobile-swipe-actions";
+import { SwipeActions } from "@/components/mobile/mobile-swipe-actions";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileSwipeActions 移动端滑动操作
@@ -18,7 +18,7 @@ Use when you need a mobile swipe actions.
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { SwipeActions } from "@/components/business/mobile-swipe-actions"
+<CodeBlock code={`import { SwipeActions } from "@/components/mobile/mobile-swipe-actions"
 
 export function Basic() {
   return <SwipeActions />
@@ -37,8 +37,12 @@ export function Basic() {
 | `onSwipeDown`  | `() => void`                  | —       |                                                             |
 | `threshold`    | `number`                      | `80`    |                                                             |
 | `disabled`     | `boolean`                     | —       | 是否禁用 <br/> Whether disabled                             |
-| `leftAction`   | `() => void`                  | —       |                                                             |
-| `rightAction`  | `() => void`                  | —       |                                                             |
+| `leftAction`   | `{`                           | —       |                                                             |
+| `label`        | `string`                      | —       | 标签文本 <br/> Label text                                   |
+| `color`        | `string`                      | —       | 颜色主题 <br/> Color theme                                  |
+| `onClick`      | `() => void`                  | —       | 点击回调 <br/> Click handler                                |
+| `icon`         | `React.ReactNode`             | —       | 图标元素 <br/> Icon element                                 |
+| `rightAction`  | `{`                           | —       |                                                             |
 | ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes

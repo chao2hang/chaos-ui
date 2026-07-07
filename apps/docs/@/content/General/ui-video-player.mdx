@@ -1,0 +1,47 @@
+import { VideoPlayer } from "@/components/ui/video-player";
+import { CodeBlock } from "@/components/code-block";
+
+# VideoPlayer Ui Video Player
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+Ui Video Player — Chaos UI 的通用基础组件。
+VideoPlayer — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Video Player相关场景。
+
+Use when you need a video player.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/ui/video-player"
+
+export function Basic() {
+  return <VideoPlayer />
+}`} lang="tsx" />
+
+## API / Props
+
+### VideoPlayer
+
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `src`          | `string`               | —       | Video source URL.                                         |
+| `poster`       | `string`               | —       | Poster image URL.                                         |
+| `autoPlay`     | `boolean`              | —       | Whether to auto-play on mount. Default false.             |
+| `showControls` | `boolean`              | `true`  | Whether to show controls overlay. Default true.           |
+| `onEnded`      | `() => void`           | —       | Called when playback ends.                                |
+| `onPlay`       | `() => void`           | —       |                                                           |
+| `onPause`      | `() => void`           | —       |                                                           |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-video-player--docs)。

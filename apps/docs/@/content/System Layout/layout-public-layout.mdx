@@ -1,0 +1,44 @@
+import { PublicLayout } from "@/components/layout/public-layout";
+import { CodeBlock } from "@/components/code-block";
+
+# PublicLayout Layout Public Layout
+
+> 系统布局 / System-level layout shells for admin pages.
+
+Layout Public Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+PublicLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## 何时使用 / When to Use
+
+适用于Layout Public Layout相关场景。
+
+Use when you need a public layout.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PublicLayout } from "@/components/layout/public-layout"
+
+export function Basic() {
+  return <PublicLayout />
+}`} lang="tsx" />
+
+## API / Props
+
+### PublicLayout
+
+| Prop            | Type                          | Default | 说明 / Description                                          |
+| --------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `logo`          | `React.ReactNode`             | —       |                                                             |
+| `nav`           | `Array<T>`                    | —       |                                                             |
+| `footer`        | `React.ReactNode`             | —       |                                                             |
+| `headerActions` | `React.ReactNode`             | —       |                                                             |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-layout-public-layout--docs)。

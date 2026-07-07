@@ -1,0 +1,46 @@
+import { TaxDetailTable } from "@/components/business/tax-detail-table";
+import { CodeBlock } from "@/components/code-block";
+
+# TaxDetailTable Business Tax Detail Table
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+tax for each line item, with a totals footer. `tsx <TaxDetailTable rows={[{ id: "t1", name: "商品A", amount: 1000, taxRate: 0.13, taxAmount: 130 }]} /> `
+TaxDetailTable — business tax detail table component.
+
+## 何时使用 / When to Use
+
+适用于Business Tax Detail Table相关场景。
+
+Use when you need a tax detail table.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { TaxDetailTable } from "@/components/business/tax-detail-table"
+
+export function Basic() {
+  return <TaxDetailTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### TaxDetailTable
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `rows`      | `Array<{`              | —       | Taxable line items.                                       |
+| `id`        | `string`               | —       | DOM 元素 id <br/> DOM element id                          |
+| `name`      | `string`               | —       | 表单字段名 <br/> Form field name                          |
+| `amount`    | `number`               | —       | Taxable amount (currency units).                          |
+| `taxRate`   | `number`               | —       | Tax rate as a fraction, e.g. 0.13 for 13%.                |
+| `taxAmount` | `number`               | —       | Computed tax payable for this line.                       |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-tax-detail-table--docs)。

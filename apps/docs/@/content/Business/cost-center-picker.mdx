@@ -1,0 +1,48 @@
+import { CostCenterPicker } from "@/components/business/cost-center-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# CostCenterPicker Cost Center Picker
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+/ Cost center picker — combobox trigger with a filterable popover. ```tsx <CostCenterPicker value="CC1" onChange={setId} options={[{ value: "CC1", label: "华东成本中
+CostCenterPicker — cost center picker component.
+
+## 何时使用 / When to Use
+
+适用于Cost Center Picker相关场景。
+
+Use when you need a cost center picker.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { CostCenterPicker } from "@/components/business/cost-center-picker"
+
+export function Basic() {
+  return <CostCenterPicker />
+}`} lang="tsx" />
+
+## API / Props
+
+### CostCenterPicker
+
+| Prop                | Type                       | Default | 说明 / Description                                        |
+| ------------------- | -------------------------- | ------- | --------------------------------------------------------- |
+| `className`         | `string`                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`             | `string`                   | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`          | `() => void`               | —       | 值变化回调 <br/> Callback when value changes              |
+| `options`           | `CostCenterPickerOption[]` | —       | 可选项列表 <br/> Available options                        |
+| `placeholder`       | `string`                   | —       | 占位文本 <br/> Placeholder text                           |
+| `searchPlaceholder` | `string`                   | —       |                                                           |
+| `emptyText`         | `string`                   | —       |                                                           |
+| `disabled`          | `boolean`                  | `false` | 是否禁用 <br/> Whether disabled                           |
+| `clearable`         | `boolean`                  | `true`  |                                                           |
+| ...rest             | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-cost-center-picker--docs)。

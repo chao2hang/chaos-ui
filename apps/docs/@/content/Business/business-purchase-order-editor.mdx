@@ -1,0 +1,54 @@
+import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# PurchaseOrderEditor Business Purchase Order Editor
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Business Purchase Order Editor — 面向 ERP/企业场景的业务组件。
+PurchaseOrderEditor — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Business Purchase Order Editor相关场景。
+
+Use when you need a purchase order editor.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor"
+
+export function Basic() {
+  return <PurchaseOrderEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### PurchaseOrderEditor
+
+| Prop                | Type                                       | Default | 说明 / Description                                        |
+| ------------------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
+| `className`         | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `poNumber`          | `string`                                   | —       |                                                           |
+| `vendor`            | `string`                                   | —       |                                                           |
+| `onVendorChange`    | `() => void`                               | —       |                                                           |
+| `orderDate`         | `string`                                   | —       |                                                           |
+| `expectedDelivery`  | `string`                                   | —       |                                                           |
+| `paymentTerms`      | `string`                                   | —       |                                                           |
+| `onHeaderChange`    | `() => void`                               | —       |                                                           |
+| `lineItems`         | `POLineItem[]`                             | —       |                                                           |
+| `onLineItemsChange` | `() => void`                               | —       |                                                           |
+| `approvalSteps`     | `ApprovalStep[]`                           | —       |                                                           |
+| `status`            | `"draft" \| "pending" \| "approved" \|...` | `draft` | 状态 <br/> Status                                         |
+| `currencySymbol`    | `string`                                   | `¥`     |                                                           |
+| `readOnly`          | `boolean`                                  | `false` | 是否只读 <br/> Whether read-only                          |
+| `onSubmit`          | `() => void`                               | —       | 提交回调 <br/> Submit handler                             |
+| ...rest             | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-purchase-order-editor--docs)。

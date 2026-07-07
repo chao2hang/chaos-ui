@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { RegionLayout } from "@/components/layout/region-layout"
+import type { Meta, StoryObj } from "@storybook/react";
+import { RegionLayout } from "@/components/layout/region-layout";
 
 const meta: Meta<typeof RegionLayout> = {
-  title: "layout/RegionLayout",
+  title: "Layouts/RegionLayout",
   component: RegionLayout,
   tags: ["autodocs"],
-}
+};
 
-export default meta
-type Story = StoryObj<typeof RegionLayout>
+export default meta;
+type Story = StoryObj<typeof RegionLayout>;
 
 const Placeholder = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex h-full min-h-[80px] items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+  <div className="bg-muted text-muted-foreground flex h-full min-h-[80px] items-center justify-center rounded-md text-sm">
     {children}
   </div>
-)
+);
 
 export const LeftMain: Story = {
   args: {
@@ -22,8 +22,14 @@ export const LeftMain: Story = {
     main: <Placeholder>主内容区</Placeholder>,
     leftWidth: 240,
   },
-  decorators: [(S) => <div className="h-[300px] overflow-hidden rounded-lg border"><S /></div>],
-}
+  decorators: [
+    (S) => (
+      <div className="h-[300px] overflow-hidden rounded-lg border">
+        <S />
+      </div>
+    ),
+  ],
+};
 
 export const FullLayout: Story = {
   args: {
@@ -35,5 +41,11 @@ export const FullLayout: Story = {
     leftWidth: 200,
     rightWidth: 280,
   },
-  decorators: [(S) => <div className="h-[400px] overflow-hidden rounded-lg border"><S /></div>],
-}
+  decorators: [
+    (S) => (
+      <div className="h-[400px] overflow-hidden rounded-lg border">
+        <S />
+      </div>
+    ),
+  ],
+};

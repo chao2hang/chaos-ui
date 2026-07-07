@@ -1,0 +1,50 @@
+import { TreeView } from "@/components/ui/tree-view";
+import { CodeBlock } from "@/components/code-block";
+
+# TreeView Ui Tree View
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+Ui Tree View — Chaos UI 的通用基础组件。
+TreeView — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Tree View相关场景。
+
+Use when you need a tree view.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { TreeView } from "@/components/ui/tree-view"
+
+export function Basic() {
+  return <TreeView />
+}`} lang="tsx" />
+
+## API / Props
+
+### TreeView
+
+| Prop                 | Type                   | Default | 说明 / Description                                        |
+| -------------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`          | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`               | `TreeNode[]`           | —       | 数据源 <br/> Data source                                  |
+| `selectedIds`        | `string[]`             | —       |                                                           |
+| `defaultSelectedIds` | `string[]`             | —       |                                                           |
+| `expandedIds`        | `string[]`             | —       |                                                           |
+| `defaultExpandedIds` | `string[]`             | —       |                                                           |
+| `onSelect`           | `() => void`           | —       | 选中回调 <br/> Selection handler                          |
+| `onExpand`           | `() => void`           | —       |                                                           |
+| `showCheckbox`       | `boolean`              | `false` |                                                           |
+| `showIcon`           | `boolean`              | `true`  |                                                           |
+| `disabled`           | `boolean`              | `false` | 是否禁用 <br/> Whether disabled                           |
+| ...rest              | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-tree-view--docs)。

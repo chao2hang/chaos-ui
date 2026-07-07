@@ -1,0 +1,44 @@
+import { MobileListItem } from "@/components/business/mobile-list-item";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileListItem Mobile List Item
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+<MobileListItem title="张三" subtitle="销售部" onClick={() => open(id)} />
+MobileListItem — mobile list item component.
+
+## 何时使用 / When to Use
+
+适用于Mobile List Item相关场景。
+
+Use when you need a mobile list item.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { MobileListItem } from "@/components/business/mobile-list-item"
+
+export function Basic() {
+  return <MobileListItem />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileListItem
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`     | `string`               | —       | 标题 <br/> Title                                          |
+| `subtitle`  | `string`               | —       |                                                           |
+| `trailing`  | `React.ReactNode`      | —       |                                                           |
+| `onClick`   | `() => void`           | —       | 点击回调 <br/> Click handler                              |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-list-item--docs)。

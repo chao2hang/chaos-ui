@@ -1,0 +1,44 @@
+import { ScatterChart } from "@/components/business/scatter-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# ScatterChart Business Scatter Chart
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+`tsx <ScatterChart data={[{x:10,y:20,label:"A"}]} /> ` 散点图
+ScatterChart — business scatter chart component.
+
+## 何时使用 / When to Use
+
+适用于Business Scatter Chart相关场景。
+
+Use when you need a scatter chart.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ScatterChart } from "@/components/business/scatter-chart"
+
+export function Basic() {
+  return <ScatterChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### ScatterChart
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`      | `Array<T>`             | —       | Points to plot.                                           |
+| `xLabel`    | `string`               | —       | X-axis caption.                                           |
+| `yLabel`    | `string`               | —       | Y-axis caption.                                           |
+| `height`    | `number`               | —       | SVG height in px.                                         |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-scatter-chart--docs)。

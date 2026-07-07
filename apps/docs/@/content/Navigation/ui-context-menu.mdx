@@ -1,0 +1,46 @@
+import { ContextMenu } from "@/components/ui/context-menu";
+import { CodeBlock } from "@/components/code-block";
+
+# ContextMenu Ui Context Menu
+
+> 导航组件 / Navigation components for moving through the app.
+
+Ui Context Menu — Chaos UI 的导航组件。
+ContextMenu — a navigation components for moving through the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Context Menu相关场景。
+
+Use when you need a context menu.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel } from "@/components/ui/context-menu"
+
+export function Basic() {
+  return (
+    <ContextMenu>
+      <ContextMenuContent>Content</ContextMenuContent>
+    </ContextMenu>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### ContextMenu
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 13 个子组件(ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel…),使用组合模式按需导入。
+- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-context-menu--docs)。

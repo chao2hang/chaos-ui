@@ -1,0 +1,41 @@
+import { WriteoffFlow } from "@/components/business/writeoff-flow";
+import { CodeBlock } from "@/components/code-block";
+
+# WriteoffFlow Writeoff Flow
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+status 取值：done | doing | pending | rejected <WriteoffFlow steps={[ { id: "s1", name: "申请核销", status: "done", amount: 1200 }, { id: "s2", name: "财务复核", status: "
+WriteoffFlow — writeoff flow component.
+
+## 何时使用 / When to Use
+
+适用于Writeoff Flow相关场景。
+
+Use when you need a writeoff flow.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { WriteoffFlow } from "@/components/business/writeoff-flow"
+
+export function Basic() {
+  return <WriteoffFlow />
+}`} lang="tsx" />
+
+## API / Props
+
+### WriteoffFlow
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `steps`     | `Array<T>`             | —       |                                                           |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-writeoff-flow--docs)。

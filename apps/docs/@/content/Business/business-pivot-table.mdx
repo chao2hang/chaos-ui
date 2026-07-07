@@ -1,0 +1,40 @@
+import { PivotTable } from "@/components/business/pivot-table";
+import { CodeBlock } from "@/components/code-block";
+
+# PivotTable Business Pivot Table
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Business Pivot Table — 面向 ERP/企业场景的业务组件。
+PivotTable — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Business Pivot Table相关场景。
+
+Use when you need a pivot table.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PivotTable } from "@/components/business/pivot-table"
+
+export function Basic() {
+  return <PivotTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### PivotTable
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-pivot-table--docs)。

@@ -1,0 +1,44 @@
+import { StatCardWithDelta } from "@/components/business/stat-card-with-delta";
+import { CodeBlock } from "@/components/code-block";
+
+# StatCardWithDelta Business Stat Card With Delta
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+`tsx <StatCardWithDelta label="月营收" value={1280000} delta={12.5} /> ` 统计卡 + 增减标签
+StatCardWithDelta — business stat card with delta component.
+
+## 何时使用 / When to Use
+
+适用于Business Stat Card With Delta相关场景。
+
+Use when you need a stat card with delta.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { StatCardWithDelta } from "@/components/business/stat-card-with-delta"
+
+export function Basic() {
+  return <StatCardWithDelta />
+}`} lang="tsx" />
+
+## API / Props
+
+### StatCardWithDelta
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `label`     | `string`               | `指标`  | KPI caption.                                              |
+| `value`     | `string \| number`     | `0`     | KPI value.                                                |
+| `delta`     | `number`               | `0`     | Trend percentage.                                         |
+| `icon`      | `LucideIcon`           | —       | Leading icon component.                                   |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-stat-card-with-delta--docs)。

@@ -1,0 +1,67 @@
+import { Spin } from "@/components/ui/spin";
+import { CodeBlock } from "@/components/code-block";
+
+# Spin Ui Spin
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+Ui Spin — Chaos UI 的通用基础组件。
+Spin — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Spin相关场景。
+
+Use when you need a spin.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Spin } from "@/components/ui/spin"
+
+export function Basic() {
+  return <Spin>Default</Spin>
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Spin size="sm">Sm</Spin>
+  <Spin size="default">Default</Spin>
+  <Spin size="lg">Lg</Spin>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+## API / Props
+
+### Spin
+
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `spinning`  | `boolean`                     | `true`  | Whether to show spinner                                     |
+| `indicator` | `React.ReactNode`             | —       | Custom spinner indicator                                    |
+| `tip`       | `React.ReactNode`             | —       | Tip text under spinner                                      |
+| `delay`     | `number`                      | `0`     | Delay before showing spinner (ms)                           |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-spin--docs)。

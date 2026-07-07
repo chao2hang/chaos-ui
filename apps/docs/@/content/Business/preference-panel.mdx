@@ -1,0 +1,42 @@
+import { PreferencePanel } from "@/components/business/preference-panel";
+import { CodeBlock } from "@/components/code-block";
+
+# PreferencePanel Preference Panel
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Preference Panel — 面向 ERP/企业场景的业务组件。
+PreferencePanel — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Preference Panel相关场景。
+
+Use when you need a preference panel.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PreferencePanel } from "@/components/business/preference-panel"
+
+export function Basic() {
+  return <PreferencePanel />
+}`} lang="tsx" />
+
+## API / Props
+
+### PreferencePanel
+
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `open`         | `boolean`              | —       | 是否打开(受控) <br/> Open state (controlled)              |
+| `onOpenChange` | `() => void`           | —       | 打开状态变化回调 <br/> Callback when open state changes   |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-preference-panel--docs)。

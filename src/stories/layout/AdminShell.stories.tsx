@@ -10,7 +10,7 @@ import {
 import { AdminShell } from "@/components/layout/admin-shell";
 
 const meta: Meta<typeof AdminShell> = {
-  title: "Layout/AdminShell",
+  title: "Layouts/AdminShell",
   component: AdminShell,
   tags: ["autodocs", "a11y"],
 };

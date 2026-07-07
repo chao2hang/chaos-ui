@@ -1,0 +1,44 @@
+import { WithPermission } from "@/components/ui/with-permission";
+import { CodeBlock } from "@/components/code-block";
+
+# WithPermission Ui With Permission
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+Ui With Permission — Chaos UI 的通用基础组件。
+WithPermission — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui With Permission相关场景。
+
+Use when you need a with permission.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { WithPermission } from "@/components/ui/with-permission"
+
+export function Basic() {
+  return <WithPermission />
+}`} lang="tsx" />
+
+## API / Props
+
+### WithPermission
+
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `permissions` | `string[]`             | —       | 当前用户拥有的权限列表 / current user's permissions       |
+| `require`     | `string \| string[]`   | —       | 需要的权限 / required permission(s)                       |
+| `mode`        | `"any" \| "all"`       | `any`   | 校验模式：any=任一满足，all=全部满足 / "any" \| "all"     |
+| `fallback`    | `React.ReactNode`      | `null`  | 不满足时渲染的兜底内容 / fallback content                 |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-with-permission--docs)。

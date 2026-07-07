@@ -1,0 +1,49 @@
+import { StatCardWithSparkline } from "@/components/business/stat-card-with-sparkline";
+import { CodeBlock } from "@/components/code-block";
+
+# StatCardWithSparkline Business Stat Card With Sparkline
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+<StatCardWithSparkline
+  label="日活"
+  value="12,480"
+  trend={8}
+  sparklineData={[5, 8, 6, 10]}
+/>
+StatCardWithSparkline — business stat card with sparkline component.
+
+## 何时使用 / When to Use
+
+适用于Business Stat Card With Sparkline相关场景。
+
+Use when you need a stat card with sparkline.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { StatCardWithSparkline } from "@/components/business/stat-card-with-sparkline"
+
+export function Basic() {
+  return <StatCardWithSparkline />
+}`} lang="tsx" />
+
+## API / Props
+
+### StatCardWithSparkline
+
+| Prop            | Type                   | Default | 说明 / Description                                        |
+| --------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`     | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `label`         | `string`               | —       | 标签文本 <br/> Label text                                 |
+| `value`         | `string \| number`     | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `trend`         | `number`               | —       |                                                           |
+| `sparklineData` | `number[]`             | —       |                                                           |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-stat-card-with-sparkline--docs)。

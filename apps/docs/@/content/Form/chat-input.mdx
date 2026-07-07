@@ -1,0 +1,45 @@
+import { ChatInput } from "@/components/ui/chat-input";
+import { CodeBlock } from "@/components/code-block";
+
+# ChatInput Chat Input
+
+> 表单控件 / Form controls for user input and data submission.
+
+`tsx <ChatInput value={text} onChange={setText} onSend={handleSend} placeholder="发送消息" /> `
+ChatInput — chat input component.
+
+## 何时使用 / When to Use
+
+适用于Chat Input相关场景。
+
+Use when you need a chat input.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ChatInput } from "@/components/ui/chat-input"
+
+export function Basic() {
+  return <ChatInput />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChatInput
+
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`       | `string`               | —       | 当前输入值 / current value                                |
+| `onChange`    | `() => void`           | —       | 值变化回调 / change handler                               |
+| `onSend`      | `() => void`           | —       | 发送回调 / send handler                                   |
+| `placeholder` | `string`               | —       | 占位提示 / placeholder                                    |
+| `disabled`    | `boolean`              | —       | 是否禁用 / disabled                                       |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-chat-input--docs)。

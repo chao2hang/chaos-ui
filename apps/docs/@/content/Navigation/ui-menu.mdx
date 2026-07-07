@@ -1,0 +1,100 @@
+import { Menu } from "@/components/ui/menu";
+import { CodeBlock } from "@/components/code-block";
+
+# Menu Ui Menu
+
+> 导航组件 / Navigation components for moving through the app.
+
+Ui Menu — Chaos UI 的导航组件。
+Menu — a navigation components for moving through the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Menu相关场景。
+
+Use when you need a menu.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Menu } from "@/components/ui/menu"
+
+export function Basic() {
+  return <Menu />
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Menu variant="default">Default</Menu>
+  <Menu variant="destructive">Destructive</Menu>
+</div>`}
+  lang="tsx"
+/>
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Menu size="sm">Sm</Menu>
+  <Menu size="default">Default</Menu>
+  <Menu size="lg">Lg</Menu>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**方向 / direction**
+
+| direction    | 说明 / Description | 默认 |
+| ------------ | ------------------ | ---- |
+| `vertical`   |                    | ✓    |
+| `horizontal` |                    |      |
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+**active / active**
+
+| active  | 说明 / Description | 默认 |
+| ------- | ------------------ | ---- |
+| `true`  |                    | ✓    |
+| `false` |                    |      |
+
+**变体 / Variant**
+
+| Variant       | 说明 / Description                       | 默认 |
+| ------------- | ---------------------------------------- | ---- |
+| `default`     | 默认样式 / Default style                 | ✓    |
+| `destructive` | 危险/删除样式 / Destructive/danger style |      |
+
+## API / Props
+
+### Menu
+
+| Prop           | Type                          | Default  | 说明 / Description                                                               |
+| -------------- | ----------------------------- | -------- | -------------------------------------------------------------------------------- |
+| `className`    | `string`                      | —        | 自定义样式类名 <br/> Custom CSS class                                            |
+| `items`        | `MenuItem[]`                  | —        | 选项/数据项列表 <br/> Items / data list                                          |
+| `onSelect`     | `() => void`                  | —        | 选中回调 <br/> Selection handler                                                 |
+| `selectedKeys` | `string[]`                    | —        |                                                                                  |
+| `mode`         | `"inline" \| "popup"`         | `inline` | Mode: "inline" shows children indented, "popup" shows them in a submenu on hover |
+| ...rest        | `React.ComponentProps<"div">` | —        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes                      |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-menu--docs)。

@@ -1,4 +1,4 @@
-import { MobileSheet } from "@/components/business/mobile-sheet";
+import { MobileSheet } from "@/components/mobile/mobile-sheet";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileSheet 移动端面板
@@ -18,7 +18,7 @@ Use when you need a mobile sheet.
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { MobileSheet } from "@/components/business/mobile-sheet"
+<CodeBlock code={`import { MobileSheet } from "@/components/mobile/mobile-sheet"
 
 export function Basic() {
   return <MobileSheet />
@@ -33,7 +33,7 @@ export function Basic() {
 | `className`    | `string`                                 | —        | 自定义样式类名 <br/> Custom CSS class                     |
 | `title`        | `string`                                 | —        | 标题 <br/> Title                                          |
 | `description`  | `string`                                 | —        | 描述文本 <br/> Description text                           |
-| `trigger`      | `React.ReactNode`                        | —        |                                                           |
+| `trigger`      | `React.ReactElement`                     | —        |                                                           |
 | `actions`      | `React.ReactNode`                        | —        |                                                           |
 | `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                                                           |
 | `open`         | `boolean`                                | —        | 是否打开(受控) <br/> Open state (controlled)              |

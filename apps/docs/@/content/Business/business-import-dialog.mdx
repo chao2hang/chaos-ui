@@ -1,0 +1,46 @@
+import { ImportDialog } from "@/components/business/import-dialog";
+import { CodeBlock } from "@/components/code-block";
+
+# ImportDialog Business Import Dialog
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Business Import Dialog — 面向 ERP/企业场景的业务组件。
+ImportDialog — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Business Import Dialog相关场景。
+
+Use when you need an import dialog.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ImportDialog } from "@/components/business/import-dialog"
+
+export function Basic() {
+  return <ImportDialog />
+}`} lang="tsx" />
+
+## API / Props
+
+### ImportDialog
+
+| Prop           | Type                   | Default                      | 说明 / Description                                        |
+| -------------- | ---------------------- | ---------------------------- | --------------------------------------------------------- |
+| `className`    | `string`               | —                            | 自定义样式类名 <br/> Custom CSS class                     |
+| `open`         | `boolean`              | —                            | 是否打开(受控) <br/> Open state (controlled)              |
+| `onOpenChange` | `() => void`           | —                            | 打开状态变化回调 <br/> Callback when open state changes   |
+| `onImport`     | `() => void`           | —                            |                                                           |
+| `title`        | `string`               | `导入数据`                   | 标题 <br/> Title                                          |
+| `description`  | `string`               | `上传文件并预览后再确认导入` | 描述文本 <br/> Description text                           |
+| `accept`       | `string`               | `.xlsx,.csv`                 |                                                           |
+| ...rest        | `React.HTMLAttributes` | —                            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-import-dialog--docs)。

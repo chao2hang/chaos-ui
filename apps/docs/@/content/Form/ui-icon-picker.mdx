@@ -1,0 +1,69 @@
+import { IconPicker } from "@/components/ui/icon-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# IconPicker Ui Icon Picker
+
+> 表单控件 / Form controls for user input and data submission.
+
+Ui Icon Picker — Chaos UI 的表单控件。
+IconPicker — a form controls for user input and data submission. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Icon Picker相关场景。
+
+Use when you need an icon picker.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { IconPicker } from "@/components/ui/icon-picker"
+
+export function Basic() {
+  return <IconPicker />
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <IconPicker size="sm">Sm</IconPicker>
+  <IconPicker size="default">Default</IconPicker>
+  <IconPicker size="lg">Lg</IconPicker>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+## API / Props
+
+### IconPicker
+
+| Prop                | Type                              | Default           | 说明 / Description                                          |
+| ------------------- | --------------------------------- | ----------------- | ----------------------------------------------------------- |
+| `className`         | `string`                          | —                 | 自定义样式类名 <br/> Custom CSS class                       |
+| `value`             | `string`                          | —                 | Selected icon value                                         |
+| `onChange`          | `() => void`                      | —                 | Change handler                                              |
+| `icons`             | `Record<string, React.ReactNode>` | —                 | Icons to display - map of value to React node               |
+| `columns`           | `number`                          | `6`               | Columns in the grid                                         |
+| `searchPlaceholder` | `string`                          | `Search icons...` | Placeholder when searching                                  |
+| ...rest             | `React.ComponentProps<"div">`     | —                 | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-icon-picker--docs)。

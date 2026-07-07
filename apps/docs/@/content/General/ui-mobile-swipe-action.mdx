@@ -1,0 +1,43 @@
+import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileSwipeAction Ui Mobile Swipe Action
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+`tsx <MobileSwipeAction rightActions={[{ key: "delete", label: "删除", onClick: handleDelete, color: "destructive" }]} > <Row /> </MobileSwipeAction> `
+MobileSwipeAction — ui mobile swipe action component.
+
+## 何时使用 / When to Use
+
+适用于Ui Mobile Swipe Action相关场景。
+
+Use when you need a mobile swipe action.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action"
+
+export function Basic() {
+  return <MobileSwipeAction />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileSwipeAction
+
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `leftActions`  | `SwipeActionDef[]`     | —       | 左侧操作按钮 / left action buttons                        |
+| `rightActions` | `SwipeActionDef[]`     | —       | 右侧操作按钮 / right action buttons                       |
+| `actionWidth`  | `number`               | `80`    | 单个操作按钮宽度(px) / action button width                |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-mobile-swipe-action--docs)。

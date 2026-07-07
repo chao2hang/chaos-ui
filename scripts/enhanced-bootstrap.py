@@ -8,9 +8,10 @@ from pathlib import Path
 from collections import OrderedDict
 
 ROOT = Path("/home/chaos/projects/personal/chaos_style")
-SOURCE_ROOT = ROOT / "packages/chaos-design-ui/components"
+SOURCE_ROOT = ROOT / "components"
 DOCS_ROOT = ROOT / "apps/docs/@/components"
 CONTENT_DIR = ROOT / "apps/docs/@/content"
+SOURCE_PREFIX = "packages/chaos-design-ui/"  # canonical source path prefix for meta output
 
 # ---- Category rules (same as bootstrap-all-docs.py) ----
 CATEGORY_RULES = [
@@ -186,6 +187,7 @@ BUSINESS_ZH = {
     "bulk-import-wizard": "批量导入向导", "campaign-calendar": "活动日历",
     "campaign-card": "活动卡片", "campaign-status-tag": "活动状态标签",
     "channel-picker": "渠道选择器", "chart": "图表", "chat": "聊天",
+    "chat-shared-link": "共享链接卡片",
     "coach-mark": "引导标记", "code-block": "代码块", "color-tag": "颜色标签",
     "command-palette": "命令面板", "confirm-dialog": "确认对话框",
     "connection-status": "连接状态", "contract-template": "合同模板",
@@ -616,6 +618,8 @@ def categorize(slug: str, subfolder: str) -> str:
         return "Business"
     if subfolder == "layout":
         return "System Layout"
+    if subfolder == "mobile":
+        return "Business"
     for cat, keywords in CATEGORY_RULES:
         for kw in keywords:
             if slug == kw or slug.startswith(kw + "-") or slug.endswith("-" + kw):
@@ -624,7 +628,12 @@ def categorize(slug: str, subfolder: str) -> str:
 
 
 def read_source(rel_path: str) -> str:
+    # rel_path can be "packages/chaos-design-ui/components/..." or direct in "components/..."
     p = ROOT / rel_path
+    if not p.exists():
+        # Try stripping packages/chaos-design-ui/ prefix
+        if rel_path.startswith("packages/chaos-design-ui/"):
+            p = ROOT / rel_path[len("packages/chaos-design-ui/"):]
     try:
         return p.read_text()
     except:
@@ -1274,10 +1283,10 @@ def generate_mdx(entry: dict, info: dict) -> str:
 def discover_sources() -> list:
     components = []
     seen_slugs = set()
-    # Iterate in priority order: ui first, then business, then layout.
+    # Iterate in priority order: ui first, then layout, then business, then mobile.
     # When a slug exists in multiple folders (e.g. both ui/anchor.tsx and business/anchor.tsx),
     # the business version wins because it is the higher-level wrapper.
-    for subfolder in ["ui", "layout", "business"]:
+    for subfolder in ["ui", "layout", "business", "mobile"]:
         src_dir = SOURCE_ROOT / subfolder
         if not src_dir.exists():
             continue
@@ -1286,16 +1295,18 @@ def discover_sources() -> list:
                 continue
             if path.name.startswith("_") or path.name.startswith("index."):
                 continue
-            rel = path.relative_to(ROOT / "packages/chaos-design-ui")
-            rel_str = str(rel)
-            slug = str(rel.with_suffix("")).replace("components/ui/", "").replace("components/business/", "").replace("components/layout/", "").replace("/", "-")
+            # Compute relative path using SOURCE_PREFIX
+            rel_to_root = path.relative_to(ROOT)
+            rel_str = str(rel_to_root)
+            slug = str(path.with_suffix("")).replace(str(SOURCE_ROOT) + "/", "").replace("ui/", "").replace("business/", "").replace("layout/", "").replace("mobile/", "").replace("/", "-")
             if slug.startswith("_") or "shared" in slug or "helpers" in slug:
                 content = path.read_text()
-                if not re.search(r'export\s+(function|const)\s+[A-Z]', content):
+                if not re.search(
+                    r'export\s+(?:\{[^}]*\b[A-Z][A-Za-z0-9_]*\b|default\s+[A-Z]|function\s+[A-Z]|const\s+[A-Z])',
+                    content,
+                ):
                     continue
             category = categorize(slug, subfolder)
-            # Use the actual filename (last segment) for PascalCase display name,
-            # not the full slug which may include directory prefixes for nested files
             name = slug_to_pascal(path.stem)
             # Chinese name
             if slug in RICH_DESC:
@@ -1304,12 +1315,12 @@ def discover_sources() -> list:
                 nameZh = BUSINESS_ZH[slug]
             else:
                 nameZh = slug.replace("-", " ").title()
-            source_path = f"packages/chaos-design-ui/{rel_str}"
-            if "components/ui/" in str(rel):
+            source_path = f"{SOURCE_PREFIX}{rel_str}"
+            if subfolder == "ui":
                 storybook_id = f"components-{slug}--docs"
-            elif "components/layout/" in str(rel):
+            elif subfolder == "layout":
                 storybook_id = f"layouts-{slug}--docs"
-            elif "components/business/" in str(rel):
+            elif subfolder == "business" or subfolder == "mobile":
                 storybook_id = f"business-{slug}--docs"
             else:
                 storybook_id = f"components-{slug}--docs"
@@ -1352,8 +1363,8 @@ def write_meta(components: list):
             "name": name,
             "nameZh": nameZh,
             "category": category,
-            "desc": descEn.replace("'", "\\'").replace("\n", " "),
-            "descZh": descZh.replace("'", "\\'").replace("\n", " "),
+            "desc": descEn.replace("'", "\\'").replace('"', '\\"').replace("\n", " "),
+            "descZh": descZh.replace("'", "\\'").replace('"', '\\"').replace("\n", " "),
             "sourcePath": entry["sourcePath"],
             "storybookId": entry["storybookId"],
         })

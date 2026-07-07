@@ -1,0 +1,47 @@
+import { AudioPlayer } from "@/components/ui/audio-player";
+import { CodeBlock } from "@/components/code-block";
+
+# AudioPlayer 音频播放器
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+音频播放器 — Chaos UI 的通用基础组件。
+AudioPlayer — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+需要音频播放器功能时使用本组件。
+
+Use when you need an audio player.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { AudioPlayer } from "@/components/ui/audio-player"
+
+export function Basic() {
+  return <AudioPlayer />
+}`} lang="tsx" />
+
+## API / Props
+
+### AudioPlayer
+
+| Prop         | Type                   | Default | 说明 / Description                                        |
+| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`  | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `src`        | `string`               | —       | Audio source URL.                                         |
+| `autoPlay`   | `boolean`              | —       | Whether to auto-play on mount. Default false.             |
+| `showVolume` | `boolean`              | `true`  | Whether to show volume control. Default true.             |
+| `showSpeed`  | `boolean`              | —       | Whether to show playback speed selector. Default false.   |
+| `onEnded`    | `() => void`           | —       | Called when playback ends.                                |
+| `onPlay`     | `() => void`           | —       | Called on play/pause/timeline interaction.                |
+| `onPause`    | `() => void`           | —       |                                                           |
+| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-audio-player--docs)。

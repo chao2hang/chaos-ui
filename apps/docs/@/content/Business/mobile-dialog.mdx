@@ -1,4 +1,4 @@
-import { MobileDialog } from "@/components/business/mobile-dialog";
+import { MobileDialog } from "@/components/mobile/mobile-dialog";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileDialog 移动端对话框
@@ -18,7 +18,7 @@ Use when you need a mobile dialog.
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { MobileDialog } from "@/components/business/mobile-dialog"
+<CodeBlock code={`import { MobileDialog } from "@/components/mobile/mobile-dialog"
 
 export function Basic() {
   return <MobileDialog />
@@ -33,7 +33,7 @@ export function Basic() {
 | `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
 | `title`        | `string`               | —       | 标题 <br/> Title                                          |
 | `description`  | `string`               | —       | 描述文本 <br/> Description text                           |
-| `trigger`      | `React.ReactNode`      | —       |                                                           |
+| `trigger`      | `React.ReactElement`   | —       |                                                           |
 | `actions`      | `React.ReactNode`      | —       |                                                           |
 | `open`         | `boolean`              | —       | 是否打开(受控) <br/> Open state (controlled)              |
 | `onOpenChange` | `() => void`           | —       | 打开状态变化回调 <br/> Callback when open state changes   |

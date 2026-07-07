@@ -1,0 +1,43 @@
+import { DeltaBar } from "@/components/business/delta-bar";
+import { CodeBlock } from "@/components/code-block";
+
+# DeltaBar Delta Bar
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+colored by positive/negative delta, with an accessible label. <DeltaBar value={42} maxValue={100} label="增长率" />
+DeltaBar — delta bar component.
+
+## 何时使用 / When to Use
+
+适用于Delta Bar相关场景。
+
+Use when you need a delta bar.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { DeltaBar } from "@/components/business/delta-bar"
+
+export function Basic() {
+  return <DeltaBar />
+}`} lang="tsx" />
+
+## API / Props
+
+### DeltaBar
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`     | `number`               | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `maxValue`  | `number`               | —       |                                                           |
+| `label`     | `string`               | —       | 标签文本 <br/> Label text                                 |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-delta-bar--docs)。

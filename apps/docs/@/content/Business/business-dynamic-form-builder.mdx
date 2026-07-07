@@ -1,0 +1,50 @@
+import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder";
+import { CodeBlock } from "@/components/code-block";
+
+# DynamicFormBuilder Business Dynamic Form Builder
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+<DynamicFormBuilder
+  schema={[{ name: "title", label: "标题", type: "text", required: true }]}
+/>
+DynamicFormBuilder — business dynamic form builder component.
+
+## 何时使用 / When to Use
+
+适用于Business Dynamic Form Builder相关场景。
+
+Use when you need a dynamic form builder.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder"
+
+export function Basic() {
+  return <DynamicFormBuilder />
+}`} lang="tsx" />
+
+## API / Props
+
+### DynamicFormBuilder
+
+| Prop        | Type                      | Default | 说明 / Description                                        |
+| ----------- | ------------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`                  | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `schema`    | `Array<{`                 | —       |                                                           |
+| `name`      | `string`                  | —       | 表单字段名 <br/> Form field name                          |
+| `label`     | `string`                  | —       | 标签文本 <br/> Label text                                 |
+| `type`      | `string`                  | —       | 类型 <br/> Type                                           |
+| `required`  | `boolean`                 | —       | 是否必填 <br/> Whether required                           |
+| `options`   | `unknown[]`               | —       | 可选项列表 <br/> Available options                        |
+| `value`     | `Record<string, unknown>` | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`  | `() => void`              | —       | 值变化回调 <br/> Callback when value changes              |
+| ...rest     | `React.HTMLAttributes`    | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-dynamic-form-builder--docs)。

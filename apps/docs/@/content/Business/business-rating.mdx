@@ -1,0 +1,48 @@
+import { Rating } from "@/components/business/rating";
+import { CodeBlock } from "@/components/code-block";
+
+# Rating Business Rating
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Business Rating — 面向 ERP/企业场景的业务组件。
+Rating — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Business Rating相关场景。
+
+Use when you need a rating.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Rating } from "@/components/business/rating"
+
+export function Basic() {
+  return <Rating />
+}`} lang="tsx" />
+
+## API / Props
+
+### Rating
+
+| Prop            | Type                        | Default   | 说明 / Description                                        |
+| --------------- | --------------------------- | --------- | --------------------------------------------------------- |
+| `className`     | `string`                    | —         | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`         | `number`                    | —         | 当前值(受控) <br/> Current value (controlled)             |
+| `defaultValue`  | `number`                    | —         | 默认值(非受控) <br/> Default value (uncontrolled)         |
+| `onChange`      | `() => void`                | —         | 值变化回调 <br/> Callback when value changes              |
+| `max`           | `number`                    | `5`       | 最大值 <br/> Maximum value                                |
+| `size`          | `"sm" \| "default" \| "lg"` | `default` | 组件尺寸 <br/> Component size                             |
+| `readonly`      | `boolean`                   | —         |                                                           |
+| `allowHalf`     | `boolean`                   | —         |                                                           |
+| `iconClassName` | `string`                    | —         |                                                           |
+| ...rest         | `React.HTMLAttributes`      | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-rating--docs)。

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Row, Col } from "@/components/ui/grid";
 
 const meta: Meta<typeof Row> = {
-  title: "ui/Row · Col",
+  title: "Components/Grid",
   component: Row,
   tags: ["autodocs"],
 };

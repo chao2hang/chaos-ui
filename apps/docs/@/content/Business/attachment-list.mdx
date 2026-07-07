@@ -1,0 +1,47 @@
+import { AttachmentList } from "@/components/business/attachment-list";
+import { CodeBlock } from "@/components/code-block";
+
+# AttachmentList Attachment List
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+Attachment List — 面向 ERP/企业场景的业务组件。
+AttachmentList — a business component for ERP / enterprise scenarios.
+
+## 何时使用 / When to Use
+
+适用于Attachment List相关场景。
+
+Use when you need an attachment list.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { AttachmentList } from "@/components/business/attachment-list"
+
+export function Basic() {
+  return <AttachmentList />
+}`} lang="tsx" />
+
+## API / Props
+
+### AttachmentList
+
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `attachments` | `Array<{`              | —       |                                                           |
+| `id`          | `string`               | —       | DOM 元素 id <br/> DOM element id                          |
+| `name`        | `string`               | —       | 表单字段名 <br/> Form field name                          |
+| `size`        | `number`               | —       | 组件尺寸 <br/> Component size                             |
+| `type`        | `string`               | —       | 类型 <br/> Type                                           |
+| `url`         | `string`               | —       |                                                           |
+| `onRemove`    | `() => void`           | —       |                                                           |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-attachment-list--docs)。

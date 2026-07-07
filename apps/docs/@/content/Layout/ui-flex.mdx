@@ -1,0 +1,92 @@
+import { Flex } from "@/components/ui/flex";
+import { CodeBlock } from "@/components/code-block";
+
+# Flex Ui Flex
+
+> 布局组件 / Layout primitives for structuring pages.
+
+Ui Flex — Chaos UI 的布局组件,用于组织页面区域结构。
+Flex — a layout primitives for structuring pages. for structuring page regions.
+
+## 何时使用 / When to Use
+
+适用于Ui Flex相关场景。
+
+Use when you need a flex.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Flex } from "@/components/ui/flex"
+
+export function Basic() {
+  return <Flex>Default</Flex>
+}`} lang="tsx" />
+
+## 样式变体 / Style Variants
+
+**方向 / direction**
+
+| direction        | 说明 / Description | 默认 |
+| ---------------- | ------------------ | ---- |
+| `row`            |                    | ✓    |
+| `column`         |                    |      |
+| `row-reverse`    |                    |      |
+| `column-reverse` |                    |      |
+
+**wrap / wrap**
+
+| wrap           | 说明 / Description | 默认 |
+| -------------- | ------------------ | ---- |
+| `nowrap`       |                    | ✓    |
+| `wrap`         |                    |      |
+| `wrap-reverse` |                    |      |
+
+**主轴对齐 / justify**
+
+| justify   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `start`   |                    | ✓    |
+| `center`  |                    |      |
+| `end`     |                    |      |
+| `between` |                    |      |
+| `around`  |                    |      |
+| `evenly`  |                    |      |
+
+**对齐 / align**
+
+| align      | 说明 / Description | 默认 |
+| ---------- | ------------------ | ---- |
+| `start`    |                    |      |
+| `center`   |                    |      |
+| `end`      |                    |      |
+| `baseline` |                    |      |
+| `stretch`  |                    | ✓    |
+
+**gap / gap**
+
+| gap    | 说明 / Description | 默认 |
+| ------ | ------------------ | ---- |
+| `none` |                    | ✓    |
+| `xs`   |                    |      |
+| `sm`   |                    |      |
+| `md`   |                    |      |
+| `lg`   |                    |      |
+| `xl`   |                    |      |
+
+## API / Props
+
+### Flex
+
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-flex--docs)。

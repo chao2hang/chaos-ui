@@ -1,0 +1,48 @@
+import { OverviewPage } from "@/components/business/overview-page";
+import { CodeBlock } from "@/components/code-block";
+
+# OverviewPage Business Overview Page
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+`tsx <OverviewPage title="经营总览" kpis={[{ label: "营收", value: 1280000, delta: 0.12 }]} activities={[{ id: "a1", text: "新增订单 120" }]} /> `
+OverviewPage — business overview page component.
+
+## 何时使用 / When to Use
+
+适用于Business Overview Page相关场景。
+
+Use when you need an overview page.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { OverviewPage } from "@/components/business/overview-page"
+
+export function Basic() {
+  return <OverviewPage />
+}`} lang="tsx" />
+
+## API / Props
+
+### OverviewPage
+
+| Prop         | Type                   | Default | 说明 / Description                                        |
+| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`  | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`      | `string`               | `总览`  | 页面标题                                                  |
+| `subtitle`   | `string`               | ``      | 副标题                                                    |
+| `kpis`       | `Array<{`              | —       | KPI 指标数组                                              |
+| `label`      | `string`               | —       | 标签文本 <br/> Label text                                 |
+| `value`      | `number`               | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `delta`      | `number`               | —       |                                                           |
+| `unit`       | `string`               | —       |                                                           |
+| `activities` | `Array<T>`             | —       | 最近活动条目                                              |
+| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-overview-page--docs)。

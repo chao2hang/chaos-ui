@@ -1,0 +1,68 @@
+import { Tour } from "@/components/ui/tour";
+import { CodeBlock } from "@/components/code-block";
+
+# Tour Ui Tour
+
+> 通用基础组件 / General-purpose primitives used across the app.
+
+Ui Tour — Chaos UI 的通用基础组件。
+Tour — a general-purpose primitives used across the app. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Tour相关场景。
+
+Use when you need a tour.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Tour } from "@/components/ui/tour"
+
+export function Basic() {
+  return <Tour />
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Tour size="sm">Sm</Tour>
+  <Tour size="default">Default</Tour>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+
+## API / Props
+
+### Tour
+
+| Prop           | Type                          | Default | 说明 / Description                                          |
+| -------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`    | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `open`         | `boolean`                     | `false` | Whether the tour is active                                  |
+| `onClose`      | `() => void`                  | —       | Called when tour finishes or is dismissed                   |
+| `onFinish`     | `() => void`                  | —       | Called when a step is completed                             |
+| `steps`        | `TourStep[]`                  | —       | Tour steps                                                  |
+| `current`      | `number`                      | —       | Current step index (controlled)                             |
+| `onStepChange` | `() => void`                  | —       | Called when step changes                                    |
+| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-tour--docs)。

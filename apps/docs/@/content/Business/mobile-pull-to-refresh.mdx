@@ -1,4 +1,4 @@
-import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh";
+import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh";
 import { CodeBlock } from "@/components/code-block";
 
 # MobilePullToRefresh 移动端下拉刷新
@@ -18,7 +18,7 @@ Use when you need a mobile pull to refresh.
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh"
+<CodeBlock code={`import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh"
 
 export function Basic() {
   return <PullToRefresh />
@@ -28,16 +28,16 @@ export function Basic() {
 
 ### PullToRefresh
 
-| Prop             | Type                          | Default       | 说明 / Description                                          |
-| ---------------- | ----------------------------- | ------------- | ----------------------------------------------------------- |
-| `className`      | `string`                      | —             | 自定义样式类名 <br/> Custom CSS class                       |
-| `onRefresh`      | `() => void`                  | —             |                                                             |
-| `threshold`      | `number`                      | `60`          |                                                             |
-| `disabled`       | `boolean`                     | —             | 是否禁用 <br/> Whether disabled                             |
-| `refreshingText` | `string`                      | `正在刷新...` |                                                             |
-| `pullText`       | `string`                      | `下拉刷新`    |                                                             |
-| `releaseText`    | `string`                      | `释放刷新`    |                                                             |
-| ...rest          | `React.ComponentProps<"div">` | —             | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop             | Type                          | Default | 说明 / Description                                          |
+| ---------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`      | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `onRefresh`      | `() => void`                  | —       |                                                             |
+| `threshold`      | `number`                      | `60`    |                                                             |
+| `disabled`       | `boolean`                     | —       | 是否禁用 <br/> Whether disabled                             |
+| `refreshingText` | `string`                      | —       |                                                             |
+| `pullText`       | `string`                      | —       |                                                             |
+| `releaseText`    | `string`                      | —       |                                                             |
+| ...rest          | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

@@ -4,7 +4,7 @@ import { ModalProvider } from "@/components/ui/modal-provider";
 import { Modal } from "@/lib/modal";
 
 const meta: Meta = {
-  title: "Feedback / Modal (Static API)",
+  title: "Components/Modal (Static API)",
   tags: ["autodocs"],
   decorators: [
     (Story) => (

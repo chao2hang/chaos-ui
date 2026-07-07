@@ -1,0 +1,70 @@
+import { Watermark } from "@/components/ui/watermark";
+import { CodeBlock } from "@/components/code-block";
+
+# Watermark Ui Watermark
+
+> 数据展示 / Components for presenting data and content.
+
+Ui Watermark — Chaos UI 的数据展示。
+Watermark — a components for presenting data and content. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Watermark相关场景。
+
+Use when you need a watermark.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Watermark } from "@/components/ui/watermark"
+
+export function Basic() {
+  return <Watermark />
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Watermark size="sm">Sm</Watermark>
+  <Watermark size="default">Default</Watermark>
+  <Watermark size="lg">Lg</Watermark>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+## API / Props
+
+### Watermark
+
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `content`   | `string`                      | —       | Text content for the watermark                              |
+| `rotate`    | `number`                      | `-22`   | Rotation angle in degrees                                   |
+| `gap`       | `number`                      | `100`   | Gap between repeated marks                                  |
+| `opacity`   | `number`                      | `0.1`   | Opacity of the watermark                                    |
+| `color`     | `string`                      | `#000`  | Text color                                                  |
+| `fontSize`  | `number`                      | `14`    | Font size override                                          |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-watermark--docs)。

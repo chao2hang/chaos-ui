@@ -1,0 +1,44 @@
+import { NativeSelect } from "@/components/ui/native-select";
+import { CodeBlock } from "@/components/code-block";
+
+# NativeSelect Ui Native Select
+
+> 表单控件 / Form controls for user input and data submission.
+
+Ui Native Select — Chaos UI 的表单控件。
+NativeSelect — a form controls for user input and data submission. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Native Select相关场景。
+
+Use when you need a native select.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { NativeSelect } from "@/components/ui/native-select"
+
+export function Basic() {
+  return <NativeSelect />
+}`} lang="tsx" />
+
+## API / Props
+
+### NativeSelect
+
+| Prop          | Type                                       | Default   | 说明 / Description                                        |
+| ------------- | ------------------------------------------ | --------- | --------------------------------------------------------- |
+| `className`   | `string`                                   | —         | 自定义样式类名 <br/> Custom CSS class                     |
+| `options`     | `(NativeSelectOption \| NativeSelectGr...` | —         | Flat options or grouped options / 扁平选项或分组选项      |
+| `placeholder` | `string`                                   | —         | Placeholder option text / 占位选项文本                    |
+| `size`        | `"sm" \| "default"`                        | `default` | Size variant / 尺寸变体                                   |
+| `error`       | `boolean`                                  | —         | Whether to show error styling / 是否显示错误样式          |
+| ...rest       | `React.HTMLAttributes`                     | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-native-select--docs)。

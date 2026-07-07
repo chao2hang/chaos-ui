@@ -1,0 +1,54 @@
+import { PolicyLineEditor } from "@/components/business/policy-line-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# PolicyLineEditor Business Policy Line Editor
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+<PolicyLineEditor
+  rows={[
+    {
+      id: "1",
+      name: "满100减20",
+      type: "discount",
+      condition: "≥100",
+      reward: "-20",
+      quota: 1000,
+      used: 120,
+    },
+  ]}
+/>
+PolicyLineEditor — business policy line editor component.
+
+## 何时使用 / When to Use
+
+适用于Business Policy Line Editor相关场景。
+
+Use when you need a policy line editor.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { PolicyLineEditor } from "@/components/business/policy-line-editor"
+
+export function Basic() {
+  return <PolicyLineEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### PolicyLineEditor
+
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `rows`      | `PolicyLine[]`         | —       | 行数据 <br/> Row data                                     |
+| `onChange`  | `() => void`           | —       | 值变化回调 <br/> Callback when value changes              |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-policy-line-editor--docs)。

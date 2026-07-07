@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     "../src/stories/ui/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/stories/business/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../src/stories/layout/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/stories/mobile/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@chromatic-com/storybook",

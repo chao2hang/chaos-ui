@@ -1,0 +1,43 @@
+import { ChartCard } from "@/components/business/chart-card";
+import { CodeBlock } from "@/components/code-block";
+
+# ChartCard Business Chart Card
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+<ChartCard title="月度营收" description="单位：万元">{...}</ChartCard>
+ChartCard — business chart card component.
+
+## 何时使用 / When to Use
+
+适用于Business Chart Card相关场景。
+
+Use when you need a chart card.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ChartCard } from "@/components/business/chart-card"
+
+export function Basic() {
+  return <ChartCard />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChartCard
+
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`       | `string`               | —       | 标题 <br/> Title                                          |
+| `description` | `string`               | —       | 描述文本 <br/> Description text                           |
+| `footer`      | `React.ReactNode`      | —       |                                                           |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-business-chart-card--docs)。

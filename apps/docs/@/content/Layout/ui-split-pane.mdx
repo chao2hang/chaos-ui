@@ -1,0 +1,48 @@
+import { SplitPane } from "@/components/ui/split-pane";
+import { CodeBlock } from "@/components/code-block";
+
+# SplitPane Ui Split Pane
+
+> 布局组件 / Layout primitives for structuring pages.
+
+Ui Split Pane — Chaos UI 的布局组件,用于组织页面区域结构。
+SplitPane — a layout primitives for structuring pages. for structuring page regions.
+
+## 何时使用 / When to Use
+
+适用于Ui Split Pane相关场景。
+
+Use when you need a split pane.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { SplitPane } from "@/components/ui/split-pane"
+
+export function Basic() {
+  return <SplitPane />
+}`} lang="tsx" />
+
+## API / Props
+
+### SplitPane
+
+| Prop          | Type                         | Default      | 说明 / Description                                        |
+| ------------- | ---------------------------- | ------------ | --------------------------------------------------------- |
+| `className`   | `string`                     | —            | 自定义样式类名 <br/> Custom CSS class                     |
+| `direction`   | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Direction                                  |
+| `defaultSize` | `number`                     | `50`         |                                                           |
+| `minSize`     | `number`                     | `20`         |                                                           |
+| `maxSize`     | `number`                     | `80`         |                                                           |
+| `onResize`    | `() => void`                 | —            |                                                           |
+| `first`       | `React.ReactNode`            | —            |                                                           |
+| `second`      | `React.ReactNode`            | —            |                                                           |
+| `resizer`     | `boolean`                    | `true`       |                                                           |
+| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-split-pane--docs)。

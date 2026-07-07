@@ -1,0 +1,74 @@
+import { BrowseInput } from "@/components/ui/browse-input";
+import { CodeBlock } from "@/components/code-block";
+
+# BrowseInput Ui Browse Input
+
+> 表单控件 / Form controls for user input and data submission.
+
+Ui Browse Input — Chaos UI 的表单控件。
+BrowseInput — a form controls for user input and data submission. from Chaos UI.
+
+## 何时使用 / When to Use
+
+适用于Ui Browse Input相关场景。
+
+Use when you need a browse input.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { BrowseInput } from "@/components/ui/browse-input"
+
+export function Basic() {
+  return <BrowseInput />
+}`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <BrowseInput size="sm">Sm</BrowseInput>
+  <BrowseInput size="default">Default</BrowseInput>
+  <BrowseInput size="lg">Lg</BrowseInput>
+</div>`}
+  lang="tsx"
+/>
+
+## 样式变体 / Style Variants
+
+**尺寸 / Size**
+
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
+
+## API / Props
+
+### BrowseInput
+
+| Prop               | Type                   | Default     | 说明 / Description                                        |
+| ------------------ | ---------------------- | ----------- | --------------------------------------------------------- |
+| `className`        | `string`               | —           | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`            | `string`               | —           | 当前值(受控) <br/> Current value (controlled)             |
+| `defaultValue`     | `string`               | —           | 默认值(非受控) <br/> Default value (uncontrolled)         |
+| `placeholder`      | `string`               | `Select...` | 占位文本 <br/> Placeholder text                           |
+| `disabled`         | `boolean`              | —           | 是否禁用 <br/> Whether disabled                           |
+| `readOnly`         | `boolean`              | —           | 是否只读 <br/> Whether read-only                          |
+| `required`         | `boolean`              | —           | 是否必填 <br/> Whether required                           |
+| `onBrowse`         | `() => void`           | —           |                                                           |
+| `onChange`         | `() => void`           | —           | 值变化回调 <br/> Callback when value changes              |
+| `onClear`          | `() => void`           | —           |                                                           |
+| `showClearButton`  | `boolean`              | `true`      |                                                           |
+| `showBrowseButton` | `boolean`              | `true`      |                                                           |
+| ...rest            | `React.HTMLAttributes` | —           | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-ui-browse-input--docs)。

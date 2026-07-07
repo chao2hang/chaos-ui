@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { Menu, MenuItem, MenuSubMenu, MenuDivider, MenuItemGroup } from "@/components/ui/menu";
+import {
+  Menu,
+  MenuItem,
+  MenuSubMenu,
+  MenuDivider,
+  MenuItemGroup,
+} from "@/components/ui/menu";
 import { cn } from "@/lib/utils";
 import {
   HomeIcon,
@@ -15,7 +21,7 @@ import {
 } from "@/components/ui/icons";
 
 const meta: Meta<typeof Menu> = {
-  title: "Components / Menu",
+  title: "Components/Menu",
   component: Menu,
   tags: ["autodocs"],
   argTypes: {
@@ -43,14 +49,26 @@ type Story = StoryObj<typeof Menu>;
 
 const demoItems = [
   { key: "home", label: "首页", icon: <HomeIcon className="size-4" /> },
-  { key: "orders", label: "订单管理", icon: <ShoppingCartIcon className="size-4" /> },
+  {
+    key: "orders",
+    label: "订单管理",
+    icon: <ShoppingCartIcon className="size-4" />,
+  },
   {
     key: "system",
     label: "系统管理",
     icon: <SettingsIcon className="size-4" />,
     children: [
-      { key: "users", label: "用户管理", icon: <UsersIcon className="size-4" /> },
-      { key: "roles", label: "角色管理", icon: <ShieldCheckIcon className="size-4" /> },
+      {
+        key: "users",
+        label: "用户管理",
+        icon: <UsersIcon className="size-4" />,
+      },
+      {
+        key: "roles",
+        label: "角色管理",
+        icon: <ShieldCheckIcon className="size-4" />,
+      },
       {
         key: "permissions",
         label: "权限管理",
@@ -61,7 +79,11 @@ const demoItems = [
           { key: "resource-permissions", label: "资源权限" },
         ],
       },
-      { key: "notifications", label: "通知设置", icon: <BellIcon className="size-4" /> },
+      {
+        key: "notifications",
+        label: "通知设置",
+        icon: <BellIcon className="size-4" />,
+      },
     ],
   },
   {
@@ -106,7 +128,7 @@ export const InlineDark: Story = {
     defaultOpenKeys: ["system"],
   },
   render: (args: React.ComponentProps<typeof Menu>) => (
-    <div className="w-[256px] rounded-lg overflow-hidden">
+    <div className="w-[256px] overflow-hidden rounded-lg">
       <Menu {...args} />
     </div>
   ),
@@ -133,7 +155,11 @@ export const Horizontal: Story = {
     theme: "light",
     items: [
       { key: "home", label: "首页", icon: <HomeIcon className="size-4" /> },
-      { key: "orders", label: "订单管理", icon: <ShoppingCartIcon className="size-4" /> },
+      {
+        key: "orders",
+        label: "订单管理",
+        icon: <ShoppingCartIcon className="size-4" />,
+      },
       {
         key: "system",
         label: "系统管理",
@@ -207,7 +233,7 @@ export const Collapsed: Story = {
     defaultSelectedKeys: ["home"],
   },
   render: (args: React.ComponentProps<typeof Menu>) => (
-    <div className="w-[64px] rounded-lg overflow-hidden">
+    <div className="w-[64px] overflow-hidden rounded-lg">
       <Menu {...args} />
     </div>
   ),
@@ -218,8 +244,13 @@ export const CollapsibleControlled: Story = {
     const [collapsed, setCollapsed] = React.useState(false);
     return (
       <div className="space-y-4">
-        <div className={cn("transition-all duration-300", collapsed ? "w-[64px]" : "w-[256px]")}>
-          <div className="rounded-lg border overflow-hidden">
+        <div
+          className={cn(
+            "transition-all duration-300",
+            collapsed ? "w-[64px]" : "w-[256px]",
+          )}
+        >
+          <div className="overflow-hidden rounded-lg border">
             <Menu
               mode="inline"
               theme="light"
@@ -232,7 +263,7 @@ export const CollapsibleControlled: Story = {
             />
           </div>
         </div>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           当前状态: {collapsed ? "已折叠" : "已展开"}
         </p>
       </div>
@@ -243,7 +274,7 @@ export const CollapsibleControlled: Story = {
 export const CollapsibleUncontrolled: Story = {
   render: () => (
     <div className="w-[256px]">
-      <div className="rounded-lg border overflow-hidden">
+      <div className="overflow-hidden rounded-lg border">
         <Menu
           mode="inline"
           theme="light"
@@ -269,7 +300,10 @@ export const Controlled: Story = {
   render: (args: React.ComponentProps<typeof Menu>) => (
     <div className="w-[256px] rounded-lg border p-2">
       <Menu {...args} />
-      <p className="mt-2 text-xs text-muted-foreground">受控模式: selectedKeys=&#123;[&apos;users&apos;]&#125; openKeys=&#123;[&apos;system&apos;]&#125;</p>
+      <p className="text-muted-foreground mt-2 text-xs">
+        受控模式: selectedKeys=&#123;[&apos;users&apos;]&#125;
+        openKeys=&#123;[&apos;system&apos;]&#125;
+      </p>
     </div>
   ),
 };
@@ -294,9 +328,18 @@ export const SizeVariants: Story = {
     <div className="flex gap-8">
       {(["sm", "md", "lg"] as const).map((s) => (
         <div key={s} className="w-[256px]">
-          <p className="mb-2 text-xs font-medium text-muted-foreground">size=&quot;{s}&quot;</p>
+          <p className="text-muted-foreground mb-2 text-xs font-medium">
+            size=&quot;{s}&quot;
+          </p>
           <div className="rounded-lg border p-2">
-            <Menu mode="inline" theme="light" size={s} items={demoItems} defaultSelectedKeys={["home"]} defaultOpenKeys={["system"]} />
+            <Menu
+              mode="inline"
+              theme="light"
+              size={s}
+              items={demoItems}
+              defaultSelectedKeys={["home"]}
+              defaultOpenKeys={["system"]}
+            />
           </div>
         </div>
       ))}
