@@ -107,9 +107,11 @@ jobs:
           node-version: "22"
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
+      - name: Install Playwright browsers (chromium)
+        run: npx playwright install chromium
       - run: pnpm run build-storybook
       - name: 启动 Storybook 并扫描
         run: |
           npx serve storybook-static -p 6006 &
           sleep 3
-          npx @axe-core/cli http://localhost:6006 --exit
+          node scripts/a11y-scan.mjs http://localhost:6006

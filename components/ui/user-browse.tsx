@@ -155,7 +155,8 @@ function UserBrowse({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
-            <div
+            <button
+              type="button"
               className={cn(
                 "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
                 "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
