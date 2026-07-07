@@ -49,6 +49,8 @@ function isStorybookPath(pathname) {
     pathname.startsWith("/sb-") ||
     pathname === "/runtime~main.iframe.bundle.js" ||
     pathname === "/virtual-storybook-deps-index-entry.js" ||
+    pathname === "/index.json" ||
+    pathname.endsWith(".json") ||
     // Vite dev server absolute-path resources (Storybook v10)
     pathname.startsWith("/@vite/") ||
     pathname.startsWith("/@id/") ||
