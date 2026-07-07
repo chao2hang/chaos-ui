@@ -443,8 +443,7 @@ export { BackTop } from "./back-top";
 export type { BackTopProps } from "./back-top";
 export { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
 export type { ConfigContextValue, ThemeConfig } from "./config-provider";
-// MessageProvider 移至 ./next 入口：它依赖 Toaster(sonner) → next-themes，
-// 而 next-themes 是 optional peer，留在主入口会让非 Next 项目 import 即崩。
+// Retained in main barrel — note that it depends on sonner/next-themes (optional peer).
 export { ModalProvider } from "./modal-provider";
 export {
   Menu,

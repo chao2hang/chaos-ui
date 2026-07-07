@@ -193,12 +193,6 @@ export * from "./map-chart";
 export * from "./map-marker";
 export * from "./map-track";
 export * from "./map-view";
-export * from "./map-marker";
-export * from "./map-track";
-export * from "./map-view";
-export * from "./map-marker";
-export * from "./map-track";
-export * from "./map-view";
 export * from "./dashboard-canvas";
 export * from "./bar-list";
 export * from "./delta-bar";
@@ -337,8 +331,7 @@ export * from "./dashboard-designer";
 export * from "./contract-template";
 export * from "./browse-dialog";
 
-export { AdvancedDataTable } from "./advanced-data-table";
-export type { AdvancedDataTableProps } from "./advanced-data-table";
+// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
 export { AreaChart } from "./area-chart";
 export type { AreaChartProps } from "./area-chart";
 export { BarChart } from "./bar-chart";
