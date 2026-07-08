@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Transfer } from "@/components/business/transfer";
-import type { TransferItem } from "@/components/business/transfer";
+import { Transfer } from "@/components/ui/transfer";
+import type { TransferItem } from "@/components/ui/transfer";
 
 // Transfer uses useTranslation("transfer"); mock so it renders without a provider.
 vi.mock("react-i18next", () => ({
@@ -206,7 +206,7 @@ describe("Transfer", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/transfer");
+    const mod = await import("@/components/ui/transfer");
     expect(mod.Transfer).toBeDefined();
   });
 });

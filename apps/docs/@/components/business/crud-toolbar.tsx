@@ -1,96 +1,169 @@
 "use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
 import {
-  PlusIcon,
-  Trash2Icon,
-  DownloadIcon,
-  UploadIcon,
+  MoreHorizontalIcon,
   SearchIcon,
   RefreshCwIcon,
-} from "lucide-react";
+  PlusIcon,
+  TrashIcon,
+} from "@/components/ui";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui";
 
-interface CrudToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
-  onAdd?: () => void;
-  onDelete?: () => void;
-  onExport?: () => void;
-  onImport?: () => void;
-  onRefresh?: () => void;
-  onSearch?: (query: string) => void;
+interface CrudToolbarAction {
+  key: string;
+  label: string;
+  icon?: React.ElementType;
+  onClick: () => void;
+  danger?: boolean;
+  disabled?: boolean;
+}
+
+interface CrudToolbarProps {
+  /** Left-side primary actions */
+  primaryActions?: CrudToolbarAction[];
+  /** Search placeholder */
   searchPlaceholder?: string;
-  selectedCount?: number;
+  /** Search value */
+  searchValue?: string;
+  /** Search callback */
+  onSearch?: (value: string) => void;
+  /** Search input onChange */
+  onSearchChange?: (value: string) => void;
+  /** Whether to show search */
+  showSearch?: boolean;
+  /** More actions (dropdown) */
+  moreActions?: CrudToolbarAction[];
+  /** Row selection count */
+  selectionCount?: number;
+  /** Bulk action text */
+  bulkActionLabel?: string;
+  loading?: boolean;
   className?: string;
 }
 
+/**
+ * CRUD 工具栏 —— 对标 qxy-mop 旧系统列表页顶部工具栏。
+ * 内置搜索 + 新增/删除/刷新/导出/导入 + 更多操作下拉。
+ *
+ * @component CrudToolbar
+ * @category business/layout
+ * @since 0.2.0
+ */
 function CrudToolbar({
-  onAdd,
-  onDelete,
-  onExport,
-  onImport,
-  onRefresh,
-  onSearch,
+  primaryActions,
   searchPlaceholder = "搜索...",
-  selectedCount = 0,
+  searchValue,
+  onSearch,
+  onSearchChange,
+  showSearch = true,
+  moreActions,
+  selectionCount = 0,
+  bulkActionLabel,
+  loading = false,
   className,
-  ...props
 }: CrudToolbarProps) {
-  const [query, setQuery] = React.useState("");
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSearch?.(query);
-  };
+  const defaultPrimary: CrudToolbarAction[] = primaryActions || [
+    { key: "create", label: "新增", icon: PlusIcon, onClick: () => {} },
+    {
+      key: "delete",
+      label: "删除",
+      icon: TrashIcon,
+      onClick: () => {},
+      danger: true,
+    },
+    { key: "refresh", label: "刷新", icon: RefreshCwIcon, onClick: () => {} },
+  ];
 
   return (
     <div
       data-slot="crud-toolbar"
       className={cn("flex flex-wrap items-center gap-2", className)}
-      {...props}
     >
-      {onSearch && (
-        <form onSubmit={handleSearch} className="flex items-center gap-1">
-          <Input
-            placeholder={searchPlaceholder}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="h-8 w-40 lg:w-56"
-          />
-          <Button type="submit" size="icon-sm" variant="ghost">
-            <SearchIcon className="size-4" />
+      {/* Primary actions */}
+      {selectionCount > 0 && bulkActionLabel ? (
+        <div className="flex items-center gap-2">
+          <span className="text-muted-foreground text-sm">
+            已选 {selectionCount} 项
+          </span>
+          <Button size="sm" variant="default">
+            {bulkActionLabel}
           </Button>
-        </form>
+        </div>
+      ) : (
+        defaultPrimary.map((action) => (
+          <Button
+            key={action.key}
+            size="sm"
+            variant={action.danger ? "outline" : "default"}
+            className={cn(
+              action.danger &&
+                "border-destructive text-destructive hover:bg-destructive/10",
+            )}
+            onClick={action.onClick}
+            disabled={action.disabled || loading}
+          >
+            {action.icon && <action.icon className="mr-1.5 size-3.5" />}
+            {action.label}
+          </Button>
+        ))
       )}
-      <div className="flex-1" />
-      {selectedCount > 0 && onDelete && (
-        <Button size="sm" variant="destructive" onClick={onDelete}>
-          <Trash2Icon /> 删除 ({selectedCount})
-        </Button>
+
+      {/* Search */}
+      {showSearch && (
+        <div className="relative max-w-xs flex-1">
+          <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
+          <Input
+            className="h-8 pl-8 text-sm"
+            placeholder={searchPlaceholder}
+            value={searchValue}
+            onChange={(e) => {
+              onSearchChange?.(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onSearch?.(e.currentTarget.value);
+            }}
+          />
+        </div>
       )}
-      {onAdd && (
-        <Button size="sm" onClick={onAdd}>
-          <PlusIcon /> 新增
-        </Button>
-      )}
-      {onImport && (
-        <Button size="sm" variant="outline" onClick={onImport}>
-          <UploadIcon /> 导入
-        </Button>
-      )}
-      {onExport && (
-        <Button size="sm" variant="outline" onClick={onExport}>
-          <DownloadIcon /> 导出
-        </Button>
-      )}
-      {onRefresh && (
-        <Button size="icon-sm" variant="outline" onClick={onRefresh}>
-          <RefreshCwIcon className="size-4" />
-        </Button>
+
+      {/* More actions */}
+      {moreActions && moreActions.length > 0 && (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <button
+              type="button"
+              className="hover:bg-accent hover:text-accent-foreground inline-flex h-8 w-8 items-center justify-center rounded-md border"
+            >
+              <MoreHorizontalIcon className="size-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {moreActions.map((action) => (
+              <DropdownMenuItem
+                key={action.key}
+                onClick={action.onClick}
+                disabled={action.disabled}
+                className={cn(action.danger && "text-destructive")}
+              >
+                {action.icon && <action.icon className="mr-2 size-4" />}
+                {action.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       )}
     </div>
   );
 }
 
 export { CrudToolbar };
-export type { CrudToolbarProps };
+export type { CrudToolbarProps, CrudToolbarAction };

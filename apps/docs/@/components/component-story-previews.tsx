@@ -3390,4 +3390,32 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  MobileCheckout: dynamic(
+    () =>
+      import("../../src/mobile/MobileCheckout.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MobileShareSheet: dynamic(
+    () =>
+      import("../../src/mobile/MobileShareSheet.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MobileSwipeCard: dynamic(
+    () =>
+      import("../../src/mobile/MobileSwipeCard.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  OtpField: dynamic(
+    () =>
+      import("../../src/components/OtpField.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
 };

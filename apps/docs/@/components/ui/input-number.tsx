@@ -1,188 +1,213 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { ChevronUp, ChevronDown } from "lucide-react";
 
-const inputNumberVariants = cva(
-  "flex items-center rounded-md border border-input bg-transparent shadow-sm transition-colors focus-within:ring-1 focus-within:ring-ring",
-  {
-    variants: {
-      size: {
-        default: "h-9",
-        sm: "h-8 text-xs",
-        lg: "h-10",
-      },
-    },
-    defaultVariants: { size: "default" },
-  },
-);
+/**
+ * @component InputNumber
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 数字输入框 / Numeric input with min/max/precision/step/controls
+ * @keywords input, number, numeric, step, precision
+ * @example
+ * <InputNumber min={0} max={100} step={1} precision={2} />
+ */
 
 interface InputNumberProps
-  extends
-    Omit<React.ComponentProps<"input">, "size" | "onChange" | "value">,
-    VariantProps<typeof inputNumberVariants> {
-  value?: number;
-  onChange?: (value: number | undefined) => void;
+  extends Omit<React.ComponentProps<"input">, "onChange" | "value" | "size" | "defaultValue"> {
+  /** Current value / 当前值 */
+  value?: number | null;
+  /** Default value / 默认值 */
+  defaultValue?: number | null;
+  /** Minimum value / 最小值 */
   min?: number;
+  /** Maximum value / 最大值 */
   max?: number;
+  /** Step size / 步长 */
   step?: number;
-  /** Show stepper buttons */
-  showStepper?: boolean;
-  /** Allow empty value */
-  allowEmpty?: boolean;
-  /** Suffix text */
-  suffix?: React.ReactNode;
+  /** Decimal precision / 小数精度 */
+  precision?: number;
+  /** Whether to show up/down controls / 是否显示增减按钮 */
+  controls?: boolean;
+  /** Whether input is disabled / 是否禁用 */
+  disabled?: boolean;
+  /** Whether input is read-only / 是否只读 */
+  readOnly?: boolean;
+  /** Input size / 输入框大小 */
+  size?: "sm" | "default" | "lg";
+  /**
+   * Change callback. When `nullAsUndefined` is true, empty values
+   * emit `undefined` instead of `null` — matching typical form state.
+   * / 变更回调。开启 nullAsUndefined 后空值返回 undefined 而非 null
+   */
+  onChange?: (value: number | null | undefined) => void;
+  /** Parser to transform display value / 解析函数 */
+  parser?: (displayValue: string) => number;
+  /** Formatter to format display value / 格式化函数 */
+  formatter?: (value: number | undefined) => string;
+  /**
+   * Emit `undefined` instead of `null` for empty values.
+   * Eliminates the `v ?? undefined` boilerplate in form handlers.
+   * / 空值返回 undefined 而非 null，消除 v ?? undefined 模板代码
+   */
+  nullAsUndefined?: boolean;
 }
 
 function InputNumber({
   className,
-  size,
-  value,
-  onChange,
+  value: controlledValue,
+  defaultValue = null,
   min = -Infinity,
   max = Infinity,
   step = 1,
-  showStepper = true,
-  allowEmpty = false,
-  suffix,
-  disabled,
-  placeholder,
+  precision,
+  controls = true,
+  disabled = false,
+  readOnly = false,
+  size = "default",
+  onChange,
+  parser,
+  formatter,
+  nullAsUndefined = false,
   ...props
 }: InputNumberProps) {
-  const [internalValue, setInternalValue] = React.useState<string>(
-    value?.toString() ?? "",
+  const [internalValue, setInternalValue] = React.useState<number | null>(
+    defaultValue,
   );
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = React.useState<string>("");
+
+  const isControlled = controlledValue !== undefined;
+  const currentValue = isControlled ? controlledValue : internalValue;
 
   React.useEffect(() => {
-    setInternalValue(value?.toString() ?? "");
-  }, [value]);
+    if (currentValue === null || currentValue === undefined) {
+      setInputValue("");
+    } else {
+      setInputValue(
+        formatter ? formatter(currentValue) : String(currentValue),
+      );
+    }
+  }, [currentValue, formatter]);
 
-  const updateValue = (newValue: number | undefined) => {
-    if (newValue !== undefined && (newValue < min || newValue > max)) return;
-    onChange?.(newValue);
+  const clamp = (val: number): number => {
+    return Math.min(Math.max(val, min), max);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const applyPrecision = (val: number): number => {
+    if (precision !== undefined) {
+      const factor = Math.pow(10, precision);
+      return Math.round(val * factor) / factor;
+    }
+    return val;
+  };
+
+  const updateValue = (val: number | null) => {
+    if (val === null || isNaN(val)) {
+      if (!isControlled) setInternalValue(null);
+      onChange?.(nullAsUndefined ? undefined : null);
+      return;
+    }
+    const clamped = applyPrecision(clamp(val));
+    if (!isControlled) setInternalValue(clamped);
+    onChange?.(clamped);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
-    setInternalValue(raw);
-
-    if (raw === "" || raw === "-") {
-      if (allowEmpty) {
-        onChange?.(undefined);
-      }
+    setInputValue(raw);
+    if (raw === "") {
+      updateValue(null);
       return;
     }
-
-    const num = Number(raw);
-    if (!Number.isNaN(num)) {
-      updateValue(num);
+    const parsed = parser ? parser(raw) : parseFloat(raw);
+    if (!isNaN(parsed)) {
+      updateValue(parsed);
     }
   };
 
-  const handleBlur = () => {
-    if (internalValue === "" || internalValue === "-") {
-      if (!allowEmpty) {
-        const clamped = Math.max(min, Math.min(max, 0));
-        setInternalValue(clamped.toString());
-        onChange?.(clamped);
-      }
-      return;
-    }
-    const num = Number(internalValue);
-    if (!Number.isNaN(num)) {
-      const clamped = Math.max(min, Math.min(max, num));
-      setInternalValue(clamped.toString());
-      onChange?.(clamped);
-    }
-  };
-
-  const handleStepUp = () => {
-    const current = (value ?? Number(internalValue)) || 0;
-    const next = Math.min(max, current + step);
+  const handleStep = (direction: "up" | "down") => {
+    if (disabled || readOnly) return;
+    // When there's no current value, start stepping from min (if finite) so
+    // that "up" from empty lands at min+step rather than 0+step (which could
+    // skip past min when min > 0).
+    const fallback = Number.isFinite(min) ? min : 0;
+    const base = currentValue ?? fallback;
+    const next = direction === "up" ? base + step : base - step;
     updateValue(next);
-    setInternalValue(next.toString());
-    inputRef.current?.focus();
   };
 
-  const handleStepDown = () => {
-    const current = (value ?? Number(internalValue)) || 0;
-    const next = Math.max(min, current - step);
-    updateValue(next);
-    setInternalValue(next.toString());
-    inputRef.current?.focus();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled || readOnly) return;
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      handleStep("up");
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      handleStep("down");
+    }
+    props.onKeyDown?.(e);
   };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (inputValue !== "" && currentValue !== null) {
+      setInputValue(
+        formatter ? formatter(currentValue) : String(currentValue),
+      );
+    }
+    props.onBlur?.(e);
+  };
+
+  const sizeClass =
+    size === "sm" ? "h-7 text-sm" : size === "lg" ? "h-9 text-base" : "h-8 text-sm";
 
   return (
     <div
       data-slot="input-number"
-      className={cn(inputNumberVariants({ size }), className)}
+      className={cn(
+        "relative inline-flex w-full items-center",
+        disabled && "opacity-50",
+        className,
+      )}
     >
       <input
-        ref={inputRef}
         type="text"
-        inputMode="numeric"
-        value={internalValue}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        inputMode="decimal"
         disabled={disabled}
-        placeholder={placeholder}
+        readOnly={readOnly}
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
         className={cn(
-          "placeholder:text-muted-foreground h-full w-full bg-transparent px-3 py-1 outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          showStepper && "text-center",
+          "w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-right transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 dark:bg-input/30 dark:disabled:bg-input/80",
+          sizeClass,
+          controls && "pr-7",
         )}
         {...props}
       />
-      {suffix && (
-        <span className="text-muted-foreground pr-3 text-sm">{suffix}</span>
-      )}
-      {showStepper && (
-        <div className="border-input flex flex-col border-l">
+      {controls && !readOnly && (
+        <div className="absolute right-0 top-0 flex h-full flex-col">
           <button
             type="button"
-            onClick={handleStepUp}
-            disabled={disabled || (value ?? 0) >= max}
-            className="text-muted-foreground hover:text-foreground flex h-1/2 items-center justify-center px-2 disabled:opacity-30"
-            aria-label="Increment"
             tabIndex={-1}
+            disabled={disabled || (currentValue !== null && currentValue >= max)}
+            onClick={() => handleStep("up")}
+            className="flex flex-1 items-center justify-center px-1.5 text-muted-foreground hover:text-foreground disabled:opacity-30"
+            aria-label="Increase"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m18 15-6-6-6 6" />
-            </svg>
+            <ChevronUp className="size-3" />
           </button>
           <button
             type="button"
-            onClick={handleStepDown}
-            disabled={disabled || (value ?? 0) <= min}
-            className="border-input text-muted-foreground hover:text-foreground flex h-1/2 items-center justify-center border-t px-2 disabled:opacity-30"
-            aria-label="Decrement"
             tabIndex={-1}
+            disabled={disabled || (currentValue !== null && currentValue <= min)}
+            onClick={() => handleStep("down")}
+            className="flex flex-1 items-center justify-center px-1.5 text-muted-foreground hover:text-foreground disabled:opacity-30"
+            aria-label="Decrease"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
+            <ChevronDown className="size-3" />
           </button>
         </div>
       )}
@@ -190,4 +215,5 @@ function InputNumber({
   );
 }
 
-export { InputNumber, inputNumberVariants };
+export { InputNumber };
+export type { InputNumberProps };

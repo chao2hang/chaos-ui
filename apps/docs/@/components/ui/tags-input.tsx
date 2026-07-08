@@ -1,42 +1,66 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { XIcon } from "lucide-react"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { XIcon } from "@/components/ui/icons";
 
-function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disabled, className }: { value?: string[]; onChange?: (v: string[]) => void; placeholder?: string; max?: number; disabled?: boolean; className?: string }) {
-  const [input, setInput] = React.useState("")
-  const inputRef = React.useRef<HTMLInputElement>(null)
+/**
+ * @component TagsInput
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Multi-value tag input with add/remove via keyboard, comma or Enter / 多值标签输入框，通过键盘、逗号或回车添加/删除标签
+ * @keywords tags, input, multi-value, chips, 标签输入
+ * @example
+ * <TagsInput value={tags} onChange={setTags} placeholder="Add tag..." />
+ */
+function TagsInput({
+  value = [],
+  onChange,
+  placeholder = "Add tag...",
+  max,
+  disabled,
+  className,
+}: {
+  value?: string[];
+  onChange?: (v: string[]) => void;
+  placeholder?: string;
+  max?: number;
+  disabled?: boolean;
+  className?: string;
+}) {
+  const [input, setInput] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (tag: string): void => {
-    const trimmed = tag.trim()
-    if (!trimmed) return
-    if (max && value.length >= max) return
-    if (value.includes(trimmed)) return
-    onChange?.([...value, trimmed])
-    setInput("")
-  }
+    const trimmed = tag.trim();
+    if (!trimmed) return;
+    if (max && value.length >= max) return;
+    if (value.includes(trimmed)) return;
+    onChange?.([...value, trimmed]);
+    setInput("");
+  };
 
   const removeTag = (index: number): void => {
-    onChange?.(value.filter((_, i) => i !== index))
-  }
+    onChange?.(value.filter((_, i) => i !== index));
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault()
-      addTag(input)
+      e.preventDefault();
+      addTag(input);
     }
     if (e.key === "Backspace" && !input && value.length > 0) {
-      removeTag(value.length - 1)
+      removeTag(value.length - 1);
     }
-  }
+  };
 
   return (
     <div
+      data-slot="tags-input"
       className={cn(
         "flex min-h-8 flex-wrap items-center gap-1.5 rounded-md border bg-transparent px-2 py-1 text-sm",
-        disabled && "opacity-50 cursor-not-allowed",
-        className
+        disabled && "cursor-not-allowed opacity-50",
+        className,
       )}
       onClick={() => inputRef.current?.focus()}
     >
@@ -46,8 +70,11 @@ function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disa
           {!disabled && (
             <button
               type="button"
-              onClick={(e) => { e.stopPropagation(); removeTag(i) }}
-              className="ml-0.5 rounded-full hover:bg-muted-foreground/20"
+              onClick={(e) => {
+                e.stopPropagation();
+                removeTag(i);
+              }}
+              className="hover:bg-muted-foreground/20 ml-0.5 rounded-full"
             >
               <XIcon className="size-3" />
             </button>
@@ -61,10 +88,10 @@ function TagsInput({ value = [], onChange, placeholder = "Add tag...", max, disa
         onKeyDown={handleKeyDown}
         placeholder={value.length === 0 ? placeholder : ""}
         disabled={disabled || !!(max && value.length >= max)}
-        className="flex-1 min-w-[80px] bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+        className="placeholder:text-muted-foreground min-w-[80px] flex-1 bg-transparent outline-none disabled:cursor-not-allowed"
       />
     </div>
-  )
+  );
 }
 
-export { TagsInput }
+export { TagsInput };

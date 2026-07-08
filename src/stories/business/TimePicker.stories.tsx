@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { TimePicker } from "@/components/business/time-picker";
+import { TimePicker } from "@/components/ui/time-picker";
 
 const meta = {
   title: "Business/TimePicker",

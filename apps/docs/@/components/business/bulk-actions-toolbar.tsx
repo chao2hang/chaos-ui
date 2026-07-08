@@ -1,8 +1,9 @@
 "use client";
 import * as React from "react";
-import { XIcon } from "lucide-react";
+import { XIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 interface BulkAction {
   label: string;
@@ -12,7 +13,7 @@ interface BulkAction {
   disabled?: boolean;
 }
 
-interface BulkActionsToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface BulkActionsToolbarProps extends React.ComponentProps<"div"> {
   count: number;
   selectedCount: number;
   onClear?: () => void;
@@ -20,22 +21,33 @@ interface BulkActionsToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
 }
 
+/**
+ * @component BulkActionsToolbar
+ * @category business/ux
+ * @since 0.2.0
+ * @description Sticky toolbar for batch operations on selected items with customizable action buttons / 批量操作工具栏，显示已选数量并支持自定义操作按钮
+ * @keywords bulk, actions, toolbar, batch, selection
+ * @example
+ * <BulkActionsToolbar count={100} selectedCount={5} actions={[{ label: "Delete", onClick: () => {} }]} onClear={() => {}} />
+ */
 export function BulkActionsToolbar({
   count,
   selectedCount,
   onClear,
   actions = [],
-  label = "已选择",
+  label: labelProp,
   className,
   ...props
 }: BulkActionsToolbarProps) {
+  const { t } = useTranslation("navigation");
+  const label = labelProp ?? t("bulkActionsToolbar.label");
   if (selectedCount === 0) return null;
 
   return (
     <div
       data-slot="bulk-actions-toolbar"
       role="toolbar"
-      aria-label="批量操作"
+      aria-label={t("bulkActionsToolbar.ariaLabel")}
       className={cn(
         "bg-popover sticky top-0 z-10 flex items-center gap-3 rounded-md border px-3 py-2 shadow-sm",
         className,
@@ -68,7 +80,7 @@ export function BulkActionsToolbar({
           variant="ghost"
           size="icon-sm"
           onClick={onClear}
-          aria-label="清除选择"
+          aria-label={t("bulkActionsToolbar.clear")}
         >
           <XIcon />
         </Button>

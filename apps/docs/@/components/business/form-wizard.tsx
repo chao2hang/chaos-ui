@@ -1,49 +1,86 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Stepper, Step } from "@/components/ui/stepper"
-import { ChevronLeftIcon, ChevronRightIcon, CheckIcon } from "lucide-react"
+"use client";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button, Stepper, Step } from "@/components/ui";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CheckIcon,
+} from "@/components/ui/icons";
 
-function FormWizard({ steps, onComplete, className }: { steps: { title: string; description?: string; render: (props: { formData: Record<string, unknown>; updateField: (key: string, value: unknown) => void; errors: Record<string, string> }) => React.ReactNode; validate?: (data: Record<string, unknown>) => Record<string, string> }[]; onComplete?: (data: Record<string, unknown>) => void; className?: string }) {
-  const [currentStep, setCurrentStep] = React.useState(0)
-  const [formData, setFormData] = React.useState({})
-  const [errors, setErrors] = React.useState({})
+type WizardRenderContext = {
+  formData: Record<string, unknown>;
+  updateField: (key: string, value: unknown) => void;
+  errors: Record<string, string>;
+};
 
-  const step = steps[currentStep]
-  const isFirst = currentStep === 0
-  const isLast = currentStep === steps.length - 1
+/**
+ * @component FormWizard
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-step form wizard with stepper navigation, per-step validation, and progressive data collection / 多步骤表单向导，支持步骤导航、逐步验证和渐进式数据收集
+ * @keywords form, wizard, multi-step, stepper, validation
+ * @example
+ * <FormWizard steps={[{ title: "Step 1", render: (ctx) => <Input onChange={e => ctx.updateField("name", e.target.value)} /> }]} />
+ */
+function FormWizard({
+  steps,
+  onComplete,
+  className,
+}: {
+  steps: {
+    title: string;
+    description?: string;
+    render: (context: WizardRenderContext) => React.ReactNode;
+    validate?: (data: Record<string, unknown>) => Record<string, string>;
+  }[];
+  onComplete?: (data: Record<string, unknown>) => void;
+  className?: string;
+}) {
+  const { t } = useTranslation("navigation");
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [formData, setFormData] = React.useState<Record<string, unknown>>({});
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+
+  const step = steps[currentStep] ?? { title: "", render: () => null };
+  const isFirst = currentStep === 0;
+  const isLast = currentStep === steps.length - 1;
 
   const validate = (): boolean => {
-    if (!step.validate) return true
-    const stepErrors = step.validate ? step.validate(formData as Record<string, unknown>) : {}
-    setErrors(stepErrors)
-    return Object.keys(stepErrors).length === 0
-  }
+    if (!step.validate) return true;
+    const stepErrors = step.validate ? step.validate(formData) : {};
+    setErrors(stepErrors);
+    return Object.keys(stepErrors).length === 0;
+  };
 
   const handleNext = (): void => {
-    if (!validate()) return
+    if (!validate()) return;
     if (isLast) {
-      onComplete?.(formData)
+      onComplete?.(formData);
     } else {
-      setCurrentStep((s) => s + 1)
+      setCurrentStep((s) => s + 1);
     }
-  }
+  };
 
   const handleBack = (): void => {
-    setErrors({})
-    setCurrentStep((s) => s - 1)
-  }
+    setErrors({});
+    setCurrentStep((s) => s - 1);
+  };
 
   const updateField = (key: string, value: unknown): void => {
-    setFormData((prev) => ({ ...prev, [key]: value }))
-    if ((errors as Record<string, string>)[key]) {
-      setErrors((prev) => { const next: Record<string, string> = { ...prev }; delete next[key]; return next })
+    setFormData((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) {
+      setErrors((prev) => {
+        const next: Record<string, string> = { ...prev };
+        delete next[key];
+        return next;
+      });
     }
-  }
+  };
 
   return (
-    <div className={cn("mx-auto max-w-3xl space-y-6", className)}>
+    <div data-slot="form-wizard" className={cn("space-y-6", className)}>
       <Stepper activeStep={currentStep}>
         {steps.map((s) => (
           <Step key={s.title}>{s.title}</Step>
@@ -52,25 +89,35 @@ function FormWizard({ steps, onComplete, className }: { steps: { title: string; 
 
       <div className="min-h-[200px] rounded-lg border p-6">
         <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
-        {step.description && <p className="text-sm text-muted-foreground mb-4">{step.description}</p>}
-        {step.render({ formData: formData as Record<string, unknown>, updateField, errors })}
+        {step.description && (
+          <p className="text-sm text-muted-foreground mb-4">
+            {step.description}
+          </p>
+        )}
+        {step.render({ formData, updateField, errors })}
       </div>
 
       <div className="flex justify-between">
         <Button variant="outline" onClick={handleBack} disabled={isFirst}>
           <ChevronLeftIcon className="size-4 mr-1" />
-          Back
+          {t("formWizard.back")}
         </Button>
         <Button onClick={handleNext}>
           {isLast ? (
-            <><CheckIcon className="size-4 mr-1" /> Submit</>
+            <>
+              <CheckIcon className="size-4 mr-1" /> {t("formWizard.submit")}
+            </>
           ) : (
-            <>Next <ChevronRightIcon className="size-4 ml-1" /></>
+            <>
+              {t("formWizard.next")}{" "}
+              <ChevronRightIcon className="size-4 ml-1" />
+            </>
           )}
         </Button>
       </div>
     </div>
-  )
+  );
 }
 
-export { FormWizard }
+export { FormWizard };
+export type { WizardRenderContext };

@@ -1,268 +1,156 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { CalendarIcon } from "lucide-react";
+import {
+  Calendar as CalendarPrimitive,
+} from "./calendar";
 
 import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./popover";
+import { Button } from "./button";
 
-const datePickerVariants = cva("relative inline-block", {
-  variants: {
-    variant: {
-      default: "",
-      outline: "",
-    },
-    size: {
-      default: "",
-      sm: "",
-      lg: "",
-    },
-  },
-  defaultVariants: { variant: "default", size: "default" },
-});
+/**
+ * @component DatePicker
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 单点日期选择器 / Single date picker based on react-day-picker
+ * @keywords date, picker, calendar, date-picker
+ * @example
+ * <DatePicker value={new Date()} onChange={(date) => console.log(date)} />
+ */
 
-interface DatePickerProps
-  extends
-    Omit<React.ComponentProps<"div">, "onChange">,
-    VariantProps<typeof datePickerVariants> {
-  /** Selected date */
-  value?: Date;
-  /** Change handler */
-  onChange?: (date: Date | undefined) => void;
-  /** Placeholder text */
-  placeholder?: string;
-  /** Date format for display */
-  format?: string;
-  /** Min selectable date */
-  minDate?: Date;
-  /** Max selectable date */
-  maxDate?: Date;
-  disabled?: boolean;
+interface DatePickerProps {
+  /** Selected date / 选中的日期 */
+  value?: Date | null | undefined;
+  /** Default value / 默认值 */
+  defaultValue?: Date | null | undefined;
+  /** Date format string / 日期格式 */
+  format?: string | undefined;
+  /** Placeholder text / 占位文本 */
+  placeholder?: string | undefined;
+  /** Whether picker is disabled / 是否禁用 */
+  disabled?: boolean | undefined;
+  /** Whether picker is read-only / 是否只读 */
+  readOnly?: boolean | undefined;
+  /** Whether to show clear button / 是否显示清除按钮 */
+  allowClear?: boolean | undefined;
+  /** Locale / 语言 */
+  locale?: string | undefined;
+  /** Disable dates function / 禁用日期函数 */
+  disabledDate?: ((date: Date) => boolean) | undefined;
+  /** Change callback / 变更回调 */
+  onChange?: ((date: Date | null) => void) | undefined;
+  /** Input size / 输入框大小 */
+  size?: "sm" | "default" | "lg" | undefined;
+  /** Custom trigger / 自定义触发器 */
+  trigger?: React.ReactNode | undefined;
+  className?: string | undefined;
 }
 
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+function formatDate(date: Date, formatStr?: string): string {
+  if (!date) return "";
+  const fmt = formatStr || "yyyy-MM-dd";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
 
-const DAYS_OF_WEEK = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+  return fmt
+    .replace("yyyy", String(year))
+    .replace("MM", month)
+    .replace("dd", day)
+    .replace("HH", String(date.getHours()).padStart(2, "0"))
+    .replace("mm", String(date.getMinutes()).padStart(2, "0"))
+    .replace("ss", String(date.getSeconds()).padStart(2, "0"));
+}
 
 function DatePicker({
-  className,
-  variant,
-  size,
-  value,
+  value: controlledValue,
+  defaultValue = null,
+  format,
+  placeholder = "Select date",
+  disabled = false,
+  readOnly = false,
+  allowClear = false,
+  locale: _locale,
+  disabledDate,
   onChange,
-  placeholder = "Pick a date",
-  format: dateFormat = "yyyy-MM-dd",
-  minDate,
-  maxDate,
-  disabled,
-  ...props
+  size = "default",
+  trigger,
+  className,
 }: DatePickerProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [viewDate, setViewDate] = React.useState(value ?? new Date());
-  const ref = React.useRef<HTMLDivElement>(null);
+  const [internalValue, setInternalValue] = React.useState<Date | null>(
+    defaultValue,
+  );
+  const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
 
-  const formatDate = (date: Date): string => {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    return dateFormat
-      .replace("yyyy", String(y))
-      .replace("MM", m)
-      .replace("dd", d);
+  const handleChange = (date: Date | null) => {
+    if (!isControlled) setInternalValue(date);
+    onChange?.(date);
+    if (date) setOpen(false);
   };
 
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
+  const sizeClass =
+    size === "sm" ? "h-7 text-sm" : size === "lg" ? "h-9 text-base" : "h-8 text-sm";
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayOfWeek = new Date(year, month, 1).getDay();
-
-  const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-
-  const isSelected = (day: number): boolean => {
-    if (!value) return false;
-    return (
-      value.getFullYear() === year &&
-      value.getMonth() === month &&
-      value.getDate() === day
-    );
-  };
-
-  const isDisabled = (day: number): boolean => {
-    const date = new Date(year, month, day);
-    if (
-      minDate &&
-      date <
-        new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())
-    )
-      return true;
-    if (
-      maxDate &&
-      date >
-        new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate())
-    )
-      return true;
-    return false;
-  };
-
-  const handleSelect = (day: number) => {
-    if (isDisabled(day)) return;
-    const newDate = new Date(year, month, day);
-    onChange?.(newDate);
-    setIsOpen(false);
-  };
-
-  const calendarDays: (number | null)[] = [];
-  for (let i = 0; i < firstDayOfWeek; i++) calendarDays.push(null);
-  for (let d = 1; d <= daysInMonth; d++) calendarDays.push(d);
+  const displayValue = value ? formatDate(value, format) : "";
 
   return (
     <div
-      ref={ref}
       data-slot="date-picker"
-      className={cn(datePickerVariants({ variant, size }), className)}
-      {...props}
+      className={cn("relative inline-block", className)}
     >
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "border-input hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          !value && "text-muted-foreground",
-        )}
-      >
-        <span>{value ? formatDate(value) : placeholder}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="ml-2 shrink-0"
-          aria-hidden="true"
-        >
-          <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-          <line x1="16" x2="16" y1="2" y2="6" />
-          <line x1="8" x2="8" y1="2" y2="6" />
-          <line x1="3" x2="21" y1="10" y2="10" />
-        </svg>
-      </button>
-
-      {isOpen && (
-        <div className="bg-popover absolute z-50 mt-1 rounded-md border p-3 shadow-md">
-          <div className="mb-2 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={prevMonth}
-              className="hover:bg-accent rounded p-1"
-              aria-label="Previous month"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-            <span className="text-sm font-medium">
-              {MONTHS[month]} {year}
-            </span>
-            <button
-              type="button"
-              onClick={nextMonth}
-              className="hover:bg-accent rounded p-1"
-              aria-label="Next month"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-7 gap-0.5 text-center">
-            {DAYS_OF_WEEK.map((day) => (
-              <div
-                key={day}
-                className="text-muted-foreground py-1 text-xs font-medium"
-              >
-                {day}
-              </div>
-            ))}
-            {calendarDays.map((day, i) => (
-              <button
-                key={i}
-                type="button"
-                disabled={day === null || isDisabled(day)}
-                onClick={() => day !== null && handleSelect(day)}
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger
+          render={
+            (trigger as React.ReactElement | undefined) ?? (
+              <Button
+                variant="outline"
+                size={size === "sm" ? "sm" : size === "lg" ? "lg" : "default"}
+                disabled={disabled || readOnly}
                 className={cn(
-                  "h-8 w-8 rounded text-sm transition-colors",
-                  day === null && "invisible",
-                  isSelected(day as number) &&
-                    "bg-primary text-primary-foreground",
-                  !isSelected(day as number) &&
-                    !isDisabled(day as number) &&
-                    "hover:bg-accent",
-                  isDisabled(day as number) && "cursor-not-allowed opacity-30",
-                  day === new Date().getDate() &&
-                    month === new Date().getMonth() &&
-                    year === new Date().getFullYear() &&
-                    !isSelected(day as number) &&
-                    "text-primary font-bold",
+                  sizeClass,
+                  "w-full justify-start font-normal",
+                  !displayValue && "text-muted-foreground",
                 )}
               >
-                {day}
-              </button>
-            ))}
-          </div>
-        </div>
+                <CalendarIcon className="size-4 shrink-0" />
+                {displayValue || placeholder}
+              </Button>
+            )
+          }
+        />
+        <PopoverContent className="w-auto p-0" align="start">
+          <CalendarPrimitive
+            mode="single"
+            selected={value ?? undefined}
+            onSelect={(date: Date | undefined) =>
+              handleChange(date ?? null)
+            }
+            disabled={disabledDate}
+          />
+        </PopoverContent>
+      </Popover>
+      {allowClear && value && !disabled && !readOnly && (
+        <button
+          type="button"
+          onClick={() => handleChange(null)}
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+          aria-label="Clear date"
+        >
+          ×
+        </button>
       )}
     </div>
   );
 }
 
-export { DatePicker, datePickerVariants };
+export { DatePicker };
+export type { DatePickerProps };

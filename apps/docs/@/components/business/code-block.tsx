@@ -1,11 +1,12 @@
 "use client";
 import * as React from "react";
-import { CheckIcon, CopyIcon } from "lucide-react";
+import { CheckIcon, CopyIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
-interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CodeBlockProps extends React.ComponentProps<"div"> {
   code: string;
   language?: string;
   filename?: string;
@@ -36,16 +37,19 @@ function tokenize(code: string, language: string): React.ReactNode[] {
       /\b-?\d+(?:\.\d+)?\b/g,
     ],
   };
-  const regs = patterns[language] ?? patterns.js;
+  const regs = patterns[language] ?? patterns.js ?? [];
   const tokens: { start: number; end: number; type: string }[] = [];
   for (let i = 0; i < regs.length; i++) {
-    const re = new RegExp(regs[i].source, regs[i].flags);
+    const re = new RegExp(
+      (regs[i] as RegExp).source,
+      (regs[i] as RegExp).flags,
+    );
     let m: RegExpExecArray | null;
     while ((m = re.exec(code)) !== null) {
       tokens.push({
         start: m.index,
         end: m.index + m[0].length,
-        type: ["comment", "keyword", "string", "number"][i],
+        type: ["comment", "keyword", "string", "number"][i] ?? "unknown",
       });
     }
   }
@@ -78,6 +82,15 @@ function tokenize(code: string, language: string): React.ReactNode[] {
   return result;
 }
 
+/**
+ * @component CodeBlock
+ * @category business/data
+ * @since 0.2.0
+ * @description Syntax-highlighted code block with line numbers, copy button, and filename header / 语法高亮代码块，支持行号、复制按钮和文件名头
+ * @keywords code, syntax, highlight, copy, diff, code-block
+ * @example
+ * <CodeBlock code="const x = 1;" language="js" filename="app.js" />
+ */
 export function CodeBlock({
   code,
   language,
@@ -89,6 +102,7 @@ export function CodeBlock({
   className,
   ...props
 }: CodeBlockProps) {
+  const { t } = useTranslation("data");
   const [copied, copy] = useCopyToClipboard();
   const lines = code.split("\n");
   const tokens = React.useMemo(
@@ -119,7 +133,7 @@ export function CodeBlock({
           size="icon-xs"
           className="absolute top-2 right-2 z-10 opacity-0 transition-opacity group-hover:opacity-100"
           onClick={() => copy(code)}
-          aria-label="复制代码"
+          aria-label={t("codeBlock.copyCode")}
         >
           {copied ? (
             <CheckIcon className="text-zinc-100" />
@@ -134,25 +148,24 @@ export function CodeBlock({
       >
         <code>
           {showLineNumbers ? (
-            <table className="w-full border-collapse">
-              <tbody>
-                {lines.map((_, i) => (
-                  <tr
-                    key={i}
-                    className={cn(
-                      highlightLines.includes(i + 1) && "bg-zinc-800/60",
-                    )}
-                  >
-                    <td className="pr-4 text-right align-top text-zinc-600 select-none">
-                      {i + 1}
-                    </td>
-                    <td className="align-top whitespace-pre">
-                      {lines[i] || " "}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="w-full">
+              {lines.map((_, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "flex",
+                    highlightLines.includes(i + 1) && "bg-zinc-800/60",
+                  )}
+                >
+                  <span className="w-8 shrink-0 pr-4 text-right text-zinc-600 select-none">
+                    {i + 1}
+                  </span>
+                  <span className="flex-1 whitespace-pre">
+                    {lines[i] || " "}
+                  </span>
+                </div>
+              ))}
+            </div>
           ) : (
             tokens
           )}

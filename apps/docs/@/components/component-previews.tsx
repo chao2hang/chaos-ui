@@ -135,6 +135,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Result } from "@/components/ui/result";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+
+/* Layout components -------------------------------------------------------- */
+import { AdminShell } from "@/components/layout/admin-shell";
+import { ArticleLayout } from "@/components/layout/article-layout";
+import { ChatLayout } from "@/components/layout/chat-layout";
+import { EmbedLayout } from "@/components/layout/embed-layout";
+import { PrintTemplateLayout } from "@/components/layout/print-template-layout";
+import { SplitScreen } from "@/components/layout/split-screen";
+import { WizardLayout } from "@/components/layout/wizard-layout";
 
 /* Business components ----------------------------------------------------- */
 import {
@@ -155,8 +165,8 @@ import { Banner } from "@/components/business/banner";
 import { AnnouncementBanner } from "@/components/business/announcement-banner";
 import { BarcodeDisplay } from "@/components/business/barcode-display";
 import { Chip } from "@/components/business/chip";
-import { EmptyState } from "@/components/business/empty-state";
-import { Rating } from "@/components/business/rating";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Rating } from "@/components/ui/rating";
 import { BillStatusBar } from "@/components/business/bill-status-bar";
 import { BizStatusTag } from "@/components/business/biz-status-tag";
 
@@ -1053,6 +1063,130 @@ function KeyboardShortcutDialogDemo() {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Layout & misc component demos                                            */
+/* -------------------------------------------------------------------------- */
+
+function AspectRatioDemo() {
+  return (
+    <div className="mx-auto w-full max-w-sm">
+      <AspectRatio ratio={16 / 9}>
+        <img
+          src="https://placehold.co/640x360/e2e8f0/64748b?text=16:9"
+          alt="Aspect ratio demo"
+          className="size-full rounded-lg object-cover"
+        />
+      </AspectRatio>
+    </div>
+  );
+}
+
+function AdminShellDemo() {
+  return (
+    <div className="mx-auto h-64 w-full overflow-hidden rounded-lg border">
+      <AdminShell
+        logo={<span className="text-sm font-bold">Chaos UI</span>}
+        menuItems={[
+          { key: "dashboard", label: "Dashboard" },
+          { key: "settings", label: "Settings" },
+        ]}
+        selectedMenuKey="dashboard"
+      >
+        <div className="p-4 text-sm text-muted-foreground">Main content area</div>
+      </AdminShell>
+    </div>
+  );
+}
+
+function ArticleLayoutDemo() {
+  return (
+    <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border">
+      <ArticleLayout
+        title={<h1 className="text-lg font-bold">Getting Started Guide</h1>}
+        toc={<nav className="space-y-1 text-xs text-muted-foreground"><div>Section 1</div><div>Section 2</div></nav>}
+        footer={<div className="border-t pt-2 text-xs text-muted-foreground">Footer content</div>}
+      >
+        <p className="text-sm">This is the article body content. It demonstrates the centered layout with optional sidebar.</p>
+      </ArticleLayout>
+    </div>
+  );
+}
+
+function ChatLayoutDemo() {
+  return (
+    <div className="mx-auto h-64 w-full overflow-hidden rounded-lg border">
+      <ChatLayout
+        sidebar={<div className="bg-muted p-3 text-xs text-muted-foreground">Chat list sidebar</div>}
+        messagesArea={
+          <div className="flex flex-col gap-2 p-4">
+            <div className="max-w-[70%] rounded-lg bg-primary/10 px-3 py-1.5 text-xs">Hello! How can I help?</div>
+            <div className="ml-auto max-w-[70%] rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground">I need help with a component.</div>
+          </div>
+        }
+        inputArea={<div className="border-t p-2"><input className="w-full rounded border px-2 py-1 text-xs" placeholder="Type a message..." /></div>}
+      />
+    </div>
+  );
+}
+
+function EmbedLayoutDemo() {
+  return (
+    <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border">
+      <EmbedLayout
+        header={<span className="text-sm font-semibold">Embedded Content</span>}
+      >
+        <div className="p-4 text-sm text-muted-foreground">This content is rendered inside an embed layout with padding and optional header.</div>
+      </EmbedLayout>
+    </div>
+  );
+}
+
+function PrintTemplateLayoutDemo() {
+  return (
+    <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border bg-white p-4">
+      <PrintTemplateLayout
+        title="Invoice #2026-001"
+      >
+        <div className="space-y-1 text-sm">
+          <div className="flex justify-between"><span>Item 1</span><span>$100.00</span></div>
+          <div className="flex justify-between"><span>Item 2</span><span>$200.00</span></div>
+          <div className="flex justify-between border-t pt-1 font-bold"><span>Total</span><span>$300.00</span></div>
+        </div>
+      </PrintTemplateLayout>
+    </div>
+  );
+}
+
+function SplitScreenDemo() {
+  return (
+    <div className="mx-auto h-48 w-full overflow-hidden rounded-lg border">
+      <SplitScreen
+        left={<div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">Left Panel</div>}
+        right={<div className="flex h-full items-center justify-center bg-primary/5 text-sm text-muted-foreground">Right Panel</div>}
+      />
+    </div>
+  );
+}
+
+function WizardLayoutDemo() {
+  return (
+    <div className="mx-auto w-full max-w-md">
+      <WizardLayout
+        steps={[
+          { id: "info", title: "Information" },
+          { id: "confirm", title: "Confirm" },
+          { id: "done", title: "Complete" },
+        ]}
+        current={1}
+      >
+        <div className="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
+          Step 2 content: Confirm your details
+        </div>
+      </WizardLayout>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Registry                                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -1105,4 +1239,14 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   Rating: RatingDemo,
   BillStatusBar: BillStatusBarDemo,
   BizStatusTag: BizStatusTagDemo,
+
+  /* Layout & misc */
+  AspectRatio: AspectRatioDemo,
+  AdminShell: AdminShellDemo,
+  ArticleLayout: ArticleLayoutDemo,
+  ChatLayout: ChatLayoutDemo,
+  EmbedLayout: EmbedLayoutDemo,
+  PrintTemplateLayout: PrintTemplateLayoutDemo,
+  SplitScreen: SplitScreenDemo,
+  WizardLayout: WizardLayoutDemo,
 };

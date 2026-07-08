@@ -1,88 +1,156 @@
-"use client"
-import * as React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { cn } from "@/lib/utils"
-import { formatRelativeTime } from "@/lib/format"
-import { PlusIcon, MinusIcon, PencilIcon, TrashIcon, LogInIcon, LogOutIcon } from "lucide-react"
+"use client";
 
-export interface AuditEntry {
-  id: string
-  actor: { name: string; avatar?: string }
-  action: string
-  target?: string
-  timestamp: number | string | Date
-  changes?: Array<{ field: string; before: string; after: string }>
-  ip?: string
+import * as React from "react";
+import { ChevronDownIcon, ChevronRightIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+
+import { Avatar, AvatarFallback } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export type AuditLogStatus = "success" | "warning" | "error" | "info";
+
+export interface AuditLogEntry {
+  id: string;
+  actor: {
+    name: string;
+    description?: string;
+  };
+  action: string;
+  target: string;
+  timestamp: string;
+  status?: AuditLogStatus;
+  details?: React.ReactNode;
 }
 
-const ACTION_ICONS: Record<string, React.ElementType> = {
-  create: PlusIcon,
-  delete: TrashIcon,
-  update: PencilIcon,
-  login: LogInIcon,
-  logout: LogOutIcon,
-  remove: MinusIcon,
+export interface AuditLogProps extends React.ComponentProps<"div"> {
+  entries: AuditLogEntry[];
+  emptyText?: string;
 }
 
-export interface AuditLogProps extends React.ComponentProps<"ol"> {
-  entries: AuditEntry[]
-  className?: string
+const statusVariant: Record<
+  AuditLogStatus,
+  "default" | "secondary" | "destructive" | "outline"
+> = {
+  success: "default",
+  warning: "secondary",
+  error: "destructive",
+  info: "outline",
+};
+
+function getInitials(name: string) {
+  return name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
-export function AuditLog({ entries, className, ...props }: AuditLogProps) {
-  return (
-    <ol data-slot="audit-log" className={cn("relative space-y-3", className)} {...props}>
-      <span aria-hidden className="absolute top-2 bottom-2 left-3.5 w-px bg-muted-foreground/20" />
-      {entries.map((e) => {
-        const Icon = ACTION_ICONS[e.action.toLowerCase()] ?? PencilIcon
-        const isRemoved = ["delete", "remove"].includes(e.action.toLowerCase())
-        return (
-          <li key={e.id} className="relative flex gap-3 pl-1">
-            <span className="z-10 flex size-7 items-center justify-center rounded-full border bg-background">
-              <Icon className={cn("size-3.5", isRemoved ? "text-destructive" : "text-muted-foreground")} />
-            </span>
-            <div className="flex-1 min-w-0 pt-0.5">
-              <div className="flex items-center gap-2 text-sm">
-                <Avatar className="size-5">
-                  {e.actor.avatar && <AvatarImage src={e.actor.avatar} />}
-                  <AvatarFallback className="text-[0.6rem]">{e.actor.name[0]}</AvatarFallback>
-                </Avatar>
-                <span className="font-medium">{e.actor.name}</span>
-                <span className="text-muted-foreground">{actionText(e.action)}</span>
-                {e.target && <span className="font-mono text-xs">{e.target}</span>}
-              </div>
-              {e.changes && e.changes.length > 0 && (
-                <ul className="mt-1 space-y-0.5 rounded bg-muted/30 p-2 text-xs">
-                  {e.changes.map((c, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="text-muted-foreground">{c.field}:</span>
-                      <span className="line-through text-destructive/70">{c.before}</span>
-                      <span>→</span>
-                      <span className="text-success">{c.after}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                {formatRelativeTime(e.timestamp)}
-                {e.ip && <span className="ml-2">· {e.ip}</span>}
-              </p>
-            </div>
-          </li>
-        )
-      })}
-    </ol>
-  )
-}
+/**
+ * @component AuditLog
+ * @category business/bill
+ * @since 0.2.0
+ * @description Scrollable list of audit entries with actor info, expandable details, and status badges / 可展开详情的审计日志列表，包含操作人信息和状态标签
+ * @keywords audit, log, history, tracking, activity
+ * @example
+ * <AuditLog entries={[{ id: "1", actor: { name: "Admin" }, action: "Updated", target: "Campaign", timestamp: "2024-01-01" }]} />
+ */
+export function AuditLog({
+  entries,
+  emptyText,
+  className,
+  ...props
+}: AuditLogProps) {
+  const { t } = useTranslation("data");
+  const resolvedEmptyText = emptyText ?? t("auditLog.emptyText");
+  const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
 
-function actionText(action: string): string {
-  const map: Record<string, string> = {
-    create: "创建了",
-    update: "更新了",
-    delete: "删除了",
-    remove: "移除了",
-    login: "登录了",
-    logout: "登出了",
+  if (entries.length === 0) {
+    return (
+      <div
+        data-slot="audit-log"
+        className={cn(
+          "text-muted-foreground rounded-lg border p-6 text-center text-sm",
+          className,
+        )}
+        {...props}
+      >
+        {resolvedEmptyText}
+      </div>
+    );
   }
-  return map[action.toLowerCase()] ?? action
+
+  return (
+    <div
+      data-slot="audit-log"
+      className={cn("divide-y rounded-lg border", className)}
+      {...props}
+    >
+      {entries.map((entry) => {
+        const isExpanded = expanded[entry.id];
+        const hasDetails = Boolean(entry.details);
+
+        return (
+          <div key={entry.id} className="p-4">
+            <div className="flex items-start gap-3">
+              <Avatar className="size-8">
+                <AvatarFallback>{getInitials(entry.actor.name)}</AvatarFallback>
+              </Avatar>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-sm font-medium">{entry.actor.name}</p>
+                  {entry.status && (
+                    <Badge variant={statusVariant[entry.status]}>
+                      {entry.status}
+                    </Badge>
+                  )}
+                </div>
+                {entry.actor.description && (
+                  <p className="text-muted-foreground text-xs">
+                    {entry.actor.description}
+                  </p>
+                )}
+                <p className="mt-1 text-sm">
+                  <span className="text-muted-foreground">{entry.action}</span>{" "}
+                  <span className="font-medium">{entry.target}</span>
+                </p>
+                {hasDetails && isExpanded && (
+                  <div className="bg-muted/50 text-muted-foreground mt-3 rounded-md p-3 text-xs">
+                    {entry.details}
+                  </div>
+                )}
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <time className="text-muted-foreground text-xs">
+                  {entry.timestamp}
+                </time>
+                {hasDetails && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon-xs"
+                    aria-label={
+                      isExpanded
+                        ? t("auditLog.collapseDetails")
+                        : t("auditLog.expandDetails")
+                    }
+                    onClick={() =>
+                      setExpanded((value) => ({
+                        ...value,
+                        [entry.id]: !isExpanded,
+                      }))
+                    }
+                  >
+                    {isExpanded ? <ChevronDownIcon /> : <ChevronRightIcon />}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }

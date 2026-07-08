@@ -1,19 +1,28 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 interface SplitPaneProps extends React.HTMLAttributes<HTMLDivElement> {
-  direction?: "horizontal" | "vertical"
-  defaultSize?: number
-  minSize?: number
-  maxSize?: number
-  onResize?: (size: number) => void
-  first: React.ReactNode
-  second: React.ReactNode
-  resizer?: boolean
+  direction?: "horizontal" | "vertical";
+  defaultSize?: number;
+  minSize?: number;
+  maxSize?: number;
+  onResize?: (size: number) => void;
+  first: React.ReactNode;
+  second: React.ReactNode;
+  resizer?: boolean;
 }
 
+/**
+ * @component SplitPane
+ * @category ui/layout
+ * @since 0.2.0
+ * @description Resizable split view with a draggable divider between two panes / 可调整大小的分割视图，两个面板之间带有可拖动的分隔条
+ * @keywords split, pane, resizable, divider, layout, 分割面板
+ * @example
+ * <SplitPane first={<LeftPanel />} second={<RightPanel />} />
+ */
 function SplitPane({
   className,
   direction = "horizontal",
@@ -26,45 +35,45 @@ function SplitPane({
   resizer = true,
   ...props
 }: SplitPaneProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-  const [size, setSize] = React.useState(defaultSize)
-  const [isDragging, setIsDragging] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [size, setSize] = React.useState(defaultSize);
+  const [isDragging, setIsDragging] = React.useState(false);
 
   const handleMouseDown = React.useCallback(
     (e: React.MouseEvent) => {
-      e.preventDefault()
-      setIsDragging(true)
+      e.preventDefault();
+      setIsDragging(true);
 
-      const container = containerRef.current
-      if (!container) return
+      const container = containerRef.current;
+      if (!container) return;
 
-      const startPos = direction === "horizontal" ? e.clientX : e.clientY
-      const startSize = size
+      const startPos = direction === "horizontal" ? e.clientX : e.clientY;
+      const startSize = size;
       const containerSize =
         direction === "horizontal"
           ? container.offsetWidth
-          : container.offsetHeight
+          : container.offsetHeight;
 
       const handleMouseMove = (e: MouseEvent) => {
-        const currentPos = direction === "horizontal" ? e.clientX : e.clientY
-        const delta = currentPos - startPos
-        const newSize = startSize + (delta / containerSize) * 100
-        const clampedSize = Math.min(Math.max(newSize, minSize), maxSize)
-        setSize(clampedSize)
-        onResize?.(clampedSize)
-      }
+        const currentPos = direction === "horizontal" ? e.clientX : e.clientY;
+        const delta = currentPos - startPos;
+        const newSize = startSize + (delta / containerSize) * 100;
+        const clampedSize = Math.min(Math.max(newSize, minSize), maxSize);
+        setSize(clampedSize);
+        onResize?.(clampedSize);
+      };
 
       const handleMouseUp = () => {
-        setIsDragging(false)
-        document.removeEventListener("mousemove", handleMouseMove)
-        document.removeEventListener("mouseup", handleMouseUp)
-      }
+        setIsDragging(false);
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
 
-      document.addEventListener("mousemove", handleMouseMove)
-      document.addEventListener("mouseup", handleMouseUp)
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     },
-    [direction, size, minSize, maxSize, onResize]
-  )
+    [direction, size, minSize, maxSize, onResize],
+  );
 
   return (
     <div
@@ -75,7 +84,7 @@ function SplitPane({
         "flex",
         direction === "horizontal" ? "flex-row" : "flex-col",
         isDragging && "select-none",
-        className
+        className,
       )}
       {...props}
     >
@@ -92,11 +101,11 @@ function SplitPane({
         <div
           data-slot="split-pane-resizer"
           className={cn(
-            "shrink-0 bg-border transition-colors hover:bg-ring/50",
+            "bg-border hover:bg-ring/50 shrink-0 transition-colors",
             direction === "horizontal"
               ? "w-1 cursor-col-resize"
               : "h-1 cursor-row-resize",
-            isDragging && "bg-ring"
+            isDragging && "bg-ring",
           )}
           onMouseDown={handleMouseDown}
         />
@@ -111,8 +120,8 @@ function SplitPane({
         {second}
       </div>
     </div>
-  )
+  );
 }
 
-export { SplitPane }
-export type { SplitPaneProps }
+export { SplitPane };
+export type { SplitPaneProps };

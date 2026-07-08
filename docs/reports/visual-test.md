@@ -48,9 +48,9 @@ Primary inspection focus:
 |---|---|---|
 | Timeline | Vertical connector did not align with timeline dots | Centered the connector relative to the icon column in `components/ui/timeline.tsx`. |
 | Stepper | Final horizontal step could visually drift because it still participated in flexible line layout | Made the final horizontal step shrink to its own content while previous steps keep connector space in `components/ui/stepper.tsx`. |
-| Transfer | Double click toggled selection twice instead of moving the item | Added double-click move behavior and delayed single-click selection in `components/business/transfer.tsx`. |
+| Transfer | Double click toggled selection twice instead of moving the item | Added double-click move behavior and delayed single-click selection in `components/ui/transfer.tsx`. |
 | Transfer | Mobile layout could overflow horizontally | Switched panels to stacked mobile layout and kept side-by-side layout from `sm` upward. |
-| Tour | Popover used a fixed width and could overflow small screens | Added viewport-aware width, clamped positioning, and wrapping footer actions in `components/business/tour.tsx`. |
+| Tour | Popover used a fixed width and could overflow small screens | Added viewport-aware width, clamped positioning, and wrapping footer actions in `components/ui/tour.tsx`. |
 | Chart | Chart container had a fixed minimum width that could trigger mobile overflow | Removed the fixed min-width in `components/business/chart.tsx`. |
 | TopBar | Header actions could overflow on mobile | Hid desktop actions on small screens and kept them available in the mobile menu in `components/layout/top-bar.tsx`. |
 | Story demos | Several docs examples used fixed-width wrappers | Replaced fixed widths with responsive `w-full max-w-*` wrappers across affected story files. |
@@ -86,7 +86,7 @@ The automated audit still records 6 docs pages with console/demo warnings in eve
 Targeted checks:
 
 ```bash
-npm.cmd run lint -- components/business/transfer.tsx components/business/tour.tsx components/business/chart.tsx components/layout/top-bar.tsx components/ui/timeline.tsx components/ui/stepper.tsx src/components/AspectRatio.stories.tsx src/components/Collapsible.stories.tsx src/components/ContextMenu.stories.tsx src/components/Kbd.stories.tsx src/components/ScrollArea.stories.tsx src/components/Skeleton.stories.tsx src/components/Slider.stories.tsx src/components/Tabs.stories.tsx src/components/TagsInput.stories.tsx src/business/Transfer.stories.tsx
+npm.cmd run lint -- components/ui/transfer.tsx components/ui/tour.tsx components/business/chart.tsx components/layout/top-bar.tsx components/ui/timeline.tsx components/ui/stepper.tsx src/components/AspectRatio.stories.tsx src/components/Collapsible.stories.tsx src/components/ContextMenu.stories.tsx src/components/Kbd.stories.tsx src/components/ScrollArea.stories.tsx src/components/Skeleton.stories.tsx src/components/Slider.stories.tsx src/components/Tabs.stories.tsx src/components/TagsInput.stories.tsx src/business/Transfer.stories.tsx
 node --check output/playwright/visual-audit/run-audit.mjs
 ```
 

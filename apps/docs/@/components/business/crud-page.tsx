@@ -1,112 +1,319 @@
 "use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Pagination } from "@/components/ui/pagination";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { PlusIcon } from "lucide-react";
 
-interface CrudPageProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string;
-  toolbar?: React.ReactNode;
-  columns: Array<{
-    key: string;
-    header: string;
-    render?: (row: Record<string, unknown>) => React.ReactNode;
-  }>;
-  data: Record<string, unknown>[];
-  total?: number;
-  page?: number;
-  onPageChange?: (page: number) => void;
-  onCreate?: () => void;
+import * as React from "react";
+import { Button } from "@/components/ui";
+import { PageContainer, PageHeader } from "@/components/ui";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui";
+import { FilterBar, type FilterField } from "./filter-bar";
+import { SearchTable, type ColumnDef } from "./search-table";
+
+interface FormField {
+  key: string;
+  label: string;
+  type?: "input" | "select" | "number" | "date" | "textarea" | "custom";
+  required?: boolean;
+  placeholder?: string;
+  options?: { label: string; value: string }[];
+  render?: (
+    value: unknown,
+    onChange: (val: unknown) => void,
+  ) => React.ReactNode;
+  defaultValue?: unknown;
+}
+
+interface CrudPageProps {
+  title: string;
+  filterFields: FilterField[];
+  columns: ColumnDef[];
+  dataSource: Record<string, unknown>[];
+  rowKey?: string;
+  loading?: boolean;
+  pagination?:
+    | false
+    | {
+        current: number;
+        pageSize: number;
+        total: number;
+        onChange: (page: number, pageSize: number) => void;
+      }
+    | undefined;
+  formFields?: FormField[];
+  formTitle?: string;
+  dialogOpen?: boolean;
+  onDialogOpenChange?: (open: boolean) => void;
+  editingRecord?: Record<string, unknown> | null;
+  actions?: React.ReactNode;
+  /** Built-in refresh button (shown when onRefresh provided). / 内置刷新按钮 */
+  onRefresh?: () => void;
+  /** Built-in add button (shown when onAdd provided). / 内置新增按钮 */
+  onAdd?: () => void;
+  /** Edit a record (sets editingRecord + opens dialog). / 编辑记录 */
+  onEdit?: (record: Record<string, unknown>) => void;
+  onSearch: (values: Record<string, unknown>) => void;
+  onDelete?: (record: Record<string, unknown>) => void;
+  onSubmit?: (values: Record<string, unknown>) => void;
+  rowSelection?: {
+    selectedRowKeys: string[];
+    onChange: (keys: string[]) => void;
+  };
   className?: string;
 }
 
-function CrudPage({
-  title = "数据列表",
-  toolbar,
-  columns,
-  data,
-  total = 0,
-  page = 1,
-  onPageChange,
-  onCreate,
-  className,
-  ...props
-}: CrudPageProps) {
+/** Internal form dialog that remounts via key, avoiding useEffect setState */
+function FormDialog({
+  open,
+  onOpenChange,
+  title,
+  fields,
+  record,
+  onSubmit,
+}: {
+  open?: boolean | undefined;
+  onOpenChange?: ((open: boolean) => void) | undefined;
+  title: string;
+  fields: FormField[];
+  record?: Record<string, unknown> | null | undefined;
+  onSubmit?: ((values: Record<string, unknown>) => void) | undefined;
+}) {
+  const initial = React.useMemo(() => {
+    if (record) return { ...record };
+    const init: Record<string, unknown> = {};
+    fields.forEach((f) => {
+      if (f.defaultValue !== undefined) init[f.key] = f.defaultValue;
+    });
+    return init;
+  }, [record, fields]);
+
+  const [values, setValues] = React.useState(initial);
+
+  const handleChange = (key: string, value: unknown) => {
+    setValues((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const renderField = (field: FormField) => {
+    if (field.render) {
+      return field.render(values[field.key], (val) =>
+        handleChange(field.key, val),
+      );
+    }
+
+    const value = values[field.key];
+
+    if (field.type === "select" && field.options) {
+      return (
+        <select
+          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
+          value={String(value ?? "")}
+          onChange={(e) => handleChange(field.key, e.target.value || undefined)}
+        >
+          <option value="">
+            {field.placeholder || `请选择${field.label}`}
+          </option>
+          {field.options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    if (field.type === "textarea") {
+      return (
+        <textarea
+          className="bg-background min-h-[80px] w-full rounded-md border px-3 py-2 text-sm"
+          placeholder={field.placeholder}
+          value={String(value ?? "")}
+          onChange={(e) => handleChange(field.key, e.target.value)}
+        />
+      );
+    }
+
+    if (field.type === "number") {
+      return (
+        <input
+          type="number"
+          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
+          placeholder={field.placeholder}
+          value={value != null ? String(value) : ""}
+          onChange={(e) =>
+            handleChange(field.key, e.target.valueAsNumber || undefined)
+          }
+        />
+      );
+    }
+
+    return (
+      <input
+        className="bg-background h-9 w-full rounded-md border px-3 text-sm"
+        placeholder={field.placeholder}
+        value={String(value ?? "")}
+        onChange={(e) => handleChange(field.key, e.target.value)}
+      />
+    );
+  };
+
   return (
-    <div
-      data-slot="crud-page"
-      className={cn("space-y-4", className)}
-      {...props}
-    >
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <div className="flex items-center gap-2">
-          {toolbar}
-          {onCreate && (
-            <Button size="sm" onClick={onCreate}>
-              <PlusIcon /> 新建
-            </Button>
-          )}
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[560px]">
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-2">
+          {fields.map((field) => (
+            <div key={field.key} className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium">
+                {field.label}
+                {field.required && <span className="ml-1 text-red-500">*</span>}
+              </label>
+              {renderField(field)}
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              {columns.map((col) => (
-                <TableHead key={col.key}>{col.header}</TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {data.length === 0 ? (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="text-muted-foreground py-12 text-center"
-                >
-                  暂无数据
-                </TableCell>
-              </TableRow>
-            ) : (
-              data.map((row, i) => (
-                <TableRow key={i}>
-                  {columns.map((col) => (
-                    <TableCell key={col.key}>
-                      {col.render
-                        ? col.render(row)
-                        : String(row[col.key] ?? "")}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={() => onOpenChange?.(false)}>
+            取消
+          </Button>
+          <Button onClick={() => onSubmit?.(values)}>确定</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/**
+ * 增删改查标准页 —— 搜索 + 表格 + 新增/编辑弹窗 一体。
+ *
+ * @component CrudPage
+ * @category business/crud
+ * @since 0.2.0
+ */
+function CrudPage({
+  title,
+  filterFields,
+  columns,
+  dataSource,
+  rowKey = "id",
+  loading = false,
+  pagination,
+  formFields,
+  formTitle = "表单",
+  dialogOpen,
+  onDialogOpenChange,
+  editingRecord,
+  actions,
+  onRefresh,
+  onAdd,
+  onEdit,
+  onSearch,
+  onDelete,
+  onSubmit,
+  className,
+}: CrudPageProps) {
+  // Enrich columns with operation column
+  const enrichedColumns = React.useMemo(() => {
+    if (!onDelete && !onSubmit && !onEdit) return columns;
+    return [
+      ...columns,
+      {
+        key: "_operations",
+        title: "操作",
+        width: 120,
+        align: "center" as const,
+        render: (_: unknown, record: Record<string, unknown>) => (
+          <div className="flex items-center justify-center gap-1">
+            {(onSubmit || onEdit) && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  // Prefer onEdit (sets editingRecord) over raw dialog open.
+                  if (onEdit) onEdit(record);
+                  else onDialogOpenChange?.(true);
+                }}
+              >
+                编辑
+              </Button>
             )}
-          </TableBody>
-        </Table>
+            {onDelete && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-destructive"
+                onClick={() => onDelete(record)}
+              >
+                删除
+              </Button>
+            )}
+          </div>
+        ),
+      },
+    ];
+  }, [columns, onDelete, onSubmit, onEdit, onDialogOpenChange]);
+
+  // Built-in standard actions (refresh + add) so each page doesn't hand-write
+  // the same icon/size/variant. Custom `actions` render alongside.
+  const builtinActions = (
+    <>
+      {onRefresh && (
+        <Button variant="outline" size="sm" onClick={onRefresh}>
+          刷新
+        </Button>
+      )}
+      {onAdd && (
+        <Button size="sm" onClick={onAdd}>
+          新增
+        </Button>
+      )}
+    </>
+  );
+
+  return (
+    <PageContainer data-slot="crud-page" className={className}>
+      <PageHeader title={title} />
+
+      <div className="mb-4">
+        <FilterBar fields={filterFields} onSearch={onSearch} />
       </div>
-      {total > 0 && onPageChange && (
-        <div className="flex items-center justify-between">
-          <p className="text-muted-foreground text-sm">共 {total} 条</p>
-          <Pagination
-            current={page}
-            total={Math.ceil(total / 10)}
-            onPageChange={onPageChange}
-          />
+
+      {(actions || onRefresh || onAdd) && (
+        <div className="mb-3 flex items-center gap-2">
+          {builtinActions}
+          {actions}
         </div>
       )}
-    </div>
+
+      <SearchTable
+        columns={enrichedColumns}
+        dataSource={dataSource}
+        rowKey={rowKey}
+        loading={loading}
+        pagination={pagination}
+      />
+
+      {formFields && (
+        <FormDialog
+          key={
+            editingRecord
+              ? `edit-${String(editingRecord[rowKey] ?? "")}`
+              : `new-${dialogOpen ? "1" : "0"}`
+          }
+          open={dialogOpen}
+          onOpenChange={onDialogOpenChange}
+          title={formTitle}
+          fields={formFields}
+          record={editingRecord}
+          onSubmit={onSubmit}
+        />
+      )}
+    </PageContainer>
   );
 }
 
 export { CrudPage };
-export type { CrudPageProps };
+export type { CrudPageProps, FormField };

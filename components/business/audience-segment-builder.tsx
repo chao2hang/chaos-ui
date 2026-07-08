@@ -11,8 +11,8 @@ import {
 } from "@/components/ui";
 import { Badge } from "@/components/ui";
 import { FilterBuilder } from "@/components/business/filter-builder";
-import { Transfer } from "@/components/business/transfer";
-import type { TransferItem } from "@/components/business/transfer";
+import { Transfer } from "@/components/ui/transfer";
+import type { TransferItem } from "@/components/ui/transfer";
 import { cn } from "@/lib/utils";
 
 export interface AudienceSegmentBuilderProps {

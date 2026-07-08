@@ -1,164 +1,81 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+"use client";
 
+import * as React from "react";
+import { CheckCircle2, XCircle, AlertTriangle, Lock, SearchX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const resultVariants = cva(
-  "flex flex-col items-center justify-center text-center py-12 px-6",
-  {
-    variants: {
-      status: {
-        success: "",
-        error: "",
-        info: "",
-        warning: "",
-      },
-      size: {
-        default: "max-w-md",
-        sm: "max-w-sm",
-        lg: "max-w-lg",
-      },
-    },
-    defaultVariants: { size: "default" },
-  },
-);
+/**
+ * @component Result
+ * @category ui/feedback
+ * @since 0.5.0
+ * @description Result page component for success/error/403/404/500 states.
+ * / 结果页组件，统一异常和完成状态展示
+ * @keywords result, success, error, 404, 403, 500, feedback
+ * @example
+ * <Result status="success" title="提交成功" />
+ * <Result status="404" title="页面不存在" extra={<Button>返回首页</Button>} />
+ */
 
-interface ResultProps
-  extends React.ComponentProps<"div">, VariantProps<typeof resultVariants> {
-  /** Status determines default icon and color */
-  status?: "success" | "error" | "info" | "warning";
-  /** Title text */
-  title?: React.ReactNode;
-  /** Subtitle / description */
-  subtitle?: React.ReactNode;
-  /** Custom icon override */
-  icon?: React.ReactNode;
-  /** Extra content (e.g., action buttons) */
+type ResultStatus = "success" | "error" | "warning" | "info" | "403" | "404" | "500";
+
+const statusConfig: Record<ResultStatus, { icon: React.ElementType; color: string }> = {
+  success: { icon: CheckCircle2, color: "text-green-500" },
+  error: { icon: XCircle, color: "text-red-500" },
+  warning: { icon: AlertTriangle, color: "text-amber-500" },
+  info: { icon: CheckCircle2, color: "text-blue-500" },
+  403: { icon: Lock, color: "text-red-500" },
+  404: { icon: SearchX, color: "text-muted-foreground" },
+  500: { icon: XCircle, color: "text-red-500" },
+};
+
+interface ResultProps {
+  /** Result status / 结果状态 */
+  status?: ResultStatus;
+  /** Title text / 标题 */
+  title?: string;
+  /** Subtitle / 描述 */
+  subtitle?: string;
+  /** Extra content (usually action buttons) / 额外内容（通常为操作按钮） */
   extra?: React.ReactNode;
+  /** Custom icon / 自定义图标 */
+  icon?: React.ReactNode;
+  /** className */
+  className?: string;
 }
 
 function Result({
-  className,
   status = "info",
-  size,
   title,
   subtitle,
-  icon,
   extra,
-  children,
-  ...props
+  icon: iconProp,
+  className,
 }: ResultProps) {
-  const statusStyles: Record<string, string> = {
-    success: "text-success",
-    error: "text-destructive",
-    info: "text-primary",
-    warning: "text-warning",
-  };
-
-  const defaultIcons: Record<string, React.ReactNode> = {
-    success: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
-    error: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="15" x2="9" y1="9" y2="15" />
-        <line x1="9" x2="15" y1="9" y2="15" />
-      </svg>
-    ),
-    info: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" x2="12" y1="16" y2="12" />
-        <line x1="12" x2="12.01" y1="8" y2="8" />
-      </svg>
-    ),
-    warning: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-        <line x1="12" x2="12" y1="9" y2="13" />
-        <line x1="12" x2="12.01" y1="17" y2="17" />
-      </svg>
-    ),
-  };
+  const config = statusConfig[status] ?? statusConfig.info;
+  const Icon = config.icon;
 
   return (
     <div
       data-slot="result"
-      className={cn(resultVariants({ status, size }), className)}
-      role="status"
-      {...props}
+      className={cn(
+        "flex min-h-[400px] flex-col items-center justify-center text-center",
+        className,
+      )}
     >
-      <div className={cn("mb-6", statusStyles[status])}>
-        {icon ?? defaultIcons[status]}
+      <div className="mb-4">
+        {iconProp ?? <Icon className={cn("size-16", config.color)} />}
       </div>
-      {title && (
-        <div
-          data-slot="result-title"
-          className="text-foreground text-xl font-semibold"
-        >
-          {title}
-        </div>
+      {typeof status === "string" && /^\d{3}$/.test(status) && (
+        <h1 className="mb-2 text-6xl font-bold text-muted-foreground/30">{status}</h1>
       )}
+      {title && <h2 className="mb-2 text-xl font-semibold">{title}</h2>}
       {subtitle && (
-        <div
-          data-slot="result-subtitle"
-          className="text-muted-foreground mt-2 text-sm"
-        >
-          {subtitle}
-        </div>
+        <p className="mb-6 max-w-md text-sm text-muted-foreground">{subtitle}</p>
       )}
-      {extra && (
-        <div data-slot="result-extra" className="mt-6 flex gap-3">
-          {extra}
-        </div>
-      )}
-      {children}
+      {extra && <div className="flex items-center gap-3">{extra}</div>}
     </div>
   );
 }
 
-export { Result, resultVariants };
+export { Result };
+export type { ResultProps, ResultStatus };

@@ -1,5 +1,5 @@
 "use client";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/ui/theme-provider";
 import { MoonIcon, SunIcon, MonitorIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui";
 import {

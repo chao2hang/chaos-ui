@@ -1,2 +1,74 @@
 "use client";
-export * from "../../../../../components/mobile/mobile-checkout";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ChevronLeftIcon } from "@/components/ui/icons";
+
+export interface MobileCheckoutProps {
+  /** Total amount string. */
+  total: string;
+  /** Item count. */
+  itemCount?: number;
+  /** Pay button label. */
+  payLabel?: string;
+  /** Whether payment is in progress. */
+  isLoading?: boolean;
+  /** Called when user taps pay. */
+  onPay?: () => void;
+  /** Called when user taps back. */
+  onBack?: () => void;
+  /** Additional class names. */
+  className?: string;
+}
+
+/**
+ * @component MobileCheckout
+ * @category mobile/payment
+ * @since 1.1.0
+ * @description Mobile-optimized checkout page shell with back button, item count, total, and pay action / 移动端收银页面，含返回、商品数、合计、支付按钮
+ * @keywords mobile, checkout, pay, cart, purchase
+ * @example
+ * <MobileCheckout total="¥ 299.00" itemCount={3} onPay={handlePay} onBack={goBack} />
+ */
+function MobileCheckout({
+  total,
+  itemCount,
+  payLabel = "Pay Now",
+  isLoading,
+  onPay,
+  onBack,
+  className,
+}: MobileCheckoutProps) {
+  return (
+    <div data-slot="mobile-checkout" className={cn("flex flex-col h-full", className)}>
+      {/* Header */}
+      <div className="flex items-center gap-3 border-b px-4 py-3">
+        {onBack && (
+          <Button variant="ghost" size="icon-sm" onClick={onBack} aria-label="Back">
+            <ChevronLeftIcon />
+          </Button>
+        )}
+        <h1 className="text-lg font-semibold">Checkout</h1>
+        {itemCount !== undefined && (
+          <span className="text-sm text-muted-foreground">{itemCount} items</span>
+        )}
+      </div>
+
+      {/* Content area — consumer fills via children */}
+      <div className="flex-1 overflow-auto" />
+
+      {/* Fixed bottom bar */}
+      <div className="sticky bottom-0 border-t bg-background px-4 py-3 safe-area-inset-bottom">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm text-muted-foreground">Total</span>
+          <span className="text-xl font-bold">{total}</span>
+        </div>
+        <Button className="w-full" size="lg" onClick={onPay} disabled={isLoading}>
+          {isLoading ? "Processing..." : payLabel}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+export { MobileCheckout };

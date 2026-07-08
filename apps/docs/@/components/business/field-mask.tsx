@@ -1,76 +1,92 @@
-"use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+"use client"
 
-export type MaskType = "phone" | "currency" | "number" | "idcard" | "custom";
+import * as React from "react"
+import { EyeIcon, EyeOffIcon, CopyIcon } from "@/components/ui"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 
-interface FieldMaskProps extends React.ComponentProps<"input"> {
-  mask?: MaskType;
-  customPattern?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+type MaskRule = "phone" | "idcard" | "bankcard" | "email" | "name" | "custom"
+
+interface FieldMaskProps {
+  /** 原始值 */
+  value: string
+  /** 脱敏规则 */
+  mask?: MaskRule | ((val: string) => string)
+  /** 允许查看明文（管理员等） */
+  canView?: boolean
+  className?: string
 }
 
-const maskFormatters: Record<MaskType, (value: string) => string> = {
-  phone: (v) => {
-    const digits = v.replace(/\D/g, "").slice(0, 11);
-    if (digits.length <= 3) return digits;
-    if (digits.length <= 7) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-    return `${digits.slice(0, 3)} ${digits.slice(3, 7)} ${digits.slice(7)}`;
+const DEFAULT_MASKS: Record<MaskRule, (val: string) => string> = {
+  phone: (v) => (v.length >= 11 ? `${v.slice(0, 3)}****${v.slice(-4)}` : v),
+  idcard: (v) =>
+    v.length >= 18 ? `${v.slice(0, 4)}**********${v.slice(-4)}` : v,
+  bankcard: (v) =>
+    v.length >= 16 ? `${v.slice(0, 4)} **** **** ${v.slice(-4)}` : v,
+  email: (v) => {
+    const atPos = v.indexOf("@")
+    if (atPos <= 1) return v
+    return `${v[0]}***${v.slice(atPos)}`
   },
-  currency: (v) => {
-    const digits = v.replace(/[^\d.]/g, "");
-    const parts = digits.split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".").slice(0, 20);
-  },
-  number: (v) => v.replace(/\D/g, ""),
-  idcard: (v) => {
-    const digits = v.replace(/[^\dXx]/g, "").slice(0, 18);
-    return digits.toUpperCase();
+  name: (v) => {
+    if (v.length <= 1) return v
+    if (v.length === 2) return `${v[0]}*`
+    return `${v[0]}${"*".repeat(v.length - 2)}${v[v.length - 1]}`
   },
   custom: (v) => v,
-};
-
-function FieldMask({
-  mask = "phone",
-  customPattern,
-  value: propValue,
-  onChange,
-  className,
-  ...props
-}: FieldMaskProps) {
-  const [internalValue, setInternalValue] = React.useState(propValue ?? "");
-
-  React.useEffect(() => {
-    if (propValue !== undefined) setInternalValue(propValue);
-  }, [propValue]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatter = maskFormatters[mask];
-    const formatted = formatter(e.target.value);
-    setInternalValue(formatted);
-    const syntheticEvent = {
-      ...e,
-      target: { ...e.target, value: formatted },
-    } as React.ChangeEvent<HTMLInputElement>;
-    onChange?.(syntheticEvent);
-  };
-
-  return (
-    <Input
-      data-slot="field-mask"
-      value={internalValue}
-      onChange={handleChange}
-      className={cn("", className)}
-      inputMode={
-        mask === "number" || mask === "currency" ? "numeric" : undefined
-      }
-      {...(props as React.ComponentProps<"input">)}
-    />
-  );
 }
 
-export { FieldMask };
-export type { FieldMaskProps, MaskType };
+/**
+ * 字段脱敏 —— 显示态/明文切换 + 复制还原。
+ * 场景: 客户手机号 / 银行卡号 / 身份证号。
+ *
+ * @component FieldMask
+ * @category business/permission
+ * @since 0.2.0
+ */
+function FieldMask({
+  value,
+  mask = "phone",
+  canView = false,
+  className,
+}: FieldMaskProps) {
+  const [visible, setVisible] = React.useState(false)
+  const [, copy] = useCopyToClipboard()
+
+  const maskFn = typeof mask === "function" ? mask : DEFAULT_MASKS[mask]
+  const display = canView || visible ? value : maskFn(value)
+
+  return (
+    <span data-slot="field-mask" className={cn("inline-flex items-center gap-1.5 font-mono text-sm", className)}>
+      <span className="select-none">{display}</span>
+      {!canView && (
+        <Button
+          variant="ghost"
+          size="icon-xs"
+          className="size-5"
+          onClick={() => setVisible(!visible)}
+          title={visible ? "隐藏" : "查看"}
+        >
+          {visible ? (
+            <EyeOffIcon className="size-3" />
+          ) : (
+            <EyeIcon className="size-3" />
+          )}
+        </Button>
+      )}
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        className="size-5"
+        onClick={() => copy(value)}
+        title="复制"
+      >
+        <CopyIcon className="size-3" />
+      </Button>
+    </span>
+  )
+}
+
+export { FieldMask }
+export type { FieldMaskProps, MaskRule }

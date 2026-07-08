@@ -1,139 +1,157 @@
 "use client";
+
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { SearchIcon, StarIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Label } from "@/components/ui";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { SearchIcon, RotateCcwIcon, ChevronDownIcon } from "lucide-react";
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
-export interface SearchField {
+export interface AdvancedSearchField {
   key: string;
   label: string;
-  type?: "text" | "select" | "number" | "date";
-  options?: { label: string; value: string }[];
-  placeholder?: string;
+  options: Array<{ value: string; label: string }>;
 }
 
-interface AdvancedSearchProps extends React.HTMLAttributes<HTMLDivElement> {
-  fields: SearchField[];
-  onSearch?: (values: Record<string, string>) => void;
-  onReset?: () => void;
-  loading?: boolean;
-  className?: string;
-  compact?: boolean;
+export type AdvancedSearchValues = Record<string, string>;
+
+export interface SavedSearch {
+  id: string;
+  label: string;
+  values: AdvancedSearchValues;
 }
 
-function AdvancedSearch({
+export interface AdvancedSearchProps extends Omit<
+  React.ComponentProps<"form">,
+  "onSubmit"
+> {
+  fields: AdvancedSearchField[];
+  savedSearches?: SavedSearch[];
+  defaultValues?: AdvancedSearchValues;
+  onSearch?: (values: AdvancedSearchValues) => void;
+  onSaveSearch?: (values: AdvancedSearchValues) => void;
+}
+
+/**
+ * @component AdvancedSearch
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-field search form with saved search support and query filtering / 支持多字段过滤和保存搜索条件的高级搜索表单
+ * @keywords search, filter, saved-search, query, advanced
+ * @example
+ * <AdvancedSearch fields={[{ key: "status", label: "Status", options: [{ value: "active", label: "Active" }] }]} />
+ */
+export function AdvancedSearch({
   fields,
+  savedSearches = [],
+  defaultValues = {},
   onSearch,
-  onReset,
-  loading = false,
+  onSaveSearch,
   className,
-  compact = false,
   ...props
 }: AdvancedSearchProps) {
-  const [values, setValues] = React.useState<Record<string, string>>({});
-  const [expanded, setExpanded] = React.useState(!compact);
+  const { t } = useTranslation("data");
+  const [values, setValues] =
+    React.useState<AdvancedSearchValues>(defaultValues);
 
-  const handleChange = (key: string, value: string) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const handleSearch = () => {
-    onSearch?.(values);
-  };
-
-  const handleReset = () => {
-    setValues({});
-    onReset?.();
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") handleSearch();
+  const setValue = (key: string, value: string) => {
+    setValues((current) => ({ ...current, [key]: value }));
   };
 
   return (
-    <div
+    <form
       data-slot="advanced-search"
-      className={cn("space-y-3", className)}
+      className={cn("space-y-4 rounded-lg border p-4", className)}
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSearch?.(values);
+      }}
       {...props}
     >
-      <div
-        className="grid gap-3"
-        style={{ gridTemplateColumns: `repeat(auto-fill, minmax(200px, 1fr))` }}
-      >
-        {fields.slice(0, expanded ? fields.length : 3).map((field) => (
-          <div key={field.key} className="flex flex-col gap-1.5">
-            <label className="text-muted-foreground text-xs font-medium">
-              {field.label}
-            </label>
-            {field.type === "select" && field.options ? (
-              <Select
-                value={values[field.key] ?? ""}
-                onValueChange={(v) => handleChange(field.key, v)}
-              >
-                <SelectTrigger className="h-9">
-                  <SelectValue placeholder={field.placeholder ?? field.label} />
-                </SelectTrigger>
-                <SelectContent>
-                  {field.options.map((opt) => (
-                    <SelectItem key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            ) : (
-              <Input
-                type={
-                  field.type === "number"
-                    ? "number"
-                    : field.type === "date"
-                      ? "date"
-                      : "text"
-                }
-                placeholder={field.placeholder ?? field.label}
-                value={values[field.key] ?? ""}
-                onChange={(e) => handleChange(field.key, e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="h-9"
-              />
-            )}
+      <div className="flex flex-col gap-3 md:flex-row">
+        <div className="flex-1 space-y-1.5">
+          <Label htmlFor="advanced-search-query">
+            {t("advancedSearch.label")}
+          </Label>
+          <div className="relative">
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2 size-4 -translate-y-1/2" />
+            <Input
+              id="advanced-search-query"
+              className="pl-8"
+              placeholder={t("advancedSearch.placeholder")}
+              value={values.query ?? ""}
+              onChange={(event) => setValue("query", event.target.value)}
+            />
+          </div>
+        </div>
+        {fields.map((field) => (
+          <div key={field.key} className="min-w-40 space-y-1.5">
+            <Label>{field.label}</Label>
+            <Select
+              value={values[field.key] ?? ""}
+              onValueChange={(value) => {
+                if (value) setValue(field.key, value);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder={t("advancedSearch.any")} />
+              </SelectTrigger>
+              <SelectContent>
+                {field.options.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-2">
-        <Button size="sm" onClick={handleSearch} disabled={loading}>
-          <SearchIcon />
-          搜索
-        </Button>
-        <Button size="sm" variant="outline" onClick={handleReset}>
-          <RotateCcwIcon />
-          重置
-        </Button>
-        {compact && fields.length > 3 && (
+      {savedSearches.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-muted-foreground text-xs">
+            {t("advancedSearch.saved")}
+          </span>
+          {savedSearches.map((saved) => (
+            <Button
+              key={saved.id}
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="focus-visible:ring-ring/50 h-auto rounded-full p-0 outline-none focus-visible:ring-3"
+              onClick={() => setValues(saved.values)}
+            >
+              <Badge variant="outline">{saved.label}</Badge>
+            </Button>
+          ))}
+        </div>
+      )}
+      <div className="flex justify-end gap-2">
+        {onSaveSearch && (
           <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => setExpanded(!expanded)}
-            className="ml-auto"
+            type="button"
+            variant="outline"
+            onClick={() => onSaveSearch(values)}
           >
-            {expanded ? "收起" : `展开 (${fields.length - 3})`}
-            <ChevronDownIcon
-              className={cn("transition-transform", expanded && "rotate-180")}
-            />
+            <StarIcon />
+            {t("advancedSearch.saveFilter")}
           </Button>
         )}
+        <Button type="submit">
+          <SearchIcon />
+          {t("advancedSearch.label")}
+        </Button>
       </div>
-    </div>
+    </form>
   );
 }
-
-export { AdvancedSearch };
-export type { AdvancedSearchProps };

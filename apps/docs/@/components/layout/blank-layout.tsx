@@ -1,11 +1,22 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 interface BlankLayoutProps extends React.ComponentProps<"div"> {
-  centered?: boolean
-  padded?: boolean
+  centered?: boolean;
+  padded?: boolean;
 }
 
+/**
+ * @component BlankLayout
+ * @category layout/admin
+ * @since 0.2.0
+ * @description Minimal blank layout with optional centering and padding, ideal for login pages or standalone forms / 极简空白布局，支持可选居中和内边距，适用于登录页或独立表单
+ * @keywords blank, layout, centered, padded, minimal, login
+ * @example
+ * <BlankLayout centered padded>
+ *   <LoginForm />
+ * </BlankLayout>
+ */
 export function BlankLayout({
   centered = false,
   padded = true,
@@ -17,14 +28,14 @@ export function BlankLayout({
     <div
       data-slot="blank-layout"
       className={cn(
-        "min-h-screen bg-background text-foreground",
+        "bg-background min-h-screen",
         padded && "p-4",
         centered && "flex items-center justify-center",
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </div>
-  )
+  );
 }

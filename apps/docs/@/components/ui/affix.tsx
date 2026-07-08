@@ -1,82 +1,142 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const affixVariants = cva("fixed z-40", {
-  variants: {
-    position: {
-      top: "top-0 inset-x-0",
-      bottom: "bottom-0 inset-x-0",
-      "top-start": "top-0 left-0",
-      "top-end": "top-0 right-0",
-      "bottom-start": "bottom-0 left-0",
-      "bottom-end": "bottom-0 right-0",
-    },
-  },
-  defaultVariants: { position: "bottom-end" },
-});
+/**
+ * @component Affix
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 钉住元素组件 / Affix component to pin elements on scroll
+ * @keywords affix, sticky, pin, scroll, fixed
+ * @example
+ * <Affix offsetTop={64}>
+ *   <Toolbar />
+ * </Affix>
+ */
 
-interface AffixProps
-  extends React.ComponentProps<"div">, VariantProps<typeof affixVariants> {
-  /** Offset from the target position in pixels */
-  offset?: number;
-  /** Target container ref to observe scroll */
-  target?: () => HTMLElement | null | Window;
+interface AffixProps {
+  /** Top offset in pixels / 距离顶部的偏移量 */
+  offsetTop?: number;
+  /** Bottom offset in pixels / 距离底部的偏移量 */
+  offsetBottom?: number;
+  /** Children content / 子内容 */
+  children: React.ReactNode;
+  /** Whether affix is active / 是否激活 */
+  disabled?: boolean;
+  /** Callback when affix state changes / 状态变更回调 */
+  onChange?: (affixed: boolean) => void;
+  /** Target container to listen scroll (default: window) / 监听滚动的容器 */
+  target?: () => HTMLElement | Window;
+  /** className for affix state / 固定状态类名 */
+  className?: string;
+  /** className for wrapper / 包裹器类名 */
+  wrapperClassName?: string;
 }
 
 function Affix({
-  className,
-  position = "bottom-end",
-  offset = 0,
-  target,
+  offsetTop,
+  offsetBottom,
   children,
-  ...props
+  disabled = false,
+  onChange,
+  target,
+  className,
+  wrapperClassName,
 }: AffixProps) {
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [affixed, setAffixed] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const [placeholderStyle, setPlaceholderStyle] =
+    React.useState<React.CSSProperties>({});
+  // Hold latest target fn in a ref so the scroll effect doesn't re-bind every
+  // render (target is a function whose identity changes inline).
+  const targetRef = React.useRef(target);
+  targetRef.current = target;
+
+  const handleScroll = React.useCallback(() => {
+    if (!wrapperRef.current || disabled) return;
+
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const targetEl = targetRef.current?.() ?? window;
+    let isAffixed = false;
+
+    if (offsetTop !== undefined) {
+      const targetRect =
+        targetEl === window
+          ? { top: 0, bottom: window.innerHeight }
+          : (targetEl as HTMLElement).getBoundingClientRect();
+
+      isAffixed = rect.top - targetRect.top < offsetTop;
+    } else if (offsetBottom !== undefined) {
+      const targetRect =
+        targetEl === window
+          ? { bottom: window.innerHeight }
+          : (targetEl as HTMLElement).getBoundingClientRect();
+
+      isAffixed = targetRect.bottom - rect.bottom < offsetBottom;
+    }
+
+    if (isAffixed !== affixed) {
+      setAffixed(isAffixed);
+      onChange?.(isAffixed);
+      if (isAffixed) {
+        // Capture the original left so the fixed element stays at its
+        // horizontal position (position:fixed without left jumps to viewport 0).
+        setPlaceholderStyle({
+          width: rect.width,
+          height: rect.height,
+          left: rect.left,
+        });
+      } else {
+        setPlaceholderStyle({});
+      }
+    }
+  }, [affixed, disabled, offsetTop, offsetBottom, onChange]);
 
   React.useEffect(() => {
-    const container = target?.() ?? window;
-    const el = ref.current;
-    if (!el) return;
-
-    const handleScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const containerHeight =
-        container instanceof Window
-          ? window.innerHeight
-          : (container as HTMLElement).getBoundingClientRect().height;
-
-      if (position?.startsWith("top")) {
-        setAffixed(rect.top <= offset);
-      } else {
-        setAffixed(rect.bottom >= containerHeight - offset);
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
+    const targetEl = targetRef.current?.() ?? window;
+    targetEl.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     handleScroll();
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [position, offset, target]);
+
+    return () => {
+      targetEl.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [handleScroll]);
+
+  const affixStyle: React.CSSProperties = affixed
+    ? offsetTop !== undefined
+      ? {
+          position: "fixed",
+          top: offsetTop,
+          left: placeholderStyle.left,
+          width: placeholderStyle.width,
+          zIndex: 50,
+        }
+      : {
+          position: "fixed",
+          bottom: offsetBottom,
+          left: placeholderStyle.left,
+          width: placeholderStyle.width,
+          zIndex: 50,
+        }
+    : {};
 
   return (
     <div
-      ref={ref}
+      ref={wrapperRef}
+      className={wrapperClassName}
+      style={placeholderStyle}
       data-slot="affix"
-      className={cn(
-        affixVariants({ position }),
-        affixed && "shadow-lg",
-        className,
-      )}
-      style={{ [position?.startsWith("top") ? "top" : "bottom"]: offset }}
-      {...props}
     >
-      {children}
+      <div className={cn(affixed && className)} style={affixStyle}>
+        {children}
+      </div>
     </div>
   );
 }
 
-export { Affix, affixVariants };
+export { Affix };
+export type { AffixProps };

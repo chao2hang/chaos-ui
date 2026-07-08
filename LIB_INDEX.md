@@ -1,28 +1,35 @@
 # Chaos UI Lib Index
 
-> Auto-generated lib utilities catalog. Last updated: 2026-06-30.
+> Auto-generated lib utilities catalog. Last updated: 2026-07-08.
 
-| Module      | File               | Exports                                                                                                                                                                                                            |
-| ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| api-client  | lib/api-client.ts  | ApiError, ApiClientConfig, ApiClient, getApiClient                                                                                                                                                                 |
-| array       | lib/array.ts       | groupBy, sortBy, unique, uniqueBy, chunk, paginate, countBy, shuffle                                                                                                                                               |
-| color       | lib/color.ts       | hexToRgb, rgbToHex, rgbToHsl, hslToRgb, luminance, contrastRatio, meetsWCAGAA, lighten, darken, generatePalette                                                                                                    |
-| cookie      | lib/cookie.ts      | cookie                                                                                                                                                                                                             |
-| download    | lib/download.ts    | download                                                                                                                                                                                                           |
-| event-bus   | lib/event-bus.ts   | eventBus                                                                                                                                                                                                           |
-| format      | lib/format.ts      | setFormatLocale, getFormatLocale, formatDate, formatTime, formatDateTime, formatRelativeTime, formatNumber, formatCompactNumber, formatPercent, formatCurrency, formatFileSize, formatDuration, truncate, initials |
-| index       | lib/index.ts       |                                                                                                                                                                                                                    |
-| logger      | lib/logger.ts      | LogLevel, logger                                                                                                                                                                                                   |
-| message     | lib/message.ts     | MessageType, MessagePlacement, MessageOptions, MessageGlobalConfig                                                                                                                                                 |
-| modal       | lib/modal.ts       | ModalConfirmOptions, ModalAlertOptions, Modal                                                                                                                                                                      |
-| permissions | lib/permissions.ts | Role, ROLE_RANK, Permission, hasPermission, hasAnyPermission, hasAllPermissions, isAtLeast, canAccess                                                                                                              |
-| random      | lib/random.ts      | randomInt, randomFloat, uuid, uniqueSequence, randomPick, randomSample, randomString, randomColor                                                                                                                  |
-| storage     | lib/storage.ts     | storage, sessionStorage                                                                                                                                                                                            |
-| tree        | lib/tree.ts        | arrayToTree, treeToArray, findInTree, getPathById, getLeafNodes                                                                                                                                                    |
-| url         | lib/url.ts         | url                                                                                                                                                                                                                |
-| utils       | lib/utils.ts       | cn                                                                                                                                                                                                                 |
-| validation  | lib/validation.ts  | validators                                                                                                                                                                                                         |
+| Module | Path |
+| ------ | ---- |
+| api-client        | lib/api-client.ts |
+| array             | lib/array.ts |
+| color             | lib/color.ts |
+| cookie            | lib/cookie.ts |
+| crypto            | lib/crypto.ts |
+| date              | lib/date.ts |
+| download          | lib/download.ts |
+| event-bus         | lib/event-bus.ts |
+| excel             | lib/excel.ts |
+| format            | lib/format.ts |
+| logger            | lib/logger.ts |
+| message           | lib/message.ts |
+| modal             | lib/modal.ts |
+| pdf               | lib/pdf.ts |
+| permissions       | lib/permissions.ts |
+| random            | lib/random.ts |
+| security          | lib/security.ts |
+| storage           | lib/storage.ts |
+| telemetry         | lib/telemetry.ts |
+| tree              | lib/tree.ts |
+| url               | lib/url.ts |
+| utils             | lib/utils.ts |
+| validation        | lib/validation.ts |
+| worker            | lib/worker.ts |
+| i18n              | lib/i18n/ |
 
 ---
 
-**Total**: 18 modules
+**Total**: 25 modules

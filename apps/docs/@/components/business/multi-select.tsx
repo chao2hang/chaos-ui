@@ -1,15 +1,17 @@
 "use client";
 import * as React from "react";
-import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  CheckIcon,
+  ChevronDownIcon,
+  SearchIcon,
+  XIcon,
+} from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
 
 export interface MultiSelectOption {
   value: string;
@@ -33,44 +35,48 @@ interface MultiSelectProps {
   clearable?: boolean;
 }
 
+/**
+ * @component MultiSelect
+ * @category business/picker
+ * @since 0.2.0
+ * @description Multi-select dropdown with search, grouped options, badge overflow, and clearable selection / 多选下拉组件，支持搜索、分组选项、标记溢出和可清除选择
+ * @keywords multi, select, dropdown, search, picker, tags
+ * @example
+ * <MultiSelect options={[{ value: "1", label: "Option 1" }]} value={selected} onChange={setSelected} />
+ */
 export function MultiSelect({
   options,
   value = [],
   onChange,
-  placeholder = "Select...",
-  searchPlaceholder = "Search...",
-  emptyText = "No results found",
+  placeholder,
+  searchPlaceholder,
+  emptyText,
   disabled,
   className,
   maxCount = 3,
   maxSelected,
   clearable = true,
 }: MultiSelectProps) {
+  const { t } = useTranslation("ui");
   const [open, setOpen] = React.useState(false);
-  const valueSet = React.useMemo(() => new Set(value), [value]);
-  const optionMap = React.useMemo(() => {
-    const map = new Map<string, MultiSelectOption>();
-    for (const o of options) map.set(o.value, o);
-    return map;
-  }, [options]);
-
-  const toggle = React.useCallback(
-    (val: string) => {
-      if (valueSet.has(val)) {
-        onChange?.(value.filter((v) => v !== val));
-      } else {
-        if (maxSelected && value.length >= maxSelected) return;
-        onChange?.([...value, val]);
-      }
-    },
-    [value, valueSet, maxSelected, onChange],
-  );
+  const resolvedPlaceholder = placeholder ?? t("multiSelect.placeholder");
+  const resolvedSearchPlaceholder =
+    searchPlaceholder ?? t("multiSelect.searchPlaceholder");
+  const resolvedEmptyText = emptyText ?? t("multiSelect.emptyText");
+  const toggle = (val: string) => {
+    if (value.includes(val)) {
+      onChange?.(value.filter((v) => v !== val));
+    } else {
+      if (maxSelected && value.length >= maxSelected) return;
+      onChange?.([...value, val]);
+    }
+  };
 
   const visibleValues = value.slice(0, maxCount);
   const overflow = value.length - maxCount;
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover data-slot="multi-select" open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
           <Button
@@ -86,34 +92,36 @@ export function MultiSelect({
       >
         <div className="flex flex-1 flex-wrap items-center gap-1 overflow-hidden">
           {value.length === 0 ? (
-            <span>{placeholder}</span>
+            <span>{resolvedPlaceholder}</span>
           ) : (
             <>
               {visibleValues.map((v) => {
-                const opt = optionMap.get(v);
+                const opt = options.find((o) => o.value === v);
                 return (
                   <Badge
                     key={v}
                     variant="secondary"
-                    className="gap-1 pr-0.5 text-xs"
+                    className="h-5 gap-0.5 pr-0.5 text-xs"
                   >
-                    {opt?.label ?? v}
-                    <span
-                      role="button"
-                      aria-label="Remove"
+                    <span className="max-w-[80px] truncate">
+                      {opt?.label ?? v}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label={t("multiSelect.remove")}
                       onClick={(e) => {
                         e.stopPropagation();
                         toggle(v);
                       }}
-                      className="hover:bg-muted ml-0.5 rounded-sm p-0.5"
+                      className="hover:bg-muted inline-flex size-3.5 shrink-0 items-center justify-center rounded-full opacity-60 hover:opacity-100"
                     >
-                      <XIcon className="size-3" />
-                    </span>
+                      <XIcon className="size-2.5" />
+                    </button>
                   </Badge>
                 );
               })}
               {overflow > 0 && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="h-5 text-xs">
                   +{overflow}
                 </Badge>
               )}
@@ -122,33 +130,32 @@ export function MultiSelect({
         </div>
         <div className="flex items-center gap-1">
           {clearable && value.length > 0 && (
-            <span
-              role="button"
-              aria-label="Clear all"
+            <button
+              type="button"
+              aria-label={t("multiSelect.clearAll")}
               onClick={(e) => {
                 e.stopPropagation();
                 onChange?.([]);
               }}
-              className="hover:bg-muted rounded p-0.5"
+              className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded-full opacity-50 hover:opacity-100"
             >
-              <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
-            </span>
+              <XIcon className="size-3" />
+            </button>
           )}
           <ChevronDownIcon className="size-4 opacity-50" />
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-[var(--anchor-width)] p-0" align="start">
-        {open && (
+      {open && (
+        <PopoverContent className="w-[var(--anchor-width)] p-0" align="start">
           <MultiSelectPanel
             options={options}
             value={value}
-            valueSet={valueSet}
             onToggle={toggle}
-            searchPlaceholder={searchPlaceholder}
-            emptyText={emptyText}
+            searchPlaceholder={resolvedSearchPlaceholder}
+            emptyText={resolvedEmptyText}
           />
-        )}
-      </PopoverContent>
+        </PopoverContent>
+      )}
     </Popover>
   );
 }
@@ -156,14 +163,12 @@ export function MultiSelect({
 function MultiSelectPanel({
   options,
   value,
-  valueSet,
   onToggle,
   searchPlaceholder,
   emptyText,
 }: {
   options: MultiSelectOption[];
   value: string[];
-  valueSet: Set<string>;
   onToggle: (val: string) => void;
   searchPlaceholder: string;
   emptyText: string;
@@ -222,15 +227,17 @@ function MultiSelectPanel({
               </div>
             )}
             {items.map((opt) => {
-              const isSelected = valueSet.has(opt.value);
+              const isSelected = value.includes(opt.value);
               return (
-                <button
+                <Button
                   key={opt.value}
                   type="button"
+                  variant="ghost"
+                  size="sm"
                   disabled={opt.disabled}
                   onClick={() => onToggle(opt.value)}
                   className={cn(
-                    "flex w-full cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm outline-hidden select-none",
+                    "flex h-auto w-full cursor-default items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-left text-sm font-normal outline-hidden select-none",
                     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                     opt.disabled && "pointer-events-none opacity-50",
                   )}
@@ -253,7 +260,7 @@ function MultiSelectPanel({
                       </span>
                     )}
                   </span>
-                </button>
+                </Button>
               );
             })}
           </div>

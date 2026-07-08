@@ -1,81 +1,112 @@
 "use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { UsersIcon, ShieldIcon } from "lucide-react";
 
-export interface Role {
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+
+import { Badge } from "@/components/ui";
+import { Checkbox } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export interface RoleAssignmentPrincipal {
   id: string;
   name: string;
   description?: string;
 }
 
-interface RoleAssignmentProps extends Omit<
+export interface RoleAssignmentRole {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export type RoleAssignmentValue = Record<string, string[]>;
+
+export interface RoleAssignmentProps extends Omit<
   React.ComponentProps<"div">,
   "onChange"
 > {
-  roles: Role[];
-  assigned: string[];
-  onChange?: (assigned: string[]) => void;
-  className?: string;
+  principals: RoleAssignmentPrincipal[];
+  roles: RoleAssignmentRole[];
+  value: RoleAssignmentValue;
+  onChange?: (value: RoleAssignmentValue) => void;
+  readOnly?: boolean;
 }
 
-function RoleAssignment({
+/**
+ * @component RoleAssignment
+ * @category business/bill
+ * @since 0.2.0
+ * @description Assign roles to principals (users/groups) with checkbox toggles / 为主体质（用户/组）分配角色，支持复选框切换
+ * @keywords role, assignment, principal, user, group, permission
+ * @example
+ * <RoleAssignment principals={users} roles={roles} value={assignments} onChange={setAssignments} />
+ */
+export function RoleAssignment({
+  principals,
   roles,
-  assigned,
+  value,
   onChange,
+  readOnly,
   className,
   ...props
 }: RoleAssignmentProps) {
-  const toggle = (roleId: string) => {
-    const next = assigned.includes(roleId)
-      ? assigned.filter((r) => r !== roleId)
-      : [...assigned, roleId];
-    onChange?.(next);
+  const { t } = useTranslation("transfer");
+  const toggle = (principalId: string, roleId: string) => {
+    if (readOnly) return;
+    const current = value[principalId] ?? [];
+    const next = current.includes(roleId)
+      ? current.filter((item) => item !== roleId)
+      : [...current, roleId];
+    onChange?.({ ...value, [principalId]: next });
   };
 
   return (
     <div
       data-slot="role-assignment"
-      className={cn("space-y-2", className)}
+      className={cn("space-y-3", className)}
       {...props}
     >
-      <div className="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
-        <ShieldIcon className="size-4" />
-        <span>
-          已分配 {assigned.length}/{roles.length} 个角色
-        </span>
-      </div>
-      {roles.map((role) => (
-        <label
-          key={role.id}
-          className={cn(
-            "hover:bg-muted/50 flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors",
-            assigned.includes(role.id) && "border-primary/50 bg-primary/5",
-          )}
-        >
-          <Checkbox
-            checked={assigned.includes(role.id)}
-            onCheckedChange={() => toggle(role.id)}
-            className="mt-0.5"
-          />
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <UsersIcon className="text-muted-foreground size-4" />
-              <span className="text-sm font-medium">{role.name}</span>
+      {principals.map((principal) => (
+        <div key={principal.id} className="rounded-lg border p-4">
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <div>
+              <p className="text-sm font-medium">{principal.name}</p>
+              {principal.description && (
+                <p className="text-xs text-muted-foreground">
+                  {principal.description}
+                </p>
+              )}
             </div>
-            {role.description && (
-              <p className="text-muted-foreground mt-0.5 text-xs">
-                {role.description}
-              </p>
-            )}
+            <Badge variant="outline">
+              {(value[principal.id] ?? []).length} {t("roleAssignment.roles")}
+            </Badge>
           </div>
-        </label>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {roles.map((role) => (
+              <label
+                key={role.id}
+                className="flex items-start gap-2 rounded-md border p-3"
+              >
+                <Checkbox
+                  checked={(value[principal.id] ?? []).includes(role.id)}
+                  disabled={readOnly}
+                  onCheckedChange={() => toggle(principal.id, role.id)}
+                />
+                <span>
+                  <span className="block text-sm font-medium">
+                    {role.label}
+                  </span>
+                  {role.description && (
+                    <span className="block text-xs text-muted-foreground">
+                      {role.description}
+                    </span>
+                  )}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   );
 }
-
-export { RoleAssignment };
-export type { RoleAssignmentProps };

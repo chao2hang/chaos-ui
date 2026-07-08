@@ -1,72 +1,154 @@
 "use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
 
-interface BillFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  subtotal?: number;
-  tax?: number;
-  taxRate?: number;
-  total?: number;
-  notes?: string;
-  showTax?: boolean;
+type BillStatus = "draft" | "pending" | "approved" | "rejected";
+
+interface BillFooterProps {
+  /** 单据状态 */
+  status: BillStatus;
+  /** 存草稿 */
+  onSaveDraft?: () => void;
+  /** 提交 */
+  onSubmit?: () => void;
+  /** 取消 */
+  onCancel?: () => void;
+  /** 审批通过 */
+  onApprove?: () => void;
+  /** 驳回 */
+  onReject?: () => void;
+  /** 撤回 */
+  onRecall?: () => void;
+  /** 打印 */
+  onPrint?: () => void;
+  /** 作废 */
+  onVoid?: () => void;
+  /** 加载态 */
+  loading?: boolean;
+  /** 额外操作 */
+  extra?: React.ReactNode;
   className?: string;
 }
 
+/**
+ * 单据底部操作栏 —— 根据单据状态自动显示/隐藏对应按钮。
+ * 对标 qxy-mop 所有单据页底部按钮组。
+ *
+ * @component BillFooter
+ * @category business/bills
+ * @since 0.2.0
+ */
 function BillFooter({
-  subtotal = 0,
-  tax,
-  taxRate = 0,
-  total,
-  notes,
-  showTax = true,
+  status,
+  onSaveDraft,
+  onSubmit,
+  onCancel,
+  onApprove,
+  onReject,
+  onRecall,
+  onPrint,
+  onVoid,
+  loading = false,
+  extra,
   className,
-  ...props
 }: BillFooterProps) {
-  const computedTax = tax ?? subtotal * taxRate;
-  const computedTotal = total ?? subtotal + computedTax;
+  const renderDraft = status === "draft" && (
+    <>
+      {onSaveDraft && (
+        <Button variant="outline" onClick={onSaveDraft} disabled={loading}>
+          存草稿
+        </Button>
+      )}
+      {onSubmit && (
+        <Button onClick={onSubmit} disabled={loading}>
+          提交
+        </Button>
+      )}
+      {onCancel && (
+        <Button variant="ghost" onClick={onCancel} disabled={loading}>
+          取消
+        </Button>
+      )}
+    </>
+  );
+
+  const renderPending = status === "pending" && (
+    <>
+      {onApprove && (
+        <Button onClick={onApprove} disabled={loading}>
+          审批通过
+        </Button>
+      )}
+      {onReject && (
+        <Button variant="outline" onClick={onReject} disabled={loading}>
+          驳回
+        </Button>
+      )}
+      {onRecall && (
+        <Button variant="ghost" onClick={onRecall} disabled={loading}>
+          撤回
+        </Button>
+      )}
+    </>
+  );
+
+  const renderApproved = status === "approved" && (
+    <>
+      {onPrint && (
+        <Button variant="outline" onClick={onPrint} disabled={loading}>
+          打印
+        </Button>
+      )}
+      {onVoid && (
+        <Button
+          variant="outline"
+          className="text-destructive"
+          onClick={onVoid}
+          disabled={loading}
+        >
+          作废
+        </Button>
+      )}
+    </>
+  );
+
+  const renderRejected = status === "rejected" && (
+    <>
+      {onSubmit && (
+        <Button onClick={onSubmit} disabled={loading}>
+          修改重提
+        </Button>
+      )}
+      {onVoid && (
+        <Button
+          variant="outline"
+          className="text-destructive"
+          onClick={onVoid}
+          disabled={loading}
+        >
+          作废
+        </Button>
+      )}
+    </>
+  );
 
   return (
     <div
       data-slot="bill-footer"
-      className={cn("space-y-4", className)}
-      {...props}
-    >
-      <div className="flex flex-col items-end gap-1 text-sm">
-        <div className="flex w-52 justify-between">
-          <span className="text-muted-foreground">小计</span>
-          <span>
-            ¥{subtotal.toLocaleString("zh-CN", { minimumFractionDigits: 2 })}
-          </span>
-        </div>
-        {showTax && (
-          <div className="flex w-52 justify-between">
-            <span className="text-muted-foreground">
-              税额 ({taxRate * 100}%)
-            </span>
-            <span>
-              ¥
-              {computedTax.toLocaleString("zh-CN", {
-                minimumFractionDigits: 2,
-              })}
-            </span>
-          </div>
-        )}
-        <div className="flex w-52 justify-between border-t pt-1 text-base font-semibold">
-          <span>合计</span>
-          <span>
-            ¥
-            {computedTotal.toLocaleString("zh-CN", {
-              minimumFractionDigits: 2,
-            })}
-          </span>
-        </div>
-      </div>
-      {notes && (
-        <div className="border-t pt-3">
-          <p className="text-muted-foreground text-sm font-medium">备注</p>
-          <p className="mt-1 text-sm">{notes}</p>
-        </div>
+      className={cn(
+        "bg-background flex items-center justify-between border-t px-6 py-3",
+        className,
       )}
+    >
+      <div className="flex items-center gap-2">{extra}</div>
+      <div className="flex items-center gap-2">
+        {renderDraft}
+        {renderPending}
+        {renderApproved}
+        {renderRejected}
+      </div>
     </div>
   );
 }

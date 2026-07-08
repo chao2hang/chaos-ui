@@ -112,3 +112,6 @@ function Divider({
 
 export { Divider };
 export type { DividerProps };
+
+const MemoizedDivider = React.memo(Divider);
+export { MemoizedDivider as DividerMemo };

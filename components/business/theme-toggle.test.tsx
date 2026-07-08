@@ -5,8 +5,8 @@ import {
   useResolvedTheme,
 } from "@/components/business/theme-toggle";
 
-// Mock next-themes since it requires a Next.js provider context
-vi.mock("next-themes", () => ({
+// Mock theme provider — it requires a Next.js provider context in tests
+vi.mock("@/components/ui/theme-provider", () => ({
   useTheme: vi.fn(() => ({
     theme: "light",
     setTheme: vi.fn(),
@@ -15,9 +15,10 @@ vi.mock("next-themes", () => ({
     systemTheme: "light",
     forcedTheme: undefined,
   })),
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/ui/theme-provider";
 
 describe("ThemeToggle", () => {
   it("exports ThemeToggle component", () => {
@@ -151,9 +152,9 @@ describe("useResolvedTheme", () => {
       themes: ["light", "dark", "system"],
       systemTheme: "light",
       forcedTheme: undefined,
-      theme: undefined as unknown as string,
+      theme: undefined as unknown as "light",
       setTheme: vi.fn(),
-      resolvedTheme: undefined as unknown as string,
+      resolvedTheme: undefined as unknown as "light",
     });
 
     function TestComponent() {

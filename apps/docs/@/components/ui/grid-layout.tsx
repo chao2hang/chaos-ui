@@ -1,6 +1,6 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
 
 const gridLayoutVariants = cva("grid", {
   variants: {
@@ -40,20 +40,32 @@ const gridLayoutVariants = cva("grid", {
     align: "stretch",
     justify: "start",
   },
-})
+});
 
 interface GridLayoutProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof gridLayoutVariants> {
-  children: React.ReactNode
+  children: React.ReactNode;
   responsive?: {
-    sm?: number
-    md?: number
-    lg?: number
-    xl?: number
-  }
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
 }
 
+/**
+ * @component GridLayout
+ * @category ui/layout
+ * @since 0.2.0
+ * @description A CSS grid layout with configurable columns, gap, alignment, and responsive column overrides / CSS 网格布局，支持可配置列数、间距、对齐方式和响应式列覆盖
+ * @keywords grid, layout, responsive, columns, gap
+ * @example
+ * <GridLayout columns={3} gap="lg" responsive={{ md: 2, sm: 1 }}>
+ *   <GridItem span={2}>Wide content</GridItem>
+ * </GridLayout>
+ */
 function GridLayout({
   className,
   columns,
@@ -69,9 +81,9 @@ function GridLayout({
         responsive.sm && `sm:grid-cols-${responsive.sm}`,
         responsive.md && `md:grid-cols-${responsive.md}`,
         responsive.lg && `lg:grid-cols-${responsive.lg}`,
-        responsive.xl && `xl:grid-cols-${responsive.xl}`
+        responsive.xl && `xl:grid-cols-${responsive.xl}`,
       )
-    : ""
+    : "";
 
   return (
     <div
@@ -79,23 +91,32 @@ function GridLayout({
       className={cn(
         gridLayoutVariants({ columns, gap, align, justify }),
         responsiveClasses,
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </div>
-  )
+  );
 }
 
 interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  span?: number
-  rowSpan?: number
-  start?: number
-  end?: number
-  children: React.ReactNode
+  span?: number;
+  rowSpan?: number;
+  start?: number;
+  end?: number;
+  children: React.ReactNode;
 }
 
+/**
+ * @component GridItem
+ * @category ui/layout
+ * @since 0.2.0
+ * @description A grid cell within GridLayout supporting column/row span and start/end positioning / GridLayout 中的网格单元格，支持列/行跨度和起止位置
+ * @keywords grid, item, span, row-span, layout
+ * @example
+ * <GridItem span={2} rowSpan={3}>Content</GridItem>
+ */
 function GridItem({
   className,
   span,
@@ -113,14 +134,14 @@ function GridItem({
         rowSpan && `row-span-${rowSpan}`,
         start && `col-start-${start}`,
         end && `col-end-${end}`,
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </div>
-  )
+  );
 }
 
-export { GridLayout, GridItem, gridLayoutVariants }
-export type { GridLayoutProps, GridItemProps }
+export { GridLayout, GridItem, gridLayoutVariants };
+export type { GridLayoutProps, GridItemProps };

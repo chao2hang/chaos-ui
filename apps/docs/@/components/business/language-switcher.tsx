@@ -1,7 +1,9 @@
-"use client"
-import * as React from "react"
-import { LanguagesIcon, CheckIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client";
+import { useMemo } from "react";
+import { LanguagesIcon, CheckIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { useLocale } from "@/hooks/use-locale";
+import { Button } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,50 +12,74 @@ import {
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 export interface LanguageOption {
-  code: string
-  label: string
-  nativeLabel?: string
-  flag?: string
+  code: string;
+  label: string;
+  nativeLabel?: string;
+  flag?: string;
 }
 
 interface LanguageSwitcherProps {
-  value?: string
-  onChange?: (code: string) => void
-  options?: LanguageOption[]
-  className?: string
-  align?: "start" | "center" | "end"
+  value?: string;
+  onChange?: (code: string) => void;
+  options?: LanguageOption[];
+  className?: string;
+  align?: "start" | "center" | "end";
 }
 
-const DEFAULT_LANGUAGES: LanguageOption[] = [
-  { code: "zh-CN", label: "Chinese (Simplified)", nativeLabel: "简体中文" },
-  { code: "zh-TW", label: "Chinese (Traditional)", nativeLabel: "繁體中文" },
-  { code: "en-US", label: "English (US)", nativeLabel: "English" },
-  { code: "ja-JP", label: "Japanese", nativeLabel: "日本語" },
-  { code: "ko-KR", label: "Korean", nativeLabel: "한국어" },
-]
-
+/**
+ * @component LanguageSwitcher
+ * @category business/ux
+ * @since 0.2.0
+ * @description Dropdown language switcher with i18n integration, configurable options, and current-locale detection / 下拉语言切换器，集成国际化、可配置选项和当前语言检测
+ * @keywords language, locale, i18n, switcher, dropdown
+ * @example
+ * <LanguageSwitcher />
+ */
 export function LanguageSwitcher({
-  value,
-  onChange,
-  options = DEFAULT_LANGUAGES,
+  value: valueProp,
+  onChange: onChangeProp,
+  options: optionsProp,
   className,
   align = "end",
 }: LanguageSwitcherProps) {
-  const current = options.find((o) => o.code === value) ?? options[0]
+  const { t } = useTranslation("language");
+  const { locale, setLocale } = useLocale();
+
+  const DEFAULT_LANGUAGES: LanguageOption[] = useMemo(
+    () => [
+      {
+        code: "zh-CN",
+        label: t("language.zhCN.label"),
+        nativeLabel: t("language.zhCN"),
+      },
+      {
+        code: "en-US",
+        label: t("language.enUS.label"),
+        nativeLabel: t("language.enUS"),
+      },
+    ],
+    [t],
+  );
+
+  const options = optionsProp ?? DEFAULT_LANGUAGES;
+  const value = valueProp ?? locale;
+  const onChange = onChangeProp ?? setLocale;
+
+  const current = options.find((o) => o.code === value) ?? options[0];
 
   return (
-    <DropdownMenu>
+    <DropdownMenu data-slot="language-switcher">
       <DropdownMenuTrigger
         render={
           <Button
             variant="ghost"
             size="sm"
             className={cn("gap-1.5", className)}
-            aria-label="Switch language"
+            aria-label={t("languageSwitcher.switchLanguage")}
           />
         }
       >
@@ -62,19 +88,23 @@ export function LanguageSwitcher({
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align} className="w-56">
         <DropdownMenuGroup>
-          <DropdownMenuLabel>选择语言</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            {t("languageSwitcher.selectLanguage")}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
         {options.map((opt) => (
           <DropdownMenuItem
             key={opt.code}
-            onClick={() => onChange?.(opt.code)}
+            onClick={() => onChange(opt.code)}
             className="justify-between"
           >
             <div className="flex flex-col gap-0.5">
               <span className="text-sm">{opt.nativeLabel ?? opt.label}</span>
               {opt.nativeLabel && opt.nativeLabel !== opt.label && (
-                <span className="text-xs text-muted-foreground">{opt.label}</span>
+                <span className="text-xs text-muted-foreground">
+                  {opt.label}
+                </span>
               )}
             </div>
             {opt.code === value && <CheckIcon className="size-4" />}
@@ -82,5 +112,5 @@ export function LanguageSwitcher({
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

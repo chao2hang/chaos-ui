@@ -1,95 +1,83 @@
 "use client";
-
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-const segmentedControlVariants = cva(
-  "inline-flex rounded-md bg-muted p-1 text-muted-foreground",
-  {
-    variants: {
-      size: {
-        default: "h-9",
-        sm: "h-8 text-xs",
-        lg: "h-10 text-base",
-      },
-      fullWidth: {
-        true: "w-full",
-        false: "",
-      },
-    },
-    defaultVariants: { size: "default", fullWidth: false },
-  },
-);
-
-interface SegmentedControlOption {
-  label: React.ReactNode;
-  value: string;
+interface SegmentedControlOption<T extends string> {
+  value: T;
+  label: string;
+  icon?: React.ReactNode;
   disabled?: boolean;
 }
 
-interface SegmentedControlProps
-  extends
-    Omit<React.ComponentProps<"div">, "onChange">,
-    VariantProps<typeof segmentedControlVariants> {
-  options: SegmentedControlOption[];
-  value?: string;
-  onChange?: (value: string) => void;
-  defaultValue?: string;
+interface SegmentedControlProps<T extends string> {
+  options: SegmentedControlOption<T>[];
+  value?: T;
+  defaultValue?: T;
+  onChange?: (value: T) => void;
+  size?: "sm" | "default" | "lg";
+  disabled?: boolean;
+  className?: string;
+  orientation?: "horizontal" | "vertical";
 }
 
-function SegmentedControl({
-  className,
-  size,
-  fullWidth,
+const sizeMap = {
+  sm: "h-7 px-2 text-xs",
+  default: "h-8 px-3 text-sm",
+  lg: "h-9 px-4 text-sm",
+} as const;
+
+/**
+ * @component SegmentedControl
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description A toggle-based segmented control for selecting one option from a set / 分段控制器，基于切换按钮从一组选项中选择一个
+ * @keywords segmented, control, toggle, switch, tabs, options, select
+ * @example
+ * <SegmentedControl
+ *   options={[{ value: "day", label: "Day" }, { value: "week", label: "Week" }]}
+ *   defaultValue="day"
+ *   onChange={(v) => console.log(v)}
+ * />
+ */
+export function SegmentedControl<T extends string>({
   options,
-  value: controlledValue,
-  onChange,
+  value,
   defaultValue,
-  ...props
-}: SegmentedControlProps) {
-  const [internalValue, setInternalValue] = React.useState(
-    defaultValue ?? options[0]?.value ?? "",
-  );
-  const value = controlledValue ?? internalValue;
-
-  const handleChange = (newValue: string) => {
-    if (controlledValue === undefined) setInternalValue(newValue);
-    onChange?.(newValue);
-  };
-
+  onChange,
+  size = "default",
+  disabled,
+  className,
+  orientation = "horizontal",
+}: SegmentedControlProps<T>) {
   return (
-    <div
+    <ToggleGroup
       data-slot="segmented-control"
-      className={cn(segmentedControlVariants({ size, fullWidth }), className)}
-      role="radiogroup"
-      {...props}
+      value={value ? [value] : defaultValue ? [defaultValue] : []}
+      onValueChange={(v) => {
+        if (v.length > 0) onChange?.(v[v.length - 1] as T);
+      }}
+      orientation={orientation}
+      className={cn(
+        "bg-muted/30 inline-flex items-center rounded-md border p-0.5",
+        orientation === "vertical" && "flex-col items-stretch",
+        className,
+      )}
     >
-      {options.map((option) => {
-        const isSelected = value === option.value;
-        return (
-          <button
-            key={option.value}
-            type="button"
-            role="radio"
-            aria-checked={isSelected}
-            disabled={option.disabled}
-            onClick={() => !option.disabled && handleChange(option.value)}
-            className={cn(
-              "focus-visible:ring-ring relative flex items-center justify-center rounded-sm px-3 py-1 text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
-              fullWidth && "flex-1",
-              isSelected &&
-                "bg-background text-foreground ring-border/50 shadow-sm ring-1",
-              !isSelected && "hover:text-foreground",
-            )}
-          >
-            {option.label}
-          </button>
-        );
-      })}
-    </div>
+      {options.map((opt) => (
+        <ToggleGroupItem
+          key={opt.value}
+          value={opt.value}
+          disabled={disabled || opt.disabled}
+          className={cn(
+            "data-[pressed]:bg-background rounded-sm border-0 bg-transparent shadow-none transition-all data-[pressed]:shadow-xs",
+            sizeMap[size],
+          )}
+        >
+          {opt.icon}
+          {opt.label}
+        </ToggleGroupItem>
+      ))}
+    </ToggleGroup>
   );
 }
-
-export { SegmentedControl, segmentedControlVariants };

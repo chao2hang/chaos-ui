@@ -1,58 +1,112 @@
 "use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { cva, type VariantProps } from "class-variance-authority";
 
-const tagVariants = cva("rounded-md font-medium", {
-  variants: {
-    status: {
-      active: "bg-green-100 text-green-800 border-green-300",
-      inactive: "bg-gray-100 text-gray-600 border-gray-300",
-      pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
-      processing: "bg-blue-100 text-blue-800 border-blue-300",
-      error: "bg-red-100 text-red-800 border-red-300",
-      completed: "bg-emerald-100 text-emerald-800 border-emerald-300",
-      cancelled: "bg-slate-100 text-slate-500 border-slate-300",
-      warning: "bg-orange-100 text-orange-800 border-orange-300",
-    },
-  },
-  defaultVariants: { status: "pending" },
-});
+type BizStatus =
+  "draft" | "pending" | "approved" | "rejected" | "rejected_mid" | string;
 
-const statusLabels: Record<string, string> = {
-  active: "启用",
-  inactive: "停用",
-  pending: "待处理",
-  processing: "处理中",
-  error: "异常",
-  completed: "已完成",
-  cancelled: "已取消",
-  warning: "警告",
-};
-
-interface BizStatusTagProps
-  extends React.ComponentProps<"span">, VariantProps<typeof tagVariants> {
-  label?: string;
+interface BizStatusTagProps {
+  status: BizStatus;
+  /** Custom status label (auto-detected by default) */
+  label?: React.ReactNode;
+  /** Custom status color map */
+  statusMap?: Record<
+    string,
+    { color: string; label: string; className?: string }
+  >;
+  className?: string;
 }
 
+const defaultStatusMap: Record<
+  string,
+  { color: string; label: string; className: string }
+> = {
+  draft: {
+    color: "#6b7280",
+    label: "草稿",
+    className: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+  },
+  pending: {
+    color: "#3b82f6",
+    label: "审批中",
+    className:
+      "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  },
+  approved: {
+    color: "#22c55e",
+    label: "已通过",
+    className:
+      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  },
+  rejected: {
+    color: "#ef4444",
+    label: "已驳回",
+    className: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+  },
+  rejected_mid: {
+    color: "#f97316",
+    label: "驳回中",
+    className:
+      "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  },
+  inactive: {
+    color: "#6b7280",
+    label: "已停用",
+    className: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+  },
+  active: {
+    color: "#22c55e",
+    label: "已启用",
+    className:
+      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  },
+};
+
+/**
+ * 业务状态标签 —— 自动颜色映射 + 标准化文案。
+ * 对标 qxy-mop 所有页面的 `<Tag color={statusMap[v].color}>`。
+ *
+ * @component BizStatusTag
+ * @category business/status
+ * @since 0.2.0
+ */
 function BizStatusTag({
-  status = "pending",
+  status,
   label,
+  statusMap: customMap,
   className,
-  ...props
 }: BizStatusTagProps) {
+  const map = { ...defaultStatusMap, ...customMap };
+  const config = map[status];
+
+  if (!config) {
+    return (
+      <span
+        data-slot="biz-status-tag"
+        className={cn(
+          "bg-muted text-muted-foreground inline-flex rounded-md px-2 py-0.5 text-xs font-medium",
+          className,
+        )}
+      >
+        {label || status}
+      </span>
+    );
+  }
+
   return (
-    <Badge
+    <span
       data-slot="biz-status-tag"
-      variant="outline"
-      className={cn(tagVariants({ status }), className)}
-      {...(props as React.ComponentProps<"div">)}
+      className={cn(
+        "inline-flex rounded-md px-2 py-0.5 text-xs font-medium",
+        config.className,
+        className,
+      )}
     >
-      {label ?? statusLabels[status ?? "pending"] ?? status}
-    </Badge>
+      {label || config.label}
+    </span>
   );
 }
 
-export { BizStatusTag, tagVariants, statusLabels };
-export type { BizStatusTagProps };
+export { BizStatusTag, defaultStatusMap };
+export type { BizStatusTagProps, BizStatus };

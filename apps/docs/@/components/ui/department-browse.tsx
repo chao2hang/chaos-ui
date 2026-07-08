@@ -14,12 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  SearchIcon,
-  XIcon,
-  BuildingIcon,
-  ChevronRightIcon,
-} from "lucide-react";
+import { BuildingIcon, ChevronRightIcon, SearchIcon, XIcon } from "./icons";
 
 interface Department {
   id: string;
@@ -85,7 +80,14 @@ const defaultDepartments: Department[] = [
   },
 ];
 
-const DepartmentTreeItem = React.memo(function DepartmentTreeItem({
+/**
+ * @component DepartmentTreeItem
+ * @category ui/user
+ * @since 0.2.0
+ * @description Internal recursive tree item for rendering a department node with expand/collapse and checkbox / 内部递归树项，渲染带展开/折叠和复选框的部门节点
+ * @keywords department, tree, item, internal, recursive
+ */
+function DepartmentTreeItem({
   department,
   selectedIds,
   onSelect,
@@ -97,7 +99,7 @@ const DepartmentTreeItem = React.memo(function DepartmentTreeItem({
   level?: number;
 }) {
   const [expanded, setExpanded] = React.useState(level < 2);
-  const hasChildren = Boolean(department.children?.length);
+  const hasChildren = department.children && department.children.length > 0;
   const isSelected = selectedIds.has(department.id);
 
   return (
@@ -116,7 +118,7 @@ const DepartmentTreeItem = React.memo(function DepartmentTreeItem({
             size="icon-xs"
             onClick={(e) => {
               e.stopPropagation();
-              setExpanded((prev) => !prev);
+              setExpanded(!expanded);
             }}
             className="shrink-0"
           >
@@ -154,8 +156,22 @@ const DepartmentTreeItem = React.memo(function DepartmentTreeItem({
       )}
     </div>
   );
-});
+}
 
+/**
+ * @component DepartmentBrowse
+ * @category ui/user
+ * @since 0.2.0
+ * @description Department tree picker with search, single/multiple selection, and hierarchical tree view / 部门树选择器，支持搜索、单选/多选和层级树视图
+ * @keywords department, browse, tree, picker, organization, hierarchy
+ * @example
+ * <DepartmentBrowse
+ *   departments={departments}
+ *   value={selected}
+ *   onChange={setSelected}
+ *   multiple
+ * />
+ */
 function DepartmentBrowse({
   value: controlledValue,
   defaultValue,
@@ -178,11 +194,14 @@ function DepartmentBrowse({
         ? [defaultValue]
         : [],
   );
-  const value = controlledValue
-    ? Array.isArray(controlledValue)
-      ? controlledValue
-      : [controlledValue]
-    : uncontrolledValue;
+  const value = React.useMemo(() => {
+    if (controlledValue !== undefined) {
+      return Array.isArray(controlledValue)
+        ? controlledValue
+        : [controlledValue];
+    }
+    return uncontrolledValue;
+  }, [controlledValue, uncontrolledValue]);
 
   const selectedIds = React.useMemo(
     () => new Set(value.map((d) => d.id)),
@@ -196,13 +215,15 @@ function DepartmentBrowse({
       return depts.reduce<Department[]>((acc, dept) => {
         const matches =
           dept.name.toLowerCase().includes(q) ||
-          Boolean(dept.code?.toLowerCase().includes(q));
+          dept.code?.toLowerCase().includes(q);
         const filteredChildren = dept.children ? filter(dept.children) : [];
         if (matches || filteredChildren.length > 0) {
           acc.push({
             ...dept,
             children:
-              filteredChildren.length > 0 ? filteredChildren : undefined,
+              filteredChildren.length > 0
+                ? filteredChildren
+                : (dept.children ?? []),
           });
         }
         return acc;
@@ -211,51 +232,39 @@ function DepartmentBrowse({
     return filter(departments);
   }, [departments, search]);
 
-  const handleSelect = React.useCallback(
-    (dept: Department) => {
-      let newValue: Department[];
-      if (multiple) {
-        const isSelected = value.some((d) => d.id === dept.id);
-        if (isSelected) {
-          newValue = value.filter((d) => d.id !== dept.id);
-        } else {
-          if (maxCount && value.length >= maxCount) return;
-          newValue = [...value, dept];
-        }
-      } else {
-        newValue = [dept];
-        setOpen(false);
-      }
-      setUncontrolledValue(newValue);
-      onChange?.(multiple ? newValue : newValue[0]);
-    },
-    [multiple, value, maxCount, onChange],
-  );
+  const handleSelect = (dept: Department) => {
+    let newValue: Department[];
+    if (multiple) {
+      const isSelected = value.some((d) => d.id === dept.id);
+      newValue = isSelected
+        ? value.filter((d) => d.id !== dept.id)
+        : [...value, dept];
+    } else {
+      newValue = [dept];
+      setOpen(false);
+    }
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
-  const handleRemove = React.useCallback(
-    (deptId: string) => {
-      const newValue = value.filter((d) => d.id !== deptId);
-      setUncontrolledValue(newValue);
-      onChange?.(multiple ? newValue : newValue[0]);
-    },
-    [value, multiple, onChange],
-  );
+  const handleRemove = (deptId: string) => {
+    const newValue = value.filter((d) => d.id !== deptId);
+    setUncontrolledValue(newValue);
+    onChange?.(multiple ? newValue : newValue[0]);
+  };
 
-  const handleClear = React.useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setUncontrolledValue([]);
-      onChange?.(multiple ? [] : undefined);
-    },
-    [multiple, onChange],
-  );
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setUncontrolledValue([]);
+    onChange?.(multiple ? [] : undefined);
+  };
 
   return (
     <div data-slot="department-browse" className={cn("w-full", className)}>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
-            <button
+            <div
               className={cn(
                 "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
                 "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",

@@ -1,7 +1,9 @@
 "use client";
+
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslation } from "react-i18next";
+
+import { Checkbox } from "@/components/ui";
 import {
   Table,
   TableBody,
@@ -9,90 +11,125 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+} from "@/components/ui";
+import { cn } from "@/lib/utils";
 
-export interface PermissionItem {
-  key: string;
+export interface PermissionMatrixRole {
+  id: string;
   label: string;
-  children?: PermissionItem[];
 }
 
-interface PermissionMatrixProps extends Omit<
+export interface PermissionMatrixResource {
+  id: string;
+  label: string;
+  description?: string;
+  permissions: string[];
+}
+
+export type PermissionMatrixValue = Record<string, Record<string, string[]>>;
+
+export interface PermissionMatrixProps extends Omit<
   React.ComponentProps<"div">,
   "onChange"
 > {
-  permissions: PermissionItem[];
-  roles: string[];
-  value: Record<string, string[]>;
-  onChange?: (value: Record<string, string[]>) => void;
-  className?: string;
+  roles: PermissionMatrixRole[];
+  resources: PermissionMatrixResource[];
+  value: PermissionMatrixValue;
+  onChange?: (value: PermissionMatrixValue) => void;
+  readOnly?: boolean;
 }
 
-function PermissionMatrix({
-  permissions,
+/**
+ * @component PermissionMatrix
+ * @category business/bill
+ * @since 0.2.0
+ * @description Role-based permission matrix with toggle checkboxes / 基于角色的权限矩阵，支持复选框切换
+ * @keywords permission, role, matrix, checkbox, acl
+ * @example
+ * <PermissionMatrix roles={roles} resources={resources} value={value} onChange={setValue} />
+ */
+export function PermissionMatrix({
   roles,
+  resources,
   value,
   onChange,
+  readOnly,
   className,
   ...props
 }: PermissionMatrixProps) {
-  const toggle = (permKey: string, role: string) => {
-    const current = value[permKey] ?? [];
-    const next = current.includes(role)
-      ? current.filter((r) => r !== role)
-      : [...current, role];
-    onChange?.({ ...value, [permKey]: next });
-  };
+  const { t } = useTranslation("transfer");
+  const toggle = (roleId: string, resourceId: string, permission: string) => {
+    if (readOnly) return;
+    const roleValue = value[roleId] ?? {};
+    const current = roleValue[resourceId] ?? [];
+    const nextPermissions = current.includes(permission)
+      ? current.filter((item) => item !== permission)
+      : [...current, permission];
 
-  const flatten = (
-    items: PermissionItem[],
-    depth = 0,
-  ): Array<{ item: PermissionItem; depth: number }> => {
-    const result: Array<{ item: PermissionItem; depth: number }> = [];
-    for (const item of items) {
-      result.push({ item, depth });
-      if (item.children) result.push(...flatten(item.children, depth + 1));
-    }
-    return result;
+    onChange?.({
+      ...value,
+      [roleId]: {
+        ...roleValue,
+        [resourceId]: nextPermissions,
+      },
+    });
   };
-
-  const flatPerms = flatten(permissions);
 
   return (
     <div
       data-slot="permission-matrix"
-      className={cn("overflow-auto rounded-md border", className)}
+      className={cn("overflow-x-auto rounded-lg border", className)}
       {...props}
     >
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="min-w-[180px]">权限</TableHead>
+            <TableHead className="min-w-48">
+              {t("permissionMatrix.resource")}
+            </TableHead>
             {roles.map((role) => (
-              <TableHead key={role} className="text-center">
-                {role}
+              <TableHead key={role.id} className="min-w-40 text-center">
+                {role.label}
               </TableHead>
             ))}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {flatPerms.map(({ item, depth }) => (
-            <TableRow key={item.key} className={depth > 0 ? "bg-muted/20" : ""}>
-              <TableCell className="text-sm font-medium">
-                <span style={{ paddingLeft: depth * 20 }}>{item.label}</span>
+          {resources.map((resource) => (
+            <TableRow key={resource.id}>
+              <TableCell>
+                <div>
+                  <p className="text-sm font-medium">{resource.label}</p>
+                  {resource.description && (
+                    <p className="text-xs text-muted-foreground">
+                      {resource.description}
+                    </p>
+                  )}
+                </div>
               </TableCell>
-              {roles.map((role) => {
-                const checked = (value[item.key] ?? []).includes(role);
-                return (
-                  <TableCell key={role} className="text-center">
-                    <Checkbox
-                      checked={checked}
-                      onCheckedChange={() => toggle(item.key, role)}
-                    />
-                  </TableCell>
-                );
-              })}
+              {roles.map((role) => (
+                <TableCell key={role.id} className="align-top">
+                  <div className="flex flex-col gap-2">
+                    {resource.permissions.map((permission) => (
+                      <label
+                        key={permission}
+                        className="flex items-center justify-center gap-2 text-xs"
+                      >
+                        <Checkbox
+                          checked={(
+                            value[role.id]?.[resource.id] ?? []
+                          ).includes(permission)}
+                          disabled={readOnly}
+                          onCheckedChange={() =>
+                            toggle(role.id, resource.id, permission)
+                          }
+                        />
+                        <span>{permission}</span>
+                      </label>
+                    ))}
+                  </div>
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
@@ -100,6 +137,3 @@ function PermissionMatrix({
     </div>
   );
 }
-
-export { PermissionMatrix };
-export type { PermissionMatrixProps };

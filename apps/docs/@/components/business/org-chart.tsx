@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import {
   ReactFlow,
@@ -14,6 +15,20 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { cn } from "@/lib/utils";
+
+/**
+ * @component OrgChart
+ * @category business/display
+ * @since 1.0.0
+ * @description 组织架构图组件,基于 @xyflow/react 实现,支持自定义节点、自动布局、缩放控制。
+ * @keywords orgchart, organization, tree, xyflow, flow
+ * @example
+ * <OrgChart
+ *   nodes={[{ id: "1", name: "Alice", title: "CEO" }]}
+ *   edges={[{ source: "1", target: "2" }]}
+ *   onNodeClick={(node) => console.log(node)}
+ * />
+ */
 
 interface OrgNode {
   id: string;
@@ -36,11 +51,11 @@ function OrgChartNodeComponent({ data }: NodeProps) {
   const d = data as OrgChartNodeData;
   const { name, title, avatarUrl, department } = d.orgNode;
   return (
-    <div className="bg-card min-w-40 rounded-lg border p-3 text-center shadow-sm transition-shadow hover:shadow-md">
+    <div className="min-w-40 rounded-lg border bg-card p-3 text-center shadow-sm transition-shadow hover:shadow-md">
       <Handle
         type="target"
         position={Position.Top}
-        className="!bg-primary !size-2"
+        className="size-2! bg-primary!"
       />
       {avatarUrl ? (
         <img
@@ -49,21 +64,19 @@ function OrgChartNodeComponent({ data }: NodeProps) {
           className="mx-auto mb-1.5 size-10 rounded-full object-cover"
         />
       ) : (
-        <div className="bg-muted text-muted-foreground mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full text-sm font-medium">
+        <div className="mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">
           {name.charAt(0)}
         </div>
       )}
       <div className="text-sm font-medium">{name}</div>
-      <div className="text-muted-foreground text-xs">{title}</div>
+      <div className="text-xs text-muted-foreground">{title}</div>
       {department && (
-        <div className="text-muted-foreground/70 mt-1 text-xs">
-          {department}
-        </div>
+        <div className="mt-1 text-xs text-muted-foreground/70">{department}</div>
       )}
       <Handle
         type="source"
         position={Position.Bottom}
-        className="!bg-primary !size-2"
+        className="size-2! bg-primary!"
       />
     </div>
   );
@@ -89,7 +102,7 @@ function buildFlowElements(orgNodes: OrgNode[], orgEdges?: OrgEdge[]) {
   return { nodes, edges };
 }
 
-interface OrgChartProps extends React.HTMLAttributes<HTMLDivElement> {
+interface OrgChartProps extends React.ComponentProps<"div"> {
   nodes: OrgNode[];
   edges?: OrgEdge[];
   onNodeClick?: (node: OrgNode) => void;

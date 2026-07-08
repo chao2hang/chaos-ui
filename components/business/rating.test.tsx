@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Rating } from "./rating";
+import { Rating } from "@/components/ui/rating";
 
 describe("Rating", () => {
   it("exports Rating", () => {
@@ -102,7 +102,7 @@ describe("Rating", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/rating");
+    const mod = await import("@/components/ui/rating");
     expect(mod.Rating).toBeDefined();
   });
 });

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { EmptyState, variantConfig } from "@/components/business/empty-state";
+import { EmptyState, variantConfig } from "@/components/ui/empty-state";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (k: string, fallback?: string) => fallback ?? k, i18n: { language: "en" } }),
@@ -81,7 +81,7 @@ describe("empty-state", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/empty-state");
+    const mod = await import("@/components/ui/empty-state");
     expect(mod.EmptyState).toBeDefined();
   });
 });

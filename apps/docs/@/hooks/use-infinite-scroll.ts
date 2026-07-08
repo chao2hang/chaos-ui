@@ -23,6 +23,7 @@ export function useInfiniteScroll<T>(
     threshold: options.threshold ?? 0,
   })
   const loadMoreRef = React.useRef(loadMore)
+
   React.useEffect(() => {
     loadMoreRef.current = loadMore
   }, [loadMore])
@@ -44,8 +45,11 @@ export function useInfiniteScroll<T>(
 
   React.useEffect(() => {
     if (!inView) return
-    const id = requestAnimationFrame(() => load())
-    return () => cancelAnimationFrame(id)
+    const timeout = window.setTimeout(() => {
+      void load()
+    }, 0)
+
+    return () => window.clearTimeout(timeout)
   }, [inView, load])
 
   const reset = React.useCallback(() => {

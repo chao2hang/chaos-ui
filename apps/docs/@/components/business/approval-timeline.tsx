@@ -1,101 +1,121 @@
-"use client";
-import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { CheckIcon, ClockIcon, XIcon } from "@/components/ui/icons";
+import { Timeline, TimelineItem } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import {
-  CheckCircleIcon,
-  ClockIcon,
-  XCircleIcon,
-  ChevronRightIcon,
-} from "lucide-react";
+
+export type ApprovalStepStatus =
+  "approved" | "pending" | "rejected" | "skipped";
 
 export interface ApprovalStep {
   id: string;
   title: string;
-  assignee?: string;
-  status: "pending" | "approved" | "rejected" | "current";
-  comment?: string;
-  timestamp?: string;
+  approver: string;
+  status: ApprovalStepStatus;
+  time?: string;
+  note?: string;
 }
 
-interface ApprovalTimelineProps extends React.ComponentProps<"ol"> {
+export interface ApprovalTimelineTexts {
+  statusApproved?: string;
+  statusPending?: string;
+  statusRejected?: string;
+  statusSkipped?: string;
+}
+
+export interface ApprovalTimelineProps {
   steps: ApprovalStep[];
   className?: string;
+  /**
+   * Override i18n strings. When provided, useTranslation is skipped.
+   * / 覆盖 i18n 字符串，传入后跳过 useTranslation
+   */
+  texts?: ApprovalTimelineTexts;
 }
 
-const statusIcons: Record<ApprovalStep["status"], React.ElementType> = {
+const statusIcon = {
+  approved: CheckIcon,
   pending: ClockIcon,
-  approved: CheckCircleIcon,
-  rejected: XCircleIcon,
-  current: ChevronRightIcon,
+  rejected: XIcon,
+  skipped: ClockIcon,
 };
 
-const statusStyles: Record<ApprovalStep["status"], string> = {
-  pending: "text-muted-foreground",
-  approved: "text-success",
-  rejected: "text-destructive",
-  current: "text-primary",
-};
+const statusVariant = {
+  approved: "success",
+  pending: "info",
+  rejected: "destructive",
+  skipped: "default",
+} as const;
 
-function ApprovalTimeline({
+/**
+ * @component ApprovalTimeline
+ * @category business/bill
+ * @since 0.2.0
+ * @description Visual approval workflow timeline showing step status (approved, pending, rejected, skipped) / 审批流程可视化时间线，展示各节点审批状态
+ * @keywords approval, timeline, workflow, review, steps
+ * @example
+ * <ApprovalTimeline steps={[{ id: "1", title: "Manager", approver: "Alice", status: "approved" }]} />
+ */
+export function ApprovalTimeline({
   steps,
   className,
-  ...props
+  texts: textsProp,
 }: ApprovalTimelineProps) {
+  const defaultTexts: Record<string, string> = {
+    approved: "Approved",
+    pending: "Pending",
+    rejected: "Rejected",
+    skipped: "Skipped",
+  };
+
+  const statusTextMap: Record<ApprovalStepStatus, string | undefined> = {
+    approved: textsProp?.statusApproved,
+    pending: textsProp?.statusPending,
+    rejected: textsProp?.statusRejected,
+    skipped: textsProp?.statusSkipped,
+  };
+
+  const hasI18n = !textsProp;
+  // Always call useTranslation unconditionally (rules-of-hooks); ignore its
+  // result when explicit texts are provided.
+  const { t: tI18n } = useTranslation("transfer");
+  const t = hasI18n ? tI18n : (k: string) => k;
+
   return (
-    <ol
+    <Timeline
       data-slot="approval-timeline"
-      className={cn("space-y-0", className)}
-      {...props}
+      className={cn("max-w-2xl", className)}
     >
-      {steps.map((step, index) => {
-        const Icon = statusIcons[step.status];
-        const isLast = index === steps.length - 1;
+      {steps.map((step) => {
+        const statusLabel = textsProp
+          ? (statusTextMap[step.status] ??
+            (defaultTexts as Record<string, string>)[step.status] ??
+            step.status)
+          : t(
+              `approvalTimeline.status.${step.status}` as string,
+              String(defaultTexts[step.status] ?? step.status),
+            );
         return (
-          <li key={step.id} className="relative flex gap-4 pb-8 last:pb-0">
-            {!isLast && (
-              <span
-                className="bg-border absolute top-8 left-[15px] h-full w-px"
-                aria-hidden
-              />
-            )}
-            <span
-              className={cn(
-                "relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border-2",
-                step.status === "approved" && "border-success bg-success/10",
-                step.status === "rejected" &&
-                  "border-destructive bg-destructive/10",
-                step.status === "current" && "border-primary bg-primary/10",
-                step.status === "pending" && "border-muted bg-muted/20",
-              )}
-            >
-              <Icon className={cn("size-4", statusStyles[step.status])} />
-            </span>
-            <div className="flex-1 pt-1">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">{step.title}</span>
-                {step.assignee && (
-                  <span className="text-muted-foreground text-xs">
-                    · {step.assignee}
-                  </span>
-                )}
-              </div>
-              {step.comment && (
-                <p className="text-muted-foreground mt-1 text-xs">
-                  {step.comment}
-                </p>
-              )}
-              {step.timestamp && (
-                <p className="text-muted-foreground mt-0.5 text-[11px]">
-                  {step.timestamp}
-                </p>
-              )}
-            </div>
-          </li>
+          <TimelineItem
+            key={step.id}
+            icon={statusIcon[step.status]}
+            title={
+              <span className="inline-flex items-center gap-2">
+                {step.title}
+                <Badge variant="outline">{statusLabel}</Badge>
+              </span>
+            }
+            description={
+              <span>
+                {step.approver}
+                {step.note ? ` · ${step.note}` : ""}
+              </span>
+            }
+            time={step.time}
+            variant={statusVariant[step.status]}
+          />
         );
       })}
-    </ol>
+    </Timeline>
   );
 }
-
-export { ApprovalTimeline };
-export type { ApprovalTimelineProps };

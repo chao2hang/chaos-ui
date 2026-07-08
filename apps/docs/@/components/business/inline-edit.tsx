@@ -1,114 +1,153 @@
 "use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { PencilIcon, CheckIcon, XIcon } from "lucide-react";
 
-interface InlineEditProps extends React.ComponentProps<"span"> {
+import * as React from "react";
+import { CheckIcon, PencilIcon, XIcon } from "@/components/ui/icons";
+
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Textarea } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export interface InlineEditProps extends Omit<
+  React.ComponentProps<"div">,
+  "onSave"
+> {
   value: string;
-  onChange?: (value: string) => void;
-  onSave?: (value: string) => void;
-  as?: "input" | "textarea";
   placeholder?: string;
-  className?: string;
+  multiline?: boolean;
+  disabled?: boolean;
+  validate?: (value: string) => string | undefined;
+  onSave?: (value: string) => void | Promise<void>;
+  renderValue?: (value: string) => React.ReactNode;
 }
 
-function InlineEdit({
+/**
+ * @component InlineEdit
+ * @category business/ux
+ * @since 0.2.0
+ * @description Inline text editing with click-to-edit, validation, and save/cancel actions; supports single-line and multiline modes / 内联文本编辑组件，支持点击编辑、验证和保存/取消操作，兼容单行和多行模式
+ * @keywords inline, edit, text, input, validation
+ * @example
+ * <InlineEdit value="Hello" onSave={(v) => console.log(v)} />
+ */
+export function InlineEdit({
   value,
-  onChange,
+  placeholder = "Empty",
+  multiline,
+  disabled,
+  validate,
   onSave,
-  as = "input",
-  placeholder = "点击编辑",
+  renderValue,
   className,
   ...props
 }: InlineEditProps) {
   const [editing, setEditing] = React.useState(false);
   const [draft, setDraft] = React.useState(value);
+  const [error, setError] = React.useState<string>();
+  const [saving, setSaving] = React.useState(false);
 
-  React.useEffect(() => {
-    setDraft(value);
-  }, [value]);
-
-  const handleSave = () => {
-    setEditing(false);
-    onChange?.(draft);
-    onSave?.(draft);
-  };
-
-  const handleCancel = () => {
-    setDraft(value);
-    setEditing(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSave();
+  const save = async () => {
+    const nextError = validate?.(draft);
+    setError(nextError);
+    if (nextError) return;
+    setSaving(true);
+    try {
+      await onSave?.(draft);
+      setEditing(false);
+    } finally {
+      setSaving(false);
     }
-    if (e.key === "Escape") handleCancel();
   };
 
   if (!editing) {
+    const startEditing = () => {
+      setDraft(value);
+      setError(undefined);
+      setEditing(true);
+    };
+
     return (
-      <span
+      <div
         data-slot="inline-edit"
         className={cn(
-          "group hover:bg-muted/50 -mx-1 inline-flex min-w-[2rem] cursor-pointer items-center gap-1 rounded px-1",
-          !value && "text-muted-foreground italic",
+          "group/inline-edit inline-flex items-center gap-2",
           className,
         )}
-        onClick={() => setEditing(true)}
         {...props}
       >
-        <span>{value || placeholder}</span>
-        <PencilIcon className="size-3 shrink-0 opacity-0 group-hover:opacity-50" />
-      </span>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          disabled={disabled}
+          className="h-auto justify-start px-0 py-0 text-left font-normal"
+          onClick={startEditing}
+        >
+          {value ? (
+            (renderValue?.(value) ?? value)
+          ) : (
+            <span className="text-muted-foreground">{placeholder}</span>
+          )}
+        </Button>
+        {!disabled && (
+          <Button
+            type="button"
+            size="icon-xs"
+            variant="ghost"
+            className="opacity-0 group-hover/inline-edit:opacity-100"
+            onClick={startEditing}
+            aria-label="Edit value"
+          >
+            <PencilIcon />
+          </Button>
+        )}
+      </div>
     );
   }
 
+  const Control = multiline ? Textarea : Input;
+
   return (
-    <span
+    <div
       data-slot="inline-edit"
-      className={cn("inline-flex items-center gap-1", className)}
+      className={cn("space-y-1.5", className)}
+      {...props}
     >
-      {as === "textarea" ? (
-        <textarea
+      <div className="flex items-start gap-2">
+        <Control
           value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="bg-background min-w-[120px] resize-none rounded border px-2 py-1 text-sm"
-          rows={2}
-          autoFocus
+          aria-invalid={!!error}
+          disabled={saving}
+          onChange={(event) => {
+            setDraft(event.target.value);
+            setError(undefined);
+          }}
+          onKeyDown={(event) => {
+            if (!multiline && event.key === "Enter") void save();
+            if (event.key === "Escape") setEditing(false);
+          }}
         />
-      ) : (
-        <Input
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="inline h-7 w-auto min-w-[80px]"
-          autoFocus
-        />
-      )}
-      <Button
-        size="icon-sm"
-        variant="ghost"
-        onClick={handleSave}
-        className="shrink-0"
-      >
-        <CheckIcon className="text-success size-3" />
-      </Button>
-      <Button
-        size="icon-sm"
-        variant="ghost"
-        onClick={handleCancel}
-        className="shrink-0"
-      >
-        <XIcon className="text-muted-foreground size-3" />
-      </Button>
-    </span>
+        <Button
+          type="button"
+          size="icon-sm"
+          onClick={save}
+          disabled={saving}
+          aria-label="Save value"
+        >
+          <CheckIcon />
+        </Button>
+        <Button
+          type="button"
+          size="icon-sm"
+          variant="outline"
+          onClick={() => setEditing(false)}
+          disabled={saving}
+          aria-label="Cancel editing"
+        >
+          <XIcon />
+        </Button>
+      </div>
+      {error && <p className="text-xs text-destructive">{error}</p>}
+    </div>
   );
 }
-
-export { InlineEdit };
-export type { InlineEditProps };

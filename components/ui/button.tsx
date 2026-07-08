@@ -70,10 +70,15 @@ function Button({
 }: ButtonProps) {
   const hasIcon = icon != null || iconRight != null;
 
+  const computedClassName = React.useMemo(
+    () => cn(buttonVariants({ variant, size, className })),
+    [variant, size, className],
+  );
+
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={computedClassName}
       {...props}
     >
       {hasIcon ? (
@@ -98,3 +103,6 @@ function Button({
 }
 
 export { Button, buttonVariants };
+
+const MemoizedButton = React.memo(Button);
+export { MemoizedButton as ButtonMemo };

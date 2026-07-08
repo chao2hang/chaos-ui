@@ -1,76 +1,81 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const spaceVariants = cva("", {
-  variants: {
-    direction: {
-      horizontal: "flex flex-row items-center",
-      vertical: "flex flex-col",
-    },
-    size: {
-      xs: "gap-1",
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-      xl: "gap-8",
-    },
-    wrap: {
-      true: "flex-wrap",
-      false: "",
-    },
-    align: {
-      start: "items-start",
-      center: "items-center",
-      end: "items-end",
-      baseline: "items-baseline",
-    },
-  },
-  defaultVariants: {
-    direction: "horizontal",
-    size: "sm",
-    wrap: false,
-    align: "center",
-  },
-});
+/**
+ * @component Space
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 原子级布局间距组件 / Atomic layout spacing component
+ * @keywords space, layout, gap, spacing
+ * @example
+ * <Space direction="horizontal" size="md">
+ *   <Button>A</Button>
+ *   <Button>B</Button>
+ * </Space>
+ */
 
-interface SpaceProps
-  extends React.ComponentProps<"div">, VariantProps<typeof spaceVariants> {
-  /** Split items with a separator */
-  split?: React.ReactNode;
+type SpaceSize = "xs" | "sm" | "md" | "lg" | "xl" | number;
+
+const sizeMap: Record<string, string> = {
+  xs: "gap-1",
+  sm: "gap-2",
+  md: "gap-4",
+  lg: "gap-6",
+  xl: "gap-8",
+};
+
+const alignMap: Record<string, string> = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+  baseline: "items-baseline",
+  stretch: "items-stretch",
+};
+
+interface SpaceProps extends React.ComponentProps<"div"> {
+  /** Direction of the layout / 布局方向 */
+  direction?: "horizontal" | "vertical";
+  /** Spacing size / 间距大小 */
+  size?: SpaceSize;
+  /** Align items / 对齐方式 */
+  align?: "start" | "center" | "end" | "baseline" | "stretch";
+  /** Whether to wrap / 是否换行 */
+  wrap?: boolean;
 }
 
 function Space({
   className,
-  direction,
-  size,
-  wrap,
+  direction = "horizontal",
+  size = "md",
   align,
-  split,
-  children,
+  wrap = false,
   ...props
 }: SpaceProps) {
-  const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const isVertical = direction === "vertical";
+  const gapClass =
+    typeof size === "number" ? undefined : sizeMap[size] ?? sizeMap.md;
+  const style: React.CSSProperties = { ...props.style };
+  if (typeof size === "number") {
+    style.gap = `${size}px`;
+  }
 
   return (
     <div
       data-slot="space"
-      className={cn(spaceVariants({ direction, size, wrap, align }), className)}
+      className={cn(
+        "flex",
+        isVertical ? "flex-col" : "flex-row",
+        gapClass,
+        align && alignMap[align],
+        wrap && "flex-wrap",
+        className,
+      )}
+      style={style}
       {...props}
-    >
-      {childrenArray.map((child, i) => (
-        <React.Fragment key={i}>
-          {child}
-          {split && i < childrenArray.length - 1 && (
-            <span data-slot="space-split" className="shrink-0">
-              {split}
-            </span>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
+    />
   );
 }
 
-export { Space, spaceVariants };
+export { Space };
+export type { SpaceProps };

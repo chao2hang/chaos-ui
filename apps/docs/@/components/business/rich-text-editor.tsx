@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -22,7 +23,7 @@ import {
   StrikethroughIcon,
   ExternalLinkIcon,
   TrashIcon,
-} from "lucide-react";
+} from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -44,10 +45,18 @@ import {
 import { cn } from "@/lib/utils";
 import { formatFileSize } from "@/lib/format";
 
-interface RichTextEditorProps extends Omit<
-  React.ComponentProps<"div">,
-  "onChange"
-> {
+/**
+ * @component RichTextEditor
+ * @category business/form
+ * @since 1.0.0
+ * @description 富文本编辑器,基于 TipTap 实现,支持工具栏(加粗/斜体/标题/列表/引用/代码块)、链接、图片上传、附件上传。
+ * @keywords richtext, editor, tiptap, wysiwyg
+ * @example
+ * <RichTextEditor value="<p>Hello</p>" onChange={setHtml} placeholder="请输入..." />
+ */
+
+interface RichTextEditorProps
+  extends Omit<React.ComponentProps<"div">, "onChange"> {
   value?: string;
   onChange?: (html: string) => void;
   placeholder?: string;
@@ -60,7 +69,7 @@ interface RichTextEditorProps extends Omit<
   className?: string;
 }
 
-export function RichTextEditor({
+function RichTextEditor({
   value = "",
   onChange,
   placeholder = "开始输入...",
@@ -71,10 +80,6 @@ export function RichTextEditor({
   className,
   ...props
 }: RichTextEditorProps) {
-  // 跟踪上一次同步给外部的 HTML,避免受控模式下 onChange→value 回灌→
-  // effect 再 setContent→光标重置到末尾的经典死循环。
-  const lastSyncedHtmlRef = React.useRef<string>(value);
-
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -89,13 +94,7 @@ export function RichTextEditor({
     ],
     content: value,
     editable,
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
-      // 记录本次 onChange 通知出去的 HTML。父组件把它当 value 传回时
-      // effect 比对会发现"上次同步的 === 推回来的",不再触发 setContent。
-      lastSyncedHtmlRef.current = html;
-      onChange?.(html);
-    },
+    onUpdate: ({ editor }) => onChange?.(editor.getHTML()),
     editorProps: {
       attributes: {
         style: `min-height: ${minHeight}px`,
@@ -105,17 +104,14 @@ export function RichTextEditor({
   });
 
   React.useEffect(() => {
-    if (!editor) return;
-    // 只有当外部 value 与"上次同步出去的 HTML"不同时,才是真正的外部更新,才推回编辑器。
-    if (value !== lastSyncedHtmlRef.current && value !== editor.getHTML()) {
-      lastSyncedHtmlRef.current = value;
+    if (editor && value !== editor.getHTML()) {
       editor.commands.setContent(value);
     }
   }, [editor, value]);
 
   if (!editor) {
     return (
-      <div className="bg-muted/30 text-muted-foreground rounded-md border p-4 text-sm">
+      <div className="rounded-md border bg-muted/30 p-4 text-sm text-muted-foreground">
         加载编辑器...
       </div>
     );
@@ -138,14 +134,14 @@ export function RichTextEditor({
   return (
     <div
       data-slot="rich-text-editor"
-      className={cn("bg-background rounded-md border", className)}
+      className={cn("rounded-md border bg-background", className)}
       {...props}
     >
       {showToolbar && editable && (
         <RichTextToolbar editor={editor} onUpload={onUpload ?? defaultUpload} />
       )}
       <div
-        className="prose prose-sm [&_a]:text-primary [&_blockquote]:border-border [&_blockquote]:text-muted-foreground [&_code]:bg-muted max-w-none cursor-text px-3 py-2 focus:outline-none [&_.ProseMirror]:min-h-full [&_.ProseMirror]:cursor-text [&_.ProseMirror]:outline-none [&_blockquote]:border-l-4 [&_blockquote]:pl-4 [&_code]:rounded [&_code]:px-1 [&_h1]:text-2xl [&_h1]:font-bold [&_h2]:text-xl [&_h2]:font-semibold [&_img]:max-w-full [&_img]:rounded [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-1 [&_ul]:list-disc [&_ul]:pl-6"
+        className="prose prose-sm max-w-none cursor-text px-3 py-2 focus:outline-none [&_.ProseMirror]:min-h-full [&_.ProseMirror]:cursor-text [&_.ProseMirror]:outline-none [&_a]:text-primary [&_blockquote]:border-l-4 [&_blockquote]:border-border [&_blockquote]:pl-4 [&_blockquote]:text-muted-foreground [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_h1]:text-2xl [&_h1]:font-bold [&_h2]:text-xl [&_h2]:font-semibold [&_img]:rounded [&_img]:max-w-full [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-1 [&_ul]:list-disc [&_ul]:pl-6"
         style={{ minHeight }}
         onMouseDown={(e) => {
           if (editor && !editor.isFocused) {
@@ -178,7 +174,11 @@ function RichTextToolbar({
   const currentLink = editor.getAttributes("link").href as string | undefined;
 
   return (
-    <div className="flex flex-wrap items-center gap-0.5 border-b p-1">
+    <div
+      className="flex flex-wrap items-center gap-0.5 border-b p-1"
+      role="toolbar"
+      aria-label="富文本编辑工具栏"
+    >
       <ToolButton
         onClick={() => editor.chain().focus().toggleBold().run()}
         active={editor.isActive("bold")}
@@ -238,6 +238,7 @@ function RichTextToolbar({
         <PopoverTrigger
           render={
             <ToolButton
+              onClick={() => setLinkOpen(true)}
               active={editor.isActive("link")}
               icon={<LinkIcon />}
               title="链接"
@@ -260,12 +261,7 @@ function RichTextToolbar({
                   })
                   .run();
               } else {
-                editor
-                  .chain()
-                  .focus()
-                  .extendMarkRange("link")
-                  .unsetLink()
-                  .run();
+                editor.chain().focus().extendMarkRange("link").unsetLink().run();
               }
               setLinkOpen(false);
             }}
@@ -288,7 +284,15 @@ function RichTextToolbar({
         title="附件"
       />
 
-      <div className="bg-muted-foreground/20 mx-1 h-4 w-px" />
+      <input
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={() => setImageOpen(true)}
+        data-image-input
+      />
+
+      <div className="mx-1 h-4 w-px bg-muted-foreground/20" />
       <ToolButton
         onClick={() => editor.chain().focus().undo().run()}
         icon={<UndoIcon />}
@@ -349,7 +353,7 @@ function LinkPopover({
   onApply,
   onRemove,
 }: {
-  currentUrl?: string;
+  currentUrl: string | undefined;
   onApply: (url: string, openInNew: boolean) => void;
   onRemove: () => void;
 }) {
@@ -377,9 +381,7 @@ function LinkPopover({
             }
           }}
         />
-        {!isValid && (
-          <p className="text-destructive text-xs">请输入有效的 URL</p>
-        )}
+        {!isValid && <p className="text-xs text-destructive">请输入有效的 URL</p>}
       </div>
 
       <label className="flex items-center gap-2 text-xs">
@@ -519,7 +521,7 @@ function ImageDialogContent({
             "border-b-2 px-3 py-1.5 text-sm transition-colors",
             tab === "upload"
               ? "border-primary text-foreground"
-              : "text-muted-foreground hover:text-foreground border-transparent",
+              : "border-transparent text-muted-foreground hover:text-foreground",
           )}
         >
           上传
@@ -531,7 +533,7 @@ function ImageDialogContent({
             "border-b-2 px-3 py-1.5 text-sm transition-colors",
             tab === "url"
               ? "border-primary text-foreground"
-              : "text-muted-foreground hover:text-foreground border-transparent",
+              : "border-transparent text-muted-foreground hover:text-foreground",
           )}
         >
           链接
@@ -554,7 +556,7 @@ function ImageDialogContent({
             }}
             onClick={() => fileRef.current?.click()}
             className={cn(
-              "bg-muted/20 text-muted-foreground flex aspect-video cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed text-sm transition-colors",
+              "flex aspect-video cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed bg-muted/20 text-sm text-muted-foreground transition-colors",
               dragOver && "border-primary bg-primary/5 text-primary",
               !dragOver && "hover:border-primary/50",
             )}
@@ -569,7 +571,7 @@ function ImageDialogContent({
               <>
                 <ImageIcon className="size-8" />
                 <span>点击或拖拽图片到此处</span>
-                <span className="text-muted-foreground text-xs">
+                <span className="text-xs text-muted-foreground">
                   支持 PNG / JPG / GIF / WebP · 最大 10MB
                 </span>
               </>
@@ -586,7 +588,7 @@ function ImageDialogContent({
             />
           </div>
           {fileName && !preview && inserting && (
-            <p className="text-muted-foreground text-xs">
+            <p className="text-xs text-muted-foreground">
               正在上传 {fileName}...
             </p>
           )}
@@ -601,7 +603,7 @@ function ImageDialogContent({
             placeholder="https://example.com/image.png"
           />
           {url && (
-            <div className="bg-muted/20 mt-2 flex aspect-video items-center justify-center overflow-hidden rounded-md border">
+            <div className="mt-2 flex aspect-video items-center justify-center overflow-hidden rounded-md border bg-muted/20">
               <img
                 src={url}
                 alt="preview"
@@ -622,7 +624,7 @@ function ImageDialogContent({
         />
       </div>
 
-      {error && <p className="text-destructive text-xs">{error}</p>}
+      {error && <p className="text-xs text-destructive">{error}</p>}
 
       <DialogFooter>
         <Button variant="outline" onClick={() => onOpenChange(false)}>
@@ -734,16 +736,16 @@ function AttachmentDialogContent({
   };
 
   const allReady =
-    files.length > 0 &&
-    files.every((f) => Boolean(f.url) && !f.error) &&
-    !inserting;
+    files.length > 0 && files.every((f) => (f.url || f.error) && !inserting);
   const readyCount = files.filter((f) => f.url && !f.error).length;
 
   return (
     <DialogContent className="sm:max-w-lg">
       <DialogHeader>
         <DialogTitle>插入附件</DialogTitle>
-        <DialogDescription>支持 PDF、文档、压缩包等任意文件</DialogDescription>
+        <DialogDescription>
+          支持 PDF、文档、压缩包等任意文件
+        </DialogDescription>
       </DialogHeader>
 
       <div
@@ -759,7 +761,7 @@ function AttachmentDialogContent({
         }}
         onClick={() => fileRef.current?.click()}
         className={cn(
-          "bg-muted/20 text-muted-foreground flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed px-4 py-6 text-sm transition-colors",
+          "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed bg-muted/20 px-4 py-6 text-sm text-muted-foreground transition-colors",
           dragOver && "border-primary bg-primary/5 text-primary",
           !dragOver && "hover:border-primary/50",
         )}
@@ -779,14 +781,14 @@ function AttachmentDialogContent({
       </div>
 
       {files.length > 0 && (
-        <div className="bg-muted/20 max-h-60 space-y-1 overflow-y-auto rounded-md border p-2">
+        <div className="max-h-60 space-y-1 overflow-y-auto rounded-md border bg-muted/20 p-2">
           {files.map((entry) => (
             <div
               key={entry.file.name + entry.file.size}
-              className="bg-background flex items-center gap-2 rounded px-2 py-1.5 text-xs"
+              className="flex items-center gap-2 rounded bg-background px-2 py-1.5 text-xs"
             >
-              <PaperclipIcon className="text-muted-foreground size-3.5 shrink-0" />
-              <div className="min-w-0 flex-1">
+              <PaperclipIcon className="size-3.5 shrink-0 text-muted-foreground" />
+              <div className="flex-1 min-w-0">
                 <div className="truncate font-medium">{entry.file.name}</div>
                 <div className="text-muted-foreground">
                   {formatFileSize(entry.file.size)}
@@ -825,7 +827,7 @@ function AttachmentDialogContent({
       )}
 
       <DialogFooter>
-        <span className="text-muted-foreground mr-auto text-xs">
+        <span className="mr-auto text-xs text-muted-foreground">
           {readyCount > 0 ? `将插入 ${readyCount} 个附件` : "请添加文件"}
         </span>
         <Button variant="outline" onClick={() => onOpenChange(false)}>
@@ -845,7 +847,7 @@ function ToolButton({
   icon,
   title,
 }: {
-  onClick?: () => void;
+  onClick: () => void;
   active?: boolean;
   icon: React.ReactNode;
   title: string;
@@ -864,3 +866,8 @@ function ToolButton({
     </Button>
   );
 }
+
+RichTextEditor.displayName = "RichTextEditor";
+
+export { RichTextEditor };
+export type { RichTextEditorProps };

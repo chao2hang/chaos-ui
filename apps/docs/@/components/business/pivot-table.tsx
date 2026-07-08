@@ -1,27 +1,24 @@
 "use client";
 import * as React from "react";
-import { SearchIcon, XIcon, Table2Icon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  ScrollArea,
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+} from "@/components/ui";
 
 export type Aggregation = "sum" | "count" | "avg" | "min" | "max";
-
-const AGG_LABELS: Record<Aggregation, string> = {
-  sum: "Sum",
-  count: "Count",
-  avg: "Average",
-  min: "Min",
-  max: "Max",
-};
 
 interface PivotTableProps<T extends Record<string, unknown>> {
   data: T[];
@@ -29,15 +26,11 @@ interface PivotTableProps<T extends Record<string, unknown>> {
   columnField: keyof T;
   valueField: keyof T;
   aggregation?: Aggregation;
-  onAggregationChange?: (agg: Aggregation) => void;
   className?: string;
   showRowTotal?: boolean;
   showColumnTotal?: boolean;
   filter?: (row: T) => boolean;
   formatValue?: (v: number) => string;
-  heatmap?: boolean;
-  emptyLabel?: string;
-  searchPlaceholder?: string;
 }
 
 function aggregate(values: number[], type: Aggregation): number {
@@ -50,48 +43,35 @@ function aggregate(values: number[], type: Aggregation): number {
     case "avg":
       return values.reduce((a, b) => a + b, 0) / values.length;
     case "min":
-      return values.reduce((a, b) => Math.min(a, b), Infinity);
+      return Math.min(...values);
     case "max":
-      return values.reduce((a, b) => Math.max(a, b), -Infinity);
+      return Math.max(...values);
   }
 }
 
+/**
+ * @component PivotTable
+ * @category business/data
+ * @since 0.2.0
+ * @description Interactive pivot table with row/column totals and search filtering / 交互式透视表，支持行列合计与搜索筛选
+ * @keywords pivot, table, aggregation, sum, count, avg, min, max
+ * @example
+ * <PivotTable data={rows} rowField="product" columnField="region" valueField="sales" aggregation="sum" />
+ */
 export function PivotTable<T extends Record<string, unknown>>({
   data,
   rowField,
   columnField,
   valueField,
-  aggregation: aggregationProp = "sum",
-  onAggregationChange,
+  aggregation = "sum",
   className,
   showRowTotal = true,
   showColumnTotal = true,
   filter,
   formatValue,
-  heatmap,
-  emptyLabel = "No data",
-  searchPlaceholder = "Search rows...",
 }: PivotTableProps<T>) {
-  const [aggregationInternal, setAggregationInternal] =
-    React.useState<Aggregation>(aggregationProp);
-  const aggregation = onAggregationChange
-    ? aggregationProp
-    : aggregationInternal;
-  const setAggregation = onAggregationChange ?? setAggregationInternal;
+  const { t } = useTranslation("data");
   const [search, setSearch] = React.useState("");
-  const [scrolled, setScrolled] = React.useState(false);
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const el = scrollRef.current?.querySelector(
-      "[data-radix-scroll-area-viewport]",
-    ) as HTMLElement | null;
-    if (!el) return;
-    const handler = () => setScrolled(el.scrollLeft > 0);
-    el.addEventListener("scroll", handler);
-    handler();
-    return () => el.removeEventListener("scroll", handler);
-  }, []);
 
   const filtered = React.useMemo(() => {
     let result = data;
@@ -129,220 +109,135 @@ export function PivotTable<T extends Record<string, unknown>>({
     formatValue ??
     ((v) => v.toLocaleString("zh-CN", { maximumFractionDigits: 2 }));
 
-  const cellValues = React.useMemo(() => {
-    const map = new Map<string, number>();
+  const getCell = (row: string, col: string) => {
+    const arr = matrix.cellMap.get(`${row}|${col}`) ?? [];
+    return aggregate(arr, aggregation);
+  };
+
+  const rowTotals = matrix.rows.map((r) => {
+    const allValues: number[] = [];
+    for (const c of matrix.cols) {
+      const arr = matrix.cellMap.get(`${r}|${c}`) ?? [];
+      allValues.push(...arr);
+    }
+    return aggregate(allValues, aggregation);
+  });
+
+  const colTotals = matrix.cols.map((c) => {
+    const allValues: number[] = [];
+    for (const r of matrix.rows) {
+      const arr = matrix.cellMap.get(`${r}|${c}`) ?? [];
+      allValues.push(...arr);
+    }
+    return aggregate(allValues, aggregation);
+  });
+
+  const grandTotal = React.useMemo(() => {
+    const allValues: number[] = [];
     for (const r of matrix.rows) {
       for (const c of matrix.cols) {
         const arr = matrix.cellMap.get(`${r}|${c}`) ?? [];
-        map.set(`${r}|${c}`, aggregate(arr, aggregation));
+        allValues.push(...arr);
       }
     }
-    return map;
+    return aggregate(allValues, aggregation);
   }, [matrix, aggregation]);
-
-  const getCell = (row: string, col: string) =>
-    cellValues.get(`${row}|${col}`) ?? 0;
-
-  const rowTotals = React.useMemo(
-    () =>
-      matrix.rows.map((r) =>
-        aggregate(
-          matrix.cols.flatMap((c) => matrix.cellMap.get(`${r}|${c}`) ?? []),
-          aggregation,
-        ),
-      ),
-    [matrix, aggregation],
-  );
-
-  const colTotals = React.useMemo(
-    () =>
-      matrix.cols.map((c) =>
-        aggregate(
-          matrix.rows.flatMap((r) => matrix.cellMap.get(`${r}|${c}`) ?? []),
-          aggregation,
-        ),
-      ),
-    [matrix, aggregation],
-  );
-
-  const grandTotal = colTotals.reduce((a, b) => a + b, 0);
-
-  const heatmapRange = React.useMemo(() => {
-    if (!heatmap || cellValues.size === 0) return { min: 0, max: 1 };
-    let min = Infinity;
-    let max = -Infinity;
-    for (const v of cellValues.values()) {
-      if (v < min) min = v;
-      if (v > max) max = v;
-    }
-    return { min, max };
-  }, [heatmap, cellValues]);
-
-  const heatmapColor = (value: number) => {
-    if (heatmapRange.max === heatmapRange.min) return "";
-    const ratio =
-      (value - heatmapRange.min) / (heatmapRange.max - heatmapRange.min);
-    const alpha = Math.round(ratio * 40 + 5);
-    return `rgba(var(--primary), ${alpha / 100})`;
-  };
 
   return (
     <Card data-slot="pivot-table" className={cn("overflow-hidden", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <div className="flex items-center gap-2">
-          <CardTitle className="text-sm font-medium">
-            {String(rowField)} × {String(columnField)}
-          </CardTitle>
-          <div className="text-muted-foreground text-xs">
-            <Select
-              value={aggregation}
-              onValueChange={(v) => setAggregation(v as Aggregation)}
-            >
-              <SelectTrigger className="bg-muted/50 h-6 w-20 gap-0 border-0 px-2 text-xs">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {(Object.entries(AGG_LABELS) as [Aggregation, string][]).map(
-                  ([k, v]) => (
-                    <SelectItem key={k} value={k} className="text-xs">
-                      {v}
-                    </SelectItem>
-                  ),
-                )}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <div className="relative">
-          <SearchIcon className="text-muted-foreground absolute top-1/2 left-2 size-3.5 -translate-y-1/2" />
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={searchPlaceholder}
-            className="h-7 w-48 pr-6 pl-7 text-xs"
-          />
-          {search && (
-            <button
-              type="button"
-              onClick={() => setSearch("")}
-              className="text-muted-foreground hover:text-foreground absolute top-1/2 right-1 -translate-y-1/2 rounded p-0.5"
-              aria-label="Clear search"
-            >
-              <XIcon className="size-3" />
-            </button>
-          )}
-        </div>
+        <CardTitle className="text-sm font-medium">
+          {String(rowField)} × {String(columnField)} · {aggregation}
+        </CardTitle>
+        <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder={t("pivotTable.searchPlaceholder")}
+          className="h-7 w-48"
+        />
       </CardHeader>
       <CardContent className="p-0">
-        <ScrollArea ref={scrollRef}>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-muted/30 border-b">
-                <th
-                  className={cn(
-                    "sticky left-0 z-10 px-3 py-2 text-left font-medium",
-                    "bg-muted/30",
-                    scrolled && "shadow-[2px_0_4px_-2px_rgba(0,0,0,0.15)]",
-                  )}
-                >
+        <ScrollArea>
+          <Table className="w-full text-sm">
+            <TableHeader>
+              <TableRow className="border-b bg-muted/30">
+                <TableHead className="sticky left-0 z-10 bg-muted/30 px-3 py-2 text-left font-medium">
                   {String(rowField)} \ {String(columnField)}
-                </th>
+                </TableHead>
                 {matrix.cols.map((c) => (
-                  <th
+                  <TableHead
                     key={c}
-                    className="px-3 py-2 text-right font-medium tabular-nums"
+                    className="px-3 py-2 text-right font-medium"
                   >
                     {c}
-                  </th>
+                  </TableHead>
                 ))}
                 {showColumnTotal && (
-                  <th className="bg-muted/50 px-3 py-2 text-right font-medium">
-                    合计
-                  </th>
+                  <TableHead className="bg-muted/50 px-3 py-2 text-right font-medium">
+                    {t("pivotTable.total")}
+                  </TableHead>
                 )}
-              </tr>
-            </thead>
-            <tbody>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {matrix.rows.length === 0 ? (
-                <tr>
-                  <td
+                <TableRow>
+                  <TableCell
                     colSpan={matrix.cols.length + (showColumnTotal ? 2 : 1)}
-                    className="px-3 py-10 text-center"
+                    className="px-3 py-6 text-center text-muted-foreground"
                   >
-                    <div className="text-muted-foreground flex flex-col items-center gap-2">
-                      <Table2Icon className="size-8 opacity-30" />
-                      <span className="text-sm">{emptyLabel}</span>
-                    </div>
-                  </td>
-                </tr>
+                    {t("pivotTable.noData")}
+                  </TableCell>
+                </TableRow>
               ) : (
                 matrix.rows.map((r, ri) => (
-                  <tr
+                  <TableRow
                     key={r}
-                    className="hover:bg-muted/20 even:bg-muted/5 border-b last:border-0"
+                    className="border-b last:border-0 hover:bg-muted/20"
                   >
-                    <td
-                      className={cn(
-                        "sticky left-0 z-10 px-3 py-2 font-medium",
-                        "bg-background",
-                        ri % 2 === 0 ? "bg-background" : "bg-muted/5",
-                        "group-hover:bg-muted/20",
-                        scrolled && "shadow-[2px_0_4px_-2px_rgba(0,0,0,0.15)]",
-                      )}
-                    >
+                    <TableCell className="sticky left-0 z-10 bg-background px-3 py-2 font-medium">
                       {r}
-                    </td>
+                    </TableCell>
                     {matrix.cols.map((c) => (
-                      <td
+                      <TableCell
                         key={c}
-                        className="px-3 py-2 text-right tabular-nums transition-colors"
-                        style={
-                          heatmap && heatmapRange.max > heatmapRange.min
-                            ? { backgroundColor: heatmapColor(getCell(r, c)) }
-                            : undefined
-                        }
+                        className="px-3 py-2 text-right tabular-nums"
                       >
                         {format(getCell(r, c))}
-                      </td>
+                      </TableCell>
                     ))}
                     {showColumnTotal && (
-                      <td className="bg-muted/30 px-3 py-2 text-right font-semibold tabular-nums">
-                        {format(rowTotals[ri])}
-                      </td>
+                      <TableCell className="bg-muted/30 px-3 py-2 text-right font-semibold tabular-nums">
+                        {format(rowTotals[ri] ?? 0)}
+                      </TableCell>
                     )}
-                  </tr>
+                  </TableRow>
                 ))
               )}
-            </tbody>
+            </TableBody>
             {showRowTotal && matrix.rows.length > 0 && (
-              <tfoot>
-                <tr className="bg-muted/30 border-t font-semibold">
-                  <td
-                    className={cn(
-                      "sticky left-0 z-10 px-3 py-2",
-                      "bg-muted/30",
-                      scrolled && "shadow-[2px_0_4px_-2px_rgba(0,0,0,0.15)]",
-                    )}
-                  >
-                    Total
-                  </td>
+              <TableFooter>
+                <TableRow className="bg-muted/30 font-semibold">
+                  <TableCell className="sticky left-0 z-10 bg-muted/30 px-3 py-2">
+                    {t("pivotTable.total")}
+                  </TableCell>
                   {colTotals.map((t, i) => (
-                    <td
-                      key={matrix.cols[i]}
+                    <TableCell
+                      key={i}
                       className="px-3 py-2 text-right tabular-nums"
                     >
                       {format(t)}
-                    </td>
+                    </TableCell>
                   ))}
                   {showColumnTotal && (
-                    <td className="bg-muted/50 px-3 py-2 text-right tabular-nums">
+                    <TableCell className="bg-muted/50 px-3 py-2 text-right tabular-nums">
                       {format(grandTotal)}
-                    </td>
+                    </TableCell>
                   )}
-                </tr>
-              </tfoot>
+                </TableRow>
+              </TableFooter>
             )}
-          </table>
+          </Table>
         </ScrollArea>
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Transfer } from "@/components/business/transfer"
+import { Transfer } from "@/components/ui/transfer"
 import { useState } from "react"
 
 const meta: Meta<typeof Transfer> = {

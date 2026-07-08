@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site-header";
 import { LocaleProvider } from "@/components/locale-provider";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 
 // Use system font stack to avoid build-time Google Fonts fetch failures in sandboxed/CI environments.

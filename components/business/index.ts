@@ -39,7 +39,6 @@ export * from "./chart";
 export * from "./chip";
 export * from "./code-block";
 export * from "./code-editor";
-export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
 export * from "./cookie-banner";
@@ -60,12 +59,10 @@ export {
   type RemoteOption,
   type RemoteFetcher,
 } from "./remote-select";
-export * from "./empty-state";
 export * from "./error-boundary";
 export * from "./expense-line-editor";
 export * from "./experiment-summary";
 export * from "./export-button";
-export * from "./fab";
 export * from "./field-mask";
 export * from "./file-upload-manager";
 export * from "./filter-bar";
@@ -114,24 +111,18 @@ export * from "./page-header";
 export * from "./permission-matrix";
 export * from "./pivot-table";
 export * from "./prompt-dialog";
-export * from "./rating";
 export * from "./responsive-preview";
 export * from "./role-assignment";
 export * from "./saved-filters";
 export { SearchTable, type SearchTableProps } from "./search-table";
-export * from "./segmented-control";
 export * from "./social-share";
 export { SqlEditor, type SqlEditorProps } from "./sql-editor";
 export * from "./stat-card";
 export * from "./stat-card-row";
 export * from "./status-tag";
-export * from "./time-picker";
-export * from "./tour";
-export * from "./transfer";
 export * from "./user-menu";
 export * from "./utm-builder";
 export * from "./version-history";
-export * from "./watermark";
 
 export * from "./color-tag";
 

@@ -1,91 +1,124 @@
+"use client";
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import {
+  InboxIcon,
+  SearchIcon,
+  AlertTriangleIcon,
+  WifiOffIcon,
+} from "@/components/ui/icons";
 
-const emptyStateVariants = cva(
-  "flex flex-col items-center justify-center text-center",
-  {
-    variants: {
-      size: {
-        default: "gap-4 p-8",
-        sm: "gap-2 p-4",
-        lg: "gap-6 p-12",
-      },
-    },
-    defaultVariants: { size: "default" },
+const variantConfig = {
+  default: { icon: InboxIcon },
+  search: { icon: SearchIcon },
+  error: { icon: AlertTriangleIcon },
+  network: { icon: WifiOffIcon },
+};
+
+const defaultTexts: Record<string, { title: string; description: string }> = {
+  default: { title: "No data", description: "There are no items to display." },
+  search: {
+    title: "No results",
+    description: "Try adjusting your search or filter criteria.",
   },
-);
+  error: {
+    title: "Something went wrong",
+    description: "An error occurred while loading data.",
+  },
+  network: {
+    title: "No connection",
+    description: "Check your internet connection and try again.",
+  },
+};
 
-interface EmptyStateProps
-  extends
-    Omit<
-      React.HTMLAttributes<HTMLDivElement>,
-      keyof VariantProps<typeof emptyStateVariants> | "title" | "description"
-    >,
-    VariantProps<typeof emptyStateVariants> {
-  /** Icon element */
-  icon?: React.ReactNode;
-  /** Title text */
-  title?: React.ReactNode;
-  /** Description text */
-  description?: React.ReactNode;
-  /** Action element (button, link, etc.) */
-  action?: React.ReactNode;
+export interface EmptyStateTexts {
+  title?: string;
+  description?: string;
 }
 
+interface EmptyStateProps {
+  variant?: string;
+  icon?: React.ElementType;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
+  className?: string;
+  centered?: boolean;
+  fullPage?: boolean;
+  /**
+   * Override i18n strings. When provided, useTranslation is skipped.
+   * / 覆盖 i18n 字符串，传入后跳过 useTranslation
+   */
+  texts?: EmptyStateTexts;
+}
+
+/**
+ * @component EmptyState
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Placeholder displayed when data is empty, with icon, title, description, and optional action / 数据为空时显示的占位符，含图标、标题、描述和可选操作
+ * @keywords empty, state, placeholder, no-data, feedback, zero-state
+ * @example
+ * <EmptyState variant="search" title="No results" description="Try a different query" />
+ */
 function EmptyState({
-  className,
-  size,
-  icon,
-  title,
-  description,
+  variant = "default",
+  icon: iconProp,
+  title: titleProp,
+  description: descProp,
   action,
-  children,
-  ...props
+  className,
+  centered,
+  fullPage,
+  texts: textsProp,
 }: EmptyStateProps) {
+  const hasI18n = !textsProp;
+  const { t } = useTranslation("data");
+
+  const config =
+    (variantConfig as Record<string, { icon: React.ElementType }>)[variant] ??
+    variantConfig.default;
+  const Icon = iconProp ?? config.icon;
+
+  const fallback = defaultTexts[variant] ??
+    defaultTexts.default ?? { title: "", description: "" };
+
+  const title =
+    titleProp ??
+    textsProp?.title ??
+    (hasI18n
+      ? t(`emptyState.${variant}.title`, fallback.title)
+      : fallback.title);
+
+  const description =
+    descProp ??
+    textsProp?.description ??
+    (hasI18n
+      ? t(`emptyState.${variant}.description`, fallback.description)
+      : fallback.description);
+
   return (
     <div
       data-slot="empty-state"
-      className={cn(emptyStateVariants({ size }), className)}
-      role="status"
-      {...props}
+      className={cn(
+        "flex flex-col items-center justify-center py-12 text-center",
+        centered && "min-h-[400px] items-center justify-center",
+        fullPage && "min-h-svh",
+        className,
+      )}
     >
-      {icon && (
-        <div data-slot="empty-state-icon" className="text-muted-foreground/50">
-          {icon}
-        </div>
-      )}
-      {title && (
-        <div
-          data-slot="empty-state-title"
-          className={cn(
-            "text-foreground font-semibold",
-            size === "sm" && "text-sm",
-            size === "default" && "text-base",
-            size === "lg" && "text-lg",
-          )}
-        >
-          {title}
-        </div>
-      )}
-      {description && (
-        <div
-          data-slot="empty-state-description"
-          className={cn(
-            "text-muted-foreground max-w-sm",
-            size === "sm" && "text-xs",
-            size === "default" && "text-sm",
-            size === "lg" && "text-base",
-          )}
-        >
-          {description}
-        </div>
-      )}
-      {action && <div data-slot="empty-state-action">{action}</div>}
-      {children}
+      <div className="bg-muted flex size-12 items-center justify-center rounded-full">
+        <Icon className="text-muted-foreground size-6" />
+      </div>
+      <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+      <p className="text-muted-foreground mt-1 max-w-sm text-sm">
+        {description}
+      </p>
+      {action && <div className="mt-4">{action}</div>}
     </div>
   );
 }
 
-export { EmptyState, emptyStateVariants };
+export { EmptyState, variantConfig };
+// type exports handled by interface declarations above

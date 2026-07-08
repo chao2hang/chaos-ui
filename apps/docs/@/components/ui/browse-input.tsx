@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { SearchIcon, XIcon } from "lucide-react"
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SearchIcon, XIcon } from "./icons";
 
 const browseInputVariants = cva(
   "flex items-center gap-2 rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
@@ -20,32 +21,42 @@ const browseInputVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
-)
+  },
+);
 
 interface BrowseInputProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value">,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value">,
     VariantProps<typeof browseInputVariants> {
-  value?: string
-  defaultValue?: string
-  placeholder?: string
-  disabled?: boolean
-  readOnly?: boolean
-  required?: boolean
-  "aria-invalid"?: boolean
-  onBrowse?: () => void
-  onChange?: (value: string) => void
-  onClear?: () => void
-  showClearButton?: boolean
-  showBrowseButton?: boolean
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  "aria-invalid"?: boolean;
+  onBrowse?: () => void;
+  onChange?: (value: string) => void;
+  onClear?: () => void;
+  showClearButton?: boolean;
+  showBrowseButton?: boolean;
 }
 
+/**
+ * @component BrowseInput
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description An input field combined with browse/search and clear action buttons / 带有浏览/搜索和清除按钮的组合输入框
+ * @keywords browse, input, search, picker, lookup
+ * @example
+ * <BrowseInput placeholder="Search..." onBrowse={() => openPicker()} onChange={(v) => console.log(v)} />
+ */
 function BrowseInput({
   className,
   size,
   value: controlledValue,
   defaultValue,
-  placeholder = "Select...",
+  placeholder: placeholderProp,
   disabled,
   readOnly,
   required,
@@ -57,20 +68,24 @@ function BrowseInput({
   showBrowseButton = true,
   ...props
 }: BrowseInputProps) {
-  const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue || "")
-  const value = controlledValue ?? uncontrolledValue
+  const { t } = useTranslation("ui");
+  const placeholder = placeholderProp ?? t("browseInput.placeholder");
+  const [uncontrolledValue, setUncontrolledValue] = React.useState(
+    defaultValue || "",
+  );
+  const value = controlledValue ?? uncontrolledValue;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setUncontrolledValue(newValue)
-    onChange?.(newValue)
-  }
+    const newValue = e.target.value;
+    setUncontrolledValue(newValue);
+    onChange?.(newValue);
+  };
 
   const handleClear = () => {
-    setUncontrolledValue("")
-    onChange?.("")
-    onClear?.()
-  }
+    setUncontrolledValue("");
+    onChange?.("");
+    onClear?.();
+  };
 
   return (
     <div
@@ -87,7 +102,7 @@ function BrowseInput({
         disabled={disabled}
         readOnly={readOnly}
         required={required}
-        className="border-0 bg-transparent focus-visible:ring-0 h-full"
+        className="h-full border-0 bg-transparent focus-visible:ring-0"
       />
       {showClearButton && value && !disabled && !readOnly && (
         <Button
@@ -98,7 +113,7 @@ function BrowseInput({
           tabIndex={-1}
         >
           <XIcon className="size-3" />
-          <span className="sr-only">Clear</span>
+          <span className="sr-only">{t("browseInput.clear")}</span>
         </Button>
       )}
       {showBrowseButton && (
@@ -111,12 +126,12 @@ function BrowseInput({
           tabIndex={-1}
         >
           <SearchIcon className="size-3" />
-          <span className="sr-only">Browse</span>
+          <span className="sr-only">{t("browseInput.browse")}</span>
         </Button>
       )}
     </div>
-  )
+  );
 }
 
-export { BrowseInput, browseInputVariants }
-export type { BrowseInputProps }
+export { BrowseInput, browseInputVariants };
+export type { BrowseInputProps };

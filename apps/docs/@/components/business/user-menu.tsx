@@ -1,6 +1,6 @@
-"use client"
-import * as React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+"use client";
+import * as React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,39 +9,48 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { initials } from "@/lib/format"
+} from "@/components/ui";
+import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
+import { initials } from "@/lib/format";
 
 export interface UserMenuUser {
-  name: string
-  email?: string
-  avatar?: string
-  role?: string
+  name: string;
+  email?: string;
+  avatar?: string;
+  role?: string;
 }
 
 export interface UserMenuAction {
-  label: string
-  icon?: React.ReactNode
-  onClick?: () => void
-  href?: string
-  destructive?: boolean
-  disabled?: boolean
+  label: string;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  href?: string;
+  destructive?: boolean;
+  disabled?: boolean;
 }
 
 interface UserMenuProps {
-  user: UserMenuUser
-  actions?: UserMenuAction[]
-  showProfile?: boolean
-  showSettings?: boolean
-  onProfile?: () => void
-  onSettings?: () => void
-  onSignOut?: () => void
-  align?: "start" | "center" | "end"
-  className?: string
+  user: UserMenuUser;
+  actions?: UserMenuAction[];
+  showProfile?: boolean;
+  showSettings?: boolean;
+  onProfile?: () => void;
+  onSettings?: () => void;
+  onSignOut?: () => void;
+  align?: "start" | "center" | "end";
+  className?: string;
 }
 
+/**
+ * @component UserMenu
+ * @category business/ux
+ * @since 0.2.0
+ * @description Avatar dropdown menu with user info, profile/settings links, custom actions, and sign-out / 头像下拉菜单，包含用户信息、个人资料/设置链接、自定义操作和退出登录
+ * @keywords user, menu, avatar, dropdown, profile, settings, signout
+ * @example
+ * <UserMenu user={currentUser} onProfile={goToProfile} onSignOut={handleSignOut} />
+ */
 export function UserMenu({
   user,
   actions = [],
@@ -67,24 +76,30 @@ export function UserMenu({
       >
         <Avatar className="size-8">
           {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-          <AvatarFallback className="text-xs">{initials(user.name)}</AvatarFallback>
+          <AvatarFallback className="text-xs">
+            {initials(user.name)}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align} className="w-56">
         <DropdownMenuGroup>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col gap-0.5">
-              <p className="text-sm font-medium leading-none">{user.name}</p>
+              <p className="text-sm leading-none font-medium">{user.name}</p>
               {user.email && (
-                <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
+                <p className="text-muted-foreground text-xs leading-none">
+                  {user.email}
+                </p>
               )}
               {user.role && (
-                <p className="mt-1 text-xs leading-none text-muted-foreground">{user.role}</p>
+                <p className="text-muted-foreground mt-1 text-xs leading-none">
+                  {user.role}
+                </p>
               )}
             </div>
           </DropdownMenuLabel>
+          <DropdownMenuSeparator />
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
         {showProfile && (
           <DropdownMenuGroup>
             <DropdownMenuItem onClick={onProfile}>
@@ -125,5 +140,5 @@ export function UserMenu({
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
-import { Tour } from "./tour";
-import type { TourStep } from "./tour";
+import { Tour } from "@/components/ui/tour";
+import type { TourStep } from "@/components/ui/tour";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
@@ -146,7 +146,7 @@ describe("Tour", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/tour");
+    const mod = await import("@/components/ui/tour");
     expect(mod.Tour).toBeDefined();
   });
 });

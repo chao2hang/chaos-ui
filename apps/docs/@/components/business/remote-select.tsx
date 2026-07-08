@@ -1,5 +1,7 @@
 "use client";
+
 import * as React from "react";
+
 import { cn } from "@/lib/utils";
 import {
   Select,
@@ -9,105 +11,183 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Loader2Icon, SearchIcon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+/**
+ * @component RemoteSelect
+ * @category business/picker
+ * @since 0.6.0
+ * @description 远程搜索下拉基类。消费方注入 fetcher（按 keyword 查询），
+ * 内置防抖 + loading + 可选缓存。DictSelect 等业务下拉可基于它收敛。
+ * / Remote search select base with debounced fetcher + loading + optional cache.
+ * @keywords remote, search, select, picker, async, debounce, dict
+ * @example
+ * <RemoteSelect
+ *   fetcher={(keyword) => api.searchUsers(keyword)}
+ *   value={userId}
+ *   onChange={setUserId}
+ * />
+ */
 
 export interface RemoteOption {
-  value: string;
   label: string;
+  value: string | number;
+  disabled?: boolean;
 }
 
-interface RemoteSelectProps extends Omit<
-  React.ComponentProps<"button">,
-  "onChange"
-> {
-  value?: string;
-  onChange?: (value: string) => void;
-  onSearch?: (query: string) => Promise<RemoteOption[]>;
-  placeholder?: string;
-  className?: string;
+/** Fetcher receives the search keyword and returns options. / 按 keyword 查询 */
+export type RemoteFetcher = (keyword: string) => Promise<RemoteOption[]>;
+
+export interface RemoteSelectProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+  /** Async fetcher (receives keyword, returns options). / 异步查询函数 */
+  fetcher: RemoteFetcher;
+  /** Selected value / 选中值 */
+  value?: string | number;
+  /** Value change callback / 值变更回调 */
+  onChange?: (value: string | number) => void;
+  /** Initial options (before first search). / 初始选项 */
+  initialOptions?: RemoteOption[];
+  /** Debounce ms (default 300). / 防抖毫秒 */
   debounceMs?: number;
+  /** Cache keyword→options results (default true). / 缓存查询结果 */
+  cache?: boolean;
+  /** Search input placeholder / 搜索框占位 */
+  searchPlaceholder?: string;
+  /** Trigger placeholder / 选择器占位 */
+  placeholder?: string;
+  /** Min keyword length to trigger fetch (default 0). / 最小触发字数 */
+  minKeywordLength?: number;
+  /** Disabled / 禁用 */
+  disabled?: boolean;
+  /** Size / 尺寸 */
+  size?: "sm" | "md" | "lg";
+  className?: string;
 }
 
-function RemoteSelect({
+export function RemoteSelect({
+  className,
+  fetcher,
   value,
   onChange,
-  onSearch,
-  placeholder = "搜索并选择...",
-  className,
+  initialOptions = [],
   debounceMs = 300,
+  cache = true,
+  searchPlaceholder = "搜索...",
+  placeholder = "请选择",
+  minKeywordLength = 0,
+  disabled = false,
+  size = "md",
   ...props
 }: RemoteSelectProps) {
   const [open, setOpen] = React.useState(false);
-  const [query, setQuery] = React.useState("");
-  const [options, setOptions] = React.useState<RemoteOption[]>([]);
+  const [keyword, setKeyword] = React.useState("");
+  const [options, setOptions] = React.useState<RemoteOption[]>(initialOptions);
   const [loading, setLoading] = React.useState(false);
-  const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
+  const [error, setError] = React.useState<string | null>(null);
 
-  const handleSearch = React.useCallback(
-    (q: string) => {
-      setQuery(q);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(async () => {
-        if (!q || !onSearch) {
-          setOptions([]);
-          return;
-        }
-        setLoading(true);
-        try {
-          const results = await onSearch(q);
-          setOptions(results);
-        } finally {
-          setLoading(false);
-        }
-      }, debounceMs);
-    },
-    [onSearch, debounceMs],
+  // Module-level cache keyed by keyword (shared across instances when cache=true).
+  const cacheRef = React.useRef<Map<string, RemoteOption[]>>(new Map());
+
+  // Debounced fetch on keyword change.
+  React.useEffect(() => {
+    if (!open) return;
+    if (keyword.length < minKeywordLength) {
+      setOptions(initialOptions);
+      return;
+    }
+
+    if (cache && cacheRef.current.has(keyword)) {
+      setOptions(cacheRef.current.get(keyword)!);
+      return;
+    }
+
+    const handle = setTimeout(() => {
+      let cancelled = false;
+      setLoading(true);
+      setError(null);
+      fetcher(keyword)
+        .then((data) => {
+          if (cancelled) return;
+          if (cache) cacheRef.current.set(keyword, data);
+          setOptions(data);
+        })
+        .catch((err) => {
+          if (cancelled) return;
+          setError(err instanceof Error ? err.message : "查询失败");
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }, debounceMs);
+
+    return () => clearTimeout(handle);
+  }, [keyword, open, fetcher, debounceMs, cache, minKeywordLength, initialOptions]);
+
+  // Cache the selected option so the trigger label survives searches that
+  // replace `options` (the selected item may no longer be in the result list).
+  const selectedOptionRef = React.useRef<RemoteOption | undefined>(undefined);
+  const selectedFromOptions = options.find(
+    (o) => String(o.value) === String(value),
   );
+  // Prefer the freshly-found option (keeps label in sync if it changes),
+  // fall back to the cached one when it's no longer in `options`.
+  const selected = selectedFromOptions ?? selectedOptionRef.current;
+  if (selectedFromOptions) selectedOptionRef.current = selectedFromOptions;
 
-  const selectedLabel = options.find((o) => o.value === value)?.label;
+  // SelectTrigger only supports "sm" | "default"; map our size prop.
+  const triggerSize = size === "sm" ? "sm" : "default";
 
   return (
-    <div data-slot="remote-select" className={cn("relative", className)}>
+    <div data-slot="remote-select" className={cn("w-full", className)} {...props}>
       <Select
-        open={open}
-        onOpenChange={(o) => {
-          setOpen(o);
-          if (!o) setQuery("");
-        }}
-        value={value}
+        value={value !== undefined ? String(value) : undefined}
         onValueChange={(v) => {
-          onChange?.(v);
-          setOpen(false);
+          if (v != null) {
+            // Cache the chosen option so its label persists after later searches.
+            const chosen = options.find((o) => String(o.value) === String(v));
+            if (chosen) selectedOptionRef.current = chosen;
+            onChange?.(v);
+          }
         }}
+        open={open}
+        onOpenChange={setOpen}
       >
-        <SelectTrigger className="w-full" {...props}>
+        <SelectTrigger size={triggerSize} className="w-full">
           <SelectValue placeholder={placeholder}>
-            {selectedLabel ?? placeholder}
+            {selected?.label ?? placeholder}
           </SelectValue>
         </SelectTrigger>
-        <SelectContent>
-          <div className="flex items-center gap-2 px-2 pb-2">
-            <div className="relative flex-1">
-              <SearchIcon className="text-muted-foreground absolute top-2 left-2 size-3.5" />
-              <Input
-                value={query}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="输入关键词搜索..."
-                className="h-8 pl-7 text-sm"
-              />
-            </div>
+        <SelectContent className="min-w-[var(--anchor-width)]">
+          <div className="p-2" onClick={(e) => e.stopPropagation()}>
+            <Input
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              placeholder={searchPlaceholder}
+              className="h-8"
+              autoFocus
+            />
           </div>
+          {error && (
+            <div className="px-3 py-2 text-xs text-destructive">{error}</div>
+          )}
           {loading ? (
-            <div className="flex items-center justify-center py-4">
-              <Loader2Icon className="text-muted-foreground size-4 animate-spin" />
+            <div className="p-2">
+              <Skeleton className="h-6 w-full" />
             </div>
           ) : options.length === 0 ? (
-            <p className="text-muted-foreground py-4 text-center text-sm">
-              {query ? "未找到结果" : "请输入关键词搜索"}
-            </p>
+            <div className="px-3 py-6 text-center text-sm text-muted-foreground">
+              {keyword ? "无匹配项" : "输入关键词搜索"}
+            </div>
           ) : (
             options.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
+              <SelectItem
+                key={String(opt.value)}
+                value={String(opt.value)}
+                disabled={opt.disabled}
+              >
                 {opt.label}
               </SelectItem>
             ))
@@ -117,6 +197,3 @@ function RemoteSelect({
     </div>
   );
 }
-
-export { RemoteSelect };
-export type { RemoteSelectProps };

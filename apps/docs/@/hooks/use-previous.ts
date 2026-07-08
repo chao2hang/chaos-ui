@@ -2,13 +2,10 @@
 import * as React from "react"
 
 export function usePrevious<T>(value: T): T | undefined {
-  const [previous, setPrevious] = React.useState<T | undefined>(undefined)
-  const currentRef = React.useRef<T>(value)
-
+  const ref = React.useRef<T | undefined>(undefined)
   React.useEffect(() => {
-    setPrevious(currentRef.current)
-    currentRef.current = value
+    ref.current = value
   }, [value])
-
-  return previous
+  // eslint-disable-next-line react-hooks/refs -- reading the ref is the purpose of usePrevious.
+  return ref.current
 }

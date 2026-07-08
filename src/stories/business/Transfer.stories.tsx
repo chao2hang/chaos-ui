@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Transfer, type TransferItem } from "@/components/business/transfer";
+import { Transfer, type TransferItem } from "@/components/ui/transfer";
 import { Badge } from "@/components/ui/badge";
 
 const audienceFields: TransferItem[] = [

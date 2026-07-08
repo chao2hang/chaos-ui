@@ -1,146 +1,158 @@
-"use client";
-
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Input } from "./input";
+import { Button } from "./button";
+import { Search, X } from "lucide-react";
 
-const inputSearchVariants = cva("relative", {
-  variants: {
-    size: {
-      default: "",
-      sm: "",
-      lg: "",
-    },
-  },
-  defaultVariants: { size: "default" },
-});
+/**
+ * @component InputSearch
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 搜索输入框 / Search input with enter button
+ * @keywords input, search, filter, onSearch
+ * @example
+ * <InputSearch onSearch={(value) => console.log(value)} allowClear enterButton />
+ */
 
-interface InputSearchProps
-  extends
-    Omit<React.ComponentProps<"input">, "size" | "onChange">,
-    VariantProps<typeof inputSearchVariants> {
-  /** Controlled value */
-  value?: string;
-  /** Change handler */
-  onValueChange?: (value: string | null) => void;
-  /** Called when search is submitted */
-  onSearch?: (value: string) => void;
-  /** Whether to show loading spinner */
+interface InputSearchProps extends Omit<React.ComponentProps<"input">, "onChange" | "size"> {
+  /** Placeholder text / 占位文本 */
+  placeholder?: string;
+  /** Whether to show clear button / 是否显示清除按钮 */
+  allowClear?: boolean;
+  /** Whether to show enter button / 是否显示搜索按钮 */
+  enterButton?: boolean | React.ReactNode;
+  /** Search callback / 搜索回调 */
+  onSearch?: (value: string, event?: React.SyntheticEvent) => void;
+  /** Change callback / 变更回调 */
+  onChange?: (value: string, event?: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Input size / 输入框大小 */
+  size?: "sm" | "default" | "lg";
+  /** Whether input is loading / 是否加载中 */
   loading?: boolean;
 }
 
 function InputSearch({
   className,
-  size,
-  value: controlledValue,
-  onValueChange,
-  onSearch,
-  loading = false,
-  disabled,
   placeholder = "Search...",
+  allowClear = false,
+  enterButton = false,
+  onSearch,
+  onChange,
+  size = "default",
+  loading = false,
+  defaultValue,
+  value: controlledValue,
   ...props
 }: InputSearchProps) {
-  const [internalValue, setInternalValue] = React.useState("");
-  const value = controlledValue ?? internalValue;
+  const [internalValue, setInternalValue] = React.useState(
+    defaultValue ?? "",
+  );
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = e.target.value;
-    if (controlledValue === undefined) setInternalValue(v);
-    onValueChange?.(v);
+    if (!isControlled) setInternalValue(v);
+    onChange?.(v, e);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleSearch = (e?: React.SyntheticEvent) => {
+    onSearch?.(String(value), e);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      onSearch?.(value);
+      handleSearch(e);
     }
+    props.onKeyDown?.(e);
   };
 
   const handleClear = () => {
-    if (controlledValue === undefined) setInternalValue("");
-    onValueChange?.("");
+    if (!isControlled) setInternalValue("");
+    onChange?.("");
     onSearch?.("");
   };
+
+  const sizeClass =
+    size === "sm" ? "h-7" : size === "lg" ? "h-9" : "h-8";
+
+  if (enterButton) {
+    return (
+      <div
+        data-slot="input-search"
+        className={cn("flex w-full items-stretch", className)}
+      >
+        <Input
+          type="search"
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className={cn(sizeClass, "rounded-r-none", allowClear && value && "pr-7")}
+          {...props}
+        />
+        {allowClear && value && !loading && (
+          <button
+            type="button"
+            onClick={handleClear}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            aria-label="Clear"
+          >
+            <X className="size-3.5" />
+          </button>
+        )}
+        <Button
+          type="button"
+          onClick={handleSearch}
+          disabled={loading}
+          className={cn("rounded-l-none border-l-0", sizeClass)}
+        >
+          {loading ? (
+            <span className="animate-spin">⏳</span>
+          ) : typeof enterButton === "boolean" ? (
+            <Search className="size-4" />
+          ) : (
+            enterButton
+          )}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div
       data-slot="input-search"
-      className={cn(inputSearchVariants({ size }), className)}
+      className={cn("relative w-full", className)}
     >
-      <div className="relative">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2"
-          aria-hidden="true"
+      <Search className="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+      <Input
+        type="search"
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        className={cn(sizeClass, "pl-8", allowClear && value && "pr-7")}
+        {...props}
+      />
+      {allowClear && value && !loading && (
+        <button
+          type="button"
+          onClick={handleClear}
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+          aria-label="Clear"
         >
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.3-4.3" />
-        </svg>
-        <input
-          type="search"
-          value={value}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          disabled={disabled}
-          placeholder={placeholder}
-          className={cn(
-            "border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent py-1 pr-8 pl-9 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-            size === "sm" && "h-8 text-xs",
-            size === "lg" && "h-10 text-base",
-          )}
-          {...props}
-        />
-        {loading && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted-foreground absolute top-1/2 right-3 -translate-y-1/2 animate-spin"
-            aria-hidden="true"
-          >
-            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-          </svg>
-        )}
-        {!loading && value && (
-          <button
-            type="button"
-            onClick={handleClear}
-            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2 rounded p-0.5"
-            aria-label="Clear search"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-        )}
-      </div>
+          <X className="size-3.5" />
+        </button>
+      )}
+      {loading && (
+        <span className="absolute right-2 top-1/2 -translate-y-1/2 animate-spin">
+          ⏳
+        </span>
+      )}
     </div>
   );
 }
 
-export { InputSearch, inputSearchVariants };
+export { InputSearch };
+export type { InputSearchProps };

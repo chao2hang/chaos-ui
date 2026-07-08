@@ -1,111 +1,138 @@
 "use client";
-
+/* eslint-disable @next/next/no-img-element -- Watermarks accept arbitrary image sources without Next image sizing/domain constraints. */
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
-const watermarkVariants = cva("pointer-events-none select-none", {
-  variants: {
-    size: {
-      default: "text-sm",
-      sm: "text-xs",
-      lg: "text-base",
-    },
-  },
-  defaultVariants: { size: "default" },
-});
-
-interface WatermarkProps
-  extends React.ComponentProps<"div">, VariantProps<typeof watermarkVariants> {
-  /** Text content for the watermark */
-  content: string;
-  /** Rotation angle in degrees */
+interface WatermarkProps {
+  text?: string;
+  image?: string;
   rotate?: number;
-  /** Gap between repeated marks */
-  gap?: number;
-  /** Opacity of the watermark */
-  opacity?: number;
-  /** Text color */
-  color?: string;
-  /** Font size override */
+  gap?: [number, number];
   fontSize?: number;
+  className?: string;
+  fullPage?: boolean;
+  zIndex?: number;
+  opacity?: number;
+  color?: string;
 }
 
-function Watermark({
-  className,
-  size,
-  content,
+/**
+ * @component Watermark
+ * @category ui/feedback
+ * @since 0.2.0
+ * @description Tiled watermark overlay with text or image, supporting full-page and container modes / 平铺水印覆盖层，支持文本或图片，可全页面或容器内显示
+ * @keywords watermark, overlay, tiled, security, 水印
+ * @example
+ * <Watermark text="Confidential" />
+ * <Watermark image="/logo.png" fullPage={false} />
+ */
+export function Watermark({
+  text,
+  image,
   rotate = -22,
-  gap = 100,
-  opacity = 0.1,
-  color = "#000",
+  gap = [120, 100],
   fontSize = 14,
-  children,
-  ...props
+  className,
+  fullPage = true,
+  zIndex = 1000,
+  opacity = 0.08,
+  color = "#000",
 }: WatermarkProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const { t } = useTranslation("data");
+  const resolvedText = text ?? t("watermark.default");
+  const [tiles, setTiles] = React.useState<{ x: number; y: number }[]>([]);
+
+  // Destructure gap into stable primitives so the effect doesn't re-run when
+  // the caller passes an inline array (new reference every render → recompute
+  // tiles + rebind resize listener every render).
+  const [gapX, gapY] = gap;
 
   React.useEffect(() => {
-    const container = containerRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !canvas) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const rect = container.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, width, height);
-
-    ctx.fillStyle = color.startsWith("#")
-      ? `${color}${Math.round(opacity * 255)
-          .toString(16)
-          .padStart(2, "0")}`
-      : color;
-    ctx.font = `${fontSize}px system-ui, sans-serif`;
-
-    const textWidth = ctx.measureText(content).width;
-
-    const rad = (rotate * Math.PI) / 180;
-    const diagonal = Math.sqrt(width * width + height * height);
-
-    for (let x = -diagonal; x < diagonal * 2; x += gap + textWidth) {
-      for (let y = -diagonal; y < diagonal * 2; y += gap + fontSize * 2) {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(rad);
-        ctx.fillText(content, 0, 0);
-        ctx.restore();
+    if (!fullPage) return;
+    const compute = () => {
+      const cols = Math.ceil(window.innerWidth / gapX) + 1;
+      const rows = Math.ceil(window.innerHeight / gapY) + 1;
+      const next: { x: number; y: number }[] = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          next.push({ x: c * gapX, y: r * gapY });
+        }
       }
-    }
-  }, [content, rotate, gap, opacity, color, fontSize]);
+      setTiles(next);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, [fullPage, gapX, gapY]);
+
+  if (!fullPage) {
+    return (
+      <div
+        data-slot="watermark"
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-0 overflow-hidden",
+          className,
+        )}
+        style={{ zIndex }}
+      >
+        <div
+          className="absolute inset-0 grid place-items-center"
+          style={{ transform: `rotate(${rotate}deg)` }}
+        >
+          {image ? (
+            <img src={image} alt="" style={{ opacity, maxWidth: "60%" }} />
+          ) : (
+            <span
+              className="font-medium whitespace-nowrap select-none"
+              style={{ color, fontSize, opacity }}
+            >
+              {resolvedText}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
-      ref={containerRef}
       data-slot="watermark"
-      className={cn("relative", watermarkVariants({ size }), className)}
-      {...props}
+      aria-hidden
+      className={cn(
+        "pointer-events-none fixed inset-0 overflow-hidden",
+        className,
+      )}
+      style={{ zIndex }}
     >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute inset-0 z-0"
-        aria-hidden="true"
-      />
-      <div className="relative z-[1]">{children}</div>
+      {tiles.map((t, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            left: t.x,
+            top: t.y,
+            width: gapX,
+            height: gapY,
+            transform: `rotate(${rotate}deg)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {image ? (
+            <img src={image} alt="" style={{ opacity, maxHeight: "60%" }} />
+          ) : (
+            <span
+              className="font-medium whitespace-nowrap select-none"
+              style={{ color, fontSize, opacity }}
+            >
+              {resolvedText}
+            </span>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
-
-export { Watermark, watermarkVariants };

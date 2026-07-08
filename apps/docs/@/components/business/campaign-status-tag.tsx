@@ -1,48 +1,70 @@
 "use client";
-import * as React from "react";
+
+import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 
-const campaignStatusMap: Record<string, { label: string; className: string }> =
-  {
-    draft: { label: "草稿", className: "bg-gray-100 text-gray-600" },
-    reviewing: { label: "审核中", className: "bg-yellow-100 text-yellow-800" },
-    scheduled: { label: "已排期", className: "bg-blue-100 text-blue-800" },
-    running: { label: "投放中", className: "bg-green-100 text-green-800" },
-    paused: { label: "已暂停", className: "bg-orange-100 text-orange-800" },
-    completed: {
-      label: "已完成",
-      className: "bg-emerald-100 text-emerald-800",
-    },
-    rejected: { label: "已驳回", className: "bg-red-100 text-red-800" },
-  };
+export type CampaignStatus =
+  | "draft"
+  | "scheduled"
+  | "active"
+  | "paused"
+  | "completed"
+  | "failed"
+  | "archived";
 
-interface CampaignStatusTagProps extends React.ComponentProps<"span"> {
-  status: string;
+export interface CampaignStatusTagProps {
+  status: CampaignStatus;
+  size?: "sm" | "default";
+  /** Custom label — overrides the default status label / 自定义标签文本 */
   label?: string;
+  className?: string;
 }
 
-function CampaignStatusTag({
+const statusMeta: Record<CampaignStatus, { label: string; className: string }> =
+  {
+    draft: { label: "Draft", className: "bg-muted text-muted-foreground" },
+    scheduled: { label: "Scheduled", className: "bg-info/15 text-info" },
+    active: { label: "Active", className: "bg-success/15 text-success" },
+    paused: { label: "Paused", className: "bg-warning/15 text-warning" },
+    completed: { label: "Completed", className: "bg-primary/10 text-primary" },
+    failed: {
+      label: "Failed",
+      className: "bg-destructive/10 text-destructive",
+    },
+    archived: {
+      label: "Archived",
+      className: "bg-secondary text-secondary-foreground",
+    },
+  };
+
+/**
+ * @component CampaignStatusTag
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description Colored badge indicating campaign lifecycle status (draft, active, completed, etc.) / 营销活动生命周期状态标签（草稿、进行中、已完成等）
+ * @keywords campaign, status, tag, badge, lifecycle
+ * @example
+ * <CampaignStatusTag status="active" />
+ */
+export function CampaignStatusTag({
   status,
+  size = "default",
   label,
   className,
-  ...props
 }: CampaignStatusTagProps) {
-  const config = campaignStatusMap[status] ?? {
-    label: status,
-    className: "bg-muted text-muted-foreground",
-  };
+  const meta = statusMeta[status];
+
   return (
     <Badge
       data-slot="campaign-status-tag"
-      variant="outline"
-      className={cn("text-xs font-medium", config.className, className)}
-      {...(props as React.ComponentProps<"div">)}
+      variant="secondary"
+      className={cn(
+        size === "sm" && "h-4 px-1.5 text-[0.65rem]",
+        meta.className,
+        className,
+      )}
     >
-      {label ?? config.label}
+      {label ?? meta.label}
     </Badge>
   );
 }
-
-export { CampaignStatusTag, campaignStatusMap };
-export type { CampaignStatusTagProps };

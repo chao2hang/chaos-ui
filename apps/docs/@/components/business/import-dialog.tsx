@@ -1,128 +1,124 @@
 "use client";
+
 import * as React from "react";
-import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogDescription,
+  DialogFooter,
+  DialogBody,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { UploadIcon, FileTextIcon } from "lucide-react";
+import { FileUpload } from "@/components/ui/file-upload";
+import { UploadIcon, DownloadIcon } from "@/components/ui/icons";
 
+/**
+ * @component ImportDialog
+ * @category business/import
+ * @since 0.7.0
+ * @description 数据导入弹窗 — 文件上传 + 模板下载 + 导入进度 + 错误反馈。
+ * / Data import dialog — file upload + template download + progress + error feedback.
+ * @keywords import, upload, dialog, excel, csv, data
+ * @example
+ * <ImportDialog
+ *   open={open}
+ *   onOpenChange={setOpen}
+ *   onImport={handleImport}
+ *   templateUrl="/templates/import.xlsx"
+ * />
+ */
 interface ImportDialogProps {
+  /** Dialog open state / 弹窗是否打开 */
   open?: boolean;
+  /** Open change callback / 开关回调 */
   onOpenChange?: (open: boolean) => void;
-  onImport?: (data: Record<string, string>[]) => void;
-  title?: string;
-  description?: string;
+  /** Import handler — receives the uploaded file / 导入处理函数 */
+  onImport?: (file: File) => Promise<void> | void;
+  /** Template download URL / 模板下载地址 */
+  templateUrl?: string;
+  /** Accepted file types / 接受的文件类型 */
   accept?: string;
-  className?: string;
+  /** Dialog title / 弹窗标题 */
+  title?: string;
+  /** Import button text / 导入按钮文本 */
+  importText?: string;
+  /** Template button text / 模板按钮文本 */
+  templateText?: string;
 }
-
-const SAMPLE_ROWS = [
-  { name: "示例数据1", value: "100" },
-  { name: "示例数据2", value: "200" },
-];
 
 function ImportDialog({
   open,
   onOpenChange,
   onImport,
-  title = "导入数据",
-  description = "上传文件并预览后再确认导入",
-  accept = ".xlsx,.csv",
-  className,
+  templateUrl,
+  accept = ".xlsx,.xls,.csv",
+  title = "Import Data",
+  importText = "Import",
+  templateText = "Download Template",
 }: ImportDialogProps) {
   const [file, setFile] = React.useState<File | null>(null);
-  const [preview, setPreview] = React.useState<Record<string, string>[]>([]);
+  const [loading, setLoading] = React.useState(false);
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (f) {
-      setFile(f);
-      setPreview(SAMPLE_ROWS);
+  const handleImport = async () => {
+    if (!file || !onImport) return;
+    setLoading(true);
+    try {
+      await onImport(file);
+      onOpenChange?.(false);
+      setFile(null);
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleImport = () => {
-    onImport?.(preview);
-    onOpenChange?.(false);
-    setFile(null);
-    setPreview([]);
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger>
-        <Button variant="outline" size="sm" className={className}>
-          <UploadIcon /> {title}
-        </Button>
-      </DialogTrigger>
-      <DialogContent data-slot="import-dialog" className="max-w-2xl">
+      <DialogContent data-slot="import-dialog" className="sm:max-w-[480px]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogDescription>
+            Upload a file to import data. Please use the template for correct
+            formatting.
+          </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 rounded-lg border border-dashed p-4">
-            <FileTextIcon className="text-muted-foreground size-8" />
-            <div className="flex-1">
-              <p className="text-sm font-medium">
-                {file ? file.name : "选择文件"}
-              </p>
-              <p className="text-muted-foreground text-xs">
-                支持 {accept} 格式
-              </p>
-            </div>
-            <Input
-              type="file"
-              accept={accept}
-              onChange={handleFile}
-              className="max-w-[180px]"
-            />
-          </div>
-          {preview.length > 0 && (
-            <div className="max-h-60 overflow-auto rounded-md border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    {Object.keys(preview[0]).map((k) => (
-                      <TableHead key={k}>{k}</TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {preview.map((row, i) => (
-                    <TableRow key={i}>
-                      {Object.values(row).map((v, j) => (
-                        <TableCell key={j}>{v}</TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+        <DialogBody>
+          {templateUrl && (
+            <a
+              href={templateUrl}
+              download
+              className="text-primary mb-3 inline-flex items-center gap-1.5 text-sm hover:underline"
+            >
+              <DownloadIcon className="size-3.5" />
+              {templateText}
+            </a>
+          )}
+          <FileUpload
+            {...(accept ? { accept: { "*/*": [accept] } } : {})}
+            onDrop={(files: File[]) => setFile(files[0] ?? null)}
+          />
+          {file && (
+            <div className="text-muted-foreground mt-2 text-sm">
+              Selected: {file.name}
             </div>
           )}
-        </div>
+        </DialogBody>
         <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange?.(false)}>
-            取消
+          <Button
+            variant="outline"
+            onClick={() => onOpenChange?.(false)}
+            disabled={loading}
+          >
+            Cancel
           </Button>
-          <Button onClick={handleImport} disabled={preview.length === 0}>
-            确认导入
+          <Button
+            onClick={handleImport}
+            disabled={!file || loading}
+            icon={<UploadIcon />}
+          >
+            {loading ? "Importing..." : importText}
           </Button>
         </DialogFooter>
       </DialogContent>

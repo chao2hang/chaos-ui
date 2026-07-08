@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Rating } from "@/components/business/rating"
+import { Rating } from "@/components/ui/rating"
 import { useState } from "react"
 
 const meta: Meta<typeof Rating> = {

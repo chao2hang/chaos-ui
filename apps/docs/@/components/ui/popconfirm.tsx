@@ -1,168 +1,133 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  PopoverDescription,
+  PopoverTitle,
+} from "./popover";
+import { Button } from "./button";
 
-const popconfirmVariants = cva(
-  "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none",
-  {
-    variants: {
-      align: {
-        center: "",
-        start: "",
-        end: "",
-      },
-      side: {
-        top: "mb-2",
-        bottom: "mt-2",
-        left: "mr-2",
-        right: "ml-2",
-      },
-    },
-    defaultVariants: { side: "top" },
-  },
-);
+/**
+ * @component Popconfirm
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 气泡确认框 / Popconfirm component for confirmation actions
+ * @keywords popconfirm, confirm, popover, delete, action
+ * @example
+ * <Popconfirm title="Are you sure?" onConfirm={handleDelete}>
+ *   <Button>Delete</Button>
+ * </Popconfirm>
+ */
 
-interface PopconfirmProps
-  extends React.ComponentProps<"div">, VariantProps<typeof popconfirmVariants> {
-  /** Whether the popconfirm is open */
-  open?: boolean;
-  /** Called when open state changes */
-  onOpenChange?: (open: boolean) => void;
-  /** Title text */
-  title: React.ReactNode;
-  /** Description text */
+interface PopconfirmProps {
+  /** Title text / 标题 */
+  title?: React.ReactNode;
+  /** Description text / 描述文本 */
   description?: React.ReactNode;
-  /** Text for confirm button */
-  confirmText?: string;
-  /** Text for cancel button */
-  cancelText?: string;
-  /** Called when confirmed */
-  onConfirm?: () => void;
-  /** Called when cancelled */
-  onCancel?: () => void;
-  /** The trigger element */
+  /** Trigger element / 触发元素 */
   children: React.ReactNode;
+  /** Confirm button text / 确认按钮文本 */
+  okText?: string;
+  /** Cancel button text / 取消按钮文本 */
+  cancelText?: string;
+  /** OK button variant / 确认按钮变体 */
+  okVariant?: "default" | "destructive";
+  /** Whether popconfirm is disabled / 是否禁用 */
+  disabled?: boolean;
+  /** Whether to show cancel button / 是否显示取消按钮 */
+  showCancel?: boolean;
+  /** Placement / 位置 */
+  side?: "top" | "bottom" | "left" | "right";
+  /** Confirm callback / 确认回调 */
+  onConfirm?: (e?: React.SyntheticEvent) => void;
+  /** Cancel callback / 取消回调 */
+  onCancel?: (e?: React.SyntheticEvent) => void;
+  /** Controlled open state / 受控的打开状态 */
+  open?: boolean;
+  /** Default open state / 默认打开状态 */
+  defaultOpen?: boolean;
+  /** Open change callback / 打开状态变更回调 */
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
 }
 
 function Popconfirm({
-  className,
-  open: controlledOpen,
-  onOpenChange,
   title,
   description,
-  confirmText = "Confirm",
+  children,
+  okText = "OK",
   cancelText = "Cancel",
+  okVariant = "default",
+  disabled = false,
+  showCancel = true,
+  side = "top",
   onConfirm,
   onCancel,
-  side = "top",
-  children,
-  ...props
+  open: controlledOpen,
+  defaultOpen = false,
+  onOpenChange,
+  className,
 }: PopconfirmProps) {
-  const [internalOpen, setInternalOpen] = React.useState(false);
-  const isOpen = controlledOpen ?? internalOpen;
-  const ref = React.useRef<HTMLDivElement>(null);
+  const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
 
   const setOpen = (value: boolean) => {
-    if (controlledOpen === undefined) setInternalOpen(value);
+    if (!isControlled) setInternalOpen(value);
     onOpenChange?.(value);
   };
 
-  React.useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
-  const handleConfirm = () => {
-    onConfirm?.();
+  const handleConfirm = (e: React.SyntheticEvent) => {
+    onConfirm?.(e);
     setOpen(false);
   };
 
-  const handleCancel = () => {
-    onCancel?.();
+  const handleCancel = (e: React.SyntheticEvent) => {
+    onCancel?.(e);
     setOpen(false);
   };
+
+  if (disabled) {
+    return <>{children}</>;
+  }
 
   return (
-    <div
-      ref={ref}
-      data-slot="popconfirm"
-      className={cn("relative inline-block", className)}
-    >
-      <span onClick={() => setOpen(!isOpen)} className="cursor-pointer">
-        {children}
-      </span>
-
-      {isOpen && (
-        <div
-          data-slot="popconfirm-content"
-          className={cn(
-            "absolute",
-            popconfirmVariants({ side }),
-            side === "top" && "bottom-full left-1/2 -translate-x-1/2",
-            side === "bottom" && "top-full left-1/2 -translate-x-1/2",
-            side === "left" && "top-1/2 right-full -translate-y-1/2",
-            side === "right" && "top-1/2 left-full -translate-y-1/2",
+    <Popover open={open} onOpenChange={setOpen} data-slot="popconfirm">
+      <PopoverTrigger render={children as React.ReactElement} />
+      <PopoverContent
+        side={side}
+        align="center"
+        className={cn("w-72 max-w-[90vw]", className)}
+      >
+        <div className="flex flex-col gap-1">
+          {title && <PopoverTitle>{title}</PopoverTitle>}
+          {description && (
+            <PopoverDescription>{description}</PopoverDescription>
           )}
-          {...props}
-        >
-          <div className="flex items-start gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-warning mt-0.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-              <line x1="12" x2="12" y1="9" y2="13" />
-              <line x1="12" x2="12.01" y1="17" y2="17" />
-            </svg>
-            <div className="flex-1">
-              <div className="text-sm font-medium">{title}</div>
-              {description && (
-                <div className="text-muted-foreground mt-1 text-sm">
-                  {description}
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="mt-3 flex justify-end gap-2">
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="border-input hover:bg-accent hover:text-accent-foreground inline-flex h-8 items-center rounded-md border bg-transparent px-3 text-xs"
-            >
-              {cancelText}
-            </button>
-            <button
-              type="button"
-              onClick={handleConfirm}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-8 items-center rounded-md px-3 text-xs"
-            >
-              {confirmText}
-            </button>
-          </div>
         </div>
-      )}
-    </div>
+        <div className="mt-3 flex justify-end gap-2">
+          {showCancel && (
+            <Button variant="outline" size="sm" onClick={handleCancel}>
+              {cancelText}
+            </Button>
+          )}
+          <Button
+            variant={okVariant === "destructive" ? "destructive" : "default"}
+            size="sm"
+            onClick={handleConfirm}
+          >
+            {okText}
+          </Button>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }
 
-export { Popconfirm, popconfirmVariants };
+export { Popconfirm };
+export type { PopconfirmProps };

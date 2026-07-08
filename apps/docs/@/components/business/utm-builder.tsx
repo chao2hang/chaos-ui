@@ -1,137 +1,185 @@
 "use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { CopyIcon, LinkIcon } from "lucide-react";
-import { toast } from "sonner";
 
-interface UtmBuilderProps extends Omit<
-  React.ComponentProps<"div">,
-  "onChange"
-> {
-  baseUrl?: string;
-  onChange?: (url: string) => void;
+import * as React from "react";
+import { CopyIcon, LinkIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Label } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export interface UTMBuilderValue {
+  url: string;
+  source: string;
+  medium: string;
+  campaign: string;
+  content?: string;
+  term?: string;
+}
+
+export interface UTMBuilderProps {
+  value?: Partial<UTMBuilderValue>;
+  onChange?: (value: UTMBuilderValue, resultUrl: string) => void;
   className?: string;
 }
 
-function UtmBuilder({
-  baseUrl = "",
-  onChange,
-  className,
-  ...props
-}: UtmBuilderProps) {
-  const [source, setSource] = React.useState("");
-  const [medium, setMedium] = React.useState("");
-  const [campaign, setCampaign] = React.useState("");
-  const [term, setTerm] = React.useState("");
-  const [content, setContent] = React.useState("");
+const defaults: UTMBuilderValue = {
+  url: "https://example.com/landing",
+  source: "newsletter",
+  medium: "email",
+  campaign: "spring_launch",
+  content: "",
+  term: "",
+};
 
-  const buildUrl = (): string => {
-    if (!baseUrl) return "";
-    const params = new URLSearchParams();
-    if (source) params.set("utm_source", source);
-    if (medium) params.set("utm_medium", medium);
-    if (campaign) params.set("utm_campaign", campaign);
-    if (term) params.set("utm_term", term);
-    if (content) params.set("utm_content", content);
-    const qs = params.toString();
-    return qs ? `${baseUrl}${baseUrl.includes("?") ? "&" : "?"}${qs}` : baseUrl;
+function buildUrl(value: UTMBuilderValue) {
+  try {
+    const url = new URL(value.url);
+    url.searchParams.set("utm_source", value.source);
+    url.searchParams.set("utm_medium", value.medium);
+    url.searchParams.set("utm_campaign", value.campaign);
+    if (value.content) url.searchParams.set("utm_content", value.content);
+    else url.searchParams.delete("utm_content");
+    if (value.term) url.searchParams.set("utm_term", value.term);
+    else url.searchParams.delete("utm_term");
+    return url.toString();
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * @component UTMBuilder
+ * @category business/ux
+ * @since 0.2.0
+ * @description Form builder for constructing UTM-tagged campaign URLs with copy-to-clipboard / 构建带 UTM 参数的营销活动链接的表单构建器，支持一键复制
+ * @keywords utm, builder, campaign, url, marketing, tracking
+ * @example
+ * <UTMBuilder value={defaultParams} onChange={(value, url) => console.log(url)} />
+ */
+export function UTMBuilder({ value, onChange, className }: UTMBuilderProps) {
+  const { t } = useTranslation("marketing");
+  const [form, setForm] = React.useState<UTMBuilderValue>({
+    ...defaults,
+    ...value,
+  });
+  const result = buildUrl(form);
+
+  const update = (key: keyof UTMBuilderValue, next: string) => {
+    const updated = { ...form, [key]: next };
+    setForm(updated);
+    onChange?.(updated, buildUrl(updated));
   };
 
-  const url = buildUrl();
-
-  React.useEffect(() => {
-    onChange?.(url);
-  }, [url, onChange]);
-
-  const copyUrl = () => {
-    if (!url) return;
-    navigator.clipboard.writeText(url);
-    toast.success("已复制到剪贴板");
+  const copyResult = async () => {
+    if (!result || typeof navigator === "undefined" || !navigator.clipboard)
+      return;
+    await navigator.clipboard.writeText(result);
   };
 
   return (
-    <div
-      data-slot="utm-builder"
-      className={cn("space-y-4", className)}
-      {...props}
-    >
-      <div className="space-y-3">
-        <div className="space-y-1.5">
-          <Label className="text-muted-foreground text-xs">基础 URL</Label>
-          <Input
-            value={baseUrl}
-            readOnly
-            className="bg-muted/30 h-8 font-mono text-xs"
+    <Card data-slot="utm-builder" className={className}>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <LinkIcon className="size-4" />
+          {t("utmBuilder.title")}
+        </CardTitle>
+        <CardDescription>{t("utmBuilder.description")}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="grid gap-3 md:grid-cols-2">
+          <Field
+            label={t("utmBuilder.url")}
+            value={form.url}
+            onChange={(v) => update("url", v)}
+            className="md:col-span-2"
+          />
+          <Field
+            label={t("utmBuilder.source")}
+            value={form.source}
+            onChange={(v) => update("source", v)}
+          />
+          <Field
+            label={t("utmBuilder.medium")}
+            value={form.medium}
+            onChange={(v) => update("medium", v)}
+          />
+          <Field
+            label={t("utmBuilder.campaign")}
+            value={form.campaign}
+            onChange={(v) => update("campaign", v)}
+          />
+          <Field
+            label={t("utmBuilder.content")}
+            value={form.content ?? ""}
+            onChange={(v) => update("content", v)}
+          />
+          <Field
+            label={t("utmBuilder.term")}
+            value={form.term ?? ""}
+            onChange={(v) => update("term", v)}
           />
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <div className="space-y-1.5">
-            <Label className="text-xs">utm_source *</Label>
-            <Input
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-              placeholder="google / newsletter / twitter"
-              className="h-8 text-sm"
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label className="text-xs">utm_medium *</Label>
-            <Input
-              value={medium}
-              onChange={(e) => setMedium(e.target.value)}
-              placeholder="cpc / email / social"
-              className="h-8 text-sm"
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label className="text-xs">utm_campaign</Label>
-            <Input
-              value={campaign}
-              onChange={(e) => setCampaign(e.target.value)}
-              placeholder="spring_sale"
-              className="h-8 text-sm"
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label className="text-xs">utm_term</Label>
-            <Input
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-              placeholder="running+shoes"
-              className="h-8 text-sm"
-            />
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label className="text-xs">utm_content</Label>
-            <Input
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="logolink / textlink"
-              className="h-8 text-sm"
-            />
-          </div>
-        </div>
-      </div>
-      {url && (
-        <div className="bg-muted/20 space-y-2 rounded-lg border p-3">
-          <div className="flex items-center gap-2">
-            <LinkIcon className="text-muted-foreground size-4" />
+        <div className="bg-muted/30 rounded-lg border p-3">
+          <div className="mb-2 flex items-center justify-between gap-2">
             <span className="text-muted-foreground text-xs font-medium">
-              生成的 URL
+              {t("utmBuilder.resultUrl")}
             </span>
+            <Button
+              size="icon-xs"
+              variant="ghost"
+              aria-label={t("utmBuilder.copyUrl")}
+              disabled={!result}
+              onClick={copyResult}
+            >
+              <CopyIcon />
+            </Button>
           </div>
-          <p className="font-mono text-xs break-all">{url}</p>
-          <Button size="sm" variant="outline" onClick={copyUrl}>
-            <CopyIcon /> 复制
-          </Button>
+          <p className={cn("text-xs break-all", !result && "text-destructive")}>
+            {result || t("utmBuilder.invalidUrl")}
+          </p>
         </div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
-export { UtmBuilder };
-export type { UtmBuilderProps };
+export { UTMBuilder as UtmBuilder };
+
+/**
+ * @component Field
+ * @category business/ux
+ * @since 0.2.0
+ * @description Internal form field wrapper for UTMBuilder with label and input / UTMBuilder 内部表单字段包装器，包含标签和输入框
+ * @keywords field, form, input, label, utm, internal
+ */
+function Field({
+  label,
+  value,
+  onChange,
+  className,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  const id = `utm-${label.toLowerCase()}`;
+  return (
+    <div className={cn("space-y-1.5", className)}>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    </div>
+  );
+}

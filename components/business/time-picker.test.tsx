@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { TimePicker, formatTimeInput } from "./time-picker";
+import { TimePicker, formatTimeInput } from "@/components/ui/time-picker";
 
 // TimePicker uses Base UI Popover + Select (portals). In jsdom portal content
 // may not render reliably, so we test the trigger button label, type exports,
@@ -62,7 +62,7 @@ describe("TimePicker", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/time-picker");
+    const mod = await import("@/components/ui/time-picker");
     expect(mod.TimePicker).toBeDefined();
     expect(mod.formatTimeInput).toBeDefined();
   });
