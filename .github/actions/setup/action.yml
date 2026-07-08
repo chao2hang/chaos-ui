@@ -1,19 +1,9 @@
 name: Setup pnpm + Node
-description: Checkout, setup pnpm, Node 22, restore node_modules cache, and install dependencies.
-
-inputs:
-  fetch-depth:
-    description: Number of commits to fetch during checkout (0 = all).
-    default: "1"
+description: Setup pnpm, Node 22, restore node_modules cache, and install dependencies. Requires the repo to be checked out first.
 
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: ${{ inputs.fetch-depth }}
-
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
 
