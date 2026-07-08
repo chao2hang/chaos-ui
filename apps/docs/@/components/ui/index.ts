@@ -51,7 +51,7 @@ export {
   CardAction,
   CardDescription,
   CardContent,
-  CardSection,
+  CardAction,
 } from "./card";
 export {
   Carousel,
@@ -147,7 +147,7 @@ export {
   Form,
   FormControl,
   FormDescription,
-  FormField,
+  useFormField,
   FormItem,
   FormLabel,
   FormMessage,
@@ -214,7 +214,7 @@ export {
   ProgressLabel,
   ProgressValue,
 } from "./progress";
-export { QrCodeDisplay } from "./qrcode-display";
+export { QRCodeDisplay } from "./qrcode-display";
 export { RadioGroup, RadioGroupItem } from "./radio-group";
 export {
   ResizablePanelGroup,
@@ -352,7 +352,7 @@ export { Spinner } from "./spinner";
 export { InputSearch } from "./input-search";
 export { InputNumber } from "./input-number";
 export { DatePicker } from "./date-picker";
-export { Descriptions, DescriptionsItem } from "./descriptions";
+export { Descriptions, Descriptions } from "./descriptions";
 export { Popconfirm } from "./popconfirm";
 export { Spin } from "./spin";
 export { Affix } from "./affix";
@@ -369,12 +369,12 @@ export {
 } from "./menu";
 export * from "./icons";
 export { Cascader } from "./cascader";
-export { Image, ImageGroup } from "./image";
-export { Tag, TagGroup } from "./tag";
+export { Image } from "./image";
+export { Tag } from "./tag";
 export { Result } from "./result";
 export { Statistic } from "./statistic";
 export { QRCode } from "./qrcode";
-export { AutoComplete } from "./autocomplete";
+export { Autocomplete } from "./autocomplete";
 export { Mentions } from "./mentions";
 export { Countdown } from "./countdown";
 
@@ -390,15 +390,15 @@ export { Watermark } from "./watermark";
 
 export { Combobox, type ComboboxOption } from "./combobox";
 
-export { Fab, FabSpeedDial } from "./fab";
+export { Fab } from "./fab";
 
 // New UI components
 export { Anchor } from "./anchor";
-export { List as DataList, ListHeader, ListItem, ListFooter } from "./list";
+export { List as DataList } from "./list";
 export { Notification } from "./notification";
 
 // Grid system
-export { Row, Col } from "./grid";
+export { Row } from "./grid";
 
 export { ChatInput } from "./chat-input";
 export { ChatMessage } from "./chat-message";
@@ -411,7 +411,7 @@ export { WithPermission } from "./with-permission";
 export { Icon } from "./icon";
 export { Transfer } from "./transfer";
 export { TimePicker, formatTimeInput } from "./time-picker";
-export { PictureWall, PictureCard } from "./file-upload";
+export { PictureWall } from "./file-upload";
 export { InfiniteScroll } from "./infinite-scroll";
 export { Masonry } from "./masonry";
 export { NativeSelect } from "./native-select";

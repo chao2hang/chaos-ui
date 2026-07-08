@@ -8,7 +8,7 @@ export * from "./announcement-banner";
 export * from "./approval-timeline";
 export * from "./async-task-center";
 export * from "./audience-segment-builder";
-export { AuditLog, type AuditLogStatus, type AuditLogEntry } from "./audit-log";
+export { AuditLog, type AuditLogStatus, type AuditEntry } from "./audit-log";
 export * from "./audit-sidebar";
 export * from "./auth-guard";
 export * from "./permission-wrapper";
