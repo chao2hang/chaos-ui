@@ -8,12 +8,7 @@ export * from "./announcement-banner";
 export * from "./approval-timeline";
 export * from "./async-task-center";
 export * from "./audience-segment-builder";
-export {
-  AuditLog,
-  type AuditLogStatus,
-  type AuditLogEntry,
-  type AuditLogProps,
-} from "./audit-log";
+export { AuditLog, type AuditLogStatus, type AuditLogEntry } from "./audit-log";
 export * from "./audit-sidebar";
 export * from "./auth-guard";
 export * from "./permission-wrapper";
@@ -42,11 +37,7 @@ export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
 export * from "./cookie-banner";
-export {
-  CrudPage,
-  type CrudPageProps,
-  type FormField as CrudFormField,
-} from "./crud-page";
+export { CrudPage, type FormField as CrudFormField } from "./crud-page";
 export * from "./crud-toolbar";
 export * from "./creative-preview";
 export * from "./data-table";
@@ -55,7 +46,6 @@ export * from "./diff-viewer";
 export * from "./dict-select";
 export {
   RemoteSelect,
-  type RemoteSelectProps,
   type RemoteOption,
   type RemoteFetcher,
 } from "./remote-select";
@@ -117,10 +107,10 @@ export * from "./rating";
 export * from "./responsive-preview";
 export * from "./role-assignment";
 export * from "./saved-filters";
-export { SearchTable, type SearchTableProps } from "./search-table";
+export { SearchTable } from "./search-table";
 export * from "./segmented-control";
 export * from "./social-share";
-export { SqlEditor, type SqlEditorProps } from "./sql-editor";
+export { SqlEditor } from "./sql-editor";
 export * from "./stat-card";
 export * from "./stat-card-row";
 export * from "./status-tag";
@@ -136,7 +126,6 @@ export * from "./color-tag";
 
 export {
   StatusBadge,
-  type StatusBadgeProps,
   type StatusPreset,
   type StatusMapping,
 } from "./status-badge";
@@ -158,9 +147,6 @@ export {
 export {
   DialogFormBody,
   FormStack,
-} from "@/components/layout/dialog-form-body";
-  DialogFormBodyProps,
-  FormStackProps,
 } from "@/components/layout/dialog-form-body";
 export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 export { AuthLayout } from "@/components/layout/auth-layout";
@@ -387,9 +373,6 @@ export * from "./leave-request-form";
 export * from "./meeting-room-booking";
 export * from "./attendance-calendar";
 export { PurchaseOrderEditor } from "./purchase-order-editor";
-  PurchaseOrderEditorProps,
-  POLineItem,
-} from "./purchase-order-editor";
 export * from "./stock-transfer-dialog";
 export * from "./ar-ap-aging-table";
 export * from "./lead-pipeline-board";
