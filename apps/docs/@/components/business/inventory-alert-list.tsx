@@ -13,7 +13,7 @@ export interface InventoryAlert {
   severity: "low" | "critical" | "out";
 }
 
-interface InventoryAlertListProps extends React.ComponentProps<"div"> {
+interface InventoryAlertListProps extends React.HTMLAttributes<HTMLDivElement> {
   alerts: InventoryAlert[];
   className?: string;
 }
@@ -108,4 +108,4 @@ function InventoryAlertList({
 }
 
 export { InventoryAlertList };
-export type { InventoryAlertListProps, InventoryAlert };
+export type { InventoryAlertListProps };

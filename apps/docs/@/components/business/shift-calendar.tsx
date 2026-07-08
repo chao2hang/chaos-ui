@@ -12,7 +12,7 @@ export interface Shift {
   shift: "morning" | "afternoon" | "night" | "off";
 }
 
-interface ShiftCalendarProps extends React.ComponentProps<"div"> {
+interface ShiftCalendarProps extends React.HTMLAttributes<HTMLDivElement> {
   shifts: Shift[];
   year?: number;
   month?: number;
@@ -123,4 +123,4 @@ function ShiftCalendar({
 }
 
 export { ShiftCalendar };
-export type { ShiftCalendarProps, Shift };
+export type { ShiftCalendarProps };

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/table";
 import { PlusIcon } from "lucide-react";
 
-interface CrudPageProps extends React.ComponentProps<"div"> {
+interface CrudPageProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   toolbar?: React.ReactNode;
   columns: Array<{

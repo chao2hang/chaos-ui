@@ -1,23 +1,23 @@
-"use client"
-import * as React from "react"
-import { XIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { XIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface BulkAction {
-  label: string
-  icon?: React.ReactNode
-  onClick: () => void
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost"
-  disabled?: boolean
+  label: string;
+  icon?: React.ReactNode;
+  onClick: () => void;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost";
+  disabled?: boolean;
 }
 
-interface BulkActionsToolbarProps extends React.ComponentProps<"div"> {
-  count: number
-  selectedCount: number
-  onClear?: () => void
-  actions?: BulkAction[]
-  label?: string
+interface BulkActionsToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
+  count: number;
+  selectedCount: number;
+  onClear?: () => void;
+  actions?: BulkAction[];
+  label?: string;
 }
 
 export function BulkActionsToolbar({
@@ -29,7 +29,7 @@ export function BulkActionsToolbar({
   className,
   ...props
 }: BulkActionsToolbarProps) {
-  if (selectedCount === 0) return null
+  if (selectedCount === 0) return null;
 
   return (
     <div
@@ -37,18 +37,18 @@ export function BulkActionsToolbar({
       role="toolbar"
       aria-label="批量操作"
       className={cn(
-        "sticky top-0 z-10 flex items-center gap-3 rounded-md border bg-popover px-3 py-2 shadow-sm",
-        className
+        "bg-popover sticky top-0 z-10 flex items-center gap-3 rounded-md border px-3 py-2 shadow-sm",
+        className,
       )}
       {...props}
     >
       <div className="flex items-center gap-2 text-sm">
         <span className="font-medium">{label}</span>
-        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary">
+        <span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs">
           {selectedCount} / {count}
         </span>
       </div>
-      <div className="mx-2 h-4 w-px bg-border" />
+      <div className="bg-border mx-2 h-4 w-px" />
       <div className="flex flex-1 flex-wrap items-center gap-1">
         {actions.map((action, i) => (
           <Button
@@ -74,5 +74,5 @@ export function BulkActionsToolbar({
         </Button>
       )}
     </div>
-  )
+  );
 }

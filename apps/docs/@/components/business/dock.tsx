@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export interface DockItem {
-  key: string
-  label: string
-  icon: React.ReactNode
-  onClick?: () => void
-  badge?: number | string
-  active?: boolean
+  key: string;
+  label: string;
+  icon: React.ReactNode;
+  onClick?: () => void;
+  badge?: number | string;
+  active?: boolean;
 }
 
-interface DockProps extends React.ComponentProps<"div"> {
-  items: DockItem[]
-  orientation?: "horizontal" | "vertical"
-  magnification?: boolean
-  className?: string
+interface DockProps extends React.HTMLAttributes<HTMLDivElement> {
+  items: DockItem[];
+  orientation?: "horizontal" | "vertical";
+  magnification?: boolean;
+  className?: string;
 }
 
 export function Dock({
@@ -32,7 +32,7 @@ export function Dock({
   className,
   ...props
 }: DockProps) {
-  const [hoverIndex, setHoverIndex] = React.useState<number>(-1)
+  const [hoverIndex, setHoverIndex] = React.useState<number>(-1);
 
   return (
     <TooltipProvider delay={200}>
@@ -55,7 +55,7 @@ export function Dock({
           "p-2",
           // Orientation
           orientation === "vertical" && "flex-col",
-          className
+          className,
         )}
         {...props}
       >
@@ -72,16 +72,16 @@ export function Dock({
         ))}
       </div>
     </TooltipProvider>
-  )
+  );
 }
 
 function computeScale(index: number, hoverIndex: number): number {
-  if (hoverIndex < 0) return 1
-  const distance = Math.abs(index - hoverIndex)
-  if (distance > 2) return 1
-  if (distance === 0) return 1.35
-  if (distance === 1) return 1.2
-  return 1.08
+  if (hoverIndex < 0) return 1;
+  const distance = Math.abs(index - hoverIndex);
+  if (distance > 2) return 1;
+  if (distance === 0) return 1.35;
+  if (distance === 1) return 1.2;
+  return 1.08;
 }
 
 function DockButton({
@@ -92,15 +92,15 @@ function DockButton({
   magnification,
   orientation,
 }: {
-  item: DockItem
-  index: number
-  hoverIndex: number
-  onHover: (i: number) => void
-  magnification: boolean
-  orientation: "horizontal" | "vertical"
+  item: DockItem;
+  index: number;
+  hoverIndex: number;
+  onHover: (i: number) => void;
+  magnification: boolean;
+  orientation: "horizontal" | "vertical";
 }) {
-  const scale = magnification ? computeScale(index, hoverIndex) : 1
-  const isHovered = hoverIndex === index
+  const scale = magnification ? computeScale(index, hoverIndex) : 1;
+  const isHovered = hoverIndex === index;
 
   return (
     <Tooltip>
@@ -125,14 +125,14 @@ function DockButton({
               "hover:bg-black/[0.04] dark:hover:bg-white/[0.06]",
               "hover:text-foreground",
               // Focus state
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+              "focus-visible:ring-brand-400/50 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none",
               // Active state - gradient background with glow
-              "data-[active]:bg-gradient-to-br data-[active]:from-brand-500/15 data-[active]:to-brand-600/10",
+              "data-[active]:from-brand-500/15 data-[active]:to-brand-600/10 data-[active]:bg-gradient-to-br",
               "data-[active]:text-brand-600 dark:data-[active]:text-brand-400",
               "data-[active]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),0_0_20px_-4px_rgba(59,130,246,0.3)]",
               "dark:data-[active]:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_0_20px_-4px_rgba(96,165,250,0.25)]",
               // Active hover
-              "data-[active]:hover:from-brand-500/20 data-[active]:hover:to-brand-600/15"
+              "data-[active]:hover:from-brand-500/20 data-[active]:hover:to-brand-600/15",
             )}
           >
             {/* Icon container with scale transform */}
@@ -140,7 +140,7 @@ function DockButton({
               className={cn(
                 "flex items-center justify-center",
                 "transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-                "origin-center"
+                "origin-center",
               )}
               style={{ transform: `scale(${scale})` }}
               aria-hidden="true"
@@ -161,7 +161,7 @@ function DockButton({
                   "shadow-[0_2px_8px_-2px_rgba(239,68,68,0.5)]",
                   "border border-white/20 dark:border-white/10",
                   "transition-transform duration-300",
-                  isHovered && "scale-110"
+                  isHovered && "scale-110",
                 )}
               >
                 {item.badge}
@@ -181,7 +181,7 @@ function DockButton({
                   "transition-all duration-300",
                   orientation === "horizontal"
                     ? "-bottom-1 left-1/2 h-[3px] w-5 -translate-x-1/2"
-                    : "-right-1 top-1/2 h-5 w-[3px] -translate-y-1/2"
+                    : "top-1/2 -right-1 h-5 w-[3px] -translate-y-1/2",
                 )}
               />
             )}
@@ -191,8 +191,8 @@ function DockButton({
               <span
                 className={cn(
                   "absolute inset-0 rounded-xl",
-                  "bg-gradient-to-br from-brand-400/5 to-transparent",
-                  "pointer-events-none"
+                  "from-brand-400/5 bg-gradient-to-br to-transparent",
+                  "pointer-events-none",
                 )}
                 aria-hidden="true"
               />
@@ -207,5 +207,5 @@ function DockButton({
         {item.label}
       </TooltipContent>
     </Tooltip>
-  )
+  );
 }

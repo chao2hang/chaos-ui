@@ -17,7 +17,12 @@ const iconPickerVariants = cva("", {
 });
 
 interface IconPickerProps
-  extends React.ComponentProps<"div">, VariantProps<typeof iconPickerVariants> {
+  extends
+    Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof VariantProps<typeof iconPickerVariants> | "onChange"
+    >,
+    VariantProps<typeof iconPickerVariants> {
   /** Selected icon value */
   value?: string;
   /** Change handler */

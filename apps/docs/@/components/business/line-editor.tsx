@@ -10,7 +10,10 @@ export interface LineItem {
   [key: string]: string;
 }
 
-interface LineEditorProps extends React.ComponentProps<"div"> {
+interface LineEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   lines: LineItem[];
   columns: Array<{ key: string; placeholder?: string; width?: string }>;
   onChange?: (lines: LineItem[]) => void;
@@ -78,4 +81,4 @@ function LineEditor({
 }
 
 export { LineEditor };
-export type { LineEditorProps, LineItem };
+export type { LineEditorProps };

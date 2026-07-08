@@ -15,7 +15,10 @@ export interface DashboardWidget {
   y: number;
 }
 
-interface DashboardDesignerProps extends React.ComponentProps<"div"> {
+interface DashboardDesignerProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   widgets: DashboardWidget[];
   onChange?: (widgets: DashboardWidget[]) => void;
   className?: string;

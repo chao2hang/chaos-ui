@@ -21,7 +21,7 @@ export interface BillLineItem {
   amount: number;
 }
 
-interface BillPageProps extends React.ComponentProps<"div"> {
+interface BillPageProps extends React.HTMLAttributes<HTMLDivElement> {
   headerProps?: React.ComponentProps<typeof BillHeader>;
   footerProps?: React.ComponentProps<typeof BillFooter>;
   lineItems?: BillLineItem[];
@@ -77,4 +77,4 @@ function BillPage({
 }
 
 export { BillPage };
-export type { BillPageProps, BillLineItem };
+export type { BillPageProps };

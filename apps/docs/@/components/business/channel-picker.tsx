@@ -22,7 +22,10 @@ const CHANNELS = [
   { id: "sms", label: "短信", icon: "📱" },
 ];
 
-interface ChannelPickerProps extends React.ComponentProps<"div"> {
+interface ChannelPickerProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   value?: string[];
   onChange?: (channels: string[]) => void;
   className?: string;

@@ -19,7 +19,7 @@ export interface DiffRow {
   changed: boolean;
 }
 
-interface DiffViewerTableProps extends React.ComponentProps<"div"> {
+interface DiffViewerTableProps extends React.HTMLAttributes<HTMLDivElement> {
   rows: DiffRow[];
   leftTitle?: string;
   rightTitle?: string;
@@ -91,4 +91,4 @@ function DiffViewerTable({
 }
 
 export { DiffViewerTable };
-export type { DiffViewerTableProps, DiffRow };
+export type { DiffViewerTableProps };

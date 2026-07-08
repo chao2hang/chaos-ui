@@ -14,7 +14,7 @@ export interface StatCard {
   format?: "number" | "currency" | "percentage";
 }
 
-interface StatCardRowProps extends React.ComponentProps<"div"> {
+interface StatCardRowProps extends React.HTMLAttributes<HTMLDivElement> {
   cards: StatCard[];
   className?: string;
 }
@@ -85,4 +85,4 @@ function StatCardRow({ cards, className, ...props }: StatCardRowProps) {
 }
 
 export { StatCardRow };
-export type { StatCardRowProps, StatCard };
+export type { StatCardRowProps };

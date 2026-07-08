@@ -98,4 +98,4 @@ function ApprovalTimeline({
 }
 
 export { ApprovalTimeline };
-export type { ApprovalTimelineProps, ApprovalStep };
+export type { ApprovalTimelineProps };

@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-auth-layout";
+export * from "../../../../../components/mobile/mobile-auth-layout";

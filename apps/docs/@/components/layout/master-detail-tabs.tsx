@@ -9,7 +9,10 @@ interface MasterDetailTabItem {
   content?: React.ReactNode;
 }
 
-interface MasterDetailTabsProps extends React.ComponentProps<"div"> {
+interface MasterDetailTabsProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   items: MasterDetailTabItem[];
   activeKey?: string;
   defaultActiveKey?: string;

@@ -20,7 +20,7 @@ import {
   XIcon,
 } from "lucide-react";
 
-interface BulkImportWizardProps extends React.ComponentProps<"div"> {
+interface BulkImportWizardProps extends React.HTMLAttributes<HTMLDivElement> {
   onImport?: (data: Record<string, string>[]) => void;
   onCancel?: () => void;
   className?: string;

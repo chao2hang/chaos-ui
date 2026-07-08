@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-card";
+export * from "../../../../../components/mobile/mobile-card";

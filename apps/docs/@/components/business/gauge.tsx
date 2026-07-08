@@ -1,17 +1,17 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface GaugeProps extends React.ComponentProps<"div"> {
-  value: number
-  min?: number
-  max?: number
-  size?: number
-  strokeWidth?: number
-  label?: React.ReactNode
-  showValue?: boolean
-  formatValue?: (v: number) => string
-  variant?: "default" | "success" | "warning" | "destructive"
+interface GaugeProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: number;
+  min?: number;
+  max?: number;
+  size?: number;
+  strokeWidth?: number;
+  label?: React.ReactNode;
+  showValue?: boolean;
+  formatValue?: (v: number) => string;
+  variant?: "default" | "success" | "warning" | "destructive";
 }
 
 const variantStroke: Record<NonNullable<GaugeProps["variant"]>, string> = {
@@ -19,7 +19,7 @@ const variantStroke: Record<NonNullable<GaugeProps["variant"]>, string> = {
   success: "stroke-success",
   warning: "stroke-warning",
   destructive: "stroke-destructive",
-}
+};
 
 export function Gauge({
   value,
@@ -34,31 +34,33 @@ export function Gauge({
   className,
   ...props
 }: GaugeProps) {
-  const clamped = Math.max(min, Math.min(max, value))
-  const pct = (clamped - min) / (max - min)
-  const radius = (size - strokeWidth) / 2
-  const cx = size / 2
-  const cy = size / 2
-  const startAngle = 135
-  const endAngle = 405
-  const angleRange = endAngle - startAngle
-  const currentAngle = startAngle + angleRange * pct
+  const clamped = Math.max(min, Math.min(max, value));
+  const pct = (clamped - min) / (max - min);
+  const radius = (size - strokeWidth) / 2;
+  const cx = size / 2;
+  const cy = size / 2;
+  const startAngle = 135;
+  const endAngle = 405;
+  const angleRange = endAngle - startAngle;
+  const currentAngle = startAngle + angleRange * pct;
 
   const polar = (angle: number) => {
-    const rad = (angle * Math.PI) / 180
-    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) }
-  }
+    const rad = (angle * Math.PI) / 180;
+    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+  };
 
-  const start = polar(startAngle)
-  const end = polar(endAngle)
-  const current = polar(currentAngle)
-  const largeArc = angleRange > 180 ? 1 : 0
-  const currentLarge = currentAngle - startAngle > 180 ? 1 : 0
+  const start = polar(startAngle);
+  const end = polar(endAngle);
+  const current = polar(currentAngle);
+  const largeArc = angleRange > 180 ? 1 : 0;
+  const currentLarge = currentAngle - startAngle > 180 ? 1 : 0;
 
-  const trackPath = `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}`
-  const progressPath = `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${currentLarge} 1 ${current.x} ${current.y}`
+  const trackPath = `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+  const progressPath = `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${currentLarge} 1 ${current.x} ${current.y}`;
 
-  const display = formatValue ? formatValue(clamped) : `${Math.round(pct * 100)}%`
+  const display = formatValue
+    ? formatValue(clamped)
+    : `${Math.round(pct * 100)}%`;
 
   return (
     <div
@@ -67,7 +69,10 @@ export function Gauge({
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={clamped}
-      className={cn("relative inline-flex flex-col items-center justify-center", className)}
+      className={cn(
+        "relative inline-flex flex-col items-center justify-center",
+        className,
+      )}
       style={{ width: size, height: size }}
       {...props}
     >
@@ -88,19 +93,23 @@ export function Gauge({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        {showValue && <div className="text-2xl font-semibold tabular-nums">{display}</div>}
-        {label && <div className="mt-1 text-xs text-muted-foreground">{label}</div>}
+        {showValue && (
+          <div className="text-2xl font-semibold tabular-nums">{display}</div>
+        )}
+        {label && (
+          <div className="text-muted-foreground mt-1 text-xs">{label}</div>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-interface RadialProgressProps extends React.ComponentProps<"div"> {
-  value: number
-  size?: number
-  strokeWidth?: number
-  showValue?: boolean
-  variant?: "default" | "success" | "warning" | "destructive"
+interface RadialProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: number;
+  size?: number;
+  strokeWidth?: number;
+  showValue?: boolean;
+  variant?: "default" | "success" | "warning" | "destructive";
 }
 
 export function RadialProgress({
@@ -112,10 +121,10 @@ export function RadialProgress({
   className,
   ...props
 }: RadialProgressProps) {
-  const pct = Math.max(0, Math.min(100, value))
-  const radius = (size - strokeWidth) / 2
-  const circumference = 2 * Math.PI * radius
-  const offset = circumference - (pct / 100) * circumference
+  const pct = Math.max(0, Math.min(100, value));
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (pct / 100) * circumference;
 
   return (
     <div
@@ -124,7 +133,10 @@ export function RadialProgress({
       aria-valuenow={pct}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={cn("relative inline-flex items-center justify-center", className)}
+      className={cn(
+        "relative inline-flex items-center justify-center",
+        className,
+      )}
       style={{ width: size, height: size }}
       {...props}
     >
@@ -142,10 +154,7 @@ export function RadialProgress({
           cy={size / 2}
           r={radius}
           fill="none"
-          className={cn(
-            "transition-all duration-500",
-            variantStroke[variant]
-          )}
+          className={cn("transition-all duration-500", variantStroke[variant])}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -158,5 +167,5 @@ export function RadialProgress({
         </div>
       )}
     </div>
-  )
+  );
 }

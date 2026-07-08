@@ -25,7 +25,7 @@ export interface ReportFilter {
   value: string;
 }
 
-interface ReportBuilderProps extends React.ComponentProps<"div"> {
+interface ReportBuilderProps extends React.HTMLAttributes<HTMLDivElement> {
   fields: ReportField[];
   filters: ReportFilter[];
   onFieldsChange?: (fields: ReportField[]) => void;

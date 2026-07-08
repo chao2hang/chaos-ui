@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ReactFlow,
   Background,
@@ -11,33 +11,37 @@ import {
   type NodeProps,
   useNodesState,
   useEdgesState,
-} from "@xyflow/react"
-import "@xyflow/react/dist/style.css"
-import { cn } from "@/lib/utils"
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
+import { cn } from "@/lib/utils";
 
 interface OrgNode {
-  id: string
-  name: string
-  title: string
-  avatarUrl?: string
-  department?: string
+  id: string;
+  name: string;
+  title: string;
+  avatarUrl?: string;
+  department?: string;
 }
 
 interface OrgEdge {
-  source: string
-  target: string
+  source: string;
+  target: string;
 }
 
 interface OrgChartNodeData extends Record<string, unknown> {
-  orgNode: OrgNode
+  orgNode: OrgNode;
 }
 
 function OrgChartNodeComponent({ data }: NodeProps) {
-  const d = data as OrgChartNodeData
-  const { name, title, avatarUrl, department } = d.orgNode
+  const d = data as OrgChartNodeData;
+  const { name, title, avatarUrl, department } = d.orgNode;
   return (
-    <div className="min-w-40 rounded-lg border bg-card p-3 text-center shadow-sm transition-shadow hover:shadow-md">
-      <Handle type="target" position={Position.Top} className="!size-2 !bg-primary" />
+    <div className="bg-card min-w-40 rounded-lg border p-3 text-center shadow-sm transition-shadow hover:shadow-md">
+      <Handle
+        type="target"
+        position={Position.Top}
+        className="!bg-primary !size-2"
+      />
       {avatarUrl ? (
         <img
           src={avatarUrl}
@@ -45,21 +49,27 @@ function OrgChartNodeComponent({ data }: NodeProps) {
           className="mx-auto mb-1.5 size-10 rounded-full object-cover"
         />
       ) : (
-        <div className="mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">
+        <div className="bg-muted text-muted-foreground mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full text-sm font-medium">
           {name.charAt(0)}
         </div>
       )}
       <div className="text-sm font-medium">{name}</div>
-      <div className="text-xs text-muted-foreground">{title}</div>
+      <div className="text-muted-foreground text-xs">{title}</div>
       {department && (
-        <div className="mt-1 text-xs text-muted-foreground/70">{department}</div>
+        <div className="text-muted-foreground/70 mt-1 text-xs">
+          {department}
+        </div>
       )}
-      <Handle type="source" position={Position.Bottom} className="!size-2 !bg-primary" />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className="!bg-primary !size-2"
+      />
     </div>
-  )
+  );
 }
 
-const nodeTypes = { org: OrgChartNodeComponent }
+const nodeTypes = { org: OrgChartNodeComponent };
 
 function buildFlowElements(orgNodes: OrgNode[], orgEdges?: OrgEdge[]) {
   const nodes: Node[] = orgNodes.map((n, i) => ({
@@ -67,47 +77,53 @@ function buildFlowElements(orgNodes: OrgNode[], orgEdges?: OrgEdge[]) {
     type: "org",
     position: { x: 0, y: i * 120 },
     data: { orgNode: n },
-  }))
+  }));
 
   const edges: Edge[] = (orgEdges ?? []).map((e) => ({
     id: `${e.source}-${e.target}`,
     source: e.source,
     target: e.target,
     type: "smoothstep",
-  }))
+  }));
 
-  return { nodes, edges }
+  return { nodes, edges };
 }
 
-interface OrgChartProps extends React.ComponentProps<"div"> {
-  nodes: OrgNode[]
-  edges?: OrgEdge[]
-  onNodeClick?: (node: OrgNode) => void
-  className?: string
+interface OrgChartProps extends React.HTMLAttributes<HTMLDivElement> {
+  nodes: OrgNode[];
+  edges?: OrgEdge[];
+  onNodeClick?: (node: OrgNode) => void;
+  className?: string;
 }
 
-function OrgChart({ nodes, edges: orgEdges, onNodeClick, className, ...props }: OrgChartProps) {
+function OrgChart({
+  nodes,
+  edges: orgEdges,
+  onNodeClick,
+  className,
+  ...props
+}: OrgChartProps) {
   const { nodes: flowNodes, edges: flowEdges } = React.useMemo(
     () => buildFlowElements(nodes, orgEdges),
     [nodes, orgEdges],
-  )
+  );
 
-  const [rn, setNodes, onNodesChange] = useNodesState(flowNodes)
-  const [re, setEdges, onEdgesChange] = useEdgesState(flowEdges)
+  const [rn, setNodes, onNodesChange] = useNodesState(flowNodes);
+  const [re, setEdges, onEdgesChange] = useEdgesState(flowEdges);
 
   React.useEffect(() => {
-    const { nodes: n, edges: e } = buildFlowElements(nodes, orgEdges)
-    setNodes(n)
-    setEdges(e)
-  }, [nodes, orgEdges, setNodes, setEdges])
+    const { nodes: n, edges: e } = buildFlowElements(nodes, orgEdges);
+    setNodes(n);
+    setEdges(e);
+  }, [nodes, orgEdges, setNodes, setEdges]);
 
   const handleClick = React.useCallback(
     (_: React.MouseEvent, node: Node) => {
-      const orgNode = (node.data as OrgChartNodeData).orgNode
-      onNodeClick?.(orgNode)
+      const orgNode = (node.data as OrgChartNodeData).orgNode;
+      onNodeClick?.(orgNode);
     },
     [onNodeClick],
-  )
+  );
 
   return (
     <div
@@ -130,10 +146,10 @@ function OrgChart({ nodes, edges: orgEdges, onNodeClick, className, ...props }: 
         <Controls />
       </ReactFlow>
     </div>
-  )
+  );
 }
 
-OrgChart.displayName = "OrgChart"
+OrgChart.displayName = "OrgChart";
 
-export { OrgChart }
-export type { OrgNode, OrgEdge, OrgChartProps }
+export { OrgChart };
+export type { OrgNode, OrgEdge, OrgChartProps };

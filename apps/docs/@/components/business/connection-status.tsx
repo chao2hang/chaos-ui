@@ -1,17 +1,17 @@
-"use client"
-import * as React from "react"
-import { WifiOffIcon, RefreshCwIcon, CheckIcon } from "lucide-react"
-import { useOnlineStatus } from "@/hooks/use-online-status"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import { WifiOffIcon, RefreshCwIcon, CheckIcon } from "lucide-react";
+import { useOnlineStatus } from "@/hooks/use-online-status";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-type SyncState = "online" | "offline" | "syncing"
+type SyncState = "online" | "offline" | "syncing";
 
-interface ConnectionStatusProps extends React.ComponentProps<"div"> {
-  onSync?: () => Promise<void> | void
-  showWhenOnline?: boolean
-  variant?: "banner" | "inline" | "toast"
-  className?: string
+interface ConnectionStatusProps extends React.HTMLAttributes<HTMLDivElement> {
+  onSync?: () => Promise<void> | void;
+  showWhenOnline?: boolean;
+  variant?: "banner" | "inline" | "toast";
+  className?: string;
 }
 
 export function ConnectionStatus({
@@ -21,40 +21,42 @@ export function ConnectionStatus({
   className,
   ...props
 }: ConnectionStatusProps) {
-  const online = useOnlineStatus()
-  const [state, setState] = React.useState<SyncState>(online ? "online" : "offline")
-  const [pending, setPending] = React.useState(false)
+  const online = useOnlineStatus();
+  const [state, setState] = React.useState<SyncState>(
+    online ? "online" : "offline",
+  );
+  const [pending, setPending] = React.useState(false);
 
   React.useEffect(() => {
     if (!online) {
-      setState("offline")
+      setState("offline");
     } else if (state === "offline") {
-      setState("syncing")
-      const t = setTimeout(() => setState("online"), 800)
-      return () => clearTimeout(t)
+      setState("syncing");
+      const t = setTimeout(() => setState("online"), 800);
+      return () => clearTimeout(t);
     }
-  }, [online, state])
+  }, [online, state]);
 
-  if (state === "online" && !showWhenOnline) return null
+  if (state === "online" && !showWhenOnline) return null;
 
   const handleSync = async () => {
-    if (!onSync) return
-    setPending(true)
+    if (!onSync) return;
+    setPending(true);
     try {
-      await onSync()
+      await onSync();
     } finally {
-      setPending(false)
-      setState("online")
+      setPending(false);
+      setState("online");
     }
-  }
+  };
 
   const config = {
     online: { icon: CheckIcon, text: "已连接", color: "text-success" },
     offline: { icon: WifiOffIcon, text: "网络断开", color: "text-destructive" },
     syncing: { icon: RefreshCwIcon, text: "正在同步...", color: "text-info" },
-  }[state]
+  }[state];
 
-  const Icon = config.icon
+  const Icon = config.icon;
 
   if (variant === "toast") {
     return (
@@ -63,15 +65,21 @@ export function ConnectionStatus({
         data-state={state}
         role="status"
         className={cn(
-          "flex items-center gap-2 rounded-md border bg-popover px-3 py-2 text-sm shadow-md",
-          className
+          "bg-popover flex items-center gap-2 rounded-md border px-3 py-2 text-sm shadow-md",
+          className,
         )}
         {...props}
       >
-        <Icon className={cn("size-4", config.color, state === "syncing" && "animate-spin")} />
+        <Icon
+          className={cn(
+            "size-4",
+            config.color,
+            state === "syncing" && "animate-spin",
+          )}
+        />
         <span>{config.text}</span>
       </div>
-    )
+    );
   }
 
   if (variant === "inline") {
@@ -79,13 +87,17 @@ export function ConnectionStatus({
       <div
         data-slot="connection-status"
         data-state={state}
-        className={cn("inline-flex items-center gap-1.5 text-xs", config.color, className)}
+        className={cn(
+          "inline-flex items-center gap-1.5 text-xs",
+          config.color,
+          className,
+        )}
         {...props}
       >
         <Icon className={cn("size-3", state === "syncing" && "animate-spin")} />
         {config.text}
       </div>
-    )
+    );
   }
 
   return (
@@ -94,18 +106,29 @@ export function ConnectionStatus({
       data-state={state}
       role="status"
       className={cn(
-        "flex items-center justify-center gap-3 border-b bg-muted/30 px-4 py-1.5 text-xs",
-        className
+        "bg-muted/30 flex items-center justify-center gap-3 border-b px-4 py-1.5 text-xs",
+        className,
       )}
       {...props}
     >
-      <Icon className={cn("size-3.5", config.color, state === "syncing" && "animate-spin")} />
+      <Icon
+        className={cn(
+          "size-3.5",
+          config.color,
+          state === "syncing" && "animate-spin",
+        )}
+      />
       <span>{config.text}</span>
       {onSync && state === "offline" && (
-        <Button variant="ghost" size="xs" onClick={handleSync} disabled={pending}>
+        <Button
+          variant="ghost"
+          size="xs"
+          onClick={handleSync}
+          disabled={pending}
+        >
           重试
         </Button>
       )}
     </div>
-  )
+  );
 }

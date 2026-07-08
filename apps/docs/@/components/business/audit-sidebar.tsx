@@ -20,7 +20,7 @@ export interface AuditSidebarEntry {
   timestamp: string;
 }
 
-interface AuditSidebarProps extends React.ComponentProps<"div"> {
+interface AuditSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   entries: AuditSidebarEntry[];
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -97,4 +97,4 @@ function AuditSidebar({
 }
 
 export { AuditSidebar };
-export type { AuditSidebarProps, AuditSidebarEntry };
+export type { AuditSidebarProps };

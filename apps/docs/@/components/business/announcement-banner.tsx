@@ -21,7 +21,9 @@ const bannerVariants = cva(
 );
 
 interface AnnouncementBannerProps
-  extends React.ComponentProps<"div">, VariantProps<typeof bannerVariants> {
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof bannerVariants> {
   message: string;
   action?: React.ReactNode;
   dismissible?: boolean;

@@ -12,7 +12,7 @@ import {
   RefreshCwIcon,
 } from "lucide-react";
 
-interface CrudToolbarProps extends React.ComponentProps<"div"> {
+interface CrudToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
   onAdd?: () => void;
   onDelete?: () => void;
   onExport?: () => void;

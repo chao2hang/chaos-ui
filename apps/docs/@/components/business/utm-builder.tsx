@@ -7,7 +7,10 @@ import { Label } from "@/components/ui/label";
 import { CopyIcon, LinkIcon } from "lucide-react";
 import { toast } from "sonner";
 
-interface UtmBuilderProps extends React.ComponentProps<"div"> {
+interface UtmBuilderProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   baseUrl?: string;
   onChange?: (url: string) => void;
   className?: string;

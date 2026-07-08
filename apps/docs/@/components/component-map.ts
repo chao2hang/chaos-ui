@@ -138,7 +138,7 @@ import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
 import { AdminHeader } from "@/components/layout/admin-header";
 import { AdminShell } from "@/components/layout/admin-shell";
 import { AdminSider } from "@/components/layout/admin-sider";
-import { NavigationTabsBar as AdminTabs } from "@/components/layout/admin-tabs";
+import { AdminTabs } from "@/components/layout/admin-tabs";
 import { AppShell } from "@/components/layout/app-shell";
 import { ArticleLayout } from "@/components/layout/article-layout";
 import { AuthLayout } from "@/components/layout/auth-layout";

@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-kanban";
+export * from "../../../../../components/mobile/mobile-kanban";

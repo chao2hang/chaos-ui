@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ShieldOffIcon } from "lucide-react";
 
-interface ForbiddenProps extends React.ComponentProps<"div"> {
+interface ForbiddenProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: string;
   action?: React.ReactNode;

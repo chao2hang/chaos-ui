@@ -1,19 +1,29 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-export type SwipeDirection = "left" | "right" | "up" | "down"
+export type SwipeDirection = "left" | "right" | "up" | "down";
 
-interface SwipeActionsProps extends React.ComponentProps<"div"> {
-  onSwipeLeft?: () => void
-  onSwipeRight?: () => void
-  onSwipeUp?: () => void
-  onSwipeDown?: () => void
-  threshold?: number
-  disabled?: boolean
-  leftAction?: { label: string; color?: string; onClick: () => void; icon?: React.ReactNode }
-  rightAction?: { label: string; color?: string; onClick: () => void; icon?: React.ReactNode }
-  className?: string
+interface SwipeActionsProps extends React.HTMLAttributes<HTMLDivElement> {
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
+  onSwipeUp?: () => void;
+  onSwipeDown?: () => void;
+  threshold?: number;
+  disabled?: boolean;
+  leftAction?: {
+    label: string;
+    color?: string;
+    onClick: () => void;
+    icon?: React.ReactNode;
+  };
+  rightAction?: {
+    label: string;
+    color?: string;
+    onClick: () => void;
+    icon?: React.ReactNode;
+  };
+  className?: string;
 }
 
 export function SwipeActions({
@@ -29,60 +39,62 @@ export function SwipeActions({
   children,
   ...props
 }: SwipeActionsProps) {
-  const [start, setStart] = React.useState<{ x: number; y: number } | null>(null)
-  const [delta, setDelta] = React.useState(0)
-  const [axis, setAxis] = React.useState<"x" | "y" | null>(null)
+  const [start, setStart] = React.useState<{ x: number; y: number } | null>(
+    null,
+  );
+  const [delta, setDelta] = React.useState(0);
+  const [axis, setAxis] = React.useState<"x" | "y" | null>(null);
 
   const onTouchStart = (e: React.TouchEvent) => {
-    if (disabled) return
-    setStart({ x: e.touches[0].clientX, y: e.touches[0].clientY })
-    setDelta(0)
-    setAxis(null)
-  }
+    if (disabled) return;
+    setStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+    setDelta(0);
+    setAxis(null);
+  };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    if (!start || disabled) return
-    const dx = e.touches[0].clientX - start.x
-    const dy = e.touches[0].clientY - start.y
+    if (!start || disabled) return;
+    const dx = e.touches[0].clientX - start.x;
+    const dy = e.touches[0].clientY - start.y;
     if (!axis) {
-      setAxis(Math.abs(dx) > Math.abs(dy) ? "x" : "y")
+      setAxis(Math.abs(dx) > Math.abs(dy) ? "x" : "y");
     }
     if (axis === "x" || (!axis && Math.abs(dx) > Math.abs(dy))) {
-      setDelta(dx)
+      setDelta(dx);
     } else if (axis === "y" || (!axis && Math.abs(dy) > Math.abs(dx))) {
-      setDelta(dy)
+      setDelta(dy);
     }
-  }
+  };
 
   const onTouchEnd = () => {
     if (disabled || delta === 0) {
-      setStart(null)
-      setDelta(0)
-      setAxis(null)
-      return
+      setStart(null);
+      setDelta(0);
+      setAxis(null);
+      return;
     }
-    const ax = Math.abs(delta)
+    const ax = Math.abs(delta);
     if (ax >= threshold) {
       if (axis === "x") {
         if (delta > 0) {
-          if (rightAction) rightAction.onClick()
-          onSwipeRight?.()
+          if (rightAction) rightAction.onClick();
+          onSwipeRight?.();
         } else {
-          if (leftAction) leftAction.onClick()
-          onSwipeLeft?.()
+          if (leftAction) leftAction.onClick();
+          onSwipeLeft?.();
         }
       } else if (axis === "y") {
-        if (delta > 0) onSwipeDown?.()
-        else onSwipeUp?.()
+        if (delta > 0) onSwipeDown?.();
+        else onSwipeUp?.();
       }
     }
-    setStart(null)
-    setDelta(0)
-    setAxis(null)
-  }
+    setStart(null);
+    setDelta(0);
+    setAxis(null);
+  };
 
-  const action = delta > 0 ? rightAction : leftAction
-  const showAction = Math.abs(delta) > 20 && action
+  const action = delta > 0 ? rightAction : leftAction;
+  const showAction = Math.abs(delta) > 20 && action;
 
   return (
     <div
@@ -97,9 +109,12 @@ export function SwipeActions({
         <div
           className={cn(
             "absolute inset-y-0 flex items-center justify-center px-4 text-sm font-medium text-white",
-            delta > 0 ? "left-0" : "right-0"
+            delta > 0 ? "left-0" : "right-0",
           )}
-          style={{ backgroundColor: action.color ?? "#ef4444", width: Math.abs(delta) }}
+          style={{
+            backgroundColor: action.color ?? "#ef4444",
+            width: Math.abs(delta),
+          }}
         >
           <span className="flex items-center gap-1.5">
             {action.icon}
@@ -108,7 +123,7 @@ export function SwipeActions({
         </div>
       )}
       <div
-        className="relative bg-background transition-transform"
+        className="bg-background relative transition-transform"
         style={{
           transform: `translateX(${delta}px)`,
           transition: start ? "none" : "transform 0.2s",
@@ -117,5 +132,5 @@ export function SwipeActions({
         {children}
       </div>
     </div>
-  )
+  );
 }

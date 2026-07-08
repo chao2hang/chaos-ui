@@ -1,6 +1,7 @@
 // Auto-generated shim
 export {
-  ModalProvider,
-  useModal,
-  type ModalContextValue,
+  modalStore,
+  useImperativeModals,
+  type ImperativeModalConfig,
+  type ModalKind,
 } from "../../../../lib/modal-store";

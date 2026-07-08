@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-kpi-card";
+export * from "../../../../../components/mobile/mobile-kpi-card";

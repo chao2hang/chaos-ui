@@ -1,7 +1,7 @@
-export { BrowseDialog } from "@/components/business/browse-dialog";
+export { BrowseDialog } from "../../../../../components/business/browse-dialog";
 export type {
   BrowseDialogProps,
   BrowseColumn,
   BrowseLoadParams,
   BrowseLoadResult,
-} from "@/components/business/browse-dialog";
+} from "../../../../../components/business/browse-dialog";

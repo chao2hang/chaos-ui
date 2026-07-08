@@ -1,14 +1,14 @@
-"use client"
-import * as React from "react"
-import { CheckIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { CheckIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface MobileFormStepperProps extends React.ComponentProps<"div"> {
-  current: number
-  total: number
-  labels?: string[]
-  className?: string
-  onStepClick?: (index: number) => void
+interface MobileFormStepperProps extends React.HTMLAttributes<HTMLDivElement> {
+  current: number;
+  total: number;
+  labels?: string[];
+  className?: string;
+  onStepClick?: (index: number) => void;
 }
 
 export function MobileFormStepper({
@@ -22,12 +22,15 @@ export function MobileFormStepper({
   return (
     <div
       data-slot="mobile-form-stepper"
-      className={cn("flex items-center gap-1.5 overflow-x-auto py-2", className)}
+      className={cn(
+        "flex items-center gap-1.5 overflow-x-auto py-2",
+        className,
+      )}
       {...props}
     >
       {Array.from({ length: total }).map((_, i) => {
-        const done = i < current
-        const active = i === current - 1
+        const done = i < current;
+        const active = i === current - 1;
         return (
           <button
             key={i}
@@ -38,7 +41,7 @@ export function MobileFormStepper({
               "flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-colors",
               done && "bg-success/10 text-success",
               active && "bg-primary/10 text-primary",
-              !done && !active && "bg-muted text-muted-foreground"
+              !done && !active && "bg-muted text-muted-foreground",
             )}
           >
             {done ? (
@@ -48,10 +51,12 @@ export function MobileFormStepper({
                 {i + 1}
               </span>
             )}
-            {labels?.[i] && <span className="whitespace-nowrap">{labels[i]}</span>}
+            {labels?.[i] && (
+              <span className="whitespace-nowrap">{labels[i]}</span>
+            )}
           </button>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

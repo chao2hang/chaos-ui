@@ -25,7 +25,10 @@ export interface TreeNode {
   children?: TreeNode[];
 }
 
-interface EditableTreeTableProps extends React.ComponentProps<"div"> {
+interface EditableTreeTableProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   data: TreeNode[];
   columns: Array<{ key: string; header: string; editable?: boolean }>;
   onChange?: (data: TreeNode[]) => void;
@@ -201,4 +204,4 @@ function EditableTreeTable({
 }
 
 export { EditableTreeTable };
-export type { EditableTreeTableProps, TreeNode };
+export type { EditableTreeTableProps };

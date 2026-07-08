@@ -24,7 +24,7 @@ export interface AsyncTask {
   error?: string;
 }
 
-interface AsyncTaskCenterProps extends React.ComponentProps<"div"> {
+interface AsyncTaskCenterProps extends React.HTMLAttributes<HTMLDivElement> {
   tasks: AsyncTask[];
   onRetry?: (taskId: string) => void;
   onDelete?: (taskId: string) => void;
@@ -141,4 +141,4 @@ function AsyncTaskCenter({
 }
 
 export { AsyncTaskCenter };
-export type { AsyncTaskCenterProps, AsyncTask };
+export type { AsyncTaskCenterProps };

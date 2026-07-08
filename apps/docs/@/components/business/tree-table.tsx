@@ -17,7 +17,7 @@ export interface TreeNode {
   children?: TreeNode[];
 }
 
-interface TreeTableProps extends React.ComponentProps<"div"> {
+interface TreeTableProps extends React.HTMLAttributes<HTMLDivElement> {
   data: TreeNode[];
   columns: Array<{
     key: string;
@@ -145,4 +145,4 @@ function TreeTable({
 }
 
 export { TreeTable };
-export type { TreeTableProps, TreeNode };
+export type { TreeTableProps };

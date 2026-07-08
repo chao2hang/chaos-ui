@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ReactFlow,
   Background,
@@ -10,52 +10,67 @@ import {
   type NodeProps,
   Handle,
   Position,
-} from "@xyflow/react"
-import "@xyflow/react/dist/style.css"
-import { cn } from "@/lib/utils"
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
+import { cn } from "@/lib/utils";
 
 export interface WorkflowNodeData extends Record<string, unknown> {
-  label: string
-  description?: string
-  type?: "default" | "input" | "output" | "decision"
-  color?: string
+  label: string;
+  description?: string;
+  type?: "default" | "input" | "output" | "decision";
+  color?: string;
 }
 
 function WorkflowNode({ data, selected }: NodeProps) {
-  const d = data as WorkflowNodeData
+  const d = data as WorkflowNodeData;
   return (
     <div
       className={cn(
-        "min-w-32 rounded-md border bg-card px-3 py-2 text-sm shadow-sm transition-shadow",
-        selected && "ring-2 ring-primary",
+        "bg-card min-w-32 rounded-md border px-3 py-2 text-sm shadow-sm transition-shadow",
+        selected && "ring-primary ring-2",
         d.type === "input" && "border-success/50 bg-success/5",
         d.type === "output" && "border-primary/50 bg-primary/5",
-        d.type === "decision" && "rotate-45 border-warning/50 bg-warning/5"
+        d.type === "decision" && "border-warning/50 bg-warning/5 rotate-45",
       )}
       style={{ borderColor: d.color }}
     >
-      <Handle type="target" position={Position.Top} className="!size-2 !bg-primary" />
-      <div className={cn("font-medium", d.type === "decision" && "-rotate-45")}>{d.label}</div>
+      <Handle
+        type="target"
+        position={Position.Top}
+        className="!bg-primary !size-2"
+      />
+      <div className={cn("font-medium", d.type === "decision" && "-rotate-45")}>
+        {d.label}
+      </div>
       {d.description && (
-        <div className={cn("mt-0.5 text-xs text-muted-foreground", d.type === "decision" && "-rotate-45")}>
+        <div
+          className={cn(
+            "text-muted-foreground mt-0.5 text-xs",
+            d.type === "decision" && "-rotate-45",
+          )}
+        >
           {d.description}
         </div>
       )}
-      <Handle type="source" position={Position.Bottom} className="!size-2 !bg-primary" />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className="!bg-primary !size-2"
+      />
     </div>
-  )
+  );
 }
 
-const nodeTypes = { workflow: WorkflowNode }
+const nodeTypes = { workflow: WorkflowNode };
 
-interface WorkflowViewerProps extends React.ComponentProps<"div"> {
-  nodes: Node<WorkflowNodeData>[]
-  edges: Edge[]
-  onNodeClick?: (node: Node) => void
-  showControls?: boolean
-  showMinimap?: boolean
-  className?: string
-  height?: number
+interface WorkflowViewerProps extends React.HTMLAttributes<HTMLDivElement> {
+  nodes: Node<WorkflowNodeData>[];
+  edges: Edge[];
+  onNodeClick?: (node: Node) => void;
+  showControls?: boolean;
+  showMinimap?: boolean;
+  className?: string;
+  height?: number;
 }
 
 export function WorkflowViewer({
@@ -88,38 +103,52 @@ export function WorkflowViewer({
         {showMinimap && <MiniMap />}
       </ReactFlow>
     </div>
-  )
+  );
 }
 
 interface OrgChartNodeData extends Record<string, unknown> {
-  name: string
-  role?: string
-  avatar?: string
+  name: string;
+  role?: string;
+  avatar?: string;
 }
 
 function OrgChartNode({ data }: NodeProps) {
-  const d = data as OrgChartNodeData
+  const d = data as OrgChartNodeData;
   return (
-    <div className="min-w-40 rounded-md border bg-card p-3 text-center shadow-sm">
-      <Handle type="target" position={Position.Top} className="!size-2 !bg-primary" />
-      <div className="mx-auto mb-1 size-10 rounded-full bg-muted" />
+    <div className="bg-card min-w-40 rounded-md border p-3 text-center shadow-sm">
+      <Handle
+        type="target"
+        position={Position.Top}
+        className="!bg-primary !size-2"
+      />
+      <div className="bg-muted mx-auto mb-1 size-10 rounded-full" />
       <div className="text-sm font-medium">{d.name}</div>
-      {d.role && <div className="text-xs text-muted-foreground">{d.role}</div>}
-      <Handle type="source" position={Position.Bottom} className="!size-2 !bg-primary" />
+      {d.role && <div className="text-muted-foreground text-xs">{d.role}</div>}
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className="!bg-primary !size-2"
+      />
     </div>
-  )
+  );
 }
 
-const orgNodeTypes = { org: OrgChartNode }
+const orgNodeTypes = { org: OrgChartNode };
 
-interface OrgChartProps extends React.ComponentProps<"div"> {
-  nodes: Node<OrgChartNodeData>[]
-  edges: Edge[]
-  className?: string
-  height?: number
+interface OrgChartProps extends React.HTMLAttributes<HTMLDivElement> {
+  nodes: Node<OrgChartNodeData>[];
+  edges: Edge[];
+  className?: string;
+  height?: number;
 }
 
-export function OrgChart({ nodes, edges, className, height = 480, ...props }: OrgChartProps) {
+export function OrgChart({
+  nodes,
+  edges,
+  className,
+  height = 480,
+  ...props
+}: OrgChartProps) {
   return (
     <div
       data-slot="org-chart"
@@ -127,10 +156,16 @@ export function OrgChart({ nodes, edges, className, height = 480, ...props }: Or
       style={{ height }}
       {...props}
     >
-      <ReactFlow nodes={nodes} edges={edges} nodeTypes={orgNodeTypes} fitView proOptions={{ hideAttribution: true }}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        nodeTypes={orgNodeTypes}
+        fitView
+        proOptions={{ hideAttribution: true }}
+      >
         <Background gap={16} size={1} />
         <Controls />
       </ReactFlow>
     </div>
-  )
+  );
 }

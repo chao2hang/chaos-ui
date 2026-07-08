@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-empty-state";
+export * from "../../../../../components/mobile/mobile-empty-state";

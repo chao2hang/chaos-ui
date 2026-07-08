@@ -29,7 +29,7 @@ export interface SegmentRule {
   value2?: string;
 }
 
-const operatorLabels: Record<SegmentOperator, string> = {
+const operatorLabels: Record<string, string> = {
   equals: "等于",
   not_equals: "不等于",
   contains: "包含",
@@ -47,7 +47,10 @@ const fieldOptions = [
   { value: "last_purchase", label: "最近购买" },
 ];
 
-interface AudienceSegmentBuilderProps extends React.ComponentProps<"div"> {
+interface AudienceSegmentBuilderProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   rules: SegmentRule[];
   onChange?: (rules: SegmentRule[]) => void;
   className?: string;
@@ -164,4 +167,4 @@ function AudienceSegmentBuilder({
 }
 
 export { AudienceSegmentBuilder };
-export type { AudienceSegmentBuilderProps, SegmentRule, SegmentOperator };
+export type { AudienceSegmentBuilderProps };

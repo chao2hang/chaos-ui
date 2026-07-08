@@ -12,7 +12,7 @@ export interface CampaignEvent {
   status: "planned" | "active" | "ended";
 }
 
-interface CampaignCalendarProps extends React.ComponentProps<"div"> {
+interface CampaignCalendarProps extends React.HTMLAttributes<HTMLDivElement> {
   events: CampaignEvent[];
   year?: number;
   month?: number;
@@ -105,4 +105,4 @@ function CampaignCalendar({
 }
 
 export { CampaignCalendar };
-export type { CampaignCalendarProps, CampaignEvent };
+export type { CampaignCalendarProps };

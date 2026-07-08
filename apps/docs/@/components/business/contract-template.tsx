@@ -14,7 +14,10 @@ export interface ContractField {
   type?: "text" | "textarea";
 }
 
-interface ContractTemplateProps extends React.ComponentProps<"div"> {
+interface ContractTemplateProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   title?: string;
   fields: ContractField[];
   onChange?: (fields: ContractField[]) => void;
@@ -79,4 +82,4 @@ function ContractTemplate({
 }
 
 export { ContractTemplate };
-export type { ContractTemplateProps, ContractField };
+export type { ContractTemplateProps };

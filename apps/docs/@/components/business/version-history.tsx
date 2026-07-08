@@ -14,7 +14,7 @@ export interface VersionEntry {
   current?: boolean;
 }
 
-interface VersionHistoryProps extends React.ComponentProps<"div"> {
+interface VersionHistoryProps extends React.HTMLAttributes<HTMLDivElement> {
   entries: VersionEntry[];
   onRestore?: (version: VersionEntry) => void;
   onView?: (version: VersionEntry) => void;
@@ -123,4 +123,4 @@ function VersionHistory({
 }
 
 export { VersionHistory };
-export type { VersionHistoryProps, VersionEntry };
+export type { VersionHistoryProps };

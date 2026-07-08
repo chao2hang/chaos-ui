@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDownIcon } from "lucide-react";
 
-interface BatchSelectorProps extends React.ComponentProps<"div"> {
+interface BatchSelectorProps extends React.HTMLAttributes<HTMLDivElement> {
   selectedIds: string[];
   total: number;
   onSelectAll: () => void;

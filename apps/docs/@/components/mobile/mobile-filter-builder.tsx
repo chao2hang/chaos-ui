@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-filter-builder";
+export * from "../../../../../components/mobile/mobile-filter-builder";

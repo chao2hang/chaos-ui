@@ -20,7 +20,10 @@ export interface OrderLine {
   unitPrice: number;
 }
 
-interface OrderLineEditorProps extends React.ComponentProps<"div"> {
+interface OrderLineEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   lines: OrderLine[];
   onChange?: (lines: OrderLine[]) => void;
   className?: string;
@@ -136,4 +139,4 @@ function OrderLineEditor({
 }
 
 export { OrderLineEditor };
-export type { OrderLineEditorProps, OrderLine };
+export type { OrderLineEditorProps };

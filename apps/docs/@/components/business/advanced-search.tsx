@@ -20,7 +20,7 @@ export interface SearchField {
   placeholder?: string;
 }
 
-interface AdvancedSearchProps extends React.ComponentProps<"div"> {
+interface AdvancedSearchProps extends React.HTMLAttributes<HTMLDivElement> {
   fields: SearchField[];
   onSearch?: (values: Record<string, string>) => void;
   onReset?: () => void;

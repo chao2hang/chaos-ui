@@ -18,7 +18,7 @@ export interface SearchTableColumn {
   render?: (row: Record<string, unknown>) => React.ReactNode;
 }
 
-interface SearchTableProps extends React.ComponentProps<"div"> {
+interface SearchTableProps extends React.HTMLAttributes<HTMLDivElement> {
   columns: SearchTableColumn[];
   data: Record<string, unknown>[];
   searchKeys?: string[];
@@ -116,4 +116,4 @@ function SearchTable({
 }
 
 export { SearchTable };
-export type { SearchTableProps, SearchTableColumn };
+export type { SearchTableProps };

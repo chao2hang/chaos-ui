@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { CheckIcon, XIcon } from "lucide-react";
 
-interface EditToolbarProps extends React.ComponentProps<"div"> {
+interface EditToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
   editing?: boolean;
   onEdit?: () => void;
   onSave?: () => void;

@@ -19,7 +19,9 @@ const statusVariants = cva("", {
 });
 
 interface BillStatusBarProps
-  extends React.ComponentProps<"div">, VariantProps<typeof statusVariants> {
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof statusVariants> {
   currentStatus: "draft" | "pending" | "approved" | "rejected" | "paid";
   className?: string;
 }

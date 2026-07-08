@@ -2,7 +2,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-interface BillFooterProps extends React.ComponentProps<"div"> {
+interface BillFooterProps extends React.HTMLAttributes<HTMLDivElement> {
   subtotal?: number;
   tax?: number;
   taxRate?: number;

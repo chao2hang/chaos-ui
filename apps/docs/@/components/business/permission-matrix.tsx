@@ -18,7 +18,10 @@ export interface PermissionItem {
   children?: PermissionItem[];
 }
 
-interface PermissionMatrixProps extends React.ComponentProps<"div"> {
+interface PermissionMatrixProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   permissions: PermissionItem[];
   roles: string[];
   value: Record<string, string[]>;
@@ -99,4 +102,4 @@ function PermissionMatrix({
 }
 
 export { PermissionMatrix };
-export type { PermissionMatrixProps, PermissionItem };
+export type { PermissionMatrixProps };

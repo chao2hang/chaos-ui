@@ -2,7 +2,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-interface DiffViewerProps extends React.ComponentProps<"div"> {
+interface DiffViewerProps extends React.HTMLAttributes<HTMLDivElement> {
   left: string;
   right: string;
   leftTitle?: string;

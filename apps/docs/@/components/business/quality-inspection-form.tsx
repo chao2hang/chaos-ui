@@ -23,7 +23,10 @@ export interface InspectionItem {
   note: string;
 }
 
-interface QualityInspectionFormProps extends React.ComponentProps<"div"> {
+interface QualityInspectionFormProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   items: InspectionItem[];
   onChange?: (items: InspectionItem[]) => void;
   onSubmit?: (items: InspectionItem[]) => void;
@@ -113,4 +116,4 @@ function QualityInspectionForm({
 }
 
 export { QualityInspectionForm };
-export type { QualityInspectionFormProps, InspectionItem };
+export type { QualityInspectionFormProps };

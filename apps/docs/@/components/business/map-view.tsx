@@ -12,7 +12,7 @@ export interface MapMarker {
   onClick?: () => void;
 }
 
-interface MapViewProps extends React.ComponentProps<"div"> {
+interface MapViewProps extends React.HTMLAttributes<HTMLDivElement> {
   center?: [number, number];
   zoom?: number;
   markers?: MapMarker[];

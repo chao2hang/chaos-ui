@@ -11,7 +11,10 @@ export interface Role {
   description?: string;
 }
 
-interface RoleAssignmentProps extends React.ComponentProps<"div"> {
+interface RoleAssignmentProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   roles: Role[];
   assigned: string[];
   onChange?: (assigned: string[]) => void;
@@ -75,4 +78,4 @@ function RoleAssignment({
 }
 
 export { RoleAssignment };
-export type { RoleAssignmentProps, Role };
+export type { RoleAssignmentProps };

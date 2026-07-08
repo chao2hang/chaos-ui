@@ -20,7 +20,7 @@ export interface FilterField {
   placeholder?: string;
 }
 
-interface FilterBarProps extends React.ComponentProps<"div"> {
+interface FilterBarProps extends React.HTMLAttributes<HTMLDivElement> {
   fields: FilterField[];
   onFilter?: (values: Record<string, string>) => void;
   onReset?: () => void;

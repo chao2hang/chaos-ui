@@ -43,7 +43,7 @@ const UNITS: Record<
   },
 };
 
-interface UnitConverterProps extends React.ComponentProps<"div"> {
+interface UnitConverterProps extends React.HTMLAttributes<HTMLDivElement> {
   units?: string[];
   className?: string;
 }

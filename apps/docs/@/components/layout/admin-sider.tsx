@@ -12,7 +12,10 @@ interface AdminSiderItem {
   disabled?: boolean;
 }
 
-interface AdminSiderProps extends React.ComponentProps<"aside"> {
+interface AdminSiderProps extends Omit<
+  React.ComponentProps<"aside">,
+  "onSelect"
+> {
   items?: AdminSiderItem[];
   activeKey?: string;
   onSelect?: (key: string) => void;

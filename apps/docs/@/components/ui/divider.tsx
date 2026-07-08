@@ -29,7 +29,12 @@ const dividerVariants = cva("shrink-0", {
 });
 
 interface DividerProps
-  extends React.ComponentProps<"div">, VariantProps<typeof dividerVariants> {
+  extends
+    Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof VariantProps<typeof dividerVariants>
+    >,
+    VariantProps<typeof dividerVariants> {
   /** Optional text in the middle */
   label?: React.ReactNode;
   /** Text alignment */
@@ -53,7 +58,7 @@ function Divider({
       <div
         data-slot="divider"
         role={decorative ? "none" : "separator"}
-        aria-orientation={orientation}
+        aria-orientation={orientation ?? undefined}
         className={cn(
           "flex items-center gap-3",
           dividerVariants({ orientation, variant, size }),
@@ -90,7 +95,7 @@ function Divider({
     <div
       data-slot="divider"
       role={decorative ? "none" : "separator"}
-      aria-orientation={orientation}
+      aria-orientation={orientation ?? undefined}
       className={cn(dividerVariants({ orientation, variant, size }), className)}
       {...props}
     />

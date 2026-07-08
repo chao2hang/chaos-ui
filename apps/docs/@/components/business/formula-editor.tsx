@@ -5,7 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FunctionSquareIcon } from "lucide-react";
 
-interface FormulaEditorProps extends React.ComponentProps<"div"> {
+interface FormulaEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;

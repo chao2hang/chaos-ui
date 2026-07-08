@@ -19,7 +19,10 @@ export interface ExpenseLine {
   amount: number;
 }
 
-interface ExpenseLineEditorProps extends React.ComponentProps<"div"> {
+interface ExpenseLineEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   lines: ExpenseLine[];
   onChange?: (lines: ExpenseLine[]) => void;
   categories?: string[];
@@ -122,4 +125,4 @@ function ExpenseLineEditor({
 }
 
 export { ExpenseLineEditor };
-export type { ExpenseLineEditorProps, ExpenseLine };
+export type { ExpenseLineEditorProps };

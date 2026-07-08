@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-form";
+export * from "../../../../../components/mobile/mobile-form";

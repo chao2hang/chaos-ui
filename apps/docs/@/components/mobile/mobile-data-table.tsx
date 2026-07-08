@@ -1,2 +1,2 @@
 "use client";
-export * from "../../../../components/mobile/mobile-data-table";
+export * from "../../../../../components/mobile/mobile-data-table";

@@ -33,7 +33,12 @@ function useFormField(): FormFieldContextValue | null {
 }
 
 interface FormProps
-  extends React.ComponentProps<"form">, VariantProps<typeof formVariants> {
+  extends
+    Omit<
+      React.ComponentProps<"form">,
+      keyof VariantProps<typeof formVariants> | "onSubmit"
+    >,
+    VariantProps<typeof formVariants> {
   /** Called on submit with form data */
   onSubmit?: (data: Record<string, FormDataEntryValue>) => void;
   /** Validation errors map (field name -> error message) */
@@ -62,8 +67,14 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(
         {...props}
       >
         {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && child.props.name) {
-            const name = child.props.name as string;
+          if (
+            React.isValidElement(child) &&
+            child.props &&
+            typeof child.props === "object" &&
+            "name" in child.props
+          ) {
+            const childProps = child.props as Record<string, unknown>;
+            const name = childProps.name as string;
             return (
               <FormFieldContext.Provider
                 key={name}
@@ -71,8 +82,8 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(
                   id: `form-field-${name}`,
                   name,
                   error: errors[name],
-                  required: child.props.required,
-                  disabled: child.props.disabled,
+                  required: childProps.required as boolean | undefined,
+                  disabled: childProps.disabled as boolean | undefined,
                 }}
               >
                 {child}

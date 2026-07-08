@@ -1,13 +1,13 @@
-"use client"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface BarcodeDisplayProps extends React.ComponentProps<"div"> {
-  value: string
-  format?: "CODE128" | "EAN13" | "UPC"
-  width?: number
-  height?: number
-  className?: string
+interface BarcodeDisplayProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: string;
+  format?: "CODE128" | "EAN13" | "UPC";
+  width?: number;
+  height?: number;
+  className?: string;
 }
 
 function BarcodeDisplay({
@@ -18,10 +18,10 @@ function BarcodeDisplay({
   className,
   ...props
 }: BarcodeDisplayProps) {
-  const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   React.useEffect(() => {
-    if (!value || !canvasRef.current) return
+    if (!value || !canvasRef.current) return;
     import("jsbarcode")
       .then((JsBarcode) => {
         JsBarcode.default(canvasRef.current!, value, {
@@ -31,21 +31,25 @@ function BarcodeDisplay({
           displayValue: true,
           fontSize: 14,
           margin: 10,
-        })
+        });
       })
-      .catch(() => {})
-  }, [value, format, width, height])
+      .catch(() => {});
+  }, [value, format, width, height]);
 
-  if (!value) return null
+  if (!value) return null;
 
   return (
-    <div data-slot="barcode-display" className={cn("inline-block", className)} {...props}>
+    <div
+      data-slot="barcode-display"
+      className={cn("inline-block", className)}
+      {...props}
+    >
       <canvas ref={canvasRef} />
     </div>
-  )
+  );
 }
 
-BarcodeDisplay.displayName = "BarcodeDisplay"
+BarcodeDisplay.displayName = "BarcodeDisplay";
 
-export { BarcodeDisplay }
-export type { BarcodeDisplayProps }
+export { BarcodeDisplay };
+export type { BarcodeDisplayProps };

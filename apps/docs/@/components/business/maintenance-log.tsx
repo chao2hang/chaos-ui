@@ -19,7 +19,7 @@ export interface MaintenanceRecord {
   technician?: string;
 }
 
-interface MaintenanceLogProps extends React.ComponentProps<"div"> {
+interface MaintenanceLogProps extends React.HTMLAttributes<HTMLDivElement> {
   records: MaintenanceRecord[];
   className?: string;
 }
@@ -101,4 +101,4 @@ function MaintenanceLog({ records, className, ...props }: MaintenanceLogProps) {
 }
 
 export { MaintenanceLog };
-export type { MaintenanceLogProps, MaintenanceRecord };
+export type { MaintenanceLogProps };

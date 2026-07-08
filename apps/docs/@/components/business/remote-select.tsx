@@ -119,4 +119,4 @@ function RemoteSelect({
 }
 
 export { RemoteSelect };
-export type { RemoteSelectProps, RemoteOption };
+export type { RemoteSelectProps };

@@ -18,7 +18,12 @@ const emptyStateVariants = cva(
 );
 
 interface EmptyStateProps
-  extends React.ComponentProps<"div">, VariantProps<typeof emptyStateVariants> {
+  extends
+    Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof VariantProps<typeof emptyStateVariants> | "title" | "description"
+    >,
+    VariantProps<typeof emptyStateVariants> {
   /** Icon element */
   icon?: React.ReactNode;
   /** Title text */
