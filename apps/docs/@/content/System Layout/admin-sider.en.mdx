@@ -25,13 +25,21 @@ export function Basic() {
 
 ### AdminSider
 
-| Prop        | Type                            | Default | Description                       |
-| ----------- | ------------------------------- | ------- | --------------------------------- |
-| `className` | `string`                        | —       | Custom CSS class                  |
-| `items`     | `AdminSiderItem[]`              | —       | Items / data list                 |
-| `activeKey` | `string`                        | —       |                                   |
-| `onSelect`  | `() => void`                    | —       | Selection handler                 |
-| ...rest     | `React.ComponentProps<"aside">` | —       | Inherits all `<aside>` attributes |
+| Prop                 | Type                            | Default | Description                       |
+| -------------------- | ------------------------------- | ------- | --------------------------------- |
+| `className`          | `string`                        | —       | Custom CSS class                  |
+| `menuItems`          | `MenuItem[]`                    | —       | Menu items                        |
+| `selectedKey`        | `string`                        | —       | Selected menu key                 |
+| `onItemClick`        | `(item: MenuItem) => void`      | —       | Menu click handler                |
+| `collapsed`          | `boolean`                       | `false` | Whether collapsed                 |
+| `onCollapse`         | `(collapsed: boolean) => void`  | —       | Collapse change callback          |
+| `logo`               | `ReactNode`                     | —       | Logo content                      |
+| `footer`             | `ReactNode`                     | —       | Footer content                    |
+| `width`              | `number`                        | `240`   | Expanded width                    |
+| `collapsedWidth`     | `number`                        | `64`    | Collapsed width                   |
+| `mobileOpen`         | `boolean`                       | `false` | Mobile open state                 |
+| `onMobileOpenChange` | `(open: boolean) => void`       | —       | Mobile open change callback       |
+| ...rest              | `React.ComponentProps<"aside">` | —       | Inherits all `<aside>` attributes |
 
 ## Notes
 

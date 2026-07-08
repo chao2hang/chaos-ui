@@ -7,20 +7,33 @@ import { cn } from "@/lib/utils";
  * @description 分类条
  */
 interface CategoryBarProps {
-data: Array<{ label: string; value: number; color: string }>;
+  data: Array<{ label: string; value: number; color: string }>;
   className?: string;
 }
-function CategoryBar({ data, className }: CategoryBarProps) {
+function CategoryBar({ data = [], className }: CategoryBarProps) {
   const max = Math.max(1, ...data.map((d) => d.value));
   return (
-    <div data-slot="category-bar" className={cn("flex flex-col gap-2", className)}>
+    <div
+      data-slot="category-bar"
+      className={cn("flex flex-col gap-2", className)}
+    >
       {data.map((d) => (
         <div key={d.label} className="flex items-center gap-2 text-sm">
-          <span className="w-28 shrink-0 truncate text-muted-foreground">{d.label}</span>
-          <div className="h-4 flex-1 overflow-hidden rounded bg-muted">
-            <div className="h-full rounded" style={{ width: `${(d.value / max) * 100}%`, backgroundColor: d.color ?? "hsl(var(--primary))" }} />
+          <span className="text-muted-foreground w-28 shrink-0 truncate">
+            {d.label}
+          </span>
+          <div className="bg-muted h-4 flex-1 overflow-hidden rounded">
+            <div
+              className="h-full rounded"
+              style={{
+                width: `${(d.value / max) * 100}%`,
+                backgroundColor: d.color ?? "hsl(var(--primary))",
+              }}
+            />
           </div>
-          <span className="w-12 shrink-0 text-right tabular-nums">{d.value}</span>
+          <span className="w-12 shrink-0 text-right tabular-nums">
+            {d.value}
+          </span>
         </div>
       ))}
     </div>

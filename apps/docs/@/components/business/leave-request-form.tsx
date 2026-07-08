@@ -21,7 +21,8 @@ import { CalendarIcon, ClockIcon } from "@/components/ui/icons";
 /* -------------------------------------------------------------------------- */
 
 /** Leave type. */
-type LeaveType = "annual" | "sick" | "personal" | "maternity" | "compassionate" | "unpaid";
+type LeaveType =
+  "annual" | "sick" | "personal" | "maternity" | "compassionate" | "unpaid";
 
 /** Leave balance info. */
 interface LeaveBalance {
@@ -74,7 +75,6 @@ interface LeaveRequestFormProps {
 /*  Helpers                                                                   */
 /* -------------------------------------------------------------------------- */
 
-
 function daysBetween(a: string, b: string): number {
   if (!a || !b) return 0;
   const d1 = new Date(a);
@@ -90,7 +90,10 @@ function isWeekend(dateStr: string): boolean {
 }
 
 /** Build a mini calendar for the month containing the start date. */
-function buildMonthDays(year: number, month: number): { date: string; day: number; isWeekend: boolean }[] {
+function buildMonthDays(
+  year: number,
+  month: number,
+): { date: string; day: number; isWeekend: boolean }[] {
   const days: { date: string; day: number; isWeekend: boolean }[] = [];
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
@@ -116,8 +119,8 @@ function LeaveRequestForm({
   startDate = "",
   endDate = "",
   onDateChange,
-  balances,
-  approvers,
+  balances = [],
+  approvers = [],
   reason = "",
   onReasonChange,
   onSubmit,
@@ -132,8 +135,14 @@ function LeaveRequestForm({
   const calRefDate = startDate ? new Date(startDate) : new Date();
   const calYear = calRefDate.getFullYear();
   const calMonth = calRefDate.getMonth();
-  const monthDays = React.useMemo(() => buildMonthDays(calYear, calMonth), [calYear, calMonth]);
-  const monthName = new Date(calYear, calMonth, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
+  const monthDays = React.useMemo(
+    () => buildMonthDays(calYear, calMonth),
+    [calYear, calMonth],
+  );
+  const monthName = new Date(calYear, calMonth, 1).toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
 
   const isDateInRange = (dateStr: string): boolean => {
     if (!dateStr || !startDate || !endDate) return false;
@@ -147,11 +156,14 @@ function LeaveRequestForm({
   return (
     <div
       data-slot="leave-request-form"
-      className={cn("space-y-5 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-5 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Leave type selector */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
           Leave Type
         </label>
         <div className="flex flex-wrap gap-2">
@@ -180,14 +192,20 @@ function LeaveRequestForm({
       {currentBalance && (
         <div
           data-slot="leave-balance"
-          className="flex items-center gap-3 rounded-md border border-border bg-muted/30 px-4 py-2"
+          className="border-border bg-muted/30 flex items-center gap-3 rounded-md border px-4 py-2"
         >
-          <span className="text-sm text-muted-foreground">Available balance:</span>
-          <Badge variant={insufficientBalance ? "destructive" : "default"} className="text-xs">
-            {currentBalance.total - currentBalance.used} / {currentBalance.total} {currentBalance.unit}
+          <span className="text-muted-foreground text-sm">
+            Available balance:
+          </span>
+          <Badge
+            variant={insufficientBalance ? "destructive" : "default"}
+            className="text-xs"
+          >
+            {currentBalance.total - currentBalance.used} /{" "}
+            {currentBalance.total} {currentBalance.unit}
           </Badge>
           {insufficientBalance && duration > 0 && (
-            <span className="text-xs text-destructive">
+            <span className="text-destructive text-xs">
               Insufficient balance for {duration} {currentBalance.unit}
             </span>
           )}
@@ -197,11 +215,11 @@ function LeaveRequestForm({
       {/* Date range */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-foreground">
+          <label className="text-foreground mb-1.5 block text-sm font-medium">
             Start Date
           </label>
           <div className="relative">
-            <CalendarIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <CalendarIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               type="date"
               className="pl-8"
@@ -213,11 +231,11 @@ function LeaveRequestForm({
           </div>
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-foreground">
+          <label className="text-foreground mb-1.5 block text-sm font-medium">
             End Date
           </label>
           <div className="relative">
-            <CalendarIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <CalendarIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               type="date"
               className="pl-8"
@@ -233,7 +251,7 @@ function LeaveRequestForm({
       {/* Duration display */}
       {duration > 0 && (
         <div className="flex items-center gap-2 text-sm">
-          <ClockIcon className="size-4 text-muted-foreground" />
+          <ClockIcon className="text-muted-foreground size-4" />
           <span className="text-foreground">
             Duration: <strong>{duration}</strong> day{duration > 1 ? "s" : ""}
           </span>
@@ -242,10 +260,15 @@ function LeaveRequestForm({
 
       {/* Mini calendar preview */}
       <div data-slot="leave-calendar-preview">
-        <div className="mb-2 text-sm font-medium text-foreground">{monthName}</div>
+        <div className="text-foreground mb-2 text-sm font-medium">
+          {monthName}
+        </div>
         <div className="grid grid-cols-7 gap-1">
           {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-            <div key={i} className="text-center text-[10px] font-medium text-muted-foreground">
+            <div
+              key={i}
+              className="text-muted-foreground text-center text-[10px] font-medium"
+            >
               {d}
             </div>
           ))}
@@ -255,8 +278,12 @@ function LeaveRequestForm({
               className={cn(
                 "flex h-7 items-center justify-center rounded text-xs",
                 !d.date && "opacity-0",
-                d.isWeekend && d.date && !isDateInRange(d.date) && "bg-muted/50 text-muted-foreground",
-                isDateInRange(d.date) && "bg-primary text-primary-foreground font-medium",
+                d.isWeekend &&
+                  d.date &&
+                  !isDateInRange(d.date) &&
+                  "bg-muted/50 text-muted-foreground",
+                isDateInRange(d.date) &&
+                  "bg-primary text-primary-foreground font-medium",
               )}
             >
               {d.day || ""}
@@ -267,11 +294,11 @@ function LeaveRequestForm({
 
       {/* Reason */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
           Reason
         </label>
         <textarea
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          className="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-1 focus-visible:outline-none"
           rows={3}
           value={reason}
           onChange={(e) => onReasonChange?.(e.target.value)}
@@ -284,20 +311,24 @@ function LeaveRequestForm({
       {/* Approver chain */}
       {approvers.length > 0 && (
         <div>
-          <label className="mb-2 block text-sm font-medium text-foreground">
+          <label className="text-foreground mb-2 block text-sm font-medium">
             Approval Chain
           </label>
           <div className="flex items-center gap-2">
             {approvers.map((ap, i) => (
               <React.Fragment key={ap.id}>
-                <div className="flex items-center gap-2 rounded-md border border-border bg-muted/30 px-3 py-1.5">
-                  <div className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
+                <div className="border-border bg-muted/30 flex items-center gap-2 rounded-md border px-3 py-1.5">
+                  <div className="bg-primary/10 text-primary flex size-7 items-center justify-center rounded-full text-xs font-medium">
                     {ap.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-foreground">{ap.name}</div>
+                    <div className="text-foreground text-sm font-medium">
+                      {ap.name}
+                    </div>
                     {ap.title && (
-                      <div className="text-xs text-muted-foreground">{ap.title}</div>
+                      <div className="text-muted-foreground text-xs">
+                        {ap.title}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -312,14 +343,17 @@ function LeaveRequestForm({
 
       {/* Actions */}
       {!readOnly && (
-        <div className="flex items-center justify-end gap-2 border-t border-border pt-4">
+        <div className="border-border flex items-center justify-end gap-2 border-t pt-4">
           {onCancel && (
             <Button variant="outline" onClick={onCancel}>
               Cancel
             </Button>
           )}
           {onSubmit && (
-            <Button onClick={onSubmit} disabled={insufficientBalance && duration > 0}>
+            <Button
+              onClick={onSubmit}
+              disabled={insufficientBalance && duration > 0}
+            >
               Submit Request
             </Button>
           )}

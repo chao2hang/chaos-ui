@@ -60,7 +60,10 @@ function parseMarkdown(src: string): Segment[] {
         i += 1;
       }
       i += 1; // skip closing fence
-      segments.push({ type: "code", text: lang ? `${lang}\n${buf.join("\n")}` : buf.join("\n") });
+      segments.push({
+        type: "code",
+        text: lang ? `${lang}\n${buf.join("\n")}` : buf.join("\n"),
+      });
     } else if (/^\s*[-*]\s+/.test(line)) {
       const buf: string[] = [];
       while (i < lines.length && /^\s*[-*]\s+/.test(at(i))) {
@@ -86,7 +89,8 @@ function parseMarkdown(src: string): Segment[] {
 /** Render inline markdown: **bold**, *italic*, `code`, [text](url) */
 function renderInline(text: string): React.ReactNode {
   const nodes: React.ReactNode[] = [];
-  const regex = /(\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\))/g;
+  const regex =
+    /(\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\))/g;
   let lastIndex = 0;
   let key = 0;
   let match: RegExpExecArray | null;
@@ -100,7 +104,10 @@ function renderInline(text: string): React.ReactNode {
       nodes.push(<em key={key++}>{match[3]}</em>);
     } else if (match[4] !== undefined) {
       nodes.push(
-        <code key={key++} className="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">
+        <code
+          key={key++}
+          className="bg-muted rounded px-1 py-0.5 font-mono text-[0.85em]"
+        >
           {match[4]}
         </code>,
       );
@@ -125,43 +132,73 @@ function renderInline(text: string): React.ReactNode {
   return nodes.length ? nodes : text;
 }
 
-function ChatMarkdownRendererImpl({ content, className }: { content: string; className?: string }) {
+function ChatMarkdownRendererImpl({
+  content,
+  className,
+}: {
+  content: string;
+  className?: string;
+}) {
   const segments = parseMarkdown(content);
   if (segments.length === 0) {
     return <p className="text-sm">{content}</p>;
   }
   return (
-    <div className={cn("flex flex-col gap-2 text-sm leading-relaxed", className)}>
+    <div
+      className={cn("flex flex-col gap-2 text-sm leading-relaxed", className)}
+    >
       {segments.map((seg, idx) => {
         switch (seg.type) {
           case "h1":
-            return <h1 key={idx} className="text-lg font-semibold">{renderInline(seg.text)}</h1>;
+            return (
+              <h1 key={idx} className="text-lg font-semibold">
+                {renderInline(seg.text)}
+              </h1>
+            );
           case "h2":
-            return <h2 key={idx} className="text-base font-semibold">{renderInline(seg.text)}</h2>;
+            return (
+              <h2 key={idx} className="text-base font-semibold">
+                {renderInline(seg.text)}
+              </h2>
+            );
           case "h3":
-            return <h3 key={idx} className="text-sm font-semibold">{renderInline(seg.text)}</h3>;
+            return (
+              <h3 key={idx} className="text-sm font-semibold">
+                {renderInline(seg.text)}
+              </h3>
+            );
           case "quote":
             return (
-              <blockquote key={idx} className="border-l-2 border-border pl-3 text-muted-foreground">
+              <blockquote
+                key={idx}
+                className="border-border text-muted-foreground border-l-2 pl-3"
+              >
                 {renderInline(seg.text)}
               </blockquote>
             );
           case "code":
             return (
-              <pre key={idx} className="overflow-x-auto rounded-md bg-muted p-2 font-mono text-xs">
+              <pre
+                key={idx}
+                className="bg-muted overflow-x-auto rounded-md p-2 font-mono text-xs"
+              >
                 <code>{seg.text}</code>
               </pre>
             );
           case "ul":
             return (
               <ul key={idx} className="list-disc pl-5">
-                {seg.text.split("\n").map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+                {seg.text.split("\n").map((item, j) => (
+                  <li key={j}>{renderInline(item)}</li>
+                ))}
               </ul>
             );
           case "ol":
             return (
               <ol key={idx} className="list-decimal pl-5">
-                {seg.text.split("\n").map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+                {seg.text.split("\n").map((item, j) => (
+                  <li key={j}>{renderInline(item)}</li>
+                ))}
               </ol>
             );
           default:
@@ -172,7 +209,10 @@ function ChatMarkdownRendererImpl({ content, className }: { content: string; cla
   );
 }
 
-function ChatMarkdownRenderer({ content, className }: ChatMarkdownRendererProps) {
+function ChatMarkdownRenderer({
+  content = "",
+  className,
+}: ChatMarkdownRendererProps) {
   return (
     <div data-slot="chat-markdown-renderer" className={className}>
       <ChatMarkdownRendererImpl content={content} />

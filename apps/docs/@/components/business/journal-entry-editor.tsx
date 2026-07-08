@@ -13,7 +13,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PlusIcon, Trash2Icon, CheckCircle2Icon, AlertCircleIcon } from "@/components/ui/icons";
+import {
+  PlusIcon,
+  Trash2Icon,
+  CheckCircle2Icon,
+  AlertCircleIcon,
+} from "@/components/ui/icons";
 
 /**
  * @component JournalEntryEditor
@@ -96,7 +101,7 @@ function generateId(): string {
 /* -------------------------------------------------------------------------- */
 
 function JournalEntryEditor({
-  lines,
+  lines = [],
   onChange,
   accounts = [],
   readOnly = false,
@@ -107,8 +112,14 @@ function JournalEntryEditor({
 }: JournalEntryEditorProps) {
   /* ---- totals ---- */
   const totals = React.useMemo(() => {
-    const totalDebit = lines.reduce((sum, l) => sum + (Number(l.debit) || 0), 0);
-    const totalCredit = lines.reduce((sum, l) => sum + (Number(l.credit) || 0), 0);
+    const totalDebit = lines.reduce(
+      (sum, l) => sum + (Number(l.debit) || 0),
+      0,
+    );
+    const totalCredit = lines.reduce(
+      (sum, l) => sum + (Number(l.credit) || 0),
+      0,
+    );
     return {
       debit: totalDebit,
       credit: totalCredit,
@@ -134,13 +145,18 @@ function JournalEntryEditor({
     onChange?.(lines.filter((l) => l.id !== id));
   };
 
-  const handleLineChange = (id: string, field: keyof JournalEntryLine, value: string | number) => {
+  const handleLineChange = (
+    id: string,
+    field: keyof JournalEntryLine,
+    value: string | number,
+  ) => {
     onChange?.(
       lines.map((l) => {
         if (l.id !== id) return l;
         if (field === "debit" || field === "credit") {
           // When entering debit, clear credit and vice versa
-          const numVal = typeof value === "string" ? parseFloat(value) || 0 : value;
+          const numVal =
+            typeof value === "string" ? parseFloat(value) || 0 : value;
           if (field === "debit" && numVal > 0) {
             return { ...l, debit: numVal, credit: 0 };
           }
@@ -172,7 +188,7 @@ function JournalEntryEditor({
       {(voucherNo || showBalanceStatus) && (
         <div className="flex items-center justify-between gap-4">
           {voucherNo && (
-            <span className="text-sm font-medium text-foreground">
+            <span className="text-foreground text-sm font-medium">
               Voucher: {voucherNo}
             </span>
           )}
@@ -186,7 +202,8 @@ function JournalEntryEditor({
               ) : (
                 <Badge variant="destructive" className="gap-1">
                   <AlertCircleIcon className="size-3" />
-                  Unbalanced ({formatAmount(Math.abs(totals.diff), currencySymbol)})
+                  Unbalanced (
+                  {formatAmount(Math.abs(totals.diff), currencySymbol)})
                 </Badge>
               )}
             </div>
@@ -195,7 +212,7 @@ function JournalEntryEditor({
       )}
 
       {/* Lines table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -205,7 +222,9 @@ function JournalEntryEditor({
               <TableHead className="min-w-[180px]">Description</TableHead>
               <TableHead className="w-32 text-right">Debit</TableHead>
               <TableHead className="w-32 text-right">Credit</TableHead>
-              {!readOnly && <TableHead className="w-12 text-center">Action</TableHead>}
+              {!readOnly && (
+                <TableHead className="w-12 text-center">Action</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -213,7 +232,7 @@ function JournalEntryEditor({
               <TableRow>
                 <TableCell
                   colSpan={readOnly ? 6 : 7}
-                  className="py-8 text-center text-muted-foreground"
+                  className="text-muted-foreground py-8 text-center"
                 >
                   No journal lines. Click "Add Line" to start.
                 </TableCell>
@@ -221,7 +240,7 @@ function JournalEntryEditor({
             ) : (
               lines.map((line, index) => (
                 <TableRow key={line.id} data-slot="journal-entry-line">
-                  <TableCell className="text-center text-sm text-muted-foreground">
+                  <TableCell className="text-muted-foreground text-center text-sm">
                     {index + 1}
                   </TableCell>
                   <TableCell>
@@ -229,10 +248,14 @@ function JournalEntryEditor({
                       <span className="text-sm">{line.accountCode || "—"}</span>
                     ) : accounts.length > 0 ? (
                       <select
-                        className="h-8 w-full rounded border border-input bg-background px-2 text-sm"
+                        className="border-input bg-background h-8 w-full rounded border px-2 text-sm"
                         value={line.accountCode}
                         onChange={(e) =>
-                          handleLineChange(line.id, "accountCode", e.target.value)
+                          handleLineChange(
+                            line.id,
+                            "accountCode",
+                            e.target.value,
+                          )
                         }
                         aria-label="Account code"
                       >
@@ -248,7 +271,11 @@ function JournalEntryEditor({
                         className="h-8"
                         value={line.accountCode}
                         onChange={(e) =>
-                          handleLineChange(line.id, "accountCode", e.target.value)
+                          handleLineChange(
+                            line.id,
+                            "accountCode",
+                            e.target.value,
+                          )
                         }
                         placeholder="Account code"
                         aria-label="Account code"
@@ -263,7 +290,11 @@ function JournalEntryEditor({
                         className="h-8"
                         value={line.accountName}
                         onChange={(e) =>
-                          handleLineChange(line.id, "accountName", e.target.value)
+                          handleLineChange(
+                            line.id,
+                            "accountName",
+                            e.target.value,
+                          )
                         }
                         placeholder="Account name"
                         aria-label="Account name"
@@ -278,7 +309,11 @@ function JournalEntryEditor({
                         className="h-8"
                         value={line.description ?? ""}
                         onChange={(e) =>
-                          handleLineChange(line.id, "description", e.target.value)
+                          handleLineChange(
+                            line.id,
+                            "description",
+                            e.target.value,
+                          )
                         }
                         placeholder="Memo"
                         aria-label="Description"
@@ -290,10 +325,12 @@ function JournalEntryEditor({
                       <span
                         className={cn(
                           "text-sm tabular-nums",
-                          line.debit > 0 && "font-medium text-foreground",
+                          line.debit > 0 && "text-foreground font-medium",
                         )}
                       >
-                        {line.debit > 0 ? formatAmount(line.debit, currencySymbol) : "—"}
+                        {line.debit > 0
+                          ? formatAmount(line.debit, currencySymbol)
+                          : "—"}
                       </span>
                     ) : (
                       <Input
@@ -315,10 +352,12 @@ function JournalEntryEditor({
                       <span
                         className={cn(
                           "text-sm tabular-nums",
-                          line.credit > 0 && "font-medium text-foreground",
+                          line.credit > 0 && "text-foreground font-medium",
                         )}
                       >
-                        {line.credit > 0 ? formatAmount(line.credit, currencySymbol) : "—"}
+                        {line.credit > 0
+                          ? formatAmount(line.credit, currencySymbol)
+                          : "—"}
                       </span>
                     ) : (
                       <Input
@@ -356,18 +395,18 @@ function JournalEntryEditor({
           {/* Totals row */}
           {lines.length > 0 && (
             <TableBody>
-              <TableRow className="border-t-2 bg-muted/50 font-semibold">
+              <TableRow className="bg-muted/50 border-t-2 font-semibold">
                 <TableCell colSpan={4} className="text-right text-sm">
                   Totals:
                 </TableCell>
                 <TableCell
-                  className="text-right text-sm tabular-nums text-foreground"
+                  className="text-foreground text-right text-sm tabular-nums"
                   data-slot="journal-total-debit"
                 >
                   {formatAmount(totals.debit, currencySymbol)}
                 </TableCell>
                 <TableCell
-                  className="text-right text-sm tabular-nums text-foreground"
+                  className="text-foreground text-right text-sm tabular-nums"
                   data-slot="journal-total-credit"
                 >
                   {formatAmount(totals.credit, currencySymbol)}

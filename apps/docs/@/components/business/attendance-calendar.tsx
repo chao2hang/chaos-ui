@@ -14,7 +14,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
  * @keywords attendance, calendar, hr, punch, time, tracking, anomaly
  */
 
-type AttendanceStatus = "present" | "absent" | "late" | "leave" | "holiday" | "weekend";
+type AttendanceStatus =
+  "present" | "absent" | "late" | "leave" | "holiday" | "weekend";
 
 interface AttendanceRecord {
   date: string;
@@ -34,13 +35,46 @@ interface AttendanceCalendarProps {
   className?: string;
 }
 
-const statusConfig: Record<AttendanceStatus, { label: string; bg: string; text: string; dot: string }> = {
-  present: { label: "Present", bg: "bg-green-100 dark:bg-green-950/30", text: "text-green-700 dark:text-green-400", dot: "bg-green-500" },
-  absent: { label: "Absent", bg: "bg-red-100 dark:bg-red-950/30", text: "text-red-700 dark:text-red-400", dot: "bg-red-500" },
-  late: { label: "Late", bg: "bg-yellow-100 dark:bg-yellow-950/30", text: "text-yellow-700 dark:text-yellow-400", dot: "bg-yellow-500" },
-  leave: { label: "Leave", bg: "bg-blue-100 dark:bg-blue-950/30", text: "text-blue-700 dark:text-blue-400", dot: "bg-blue-500" },
-  holiday: { label: "Holiday", bg: "bg-purple-100 dark:bg-purple-950/30", text: "text-purple-700 dark:text-purple-400", dot: "bg-purple-500" },
-  weekend: { label: "Weekend", bg: "bg-muted/50", text: "text-muted-foreground", dot: "bg-muted-foreground" },
+const statusConfig: Record<
+  AttendanceStatus,
+  { label: string; bg: string; text: string; dot: string }
+> = {
+  present: {
+    label: "Present",
+    bg: "bg-green-100 dark:bg-green-950/30",
+    text: "text-green-700 dark:text-green-400",
+    dot: "bg-green-500",
+  },
+  absent: {
+    label: "Absent",
+    bg: "bg-red-100 dark:bg-red-950/30",
+    text: "text-red-700 dark:text-red-400",
+    dot: "bg-red-500",
+  },
+  late: {
+    label: "Late",
+    bg: "bg-yellow-100 dark:bg-yellow-950/30",
+    text: "text-yellow-700 dark:text-yellow-400",
+    dot: "bg-yellow-500",
+  },
+  leave: {
+    label: "Leave",
+    bg: "bg-blue-100 dark:bg-blue-950/30",
+    text: "text-blue-700 dark:text-blue-400",
+    dot: "bg-blue-500",
+  },
+  holiday: {
+    label: "Holiday",
+    bg: "bg-purple-100 dark:bg-purple-950/30",
+    text: "text-purple-700 dark:text-purple-400",
+    dot: "bg-purple-500",
+  },
+  weekend: {
+    label: "Weekend",
+    bg: "bg-muted/50",
+    text: "text-muted-foreground",
+    dot: "bg-muted-foreground",
+  },
 };
 
 function buildCalendarDays(year: number, month: number) {
@@ -59,7 +93,7 @@ function buildCalendarDays(year: number, month: number) {
 function AttendanceCalendar({
   year: propYear,
   month: propMonth,
-  records,
+  records = [],
   onMonthChange,
   onDayClick,
   className,
@@ -74,13 +108,29 @@ function AttendanceCalendar({
     return map;
   }, [records]);
 
-  const days = React.useMemo(() => buildCalendarDays(year, month), [year, month]);
-  const monthName = new Date(year, month, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
+  const days = React.useMemo(
+    () => buildCalendarDays(year, month),
+    [year, month],
+  );
+  const monthName = new Date(year, month, 1).toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
 
   const stats = React.useMemo(() => {
-    const counts: Record<AttendanceStatus, number> = { present: 0, absent: 0, late: 0, leave: 0, holiday: 0, weekend: 0 };
+    const counts: Record<AttendanceStatus, number> = {
+      present: 0,
+      absent: 0,
+      late: 0,
+      leave: 0,
+      holiday: 0,
+      weekend: 0,
+    };
     for (const r of records) {
-      if (new Date(r.date).getMonth() === month && new Date(r.date).getFullYear() === year) {
+      if (
+        new Date(r.date).getMonth() === month &&
+        new Date(r.date).getFullYear() === year
+      ) {
         counts[r.status]++;
       }
     }
@@ -89,29 +139,51 @@ function AttendanceCalendar({
 
   const handlePrevMonth = () => {
     const m = month - 1;
-    if (m < 0) { setYear(year - 1); setMonth(11); onMonthChange?.(year - 1, 11); }
-    else { setMonth(m); onMonthChange?.(year, m); }
+    if (m < 0) {
+      setYear(year - 1);
+      setMonth(11);
+      onMonthChange?.(year - 1, 11);
+    } else {
+      setMonth(m);
+      onMonthChange?.(year, m);
+    }
   };
 
   const handleNextMonth = () => {
     const m = month + 1;
-    if (m > 11) { setYear(year + 1); setMonth(0); onMonthChange?.(year + 1, 0); }
-    else { setMonth(m); onMonthChange?.(year, m); }
+    if (m > 11) {
+      setYear(year + 1);
+      setMonth(0);
+      onMonthChange?.(year + 1, 0);
+    } else {
+      setMonth(m);
+      onMonthChange?.(year, m);
+    }
   };
 
   return (
     <div
       data-slot="attendance-calendar"
-      className={cn("rounded-lg border border-border bg-card p-4", className)}
+      className={cn("border-border bg-card rounded-lg border p-4", className)}
     >
       {/* Header */}
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-foreground">{monthName}</h3>
+        <h3 className="text-foreground text-lg font-semibold">{monthName}</h3>
         <div className="flex items-center gap-1">
-          <button type="button" onClick={handlePrevMonth} className="rounded p-1 hover:bg-muted" aria-label="Previous month">
+          <button
+            type="button"
+            onClick={handlePrevMonth}
+            className="hover:bg-muted rounded p-1"
+            aria-label="Previous month"
+          >
             <ChevronLeftIcon className="size-4" />
           </button>
-          <button type="button" onClick={handleNextMonth} className="rounded p-1 hover:bg-muted" aria-label="Next month">
+          <button
+            type="button"
+            onClick={handleNextMonth}
+            className="hover:bg-muted rounded p-1"
+            aria-label="Next month"
+          >
             <ChevronRightIcon className="size-4" />
           </button>
         </div>
@@ -123,9 +195,15 @@ function AttendanceCalendar({
           if (stats[status] === 0 && status !== "weekend") return null;
           return (
             <div key={status} className="flex items-center gap-1 text-xs">
-              <span className={cn("size-2 rounded-full", statusConfig[status].dot)} />
-              <span className="text-muted-foreground">{statusConfig[status].label}</span>
-              <span className="font-medium text-foreground">{stats[status]}</span>
+              <span
+                className={cn("size-2 rounded-full", statusConfig[status].dot)}
+              />
+              <span className="text-muted-foreground">
+                {statusConfig[status].label}
+              </span>
+              <span className="text-foreground font-medium">
+                {stats[status]}
+              </span>
             </div>
           );
         })}
@@ -134,7 +212,10 @@ function AttendanceCalendar({
       {/* Calendar grid */}
       <div className="grid grid-cols-7 gap-1">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="text-center text-[10px] font-medium text-muted-foreground pb-1">
+          <div
+            key={d}
+            className="text-muted-foreground pb-1 text-center text-[10px] font-medium"
+          >
             {d}
           </div>
         ))}
@@ -143,7 +224,8 @@ function AttendanceCalendar({
           const record = recordsMap.get(d.date);
           const dayOfWeek = new Date(d.date).getDay();
           const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-          const status: AttendanceStatus = record?.status ?? (isWeekend ? "weekend" : "absent");
+          const status: AttendanceStatus =
+            record?.status ?? (isWeekend ? "weekend" : "absent");
           const config = statusConfig[status];
           return (
             <button
@@ -155,10 +237,14 @@ function AttendanceCalendar({
               className={cn(
                 "flex h-16 flex-col items-start rounded-md border p-1 text-left transition-colors",
                 config.bg,
-                record ? "cursor-pointer hover:ring-1 hover:ring-primary" : "cursor-default",
+                record
+                  ? "hover:ring-primary cursor-pointer hover:ring-1"
+                  : "cursor-default",
               )}
             >
-              <span className={cn("text-xs font-medium", config.text)}>{d.day}</span>
+              <span className={cn("text-xs font-medium", config.text)}>
+                {d.day}
+              </span>
               {record && (
                 <div className="mt-0.5 flex-1 text-[9px]">
                   {record.checkIn && (
@@ -168,7 +254,9 @@ function AttendanceCalendar({
                     <div className={config.text}>Out: {record.checkOut}</div>
                   )}
                   {record.note && (
-                    <div className={cn("truncate", config.text)}>{record.note}</div>
+                    <div className={cn("truncate", config.text)}>
+                      {record.note}
+                    </div>
                   )}
                 </div>
               )}

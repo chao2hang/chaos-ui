@@ -23,7 +23,12 @@ interface MobileTabBarProps {
   className?: string;
 }
 
-function MobileTabBar({ tabs, activeId, onSelect, className }: MobileTabBarProps) {
+function MobileTabBar({
+  tabs = [],
+  activeId,
+  onSelect,
+  className,
+}: MobileTabBarProps) {
   const active = activeId ?? tabs[0]?.id;
   const tablistId = React.useId();
 
@@ -32,11 +37,16 @@ function MobileTabBar({ tabs, activeId, onSelect, className }: MobileTabBarProps
       data-slot="mobile-tab-bar"
       aria-label="主导航"
       className={cn(
-        "grid h-14 shrink-0 grid-flow-col auto-cols-fr border-t bg-background",
+        "bg-background grid h-14 shrink-0 auto-cols-fr grid-flow-col border-t",
         className,
       )}
     >
-      <ul role="tablist" aria-orientation="horizontal" className="contents" id={tablistId}>
+      <ul
+        role="tablist"
+        aria-orientation="horizontal"
+        className="contents"
+        id={tablistId}
+      >
         {tabs.map((tab) => {
           const selected = tab.id === active;
           const buttonId = `${tablistId}-tab-${tab.id}`;
@@ -56,17 +66,22 @@ function MobileTabBar({ tabs, activeId, onSelect, className }: MobileTabBarProps
                     event.preventDefault();
                     const delta = event.key === "ArrowRight" ? 1 : -1;
                     const idx = tabs.findIndex((t) => t.id === active);
-                    const next = tabs[(idx + delta + tabs.length) % tabs.length];
+                    const next =
+                      tabs[(idx + delta + tabs.length) % tabs.length];
                     if (next) onSelect?.(next.id);
                   }
                 }}
                 className={cn(
                   "flex h-full w-full flex-col items-center justify-center gap-0.5 text-[0.7rem] transition-colors",
-                  selected ? "text-primary" : "text-muted-foreground hover:text-foreground",
+                  selected
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {tab.icon ? (
-                  <span className="[&>svg]:size-5" aria-hidden="true">{tab.icon}</span>
+                  <span className="[&>svg]:size-5" aria-hidden="true">
+                    {tab.icon}
+                  </span>
                 ) : null}
                 <span className="truncate leading-none">{tab.label}</span>
               </button>

@@ -24,7 +24,12 @@ interface MobileActionSheetProps {
   className?: string;
 }
 
-function MobileActionSheet({ open, onOpenChange, actions, className }: MobileActionSheetProps) {
+function MobileActionSheet({
+  open,
+  onOpenChange,
+  actions = [],
+  className,
+}: MobileActionSheetProps) {
   const sheetId = React.useId();
 
   const close = React.useCallback(() => onOpenChange(false), [onOpenChange]);
@@ -58,7 +63,7 @@ function MobileActionSheet({ open, onOpenChange, actions, className }: MobileAct
       <div
         role="document"
         id={sheetId}
-        className="relative m-2 mb-3 flex flex-col gap-1 rounded-xl bg-popover p-1 shadow-lg"
+        className="bg-popover relative m-2 mb-3 flex flex-col gap-1 rounded-xl p-1 shadow-lg"
       >
         <ul role="menu" className="flex flex-col">
           {actions.map((action) => (
@@ -71,10 +76,8 @@ function MobileActionSheet({ open, onOpenChange, actions, className }: MobileAct
                   close();
                 }}
                 className={cn(
-                  "h-11 w-full rounded-lg text-sm font-medium transition-colors hover:bg-muted",
-                  action.danger
-                    ? "text-destructive"
-                    : "text-foreground",
+                  "hover:bg-muted h-11 w-full rounded-lg text-sm font-medium transition-colors",
+                  action.danger ? "text-destructive" : "text-foreground",
                 )}
               >
                 {action.label}
@@ -82,12 +85,12 @@ function MobileActionSheet({ open, onOpenChange, actions, className }: MobileAct
             </li>
           ))}
         </ul>
-        <div className="my-1 h-px bg-border" aria-hidden="true" />
+        <div className="bg-border my-1 h-px" aria-hidden="true" />
         <button
           type="button"
           role="menuitem"
           onClick={close}
-          className="h-11 w-full rounded-lg text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          className="text-foreground hover:bg-muted h-11 w-full rounded-lg text-sm font-medium transition-colors"
         >
           取消
         </button>

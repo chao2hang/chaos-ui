@@ -24,14 +24,14 @@ interface MapChartProps {
   className?: string;
 }
 
-function MapChart({ region, data, className }: MapChartProps) {
+function MapChart({ region = "", data = [], className }: MapChartProps) {
   const max = Math.max(1, ...data.map((d) => d.value));
 
   return (
     <div
       data-slot="map-chart"
       className={cn(
-        "flex flex-col gap-2 rounded-lg border bg-card p-3 text-sm",
+        "bg-card flex flex-col gap-2 rounded-lg border p-3 text-sm",
         className,
       )}
       role="img"
@@ -39,12 +39,12 @@ function MapChart({ region, data, className }: MapChartProps) {
     >
       <div className="flex items-center justify-between">
         <span className="font-medium">{region}</span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           标记 {data.length}
         </span>
       </div>
       <div
-        className="relative h-48 w-full overflow-hidden rounded-md bg-[radial-gradient(circle_at_30%_30%,var(--muted),transparent_70%)] ring-1 ring-border"
+        className="ring-border relative h-48 w-full overflow-hidden rounded-md bg-[radial-gradient(circle_at_30%_30%,var(--muted),transparent_70%)] ring-1"
         role="presentation"
       >
         {data.map((d, i) => {
@@ -65,7 +65,7 @@ function MapChart({ region, data, className }: MapChartProps) {
                 style={{ width: size, height: size }}
                 aria-hidden="true"
               />
-              <span className="absolute left-1/2 top-full -translate-x-1/2 whitespace-nowrap text-[10px] text-muted-foreground">
+              <span className="text-muted-foreground absolute top-full left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap">
                 {d.name}
               </span>
               <span className="sr-only">
@@ -78,7 +78,7 @@ function MapChart({ region, data, className }: MapChartProps) {
       <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs" role="list">
         {data.map((d) => (
           <li key={d.name} className="flex items-center gap-1">
-            <span className="size-2 rounded-sm bg-primary" aria-hidden="true" />
+            <span className="bg-primary size-2 rounded-sm" aria-hidden="true" />
             <span className="text-muted-foreground">{d.name}</span>
             <span className="tabular-nums">{formatNumber(d.value)}</span>
           </li>

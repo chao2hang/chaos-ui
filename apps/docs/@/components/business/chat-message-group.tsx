@@ -22,8 +22,15 @@ interface ChatMessageGroupProps {
   className?: string;
 }
 
-function ChatMessageGroup({ sender, avatar, messages, className }: ChatMessageGroupProps) {
-  const lastWithTime = [...messages].reverse().find((m) => m.time !== undefined);
+function ChatMessageGroup({
+  sender = "",
+  avatar,
+  messages = [],
+  className,
+}: ChatMessageGroupProps) {
+  const lastWithTime = [...messages]
+    .reverse()
+    .find((m) => m.time !== undefined);
 
   return (
     <div
@@ -41,16 +48,20 @@ function ChatMessageGroup({ sender, avatar, messages, className }: ChatMessageGr
       </Avatar>
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex items-baseline gap-1.5">
-          <span className="text-xs font-semibold text-foreground">{sender}</span>
+          <span className="text-foreground text-xs font-semibold">
+            {sender}
+          </span>
           {lastWithTime?.time ? (
-            <span className="text-[0.65rem] text-muted-foreground tabular-nums">{lastWithTime.time}</span>
+            <span className="text-muted-foreground text-[0.65rem] tabular-nums">
+              {lastWithTime.time}
+            </span>
           ) : null}
         </div>
         <ul role="list" className="flex flex-col gap-1">
           {messages.map((m) => (
             <li
               key={m.id}
-              className="w-fit max-w-full whitespace-pre-wrap break-words rounded-2xl rounded-tl-sm bg-muted px-3 py-2 text-sm"
+              className="bg-muted w-fit max-w-full rounded-2xl rounded-tl-sm px-3 py-2 text-sm break-words whitespace-pre-wrap"
             >
               {m.content}
             </li>

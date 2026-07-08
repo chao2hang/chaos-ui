@@ -52,7 +52,7 @@ interface MentionsProps {
 function Mentions({
   value: controlledValue,
   onChange,
-  options,
+  options = [],
   trigger = "@",
   onSearch,
   onSelect,
@@ -108,6 +108,7 @@ function Mentions({
       data-slot="mentions"
     >
       <PopoverTrigger
+        nativeButton={false}
         render={
           <Textarea
             value={currentValue}

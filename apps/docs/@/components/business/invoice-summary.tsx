@@ -25,7 +25,13 @@ interface InvoiceSummaryProps {
   className?: string;
 }
 
-function InvoiceSummary({ total, issued, pending, amount, className }: InvoiceSummaryProps) {
+function InvoiceSummary({
+  total = 0,
+  issued = 0,
+  pending = 0,
+  amount = 0,
+  className,
+}: InvoiceSummaryProps) {
   const issuedPct = total > 0 ? Math.round((issued / total) * 100) : 0;
 
   const cards = [
@@ -52,31 +58,43 @@ function InvoiceSummary({ total, issued, pending, amount, className }: InvoiceSu
   return (
     <div
       data-slot="invoice-summary"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
       role="region"
       aria-label="发票汇总"
     >
       <div className="flex items-baseline justify-between">
         <span className="text-sm font-medium">发票汇总</span>
-        <span className="text-xs text-muted-foreground">开具率 {issuedPct}%</span>
+        <span className="text-muted-foreground text-xs">
+          开具率 {issuedPct}%
+        </span>
       </div>
-      <div className="h-2 overflow-hidden rounded bg-muted">
-        <div className="h-full rounded bg-emerald-500" style={{ width: `${issuedPct}%` }} />
+      <div className="bg-muted h-2 overflow-hidden rounded">
+        <div
+          className="h-full rounded bg-emerald-500"
+          style={{ width: `${issuedPct}%` }}
+        />
       </div>
       <div className="grid grid-cols-3 gap-3">
         {cards.map((c) => (
           <div key={c.label} className="flex flex-col gap-1">
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
+            <span className="text-muted-foreground flex items-center gap-1 text-xs">
               <c.icon className={cn("size-3", c.tone)} />
               {c.label}
             </span>
-            <span className={cn("text-xl font-semibold tabular-nums", c.tone)}>{c.value}</span>
+            <span className={cn("text-xl font-semibold tabular-nums", c.tone)}>
+              {c.value}
+            </span>
           </div>
         ))}
       </div>
       <div className="flex items-center justify-between border-t pt-3 text-sm">
         <span className="text-muted-foreground">金额合计</span>
-        <span className="font-semibold tabular-nums">{formatCurrency(amount)}</span>
+        <span className="font-semibold tabular-nums">
+          {formatCurrency(amount)}
+        </span>
       </div>
     </div>
   );

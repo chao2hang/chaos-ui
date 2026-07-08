@@ -58,10 +58,10 @@ function formatBudget(value: number, currency: string) {
  * <CampaignCard name="Summer Sale" status="active" channels={["email", "social"]} budget={5000} spent={2300} />
  */
 export function CampaignCard({
-  name,
+  name = "",
   description,
   status,
-  channels,
+  channels = [],
   dateRange,
   budget,
   spent = 0,

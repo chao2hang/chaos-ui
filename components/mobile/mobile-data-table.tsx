@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
 import { Card, CardContent } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import * as React from "react";
 
 interface MobileColumn<T> {
   key: string;
@@ -24,12 +24,12 @@ function MobileDataTable<T>({
   onRowClick,
   className,
 }: MobileDataTableProps<T>) {
+  if (!columns?.length || !data) return null;
   const primaryColumn = columns.find((col) => col.primary) ?? columns[0];
-  const secondaryColumns = primaryColumn
-    ? columns.filter((col) => col.key !== primaryColumn.key)
-    : columns;
-
   if (!primaryColumn) return null;
+  const secondaryColumns = columns.filter(
+    (col) => col.key !== primaryColumn.key,
+  );
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -37,14 +37,14 @@ function MobileDataTable<T>({
         <Card
           key={rowIndex}
           className={cn(
-            "cursor-pointer transition-colors hover:bg-muted/50",
+            "hover:bg-muted/50 cursor-pointer transition-colors",
             onRowClick && "active:bg-muted",
           )}
           onClick={() => onRowClick?.(row)}
         >
           <CardContent className="p-3">
             <div className="flex items-center justify-between">
-              <div className="font-medium text-sm">
+              <div className="text-sm font-medium">
                 {primaryColumn.render
                   ? primaryColumn.render(row)
                   : String(
@@ -56,7 +56,7 @@ function MobileDataTable<T>({
               {secondaryColumns.map((col) => (
                 <div
                   key={col.key}
-                  className="flex items-center gap-1 text-xs text-muted-foreground"
+                  className="text-muted-foreground flex items-center gap-1 text-xs"
                 >
                   <span className="font-medium">{col.header}:</span>
                   <span>

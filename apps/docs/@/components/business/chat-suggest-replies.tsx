@@ -20,7 +20,11 @@ interface ChatSuggestRepliesProps {
   className?: string;
 }
 
-function ChatSuggestReplies({ suggestions, onSelect, className }: ChatSuggestRepliesProps) {
+function ChatSuggestReplies({
+  suggestions = [],
+  onSelect,
+  className,
+}: ChatSuggestRepliesProps) {
   const handleKeyDown = React.useCallback(
     (s: string) => (e: React.KeyboardEvent<HTMLButtonElement>) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -32,7 +36,13 @@ function ChatSuggestReplies({ suggestions, onSelect, className }: ChatSuggestRep
   );
 
   if (suggestions.length === 0) {
-    return <div data-slot="chat-suggest-replies" className={cn("hidden", className)} aria-hidden />;
+    return (
+      <div
+        data-slot="chat-suggest-replies"
+        className={cn("hidden", className)}
+        aria-hidden
+      />
+    );
   }
 
   return (
@@ -47,9 +57,9 @@ function ChatSuggestReplies({ suggestions, onSelect, className }: ChatSuggestRep
           type="button"
           onClick={() => onSelect?.(s)}
           onKeyDown={handleKeyDown(s)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:bg-muted hover:text-foreground"
+          className="border-border bg-background text-muted-foreground hover:border-primary/40 hover:bg-muted hover:text-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition-colors"
         >
-          <SparklesIcon className="size-3 shrink-0 text-primary" aria-hidden />
+          <SparklesIcon className="text-primary size-3 shrink-0" aria-hidden />
           <span className="max-w-[16rem] truncate">{s}</span>
         </button>
       ))}

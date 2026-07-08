@@ -21,7 +21,11 @@ interface ChatMentionPickerProps {
   className?: string;
 }
 
-function ChatMentionPicker({ users, onSelect, className }: ChatMentionPickerProps) {
+function ChatMentionPicker({
+  users = [],
+  onSelect,
+  className,
+}: ChatMentionPickerProps) {
   const [active, setActive] = React.useState(0);
   const safeActive = Math.min(active, Math.max(0, users.length - 1));
 
@@ -53,13 +57,17 @@ function ChatMentionPicker({ users, onSelect, className }: ChatMentionPickerProp
       tabIndex={0}
       onKeyDown={handleKeyDown}
       className={cn(
-        "flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-border bg-popover p-1 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+        "border-border bg-popover focus-visible:ring-ring/40 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border p-1 shadow-md focus-visible:ring-2 focus-visible:outline-none",
         className,
       )}
     >
-      <p className="px-2 py-1 text-[0.65rem] uppercase tracking-wide text-muted-foreground">People</p>
+      <p className="text-muted-foreground px-2 py-1 text-[0.65rem] tracking-wide uppercase">
+        People
+      </p>
       {users.length === 0 ? (
-        <p className="px-2 py-2 text-center text-xs text-muted-foreground">No users</p>
+        <p className="text-muted-foreground px-2 py-2 text-center text-xs">
+          No users
+        </p>
       ) : (
         <ul role="list">
           {users.map((u, idx) => {
@@ -76,7 +84,11 @@ function ChatMentionPicker({ users, onSelect, className }: ChatMentionPickerProp
                   )}
                 >
                   <Avatar size="sm">
-                    {u.avatar ? <AvatarImage src={u.avatar} alt={u.name} /> : <AvatarImage alt={u.name} />}
+                    {u.avatar ? (
+                      <AvatarImage src={u.avatar} alt={u.name} />
+                    ) : (
+                      <AvatarImage alt={u.name} />
+                    )}
                     <AvatarFallback>{initials(u.name)}</AvatarFallback>
                   </Avatar>
                   <span className="truncate">{u.name}</span>

@@ -25,13 +25,21 @@ export function Basic() {
 
 ### AdminSider
 
-| Prop        | Type                            | Default | 说明                    |
-| ----------- | ------------------------------- | ------- | ----------------------- |
-| `className` | `string`                        | —       | 自定义样式类名          |
-| `items`     | `AdminSiderItem[]`              | —       | 选项/数据项列表         |
-| `activeKey` | `string`                        | —       |                         |
-| `onSelect`  | `() => void`                    | —       | 选中回调                |
-| ...rest     | `React.ComponentProps<"aside">` | —       | 透传 `<aside>` 原生属性 |
+| Prop                 | Type                            | Default | 说明                    |
+| -------------------- | ------------------------------- | ------- | ----------------------- |
+| `className`          | `string`                        | —       | 自定义样式类名          |
+| `menuItems`          | `MenuItem[]`                    | —       | 菜单项列表              |
+| `selectedKey`        | `string`                        | —       | 选中的菜单 key          |
+| `onItemClick`        | `(item: MenuItem) => void`      | —       | 菜单点击回调            |
+| `collapsed`          | `boolean`                       | `false` | 是否折叠                |
+| `onCollapse`         | `(collapsed: boolean) => void`  | —       | 折叠变更回调            |
+| `logo`               | `ReactNode`                     | —       | Logo 内容               |
+| `footer`             | `ReactNode`                     | —       | 底部内容                |
+| `width`              | `number`                        | `240`   | 展开宽度                |
+| `collapsedWidth`     | `number`                        | `64`    | 折叠宽度                |
+| `mobileOpen`         | `boolean`                       | `false` | 移动端是否打开          |
+| `onMobileOpenChange` | `(open: boolean) => void`       | —       | 移动端打开变更回调      |
+| ...rest              | `React.ComponentProps<"aside">` | —       | 透传 `<aside>` 原生属性 |
 
 ## 注意事项
 

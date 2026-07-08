@@ -26,7 +26,7 @@ interface OperationLogProps {
   className?: string;
 }
 
-function OperationLog({ logs, className }: OperationLogProps) {
+function OperationLog({ logs = [], className }: OperationLogProps) {
   return (
     <ol
       data-slot="operation-log"
@@ -37,30 +37,30 @@ function OperationLog({ logs, className }: OperationLogProps) {
         <li key={log.id} className="relative flex gap-3 pl-5">
           <span
             aria-hidden="true"
-            className="absolute left-0 top-1.5 size-2 rounded-full bg-primary ring-2 ring-primary/20"
+            className="bg-primary ring-primary/20 absolute top-1.5 left-0 size-2 rounded-full ring-2"
           />
           <div className="flex-1">
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5">
               <span className="text-sm font-medium">{log.action}</span>
               <time
-                className="text-xs text-muted-foreground tabular-nums"
+                className="text-muted-foreground text-xs tabular-nums"
                 dateTime={log.timestamp}
               >
                 {formatDateTime(log.timestamp)}
               </time>
             </div>
-            <div className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground mt-0.5 flex items-center gap-1 text-xs">
               <UserIcon className="size-3" />
               <span>{log.operator}</span>
             </div>
             {log.detail ? (
-              <p className="mt-1 text-xs text-muted-foreground">{log.detail}</p>
+              <p className="text-muted-foreground mt-1 text-xs">{log.detail}</p>
             ) : null}
           </div>
         </li>
       ))}
       {logs.length === 0 ? (
-        <li className="py-4 text-center text-sm text-muted-foreground">
+        <li className="text-muted-foreground py-4 text-center text-sm">
           暂无操作日志
         </li>
       ) : null}

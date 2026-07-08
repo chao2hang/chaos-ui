@@ -129,7 +129,7 @@ const bucketBg = [
 /* -------------------------------------------------------------------------- */
 
 function ArApAgingTable({
-  entries,
+  entries = [],
   asOfDate,
   type = "ar",
   buckets = defaultBuckets,
@@ -165,36 +165,55 @@ function ArApAgingTable({
   return (
     <div
       data-slot="ar-ap-aging-table"
-      className={cn("space-y-4 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-4 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h3 className="text-lg font-semibold text-foreground">
+          <h3 className="text-foreground text-lg font-semibold">
             {type === "ar" ? "AR Aging" : "AP Aging"}
           </h3>
           <Badge variant="outline" className="text-xs">
             as of {refDate}
           </Badge>
         </div>
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           Total:{" "}
-          <strong className={cn("tabular-nums", grandTotal > 0 ? "text-foreground" : "")}>
+          <strong
+            className={cn(
+              "tabular-nums",
+              grandTotal > 0 ? "text-foreground" : "",
+            )}
+          >
             {formatMoney(grandTotal, currencySymbol)}
           </strong>
         </div>
       </div>
 
       {/* Summary bar */}
-      <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${buckets.length}, 1fr)` }}>
+      <div
+        className="grid gap-2"
+        style={{ gridTemplateColumns: `repeat(${buckets.length}, 1fr)` }}
+      >
         {buckets.map((b, i) => (
           <div
             key={b.label}
             data-slot="aging-bucket-summary"
-            className={cn("rounded-md border border-border p-3", bucketBg[i] ?? "bg-muted/30")}
+            className={cn(
+              "border-border rounded-md border p-3",
+              bucketBg[i] ?? "bg-muted/30",
+            )}
           >
-            <div className="text-xs text-muted-foreground">{b.label} days</div>
-            <div className={cn("text-lg font-bold tabular-nums", bucketColors[i] ?? "text-foreground")}>
+            <div className="text-muted-foreground text-xs">{b.label} days</div>
+            <div
+              className={cn(
+                "text-lg font-bold tabular-nums",
+                bucketColors[i] ?? "text-foreground",
+              )}
+            >
               {formatMoney(bucketTotals[i], currencySymbol)}
             </div>
           </div>
@@ -202,7 +221,7 @@ function ArApAgingTable({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -221,7 +240,10 @@ function ArApAgingTable({
           <TableBody>
             {enriched.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5 + buckets.length} className="py-8 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={5 + buckets.length}
+                  className="text-muted-foreground py-8 text-center"
+                >
                   No {type === "ar" ? "receivables" : "payables"} found
                 </TableCell>
               </TableRow>
@@ -230,27 +252,42 @@ function ArApAgingTable({
                 <TableRow
                   key={e.id}
                   data-slot="aging-row"
-                  className={cn(onRowClick && "cursor-pointer hover:bg-muted/30")}
+                  className={cn(
+                    onRowClick && "hover:bg-muted/30 cursor-pointer",
+                  )}
                   onClick={() => onRowClick?.(e)}
                 >
-                  <TableCell className="font-medium text-foreground">{e.partyName}</TableCell>
-                  <TableCell className="font-mono text-xs text-muted-foreground">{e.docNo}</TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{e.docDate}</TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{e.dueDate}</TableCell>
+                  <TableCell className="text-foreground font-medium">
+                    {e.partyName}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground font-mono text-xs">
+                    {e.docNo}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-sm">
+                    {e.docDate}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-sm">
+                    {e.dueDate}
+                  </TableCell>
                   {buckets.map((_, i) => (
                     <TableCell
                       key={i}
                       className={cn(
                         "text-right text-sm tabular-nums",
                         e.bucketIdx === i
-                          ? cn("font-semibold", bucketColors[i] ?? "text-foreground")
+                          ? cn(
+                              "font-semibold",
+                              bucketColors[i] ?? "text-foreground",
+                            )
                           : "text-muted-foreground",
                       )}
                     >
-                      {e.bucketIdx === i ? formatMoney(e.amount, currencySymbol) : "—"}
+                      {e.bucketIdx === i
+                        ? formatMoney(e.amount, currencySymbol)
+                        : "—"}
                     </TableCell>
                   ))}
-                  <TableCell className="text-right text-sm font-bold tabular-nums text-foreground">
+                  <TableCell className="text-foreground text-right text-sm font-bold tabular-nums">
                     {formatMoney(e.amount, currencySymbol)}
                   </TableCell>
                 </TableRow>
@@ -264,12 +301,15 @@ function ArApAgingTable({
                 {bucketTotals.map((v, i) => (
                   <TableCell
                     key={i}
-                    className={cn("text-right tabular-nums", bucketColors[i] ?? "text-foreground")}
+                    className={cn(
+                      "text-right tabular-nums",
+                      bucketColors[i] ?? "text-foreground",
+                    )}
                   >
                     {formatMoney(v, currencySymbol)}
                   </TableCell>
                 ))}
-                <TableCell className="text-right tabular-nums text-foreground">
+                <TableCell className="text-foreground text-right tabular-nums">
                   {formatMoney(grandTotal, currencySymbol)}
                 </TableCell>
               </TableRow>

@@ -24,7 +24,12 @@ interface MobilePickerProps {
   className?: string;
 }
 
-function MobilePicker({ options, value, onChange, className }: MobilePickerProps) {
+function MobilePicker({
+  options = [],
+  value,
+  onChange,
+  className,
+}: MobilePickerProps) {
   const selected = value ?? options[0]?.value;
   const listboxId = React.useId();
 
@@ -50,7 +55,7 @@ function MobilePicker({ options, value, onChange, className }: MobilePickerProps
     <div
       data-slot="mobile-picker"
       className={cn(
-        "relative h-48 overflow-y-auto rounded-md border bg-popover [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        "bg-popover relative h-48 [scrollbar-width:none] overflow-y-auto rounded-md border [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
         className,
       )}
       role="listbox"
@@ -67,7 +72,7 @@ function MobilePicker({ options, value, onChange, className }: MobilePickerProps
       }}
       tabIndex={0}
     >
-      <div className="pointer-events-none sticky top-0 z-10 h-[calc(50%-1.25rem)] bg-gradient-to-b from-popover to-transparent" />
+      <div className="from-popover pointer-events-none sticky top-0 z-10 h-[calc(50%-1.25rem)] bg-gradient-to-b to-transparent" />
       <ul className="flex flex-col">
         {options.map((opt, idx) => {
           const isSelected = opt.value === selected;
@@ -81,7 +86,7 @@ function MobilePicker({ options, value, onChange, className }: MobilePickerProps
               className={cn(
                 "flex h-10 cursor-pointer items-center justify-center text-sm transition-colors",
                 isSelected
-                  ? "font-medium text-primary"
+                  ? "text-primary font-medium"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
@@ -97,10 +102,10 @@ function MobilePicker({ options, value, onChange, className }: MobilePickerProps
           );
         })}
       </ul>
-      <div className="pointer-events-none sticky bottom-0 z-10 h-[calc(50%-1.25rem)] bg-gradient-to-t from-popover to-transparent" />
+      <div className="from-popover pointer-events-none sticky bottom-0 z-10 h-[calc(50%-1.25rem)] bg-gradient-to-t to-transparent" />
       {/* Selection highlight band */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-1/2 z-0 h-10 -translate-y-1/2 border-y bg-accent/40"
+        className="bg-accent/40 pointer-events-none absolute inset-x-0 top-1/2 z-0 h-10 -translate-y-1/2 border-y"
         aria-hidden="true"
       />
     </div>

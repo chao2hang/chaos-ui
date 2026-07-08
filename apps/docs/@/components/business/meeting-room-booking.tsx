@@ -53,10 +53,28 @@ interface MeetingRoomBookingProps {
 }
 
 const TIME_SLOTS = [
-  "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-  "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-  "17:00", "17:30", "18:00", "18:30",
+  "08:00",
+  "08:30",
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "12:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+  "18:00",
+  "18:30",
 ];
 
 function checkConflict(
@@ -66,16 +84,18 @@ function checkConflict(
   end: string,
   bookings: ExistingBooking[],
 ): ExistingBooking | null {
-  return bookings.find(
-    (b) =>
-      b.roomId === roomId &&
-      b.date === date &&
-      !(b.endTime <= start || b.startTime >= end),
-  ) ?? null;
+  return (
+    bookings.find(
+      (b) =>
+        b.roomId === roomId &&
+        b.date === date &&
+        !(b.endTime <= start || b.startTime >= end),
+    ) ?? null
+  );
 }
 
 function MeetingRoomBooking({
-  rooms,
+  rooms = [],
   existingBookings = [],
   selectedRoom = "",
   onRoomChange,
@@ -92,28 +112,38 @@ function MeetingRoomBooking({
   readOnly = false,
   className,
 }: MeetingRoomBookingProps) {
-  const conflict = checkConflict(selectedRoom, date, startTime, endTime, existingBookings);
+  const conflict = checkConflict(
+    selectedRoom,
+    date,
+    startTime,
+    endTime,
+    existingBookings,
+  );
   const selectedRoomData = rooms.find((r) => r.id === selectedRoom);
-  const capacityWarning = selectedRoomData && attendeeCount > selectedRoomData.capacity;
+  const capacityWarning =
+    selectedRoomData && attendeeCount > selectedRoomData.capacity;
 
   const dayBookings = existingBookings.filter(
     (b) => b.roomId === selectedRoom && b.date === date,
   );
 
   const isSlotBooked = (slot: string): boolean => {
-    return dayBookings.some(
-      (b) => slot >= b.startTime && slot < b.endTime,
-    );
+    return dayBookings.some((b) => slot >= b.startTime && slot < b.endTime);
   };
 
   return (
     <div
       data-slot="meeting-room-booking"
-      className={cn("space-y-4 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-4 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Meeting title */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">Meeting Title</label>
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
+          Meeting Title
+        </label>
         <Input
           value={title}
           onChange={(e) => onTitleChange?.(e.target.value)}
@@ -125,7 +155,9 @@ function MeetingRoomBooking({
 
       {/* Date */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">Date</label>
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
+          Date
+        </label>
         <Input
           type="date"
           value={date}
@@ -137,7 +169,9 @@ function MeetingRoomBooking({
 
       {/* Room selection */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">Select Room</label>
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
+          Select Room
+        </label>
         <div className="grid grid-cols-2 gap-2">
           {rooms.map((room) => (
             <button
@@ -154,8 +188,10 @@ function MeetingRoomBooking({
                   : "border-border bg-background hover:bg-muted",
               )}
             >
-              <span className="text-sm font-medium text-foreground">{room.name}</span>
-              <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="text-foreground text-sm font-medium">
+                {room.name}
+              </span>
+              <div className="text-muted-foreground mt-1 flex items-center gap-2 text-xs">
                 <span className="flex items-center gap-1">
                   <UsersIcon className="size-3" />
                   {room.capacity}
@@ -165,7 +201,9 @@ function MeetingRoomBooking({
               {room.equipment && room.equipment.length > 0 && (
                 <div className="mt-1 flex flex-wrap gap-1">
                   {room.equipment.map((eq) => (
-                    <Badge key={eq} variant="outline" className="text-[9px]">{eq}</Badge>
+                    <Badge key={eq} variant="outline" className="text-[9px]">
+                      {eq}
+                    </Badge>
                   ))}
                 </div>
               )}
@@ -176,29 +214,35 @@ function MeetingRoomBooking({
 
       {/* Time slots */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">Time Slot</label>
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
+          Time Slot
+        </label>
         <div className="flex items-center gap-2">
           <select
-            className="h-9 flex-1 rounded-md border border-input bg-background px-3 text-sm"
+            className="border-input bg-background h-9 flex-1 rounded-md border px-3 text-sm"
             value={startTime}
             onChange={(e) => onTimeChange?.(e.target.value, endTime)}
             disabled={readOnly}
             aria-label="Start time"
           >
             {TIME_SLOTS.map((t) => (
-              <option key={t} value={t}>{t}</option>
+              <option key={t} value={t}>
+                {t}
+              </option>
             ))}
           </select>
           <span className="text-muted-foreground">to</span>
           <select
-            className="h-9 flex-1 rounded-md border border-input bg-background px-3 text-sm"
+            className="border-input bg-background h-9 flex-1 rounded-md border px-3 text-sm"
             value={endTime}
             onChange={(e) => onTimeChange?.(startTime, e.target.value)}
             disabled={readOnly}
             aria-label="End time"
           >
             {TIME_SLOTS.map((t) => (
-              <option key={t} value={t}>{t}</option>
+              <option key={t} value={t}>
+                {t}
+              </option>
             ))}
           </select>
         </div>
@@ -206,17 +250,21 @@ function MeetingRoomBooking({
 
       {/* Attendees */}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-foreground">Attendees</label>
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
+          Attendees
+        </label>
         <Input
           type="number"
           min={1}
           value={attendeeCount}
-          onChange={(e) => onAttendeeCountChange?.(parseInt(e.target.value) || 1)}
+          onChange={(e) =>
+            onAttendeeCountChange?.(parseInt(e.target.value) || 1)
+          }
           disabled={readOnly}
           aria-label="Attendee count"
         />
         {capacityWarning && (
-          <p className="mt-1 flex items-center gap-1 text-xs text-destructive">
+          <p className="text-destructive mt-1 flex items-center gap-1 text-xs">
             <AlertCircleIcon className="size-3" />
             Exceeds room capacity ({selectedRoomData?.capacity})
           </p>
@@ -227,13 +275,14 @@ function MeetingRoomBooking({
       {conflict && (
         <div
           data-slot="booking-conflict"
-          className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2"
+          className="border-destructive/30 bg-destructive/5 flex items-start gap-2 rounded-md border px-3 py-2"
         >
-          <AlertCircleIcon className="mt-0.5 size-4 text-destructive" />
+          <AlertCircleIcon className="text-destructive mt-0.5 size-4" />
           <div className="text-sm">
-            <p className="font-medium text-destructive">Time Conflict</p>
-            <p className="text-xs text-muted-foreground">
-              Room is booked by {conflict.bookedBy} ({conflict.title}) from {conflict.startTime} to {conflict.endTime}
+            <p className="text-destructive font-medium">Time Conflict</p>
+            <p className="text-muted-foreground text-xs">
+              Room is booked by {conflict.bookedBy} ({conflict.title}) from{" "}
+              {conflict.startTime} to {conflict.endTime}
             </p>
           </div>
         </div>
@@ -242,12 +291,19 @@ function MeetingRoomBooking({
       {/* Day schedule preview */}
       {selectedRoom && date && dayBookings.length > 0 && (
         <div data-slot="room-schedule">
-          <div className="mb-1.5 text-sm font-medium text-foreground">Today's Schedule</div>
+          <div className="text-foreground mb-1.5 text-sm font-medium">
+            Today's Schedule
+          </div>
           <div className="space-y-1">
             {dayBookings.map((b) => (
-              <div key={b.id} className="flex items-center gap-2 text-xs text-muted-foreground">
+              <div
+                key={b.id}
+                className="text-muted-foreground flex items-center gap-2 text-xs"
+              >
                 <ClockIcon className="size-3" />
-                <span>{b.startTime} - {b.endTime}</span>
+                <span>
+                  {b.startTime} - {b.endTime}
+                </span>
                 <span className="text-foreground">{b.title}</span>
                 <span>({b.bookedBy})</span>
               </div>
@@ -259,7 +315,9 @@ function MeetingRoomBooking({
       {/* Time slot grid */}
       {selectedRoom && date && (
         <div data-slot="slot-grid">
-          <div className="mb-1.5 text-sm font-medium text-foreground">Availability</div>
+          <div className="text-foreground mb-1.5 text-sm font-medium">
+            Availability
+          </div>
           <div className="grid grid-cols-6 gap-1">
             {TIME_SLOTS.map((slot) => (
               <div
@@ -280,7 +338,11 @@ function MeetingRoomBooking({
 
       {/* Actions */}
       {!readOnly && onBook && (
-        <Button className="w-full" onClick={onBook} disabled={!!conflict || !selectedRoom || !date}>
+        <Button
+          className="w-full"
+          onClick={onBook}
+          disabled={!!conflict || !selectedRoom || !date}
+        >
           Book Room
         </Button>
       )}

@@ -19,14 +19,15 @@ interface ChatCommandMenuProps {
   className?: string;
 }
 
-function ChatCommandMenu({ commands, onSelect, className }: ChatCommandMenuProps) {
+function ChatCommandMenu({
+  commands = [],
+  onSelect,
+  className,
+}: ChatCommandMenuProps) {
   const [active, setActive] = React.useState(0);
   const safeActive = Math.min(active, Math.max(0, commands.length - 1));
 
-  const choose = React.useCallback(
-    (id: string) => onSelect?.(id),
-    [onSelect],
-  );
+  const choose = React.useCallback((id: string) => onSelect?.(id), [onSelect]);
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -56,13 +57,17 @@ function ChatCommandMenu({ commands, onSelect, className }: ChatCommandMenuProps
       tabIndex={0}
       onKeyDown={handleKeyDown}
       className={cn(
-        "flex w-full max-w-sm flex-col overflow-hidden rounded-lg border border-border bg-popover p-1 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+        "border-border bg-popover focus-visible:ring-ring/40 flex w-full max-w-sm flex-col overflow-hidden rounded-lg border p-1 shadow-md focus-visible:ring-2 focus-visible:outline-none",
         className,
       )}
     >
-      <p className="px-2 py-1 text-[0.65rem] uppercase tracking-wide text-muted-foreground">Commands</p>
+      <p className="text-muted-foreground px-2 py-1 text-[0.65rem] tracking-wide uppercase">
+        Commands
+      </p>
       {commands.length === 0 ? (
-        <p className="px-2 py-2 text-center text-xs text-muted-foreground">No commands</p>
+        <p className="text-muted-foreground px-2 py-2 text-center text-xs">
+          No commands
+        </p>
       ) : (
         <ul role="list">
           {commands.map((cmd, idx) => {
@@ -75,13 +80,17 @@ function ChatCommandMenu({ commands, onSelect, className }: ChatCommandMenuProps
                   onClick={() => choose(cmd.id)}
                   className={cn(
                     "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm",
-                    isActive ? "bg-muted text-foreground" : "text-muted-foreground",
+                    isActive
+                      ? "bg-muted text-foreground"
+                      : "text-muted-foreground",
                   )}
                 >
-                  <span className="font-mono text-primary">/{cmd.id}</span>
+                  <span className="text-primary font-mono">/{cmd.id}</span>
                   <span className="flex-1 truncate">{cmd.label}</span>
                   {cmd.description ? (
-                    <span className="shrink-0 text-xs text-muted-foreground/80">{cmd.description}</span>
+                    <span className="text-muted-foreground/80 shrink-0 text-xs">
+                      {cmd.description}
+                    </span>
                   ) : null}
                 </button>
               </li>

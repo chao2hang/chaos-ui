@@ -39,7 +39,7 @@ const stepTextClasses: Record<string, string> = {
  * @since 0.2.0
  */
 function BillStatusBar({
-  steps,
+  steps = [],
   direction = "horizontal",
   className,
 }: BillStatusBarProps) {

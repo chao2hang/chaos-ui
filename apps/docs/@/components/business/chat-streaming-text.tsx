@@ -20,7 +20,12 @@ interface ChatStreamingTextProps {
   className?: string;
 }
 
-function ChatStreamingText({ chunks, isStreaming = false, speed = 30, className }: ChatStreamingTextProps) {
+function ChatStreamingText({
+  chunks = [],
+  isStreaming = false,
+  speed = 30,
+  className,
+}: ChatStreamingTextProps) {
   const full = chunks.join("");
   const [shown, setShown] = React.useState(isStreaming ? 0 : full.length);
 
@@ -31,27 +36,33 @@ function ChatStreamingText({ chunks, isStreaming = false, speed = 30, className 
     }
     setShown(0);
     let i = 0;
-    const interval = window.setInterval(() => {
-      i += 1;
-      if (i >= full.length) {
-        setShown(full.length);
-        window.clearInterval(interval);
-      } else {
-        setShown(i);
-      }
-    }, Math.max(8, speed));
+    const interval = window.setInterval(
+      () => {
+        i += 1;
+        if (i >= full.length) {
+          setShown(full.length);
+          window.clearInterval(interval);
+        } else {
+          setShown(i);
+        }
+      },
+      Math.max(8, speed),
+    );
     return () => window.clearInterval(interval);
   }, [full, isStreaming, speed]);
 
   return (
     <span
       data-slot="chat-streaming-text"
-      className={cn("whitespace-pre-wrap break-words", className)}
+      className={cn("break-words whitespace-pre-wrap", className)}
       aria-live={isStreaming ? "polite" : "off"}
     >
       {full.slice(0, shown) || " "}
       {isStreaming && shown < full.length ? (
-        <span className="ml-0.5 inline-block h-4 w-1.5 animate-pulse bg-foreground align-middle" aria-hidden />
+        <span
+          className="bg-foreground ml-0.5 inline-block h-4 w-1.5 animate-pulse align-middle"
+          aria-hidden
+        />
       ) : null}
     </span>
   );

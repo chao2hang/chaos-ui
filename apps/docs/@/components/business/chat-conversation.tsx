@@ -18,7 +18,7 @@ interface ChatConversationProps {
   className?: string;
 }
 
-function ChatConversation({ messages, className }: ChatConversationProps) {
+function ChatConversation({ messages = [], className }: ChatConversationProps) {
   return (
     <div
       data-slot="chat-conversation"
@@ -28,12 +28,16 @@ function ChatConversation({ messages, className }: ChatConversationProps) {
       aria-label="Conversation messages"
     >
       {messages.length === 0 ? (
-        <p className="py-8 text-center text-sm text-muted-foreground">No messages yet</p>
+        <p className="text-muted-foreground py-8 text-center text-sm">
+          No messages yet
+        </p>
       ) : (
         messages.map((m) => {
-          const role = (m.role === "user" || m.role === "assistant" || m.role === "system"
-            ? m.role
-            : "assistant") as "user" | "assistant" | "system";
+          const role = (
+            m.role === "user" || m.role === "assistant" || m.role === "system"
+              ? m.role
+              : "assistant"
+          ) as "user" | "assistant" | "system";
           return (
             <ChatMessageBubble
               key={m.id}

@@ -52,7 +52,7 @@ function str(v: unknown): string {
 
 function ChartSuite({
   type,
-  data,
+  data = [],
   xField = "x",
   yField = "y",
   series,
@@ -91,7 +91,12 @@ function ChartSuite({
       y: num(r[yField]),
     }));
     body = (
-      <ScatterChart data={scatterData} xLabel={xField} yLabel={yField} height={height} />
+      <ScatterChart
+        data={scatterData}
+        xLabel={xField}
+        yLabel={yField}
+        height={height}
+      />
     );
   } else if (type === "radar") {
     const axes = labels.length > 0 ? labels : ["A", "B", "C"];
@@ -123,7 +128,7 @@ function ChartSuite({
       aria-label={`图表套件 (${type})，共 ${rows.length} 条数据`}
     >
       {rows.length === 0 ? (
-        <p className="py-8 text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground py-8 text-center text-sm">
           暂无数据
         </p>
       ) : (

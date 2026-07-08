@@ -68,14 +68,14 @@ export function SiteHeader() {
           {/* Locale toggle */}
           <Button
             variant="ghost"
-            size="icon-sm"
+            size="sm"
             onClick={toggleLocale}
             title={
               locale === "zh" ? dict.header.toggleToEn : dict.header.toggleToZh
             }
           >
             <Languages className="size-4" />
-            <span className="ml-1.5 hidden text-xs font-medium sm:inline">
+            <span className="text-xs font-medium">
               {locale === "zh"
                 ? dict.header.langLabelEn
                 : dict.header.langLabelZh}

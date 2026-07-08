@@ -20,7 +20,7 @@ interface ChatBranchProps {
   className?: string;
 }
 
-function ChatBranch({ branches, onSelect, className }: ChatBranchProps) {
+function ChatBranch({ branches = [], onSelect, className }: ChatBranchProps) {
   const activeIndex = branches.findIndex((b) => b.active);
   const current = activeIndex >= 0 ? activeIndex : 0;
 
@@ -49,7 +49,13 @@ function ChatBranch({ branches, onSelect, className }: ChatBranchProps) {
   );
 
   if (branches.length === 0) {
-    return <div data-slot="chat-branch" className={cn("hidden", className)} aria-hidden />;
+    return (
+      <div
+        data-slot="chat-branch"
+        className={cn("hidden", className)}
+        aria-hidden
+      />
+    );
   }
 
   const active = branches[current];
@@ -62,7 +68,7 @@ function ChatBranch({ branches, onSelect, className }: ChatBranchProps) {
       tabIndex={0}
       onKeyDown={handleKeyDown}
       className={cn(
-        "inline-flex items-center gap-1 rounded-md border border-border bg-background px-1 py-0.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+        "border-border bg-background text-muted-foreground focus-visible:ring-ring/40 inline-flex items-center gap-1 rounded-md border px-1 py-0.5 text-xs focus-visible:ring-2 focus-visible:outline-none",
         className,
       )}
     >
@@ -71,18 +77,20 @@ function ChatBranch({ branches, onSelect, className }: ChatBranchProps) {
         onClick={handlePrev}
         disabled={branches.length <= 1}
         aria-label="Previous branch"
-        className="inline-flex size-5 items-center justify-center rounded hover:bg-muted disabled:opacity-40"
+        className="hover:bg-muted inline-flex size-5 items-center justify-center rounded disabled:opacity-40"
       >
         <ChevronLeftIcon className="size-3.5" aria-hidden />
       </button>
-      <span className="font-medium text-foreground">{active?.label ?? "-"}</span>
+      <span className="text-foreground font-medium">
+        {active?.label ?? "-"}
+      </span>
       <span className="tabular-nums">{`${current + 1}/${branches.length}`}</span>
       <button
         type="button"
         onClick={handleNext}
         disabled={branches.length <= 1}
         aria-label="Next branch"
-        className="inline-flex size-5 items-center justify-center rounded hover:bg-muted disabled:opacity-40"
+        className="hover:bg-muted inline-flex size-5 items-center justify-center rounded disabled:opacity-40"
       >
         <ChevronRightIcon className="size-3.5" aria-hidden />
       </button>

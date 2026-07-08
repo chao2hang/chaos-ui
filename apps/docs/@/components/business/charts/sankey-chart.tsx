@@ -1,12 +1,12 @@
-"use client"
-import * as React from "react"
-import ReactECharts from "echarts-for-react"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
-import { buildSankeyOption } from "./sankey"
+"use client";
+import * as React from "react";
+import ReactECharts from "echarts-for-react";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
+import { buildSankeyOption } from "./sankey";
 
 export function SankeyChart({
-  data,
+  data = [],
   xKey = "source",
   yKey = "target",
   valueKey = "value",
@@ -20,7 +20,7 @@ export function SankeyChart({
   const option = React.useMemo(
     () => buildSankeyOption(data, xKey, yKey, valueKey, [...PALETTE], height),
     [data, xKey, yKey, valueKey, height],
-  )
+  );
 
   return (
     <ChartFrame
@@ -41,5 +41,5 @@ export function SankeyChart({
         opts={{ renderer: "svg" }}
       />
     </ChartFrame>
-  )
+  );
 }

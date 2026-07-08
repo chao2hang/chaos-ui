@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ResponsiveContainer,
   RadialBarChart as RechartsRadialBarChart,
@@ -7,14 +7,14 @@ import {
   Cell,
   Tooltip,
   Legend,
-} from "recharts"
-import { ChartTooltip } from "./shared/chart-tooltip"
-import { ChartLegend } from "./shared/chart-legend"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
+} from "recharts";
+import { ChartTooltip } from "./shared/chart-tooltip";
+import { ChartLegend } from "./shared/chart-legend";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
 
 export function RadialChartComp({
-  data,
+  data = [],
   yKey = "value",
   height,
   loading,
@@ -53,5 +53,5 @@ export function RadialChartComp({
         </RechartsRadialBarChart>
       </ResponsiveContainer>
     </ChartFrame>
-  )
+  );
 }

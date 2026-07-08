@@ -101,17 +101,17 @@ function formatCost(value: number, symbol: string): string {
 function calcTotalCost(item: BOMItem): number {
   const selfCost = item.quantity * item.unitCost;
   if (!item.children || item.children.length === 0) return selfCost;
-  const childrenCost = item.children.reduce((sum, c) => sum + calcTotalCost(c), 0);
+  const childrenCost = item.children.reduce(
+    (sum, c) => sum + calcTotalCost(c),
+    0,
+  );
   return selfCost + (item.isPhantom ? 0 : childrenCost);
 }
 
 /** Count total descendants of a BOM item. */
 function countDescendants(item: BOMItem): number {
   if (!item.children || item.children.length === 0) return 0;
-  return item.children.reduce(
-    (sum, c) => sum + 1 + countDescendants(c),
-    0,
-  );
+  return item.children.reduce((sum, c) => sum + 1 + countDescendants(c), 0);
 }
 
 /** Deep clone a BOM item tree with new ids. */
@@ -133,7 +133,10 @@ function updateItemInTree(
   return items.map((item) => {
     if (item.id === id) return updater(item);
     if (item.children) {
-      return { ...item, children: updateItemInTree(item.children, id, updater) };
+      return {
+        ...item,
+        children: updateItemInTree(item.children, id, updater),
+      };
     }
     return item;
   });
@@ -165,7 +168,10 @@ function addChildToItem(
       };
     }
     if (item.children) {
-      return { ...item, children: addChildToItem(item.children, parentId, child) };
+      return {
+        ...item,
+        children: addChildToItem(item.children, parentId, child),
+      };
     }
     return item;
   });
@@ -213,7 +219,7 @@ function flattenBOM(
 /* -------------------------------------------------------------------------- */
 
 function BOMTreeEditor({
-  items,
+  items = [],
   onChange,
   readOnly = false,
   showCostRollup = true,
@@ -266,7 +272,10 @@ function BOMTreeEditor({
     onChange(
       updateItemInTree(items, id, (item) => {
         if (field === "quantity" || field === "unitCost") {
-          return { ...item, [field]: typeof value === "string" ? parseFloat(value) || 0 : value };
+          return {
+            ...item,
+            [field]: typeof value === "string" ? parseFloat(value) || 0 : value,
+          };
         }
         return { ...item, [field]: value };
       }),
@@ -328,7 +337,13 @@ function BOMTreeEditor({
     onChange(findAndClone(items));
   };
 
-  const typeBadgeMap: Record<BOMItemType, { label: string; variant: "default" | "secondary" | "outline" | "destructive" }> = {
+  const typeBadgeMap: Record<
+    BOMItemType,
+    {
+      label: string;
+      variant: "default" | "secondary" | "outline" | "destructive";
+    }
+  > = {
     material: { label: "Material", variant: "default" },
     phantom: { label: "Phantom", variant: "outline" },
     subassembly: { label: "Sub-assembly", variant: "secondary" },
@@ -336,11 +351,8 @@ function BOMTreeEditor({
   };
 
   return (
-    <div
-      data-slot="bom-tree-editor"
-      className={cn("space-y-3", className)}
-    >
-      <div className="overflow-x-auto rounded-lg border border-border">
+    <div data-slot="bom-tree-editor" className={cn("space-y-3", className)}>
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -355,7 +367,9 @@ function BOMTreeEditor({
               )}
               <TableHead className="w-20">Type</TableHead>
               <TableHead className="min-w-[100px]">Reference</TableHead>
-              {!readOnly && <TableHead className="w-24 text-center">Actions</TableHead>}
+              {!readOnly && (
+                <TableHead className="w-24 text-center">Actions</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -363,14 +377,21 @@ function BOMTreeEditor({
               <TableRow>
                 <TableCell
                   colSpan={readOnly ? 9 : 10}
-                  className="py-8 text-center text-muted-foreground"
+                  className="text-muted-foreground py-8 text-center"
                 >
                   No BOM items. Click "Add Component" to start.
                 </TableCell>
               </TableRow>
             ) : (
               flatRows.map((row) => {
-                const { item, depth, hasChildren, isExpanded, totalCost, descendantCount } = row;
+                const {
+                  item,
+                  depth,
+                  hasChildren,
+                  isExpanded,
+                  totalCost,
+                  descendantCount,
+                } = row;
                 const type = item.type ?? "material";
                 return (
                   <TableRow
@@ -388,7 +409,7 @@ function BOMTreeEditor({
                         <button
                           type="button"
                           onClick={() => toggleExpand(item.id)}
-                          className="inline-flex size-5 items-center justify-center rounded hover:bg-muted"
+                          className="hover:bg-muted inline-flex size-5 items-center justify-center rounded"
                           aria-label={isExpanded ? "Collapse" : "Expand"}
                         >
                           {isExpanded ? (
@@ -400,9 +421,9 @@ function BOMTreeEditor({
                       ) : (
                         <span className="inline-flex size-5 items-center justify-center">
                           {item.isPhantom ? (
-                            <LayersIcon className="size-3 text-muted-foreground" />
+                            <LayersIcon className="text-muted-foreground size-3" />
                           ) : (
-                            <PackageIcon className="size-3 text-muted-foreground" />
+                            <PackageIcon className="text-muted-foreground size-3" />
                           )}
                         </span>
                       )}
@@ -411,12 +432,20 @@ function BOMTreeEditor({
                     {/* Part Number */}
                     <TableCell style={{ paddingLeft: 8 + depth * 20 }}>
                       {readOnly ? (
-                        <span className="text-sm font-mono">{item.partNumber || "—"}</span>
+                        <span className="font-mono text-sm">
+                          {item.partNumber || "—"}
+                        </span>
                       ) : (
                         <Input
                           className="h-8 font-mono text-sm"
                           value={item.partNumber}
-                          onChange={(e) => handleFieldChange(item.id, "partNumber", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(
+                              item.id,
+                              "partNumber",
+                              e.target.value,
+                            )
+                          }
                           placeholder="P-0001"
                           aria-label="Part number"
                         />
@@ -431,7 +460,13 @@ function BOMTreeEditor({
                         <Input
                           className="h-8 text-sm"
                           value={item.partName}
-                          onChange={(e) => handleFieldChange(item.id, "partName", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(
+                              item.id,
+                              "partName",
+                              e.target.value,
+                            )
+                          }
                           placeholder="Component name"
                           aria-label="Part name"
                         />
@@ -441,13 +476,21 @@ function BOMTreeEditor({
                     {/* Quantity */}
                     <TableCell className="text-right">
                       {readOnly ? (
-                        <span className="text-sm tabular-nums">{item.quantity}</span>
+                        <span className="text-sm tabular-nums">
+                          {item.quantity}
+                        </span>
                       ) : (
                         <Input
                           type="number"
                           className="h-8 text-right tabular-nums"
                           value={item.quantity}
-                          onChange={(e) => handleFieldChange(item.id, "quantity", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(
+                              item.id,
+                              "quantity",
+                              e.target.value,
+                            )
+                          }
                           aria-label="Quantity"
                           min={0}
                           step="0.01"
@@ -463,7 +506,9 @@ function BOMTreeEditor({
                         <Input
                           className="h-8 text-sm"
                           value={item.unit}
-                          onChange={(e) => handleFieldChange(item.id, "unit", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(item.id, "unit", e.target.value)
+                          }
                           aria-label="Unit"
                         />
                       )}
@@ -480,7 +525,13 @@ function BOMTreeEditor({
                           type="number"
                           className="h-8 text-right tabular-nums"
                           value={item.unitCost}
-                          onChange={(e) => handleFieldChange(item.id, "unitCost", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(
+                              item.id,
+                              "unitCost",
+                              e.target.value,
+                            )
+                          }
                           aria-label="Unit cost"
                           min={0}
                           step="0.01"
@@ -496,7 +547,7 @@ function BOMTreeEditor({
                       >
                         {formatCost(totalCost, currencySymbol)}
                         {descendantCount > 0 && (
-                          <span className="ml-1 text-[10px] text-muted-foreground">
+                          <span className="text-muted-foreground ml-1 text-[10px]">
                             ({descendantCount} sub)
                           </span>
                         )}
@@ -505,7 +556,10 @@ function BOMTreeEditor({
 
                     {/* Type */}
                     <TableCell>
-                      <Badge variant={typeBadgeMap[type].variant} className="text-[10px]">
+                      <Badge
+                        variant={typeBadgeMap[type].variant}
+                        className="text-[10px]"
+                      >
                         {typeBadgeMap[type].label}
                       </Badge>
                     </TableCell>
@@ -518,7 +572,13 @@ function BOMTreeEditor({
                         <Input
                           className="h-8 text-sm"
                           value={item.reference ?? ""}
-                          onChange={(e) => handleFieldChange(item.id, "reference", e.target.value)}
+                          onChange={(e) =>
+                            handleFieldChange(
+                              item.id,
+                              "reference",
+                              e.target.value,
+                            )
+                          }
                           placeholder="R1, R2"
                           aria-label="Reference designator"
                         />
@@ -573,12 +633,15 @@ function BOMTreeEditor({
           {/* Grand total */}
           {items.length > 0 && showCostRollup && (
             <TableBody>
-              <TableRow className="border-t-2 bg-muted/50 font-semibold">
-                <TableCell colSpan={showCostRollup ? 6 : 5} className="text-right text-sm">
+              <TableRow className="bg-muted/50 border-t-2 font-semibold">
+                <TableCell
+                  colSpan={showCostRollup ? 6 : 5}
+                  className="text-right text-sm"
+                >
                   Grand Total:
                 </TableCell>
                 <TableCell
-                  className="text-right text-sm tabular-nums text-primary"
+                  className="text-primary text-right text-sm tabular-nums"
                   data-slot="bom-grand-total"
                 >
                   {formatCost(grandTotal, currencySymbol)}

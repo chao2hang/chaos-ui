@@ -17,13 +17,23 @@ interface ChatImageGalleryProps {
   className?: string;
 }
 
-function ChatImageGallery({ images, className }: ChatImageGalleryProps) {
+function ChatImageGallery({ images = [], className }: ChatImageGalleryProps) {
   if (images.length === 0) {
-    return <div data-slot="chat-image-gallery" className={cn("hidden", className)} aria-hidden />;
+    return (
+      <div
+        data-slot="chat-image-gallery"
+        className={cn("hidden", className)}
+        aria-hidden
+      />
+    );
   }
 
   const cols =
-    images.length === 1 ? "grid-cols-1" : images.length === 2 ? "grid-cols-2" : "grid-cols-3";
+    images.length === 1
+      ? "grid-cols-1"
+      : images.length === 2
+        ? "grid-cols-2"
+        : "grid-cols-3";
 
   return (
     <div
@@ -38,7 +48,7 @@ function ChatImageGallery({ images, className }: ChatImageGalleryProps) {
           href={img.src}
           target="_blank"
           rel="noopener noreferrer"
-          className="group/img relative block aspect-square overflow-hidden rounded-md bg-muted"
+          className="group/img bg-muted relative block aspect-square overflow-hidden rounded-md"
           aria-label={img.alt ?? `Image ${idx + 1}`}
         >
           <img

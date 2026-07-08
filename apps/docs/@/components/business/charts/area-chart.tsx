@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ResponsiveContainer,
   ComposedChart as RechartsComposedChart,
@@ -9,14 +9,14 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts"
-import { ChartTooltip } from "./shared/chart-tooltip"
-import { ChartLegend } from "./shared/chart-legend"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
+} from "recharts";
+import { ChartTooltip } from "./shared/chart-tooltip";
+import { ChartLegend } from "./shared/chart-legend";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
 
 export function AreaChart({
-  data,
+  data = [],
   xKey = "x",
   yKey = "y",
   series,
@@ -30,7 +30,7 @@ export function AreaChart({
   enableFullscreen,
   className,
 }: BaseChartProps) {
-  const keys = series?.map((s) => s.key) ?? [yKey]
+  const keys = series?.map((s) => s.key) ?? [yKey];
   return (
     <ChartFrame
       data={data}
@@ -42,17 +42,41 @@ export function AreaChart({
       className={className}
     >
       <ResponsiveContainer width="100%" height={height ?? 320}>
-        <RechartsComposedChart data={data} margin={{ top: 10, right: 10, bottom: 10, left: 0 }}>
+        <RechartsComposedChart
+          data={data}
+          margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
+        >
           <defs>
             {keys.map((key, i) => (
-              <linearGradient key={key} id={`area-fill-${key}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={series?.[i]?.color ?? PALETTE[i % PALETTE.length]} stopOpacity={0.3} />
-                <stop offset="100%" stopColor={series?.[i]?.color ?? PALETTE[i % PALETTE.length]} stopOpacity={0} />
+              <linearGradient
+                key={key}
+                id={`area-fill-${key}`}
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stopColor={series?.[i]?.color ?? PALETTE[i % PALETTE.length]}
+                  stopOpacity={0.3}
+                />
+                <stop
+                  offset="100%"
+                  stopColor={series?.[i]?.color ?? PALETTE[i % PALETTE.length]}
+                  stopOpacity={0}
+                />
               </linearGradient>
             ))}
           </defs>
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />}
-          <XAxis dataKey={xKey} stroke="var(--muted-foreground)" fontSize={12} />
+          {showGrid && (
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          )}
+          <XAxis
+            dataKey={xKey}
+            stroke="var(--muted-foreground)"
+            fontSize={12}
+          />
           <YAxis stroke="var(--muted-foreground)" fontSize={12} />
           {showTooltip && <Tooltip content={<ChartTooltip />} />}
           {showLegend && <Legend content={<ChartLegend />} />}
@@ -69,5 +93,5 @@ export function AreaChart({
         </RechartsComposedChart>
       </ResponsiveContainer>
     </ChartFrame>
-  )
+  );
 }

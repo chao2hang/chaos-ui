@@ -22,7 +22,7 @@ interface ChatConversationSearchProps {
 }
 
 function ChatConversationSearch({
-  query,
+  query = "",
   onQueryChange,
   results = [],
   className,

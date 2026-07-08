@@ -47,7 +47,7 @@ const priorityClasses: Record<BannerPriority, string> = {
  * @since 0.2.0
  */
 function AnnouncementBanner({
-  announcements,
+  announcements = [],
   maxVisible = 3,
   className,
   onDismiss,

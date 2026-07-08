@@ -3,7 +3,11 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, ChevronDownIcon, SparklesIcon } from "@/components/ui/icons";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  SparklesIcon,
+} from "@/components/ui/icons";
 
 /**
  * @component ChatModelSwitcher
@@ -22,7 +26,12 @@ interface ChatModelSwitcherProps {
   className?: string;
 }
 
-function ChatModelSwitcher({ models, activeId, onSwitch, className }: ChatModelSwitcherProps) {
+function ChatModelSwitcher({
+  models = [],
+  activeId,
+  onSwitch,
+  className,
+}: ChatModelSwitcherProps) {
   const [open, setOpen] = React.useState(false);
   const active = models.find((m) => m.id === activeId) ?? models[0];
 
@@ -56,9 +65,14 @@ function ChatModelSwitcher({ models, activeId, onSwitch, className }: ChatModelS
         aria-expanded={open}
         aria-label="Switch AI model"
       >
-        <SparklesIcon className="size-4 text-primary" aria-hidden />
-        <span className="max-w-[12rem] truncate">{active?.name ?? "Select model"}</span>
-        <ChevronDownIcon className={cn("size-4 transition-transform", open && "rotate-180")} aria-hidden />
+        <SparklesIcon className="text-primary size-4" aria-hidden />
+        <span className="max-w-[12rem] truncate">
+          {active?.name ?? "Select model"}
+        </span>
+        <ChevronDownIcon
+          className={cn("size-4 transition-transform", open && "rotate-180")}
+          aria-hidden
+        />
       </Button>
       {open ? (
         <>
@@ -72,7 +86,7 @@ function ChatModelSwitcher({ models, activeId, onSwitch, className }: ChatModelS
           <ul
             role="listbox"
             aria-label="Available models"
-            className="absolute right-0 z-20 mt-1 max-h-72 w-64 overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md"
+            className="border-border bg-popover absolute right-0 z-20 mt-1 max-h-72 w-64 overflow-y-auto rounded-md border p-1 shadow-md"
           >
             {models.map((m) => {
               const isActive = m.id === active?.id;
@@ -81,15 +95,26 @@ function ChatModelSwitcher({ models, activeId, onSwitch, className }: ChatModelS
                   <button
                     type="button"
                     onClick={() => select(m.id)}
-                    className="flex w-full items-start gap-2 rounded-md px-2 py-1.5 text-left hover:bg-muted"
+                    className="hover:bg-muted flex w-full items-start gap-2 rounded-md px-2 py-1.5 text-left"
                   >
                     <span className="mt-0.5 shrink-0">
-                      {isActive ? <CheckIcon className="size-4 text-primary" aria-hidden /> : <span className="block size-4" />}
+                      {isActive ? (
+                        <CheckIcon
+                          className="text-primary size-4"
+                          aria-hidden
+                        />
+                      ) : (
+                        <span className="block size-4" />
+                      )}
                     </span>
                     <span className="flex min-w-0 flex-1 flex-col">
-                      <span className="truncate text-sm font-medium text-foreground">{m.name}</span>
+                      <span className="text-foreground truncate text-sm font-medium">
+                        {m.name}
+                      </span>
                       {m.description ? (
-                        <span className="truncate text-xs text-muted-foreground">{m.description}</span>
+                        <span className="text-muted-foreground truncate text-xs">
+                          {m.description}
+                        </span>
                       ) : null}
                     </span>
                   </button>

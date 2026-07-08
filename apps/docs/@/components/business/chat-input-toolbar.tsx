@@ -21,7 +21,11 @@ interface ChatInputToolbarProps {
   className?: string;
 }
 
-function ChatInputToolbar({ tools, onToolClick, className }: ChatInputToolbarProps) {
+function ChatInputToolbar({
+  tools = [],
+  onToolClick,
+  className,
+}: ChatInputToolbarProps) {
   const handleClick = React.useCallback(
     (id: string) => () => onToolClick?.(id),
     [onToolClick],
@@ -43,10 +47,15 @@ function ChatInputToolbar({ tools, onToolClick, className }: ChatInputToolbarPro
       aria-label="Input tools"
       className={cn("flex items-center gap-1", className)}
     >
-      <Button type="button" variant="ghost" size="icon-sm" aria-label="Attach file">
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-sm"
+        aria-label="Attach file"
+      >
         <PaperclipIcon className="size-4" aria-hidden />
       </Button>
-      <div className="mx-1 h-4 w-px shrink-0 bg-border" aria-hidden />
+      <div className="bg-border mx-1 h-4 w-px shrink-0" aria-hidden />
       {tools.map((t) => (
         <Button
           key={t.id}

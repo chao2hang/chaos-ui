@@ -8,7 +8,7 @@ import { FileCard } from "@/components/business/file-card";
  * @description 附件列表
  */
 interface AttachmentListProps {
-attachments: Array<{
+  attachments: Array<{
     id: string;
     name: string;
     size: number;
@@ -18,10 +18,25 @@ attachments: Array<{
   onRemove?: (id: string) => void;
   className?: string;
 }
-function AttachmentList({ attachments, onRemove, className }: AttachmentListProps) {
-  if (attachments.length === 0) return <div data-slot="attachment-list" className={cn("text-sm text-muted-foreground", className)}>暂无附件</div>;
+function AttachmentList({
+  attachments = [],
+  onRemove,
+  className,
+}: AttachmentListProps) {
+  if (attachments.length === 0)
+    return (
+      <div
+        data-slot="attachment-list"
+        className={cn("text-muted-foreground text-sm", className)}
+      >
+        暂无附件
+      </div>
+    );
   return (
-    <div data-slot="attachment-list" className={cn("flex flex-col gap-2", className)}>
+    <div
+      data-slot="attachment-list"
+      className={cn("flex flex-col gap-2", className)}
+    >
       {attachments.map((a) => (
         <FileCard
           key={a.id}

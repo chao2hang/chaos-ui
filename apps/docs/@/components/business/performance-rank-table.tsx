@@ -3,7 +3,13 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { formatCurrency, formatPercent } from "@/lib/format";
-import { ArrowDownRightIcon, ArrowUpRightIcon, TrophyIcon, MedalIcon, AwardIcon } from "@/components/ui";
+import {
+  ArrowDownRightIcon,
+  ArrowUpRightIcon,
+  TrophyIcon,
+  MedalIcon,
+  AwardIcon,
+} from "@/components/ui";
 
 /**
  * @component PerformanceRankTable
@@ -31,28 +37,42 @@ interface PerformanceRankTableProps {
   className?: string;
 }
 
-const MEDAL_ICON: Record<number, React.ComponentType<{ className?: string }>> = {
+const MEDAL_ICON: Record<
+  number,
+  React.ComponentType<{ className?: string }>
+> = {
   1: TrophyIcon,
   2: MedalIcon,
   3: AwardIcon,
 };
 
-function PerformanceRankTable({ rows, className }: PerformanceRankTableProps) {
+function PerformanceRankTable({
+  rows = [],
+  className,
+}: PerformanceRankTableProps) {
   return (
     <div
       data-slot="performance-rank-table"
-      className={cn("overflow-hidden rounded-lg border bg-card", className)}
+      className={cn("bg-card overflow-hidden rounded-lg border", className)}
       role="region"
       aria-label="业绩排名表"
     >
       <table className="w-full text-sm">
         <caption className="sr-only">业绩排名</caption>
-        <thead className="border-b bg-muted/50 text-xs text-muted-foreground">
+        <thead className="bg-muted/50 text-muted-foreground border-b text-xs">
           <tr>
-            <th scope="col" className="px-4 py-2 text-left font-medium">排名</th>
-            <th scope="col" className="px-4 py-2 text-left font-medium">姓名</th>
-            <th scope="col" className="px-4 py-2 text-right font-medium">业绩</th>
-            <th scope="col" className="px-4 py-2 text-right font-medium">环比</th>
+            <th scope="col" className="px-4 py-2 text-left font-medium">
+              排名
+            </th>
+            <th scope="col" className="px-4 py-2 text-left font-medium">
+              姓名
+            </th>
+            <th scope="col" className="px-4 py-2 text-right font-medium">
+              业绩
+            </th>
+            <th scope="col" className="px-4 py-2 text-right font-medium">
+              环比
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y">
@@ -68,11 +88,15 @@ function PerformanceRankTable({ rows, className }: PerformanceRankTableProps) {
                       <Medal
                         className={cn(
                           "size-4",
-                          r.rank === 1 ? "text-yellow-500" : r.rank === 2 ? "text-slate-400" : "text-amber-700",
+                          r.rank === 1
+                            ? "text-yellow-500"
+                            : r.rank === 2
+                              ? "text-slate-400"
+                              : "text-amber-700",
                         )}
                       />
                     ) : (
-                      <span className="flex size-5 items-center justify-center rounded-full bg-muted text-xs tabular-nums">
+                      <span className="bg-muted flex size-5 items-center justify-center rounded-full text-xs tabular-nums">
                         {r.rank}
                       </span>
                     )}
@@ -80,7 +104,9 @@ function PerformanceRankTable({ rows, className }: PerformanceRankTableProps) {
                   </span>
                 </td>
                 <td className="px-4 py-2.5 font-medium">{r.name}</td>
-                <td className="px-4 py-2.5 text-right tabular-nums">{formatCurrency(r.amount)}</td>
+                <td className="px-4 py-2.5 text-right tabular-nums">
+                  {formatCurrency(r.amount)}
+                </td>
                 <td className="px-4 py-2.5 text-right">
                   {r.growth !== undefined ? (
                     <span
@@ -93,7 +119,7 @@ function PerformanceRankTable({ rows, className }: PerformanceRankTableProps) {
                       {formatPercent(r.growth)}
                     </span>
                   ) : (
-                    <span className="text-xs text-muted-foreground">—</span>
+                    <span className="text-muted-foreground text-xs">—</span>
                   )}
                 </td>
               </tr>
@@ -102,7 +128,9 @@ function PerformanceRankTable({ rows, className }: PerformanceRankTableProps) {
         </tbody>
       </table>
       {rows.length === 0 && (
-        <p className="py-6 text-center text-sm text-muted-foreground">暂无排名数据</p>
+        <p className="text-muted-foreground py-6 text-center text-sm">
+          暂无排名数据
+        </p>
       )}
     </div>
   );

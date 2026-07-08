@@ -42,7 +42,7 @@ const ringMap = {
  * <AvatarGroup users={[{ name: "Alice" }, { name: "Bob" }]} max={3} />
  */
 export function AvatarGroup({
-  users,
+  users = [],
   max = 4,
   size = "default",
   showOverflow = true,

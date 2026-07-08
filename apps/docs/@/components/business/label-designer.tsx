@@ -106,7 +106,7 @@ const fieldTypeLabels: Record<LabelFieldType, string> = {
 /* -------------------------------------------------------------------------- */
 
 function LabelDesigner({
-  fields,
+  fields = [],
   onFieldsChange,
   labelSize = defaultSizePresets[1]!,
   sizePresets = defaultSizePresets,
@@ -126,7 +126,12 @@ function LabelDesigner({
       id: genId(),
       type,
       label: `${fieldTypeLabels[type]} ${fields.length + 1}`,
-      sampleValue: type === "barcode" ? "1234567890128" : type === "qrcode" ? "https://example.com" : "Sample Text",
+      sampleValue:
+        type === "barcode"
+          ? "1234567890128"
+          : type === "qrcode"
+            ? "https://example.com"
+            : "Sample Text",
       x: 5,
       y: 5 + fields.length * 8,
       width: type === "qrcode" ? 15 : 40,
@@ -142,9 +147,23 @@ function LabelDesigner({
     if (selectedField === id) setSelectedField(null);
   };
 
-  const handleFieldChange = (id: string, field: keyof LabelField, value: string | number) => {
+  const handleFieldChange = (
+    id: string,
+    field: keyof LabelField,
+    value: string | number,
+  ) => {
     onFieldsChange?.(
-      fields.map((f) => (f.id === id ? { ...f, [field]: typeof value === "string" && typeof f[field] === "number" ? parseFloat(value) || 0 : value } : f)),
+      fields.map((f) =>
+        f.id === id
+          ? {
+              ...f,
+              [field]:
+                typeof value === "string" && typeof f[field] === "number"
+                  ? parseFloat(value) || 0
+                  : value,
+            }
+          : f,
+      ),
     );
   };
 
@@ -153,11 +172,14 @@ function LabelDesigner({
   return (
     <div
       data-slot="label-designer"
-      className={cn("grid grid-cols-1 gap-4 rounded-lg border border-border bg-card p-5 lg:grid-cols-[200px_1fr_240px]", className)}
+      className={cn(
+        "border-border bg-card grid grid-cols-1 gap-4 rounded-lg border p-5 lg:grid-cols-[200px_1fr_240px]",
+        className,
+      )}
     >
       {/* Left: Field type palette */}
       <div className="space-y-2" data-slot="label-palette">
-        <h4 className="text-sm font-semibold text-foreground">Add Field</h4>
+        <h4 className="text-foreground text-sm font-semibold">Add Field</h4>
         {(Object.keys(fieldTypeLabels) as LabelFieldType[]).map((type) => (
           <button
             key={type}
@@ -166,7 +188,7 @@ function LabelDesigner({
             disabled={readOnly}
             onClick={() => handleAddField(type)}
             className={cn(
-              "flex w-full items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm text-left transition-colors",
+              "border-border bg-background flex w-full items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors",
               !readOnly && "hover:bg-muted/30",
               readOnly && "cursor-not-allowed opacity-50",
             )}
@@ -178,7 +200,7 @@ function LabelDesigner({
 
         {/* Size presets */}
         <div className="mt-3">
-          <h4 className="text-sm font-semibold text-foreground">Label Size</h4>
+          <h4 className="text-foreground text-sm font-semibold">Label Size</h4>
           <div className="mt-1 space-y-1">
             {sizePresets.map((s) => (
               <button
@@ -190,11 +212,15 @@ function LabelDesigner({
                 onClick={() => onSizeChange?.(s)}
                 className={cn(
                   "flex w-full items-center justify-between rounded-md border px-3 py-1.5 text-xs transition-colors",
-                  labelSize.id === s.id ? "border-primary bg-primary/5 text-primary" : "border-border text-muted-foreground hover:bg-muted/30",
+                  labelSize.id === s.id
+                    ? "border-primary bg-primary/5 text-primary"
+                    : "border-border text-muted-foreground hover:bg-muted/30",
                 )}
               >
                 <span>{s.label}</span>
-                <span className="text-[10px]">{s.width}×{s.height}mm</span>
+                <span className="text-[10px]">
+                  {s.width}×{s.height}mm
+                </span>
               </button>
             ))}
           </div>
@@ -202,14 +228,19 @@ function LabelDesigner({
       </div>
 
       {/* Center: Label preview */}
-      <div className="flex flex-col items-center" data-slot="label-preview-container">
+      <div
+        className="flex flex-col items-center"
+        data-slot="label-preview-container"
+      >
         <div className="mb-2 flex items-center gap-2">
-          <span className="text-sm font-medium text-foreground">Preview</span>
-          <Badge variant="outline" className="text-xs">{labelSize.width}×{labelSize.height}mm</Badge>
+          <span className="text-foreground text-sm font-medium">Preview</span>
+          <Badge variant="outline" className="text-xs">
+            {labelSize.width}×{labelSize.height}mm
+          </Badge>
         </div>
         <div
           data-slot="label-preview"
-          className="relative border-2 border-dashed border-border bg-white"
+          className="border-border relative border-2 border-dashed bg-white"
           style={{
             width: labelSize.width * scale,
             height: labelSize.height * scale,
@@ -217,7 +248,7 @@ function LabelDesigner({
           onClick={() => setSelectedField(null)}
         >
           {fields.length === 0 && (
-            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex h-full items-center justify-center text-sm">
               Add fields to design your label
             </div>
           )}
@@ -233,7 +264,9 @@ function LabelDesigner({
               }}
               className={cn(
                 "absolute border",
-                selectedField === field.id ? "border-primary border-2" : "border-transparent hover:border-blue-300",
+                selectedField === field.id
+                  ? "border-primary border-2"
+                  : "border-transparent hover:border-blue-300",
               )}
               style={{
                 left: field.x * scale,
@@ -251,20 +284,23 @@ function LabelDesigner({
                 </span>
               )}
               {field.type === "barcode" && (
-                <div className="flex h-full items-center justify-center bg-black text-white text-[8px] font-mono">
+                <div className="flex h-full items-center justify-center bg-black font-mono text-[8px] text-white">
                   {field.sampleValue}
                 </div>
               )}
               {field.type === "qrcode" && (
-                <div className="flex h-full items-center justify-center bg-black text-white text-[8px]">
+                <div className="flex h-full items-center justify-center bg-black text-[8px] text-white">
                   QR
                 </div>
               )}
               {field.type === "line" && (
-                <div className="h-px w-full bg-black" style={{ marginTop: field.height * scale / 2 }} />
+                <div
+                  className="h-px w-full bg-black"
+                  style={{ marginTop: (field.height * scale) / 2 }}
+                />
               )}
               {field.type === "image" && (
-                <div className="flex h-full items-center justify-center bg-muted text-xs text-muted-foreground">
+                <div className="bg-muted text-muted-foreground flex h-full items-center justify-center text-xs">
                   IMG
                 </div>
               )}
@@ -272,77 +308,175 @@ function LabelDesigner({
           ))}
         </div>
         {onPrint && !readOnly && (
-          <Button className="mt-3" size="sm" onClick={onPrint}>Print Label</Button>
+          <Button className="mt-3" size="sm" onClick={onPrint}>
+            Print Label
+          </Button>
         )}
       </div>
 
       {/* Right: Field properties */}
       <div className="space-y-3" data-slot="label-properties">
-        <h4 className="text-sm font-semibold text-foreground">Properties</h4>
+        <h4 className="text-foreground text-sm font-semibold">Properties</h4>
         {selectedFieldObj ? (
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-base">{fieldTypeIcons[selectedFieldObj.type]}</span>
-              <span className="text-sm font-medium text-foreground">{fieldTypeLabels[selectedFieldObj.type]}</span>
+              <span className="text-base">
+                {fieldTypeIcons[selectedFieldObj.type]}
+              </span>
+              <span className="text-foreground text-sm font-medium">
+                {fieldTypeLabels[selectedFieldObj.type]}
+              </span>
             </div>
             <div>
-              <label className="mb-0.5 block text-xs text-muted-foreground">Label</label>
+              <label className="text-muted-foreground mb-0.5 block text-xs">
+                Label
+              </label>
               <Input
                 className="h-8 text-sm"
                 value={selectedFieldObj.label}
-                onChange={(e) => handleFieldChange(selectedFieldObj.id, "label", e.target.value)}
+                onChange={(e) =>
+                  handleFieldChange(
+                    selectedFieldObj.id,
+                    "label",
+                    e.target.value,
+                  )
+                }
                 disabled={readOnly}
                 aria-label="Field label"
               />
             </div>
             <div>
-              <label className="mb-0.5 block text-xs text-muted-foreground">Sample Value</label>
+              <label className="text-muted-foreground mb-0.5 block text-xs">
+                Sample Value
+              </label>
               <Input
                 className="h-8 text-sm"
                 value={selectedFieldObj.sampleValue}
-                onChange={(e) => handleFieldChange(selectedFieldObj.id, "sampleValue", e.target.value)}
+                onChange={(e) =>
+                  handleFieldChange(
+                    selectedFieldObj.id,
+                    "sampleValue",
+                    e.target.value,
+                  )
+                }
                 disabled={readOnly}
                 aria-label="Sample value"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="mb-0.5 block text-xs text-muted-foreground">X (mm)</label>
-                <Input type="number" className="h-8 text-sm" value={selectedFieldObj.x} onChange={(e) => handleFieldChange(selectedFieldObj.id, "x", e.target.value)} disabled={readOnly} aria-label="X position" />
+                <label className="text-muted-foreground mb-0.5 block text-xs">
+                  X (mm)
+                </label>
+                <Input
+                  type="number"
+                  className="h-8 text-sm"
+                  value={selectedFieldObj.x}
+                  onChange={(e) =>
+                    handleFieldChange(selectedFieldObj.id, "x", e.target.value)
+                  }
+                  disabled={readOnly}
+                  aria-label="X position"
+                />
               </div>
               <div>
-                <label className="mb-0.5 block text-xs text-muted-foreground">Y (mm)</label>
-                <Input type="number" className="h-8 text-sm" value={selectedFieldObj.y} onChange={(e) => handleFieldChange(selectedFieldObj.id, "y", e.target.value)} disabled={readOnly} aria-label="Y position" />
+                <label className="text-muted-foreground mb-0.5 block text-xs">
+                  Y (mm)
+                </label>
+                <Input
+                  type="number"
+                  className="h-8 text-sm"
+                  value={selectedFieldObj.y}
+                  onChange={(e) =>
+                    handleFieldChange(selectedFieldObj.id, "y", e.target.value)
+                  }
+                  disabled={readOnly}
+                  aria-label="Y position"
+                />
               </div>
               <div>
-                <label className="mb-0.5 block text-xs text-muted-foreground">W (mm)</label>
-                <Input type="number" className="h-8 text-sm" value={selectedFieldObj.width} onChange={(e) => handleFieldChange(selectedFieldObj.id, "width", e.target.value)} disabled={readOnly} aria-label="Width" />
+                <label className="text-muted-foreground mb-0.5 block text-xs">
+                  W (mm)
+                </label>
+                <Input
+                  type="number"
+                  className="h-8 text-sm"
+                  value={selectedFieldObj.width}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      selectedFieldObj.id,
+                      "width",
+                      e.target.value,
+                    )
+                  }
+                  disabled={readOnly}
+                  aria-label="Width"
+                />
               </div>
               <div>
-                <label className="mb-0.5 block text-xs text-muted-foreground">H (mm)</label>
-                <Input type="number" className="h-8 text-sm" value={selectedFieldObj.height} onChange={(e) => handleFieldChange(selectedFieldObj.id, "height", e.target.value)} disabled={readOnly} aria-label="Height" />
+                <label className="text-muted-foreground mb-0.5 block text-xs">
+                  H (mm)
+                </label>
+                <Input
+                  type="number"
+                  className="h-8 text-sm"
+                  value={selectedFieldObj.height}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      selectedFieldObj.id,
+                      "height",
+                      e.target.value,
+                    )
+                  }
+                  disabled={readOnly}
+                  aria-label="Height"
+                />
               </div>
             </div>
             {selectedFieldObj.type === "text" && (
               <div>
-                <label className="mb-0.5 block text-xs text-muted-foreground">Font Size (pt)</label>
-                <Input type="number" className="h-8 text-sm" value={selectedFieldObj.fontSize ?? 8} onChange={(e) => handleFieldChange(selectedFieldObj.id, "fontSize", e.target.value)} disabled={readOnly} aria-label="Font size" />
+                <label className="text-muted-foreground mb-0.5 block text-xs">
+                  Font Size (pt)
+                </label>
+                <Input
+                  type="number"
+                  className="h-8 text-sm"
+                  value={selectedFieldObj.fontSize ?? 8}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      selectedFieldObj.id,
+                      "fontSize",
+                      e.target.value,
+                    )
+                  }
+                  disabled={readOnly}
+                  aria-label="Font size"
+                />
               </div>
             )}
             {!readOnly && (
-              <Button variant="outline" size="sm" className="w-full text-destructive" onClick={() => handleRemoveField(selectedFieldObj.id)}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-destructive w-full"
+                onClick={() => handleRemoveField(selectedFieldObj.id)}
+              >
                 Remove Field
               </Button>
             )}
           </div>
         ) : (
-          <p className="text-xs text-muted-foreground">Select a field to edit its properties</p>
+          <p className="text-muted-foreground text-xs">
+            Select a field to edit its properties
+          </p>
         )}
 
         {/* Field list */}
         {fields.length > 0 && (
-          <div className="mt-3 border-t border-border pt-3">
-            <h5 className="mb-1 text-xs font-semibold text-muted-foreground">Fields ({fields.length})</h5>
+          <div className="border-border mt-3 border-t pt-3">
+            <h5 className="text-muted-foreground mb-1 text-xs font-semibold">
+              Fields ({fields.length})
+            </h5>
             <div className="space-y-1">
               {fields.map((f) => (
                 <button
@@ -350,8 +484,10 @@ function LabelDesigner({
                   type="button"
                   onClick={() => setSelectedField(f.id)}
                   className={cn(
-                    "flex w-full items-center gap-1.5 rounded px-2 py-1 text-xs text-left transition-colors",
-                    selectedField === f.id ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/30",
+                    "flex w-full items-center gap-1.5 rounded px-2 py-1 text-left text-xs transition-colors",
+                    selectedField === f.id
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted/30",
                   )}
                 >
                   <span>{fieldTypeIcons[f.type]}</span>

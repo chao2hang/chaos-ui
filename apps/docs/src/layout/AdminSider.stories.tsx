@@ -24,7 +24,7 @@ const menuItems = [
 
 export const Default: Story = {
   args: {
-    items: menuItems,
-    activeKey: "home",
+    menuItems,
+    selectedKey: "home",
   },
 };

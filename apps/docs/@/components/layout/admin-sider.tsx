@@ -30,7 +30,10 @@ interface MenuItem {
   disabled?: boolean;
 }
 
-interface AdminSiderProps extends React.ComponentProps<"aside"> {
+interface AdminSiderProps extends Omit<
+  React.ComponentProps<"aside">,
+  "onSelect"
+> {
   /** Whether sidebar is collapsed / 是否折叠 */
   collapsed?: boolean;
   /** Collapse change callback / 折叠变更回调 */
@@ -71,7 +74,9 @@ function AdminSider({
   ...props
 }: AdminSiderProps) {
   const [internalSelected, setInternalSelected] = React.useState(selectedKey);
-  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(new Set());
+  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(
+    new Set(),
+  );
   const current = selectedKey ?? internalSelected;
 
   const handleItemClick = (item: MenuItem) => {
@@ -112,7 +117,9 @@ function AdminSider({
               : "text-muted-foreground hover:bg-muted hover:text-foreground",
             item.disabled && "pointer-events-none opacity-50",
           )}
-          style={{ paddingLeft: collapsed ? undefined : `${12 + level * 16}px` }}
+          style={{
+            paddingLeft: collapsed ? undefined : `${12 + level * 16}px`,
+          }}
           aria-current={isSelected ? "page" : undefined}
         >
           {item.icon && <span className="shrink-0">{item.icon}</span>}
@@ -152,8 +159,10 @@ function AdminSider({
       <aside
         data-slot="admin-sider"
         className={cn(
-          "flex flex-col border-r border-border bg-background transition-all duration-300",
-          mobileOpen ? "fixed inset-y-0 left-0 z-50 lg:static" : "hidden lg:flex",
+          "border-border bg-background flex flex-col border-r transition-all duration-300",
+          mobileOpen
+            ? "fixed inset-y-0 left-0 z-50 lg:static"
+            : "hidden lg:flex",
           className,
         )}
         style={{ width: collapsed ? collapsedWidth : width }}
@@ -163,12 +172,14 @@ function AdminSider({
         {logo && (
           <div
             className={cn(
-              "flex h-16 items-center border-b border-border px-4",
+              "border-border flex h-16 items-center border-b px-4",
               collapsed && "justify-center px-2",
             )}
           >
             {collapsed ? (
-              <span className="text-lg font-bold">{typeof logo === "string" ? logo.charAt(0) : logo}</span>
+              <span className="text-lg font-bold">
+                {typeof logo === "string" ? logo.charAt(0) : logo}
+              </span>
             ) : (
               logo
             )}
@@ -184,7 +195,7 @@ function AdminSider({
         {footer && (
           <div
             className={cn(
-              "border-t border-border p-2",
+              "border-border border-t p-2",
               collapsed && "flex justify-center",
             )}
           >
@@ -197,11 +208,15 @@ function AdminSider({
           <Button
             variant="ghost"
             size="icon-sm"
-            className="absolute -right-3 top-20 z-10 hidden border border-border bg-background lg:flex"
+            className="border-border bg-background absolute top-20 -right-3 z-10 hidden border lg:flex"
             onClick={() => onCollapse(!collapsed)}
             aria-label={collapsed ? "Expand" : "Collapse"}
           >
-            {collapsed ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
+            {collapsed ? (
+              <ChevronRight className="size-4" />
+            ) : (
+              <ChevronLeft className="size-4" />
+            )}
           </Button>
         )}
       </aside>

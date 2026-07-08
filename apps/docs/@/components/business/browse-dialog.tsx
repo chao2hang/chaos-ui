@@ -36,7 +36,9 @@ import {
 /* ------------------------------------------------------------------ */
 
 /** Column definition matching the existing DataTable / SearchTable pattern. */
-export interface BrowseColumn<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface BrowseColumn<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> {
   key: string;
   title: string;
   dataIndex?: keyof T & string;
@@ -74,7 +76,9 @@ export interface BrowseTreeNode {
 /*  BrowseDialog                                                        */
 /* ------------------------------------------------------------------ */
 
-export interface BrowseDialogProps<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface BrowseDialogProps<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> {
   /** Dialog open state (controlled). */
   open: boolean;
   /** Dialog open change callback. */
@@ -168,11 +172,13 @@ export interface BrowseDialogProps<T extends Record<string, unknown> = Record<st
  * />
  * ```
  */
-function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown>>({
+function BrowseDialog<
+  T extends Record<string, unknown> = Record<string, unknown>,
+>({
   open,
   onOpenChange,
   loadData,
-  columns,
+  columns = [],
   value,
   defaultValue: _defaultValue = [],
   onChange,
@@ -190,7 +196,8 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
   const { t } = useTranslation("ui");
   const rowKey = rowKeyProp;
 
-  const resolvedTitle = title ?? t("browseDialog.title", { defaultValue: "选择" });
+  const resolvedTitle =
+    title ?? t("browseDialog.title", { defaultValue: "选择" });
   const resolvedSearchPlaceholder =
     searchPlaceholder ?? t("browseDialog.search", { defaultValue: "搜索..." });
   const resolvedEmpty =
@@ -248,7 +255,9 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
         keyword,
         page,
         pageSize,
-        ...(activeCategoryId !== undefined ? { categoryId: activeCategoryId } : {}),
+        ...(activeCategoryId !== undefined
+          ? { categoryId: activeCategoryId }
+          : {}),
       })
         .then((result) => {
           if (currentFetchId !== fetchIdRef.current) return; // stale
@@ -267,12 +276,23 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
     }, searchDebounceMs);
 
     return () => clearTimeout(timer);
-  }, [open, keyword, page, pageSize, activeCategoryId, loadData, searchDebounceMs]);
+  }, [
+    open,
+    keyword,
+    page,
+    pageSize,
+    activeCategoryId,
+    loadData,
+    searchDebounceMs,
+  ]);
 
   /* ---- tree loading ---- */
   React.useEffect(() => {
     if (open && tree) {
-      tree.loadTree().then(setTreeNodes).catch(() => setTreeNodes([]));
+      tree
+        .loadTree()
+        .then(setTreeNodes)
+        .catch(() => setTreeNodes([]));
     }
   }, [open, tree]);
 
@@ -356,9 +376,12 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
   const selectedCount = selectedMap.size;
   const allCurrentPageSelected =
     rows.length > 0 && rows.every((r) => selectedMap.has(String(r[rowKey])));
-  const someCurrentPageSelected = rows.some((r) => selectedMap.has(String(r[rowKey])));
+  const someCurrentPageSelected = rows.some((r) =>
+    selectedMap.has(String(r[rowKey])),
+  );
   const canConfirm =
-    selectedCount >= (minSelect ?? 0) && (maxSelect == null || selectedCount <= maxSelect);
+    selectedCount >= (minSelect ?? 0) &&
+    (maxSelect == null || selectedCount <= maxSelect);
 
   const alignClass: Record<string, string> = {
     left: "text-left",
@@ -392,7 +415,7 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
         <div className={cn("flex gap-0", tree && "min-h-[400px]")}>
           {/* ---- Tree panel ---- */}
           {tree && (
-            <div className="w-48 shrink-0 border-r pr-2 overflow-y-auto">
+            <div className="w-48 shrink-0 overflow-y-auto border-r pr-2">
               <ul className="space-y-0.5 py-1 text-sm">
                 {/* "All" node */}
                 <li>
@@ -403,11 +426,13 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                       setPage(1);
                     }}
                     className={cn(
-                      "flex w-full items-center gap-1.5 rounded-sm px-2 py-1.5 text-left transition-colors hover:bg-muted",
+                      "hover:bg-muted flex w-full items-center gap-1.5 rounded-sm px-2 py-1.5 text-left transition-colors",
                       activeCategoryId === undefined && "bg-accent font-medium",
                     )}
                   >
-                    {t("browseDialog.allCategories", { defaultValue: "全部分类" })}
+                    {t("browseDialog.allCategories", {
+                      defaultValue: "全部分类",
+                    })}
                   </button>
                 </li>
                 {treeNodes.map((node) => (
@@ -426,9 +451,9 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
           )}
 
           {/* ---- Content area ---- */}
-          <div className="flex-1 flex flex-col min-w-0 gap-3 pl-0 pl-3">
+          <div className="flex min-w-0 flex-1 flex-col gap-3 pl-0 pl-3">
             {/* Search input */}
-            <div className="flex items-center gap-2 border rounded-lg px-2">
+            <div className="flex items-center gap-2 rounded-lg border px-2">
               <SearchIcon className="size-4 shrink-0 opacity-50" />
               <Input
                 value={keyword}
@@ -445,7 +470,7 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
             {/* Selected chips */}
             {selectedCount > 0 && (
               <div className="flex flex-wrap items-center gap-1">
-                <span className="text-xs text-muted-foreground shrink-0">
+                <span className="text-muted-foreground shrink-0 text-xs">
                   {t("browseDialog.selected", {
                     defaultValue: `已选 ${selectedCount} 项`,
                     count: selectedCount,
@@ -464,14 +489,16 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                     <Badge
                       key={key}
                       variant="secondary"
-                      className="gap-1 cursor-default"
+                      className="cursor-default gap-1"
                     >
                       <span className="max-w-[120px] truncate">{label}</span>
                       <button
                         type="button"
                         onClick={() => removeItem(key)}
-                        className="ml-0.5 inline-flex size-3 items-center justify-center rounded-full hover:bg-muted-foreground/20"
-                        aria-label={t("browseDialog.removeItem", { defaultValue: "移除" })}
+                        className="hover:bg-muted-foreground/20 ml-0.5 inline-flex size-3 items-center justify-center rounded-full"
+                        aria-label={t("browseDialog.removeItem", {
+                          defaultValue: "移除",
+                        })}
                       >
                         <XIcon className="size-2.5" />
                       </button>
@@ -492,11 +519,16 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                         type="checkbox"
                         checked={allCurrentPageSelected}
                         ref={(el) => {
-                          if (el) el.indeterminate = someCurrentPageSelected && !allCurrentPageSelected;
+                          if (el)
+                            el.indeterminate =
+                              someCurrentPageSelected &&
+                              !allCurrentPageSelected;
                         }}
                         onChange={toggleAllCurrentPage}
-                        className="size-4 rounded-[4px] border-input cursor-pointer"
-                        aria-label={t("browseDialog.selectAll", { defaultValue: "全选当前页" })}
+                        className="border-input size-4 cursor-pointer rounded-[4px]"
+                        aria-label={t("browseDialog.selectAll", {
+                          defaultValue: "全选当前页",
+                        })}
                       />
                     </TableHead>
                     {columns.map((col) => (
@@ -528,7 +560,7 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                     <TableRow>
                       <TableCell
                         colSpan={columns.length + 1}
-                        className="py-12 text-center text-muted-foreground"
+                        className="text-muted-foreground py-12 text-center"
                       >
                         {resolvedEmpty}
                       </TableCell>
@@ -541,7 +573,7 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                         <TableRow
                           key={key}
                           className={cn(
-                            "cursor-pointer hover:bg-muted/50",
+                            "hover:bg-muted/50 cursor-pointer",
                             isSelected && "bg-accent/30",
                           )}
                           onClick={() => toggleRow(record)}
@@ -551,12 +583,15 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
                               type="checkbox"
                               checked={isSelected}
                               onChange={() => toggleRow(record)}
-                              className="size-4 rounded-[4px] border-input cursor-pointer"
-                              aria-label={t("browseDialog.selectItem", { defaultValue: "选择此项" })}
+                              className="border-input size-4 cursor-pointer rounded-[4px]"
+                              aria-label={t("browseDialog.selectItem", {
+                                defaultValue: "选择此项",
+                              })}
                             />
                           </TableCell>
                           {columns.map((col) => {
-                            const dataKey = (col.dataIndex || col.key) as keyof T;
+                            const dataKey = (col.dataIndex ||
+                              col.key) as keyof T;
                             const cellValue = record[dataKey];
                             const content = col.render
                               ? col.render(cellValue, record, rowIndex)
@@ -581,7 +616,7 @@ function BrowseDialog<T extends Record<string, unknown> = Record<string, unknown
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex items-center justify-between text-sm">
               <span>
                 {t("browseDialog.total", {
                   defaultValue: `共 ${total} 条`,
@@ -681,7 +716,7 @@ function TreeNodeItem({
           if (hasChildren) onToggleExpand(node.id);
         }}
         className={cn(
-          "flex w-full items-center gap-1 rounded-sm px-2 py-1.5 text-left text-sm transition-colors hover:bg-muted",
+          "hover:bg-muted flex w-full items-center gap-1 rounded-sm px-2 py-1.5 text-left text-sm transition-colors",
           isActive && "bg-accent font-medium",
         )}
         style={{ paddingLeft: `${8 + depth * 16}px` }}
@@ -697,7 +732,9 @@ function TreeNodeItem({
         )}
         <span className="flex-1 truncate">{node.label}</span>
         {node.count != null && (
-          <span className="shrink-0 text-xs text-muted-foreground">{node.count}</span>
+          <span className="text-muted-foreground shrink-0 text-xs">
+            {node.count}
+          </span>
         )}
       </button>
       {hasChildren && isExpanded && (

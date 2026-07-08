@@ -119,6 +119,7 @@ function AutoComplete({
       data-slot="autocomplete"
     >
       <PopoverTrigger
+        nativeButton={false}
         render={
           <Input
             value={currentValue}

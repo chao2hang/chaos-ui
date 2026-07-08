@@ -23,11 +23,21 @@ interface ChatCardMessageProps {
   className?: string;
 }
 
-function ChatCardMessage({ title, description, thumbnail, metadata, actions, className }: ChatCardMessageProps) {
+function ChatCardMessage({
+  title = "",
+  description,
+  thumbnail,
+  metadata,
+  actions,
+  className,
+}: ChatCardMessageProps) {
   return (
     <div
       data-slot="chat-card-message"
-      className={cn("flex w-full max-w-sm flex-col overflow-hidden rounded-lg border border-border bg-background", className)}
+      className={cn(
+        "border-border bg-background flex w-full max-w-sm flex-col overflow-hidden rounded-lg border",
+        className,
+      )}
     >
       <div className="flex items-start gap-3 p-3">
         {thumbnail ? (
@@ -38,29 +48,43 @@ function ChatCardMessage({ title, description, thumbnail, metadata, actions, cla
             loading="lazy"
           />
         ) : (
-          <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-muted" aria-hidden>
-            <ImageIcon className="size-5 text-muted-foreground" />
+          <span
+            className="bg-muted flex size-12 shrink-0 items-center justify-center rounded-md"
+            aria-hidden
+          >
+            <ImageIcon className="text-muted-foreground size-5" />
           </span>
         )}
         <div className="flex min-w-0 flex-1 flex-col">
-          <h4 className="truncate text-sm font-semibold" title={title}>{title}</h4>
+          <h4 className="truncate text-sm font-semibold" title={title}>
+            {title}
+          </h4>
           {description ? (
-            <p className="line-clamp-2 text-xs text-muted-foreground">{description}</p>
+            <p className="text-muted-foreground line-clamp-2 text-xs">
+              {description}
+            </p>
           ) : null}
         </div>
       </div>
       {metadata && metadata.length > 0 ? (
-        <dl className="grid grid-cols-2 gap-px border-t border-border bg-border">
+        <dl className="border-border bg-border grid grid-cols-2 gap-px border-t">
           {metadata.map((m) => (
             <div key={m.label} className="bg-background px-3 py-1.5">
-              <dt className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">{m.label}</dt>
-              <dd className="truncate text-xs font-medium text-foreground" title={m.value}>{m.value}</dd>
+              <dt className="text-muted-foreground text-[0.65rem] tracking-wide uppercase">
+                {m.label}
+              </dt>
+              <dd
+                className="text-foreground truncate text-xs font-medium"
+                title={m.value}
+              >
+                {m.value}
+              </dd>
             </div>
           ))}
         </dl>
       ) : null}
       {actions ? (
-        <div className="flex items-center justify-end gap-1 border-t border-border px-3 py-2">
+        <div className="border-border flex items-center justify-end gap-1 border-t px-3 py-2">
           {actions}
         </div>
       ) : null}
