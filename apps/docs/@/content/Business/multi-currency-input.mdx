@@ -39,7 +39,7 @@ export function Basic() {
 | `baseCurrency`      | `string`                 | `CNY`   | Base currency code (default: "CNY")                                             |
 | `rate`              | `number`                 | —       | Exchange rate (1 source = rate base). If not provided, looked up from rates map |
 | `onRateChange`      | `() => void`             | —       | Rate override callback                                                          |
-| `rates`             | `Record<string, number>` | —       | Exchange rate map: { "USD": 7.25, "EUR": 7.85, ... }                            |
+| `rates`             | `Record<string, number>` | —       | Exchange rate map: &#123; "USD": 7.25, "EUR": 7.85, ... &#125;}                 |
 | `readOnly`          | `boolean`                | —       | Read-only mode                                                                  |
 | `allowRateOverride` | `boolean`                | —       | Allow manual rate override (default: true)                                      |
 | `showConversion`    | `boolean`                | —       | Show conversion preview (default: true)                                         |

@@ -5,7 +5,6 @@ import { CodeBlock } from "@/components/code-block";
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-```tsx <BudgetAllocator total={100000} categories={[ { id: "mkt", name: "市场", amount: 30000, cap: 60000 }, { id: "rnd", name: "研发", amount: 50000, cap: 80000 },
 BudgetAllocator — budget allocator component.
 
 ## 何时使用 / When to Use
@@ -24,27 +23,25 @@ export function Basic() {
   return <BudgetAllocator />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BudgetAllocator
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `total` | `number` | `0` | 预算总额 |
-| `categories` | `Array<{` | — | 待分配类别 |
-| `id` | `string` | — | DOM 元素 id <br/> DOM element id |
-| `name` | `string` | — | 表单字段名 <br/> Form field name |
-| `amount` | `number` | — |  |
-| `cap` | `number` | — |  |
-| `currency` | `string` | `CNY` | 货币代码 |
-| `onChange` | `() => void` | — | 分配变更回调 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop         | Type                   | Default | 说明 / Description                                        |
+| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`  | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `total`      | `number`               | `0`     | 预算总额                                                  |
+| `categories` | `Array<{`              | —       | 待分配类别                                                |
+| `id`         | `string`               | —       | DOM 元素 id <br/> DOM element id                          |
+| `name`       | `string`               | —       | 表单字段名 <br/> Form field name                          |
+| `amount`     | `number`               | —       |                                                           |
+| `cap`        | `number`               | —       |                                                           |
+| `currency`   | `string`               | `CNY`   | 货币代码                                                  |
+| `onChange`   | `() => void`           | —       | 分配变更回调                                              |
+| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-budget-allocator--docs)。
-```

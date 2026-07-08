@@ -259,9 +259,8 @@ export const components: ComponentMeta[] = [
     name: "ChatInput",
     nameZh: "Chat Input",
     category: "Form",
-    desc: "ChatInput — chat input component.",
-    descZh:
-      '```tsx <ChatInput value={text} onChange={setText} onSend={handleSend} placeholder="发送消息" /> ```',
+    desc: "ChatInput — a form controls for user input and data submission. from Chaos UI.",
+    descZh: "Chat Input — Chaos UI 的表单控件。",
     sourcePath: "packages/chaos-design-ui/components/ui/chat-input.tsx",
     storybookId: "components-chat-input--docs",
   },
@@ -270,9 +269,8 @@ export const components: ComponentMeta[] = [
     name: "ChatMessage",
     nameZh: "Chat Message",
     category: "Feedback",
-    desc: "ChatMessage — chat message component.",
-    descZh:
-      '```tsx <ChatMessage role="user" content="你好" name="张三" time="10:00" /> ```',
+    desc: "ChatMessage — a feedback and status communication to the user. from Chaos UI.",
+    descZh: "Chat Message — Chaos UI 的反馈组件。",
     sourcePath: "packages/chaos-design-ui/components/ui/chat-message.tsx",
     storybookId: "components-chat-message--docs",
   },
@@ -764,9 +762,8 @@ export const components: ComponentMeta[] = [
     name: "MobileSwipeAction",
     nameZh: "Mobile Swipe Action",
     category: "General",
-    desc: "MobileSwipeAction — mobile swipe action component.",
-    descZh:
-      '```tsx <MobileSwipeAction rightActions={[{ key: "delete", label: "删除", onClick: handleDelete, color: "destructive" }]} > <Row /> </MobileSwipeAction> ```',
+    desc: "MobileSwipeAction — a general-purpose primitives used across the app. from Chaos UI.",
+    descZh: "Mobile Swipe Action — Chaos UI 的通用基础组件。",
     sourcePath:
       "packages/chaos-design-ui/components/ui/mobile-swipe-action.tsx",
     storybookId: "components-mobile-swipe-action--docs",
@@ -1368,9 +1365,8 @@ export const components: ComponentMeta[] = [
     name: "ArticleLayout",
     nameZh: "Article Layout",
     category: "System Layout",
-    desc: "ArticleLayout — article layout component.",
-    descZh:
-      "```tsx <ArticleLayout title={<h1>指南</h1>} toc={<Toc />}> <p>正文内容…</p> </ArticleLayout> ```",
+    desc: "ArticleLayout — a system-level layout shell for admin/dashboard/auth pages.",
+    descZh: "Article Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
     sourcePath: "packages/chaos-design-ui/components/layout/article-layout.tsx",
     storybookId: "layouts-article-layout--docs",
   },
@@ -1493,9 +1489,9 @@ export const components: ComponentMeta[] = [
     name: "PrintTemplateLayout",
     nameZh: "Print Template Layout",
     category: "System Layout",
-    desc: "PrintTemplateLayout — print template layout component.",
+    desc: "PrintTemplateLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh:
-      '```tsx <PrintTemplateLayout title="出库单"> <InvoiceBody /> </PrintTemplateLayout> ```',
+      "Print Template Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
     sourcePath:
       "packages/chaos-design-ui/components/layout/print-template-layout.tsx",
     storybookId: "layouts-print-template-layout--docs",
@@ -1545,9 +1541,8 @@ export const components: ComponentMeta[] = [
     name: "WizardLayout",
     nameZh: "Wizard Layout",
     category: "System Layout",
-    desc: "WizardLayout — wizard layout component.",
-    descZh:
-      '```tsx <WizardLayout steps={[{ id: "info", title: "信息" }, { id: "confirm", title: "确认" }]} current={0} > <StepBody /> </WizardLayout> ```',
+    desc: "WizardLayout — a system-level layout shell for admin/dashboard/auth pages.",
+    descZh: "Wizard Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
     sourcePath: "packages/chaos-design-ui/components/layout/wizard-layout.tsx",
     storybookId: "layouts-wizard-layout--docs",
   },
@@ -1689,8 +1684,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Area Chart",
     category: "Business",
     desc: "AreaChart — area chart component.",
-    descZh:
-      '```tsx <AreaChart data={[10, 40, 25, 60, 45]} labels={["一","二","三","四","五"]} /> ``` 面积图(趋势+填充)',
+    descZh: " 面积图(趋势+填充)",
     sourcePath: "packages/chaos-design-ui/components/business/area-chart.tsx",
     storybookId: "business-area-chart--docs",
   },
@@ -1839,8 +1833,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Bar Chart",
     category: "Business",
     desc: "BarChart — bar chart component.",
-    descZh:
-      '```tsx <BarChart data={[{label:"Q1",value:30},{label:"Q2",value:60}]} /> ``` 柱状图(分组/堆叠/横向)',
+    descZh: " 柱状图(分组/堆叠/横向)",
     sourcePath: "packages/chaos-design-ui/components/business/bar-chart.tsx",
     storybookId: "business-bar-chart--docs",
   },
@@ -1850,8 +1843,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Bar List Card",
     category: "Business",
     desc: "BarListCard — bar list card component.",
-    descZh:
-      '```tsx <BarListCard title="销量TOP" data={[{label:"A",value:80},{label:"B",value:42}]} /> ``` 排名列表卡',
+    descZh: " 排名列表卡",
     sourcePath:
       "packages/chaos-design-ui/components/business/bar-list-card.tsx",
     storybookId: "business-bar-list-card--docs",
@@ -2765,9 +2757,8 @@ export const components: ComponentMeta[] = [
     name: "DashboardGrid",
     nameZh: "Dashboard Grid",
     category: "Business",
-    desc: "DashboardGrid — dashboard grid component.",
-    descZh:
-      '```tsx <DashboardGrid title="经营概览" stats={[ { label: "营收", value: 1280000, delta: 0.12 }, { label: "成本", value: 420000, delta: -0.05 }, ]} /> ```',
+    desc: "DashboardGrid — a business component for ERP / enterprise scenarios.",
+    descZh: "Dashboard Grid — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/dashboard-grid.tsx",
     storybookId: "business-dashboard-grid--docs",
@@ -2887,8 +2878,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Donut Chart",
     category: "Business",
     desc: "DonutChart — donut chart component.",
-    descZh:
-      '```tsx <DonutChart data={[{label:"A",value:60,color:"#3b82f6"}]} /> ``` 环形图(占比)',
+    descZh: " 环形图(占比)",
     sourcePath: "packages/chaos-design-ui/components/business/donut-chart.tsx",
     storybookId: "business-donut-chart--docs",
   },
@@ -3211,8 +3201,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Gauge Chart",
     category: "Business",
     desc: "GaugeChart — gauge chart component.",
-    descZh:
-      '```tsx <GaugeChart value={72} max={100} label="完成率" /> ``` 仪表盘图',
+    descZh: " 仪表盘图",
     sourcePath: "packages/chaos-design-ui/components/business/gauge-chart.tsx",
     storybookId: "business-gauge-chart--docs",
   },
@@ -3275,9 +3264,8 @@ export const components: ComponentMeta[] = [
     name: "ImMessage",
     nameZh: "Im Message",
     category: "Business",
-    desc: "ImMessage — im message component.",
-    descZh:
-      '```tsx <ImMessage direction="sent" author="张三" content="请查收本月报表" timestamp="2026-06-30T10:00:00Z" attachments={["report.xlsx"]} /> ```',
+    desc: "ImMessage — a business component for ERP / enterprise scenarios.",
+    descZh: "Im Message — 面向 ERP/企业场景的业务组件。",
     sourcePath: "packages/chaos-design-ui/components/business/im-message.tsx",
     storybookId: "business-im-message--docs",
   },
@@ -3447,9 +3435,8 @@ export const components: ComponentMeta[] = [
     name: "KanbanColumn",
     nameZh: "Kanban Column",
     category: "Business",
-    desc: "KanbanColumn — kanban column component.",
-    descZh:
-      '```tsx <KanbanColumn title="待处理" cards={[{ id: "c1", title: "对接支付通道" }]} onAddCard={() => {}} /> ```',
+    desc: "KanbanColumn — a business component for ERP / enterprise scenarios.",
+    descZh: "Kanban Column — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/kanban-column.tsx",
     storybookId: "business-kanban-column--docs",
@@ -3514,8 +3501,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Line Chart",
     category: "Business",
     desc: "LineChart — line chart component.",
-    descZh:
-      '```tsx <LineChart series={[{name:"A",values:[10,40,30]}]} labels={["Q1","Q2","Q3"]} /> ``` 折线图(多线+标注)',
+    descZh: " 折线图(多线+标注)",
     sourcePath: "packages/chaos-design-ui/components/business/line-chart.tsx",
     storybookId: "business-line-chart--docs",
   },
@@ -3664,9 +3650,8 @@ export const components: ComponentMeta[] = [
     name: "MessageList",
     nameZh: "Message List",
     category: "Business",
-    desc: "MessageList — message list component.",
-    descZh:
-      '```tsx <MessageList messages={[{ id: "m1", title: "审批通过", type: "success", time: "2026-06-30T10:00:00Z" }]} /> ```',
+    desc: "MessageList — a business component for ERP / enterprise scenarios.",
+    descZh: "Message List — 面向 ERP/企业场景的业务组件。",
     sourcePath: "packages/chaos-design-ui/components/business/message-list.tsx",
     storybookId: "business-message-list--docs",
   },
@@ -3897,9 +3882,8 @@ export const components: ComponentMeta[] = [
     name: "OverviewPage",
     nameZh: "Overview Page",
     category: "Business",
-    desc: "OverviewPage — overview page component.",
-    descZh:
-      '```tsx <OverviewPage title="经营总览" kpis={[{ label: "营收", value: 1280000, delta: 0.12 }]} activities={[{ id: "a1", text: "新增订单 120" }]} /> ```',
+    desc: "OverviewPage — a business component for ERP / enterprise scenarios.",
+    descZh: "Overview Page — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/overview-page.tsx",
     storybookId: "business-overview-page--docs",
@@ -3984,9 +3968,8 @@ export const components: ComponentMeta[] = [
     name: "PermissionButton",
     nameZh: "Permission Button",
     category: "Business",
-    desc: "PermissionButton — permission button component.",
-    descZh:
-      '```tsx <PermissionButton permission="bill:approve" permissions={["bill:approve"]} onClick={() => approve()} > 审批 </PermissionButton> ```',
+    desc: "PermissionButton — a business component for ERP / enterprise scenarios.",
+    descZh: "Permission Button — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/permission-button.tsx",
     storybookId: "business-permission-button--docs",
@@ -4028,9 +4011,8 @@ export const components: ComponentMeta[] = [
     name: "PieChart",
     nameZh: "Pie Chart",
     category: "Business",
-    desc: "PieChart — pie chart component.",
-    descZh:
-      '```tsx <PieChart data={[{label:"A",value:60,color:"#3b82f6"}]} /> ``` 饼图',
+    desc: "PieChart — a business component for ERP / enterprise scenarios.",
+    descZh: "Pie Chart — 面向 ERP/企业场景的业务组件。",
     sourcePath: "packages/chaos-design-ui/components/business/pie-chart.tsx",
     storybookId: "business-pie-chart--docs",
   },
@@ -4150,8 +4132,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Promotion Rule Card",
     category: "Business",
     desc: "PromotionRuleCard — promotion rule card component.",
-    descZh:
-      '```tsx <PromotionRuleCard name="满 200 减 30" type="满减" discount={30} active /> ``` 促销规则展示卡',
+    descZh: " 促销规则展示卡",
     sourcePath:
       "packages/chaos-design-ui/components/business/promotion-rule-card.tsx",
     storybookId: "business-promotion-rule-card--docs",
@@ -4162,7 +4143,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Promotion Rule Editor",
     category: "Business",
     desc: "PromotionRuleEditor — promotion rule editor component.",
-    descZh: "```tsx <PromotionRuleEditor /> ``` 促销规则编辑器",
+    descZh: " 促销规则编辑器",
     sourcePath:
       "packages/chaos-design-ui/components/business/promotion-rule-editor.tsx",
     storybookId: "business-promotion-rule-editor--docs",
@@ -4229,8 +4210,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Radar Chart",
     category: "Business",
     desc: "RadarChart — radar chart component.",
-    descZh:
-      '```tsx <RadarChart axes={["速度","质量","成本"]} series={[{name:"A",values:[80,60,40]}]} /> ``` 雷达图(多维评估)',
+    descZh: " 雷达图(多维评估)",
     sourcePath: "packages/chaos-design-ui/components/business/radar-chart.tsx",
     storybookId: "business-radar-chart--docs",
   },
@@ -4240,8 +4220,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Radial Chart",
     category: "Business",
     desc: "RadialChart — radial chart component.",
-    descZh:
-      '```tsx <RadialChart value={78} label="达成率" /> ``` 径向图(达成率)',
+    descZh: " 径向图(达成率)",
     sourcePath: "packages/chaos-design-ui/components/business/radial-chart.tsx",
     storybookId: "business-radial-chart--docs",
   },
@@ -4417,7 +4396,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SankeyChart — sankey chart component.",
     descZh:
-      'with weighted connecting bands (pure SVG, no deps). ```tsx <SankeyChart flows={[{source:"广告",target:"下单",value:60}]} /> ``` 桑基图(流量流转)',
+      "with weighted connecting bands (pure SVG, no deps).  桑基图(流量流转)",
     sourcePath: "packages/chaos-design-ui/components/business/sankey-chart.tsx",
     storybookId: "business-sankey-chart--docs",
   },
@@ -4438,7 +4417,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Scatter Chart",
     category: "Business",
     desc: "ScatterChart — scatter chart component.",
-    descZh: '```tsx <ScatterChart data={[{x:10,y:20,label:"A"}]} /> ``` 散点图',
+    descZh: " 散点图",
     sourcePath:
       "packages/chaos-design-ui/components/business/scatter-chart.tsx",
     storybookId: "business-scatter-chart--docs",
@@ -4557,7 +4536,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Spark Chart",
     category: "Business",
     desc: "SparkChart — spark chart component.",
-    descZh: "```tsx <SparkChart data={[3,6,4,8,7,10]} /> ``` 迷你趋势图",
+    descZh: " 迷你趋势图",
     sourcePath: "packages/chaos-design-ui/components/business/spark-chart.tsx",
     storybookId: "business-spark-chart--docs",
   },
@@ -4599,8 +4578,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Stat Card With Delta",
     category: "Business",
     desc: "StatCardWithDelta — stat card with delta component.",
-    descZh:
-      '```tsx <StatCardWithDelta label="月营收" value={1280000} delta={12.5} /> ``` 统计卡 + 增减标签',
+    descZh: " 统计卡 + 增减标签",
     sourcePath:
       "packages/chaos-design-ui/components/business/stat-card-with-delta.tsx",
     storybookId: "business-stat-card-with-delta--docs",
@@ -4664,7 +4642,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Subform Tabs",
     category: "Business",
     desc: "SubformTabs — subform tabs component.",
-    descZh: "```tsx <SubformTabs /> ``` 子表单 tab",
+    descZh: " 子表单 tab",
     sourcePath: "packages/chaos-design-ui/components/business/subform-tabs.tsx",
     storybookId: "business-subform-tabs--docs",
   },
@@ -4753,9 +4731,8 @@ export const components: ComponentMeta[] = [
     name: "TaxDetailTable",
     nameZh: "Tax Detail Table",
     category: "Business",
-    desc: "TaxDetailTable — tax detail table component.",
-    descZh:
-      'tax for each line item, with a totals footer. ```tsx <TaxDetailTable rows={[{ id: "t1", name: "商品A", amount: 1000, taxRate: 0.13, taxAmount: 130 }]} /> ```',
+    desc: "TaxDetailTable — a business component for ERP / enterprise scenarios.",
+    descZh: "Tax Detail Table — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/tax-detail-table.tsx",
     storybookId: "business-tax-detail-table--docs",
@@ -4861,8 +4838,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Tree Crud Page",
     category: "Business",
     desc: "TreeCrudPage — tree crud page component.",
-    descZh:
-      '```tsx <TreeCrudPage tree={[{ id: "g1", label: "饮料", children: [{ id: "c1", label: "碳酸饮料" }] }]} defaultSelected="c1" > 详情内容 </TreeCrudPage> ``` 左树右表 CRUD',
+    descZh: " 左树右表 CRUD",
     sourcePath:
       "packages/chaos-design-ui/components/business/tree-crud-page.tsx",
     storybookId: "business-tree-crud-page--docs",
@@ -4883,8 +4859,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Treemap Chart",
     category: "Business",
     desc: "TreemapChart — treemap chart component.",
-    descZh:
-      '```tsx <TreemapChart data={[{name:"A",value:60},{name:"B",value:40}]} /> ``` 树图(层级占比)',
+    descZh: " 树图(层级占比)",
     sourcePath:
       "packages/chaos-design-ui/components/business/treemap-chart.tsx",
     storybookId: "business-treemap-chart--docs",
@@ -4971,8 +4946,7 @@ export const components: ComponentMeta[] = [
     nameZh: "Waterfall Chart",
     category: "Business",
     desc: "WaterfallChart — waterfall chart component.",
-    descZh:
-      'absolute totals when `absolute` is true. ```tsx <WaterfallChart data={[{label:"期初",value:100},{label:"收入",value:40},{label:"支出",value:-20}]} /> ``` 瀑布图(财务分析)',
+    descZh: "absolute totals when `absolute` is true.  瀑布图(财务分析)",
     sourcePath:
       "packages/chaos-design-ui/components/business/waterfall-chart.tsx",
     storybookId: "business-waterfall-chart--docs",

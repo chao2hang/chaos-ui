@@ -541,7 +541,10 @@ def guess_component_description(slug: str, category: str, source_content: str, n
             if "高德地图坐标系" in l and "经度在前" in l:
                 continue  # internal coord note, not component desc
             lines.append(l)
-        return " ".join(lines)[:160]
+        result = " ".join(lines)[:160]
+        # Remove inline code blocks (```tsx ... ```) that break MDX parsing
+        result = re.sub(r'```\w*\s*.*?```', '', result)
+        return result
 
     # Try JSDoc immediately preceding the exported primary component
     if primary:
@@ -1117,7 +1120,7 @@ def generate_mdx(entry: dict, info: dict) -> str:
     import_names = main_exports[:4] if len(main_exports) <= 4 else [primary]
     import_line = f'import {{ {", ".join(import_names)} }} from "{import_path}"'
 
-    codeblock_import = '\nimport { CodeBlock } from "@/components/code-block"' if slug != "code-block" else ""
+    codeblock_import = '\nimport { CodeBlock } from "@/components/code-block"' if slug != "code-block" and "CodeBlock" not in import_names else ""
 
     # Title
     title_line = f"# {name}" + (f" {nameZh}" if nameZh and nameZh != name else "")

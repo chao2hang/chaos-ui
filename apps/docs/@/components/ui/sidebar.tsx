@@ -157,6 +157,17 @@ function SidebarProvider({
   );
 }
 
+const DARK_SIDEBAR_VARS: Record<string, string> = {
+  "--sidebar-background": "oklch(0.2 0.01 260)",
+  "--sidebar-foreground": "oklch(0.9 0.005 260)",
+  "--sidebar-primary": "oklch(0.6 0.15 260)",
+  "--sidebar-primary-foreground": "oklch(1 0 0)",
+  "--sidebar-accent": "oklch(0.3 0.01 260)",
+  "--sidebar-accent-foreground": "oklch(0.9 0.005 260)",
+  "--sidebar-border": "oklch(0.3 0.01 260)",
+  "--sidebar-ring": "oklch(0.6 0.15 260)",
+};
+
 function Sidebar({
   side = "left",
   variant = "sidebar",
@@ -164,13 +175,23 @@ function Sidebar({
   className,
   children,
   dir,
+  style,
+  theme,
   ...props
 }: React.ComponentProps<"div"> & {
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
+  theme?: "light" | "dark";
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const sidebarStyle =
+    theme === "dark"
+      ? {
+          ...DARK_SIDEBAR_VARS,
+          ...(style as Record<string, string> | undefined),
+        }
+      : style;
 
   if (collapsible === "none") {
     return (
@@ -180,6 +201,7 @@ function Sidebar({
           "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
           className,
         )}
+        style={sidebarStyle}
         {...props}
       >
         {children}
@@ -198,7 +220,9 @@ function Sidebar({
           className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
           style={
             {
+              ...(theme === "dark" ? DARK_SIDEBAR_VARS : {}),
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+              ...style,
             } as React.CSSProperties
           }
           side={side}
@@ -251,6 +275,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className="bg-sidebar group-data-[variant=floating]:ring-sidebar-border flex size-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1"
+          style={sidebarStyle}
         >
           {children}
         </div>
