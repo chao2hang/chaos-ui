@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MobileNavigation } from "@/components/business/mobile-navigation";
 
-const meta = {
+const meta: Meta<typeof MobileNavigation> = {
   title: "Business/MobileNavigation",
   component: MobileNavigation,
   tags: ["autodocs"],
-} satisfies Meta<typeof MobileNavigation>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

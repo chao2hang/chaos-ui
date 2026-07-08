@@ -1,5 +1,5 @@
-import { ColorTag } from "@/components/business/color-tag";
-import { CodeBlock } from "@/components/code-block";
+import { ColorTag } from "@/components/business/color-tag"
+import { CodeBlock } from "@/components/code-block"
 
 # ColorTag 颜色标签
 
@@ -24,31 +24,32 @@ export function Basic() {
   return <ColorTag />
 }`} lang="tsx" />
 
+
 ## 样式变体 / Style Variants
 
 **color / color**
 
-| color    | 说明 / Description | 默认 |
-| -------- | ------------------ | ---- |
-| `red`    |                    |      |
-| `orange` |                    |      |
-| `yellow` |                    |      |
-| `green`  |                    |      |
-| `blue`   |                    |      |
-| `purple` |                    |      |
-| `pink`   |                    |      |
-| `gray`   |                    | ✓    |
+| color | 说明 / Description | 默认 |
+|---|---|---|
+| `red` |  |  |
+| `orange` |  |  |
+| `yellow` |  |  |
+| `green` |  |  |
+| `blue` |  |  |
+| `purple` |  |  |
+| `pink` |  |  |
+| `gray` |  | ✓ |
 
 ## API / Props
 
 ### ColorTag
 
-| Prop        | Type                           | Default | 说明 / Description                                            |
-| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
-| `label`     | `string`                       | —       | 标签文本 <br/> Label text                                     |
-| `dot`       | `boolean`                      | `true`  |                                                               |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `label` | `string` | — | 标签文本 <br/> Label text |
+| `dot` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 
@@ -56,4 +57,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-color-tag--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-colortag--docs)。

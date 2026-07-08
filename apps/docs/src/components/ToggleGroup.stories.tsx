@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Bold, Italic, Underline } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof ToggleGroup> = {
   title: "Components/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
-} satisfies Meta<typeof ToggleGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>

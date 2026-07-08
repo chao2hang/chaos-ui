@@ -9,11 +9,10 @@ interface EmailItem extends FormListItem {
   label: string
 }
 
-const meta = {
+const meta: Meta<typeof FormList> = {
   title: "Components/FormList",
   component: FormList,
   tags: ["autodocs"],
-} satisfies Meta<typeof FormList>
 
 export default meta
 type Story = StoryObj<typeof meta>

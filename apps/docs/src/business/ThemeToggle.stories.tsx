@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ThemeToggle } from "@/components/business/theme-toggle"
 
-const meta = {
+const meta: Meta<typeof ThemeToggle> = {
   title: "Business/ThemeToggle",
   component: ThemeToggle,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof ThemeToggle>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

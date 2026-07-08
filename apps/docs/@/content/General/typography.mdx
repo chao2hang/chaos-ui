@@ -1,5 +1,5 @@
-import { Typography } from "@/components/ui/typography";
-import { CodeBlock } from "@/components/code-block";
+import { Typography } from "@/components/ui/typography"
+import { CodeBlock } from "@/components/code-block"
 
 # Typography 排版
 
@@ -30,125 +30,120 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Typography variant="default">Default</Typography>
   <Typography variant="muted">Muted</Typography>
   <Typography variant="destructive">Destructive</Typography>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Typography size="sm">Sm</Typography>
   <Typography size="default">Default</Typography>
   <Typography size="lg">Lg</Typography>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **类型 / type**
 
-| type        | 说明 / Description | 默认 |
-| ----------- | ------------------ | ---- |
-| `default`   |                    | ✓    |
-| `secondary` |                    |      |
-| `success`   |                    |      |
-| `warning`   |                    |      |
-| `danger`    |                    |      |
-| `disabled`  |                    |      |
+| type | 说明 / Description | 默认 |
+|---|---|---|
+| `default` |  | ✓ |
+| `secondary` |  |  |
+| `success` |  |  |
+| `warning` |  |  |
+| `danger` |  |  |
+| `disabled` |  |  |
 
 **strong / strong**
 
-| strong  | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| strong | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **italic / italic**
 
-| italic  | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| italic | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **underline / underline**
 
 | underline | 说明 / Description | 默认 |
-| --------- | ------------------ | ---- |
-| `true`    |                    | ✓    |
-| `false`   |                    |      |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **delete / delete**
 
-| delete  | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| delete | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **code / code**
 
-| code    | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| code | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **mark / mark**
 
-| mark    | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| mark | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **keyboard / keyboard**
 
 | keyboard | 说明 / Description | 默认 |
-| -------- | ------------------ | ---- |
-| `true`   |                    | ✓    |
-| `false`  |                    |      |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **层级 / level**
 
 | level | 说明 / Description | 默认 |
-| ----- | ------------------ | ---- |
-| `1`   |                    | ✓    |
-| `2`   |                    |      |
-| `3`   |                    |      |
-| `4`   |                    |      |
-| `5`   |                    |      |
-| `6`   |                    |      |
+|---|---|---|
+| `1` |  | ✓ |
+| `2` |  |  |
+| `3` |  |  |
+| `4` |  |  |
+| `5` |  |  |
+| `6` |  |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                       | 默认 |
-| ------------- | ---------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                 | ✓    |
-| `muted`       |                                          |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `muted` |  |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
 
 ## API / Props
 
 ### Typography
 
-| Prop        | Type                           | Default | 说明 / Description                                            |
-| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

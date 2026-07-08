@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Watermark } from "@/components/business/watermark"
 
-const meta = {
+const meta: Meta<typeof Watermark> = {
   title: "Business/Watermark",
   component: Watermark,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof Watermark>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

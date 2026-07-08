@@ -1,5 +1,5 @@
-import { SplitButton } from "@/components/ui/split-button";
-import { CodeBlock } from "@/components/code-block";
+import { SplitButton } from "@/components/ui/split-button"
+import { CodeBlock } from "@/components/code-block"
 
 # SplitButton 分裂按钮
 
@@ -26,83 +26,78 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <SplitButton variant="default">Default</SplitButton>
   <SplitButton variant="destructive">Destructive</SplitButton>
   <SplitButton variant="outline">Outline</SplitButton>
   <SplitButton variant="secondary">Secondary</SplitButton>
   <SplitButton variant="ghost">Ghost</SplitButton>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <SplitButton size="sm">Sm</SplitButton>
   <SplitButton size="default">Default</SplitButton>
   <SplitButton size="lg">Lg</SplitButton>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 **变体 / Variant**
 
-| Variant   | 说明 / Description                             | 默认 |
-| --------- | ---------------------------------------------- | ---- |
-| `default` | 默认样式 / Default style                       | ✓    |
-| `outline` | 描边样式 / Outlined style                      |      |
-| `ghost`   | 幽灵(无背景)样式 / Ghost (no background) style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `outline` | 描边样式 / Outlined style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                             | 默认 |
-| ------------- | ---------------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                       | ✓    |
-| `destructive` | 危险/删除样式 / Destructive/danger style       |      |
-| `outline`     | 描边样式 / Outlined style                      |      |
-| `secondary`   | 次要样式 / Secondary action style              |      |
-| `ghost`       | 幽灵(无背景)样式 / Ghost (no background) style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| `outline` | 描边样式 / Outlined style |  |
+| `secondary` | 次要样式 / Secondary action style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### SplitButton
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `label`     | `React.ReactNode`      | —       | Main button label                                         |
-| `onClick`   | `() => void`           | —       | Main button click handler                                 |
-| `items`     | `SplitButtonItem[]`    | —       | Dropdown menu items                                       |
-| `onSelect`  | `() => void`           | —       | Called when a dropdown item is selected                   |
-| `disabled`  | `boolean`              | —       | 是否禁用 <br/> Whether disabled                           |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `label` | `React.ReactNode` | — | Main button label |
+| `onClick` | `() => void` | — | Main button click handler |
+| `items` | `SplitButtonItem[]` | — | Dropdown menu items |
+| `onSelect` | `() => void` | — | Called when a dropdown item is selected |
+| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-split-button--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-splitbutton--docs)。

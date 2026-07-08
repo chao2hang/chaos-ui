@@ -3,11 +3,10 @@ import { TopBar } from "@/components/layout/top-bar"
 import { Button } from "@/components/ui/button"
 import { BellIcon, SearchIcon, UserIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof TopBar> = {
   title: "Layouts/TopBar",
   component: TopBar,
   tags: ["autodocs"],
-} satisfies Meta<typeof TopBar>
 
 export default meta
 type Story = StoryObj<typeof meta>

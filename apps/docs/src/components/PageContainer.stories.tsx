@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { PlusIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof PageContainer> = {
   title: "Components/PageContainer",
   component: PageContainer,
   tags: ["autodocs"],
-} satisfies Meta<typeof PageContainer>
 
 export default meta
 type Story = StoryObj<typeof meta>

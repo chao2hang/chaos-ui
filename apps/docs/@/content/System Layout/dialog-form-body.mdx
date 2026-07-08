@@ -1,5 +1,5 @@
-import { DialogFormBody } from "@/components/layout/dialog-form-body";
-import { CodeBlock } from "@/components/code-block";
+import { DialogFormBody } from "@/components/layout/dialog-form-body"
+import { CodeBlock } from "@/components/code-block"
 
 # DialogFormBody 弹窗表单主体
 
@@ -24,18 +24,19 @@ export function Basic() {
   return <DialogFormBody />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### DialogFormBody
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `scrolling` | `boolean`                     | `true`  |                                                             |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `scrolling` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-dialog-form-body--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-dialogformbody--docs)。

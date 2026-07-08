@@ -12,12 +12,11 @@ const options = [
   { value: "fastapi", label: "FastAPI", group: "后端框架" },
 ]
 
-const meta = {
+const meta: Meta<typeof Combobox> = {
   title: "Business/Combobox",
   component: Combobox,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof Combobox>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

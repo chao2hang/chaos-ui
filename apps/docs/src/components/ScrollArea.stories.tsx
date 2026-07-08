@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
-const meta = {
+const meta: Meta<typeof ScrollArea> = {
   title: "Components/ScrollArea",
   component: ScrollArea,
   tags: ["autodocs"],
-} satisfies Meta<typeof ScrollArea>
 
 export default meta
 type Story = StoryObj<typeof meta>

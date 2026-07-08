@@ -8,11 +8,10 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
 
-const meta = {
+const meta: Meta<typeof NavigationMenu> = {
   title: "Components/NavigationMenu",
   component: NavigationMenu,
   tags: ["autodocs"],
-} satisfies Meta<typeof NavigationMenu>
 
 export default meta
 type Story = StoryObj<typeof meta>

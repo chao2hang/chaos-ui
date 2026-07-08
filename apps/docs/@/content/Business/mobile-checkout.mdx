@@ -1,5 +1,5 @@
-import { MobileCheckout } from "@/components/mobile/mobile-checkout";
-import { CodeBlock } from "@/components/code-block";
+import { MobileCheckout } from "@/components/mobile/mobile-checkout"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileCheckout Mobile Checkout
 
@@ -24,23 +24,24 @@ export function Basic() {
   return <MobileCheckout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileCheckout
 
-| Prop        | Type                   | Default   | 说明 / Description                                        |
-| ----------- | ---------------------- | --------- | --------------------------------------------------------- |
-| `className` | `string`               | —         | 自定义样式类名 <br/> Custom CSS class                     |
-| `total`     | `string`               | —         | Total amount string.                                      |
-| `itemCount` | `number`               | —         | Item count.                                               |
-| `payLabel`  | `string`               | `Pay Now` | Pay button label.                                         |
-| `isLoading` | `boolean`              | —         | Whether payment is in progress.                           |
-| `onPay`     | `() => void`           | —         | Called when user taps pay.                                |
-| `onBack`    | `() => void`           | —         | Called when user taps back.                               |
-| ...rest     | `React.HTMLAttributes` | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `total` | `string` | — | Total amount string. |
+| `itemCount` | `number` | — | Item count. |
+| `payLabel` | `string` | `Pay Now` | Pay button label. |
+| `isLoading` | `boolean` | — | Whether payment is in progress. |
+| `onPay` | `() => void` | — | Called when user taps pay. |
+| `onBack` | `() => void` | — | Called when user taps back. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-checkout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/mobile-mobilecheckout--docs)。

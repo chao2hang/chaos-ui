@@ -38,7 +38,7 @@ function AuditSidebar({
 }: AuditSidebarProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetTrigger asChild>
+      <SheetTrigger>
         <Button
           variant="outline"
           size="sm"

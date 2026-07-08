@@ -155,7 +155,7 @@ function generate() {
 
 ${imports.join("\n")}
 
-export const componentMap: Record<string, React.ComponentType<unknown>> = {
+export const componentMap: Record<string, React.ComponentType<any>> = {
 ${mapEntries.join("\n")}
 };
 `;

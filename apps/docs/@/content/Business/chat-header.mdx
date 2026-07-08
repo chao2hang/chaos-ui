@@ -1,5 +1,5 @@
-import { ChatHeader } from "@/components/business/chat-header";
-import { CodeBlock } from "@/components/code-block";
+import { ChatHeader } from "@/components/business/chat-header"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatHeader Chat Header
 
@@ -24,21 +24,22 @@ export function Basic() {
   return <ChatHeader />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatHeader
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `title`     | `string`               | —       | 标题 <br/> Title                                          |
-| `subtitle`  | `string`               | —       |                                                           |
-| `status`    | `string`               | —       | 状态 <br/> Status                                         |
-| `actions`   | `React.ReactNode`      | —       |                                                           |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `title` | `string` | — | 标题 <br/> Title |
+| `subtitle` | `string` | — |  |
+| `status` | `string` | — | 状态 <br/> Status |
+| `actions` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-chat-header--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chatheader--docs)。

@@ -3,11 +3,10 @@ import { FormSection } from "@/components/ui/form-section"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof FormSection> = {
   title: "Components/FormSection",
   component: FormSection,
   tags: ["autodocs"],
-} satisfies Meta<typeof FormSection>
 
 export default meta
 type Story = StoryObj<typeof meta>

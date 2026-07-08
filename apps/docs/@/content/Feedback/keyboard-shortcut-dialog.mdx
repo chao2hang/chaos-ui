@@ -1,5 +1,5 @@
-import { KeyboardShortcutDialog } from "@/components/ui/keyboard-shortcut-dialog";
-import { CodeBlock } from "@/components/code-block";
+import { KeyboardShortcutDialog } from "@/components/ui/keyboard-shortcut-dialog"
+import { CodeBlock } from "@/components/code-block"
 
 # KeyboardShortcutDialog 键盘快捷键对话框
 
@@ -26,37 +26,35 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <KeyboardShortcutDialog size="sm">Sm</KeyboardShortcutDialog>
   <KeyboardShortcutDialog size="default">Default</KeyboardShortcutDialog>
   <KeyboardShortcutDialog size="lg">Lg</KeyboardShortcutDialog>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### KeyboardShortcutDialog
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `open`      | `boolean`                     | `false` | Whether the dialog is open                                  |
-| `onClose`   | `() => void`                  | —       | Called when the dialog should close                         |
-| `groups`    | `ShortcutGroup[]`             | —       | Shortcut groups to display                                  |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `open` | `boolean` | `false` | Whether the dialog is open |
+| `onClose` | `() => void` | — | Called when the dialog should close |
+| `groups` | `ShortcutGroup[]` | — | Shortcut groups to display |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
@@ -64,4 +62,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboard-shortcut-dialog--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboardshortcutdialog--docs)。

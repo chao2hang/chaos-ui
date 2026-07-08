@@ -10,11 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const meta = {
+const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
-} satisfies Meta<typeof Select>
 
 export default meta
 type Story = StoryObj<typeof meta>

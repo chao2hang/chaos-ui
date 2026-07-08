@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { KPIPanel, type KPIItem } from "@/components/ui/kpi-panel"
 import { DollarSignIcon, UsersIcon, ShoppingCartIcon, TrendingUpIcon } from "lucide-react"
 
-const meta = {
-  title: "Components/KPIPanel",
+const meta: Meta<typeof KPIPanel> = {
+  title: "Components/KpiPanel",
   component: KPIPanel,
   tags: ["autodocs"],
-} satisfies Meta<typeof KPIPanel>
 
 export default meta
 type Story = StoryObj<typeof meta>

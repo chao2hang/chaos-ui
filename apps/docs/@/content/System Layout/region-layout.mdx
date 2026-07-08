@@ -1,5 +1,5 @@
-import { RegionLayout } from "@/components/layout/region-layout";
-import { CodeBlock } from "@/components/code-block";
+import { RegionLayout } from "@/components/layout/region-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # RegionLayout 区域布局
 
@@ -24,25 +24,26 @@ export function Basic() {
   return <RegionLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### RegionLayout
 
-| Prop           | Type                          | Default | 说明 / Description                                          |
-| -------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className`    | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `header`       | `React.ReactNode`             | —       |                                                             |
-| `left`         | `React.ReactNode`             | —       |                                                             |
-| `right`        | `React.ReactNode`             | —       |                                                             |
-| `footer`       | `React.ReactNode`             | —       |                                                             |
-| `leftWidth`    | `string`                      | `240px` |                                                             |
-| `rightWidth`   | `string`                      | `240px` |                                                             |
-| `headerHeight` | `string`                      | `56px`  |                                                             |
-| `footerHeight` | `string`                      | `48px`  |                                                             |
-| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `header` | `React.ReactNode` | — |  |
+| `left` | `React.ReactNode` | — |  |
+| `right` | `React.ReactNode` | — |  |
+| `footer` | `React.ReactNode` | — |  |
+| `leftWidth` | `string` | `240px` |  |
+| `rightWidth` | `string` | `240px` |  |
+| `headerHeight` | `string` | `56px` |  |
+| `footerHeight` | `string` | `48px` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-region-layout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-regionlayout--docs)。

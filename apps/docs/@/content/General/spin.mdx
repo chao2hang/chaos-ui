@@ -1,5 +1,5 @@
-import { Spin } from "@/components/ui/spin";
-import { CodeBlock } from "@/components/code-block";
+import { Spin } from "@/components/ui/spin"
+import { CodeBlock } from "@/components/code-block"
 
 # Spin 加载中
 
@@ -26,38 +26,36 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Spin size="sm">Sm</Spin>
   <Spin size="default">Default</Spin>
   <Spin size="lg">Lg</Spin>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### Spin
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `spinning`  | `boolean`                     | `true`  | Whether to show spinner                                     |
-| `indicator` | `React.ReactNode`             | —       | Custom spinner indicator                                    |
-| `tip`       | `React.ReactNode`             | —       | Tip text under spinner                                      |
-| `delay`     | `number`                      | `0`     | Delay before showing spinner (ms)                           |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `spinning` | `boolean` | `true` | Whether to show spinner |
+| `indicator` | `React.ReactNode` | — | Custom spinner indicator |
+| `tip` | `React.ReactNode` | — | Tip text under spinner |
+| `delay` | `number` | `0` | Delay before showing spinner (ms) |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

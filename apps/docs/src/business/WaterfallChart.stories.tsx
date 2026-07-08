@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { WaterfallChart } from "@/components/business/charts/waterfall-chart";
 
-const meta = {
+const meta: Meta<typeof WaterfallChart> = {
   title: "Business/WaterfallChart",
   component: WaterfallChart,
   tags: ["autodocs"],
-} satisfies Meta<typeof WaterfallChart>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

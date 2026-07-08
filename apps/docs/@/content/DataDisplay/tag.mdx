@@ -1,5 +1,5 @@
-import { Tag } from "@/components/ui/tag";
-import { CodeBlock } from "@/components/code-block";
+import { Tag } from "@/components/ui/tag"
+import { CodeBlock } from "@/components/code-block"
 
 # Tag 标签
 
@@ -26,71 +26,66 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag variant="default">Default</Tag>
   <Tag variant="secondary">Secondary</Tag>
   <Tag variant="destructive">Destructive</Tag>
   <Tag variant="outline">Outline</Tag>
   <Tag variant="success">Success</Tag>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag size="sm">Sm</Tag>
   <Tag size="default">Default</Tag>
   <Tag size="lg">Lg</Tag>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                       | 默认 |
-| ------------- | ---------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                 | ✓    |
-| `secondary`   | 次要样式 / Secondary action style        |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style |      |
-| `outline`     | 描边样式 / Outlined style                |      |
-| `success`     | 成功状态 / Success style                 |      |
-| `warning`     | 警告状态 / Warning style                 |      |
-| `info`        | 信息提示 / Informational style           |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `secondary` | 次要样式 / Secondary action style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| `outline` | 描边样式 / Outlined style |  |
+| `success` | 成功状态 / Success style |  |
+| `warning` | 警告状态 / Warning style |  |
+| `info` | 信息提示 / Informational style |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 **rounded / rounded**
 
-| rounded   | 说明 / Description | 默认 |
-| --------- | ------------------ | ---- |
-| `default` |                    | ✓    |
-| `full`    |                    |      |
-| `none`    |                    |      |
+| rounded | 说明 / Description | 默认 |
+|---|---|---|
+| `default` |  | ✓ |
+| `full` |  |  |
+| `none` |  |  |
 
 ## API / Props
 
 ### Tag
 
-| Prop        | Type                           | Default | 说明 / Description                                            |
-| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
-| `closable`  | `boolean`                      | `false` | Whether the tag can be closed/removed                         |
-| `onClose`   | `() => void`                   | —       | Called when close button is clicked                           |
-| `icon`      | `React.ReactNode`              | —       | Icon element                                                  |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `closable` | `boolean` | `false` | Whether the tag can be closed/removed |
+| `onClose` | `() => void` | — | Called when close button is clicked |
+| `icon` | `React.ReactNode` | — | Icon element |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

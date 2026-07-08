@@ -16,14 +16,13 @@ import {
   ContextMenuGroup,
 } from "@/components/ui/context-menu"
 
-const meta = {
+const meta: Meta<typeof ContextMenu> = {
   title: "Components/ContextMenu",
   component: ContextMenu,
   tags: ["autodocs"],
   parameters: {
     layout: "padded",
   },
-} satisfies Meta<typeof ContextMenu>
 
 export default meta
 type Story = StoryObj<typeof meta>

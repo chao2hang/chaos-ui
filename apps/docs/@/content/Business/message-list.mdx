@@ -1,5 +1,5 @@
-import { MessageList } from "@/components/business/message-list";
-import { CodeBlock } from "@/components/code-block";
+import { MessageList } from "@/components/business/message-list"
+import { CodeBlock } from "@/components/code-block"
 
 # MessageList Message List
 
@@ -24,26 +24,27 @@ export function Basic() {
   return <MessageList />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MessageList
 
-| Prop            | Type                                       | Default | 说明 / Description                                        |
-| --------------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
-| `className`     | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `messages`      | `Array<{`                                  | —       | 消息数组                                                  |
-| `id`            | `string`                                   | —       | DOM 元素 id <br/> DOM element id                          |
-| `title`         | `string`                                   | —       | 标题 <br/> Title                                          |
-| `content`       | `string`                                   | —       | 内容 <br/> Content                                        |
-| `type`          | `"info" \| "warning" \| "success" \| "...` | —       | 类型 <br/> Type                                           |
-| `time`          | `string \| number \| Date`                 | —       |                                                           |
-| `read`          | `boolean`                                  | —       |                                                           |
-| `onSelect`      | `() => void`                               | —       | 选中消息回调                                              |
-| `onMarkAllRead` | `() => void`                               | —       | 全部标记已读回调                                          |
-| ...rest         | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `messages` | `Array<{` | — | 消息数组 |
+| `id` | `string` | — | DOM 元素 id <br/> DOM element id |
+| `title` | `string` | — | 标题 <br/> Title |
+| `content` | `string` | — | 内容 <br/> Content |
+| `type` | `"info" \| "warning" \| "success" \| "...` | — | 类型 <br/> Type |
+| `time` | `string \| number \| Date` | — |  |
+| `read` | `boolean` | — |  |
+| `onSelect` | `() => void` | — | 选中消息回调 |
+| `onMarkAllRead` | `() => void` | — | 全部标记已读回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-message-list--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-messagelist--docs)。

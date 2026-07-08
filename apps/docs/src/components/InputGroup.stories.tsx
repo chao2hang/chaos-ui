@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupText } from "@/components/ui/input-group"
 import { SearchIcon, MailIcon, InfoIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof InputGroup> = {
   title: "Components/InputGroup",
   component: InputGroup,
   tags: ["autodocs"],
-} satisfies Meta<typeof InputGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>

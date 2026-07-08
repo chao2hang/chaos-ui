@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DiffViewer } from "@/components/business/diff-viewer";
 
-const meta = {
+const meta: Meta<typeof DiffViewer> = {
   title: "Business/DiffViewer",
   component: DiffViewer,
   tags: ["autodocs"],
-} satisfies Meta<typeof DiffViewer>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

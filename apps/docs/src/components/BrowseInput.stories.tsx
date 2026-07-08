@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { BrowseInput } from "@/components/ui/browse-input"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof BrowseInput> = {
   title: "Components/BrowseInput",
   component: BrowseInput,
   tags: ["autodocs"],
-} satisfies Meta<typeof BrowseInput>
 
 export default meta
 type Story = StoryObj<typeof meta>

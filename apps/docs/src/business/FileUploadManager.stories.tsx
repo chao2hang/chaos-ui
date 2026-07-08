@@ -10,12 +10,11 @@ interface UploadedFile {
   status: "uploading" | "completed" | "error"
 }
 
-const meta = {
+const meta: Meta<typeof FileUploadManager> = {
   title: "Business/FileUploadManager",
   component: FileUploadManager,
   tags: ["autodocs"],
-} satisfies Meta<typeof FileUploadManager>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

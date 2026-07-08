@@ -1,5 +1,5 @@
-import { QualityInspectionForm } from "@/components/business/quality-inspection-form";
-import { CodeBlock } from "@/components/code-block";
+import { QualityInspectionForm } from "@/components/business/quality-inspection-form"
+import { CodeBlock } from "@/components/code-block"
 
 # QualityInspectionForm 质检表单
 
@@ -24,21 +24,22 @@ export function Basic() {
   return <QualityInspectionForm />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### QualityInspectionForm
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `items`     | `InspectionItem[]`            | —       | 选项/数据项列表 <br/> Items / data list                     |
-| `onChange`  | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
-| `onSubmit`  | `() => void`                  | —       | 提交回调 <br/> Submit handler                               |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `items` | `InspectionItem[]` | — | 选项/数据项列表 <br/> Items / data list |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| `onSubmit` | `() => void` | — | 提交回调 <br/> Submit handler |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-quality-inspection-form--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-qualityinspectionform--docs)。

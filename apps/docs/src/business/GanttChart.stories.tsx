@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { GanttChart } from "@/components/business/calendar/gantt-chart";
 
-const meta = {
+const meta: Meta<typeof GanttChart> = {
   title: "Business/GanttChart",
   component: GanttChart,
   tags: ["autodocs"],
-} satisfies Meta<typeof GanttChart>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

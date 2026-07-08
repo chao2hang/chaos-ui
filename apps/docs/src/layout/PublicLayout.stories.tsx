@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { PublicLayout } from "@/components/layout/public-layout"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof PublicLayout> = {
   title: "Layouts/PublicLayout",
   component: PublicLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof PublicLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { AddressForm } from "@/components/business/address-form"
 
-const meta = {
+const meta: Meta<typeof AddressForm> = {
   title: "Business/AddressForm",
   component: AddressForm,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof AddressForm>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

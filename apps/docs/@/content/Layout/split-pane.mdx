@@ -1,5 +1,5 @@
-import { SplitPane } from "@/components/ui/split-pane";
-import { CodeBlock } from "@/components/code-block";
+import { SplitPane } from "@/components/ui/split-pane"
+import { CodeBlock } from "@/components/code-block"
 
 # SplitPane 分割面板
 
@@ -24,25 +24,26 @@ export function Basic() {
   return <SplitPane />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SplitPane
 
-| Prop          | Type                         | Default      | 说明 / Description                                        |
-| ------------- | ---------------------------- | ------------ | --------------------------------------------------------- |
-| `className`   | `string`                     | —            | 自定义样式类名 <br/> Custom CSS class                     |
-| `direction`   | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Direction                                  |
-| `defaultSize` | `number`                     | `50`         |                                                           |
-| `minSize`     | `number`                     | `20`         |                                                           |
-| `maxSize`     | `number`                     | `80`         |                                                           |
-| `onResize`    | `() => void`                 | —            |                                                           |
-| `first`       | `React.ReactNode`            | —            |                                                           |
-| `second`      | `React.ReactNode`            | —            |                                                           |
-| `resizer`     | `boolean`                    | `true`       |                                                           |
-| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `direction` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Direction |
+| `defaultSize` | `number` | `50` |  |
+| `minSize` | `number` | `20` |  |
+| `maxSize` | `number` | `80` |  |
+| `onResize` | `() => void` | — |  |
+| `first` | `React.ReactNode` | — |  |
+| `second` | `React.ReactNode` | — |  |
+| `resizer` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-split-pane--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-splitpane--docs)。

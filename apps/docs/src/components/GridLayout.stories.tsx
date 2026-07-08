@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { GridLayout, GridItem } from "@/components/ui/grid-layout"
 import { Card, CardContent } from "@/components/ui/card"
 
-const meta = {
+const meta: Meta<typeof GridLayout> = {
   title: "Components/GridLayout",
   component: GridLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof GridLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -3,13 +3,12 @@ import { Confetti } from "@/components/business/confetti"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof Confetti> = {
   title: "Business/Confetti",
   component: Confetti,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof Confetti>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

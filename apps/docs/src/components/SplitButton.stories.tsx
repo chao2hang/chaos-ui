@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SplitButton } from "@/components/ui/split-button";
 import { ChevronDownIcon } from "lucide-react";
 
-const meta = {
+const meta: Meta<typeof SplitButton> = {
   title: "Components/SplitButton",
   component: SplitButton,
   tags: ["autodocs"],
-} satisfies Meta<typeof SplitButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

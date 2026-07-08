@@ -15,11 +15,10 @@ const generateData = (count: number): Item[] =>
     description: `Description for item ${i + 1}`,
   }))
 
-const meta = {
+const meta: Meta<typeof VirtualList> = {
   title: "Components/VirtualList",
   component: VirtualList,
   tags: ["autodocs"],
-} satisfies Meta<typeof VirtualList>
 
 export default meta
 type Story = StoryObj<typeof meta>

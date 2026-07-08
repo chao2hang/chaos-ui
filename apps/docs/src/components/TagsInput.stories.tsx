@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { TagsInput } from "@/components/ui/tags-input"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof TagsInput> = {
   title: "Components/TagsInput",
   component: TagsInput,
   tags: ["autodocs"],
-} satisfies Meta<typeof TagsInput>
 
 export default meta
 type Story = StoryObj<typeof meta>

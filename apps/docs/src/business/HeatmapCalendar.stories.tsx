@@ -14,12 +14,11 @@ function generateData(days: number) {
 
 const data = generateData(365)
 
-const meta = {
+const meta: Meta<typeof HeatmapCalendar> = {
   title: "Business/HeatmapCalendar",
   component: HeatmapCalendar,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof HeatmapCalendar>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

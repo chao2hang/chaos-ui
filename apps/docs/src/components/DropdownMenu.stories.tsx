@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof DropdownMenu> = {
   title: "Components/DropdownMenu",
   component: DropdownMenu,
   tags: ["autodocs"],
-} satisfies Meta<typeof DropdownMenu>
 
 export default meta
 type Story = StoryObj<typeof meta>

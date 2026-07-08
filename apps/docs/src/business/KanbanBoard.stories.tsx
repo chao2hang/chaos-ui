@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { KanbanBoard } from "@/components/business/kanban-board"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof KanbanBoard> = {
   title: "Business/KanbanBoard",
   component: KanbanBoard,
   tags: ["autodocs"],
-} satisfies Meta<typeof KanbanBoard>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

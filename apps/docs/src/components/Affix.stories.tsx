@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Affix } from "@/components/ui/affix";
 import { Button } from "@/components/ui/button";
 
-const meta = {
+const meta: Meta<typeof Affix> = {
   title: "Components/Affix",
   component: Affix,
   tags: ["autodocs"],
-} satisfies Meta<typeof Affix>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { CopyButton } from "@/components/business/copy-button"
 
-const meta = {
+const meta: Meta<typeof CopyButton> = {
   title: "Business/CopyButton",
   component: CopyButton,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
   args: {
     text: "Hello, World!",
-  },
-} satisfies Meta<typeof CopyButton>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

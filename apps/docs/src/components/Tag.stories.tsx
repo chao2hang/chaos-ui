@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Tag } from "@/components/ui/tag";
 
-const meta = {
+const meta: Meta<typeof Tag> = {
   title: "Components/Tag",
   component: Tag,
   tags: ["autodocs"],
   args: { children: "Tag" },
-} satisfies Meta<typeof Tag>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

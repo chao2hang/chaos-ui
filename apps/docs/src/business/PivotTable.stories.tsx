@@ -22,12 +22,11 @@ const salesData = [
   { region: "西南", product: "洗衣机", amount: 4000 },
 ]
 
-const meta = {
+const meta: Meta<typeof PivotTable> = {
   title: "Business/PivotTable",
   component: PivotTable,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof PivotTable>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

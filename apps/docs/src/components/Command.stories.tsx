@@ -13,11 +13,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof Command> = {
   title: "Components/Command",
   component: Command,
   tags: ["autodocs"],
-} satisfies Meta<typeof Command>
 
 export default meta
 type Story = StoryObj<typeof meta>

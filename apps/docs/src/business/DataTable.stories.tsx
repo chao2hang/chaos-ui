@@ -28,12 +28,11 @@ const columns: Column<Order>[] = [
   { key: "date", header: "Date" },
 ]
 
-const meta = {
+const meta: Meta<typeof DataTable> = {
   title: "Business/DataTable",
   component: DataTable,
   tags: ["autodocs"],
-} satisfies Meta<typeof DataTable>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

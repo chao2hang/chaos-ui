@@ -1,11 +1,11 @@
-import { TreemapChart } from "@/components/business/treemap-chart";
-import { CodeBlock } from "@/components/code-block";
+import { TreemapChart } from "@/components/business/treemap-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # TreemapChart Treemap Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-树图(层级占比)
+ 树图(层级占比)
 TreemapChart — treemap chart component.
 
 ## 何时使用 / When to Use
@@ -24,18 +24,19 @@ export function Basic() {
   return <TreemapChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TreemapChart
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `data`      | `Array<T>`             | —       | Tiles to render.                                          |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `data` | `Array<T>` | — | Tiles to render. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-treemap-chart--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-treemapchart--docs)。

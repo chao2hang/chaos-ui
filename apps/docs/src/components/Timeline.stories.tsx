@@ -3,11 +3,10 @@ import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { CheckCircle2Icon, ClockIcon, XCircleIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Timeline> = {
   title: "Components/Timeline",
   component: Timeline,
   tags: ["autodocs"],
-} satisfies Meta<typeof Timeline>
 
 export default meta
 type Story = StoryObj<typeof meta>

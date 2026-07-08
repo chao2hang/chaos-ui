@@ -27,11 +27,10 @@ const sampleData: TreeNode[] = [
   },
 ]
 
-const meta = {
+const meta: Meta<typeof TreeView> = {
   title: "Components/TreeView",
   component: TreeView,
   tags: ["autodocs"],
-} satisfies Meta<typeof TreeView>
 
 export default meta
 type Story = StoryObj<typeof meta>

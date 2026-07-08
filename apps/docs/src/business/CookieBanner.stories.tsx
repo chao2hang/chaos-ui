@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { CookieBanner } from "@/components/business/cookie-banner"
 
-const meta = {
+const meta: Meta<typeof CookieBanner> = {
   title: "Business/CookieBanner",
   component: CookieBanner,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof CookieBanner>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

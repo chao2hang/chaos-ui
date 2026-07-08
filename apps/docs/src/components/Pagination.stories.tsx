@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@/components/ui/pagination"
 
-const meta = {
+const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
   component: Pagination,
   tags: ["autodocs"],
-} satisfies Meta<typeof Pagination>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -5,11 +5,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof AuthLayout> = {
   title: "Layouts/AuthLayout",
   component: AuthLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof AuthLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

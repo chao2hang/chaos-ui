@@ -1,5 +1,5 @@
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { CodeBlock } from "@/components/code-block";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { CodeBlock } from "@/components/code-block"
 
 # Alert 警告提示
 
@@ -31,40 +31,38 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Alert variant="default">Default</Alert>
   <Alert variant="info">Info</Alert>
   <Alert variant="success">Success</Alert>
   <Alert variant="warning">Warning</Alert>
   <Alert variant="destructive">Destructive</Alert>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                       | 默认 |
-| ------------- | ---------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                 | ✓    |
-| `info`        | 信息提示 / Informational style           |      |
-| `success`     | 成功状态 / Success style                 |      |
-| `warning`     | 警告状态 / Warning style                 |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `info` | 信息提示 / Informational style |  |
+| `success` | 成功状态 / Success style |  |
+| `warning` | 警告状态 / Warning style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
 
 ## API / Props
 
 ### Alert
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `variant`   | `AlertVariant`         | —       | 样式变体 <br/> Style variant                              |
-| `icon`      | `React.ReactNode`      | —       | 图标元素 <br/> Icon element                               |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `variant` | `AlertVariant` | — | 样式变体 <br/> Style variant |
+| `icon` | `React.ReactNode` | — | 图标元素 <br/> Icon element |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

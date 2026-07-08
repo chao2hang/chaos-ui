@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { CurrencyInput } from "@/components/business/currency-input"
 
-const meta = {
+const meta: Meta<typeof CurrencyInput> = {
   title: "Business/CurrencyInput",
   component: CurrencyInput,
   parameters: { layout: "padded" },
@@ -9,8 +9,7 @@ const meta = {
   args: {
     value: undefined,
     onChange: () => {},
-  },
-} satisfies Meta<typeof CurrencyInput>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

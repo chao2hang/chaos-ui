@@ -17,7 +17,7 @@ const sampleEdges: OrgEdge[] = [
   { source: "2", target: "5" },
 ]
 
-const meta = {
+const meta: Meta<typeof OrgChart> = {
   title: "Business/OrgChart",
   component: OrgChart,
   parameters: { layout: "padded" },
@@ -25,8 +25,7 @@ const meta = {
   args: {
     nodes: sampleNodes,
     edges: sampleEdges,
-  },
-} satisfies Meta<typeof OrgChart>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -14,12 +14,11 @@ const rejectedSteps = [
   { id: "3", name: "财务复核", approver: { name: "陈财务" }, status: "skipped" as const },
 ]
 
-const meta = {
+const meta: Meta<typeof ApprovalFlow> = {
   title: "Business/ApprovalFlow",
   component: ApprovalFlow,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof ApprovalFlow>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

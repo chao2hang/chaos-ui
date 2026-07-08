@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AsyncTaskCenter } from "@/components/business/async-task-center";
 
-const meta = {
+const meta: Meta<typeof AsyncTaskCenter> = {
   title: "Business/AsyncTaskCenter",
   component: AsyncTaskCenter,
   tags: ["autodocs"],
-} satisfies Meta<typeof AsyncTaskCenter>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

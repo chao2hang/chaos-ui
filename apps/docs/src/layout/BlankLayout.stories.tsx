@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { BlankLayout } from "@/components/layout/blank-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-const meta = {
+const meta: Meta<typeof BlankLayout> = {
   title: "Layouts/BlankLayout",
   component: BlankLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof BlankLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

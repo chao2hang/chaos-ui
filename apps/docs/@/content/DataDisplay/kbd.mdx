@@ -1,5 +1,5 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import { CodeBlock } from "@/components/code-block";
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { CodeBlock } from "@/components/code-block"
 
 # Kbd 键盘按键
 
@@ -30,34 +30,32 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Kbd size="sm">Sm</Kbd>
   <Kbd size="default">Default</Kbd>
   <Kbd size="lg">Lg</Kbd>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `sm`      | 小号 / Small            |      |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `sm` | 小号 / Small |  |
+| `default` | 默认尺寸 / Default size | ✓ |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### Kbd
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

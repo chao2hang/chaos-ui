@@ -1,5 +1,5 @@
-import { Masonry } from "@/components/ui/masonry";
-import { CodeBlock } from "@/components/code-block";
+import { Masonry } from "@/components/ui/masonry"
+import { CodeBlock } from "@/components/code-block"
 
 # Masonry
 
@@ -24,16 +24,17 @@ export function Basic() {
   return <Masonry />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Masonry
 
-| Prop        | Type                          | Default | 说明 / Description                                                       |
-| ----------- | ----------------------------- | ------- | ------------------------------------------------------------------------ |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                                    |
-| `columns`   | `ColumnConfig`                | `3`     | Number of columns or responsive breakpoint config / 列数或响应式断点配置 |
-| `gap`       | `number`                      | `16`    | Gap between items in pixels / 项目间距（像素）                           |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes              |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `columns` | `ColumnConfig` | `3` | Number of columns or responsive breakpoint config / 列数或响应式断点配置 |
+| `gap` | `number` | `16` | Gap between items in pixels / 项目间距（像素） |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

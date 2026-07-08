@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { SignaturePad } from "@/components/business/signature-pad"
 
-const meta = {
+const meta: Meta<typeof SignaturePad> = {
   title: "Business/SignaturePad",
   component: SignaturePad,
   parameters: { layout: "padded" },
@@ -9,8 +9,7 @@ const meta = {
   args: {
     width: 400,
     height: 200,
-  },
-} satisfies Meta<typeof SignaturePad>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

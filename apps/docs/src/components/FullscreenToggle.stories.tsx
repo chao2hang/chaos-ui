@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FullscreenToggle } from "@/components/ui/fullscreen-toggle";
 
-const meta = {
+const meta: Meta<typeof FullscreenToggle> = {
   title: "Components/FullscreenToggle",
   component: FullscreenToggle,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof FullscreenToggle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

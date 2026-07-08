@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Toggle } from "@/components/ui/toggle"
 import { Bold, Italic, Underline } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
   tags: ["autodocs"],
@@ -22,7 +22,6 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof Toggle>
 
 export default meta
 type Story = StoryObj<typeof meta>

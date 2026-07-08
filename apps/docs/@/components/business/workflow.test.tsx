@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest"
 import { render } from "@testing-library/react"
-import { WorkflowViewer } from "./workflow"
+import { WorkflowViewer, type WorkflowNodeData } from "./workflow"
 import type { Node, Edge } from "@xyflow/react"
 
-const nodes: Node[] = [
+const nodes: Node<WorkflowNodeData>[] = [
   { id: "1", type: "workflow", position: { x: 0, y: 0 }, data: { label: "Start" } },
   { id: "2", type: "workflow", position: { x: 0, y: 100 }, data: { label: "End" } },
 ]

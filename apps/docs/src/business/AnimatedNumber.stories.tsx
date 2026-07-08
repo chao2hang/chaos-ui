@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { AnimatedNumber } from "@/components/business/animated-number"
 
-const meta = {
+const meta: Meta<typeof AnimatedNumber> = {
   title: "Business/AnimatedNumber",
   component: AnimatedNumber,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof AnimatedNumber>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ImportDialog } from "@/components/business/import-dialog";
 
-const meta = {
+const meta: Meta<typeof ImportDialog> = {
   title: "Business/ImportDialog",
   component: ImportDialog,
   tags: ["autodocs"],
-} satisfies Meta<typeof ImportDialog>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

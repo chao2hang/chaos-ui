@@ -10,11 +10,10 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 
-const meta = {
+const meta: Meta<typeof Table> = {
   title: "Components/Table",
   component: Table,
   tags: ["autodocs"],
-} satisfies Meta<typeof Table>
 
 export default meta
 type Story = StoryObj<typeof meta>

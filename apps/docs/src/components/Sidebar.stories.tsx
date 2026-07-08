@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarInset, SidebarFooter, SidebarRail } from "@/components/ui/sidebar"
 import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Sidebar> = {
   title: "Components/Sidebar",
   component: Sidebar,
   tags: ["autodocs"],
-} satisfies Meta<typeof Sidebar>
 
 export default meta
 type Story = StoryObj<typeof meta>

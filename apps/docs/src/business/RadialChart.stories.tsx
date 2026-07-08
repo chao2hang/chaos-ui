@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { RadialChart } from "@/components/business/radial-chart";
 
-const meta = {
+const meta: Meta<typeof RadialChart> = {
   title: "Business/RadialChart",
   component: RadialChart,
   tags: ["autodocs"],
-} satisfies Meta<typeof RadialChart>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,5 +1,5 @@
-import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field";
-import { CodeBlock } from "@/components/code-block";
+import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
+import { CodeBlock } from "@/components/code-block"
 
 # OtpField 验证码输入
 
@@ -30,25 +30,23 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock
-  code={`<OTPField>Normal</OTPField>
-<OTPField disabled>Disabled</OTPField>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<OTPField>Normal</OTPField>
+<OTPField disabled>Disabled</OTPField>`} lang="tsx" />
+
 
 ## API / Props
 
 ### OTPField
 
-| Prop             | Type                   | Default | 说明 / Description                                        |
-| ---------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`      | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `length`         | `number`               | —       |                                                           |
-| `value`          | `string`               | —       | 当前值(受控) <br/> Current value (controlled)             |
-| `onValueChange`  | `() => void`           | —       |                                                           |
-| `mask`           | `boolean`              | `false` |                                                           |
-| `inputClassName` | `string`               | —       |                                                           |
-| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `length` | `number` | — |  |
+| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
+| `onValueChange` | `() => void` | — |  |
+| `mask` | `boolean` | `false` |  |
+| `inputClassName` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
@@ -56,4 +54,4 @@ export function Basic() {
 - **复合组件**: 包含 1 个子组件(OTPFieldSeparator),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-otp-field--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-otpfield--docs)。

@@ -7,11 +7,10 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
-const meta = {
+const meta: Meta<typeof Carousel> = {
   title: "Components/Carousel",
   component: Carousel,
   tags: ["autodocs"],
-} satisfies Meta<typeof Carousel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

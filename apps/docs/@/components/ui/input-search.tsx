@@ -23,7 +23,7 @@ interface InputSearchProps
   /** Controlled value */
   value?: string;
   /** Change handler */
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: string | null) => void;
   /** Called when search is submitted */
   onSearch?: (value: string) => void;
   /** Whether to show loading spinner */

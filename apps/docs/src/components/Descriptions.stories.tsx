@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Descriptions } from "@/components/ui/descriptions";
 
-const meta = {
+const meta: Meta<typeof Descriptions> = {
   title: "Components/Descriptions",
   component: Descriptions,
   tags: ["autodocs"],
-} satisfies Meta<typeof Descriptions>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

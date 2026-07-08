@@ -1,5 +1,5 @@
-import { BackTop } from "@/components/ui/back-top";
-import { CodeBlock } from "@/components/code-block";
+import { BackTop } from "@/components/ui/back-top"
+import { CodeBlock } from "@/components/code-block"
 
 # BackTop 回到顶部
 
@@ -26,56 +26,51 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <BackTop variant="default">Default</BackTop>
   <BackTop variant="outline">Outline</BackTop>
   <BackTop variant="ghost">Ghost</BackTop>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <BackTop size="sm">Sm</BackTop>
   <BackTop size="default">Default</BackTop>
   <BackTop size="lg">Lg</BackTop>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant   | 说明 / Description                             | 默认 |
-| --------- | ---------------------------------------------- | ---- |
-| `default` | 默认样式 / Default style                       | ✓    |
-| `outline` | 描边样式 / Outlined style                      |      |
-| `ghost`   | 幽灵(无背景)样式 / Ghost (no background) style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `outline` | 描边样式 / Outlined style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### BackTop
 
-| Prop               | Type                             | Default | 说明 / Description                                                |
-| ------------------ | -------------------------------- | ------- | ----------------------------------------------------------------- |
-| `className`        | `string`                         | —       | 自定义样式类名 <br/> Custom CSS class                             |
-| `target`           | `(...args) => unknown`           | —       | Scroll container target                                           |
-| `visibilityHeight` | `number`                         | `400`   | Threshold in px before showing                                    |
-| ...rest            | `React.ComponentProps<"button">` | —       | 透传 `<button>` 原生属性 <br/> Inherits all `<button>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `target` | `(...args) => unknown` | — | Scroll container target |
+| `visibilityHeight` | `number` | `400` | Threshold in px before showing |
+| ...rest | `React.ComponentProps<"button">` | — | 透传 `<button>` 原生属性 <br/> Inherits all `<button>` attributes |
 
 ## 注意事项 / Notes
 
@@ -83,4 +78,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<button>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-back-top--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-backtop--docs)。

@@ -1,5 +1,5 @@
-import { JournalEntryEditor } from "@/components/business/journal-entry-editor";
-import { CodeBlock } from "@/components/code-block";
+import { JournalEntryEditor } from "@/components/business/journal-entry-editor"
+import { CodeBlock } from "@/components/code-block"
 
 # JournalEntryEditor Journal Entry Editor
 
@@ -24,25 +24,26 @@ export function Basic() {
   return <JournalEntryEditor />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### JournalEntryEditor
 
-| Prop                | Type                   | Default | 说明 / Description                                        |
-| ------------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`         | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `lines`             | `JournalEntryLine[]`   | —       | Journal entry lines                                       |
-| `onChange`          | `() => void`           | —       | Change callback with updated lines                        |
-| `accounts`          | `AccountOption[]`      | —       | Available accounts for selection                          |
-| `readOnly`          | `boolean`              | `false` | Read-only mode                                            |
-| `currencySymbol`    | `string`               | `¥`     | Currency symbol (default: "¥")                            |
-| `entryDate`         | `string`               | —       | Entry date                                                |
-| `voucherNo`         | `string`               | —       | Entry description / voucher number                        |
-| `showBalanceStatus` | `boolean`              | `true`  | Show balance status badge                                 |
-| ...rest             | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `lines` | `JournalEntryLine[]` | — | Journal entry lines |
+| `onChange` | `() => void` | — | Change callback with updated lines |
+| `accounts` | `AccountOption[]` | — | Available accounts for selection |
+| `readOnly` | `boolean` | `false` | Read-only mode |
+| `currencySymbol` | `string` | `¥` | Currency symbol (default: "¥") |
+| `entryDate` | `string` | — | Entry date |
+| `voucherNo` | `string` | — | Entry description / voucher number |
+| `showBalanceStatus` | `boolean` | `true` | Show balance status badge |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-journal-entry-editor--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-journalentryeditor--docs)。

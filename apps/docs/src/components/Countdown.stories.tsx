@@ -2,12 +2,11 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Countdown } from "@/components/ui/countdown";
 
-const meta = {
+const meta: Meta<typeof Countdown> = {
   title: "Components/Countdown",
   component: Countdown,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof Countdown>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

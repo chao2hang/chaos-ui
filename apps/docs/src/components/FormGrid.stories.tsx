@@ -3,11 +3,10 @@ import { FormGrid, FormGridItem } from "@/components/ui/form-grid"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof FormGrid> = {
   title: "Components/FormGrid",
   component: FormGrid,
   tags: ["autodocs"],
-} satisfies Meta<typeof FormGrid>
 
 export default meta
 type Story = StoryObj<typeof meta>

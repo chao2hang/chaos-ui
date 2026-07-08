@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { TimePicker } from "@/components/business/time-picker"
 
-const meta = {
+const meta: Meta<typeof TimePicker> = {
   title: "Business/TimePicker",
   component: TimePicker,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof TimePicker>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

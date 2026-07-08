@@ -1,9 +1,5 @@
-import {
-  MobileListItemSkeleton,
-  MobileCardSkeleton,
-  MobileDetailSkeleton,
-} from "@/components/mobile/mobile-skeleton";
-import { CodeBlock } from "@/components/code-block";
+import { MobileListItemSkeleton, MobileCardSkeleton, MobileDetailSkeleton } from "@/components/mobile/mobile-skeleton"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileSkeleton 移动端骨架屏
 
@@ -28,17 +24,18 @@ export function Basic() {
   return <MobileListItemSkeleton>Default</MobileListItemSkeleton>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileListItemSkeleton
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-skeleton--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobileskeleton--docs)。

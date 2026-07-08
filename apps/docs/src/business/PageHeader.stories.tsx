@@ -3,12 +3,11 @@ import { PageHeader } from "@/components/business/page-header"
 import { Button } from "@/components/ui/button"
 import { PlusIcon, DownloadIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof PageHeader> = {
   title: "Business/PageHeader",
   component: PageHeader,
   tags: ["autodocs"],
-} satisfies Meta<typeof PageHeader>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

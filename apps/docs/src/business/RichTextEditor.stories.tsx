@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { RichTextEditor } from "@/components/business/rich-text-editor"
 
-const meta = {
+const meta: Meta<typeof RichTextEditor> = {
   title: "Business/RichTextEditor",
   component: RichTextEditor,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof RichTextEditor>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { DateRangePicker } from "@/components/business/date-range-picker"
 
-const meta = {
+const meta: Meta<typeof DateRangePicker> = {
   title: "Business/DateRangePicker",
   component: DateRangePicker,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof DateRangePicker>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

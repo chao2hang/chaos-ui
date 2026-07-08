@@ -1,5 +1,5 @@
-import { ColorPicker } from "@/components/ui/color-picker";
-import { CodeBlock } from "@/components/code-block";
+import { ColorPicker } from "@/components/ui/color-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # ColorPicker 颜色选择器
 
@@ -26,23 +26,21 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock
-  code={`<ColorPicker>Normal</ColorPicker>
-<ColorPicker disabled>Disabled</ColorPicker>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<ColorPicker>Normal</ColorPicker>
+<ColorPicker disabled>Disabled</ColorPicker>`} lang="tsx" />
+
 
 ## API / Props
 
 ### ColorPicker
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-color-picker--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-colorpicker--docs)。

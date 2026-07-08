@@ -29,7 +29,7 @@ interface MentionsProps
   /** Called when a mention is inserted */
   onMention?: (user: MentionUser) => void;
   /** Called when value changes */
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: string | null) => void;
   /** Placeholder text */
   placeholder?: string;
 }

@@ -3,7 +3,7 @@
 Enhanced MDX generator — extracts real props, CVA variants, JSDoc, Chinese comments, defaults.
 Idempotent: overwrites MDX drafts with higher quality content.
 """
-import re, json
+import re, json, glob
 from pathlib import Path
 from collections import OrderedDict
 
@@ -1240,8 +1240,8 @@ def generate_mdx(entry: dict, info: dict) -> str:
         notes.append("- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。")
     notes_mdx = "\n".join(notes)
 
-    # Storybook link
-    sb_id = f"components-{slug}--docs"
+    # Storybook link — use entry's storybookId if available
+    sb_id = entry.get("storybookId") or f"components-{slug}--docs"
 
     mdx = f"""{import_line}{codeblock_import}
 
@@ -1283,9 +1283,52 @@ def generate_mdx(entry: dict, info: dict) -> str:
     return mdx
 
 
+def build_story_title_map() -> dict:
+    """Scan all story files and build {component_name: story_title} map.
+    Maps both the title-derived name AND the 'component:' field value
+    to handle naming quirks like OTPField vs OtpField, QRCode vs Qrcode."""
+    title_map = {}
+    story_roots = [
+        ROOT / "apps/docs/src" / "components",
+        ROOT / "apps/docs/src" / "business",
+        ROOT / "apps/docs/src" / "layouts",
+        ROOT / "apps/docs/src" / "mobile",
+    ]
+    for src_dir in story_roots:
+        if not src_dir.exists():
+            continue
+        for sf_path in sorted(src_dir.rglob("*.stories.tsx")):
+            content = sf_path.read_text()
+            titles = re.findall(r'title:\s*"([^"]+)"', content)
+            for t in titles:
+                comp_name = t.split("/")[-1]
+                if comp_name not in title_map:
+                    title_map[comp_name] = t
+            # Also map from 'component:' field for robust matching
+            comp_exprs = re.findall(r'component:\s*(\w+)', content)
+            for ce in comp_exprs:
+                if ce not in title_map and titles:
+                    title_map[ce] = titles[0]
+    return title_map
+
+
+def title_to_storybook_id(title: str) -> str:
+    """Storybook CSF id generation matching Storybook 7 behavior.
+    Lowercase + '/' and space to '-' + strip non-alphanumeric (keep '-') + collapse."""
+    s = title.lower()
+    s = re.sub(r"[\s/]+", "-", s)
+    s = re.sub(r"[^a-z0-9-]", "", s)
+    s = re.sub(r"-+", "-", s).strip("-")
+    return f"{s}--docs"
+
+
 def discover_sources() -> list:
     components = []
     seen_slugs = set()
+
+    # Build story title map for correct storybookId generation
+    story_title_map = build_story_title_map()
+
     # Iterate in priority order: ui first, then layout, then business, then mobile.
     # When a slug exists in multiple folders (e.g. both ui/anchor.tsx and business/anchor.tsx),
     # the business version wins because it is the higher-level wrapper.
@@ -1302,8 +1345,17 @@ def discover_sources() -> list:
             rel_to_root = path.relative_to(ROOT)
             rel_str = str(rel_to_root)
             slug = str(path.with_suffix("")).replace(str(SOURCE_ROOT) + "/", "").replace("ui/", "").replace("business/", "").replace("layout/", "").replace("mobile/", "").replace("/", "-")
+            # Read content once for all checks
+            content = path.read_text()
+            # Skip pure re-export shims (e.g. business/combobox.tsx that just re-exports from ui/)
+            non_blank_lines = [l for l in content.splitlines() if l.strip() and not l.strip().startswith("//")]
+            is_reexport_shim = (
+                len(non_blank_lines) <= 3
+                and re.search(r'export\s+(?:\*|\{[^}]*\})\s+from\s+"@/', content)
+            )
+            if is_reexport_shim:
+                continue  # Skip shim; the ui version will be the canonical entry
             if slug.startswith("_") or "shared" in slug or "helpers" in slug:
-                content = path.read_text()
                 if not re.search(
                     r'export\s+(?:\{[^}]*\b[A-Z][A-Za-z0-9_]*\b|default\s+[A-Z]|function\s+[A-Z]|const\s+[A-Z])',
                     content,
@@ -1319,14 +1371,12 @@ def discover_sources() -> list:
             else:
                 nameZh = slug.replace("-", " ").title()
             source_path = f"{SOURCE_PREFIX}{rel_str}"
-            if subfolder == "ui":
-                storybook_id = f"components-{slug}--docs"
-            elif subfolder == "layout":
-                storybook_id = f"layouts-{slug}--docs"
-            elif subfolder == "business" or subfolder == "mobile":
-                storybook_id = f"business-{slug}--docs"
+            # Generate storybookId from story title if available, otherwise None
+            story_title = story_title_map.get(name)
+            if story_title:
+                storybook_id = title_to_storybook_id(story_title)
             else:
-                storybook_id = f"components-{slug}--docs"
+                storybook_id = None  # No story exists — don't generate a dead link
             entry = {
                 "slug": slug,
                 "name": name,
@@ -1429,7 +1479,9 @@ def write_meta(components: list):
         lines.append(f"    desc: \"{it['desc']}\",")
         lines.append(f"    descZh: \"{it['descZh']}\",")
         lines.append(f"    sourcePath: '{it['sourcePath']}',")
-        lines.append(f"    storybookId: '{it['storybookId']}',")
+        sb_val = it['storybookId']
+        sb_line = "    storybookId: undefined," if sb_val is None else f"    storybookId: '{sb_val}',"
+        lines.append(sb_line)
         lines.append("  },")
     lines.append("]")
     lines.append("")

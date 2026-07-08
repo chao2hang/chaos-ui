@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Cascader } from "@/components/ui/cascader";
 
-const meta = {
+const meta: Meta<typeof Cascader> = {
   title: "Components/Cascader",
   component: Cascader,
   tags: ["autodocs"],
-} satisfies Meta<typeof Cascader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

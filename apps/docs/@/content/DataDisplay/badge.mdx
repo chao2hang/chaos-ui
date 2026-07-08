@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { CodeBlock } from "@/components/code-block";
+import { Badge } from "@/components/ui/badge"
+import { CodeBlock } from "@/components/code-block"
 
 # Badge 徽章
 
@@ -26,39 +26,37 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Badge variant="default">Default</Badge>
   <Badge variant="secondary">Secondary</Badge>
   <Badge variant="destructive">Destructive</Badge>
   <Badge variant="outline">Outline</Badge>
   <Badge variant="ghost">Ghost</Badge>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                             | 默认 |
-| ------------- | ---------------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                       | ✓    |
-| `secondary`   | 次要样式 / Secondary action style              |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style       |      |
-| `outline`     | 描边样式 / Outlined style                      |      |
-| `ghost`       | 幽灵(无背景)样式 / Ghost (no background) style |      |
-| `link`        | 链接样式 / Link style                          |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `secondary` | 次要样式 / Secondary action style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| `outline` | 描边样式 / Outlined style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
+| `link` | 链接样式 / Link style |  |
 
 ## API / Props
 
 ### Badge
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

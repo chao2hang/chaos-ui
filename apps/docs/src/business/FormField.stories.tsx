@@ -3,12 +3,11 @@ import { FormField } from "@/components/business/form-field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-const meta = {
+const meta: Meta<typeof FormField> = {
   title: "Business/FormField",
   component: FormField,
   tags: ["autodocs"],
-} satisfies Meta<typeof FormField>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

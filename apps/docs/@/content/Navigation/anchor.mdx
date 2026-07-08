@@ -1,5 +1,5 @@
-import { Anchor } from "@/components/ui/anchor";
-import { CodeBlock } from "@/components/code-block";
+import { Anchor } from "@/components/ui/anchor"
+import { CodeBlock } from "@/components/code-block"
 
 # Anchor 锚点
 
@@ -24,33 +24,34 @@ export function Basic() {
   return <Anchor />
 }`} lang="tsx" />
 
+
 ## 样式变体 / Style Variants
 
 **方向 / direction**
 
-| direction    | 说明 / Description | 默认 |
-| ------------ | ------------------ | ---- |
-| `vertical`   |                    | ✓    |
-| `horizontal` |                    |      |
+| direction | 说明 / Description | 默认 |
+|---|---|---|
+| `vertical` |  | ✓ |
+| `horizontal` |  |  |
 
 **active / active**
 
-| active  | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| active | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### Anchor
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `links`     | `AnchorLink[]`                | —       |                                                             |
-| `offset`    | `number`                      | `0`     | Offset for active link detection                            |
-| `replace`   | `boolean`                     | —       | Replace history or push                                     |
-| ...rest     | `React.ComponentProps<"nav">` | —       | 透传 `<nav>` 原生属性 <br/> Inherits all `<nav>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `links` | `AnchorLink[]` | — |  |
+| `offset` | `number` | `0` | Offset for active link detection |
+| `replace` | `boolean` | — | Replace history or push |
+| ...rest | `React.ComponentProps<"nav">` | — | 透传 `<nav>` 原生属性 <br/> Inherits all `<nav>` attributes |
 
 ## 注意事项 / Notes
 
@@ -58,4 +59,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<nav>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-anchor--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-anchor--docs)。

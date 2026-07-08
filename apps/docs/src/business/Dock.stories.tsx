@@ -16,13 +16,12 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof Dock> = {
   title: "Business/Dock",
   component: Dock,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof Dock>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

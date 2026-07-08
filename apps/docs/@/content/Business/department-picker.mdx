@@ -1,11 +1,12 @@
-import { DepartmentPicker } from "@/components/business/department-picker";
-import { CodeBlock } from "@/components/code-block";
+import { DepartmentPicker } from "@/components/business/department-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # DepartmentPicker Department Picker
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
-> / Department picker — combobox trigger with a filterable tree popover.
-> DepartmentPicker — department picker component.
+
+/ Department picker — combobox trigger with a filterable tree popover. ```tsx <DepartmentPicker value="D2" onChange={setId} options={[{ value: "D1", label: "总部"
+DepartmentPicker — department picker component.
 
 ## 何时使用 / When to Use
 
@@ -23,25 +24,26 @@ export function Basic() {
   return <DepartmentPicker />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### DepartmentPicker
 
-| Prop                | Type                       | Default | 说明 / Description                                        |
-| ------------------- | -------------------------- | ------- | --------------------------------------------------------- |
-| `className`         | `string`                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `value`             | `string`                   | —       | 当前值(受控) <br/> Current value (controlled)             |
-| `onChange`          | `() => void`               | —       | 值变化回调 <br/> Callback when value changes              |
-| `options`           | `DepartmentPickerOption[]` | —       | 可选项列表 <br/> Available options                        |
-| `placeholder`       | `string`                   | —       | 占位文本 <br/> Placeholder text                           |
-| `searchPlaceholder` | `string`                   | —       |                                                           |
-| `emptyText`         | `string`                   | —       |                                                           |
-| `disabled`          | `boolean`                  | `false` | 是否禁用 <br/> Whether disabled                           |
-| `clearable`         | `boolean`                  | `true`  |                                                           |
-| ...rest             | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| `options` | `DepartmentPickerOption[]` | — | 可选项列表 <br/> Available options |
+| `placeholder` | `string` | — | 占位文本 <br/> Placeholder text |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| `disabled` | `boolean` | `false` | 是否禁用 <br/> Whether disabled |
+| `clearable` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-department-picker--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-departmentpicker--docs)。

@@ -14,12 +14,11 @@ const sampleData = {
   score: null,
 }
 
-const meta = {
+const meta: Meta<typeof JsonViewer> = {
   title: "Business/JsonViewer",
   component: JsonViewer,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof JsonViewer>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof Drawer> = {
   title: "Components/Drawer",
   component: Drawer,
   tags: ["autodocs"],
-} satisfies Meta<typeof Drawer>
 
 export default meta
 type Story = StoryObj<typeof meta>

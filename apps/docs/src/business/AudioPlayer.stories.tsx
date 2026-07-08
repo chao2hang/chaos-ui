@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AudioPlayer } from "@/components/business/audio-player";
 
-const meta = {
+const meta: Meta<typeof AudioPlayer> = {
   title: "Business/AudioPlayer",
   component: AudioPlayer,
   tags: ["autodocs"],
-} satisfies Meta<typeof AudioPlayer>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,5 +1,5 @@
-import { MobileSwipeCard } from "@/components/mobile/mobile-swipe-card";
-import { CodeBlock } from "@/components/code-block";
+import { MobileSwipeCard } from "@/components/mobile/mobile-swipe-card"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileSwipeCard Mobile Swipe Card
 
@@ -24,19 +24,20 @@ export function Basic() {
   return <MobileSwipeCard />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileSwipeCard
 
-| Prop         | Type                   | Default | 说明 / Description                                        |
-| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`  | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `height`     | `number`               | `400`   | Height of the card stack.                                 |
-| `onComplete` | `() => void`           | —       | Called when the last card is swiped away.                 |
-| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `height` | `number` | `400` | Height of the card stack. |
+| `onComplete` | `() => void` | — | Called when the last card is swiped away. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-swipe-card--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/mobile-mobileswipecard--docs)。

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ChartFullscreen } from "@/components/business/chart-fullscreen";
 
-const meta = {
+const meta: Meta<typeof ChartFullscreen> = {
   title: "Business/ChartFullscreen",
   component: ChartFullscreen,
   tags: ["autodocs"],
-} satisfies Meta<typeof ChartFullscreen>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

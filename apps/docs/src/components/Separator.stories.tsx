@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Separator } from "@/components/ui/separator"
 
-const meta = {
+const meta: Meta<typeof Separator> = {
   title: "Components/Separator",
   component: Separator,
   tags: ["autodocs"],
@@ -12,7 +12,6 @@ const meta = {
       description: "The orientation of the separator",
     },
   },
-} satisfies Meta<typeof Separator>
 
 export default meta
 type Story = StoryObj<typeof meta>

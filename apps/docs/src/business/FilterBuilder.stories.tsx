@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { FilterBuilder } from "@/components/business/filter-builder"
 
-const meta = {
+const meta: Meta<typeof FilterBuilder> = {
   title: "Business/FilterBuilder",
   component: FilterBuilder,
   tags: ["autodocs"],
-} satisfies Meta<typeof FilterBuilder>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

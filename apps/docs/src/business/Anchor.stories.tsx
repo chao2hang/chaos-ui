@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Anchor } from "@/components/business/anchor"
 
-const meta = {
+const meta: Meta<typeof Anchor> = {
   title: "Business/Anchor",
   component: Anchor,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof Anchor>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

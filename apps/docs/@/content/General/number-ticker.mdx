@@ -1,5 +1,5 @@
-import { NumberTicker } from "@/components/ui/number-ticker";
-import { CodeBlock } from "@/components/code-block";
+import { NumberTicker } from "@/components/ui/number-ticker"
+import { CodeBlock } from "@/components/code-block"
 
 # NumberTicker 数字跳动
 
@@ -26,65 +26,60 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <NumberTicker variant="default">Default</NumberTicker>
   <NumberTicker variant="primary">Primary</NumberTicker>
   <NumberTicker variant="success">Success</NumberTicker>
   <NumberTicker variant="warning">Warning</NumberTicker>
   <NumberTicker variant="destructive">Destructive</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <NumberTicker size="sm">Sm</NumberTicker>
   <NumberTicker size="default">Default</NumberTicker>
   <NumberTicker size="lg">Lg</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                       | 默认 |
-| ------------- | ---------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                 | ✓    |
-| `primary`     | 主要样式 / Primary style                 |      |
-| `success`     | 成功状态 / Success style                 |      |
-| `warning`     | 警告状态 / Warning style                 |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `primary` | 主要样式 / Primary style |  |
+| `success` | 成功状态 / Success style |  |
+| `warning` | 警告状态 / Warning style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
-| `xl`      | 超大 / Extra large      |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+| `xl` | 超大 / Extra large |  |
 
 ## API / Props
 
 ### NumberTicker
 
-| Prop        | Type                           | Default | 说明 / Description                                            |
-| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
-| `value`     | `number`                       | —       | Target value                                                  |
-| `duration`  | `number`                       | `1000`  | Duration of animation in ms                                   |
-| `decimals`  | `number`                       | `0`     | Decimal places to show                                        |
-| `prefix`    | `string`                       | —       | Prefix text                                                   |
-| `suffix`    | `string`                       | —       | Suffix text                                                   |
-| `easing`    | `boolean`                      | `true`  | Use easing instead of linear                                  |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `value` | `number` | — | Target value |
+| `duration` | `number` | `1000` | Duration of animation in ms |
+| `decimals` | `number` | `0` | Decimal places to show |
+| `prefix` | `string` | — | Prefix text |
+| `suffix` | `string` | — | Suffix text |
+| `easing` | `boolean` | `true` | Use easing instead of linear |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 
@@ -92,4 +87,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-number-ticker--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-numberticker--docs)。

@@ -1,5 +1,5 @@
-import { SignaturePad } from "@/components/ui/signature-pad";
-import { CodeBlock } from "@/components/code-block";
+import { SignaturePad } from "@/components/ui/signature-pad"
+import { CodeBlock } from "@/components/code-block"
 
 # SignaturePad 签名板
 
@@ -26,40 +26,38 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <SignaturePad size="sm">Sm</SignaturePad>
   <SignaturePad size="default">Default</SignaturePad>
   <SignaturePad size="lg">Lg</SignaturePad>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description      | 默认 |
-| --------- | ----------------------- | ---- |
-| `default` | 默认尺寸 / Default size | ✓    |
-| `sm`      | 小号 / Small            |      |
-| `lg`      | 大号 / Large            |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
 
 ## API / Props
 
 ### SignaturePad
 
-| Prop              | Type                          | Default   | 说明 / Description                                          |
-| ----------------- | ----------------------------- | --------- | ----------------------------------------------------------- |
-| `className`       | `string`                      | —         | 自定义样式类名 <br/> Custom CSS class                       |
-| `onSave`          | `() => void`                  | —         | Called when signature data URL changes                      |
-| `penColor`        | `string`                      | `#000000` | Pen color                                                   |
-| `penWidth`        | `number`                      | `2`       | Pen width                                                   |
-| `backgroundColor` | `string`                      | `#ffffff` | Background color                                            |
-| `readOnly`        | `boolean`                     | `false`   | Whether the pad is read-only                                |
-| `onClear`         | `() => void`                  | —         | Clear signature                                             |
-| ...rest           | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `onSave` | `() => void` | — | Called when signature data URL changes |
+| `penColor` | `string` | `#000000` | Pen color |
+| `penWidth` | `number` | `2` | Pen width |
+| `backgroundColor` | `string` | `#ffffff` | Background color |
+| `readOnly` | `boolean` | `false` | Whether the pad is read-only |
+| `onClear` | `() => void` | — | Clear signature |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
@@ -67,4 +65,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-signature-pad--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-signaturepad--docs)。

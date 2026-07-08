@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Stepper, Step } from "@/components/ui/stepper"
 
-const meta = {
+const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",
   component: Stepper,
   tags: ["autodocs"],
@@ -17,7 +17,6 @@ const meta = {
       options: ["horizontal", "vertical"],
     },
   },
-} satisfies Meta<typeof Stepper>
 
 export default meta
 type Story = StoryObj<typeof meta>

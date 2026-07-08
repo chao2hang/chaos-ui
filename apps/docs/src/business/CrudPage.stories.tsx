@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CrudPage } from "@/components/business/crud-page";
 
-const meta = {
+const meta: Meta<typeof CrudPage> = {
   title: "Business/CrudPage",
   component: CrudPage,
   tags: ["autodocs"],
-} satisfies Meta<typeof CrudPage>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

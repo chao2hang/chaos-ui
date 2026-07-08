@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SearchIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   tags: ["autodocs"],
@@ -26,7 +26,6 @@ const meta = {
       description: "Whether the input is required",
     },
   },
-} satisfies Meta<typeof Input>
 
 export default meta
 type Story = StoryObj<typeof meta>

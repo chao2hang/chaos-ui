@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { StatCard } from "@/components/business/stat-card"
 import { TrendingUpIcon, TrendingDownIcon, UsersIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof StatCard> = {
   title: "Business/StatCard",
   component: StatCard,
   tags: ["autodocs"],
-} satisfies Meta<typeof StatCard>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

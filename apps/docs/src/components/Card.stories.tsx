@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
-const meta = {
+const meta: Meta<typeof Card> = {
   title: "Components/Card",
   component: Card,
   tags: ["autodocs"],
@@ -22,7 +22,6 @@ const meta = {
       description: "The size of the card",
     },
   },
-} satisfies Meta<typeof Card>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -2,15 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { useState } from "react"
 import { MaskInput } from "@/components/business/mask-input"
 
-const meta = {
+const meta: Meta<typeof MaskInput> = {
   title: "Business/MaskInput",
   component: MaskInput,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
   args: {
     mask: "(999) 999-9999",
-  },
-} satisfies Meta<typeof MaskInput>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -29,7 +29,7 @@ interface AutocompleteProps
   /** Controlled value */
   value?: string;
   /** Change handler */
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: string | null) => void;
   /** Min chars before showing suggestions */
   minChars?: number;
 }

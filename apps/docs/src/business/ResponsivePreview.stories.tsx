@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ResponsivePreview } from "@/components/business/responsive-preview";
 
-const meta = {
+const meta: Meta<typeof ResponsivePreview> = {
   title: "Business/ResponsivePreview",
   component: ResponsivePreview,
   tags: ["autodocs"],
-} satisfies Meta<typeof ResponsivePreview>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { BarcodeDisplay } from "@/components/business/barcode-display"
 
-const meta = {
+const meta: Meta<typeof BarcodeDisplay> = {
   title: "Business/BarcodeDisplay",
   component: BarcodeDisplay,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
   args: {
     value: "123456789012",
-  },
-} satisfies Meta<typeof BarcodeDisplay>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

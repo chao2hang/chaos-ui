@@ -1,5 +1,5 @@
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { CodeBlock } from "@/components/code-block";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { CodeBlock } from "@/components/code-block"
 
 # ToggleGroup 开关组
 
@@ -30,20 +30,18 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock
-  code={`<ToggleGroup>Normal</ToggleGroup>
-<ToggleGroup disabled>Disabled</ToggleGroup>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<ToggleGroup>Normal</ToggleGroup>
+<ToggleGroup disabled>Disabled</ToggleGroup>`} lang="tsx" />
+
 
 ## API / Props
 
 ### ToggleGroup
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
@@ -51,4 +49,4 @@ export function Basic() {
 - **复合组件**: 包含 1 个子组件(ToggleGroupItem),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-toggle-group--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-togglegroup--docs)。

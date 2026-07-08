@@ -90,7 +90,7 @@ function UnitConverter({
           className="h-10 text-lg"
           placeholder="输入数值"
         />
-        <Select value={fromUnit} onValueChange={setFromUnit}>
+        <Select value={fromUnit} onValueChange={(v) => setFromUnit(v ?? "")}>
           <SelectTrigger className="h-8">
             <SelectValue />
           </SelectTrigger>
@@ -116,7 +116,7 @@ function UnitConverter({
           className="bg-muted/30 h-10 text-lg"
           placeholder="结果"
         />
-        <Select value={toUnit} onValueChange={setToUnit}>
+        <Select value={toUnit} onValueChange={(v) => setToUnit(v ?? "")}>
           <SelectTrigger className="h-8">
             <SelectValue />
           </SelectTrigger>

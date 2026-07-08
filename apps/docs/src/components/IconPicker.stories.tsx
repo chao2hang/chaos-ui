@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { IconPicker } from "@/components/ui/icon-picker";
 
-const meta = {
+const meta: Meta<typeof IconPicker> = {
   title: "Components/IconPicker",
   component: IconPicker,
   tags: ["autodocs"],
-} satisfies Meta<typeof IconPicker>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

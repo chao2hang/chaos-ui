@@ -1,5 +1,5 @@
-import { HeatmapCalendar } from "@/components/business/heatmap-calendar";
-import { CodeBlock } from "@/components/code-block";
+import { HeatmapCalendar } from "@/components/business/heatmap-calendar"
+import { CodeBlock } from "@/components/code-block"
 
 # HeatmapCalendar 热力日历
 
@@ -24,28 +24,29 @@ export function Basic() {
   return <HeatmapCalendar />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### HeatmapCalendar
 
-| Prop              | Type                                       | Default | 说明 / Description                                          |
-| ----------------- | ------------------------------------------ | ------- | ----------------------------------------------------------- |
-| `className`       | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `data`            | `Array<T>`                                 | —       | 数据源 <br/> Data source                                    |
-| `startDate`       | `Date`                                     | —       |                                                             |
-| `endDate`         | `Date`                                     | —       |                                                             |
-| `weekStartsOn`    | `0 \| 1`                                   | `0`     |                                                             |
-| `cellSize`        | `number`                                   | `12`    |                                                             |
-| `gap`             | `number`                                   | `2`     | 间距 <br/> Gap between items                                |
-| `levels`          | `number`                                   | `5`     |                                                             |
-| `legendClassName` | `string`                                   | —       |                                                             |
-| `showLegend`      | `boolean`                                  | `true`  |                                                             |
-| `colorStops`      | `[string, string, string, string, string]` | —       |                                                             |
-| ...rest           | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `data` | `Array<T>` | — | 数据源 <br/> Data source |
+| `startDate` | `Date` | — |  |
+| `endDate` | `Date` | — |  |
+| `weekStartsOn` | `0 \| 1` | `0` |  |
+| `cellSize` | `number` | `12` |  |
+| `gap` | `number` | `2` | 间距 <br/> Gap between items |
+| `levels` | `number` | `5` |  |
+| `legendClassName` | `string` | — |  |
+| `showLegend` | `boolean` | `true` |  |
+| `colorStops` | `[string, string, string, string, string]` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-heatmap-calendar--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-heatmapcalendar--docs)。

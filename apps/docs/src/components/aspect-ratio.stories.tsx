@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-const meta = {
+const meta: Meta<typeof AspectRatio> = {
   title: "Components/AspectRatio",
   component: AspectRatio,
   tags: ["autodocs"],
@@ -11,7 +11,6 @@ const meta = {
       description: "The width/height ratio applied via CSS aspect-ratio",
     },
   },
-} satisfies Meta<typeof AspectRatio>
 
 export default meta
 type Story = StoryObj<typeof meta>

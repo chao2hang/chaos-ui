@@ -1,5 +1,5 @@
-import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
-import { CodeBlock } from "@/components/code-block";
+import { MasterDetailTabs } from "@/components/layout/master-detail-tabs"
+import { CodeBlock } from "@/components/code-block"
 
 # MasterDetailTabs 主次标签布局
 
@@ -24,22 +24,23 @@ export function Basic() {
   return <MasterDetailTabs />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MasterDetailTabs
 
-| Prop               | Type                          | Default | 说明 / Description                                          |
-| ------------------ | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className`        | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `items`            | `MasterDetailTabItem[]`       | —       | 选项/数据项列表 <br/> Items / data list                     |
-| `activeKey`        | `string`                      | —       |                                                             |
-| `defaultActiveKey` | `string`                      | —       |                                                             |
-| `onChange`         | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
-| ...rest            | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `items` | `MasterDetailTabItem[]` | — | 选项/数据项列表 <br/> Items / data list |
+| `activeKey` | `string` | — |  |
+| `defaultActiveKey` | `string` | — |  |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-master-detail-tabs--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-masterdetailtabs--docs)。

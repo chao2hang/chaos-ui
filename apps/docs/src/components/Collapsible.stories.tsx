@@ -7,11 +7,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { ChevronsUpDownIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Collapsible> = {
   title: "Components/Collapsible",
   component: Collapsible,
   tags: ["autodocs"],
-} satisfies Meta<typeof Collapsible>
 
 export default meta
 type Story = StoryObj<typeof meta>

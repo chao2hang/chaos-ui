@@ -3,12 +3,11 @@ import { AdminSider } from "@/components/layout/admin-sider";
 import { Button } from "@/components/ui/button";
 import { HomeIcon, SettingsIcon, UserIcon } from "lucide-react";
 
-const meta = {
+const meta: Meta<typeof AdminSider> = {
   title: "Layouts/AdminSider",
   component: AdminSider,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-} satisfies Meta<typeof AdminSider>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

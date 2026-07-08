@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AuthGuard } from "@/components/business/auth-guard";
 
-const meta = {
+const meta: Meta<typeof AuthGuard> = {
   title: "Business/AuthGuard",
   component: AuthGuard,
   tags: ["autodocs"],
-} satisfies Meta<typeof AuthGuard>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

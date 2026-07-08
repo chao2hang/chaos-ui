@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { OnboardingChecklist } from "@/components/business/onboarding-checklist"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof OnboardingChecklist> = {
   title: "Business/OnboardingChecklist",
   component: OnboardingChecklist,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof OnboardingChecklist>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

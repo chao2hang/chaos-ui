@@ -2,12 +2,11 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminTabs } from "@/components/layout/admin-tabs";
 
-const meta = {
+const meta: Meta<typeof AdminTabs> = {
   title: "Layouts/AdminTabs",
   component: AdminTabs,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-} satisfies Meta<typeof AdminTabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

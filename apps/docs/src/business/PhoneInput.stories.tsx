@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { PhoneInput } from "@/components/business/phone-input"
 
-const meta = {
+const meta: Meta<typeof PhoneInput> = {
   title: "Business/PhoneInput",
   component: PhoneInput,
   parameters: { layout: "padded" },
@@ -10,8 +10,7 @@ const meta = {
     value: "",
     onChange: () => {},
     defaultCountry: "CN",
-  },
-} satisfies Meta<typeof PhoneInput>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

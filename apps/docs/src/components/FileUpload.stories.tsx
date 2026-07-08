@@ -3,11 +3,10 @@ import { FileUpload } from "@/components/ui/file-upload"
 import { Button } from "@/components/ui/button"
 import { UploadIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof FileUpload> = {
   title: "Components/FileUpload",
   component: FileUpload,
   tags: ["autodocs"],
-} satisfies Meta<typeof FileUpload>
 
 export default meta
 type Story = StoryObj<typeof meta>

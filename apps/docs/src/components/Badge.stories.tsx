@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Badge } from "@/components/ui/badge"
 
-const meta = {
+const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
@@ -12,7 +12,6 @@ const meta = {
       description: "The visual style of the badge",
     },
   },
-} satisfies Meta<typeof Badge>
 
 export default meta
 type Story = StoryObj<typeof meta>

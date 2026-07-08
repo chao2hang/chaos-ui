@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { useState } from "react"
 import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
 
-const meta = {
-  title: "Components/OTPField",
+const meta: Meta<typeof OTPField> = {
+  title: "Components/OtpField",
   component: OTPField,
   tags: ["autodocs"],
   argTypes: {
@@ -16,7 +16,6 @@ const meta = {
       description: "Mask entered characters as a password",
     },
   },
-} satisfies Meta<typeof OTPField>
 
 export default meta
 type Story = StoryObj<typeof meta>

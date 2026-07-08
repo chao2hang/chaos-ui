@@ -7,12 +7,11 @@ const sampleCode = `function greet(name: string): string {
 
 console.log(greet("World"))`
 
-const meta = {
+const meta: Meta<typeof CodeEditor> = {
   title: "Business/CodeEditor",
   component: CodeEditor,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof CodeEditor>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

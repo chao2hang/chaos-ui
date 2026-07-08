@@ -8,11 +8,10 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
 
-const meta = {
+const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
-} satisfies Meta<typeof Breadcrumb>
 
 export default meta
 type Story = StoryObj<typeof meta>

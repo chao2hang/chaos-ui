@@ -13,12 +13,11 @@ const options = [
   { value: "backend", label: "后端", group: "模块" },
 ]
 
-const meta = {
+const meta: Meta<typeof MultiSelect> = {
   title: "Business/MultiSelect",
   component: MultiSelect,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof MultiSelect>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -28,14 +28,13 @@ import {
   WifiOffIcon,
 } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof MobileButton> = {
   title: "Mobile/Components",
   component: MobileButton,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
-  },
-} satisfies Meta<typeof MobileButton>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

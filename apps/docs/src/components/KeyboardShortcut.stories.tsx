@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut";
 
-const meta = {
+const meta: Meta<typeof KeyboardShortcut> = {
   title: "Components/KeyboardShortcut",
   component: KeyboardShortcut,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof KeyboardShortcut>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { QRCode } from "@/components/ui/qrcode";
 
-const meta = {
-  title: "Components/QRCode",
+const meta: Meta<typeof QRCode> = {
+  title: "Components/Qrcode",
   component: QRCode,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof QRCode>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 
-const meta = {
+const meta: Meta<typeof MasterDetailLayout> = {
   title: "Layouts/MasterDetailLayout",
   component: MasterDetailLayout,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-} satisfies Meta<typeof MasterDetailLayout>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

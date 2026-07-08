@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { SplitPane } from "@/components/ui/split-pane"
 
-const meta = {
+const meta: Meta<typeof SplitPane> = {
   title: "Components/SplitPane",
   component: SplitPane,
   tags: ["autodocs"],
-} satisfies Meta<typeof SplitPane>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Notification } from "@/components/ui/notification";
 
-const meta = {
+const meta: Meta<typeof Notification> = {
   title: "Components/Notification",
   component: Notification,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof Notification>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

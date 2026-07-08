@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Autocomplete } from "@/components/ui/autocomplete";
 
-const meta = {
+const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
   component: Autocomplete,
   tags: ["autodocs"],
@@ -10,7 +10,6 @@ const meta = {
     placeholder: "Type to search...",
     disabled: false,
   },
-} satisfies Meta<typeof Autocomplete>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

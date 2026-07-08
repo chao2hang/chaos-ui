@@ -26,6 +26,7 @@ import { ChatMessage } from "@/components/ui/chat-message";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible } from "@/components/ui/collapsible";
 import { ColorPicker } from "@/components/ui/color-picker";
+import { Combobox } from "@/components/ui/combobox";
 import { Command } from "@/components/ui/command";
 import { ConfigProvider } from "@/components/ui/config-provider";
 import { ContextMenu } from "@/components/ui/context-menu";
@@ -39,6 +40,8 @@ import { Divider } from "@/components/ui/divider";
 import { Dot } from "@/components/ui/dot";
 import { Drawer } from "@/components/ui/drawer";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Fab } from "@/components/ui/fab";
 import { FileUpload } from "@/components/ui/file-upload";
 import { Flex } from "@/components/ui/flex";
 import { FormGrid } from "@/components/ui/form-grid";
@@ -86,10 +89,12 @@ import { Progress } from "@/components/ui/progress";
 import { QRCodeDisplay as QrcodeDisplay } from "@/components/ui/qrcode-display";
 import { QRCode as Qrcode } from "@/components/ui/qrcode";
 import { RadioGroup } from "@/components/ui/radio-group";
+import { Rating } from "@/components/ui/rating";
 import { ResizablePanelGroup as Resizable } from "@/components/ui/resizable";
 import { Result } from "@/components/ui/result";
 import { SchemaForm } from "@/components/ui/schema-form";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Select } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { SequenceInput } from "@/components/ui/sequence-input";
@@ -113,10 +118,13 @@ import { Tabs } from "@/components/ui/tabs";
 import { Tag } from "@/components/ui/tag";
 import { TagsInput } from "@/components/ui/tags-input";
 import { Textarea } from "@/components/ui/textarea";
+import { TimePicker } from "@/components/ui/time-picker";
 import { Timeline } from "@/components/ui/timeline";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
+import { Tour } from "@/components/ui/tour";
+import { Transfer } from "@/components/ui/transfer";
 import { TreeSelect } from "@/components/ui/tree-select";
 import { TreeView } from "@/components/ui/tree-view";
 import { Typography } from "@/components/ui/typography";
@@ -124,12 +132,13 @@ import { UserBrowse } from "@/components/ui/user-browse";
 import { VideoPlayer } from "@/components/ui/video-player";
 import { VirtualList } from "@/components/ui/virtual-list";
 import { VirtualTable } from "@/components/ui/virtual-table";
+import { Watermark } from "@/components/ui/watermark";
 import { WithPermission } from "@/components/ui/with-permission";
 import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
 import { AdminHeader } from "@/components/layout/admin-header";
 import { AdminShell } from "@/components/layout/admin-shell";
 import { AdminSider } from "@/components/layout/admin-sider";
-import { AdminTabs } from "@/components/layout/admin-tabs";
+import { NavigationTabsBar as AdminTabs } from "@/components/layout/admin-tabs";
 import { AppShell } from "@/components/layout/app-shell";
 import { ArticleLayout } from "@/components/layout/article-layout";
 import { AuthLayout } from "@/components/layout/auth-layout";
@@ -142,6 +151,7 @@ import { EmbedLayout } from "@/components/layout/embed-layout";
 import { ErrorLayout } from "@/components/layout/error-layout";
 import { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
+import { NavigationTabsBar } from "@/components/layout/navigation-tabs-bar";
 import { PrintLayout } from "@/components/layout/print-layout";
 import { PrintTemplateLayout } from "@/components/layout/print-template-layout";
 import { PublicLayout } from "@/components/layout/public-layout";
@@ -190,6 +200,7 @@ import { BillTimeline } from "@/components/business/bill-timeline";
 import { BillTodoList } from "@/components/business/bill-todo-list";
 import { BizStatusTag } from "@/components/business/biz-status-tag";
 import { BOMTreeEditor as BomTreeEditor } from "@/components/business/bom-tree-editor";
+import { BrowseDialog } from "@/components/business/browse-dialog";
 import { BudgetAllocator } from "@/components/business/budget-allocator";
 import { BudgetOverview } from "@/components/business/budget-overview";
 import { BudgetPacingCard } from "@/components/business/budget-pacing-card";
@@ -240,7 +251,6 @@ import { CodeBlock } from "@/components/business/code-block";
 import { CodeEditor } from "@/components/business/code-editor";
 import { ColorBoard } from "@/components/business/color-board";
 import { ColorTag } from "@/components/business/color-tag";
-import { Combobox } from "@/components/business/combobox";
 import { CommandPalette } from "@/components/business/command-palette";
 import { CommissionCalculator } from "@/components/business/commission-calculator";
 import { CompanyBrowse } from "@/components/business/company-browse";
@@ -276,14 +286,12 @@ import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder";
 import { EditToolbar } from "@/components/business/edit-toolbar";
 import { EditableTreeTable } from "@/components/business/editable-tree-table";
 import { EmployeePicker } from "@/components/business/employee-picker";
-import { EmptyState } from "@/components/business/empty-state";
 import { EquipmentCard } from "@/components/business/equipment-card";
 import { ErrorBoundary } from "@/components/business/error-boundary";
 import { ErrorPage } from "@/components/business/error-page";
 import { ExpenseLineEditor } from "@/components/business/expense-line-editor";
 import { ExperimentSummary } from "@/components/business/experiment-summary";
 import { ExportButton } from "@/components/business/export-button";
-import { Fab } from "@/components/business/fab";
 import { FeatureTour } from "@/components/business/feature-tour";
 import { FeeTypeBrowse } from "@/components/business/fee-type-browse";
 import { FieldMask } from "@/components/business/field-mask";
@@ -396,7 +404,6 @@ import { QuickEntryGrid } from "@/components/business/quick-entry-grid";
 import { QuotationLineEditor } from "@/components/business/quotation-line-editor";
 import { RadarChart } from "@/components/business/radar-chart";
 import { RadialChart } from "@/components/business/radial-chart";
-import { Rating } from "@/components/business/rating";
 import { RebutNodeSelect } from "@/components/business/rebut-node-select";
 import { ReconciliationLineEditor } from "@/components/business/reconciliation-line-editor";
 import { ReconciliationSummary } from "@/components/business/reconciliation-summary";
@@ -416,7 +423,6 @@ import { SavedFilters } from "@/components/business/saved-filters";
 import { ScatterChart } from "@/components/business/scatter-chart";
 import { SealStampRegistry } from "@/components/business/seal-stamp-registry";
 import { SearchTable } from "@/components/business/search-table";
-import { SegmentedControl } from "@/components/business/segmented-control";
 import { SerialNumberManager } from "@/components/business/serial-number-manager";
 import { SettlementStatusTag } from "@/components/business/settlement-status-tag";
 import { ShiftCalendar } from "@/components/business/shift-calendar";
@@ -446,12 +452,9 @@ import { TaxDetailTable } from "@/components/business/tax-detail-table";
 import { TemplateDownload } from "@/components/business/template-download";
 import { TerritoryMap } from "@/components/business/territory-map";
 import { ThemeToggle } from "@/components/business/theme-toggle";
-import { TimePicker } from "@/components/business/time-picker";
 import { TimelineView } from "@/components/business/timeline-view";
 import { TodoListTable } from "@/components/business/todo-list-table";
-import { Tour } from "@/components/business/tour";
 import { Tracking } from "@/components/business/tracking";
-import { Transfer } from "@/components/business/transfer";
 import { TreeCrudPage } from "@/components/business/tree-crud-page";
 import { TreeTable } from "@/components/business/tree-table";
 import { TreemapChart } from "@/components/business/treemap-chart";
@@ -463,14 +466,13 @@ import { VersionHistory } from "@/components/business/version-history";
 import { WarehouseBrowse } from "@/components/business/warehouse-browse";
 import { WarehousePicker } from "@/components/business/warehouse-picker";
 import { WaterfallChart } from "@/components/business/waterfall-chart";
-import { Watermark } from "@/components/business/watermark";
 import { WorkOrderCard } from "@/components/business/work-order-card";
 import { WorkflowDesigner } from "@/components/business/workflow-designer";
 import { WorkflowPreview } from "@/components/business/workflow-preview";
 import { WriteoffBrowse } from "@/components/business/writeoff-browse";
 import { WriteoffFlow } from "@/components/business/writeoff-flow";
 
-export const componentMap: Record<string, React.ComponentType<unknown>> = {
+export const componentMap: Record<string, React.ComponentType<any>> = {
   Accordion,
   Affix,
   AlertDialog,
@@ -495,6 +497,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Checkbox,
   Collapsible,
   ColorPicker,
+  Combobox,
   Command,
   ConfigProvider,
   ContextMenu,
@@ -508,6 +511,8 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Dot,
   Drawer,
   DropdownMenu,
+  EmptyState,
+  Fab,
   FileUpload,
   Flex,
   FormGrid,
@@ -555,10 +560,12 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   QrcodeDisplay,
   Qrcode,
   RadioGroup,
+  Rating,
   Resizable,
   Result,
   SchemaForm,
   ScrollArea,
+  SegmentedControl,
   Select,
   Separator,
   SequenceInput,
@@ -582,10 +589,13 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Tag,
   TagsInput,
   Textarea,
+  TimePicker,
   Timeline,
   ToggleGroup,
   Toggle,
   Tooltip,
+  Tour,
+  Transfer,
   TreeSelect,
   TreeView,
   Typography,
@@ -593,6 +603,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   VideoPlayer,
   VirtualList,
   VirtualTable,
+  Watermark,
   WithPermission,
   AdminBreadcrumb,
   AdminHeader,
@@ -611,6 +622,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   ErrorLayout,
   MasterDetailLayout,
   MasterDetailTabs,
+  NavigationTabsBar,
   PrintLayout,
   PrintTemplateLayout,
   PublicLayout,
@@ -659,6 +671,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   BillTodoList,
   BizStatusTag,
   BomTreeEditor,
+  BrowseDialog,
   BudgetAllocator,
   BudgetOverview,
   BudgetPacingCard,
@@ -709,7 +722,6 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   CodeEditor,
   ColorBoard,
   ColorTag,
-  Combobox,
   CommandPalette,
   CommissionCalculator,
   CompanyBrowse,
@@ -745,14 +757,12 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   EditToolbar,
   EditableTreeTable,
   EmployeePicker,
-  EmptyState,
   EquipmentCard,
   ErrorBoundary,
   ErrorPage,
   ExpenseLineEditor,
   ExperimentSummary,
   ExportButton,
-  Fab,
   FeatureTour,
   FeeTypeBrowse,
   FieldMask,
@@ -865,7 +875,6 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   QuotationLineEditor,
   RadarChart,
   RadialChart,
-  Rating,
   RebutNodeSelect,
   ReconciliationLineEditor,
   ReconciliationSummary,
@@ -885,7 +894,6 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   ScatterChart,
   SealStampRegistry,
   SearchTable,
-  SegmentedControl,
   SerialNumberManager,
   SettlementStatusTag,
   ShiftCalendar,
@@ -915,12 +923,9 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   TemplateDownload,
   TerritoryMap,
   ThemeToggle,
-  TimePicker,
   TimelineView,
   TodoListTable,
-  Tour,
   Tracking,
-  Transfer,
   TreeCrudPage,
   TreeTable,
   TreemapChart,
@@ -932,7 +937,6 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   WarehouseBrowse,
   WarehousePicker,
   WaterfallChart,
-  Watermark,
   WorkOrderCard,
   WorkflowDesigner,
   WorkflowPreview,

@@ -2,14 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { AlertCircleIcon, CheckCircle2Icon, InfoIcon, AlertTriangleIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof Alert> = {
   title: "Components/Alert",
   component: Alert,
   tags: ["autodocs"],
   parameters: {
     layout: "padded",
   },
-} satisfies Meta<typeof Alert>
 
 export default meta
 type Story = StoryObj<typeof meta>

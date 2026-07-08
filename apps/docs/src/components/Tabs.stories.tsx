@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
@@ -22,7 +22,6 @@ const meta = {
       description: "The orientation of the tabs",
     },
   },
-} satisfies Meta<typeof Tabs>
 
 export default meta
 type Story = StoryObj<typeof meta>

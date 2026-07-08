@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Popover> = {
   title: "Components/Popover",
   component: Popover,
   tags: ["autodocs"],
-} satisfies Meta<typeof Popover>
 
 export default meta
 type Story = StoryObj<typeof meta>

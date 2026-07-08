@@ -8,7 +8,7 @@ interface OTPFieldProps
   extends Omit<OTPFieldPrimitive.Root.Props, "children"> {
   length: number
   value?: string
-  onValueChange?: (value: string) => void
+  onValueChange?: (value: string | null) => void
   mask?: boolean
   className?: string
   inputClassName?: string

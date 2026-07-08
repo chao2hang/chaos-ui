@@ -27,15 +27,14 @@ const sampleInvoice: InvoiceData = {
   notes: "Thank you for your business. Payment is due within 30 days.",
 }
 
-const meta = {
+const meta: Meta<typeof InvoicePreview> = {
   title: "Business/InvoicePreview",
   component: InvoicePreview,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
   args: {
     invoice: sampleInvoice,
-  },
-} satisfies Meta<typeof InvoicePreview>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

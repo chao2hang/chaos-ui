@@ -1,5 +1,5 @@
-import { Popconfirm } from "@/components/ui/popconfirm";
-import { CodeBlock } from "@/components/code-block";
+import { Popconfirm } from "@/components/ui/popconfirm"
+import { CodeBlock } from "@/components/code-block"
 
 # Popconfirm 气泡确认框
 
@@ -24,41 +24,42 @@ export function Basic() {
   return <Popconfirm />
 }`} lang="tsx" />
 
+
 ## 样式变体 / Style Variants
 
 **对齐 / align**
 
-| align    | 说明 / Description | 默认 |
-| -------- | ------------------ | ---- |
-| `center` |                    | ✓    |
-| `start`  |                    |      |
-| `end`    |                    |      |
+| align | 说明 / Description | 默认 |
+|---|---|---|
+| `center` |  | ✓ |
+| `start` |  |  |
+| `end` |  |  |
 
 **side / side**
 
-| side     | 说明 / Description | 默认 |
-| -------- | ------------------ | ---- |
-| `top`    |                    | ✓    |
-| `bottom` |                    |      |
-| `left`   |                    |      |
-| `right`  |                    |      |
+| side | 说明 / Description | 默认 |
+|---|---|---|
+| `top` |  | ✓ |
+| `bottom` |  |  |
+| `left` |  |  |
+| `right` |  |  |
 
 ## API / Props
 
 ### Popconfirm
 
-| Prop           | Type                          | Default   | 说明 / Description                                          |
-| -------------- | ----------------------------- | --------- | ----------------------------------------------------------- |
-| `className`    | `string`                      | —         | 自定义样式类名 <br/> Custom CSS class                       |
-| `open`         | `boolean`                     | —         | Whether the popconfirm is open                              |
-| `onOpenChange` | `() => void`                  | —         | Called when open state changes                              |
-| `title`        | `React.ReactNode`             | —         | Title text                                                  |
-| `description`  | `React.ReactNode`             | —         | Description text                                            |
-| `confirmText`  | `string`                      | `Confirm` | Text for confirm button                                     |
-| `cancelText`   | `string`                      | `Cancel`  | Text for cancel button                                      |
-| `onConfirm`    | `() => void`                  | —         | Called when confirmed                                       |
-| `onCancel`     | `() => void`                  | —         | Called when cancelled                                       |
-| ...rest        | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `open` | `boolean` | — | Whether the popconfirm is open |
+| `onOpenChange` | `() => void` | — | Called when open state changes |
+| `title` | `React.ReactNode` | — | Title text |
+| `description` | `React.ReactNode` | — | Description text |
+| `confirmText` | `string` | `Confirm` | Text for confirm button |
+| `cancelText` | `string` | `Cancel` | Text for cancel button |
+| `onConfirm` | `() => void` | — | Called when confirmed |
+| `onCancel` | `() => void` | — | Called when cancelled |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

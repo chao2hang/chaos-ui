@@ -34,7 +34,7 @@ function DictSelect({
   ...props
 }: DictSelectProps) {
   return (
-    <Select value={value} onValueChange={onValueChange}>
+    <Select value={value} onValueChange={(v) => onValueChange(v ?? "")}>
       <SelectTrigger
         data-slot="dict-select"
         className={cn("", className)}

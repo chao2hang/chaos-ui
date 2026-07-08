@@ -1,5 +1,5 @@
-import { SchemaForm } from "@/components/ui/schema-form";
-import { CodeBlock } from "@/components/code-block";
+import { SchemaForm } from "@/components/ui/schema-form"
+import { CodeBlock } from "@/components/code-block"
 
 # SchemaForm Schema 表单
 
@@ -28,18 +28,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SchemaForm
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **表单校验**: 集成 `zod` + `react-hook-form`,支持类型安全的表单校验与提交。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-schema-form--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-schemaform--docs)。

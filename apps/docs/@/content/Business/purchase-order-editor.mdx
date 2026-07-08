@@ -1,5 +1,5 @@
-import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor";
-import { CodeBlock } from "@/components/code-block";
+import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor"
+import { CodeBlock } from "@/components/code-block"
 
 # PurchaseOrderEditor Purchase Order Editor
 
@@ -24,31 +24,32 @@ export function Basic() {
   return <PurchaseOrderEditor />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PurchaseOrderEditor
 
-| Prop                | Type                                       | Default | 说明 / Description                                        |
-| ------------------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
-| `className`         | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `poNumber`          | `string`                                   | —       |                                                           |
-| `vendor`            | `string`                                   | —       |                                                           |
-| `onVendorChange`    | `() => void`                               | —       |                                                           |
-| `orderDate`         | `string`                                   | —       |                                                           |
-| `expectedDelivery`  | `string`                                   | —       |                                                           |
-| `paymentTerms`      | `string`                                   | —       |                                                           |
-| `onHeaderChange`    | `() => void`                               | —       |                                                           |
-| `lineItems`         | `POLineItem[]`                             | —       |                                                           |
-| `onLineItemsChange` | `() => void`                               | —       |                                                           |
-| `approvalSteps`     | `ApprovalStep[]`                           | —       |                                                           |
-| `status`            | `"draft" \| "pending" \| "approved" \|...` | `draft` | 状态 <br/> Status                                         |
-| `currencySymbol`    | `string`                                   | `¥`     |                                                           |
-| `readOnly`          | `boolean`                                  | `false` | 是否只读 <br/> Whether read-only                          |
-| `onSubmit`          | `() => void`                               | —       | 提交回调 <br/> Submit handler                             |
-| ...rest             | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `poNumber` | `string` | — |  |
+| `vendor` | `string` | — |  |
+| `onVendorChange` | `() => void` | — |  |
+| `orderDate` | `string` | — |  |
+| `expectedDelivery` | `string` | — |  |
+| `paymentTerms` | `string` | — |  |
+| `onHeaderChange` | `() => void` | — |  |
+| `lineItems` | `POLineItem[]` | — |  |
+| `onLineItemsChange` | `() => void` | — |  |
+| `approvalSteps` | `ApprovalStep[]` | — |  |
+| `status` | `"draft" \| "pending" \| "approved" \|...` | `draft` | 状态 <br/> Status |
+| `currencySymbol` | `string` | `¥` |  |
+| `readOnly` | `boolean` | `false` | 是否只读 <br/> Whether read-only |
+| `onSubmit` | `() => void` | — | 提交回调 <br/> Submit handler |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-purchase-order-editor--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-purchaseordereditor--docs)。

@@ -5,11 +5,10 @@ import {
   ResizableHandle,
 } from "@/components/ui/resizable";
 
-const meta = {
+const meta: Meta<typeof ResizablePanelGroup> = {
   title: "Components/Resizable",
   component: ResizablePanelGroup,
   tags: ["autodocs"],
-} satisfies Meta<typeof ResizablePanelGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,11 +1,11 @@
-import { PromotionRuleEditor } from "@/components/business/promotion-rule-editor";
-import { CodeBlock } from "@/components/code-block";
+import { PromotionRuleEditor } from "@/components/business/promotion-rule-editor"
+import { CodeBlock } from "@/components/code-block"
 
 # PromotionRuleEditor Promotion Rule Editor
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-促销规则编辑器
+ 促销规则编辑器
 PromotionRuleEditor — promotion rule editor component.
 
 ## 何时使用 / When to Use
@@ -24,19 +24,20 @@ export function Basic() {
   return <PromotionRuleEditor />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PromotionRuleEditor
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `rules`     | `PromotionRule[]`      | —       | Initial rules. Defaults to a single empty starter rule.   |
-| `onChange`  | `() => void`           | —       | Called with the current rules whenever they change.       |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `rules` | `PromotionRule[]` | — | Initial rules. Defaults to a single empty starter rule. |
+| `onChange` | `() => void` | — | Called with the current rules whenever they change. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-promotion-rule-editor--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-promotionruleeditor--docs)。

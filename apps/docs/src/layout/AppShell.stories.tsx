@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { HomeIcon, FolderIcon, SettingsIcon, BarChartIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof AppShell> = {
   title: "Layouts/AppShell",
   component: AppShell,
   tags: ["autodocs"],
-} satisfies Meta<typeof AppShell>
 
 export default meta
 type Story = StoryObj<typeof meta>

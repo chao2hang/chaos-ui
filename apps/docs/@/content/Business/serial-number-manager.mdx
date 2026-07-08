@@ -1,5 +1,5 @@
-import { SerialNumberManager } from "@/components/business/serial-number-manager";
-import { CodeBlock } from "@/components/code-block";
+import { SerialNumberManager } from "@/components/business/serial-number-manager"
+import { CodeBlock } from "@/components/code-block"
 
 # SerialNumberManager Serial Number Manager
 
@@ -24,19 +24,20 @@ export function Basic() {
   return <SerialNumberManager />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SerialNumberManager
 
-| Prop        | Type                      | Default | 说明 / Description                                        |
-| ----------- | ------------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`                  | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `rules`     | `Array<SerialNumberRule>` | —       |                                                           |
-| `onChange`  | `() => void`              | —       | 值变化回调 <br/> Callback when value changes              |
-| ...rest     | `React.HTMLAttributes`    | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `rules` | `Array<SerialNumberRule>` | — |  |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-serial-number-manager--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-serialnumbermanager--docs)。

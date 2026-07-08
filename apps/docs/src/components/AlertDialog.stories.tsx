@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof AlertDialog> = {
   title: "Components/AlertDialog",
   component: AlertDialog,
   tags: ["autodocs"],
-} satisfies Meta<typeof AlertDialog>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { EditIcon, TrashIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof DetailLayout> = {
   title: "Layouts/DetailLayout",
   component: DetailLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof DetailLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

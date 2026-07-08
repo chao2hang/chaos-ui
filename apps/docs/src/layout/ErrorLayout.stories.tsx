@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ErrorLayout } from "@/components/layout/error-layout"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof ErrorLayout> = {
   title: "Layouts/ErrorLayout",
   component: ErrorLayout,
   tags: ["autodocs"],
-} satisfies Meta<typeof ErrorLayout>
 
 export default meta
 type Story = StoryObj<typeof meta>

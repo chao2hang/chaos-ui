@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { LanguageSwitcher } from "@/components/business/language-switcher"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof LanguageSwitcher> = {
   title: "Business/LanguageSwitcher",
   component: LanguageSwitcher,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof LanguageSwitcher>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

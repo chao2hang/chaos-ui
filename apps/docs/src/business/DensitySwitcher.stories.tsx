@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { DensitySwitcher } from "@/components/business/density-switcher"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof DensitySwitcher> = {
   title: "Business/DensitySwitcher",
   component: DensitySwitcher,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof DensitySwitcher>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

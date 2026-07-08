@@ -57,6 +57,40 @@ Use native search such as `rg` for literal text queries, comments, docs, and exa
 - `npx tsc --noEmit` runs TypeScript checking.
 - If stale generated Next files cause type errors after route cleanup, remove `.next/` and rerun type checking.
 
+## Design Workflow（设计看板规范）
+
+所有功能设计、重构方案必须先产出计划 `.md` 文件，存放在 `designs/` 目录下。**状态由文件内 YAML frontmatter 标记，文件不移动。**
+
+```
+未执行 ──→ 工作中 ──→ 待审核 ──→ 完成
+  ↑                                  │
+  └──────── 需修改/补充 ←────────────┘
+```
+
+### 状态变更两步走
+
+1. 改文件 frontmatter 中的 `status` 字段
+2. 更新 `INDEX.md` 看板中对应的链接位置
+
+### Frontmatter 字段
+
+```yaml
+---
+status: 工作中    # 未执行 | 工作中 | 待审核 | 完成
+created: 2026-07-08
+updated: 2026-07-08
+---
+```
+
+### 执行约定
+
+- 没有计划文档 = 不能开始开发
+- 从 `designs/_模板_设计计划.md` 复制创建新计划
+- 文件命名：`YYYY-MM-DD_功能名称_设计计划.md`
+- 逐项完成、逐项标注（`- [x]`），全部完成后才能改状态为待审核
+- 审核不通过 → 在原文档追加修改说明，改状态为未执行
+- 看板总览在 `INDEX.md`，详细流程见 `designs/README.md`
+
 ## Git Hygiene
 
 - Expect a dirty worktree during active component work.

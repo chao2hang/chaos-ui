@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Spin } from "@/components/ui/spin";
 
-const meta = {
+const meta: Meta<typeof Spin> = {
   title: "Components/Spin",
   component: Spin,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-} satisfies Meta<typeof Spin>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -136,7 +136,7 @@ function generate() {
 
 import dynamic from "next/dynamic";
 
-export const componentLoaders: Record<string, React.ComponentType<unknown>> = {
+export const componentLoaders: Record<string, React.ComponentType<any>> = {
 ${loaders.join("\n")}
 };
 

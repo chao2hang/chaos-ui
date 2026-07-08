@@ -1,5 +1,5 @@
-import { WorkOrderCard } from "@/components/business/work-order-card";
-import { CodeBlock } from "@/components/code-block";
+import { WorkOrderCard } from "@/components/business/work-order-card"
+import { CodeBlock } from "@/components/code-block"
 
 # WorkOrderCard Work Order Card
 
@@ -24,31 +24,32 @@ export function Basic() {
   return <WorkOrderCard />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### WorkOrderCard
 
-| Prop           | Type                                      | Default  | 说明 / Description                                        |
-| -------------- | ----------------------------------------- | -------- | --------------------------------------------------------- |
-| `className`    | `string`                                  | —        | 自定义样式类名 <br/> Custom CSS class                     |
-| `orderNo`      | `string`                                  | —        | Work order number.                                        |
-| `product`      | `string`                                  | —        | Product being manufactured.                               |
-| `productCode`  | `string`                                  | —        | Product code.                                             |
-| `status`       | `WorkOrderStatus`                         | —        | Work order status.                                        |
-| `plannedStart` | `string`                                  | —        | Planned start date.                                       |
-| `plannedEnd`   | `string`                                  | —        | Planned end date.                                         |
-| `plannedQty`   | `number`                                  | —        | Total planned quantity.                                   |
-| `completedQty` | `number`                                  | —        | Completed quantity.                                       |
-| `unit`         | `string`                                  | `pcs`    | Unit.                                                     |
-| `priority`     | `"low" \| "medium" \| "high" \| "urgent"` | `medium` | Priority.                                                 |
-| `workCenter`   | `string`                                  | —        | Assigned work center.                                     |
-| `operations`   | `WorkOrderOperation[]`                    | —        | Operations / routing steps.                               |
-| `supervisor`   | `string`                                  | —        | Responsible person.                                       |
-| `onClick`      | `() => void`                              | —        | Click handler for the card.                               |
-| ...rest        | `React.HTMLAttributes`                    | —        | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `orderNo` | `string` | — | Work order number. |
+| `product` | `string` | — | Product being manufactured. |
+| `productCode` | `string` | — | Product code. |
+| `status` | `WorkOrderStatus` | — | Work order status. |
+| `plannedStart` | `string` | — | Planned start date. |
+| `plannedEnd` | `string` | — | Planned end date. |
+| `plannedQty` | `number` | — | Total planned quantity. |
+| `completedQty` | `number` | — | Completed quantity. |
+| `unit` | `string` | `pcs` | Unit. |
+| `priority` | `"low" \| "medium" \| "high" \| "urgent"` | `medium` | Priority. |
+| `workCenter` | `string` | — | Assigned work center. |
+| `operations` | `WorkOrderOperation[]` | — | Operations / routing steps. |
+| `supervisor` | `string` | — | Responsible person. |
+| `onClick` | `() => void` | — | Click handler for the card. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-work-order-card--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-workordercard--docs)。

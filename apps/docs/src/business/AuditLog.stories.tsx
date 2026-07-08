@@ -9,12 +9,11 @@ const entries = [
   { id: "5", actor: { name: "Bob" }, action: "logout", target: undefined, timestamp: Date.now() - 30_000 },
 ]
 
-const meta = {
+const meta: Meta<typeof AuditLog> = {
   title: "Business/AuditLog",
   component: AuditLog,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof AuditLog>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

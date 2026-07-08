@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ActivityFeed } from "@/components/business/activity-feed"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
-const meta = {
+const meta: Meta<typeof ActivityFeed> = {
   title: "Business/ActivityFeed",
   component: ActivityFeed,
   tags: ["autodocs"],
-} satisfies Meta<typeof ActivityFeed>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

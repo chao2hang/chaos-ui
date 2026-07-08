@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { CodeBlock } from "@/components/code-block";
+import { Button } from "@/components/ui/button"
+import { CodeBlock } from "@/components/code-block"
 
 # Button 按钮
 
@@ -26,65 +26,60 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button variant="default">Default</Button>
   <Button variant="outline">Outline</Button>
   <Button variant="secondary">Secondary</Button>
   <Button variant="ghost">Ghost</Button>
   <Button variant="destructive">Destructive</Button>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button size="xs">Xs</Button>
   <Button size="sm">Sm</Button>
   <Button size="default">Default</Button>
   <Button size="lg">Lg</Button>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant       | 说明 / Description                             | 默认 |
-| ------------- | ---------------------------------------------- | ---- |
-| `default`     | 默认样式 / Default style                       | ✓    |
-| `outline`     | 描边样式 / Outlined style                      |      |
-| `secondary`   | 次要样式 / Secondary action style              |      |
-| `ghost`       | 幽灵(无背景)样式 / Ghost (no background) style |      |
-| `destructive` | 危险/删除样式 / Destructive/danger style       |      |
-| `link`        | 链接样式 / Link style                          |      |
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `outline` | 描边样式 / Outlined style |  |
+| `secondary` | 次要样式 / Secondary action style |  |
+| `ghost` | 幽灵(无背景)样式 / Ghost (no background) style |  |
+| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| `link` | 链接样式 / Link style |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description            | 默认 |
-| --------- | ----------------------------- | ---- |
-| `default` | 默认尺寸 / Default size       | ✓    |
-| `xs`      | 超小 / Extra small            |      |
-| `sm`      | 小号 / Small                  |      |
-| `lg`      | 大号 / Large                  |      |
-| `icon`    | 图标正方形 / Icon-only square |      |
-| `icon-xs` | 超小图标 / Extra small icon   |      |
-| `icon-sm` | 小图标 / Small icon           |      |
-| `icon-lg` | 大图标 / Large icon           |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `xs` | 超小 / Extra small |  |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+| `icon` | 图标正方形 / Icon-only square |  |
+| `icon-xs` | 超小图标 / Extra small icon |  |
+| `icon-sm` | 小图标 / Small icon |  |
+| `icon-lg` | 大图标 / Large icon |  |
 
 ## API / Props
 
 ### Button
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

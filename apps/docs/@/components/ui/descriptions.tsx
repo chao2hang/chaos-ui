@@ -25,7 +25,7 @@ const descriptionsVariants = cva("", {
 interface DescriptionItem {
   key: string;
   label: React.ReactNode;
-  content: React.ReactNode;
+  value: React.ReactNode;
   span?: number;
 }
 
@@ -92,7 +92,7 @@ function Descriptions({
                 !bordered && "py-1",
               )}
             >
-              {item.content}
+              {item.value}
             </dd>
           </React.Fragment>
         ))}

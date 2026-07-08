@@ -10,12 +10,11 @@ const images = [
   { id: "6", src: "https://picsum.photos/seed/6/400/400", alt: "风景 6" },
 ]
 
-const meta = {
+const meta: Meta<typeof ImageGallery> = {
   title: "Business/ImageGallery",
   component: ImageGallery,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof ImageGallery>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

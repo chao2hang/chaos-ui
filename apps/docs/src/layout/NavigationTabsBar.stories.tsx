@@ -10,12 +10,11 @@ import {
   UserIcon,
 } from "@/components/ui/icons";
 
-const meta = {
+const meta: Meta<typeof NavigationTabsBar> = {
   title: "Layouts/NavigationTabsBar",
   component: NavigationTabsBar,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-} satisfies Meta<typeof NavigationTabsBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

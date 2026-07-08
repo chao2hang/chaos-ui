@@ -3,11 +3,10 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/h
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-const meta = {
+const meta: Meta<typeof HoverCard> = {
   title: "Components/HoverCard",
   component: HoverCard,
   tags: ["autodocs"],
-} satisfies Meta<typeof HoverCard>
 
 export default meta
 type Story = StoryObj<typeof meta>

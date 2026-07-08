@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Banner } from "@/components/business/banner"
 
-const meta = {
+const meta: Meta<typeof Banner> = {
   title: "Business/Banner",
   component: Banner,
   parameters: { layout: "padded" },
@@ -9,8 +9,7 @@ const meta = {
   args: {
     title: "Information",
     description: "This is an informational banner.",
-  },
-} satisfies Meta<typeof Banner>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

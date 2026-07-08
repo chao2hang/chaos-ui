@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ApprovalTimeline } from "@/components/business/approval-timeline";
 
-const meta = {
+const meta: Meta<typeof ApprovalTimeline> = {
   title: "Business/ApprovalTimeline",
   component: ApprovalTimeline,
   tags: ["autodocs"],
-} satisfies Meta<typeof ApprovalTimeline>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

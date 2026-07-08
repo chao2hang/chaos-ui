@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Transfer } from "@/components/business/transfer"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof Transfer> = {
   title: "Business/Transfer",
   component: Transfer,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof Transfer>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

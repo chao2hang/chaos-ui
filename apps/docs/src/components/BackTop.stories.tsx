@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { BackTop } from "@/components/ui/back-top";
 
-const meta = {
+const meta: Meta<typeof BackTop> = {
   title: "Components/BackTop",
   component: BackTop,
   tags: ["autodocs"],
-} satisfies Meta<typeof BackTop>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

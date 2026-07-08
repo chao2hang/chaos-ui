@@ -19,13 +19,12 @@ import {
   WebhookIcon,
 } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof SettingsLayout> = {
   title: "Business/SettingsLayout",
   component: SettingsLayout,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof SettingsLayout>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

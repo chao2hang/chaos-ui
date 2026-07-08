@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { RegionLayout } from "@/components/layout/region-layout";
 
-const meta = {
+const meta: Meta<typeof RegionLayout> = {
   title: "Layouts/RegionLayout",
   component: RegionLayout,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-} satisfies Meta<typeof RegionLayout>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

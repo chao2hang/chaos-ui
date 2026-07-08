@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { StatusBadge } from "@/components/business/status-badge";
 
-const meta = {
+const meta: Meta<typeof StatusBadge> = {
   title: "Business/StatusBadge",
   component: StatusBadge,
   tags: ["autodocs"],
-} satisfies Meta<typeof StatusBadge>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
   component: Switch,
   tags: ["autodocs"],
@@ -21,7 +21,6 @@ const meta = {
       description: "Whether the switch is disabled",
     },
   },
-} satisfies Meta<typeof Switch>
 
 export default meta
 type Story = StoryObj<typeof meta>

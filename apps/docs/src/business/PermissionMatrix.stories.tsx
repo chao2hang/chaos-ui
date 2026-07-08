@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { PermissionMatrix } from "@/components/business/permission-matrix";
 
-const meta = {
+const meta: Meta<typeof PermissionMatrix> = {
   title: "Business/PermissionMatrix",
   component: PermissionMatrix,
   tags: ["autodocs"],
-} satisfies Meta<typeof PermissionMatrix>;
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -3,13 +3,12 @@ import { SegmentedControl } from "@/components/business/segmented-control"
 import { useState } from "react"
 import { GridIcon, ListIcon, LayoutGridIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof SegmentedControl> = {
   title: "Business/SegmentedControl",
   component: SegmentedControl,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof SegmentedControl>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Sheet> = {
   title: "Components/Sheet",
   component: Sheet,
   tags: ["autodocs"],
-} satisfies Meta<typeof Sheet>
 
 export default meta
 type Story = StoryObj<typeof meta>

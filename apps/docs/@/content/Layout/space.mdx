@@ -1,5 +1,5 @@
-import { Space } from "@/components/ui/space";
-import { CodeBlock } from "@/components/code-block";
+import { Space } from "@/components/ui/space"
+import { CodeBlock } from "@/components/code-block"
 
 # Space 间距
 
@@ -26,60 +26,58 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Space size="xs">Xs</Space>
   <Space size="sm">Sm</Space>
   <Space size="lg">Lg</Space>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **方向 / direction**
 
-| direction    | 说明 / Description | 默认 |
-| ------------ | ------------------ | ---- |
-| `horizontal` |                    | ✓    |
-| `vertical`   |                    |      |
+| direction | 说明 / Description | 默认 |
+|---|---|---|
+| `horizontal` |  | ✓ |
+| `vertical` |  |  |
 
 **尺寸 / Size**
 
 | Size | 说明 / Description | 默认 |
-| ---- | ------------------ | ---- |
-| `xs` | 超小 / Extra small |      |
-| `sm` | 小号 / Small       | ✓    |
-| `md` |                    |      |
-| `lg` | 大号 / Large       |      |
-| `xl` | 超大 / Extra large |      |
+|---|---|---|
+| `xs` | 超小 / Extra small |  |
+| `sm` | 小号 / Small | ✓ |
+| `md` |  |  |
+| `lg` | 大号 / Large |  |
+| `xl` | 超大 / Extra large |  |
 
 **wrap / wrap**
 
-| wrap    | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `true`  |                    | ✓    |
-| `false` |                    |      |
+| wrap | 说明 / Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **对齐 / align**
 
-| align      | 说明 / Description | 默认 |
-| ---------- | ------------------ | ---- |
-| `start`    |                    |      |
-| `center`   |                    | ✓    |
-| `end`      |                    |      |
-| `baseline` |                    |      |
+| align | 说明 / Description | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  | ✓ |
+| `end` |  |  |
+| `baseline` |  |  |
 
 ## API / Props
 
 ### Space
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `split`     | `React.ReactNode`             | —       | Split items with a separator                                |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `split` | `React.ReactNode` | — | Split items with a separator |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

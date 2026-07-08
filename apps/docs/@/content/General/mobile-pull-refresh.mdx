@@ -1,5 +1,5 @@
-import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh";
-import { CodeBlock } from "@/components/code-block";
+import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh"
+import { CodeBlock } from "@/components/code-block"
 
 # MobilePullRefresh Mobile Pull Refresh
 
@@ -24,20 +24,21 @@ export function Basic() {
   return <MobilePullRefresh />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobilePullRefresh
 
-| Prop         | Type                   | Default | 说明 / Description                                        |
-| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`  | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `onRefresh`  | `() => void`           | —       | 刷新回调 / refresh handler                                |
-| `refreshing` | `boolean`              | `false` | 是否正在刷新 / refreshing state                           |
-| `threshold`  | `number`               | `60`    | 触发阈值(px) / pull threshold in px                       |
-| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `onRefresh` | `() => void` | — | 刷新回调 / refresh handler |
+| `refreshing` | `boolean` | `false` | 是否正在刷新 / refreshing state |
+| `threshold` | `number` | `60` | 触发阈值(px) / pull threshold in px |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-pull-refresh--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobilepullrefresh--docs)。

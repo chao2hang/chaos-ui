@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Label> = {
   title: "Components/Label",
   component: Label,
   tags: ["autodocs"],
@@ -11,7 +11,6 @@ const meta = {
       description: "The id of the element the label is for",
     },
   },
-} satisfies Meta<typeof Label>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -3,13 +3,12 @@ import { CoachMark } from "@/components/business/coach-mark"
 import { Button } from "@/components/ui/button"
 import { useRef, useState } from "react"
 
-const meta = {
+const meta: Meta<typeof CoachMark> = {
   title: "Business/CoachMark",
   component: CoachMark,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof CoachMark>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

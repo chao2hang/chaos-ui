@@ -6,14 +6,13 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion"
 
-const meta = {
+const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
   component: Accordion,
   tags: ["autodocs"],
   parameters: {
     layout: "padded",
   },
-} satisfies Meta<typeof Accordion>
 
 export default meta
 type Story = StoryObj<typeof meta>

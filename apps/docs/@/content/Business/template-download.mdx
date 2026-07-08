@@ -1,5 +1,5 @@
-import { TemplateDownload } from "@/components/business/template-download";
-import { CodeBlock } from "@/components/code-block";
+import { TemplateDownload } from "@/components/business/template-download"
+import { CodeBlock } from "@/components/code-block"
 
 # TemplateDownload Template Download
 
@@ -24,20 +24,21 @@ export function Basic() {
   return <TemplateDownload />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TemplateDownload
 
-| Prop         | Type                     | Default        | 说明 / Description                                             |
-| ------------ | ------------------------ | -------------- | -------------------------------------------------------------- |
-| `className`  | `string`                 | —              | 自定义样式类名 <br/> Custom CSS class                          |
-| `templates`  | `TemplateDownloadItem[]` | —              | Templates available for download.                              |
-| `onDownload` | `() => void`             | —              | Called with the selected template when a link is clicked.      |
-| `emptyLabel` | `string`                 | `暂无可用模板` | Text shown when the list is empty. Defaults to "暂无可用模板". |
-| ...rest      | `React.HTMLAttributes`   | —              | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes      |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `templates` | `TemplateDownloadItem[]` | — | Templates available for download. |
+| `onDownload` | `() => void` | — | Called with the selected template when a link is clicked. |
+| `emptyLabel` | `string` | `暂无可用模板` | Text shown when the list is empty. Defaults to "暂无可用模板". |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-template-download--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-templatedownload--docs)。

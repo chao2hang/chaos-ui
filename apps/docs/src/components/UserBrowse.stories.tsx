@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { UserBrowse, type User } from "@/components/ui/user-browse"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof UserBrowse> = {
   title: "Components/UserBrowse",
   component: UserBrowse,
   tags: ["autodocs"],
-} satisfies Meta<typeof UserBrowse>
 
 export default meta
 type Story = StoryObj<typeof meta>

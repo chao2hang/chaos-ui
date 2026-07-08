@@ -6,13 +6,12 @@ import {
   LayoutDashboardIcon,
 } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof UserMenu> = {
   title: "Business/UserMenu",
   component: UserMenu,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof UserMenu>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

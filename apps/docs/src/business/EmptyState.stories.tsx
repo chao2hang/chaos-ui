@@ -3,7 +3,7 @@ import { EmptyState } from "@/components/business/empty-state"
 import { Button } from "@/components/ui/button"
 import { InboxIcon, SearchXIcon, FileXIcon, AlertTriangleIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof EmptyState> = {
   title: "Business/EmptyState",
   component: EmptyState,
   tags: ["autodocs"],
@@ -12,8 +12,7 @@ const meta = {
       control: { type: "select" },
       options: ["default", "search", "error", "network"],
     },
-  },
-} satisfies Meta<typeof EmptyState>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

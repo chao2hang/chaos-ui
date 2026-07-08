@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminHeader } from "@/components/layout/admin-header";
 import { Button } from "@/components/ui/button";
 
-const meta = {
+const meta: Meta<typeof AdminHeader> = {
   title: "Layouts/AdminHeader",
   component: AdminHeader,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-} satisfies Meta<typeof AdminHeader>;
 
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

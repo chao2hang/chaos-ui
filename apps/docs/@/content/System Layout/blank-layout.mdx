@@ -1,5 +1,5 @@
-import { BlankLayout } from "@/components/layout/blank-layout";
-import { CodeBlock } from "@/components/code-block";
+import { BlankLayout } from "@/components/layout/blank-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # BlankLayout 空白布局
 
@@ -24,19 +24,20 @@ export function Basic() {
   return <BlankLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### BlankLayout
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `centered`  | `boolean`                     | `false` |                                                             |
-| `padded`    | `boolean`                     | `true`  |                                                             |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `centered` | `boolean` | `false` |  |
+| `padded` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-blank-layout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-blanklayout--docs)。

@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Image } from "@/components/ui/image";
 
-const meta = {
+const meta: Meta<typeof Image> = {
   title: "Components/Image",
   component: Image,
   tags: ["autodocs"],
-} satisfies Meta<typeof Image>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -36,11 +36,10 @@ const columns: ColumnDef<User>[] = [
   },
 ]
 
-const meta = {
+const meta: Meta<typeof VirtualTable> = {
   title: "Components/VirtualTable",
   component: VirtualTable,
   tags: ["autodocs"],
-} satisfies Meta<typeof VirtualTable>
 
 export default meta
 type Story = StoryObj<typeof meta>

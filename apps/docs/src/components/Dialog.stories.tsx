@@ -13,11 +13,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Dialog> = {
   title: "Components/Dialog",
   component: Dialog,
   tags: ["autodocs"],
-} satisfies Meta<typeof Dialog>
 
 export default meta
 type Story = StoryObj<typeof meta>

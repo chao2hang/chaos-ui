@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
-const meta = {
+const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
@@ -16,7 +16,6 @@ const meta = {
       description: "Whether the checkbox is disabled",
     },
   },
-} satisfies Meta<typeof Checkbox>
 
 export default meta
 type Story = StoryObj<typeof meta>

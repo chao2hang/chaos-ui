@@ -3,12 +3,11 @@ import { DialogFormBody } from "@/components/layout/dialog-form-body";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const meta = {
+const meta: Meta<typeof DialogFormBody> = {
   title: "Layouts/DialogFormBody",
   component: DialogFormBody,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-} satisfies Meta<typeof DialogFormBody>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

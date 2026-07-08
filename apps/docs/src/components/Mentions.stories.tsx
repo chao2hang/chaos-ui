@@ -2,11 +2,10 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Mentions } from "@/components/ui/mentions";
 
-const meta = {
+const meta: Meta<typeof Mentions> = {
   title: "Components/Mentions",
   component: Mentions,
   tags: ["autodocs"],
-} satisfies Meta<typeof Mentions>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

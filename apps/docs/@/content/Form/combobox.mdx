@@ -1,0 +1,87 @@
+import { Combobox } from "@/components/ui/combobox"
+import { CodeBlock } from "@/components/code-block"
+
+# Combobox 组合框
+
+> 表单控件 / Form controls for user input and data submission.
+
+结合输入框和下拉列表的组合选择控件,支持自定义输入和选项匹配。
+Combines input with a dropdown list; supports custom input and option matching.
+
+## 何时使用 / When to Use
+
+需要组合框功能时使用本组件。
+
+Use when you need a combobox.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { Combobox } from "@/components/ui/combobox"
+
+export function Basic() {
+  return <Combobox />
+}`} lang="tsx" />
+
+### 变体 / Variants
+
+<CodeBlock code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Combobox variant="default">Default</Combobox>
+  <Combobox variant="outline">Outline</Combobox>
+</div>`} lang="tsx" />
+
+### 尺寸 / Sizes
+
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Combobox size="sm">Sm</Combobox>
+  <Combobox size="default">Default</Combobox>
+  <Combobox size="lg">Lg</Combobox>
+</div>`} lang="tsx" />
+
+### 状态 / States
+
+<CodeBlock code={`<Combobox>Normal</Combobox>
+<Combobox disabled>Disabled</Combobox>`} lang="tsx" />
+
+
+## 样式变体 / Style Variants
+
+**变体 / Variant**
+
+| Variant | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认样式 / Default style | ✓ |
+| `outline` | 描边样式 / Outlined style |  |
+
+**尺寸 / Size**
+
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 / Default size | ✓ |
+| `sm` | 小号 / Small |  |
+| `lg` | 大号 / Large |  |
+
+## API / Props
+
+### Combobox
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `options` | `ComboboxOption[]` | — | 可选项列表 <br/> Available options |
+| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
+| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
+| `placeholder` | `string` | `Select option...` | 占位文本 <br/> Placeholder text |
+| `searchable` | `boolean` | `true` |  |
+| `emptyMessage` | `string` | `No results found.` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-combobox--docs)。

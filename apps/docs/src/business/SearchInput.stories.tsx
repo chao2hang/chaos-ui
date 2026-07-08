@@ -8,12 +8,11 @@ const results = [
   { id: "4", title: "UserProfile", description: "用户资料组件", group: "组件" },
 ]
 
-const meta = {
+const meta: Meta<typeof SearchInput> = {
   title: "Business/SearchInput",
   component: SearchInput,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof SearchInput>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

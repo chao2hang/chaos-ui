@@ -23,6 +23,7 @@ interface ColumnDef {
   header: string
   accessor?: (row: Record<string, unknown>) => unknown
   render?: (row: Record<string, unknown>) => React.ReactNode
+  width?: number | string
 }
 
 interface AdvancedDataTableProps {

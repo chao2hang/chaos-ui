@@ -1,5 +1,5 @@
-import { ProductBrowse } from "@/components/business/product-browse";
-import { CodeBlock } from "@/components/code-block";
+import { ProductBrowse } from "@/components/business/product-browse"
+import { CodeBlock } from "@/components/code-block"
 
 # ProductBrowse Product Browse
 
@@ -24,25 +24,26 @@ export function Basic() {
   return <ProductBrowse />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ProductBrowse
 
-| Prop                | Type                   | Default | 说明 / Description                                                             |
-| ------------------- | ---------------------- | ------- | ------------------------------------------------------------------------------ |
-| `className`         | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                                          |
-| `open`              | `boolean`              | —       | 是否打开(受控) <br/> Open state (controlled)                                   |
-| `onOpenChange`      | `() => void`           | —       | 打开状态变化回调 <br/> Callback when open state changes                        |
-| `onSelect`          | `() => void`           | —       | Single-select emits the chosen item; multi-select emits the last toggled item. |
-| `multiple`          | `boolean`              | `false` | Enable multi-select (default false). / 多选                                    |
-| `items`             | `ProductBrowseItem[]`  | —       | 选项/数据项列表 <br/> Items / data list                                        |
-| `title`             | `string`               | —       | 标题 <br/> Title                                                               |
-| `searchPlaceholder` | `string`               | —       |                                                                                |
-| `emptyText`         | `string`               | —       |                                                                                |
-| ...rest             | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes                      |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
+| `onOpenChange` | `() => void` | — | 打开状态变化回调 <br/> Callback when open state changes |
+| `onSelect` | `() => void` | — | Single-select emits the chosen item; multi-select emits the last toggled item. |
+| `multiple` | `boolean` | `false` | Enable multi-select (default false). / 多选 |
+| `items` | `ProductBrowseItem[]` | — | 选项/数据项列表 <br/> Items / data list |
+| `title` | `string` | — | 标题 <br/> Title |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-product-browse--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-productbrowse--docs)。

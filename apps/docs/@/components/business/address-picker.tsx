@@ -113,7 +113,7 @@ function AddressPicker({
       className={cn("flex items-center gap-2", className)}
       {...props}
     >
-      <Select value={province} onValueChange={handleProvinceChange}>
+      <Select value={province} onValueChange={(code) => handleProvinceChange(code ?? "")}>
         <SelectTrigger className="w-[140px]">
           <SelectValue placeholder={placeholder.province} />
         </SelectTrigger>
@@ -125,7 +125,7 @@ function AddressPicker({
           ))}
         </SelectContent>
       </Select>
-      <Select value={city} onValueChange={handleCityChange}>
+      <Select value={city} onValueChange={(code) => handleCityChange(code ?? "")}>
         <SelectTrigger className="w-[140px]">
           <SelectValue placeholder={placeholder.city} />
         </SelectTrigger>
@@ -137,7 +137,7 @@ function AddressPicker({
           ))}
         </SelectContent>
       </Select>
-      <Select value={district} onValueChange={handleDistrictChange}>
+      <Select value={district} onValueChange={(code) => handleDistrictChange(code ?? "")}>
         <SelectTrigger className="w-[140px]">
           <SelectValue placeholder={placeholder.district} />
         </SelectTrigger>

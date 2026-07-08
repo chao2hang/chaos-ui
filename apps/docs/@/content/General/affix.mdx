@@ -1,5 +1,5 @@
-import { Affix } from "@/components/ui/affix";
-import { CodeBlock } from "@/components/code-block";
+import { Affix } from "@/components/ui/affix"
+import { CodeBlock } from "@/components/code-block"
 
 # Affix 固钉
 
@@ -24,29 +24,30 @@ export function Basic() {
   return <Affix />
 }`} lang="tsx" />
 
+
 ## 样式变体 / Style Variants
 
 **position / position**
 
-| position       | 说明 / Description | 默认 |
-| -------------- | ------------------ | ---- |
-| `top`          |                    |      |
-| `bottom`       |                    |      |
-| `top-start`    |                    |      |
-| `top-end`      |                    |      |
-| `bottom-start` |                    |      |
-| `bottom-end`   |                    | ✓    |
+| position | 说明 / Description | 默认 |
+|---|---|---|
+| `top` |  |  |
+| `bottom` |  |  |
+| `top-start` |  |  |
+| `top-end` |  |  |
+| `bottom-start` |  |  |
+| `bottom-end` |  | ✓ |
 
 ## API / Props
 
 ### Affix
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `offset`    | `number`                      | `0`     | Offset from the target position in pixels                   |
-| `target`    | `(...args) => unknown`        | —       | Target container ref to observe scroll                      |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `offset` | `number` | `0` | Offset from the target position in pixels |
+| `target` | `(...args) => unknown` | — | Target container ref to observe scroll |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { MobileDashboardLayout } from "@/components/mobile/mobile-dashboard-layout";
-import { CodeBlock } from "@/components/code-block";
+import { MobileDashboardLayout } from "@/components/mobile/mobile-dashboard-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileDashboardLayout 移动端仪表盘布局
 
@@ -24,22 +24,23 @@ export function Basic() {
   return <MobileDashboardLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileDashboardLayout
 
-| Prop          | Type                   | Default | 说明 / Description                                        |
-| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `title`       | `string`               | —       | 标题 <br/> Title                                          |
-| `description` | `string`               | —       | 描述文本 <br/> Description text                           |
-| `actions`     | `React.ReactNode`      | —       |                                                           |
-| `onBack`      | `() => void`           | —       |                                                           |
-| `onMenu`      | `() => void`           | —       |                                                           |
-| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `title` | `string` | — | 标题 <br/> Title |
+| `description` | `string` | — | 描述文本 <br/> Description text |
+| `actions` | `React.ReactNode` | — |  |
+| `onBack` | `() => void` | — |  |
+| `onMenu` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-dashboard-layout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobiledashboardlayout--docs)。

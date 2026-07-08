@@ -36,27 +36,26 @@ const columns: ColumnDef[] = [
   },
 ]
 
-const meta = {
+const meta: Meta<typeof AdvancedDataTable> = {
   title: "Business/AdvancedDataTable",
   component: AdvancedDataTable,
   tags: ["autodocs"],
-} satisfies Meta<typeof AdvancedDataTable>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { columns, data: generateData(20), pageSize: 10 },
+  args: { columns, data: generateData(20) as Record<string, unknown>[], pageSize: 10 },
 }
 
 export const LargeDataset: Story = {
-  args: { columns, data: generateData(100), pageSize: 10 },
+  args: { columns, data: generateData(100) as Record<string, unknown>[], pageSize: 10 },
 }
 
 export const WithRowClick: Story = {
   args: {
     columns,
-    data: generateData(20),
+    data: generateData(20) as Record<string, unknown>[],
     pageSize: 10,
     onRowClick: (row) => alert(`Clicked: ${row.name}`),
   },

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { WorkflowViewer } from "@/components/business/workflow"
+import { WorkflowViewer, type WorkflowNodeData } from "@/components/business/workflow"
 import type { Node, Edge } from "@xyflow/react"
 
-const nodes: Node[] = [
+const nodes: Node<WorkflowNodeData>[] = [
   { id: "1", type: "workflow", position: { x: 250, y: 0 }, data: { label: "开始", type: "input" } },
   { id: "2", type: "workflow", position: { x: 250, y: 100 }, data: { label: "处理数据", description: "解析上传文件" } },
   { id: "3", type: "workflow", position: { x: 100, y: 220 }, data: { label: "校验通过?", type: "decision" } },
@@ -18,12 +18,11 @@ const edges: Edge[] = [
   { id: "e4-2", source: "4", target: "2" },
 ]
 
-const meta = {
+const meta: Meta<typeof WorkflowViewer> = {
   title: "Business/Workflow",
   component: WorkflowViewer,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof WorkflowViewer>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
 
-const meta = {
+const meta: Meta<typeof AdminBreadcrumb> = {
   title: "Layouts/AdminBreadcrumb",
   component: AdminBreadcrumb,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-} satisfies Meta<typeof AdminBreadcrumb>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

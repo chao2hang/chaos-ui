@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
@@ -13,7 +13,6 @@ const meta = {
       </TooltipProvider>
     ),
   ],
-} satisfies Meta<typeof Tooltip>
 
 export default meta
 type Story = StoryObj<typeof meta>

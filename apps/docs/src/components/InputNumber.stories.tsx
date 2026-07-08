@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputNumber } from "@/components/ui/input-number";
 
-const meta = {
+const meta: Meta<typeof InputNumber> = {
   title: "Components/InputNumber",
   component: InputNumber,
   tags: ["autodocs"],
-} satisfies Meta<typeof InputNumber>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

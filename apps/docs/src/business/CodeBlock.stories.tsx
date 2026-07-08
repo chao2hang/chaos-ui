@@ -8,12 +8,11 @@ export function Counter() {
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>
 }`
 
-const meta = {
+const meta: Meta<typeof CodeBlock> = {
   title: "Business/CodeBlock",
   component: CodeBlock,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof CodeBlock>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

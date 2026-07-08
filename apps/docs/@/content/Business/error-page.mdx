@@ -1,10 +1,5 @@
-import {
-  ErrorPage,
-  NotFound,
-  InternalError,
-  Unauthorized,
-} from "@/components/business/error-page";
-import { CodeBlock } from "@/components/code-block";
+import { ErrorPage, NotFound, InternalError, Unauthorized } from "@/components/business/error-page"
+import { CodeBlock } from "@/components/code-block"
 
 # ErrorPage 错误页
 
@@ -29,25 +24,26 @@ export function Basic() {
   return <ErrorPage>Default</ErrorPage>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ErrorPage
 
-| Prop           | Type                       | Default | 说明 / Description                                        |
-| -------------- | -------------------------- | ------- | --------------------------------------------------------- |
-| `className`    | `string`                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `status`       | `403 \| 404 \| 500 \| 503` | `404`   | 状态 <br/> Status                                         |
-| `title`        | `string`                   | —       | 标题 <br/> Title                                          |
-| `description`  | `string`                   | —       | 描述文本 <br/> Description text                           |
-| `homeHref`     | `string`                   | `/`     |                                                           |
-| `showHome`     | `boolean`                  | `true`  |                                                           |
-| `showBack`     | `boolean`                  | `true`  |                                                           |
-| `onBack`       | `() => void`               | —       |                                                           |
-| `illustration` | `React.ReactNode`          | —       |                                                           |
-| ...rest        | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `status` | `403 \| 404 \| 500 \| 503` | `404` | 状态 <br/> Status |
+| `title` | `string` | — | 标题 <br/> Title |
+| `description` | `string` | — | 描述文本 <br/> Description text |
+| `homeHref` | `string` | `/` |  |
+| `showHome` | `boolean` | `true` |  |
+| `showBack` | `boolean` | `true` |  |
+| `onBack` | `() => void` | — |  |
+| `illustration` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-error-page--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-errorpage--docs)。

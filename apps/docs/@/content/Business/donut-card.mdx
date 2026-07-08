@@ -1,14 +1,11 @@
-import { DonutCard } from "@/components/business/donut-card";
-import { CodeBlock } from "@/components/code-block";
+import { DonutCard } from "@/components/business/donut-card"
+import { CodeBlock } from "@/components/code-block"
 
 # DonutCard Donut Card
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<DonutCard
-  data={[{ label: "A", value: 60, color: "#3b82f6" }]}
-  centerLabel="总计"
-/>
+<DonutCard data={[{label:"A",value:60,color:"#3b82f6"}]} centerLabel="总计" />
 DonutCard — donut card component.
 
 ## 何时使用 / When to Use
@@ -27,19 +24,20 @@ export function Basic() {
   return <DonutCard />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### DonutCard
 
-| Prop          | Type                   | Default | 说明 / Description                                        |
-| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `data`        | `Array<T>`             | —       | 数据源 <br/> Data source                                  |
-| `centerLabel` | `string`               | —       |                                                           |
-| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| `data` | `Array<T>` | — | 数据源 <br/> Data source |
+| `centerLabel` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-donut-card--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-donutcard--docs)。

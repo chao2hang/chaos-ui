@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ErrorBoundary } from "@/components/business/error-boundary"
 import { Button } from "@/components/ui/button"
 
-const meta = {
+const meta: Meta<typeof ErrorBoundary> = {
   title: "Business/ErrorBoundary",
   component: ErrorBoundary,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof ErrorBoundary>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

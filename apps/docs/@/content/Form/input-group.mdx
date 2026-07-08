@@ -1,5 +1,5 @@
-import { InputGroup } from "@/components/ui/input-group";
-import { CodeBlock } from "@/components/code-block";
+import { InputGroup } from "@/components/ui/input-group"
+import { CodeBlock } from "@/components/code-block"
 
 # InputGroup 输入组
 
@@ -30,51 +30,46 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <InputGroup size="xs">Xs</InputGroup>
   <InputGroup size="sm">Sm</InputGroup>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 状态 / States
 
-<CodeBlock
-  code={`<InputGroup>Normal</InputGroup>
-<InputGroup disabled>Disabled</InputGroup>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<InputGroup>Normal</InputGroup>
+<InputGroup disabled>Disabled</InputGroup>`} lang="tsx" />
+
 
 ## 样式变体 / Style Variants
 
 **对齐 / align**
 
-| align          | 说明 / Description | 默认 |
-| -------------- | ------------------ | ---- |
-| `inline-start` |                    | ✓    |
-| `inline-end`   |                    |      |
-| `block-start`  |                    |      |
-| `block-end`    |                    |      |
+| align | 说明 / Description | 默认 |
+|---|---|---|
+| `inline-start` |  | ✓ |
+| `inline-end` |  |  |
+| `block-start` |  |  |
+| `block-end` |  |  |
 
 **尺寸 / Size**
 
-| Size      | 说明 / Description          | 默认 |
-| --------- | --------------------------- | ---- |
-| `xs`      | 超小 / Extra small          | ✓    |
-| `sm`      | 小号 / Small                |      |
-| `icon-xs` | 超小图标 / Extra small icon |      |
-| `icon-sm` | 小图标 / Small icon         |      |
+| Size | 说明 / Description | 默认 |
+|---|---|---|
+| `xs` | 超小 / Extra small | ✓ |
+| `sm` | 小号 / Small |  |
+| `icon-xs` | 超小图标 / Extra small icon |  |
+| `icon-sm` | 小图标 / Small icon |  |
 
 ## API / Props
 
 ### InputGroup
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
@@ -82,4 +77,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **复合组件**: 包含 5 个子组件(InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea),使用组合模式按需导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-input-group--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-inputgroup--docs)。

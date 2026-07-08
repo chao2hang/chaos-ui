@@ -31,15 +31,14 @@ const sampleEvents: ScheduleEvent[] = [
   makeEvent("6", "Demo", 4, 15, 16, "#06b6d4"),
 ]
 
-const meta = {
+const meta: Meta<typeof ScheduleView> = {
   title: "Business/ScheduleView",
   component: ScheduleView,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
   args: {
     events: sampleEvents,
-  },
-} satisfies Meta<typeof ScheduleView>
+  };
 
 export default meta
 type Story = StoryObj<typeof meta>

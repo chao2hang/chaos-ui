@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { ColorPicker } from "@/components/ui/color-picker"
 import { useState } from "react"
 
-const meta = {
+const meta: Meta<typeof ColorPicker> = {
   title: "Components/ColorPicker",
   component: ColorPicker,
   tags: ["autodocs"],
-} satisfies Meta<typeof ColorPicker>
 
 export default meta
 type Story = StoryObj<typeof meta>

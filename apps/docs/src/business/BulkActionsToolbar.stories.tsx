@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { BulkActionsToolbar } from "@/components/business/bulk-actions-toolbar"
 import { TrashIcon, DownloadIcon, TagIcon, ArchiveIcon } from "lucide-react"
 
-const meta = {
+const meta: Meta<typeof BulkActionsToolbar> = {
   title: "Business/BulkActionsToolbar",
   component: BulkActionsToolbar,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof BulkActionsToolbar>
-
+};
 export default meta
 type Story = StoryObj<typeof meta>
 

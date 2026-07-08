@@ -7,12 +7,11 @@ const markers = [
   { id: "3", position: [23.1291, 113.2644] as [number, number], title: "广州", description: "花城" },
 ]
 
-const meta = {
+const meta: Meta<typeof MapView> = {
   title: "Business/MapView",
   component: MapView,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
-} satisfies Meta<typeof MapView>
+  parameters: { layout: "padded" };
 
 export default meta
 type Story = StoryObj<typeof meta>

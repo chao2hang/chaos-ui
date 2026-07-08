@@ -50,7 +50,7 @@ function ChannelPicker({
   return (
     <div data-slot="channel-picker" className={cn("", className)} {...props}>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger>
           <Button variant="outline" className="w-full justify-between">
             <span className="truncate">
               {value.length === 0 ? "选择渠道" : `已选 ${value.length} 个渠道`}
