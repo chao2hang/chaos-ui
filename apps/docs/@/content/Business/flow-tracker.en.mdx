@@ -1,0 +1,52 @@
+import { FlowTracker } from "@/components/business/flow-tracker";
+import { CodeBlock } from "@/components/code-block";
+
+# FlowTracker Flow Tracker
+
+> Domain-specific business components for ERP scenarios.
+
+<FlowTracker
+  steps={[
+    {
+      id: "1",
+      name: "提交",
+      status: "done",
+      operator: "张三",
+      time: "2026-01-01 09:00",
+    },
+  ]}
+/>
+FlowTracker — flow tracker component.
+
+## When to Use
+
+Use when you need a flow tracker.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FlowTracker } from "@/components/business/flow-tracker"
+
+export function Basic() {
+  return <FlowTracker />
+}`} lang="tsx" />
+
+## API / Props
+
+### FlowTracker
+
+| Prop        | Type                                       | Default | Description                       |
+| ----------- | ------------------------------------------ | ------- | --------------------------------- |
+| `className` | `string`                                   | —       | Custom CSS class                  |
+| `steps`     | `Array<{`                                  | —       |                                   |
+| `id`        | `string`                                   | —       | DOM element id                    |
+| `name`      | `string`                                   | —       | Form field name                   |
+| `status`    | `"pending" \| "active" \| "done" \| "r...` | —       | Status                            |
+| `operator`  | `string`                                   | —       |                                   |
+| `time`      | `string`                                   | —       |                                   |
+| ...rest     | `React.HTMLAttributes`                     | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

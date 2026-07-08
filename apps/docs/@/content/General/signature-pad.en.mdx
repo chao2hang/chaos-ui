@@ -1,0 +1,55 @@
+import { SignaturePad } from "@/components/ui/signature-pad";
+import { CodeBlock } from "@/components/code-block";
+
+# SignaturePad
+
+> Canvas-based signature pad.
+
+Canvas-based signature pad with undo, clear, and export to data URL/Blob.
+
+## When to Use
+
+Use when you need users to handwrite signatures, such as contract signing, approval confirmation, or electronic forms.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SignaturePad } from "@/components/ui/signature-pad"
+import { useRef } from "react"
+
+export function Basic() {
+  const ref = useRef(null)
+  return (
+    <div className="flex flex-col gap-2">
+      <SignaturePad ref={ref} />
+      <button onClick={() => ref.current?.clear()}>Clear</button>
+      <button onClick={() => console.log(ref.current?.toDataURL())}>Export</button>
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### SignaturePad
+
+| Prop        | Type         | Default | Description                          |
+| ----------- | ------------ | ------- | ------------------------------------ |
+| `className` | `string`     | —       | Custom CSS class                     |
+| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调   |
+| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调 |
+
+### Imperative Handle (ref)
+
+| Method             | Type                                | Description                              |
+| ------------------ | ----------------------------------- | ---------------------------------------- |
+| `clear()`          | `() => void`                        | Clear the canvas / 清空画布              |
+| `isEmpty()`        | `() => boolean`                     | Check if canvas has ink / 检查是否有签名 |
+| `toDataURL(type?)` | `(type?: string) => string \| null` | Export as data URL / 导出为 data URL     |
+| `toBlob()`         | `() => Promise<Blob \| null>`       | Export as Blob / 导出为 Blob             |
+| `undo()`           | `() => void`                        | Undo last stroke / 撤销上一笔            |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Canvas API**: 基于 HTML5 Canvas 实现，需浏览器支持。

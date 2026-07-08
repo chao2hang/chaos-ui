@@ -1,0 +1,40 @@
+import { CouponCard } from "@/components/business/coupon-card";
+import { CodeBlock } from "@/components/code-block";
+
+# CouponCard Coupon Card
+
+> Domain-specific business components for ERP scenarios.
+
+CouponCard — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a coupon card.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CouponCard } from "@/components/business/coupon-card"
+
+export function Basic() {
+  return <CouponCard />
+}`} lang="tsx" />
+
+## API / Props
+
+### CouponCard
+
+| Prop          | Type                   | Default | Description                                     |
+| ------------- | ---------------------- | ------- | ----------------------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                                |
+| `value`       | `string`               | —       | Coupon value display (e.g. "¥50" or "20% OFF"). |
+| `description` | `string`               | —       | Coupon description or conditions.               |
+| `expiresAt`   | `string`               | —       | Expiration date string.                         |
+| `used`        | `boolean`              | —       | Whether the coupon has been used.               |
+| `onUse`       | `() => void`           | —       | Called when user clicks "Use" / "Claim".        |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes               |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

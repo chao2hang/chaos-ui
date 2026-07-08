@@ -1,0 +1,51 @@
+import { TaskHistory } from "@/components/business/task-history";
+import { CodeBlock } from "@/components/code-block";
+
+# TaskHistory Task History
+
+> Domain-specific business components for ERP scenarios.
+
+<TaskHistory
+  tasks={[
+    {
+      id: "1",
+      type: "导出",
+      status: "完成",
+      startTime: "2026-01-01T09:00:00Z",
+    },
+  ]}
+/>
+TaskHistory — task history component.
+
+## When to Use
+
+Use when you need a task history.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TaskHistory } from "@/components/business/task-history"
+
+export function Basic() {
+  return <TaskHistory />
+}`} lang="tsx" />
+
+## API / Props
+
+### TaskHistory
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `tasks`     | `Array<{`              | —       |                                   |
+| `id`        | `string`               | —       | DOM element id                    |
+| `type`      | `string`               | —       | Type                              |
+| `status`    | `string`               | —       | Status                            |
+| `startTime` | `string`               | —       |                                   |
+| `endTime`   | `string`               | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

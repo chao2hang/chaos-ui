@@ -1,0 +1,40 @@
+import { SealStampRegistry } from "@/components/business/seal-stamp-registry";
+import { CodeBlock } from "@/components/code-block";
+
+# SealStampRegistry Seal Stamp Registry
+
+> Domain-specific business components for ERP scenarios.
+
+SealStampRegistry — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a seal stamp registry.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SealStampRegistry } from "@/components/business/seal-stamp-registry"
+
+export function Basic() {
+  return <SealStampRegistry />
+}`} lang="tsx" />
+
+## API / Props
+
+### SealStampRegistry
+
+| Prop           | Type                   | Default | Description                       |
+| -------------- | ---------------------- | ------- | --------------------------------- |
+| `className`    | `string`               | —       | Custom CSS class                  |
+| `seals`        | `SealRecord[]`         | —       | Registered seals.                 |
+| `usageLogs`    | `SealUsageLog[]`       | —       | Usage log entries.                |
+| `onSealClick`  | `() => void`           | —       | Seal click handler.               |
+| `onApplyUsage` | `() => void`           | —       | Apply for usage handler.          |
+| `readOnly`     | `boolean`              | `false` | Read-only mode.                   |
+| ...rest        | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

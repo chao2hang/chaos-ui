@@ -1,0 +1,53 @@
+import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileSwipeAction
+
+> Swipe action row for mobile.
+
+Swipe action row for mobile; reveals left/right action buttons on drag.
+
+## When to Use
+
+Use on mobile list items that need quick actions (delete, favorite, etc.) to save screen space.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action"
+
+export function Basic() {
+  return (
+    <MobileSwipeAction
+      rightActions={[
+        { key: "delete", label: "删除", color: "destructive", onClick: () => {} },
+      ]}
+    >
+      <div className="p-4">Swipe left to reveal actions</div>
+    </MobileSwipeAction>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileSwipeAction
+
+| Prop           | Type               | Default | Description                         |
+| -------------- | ------------------ | ------- | ----------------------------------- |
+| `leftActions`  | `SwipeActionDef[]` | —       | Left action buttons / 左侧操作按钮  |
+| `rightActions` | `SwipeActionDef[]` | —       | Right action buttons / 右侧操作按钮 |
+| `children`     | `React.ReactNode`  | —       | Row content / 行内容                |
+
+### SwipeActionDef
+
+| Prop      | Type                                      | Description                         |
+| --------- | ----------------------------------------- | ----------------------------------- |
+| `key`     | `string`                                  | Unique key / 唯一键 (required)      |
+| `label`   | `string`                                  | Button label / 按钮文本 (required)  |
+| `onClick` | `() => void`                              | Click handler / 点击回调 (required) |
+| `color`   | `"default" \| "primary" \| "destructive"` | Button color / 按钮颜色             |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

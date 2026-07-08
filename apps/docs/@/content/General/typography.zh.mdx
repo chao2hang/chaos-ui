@@ -1,156 +1,103 @@
-import { Typography } from "@/components/ui/typography";
+import {
+  Typography,
+  H1,
+  H2,
+  Text,
+  Paragraph,
+  Blockquote,
+  InlineCode,
+} from "@/components/ui/typography";
 import { CodeBlock } from "@/components/code-block";
 
 # Typography 排版
 
-> 通用基础组件
+> 排版组件族
 
-排版 — Chaos UI 的通用基础组件。
+排版组件族：H1–H6、Text、Paragraph、Blockquote、InlineCode 等，统一文本层级与样式。
 
 ## 何时使用
 
-需要排版功能时使用本组件。
+需要统一文本层级、颜色、大小和样式时使用，替代手写 Tailwind 类名。
 
 ## 代码示例
 
-### 基础用法
+### 标题
 
-<CodeBlock code={`import { Typography, Title, Paragraph, Text, Link } from "@/components/ui/typography"
+<CodeBlock code={`import { H1, H2, H3 } from "@/components/ui/typography"
 
-export function Basic() {
+export function Headings() {
   return (
-    <Typography>
-      <Title>Content</Title>
-    </Typography>
+    <div className="space-y-2">
+      <H1>Heading 1</H1>
+      <H2>Heading 2</H2>
+      <H3>Heading 3</H3>
+    </div>
   )
 }`} lang="tsx" />
 
-### 变体
+### 文本变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Typography variant="default">Default</Typography>
-  <Typography variant="muted">Muted</Typography>
-  <Typography variant="destructive">Destructive</Typography>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { Text } from "@/components/ui/typography"
 
-### 尺寸
+export function TextVariants() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Text variant="default">Default text</Text>
+      <Text variant="muted">Muted text</Text>
+      <Text variant="primary">Primary text</Text>
+      <Text variant="destructive">Destructive text</Text>
+      <Text variant="success">Success text</Text>
+    </div>
+  )
+}`} lang="tsx" />
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Typography size="sm">Sm</Typography>
-  <Typography size="default">Default</Typography>
-  <Typography size="lg">Lg</Typography>
-</div>`}
-  lang="tsx"
-/>
+### 段落与引用
 
-## 样式变体
+<CodeBlock code={`import { Paragraph, Blockquote, InlineCode } from "@/components/ui/typography"
 
-**类型**
-
-| type        | 说明 | 默认 |
-| ----------- | ---- | ---- |
-| `default`   |      | ✓    |
-| `secondary` |      |      |
-| `success`   |      |      |
-| `warning`   |      |      |
-| `danger`    |      |      |
-| `disabled`  |      |      |
-
-**strong**
-
-| strong  | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
-
-**italic**
-
-| italic  | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
-
-**underline**
-
-| underline | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `true`    |      | ✓    |
-| `false`   |      |      |
-
-**delete**
-
-| delete  | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
-
-**code**
-
-| code    | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
-
-**mark**
-
-| mark    | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
-
-**keyboard**
-
-| keyboard | 说明 | 默认 |
-| -------- | ---- | ---- |
-| `true`   |      | ✓    |
-| `false`  |      |      |
-
-**层级**
-
-| level | 说明 | 默认 |
-| ----- | ---- | ---- |
-| `1`   |      | ✓    |
-| `2`   |      |      |
-| `3`   |      |      |
-| `4`   |      |      |
-| `5`   |      |      |
-| `6`   |      |      |
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
-
-**变体**
-
-| Variant       | 说明          | 默认 |
-| ------------- | ------------- | ---- |
-| `default`     | 默认样式      | ✓    |
-| `muted`       |               |      |
-| `destructive` | 危险/删除样式 |      |
+export function Misc() {
+  return (
+    <div className="space-y-3">
+      <Paragraph>This is a paragraph with relaxed leading.</Paragraph>
+      <Paragraph muted>This is a muted paragraph.</Paragraph>
+      <Blockquote>This is a blockquote with a left border.</Blockquote>
+      <p>Use <InlineCode>InlineCode</InlineCode> for code snippets.</p>
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
-### Typography
+### Text
 
-| Prop        | Type                           | Default | 说明                   |
-| ----------- | ------------------------------ | ------- | ---------------------- |
-| `className` | `string`                       | —       | 自定义样式类名         |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 |
+| Prop        | Type                                                                                          | Default   | 说明                          |
+| ----------- | --------------------------------------------------------------------------------------------- | --------- | ----------------------------- |
+| `size`      | `"xs" \| "sm" \| "base" \| "lg" \| "xl" \| "2xl"`                                             | `base`    | Text size / 文本大小          |
+| `weight`    | `"normal" \| "medium" \| "semibold" \| "bold"`                                                | `normal`  | Text weight / 文本粗细        |
+| `variant`   | `"default" \| "muted" \| "primary" \| "secondary" \| "destructive" \| "success" \| "warning"` | `default` | Text color variant / 文本颜色 |
+| `italic`    | `boolean`                                                                                     | `false`   | Italic / 斜体                 |
+| `underline` | `boolean`                                                                                     | `false`   | Underline / 下划线            |
+| `strike`    | `boolean`                                                                                     | `false`   | Strikethrough / 删除线        |
+| `truncate`  | `boolean`                                                                                     | `false`   | Truncate / 截断               |
+
+### Typography 命名空间
+
+| 成员                              | 说明     |
+| --------------------------------- | -------- |
+| `Typography.H1` – `Typography.H6` | 标题组件 |
+| `Typography.Text`                 | 文本组件 |
+| `Typography.Paragraph`            | 段落组件 |
+| `Typography.Blockquote`           | 引用块   |
+| `Typography.InlineCode`           | 行内代码 |
+| `Typography.Lead`                 | 引导文本 |
+| `Typography.Large`                | 大号文本 |
+| `Typography.Small`                | 小号文本 |
+| `Typography.Muted`                | 静默文本 |
+| `Typography.List`                 | 列表     |
 
 ## 注意事项
 
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **复合组件**: 包含 1 个子组件(Title),使用组合模式按需导入。
-- **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
+- **命名空间**: 所有排版组件可通过 `Typography.H1` 命名空间或独立命名导入 `H1` 使用。
+- **可组合**: 所有组件支持 `className` 和原生 HTML 属性透传。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-typography--docs)。

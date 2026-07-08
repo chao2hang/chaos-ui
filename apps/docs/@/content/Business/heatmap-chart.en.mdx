@@ -1,0 +1,37 @@
+import { HeatmapChart } from "@/components/business/heatmap-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# HeatmapChart Heatmap Chart
+
+> Domain-specific business components for ERP scenarios.
+
+<HeatmapChart data={[{ x: "周一", y: "上午", value: 8 }]} />
+HeatmapChart — heatmap chart component.
+
+## When to Use
+
+Use when you need a heatmap chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { HeatmapChart } from "@/components/business/heatmap-chart"
+
+export function Basic() {
+  return <HeatmapChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### HeatmapChart
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `data`      | `Array<T>`             | —       | Data source                       |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

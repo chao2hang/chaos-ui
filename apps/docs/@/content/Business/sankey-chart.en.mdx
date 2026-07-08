@@ -1,0 +1,36 @@
+import { SankeyChart } from "@/components/business/sankey-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# SankeyChart Sankey Chart
+
+> Domain-specific business components for ERP scenarios.
+
+SankeyChart — sankey chart component.
+
+## When to Use
+
+Use when you need a sankey chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SankeyChart } from "@/components/business/sankey-chart"
+
+export function Basic() {
+  return <SankeyChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### SankeyChart
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `flows`     | `Array<T>`             | —       | Source → target flows.            |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

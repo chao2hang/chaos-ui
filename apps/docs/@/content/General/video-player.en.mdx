@@ -1,0 +1,54 @@
+import { VideoPlayer } from "@/components/ui/video-player";
+import { CodeBlock } from "@/components/code-block";
+
+# VideoPlayer
+
+> Styled video player with play/pause, seek bar, volume, and fullscreen.
+
+Styled video player with play/pause, seek bar, volume, and fullscreen toggle.
+
+## When to Use
+
+Use when you need to play video files, such as video previews, tutorial playback, or surveillance replay.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/ui/video-player"
+
+export function Basic() {
+  return <VideoPlayer src="/video/sample.mp4" />
+}`} lang="tsx" />
+
+### With Poster
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/ui/video-player"
+
+export function WithPoster() {
+  return (
+    <VideoPlayer
+      src="/video/sample.mp4"
+      poster="/images/poster.jpg"
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### VideoPlayer
+
+| Prop           | Type         | Default | Description                              |
+| -------------- | ------------ | ------- | ---------------------------------------- |
+| `src`          | `string`     | —       | Video source URL / 视频源地址 (required) |
+| `poster`       | `string`     | —       | Poster image URL / 封面图地址            |
+| `autoPlay`     | `boolean`    | `false` | Auto-play on mount / 自动播放            |
+| `showControls` | `boolean`    | `true`  | Show controls overlay / 显示控制层       |
+| `className`    | `string`     | —       | Custom CSS class                         |
+| `onEnded`      | `() => void` | —       | Playback end callback / 播放结束回调     |
+| `onPlay`       | `() => void` | —       | Play callback / 播放回调                 |
+| `onPause`      | `() => void` | —       | Pause callback / 暂停回调                |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

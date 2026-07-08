@@ -1,0 +1,51 @@
+import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# PurchaseOrderEditor Purchase Order Editor
+
+> 业务组件
+
+Purchase Order Editor — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Purchase Order Editor相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor"
+
+export function Basic() {
+  return <PurchaseOrderEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### PurchaseOrderEditor
+
+| Prop                | Type                                       | Default | 说明              |
+| ------------------- | ------------------------------------------ | ------- | ----------------- |
+| `className`         | `string`                                   | —       | 自定义样式类名    |
+| `poNumber`          | `string`                                   | —       |                   |
+| `vendor`            | `string`                                   | —       |                   |
+| `onVendorChange`    | `() => void`                               | —       |                   |
+| `orderDate`         | `string`                                   | —       |                   |
+| `expectedDelivery`  | `string`                                   | —       |                   |
+| `paymentTerms`      | `string`                                   | —       |                   |
+| `onHeaderChange`    | `() => void`                               | —       |                   |
+| `lineItems`         | `POLineItem[]`                             | —       |                   |
+| `onLineItemsChange` | `() => void`                               | —       |                   |
+| `approvalSteps`     | `ApprovalStep[]`                           | —       |                   |
+| `status`            | `"draft" \| "pending" \| "approved" \|...` | `draft` | 状态              |
+| `currencySymbol`    | `string`                                   | `¥`     |                   |
+| `readOnly`          | `boolean`                                  | `false` | 是否只读          |
+| `onSubmit`          | `() => void`                               | —       | 提交回调          |
+| ...rest             | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-purchaseordereditor--docs)。

@@ -136,6 +136,9 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Result } from "@/components/ui/result";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Icon } from "@/components/ui/icon";
+import { Direction } from "@/components/ui/direction";
+import { Search, Bell, Loader2, Star, Heart, Check } from "lucide-react";
 
 /* Layout components -------------------------------------------------------- */
 import { AdminShell } from "@/components/layout/admin-shell";
@@ -578,6 +581,32 @@ function ButtonDemo() {
       <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="destructive">Destructive</Button>
+    </div>
+  );
+}
+
+function IconDemo() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-4">
+      <Icon icon={Search} size="md" />
+      <Icon icon={Bell} size="lg" className="text-primary" />
+      <Icon icon={Loader2} size="md" spin />
+      <Icon icon={Star} size="md" className="text-yellow-500" />
+      <Icon icon={Heart} size="md" className="text-red-500" />
+      <Icon icon={Check} size="md" className="text-green-500" />
+    </div>
+  );
+}
+
+function DirectionDemo() {
+  return (
+    <div className="flex flex-col gap-3">
+      <Direction dir="ltr" className="rounded border px-4 py-2 text-sm">
+        ← This text reads left-to-right. →
+      </Direction>
+      <Direction dir="rtl" className="rounded border px-4 py-2 text-sm">
+        ← مرحبا بالعالم →
+      </Direction>
     </div>
   );
 }
@@ -1091,7 +1120,9 @@ function AdminShellDemo() {
         ]}
         selectedMenuKey="dashboard"
       >
-        <div className="p-4 text-sm text-muted-foreground">Main content area</div>
+        <div className="text-muted-foreground p-4 text-sm">
+          Main content area
+        </div>
       </AdminShell>
     </div>
   );
@@ -1102,10 +1133,22 @@ function ArticleLayoutDemo() {
     <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border">
       <ArticleLayout
         title={<h1 className="text-lg font-bold">Getting Started Guide</h1>}
-        toc={<nav className="space-y-1 text-xs text-muted-foreground"><div>Section 1</div><div>Section 2</div></nav>}
-        footer={<div className="border-t pt-2 text-xs text-muted-foreground">Footer content</div>}
+        toc={
+          <nav className="text-muted-foreground space-y-1 text-xs">
+            <div>Section 1</div>
+            <div>Section 2</div>
+          </nav>
+        }
+        footer={
+          <div className="text-muted-foreground border-t pt-2 text-xs">
+            Footer content
+          </div>
+        }
       >
-        <p className="text-sm">This is the article body content. It demonstrates the centered layout with optional sidebar.</p>
+        <p className="text-sm">
+          This is the article body content. It demonstrates the centered layout
+          with optional sidebar.
+        </p>
       </ArticleLayout>
     </div>
   );
@@ -1115,14 +1158,29 @@ function ChatLayoutDemo() {
   return (
     <div className="mx-auto h-64 w-full overflow-hidden rounded-lg border">
       <ChatLayout
-        sidebar={<div className="bg-muted p-3 text-xs text-muted-foreground">Chat list sidebar</div>}
-        messagesArea={
-          <div className="flex flex-col gap-2 p-4">
-            <div className="max-w-[70%] rounded-lg bg-primary/10 px-3 py-1.5 text-xs">Hello! How can I help?</div>
-            <div className="ml-auto max-w-[70%] rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground">I need help with a component.</div>
+        sidebar={
+          <div className="bg-muted text-muted-foreground p-3 text-xs">
+            Chat list sidebar
           </div>
         }
-        inputArea={<div className="border-t p-2"><input className="w-full rounded border px-2 py-1 text-xs" placeholder="Type a message..." /></div>}
+        messagesArea={
+          <div className="flex flex-col gap-2 p-4">
+            <div className="bg-primary/10 max-w-[70%] rounded-lg px-3 py-1.5 text-xs">
+              Hello! How can I help?
+            </div>
+            <div className="bg-primary text-primary-foreground ml-auto max-w-[70%] rounded-lg px-3 py-1.5 text-xs">
+              I need help with a component.
+            </div>
+          </div>
+        }
+        inputArea={
+          <div className="border-t p-2">
+            <input
+              className="w-full rounded border px-2 py-1 text-xs"
+              placeholder="Type a message..."
+            />
+          </div>
+        }
       />
     </div>
   );
@@ -1134,7 +1192,10 @@ function EmbedLayoutDemo() {
       <EmbedLayout
         header={<span className="text-sm font-semibold">Embedded Content</span>}
       >
-        <div className="p-4 text-sm text-muted-foreground">This content is rendered inside an embed layout with padding and optional header.</div>
+        <div className="text-muted-foreground p-4 text-sm">
+          This content is rendered inside an embed layout with padding and
+          optional header.
+        </div>
       </EmbedLayout>
     </div>
   );
@@ -1143,13 +1204,20 @@ function EmbedLayoutDemo() {
 function PrintTemplateLayoutDemo() {
   return (
     <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border bg-white p-4">
-      <PrintTemplateLayout
-        title="Invoice #2026-001"
-      >
+      <PrintTemplateLayout title="Invoice #2026-001">
         <div className="space-y-1 text-sm">
-          <div className="flex justify-between"><span>Item 1</span><span>$100.00</span></div>
-          <div className="flex justify-between"><span>Item 2</span><span>$200.00</span></div>
-          <div className="flex justify-between border-t pt-1 font-bold"><span>Total</span><span>$300.00</span></div>
+          <div className="flex justify-between">
+            <span>Item 1</span>
+            <span>$100.00</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Item 2</span>
+            <span>$200.00</span>
+          </div>
+          <div className="flex justify-between border-t pt-1 font-bold">
+            <span>Total</span>
+            <span>$300.00</span>
+          </div>
         </div>
       </PrintTemplateLayout>
     </div>
@@ -1160,8 +1228,16 @@ function SplitScreenDemo() {
   return (
     <div className="mx-auto h-48 w-full overflow-hidden rounded-lg border">
       <SplitScreen
-        left={<div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">Left Panel</div>}
-        right={<div className="flex h-full items-center justify-center bg-primary/5 text-sm text-muted-foreground">Right Panel</div>}
+        left={
+          <div className="bg-muted text-muted-foreground flex h-full items-center justify-center text-sm">
+            Left Panel
+          </div>
+        }
+        right={
+          <div className="bg-primary/5 text-muted-foreground flex h-full items-center justify-center text-sm">
+            Right Panel
+          </div>
+        }
       />
     </div>
   );
@@ -1178,7 +1254,7 @@ function WizardLayoutDemo() {
         ]}
         current={1}
       >
-        <div className="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-center text-sm">
           Step 2 content: Confirm your details
         </div>
       </WizardLayout>
@@ -1218,6 +1294,8 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   RadioGroup: RadioGroupDemo,
   Badge: BadgeDemo,
   Button: ButtonDemo,
+  Icon: IconDemo,
+  Direction: DirectionDemo,
   Result: ResultDemo,
 
   /* Business components */

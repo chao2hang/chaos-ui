@@ -3,44 +3,51 @@ import { CodeBlock } from "@/components/code-block";
 
 # UserBrowse 用户选择
 
-> 通用基础组件
+> 用户选择对话框
 
-用户选择 — Chaos UI 的通用基础组件。
+用户选择对话框，支持搜索、头像展示和多选。
 
 ## 何时使用
 
-需要用户选择功能时使用本组件。
+需要选择一个或多个用户时使用，如任务分配、权限授予、审批人选择。
 
 ## 代码示例
 
 ### 基础用法
 
 <CodeBlock code={`import { UserBrowse } from "@/components/ui/user-browse"
+import { useState } from "react"
 
 export function Basic() {
-  return <UserBrowse />
+  const [value, setValue] = useState(null)
+  return <UserBrowse value={value} onChange={setValue} />
 }`} lang="tsx" />
 
 ## API / Props
 
 ### UserBrowse
 
-| Prop           | Type                   | Default          | 说明              |
-| -------------- | ---------------------- | ---------------- | ----------------- |
-| `className`    | `string`               | —                | 自定义样式类名    |
-| `value`        | `User \| User[]`       | —                | 当前值(受控)      |
-| `defaultValue` | `User \| User[]`       | —                | 默认值(非受控)    |
-| `placeholder`  | `string`               | `Select user...` | 占位文本          |
-| `disabled`     | `boolean`              | —                | 是否禁用          |
-| `multiple`     | `boolean`              | `false`          | 是否多选          |
-| `maxCount`     | `number`               | —                |                   |
-| `users`        | `User[]`               | —                |                   |
-| `onChange`     | `() => void`           | —                | 值变化回调        |
-| `onBrowse`     | `() => void`           | —                |                   |
-| ...rest        | `React.HTMLAttributes` | —                | 透传原生 DOM 属性 |
+| Prop           | Type                              | Default | 说明                         |
+| -------------- | --------------------------------- | ------- | ---------------------------- |
+| `value`        | `User \| User[]`                  | —       | Selected user(s) / 已选用户  |
+| `defaultValue` | `User \| User[]`                  | —       | Default selection / 默认选择 |
+| `onChange`     | `(value: User \| User[]) => void` | —       | Change callback / 变化回调   |
+| `multiple`     | `boolean`                         | `false` | Multi-select / 多选          |
+| `placeholder`  | `string`                          | —       | Placeholder / 占位文本       |
+
+### User
+
+| Prop         | Type     | 说明                           |
+| ------------ | -------- | ------------------------------ |
+| `id`         | `string` | Unique ID / 唯一 ID (required) |
+| `name`       | `string` | User name / 用户名 (required)  |
+| `email`      | `string` | Email / 邮箱                   |
+| `avatar`     | `string` | Avatar URL / 头像地址          |
+| `department` | `string` | Department / 部门              |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **基于 Dialog**: 内部使用 Dialog 组件作为选择面板容器。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-user-browse--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-userbrowse--docs)。

@@ -1,4 +1,4 @@
-import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { MobileTextarea } from "@/components/mobile/mobile-textarea";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileTextarea
@@ -15,7 +15,7 @@ Use when you need a mobile textarea.
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileTextarea } from "@/components/business/mobile-textarea"
+<CodeBlock code={`import { MobileTextarea } from "@/components/mobile/mobile-textarea"
 
 export function Basic() {
   return <MobileTextarea />
@@ -25,10 +25,10 @@ export function Basic() {
 
 ### MobileTextarea
 
-| Prop        | Type                               | Default | Description                          |
-| ----------- | ---------------------------------- | ------- | ------------------------------------ |
-| `className` | `string`                           | —       | Custom CSS class                     |
-| ...rest     | `React.ComponentProps<"textarea">` | —       | Inherits all `<textarea>` attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 

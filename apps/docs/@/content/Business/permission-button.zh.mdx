@@ -1,0 +1,43 @@
+import { PermissionButton } from "@/components/business/permission-button";
+import { CodeBlock } from "@/components/code-block";
+
+# PermissionButton Permission Button
+
+> 业务组件
+
+Permission Button — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Permission Button相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PermissionButton } from "@/components/business/permission-button"
+
+export function Basic() {
+  return <PermissionButton />
+}`} lang="tsx" />
+
+## API / Props
+
+### PermissionButton
+
+| Prop          | Type                                       | Default   | 说明                             |
+| ------------- | ------------------------------------------ | --------- | -------------------------------- |
+| `className`   | `string`                                   | —         | 自定义样式类名                   |
+| `permission`  | `string`                                   | —         | 所需权限码                       |
+| `permissions` | `string[]`                                 | —         | 当前用户拥有的权限码集合         |
+| `mode`        | `"disable" \| "hide"`                      | `disable` | 无权限时的处理方式               |
+| `onClick`     | `() => void`                               | —         | 点击回调                         |
+| `variant`     | `"default" \| "outline" \| "secondary"...` | `default` | 按钮样式                         |
+| `disabled`    | `boolean`                                  | `false`   | 禁用状态（外部控制，与权限叠加） |
+| ...rest       | `React.HTMLAttributes`                     | —         | 透传原生 DOM 属性                |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-permissionbutton--docs)。

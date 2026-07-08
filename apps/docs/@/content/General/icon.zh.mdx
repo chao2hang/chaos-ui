@@ -1,0 +1,99 @@
+import { Icon } from "@/components/ui/icon";
+import { CodeBlock } from "@/components/code-block";
+
+# Icon 图标
+
+> Lucide 图标包装器
+
+Lucide 图标的薄包装器，提供统一尺寸、颜色标记和动画属性（spin/pulse）。
+
+## 何时使用
+
+需要在界面中展示矢量图标时使用，支持旋转和脉冲动画，适合加载状态或交互提示。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Icon } from "@/components/ui/icon"
+import { Search } from "lucide-react"
+
+export function Basic() {
+  return <Icon icon={Search} size="md" />
+}`} lang="tsx" />
+
+### 尺寸对照
+
+<CodeBlock code={`import { Icon } from "@/components/ui/icon"
+import { Bell } from "lucide-react"
+
+export function Sizes() {
+  return (
+    <div className="flex items-center gap-4">
+      <Icon icon={Bell} size="sm" />
+      <Icon icon={Bell} size="md" />
+      <Icon icon={Bell} size="lg" />
+      <Icon icon={Bell} size="xl" />
+    </div>
+  )
+}`} lang="tsx" />
+
+### 动画
+
+<CodeBlock code={`import { Icon } from "@/components/ui/icon"
+import { Loader2, Bell } from "lucide-react"
+
+export function Animations() {
+  return (
+    <div className="flex items-center gap-4">
+      <Icon icon={Loader2} size="md" spin />
+      <Icon icon={Bell} size="md" pulse />
+    </div>
+  )
+}`} lang="tsx" />
+
+### 颜色
+
+<CodeBlock code={`import { Icon } from "@/components/ui/icon"
+import { Star, Heart, Check } from "lucide-react"
+
+export function Colors() {
+  return (
+    <div className="flex items-center gap-4">
+      <Icon icon={Star} size="md" className="text-yellow-500" />
+      <Icon icon={Heart} size="md" className="text-red-500" />
+      <Icon icon={Check} size="md" className="text-green-500" />
+    </div>
+  )
+}`} lang="tsx" />
+
+## 尺寸说明
+
+| Size      | 说明               | 默认 |
+| --------- | ------------------ | ---- |
+| `inherit` | 继承父元素字体尺寸 | ✓    |
+| `sm`      | 小号 (0.875rem)    |      |
+| `md`      | 中号 (1.25rem)     |      |
+| `lg`      | 大号 (1.5rem)      |      |
+| `xl`      | 超大号 (2rem)      |      |
+
+## API / Props
+
+### Icon
+
+| Prop        | Type                           | Default   | 说明                                                                  |
+| ----------- | ------------------------------ | --------- | --------------------------------------------------------------------- |
+| `icon`      | `LucideIcon`                   | —         | Lucide icon component to render / 要渲染的 Lucide 图标组件 (required) |
+| `size`      | `IconSize`                     | `inherit` | Preset size / 预设尺寸                                                |
+| `spin`      | `boolean`                      | —         | Apply spinning animation / 应用旋转动画                               |
+| `pulse`     | `boolean`                      | —         | Apply pulse animation / 应用脉冲动画                                  |
+| `className` | `string`                       | —         | 自定义样式类名                                                        |
+| ...rest     | `React.ComponentProps<"span">` | —         | 透传原生 `<span>` 属性                                                |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必填 `icon` prop**: 必须传入一个 Lucide 图标组件,否则会报错。
+- **图标来源**: 图标来自 `lucide-react`,需先安装并导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-icon--docs)。

@@ -1,0 +1,36 @@
+import { ChatImageGallery } from "@/components/business/chat-image-gallery";
+import { CodeBlock } from "@/components/code-block";
+
+# ChatImageGallery Chat Image Gallery
+
+> Domain-specific business components for ERP scenarios.
+
+ChatImageGallery — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat image gallery.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatImageGallery } from "@/components/business/chat-image-gallery"
+
+export function Basic() {
+  return <ChatImageGallery />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChatImageGallery
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `images`    | `Array<T>`             | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

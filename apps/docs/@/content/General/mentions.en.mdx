@@ -3,59 +3,65 @@ import { CodeBlock } from "@/components/code-block";
 
 # Mentions
 
-> General-purpose primitives used across the app.
+> @mention input with dropdown.
 
-Mentions — a general-purpose primitives used across the app. from Chaos UI.
+@mention input — triggers a dropdown candidate list when typing the trigger character (default `@`).
 
 ## When to Use
 
-Use when you need a mentions.
+Use when you need to mention users or tags in text input, such as comment boxes or message editors.
 
 ## Examples
 
 ### Basic Usage
 
 <CodeBlock code={`import { Mentions } from "@/components/ui/mentions"
+import { useState } from "react"
+
+const options = [
+{ value: "alice", label: "Alice Wang" },
+{ value: "bob", label: "Bob Li" },
+{ value: "charlie", label: "Charlie Zhang" },
+]
 
 export function Basic() {
-  return <Mentions />
+  const [value, setValue] = useState("")
+  return (
+    <Mentions
+      value={value}
+      onChange={setValue}
+      options={options}
+      placeholder="Type @ to mention..."
+    />
+  )
 }`} lang="tsx" />
-
-### Sizes
-
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Mentions size="sm">Sm</Mentions>
-  <Mentions size="default">Default</Mentions>
-  <Mentions size="lg">Lg</Mentions>
-</div>`}
-  lang="tsx"
-/>
-
-## Style Variants
-
-**Size**
-
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
 
 ## API / Props
 
 ### Mentions
 
-| Prop            | Type                          | Default                | Description                                 |
-| --------------- | ----------------------------- | ---------------------- | ------------------------------------------- |
-| `className`     | `string`                      | —                      | Custom CSS class                            |
-| `onSearch`      | `(...args) => unknown`        | —                      | Function to search for users based on query |
-| `onMention`     | `() => void`                  | —                      | Called when a mention is inserted           |
-| `onValueChange` | `() => void`                  | —                      | Called when value changes                   |
-| `placeholder`   | `string`                      | `Type @ to mention...` | Placeholder text                            |
-| ...rest         | `React.ComponentProps<"div">` | —                      | Inherits all `<div>` attributes             |
+| Prop          | Type                                             | Default                  | Description                           |
+| ------------- | ------------------------------------------------ | ------------------------ | ------------------------------------- |
+| `value`       | `string`                                         | —                        | Controlled value / 受控值             |
+| `onChange`    | `(value: string) => void`                        | —                        | Change callback / 变化回调            |
+| `options`     | `MentionOption[]`                                | —                        | Mention options / 提及选项 (required) |
+| `trigger`     | `string`                                         | `"@"`                    | Trigger character / 触发字符          |
+| `onSearch`    | `(value: string) => void`                        | —                        | Search callback / 搜索回调            |
+| `onSelect`    | `(value: string, option: MentionOption) => void` | —                        | Select callback / 选中回调            |
+| `placeholder` | `string`                                         | `"Type @ to mention..."` | Placeholder / 占位文本                |
+| `rows`        | `number`                                         | `3`                      | Textarea rows / 行数                  |
+| `disabled`    | `boolean`                                        | `false`                  | Disabled / 禁用                       |
+
+### MentionOption
+
+| Prop       | Type      | Description                      |
+| ---------- | --------- | -------------------------------- |
+| `value`    | `string`  | Unique value / 唯一值 (required) |
+| `label`    | `string`  | Display label / 显示标签         |
+| `avatar`   | `string`  | Avatar URL / 头像地址            |
+| `disabled` | `boolean` | Disabled / 禁用                  |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **基于 Textarea + Popover**: 内部使用 Textarea 和 Popover 组合实现。

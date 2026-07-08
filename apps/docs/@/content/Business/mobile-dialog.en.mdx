@@ -1,4 +1,4 @@
-import { MobileDialog } from "@/components/business/mobile-dialog";
+import { MobileDialog } from "@/components/mobile/mobile-dialog";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileDialog
@@ -15,7 +15,7 @@ Use when you need a mobile dialog.
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileDialog } from "@/components/business/mobile-dialog"
+<CodeBlock code={`import { MobileDialog } from "@/components/mobile/mobile-dialog"
 
 export function Basic() {
   return <MobileDialog />
@@ -30,7 +30,7 @@ export function Basic() {
 | `className`    | `string`               | —       | Custom CSS class                  |
 | `title`        | `string`               | —       | Title                             |
 | `description`  | `string`               | —       | Description text                  |
-| `trigger`      | `React.ReactNode`      | —       |                                   |
+| `trigger`      | `React.ReactElement`   | —       |                                   |
 | `actions`      | `React.ReactNode`      | —       |                                   |
 | `open`         | `boolean`              | —       | Open state (controlled)           |
 | `onOpenChange` | `() => void`           | —       | Callback when open state changes  |

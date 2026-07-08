@@ -1,4 +1,4 @@
-import { SwipeActions } from "@/components/business/mobile-swipe-actions";
+import { SwipeActions } from "@/components/mobile/mobile-swipe-actions";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileSwipeActions
@@ -15,7 +15,7 @@ Use when you need a mobile swipe actions.
 
 ### Basic Usage
 
-<CodeBlock code={`import { SwipeActions } from "@/components/business/mobile-swipe-actions"
+<CodeBlock code={`import { SwipeActions } from "@/components/mobile/mobile-swipe-actions"
 
 export function Basic() {
   return <SwipeActions />
@@ -34,8 +34,12 @@ export function Basic() {
 | `onSwipeDown`  | `() => void`                  | —       |                                 |
 | `threshold`    | `number`                      | `80`    |                                 |
 | `disabled`     | `boolean`                     | —       | Whether disabled                |
-| `leftAction`   | `() => void`                  | —       |                                 |
-| `rightAction`  | `() => void`                  | —       |                                 |
+| `leftAction`   | `{`                           | —       |                                 |
+| `label`        | `string`                      | —       | Label text                      |
+| `color`        | `string`                      | —       | Color theme                     |
+| `onClick`      | `() => void`                  | —       | Click handler                   |
+| `icon`         | `React.ReactNode`             | —       | Icon element                    |
+| `rightAction`  | `{`                           | —       |                                 |
 | ...rest        | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes

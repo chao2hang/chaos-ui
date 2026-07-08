@@ -1,0 +1,42 @@
+import { MobileSheet } from "@/components/mobile/mobile-sheet";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileSheet Mobile Mobile Sheet
+
+> Domain-specific business components for ERP scenarios.
+
+MobileSheet — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile sheet.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileSheet } from "@/components/mobile/mobile-sheet"
+
+export function Basic() {
+  return <MobileSheet />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileSheet
+
+| Prop           | Type                                     | Default  | Description                       |
+| -------------- | ---------------------------------------- | -------- | --------------------------------- |
+| `className`    | `string`                                 | —        | Custom CSS class                  |
+| `title`        | `string`                                 | —        | Title                             |
+| `description`  | `string`                                 | —        | Description text                  |
+| `trigger`      | `React.ReactElement`                     | —        |                                   |
+| `actions`      | `React.ReactNode`                        | —        |                                   |
+| `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                                   |
+| `open`         | `boolean`                                | —        | Open state (controlled)           |
+| `onOpenChange` | `() => void`                             | —        | Callback when open state changes  |
+| ...rest        | `React.HTMLAttributes`                   | —        | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

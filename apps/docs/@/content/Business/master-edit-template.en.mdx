@@ -1,0 +1,44 @@
+import { MasterEditTemplate } from "@/components/business/master-edit-template";
+import { CodeBlock } from "@/components/code-block";
+
+# MasterEditTemplate Master Edit Template
+
+> Domain-specific business components for ERP scenarios.
+
+<MasterEditTemplate title="编辑供应商" onSave={() => {}} onCancel={() => {}}>
+  {" "}
+  <input />{" "}
+</MasterEditTemplate>
+MasterEditTemplate — master edit template component.
+
+## When to Use
+
+Use when you need a master edit template.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MasterEditTemplate } from "@/components/business/master-edit-template"
+
+export function Basic() {
+  return <MasterEditTemplate />
+}`} lang="tsx" />
+
+## API / Props
+
+### MasterEditTemplate
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `title`     | `string`               | `编辑`  | Title                             |
+| `onBack`    | `() => void`           | —       |                                   |
+| `onSave`    | `() => void`           | —       |                                   |
+| `onCancel`  | `() => void`           | —       |                                   |
+| `loading`   | `boolean`              | `false` | Loading state                     |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

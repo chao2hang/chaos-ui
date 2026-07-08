@@ -1,4 +1,9 @@
-import { AdminTabs } from "@/components/layout/admin-tabs";
+import {
+  NavigationTabsBar,
+  AdminTabs,
+  NavigationTabsBarTabItem,
+  AdminTabItem,
+} from "@/components/layout/admin-tabs";
 import { CodeBlock } from "@/components/code-block";
 
 # AdminTabs
@@ -15,25 +20,26 @@ Use when you need an admin tabs.
 
 ### Basic Usage
 
-<CodeBlock code={`import { AdminTabs } from "@/components/layout/admin-tabs"
+<CodeBlock code={`import { NavigationTabsBar, AdminTabs, NavigationTabsBarTabItem, AdminTabItem } from "@/components/layout/admin-tabs"
 
 export function Basic() {
-  return <AdminTabs />
+  return (
+    <AdminTabs>
+      <AdminTabs>Content</AdminTabs>
+    </AdminTabs>
+  )
 }`} lang="tsx" />
 
 ## API / Props
 
 ### AdminTabs
 
-| Prop               | Type                          | Default | Description                     |
-| ------------------ | ----------------------------- | ------- | ------------------------------- |
-| `className`        | `string`                      | —       | Custom CSS class                |
-| `items`            | `AdminTabItem[]`              | —       | Items / data list               |
-| `activeKey`        | `string`                      | —       |                                 |
-| `defaultActiveKey` | `string`                      | —       |                                 |
-| `onChange`         | `() => void`                  | —       | Callback when value changes     |
-| ...rest            | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 2 个子组件(NavigationTabsBarTabItem, AdminTabItem),使用组合模式按需导入。

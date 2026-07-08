@@ -1,0 +1,40 @@
+import { TabPin } from "@/components/business/tab-pin";
+import { CodeBlock } from "@/components/code-block";
+
+# TabPin Tab Pin
+
+> Domain-specific business components for ERP scenarios.
+
+<TabPin id="tab-1" label="销售订单" pinned onPin={(id) => {}} />
+TabPin — tab pin component.
+
+## When to Use
+
+Use when you need a tab pin.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TabPin } from "@/components/business/tab-pin"
+
+export function Basic() {
+  return <TabPin />
+}`} lang="tsx" />
+
+## API / Props
+
+### TabPin
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `id`        | `string`               | —       | DOM element id                    |
+| `label`     | `string`               | —       | Label text                        |
+| `pinned`    | `boolean`              | `false` |                                   |
+| `onPin`     | `() => void`           | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

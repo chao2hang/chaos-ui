@@ -19,7 +19,7 @@ The source kit also contains environment-specific instructions for another deplo
 ## Project-Specific Defaults
 
 - `npm run storybook` starts Storybook at `http://localhost:3002`.
-- `npm run dev` starts the component docs site at `http://localhost:8080`.
+- `npm run dev` starts the component docs site at `http://localhost:3001`.
 - Storybook is the primary component browsing surface.
 - The old `/styleguide` route should not be reintroduced as the main component browser.
 

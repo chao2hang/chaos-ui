@@ -1,0 +1,45 @@
+import { TreeCrudPage } from "@/components/business/tree-crud-page";
+import { CodeBlock } from "@/components/code-block";
+
+# TreeCrudPage Tree Crud Page
+
+> 业务组件
+
+左树右表 CRUD
+
+## 何时使用
+
+适用于Tree Crud Page相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { TreeCrudPage } from "@/components/business/tree-crud-page"
+
+export function Basic() {
+  return <TreeCrudPage />
+}`} lang="tsx" />
+
+## API / Props
+
+### TreeCrudPage
+
+| Prop              | Type                   | Default | 说明                               |
+| ----------------- | ---------------------- | ------- | ---------------------------------- |
+| `className`       | `string`               | —       | 自定义样式类名                     |
+| `tree`            | `TreeNodeData[]`       | —       | 左侧分类树                         |
+| `selected`        | `string`               | —       | 当前选中节点 id（受控）            |
+| `defaultSelected` | `string`               | —       | 默认选中节点 id（非受控）          |
+| `onSelect`        | `() => void`           | —       | 选中节点回调                       |
+| `onCreate`        | `() => void`           | —       | 点击“新增分类”回调；不传则隐藏按钮 |
+| `onRefresh`       | `() => void`           | —       | 点击“刷新”回调；不传则隐藏按钮     |
+| `query`           | `string`               | —       | 搜索关键字（受控）                 |
+| `onQueryChange`   | `() => void`           | —       | 搜索关键字变化回调                 |
+| ...rest           | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                  |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-treecrudpage--docs)。

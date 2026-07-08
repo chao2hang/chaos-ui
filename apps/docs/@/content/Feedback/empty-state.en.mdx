@@ -1,0 +1,59 @@
+import { EmptyState } from "@/components/ui/empty-state";
+import { CodeBlock } from "@/components/code-block";
+
+# EmptyState
+
+> Feedback and status communication to the user.
+
+Placeholder for empty data states, optionally with a call-to-action.
+
+## When to Use
+
+Use when you need an empty state.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EmptyState } from "@/components/ui/empty-state"
+
+export function Basic() {
+  return <EmptyState>Default</EmptyState>
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <EmptyState size="sm">Sm</EmptyState>
+  <EmptyState size="default">Default</EmptyState>
+  <EmptyState size="lg">Lg</EmptyState>
+</div>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### EmptyState
+
+| Prop          | Type                          | Default | Description                         |
+| ------------- | ----------------------------- | ------- | ----------------------------------- |
+| `className`   | `string`                      | —       | Custom CSS class                    |
+| `icon`        | `React.ReactNode`             | —       | Icon element                        |
+| `title`       | `React.ReactNode`             | —       | Title text                          |
+| `description` | `React.ReactNode`             | —       | Description text                    |
+| `action`      | `React.ReactNode`             | —       | Action element (button, link, etc.) |
+| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes     |
+
+## Notes

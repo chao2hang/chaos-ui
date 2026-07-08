@@ -1,0 +1,45 @@
+import { GanttChartPro } from "@/components/business/gantt-chart-pro";
+import { CodeBlock } from "@/components/code-block";
+
+# GanttChartPro Gantt Chart Pro
+
+> 业务组件
+
+Gantt Chart Pro — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Gantt Chart Pro相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { GanttChartPro } from "@/components/business/gantt-chart-pro"
+
+export function Basic() {
+  return <GanttChartPro />
+}`} lang="tsx" />
+
+## API / Props
+
+### GanttChartPro
+
+| Prop                 | Type                   | Default | 说明                                        |
+| -------------------- | ---------------------- | ------- | ------------------------------------------- |
+| `className`          | `string`               | —       | 自定义样式类名                              |
+| `tasks`              | `GanttTask[]`          | —       | Task list                                   |
+| `dependencies`       | `GanttDependency[]`    | —       | Dependency links between tasks              |
+| `zoom`               | `ZoomLevel`            | `day`   | Timeline zoom level (default: "day")        |
+| `showToday`          | `boolean`              | `true`  | Show today marker (default: true)           |
+| `showWeekSeparators` | `boolean`              | `true`  | Show week column separators (default: true) |
+| `showTaskList`       | `boolean`              | `true`  | Show task list sidebar (default: true)      |
+| `rowHeight`          | `number`               | `36`    | Row height in px (default: 36)              |
+| `onTaskClick`        | `() => void`           | —       | Allow task bar click                        |
+| ...rest              | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                           |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-ganttchartpro--docs)。

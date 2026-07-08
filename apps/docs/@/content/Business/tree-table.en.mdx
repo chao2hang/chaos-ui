@@ -29,7 +29,9 @@ export function Basic() {
 | ----------------- | ----------------------------- | ------- | ------------------------------- |
 | `className`       | `string`                      | —       | Custom CSS class                |
 | `data`            | `TreeNode[]`                  | —       | Data source                     |
-| `columns`         | `(...args) => unknown`        | —       | Column configuration            |
+| `columns`         | `Array<{`                     | —       | Column configuration            |
+| `key`             | `string`                      | —       |                                 |
+| `header`          | `string`                      | —       |                                 |
 | `defaultExpanded` | `boolean`                     | `false` |                                 |
 | ...rest           | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 

@@ -1,0 +1,42 @@
+import { WarehouseBrowse } from "@/components/business/warehouse-browse";
+import { CodeBlock } from "@/components/code-block";
+
+# WarehouseBrowse Warehouse Browse
+
+> Domain-specific business components for ERP scenarios.
+
+WarehouseBrowse — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a warehouse browse.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { WarehouseBrowse } from "@/components/business/warehouse-browse"
+
+export function Basic() {
+  return <WarehouseBrowse />
+}`} lang="tsx" />
+
+## API / Props
+
+### WarehouseBrowse
+
+| Prop                | Type                    | Default | Description                       |
+| ------------------- | ----------------------- | ------- | --------------------------------- |
+| `className`         | `string`                | —       | Custom CSS class                  |
+| `open`              | `boolean`               | —       | Open state (controlled)           |
+| `onOpenChange`      | `() => void`            | —       | Callback when open state changes  |
+| `onSelect`          | `() => void`            | —       | Selection handler                 |
+| `items`             | `WarehouseBrowseItem[]` | —       | Items / data list                 |
+| `title`             | `string`                | —       | Title                             |
+| `searchPlaceholder` | `string`                | —       |                                   |
+| `emptyText`         | `string`                | —       |                                   |
+| ...rest             | `React.HTMLAttributes`  | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

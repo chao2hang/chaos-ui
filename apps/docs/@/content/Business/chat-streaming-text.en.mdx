@@ -1,0 +1,38 @@
+import { ChatStreamingText } from "@/components/business/chat-streaming-text";
+import { CodeBlock } from "@/components/code-block";
+
+# ChatStreamingText Chat Streaming Text
+
+> Domain-specific business components for ERP scenarios.
+
+ChatStreamingText — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat streaming text.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatStreamingText } from "@/components/business/chat-streaming-text"
+
+export function Basic() {
+  return <ChatStreamingText />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChatStreamingText
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `chunks`      | `string[]`             | —       |                                   |
+| `isStreaming` | `boolean`              | `false` |                                   |
+| `speed`       | `number`               | `30`    |                                   |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,45 @@
+import { SPCControlChart } from "@/components/business/spc-control-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# SpcControlChart Spc Control Chart
+
+> Domain-specific business components for ERP scenarios.
+
+SpcControlChart — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a spc control chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SPCControlChart } from "@/components/business/spc-control-chart"
+
+export function Basic() {
+  return <SPCControlChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### SPCControlChart
+
+| Prop                | Type                   | Default             | Description                                                        |
+| ------------------- | ---------------------- | ------------------- | ------------------------------------------------------------------ |
+| `className`         | `string`               | —                   | Custom CSS class                                                   |
+| `samples`           | `SPCSample[]`          | —                   | Sample data.                                                       |
+| `title`             | `string`               | `SPC Control Chart` | Chart title.                                                       |
+| `centerLine`        | `number`               | —                   | Pre-calculated center line (mean). If omitted, computed from data. |
+| `ucl`               | `number`               | —                   | Pre-calculated UCL. If omitted, computed as mean + 3σ.             |
+| `lcl`               | `number`               | —                   | Pre-calculated LCL. If omitted, computed as mean - 3σ.             |
+| `sigma`             | `number`               | —                   | Pre-calculated σ (sigma). If omitted, computed from data.          |
+| `showWarningLimits` | `boolean`              | `true`              | Show warning limits at ±2σ.                                        |
+| `yLabel`            | `string`               | —                   | Y-axis label.                                                      |
+| `unit`              | `string`               | —                   | Unit suffix for values.                                            |
+| `height`            | `number`               | `320`               | Chart height in px.                                                |
+| ...rest             | `React.HTMLAttributes` | —                   | Inherits standard HTML attributes                                  |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

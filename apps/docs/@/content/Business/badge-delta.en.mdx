@@ -1,0 +1,38 @@
+import { BadgeDelta } from "@/components/business/badge-delta";
+import { CodeBlock } from "@/components/code-block";
+
+# BadgeDelta Badge Delta
+
+> Domain-specific business components for ERP scenarios.
+
+BadgeDelta — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a badge delta.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BadgeDelta } from "@/components/business/badge-delta"
+
+export function Basic() {
+  return <BadgeDelta />
+}`} lang="tsx" />
+
+## API / Props
+
+### BadgeDelta
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `value`     | `number`               | —       | Current value (controlled)        |
+| `suffix`    | `string`               | `%`     | Suffix content                    |
+| `prefix`    | `string`               | —       | Prefix content                    |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

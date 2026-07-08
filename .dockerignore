@@ -1,12 +1,14 @@
-# Dependencies
-node_modules
+# Dependencies — exclude all node_modules at any level
+**/node_modules
 .pnpm-store
 
-	# Build outputs
-	.next
-	storybook-static
-	dist
-	out
+# Build outputs — exclude at any level
+**/.next
+**/storybook-static
+**/dist
+**/out
+**/.turbo
+output
 
 # Git
 .git
@@ -32,7 +34,7 @@ docker-compose*.yml
 !README.md
 
 # Tests
-coverage
+**/coverage
 .nyc_output
 *.test.*
 *.spec.*
@@ -60,3 +62,24 @@ apps/docs/stories
 tmp
 temp
 *.log
+tmp_ci_*.txt
+docker-build.log
+
+# Agent / MCP / tooling artifacts (not needed in Docker build)
+.agents
+.codex
+.claude
+.codegraph
+.detection
+.playwright-mcp
+.well-known
+.workbuddy
+.joycode
+.changeset
+.husky
+
+# CI / scripts not needed in Docker
+e2e
+docs
+designs
+scripts/visual-audit.cjs

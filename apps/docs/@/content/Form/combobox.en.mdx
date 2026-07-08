@@ -1,0 +1,89 @@
+import { Combobox } from "@/components/ui/combobox";
+import { CodeBlock } from "@/components/code-block";
+
+# Combobox
+
+> Form controls for user input and data submission.
+
+Combines input with a dropdown list; supports custom input and option matching.
+
+## When to Use
+
+Use when you need a combobox.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Combobox } from "@/components/ui/combobox"
+
+export function Basic() {
+  return <Combobox />
+}`} lang="tsx" />
+
+### Variants
+
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Combobox variant="default">Default</Combobox>
+  <Combobox variant="outline">Outline</Combobox>
+</div>`}
+  lang="tsx"
+/>
+
+### Sizes
+
+<CodeBlock
+  code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Combobox size="sm">Sm</Combobox>
+  <Combobox size="default">Default</Combobox>
+  <Combobox size="lg">Lg</Combobox>
+</div>`}
+  lang="tsx"
+/>
+
+### States
+
+<CodeBlock
+  code={`<Combobox>Normal</Combobox>
+<Combobox disabled>Disabled</Combobox>`}
+  lang="tsx"
+/>
+
+## Style Variants
+
+**Variant**
+
+| Variant   | Description    | 默认 |
+| --------- | -------------- | ---- |
+| `default` | Default style  | ✓    |
+| `outline` | Outlined style |      |
+
+**Size**
+
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
+
+## API / Props
+
+### Combobox
+
+| Prop           | Type                   | Default             | Description                       |
+| -------------- | ---------------------- | ------------------- | --------------------------------- |
+| `className`    | `string`               | —                   | Custom CSS class                  |
+| `options`      | `ComboboxOption[]`     | —                   | Available options                 |
+| `value`        | `string`               | —                   | Current value (controlled)        |
+| `onChange`     | `() => void`           | —                   | Callback when value changes       |
+| `placeholder`  | `string`               | `Select option...`  | Placeholder text                  |
+| `searchable`   | `boolean`              | `true`              |                                   |
+| `emptyMessage` | `string`               | `No results found.` |                                   |
+| ...rest        | `React.HTMLAttributes` | —                   | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

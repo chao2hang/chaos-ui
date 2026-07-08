@@ -1,0 +1,43 @@
+import { KanbanColumn } from "@/components/business/kanban-column";
+import { CodeBlock } from "@/components/code-block";
+
+# KanbanColumn Kanban Column
+
+> Domain-specific business components for ERP scenarios.
+
+KanbanColumn — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a kanban column.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { KanbanColumn } from "@/components/business/kanban-column"
+
+export function Basic() {
+  return <KanbanColumn />
+}`} lang="tsx" />
+
+## API / Props
+
+### KanbanColumn
+
+| Prop          | Type                   | Default    | Description                       |
+| ------------- | ---------------------- | ---------- | --------------------------------- |
+| `className`   | `string`               | —          | Custom CSS class                  |
+| `title`       | `string`               | `未命名列` | Title                             |
+| `accent`      | `string`               | `primary`  | 列强调色                          |
+| `cards`       | `Array<{`              | —          | 卡片列表                          |
+| `id`          | `string`               | —          | DOM element id                    |
+| `label`       | `string`               | —          | Label text                        |
+| `assignee`    | `string`               | —          |                                   |
+| `onAddCard`   | `() => void`           | —          | 新增卡片回调                      |
+| `onCardClick` | `() => void`           | —          | 卡片点击回调                      |
+| ...rest       | `React.HTMLAttributes` | —          | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

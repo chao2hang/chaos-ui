@@ -1,0 +1,41 @@
+import { InvoiceManager } from "@/components/business/invoice-manager";
+import { CodeBlock } from "@/components/code-block";
+
+# InvoiceManager Invoice Manager
+
+> Domain-specific business components for ERP scenarios.
+
+InvoiceManager — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an invoice manager.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { InvoiceManager } from "@/components/business/invoice-manager"
+
+export function Basic() {
+  return <InvoiceManager />
+}`} lang="tsx" />
+
+## API / Props
+
+### InvoiceManager
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `invoices`  | `Array<{`              | —       |                                   |
+| `id`        | `string`               | —       | DOM element id                    |
+| `number`    | `string`               | —       |                                   |
+| `amount`    | `number`               | —       |                                   |
+| `status`    | `string`               | —       | Status                            |
+| `onIssue`   | `() => void`           | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

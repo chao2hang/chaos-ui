@@ -1,0 +1,49 @@
+import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh";
+import { CodeBlock } from "@/components/code-block";
+
+# MobilePullRefresh
+
+> Pull-to-refresh container for mobile.
+
+Pull-to-refresh container for mobile; triggers onRefresh when touch pull exceeds threshold.
+
+## When to Use
+
+Use on mobile list pages where users need to pull down to refresh data.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh"
+import { useState } from "react"
+
+export function Basic() {
+  const [refreshing, setRefreshing] = useState(false)
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await fetchData()
+    setRefreshing(false)
+  }
+  return (
+    <MobilePullRefresh refreshing={refreshing} onRefresh={onRefresh}>
+      <div>List items...</div>
+    </MobilePullRefresh>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MobilePullRefresh
+
+| Prop         | Type                          | Default | Description                             |
+| ------------ | ----------------------------- | ------- | --------------------------------------- |
+| `onRefresh`  | `() => Promise<void> \| void` | —       | Refresh callback / 刷新回调             |
+| `refreshing` | `boolean`                     | `false` | Refreshing state / 刷新状态             |
+| `children`   | `React.ReactNode`             | —       | Content / 子内容                        |
+| `threshold`  | `number`                      | `60`    | Pull threshold in px / 触发阈值（像素） |
+| `className`  | `string`                      | —       | Custom CSS class                        |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

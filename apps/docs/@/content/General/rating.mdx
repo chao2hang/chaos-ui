@@ -1,18 +1,17 @@
-import { Rating } from "@/components/ui/rating"
-import { CodeBlock } from "@/components/code-block"
+import { Rating } from "@/components/ui/rating";
+import { CodeBlock } from "@/components/code-block";
 
 # Rating 评分
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 星级评分组件 / Star rating component.
 
-评分 — Chaos UI 的通用基础组件。
-Rating — a general-purpose primitives used across the app. from Chaos UI.
+星级评分组件，支持半星评分和只读模式，适用于评价和打分场景。
+Star rating component with half-star and read-only support, for review and scoring scenarios.
 
 ## 何时使用 / When to Use
 
-需要评分功能时使用本组件。
-
-Use when you need a rating.
+需要对内容进行评分或展示评分时使用，如商品评价、服务打分。
+Use when you need to rate content or display ratings, such as product reviews or service scores.
 
 ## 代码示例 / Examples
 
@@ -21,48 +20,57 @@ Use when you need a rating.
 <CodeBlock code={`import { Rating } from "@/components/ui/rating"
 
 export function Basic() {
-  return <Rating />
+  return <Rating defaultValue={4} />
 }`} lang="tsx" />
 
-### 尺寸 / Sizes
+### 半星评分 / Half Star
 
-<CodeBlock code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Rating size="sm">Sm</Rating>
-  <Rating size="default">Default</Rating>
-  <Rating size="lg">Lg</Rating>
-</div>`} lang="tsx" />
+<CodeBlock code={`import { Rating } from "@/components/ui/rating"
 
+export function HalfStar() {
+  return <Rating defaultValue={3.5} allowHalf />
+}`} lang="tsx" />
 
-## 样式变体 / Style Variants
+### 只读模式 / Readonly
 
-**尺寸 / Size**
+<CodeBlock code={`import { Rating } from "@/components/ui/rating"
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+export function Readonly() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Rating defaultValue={5} readonly size="sm" />
+      <Rating defaultValue={4} readonly size="default" />
+      <Rating defaultValue={2.5} readonly allowHalf size="lg" />
+    </div>
+  )
+}`} lang="tsx" />
+
+## 尺寸说明 / Size Reference
+
+| Size      | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `sm`      | 小号 / Small       |      |
+| `default` | 默认 / Default     | ✓    |
+| `lg`      | 大号 / Large       |      |
 
 ## API / Props
 
 ### Rating
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `number` | `0` | Current rating value |
-| `onChange` | `() => void` | — | Called when rating changes |
-| `count` | `number` | `5` | Max number of stars |
-| `allowHalf` | `boolean` | `false` | Whether to allow half stars |
-| `readOnly` | `boolean` | `false` | Whether the rating is read-only |
-| `filledIcon` | `React.ReactNode` | — | Character/icon for filled star |
-| `emptyIcon` | `React.ReactNode` | — | Character/icon for empty star |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                        | Default   | 说明 / Description                    |
+| -------------- | --------------------------- | --------- | ------------------------------------- |
+| `value`        | `number`                    | —         | Controlled value / 受控值             |
+| `defaultValue` | `number`                    | `0`       | Default value / 默认值                |
+| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调            |
+| `max`          | `number`                    | `5`       | Max stars / 最大星数                  |
+| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小                  |
+| `readonly`     | `boolean`                   | `false`   | Read-only / 只读                      |
+| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星           |
+| `className`    | `string`                    | —         | 自定义样式类名 <br/> Custom CSS class |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **无障碍**: 使用 `role="radiogroup"` 和 `role="radio"` 支持 ARIA。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-rating--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-rating--docs)。

@@ -1,0 +1,41 @@
+import { Message } from "@/components/ui/message";
+import { CodeBlock } from "@/components/code-block";
+
+# Message 全局消息
+
+> 反馈组件
+
+顶部居中的轻量反馈浮层,自动消失。
+
+## 何时使用
+
+需要全局消息功能时使用本组件。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Message } from "@/components/ui/message"
+
+export function Basic() {
+  return <Message />
+}`} lang="tsx" />
+
+## API / Props
+
+### Message
+
+| Prop        | Type                          | Default | 说明                                                  |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名                                        |
+| `variant`   | `MessageVariant`              | `info`  | Message variant / 消息变体                            |
+| `icon`      | `React.ReactNode`             | —       | Custom icon (overrides variant default) / 自定义图标  |
+| `action`    | `React.ReactNode`             | —       | Optional action element (button, link) / 可选操作元素 |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                                 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-message--docs)。

@@ -1,0 +1,45 @@
+import { CompanyPicker } from "@/components/business/company-picker";
+import { CodeBlock } from "@/components/code-block";
+
+# CompanyPicker Company Picker
+
+> 业务组件
+
+Company Picker — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Company Picker相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CompanyPicker } from "@/components/business/company-picker"
+
+export function Basic() {
+  return <CompanyPicker />
+}`} lang="tsx" />
+
+## API / Props
+
+### CompanyPicker
+
+| Prop                | Type                    | Default | 说明                                |
+| ------------------- | ----------------------- | ------- | ----------------------------------- |
+| `className`         | `string`                | —       | 自定义样式类名                      |
+| `value`             | `string`                | —       | Selected value. / 选中值            |
+| `onChange`          | `() => void`            | —       | Value change callback. / 值变更回调 |
+| `options`           | `CompanyPickerOption[]` | —       | Options. / 选项                     |
+| `placeholder`       | `string`                | —       | Trigger placeholder. / 占位         |
+| `searchPlaceholder` | `string`                | —       | Search placeholder. / 搜索占位      |
+| `emptyText`         | `string`                | —       | Empty-state text. / 空状态          |
+| `disabled`          | `boolean`               | `false` | Disabled. / 禁用                    |
+| `clearable`         | `boolean`               | `true`  | Allow clearing. / 可清除            |
+| ...rest             | `React.HTMLAttributes`  | —       | 透传原生 DOM 属性                   |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-companypicker--docs)。

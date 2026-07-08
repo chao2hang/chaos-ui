@@ -1,0 +1,44 @@
+import { MessageList } from "@/components/business/message-list";
+import { CodeBlock } from "@/components/code-block";
+
+# MessageList Message List
+
+> Domain-specific business components for ERP scenarios.
+
+MessageList — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a message list.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MessageList } from "@/components/business/message-list"
+
+export function Basic() {
+  return <MessageList />
+}`} lang="tsx" />
+
+## API / Props
+
+### MessageList
+
+| Prop            | Type                                       | Default | Description                       |
+| --------------- | ------------------------------------------ | ------- | --------------------------------- |
+| `className`     | `string`                                   | —       | Custom CSS class                  |
+| `messages`      | `Array<{`                                  | —       | 消息数组                          |
+| `id`            | `string`                                   | —       | DOM element id                    |
+| `title`         | `string`                                   | —       | Title                             |
+| `content`       | `string`                                   | —       | Content                           |
+| `type`          | `"info" \| "warning" \| "success" \| "...` | —       | Type                              |
+| `time`          | `string \| number \| Date`                 | —       |                                   |
+| `read`          | `boolean`                                  | —       |                                   |
+| `onSelect`      | `() => void`                               | —       | 选中消息回调                      |
+| `onMarkAllRead` | `() => void`                               | —       | 全部标记已读回调                  |
+| ...rest         | `React.HTMLAttributes`                     | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

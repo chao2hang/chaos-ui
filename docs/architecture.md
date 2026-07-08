@@ -57,7 +57,7 @@ package/               → Package entry points (re-exports)
 
 ## Build Pipeline
 
-1. **Development**: `npm run dev` → Docs site on port 8080; `npm run storybook` → Storybook on port 3002
+1. **Development**: `npm run dev` → Docs site on port 3001; `npm run storybook` → Storybook on port 3002
 2. **Type checking**: `npx tsc --noEmit`
 3. **Linting**: `pnpm run lint` (ESLint) + `pnpm run lint:css` (Stylelint)
 4. **Testing**: `pnpm test` (Vitest) + `pnpm run test:coverage`

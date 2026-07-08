@@ -1,0 +1,41 @@
+import { TimelineView } from "@/components/business/timeline-view";
+import { CodeBlock } from "@/components/code-block";
+
+# TimelineView Timeline View
+
+> Domain-specific business components for ERP scenarios.
+
+<TimelineView events={[{ id: "e1", date: "2026-06-30", title: "创建账单" }]} />
+TimelineView — timeline view component.
+
+## When to Use
+
+Use when you need a timeline view.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TimelineView } from "@/components/business/timeline-view"
+
+export function Basic() {
+  return <TimelineView />
+}`} lang="tsx" />
+
+## API / Props
+
+### TimelineView
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `events`      | `Array<{`              | —       |                                   |
+| `id`          | `string`               | —       | DOM element id                    |
+| `date`        | `string`               | —       |                                   |
+| `title`       | `string`               | —       | Title                             |
+| `description` | `string`               | —       | Description text                  |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

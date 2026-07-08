@@ -22,7 +22,7 @@ cd chaos_style
 		# Start Storybook (port 3002)
 		pnpm run storybook
 
-		# Start component docs site (Next.js + proxy, port 8080)
+		# Start component docs site (Next.js, port 3001)
 		pnpm run dev
 ```
 

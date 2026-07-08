@@ -1,33 +1,104 @@
-import {
-  ConfigProvider,
-  ConfigContext,
-  Config,
-} from "@/components/ui/config-provider";
+import { ConfigProvider, useConfig } from "@/components/ui/config-provider";
 import { CodeBlock } from "@/components/code-block";
 
 # ConfigProvider
 
 > General-purpose primitives used across the app.
 
-Provides global configuration (theme, size, i18n, prefix) to the component tree.
+Inject global configuration into the component tree — theme colors, border radius, dark mode, component size, i18n locale, text direction (RTL/LTR), and scrollbar styling. Wrap once at the root; all children inherit the config automatically.
 
 ## When to Use
 
-Use when you need a config provider.
+- `"en-US"`）。
+- **CSS 变量注入**：通过 `theme.cssVars` 向组件树注入任意 CSS 自定义属性，实现深度主题定制。
+
+> **与 antd ConfigProvider 的关系**：Chaos UI 的 ConfigProvider 是 antd ConfigProvider 的轻量替代。antd 使用 `theme` token 对象控制主题，Chaos UI 使用 CSS 自定义属性 (`--primary`, `--radius`) 实现，更贴近原生 Web 标准。
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { ConfigProvider, ConfigContext, Config } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
 
-export function Basic() {
+export function App() {
   return (
-    <div className="space-y-4">
-  <ConfigProvider />
-  <ConfigContext />
-  <Config />
-    </div>
+    <ConfigProvider
+      locale="zh-CN"
+      theme={{
+        primaryColor: "#6366f1",
+        borderRadius: 8,
+      }}
+    >
+      {/* 所有子组件自动继承主题配置 */}
+      <YourApp />
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### Dark Mode
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+import { useState } from "react"
+
+export function App() {
+  const [dark, setDark] = useState(false)
+
+return (
+<ConfigProvider theme={{ darkMode: dark }}>
+<button onClick={() => setDark(!dark)}>
+切换为 {dark ? "亮色" : "暗色"} 模式
+</button>
+</ConfigProvider>
+)
+}`} lang="tsx" />
+
+### Custom Scrollbar
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+
+export function ScrollDemo() {
+  return (
+    <ConfigProvider
+      theme={{
+        scrollbar: {
+          variant: "thin",
+          thumbColor: "rgb(99 102 241 / 0.5)",        // 滑块颜色
+          thumbHoverColor: "rgb(99 102 241 / 0.8)",    // hover 颜色
+        },
+      }}
+    >
+      <div className="h-40 overflow-y-auto">
+        {/* 这段内容会自动获得细滚动条 + 自定义滑块颜色 */}
+        <LongContent />
+      </div>
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### Right-to-Left
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+
+export function ArabicApp() {
+  return (
+    <ConfigProvider direction="rtl" locale="ar">
+      {/* 所有子组件自动变为从右到左布局 */}
+      <YourApp />
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### Reading Config via Hook
+
+<CodeBlock code={`import { useConfig } from "@/components/ui/config-provider"
+
+export function CurrentLocale() {
+  const { locale, theme } = useConfig()
+  return (
+    <p>
+      当前语言：{locale}，
+      主色：{theme?.primaryColor ?? "默认"}
+    </p>
   )
 }`} lang="tsx" />
 
@@ -35,11 +106,38 @@ export function Basic() {
 
 ### ConfigProvider
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop                    | Type                                          | Default   | Description                             |
+| ----------------------- | --------------------------------------------- | --------- | --------------------------------------- |
+| `children`              | `React.ReactNode`                             | —         | Children to inject config into          |
+| `locale`                | `string`                                      | `"zh-CN"` | Locale code for i18n                    |
+| `direction`             | `"ltr"` \| `"rtl"`                            | `"ltr"`   | Text direction                          |
+| `theme`                 | `ThemeConfig`                                 | —         | Theme config object                     |
+| `prefixCls`             | `string`                                      | `"chaos"` | CSS class prefix, antd-compatible       |
+| `disableAnimation`      | `boolean`                                     | `false`   | Globally disable animations             |
+| `renderEmpty`           | `(componentName?: string) => React.ReactNode` | —         | Custom empty-state placeholder renderer |
+| `form.validateMessages` | `Record<string, string>`                      | —         | Form validation message overrides       |
+
+### ThemeConfig
+
+| Field           | Type                                                     | Default     | Description                                          |
+| --------------- | -------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `primaryColor`  | `string`                                                 | —           | 主题色（任意 CSS 颜色值）注入为 `--primary` CSS 变量 |
+| `borderRadius`  | `number`                                                 | —           | 全局圆角半径（px），注入为 `--radius` CSS 变量       |
+| `darkMode`      | `boolean`                                                | —           | 是否启用暗色模式，在根元素上添加 `class="dark"`      |
+| `componentSize` | `"sm"` \| `"default"` \| `"lg"`                          | `"default"` | Global component size                                |
+| `scrollbar`     | `ScrollbarConfig` \| `"thin"` \| `"default"` \| `"none"` | —           | 滚动条样式，支持简写字符串或详细配置对象             |
+| `cssVars`       | `Record<string, string>`                                 | —           | 注入任意 CSS 自定义属性，实现深度主题定制            |
+
+### ScrollbarConfig
+
+| Field             | Type                                | Default                | Description                                                             |
+| ----------------- | ----------------------------------- | ---------------------- | ----------------------------------------------------------------------- |
+| `variant`         | `"thin"` \| `"default"` \| `"none"` | —                      | 滚动条样式：`"thin"`（细滚动条）、`"default"`（默认）、`"none"`（隐藏） |
+| `thumbColor`      | `string`                            | `rgb(15 23 42 / 0.18)` | Thumb color                                                             |
+| `thumbHoverColor` | `string`                            | `rgb(15 23 42 / 0.3)`  | Thumb hover color                                                       |
 
 ## Notes
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必须包裹 children**：`ConfigProvider` 通过 React Context 向下传递配置，因此必须包裹需要应用配置的子组件。
+- **CSS 变量注入**：`theme.primaryColor` 和 `theme.borderRadius` 会分别注入为 `--primary` 和 `--radius` CSS 变量，组件库内部通过 `var(--primary)` 等引用这些变量。自定义 `cssVars` 可注入任意其他变量。
+- **与 antd 的差异**：Chaos UI 使用 CSS 自定义属性（`--primary`, `--radius`）而非 antd 的 `theme.token` 对象。这意味着你可以直接在 CSS 中通过 `var(--primary)` 访问主题色，更加灵活。

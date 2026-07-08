@@ -1,18 +1,17 @@
-import { Tour } from "@/components/ui/tour"
-import { CodeBlock } from "@/components/code-block"
+import { Tour } from "@/components/ui/tour";
+import { CodeBlock } from "@/components/code-block";
 
 # Tour 新手引导
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 逐步引导式产品导览 / Step-by-step guided product tour overlay.
 
-新手引导 — Chaos UI 的通用基础组件。
-Tour — a general-purpose primitives used across the app. from Chaos UI.
+逐步引导式产品导览覆盖层，带有聚焦高亮、导航和 localStorage 持久化。
+Step-by-step guided product tour overlay with spotlight, navigation, and localStorage persistence.
 
 ## 何时使用 / When to Use
 
-需要新手引导功能时使用本组件。
-
-Use when you need a tour.
+需要引导新用户了解产品功能时使用，支持聚焦高亮目标元素和步骤导航。
+Use when you need to guide new users through product features. Supports spotlight on target elements and step navigation.
 
 ## 代码示例 / Examples
 
@@ -21,46 +20,59 @@ Use when you need a tour.
 <CodeBlock code={`import { Tour } from "@/components/ui/tour"
 
 export function Basic() {
-  return <Tour />
+  return (
+    <Tour
+      steps={[
+        { target: "#dashboard", title: "Dashboard", description: "Your overview area" },
+        { target: "#settings", title: "Settings", description: "Configure your preferences" },
+      ]}
+      onComplete={() => console.log("Tour completed")}
+    />
+  )
 }`} lang="tsx" />
 
-### 尺寸 / Sizes
+### 受控模式 / Controlled
 
-<CodeBlock code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Tour size="sm">Sm</Tour>
-  <Tour size="default">Default</Tour>
-</div>`} lang="tsx" />
+<CodeBlock code={`import { Tour } from "@/components/ui/tour"
+import { useState } from "react"
 
-
-## 样式变体 / Style Variants
-
-**尺寸 / Size**
-
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
+export function Controlled() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Tour
+      open={open}
+      onOpenChange={setOpen}
+      steps={[{ target: "#help-btn", title: "Help", description: "Click for assistance" }]}
+    />
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### Tour
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | `false` | Whether the tour is active |
-| `onClose` | `() => void` | — | Called when tour finishes or is dismissed |
-| `onFinish` | `() => void` | — | Called when a step is completed |
-| `steps` | `TourStep[]` | — | Tour steps |
-| `current` | `number` | — | Current step index (controlled) |
-| `onStepChange` | `() => void` | — | Called when step changes |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop           | Type                      | Default | 说明 / Description                                       |
+| -------------- | ------------------------- | ------- | -------------------------------------------------------- |
+| `steps`        | `TourStep[]`              | —       | Tour steps / 导览步骤 (required)                         |
+| `open`         | `boolean`                 | —       | Controlled open state / 受控打开状态                     |
+| `onOpenChange` | `(open: boolean) => void` | —       | Open change callback / 打开变化回调                      |
+| `onComplete`   | `() => void`              | —       | Complete callback / 完成回调                             |
+| `onSkip`       | `() => void`              | —       | Skip callback / 跳过回调                                 |
+| `storageKey`   | `string`                  | —       | localStorage key for persistence / localStorage 持久化键 |
+
+### TourStep
+
+| Prop          | Type                                     | Default  | 说明 / Description                                    |
+| ------------- | ---------------------------------------- | -------- | ----------------------------------------------------- |
+| `target`      | `string \| (() => HTMLElement \| null)`  | —        | CSS selector or element / CSS 选择器或元素 (required) |
+| `title`       | `string`                                 | —        | Step title / 步骤标题 (required)                      |
+| `description` | `React.ReactNode`                        | —        | Step description / 步骤描述                           |
+| `placement`   | `"top" \| "bottom" \| "left" \| "right"` | `bottom` | Popover placement / 弹出位置                          |
+| `offset`      | `number`                                 | `8`      | Offset from target / 与目标的偏移                     |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **localStorage**: 设置 `storageKey` 后，完成的导览不会再次显示。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-tour--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tour--docs)。

@@ -1,0 +1,37 @@
+import { BarListCard } from "@/components/business/bar-list-card";
+import { CodeBlock } from "@/components/code-block";
+
+# BarListCard Bar List Card
+
+> Domain-specific business components for ERP scenarios.
+
+BarListCard — bar list card component.
+
+## When to Use
+
+Use when you need a bar list card.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BarListCard } from "@/components/business/bar-list-card"
+
+export function Basic() {
+  return <BarListCard />
+}`} lang="tsx" />
+
+## API / Props
+
+### BarListCard
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `title`     | `string`               | `排名`  | Card heading.                     |
+| `data`      | `Array<T>`             | —       | Ranked entries.                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

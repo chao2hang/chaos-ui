@@ -1,0 +1,39 @@
+import { Tracking } from "@/components/business/tracking";
+import { CodeBlock } from "@/components/code-block";
+
+# Tracking
+
+> Domain-specific business components for ERP scenarios.
+
+<Tracking target={100} actual={76} label="回款率" />
+Tracking — tracking component.
+
+## When to Use
+
+Use when you need a tracking.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Tracking } from "@/components/business/tracking"
+
+export function Basic() {
+  return <Tracking />
+}`} lang="tsx" />
+
+## API / Props
+
+### Tracking
+
+| Prop        | Type                   | Default  | Description                       |
+| ----------- | ---------------------- | -------- | --------------------------------- |
+| `className` | `string`               | —        | Custom CSS class                  |
+| `target`    | `number`               | —        | Link target                       |
+| `actual`    | `number`               | —        |                                   |
+| `label`     | `string`               | `追踪项` | Label text                        |
+| ...rest     | `React.HTMLAttributes` | —        | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

@@ -1,4 +1,4 @@
-import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh";
+import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh";
 import { CodeBlock } from "@/components/code-block";
 
 # MobilePullToRefresh
@@ -15,7 +15,7 @@ Use when you need a mobile pull to refresh.
 
 ### Basic Usage
 
-<CodeBlock code={`import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh"
+<CodeBlock code={`import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh"
 
 export function Basic() {
   return <PullToRefresh />
@@ -25,16 +25,16 @@ export function Basic() {
 
 ### PullToRefresh
 
-| Prop             | Type                          | Default       | Description                     |
-| ---------------- | ----------------------------- | ------------- | ------------------------------- |
-| `className`      | `string`                      | —             | Custom CSS class                |
-| `onRefresh`      | `() => void`                  | —             |                                 |
-| `threshold`      | `number`                      | `60`          |                                 |
-| `disabled`       | `boolean`                     | —             | Whether disabled                |
-| `refreshingText` | `string`                      | `正在刷新...` |                                 |
-| `pullText`       | `string`                      | `下拉刷新`    |                                 |
-| `releaseText`    | `string`                      | `释放刷新`    |                                 |
-| ...rest          | `React.ComponentProps<"div">` | —             | Inherits all `<div>` attributes |
+| Prop             | Type                          | Default | Description                     |
+| ---------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`      | `string`                      | —       | Custom CSS class                |
+| `onRefresh`      | `() => void`                  | —       |                                 |
+| `threshold`      | `number`                      | `60`    |                                 |
+| `disabled`       | `boolean`                     | —       | Whether disabled                |
+| `refreshingText` | `string`                      | —       |                                 |
+| `pullText`       | `string`                      | —       |                                 |
+| `releaseText`    | `string`                      | —       |                                 |
+| ...rest          | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 

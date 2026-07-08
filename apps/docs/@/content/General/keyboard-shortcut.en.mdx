@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # KeyboardShortcut
 
-> General-purpose primitives used across the app.
+> Keyboard shortcut display component.
 
-KeyboardShortcut — a general-purpose primitives used across the app. from Chaos UI.
+Keyboard shortcut display — renders formatted key combination hints with optional description.
 
 ## When to Use
 
-Use when you need a keyboard shortcut.
+Use when displaying keyboard shortcut hints in the UI, such as settings pages, help docs, or command palettes.
 
 ## Examples
 
@@ -18,40 +18,35 @@ Use when you need a keyboard shortcut.
 <CodeBlock code={`import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut"
 
 export function Basic() {
-  return <KeyboardShortcut>Default</KeyboardShortcut>
+  return <KeyboardShortcut keys={["Ctrl", "K"]} description="Open command palette" />
 }`} lang="tsx" />
 
-### Sizes
+### Multiple Shortcuts
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <KeyboardShortcut size="sm">Sm</KeyboardShortcut>
-  <KeyboardShortcut size="default">Default</KeyboardShortcut>
-  <KeyboardShortcut size="lg">Lg</KeyboardShortcut>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut"
 
-## Style Variants
-
-**Size**
-
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
+export function Multiple() {
+  return (
+    <div className="flex flex-col gap-2">
+      <KeyboardShortcut keys={["Ctrl", "N"]} description="New file" />
+      <KeyboardShortcut keys={["Ctrl", "S"]} description="Save" />
+      <KeyboardShortcut keys={["Ctrl", "Shift", "Z"]} description="Redo" />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### KeyboardShortcut
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `keys`      | `string \| string[]`          | —       | The keys to display             |
-| `separator` | `string`                      | `+`     | Separator between keys          |
-| ...rest     | `React.ComponentProps<"kbd">` | —       | Inherits all `<kbd>` attributes |
+| Prop          | Type                          | Default      | Description                           |
+| ------------- | ----------------------------- | ------------ | ------------------------------------- |
+| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required) |
+| `description` | `string`                      | —            | Description text / 描述文本           |
+| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                         |
+| `className`   | `string`                      | —            | Custom CSS class                      |
+| ...rest       | `React.ComponentProps<"div">` | —            | Inherits all `<div>` attributes       |
 
 ## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

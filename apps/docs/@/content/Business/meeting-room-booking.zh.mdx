@@ -1,0 +1,52 @@
+import { MeetingRoomBooking } from "@/components/business/meeting-room-booking";
+import { CodeBlock } from "@/components/code-block";
+
+# MeetingRoomBooking Meeting Room Booking
+
+> 业务组件
+
+Meeting Room Booking — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Meeting Room Booking相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MeetingRoomBooking } from "@/components/business/meeting-room-booking"
+
+export function Basic() {
+  return <MeetingRoomBooking />
+}`} lang="tsx" />
+
+## API / Props
+
+### MeetingRoomBooking
+
+| Prop                    | Type                   | Default | 说明              |
+| ----------------------- | ---------------------- | ------- | ----------------- |
+| `className`             | `string`               | —       | 自定义样式类名    |
+| `rooms`                 | `MeetingRoom[]`        | —       |                   |
+| `existingBookings`      | `ExistingBooking[]`    | —       |                   |
+| `selectedRoom`          | `string`               | ``      |                   |
+| `onRoomChange`          | `() => void`           | —       |                   |
+| `date`                  | `string`               | ``      |                   |
+| `onDateChange`          | `() => void`           | —       |                   |
+| `startTime`             | `string`               | `09:00` |                   |
+| `endTime`               | `string`               | `10:00` |                   |
+| `onTimeChange`          | `() => void`           | —       |                   |
+| `title`                 | `string`               | ``      | 标题              |
+| `onTitleChange`         | `() => void`           | —       |                   |
+| `attendeeCount`         | `number`               | `1`     |                   |
+| `onAttendeeCountChange` | `() => void`           | —       |                   |
+| `onBook`                | `() => void`           | —       |                   |
+| `readOnly`              | `boolean`              | `false` | 是否只读          |
+| ...rest                 | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-meetingroombooking--docs)。

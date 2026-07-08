@@ -1,0 +1,46 @@
+import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder";
+import { CodeBlock } from "@/components/code-block";
+
+# DynamicFormBuilder Dynamic Form Builder
+
+> Domain-specific business components for ERP scenarios.
+
+<DynamicFormBuilder
+  schema={[{ name: "title", label: "标题", type: "text", required: true }]}
+/>
+DynamicFormBuilder — dynamic form builder component.
+
+## When to Use
+
+Use when you need a dynamic form builder.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder"
+
+export function Basic() {
+  return <DynamicFormBuilder />
+}`} lang="tsx" />
+
+## API / Props
+
+### DynamicFormBuilder
+
+| Prop        | Type                      | Default | Description                       |
+| ----------- | ------------------------- | ------- | --------------------------------- |
+| `className` | `string`                  | —       | Custom CSS class                  |
+| `schema`    | `Array<{`                 | —       |                                   |
+| `name`      | `string`                  | —       | Form field name                   |
+| `label`     | `string`                  | —       | Label text                        |
+| `type`      | `string`                  | —       | Type                              |
+| `required`  | `boolean`                 | —       | Whether required                  |
+| `options`   | `unknown[]`               | —       | Available options                 |
+| `value`     | `Record<string, unknown>` | —       | Current value (controlled)        |
+| `onChange`  | `() => void`              | —       | Callback when value changes       |
+| ...rest     | `React.HTMLAttributes`    | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

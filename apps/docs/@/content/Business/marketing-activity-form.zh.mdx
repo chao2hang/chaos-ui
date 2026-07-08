@@ -1,0 +1,39 @@
+import { MarketingActivityForm } from "@/components/business/marketing-activity-form";
+import { CodeBlock } from "@/components/code-block";
+
+# MarketingActivityForm Marketing Activity Form
+
+> 业务组件
+
+Marketing Activity Form — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Marketing Activity Form相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MarketingActivityForm } from "@/components/business/marketing-activity-form"
+
+export function Basic() {
+  return <MarketingActivityForm />
+}`} lang="tsx" />
+
+## API / Props
+
+### MarketingActivityForm
+
+| Prop        | Type                      | Default | 说明              |
+| ----------- | ------------------------- | ------- | ----------------- |
+| `className` | `string`                  | —       | 自定义样式类名    |
+| `initial`   | `Record<string, unknown>` | —       |                   |
+| `onSubmit`  | `() => void`              | —       | 提交回调          |
+| ...rest     | `React.HTMLAttributes`    | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-marketingactivityform--docs)。

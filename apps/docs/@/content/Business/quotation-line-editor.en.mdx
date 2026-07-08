@@ -1,0 +1,42 @@
+import { QuotationLineEditor } from "@/components/business/quotation-line-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# QuotationLineEditor Quotation Line Editor
+
+> Domain-specific business components for ERP scenarios.
+
+QuotationLineEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a quotation line editor.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { QuotationLineEditor } from "@/components/business/quotation-line-editor"
+
+export function Basic() {
+  return <QuotationLineEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### QuotationLineEditor
+
+| Prop             | Type                   | Default | Description                       |
+| ---------------- | ---------------------- | ------- | --------------------------------- |
+| `className`      | `string`               | —       | Custom CSS class                  |
+| `quoteNo`        | `string`               | —       | Quote number.                     |
+| `lines`          | `QuotationLine[]`      | —       | Line items.                       |
+| `onLinesChange`  | `() => void`           | —       | Lines change callback.            |
+| `currencySymbol` | `string`               | `¥`     | Currency symbol.                  |
+| `onSubmit`       | `() => void`           | —       | Submit handler.                   |
+| `onCancel`       | `() => void`           | —       | Cancel handler.                   |
+| `readOnly`       | `boolean`              | `false` | Read-only mode.                   |
+| ...rest          | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

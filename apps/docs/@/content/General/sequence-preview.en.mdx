@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # SequencePreview
 
-> General-purpose primitives used across the app.
+> Sequence preview component.
 
-SequencePreview — a general-purpose primitives used across the app. from Chaos UI.
+Sequence preview — displays a generated sequence example with prefix, date, and zero-filled number.
 
 ## When to Use
 
-Use when you need a sequence preview.
+Use when configuring sequence/numbering rules to preview the generated result, such as order numbers or ticket numbers.
 
 ## Examples
 
@@ -18,41 +18,34 @@ Use when you need a sequence preview.
 <CodeBlock code={`import { SequencePreview } from "@/components/ui/sequence-preview"
 
 export function Basic() {
-  return <SequencePreview>Default</SequencePreview>
+  return <SequencePreview prefix="ORD" seq={1} zeroFill={4} />
 }`} lang="tsx" />
 
-### Sizes
+### Custom Format
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <SequencePreview size="sm">Sm</SequencePreview>
-  <SequencePreview size="default">Default</SequencePreview>
-  <SequencePreview size="lg">Lg</SequencePreview>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { SequencePreview } from "@/components/ui/sequence-preview"
 
-## Style Variants
-
-**Size**
-
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
+export function CustomFormat() {
+  return (
+    <div className="flex flex-col gap-2">
+      <SequencePreview prefix="INV" dateFormat="YYMMDD" seq={42} zeroFill={6} />
+      <SequencePreview prefix="TKT" dateFormat="none" seq={100} separator="/" />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### SequencePreview
 
-| Prop           | Type                          | Default | Description                           |
-| -------------- | ----------------------------- | ------- | ------------------------------------- |
-| `className`    | `string`                      | —       | Custom CSS class                      |
-| `value`        | `string`                      | —       | The sequence value to preview         |
-| `mask`         | `string`                      | `•`     | Character to use for hidden chars     |
-| `visibleChars` | `number`                      | —       | Show only last N chars, mask the rest |
-| ...rest        | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes       |
+| Prop         | Type                               | Default      | Description                          |
+| ------------ | ---------------------------------- | ------------ | ------------------------------------ |
+| `prefix`     | `string`                           | `""`         | Prefix / 前缀                        |
+| `date`       | `Date`                             | `new Date()` | Date used in sequence / 编号中的日期 |
+| `dateFormat` | `"YYYYMMDD" \| "YYMMDD" \| "none"` | `YYYYMMDD`   | Date format / 日期格式               |
+| `seq`        | `number`                           | `1`          | Sequence number / 序号               |
+| `zeroFill`   | `number`                           | `4`          | Zero-fill width / 补零位数           |
+| `separator`  | `string`                           | `"-"`        | Separator / 分隔符                   |
+| `className`  | `string`                           | —            | Custom CSS class                     |
 
 ## Notes

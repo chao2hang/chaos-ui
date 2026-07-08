@@ -1,0 +1,40 @@
+import { LineChart } from "@/components/business/line-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# LineChart Line Chart
+
+> 业务组件
+
+折线图(多线+标注)
+
+## 何时使用
+
+适用于Line Chart相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { LineChart } from "@/components/business/line-chart"
+
+export function Basic() {
+  return <LineChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### LineChart
+
+| Prop        | Type                   | Default | 说明                                               |
+| ----------- | ---------------------- | ------- | -------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名                                     |
+| `series`    | `Array<T>`             | —       | One or more named series.                          |
+| `labels`    | `string[]`             | —       | X-axis labels aligned 1:1 with each series values. |
+| `height`    | `number`               | —       | SVG height in px.                                  |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                                  |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-linechart--docs)。

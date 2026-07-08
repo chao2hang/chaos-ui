@@ -5,6 +5,28 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] — 2026-07-09
+
+### 组件文档质量修复
+
+- **i18n 双语覆盖**：对全部 932 个 bootstrap MDX 文件执行 `split-mdx-locales.mjs` 拆分，生成 `.en.mdx` / `.zh.mdx` 双语文件，i18n 覆盖率从 ~26% 提升至 ~100%。
+- **模板描述修复**：22 个使用统一模板描述的组件（AudioPlayer, Collapsible, Direction, Icon 等）替换为真实功能描述（中英文）。
+- **代码示例补写**：所有组件 MDX 补写可运行的代码示例，覆盖基础用法和关键 props。
+- **残留文件清理**：删除 466 个 `ui-*` / `layout-*` / `business-*` 前缀的重复 MDX 文件，重新生成 `mdx-loaders.ts`。
+- **P0 页面修复**：修复 Icon 和 Direction 页面因缺少必填 props 导致的渲染崩溃。
+- **Windows 兼容性**：修复 `split-mdx-locales.mjs` 多行 import 处理和 `generate-mdx-map.mjs` 路径分隔符问题。
+- **构建配置修复**：修复 `tsup.config.ts` 中 `tsconfig` 属性位置（从 `dts` 内移至顶层），修复 `.dockerignore` 嵌套目录排除规则。
+- **ESLint 修复**：扩展 `.cjs` 文件的 `require()` 豁免范围至 `scripts/` 目录。
+
+**验证**：
+
+| 闸门 | 结果 |
+| --- | --- |
+| `pnpm run typecheck` | ✅ exit 0 |
+| `pnpm run lint` | ✅ 0 errors (2139 warnings) |
+| `pnpm run build-storybook` | ✅ Storybook build completed successfully |
+| `docker build -t chaos-ui:test .` | ✅ 镜像构建成功 (2.27GB) |
+
 ## 批次1 — Docs 组件官网改造 (2026-07-05)
 
 ### 总览

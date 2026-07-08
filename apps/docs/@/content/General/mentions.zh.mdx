@@ -3,63 +3,67 @@ import { CodeBlock } from "@/components/code-block";
 
 # Mentions 提及输入
 
-> 通用基础组件
+> @提及输入框
 
-提及输入 — Chaos UI 的通用基础组件。
+@提及输入框，输入触发字符（默认 `@`）时弹出候选列表。
 
 ## 何时使用
 
-需要提及输入功能时使用本组件。
+需要在文本输入中提及用户或标签时使用，如评论框、消息编辑器。
 
 ## 代码示例
 
 ### 基础用法
 
 <CodeBlock code={`import { Mentions } from "@/components/ui/mentions"
+import { useState } from "react"
+
+const options = [
+{ value: "alice", label: "Alice Wang" },
+{ value: "bob", label: "Bob Li" },
+{ value: "charlie", label: "Charlie Zhang" },
+]
 
 export function Basic() {
-  return <Mentions />
+  const [value, setValue] = useState("")
+  return (
+    <Mentions
+      value={value}
+      onChange={setValue}
+      options={options}
+      placeholder="Type @ to mention..."
+    />
+  )
 }`} lang="tsx" />
-
-### 尺寸
-
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Mentions size="sm">Sm</Mentions>
-  <Mentions size="default">Default</Mentions>
-  <Mentions size="lg">Lg</Mentions>
-</div>`}
-  lang="tsx"
-/>
-
-## 样式变体
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
 
 ## API / Props
 
 ### Mentions
 
-| Prop            | Type                          | Default                | 说明                                        |
-| --------------- | ----------------------------- | ---------------------- | ------------------------------------------- |
-| `className`     | `string`                      | —                      | 自定义样式类名                              |
-| `onSearch`      | `(...args) => unknown`        | —                      | Function to search for users based on query |
-| `onMention`     | `() => void`                  | —                      | Called when a mention is inserted           |
-| `onValueChange` | `() => void`                  | —                      | Called when value changes                   |
-| `placeholder`   | `string`                      | `Type @ to mention...` | Placeholder text                            |
-| ...rest         | `React.ComponentProps<"div">` | —                      | 透传 `<div>` 原生属性                       |
+| Prop          | Type                                             | Default                  | 说明                                  |
+| ------------- | ------------------------------------------------ | ------------------------ | ------------------------------------- |
+| `value`       | `string`                                         | —                        | Controlled value / 受控值             |
+| `onChange`    | `(value: string) => void`                        | —                        | Change callback / 变化回调            |
+| `options`     | `MentionOption[]`                                | —                        | Mention options / 提及选项 (required) |
+| `trigger`     | `string`                                         | `"@"`                    | Trigger character / 触发字符          |
+| `onSearch`    | `(value: string) => void`                        | —                        | Search callback / 搜索回调            |
+| `onSelect`    | `(value: string, option: MentionOption) => void` | —                        | Select callback / 选中回调            |
+| `placeholder` | `string`                                         | `"Type @ to mention..."` | Placeholder / 占位文本                |
+| `rows`        | `number`                                         | `3`                      | Textarea rows / 行数                  |
+| `disabled`    | `boolean`                                        | `false`                  | Disabled / 禁用                       |
+
+### MentionOption
+
+| Prop       | Type      | 说明                             |
+| ---------- | --------- | -------------------------------- |
+| `value`    | `string`  | Unique value / 唯一值 (required) |
+| `label`    | `string`  | Display label / 显示标签         |
+| `avatar`   | `string`  | Avatar URL / 头像地址            |
+| `disabled` | `boolean` | Disabled / 禁用                  |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **基于 Textarea + Popover**: 内部使用 Textarea 和 Popover 组合实现。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mentions--docs)。

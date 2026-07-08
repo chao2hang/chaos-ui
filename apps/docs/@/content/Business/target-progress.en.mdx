@@ -1,0 +1,39 @@
+import { TargetProgress } from "@/components/business/target-progress";
+import { CodeBlock } from "@/components/code-block";
+
+# TargetProgress Target Progress
+
+> Domain-specific business components for ERP scenarios.
+
+<TargetProgress target={100000} actual={78000} period="2026 年 6 月" />
+TargetProgress — target progress component.
+
+## When to Use
+
+Use when you need a target progress.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TargetProgress } from "@/components/business/target-progress"
+
+export function Basic() {
+  return <TargetProgress />
+}`} lang="tsx" />
+
+## API / Props
+
+### TargetProgress
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `target`    | `number`               | —       | Link target                       |
+| `actual`    | `number`               | —       |                                   |
+| `period`    | `string`               | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

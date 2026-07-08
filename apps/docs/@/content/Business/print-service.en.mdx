@@ -1,0 +1,38 @@
+import { PrintService } from "@/components/business/print-service";
+import { CodeBlock } from "@/components/code-block";
+
+# PrintService Print Service
+
+> Domain-specific business components for ERP scenarios.
+
+PrintService — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a print service.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PrintService } from "@/components/business/print-service"
+
+export function Basic() {
+  return <PrintService />
+}`} lang="tsx" />
+
+## API / Props
+
+### PrintService
+
+| Prop        | Type                   | Default | Description                                     |
+| ----------- | ---------------------- | ------- | ----------------------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                                |
+| `jobs`      | `PrintServiceJob[]`    | —       | Queued print jobs.                              |
+| `onPrint`   | `() => void`           | —       | Invoked when a job's print action is triggered. |
+| `onRefresh` | `() => void`           | —       | Invoked when the user requests a queue refresh. |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes               |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

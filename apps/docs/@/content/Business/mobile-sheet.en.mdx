@@ -1,4 +1,4 @@
-import { MobileSheet } from "@/components/business/mobile-sheet";
+import { MobileSheet } from "@/components/mobile/mobile-sheet";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileSheet
@@ -15,7 +15,7 @@ Use when you need a mobile sheet.
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileSheet } from "@/components/business/mobile-sheet"
+<CodeBlock code={`import { MobileSheet } from "@/components/mobile/mobile-sheet"
 
 export function Basic() {
   return <MobileSheet />
@@ -30,7 +30,7 @@ export function Basic() {
 | `className`    | `string`                                 | —        | Custom CSS class                  |
 | `title`        | `string`                                 | —        | Title                             |
 | `description`  | `string`                                 | —        | Description text                  |
-| `trigger`      | `React.ReactNode`                        | —        |                                   |
+| `trigger`      | `React.ReactElement`                     | —        |                                   |
 | `actions`      | `React.ReactNode`                        | —        |                                   |
 | `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                                   |
 | `open`         | `boolean`                                | —        | Open state (controlled)           |

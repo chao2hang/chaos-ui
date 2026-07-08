@@ -1,0 +1,46 @@
+import { MessageList } from "@/components/business/message-list";
+import { CodeBlock } from "@/components/code-block";
+
+# MessageList Message List
+
+> 业务组件
+
+Message List — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Message List相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MessageList } from "@/components/business/message-list"
+
+export function Basic() {
+  return <MessageList />
+}`} lang="tsx" />
+
+## API / Props
+
+### MessageList
+
+| Prop            | Type                                       | Default | 说明              |
+| --------------- | ------------------------------------------ | ------- | ----------------- |
+| `className`     | `string`                                   | —       | 自定义样式类名    |
+| `messages`      | `Array<{`                                  | —       | 消息数组          |
+| `id`            | `string`                                   | —       | DOM 元素 id       |
+| `title`         | `string`                                   | —       | 标题              |
+| `content`       | `string`                                   | —       | 内容              |
+| `type`          | `"info" \| "warning" \| "success" \| "...` | —       | 类型              |
+| `time`          | `string \| number \| Date`                 | —       |                   |
+| `read`          | `boolean`                                  | —       |                   |
+| `onSelect`      | `() => void`                               | —       | 选中消息回调      |
+| `onMarkAllRead` | `() => void`                               | —       | 全部标记已读回调  |
+| ...rest         | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-messagelist--docs)。

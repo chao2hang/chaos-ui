@@ -29,7 +29,9 @@ export function Basic() {
 | ----------------- | ----------------------------- | ------- | --------------------- |
 | `className`       | `string`                      | —       | 自定义样式类名        |
 | `data`            | `TreeNode[]`                  | —       | 数据源                |
-| `columns`         | `(...args) => unknown`        | —       | 列配置                |
+| `columns`         | `Array<{`                     | —       | 列配置                |
+| `key`             | `string`                      | —       |                       |
+| `header`          | `string`                      | —       |                       |
 | `defaultExpanded` | `boolean`                     | `false` |                       |
 | ...rest           | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
@@ -38,4 +40,4 @@ export function Basic() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tree-table--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-treetable--docs)。

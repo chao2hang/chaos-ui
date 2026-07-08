@@ -1,0 +1,40 @@
+import { Callout } from "@/components/business/callout";
+import { CodeBlock } from "@/components/code-block";
+
+# Callout
+
+> Domain-specific business components for ERP scenarios.
+
+<Callout variant="warning" title="注意">
+  请核对数据
+</Callout>
+Callout — callout component.
+
+## When to Use
+
+Use when you need a callout.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Callout } from "@/components/business/callout"
+
+export function Basic() {
+  return <Callout />
+}`} lang="tsx" />
+
+## API / Props
+
+### Callout
+
+| Prop        | Type                                       | Default   | Description                       |
+| ----------- | ------------------------------------------ | --------- | --------------------------------- |
+| `className` | `string`                                   | —         | Custom CSS class                  |
+| `title`     | `string`                                   | —         | Title                             |
+| `variant`   | `"default" \| "info" \| "success" \| "...` | `default` | Style variant                     |
+| ...rest     | `React.HTMLAttributes`                     | —         | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

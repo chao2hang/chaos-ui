@@ -1,0 +1,43 @@
+import { JournalEntryEditor } from "@/components/business/journal-entry-editor";
+import { CodeBlock } from "@/components/code-block";
+
+# JournalEntryEditor Journal Entry Editor
+
+> Domain-specific business components for ERP scenarios.
+
+JournalEntryEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a journal entry editor.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { JournalEntryEditor } from "@/components/business/journal-entry-editor"
+
+export function Basic() {
+  return <JournalEntryEditor />
+}`} lang="tsx" />
+
+## API / Props
+
+### JournalEntryEditor
+
+| Prop                | Type                   | Default | Description                        |
+| ------------------- | ---------------------- | ------- | ---------------------------------- |
+| `className`         | `string`               | —       | Custom CSS class                   |
+| `lines`             | `JournalEntryLine[]`   | —       | Journal entry lines                |
+| `onChange`          | `() => void`           | —       | Change callback with updated lines |
+| `accounts`          | `AccountOption[]`      | —       | Available accounts for selection   |
+| `readOnly`          | `boolean`              | `false` | Read-only mode                     |
+| `currencySymbol`    | `string`               | `¥`     | Currency symbol (default: "¥")     |
+| `entryDate`         | `string`               | —       | Entry date                         |
+| `voucherNo`         | `string`               | —       | Entry description / voucher number |
+| `showBalanceStatus` | `boolean`              | `true`  | Show balance status badge          |
+| ...rest             | `React.HTMLAttributes` | —       | Inherits standard HTML attributes  |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

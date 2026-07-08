@@ -1,0 +1,40 @@
+import { Tracking } from "@/components/business/tracking";
+import { CodeBlock } from "@/components/code-block";
+
+# Tracking
+
+> 业务组件
+
+<Tracking target={100} actual={76} label="回款率" />
+
+## 何时使用
+
+适用于Tracking相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Tracking } from "@/components/business/tracking"
+
+export function Basic() {
+  return <Tracking />
+}`} lang="tsx" />
+
+## API / Props
+
+### Tracking
+
+| Prop        | Type                   | Default  | 说明              |
+| ----------- | ---------------------- | -------- | ----------------- |
+| `className` | `string`               | —        | 自定义样式类名    |
+| `target`    | `number`               | —        | 链接打开目标      |
+| `actual`    | `number`               | —        |                   |
+| `label`     | `string`               | `追踪项` | 标签文本          |
+| ...rest     | `React.HTMLAttributes` | —        | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-tracking--docs)。

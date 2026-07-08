@@ -5,7 +5,7 @@ This project is a Storybook-first React/Next.js component library for Chaos UI.
 ## Project Defaults
 
 - Primary component browser: Storybook.
-- Daily development command: `npm run dev` starts the docs site on port `8080`.
+- Daily development command: `npm run dev` starts the docs site on port `3001`.
 - Next.js app command: `npm run app:dev`.
 - Prefer npm scripts in docs and examples unless a task explicitly targets another package manager.
 - Do not restore the old `/styleguide` app as the main component browsing surface.
@@ -50,7 +50,7 @@ Use native search such as `rg` for literal text queries, comments, docs, and exa
 
 ## Verification Commands
 
-- `npm run dev` starts the docs site (Next.js) on port `8080` via the reverse proxy.
+- `npm run dev` starts the docs site (Next.js) on port `3001`.
 - `npm run storybook` starts Storybook independently on port `3002`.
 - `npm run build-storybook` verifies Storybook can build.
 - `npm run lint` runs ESLint.
@@ -76,7 +76,7 @@ Use native search such as `rg` for literal text queries, comments, docs, and exa
 
 ```yaml
 ---
-status: 工作中    # 未执行 | 工作中 | 待审核 | 完成
+status: 工作中 # 未执行 | 工作中 | 待审核 | 完成
 created: 2026-07-08
 updated: 2026-07-08
 ---

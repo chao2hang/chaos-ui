@@ -1,0 +1,42 @@
+import { PoolTrackerTable } from "@/components/business/pool-tracker-table";
+import { CodeBlock } from "@/components/code-block";
+
+# PoolTrackerTable Pool Tracker Table
+
+> Domain-specific business components for ERP scenarios.
+
+Tracks each fund pool and renders a usage bar so finance teams can spot pools that are running low.
+PoolTrackerTable — pool tracker table component.
+
+## When to Use
+
+Use when you need a pool tracker table.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PoolTrackerTable } from "@/components/business/pool-tracker-table"
+
+export function Basic() {
+  return <PoolTrackerTable />
+}`} lang="tsx" />
+
+## API / Props
+
+### PoolTrackerTable
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `pools`     | `Array<{`              | —       | Fund pools to track.              |
+| `id`        | `string`               | —       | DOM element id                    |
+| `name`      | `string`               | —       | Form field name                   |
+| `total`     | `number`               | —       | Total capacity of the pool.       |
+| `used`      | `number`               | —       | Amount currently in use.          |
+| `available` | `number`               | —       | Remaining available balance.      |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

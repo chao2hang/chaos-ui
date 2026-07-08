@@ -162,6 +162,8 @@ function splitMdx(src) {
   // Track when we're inside a multi-line JSX element (opened `<Foo ...` on
   // one line and not yet closed with `/>` or `</Foo>`).
   let jsxDepth = 0;
+  // Track multi-line import/export statements (e.g. `import {\n  Foo,\n} from "..."`)
+  let inImportBlock = false;
 
   function countUnescapedBackticks(s) {
     let n = 0;
@@ -347,11 +349,25 @@ function splitMdx(src) {
       continue;
     }
 
-    // ----- imports / frontmatter -----
+    // ----- imports / frontmatter (including multi-line) -----
+    if (inImportBlock) {
+      flushPara();
+      zh.push(line);
+      en.push(line);
+      // End of multi-line import/export when the line ends with `;` or `from "..."`
+      if (/;\s*$/.test(line) || /from\s+["'][^"']*["']\s*;?\s*$/.test(line)) {
+        inImportBlock = false;
+      }
+      continue;
+    }
     if (/^import\s+/.test(line) || /^export\s+/.test(line)) {
       flushPara();
       zh.push(line);
       en.push(line);
+      // If the line doesn't end with `;` or a closing `from`, it's a multi-line import
+      if (!/;\s*$/.test(line) && !/from\s+["'][^"']*["']\s*;?\s*$/.test(line)) {
+        inImportBlock = true;
+      }
       continue;
     }
 

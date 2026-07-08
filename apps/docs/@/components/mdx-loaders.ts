@@ -8,6 +8,10 @@ export type MdxLoader = () => Promise<{ default: ComponentType }>;
 export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/account-balance": () =>
     import("@/content/Business/account-balance.mdx"),
+  "Business/account-balance.en": () =>
+    import("@/content/Business/account-balance.en.mdx"),
+  "Business/account-balance.zh": () =>
+    import("@/content/Business/account-balance.zh.mdx"),
   "Business/activity-feed": () =>
     import("@/content/Business/activity-feed.mdx"),
   "Business/activity-feed.en": () =>
@@ -54,10 +58,22 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/announcement-banner.zh.mdx"),
   "Business/announcement-card": () =>
     import("@/content/Business/announcement-card.mdx"),
+  "Business/announcement-card.en": () =>
+    import("@/content/Business/announcement-card.en.mdx"),
+  "Business/announcement-card.zh": () =>
+    import("@/content/Business/announcement-card.zh.mdx"),
   "Business/application-form": () =>
     import("@/content/Business/application-form.mdx"),
+  "Business/application-form.en": () =>
+    import("@/content/Business/application-form.en.mdx"),
+  "Business/application-form.zh": () =>
+    import("@/content/Business/application-form.zh.mdx"),
   "Business/approval-action-bar": () =>
     import("@/content/Business/approval-action-bar.mdx"),
+  "Business/approval-action-bar.en": () =>
+    import("@/content/Business/approval-action-bar.en.mdx"),
+  "Business/approval-action-bar.zh": () =>
+    import("@/content/Business/approval-action-bar.zh.mdx"),
   "Business/approval-flow": () =>
     import("@/content/Business/approval-flow.mdx"),
   "Business/approval-flow.en": () =>
@@ -72,7 +88,15 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/approval-timeline.zh.mdx"),
   "Business/ar-ap-aging-table": () =>
     import("@/content/Business/ar-ap-aging-table.mdx"),
+  "Business/ar-ap-aging-table.en": () =>
+    import("@/content/Business/ar-ap-aging-table.en.mdx"),
+  "Business/ar-ap-aging-table.zh": () =>
+    import("@/content/Business/ar-ap-aging-table.zh.mdx"),
   "Business/area-chart": () => import("@/content/Business/area-chart.mdx"),
+  "Business/area-chart.en": () =>
+    import("@/content/Business/area-chart.en.mdx"),
+  "Business/area-chart.zh": () =>
+    import("@/content/Business/area-chart.zh.mdx"),
   "Business/async-task-center": () =>
     import("@/content/Business/async-task-center.mdx"),
   "Business/async-task-center.en": () =>
@@ -81,14 +105,34 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/async-task-center.zh.mdx"),
   "Business/async-task-trigger": () =>
     import("@/content/Business/async-task-trigger.mdx"),
+  "Business/async-task-trigger.en": () =>
+    import("@/content/Business/async-task-trigger.en.mdx"),
+  "Business/async-task-trigger.zh": () =>
+    import("@/content/Business/async-task-trigger.zh.mdx"),
   "Business/attachment-list": () =>
     import("@/content/Business/attachment-list.mdx"),
+  "Business/attachment-list.en": () =>
+    import("@/content/Business/attachment-list.en.mdx"),
+  "Business/attachment-list.zh": () =>
+    import("@/content/Business/attachment-list.zh.mdx"),
   "Business/attachment-preview": () =>
     import("@/content/Business/attachment-preview.mdx"),
+  "Business/attachment-preview.en": () =>
+    import("@/content/Business/attachment-preview.en.mdx"),
+  "Business/attachment-preview.zh": () =>
+    import("@/content/Business/attachment-preview.zh.mdx"),
   "Business/attachment-uploader": () =>
     import("@/content/Business/attachment-uploader.mdx"),
+  "Business/attachment-uploader.en": () =>
+    import("@/content/Business/attachment-uploader.en.mdx"),
+  "Business/attachment-uploader.zh": () =>
+    import("@/content/Business/attachment-uploader.zh.mdx"),
   "Business/attendance-calendar": () =>
     import("@/content/Business/attendance-calendar.mdx"),
+  "Business/attendance-calendar.en": () =>
+    import("@/content/Business/attendance-calendar.en.mdx"),
+  "Business/attendance-calendar.zh": () =>
+    import("@/content/Business/attendance-calendar.zh.mdx"),
   "Business/audience-segment-builder": () =>
     import("@/content/Business/audience-segment-builder.mdx"),
   "Business/audience-segment-builder.en": () =>
@@ -111,6 +155,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/audit-sidebar.zh.mdx"),
   "Business/audit-trail-diff": () =>
     import("@/content/Business/audit-trail-diff.mdx"),
+  "Business/audit-trail-diff.en": () =>
+    import("@/content/Business/audit-trail-diff.en.mdx"),
+  "Business/audit-trail-diff.zh": () =>
+    import("@/content/Business/audit-trail-diff.zh.mdx"),
   "Business/auth-forms": () => import("@/content/Business/auth-forms.mdx"),
   "Business/auth-forms.en": () =>
     import("@/content/Business/auth-forms.en.mdx"),
@@ -127,13 +175,25 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/avatar-group.zh": () =>
     import("@/content/Business/avatar-group.zh.mdx"),
   "Business/badge-delta": () => import("@/content/Business/badge-delta.mdx"),
+  "Business/badge-delta.en": () =>
+    import("@/content/Business/badge-delta.en.mdx"),
+  "Business/badge-delta.zh": () =>
+    import("@/content/Business/badge-delta.zh.mdx"),
   "Business/banner": () => import("@/content/Business/banner.mdx"),
   "Business/banner.en": () => import("@/content/Business/banner.en.mdx"),
   "Business/banner.zh": () => import("@/content/Business/banner.zh.mdx"),
   "Business/bar-chart": () => import("@/content/Business/bar-chart.mdx"),
+  "Business/bar-chart.en": () => import("@/content/Business/bar-chart.en.mdx"),
+  "Business/bar-chart.zh": () => import("@/content/Business/bar-chart.zh.mdx"),
   "Business/bar-list": () => import("@/content/Business/bar-list.mdx"),
   "Business/bar-list-card": () =>
     import("@/content/Business/bar-list-card.mdx"),
+  "Business/bar-list-card.en": () =>
+    import("@/content/Business/bar-list-card.en.mdx"),
+  "Business/bar-list-card.zh": () =>
+    import("@/content/Business/bar-list-card.zh.mdx"),
+  "Business/bar-list.en": () => import("@/content/Business/bar-list.en.mdx"),
+  "Business/bar-list.zh": () => import("@/content/Business/bar-list.zh.mdx"),
   "Business/barcode-display": () =>
     import("@/content/Business/barcode-display.mdx"),
   "Business/barcode-display.en": () =>
@@ -142,8 +202,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/barcode-display.zh.mdx"),
   "Business/batch-genealogy-tree": () =>
     import("@/content/Business/batch-genealogy-tree.mdx"),
+  "Business/batch-genealogy-tree.en": () =>
+    import("@/content/Business/batch-genealogy-tree.en.mdx"),
+  "Business/batch-genealogy-tree.zh": () =>
+    import("@/content/Business/batch-genealogy-tree.zh.mdx"),
   "Business/batch-print-dialog": () =>
     import("@/content/Business/batch-print-dialog.mdx"),
+  "Business/batch-print-dialog.en": () =>
+    import("@/content/Business/batch-print-dialog.en.mdx"),
+  "Business/batch-print-dialog.zh": () =>
+    import("@/content/Business/batch-print-dialog.zh.mdx"),
   "Business/batch-selector": () =>
     import("@/content/Business/batch-selector.mdx"),
   "Business/batch-selector.en": () =>
@@ -165,6 +233,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/bill-page.zh": () => import("@/content/Business/bill-page.zh.mdx"),
   "Business/bill-print-template": () =>
     import("@/content/Business/bill-print-template.mdx"),
+  "Business/bill-print-template.en": () =>
+    import("@/content/Business/bill-print-template.en.mdx"),
+  "Business/bill-print-template.zh": () =>
+    import("@/content/Business/bill-print-template.zh.mdx"),
   "Business/bill-status-bar": () =>
     import("@/content/Business/bill-status-bar.mdx"),
   "Business/bill-status-bar.en": () =>
@@ -173,8 +245,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/bill-status-bar.zh.mdx"),
   "Business/bill-timeline": () =>
     import("@/content/Business/bill-timeline.mdx"),
+  "Business/bill-timeline.en": () =>
+    import("@/content/Business/bill-timeline.en.mdx"),
+  "Business/bill-timeline.zh": () =>
+    import("@/content/Business/bill-timeline.zh.mdx"),
   "Business/bill-todo-list": () =>
     import("@/content/Business/bill-todo-list.mdx"),
+  "Business/bill-todo-list.en": () =>
+    import("@/content/Business/bill-todo-list.en.mdx"),
+  "Business/bill-todo-list.zh": () =>
+    import("@/content/Business/bill-todo-list.zh.mdx"),
   "Business/biz-status-tag": () =>
     import("@/content/Business/biz-status-tag.mdx"),
   "Business/biz-status-tag.en": () =>
@@ -183,12 +263,28 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/biz-status-tag.zh.mdx"),
   "Business/bom-tree-editor": () =>
     import("@/content/Business/bom-tree-editor.mdx"),
+  "Business/bom-tree-editor.en": () =>
+    import("@/content/Business/bom-tree-editor.en.mdx"),
+  "Business/bom-tree-editor.zh": () =>
+    import("@/content/Business/bom-tree-editor.zh.mdx"),
   "Business/browse-dialog": () =>
     import("@/content/Business/browse-dialog.mdx"),
+  "Business/browse-dialog.en": () =>
+    import("@/content/Business/browse-dialog.en.mdx"),
+  "Business/browse-dialog.zh": () =>
+    import("@/content/Business/browse-dialog.zh.mdx"),
   "Business/budget-allocator": () =>
     import("@/content/Business/budget-allocator.mdx"),
+  "Business/budget-allocator.en": () =>
+    import("@/content/Business/budget-allocator.en.mdx"),
+  "Business/budget-allocator.zh": () =>
+    import("@/content/Business/budget-allocator.zh.mdx"),
   "Business/budget-overview": () =>
     import("@/content/Business/budget-overview.mdx"),
+  "Business/budget-overview.en": () =>
+    import("@/content/Business/budget-overview.en.mdx"),
+  "Business/budget-overview.zh": () =>
+    import("@/content/Business/budget-overview.zh.mdx"),
   "Business/budget-pacing-card": () =>
     import("@/content/Business/budget-pacing-card.mdx"),
   "Business/budget-pacing-card.en": () =>
@@ -207,645 +303,6 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/bulk-import-wizard.en.mdx"),
   "Business/bulk-import-wizard.zh": () =>
     import("@/content/Business/bulk-import-wizard.zh.mdx"),
-  "Business/business-account-balance": () =>
-    import("@/content/Business/business-account-balance.mdx"),
-  "Business/business-activity-feed": () =>
-    import("@/content/Business/business-activity-feed.mdx"),
-  "Business/business-address-picker": () =>
-    import("@/content/Business/business-address-picker.mdx"),
-  "Business/business-advanced-data-table": () =>
-    import("@/content/Business/business-advanced-data-table.mdx"),
-  "Business/business-advanced-search": () =>
-    import("@/content/Business/business-advanced-search.mdx"),
-  "Business/business-announcement-banner": () =>
-    import("@/content/Business/business-announcement-banner.mdx"),
-  "Business/business-announcement-card": () =>
-    import("@/content/Business/business-announcement-card.mdx"),
-  "Business/business-application-form": () =>
-    import("@/content/Business/business-application-form.mdx"),
-  "Business/business-approval-action-bar": () =>
-    import("@/content/Business/business-approval-action-bar.mdx"),
-  "Business/business-approval-flow": () =>
-    import("@/content/Business/business-approval-flow.mdx"),
-  "Business/business-approval-timeline": () =>
-    import("@/content/Business/business-approval-timeline.mdx"),
-  "Business/business-ar-ap-aging-table": () =>
-    import("@/content/Business/business-ar-ap-aging-table.mdx"),
-  "Business/business-area-chart": () =>
-    import("@/content/Business/business-area-chart.mdx"),
-  "Business/business-async-task-center": () =>
-    import("@/content/Business/business-async-task-center.mdx"),
-  "Business/business-async-task-trigger": () =>
-    import("@/content/Business/business-async-task-trigger.mdx"),
-  "Business/business-attachment-list": () =>
-    import("@/content/Business/business-attachment-list.mdx"),
-  "Business/business-attachment-preview": () =>
-    import("@/content/Business/business-attachment-preview.mdx"),
-  "Business/business-attachment-uploader": () =>
-    import("@/content/Business/business-attachment-uploader.mdx"),
-  "Business/business-attendance-calendar": () =>
-    import("@/content/Business/business-attendance-calendar.mdx"),
-  "Business/business-audience-segment-builder": () =>
-    import("@/content/Business/business-audience-segment-builder.mdx"),
-  "Business/business-audit-log": () =>
-    import("@/content/Business/business-audit-log.mdx"),
-  "Business/business-audit-sidebar": () =>
-    import("@/content/Business/business-audit-sidebar.mdx"),
-  "Business/business-audit-trail-diff": () =>
-    import("@/content/Business/business-audit-trail-diff.mdx"),
-  "Business/business-auth-guard": () =>
-    import("@/content/Business/business-auth-guard.mdx"),
-  "Business/business-avatar-group": () =>
-    import("@/content/Business/business-avatar-group.mdx"),
-  "Business/business-badge-delta": () =>
-    import("@/content/Business/business-badge-delta.mdx"),
-  "Business/business-bar-chart": () =>
-    import("@/content/Business/business-bar-chart.mdx"),
-  "Business/business-bar-list": () =>
-    import("@/content/Business/business-bar-list.mdx"),
-  "Business/business-bar-list-card": () =>
-    import("@/content/Business/business-bar-list-card.mdx"),
-  "Business/business-batch-genealogy-tree": () =>
-    import("@/content/Business/business-batch-genealogy-tree.mdx"),
-  "Business/business-batch-print-dialog": () =>
-    import("@/content/Business/business-batch-print-dialog.mdx"),
-  "Business/business-batch-selector": () =>
-    import("@/content/Business/business-batch-selector.mdx"),
-  "Business/business-bill-footer": () =>
-    import("@/content/Business/business-bill-footer.mdx"),
-  "Business/business-bill-header": () =>
-    import("@/content/Business/business-bill-header.mdx"),
-  "Business/business-bill-page": () =>
-    import("@/content/Business/business-bill-page.mdx"),
-  "Business/business-bill-print-template": () =>
-    import("@/content/Business/business-bill-print-template.mdx"),
-  "Business/business-bill-status-bar": () =>
-    import("@/content/Business/business-bill-status-bar.mdx"),
-  "Business/business-bill-timeline": () =>
-    import("@/content/Business/business-bill-timeline.mdx"),
-  "Business/business-bill-todo-list": () =>
-    import("@/content/Business/business-bill-todo-list.mdx"),
-  "Business/business-biz-status-tag": () =>
-    import("@/content/Business/business-biz-status-tag.mdx"),
-  "Business/business-bom-tree-editor": () =>
-    import("@/content/Business/business-bom-tree-editor.mdx"),
-  "Business/business-browse-dialog": () =>
-    import("@/content/Business/business-browse-dialog.mdx"),
-  "Business/business-budget-allocator": () =>
-    import("@/content/Business/business-budget-allocator.mdx"),
-  "Business/business-budget-overview": () =>
-    import("@/content/Business/business-budget-overview.mdx"),
-  "Business/business-budget-pacing-card": () =>
-    import("@/content/Business/business-budget-pacing-card.mdx"),
-  "Business/business-bulk-actions-toolbar": () =>
-    import("@/content/Business/business-bulk-actions-toolbar.mdx"),
-  "Business/business-bulk-import-wizard": () =>
-    import("@/content/Business/business-bulk-import-wizard.mdx"),
-  "Business/business-calendar-view": () =>
-    import("@/content/Business/business-calendar-view.mdx"),
-  "Business/business-callout": () =>
-    import("@/content/Business/business-callout.mdx"),
-  "Business/business-campaign-calendar": () =>
-    import("@/content/Business/business-campaign-calendar.mdx"),
-  "Business/business-campaign-card": () =>
-    import("@/content/Business/business-campaign-card.mdx"),
-  "Business/business-campaign-status-tag": () =>
-    import("@/content/Business/business-campaign-status-tag.mdx"),
-  "Business/business-category-bar": () =>
-    import("@/content/Business/business-category-bar.mdx"),
-  "Business/business-channel-picker": () =>
-    import("@/content/Business/business-channel-picker.mdx"),
-  "Business/business-chart": () =>
-    import("@/content/Business/business-chart.mdx"),
-  "Business/business-chart-card": () =>
-    import("@/content/Business/business-chart-card.mdx"),
-  "Business/business-chart-suite": () =>
-    import("@/content/Business/business-chart-suite.mdx"),
-  "Business/business-chat-agent-status": () =>
-    import("@/content/Business/business-chat-agent-status.mdx"),
-  "Business/business-chat-artifact-panel": () =>
-    import("@/content/Business/business-chat-artifact-panel.mdx"),
-  "Business/business-chat-branch": () =>
-    import("@/content/Business/business-chat-branch.mdx"),
-  "Business/business-chat-card-message": () =>
-    import("@/content/Business/business-chat-card-message.mdx"),
-  "Business/business-chat-code-block": () =>
-    import("@/content/Business/business-chat-code-block.mdx"),
-  "Business/business-chat-command-menu": () =>
-    import("@/content/Business/business-chat-command-menu.mdx"),
-  "Business/business-chat-context-panel": () =>
-    import("@/content/Business/business-chat-context-panel.mdx"),
-  "Business/business-chat-conversation": () =>
-    import("@/content/Business/business-chat-conversation.mdx"),
-  "Business/business-chat-conversation-search": () =>
-    import("@/content/Business/business-chat-conversation-search.mdx"),
-  "Business/business-chat-feedback": () =>
-    import("@/content/Business/business-chat-feedback.mdx"),
-  "Business/business-chat-header": () =>
-    import("@/content/Business/business-chat-header.mdx"),
-  "Business/business-chat-image-gallery": () =>
-    import("@/content/Business/business-chat-image-gallery.mdx"),
-  "Business/business-chat-input-toolbar": () =>
-    import("@/content/Business/business-chat-input-toolbar.mdx"),
-  "Business/business-chat-markdown-renderer": () =>
-    import("@/content/Business/business-chat-markdown-renderer.mdx"),
-  "Business/business-chat-mention-picker": () =>
-    import("@/content/Business/business-chat-mention-picker.mdx"),
-  "Business/business-chat-message-actions": () =>
-    import("@/content/Business/business-chat-message-actions.mdx"),
-  "Business/business-chat-message-bubble": () =>
-    import("@/content/Business/business-chat-message-bubble.mdx"),
-  "Business/business-chat-message-group": () =>
-    import("@/content/Business/business-chat-message-group.mdx"),
-  "Business/business-chat-message-input": () =>
-    import("@/content/Business/business-chat-message-input.mdx"),
-  "Business/business-chat-model-switcher": () =>
-    import("@/content/Business/business-chat-model-switcher.mdx"),
-  "Business/business-chat-shell": () =>
-    import("@/content/Business/business-chat-shell.mdx"),
-  "Business/business-chat-sidebar": () =>
-    import("@/content/Business/business-chat-sidebar.mdx"),
-  "Business/business-chat-streaming-text": () =>
-    import("@/content/Business/business-chat-streaming-text.mdx"),
-  "Business/business-chat-suggest-replies": () =>
-    import("@/content/Business/business-chat-suggest-replies.mdx"),
-  "Business/business-chat-thinking-block": () =>
-    import("@/content/Business/business-chat-thinking-block.mdx"),
-  "Business/business-chat-tool-call-block": () =>
-    import("@/content/Business/business-chat-tool-call-block.mdx"),
-  "Business/business-chat-voice-message": () =>
-    import("@/content/Business/business-chat-voice-message.mdx"),
-  "Business/business-checkout-bar": () =>
-    import("@/content/Business/business-checkout-bar.mdx"),
-  "Business/business-chip": () =>
-    import("@/content/Business/business-chip.mdx"),
-  "Business/business-city-browse": () =>
-    import("@/content/Business/business-city-browse.mdx"),
-  "Business/business-code-block": () =>
-    import("@/content/Business/business-code-block.mdx"),
-  "Business/business-code-editor": () =>
-    import("@/content/Business/business-code-editor.mdx"),
-  "Business/business-color-board": () =>
-    import("@/content/Business/business-color-board.mdx"),
-  "Business/business-color-tag": () =>
-    import("@/content/Business/business-color-tag.mdx"),
-  "Business/business-combobox": () =>
-    import("@/content/Business/business-combobox.mdx"),
-  "Business/business-command-palette": () =>
-    import("@/content/Business/business-command-palette.mdx"),
-  "Business/business-commission-calculator": () =>
-    import("@/content/Business/business-commission-calculator.mdx"),
-  "Business/business-company-browse": () =>
-    import("@/content/Business/business-company-browse.mdx"),
-  "Business/business-company-picker": () =>
-    import("@/content/Business/business-company-picker.mdx"),
-  "Business/business-compliance-checklist": () =>
-    import("@/content/Business/business-compliance-checklist.mdx"),
-  "Business/business-confirm-dialog": () =>
-    import("@/content/Business/business-confirm-dialog.mdx"),
-  "Business/business-contract-template": () =>
-    import("@/content/Business/business-contract-template.mdx"),
-  "Business/business-cookie-banner": () =>
-    import("@/content/Business/business-cookie-banner.mdx"),
-  "Business/business-cost-center-picker": () =>
-    import("@/content/Business/business-cost-center-picker.mdx"),
-  "Business/business-coupon-card": () =>
-    import("@/content/Business/business-coupon-card.mdx"),
-  "Business/business-creative-preview": () =>
-    import("@/content/Business/business-creative-preview.mdx"),
-  "Business/business-cron-editor": () =>
-    import("@/content/Business/business-cron-editor.mdx"),
-  "Business/business-crud-page": () =>
-    import("@/content/Business/business-crud-page.mdx"),
-  "Business/business-crud-toolbar": () =>
-    import("@/content/Business/business-crud-toolbar.mdx"),
-  "Business/business-customer-360-card": () =>
-    import("@/content/Business/business-customer-360-card.mdx"),
-  "Business/business-customer-browse": () =>
-    import("@/content/Business/business-customer-browse.mdx"),
-  "Business/business-customer-picker": () =>
-    import("@/content/Business/business-customer-picker.mdx"),
-  "Business/business-dashboard-canvas": () =>
-    import("@/content/Business/business-dashboard-canvas.mdx"),
-  "Business/business-dashboard-designer": () =>
-    import("@/content/Business/business-dashboard-designer.mdx"),
-  "Business/business-dashboard-grid": () =>
-    import("@/content/Business/business-dashboard-grid.mdx"),
-  "Business/business-data-table": () =>
-    import("@/content/Business/business-data-table.mdx"),
-  "Business/business-date-range-picker": () =>
-    import("@/content/Business/business-date-range-picker.mdx"),
-  "Business/business-delta-bar": () =>
-    import("@/content/Business/business-delta-bar.mdx"),
-  "Business/business-department-picker": () =>
-    import("@/content/Business/business-department-picker.mdx"),
-  "Business/business-dict-select": () =>
-    import("@/content/Business/business-dict-select.mdx"),
-  "Business/business-diff-viewer": () =>
-    import("@/content/Business/business-diff-viewer.mdx"),
-  "Business/business-diff-viewer-table": () =>
-    import("@/content/Business/business-diff-viewer-table.mdx"),
-  "Business/business-distributor-picker": () =>
-    import("@/content/Business/business-distributor-picker.mdx"),
-  "Business/business-dock-panel": () =>
-    import("@/content/Business/business-dock-panel.mdx"),
-  "Business/business-donut-card": () =>
-    import("@/content/Business/business-donut-card.mdx"),
-  "Business/business-donut-chart": () =>
-    import("@/content/Business/business-donut-chart.mdx"),
-  "Business/business-dynamic-form-builder": () =>
-    import("@/content/Business/business-dynamic-form-builder.mdx"),
-  "Business/business-edit-toolbar": () =>
-    import("@/content/Business/business-edit-toolbar.mdx"),
-  "Business/business-editable-tree-table": () =>
-    import("@/content/Business/business-editable-tree-table.mdx"),
-  "Business/business-employee-picker": () =>
-    import("@/content/Business/business-employee-picker.mdx"),
-  "Business/business-empty-state": () =>
-    import("@/content/Business/business-empty-state.mdx"),
-  "Business/business-equipment-card": () =>
-    import("@/content/Business/business-equipment-card.mdx"),
-  "Business/business-error-boundary": () =>
-    import("@/content/Business/business-error-boundary.mdx"),
-  "Business/business-error-page": () =>
-    import("@/content/Business/business-error-page.mdx"),
-  "Business/business-expense-line-editor": () =>
-    import("@/content/Business/business-expense-line-editor.mdx"),
-  "Business/business-experiment-summary": () =>
-    import("@/content/Business/business-experiment-summary.mdx"),
-  "Business/business-export-button": () =>
-    import("@/content/Business/business-export-button.mdx"),
-  "Business/business-fab": () => import("@/content/Business/business-fab.mdx"),
-  "Business/business-feature-tour": () =>
-    import("@/content/Business/business-feature-tour.mdx"),
-  "Business/business-fee-type-browse": () =>
-    import("@/content/Business/business-fee-type-browse.mdx"),
-  "Business/business-field-mask": () =>
-    import("@/content/Business/business-field-mask.mdx"),
-  "Business/business-file-card": () =>
-    import("@/content/Business/business-file-card.mdx"),
-  "Business/business-file-upload-manager": () =>
-    import("@/content/Business/business-file-upload-manager.mdx"),
-  "Business/business-filter-bar": () =>
-    import("@/content/Business/business-filter-bar.mdx"),
-  "Business/business-filter-builder": () =>
-    import("@/content/Business/business-filter-builder.mdx"),
-  "Business/business-flow-tracker": () =>
-    import("@/content/Business/business-flow-tracker.mdx"),
-  "Business/business-forbidden": () =>
-    import("@/content/Business/business-forbidden.mdx"),
-  "Business/business-form-designer": () =>
-    import("@/content/Business/business-form-designer.mdx"),
-  "Business/business-form-designer-runtime": () =>
-    import("@/content/Business/business-form-designer-runtime.mdx"),
-  "Business/business-form-field": () =>
-    import("@/content/Business/business-form-field.mdx"),
-  "Business/business-form-wizard": () =>
-    import("@/content/Business/business-form-wizard.mdx"),
-  "Business/business-formula-editor": () =>
-    import("@/content/Business/business-formula-editor.mdx"),
-  "Business/business-funnel-chart": () =>
-    import("@/content/Business/business-funnel-chart.mdx"),
-  "Business/business-gantt-chart": () =>
-    import("@/content/Business/business-gantt-chart.mdx"),
-  "Business/business-gantt-chart-pro": () =>
-    import("@/content/Business/business-gantt-chart-pro.mdx"),
-  "Business/business-gauge": () =>
-    import("@/content/Business/business-gauge.mdx"),
-  "Business/business-gauge-chart": () =>
-    import("@/content/Business/business-gauge-chart.mdx"),
-  "Business/business-global-loading": () =>
-    import("@/content/Business/business-global-loading.mdx"),
-  "Business/business-heatmap-calendar": () =>
-    import("@/content/Business/business-heatmap-calendar.mdx"),
-  "Business/business-heatmap-chart": () =>
-    import("@/content/Business/business-heatmap-chart.mdx"),
-  "Business/business-i18n-form-field": () =>
-    import("@/content/Business/business-i18n-form-field.mdx"),
-  "Business/business-im-message": () =>
-    import("@/content/Business/business-im-message.mdx"),
-  "Business/business-image-gallery": () =>
-    import("@/content/Business/business-image-gallery.mdx"),
-  "Business/business-import-dialog": () =>
-    import("@/content/Business/business-import-dialog.mdx"),
-  "Business/business-import-error-table": () =>
-    import("@/content/Business/business-import-error-table.mdx"),
-  "Business/business-import-mapping-wizard": () =>
-    import("@/content/Business/business-import-mapping-wizard.mdx"),
-  "Business/business-inline-edit": () =>
-    import("@/content/Business/business-inline-edit.mdx"),
-  "Business/business-inventory-alert-list": () =>
-    import("@/content/Business/business-inventory-alert-list.mdx"),
-  "Business/business-inventory-snapshot": () =>
-    import("@/content/Business/business-inventory-snapshot.mdx"),
-  "Business/business-invite-link": () =>
-    import("@/content/Business/business-invite-link.mdx"),
-  "Business/business-invoice-manager": () =>
-    import("@/content/Business/business-invoice-manager.mdx"),
-  "Business/business-invoice-summary": () =>
-    import("@/content/Business/business-invoice-summary.mdx"),
-  "Business/business-iot-sensor-grid": () =>
-    import("@/content/Business/business-iot-sensor-grid.mdx"),
-  "Business/business-journal-entry-editor": () =>
-    import("@/content/Business/business-journal-entry-editor.mdx"),
-  "Business/business-json-editor": () =>
-    import("@/content/Business/business-json-editor.mdx"),
-  "Business/business-json-viewer": () =>
-    import("@/content/Business/business-json-viewer.mdx"),
-  "Business/business-kanban-board": () =>
-    import("@/content/Business/business-kanban-board.mdx"),
-  "Business/business-kanban-column": () =>
-    import("@/content/Business/business-kanban-column.mdx"),
-  "Business/business-kpi-card": () =>
-    import("@/content/Business/business-kpi-card.mdx"),
-  "Business/business-label-designer": () =>
-    import("@/content/Business/business-label-designer.mdx"),
-  "Business/business-language-switcher": () =>
-    import("@/content/Business/business-language-switcher.mdx"),
-  "Business/business-lead-pipeline-board": () =>
-    import("@/content/Business/business-lead-pipeline-board.mdx"),
-  "Business/business-leave-request-form": () =>
-    import("@/content/Business/business-leave-request-form.mdx"),
-  "Business/business-line-chart": () =>
-    import("@/content/Business/business-line-chart.mdx"),
-  "Business/business-line-editor": () =>
-    import("@/content/Business/business-line-editor.mdx"),
-  "Business/business-loading-page": () =>
-    import("@/content/Business/business-loading-page.mdx"),
-  "Business/business-maintenance-log": () =>
-    import("@/content/Business/business-maintenance-log.mdx"),
-  "Business/business-map-chart": () =>
-    import("@/content/Business/business-map-chart.mdx"),
-  "Business/business-map-marker": () =>
-    import("@/content/Business/business-map-marker.mdx"),
-  "Business/business-map-track": () =>
-    import("@/content/Business/business-map-track.mdx"),
-  "Business/business-map-view": () =>
-    import("@/content/Business/business-map-view.mdx"),
-  "Business/business-markdown-editor": () =>
-    import("@/content/Business/business-markdown-editor.mdx"),
-  "Business/business-marketing-activity-form": () =>
-    import("@/content/Business/business-marketing-activity-form.mdx"),
-  "Business/business-master-edit-template": () =>
-    import("@/content/Business/business-master-edit-template.mdx"),
-  "Business/business-master-list-template": () =>
-    import("@/content/Business/business-master-list-template.mdx"),
-  "Business/business-media-recorder": () =>
-    import("@/content/Business/business-media-recorder.mdx"),
-  "Business/business-meeting-room-booking": () =>
-    import("@/content/Business/business-meeting-room-booking.mdx"),
-  "Business/business-message-list": () =>
-    import("@/content/Business/business-message-list.mdx"),
-  "Business/business-metric-trend": () =>
-    import("@/content/Business/business-metric-trend.mdx"),
-  "Business/business-mobile-action-sheet": () =>
-    import("@/content/Business/business-mobile-action-sheet.mdx"),
-  "Business/business-mobile-camera": () =>
-    import("@/content/Business/business-mobile-camera.mdx"),
-  "Business/business-mobile-geolocation": () =>
-    import("@/content/Business/business-mobile-geolocation.mdx"),
-  "Business/business-mobile-infinite-scroll": () =>
-    import("@/content/Business/business-mobile-infinite-scroll.mdx"),
-  "Business/business-mobile-list-item": () =>
-    import("@/content/Business/business-mobile-list-item.mdx"),
-  "Business/business-mobile-page-shell": () =>
-    import("@/content/Business/business-mobile-page-shell.mdx"),
-  "Business/business-mobile-picker": () =>
-    import("@/content/Business/business-mobile-picker.mdx"),
-  "Business/business-mobile-qrcode-scanner": () =>
-    import("@/content/Business/business-mobile-qrcode-scanner.mdx"),
-  "Business/business-mobile-signature": () =>
-    import("@/content/Business/business-mobile-signature.mdx"),
-  "Business/business-mobile-tab-bar": () =>
-    import("@/content/Business/business-mobile-tab-bar.mdx"),
-  "Business/business-multi-currency-input": () =>
-    import("@/content/Business/business-multi-currency-input.mdx"),
-  "Business/business-multi-select": () =>
-    import("@/content/Business/business-multi-select.mdx"),
-  "Business/business-notification-center": () =>
-    import("@/content/Business/business-notification-center.mdx"),
-  "Business/business-notification-rule-builder": () =>
-    import("@/content/Business/business-notification-rule-builder.mdx"),
-  "Business/business-oa-bridge": () =>
-    import("@/content/Business/business-oa-bridge.mdx"),
-  "Business/business-oee-dashboard": () =>
-    import("@/content/Business/business-oee-dashboard.mdx"),
-  "Business/business-operation-log": () =>
-    import("@/content/Business/business-operation-log.mdx"),
-  "Business/business-order-line-editor": () =>
-    import("@/content/Business/business-order-line-editor.mdx"),
-  "Business/business-org-chart": () =>
-    import("@/content/Business/business-org-chart.mdx"),
-  "Business/business-overview-page": () =>
-    import("@/content/Business/business-overview-page.mdx"),
-  "Business/business-page-header": () =>
-    import("@/content/Business/business-page-header.mdx"),
-  "Business/business-paste-upload": () =>
-    import("@/content/Business/business-paste-upload.mdx"),
-  "Business/business-payment-method-selector": () =>
-    import("@/content/Business/business-payment-method-selector.mdx"),
-  "Business/business-payment-result": () =>
-    import("@/content/Business/business-payment-result.mdx"),
-  "Business/business-payment-schedule": () =>
-    import("@/content/Business/business-payment-schedule.mdx"),
-  "Business/business-pdf-viewer": () =>
-    import("@/content/Business/business-pdf-viewer.mdx"),
-  "Business/business-performance-rank-table": () =>
-    import("@/content/Business/business-performance-rank-table.mdx"),
-  "Business/business-permission-button": () =>
-    import("@/content/Business/business-permission-button.mdx"),
-  "Business/business-permission-matrix": () =>
-    import("@/content/Business/business-permission-matrix.mdx"),
-  "Business/business-permission-wrapper": () =>
-    import("@/content/Business/business-permission-wrapper.mdx"),
-  "Business/business-photo-audit": () =>
-    import("@/content/Business/business-photo-audit.mdx"),
-  "Business/business-pie-chart": () =>
-    import("@/content/Business/business-pie-chart.mdx"),
-  "Business/business-pivot-table": () =>
-    import("@/content/Business/business-pivot-table.mdx"),
-  "Business/business-policy-line-editor": () =>
-    import("@/content/Business/business-policy-line-editor.mdx"),
-  "Business/business-pool-tracker-table": () =>
-    import("@/content/Business/business-pool-tracker-table.mdx"),
-  "Business/business-preference-panel": () =>
-    import("@/content/Business/business-preference-panel.mdx"),
-  "Business/business-price-adjust-browse": () =>
-    import("@/content/Business/business-price-adjust-browse.mdx"),
-  "Business/business-print-button": () =>
-    import("@/content/Business/business-print-button.mdx"),
-  "Business/business-print-service": () =>
-    import("@/content/Business/business-print-service.mdx"),
-  "Business/business-print-template-builder": () =>
-    import("@/content/Business/business-print-template-builder.mdx"),
-  "Business/business-product-browse": () =>
-    import("@/content/Business/business-product-browse.mdx"),
-  "Business/business-product-category-picker": () =>
-    import("@/content/Business/business-product-category-picker.mdx"),
-  "Business/business-promotion-rule-card": () =>
-    import("@/content/Business/business-promotion-rule-card.mdx"),
-  "Business/business-promotion-rule-editor": () =>
-    import("@/content/Business/business-promotion-rule-editor.mdx"),
-  "Business/business-prompt-dialog": () =>
-    import("@/content/Business/business-prompt-dialog.mdx"),
-  "Business/business-purchase-order-editor": () =>
-    import("@/content/Business/business-purchase-order-editor.mdx"),
-  "Business/business-quality-inspection-form": () =>
-    import("@/content/Business/business-quality-inspection-form.mdx"),
-  "Business/business-quick-entry-grid": () =>
-    import("@/content/Business/business-quick-entry-grid.mdx"),
-  "Business/business-quotation-line-editor": () =>
-    import("@/content/Business/business-quotation-line-editor.mdx"),
-  "Business/business-radar-chart": () =>
-    import("@/content/Business/business-radar-chart.mdx"),
-  "Business/business-radial-chart": () =>
-    import("@/content/Business/business-radial-chart.mdx"),
-  "Business/business-rating": () =>
-    import("@/content/Business/business-rating.mdx"),
-  "Business/business-rebut-node-select": () =>
-    import("@/content/Business/business-rebut-node-select.mdx"),
-  "Business/business-reconciliation-line-editor": () =>
-    import("@/content/Business/business-reconciliation-line-editor.mdx"),
-  "Business/business-reconciliation-summary": () =>
-    import("@/content/Business/business-reconciliation-summary.mdx"),
-  "Business/business-red-packet": () =>
-    import("@/content/Business/business-red-packet.mdx"),
-  "Business/business-region-picker": () =>
-    import("@/content/Business/business-region-picker.mdx"),
-  "Business/business-remote-select": () =>
-    import("@/content/Business/business-remote-select.mdx"),
-  "Business/business-report-builder": () =>
-    import("@/content/Business/business-report-builder.mdx"),
-  "Business/business-resource-schedule": () =>
-    import("@/content/Business/business-resource-schedule.mdx"),
-  "Business/business-responsive-preview": () =>
-    import("@/content/Business/business-responsive-preview.mdx"),
-  "Business/business-rich-text-editor": () =>
-    import("@/content/Business/business-rich-text-editor.mdx"),
-  "Business/business-role-assignment": () =>
-    import("@/content/Business/business-role-assignment.mdx"),
-  "Business/business-rule-editor": () =>
-    import("@/content/Business/business-rule-editor.mdx"),
-  "Business/business-sales-order-browse": () =>
-    import("@/content/Business/business-sales-order-browse.mdx"),
-  "Business/business-sales-target-editor": () =>
-    import("@/content/Business/business-sales-target-editor.mdx"),
-  "Business/business-sankey-chart": () =>
-    import("@/content/Business/business-sankey-chart.mdx"),
-  "Business/business-saved-filters": () =>
-    import("@/content/Business/business-saved-filters.mdx"),
-  "Business/business-scatter-chart": () =>
-    import("@/content/Business/business-scatter-chart.mdx"),
-  "Business/business-seal-stamp-registry": () =>
-    import("@/content/Business/business-seal-stamp-registry.mdx"),
-  "Business/business-search-table": () =>
-    import("@/content/Business/business-search-table.mdx"),
-  "Business/business-segmented-control": () =>
-    import("@/content/Business/business-segmented-control.mdx"),
-  "Business/business-serial-number-manager": () =>
-    import("@/content/Business/business-serial-number-manager.mdx"),
-  "Business/business-settlement-status-tag": () =>
-    import("@/content/Business/business-settlement-status-tag.mdx"),
-  "Business/business-shift-calendar": () =>
-    import("@/content/Business/business-shift-calendar.mdx"),
-  "Business/business-shipping-way-browse": () =>
-    import("@/content/Business/business-shipping-way-browse.mdx"),
-  "Business/business-sign-action-button": () =>
-    import("@/content/Business/business-sign-action-button.mdx"),
-  "Business/business-sku-picker": () =>
-    import("@/content/Business/business-sku-picker.mdx"),
-  "Business/business-social-share": () =>
-    import("@/content/Business/business-social-share.mdx"),
-  "Business/business-spark-chart": () =>
-    import("@/content/Business/business-spark-chart.mdx"),
-  "Business/business-spc-control-chart": () =>
-    import("@/content/Business/business-spc-control-chart.mdx"),
-  "Business/business-sql-editor": () =>
-    import("@/content/Business/business-sql-editor.mdx"),
-  "Business/business-stat-card": () =>
-    import("@/content/Business/business-stat-card.mdx"),
-  "Business/business-stat-card-row": () =>
-    import("@/content/Business/business-stat-card-row.mdx"),
-  "Business/business-stat-card-with-delta": () =>
-    import("@/content/Business/business-stat-card-with-delta.mdx"),
-  "Business/business-stat-card-with-sparkline": () =>
-    import("@/content/Business/business-stat-card-with-sparkline.mdx"),
-  "Business/business-status-badge": () =>
-    import("@/content/Business/business-status-badge.mdx"),
-  "Business/business-status-tag": () =>
-    import("@/content/Business/business-status-tag.mdx"),
-  "Business/business-stock-transfer-dialog": () =>
-    import("@/content/Business/business-stock-transfer-dialog.mdx"),
-  "Business/business-subform-tabs": () =>
-    import("@/content/Business/business-subform-tabs.mdx"),
-  "Business/business-supplier-scorecard": () =>
-    import("@/content/Business/business-supplier-scorecard.mdx"),
-  "Business/business-tab-crud-page": () =>
-    import("@/content/Business/business-tab-crud-page.mdx"),
-  "Business/business-tab-pin": () =>
-    import("@/content/Business/business-tab-pin.mdx"),
-  "Business/business-target-progress": () =>
-    import("@/content/Business/business-target-progress.mdx"),
-  "Business/business-task-history": () =>
-    import("@/content/Business/business-task-history.mdx"),
-  "Business/business-task-list-table": () =>
-    import("@/content/Business/business-task-list-table.mdx"),
-  "Business/business-task-progress": () =>
-    import("@/content/Business/business-task-progress.mdx"),
-  "Business/business-tax-detail-table": () =>
-    import("@/content/Business/business-tax-detail-table.mdx"),
-  "Business/business-template-download": () =>
-    import("@/content/Business/business-template-download.mdx"),
-  "Business/business-territory-map": () =>
-    import("@/content/Business/business-territory-map.mdx"),
-  "Business/business-theme-toggle": () =>
-    import("@/content/Business/business-theme-toggle.mdx"),
-  "Business/business-time-picker": () =>
-    import("@/content/Business/business-time-picker.mdx"),
-  "Business/business-timeline-view": () =>
-    import("@/content/Business/business-timeline-view.mdx"),
-  "Business/business-todo-list-table": () =>
-    import("@/content/Business/business-todo-list-table.mdx"),
-  "Business/business-tour": () =>
-    import("@/content/Business/business-tour.mdx"),
-  "Business/business-tracking": () =>
-    import("@/content/Business/business-tracking.mdx"),
-  "Business/business-transfer": () =>
-    import("@/content/Business/business-transfer.mdx"),
-  "Business/business-tree-crud-page": () =>
-    import("@/content/Business/business-tree-crud-page.mdx"),
-  "Business/business-tree-table": () =>
-    import("@/content/Business/business-tree-table.mdx"),
-  "Business/business-treemap-chart": () =>
-    import("@/content/Business/business-treemap-chart.mdx"),
-  "Business/business-unit-converter": () =>
-    import("@/content/Business/business-unit-converter.mdx"),
-  "Business/business-user-menu": () =>
-    import("@/content/Business/business-user-menu.mdx"),
-  "Business/business-utm-builder": () =>
-    import("@/content/Business/business-utm-builder.mdx"),
-  "Business/business-vehicle-booking": () =>
-    import("@/content/Business/business-vehicle-booking.mdx"),
-  "Business/business-version-history": () =>
-    import("@/content/Business/business-version-history.mdx"),
-  "Business/business-warehouse-browse": () =>
-    import("@/content/Business/business-warehouse-browse.mdx"),
-  "Business/business-warehouse-picker": () =>
-    import("@/content/Business/business-warehouse-picker.mdx"),
-  "Business/business-waterfall-chart": () =>
-    import("@/content/Business/business-waterfall-chart.mdx"),
-  "Business/business-watermark": () =>
-    import("@/content/Business/business-watermark.mdx"),
-  "Business/business-work-order-card": () =>
-    import("@/content/Business/business-work-order-card.mdx"),
-  "Business/business-workflow-designer": () =>
-    import("@/content/Business/business-workflow-designer.mdx"),
-  "Business/business-workflow-preview": () =>
-    import("@/content/Business/business-workflow-preview.mdx"),
-  "Business/business-writeoff-browse": () =>
-    import("@/content/Business/business-writeoff-browse.mdx"),
-  "Business/business-writeoff-flow": () =>
-    import("@/content/Business/business-writeoff-flow.mdx"),
   "Business/calendar-calendar-month": () =>
     import("@/content/Business/calendar-calendar-month.mdx"),
   "Business/calendar-calendar-month.en": () =>
@@ -872,7 +329,13 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/calendar-time-slot-picker.zh.mdx"),
   "Business/calendar-view": () =>
     import("@/content/Business/calendar-view.mdx"),
+  "Business/calendar-view.en": () =>
+    import("@/content/Business/calendar-view.en.mdx"),
+  "Business/calendar-view.zh": () =>
+    import("@/content/Business/calendar-view.zh.mdx"),
   "Business/callout": () => import("@/content/Business/callout.mdx"),
+  "Business/callout.en": () => import("@/content/Business/callout.en.mdx"),
+  "Business/callout.zh": () => import("@/content/Business/callout.zh.mdx"),
   "Business/campaign-calendar": () =>
     import("@/content/Business/campaign-calendar.mdx"),
   "Business/campaign-calendar.en": () =>
@@ -892,6 +355,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/campaign-status-tag.zh": () =>
     import("@/content/Business/campaign-status-tag.zh.mdx"),
   "Business/category-bar": () => import("@/content/Business/category-bar.mdx"),
+  "Business/category-bar.en": () =>
+    import("@/content/Business/category-bar.en.mdx"),
+  "Business/category-bar.zh": () =>
+    import("@/content/Business/category-bar.zh.mdx"),
   "Business/channel-picker": () =>
     import("@/content/Business/channel-picker.mdx"),
   "Business/channel-picker.en": () =>
@@ -900,7 +367,15 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/channel-picker.zh.mdx"),
   "Business/chart": () => import("@/content/Business/chart.mdx"),
   "Business/chart-card": () => import("@/content/Business/chart-card.mdx"),
+  "Business/chart-card.en": () =>
+    import("@/content/Business/chart-card.en.mdx"),
+  "Business/chart-card.zh": () =>
+    import("@/content/Business/chart-card.zh.mdx"),
   "Business/chart-suite": () => import("@/content/Business/chart-suite.mdx"),
+  "Business/chart-suite.en": () =>
+    import("@/content/Business/chart-suite.en.mdx"),
+  "Business/chart-suite.zh": () =>
+    import("@/content/Business/chart-suite.zh.mdx"),
   "Business/chart.en": () => import("@/content/Business/chart.en.mdx"),
   "Business/chart.zh": () => import("@/content/Business/chart.zh.mdx"),
   "Business/charts-area-chart": () =>
@@ -1026,63 +501,183 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/chat": () => import("@/content/Business/chat.mdx"),
   "Business/chat-agent-status": () =>
     import("@/content/Business/chat-agent-status.mdx"),
+  "Business/chat-agent-status.en": () =>
+    import("@/content/Business/chat-agent-status.en.mdx"),
+  "Business/chat-agent-status.zh": () =>
+    import("@/content/Business/chat-agent-status.zh.mdx"),
   "Business/chat-artifact-panel": () =>
     import("@/content/Business/chat-artifact-panel.mdx"),
+  "Business/chat-artifact-panel.en": () =>
+    import("@/content/Business/chat-artifact-panel.en.mdx"),
+  "Business/chat-artifact-panel.zh": () =>
+    import("@/content/Business/chat-artifact-panel.zh.mdx"),
   "Business/chat-branch": () => import("@/content/Business/chat-branch.mdx"),
+  "Business/chat-branch.en": () =>
+    import("@/content/Business/chat-branch.en.mdx"),
+  "Business/chat-branch.zh": () =>
+    import("@/content/Business/chat-branch.zh.mdx"),
   "Business/chat-card-message": () =>
     import("@/content/Business/chat-card-message.mdx"),
+  "Business/chat-card-message.en": () =>
+    import("@/content/Business/chat-card-message.en.mdx"),
+  "Business/chat-card-message.zh": () =>
+    import("@/content/Business/chat-card-message.zh.mdx"),
   "Business/chat-code-block": () =>
     import("@/content/Business/chat-code-block.mdx"),
+  "Business/chat-code-block.en": () =>
+    import("@/content/Business/chat-code-block.en.mdx"),
+  "Business/chat-code-block.zh": () =>
+    import("@/content/Business/chat-code-block.zh.mdx"),
   "Business/chat-command-menu": () =>
     import("@/content/Business/chat-command-menu.mdx"),
+  "Business/chat-command-menu.en": () =>
+    import("@/content/Business/chat-command-menu.en.mdx"),
+  "Business/chat-command-menu.zh": () =>
+    import("@/content/Business/chat-command-menu.zh.mdx"),
   "Business/chat-context-panel": () =>
     import("@/content/Business/chat-context-panel.mdx"),
+  "Business/chat-context-panel.en": () =>
+    import("@/content/Business/chat-context-panel.en.mdx"),
+  "Business/chat-context-panel.zh": () =>
+    import("@/content/Business/chat-context-panel.zh.mdx"),
   "Business/chat-conversation": () =>
     import("@/content/Business/chat-conversation.mdx"),
   "Business/chat-conversation-search": () =>
     import("@/content/Business/chat-conversation-search.mdx"),
+  "Business/chat-conversation-search.en": () =>
+    import("@/content/Business/chat-conversation-search.en.mdx"),
+  "Business/chat-conversation-search.zh": () =>
+    import("@/content/Business/chat-conversation-search.zh.mdx"),
+  "Business/chat-conversation.en": () =>
+    import("@/content/Business/chat-conversation.en.mdx"),
+  "Business/chat-conversation.zh": () =>
+    import("@/content/Business/chat-conversation.zh.mdx"),
   "Business/chat-feedback": () =>
     import("@/content/Business/chat-feedback.mdx"),
+  "Business/chat-feedback.en": () =>
+    import("@/content/Business/chat-feedback.en.mdx"),
+  "Business/chat-feedback.zh": () =>
+    import("@/content/Business/chat-feedback.zh.mdx"),
   "Business/chat-header": () => import("@/content/Business/chat-header.mdx"),
+  "Business/chat-header.en": () =>
+    import("@/content/Business/chat-header.en.mdx"),
+  "Business/chat-header.zh": () =>
+    import("@/content/Business/chat-header.zh.mdx"),
   "Business/chat-image-gallery": () =>
     import("@/content/Business/chat-image-gallery.mdx"),
+  "Business/chat-image-gallery.en": () =>
+    import("@/content/Business/chat-image-gallery.en.mdx"),
+  "Business/chat-image-gallery.zh": () =>
+    import("@/content/Business/chat-image-gallery.zh.mdx"),
   "Business/chat-input-toolbar": () =>
     import("@/content/Business/chat-input-toolbar.mdx"),
+  "Business/chat-input-toolbar.en": () =>
+    import("@/content/Business/chat-input-toolbar.en.mdx"),
+  "Business/chat-input-toolbar.zh": () =>
+    import("@/content/Business/chat-input-toolbar.zh.mdx"),
   "Business/chat-markdown-renderer": () =>
     import("@/content/Business/chat-markdown-renderer.mdx"),
+  "Business/chat-markdown-renderer.en": () =>
+    import("@/content/Business/chat-markdown-renderer.en.mdx"),
+  "Business/chat-markdown-renderer.zh": () =>
+    import("@/content/Business/chat-markdown-renderer.zh.mdx"),
   "Business/chat-mention-picker": () =>
     import("@/content/Business/chat-mention-picker.mdx"),
+  "Business/chat-mention-picker.en": () =>
+    import("@/content/Business/chat-mention-picker.en.mdx"),
+  "Business/chat-mention-picker.zh": () =>
+    import("@/content/Business/chat-mention-picker.zh.mdx"),
   "Business/chat-message-actions": () =>
     import("@/content/Business/chat-message-actions.mdx"),
+  "Business/chat-message-actions.en": () =>
+    import("@/content/Business/chat-message-actions.en.mdx"),
+  "Business/chat-message-actions.zh": () =>
+    import("@/content/Business/chat-message-actions.zh.mdx"),
   "Business/chat-message-bubble": () =>
     import("@/content/Business/chat-message-bubble.mdx"),
+  "Business/chat-message-bubble.en": () =>
+    import("@/content/Business/chat-message-bubble.en.mdx"),
+  "Business/chat-message-bubble.zh": () =>
+    import("@/content/Business/chat-message-bubble.zh.mdx"),
   "Business/chat-message-group": () =>
     import("@/content/Business/chat-message-group.mdx"),
+  "Business/chat-message-group.en": () =>
+    import("@/content/Business/chat-message-group.en.mdx"),
+  "Business/chat-message-group.zh": () =>
+    import("@/content/Business/chat-message-group.zh.mdx"),
   "Business/chat-message-input": () =>
     import("@/content/Business/chat-message-input.mdx"),
+  "Business/chat-message-input.en": () =>
+    import("@/content/Business/chat-message-input.en.mdx"),
+  "Business/chat-message-input.zh": () =>
+    import("@/content/Business/chat-message-input.zh.mdx"),
   "Business/chat-model-switcher": () =>
     import("@/content/Business/chat-model-switcher.mdx"),
+  "Business/chat-model-switcher.en": () =>
+    import("@/content/Business/chat-model-switcher.en.mdx"),
+  "Business/chat-model-switcher.zh": () =>
+    import("@/content/Business/chat-model-switcher.zh.mdx"),
   "Business/chat-shared-link": () =>
     import("@/content/Business/chat-shared-link.mdx"),
+  "Business/chat-shared-link.en": () =>
+    import("@/content/Business/chat-shared-link.en.mdx"),
+  "Business/chat-shared-link.zh": () =>
+    import("@/content/Business/chat-shared-link.zh.mdx"),
   "Business/chat-shell": () => import("@/content/Business/chat-shell.mdx"),
+  "Business/chat-shell.en": () =>
+    import("@/content/Business/chat-shell.en.mdx"),
+  "Business/chat-shell.zh": () =>
+    import("@/content/Business/chat-shell.zh.mdx"),
   "Business/chat-sidebar": () => import("@/content/Business/chat-sidebar.mdx"),
+  "Business/chat-sidebar.en": () =>
+    import("@/content/Business/chat-sidebar.en.mdx"),
+  "Business/chat-sidebar.zh": () =>
+    import("@/content/Business/chat-sidebar.zh.mdx"),
   "Business/chat-streaming-text": () =>
     import("@/content/Business/chat-streaming-text.mdx"),
+  "Business/chat-streaming-text.en": () =>
+    import("@/content/Business/chat-streaming-text.en.mdx"),
+  "Business/chat-streaming-text.zh": () =>
+    import("@/content/Business/chat-streaming-text.zh.mdx"),
   "Business/chat-suggest-replies": () =>
     import("@/content/Business/chat-suggest-replies.mdx"),
+  "Business/chat-suggest-replies.en": () =>
+    import("@/content/Business/chat-suggest-replies.en.mdx"),
+  "Business/chat-suggest-replies.zh": () =>
+    import("@/content/Business/chat-suggest-replies.zh.mdx"),
   "Business/chat-thinking-block": () =>
     import("@/content/Business/chat-thinking-block.mdx"),
+  "Business/chat-thinking-block.en": () =>
+    import("@/content/Business/chat-thinking-block.en.mdx"),
+  "Business/chat-thinking-block.zh": () =>
+    import("@/content/Business/chat-thinking-block.zh.mdx"),
   "Business/chat-tool-call-block": () =>
     import("@/content/Business/chat-tool-call-block.mdx"),
+  "Business/chat-tool-call-block.en": () =>
+    import("@/content/Business/chat-tool-call-block.en.mdx"),
+  "Business/chat-tool-call-block.zh": () =>
+    import("@/content/Business/chat-tool-call-block.zh.mdx"),
   "Business/chat-voice-message": () =>
     import("@/content/Business/chat-voice-message.mdx"),
+  "Business/chat-voice-message.en": () =>
+    import("@/content/Business/chat-voice-message.en.mdx"),
+  "Business/chat-voice-message.zh": () =>
+    import("@/content/Business/chat-voice-message.zh.mdx"),
   "Business/chat.en": () => import("@/content/Business/chat.en.mdx"),
   "Business/chat.zh": () => import("@/content/Business/chat.zh.mdx"),
   "Business/checkout-bar": () => import("@/content/Business/checkout-bar.mdx"),
+  "Business/checkout-bar.en": () =>
+    import("@/content/Business/checkout-bar.en.mdx"),
+  "Business/checkout-bar.zh": () =>
+    import("@/content/Business/checkout-bar.zh.mdx"),
   "Business/chip": () => import("@/content/Business/chip.mdx"),
   "Business/chip.en": () => import("@/content/Business/chip.en.mdx"),
   "Business/chip.zh": () => import("@/content/Business/chip.zh.mdx"),
   "Business/city-browse": () => import("@/content/Business/city-browse.mdx"),
+  "Business/city-browse.en": () =>
+    import("@/content/Business/city-browse.en.mdx"),
+  "Business/city-browse.zh": () =>
+    import("@/content/Business/city-browse.zh.mdx"),
   "Business/coach-mark": () => import("@/content/Business/coach-mark.mdx"),
   "Business/coach-mark.en": () =>
     import("@/content/Business/coach-mark.en.mdx"),
@@ -1099,6 +694,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/code-editor.zh": () =>
     import("@/content/Business/code-editor.zh.mdx"),
   "Business/color-board": () => import("@/content/Business/color-board.mdx"),
+  "Business/color-board.en": () =>
+    import("@/content/Business/color-board.en.mdx"),
+  "Business/color-board.zh": () =>
+    import("@/content/Business/color-board.zh.mdx"),
   "Business/color-tag": () => import("@/content/Business/color-tag.mdx"),
   "Business/color-tag.en": () => import("@/content/Business/color-tag.en.mdx"),
   "Business/color-tag.zh": () => import("@/content/Business/color-tag.zh.mdx"),
@@ -1119,12 +718,28 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/comment-thread.zh.mdx"),
   "Business/commission-calculator": () =>
     import("@/content/Business/commission-calculator.mdx"),
+  "Business/commission-calculator.en": () =>
+    import("@/content/Business/commission-calculator.en.mdx"),
+  "Business/commission-calculator.zh": () =>
+    import("@/content/Business/commission-calculator.zh.mdx"),
   "Business/company-browse": () =>
     import("@/content/Business/company-browse.mdx"),
+  "Business/company-browse.en": () =>
+    import("@/content/Business/company-browse.en.mdx"),
+  "Business/company-browse.zh": () =>
+    import("@/content/Business/company-browse.zh.mdx"),
   "Business/company-picker": () =>
     import("@/content/Business/company-picker.mdx"),
+  "Business/company-picker.en": () =>
+    import("@/content/Business/company-picker.en.mdx"),
+  "Business/company-picker.zh": () =>
+    import("@/content/Business/company-picker.zh.mdx"),
   "Business/compliance-checklist": () =>
     import("@/content/Business/compliance-checklist.mdx"),
+  "Business/compliance-checklist.en": () =>
+    import("@/content/Business/compliance-checklist.en.mdx"),
+  "Business/compliance-checklist.zh": () =>
+    import("@/content/Business/compliance-checklist.zh.mdx"),
   "Business/confetti": () => import("@/content/Business/confetti.mdx"),
   "Business/confetti.en": () => import("@/content/Business/confetti.en.mdx"),
   "Business/confetti.zh": () => import("@/content/Business/confetti.zh.mdx"),
@@ -1159,7 +774,15 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/copy-button.zh.mdx"),
   "Business/cost-center-picker": () =>
     import("@/content/Business/cost-center-picker.mdx"),
+  "Business/cost-center-picker.en": () =>
+    import("@/content/Business/cost-center-picker.en.mdx"),
+  "Business/cost-center-picker.zh": () =>
+    import("@/content/Business/cost-center-picker.zh.mdx"),
   "Business/coupon-card": () => import("@/content/Business/coupon-card.mdx"),
+  "Business/coupon-card.en": () =>
+    import("@/content/Business/coupon-card.en.mdx"),
+  "Business/coupon-card.zh": () =>
+    import("@/content/Business/coupon-card.zh.mdx"),
   "Business/creative-preview": () =>
     import("@/content/Business/creative-preview.mdx"),
   "Business/creative-preview.en": () =>
@@ -1173,6 +796,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/credit-card-input.zh": () =>
     import("@/content/Business/credit-card-input.zh.mdx"),
   "Business/cron-editor": () => import("@/content/Business/cron-editor.mdx"),
+  "Business/cron-editor.en": () =>
+    import("@/content/Business/cron-editor.en.mdx"),
+  "Business/cron-editor.zh": () =>
+    import("@/content/Business/cron-editor.zh.mdx"),
   "Business/crud-page": () => import("@/content/Business/crud-page.mdx"),
   "Business/crud-page.en": () => import("@/content/Business/crud-page.en.mdx"),
   "Business/crud-page.zh": () => import("@/content/Business/crud-page.zh.mdx"),
@@ -1189,12 +816,28 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/currency-input.zh.mdx"),
   "Business/customer-360-card": () =>
     import("@/content/Business/customer-360-card.mdx"),
+  "Business/customer-360-card.en": () =>
+    import("@/content/Business/customer-360-card.en.mdx"),
+  "Business/customer-360-card.zh": () =>
+    import("@/content/Business/customer-360-card.zh.mdx"),
   "Business/customer-browse": () =>
     import("@/content/Business/customer-browse.mdx"),
+  "Business/customer-browse.en": () =>
+    import("@/content/Business/customer-browse.en.mdx"),
+  "Business/customer-browse.zh": () =>
+    import("@/content/Business/customer-browse.zh.mdx"),
   "Business/customer-picker": () =>
     import("@/content/Business/customer-picker.mdx"),
+  "Business/customer-picker.en": () =>
+    import("@/content/Business/customer-picker.en.mdx"),
+  "Business/customer-picker.zh": () =>
+    import("@/content/Business/customer-picker.zh.mdx"),
   "Business/dashboard-canvas": () =>
     import("@/content/Business/dashboard-canvas.mdx"),
+  "Business/dashboard-canvas.en": () =>
+    import("@/content/Business/dashboard-canvas.en.mdx"),
+  "Business/dashboard-canvas.zh": () =>
+    import("@/content/Business/dashboard-canvas.zh.mdx"),
   "Business/dashboard-designer": () =>
     import("@/content/Business/dashboard-designer.mdx"),
   "Business/dashboard-designer.en": () =>
@@ -1203,6 +846,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/dashboard-designer.zh.mdx"),
   "Business/dashboard-grid": () =>
     import("@/content/Business/dashboard-grid.mdx"),
+  "Business/dashboard-grid.en": () =>
+    import("@/content/Business/dashboard-grid.en.mdx"),
+  "Business/dashboard-grid.zh": () =>
+    import("@/content/Business/dashboard-grid.zh.mdx"),
   "Business/data-table": () => import("@/content/Business/data-table.mdx"),
   "Business/data-table.en": () =>
     import("@/content/Business/data-table.en.mdx"),
@@ -1215,6 +862,8 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/date-range-picker.zh": () =>
     import("@/content/Business/date-range-picker.zh.mdx"),
   "Business/delta-bar": () => import("@/content/Business/delta-bar.mdx"),
+  "Business/delta-bar.en": () => import("@/content/Business/delta-bar.en.mdx"),
+  "Business/delta-bar.zh": () => import("@/content/Business/delta-bar.zh.mdx"),
   "Business/density-switcher": () =>
     import("@/content/Business/density-switcher.mdx"),
   "Business/density-switcher.en": () =>
@@ -1223,6 +872,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/density-switcher.zh.mdx"),
   "Business/department-picker": () =>
     import("@/content/Business/department-picker.mdx"),
+  "Business/department-picker.en": () =>
+    import("@/content/Business/department-picker.en.mdx"),
+  "Business/department-picker.zh": () =>
+    import("@/content/Business/department-picker.zh.mdx"),
   "Business/dict-select": () => import("@/content/Business/dict-select.mdx"),
   "Business/dict-select.en": () =>
     import("@/content/Business/dict-select.en.mdx"),
@@ -1241,14 +894,34 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/diff-viewer.zh.mdx"),
   "Business/distributor-picker": () =>
     import("@/content/Business/distributor-picker.mdx"),
+  "Business/distributor-picker.en": () =>
+    import("@/content/Business/distributor-picker.en.mdx"),
+  "Business/distributor-picker.zh": () =>
+    import("@/content/Business/distributor-picker.zh.mdx"),
   "Business/dock": () => import("@/content/Business/dock.mdx"),
   "Business/dock-panel": () => import("@/content/Business/dock-panel.mdx"),
+  "Business/dock-panel.en": () =>
+    import("@/content/Business/dock-panel.en.mdx"),
+  "Business/dock-panel.zh": () =>
+    import("@/content/Business/dock-panel.zh.mdx"),
   "Business/dock.en": () => import("@/content/Business/dock.en.mdx"),
   "Business/dock.zh": () => import("@/content/Business/dock.zh.mdx"),
   "Business/donut-card": () => import("@/content/Business/donut-card.mdx"),
+  "Business/donut-card.en": () =>
+    import("@/content/Business/donut-card.en.mdx"),
+  "Business/donut-card.zh": () =>
+    import("@/content/Business/donut-card.zh.mdx"),
   "Business/donut-chart": () => import("@/content/Business/donut-chart.mdx"),
+  "Business/donut-chart.en": () =>
+    import("@/content/Business/donut-chart.en.mdx"),
+  "Business/donut-chart.zh": () =>
+    import("@/content/Business/donut-chart.zh.mdx"),
   "Business/dynamic-form-builder": () =>
     import("@/content/Business/dynamic-form-builder.mdx"),
+  "Business/dynamic-form-builder.en": () =>
+    import("@/content/Business/dynamic-form-builder.en.mdx"),
+  "Business/dynamic-form-builder.zh": () =>
+    import("@/content/Business/dynamic-form-builder.zh.mdx"),
   "Business/edit-toolbar": () => import("@/content/Business/edit-toolbar.mdx"),
   "Business/edit-toolbar.en": () =>
     import("@/content/Business/edit-toolbar.en.mdx"),
@@ -1262,6 +935,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/editable-tree-table.zh.mdx"),
   "Business/employee-picker": () =>
     import("@/content/Business/employee-picker.mdx"),
+  "Business/employee-picker.en": () =>
+    import("@/content/Business/employee-picker.en.mdx"),
+  "Business/employee-picker.zh": () =>
+    import("@/content/Business/employee-picker.zh.mdx"),
   "Business/empty-state": () => import("@/content/Business/empty-state.mdx"),
   "Business/empty-state.en": () =>
     import("@/content/Business/empty-state.en.mdx"),
@@ -1311,14 +988,24 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/feature-gate.zh": () =>
     import("@/content/Business/feature-gate.zh.mdx"),
   "Business/feature-tour": () => import("@/content/Business/feature-tour.mdx"),
+  "Business/feature-tour.en": () =>
+    import("@/content/Business/feature-tour.en.mdx"),
+  "Business/feature-tour.zh": () =>
+    import("@/content/Business/feature-tour.zh.mdx"),
   "Business/fee-type-browse": () =>
     import("@/content/Business/fee-type-browse.mdx"),
+  "Business/fee-type-browse.en": () =>
+    import("@/content/Business/fee-type-browse.en.mdx"),
+  "Business/fee-type-browse.zh": () =>
+    import("@/content/Business/fee-type-browse.zh.mdx"),
   "Business/field-mask": () => import("@/content/Business/field-mask.mdx"),
   "Business/field-mask.en": () =>
     import("@/content/Business/field-mask.en.mdx"),
   "Business/field-mask.zh": () =>
     import("@/content/Business/field-mask.zh.mdx"),
   "Business/file-card": () => import("@/content/Business/file-card.mdx"),
+  "Business/file-card.en": () => import("@/content/Business/file-card.en.mdx"),
+  "Business/file-card.zh": () => import("@/content/Business/file-card.zh.mdx"),
   "Business/file-upload-manager": () =>
     import("@/content/Business/file-upload-manager.mdx"),
   "Business/file-upload-manager.en": () =>
@@ -1337,6 +1024,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/filter-builder.zh": () =>
     import("@/content/Business/filter-builder.zh.mdx"),
   "Business/flow-tracker": () => import("@/content/Business/flow-tracker.mdx"),
+  "Business/flow-tracker.en": () =>
+    import("@/content/Business/flow-tracker.en.mdx"),
+  "Business/flow-tracker.zh": () =>
+    import("@/content/Business/flow-tracker.zh.mdx"),
   "Business/forbidden": () => import("@/content/Business/forbidden.mdx"),
   "Business/forbidden.en": () => import("@/content/Business/forbidden.en.mdx"),
   "Business/forbidden.zh": () => import("@/content/Business/forbidden.zh.mdx"),
@@ -1344,6 +1035,14 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/form-designer.mdx"),
   "Business/form-designer-runtime": () =>
     import("@/content/Business/form-designer-runtime.mdx"),
+  "Business/form-designer-runtime.en": () =>
+    import("@/content/Business/form-designer-runtime.en.mdx"),
+  "Business/form-designer-runtime.zh": () =>
+    import("@/content/Business/form-designer-runtime.zh.mdx"),
+  "Business/form-designer.en": () =>
+    import("@/content/Business/form-designer.en.mdx"),
+  "Business/form-designer.zh": () =>
+    import("@/content/Business/form-designer.zh.mdx"),
   "Business/form-field": () => import("@/content/Business/form-field.mdx"),
   "Business/form-field.en": () =>
     import("@/content/Business/form-field.en.mdx"),
@@ -1403,11 +1102,27 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/formula-editor.zh": () =>
     import("@/content/Business/formula-editor.zh.mdx"),
   "Business/funnel-chart": () => import("@/content/Business/funnel-chart.mdx"),
+  "Business/funnel-chart.en": () =>
+    import("@/content/Business/funnel-chart.en.mdx"),
+  "Business/funnel-chart.zh": () =>
+    import("@/content/Business/funnel-chart.zh.mdx"),
   "Business/gantt-chart": () => import("@/content/Business/gantt-chart.mdx"),
   "Business/gantt-chart-pro": () =>
     import("@/content/Business/gantt-chart-pro.mdx"),
+  "Business/gantt-chart-pro.en": () =>
+    import("@/content/Business/gantt-chart-pro.en.mdx"),
+  "Business/gantt-chart-pro.zh": () =>
+    import("@/content/Business/gantt-chart-pro.zh.mdx"),
+  "Business/gantt-chart.en": () =>
+    import("@/content/Business/gantt-chart.en.mdx"),
+  "Business/gantt-chart.zh": () =>
+    import("@/content/Business/gantt-chart.zh.mdx"),
   "Business/gauge": () => import("@/content/Business/gauge.mdx"),
   "Business/gauge-chart": () => import("@/content/Business/gauge-chart.mdx"),
+  "Business/gauge-chart.en": () =>
+    import("@/content/Business/gauge-chart.en.mdx"),
+  "Business/gauge-chart.zh": () =>
+    import("@/content/Business/gauge-chart.zh.mdx"),
   "Business/gauge.en": () => import("@/content/Business/gauge.en.mdx"),
   "Business/gauge.zh": () => import("@/content/Business/gauge.zh.mdx"),
   "Business/global-loading": () =>
@@ -1424,9 +1139,21 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/heatmap-calendar.zh.mdx"),
   "Business/heatmap-chart": () =>
     import("@/content/Business/heatmap-chart.mdx"),
+  "Business/heatmap-chart.en": () =>
+    import("@/content/Business/heatmap-chart.en.mdx"),
+  "Business/heatmap-chart.zh": () =>
+    import("@/content/Business/heatmap-chart.zh.mdx"),
   "Business/i18n-form-field": () =>
     import("@/content/Business/i18n-form-field.mdx"),
+  "Business/i18n-form-field.en": () =>
+    import("@/content/Business/i18n-form-field.en.mdx"),
+  "Business/i18n-form-field.zh": () =>
+    import("@/content/Business/i18n-form-field.zh.mdx"),
   "Business/im-message": () => import("@/content/Business/im-message.mdx"),
+  "Business/im-message.en": () =>
+    import("@/content/Business/im-message.en.mdx"),
+  "Business/im-message.zh": () =>
+    import("@/content/Business/im-message.zh.mdx"),
   "Business/image-gallery": () =>
     import("@/content/Business/image-gallery.mdx"),
   "Business/image-gallery.en": () =>
@@ -1441,8 +1168,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/import-dialog.zh.mdx"),
   "Business/import-error-table": () =>
     import("@/content/Business/import-error-table.mdx"),
+  "Business/import-error-table.en": () =>
+    import("@/content/Business/import-error-table.en.mdx"),
+  "Business/import-error-table.zh": () =>
+    import("@/content/Business/import-error-table.zh.mdx"),
   "Business/import-mapping-wizard": () =>
     import("@/content/Business/import-mapping-wizard.mdx"),
+  "Business/import-mapping-wizard.en": () =>
+    import("@/content/Business/import-mapping-wizard.en.mdx"),
+  "Business/import-mapping-wizard.zh": () =>
+    import("@/content/Business/import-mapping-wizard.zh.mdx"),
   "Business/inbox-list": () => import("@/content/Business/inbox-list.mdx"),
   "Business/inbox-list.en": () =>
     import("@/content/Business/inbox-list.en.mdx"),
@@ -1461,9 +1196,21 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/inventory-alert-list.zh.mdx"),
   "Business/inventory-snapshot": () =>
     import("@/content/Business/inventory-snapshot.mdx"),
+  "Business/inventory-snapshot.en": () =>
+    import("@/content/Business/inventory-snapshot.en.mdx"),
+  "Business/inventory-snapshot.zh": () =>
+    import("@/content/Business/inventory-snapshot.zh.mdx"),
   "Business/invite-link": () => import("@/content/Business/invite-link.mdx"),
+  "Business/invite-link.en": () =>
+    import("@/content/Business/invite-link.en.mdx"),
+  "Business/invite-link.zh": () =>
+    import("@/content/Business/invite-link.zh.mdx"),
   "Business/invoice-manager": () =>
     import("@/content/Business/invoice-manager.mdx"),
+  "Business/invoice-manager.en": () =>
+    import("@/content/Business/invoice-manager.en.mdx"),
+  "Business/invoice-manager.zh": () =>
+    import("@/content/Business/invoice-manager.zh.mdx"),
   "Business/invoice-preview": () =>
     import("@/content/Business/invoice-preview.mdx"),
   "Business/invoice-preview.en": () =>
@@ -1472,11 +1219,27 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/invoice-preview.zh.mdx"),
   "Business/invoice-summary": () =>
     import("@/content/Business/invoice-summary.mdx"),
+  "Business/invoice-summary.en": () =>
+    import("@/content/Business/invoice-summary.en.mdx"),
+  "Business/invoice-summary.zh": () =>
+    import("@/content/Business/invoice-summary.zh.mdx"),
   "Business/iot-sensor-grid": () =>
     import("@/content/Business/iot-sensor-grid.mdx"),
+  "Business/iot-sensor-grid.en": () =>
+    import("@/content/Business/iot-sensor-grid.en.mdx"),
+  "Business/iot-sensor-grid.zh": () =>
+    import("@/content/Business/iot-sensor-grid.zh.mdx"),
   "Business/journal-entry-editor": () =>
     import("@/content/Business/journal-entry-editor.mdx"),
+  "Business/journal-entry-editor.en": () =>
+    import("@/content/Business/journal-entry-editor.en.mdx"),
+  "Business/journal-entry-editor.zh": () =>
+    import("@/content/Business/journal-entry-editor.zh.mdx"),
   "Business/json-editor": () => import("@/content/Business/json-editor.mdx"),
+  "Business/json-editor.en": () =>
+    import("@/content/Business/json-editor.en.mdx"),
+  "Business/json-editor.zh": () =>
+    import("@/content/Business/json-editor.zh.mdx"),
   "Business/json-viewer": () => import("@/content/Business/json-viewer.mdx"),
   "Business/json-viewer.en": () =>
     import("@/content/Business/json-viewer.en.mdx"),
@@ -1489,11 +1252,19 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/kanban-board.zh.mdx"),
   "Business/kanban-column": () =>
     import("@/content/Business/kanban-column.mdx"),
+  "Business/kanban-column.en": () =>
+    import("@/content/Business/kanban-column.en.mdx"),
+  "Business/kanban-column.zh": () =>
+    import("@/content/Business/kanban-column.zh.mdx"),
   "Business/kpi-card": () => import("@/content/Business/kpi-card.mdx"),
   "Business/kpi-card.en": () => import("@/content/Business/kpi-card.en.mdx"),
   "Business/kpi-card.zh": () => import("@/content/Business/kpi-card.zh.mdx"),
   "Business/label-designer": () =>
     import("@/content/Business/label-designer.mdx"),
+  "Business/label-designer.en": () =>
+    import("@/content/Business/label-designer.en.mdx"),
+  "Business/label-designer.zh": () =>
+    import("@/content/Business/label-designer.zh.mdx"),
   "Business/language-switcher": () =>
     import("@/content/Business/language-switcher.mdx"),
   "Business/language-switcher.en": () =>
@@ -1502,9 +1273,21 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/language-switcher.zh.mdx"),
   "Business/lead-pipeline-board": () =>
     import("@/content/Business/lead-pipeline-board.mdx"),
+  "Business/lead-pipeline-board.en": () =>
+    import("@/content/Business/lead-pipeline-board.en.mdx"),
+  "Business/lead-pipeline-board.zh": () =>
+    import("@/content/Business/lead-pipeline-board.zh.mdx"),
   "Business/leave-request-form": () =>
     import("@/content/Business/leave-request-form.mdx"),
+  "Business/leave-request-form.en": () =>
+    import("@/content/Business/leave-request-form.en.mdx"),
+  "Business/leave-request-form.zh": () =>
+    import("@/content/Business/leave-request-form.zh.mdx"),
   "Business/line-chart": () => import("@/content/Business/line-chart.mdx"),
+  "Business/line-chart.en": () =>
+    import("@/content/Business/line-chart.en.mdx"),
+  "Business/line-chart.zh": () =>
+    import("@/content/Business/line-chart.zh.mdx"),
   "Business/line-editor": () => import("@/content/Business/line-editor.mdx"),
   "Business/line-editor.en": () =>
     import("@/content/Business/line-editor.en.mdx"),
@@ -1522,16 +1305,32 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/maintenance-log.zh": () =>
     import("@/content/Business/maintenance-log.zh.mdx"),
   "Business/map-chart": () => import("@/content/Business/map-chart.mdx"),
+  "Business/map-chart.en": () => import("@/content/Business/map-chart.en.mdx"),
+  "Business/map-chart.zh": () => import("@/content/Business/map-chart.zh.mdx"),
   "Business/map-marker": () => import("@/content/Business/map-marker.mdx"),
+  "Business/map-marker.en": () =>
+    import("@/content/Business/map-marker.en.mdx"),
+  "Business/map-marker.zh": () =>
+    import("@/content/Business/map-marker.zh.mdx"),
   "Business/map-track": () => import("@/content/Business/map-track.mdx"),
+  "Business/map-track.en": () => import("@/content/Business/map-track.en.mdx"),
+  "Business/map-track.zh": () => import("@/content/Business/map-track.zh.mdx"),
   "Business/map-view": () => import("@/content/Business/map-view.mdx"),
   "Business/map-view.en": () => import("@/content/Business/map-view.en.mdx"),
   "Business/map-view.zh": () => import("@/content/Business/map-view.zh.mdx"),
   "Business/markdown-editor": () =>
     import("@/content/Business/markdown-editor.mdx"),
+  "Business/markdown-editor.en": () =>
+    import("@/content/Business/markdown-editor.en.mdx"),
+  "Business/markdown-editor.zh": () =>
+    import("@/content/Business/markdown-editor.zh.mdx"),
   "Business/marketing": () => import("@/content/Business/marketing.mdx"),
   "Business/marketing-activity-form": () =>
     import("@/content/Business/marketing-activity-form.mdx"),
+  "Business/marketing-activity-form.en": () =>
+    import("@/content/Business/marketing-activity-form.en.mdx"),
+  "Business/marketing-activity-form.zh": () =>
+    import("@/content/Business/marketing-activity-form.zh.mdx"),
   "Business/marketing.en": () => import("@/content/Business/marketing.en.mdx"),
   "Business/marketing.zh": () => import("@/content/Business/marketing.zh.mdx"),
   "Business/mask-input": () => import("@/content/Business/mask-input.mdx"),
@@ -1541,13 +1340,33 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mask-input.zh.mdx"),
   "Business/master-edit-template": () =>
     import("@/content/Business/master-edit-template.mdx"),
+  "Business/master-edit-template.en": () =>
+    import("@/content/Business/master-edit-template.en.mdx"),
+  "Business/master-edit-template.zh": () =>
+    import("@/content/Business/master-edit-template.zh.mdx"),
   "Business/master-list-template": () =>
     import("@/content/Business/master-list-template.mdx"),
+  "Business/master-list-template.en": () =>
+    import("@/content/Business/master-list-template.en.mdx"),
+  "Business/master-list-template.zh": () =>
+    import("@/content/Business/master-list-template.zh.mdx"),
   "Business/media-recorder": () =>
     import("@/content/Business/media-recorder.mdx"),
+  "Business/media-recorder.en": () =>
+    import("@/content/Business/media-recorder.en.mdx"),
+  "Business/media-recorder.zh": () =>
+    import("@/content/Business/media-recorder.zh.mdx"),
   "Business/meeting-room-booking": () =>
     import("@/content/Business/meeting-room-booking.mdx"),
+  "Business/meeting-room-booking.en": () =>
+    import("@/content/Business/meeting-room-booking.en.mdx"),
+  "Business/meeting-room-booking.zh": () =>
+    import("@/content/Business/meeting-room-booking.zh.mdx"),
   "Business/message-list": () => import("@/content/Business/message-list.mdx"),
+  "Business/message-list.en": () =>
+    import("@/content/Business/message-list.en.mdx"),
+  "Business/message-list.zh": () =>
+    import("@/content/Business/message-list.zh.mdx"),
   "Business/metric-trend": () => import("@/content/Business/metric-trend.mdx"),
   "Business/metric-trend.en": () =>
     import("@/content/Business/metric-trend.en.mdx"),
@@ -1555,6 +1374,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/metric-trend.zh.mdx"),
   "Business/mobile-action-sheet": () =>
     import("@/content/Business/mobile-action-sheet.mdx"),
+  "Business/mobile-action-sheet.en": () =>
+    import("@/content/Business/mobile-action-sheet.en.mdx"),
+  "Business/mobile-action-sheet.zh": () =>
+    import("@/content/Business/mobile-action-sheet.zh.mdx"),
   "Business/mobile-auth-layout": () =>
     import("@/content/Business/mobile-auth-layout.mdx"),
   "Business/mobile-auth-layout.en": () =>
@@ -1575,6 +1398,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-button.zh.mdx"),
   "Business/mobile-camera": () =>
     import("@/content/Business/mobile-camera.mdx"),
+  "Business/mobile-camera.en": () =>
+    import("@/content/Business/mobile-camera.en.mdx"),
+  "Business/mobile-camera.zh": () =>
+    import("@/content/Business/mobile-camera.zh.mdx"),
   "Business/mobile-card": () => import("@/content/Business/mobile-card.mdx"),
   "Business/mobile-card.en": () =>
     import("@/content/Business/mobile-card.en.mdx"),
@@ -1588,6 +1415,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-chart-fallback.zh.mdx"),
   "Business/mobile-checkout": () =>
     import("@/content/Business/mobile-checkout.mdx"),
+  "Business/mobile-checkout.en": () =>
+    import("@/content/Business/mobile-checkout.en.mdx"),
+  "Business/mobile-checkout.zh": () =>
+    import("@/content/Business/mobile-checkout.zh.mdx"),
   "Business/mobile-dashboard-layout": () =>
     import("@/content/Business/mobile-dashboard-layout.mdx"),
   "Business/mobile-dashboard-layout.en": () =>
@@ -1649,8 +1480,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-form.zh.mdx"),
   "Business/mobile-geolocation": () =>
     import("@/content/Business/mobile-geolocation.mdx"),
+  "Business/mobile-geolocation.en": () =>
+    import("@/content/Business/mobile-geolocation.en.mdx"),
+  "Business/mobile-geolocation.zh": () =>
+    import("@/content/Business/mobile-geolocation.zh.mdx"),
   "Business/mobile-infinite-scroll": () =>
     import("@/content/Business/mobile-infinite-scroll.mdx"),
+  "Business/mobile-infinite-scroll.en": () =>
+    import("@/content/Business/mobile-infinite-scroll.en.mdx"),
+  "Business/mobile-infinite-scroll.zh": () =>
+    import("@/content/Business/mobile-infinite-scroll.zh.mdx"),
   "Business/mobile-input": () => import("@/content/Business/mobile-input.mdx"),
   "Business/mobile-input.en": () =>
     import("@/content/Business/mobile-input.en.mdx"),
@@ -1670,60 +1509,172 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-kpi-card.zh.mdx"),
   "Business/mobile-list-item": () =>
     import("@/content/Business/mobile-list-item.mdx"),
+  "Business/mobile-list-item.en": () =>
+    import("@/content/Business/mobile-list-item.en.mdx"),
+  "Business/mobile-list-item.zh": () =>
+    import("@/content/Business/mobile-list-item.zh.mdx"),
   "Business/mobile-mobile-auth-layout": () =>
     import("@/content/Business/mobile-mobile-auth-layout.mdx"),
+  "Business/mobile-mobile-auth-layout.en": () =>
+    import("@/content/Business/mobile-mobile-auth-layout.en.mdx"),
+  "Business/mobile-mobile-auth-layout.zh": () =>
+    import("@/content/Business/mobile-mobile-auth-layout.zh.mdx"),
   "Business/mobile-mobile-bottom-nav": () =>
     import("@/content/Business/mobile-mobile-bottom-nav.mdx"),
+  "Business/mobile-mobile-bottom-nav.en": () =>
+    import("@/content/Business/mobile-mobile-bottom-nav.en.mdx"),
+  "Business/mobile-mobile-bottom-nav.zh": () =>
+    import("@/content/Business/mobile-mobile-bottom-nav.zh.mdx"),
   "Business/mobile-mobile-button": () =>
     import("@/content/Business/mobile-mobile-button.mdx"),
+  "Business/mobile-mobile-button.en": () =>
+    import("@/content/Business/mobile-mobile-button.en.mdx"),
+  "Business/mobile-mobile-button.zh": () =>
+    import("@/content/Business/mobile-mobile-button.zh.mdx"),
   "Business/mobile-mobile-card": () =>
     import("@/content/Business/mobile-mobile-card.mdx"),
+  "Business/mobile-mobile-card.en": () =>
+    import("@/content/Business/mobile-mobile-card.en.mdx"),
+  "Business/mobile-mobile-card.zh": () =>
+    import("@/content/Business/mobile-mobile-card.zh.mdx"),
   "Business/mobile-mobile-checkout": () =>
     import("@/content/Business/mobile-mobile-checkout.mdx"),
+  "Business/mobile-mobile-checkout.en": () =>
+    import("@/content/Business/mobile-mobile-checkout.en.mdx"),
+  "Business/mobile-mobile-checkout.zh": () =>
+    import("@/content/Business/mobile-mobile-checkout.zh.mdx"),
   "Business/mobile-mobile-dashboard-layout": () =>
     import("@/content/Business/mobile-mobile-dashboard-layout.mdx"),
+  "Business/mobile-mobile-dashboard-layout.en": () =>
+    import("@/content/Business/mobile-mobile-dashboard-layout.en.mdx"),
+  "Business/mobile-mobile-dashboard-layout.zh": () =>
+    import("@/content/Business/mobile-mobile-dashboard-layout.zh.mdx"),
   "Business/mobile-mobile-data-table": () =>
     import("@/content/Business/mobile-mobile-data-table.mdx"),
+  "Business/mobile-mobile-data-table.en": () =>
+    import("@/content/Business/mobile-mobile-data-table.en.mdx"),
+  "Business/mobile-mobile-data-table.zh": () =>
+    import("@/content/Business/mobile-mobile-data-table.zh.mdx"),
   "Business/mobile-mobile-dialog": () =>
     import("@/content/Business/mobile-mobile-dialog.mdx"),
+  "Business/mobile-mobile-dialog.en": () =>
+    import("@/content/Business/mobile-mobile-dialog.en.mdx"),
+  "Business/mobile-mobile-dialog.zh": () =>
+    import("@/content/Business/mobile-mobile-dialog.zh.mdx"),
   "Business/mobile-mobile-empty-state": () =>
     import("@/content/Business/mobile-mobile-empty-state.mdx"),
+  "Business/mobile-mobile-empty-state.en": () =>
+    import("@/content/Business/mobile-mobile-empty-state.en.mdx"),
+  "Business/mobile-mobile-empty-state.zh": () =>
+    import("@/content/Business/mobile-mobile-empty-state.zh.mdx"),
   "Business/mobile-mobile-filter-builder": () =>
     import("@/content/Business/mobile-mobile-filter-builder.mdx"),
+  "Business/mobile-mobile-filter-builder.en": () =>
+    import("@/content/Business/mobile-mobile-filter-builder.en.mdx"),
+  "Business/mobile-mobile-filter-builder.zh": () =>
+    import("@/content/Business/mobile-mobile-filter-builder.zh.mdx"),
   "Business/mobile-mobile-form": () =>
     import("@/content/Business/mobile-mobile-form.mdx"),
   "Business/mobile-mobile-form-field": () =>
     import("@/content/Business/mobile-mobile-form-field.mdx"),
+  "Business/mobile-mobile-form-field.en": () =>
+    import("@/content/Business/mobile-mobile-form-field.en.mdx"),
+  "Business/mobile-mobile-form-field.zh": () =>
+    import("@/content/Business/mobile-mobile-form-field.zh.mdx"),
   "Business/mobile-mobile-form-wizard": () =>
     import("@/content/Business/mobile-mobile-form-wizard.mdx"),
+  "Business/mobile-mobile-form-wizard.en": () =>
+    import("@/content/Business/mobile-mobile-form-wizard.en.mdx"),
+  "Business/mobile-mobile-form-wizard.zh": () =>
+    import("@/content/Business/mobile-mobile-form-wizard.zh.mdx"),
+  "Business/mobile-mobile-form.en": () =>
+    import("@/content/Business/mobile-mobile-form.en.mdx"),
+  "Business/mobile-mobile-form.zh": () =>
+    import("@/content/Business/mobile-mobile-form.zh.mdx"),
   "Business/mobile-mobile-input": () =>
     import("@/content/Business/mobile-mobile-input.mdx"),
+  "Business/mobile-mobile-input.en": () =>
+    import("@/content/Business/mobile-mobile-input.en.mdx"),
+  "Business/mobile-mobile-input.zh": () =>
+    import("@/content/Business/mobile-mobile-input.zh.mdx"),
   "Business/mobile-mobile-kanban": () =>
     import("@/content/Business/mobile-mobile-kanban.mdx"),
+  "Business/mobile-mobile-kanban.en": () =>
+    import("@/content/Business/mobile-mobile-kanban.en.mdx"),
+  "Business/mobile-mobile-kanban.zh": () =>
+    import("@/content/Business/mobile-mobile-kanban.zh.mdx"),
   "Business/mobile-mobile-kpi-card": () =>
     import("@/content/Business/mobile-mobile-kpi-card.mdx"),
+  "Business/mobile-mobile-kpi-card.en": () =>
+    import("@/content/Business/mobile-mobile-kpi-card.en.mdx"),
+  "Business/mobile-mobile-kpi-card.zh": () =>
+    import("@/content/Business/mobile-mobile-kpi-card.zh.mdx"),
   "Business/mobile-mobile-navigation": () =>
     import("@/content/Business/mobile-mobile-navigation.mdx"),
+  "Business/mobile-mobile-navigation.en": () =>
+    import("@/content/Business/mobile-mobile-navigation.en.mdx"),
+  "Business/mobile-mobile-navigation.zh": () =>
+    import("@/content/Business/mobile-mobile-navigation.zh.mdx"),
   "Business/mobile-mobile-page-header": () =>
     import("@/content/Business/mobile-mobile-page-header.mdx"),
+  "Business/mobile-mobile-page-header.en": () =>
+    import("@/content/Business/mobile-mobile-page-header.en.mdx"),
+  "Business/mobile-mobile-page-header.zh": () =>
+    import("@/content/Business/mobile-mobile-page-header.zh.mdx"),
   "Business/mobile-mobile-pull-to-refresh": () =>
     import("@/content/Business/mobile-mobile-pull-to-refresh.mdx"),
+  "Business/mobile-mobile-pull-to-refresh.en": () =>
+    import("@/content/Business/mobile-mobile-pull-to-refresh.en.mdx"),
+  "Business/mobile-mobile-pull-to-refresh.zh": () =>
+    import("@/content/Business/mobile-mobile-pull-to-refresh.zh.mdx"),
   "Business/mobile-mobile-select": () =>
     import("@/content/Business/mobile-mobile-select.mdx"),
+  "Business/mobile-mobile-select.en": () =>
+    import("@/content/Business/mobile-mobile-select.en.mdx"),
+  "Business/mobile-mobile-select.zh": () =>
+    import("@/content/Business/mobile-mobile-select.zh.mdx"),
   "Business/mobile-mobile-share-sheet": () =>
     import("@/content/Business/mobile-mobile-share-sheet.mdx"),
+  "Business/mobile-mobile-share-sheet.en": () =>
+    import("@/content/Business/mobile-mobile-share-sheet.en.mdx"),
+  "Business/mobile-mobile-share-sheet.zh": () =>
+    import("@/content/Business/mobile-mobile-share-sheet.zh.mdx"),
   "Business/mobile-mobile-sheet": () =>
     import("@/content/Business/mobile-mobile-sheet.mdx"),
+  "Business/mobile-mobile-sheet.en": () =>
+    import("@/content/Business/mobile-mobile-sheet.en.mdx"),
+  "Business/mobile-mobile-sheet.zh": () =>
+    import("@/content/Business/mobile-mobile-sheet.zh.mdx"),
   "Business/mobile-mobile-skeleton": () =>
     import("@/content/Business/mobile-mobile-skeleton.mdx"),
+  "Business/mobile-mobile-skeleton.en": () =>
+    import("@/content/Business/mobile-mobile-skeleton.en.mdx"),
+  "Business/mobile-mobile-skeleton.zh": () =>
+    import("@/content/Business/mobile-mobile-skeleton.zh.mdx"),
   "Business/mobile-mobile-swipe-actions": () =>
     import("@/content/Business/mobile-mobile-swipe-actions.mdx"),
+  "Business/mobile-mobile-swipe-actions.en": () =>
+    import("@/content/Business/mobile-mobile-swipe-actions.en.mdx"),
+  "Business/mobile-mobile-swipe-actions.zh": () =>
+    import("@/content/Business/mobile-mobile-swipe-actions.zh.mdx"),
   "Business/mobile-mobile-swipe-card": () =>
     import("@/content/Business/mobile-mobile-swipe-card.mdx"),
+  "Business/mobile-mobile-swipe-card.en": () =>
+    import("@/content/Business/mobile-mobile-swipe-card.en.mdx"),
+  "Business/mobile-mobile-swipe-card.zh": () =>
+    import("@/content/Business/mobile-mobile-swipe-card.zh.mdx"),
   "Business/mobile-mobile-tabs": () =>
     import("@/content/Business/mobile-mobile-tabs.mdx"),
+  "Business/mobile-mobile-tabs.en": () =>
+    import("@/content/Business/mobile-mobile-tabs.en.mdx"),
+  "Business/mobile-mobile-tabs.zh": () =>
+    import("@/content/Business/mobile-mobile-tabs.zh.mdx"),
   "Business/mobile-mobile-textarea": () =>
     import("@/content/Business/mobile-mobile-textarea.mdx"),
+  "Business/mobile-mobile-textarea.en": () =>
+    import("@/content/Business/mobile-mobile-textarea.en.mdx"),
+  "Business/mobile-mobile-textarea.zh": () =>
+    import("@/content/Business/mobile-mobile-textarea.zh.mdx"),
   "Business/mobile-navigation": () =>
     import("@/content/Business/mobile-navigation.mdx"),
   "Business/mobile-navigation.en": () =>
@@ -1738,8 +1689,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-page-header.zh.mdx"),
   "Business/mobile-page-shell": () =>
     import("@/content/Business/mobile-page-shell.mdx"),
+  "Business/mobile-page-shell.en": () =>
+    import("@/content/Business/mobile-page-shell.en.mdx"),
+  "Business/mobile-page-shell.zh": () =>
+    import("@/content/Business/mobile-page-shell.zh.mdx"),
   "Business/mobile-picker": () =>
     import("@/content/Business/mobile-picker.mdx"),
+  "Business/mobile-picker.en": () =>
+    import("@/content/Business/mobile-picker.en.mdx"),
+  "Business/mobile-picker.zh": () =>
+    import("@/content/Business/mobile-picker.zh.mdx"),
   "Business/mobile-pull-to-refresh": () =>
     import("@/content/Business/mobile-pull-to-refresh.mdx"),
   "Business/mobile-pull-to-refresh.en": () =>
@@ -1748,6 +1707,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-pull-to-refresh.zh.mdx"),
   "Business/mobile-qrcode-scanner": () =>
     import("@/content/Business/mobile-qrcode-scanner.mdx"),
+  "Business/mobile-qrcode-scanner.en": () =>
+    import("@/content/Business/mobile-qrcode-scanner.en.mdx"),
+  "Business/mobile-qrcode-scanner.zh": () =>
+    import("@/content/Business/mobile-qrcode-scanner.zh.mdx"),
   "Business/mobile-select": () =>
     import("@/content/Business/mobile-select.mdx"),
   "Business/mobile-select.en": () =>
@@ -1756,6 +1719,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-select.zh.mdx"),
   "Business/mobile-share-sheet": () =>
     import("@/content/Business/mobile-share-sheet.mdx"),
+  "Business/mobile-share-sheet.en": () =>
+    import("@/content/Business/mobile-share-sheet.en.mdx"),
+  "Business/mobile-share-sheet.zh": () =>
+    import("@/content/Business/mobile-share-sheet.zh.mdx"),
   "Business/mobile-sheet": () => import("@/content/Business/mobile-sheet.mdx"),
   "Business/mobile-sheet.en": () =>
     import("@/content/Business/mobile-sheet.en.mdx"),
@@ -1763,6 +1730,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-sheet.zh.mdx"),
   "Business/mobile-signature": () =>
     import("@/content/Business/mobile-signature.mdx"),
+  "Business/mobile-signature.en": () =>
+    import("@/content/Business/mobile-signature.en.mdx"),
+  "Business/mobile-signature.zh": () =>
+    import("@/content/Business/mobile-signature.zh.mdx"),
   "Business/mobile-skeleton": () =>
     import("@/content/Business/mobile-skeleton.mdx"),
   "Business/mobile-skeleton.en": () =>
@@ -1777,8 +1748,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-swipe-actions.zh.mdx"),
   "Business/mobile-swipe-card": () =>
     import("@/content/Business/mobile-swipe-card.mdx"),
+  "Business/mobile-swipe-card.en": () =>
+    import("@/content/Business/mobile-swipe-card.en.mdx"),
+  "Business/mobile-swipe-card.zh": () =>
+    import("@/content/Business/mobile-swipe-card.zh.mdx"),
   "Business/mobile-tab-bar": () =>
     import("@/content/Business/mobile-tab-bar.mdx"),
+  "Business/mobile-tab-bar.en": () =>
+    import("@/content/Business/mobile-tab-bar.en.mdx"),
+  "Business/mobile-tab-bar.zh": () =>
+    import("@/content/Business/mobile-tab-bar.zh.mdx"),
   "Business/mobile-tabs": () => import("@/content/Business/mobile-tabs.mdx"),
   "Business/mobile-tabs.en": () =>
     import("@/content/Business/mobile-tabs.en.mdx"),
@@ -1792,6 +1771,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/mobile-textarea.zh.mdx"),
   "Business/multi-currency-input": () =>
     import("@/content/Business/multi-currency-input.mdx"),
+  "Business/multi-currency-input.en": () =>
+    import("@/content/Business/multi-currency-input.en.mdx"),
+  "Business/multi-currency-input.zh": () =>
+    import("@/content/Business/multi-currency-input.zh.mdx"),
   "Business/multi-select": () => import("@/content/Business/multi-select.mdx"),
   "Business/multi-select.en": () =>
     import("@/content/Business/multi-select.en.mdx"),
@@ -1805,9 +1788,19 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/notification-center.zh.mdx"),
   "Business/notification-rule-builder": () =>
     import("@/content/Business/notification-rule-builder.mdx"),
+  "Business/notification-rule-builder.en": () =>
+    import("@/content/Business/notification-rule-builder.en.mdx"),
+  "Business/notification-rule-builder.zh": () =>
+    import("@/content/Business/notification-rule-builder.zh.mdx"),
   "Business/oa-bridge": () => import("@/content/Business/oa-bridge.mdx"),
+  "Business/oa-bridge.en": () => import("@/content/Business/oa-bridge.en.mdx"),
+  "Business/oa-bridge.zh": () => import("@/content/Business/oa-bridge.zh.mdx"),
   "Business/oee-dashboard": () =>
     import("@/content/Business/oee-dashboard.mdx"),
+  "Business/oee-dashboard.en": () =>
+    import("@/content/Business/oee-dashboard.en.mdx"),
+  "Business/oee-dashboard.zh": () =>
+    import("@/content/Business/oee-dashboard.zh.mdx"),
   "Business/onboarding-checklist": () =>
     import("@/content/Business/onboarding-checklist.mdx"),
   "Business/onboarding-checklist.en": () =>
@@ -1816,6 +1809,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/onboarding-checklist.zh.mdx"),
   "Business/operation-log": () =>
     import("@/content/Business/operation-log.mdx"),
+  "Business/operation-log.en": () =>
+    import("@/content/Business/operation-log.en.mdx"),
+  "Business/operation-log.zh": () =>
+    import("@/content/Business/operation-log.zh.mdx"),
   "Business/order-line-editor": () =>
     import("@/content/Business/order-line-editor.mdx"),
   "Business/order-line-editor.en": () =>
@@ -1827,12 +1824,20 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/org-chart.zh": () => import("@/content/Business/org-chart.zh.mdx"),
   "Business/overview-page": () =>
     import("@/content/Business/overview-page.mdx"),
+  "Business/overview-page.en": () =>
+    import("@/content/Business/overview-page.en.mdx"),
+  "Business/overview-page.zh": () =>
+    import("@/content/Business/overview-page.zh.mdx"),
   "Business/page-header": () => import("@/content/Business/page-header.mdx"),
   "Business/page-header.en": () =>
     import("@/content/Business/page-header.en.mdx"),
   "Business/page-header.zh": () =>
     import("@/content/Business/page-header.zh.mdx"),
   "Business/paste-upload": () => import("@/content/Business/paste-upload.mdx"),
+  "Business/paste-upload.en": () =>
+    import("@/content/Business/paste-upload.en.mdx"),
+  "Business/paste-upload.zh": () =>
+    import("@/content/Business/paste-upload.zh.mdx"),
   "Business/payment-form": () => import("@/content/Business/payment-form.mdx"),
   "Business/payment-form.en": () =>
     import("@/content/Business/payment-form.en.mdx"),
@@ -1840,10 +1845,22 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/payment-form.zh.mdx"),
   "Business/payment-method-selector": () =>
     import("@/content/Business/payment-method-selector.mdx"),
+  "Business/payment-method-selector.en": () =>
+    import("@/content/Business/payment-method-selector.en.mdx"),
+  "Business/payment-method-selector.zh": () =>
+    import("@/content/Business/payment-method-selector.zh.mdx"),
   "Business/payment-result": () =>
     import("@/content/Business/payment-result.mdx"),
+  "Business/payment-result.en": () =>
+    import("@/content/Business/payment-result.en.mdx"),
+  "Business/payment-result.zh": () =>
+    import("@/content/Business/payment-result.zh.mdx"),
   "Business/payment-schedule": () =>
     import("@/content/Business/payment-schedule.mdx"),
+  "Business/payment-schedule.en": () =>
+    import("@/content/Business/payment-schedule.en.mdx"),
+  "Business/payment-schedule.zh": () =>
+    import("@/content/Business/payment-schedule.zh.mdx"),
   "Business/pdf-viewer": () => import("@/content/Business/pdf-viewer.mdx"),
   "Business/pdf-viewer.en": () =>
     import("@/content/Business/pdf-viewer.en.mdx"),
@@ -1851,8 +1868,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/pdf-viewer.zh.mdx"),
   "Business/performance-rank-table": () =>
     import("@/content/Business/performance-rank-table.mdx"),
+  "Business/performance-rank-table.en": () =>
+    import("@/content/Business/performance-rank-table.en.mdx"),
+  "Business/performance-rank-table.zh": () =>
+    import("@/content/Business/performance-rank-table.zh.mdx"),
   "Business/permission-button": () =>
     import("@/content/Business/permission-button.mdx"),
+  "Business/permission-button.en": () =>
+    import("@/content/Business/permission-button.en.mdx"),
+  "Business/permission-button.zh": () =>
+    import("@/content/Business/permission-button.zh.mdx"),
   "Business/permission-matrix": () =>
     import("@/content/Business/permission-matrix.mdx"),
   "Business/permission-matrix.en": () =>
@@ -1871,7 +1896,13 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/phone-input.zh": () =>
     import("@/content/Business/phone-input.zh.mdx"),
   "Business/photo-audit": () => import("@/content/Business/photo-audit.mdx"),
+  "Business/photo-audit.en": () =>
+    import("@/content/Business/photo-audit.en.mdx"),
+  "Business/photo-audit.zh": () =>
+    import("@/content/Business/photo-audit.zh.mdx"),
   "Business/pie-chart": () => import("@/content/Business/pie-chart.mdx"),
+  "Business/pie-chart.en": () => import("@/content/Business/pie-chart.en.mdx"),
+  "Business/pie-chart.zh": () => import("@/content/Business/pie-chart.zh.mdx"),
   "Business/pivot-table": () => import("@/content/Business/pivot-table.mdx"),
   "Business/pivot-table.en": () =>
     import("@/content/Business/pivot-table.en.mdx"),
@@ -1879,10 +1910,22 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/pivot-table.zh.mdx"),
   "Business/policy-line-editor": () =>
     import("@/content/Business/policy-line-editor.mdx"),
+  "Business/policy-line-editor.en": () =>
+    import("@/content/Business/policy-line-editor.en.mdx"),
+  "Business/policy-line-editor.zh": () =>
+    import("@/content/Business/policy-line-editor.zh.mdx"),
   "Business/pool-tracker-table": () =>
     import("@/content/Business/pool-tracker-table.mdx"),
+  "Business/pool-tracker-table.en": () =>
+    import("@/content/Business/pool-tracker-table.en.mdx"),
+  "Business/pool-tracker-table.zh": () =>
+    import("@/content/Business/pool-tracker-table.zh.mdx"),
   "Business/preference-panel": () =>
     import("@/content/Business/preference-panel.mdx"),
+  "Business/preference-panel.en": () =>
+    import("@/content/Business/preference-panel.en.mdx"),
+  "Business/preference-panel.zh": () =>
+    import("@/content/Business/preference-panel.zh.mdx"),
   "Business/presence-indicators": () =>
     import("@/content/Business/presence-indicators.mdx"),
   "Business/presence-indicators.en": () =>
@@ -1891,6 +1934,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/presence-indicators.zh.mdx"),
   "Business/price-adjust-browse": () =>
     import("@/content/Business/price-adjust-browse.mdx"),
+  "Business/price-adjust-browse.en": () =>
+    import("@/content/Business/price-adjust-browse.en.mdx"),
+  "Business/price-adjust-browse.zh": () =>
+    import("@/content/Business/price-adjust-browse.zh.mdx"),
   "Business/print-button": () => import("@/content/Business/print-button.mdx"),
   "Business/print-button.en": () =>
     import("@/content/Business/print-button.en.mdx"),
@@ -1898,19 +1945,43 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/print-button.zh.mdx"),
   "Business/print-service": () =>
     import("@/content/Business/print-service.mdx"),
+  "Business/print-service.en": () =>
+    import("@/content/Business/print-service.en.mdx"),
+  "Business/print-service.zh": () =>
+    import("@/content/Business/print-service.zh.mdx"),
   "Business/print-template-builder": () =>
     import("@/content/Business/print-template-builder.mdx"),
+  "Business/print-template-builder.en": () =>
+    import("@/content/Business/print-template-builder.en.mdx"),
+  "Business/print-template-builder.zh": () =>
+    import("@/content/Business/print-template-builder.zh.mdx"),
   "Business/product-browse": () =>
     import("@/content/Business/product-browse.mdx"),
+  "Business/product-browse.en": () =>
+    import("@/content/Business/product-browse.en.mdx"),
+  "Business/product-browse.zh": () =>
+    import("@/content/Business/product-browse.zh.mdx"),
   "Business/product-category-picker": () =>
     import("@/content/Business/product-category-picker.mdx"),
+  "Business/product-category-picker.en": () =>
+    import("@/content/Business/product-category-picker.en.mdx"),
+  "Business/product-category-picker.zh": () =>
+    import("@/content/Business/product-category-picker.zh.mdx"),
   "Business/profile": () => import("@/content/Business/profile.mdx"),
   "Business/profile.en": () => import("@/content/Business/profile.en.mdx"),
   "Business/profile.zh": () => import("@/content/Business/profile.zh.mdx"),
   "Business/promotion-rule-card": () =>
     import("@/content/Business/promotion-rule-card.mdx"),
+  "Business/promotion-rule-card.en": () =>
+    import("@/content/Business/promotion-rule-card.en.mdx"),
+  "Business/promotion-rule-card.zh": () =>
+    import("@/content/Business/promotion-rule-card.zh.mdx"),
   "Business/promotion-rule-editor": () =>
     import("@/content/Business/promotion-rule-editor.mdx"),
+  "Business/promotion-rule-editor.en": () =>
+    import("@/content/Business/promotion-rule-editor.en.mdx"),
+  "Business/promotion-rule-editor.zh": () =>
+    import("@/content/Business/promotion-rule-editor.zh.mdx"),
   "Business/prompt-dialog": () =>
     import("@/content/Business/prompt-dialog.mdx"),
   "Business/prompt-dialog.en": () =>
@@ -1919,6 +1990,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/prompt-dialog.zh.mdx"),
   "Business/purchase-order-editor": () =>
     import("@/content/Business/purchase-order-editor.mdx"),
+  "Business/purchase-order-editor.en": () =>
+    import("@/content/Business/purchase-order-editor.en.mdx"),
+  "Business/purchase-order-editor.zh": () =>
+    import("@/content/Business/purchase-order-editor.zh.mdx"),
   "Business/qr-code": () => import("@/content/Business/qr-code.mdx"),
   "Business/qr-code.en": () => import("@/content/Business/qr-code.en.mdx"),
   "Business/qr-code.zh": () => import("@/content/Business/qr-code.zh.mdx"),
@@ -1930,22 +2005,58 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/quality-inspection-form.zh.mdx"),
   "Business/quick-entry-grid": () =>
     import("@/content/Business/quick-entry-grid.mdx"),
+  "Business/quick-entry-grid.en": () =>
+    import("@/content/Business/quick-entry-grid.en.mdx"),
+  "Business/quick-entry-grid.zh": () =>
+    import("@/content/Business/quick-entry-grid.zh.mdx"),
   "Business/quotation-line-editor": () =>
     import("@/content/Business/quotation-line-editor.mdx"),
+  "Business/quotation-line-editor.en": () =>
+    import("@/content/Business/quotation-line-editor.en.mdx"),
+  "Business/quotation-line-editor.zh": () =>
+    import("@/content/Business/quotation-line-editor.zh.mdx"),
   "Business/radar-chart": () => import("@/content/Business/radar-chart.mdx"),
+  "Business/radar-chart.en": () =>
+    import("@/content/Business/radar-chart.en.mdx"),
+  "Business/radar-chart.zh": () =>
+    import("@/content/Business/radar-chart.zh.mdx"),
   "Business/radial-chart": () => import("@/content/Business/radial-chart.mdx"),
+  "Business/radial-chart.en": () =>
+    import("@/content/Business/radial-chart.en.mdx"),
+  "Business/radial-chart.zh": () =>
+    import("@/content/Business/radial-chart.zh.mdx"),
   "Business/rating": () => import("@/content/Business/rating.mdx"),
   "Business/rating.en": () => import("@/content/Business/rating.en.mdx"),
   "Business/rating.zh": () => import("@/content/Business/rating.zh.mdx"),
   "Business/rebut-node-select": () =>
     import("@/content/Business/rebut-node-select.mdx"),
+  "Business/rebut-node-select.en": () =>
+    import("@/content/Business/rebut-node-select.en.mdx"),
+  "Business/rebut-node-select.zh": () =>
+    import("@/content/Business/rebut-node-select.zh.mdx"),
   "Business/reconciliation-line-editor": () =>
     import("@/content/Business/reconciliation-line-editor.mdx"),
+  "Business/reconciliation-line-editor.en": () =>
+    import("@/content/Business/reconciliation-line-editor.en.mdx"),
+  "Business/reconciliation-line-editor.zh": () =>
+    import("@/content/Business/reconciliation-line-editor.zh.mdx"),
   "Business/reconciliation-summary": () =>
     import("@/content/Business/reconciliation-summary.mdx"),
+  "Business/reconciliation-summary.en": () =>
+    import("@/content/Business/reconciliation-summary.en.mdx"),
+  "Business/reconciliation-summary.zh": () =>
+    import("@/content/Business/reconciliation-summary.zh.mdx"),
   "Business/red-packet": () => import("@/content/Business/red-packet.mdx"),
+  "Business/red-packet.en": () =>
+    import("@/content/Business/red-packet.en.mdx"),
+  "Business/red-packet.zh": () =>
+    import("@/content/Business/red-packet.zh.mdx"),
   "Business/region-picker": () =>
     import("@/content/Business/region-picker.mdx"),
+  "Business/region-picker.en": () =>
+    import("@/content/Business/region-picker.en.mdx"),
+  "Business/region-picker.zh": () =>
+    import("@/content/Business/region-picker.zh.mdx"),
   "Business/remote-select": () =>
     import("@/content/Business/remote-select.mdx"),
   "Business/remote-select.en": () =>
@@ -1960,6 +2071,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/report-builder.zh.mdx"),
   "Business/resource-schedule": () =>
     import("@/content/Business/resource-schedule.mdx"),
+  "Business/resource-schedule.en": () =>
+    import("@/content/Business/resource-schedule.en.mdx"),
+  "Business/resource-schedule.zh": () =>
+    import("@/content/Business/resource-schedule.zh.mdx"),
   "Business/responsive-preview": () =>
     import("@/content/Business/responsive-preview.mdx"),
   "Business/responsive-preview.en": () =>
@@ -1979,11 +2094,27 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/role-assignment.zh": () =>
     import("@/content/Business/role-assignment.zh.mdx"),
   "Business/rule-editor": () => import("@/content/Business/rule-editor.mdx"),
+  "Business/rule-editor.en": () =>
+    import("@/content/Business/rule-editor.en.mdx"),
+  "Business/rule-editor.zh": () =>
+    import("@/content/Business/rule-editor.zh.mdx"),
   "Business/sales-order-browse": () =>
     import("@/content/Business/sales-order-browse.mdx"),
+  "Business/sales-order-browse.en": () =>
+    import("@/content/Business/sales-order-browse.en.mdx"),
+  "Business/sales-order-browse.zh": () =>
+    import("@/content/Business/sales-order-browse.zh.mdx"),
   "Business/sales-target-editor": () =>
     import("@/content/Business/sales-target-editor.mdx"),
+  "Business/sales-target-editor.en": () =>
+    import("@/content/Business/sales-target-editor.en.mdx"),
+  "Business/sales-target-editor.zh": () =>
+    import("@/content/Business/sales-target-editor.zh.mdx"),
   "Business/sankey-chart": () => import("@/content/Business/sankey-chart.mdx"),
+  "Business/sankey-chart.en": () =>
+    import("@/content/Business/sankey-chart.en.mdx"),
+  "Business/sankey-chart.zh": () =>
+    import("@/content/Business/sankey-chart.zh.mdx"),
   "Business/saved-filters": () =>
     import("@/content/Business/saved-filters.mdx"),
   "Business/saved-filters.en": () =>
@@ -1992,6 +2123,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/saved-filters.zh.mdx"),
   "Business/scatter-chart": () =>
     import("@/content/Business/scatter-chart.mdx"),
+  "Business/scatter-chart.en": () =>
+    import("@/content/Business/scatter-chart.en.mdx"),
+  "Business/scatter-chart.zh": () =>
+    import("@/content/Business/scatter-chart.zh.mdx"),
   "Business/schedule-view": () =>
     import("@/content/Business/schedule-view.mdx"),
   "Business/schedule-view.en": () =>
@@ -2000,6 +2135,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/schedule-view.zh.mdx"),
   "Business/seal-stamp-registry": () =>
     import("@/content/Business/seal-stamp-registry.mdx"),
+  "Business/seal-stamp-registry.en": () =>
+    import("@/content/Business/seal-stamp-registry.en.mdx"),
+  "Business/seal-stamp-registry.zh": () =>
+    import("@/content/Business/seal-stamp-registry.zh.mdx"),
   "Business/search-input": () => import("@/content/Business/search-input.mdx"),
   "Business/search-input.en": () =>
     import("@/content/Business/search-input.en.mdx"),
@@ -2018,6 +2157,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/segmented-control.zh.mdx"),
   "Business/serial-number-manager": () =>
     import("@/content/Business/serial-number-manager.mdx"),
+  "Business/serial-number-manager.en": () =>
+    import("@/content/Business/serial-number-manager.en.mdx"),
+  "Business/serial-number-manager.zh": () =>
+    import("@/content/Business/serial-number-manager.zh.mdx"),
   "Business/settings-layout": () =>
     import("@/content/Business/settings-layout.mdx"),
   "Business/settings-layout.en": () =>
@@ -2026,6 +2169,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/settings-layout.zh.mdx"),
   "Business/settlement-status-tag": () =>
     import("@/content/Business/settlement-status-tag.mdx"),
+  "Business/settlement-status-tag.en": () =>
+    import("@/content/Business/settlement-status-tag.en.mdx"),
+  "Business/settlement-status-tag.zh": () =>
+    import("@/content/Business/settlement-status-tag.zh.mdx"),
   "Business/shift-calendar": () =>
     import("@/content/Business/shift-calendar.mdx"),
   "Business/shift-calendar.en": () =>
@@ -2034,8 +2181,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/shift-calendar.zh.mdx"),
   "Business/shipping-way-browse": () =>
     import("@/content/Business/shipping-way-browse.mdx"),
+  "Business/shipping-way-browse.en": () =>
+    import("@/content/Business/shipping-way-browse.en.mdx"),
+  "Business/shipping-way-browse.zh": () =>
+    import("@/content/Business/shipping-way-browse.zh.mdx"),
   "Business/sign-action-button": () =>
     import("@/content/Business/sign-action-button.mdx"),
+  "Business/sign-action-button.en": () =>
+    import("@/content/Business/sign-action-button.en.mdx"),
+  "Business/sign-action-button.zh": () =>
+    import("@/content/Business/sign-action-button.zh.mdx"),
   "Business/signature-pad": () =>
     import("@/content/Business/signature-pad.mdx"),
   "Business/signature-pad.en": () =>
@@ -2043,11 +2198,31 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/signature-pad.zh": () =>
     import("@/content/Business/signature-pad.zh.mdx"),
   "Business/sku-picker": () => import("@/content/Business/sku-picker.mdx"),
+  "Business/sku-picker.en": () =>
+    import("@/content/Business/sku-picker.en.mdx"),
+  "Business/sku-picker.zh": () =>
+    import("@/content/Business/sku-picker.zh.mdx"),
   "Business/social-share": () => import("@/content/Business/social-share.mdx"),
+  "Business/social-share.en": () =>
+    import("@/content/Business/social-share.en.mdx"),
+  "Business/social-share.zh": () =>
+    import("@/content/Business/social-share.zh.mdx"),
   "Business/spark-chart": () => import("@/content/Business/spark-chart.mdx"),
+  "Business/spark-chart.en": () =>
+    import("@/content/Business/spark-chart.en.mdx"),
+  "Business/spark-chart.zh": () =>
+    import("@/content/Business/spark-chart.zh.mdx"),
   "Business/spc-control-chart": () =>
     import("@/content/Business/spc-control-chart.mdx"),
+  "Business/spc-control-chart.en": () =>
+    import("@/content/Business/spc-control-chart.en.mdx"),
+  "Business/spc-control-chart.zh": () =>
+    import("@/content/Business/spc-control-chart.zh.mdx"),
   "Business/sql-editor": () => import("@/content/Business/sql-editor.mdx"),
+  "Business/sql-editor.en": () =>
+    import("@/content/Business/sql-editor.en.mdx"),
+  "Business/sql-editor.zh": () =>
+    import("@/content/Business/sql-editor.zh.mdx"),
   "Business/stat-card": () => import("@/content/Business/stat-card.mdx"),
   "Business/stat-card-row": () =>
     import("@/content/Business/stat-card-row.mdx"),
@@ -2057,8 +2232,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/stat-card-row.zh.mdx"),
   "Business/stat-card-with-delta": () =>
     import("@/content/Business/stat-card-with-delta.mdx"),
+  "Business/stat-card-with-delta.en": () =>
+    import("@/content/Business/stat-card-with-delta.en.mdx"),
+  "Business/stat-card-with-delta.zh": () =>
+    import("@/content/Business/stat-card-with-delta.zh.mdx"),
   "Business/stat-card-with-sparkline": () =>
     import("@/content/Business/stat-card-with-sparkline.mdx"),
+  "Business/stat-card-with-sparkline.en": () =>
+    import("@/content/Business/stat-card-with-sparkline.en.mdx"),
+  "Business/stat-card-with-sparkline.zh": () =>
+    import("@/content/Business/stat-card-with-sparkline.zh.mdx"),
   "Business/stat-card.en": () => import("@/content/Business/stat-card.en.mdx"),
   "Business/stat-card.zh": () => import("@/content/Business/stat-card.zh.mdx"),
   "Business/status-badge": () => import("@/content/Business/status-badge.mdx"),
@@ -2073,25 +2256,71 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/status-tag.zh.mdx"),
   "Business/stock-transfer-dialog": () =>
     import("@/content/Business/stock-transfer-dialog.mdx"),
+  "Business/stock-transfer-dialog.en": () =>
+    import("@/content/Business/stock-transfer-dialog.en.mdx"),
+  "Business/stock-transfer-dialog.zh": () =>
+    import("@/content/Business/stock-transfer-dialog.zh.mdx"),
   "Business/subform-tabs": () => import("@/content/Business/subform-tabs.mdx"),
+  "Business/subform-tabs.en": () =>
+    import("@/content/Business/subform-tabs.en.mdx"),
+  "Business/subform-tabs.zh": () =>
+    import("@/content/Business/subform-tabs.zh.mdx"),
   "Business/supplier-scorecard": () =>
     import("@/content/Business/supplier-scorecard.mdx"),
+  "Business/supplier-scorecard.en": () =>
+    import("@/content/Business/supplier-scorecard.en.mdx"),
+  "Business/supplier-scorecard.zh": () =>
+    import("@/content/Business/supplier-scorecard.zh.mdx"),
   "Business/tab-crud-page": () =>
     import("@/content/Business/tab-crud-page.mdx"),
+  "Business/tab-crud-page.en": () =>
+    import("@/content/Business/tab-crud-page.en.mdx"),
+  "Business/tab-crud-page.zh": () =>
+    import("@/content/Business/tab-crud-page.zh.mdx"),
   "Business/tab-pin": () => import("@/content/Business/tab-pin.mdx"),
+  "Business/tab-pin.en": () => import("@/content/Business/tab-pin.en.mdx"),
+  "Business/tab-pin.zh": () => import("@/content/Business/tab-pin.zh.mdx"),
   "Business/target-progress": () =>
     import("@/content/Business/target-progress.mdx"),
+  "Business/target-progress.en": () =>
+    import("@/content/Business/target-progress.en.mdx"),
+  "Business/target-progress.zh": () =>
+    import("@/content/Business/target-progress.zh.mdx"),
   "Business/task-history": () => import("@/content/Business/task-history.mdx"),
+  "Business/task-history.en": () =>
+    import("@/content/Business/task-history.en.mdx"),
+  "Business/task-history.zh": () =>
+    import("@/content/Business/task-history.zh.mdx"),
   "Business/task-list-table": () =>
     import("@/content/Business/task-list-table.mdx"),
+  "Business/task-list-table.en": () =>
+    import("@/content/Business/task-list-table.en.mdx"),
+  "Business/task-list-table.zh": () =>
+    import("@/content/Business/task-list-table.zh.mdx"),
   "Business/task-progress": () =>
     import("@/content/Business/task-progress.mdx"),
+  "Business/task-progress.en": () =>
+    import("@/content/Business/task-progress.en.mdx"),
+  "Business/task-progress.zh": () =>
+    import("@/content/Business/task-progress.zh.mdx"),
   "Business/tax-detail-table": () =>
     import("@/content/Business/tax-detail-table.mdx"),
+  "Business/tax-detail-table.en": () =>
+    import("@/content/Business/tax-detail-table.en.mdx"),
+  "Business/tax-detail-table.zh": () =>
+    import("@/content/Business/tax-detail-table.zh.mdx"),
   "Business/template-download": () =>
     import("@/content/Business/template-download.mdx"),
+  "Business/template-download.en": () =>
+    import("@/content/Business/template-download.en.mdx"),
+  "Business/template-download.zh": () =>
+    import("@/content/Business/template-download.zh.mdx"),
   "Business/territory-map": () =>
     import("@/content/Business/territory-map.mdx"),
+  "Business/territory-map.en": () =>
+    import("@/content/Business/territory-map.en.mdx"),
+  "Business/territory-map.zh": () =>
+    import("@/content/Business/territory-map.zh.mdx"),
   "Business/theme-toggle": () => import("@/content/Business/theme-toggle.mdx"),
   "Business/theme-toggle.en": () =>
     import("@/content/Business/theme-toggle.en.mdx"),
@@ -2104,8 +2333,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/time-picker.zh.mdx"),
   "Business/timeline-view": () =>
     import("@/content/Business/timeline-view.mdx"),
+  "Business/timeline-view.en": () =>
+    import("@/content/Business/timeline-view.en.mdx"),
+  "Business/timeline-view.zh": () =>
+    import("@/content/Business/timeline-view.zh.mdx"),
   "Business/todo-list-table": () =>
     import("@/content/Business/todo-list-table.mdx"),
+  "Business/todo-list-table.en": () =>
+    import("@/content/Business/todo-list-table.en.mdx"),
+  "Business/todo-list-table.zh": () =>
+    import("@/content/Business/todo-list-table.zh.mdx"),
   "Business/top-loader": () => import("@/content/Business/top-loader.mdx"),
   "Business/top-loader.en": () =>
     import("@/content/Business/top-loader.en.mdx"),
@@ -2115,11 +2352,17 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Business/tour.en": () => import("@/content/Business/tour.en.mdx"),
   "Business/tour.zh": () => import("@/content/Business/tour.zh.mdx"),
   "Business/tracking": () => import("@/content/Business/tracking.mdx"),
+  "Business/tracking.en": () => import("@/content/Business/tracking.en.mdx"),
+  "Business/tracking.zh": () => import("@/content/Business/tracking.zh.mdx"),
   "Business/transfer": () => import("@/content/Business/transfer.mdx"),
   "Business/transfer.en": () => import("@/content/Business/transfer.en.mdx"),
   "Business/transfer.zh": () => import("@/content/Business/transfer.zh.mdx"),
   "Business/tree-crud-page": () =>
     import("@/content/Business/tree-crud-page.mdx"),
+  "Business/tree-crud-page.en": () =>
+    import("@/content/Business/tree-crud-page.en.mdx"),
+  "Business/tree-crud-page.zh": () =>
+    import("@/content/Business/tree-crud-page.zh.mdx"),
   "Business/tree-table": () => import("@/content/Business/tree-table.mdx"),
   "Business/tree-table.en": () =>
     import("@/content/Business/tree-table.en.mdx"),
@@ -2127,6 +2370,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/tree-table.zh.mdx"),
   "Business/treemap-chart": () =>
     import("@/content/Business/treemap-chart.mdx"),
+  "Business/treemap-chart.en": () =>
+    import("@/content/Business/treemap-chart.en.mdx"),
+  "Business/treemap-chart.zh": () =>
+    import("@/content/Business/treemap-chart.zh.mdx"),
   "Business/unit-converter": () =>
     import("@/content/Business/unit-converter.mdx"),
   "Business/unit-converter.en": () =>
@@ -2143,6 +2390,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/utm-builder.zh.mdx"),
   "Business/vehicle-booking": () =>
     import("@/content/Business/vehicle-booking.mdx"),
+  "Business/vehicle-booking.en": () =>
+    import("@/content/Business/vehicle-booking.en.mdx"),
+  "Business/vehicle-booking.zh": () =>
+    import("@/content/Business/vehicle-booking.zh.mdx"),
   "Business/version-history": () =>
     import("@/content/Business/version-history.mdx"),
   "Business/version-history.en": () =>
@@ -2156,26 +2407,58 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Business/video-player.zh.mdx"),
   "Business/warehouse-browse": () =>
     import("@/content/Business/warehouse-browse.mdx"),
+  "Business/warehouse-browse.en": () =>
+    import("@/content/Business/warehouse-browse.en.mdx"),
+  "Business/warehouse-browse.zh": () =>
+    import("@/content/Business/warehouse-browse.zh.mdx"),
   "Business/warehouse-picker": () =>
     import("@/content/Business/warehouse-picker.mdx"),
+  "Business/warehouse-picker.en": () =>
+    import("@/content/Business/warehouse-picker.en.mdx"),
+  "Business/warehouse-picker.zh": () =>
+    import("@/content/Business/warehouse-picker.zh.mdx"),
   "Business/waterfall-chart": () =>
     import("@/content/Business/waterfall-chart.mdx"),
+  "Business/waterfall-chart.en": () =>
+    import("@/content/Business/waterfall-chart.en.mdx"),
+  "Business/waterfall-chart.zh": () =>
+    import("@/content/Business/waterfall-chart.zh.mdx"),
   "Business/watermark": () => import("@/content/Business/watermark.mdx"),
   "Business/watermark.en": () => import("@/content/Business/watermark.en.mdx"),
   "Business/watermark.zh": () => import("@/content/Business/watermark.zh.mdx"),
   "Business/work-order-card": () =>
     import("@/content/Business/work-order-card.mdx"),
+  "Business/work-order-card.en": () =>
+    import("@/content/Business/work-order-card.en.mdx"),
+  "Business/work-order-card.zh": () =>
+    import("@/content/Business/work-order-card.zh.mdx"),
   "Business/workflow": () => import("@/content/Business/workflow.mdx"),
   "Business/workflow-designer": () =>
     import("@/content/Business/workflow-designer.mdx"),
+  "Business/workflow-designer.en": () =>
+    import("@/content/Business/workflow-designer.en.mdx"),
+  "Business/workflow-designer.zh": () =>
+    import("@/content/Business/workflow-designer.zh.mdx"),
   "Business/workflow-preview": () =>
     import("@/content/Business/workflow-preview.mdx"),
+  "Business/workflow-preview.en": () =>
+    import("@/content/Business/workflow-preview.en.mdx"),
+  "Business/workflow-preview.zh": () =>
+    import("@/content/Business/workflow-preview.zh.mdx"),
   "Business/workflow.en": () => import("@/content/Business/workflow.en.mdx"),
   "Business/workflow.zh": () => import("@/content/Business/workflow.zh.mdx"),
   "Business/writeoff-browse": () =>
     import("@/content/Business/writeoff-browse.mdx"),
+  "Business/writeoff-browse.en": () =>
+    import("@/content/Business/writeoff-browse.en.mdx"),
+  "Business/writeoff-browse.zh": () =>
+    import("@/content/Business/writeoff-browse.zh.mdx"),
   "Business/writeoff-flow": () =>
     import("@/content/Business/writeoff-flow.mdx"),
+  "Business/writeoff-flow.en": () =>
+    import("@/content/Business/writeoff-flow.en.mdx"),
+  "Business/writeoff-flow.zh": () =>
+    import("@/content/Business/writeoff-flow.zh.mdx"),
   "DataDisplay/accordion": () => import("@/content/DataDisplay/accordion.mdx"),
   "DataDisplay/accordion.en": () =>
     import("@/content/DataDisplay/accordion.en.mdx"),
@@ -2189,6 +2472,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "DataDisplay/badge.zh": () => import("@/content/DataDisplay/badge.zh.mdx"),
   "DataDisplay/barcode-display": () =>
     import("@/content/DataDisplay/barcode-display.mdx"),
+  "DataDisplay/barcode-display.en": () =>
+    import("@/content/DataDisplay/barcode-display.en.mdx"),
+  "DataDisplay/barcode-display.zh": () =>
+    import("@/content/DataDisplay/barcode-display.zh.mdx"),
   "DataDisplay/card": () => import("@/content/DataDisplay/card.mdx"),
   "DataDisplay/card.en": () => import("@/content/DataDisplay/card.en.mdx"),
   "DataDisplay/card.zh": () => import("@/content/DataDisplay/card.zh.mdx"),
@@ -2254,6 +2541,12 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/DataDisplay/qrcode-display.zh.mdx"),
   "DataDisplay/qrcode.en": () => import("@/content/DataDisplay/qrcode.en.mdx"),
   "DataDisplay/qrcode.zh": () => import("@/content/DataDisplay/qrcode.zh.mdx"),
+  "DataDisplay/segmented-control": () =>
+    import("@/content/DataDisplay/segmented-control.mdx"),
+  "DataDisplay/segmented-control.en": () =>
+    import("@/content/DataDisplay/segmented-control.en.mdx"),
+  "DataDisplay/segmented-control.zh": () =>
+    import("@/content/DataDisplay/segmented-control.zh.mdx"),
   "DataDisplay/statistic": () => import("@/content/DataDisplay/statistic.mdx"),
   "DataDisplay/statistic.en": () =>
     import("@/content/DataDisplay/statistic.en.mdx"),
@@ -2280,47 +2573,6 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/DataDisplay/tree-view.en.mdx"),
   "DataDisplay/tree-view.zh": () =>
     import("@/content/DataDisplay/tree-view.zh.mdx"),
-  "DataDisplay/ui-accordion": () =>
-    import("@/content/DataDisplay/ui-accordion.mdx"),
-  "DataDisplay/ui-avatar": () => import("@/content/DataDisplay/ui-avatar.mdx"),
-  "DataDisplay/ui-badge": () => import("@/content/DataDisplay/ui-badge.mdx"),
-  "DataDisplay/ui-barcode-display": () =>
-    import("@/content/DataDisplay/ui-barcode-display.mdx"),
-  "DataDisplay/ui-card": () => import("@/content/DataDisplay/ui-card.mdx"),
-  "DataDisplay/ui-carousel": () =>
-    import("@/content/DataDisplay/ui-carousel.mdx"),
-  "DataDisplay/ui-countdown": () =>
-    import("@/content/DataDisplay/ui-countdown.mdx"),
-  "DataDisplay/ui-department-browse": () =>
-    import("@/content/DataDisplay/ui-department-browse.mdx"),
-  "DataDisplay/ui-descriptions": () =>
-    import("@/content/DataDisplay/ui-descriptions.mdx"),
-  "DataDisplay/ui-hover-card": () =>
-    import("@/content/DataDisplay/ui-hover-card.mdx"),
-  "DataDisplay/ui-image": () => import("@/content/DataDisplay/ui-image.mdx"),
-  "DataDisplay/ui-kbd": () => import("@/content/DataDisplay/ui-kbd.mdx"),
-  "DataDisplay/ui-kpi-panel": () =>
-    import("@/content/DataDisplay/ui-kpi-panel.mdx"),
-  "DataDisplay/ui-list": () => import("@/content/DataDisplay/ui-list.mdx"),
-  "DataDisplay/ui-popover": () =>
-    import("@/content/DataDisplay/ui-popover.mdx"),
-  "DataDisplay/ui-qrcode": () => import("@/content/DataDisplay/ui-qrcode.mdx"),
-  "DataDisplay/ui-qrcode-display": () =>
-    import("@/content/DataDisplay/ui-qrcode-display.mdx"),
-  "DataDisplay/ui-statistic": () =>
-    import("@/content/DataDisplay/ui-statistic.mdx"),
-  "DataDisplay/ui-table": () => import("@/content/DataDisplay/ui-table.mdx"),
-  "DataDisplay/ui-tag": () => import("@/content/DataDisplay/ui-tag.mdx"),
-  "DataDisplay/ui-timeline": () =>
-    import("@/content/DataDisplay/ui-timeline.mdx"),
-  "DataDisplay/ui-tooltip": () =>
-    import("@/content/DataDisplay/ui-tooltip.mdx"),
-  "DataDisplay/ui-virtual-list": () =>
-    import("@/content/DataDisplay/ui-virtual-list.mdx"),
-  "DataDisplay/ui-virtual-table": () =>
-    import("@/content/DataDisplay/ui-virtual-table.mdx"),
-  "DataDisplay/ui-watermark": () =>
-    import("@/content/DataDisplay/ui-watermark.mdx"),
   "DataDisplay/virtual-list": () =>
     import("@/content/DataDisplay/virtual-list.mdx"),
   "DataDisplay/virtual-list.en": () =>
@@ -2333,6 +2585,11 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/DataDisplay/virtual-table.en.mdx"),
   "DataDisplay/virtual-table.zh": () =>
     import("@/content/DataDisplay/virtual-table.zh.mdx"),
+  "DataDisplay/watermark": () => import("@/content/DataDisplay/watermark.mdx"),
+  "DataDisplay/watermark.en": () =>
+    import("@/content/DataDisplay/watermark.en.mdx"),
+  "DataDisplay/watermark.zh": () =>
+    import("@/content/DataDisplay/watermark.zh.mdx"),
   "Feedback/alert": () => import("@/content/Feedback/alert.mdx"),
   "Feedback/alert-dialog": () => import("@/content/Feedback/alert-dialog.mdx"),
   "Feedback/alert-dialog.en": () =>
@@ -2342,12 +2599,21 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Feedback/alert.en": () => import("@/content/Feedback/alert.en.mdx"),
   "Feedback/alert.zh": () => import("@/content/Feedback/alert.zh.mdx"),
   "Feedback/chat-message": () => import("@/content/Feedback/chat-message.mdx"),
+  "Feedback/chat-message.en": () =>
+    import("@/content/Feedback/chat-message.en.mdx"),
+  "Feedback/chat-message.zh": () =>
+    import("@/content/Feedback/chat-message.zh.mdx"),
   "Feedback/dialog": () => import("@/content/Feedback/dialog.mdx"),
   "Feedback/dialog.en": () => import("@/content/Feedback/dialog.en.mdx"),
   "Feedback/dialog.zh": () => import("@/content/Feedback/dialog.zh.mdx"),
   "Feedback/drawer": () => import("@/content/Feedback/drawer.mdx"),
   "Feedback/drawer.en": () => import("@/content/Feedback/drawer.en.mdx"),
   "Feedback/drawer.zh": () => import("@/content/Feedback/drawer.zh.mdx"),
+  "Feedback/empty-state": () => import("@/content/Feedback/empty-state.mdx"),
+  "Feedback/empty-state.en": () =>
+    import("@/content/Feedback/empty-state.en.mdx"),
+  "Feedback/empty-state.zh": () =>
+    import("@/content/Feedback/empty-state.zh.mdx"),
   "Feedback/keyboard-shortcut-dialog": () =>
     import("@/content/Feedback/keyboard-shortcut-dialog.mdx"),
   "Feedback/keyboard-shortcut-dialog.en": () =>
@@ -2361,6 +2627,8 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Feedback/message-provider.en.mdx"),
   "Feedback/message-provider.zh": () =>
     import("@/content/Feedback/message-provider.zh.mdx"),
+  "Feedback/message.en": () => import("@/content/Feedback/message.en.mdx"),
+  "Feedback/message.zh": () => import("@/content/Feedback/message.zh.mdx"),
   "Feedback/modal-provider": () =>
     import("@/content/Feedback/modal-provider.mdx"),
   "Feedback/modal-provider.en": () =>
@@ -2395,28 +2663,6 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Feedback/spinner": () => import("@/content/Feedback/spinner.mdx"),
   "Feedback/spinner.en": () => import("@/content/Feedback/spinner.en.mdx"),
   "Feedback/spinner.zh": () => import("@/content/Feedback/spinner.zh.mdx"),
-  "Feedback/ui-alert": () => import("@/content/Feedback/ui-alert.mdx"),
-  "Feedback/ui-alert-dialog": () =>
-    import("@/content/Feedback/ui-alert-dialog.mdx"),
-  "Feedback/ui-chat-message": () =>
-    import("@/content/Feedback/ui-chat-message.mdx"),
-  "Feedback/ui-dialog": () => import("@/content/Feedback/ui-dialog.mdx"),
-  "Feedback/ui-drawer": () => import("@/content/Feedback/ui-drawer.mdx"),
-  "Feedback/ui-empty-state": () =>
-    import("@/content/Feedback/ui-empty-state.mdx"),
-  "Feedback/ui-keyboard-shortcut-dialog": () =>
-    import("@/content/Feedback/ui-keyboard-shortcut-dialog.mdx"),
-  "Feedback/ui-message": () => import("@/content/Feedback/ui-message.mdx"),
-  "Feedback/ui-notification": () =>
-    import("@/content/Feedback/ui-notification.mdx"),
-  "Feedback/ui-popconfirm": () =>
-    import("@/content/Feedback/ui-popconfirm.mdx"),
-  "Feedback/ui-progress": () => import("@/content/Feedback/ui-progress.mdx"),
-  "Feedback/ui-result": () => import("@/content/Feedback/ui-result.mdx"),
-  "Feedback/ui-sheet": () => import("@/content/Feedback/ui-sheet.mdx"),
-  "Feedback/ui-skeleton": () => import("@/content/Feedback/ui-skeleton.mdx"),
-  "Feedback/ui-sonner": () => import("@/content/Feedback/ui-sonner.mdx"),
-  "Feedback/ui-spinner": () => import("@/content/Feedback/ui-spinner.mdx"),
   "Form/autocomplete": () => import("@/content/Form/autocomplete.mdx"),
   "Form/autocomplete.en": () => import("@/content/Form/autocomplete.en.mdx"),
   "Form/autocomplete.zh": () => import("@/content/Form/autocomplete.zh.mdx"),
@@ -2430,12 +2676,17 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Form/cascader.en": () => import("@/content/Form/cascader.en.mdx"),
   "Form/cascader.zh": () => import("@/content/Form/cascader.zh.mdx"),
   "Form/chat-input": () => import("@/content/Form/chat-input.mdx"),
+  "Form/chat-input.en": () => import("@/content/Form/chat-input.en.mdx"),
+  "Form/chat-input.zh": () => import("@/content/Form/chat-input.zh.mdx"),
   "Form/checkbox": () => import("@/content/Form/checkbox.mdx"),
   "Form/checkbox.en": () => import("@/content/Form/checkbox.en.mdx"),
   "Form/checkbox.zh": () => import("@/content/Form/checkbox.zh.mdx"),
   "Form/color-picker": () => import("@/content/Form/color-picker.mdx"),
   "Form/color-picker.en": () => import("@/content/Form/color-picker.en.mdx"),
   "Form/color-picker.zh": () => import("@/content/Form/color-picker.zh.mdx"),
+  "Form/combobox": () => import("@/content/Form/combobox.mdx"),
+  "Form/combobox.en": () => import("@/content/Form/combobox.en.mdx"),
+  "Form/combobox.zh": () => import("@/content/Form/combobox.zh.mdx"),
   "Form/date-picker": () => import("@/content/Form/date-picker.mdx"),
   "Form/date-picker.en": () => import("@/content/Form/date-picker.en.mdx"),
   "Form/date-picker.zh": () => import("@/content/Form/date-picker.zh.mdx"),
@@ -2479,6 +2730,8 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Form/label.en": () => import("@/content/Form/label.en.mdx"),
   "Form/label.zh": () => import("@/content/Form/label.zh.mdx"),
   "Form/native-select": () => import("@/content/Form/native-select.mdx"),
+  "Form/native-select.en": () => import("@/content/Form/native-select.en.mdx"),
+  "Form/native-select.zh": () => import("@/content/Form/native-select.zh.mdx"),
   "Form/otp-field": () => import("@/content/Form/otp-field.mdx"),
   "Form/otp-field.en": () => import("@/content/Form/otp-field.en.mdx"),
   "Form/otp-field.zh": () => import("@/content/Form/otp-field.zh.mdx"),
@@ -2486,6 +2739,8 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Form/radio-group.en": () => import("@/content/Form/radio-group.en.mdx"),
   "Form/radio-group.zh": () => import("@/content/Form/radio-group.zh.mdx"),
   "Form/schema-form": () => import("@/content/Form/schema-form.mdx"),
+  "Form/schema-form.en": () => import("@/content/Form/schema-form.en.mdx"),
+  "Form/schema-form.zh": () => import("@/content/Form/schema-form.zh.mdx"),
   "Form/select": () => import("@/content/Form/select.mdx"),
   "Form/select.en": () => import("@/content/Form/select.en.mdx"),
   "Form/select.zh": () => import("@/content/Form/select.zh.mdx"),
@@ -2506,6 +2761,9 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Form/textarea": () => import("@/content/Form/textarea.mdx"),
   "Form/textarea.en": () => import("@/content/Form/textarea.en.mdx"),
   "Form/textarea.zh": () => import("@/content/Form/textarea.zh.mdx"),
+  "Form/time-picker": () => import("@/content/Form/time-picker.mdx"),
+  "Form/time-picker.en": () => import("@/content/Form/time-picker.en.mdx"),
+  "Form/time-picker.zh": () => import("@/content/Form/time-picker.zh.mdx"),
   "Form/toggle": () => import("@/content/Form/toggle.mdx"),
   "Form/toggle-group": () => import("@/content/Form/toggle-group.mdx"),
   "Form/toggle-group.en": () => import("@/content/Form/toggle-group.en.mdx"),
@@ -2515,43 +2773,14 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Form/tree-select": () => import("@/content/Form/tree-select.mdx"),
   "Form/tree-select.en": () => import("@/content/Form/tree-select.en.mdx"),
   "Form/tree-select.zh": () => import("@/content/Form/tree-select.zh.mdx"),
-  "Form/ui-autocomplete": () => import("@/content/Form/ui-autocomplete.mdx"),
-  "Form/ui-browse-input": () => import("@/content/Form/ui-browse-input.mdx"),
-  "Form/ui-calendar": () => import("@/content/Form/ui-calendar.mdx"),
-  "Form/ui-cascader": () => import("@/content/Form/ui-cascader.mdx"),
-  "Form/ui-chat-input": () => import("@/content/Form/ui-chat-input.mdx"),
-  "Form/ui-checkbox": () => import("@/content/Form/ui-checkbox.mdx"),
-  "Form/ui-color-picker": () => import("@/content/Form/ui-color-picker.mdx"),
-  "Form/ui-combobox": () => import("@/content/Form/ui-combobox.mdx"),
-  "Form/ui-date-picker": () => import("@/content/Form/ui-date-picker.mdx"),
-  "Form/ui-file-upload": () => import("@/content/Form/ui-file-upload.mdx"),
-  "Form/ui-form": () => import("@/content/Form/ui-form.mdx"),
-  "Form/ui-form-grid": () => import("@/content/Form/ui-form-grid.mdx"),
-  "Form/ui-form-list": () => import("@/content/Form/ui-form-list.mdx"),
-  "Form/ui-fullscreen-toggle": () =>
-    import("@/content/Form/ui-fullscreen-toggle.mdx"),
-  "Form/ui-icon-picker": () => import("@/content/Form/ui-icon-picker.mdx"),
-  "Form/ui-input": () => import("@/content/Form/ui-input.mdx"),
-  "Form/ui-input-number": () => import("@/content/Form/ui-input-number.mdx"),
-  "Form/ui-input-search": () => import("@/content/Form/ui-input-search.mdx"),
-  "Form/ui-label": () => import("@/content/Form/ui-label.mdx"),
-  "Form/ui-native-select": () => import("@/content/Form/ui-native-select.mdx"),
-  "Form/ui-otp-field": () => import("@/content/Form/ui-otp-field.mdx"),
-  "Form/ui-schema-form": () => import("@/content/Form/ui-schema-form.mdx"),
-  "Form/ui-select": () => import("@/content/Form/ui-select.mdx"),
-  "Form/ui-sequence-input": () =>
-    import("@/content/Form/ui-sequence-input.mdx"),
-  "Form/ui-slider": () => import("@/content/Form/ui-slider.mdx"),
-  "Form/ui-switch": () => import("@/content/Form/ui-switch.mdx"),
-  "Form/ui-tags-input": () => import("@/content/Form/ui-tags-input.mdx"),
-  "Form/ui-textarea": () => import("@/content/Form/ui-textarea.mdx"),
-  "Form/ui-time-picker": () => import("@/content/Form/ui-time-picker.mdx"),
-  "Form/ui-toggle": () => import("@/content/Form/ui-toggle.mdx"),
-  "Form/ui-tree-select": () => import("@/content/Form/ui-tree-select.mdx"),
   "General/affix": () => import("@/content/General/affix.mdx"),
   "General/affix.en": () => import("@/content/General/affix.en.mdx"),
   "General/affix.zh": () => import("@/content/General/affix.zh.mdx"),
   "General/audio-player": () => import("@/content/General/audio-player.mdx"),
+  "General/audio-player.en": () =>
+    import("@/content/General/audio-player.en.mdx"),
+  "General/audio-player.zh": () =>
+    import("@/content/General/audio-player.zh.mdx"),
   "General/button": () => import("@/content/General/button.mdx"),
   "General/button.en": () => import("@/content/General/button.en.mdx"),
   "General/button.zh": () => import("@/content/General/button.zh.mdx"),
@@ -2567,9 +2796,17 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "General/config-provider.zh": () =>
     import("@/content/General/config-provider.zh.mdx"),
   "General/direction": () => import("@/content/General/direction.mdx"),
+  "General/direction.en": () => import("@/content/General/direction.en.mdx"),
+  "General/direction.zh": () => import("@/content/General/direction.zh.mdx"),
   "General/icon": () => import("@/content/General/icon.mdx"),
+  "General/icon.en": () => import("@/content/General/icon.en.mdx"),
+  "General/icon.zh": () => import("@/content/General/icon.zh.mdx"),
   "General/infinite-scroll": () =>
     import("@/content/General/infinite-scroll.mdx"),
+  "General/infinite-scroll.en": () =>
+    import("@/content/General/infinite-scroll.en.mdx"),
+  "General/infinite-scroll.zh": () =>
+    import("@/content/General/infinite-scroll.zh.mdx"),
   "General/keyboard-shortcut": () =>
     import("@/content/General/keyboard-shortcut.mdx"),
   "General/keyboard-shortcut.en": () =>
@@ -2577,18 +2814,31 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "General/keyboard-shortcut.zh": () =>
     import("@/content/General/keyboard-shortcut.zh.mdx"),
   "General/masonry": () => import("@/content/General/masonry.mdx"),
+  "General/masonry.en": () => import("@/content/General/masonry.en.mdx"),
+  "General/masonry.zh": () => import("@/content/General/masonry.zh.mdx"),
   "General/mentions": () => import("@/content/General/mentions.mdx"),
   "General/mentions.en": () => import("@/content/General/mentions.en.mdx"),
   "General/mentions.zh": () => import("@/content/General/mentions.zh.mdx"),
   "General/mobile-pull-refresh": () =>
     import("@/content/General/mobile-pull-refresh.mdx"),
+  "General/mobile-pull-refresh.en": () =>
+    import("@/content/General/mobile-pull-refresh.en.mdx"),
+  "General/mobile-pull-refresh.zh": () =>
+    import("@/content/General/mobile-pull-refresh.zh.mdx"),
   "General/mobile-swipe-action": () =>
     import("@/content/General/mobile-swipe-action.mdx"),
+  "General/mobile-swipe-action.en": () =>
+    import("@/content/General/mobile-swipe-action.en.mdx"),
+  "General/mobile-swipe-action.zh": () =>
+    import("@/content/General/mobile-swipe-action.zh.mdx"),
   "General/number-ticker": () => import("@/content/General/number-ticker.mdx"),
   "General/number-ticker.en": () =>
     import("@/content/General/number-ticker.en.mdx"),
   "General/number-ticker.zh": () =>
     import("@/content/General/number-ticker.zh.mdx"),
+  "General/rating": () => import("@/content/General/rating.mdx"),
+  "General/rating.en": () => import("@/content/General/rating.en.mdx"),
+  "General/rating.zh": () => import("@/content/General/rating.zh.mdx"),
   "General/sequence-preview": () =>
     import("@/content/General/sequence-preview.mdx"),
   "General/sequence-preview.en": () =>
@@ -2596,6 +2846,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "General/sequence-preview.zh": () =>
     import("@/content/General/sequence-preview.zh.mdx"),
   "General/signature-pad": () => import("@/content/General/signature-pad.mdx"),
+  "General/signature-pad.en": () =>
+    import("@/content/General/signature-pad.en.mdx"),
+  "General/signature-pad.zh": () =>
+    import("@/content/General/signature-pad.zh.mdx"),
   "General/spin": () => import("@/content/General/spin.mdx"),
   "General/spin.en": () => import("@/content/General/spin.en.mdx"),
   "General/spin.zh": () => import("@/content/General/spin.zh.mdx"),
@@ -2604,75 +2858,31 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/General/split-button.en.mdx"),
   "General/split-button.zh": () =>
     import("@/content/General/split-button.zh.mdx"),
+  "General/tour": () => import("@/content/General/tour.mdx"),
+  "General/tour.en": () => import("@/content/General/tour.en.mdx"),
+  "General/tour.zh": () => import("@/content/General/tour.zh.mdx"),
+  "General/transfer": () => import("@/content/General/transfer.mdx"),
+  "General/transfer.en": () => import("@/content/General/transfer.en.mdx"),
+  "General/transfer.zh": () => import("@/content/General/transfer.zh.mdx"),
   "General/typography": () => import("@/content/General/typography.mdx"),
   "General/typography.en": () => import("@/content/General/typography.en.mdx"),
   "General/typography.zh": () => import("@/content/General/typography.zh.mdx"),
-  "General/ui-affix": () => import("@/content/General/ui-affix.mdx"),
-  "General/ui-audio-player": () =>
-    import("@/content/General/ui-audio-player.mdx"),
-  "General/ui-button": () => import("@/content/General/ui-button.mdx"),
-  "General/ui-collapsible": () =>
-    import("@/content/General/ui-collapsible.mdx"),
-  "General/ui-config-provider": () =>
-    import("@/content/General/ui-config-provider.mdx"),
-  "General/ui-direction": () => import("@/content/General/ui-direction.mdx"),
-  "General/ui-form-section": () =>
-    import("@/content/General/ui-form-section.mdx"),
-  "General/ui-grid-layout": () =>
-    import("@/content/General/ui-grid-layout.mdx"),
-  "General/ui-icon": () => import("@/content/General/ui-icon.mdx"),
-  "General/ui-image-viewer": () =>
-    import("@/content/General/ui-image-viewer.mdx"),
-  "General/ui-infinite-scroll": () =>
-    import("@/content/General/ui-infinite-scroll.mdx"),
-  "General/ui-input-group": () =>
-    import("@/content/General/ui-input-group.mdx"),
-  "General/ui-keyboard-shortcut": () =>
-    import("@/content/General/ui-keyboard-shortcut.mdx"),
-  "General/ui-masonry": () => import("@/content/General/ui-masonry.mdx"),
-  "General/ui-mentions": () => import("@/content/General/ui-mentions.mdx"),
-  "General/ui-message-provider": () =>
-    import("@/content/General/ui-message-provider.mdx"),
-  "General/ui-mobile-pull-refresh": () =>
-    import("@/content/General/ui-mobile-pull-refresh.mdx"),
-  "General/ui-mobile-swipe-action": () =>
-    import("@/content/General/ui-mobile-swipe-action.mdx"),
-  "General/ui-modal-provider": () =>
-    import("@/content/General/ui-modal-provider.mdx"),
-  "General/ui-number-ticker": () =>
-    import("@/content/General/ui-number-ticker.mdx"),
-  "General/ui-radio-group": () =>
-    import("@/content/General/ui-radio-group.mdx"),
-  "General/ui-rating": () => import("@/content/General/ui-rating.mdx"),
-  "General/ui-segmented-control": () =>
-    import("@/content/General/ui-segmented-control.mdx"),
-  "General/ui-sequence-preview": () =>
-    import("@/content/General/ui-sequence-preview.mdx"),
-  "General/ui-signature-pad": () =>
-    import("@/content/General/ui-signature-pad.mdx"),
-  "General/ui-spin": () => import("@/content/General/ui-spin.mdx"),
-  "General/ui-split-button": () =>
-    import("@/content/General/ui-split-button.mdx"),
-  "General/ui-toggle-group": () =>
-    import("@/content/General/ui-toggle-group.mdx"),
-  "General/ui-tour": () => import("@/content/General/ui-tour.mdx"),
-  "General/ui-transfer": () => import("@/content/General/ui-transfer.mdx"),
-  "General/ui-tree-view": () => import("@/content/General/ui-tree-view.mdx"),
-  "General/ui-typography": () => import("@/content/General/ui-typography.mdx"),
-  "General/ui-user-browse": () =>
-    import("@/content/General/ui-user-browse.mdx"),
-  "General/ui-video-player": () =>
-    import("@/content/General/ui-video-player.mdx"),
-  "General/ui-with-permission": () =>
-    import("@/content/General/ui-with-permission.mdx"),
   "General/user-browse": () => import("@/content/General/user-browse.mdx"),
   "General/user-browse.en": () =>
     import("@/content/General/user-browse.en.mdx"),
   "General/user-browse.zh": () =>
     import("@/content/General/user-browse.zh.mdx"),
   "General/video-player": () => import("@/content/General/video-player.mdx"),
+  "General/video-player.en": () =>
+    import("@/content/General/video-player.en.mdx"),
+  "General/video-player.zh": () =>
+    import("@/content/General/video-player.zh.mdx"),
   "General/with-permission": () =>
     import("@/content/General/with-permission.mdx"),
+  "General/with-permission.en": () =>
+    import("@/content/General/with-permission.en.mdx"),
+  "General/with-permission.zh": () =>
+    import("@/content/General/with-permission.zh.mdx"),
   "Layout/aspect-ratio": () => import("@/content/Layout/aspect-ratio.mdx"),
   "Layout/aspect-ratio.en": () =>
     import("@/content/Layout/aspect-ratio.en.mdx"),
@@ -2710,19 +2920,9 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Layout/split-pane": () => import("@/content/Layout/split-pane.mdx"),
   "Layout/split-pane.en": () => import("@/content/Layout/split-pane.en.mdx"),
   "Layout/split-pane.zh": () => import("@/content/Layout/split-pane.zh.mdx"),
-  "Layout/ui-aspect-ratio": () =>
-    import("@/content/Layout/ui-aspect-ratio.mdx"),
-  "Layout/ui-divider": () => import("@/content/Layout/ui-divider.mdx"),
-  "Layout/ui-flex": () => import("@/content/Layout/ui-flex.mdx"),
-  "Layout/ui-grid": () => import("@/content/Layout/ui-grid.mdx"),
-  "Layout/ui-page-container": () =>
-    import("@/content/Layout/ui-page-container.mdx"),
-  "Layout/ui-resizable": () => import("@/content/Layout/ui-resizable.mdx"),
-  "Layout/ui-scroll-area": () => import("@/content/Layout/ui-scroll-area.mdx"),
-  "Layout/ui-separator": () => import("@/content/Layout/ui-separator.mdx"),
-  "Layout/ui-space": () => import("@/content/Layout/ui-space.mdx"),
-  "Layout/ui-split-pane": () => import("@/content/Layout/ui-split-pane.mdx"),
   "Navigation/anchor": () => import("@/content/Navigation/anchor.mdx"),
+  "Navigation/anchor.en": () => import("@/content/Navigation/anchor.en.mdx"),
+  "Navigation/anchor.zh": () => import("@/content/Navigation/anchor.zh.mdx"),
   "Navigation/back-top": () => import("@/content/Navigation/back-top.mdx"),
   "Navigation/back-top.en": () =>
     import("@/content/Navigation/back-top.en.mdx"),
@@ -2751,6 +2951,9 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/Navigation/dropdown-menu.en.mdx"),
   "Navigation/dropdown-menu.zh": () =>
     import("@/content/Navigation/dropdown-menu.zh.mdx"),
+  "Navigation/fab": () => import("@/content/Navigation/fab.mdx"),
+  "Navigation/fab.en": () => import("@/content/Navigation/fab.en.mdx"),
+  "Navigation/fab.zh": () => import("@/content/Navigation/fab.zh.mdx"),
   "Navigation/menu": () => import("@/content/Navigation/menu.mdx"),
   "Navigation/menu.en": () => import("@/content/Navigation/menu.en.mdx"),
   "Navigation/menu.zh": () => import("@/content/Navigation/menu.zh.mdx"),
@@ -2777,27 +2980,6 @@ export const mdxLoaders: Record<string, MdxLoader> = {
   "Navigation/tabs": () => import("@/content/Navigation/tabs.mdx"),
   "Navigation/tabs.en": () => import("@/content/Navigation/tabs.en.mdx"),
   "Navigation/tabs.zh": () => import("@/content/Navigation/tabs.zh.mdx"),
-  "Navigation/ui-anchor": () => import("@/content/Navigation/ui-anchor.mdx"),
-  "Navigation/ui-back-top": () =>
-    import("@/content/Navigation/ui-back-top.mdx"),
-  "Navigation/ui-breadcrumb": () =>
-    import("@/content/Navigation/ui-breadcrumb.mdx"),
-  "Navigation/ui-command": () => import("@/content/Navigation/ui-command.mdx"),
-  "Navigation/ui-context-menu": () =>
-    import("@/content/Navigation/ui-context-menu.mdx"),
-  "Navigation/ui-dot": () => import("@/content/Navigation/ui-dot.mdx"),
-  "Navigation/ui-dropdown-menu": () =>
-    import("@/content/Navigation/ui-dropdown-menu.mdx"),
-  "Navigation/ui-fab": () => import("@/content/Navigation/ui-fab.mdx"),
-  "Navigation/ui-menu": () => import("@/content/Navigation/ui-menu.mdx"),
-  "Navigation/ui-menubar": () => import("@/content/Navigation/ui-menubar.mdx"),
-  "Navigation/ui-navigation-menu": () =>
-    import("@/content/Navigation/ui-navigation-menu.mdx"),
-  "Navigation/ui-pagination": () =>
-    import("@/content/Navigation/ui-pagination.mdx"),
-  "Navigation/ui-sidebar": () => import("@/content/Navigation/ui-sidebar.mdx"),
-  "Navigation/ui-stepper": () => import("@/content/Navigation/ui-stepper.mdx"),
-  "Navigation/ui-tabs": () => import("@/content/Navigation/ui-tabs.mdx"),
   "System Layout/admin-breadcrumb": () =>
     import("@/content/System Layout/admin-breadcrumb.mdx"),
   "System Layout/admin-breadcrumb.en": () =>
@@ -2812,6 +2994,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/admin-header.zh.mdx"),
   "System Layout/admin-shell": () =>
     import("@/content/System Layout/admin-shell.mdx"),
+  "System Layout/admin-shell.en": () =>
+    import("@/content/System Layout/admin-shell.en.mdx"),
+  "System Layout/admin-shell.zh": () =>
+    import("@/content/System Layout/admin-shell.zh.mdx"),
   "System Layout/admin-sider": () =>
     import("@/content/System Layout/admin-sider.mdx"),
   "System Layout/admin-sider.en": () =>
@@ -2832,6 +3018,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/app-shell.zh.mdx"),
   "System Layout/article-layout": () =>
     import("@/content/System Layout/article-layout.mdx"),
+  "System Layout/article-layout.en": () =>
+    import("@/content/System Layout/article-layout.en.mdx"),
+  "System Layout/article-layout.zh": () =>
+    import("@/content/System Layout/article-layout.zh.mdx"),
   "System Layout/auth-layout": () =>
     import("@/content/System Layout/auth-layout.mdx"),
   "System Layout/auth-layout.en": () =>
@@ -2846,6 +3036,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/blank-layout.zh.mdx"),
   "System Layout/chat-layout": () =>
     import("@/content/System Layout/chat-layout.mdx"),
+  "System Layout/chat-layout.en": () =>
+    import("@/content/System Layout/chat-layout.en.mdx"),
+  "System Layout/chat-layout.zh": () =>
+    import("@/content/System Layout/chat-layout.zh.mdx"),
   "System Layout/dashboard-layout": () =>
     import("@/content/System Layout/dashboard-layout.mdx"),
   "System Layout/dashboard-layout.en": () =>
@@ -2866,60 +3060,16 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/dialog-form-body.zh.mdx"),
   "System Layout/embed-layout": () =>
     import("@/content/System Layout/embed-layout.mdx"),
+  "System Layout/embed-layout.en": () =>
+    import("@/content/System Layout/embed-layout.en.mdx"),
+  "System Layout/embed-layout.zh": () =>
+    import("@/content/System Layout/embed-layout.zh.mdx"),
   "System Layout/error-layout": () =>
     import("@/content/System Layout/error-layout.mdx"),
   "System Layout/error-layout.en": () =>
     import("@/content/System Layout/error-layout.en.mdx"),
   "System Layout/error-layout.zh": () =>
     import("@/content/System Layout/error-layout.zh.mdx"),
-  "System Layout/layout-admin-breadcrumb": () =>
-    import("@/content/System Layout/layout-admin-breadcrumb.mdx"),
-  "System Layout/layout-admin-header": () =>
-    import("@/content/System Layout/layout-admin-header.mdx"),
-  "System Layout/layout-admin-shell": () =>
-    import("@/content/System Layout/layout-admin-shell.mdx"),
-  "System Layout/layout-admin-sider": () =>
-    import("@/content/System Layout/layout-admin-sider.mdx"),
-  "System Layout/layout-admin-tabs": () =>
-    import("@/content/System Layout/layout-admin-tabs.mdx"),
-  "System Layout/layout-app-shell": () =>
-    import("@/content/System Layout/layout-app-shell.mdx"),
-  "System Layout/layout-article-layout": () =>
-    import("@/content/System Layout/layout-article-layout.mdx"),
-  "System Layout/layout-auth-layout": () =>
-    import("@/content/System Layout/layout-auth-layout.mdx"),
-  "System Layout/layout-blank-layout": () =>
-    import("@/content/System Layout/layout-blank-layout.mdx"),
-  "System Layout/layout-chat-layout": () =>
-    import("@/content/System Layout/layout-chat-layout.mdx"),
-  "System Layout/layout-dashboard-layout": () =>
-    import("@/content/System Layout/layout-dashboard-layout.mdx"),
-  "System Layout/layout-detail-layout": () =>
-    import("@/content/System Layout/layout-detail-layout.mdx"),
-  "System Layout/layout-dialog-form-body": () =>
-    import("@/content/System Layout/layout-dialog-form-body.mdx"),
-  "System Layout/layout-embed-layout": () =>
-    import("@/content/System Layout/layout-embed-layout.mdx"),
-  "System Layout/layout-error-layout": () =>
-    import("@/content/System Layout/layout-error-layout.mdx"),
-  "System Layout/layout-master-detail-layout": () =>
-    import("@/content/System Layout/layout-master-detail-layout.mdx"),
-  "System Layout/layout-master-detail-tabs": () =>
-    import("@/content/System Layout/layout-master-detail-tabs.mdx"),
-  "System Layout/layout-print-layout": () =>
-    import("@/content/System Layout/layout-print-layout.mdx"),
-  "System Layout/layout-print-template-layout": () =>
-    import("@/content/System Layout/layout-print-template-layout.mdx"),
-  "System Layout/layout-public-layout": () =>
-    import("@/content/System Layout/layout-public-layout.mdx"),
-  "System Layout/layout-region-layout": () =>
-    import("@/content/System Layout/layout-region-layout.mdx"),
-  "System Layout/layout-split-screen": () =>
-    import("@/content/System Layout/layout-split-screen.mdx"),
-  "System Layout/layout-top-bar": () =>
-    import("@/content/System Layout/layout-top-bar.mdx"),
-  "System Layout/layout-wizard-layout": () =>
-    import("@/content/System Layout/layout-wizard-layout.mdx"),
   "System Layout/master-detail-layout": () =>
     import("@/content/System Layout/master-detail-layout.mdx"),
   "System Layout/master-detail-layout.en": () =>
@@ -2932,6 +3082,12 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/master-detail-tabs.en.mdx"),
   "System Layout/master-detail-tabs.zh": () =>
     import("@/content/System Layout/master-detail-tabs.zh.mdx"),
+  "System Layout/navigation-tabs-bar": () =>
+    import("@/content/System Layout/navigation-tabs-bar.mdx"),
+  "System Layout/navigation-tabs-bar.en": () =>
+    import("@/content/System Layout/navigation-tabs-bar.en.mdx"),
+  "System Layout/navigation-tabs-bar.zh": () =>
+    import("@/content/System Layout/navigation-tabs-bar.zh.mdx"),
   "System Layout/print-layout": () =>
     import("@/content/System Layout/print-layout.mdx"),
   "System Layout/print-layout.en": () =>
@@ -2940,6 +3096,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/print-layout.zh.mdx"),
   "System Layout/print-template-layout": () =>
     import("@/content/System Layout/print-template-layout.mdx"),
+  "System Layout/print-template-layout.en": () =>
+    import("@/content/System Layout/print-template-layout.en.mdx"),
+  "System Layout/print-template-layout.zh": () =>
+    import("@/content/System Layout/print-template-layout.zh.mdx"),
   "System Layout/public-layout": () =>
     import("@/content/System Layout/public-layout.mdx"),
   "System Layout/public-layout.en": () =>
@@ -2954,6 +3114,10 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/region-layout.zh.mdx"),
   "System Layout/split-screen": () =>
     import("@/content/System Layout/split-screen.mdx"),
+  "System Layout/split-screen.en": () =>
+    import("@/content/System Layout/split-screen.en.mdx"),
+  "System Layout/split-screen.zh": () =>
+    import("@/content/System Layout/split-screen.zh.mdx"),
   "System Layout/top-bar": () => import("@/content/System Layout/top-bar.mdx"),
   "System Layout/top-bar.en": () =>
     import("@/content/System Layout/top-bar.en.mdx"),
@@ -2961,4 +3125,8 @@ export const mdxLoaders: Record<string, MdxLoader> = {
     import("@/content/System Layout/top-bar.zh.mdx"),
   "System Layout/wizard-layout": () =>
     import("@/content/System Layout/wizard-layout.mdx"),
+  "System Layout/wizard-layout.en": () =>
+    import("@/content/System Layout/wizard-layout.en.mdx"),
+  "System Layout/wizard-layout.zh": () =>
+    import("@/content/System Layout/wizard-layout.zh.mdx"),
 };

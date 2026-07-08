@@ -1,0 +1,43 @@
+import { MobileNavigation } from "@/components/mobile/mobile-navigation";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileNavigation Mobile Mobile Navigation
+
+> 业务组件
+
+Mobile Mobile Navigation — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Mobile Mobile Navigation相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobileNavigation } from "@/components/mobile/mobile-navigation"
+
+export function Basic() {
+  return <MobileNavigation />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileNavigation
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `items`     | `{`                    | —       | 选项/数据项列表   |
+| `label`     | `string`               | —       | 标签文本          |
+| `href`      | `string`               | —       | 链接地址          |
+| `icon`      | `React.ElementType`    | —       | 图标元素          |
+| `active`    | `boolean`              | —       |                   |
+| `onClick`   | `() => void`           | —       | 点击回调          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-mobile-navigation--docs)。

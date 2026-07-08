@@ -1,0 +1,46 @@
+import { MobileActionSheet } from "@/components/business/mobile-action-sheet";
+import { CodeBlock } from "@/components/code-block";
+
+# MobileActionSheet Mobile Action Sheet
+
+> Domain-specific business components for ERP scenarios.
+
+<MobileActionSheet
+  open={open}
+  onOpenChange={setOpen}
+  actions={[
+    { label: "编辑", onClick: edit },
+    { label: "删除", onClick: del, danger: true },
+  ]}
+/>
+MobileActionSheet — mobile action sheet component.
+
+## When to Use
+
+Use when you need a mobile action sheet.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobileActionSheet } from "@/components/business/mobile-action-sheet"
+
+export function Basic() {
+  return <MobileActionSheet />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobileActionSheet
+
+| Prop           | Type                   | Default | Description                       |
+| -------------- | ---------------------- | ------- | --------------------------------- |
+| `className`    | `string`               | —       | Custom CSS class                  |
+| `open`         | `boolean`              | —       | Open state (controlled)           |
+| `onOpenChange` | `() => void`           | —       | Callback when open state changes  |
+| `actions`      | `() => void`           | —       |                                   |
+| ...rest        | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

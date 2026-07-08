@@ -1,0 +1,40 @@
+import { GaugeChart } from "@/components/business/gauge-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# GaugeChart Gauge Chart
+
+> Domain-specific business components for ERP scenarios.
+
+GaugeChart — gauge chart component.
+
+## When to Use
+
+Use when you need a gauge chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { GaugeChart } from "@/components/business/gauge-chart"
+
+export function Basic() {
+  return <GaugeChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### GaugeChart
+
+| Prop        | Type                   | Default   | Description                       |
+| ----------- | ---------------------- | --------- | --------------------------------- |
+| `className` | `string`               | —         | Custom CSS class                  |
+| `value`     | `number`               | `64`      | Current value.                    |
+| `min`       | `number`               | `0`       | Range floor.                      |
+| `max`       | `number`               | `100`     | Range ceiling.                    |
+| `label`     | `string`               | —         | Caption below the gauge.          |
+| `color`     | `string`               | `#3b82f6` | Arc color.                        |
+| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

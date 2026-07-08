@@ -1,49 +1,64 @@
-import { InfiniteScroll } from "@/components/ui/infinite-scroll"
-import { CodeBlock } from "@/components/code-block"
+import { InfiniteScroll } from "@/components/ui/infinite-scroll";
+import { CodeBlock } from "@/components/code-block";
 
-# InfiniteScroll Infinite Scroll
+# InfiniteScroll 无限滚动
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 滚动加载更多 / Scroll-based load-more wrapper.
 
-Infinite Scroll — Chaos UI 的通用基础组件。
-InfiniteScroll — a general-purpose primitives used across the app. from Chaos UI.
+基于 IntersectionObserver 的滚动加载更多包装器，哨兵元素进入视口时触发加载。
+Scroll-based load-more wrapper using IntersectionObserver; triggers onLoadMore when a sentinel enters the viewport.
 
 ## 何时使用 / When to Use
 
-适用于Infinite Scroll相关场景。
-
-Use when you need an infinite scroll.
+长列表需要分页加载更多数据时使用，替代传统分页器。
+Use for paginated long lists that need to load more data on scroll, replacing traditional pagination.
 
 ## 代码示例 / Examples
 
 ### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { InfiniteScroll } from "@/components/ui/infinite-scroll"
+import { useState, useCallback } from "react"
 
 export function Basic() {
-  return <InfiniteScroll />
-}`} lang="tsx" />
+  const [items, setItems] = useState(Array.from({ length: 20 }, (_, i) => i))
+  const [hasMore, setHasMore] = useState(true)
+  const [loading, setLoading] = useState(false)
 
+const loadMore = useCallback(() => {
+setLoading(true)
+setTimeout(() => {
+setItems(prev => [...prev, ...Array.from({ length: 10 }, (_, i) => prev.length + i)])
+if (items.length >= 100) setHasMore(false)
+setLoading(false)
+}, 1000)
+}, [items.length])
+
+return (
+<InfiniteScroll onLoadMore={loadMore} hasMore={hasMore} loading={loading}>
+{items.map(i => <div key={i}>Item {i}</div>)}
+</InfiniteScroll>
+)
+}`} lang="tsx" />
 
 ## API / Props
 
 ### InfiniteScroll
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `onLoadMore` | `() => void` | — | Called when the sentinel enters the viewport and more data is available / 哨兵进入视口且有更多数据时调用 |
-| `hasMore` | `boolean` | `true` | Whether more data exists / 是否还有更多数据 |
-| `loading` | `boolean` | `false` | Whether currently loading / 是否正在加载 |
-| `loader` | `React.ReactNode` | — | Custom loading indicator / 自定义加载指示器 |
-| `threshold` | `string` | `200px` | Distance from viewport bottom to trigger (CSS margin string, default "200px") / 触发距离 |
-| `scrollContainer` | `HTMLElement \| null` | — | Custom scroll container element / 自定义滚动容器 |
-| `endMessage` | `React.ReactNode` | `No more data` | Text shown when no more data / 无更多数据时显示的文本 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop              | Type                  | Default          | 说明 / Description                          |
+| ----------------- | --------------------- | ---------------- | ------------------------------------------- |
+| `onLoadMore`      | `() => void`          | —                | Load more callback / 加载更多回调           |
+| `hasMore`         | `boolean`             | `true`           | Whether more data exists / 是否还有更多数据 |
+| `loading`         | `boolean`             | `false`          | Whether currently loading / 是否正在加载    |
+| `loader`          | `React.ReactNode`     | —                | Custom loading indicator / 自定义加载指示器 |
+| `threshold`       | `string`              | `"200px"`        | Trigger distance / 触发距离                 |
+| `scrollContainer` | `HTMLElement \| null` | —                | Custom scroll container / 自定义滚动容器    |
+| `endMessage`      | `React.ReactNode`     | `"No more data"` | End message / 无更多数据提示                |
+| `children`        | `React.ReactNode`     | —                | Scroll content / 滚动内容                   |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **IntersectionObserver**: 使用原生 IntersectionObserver API，需浏览器支持。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-infinitescroll--docs)。

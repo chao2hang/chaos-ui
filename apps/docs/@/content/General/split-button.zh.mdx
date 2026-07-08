@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # SplitButton 分裂按钮
 
-> 通用基础组件
+> 分割按钮
 
-分裂按钮 — Chaos UI 的通用基础组件。
+带主操作区域和下拉菜单触发器的分割按钮，主按钮执行主要操作，下拉提供更多选项。
 
 ## 何时使用
 
-需要分裂按钮功能时使用本组件。
+主操作明确但有多个次要操作时使用，如"保存"主按钮 + "另存为/导出"下拉。
 
 ## 代码示例
 
@@ -18,88 +18,61 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { SplitButton } from "@/components/ui/split-button"
 
 export function Basic() {
-  return <SplitButton />
+  return (
+    <SplitButton onClick={() => console.log("save")}>
+      Save
+    </SplitButton>
+  )
 }`} lang="tsx" />
 
-### 变体
+### 带下拉操作
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
-<div className="flex flex-wrap items-center gap-3">
-  <SplitButton variant="default">Default</SplitButton>
-  <SplitButton variant="destructive">Destructive</SplitButton>
-  <SplitButton variant="outline">Outline</SplitButton>
-  <SplitButton variant="secondary">Secondary</SplitButton>
-  <SplitButton variant="ghost">Ghost</SplitButton>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { SplitButton } from "@/components/ui/split-button"
 
-### 尺寸
-
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <SplitButton size="sm">Sm</SplitButton>
-  <SplitButton size="default">Default</SplitButton>
-  <SplitButton size="lg">Lg</SplitButton>
-</div>`}
-  lang="tsx"
-/>
-
-## 样式变体
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
-
-**变体**
-
-| Variant   | 说明             | 默认 |
-| --------- | ---------------- | ---- |
-| `default` | 默认样式         | ✓    |
-| `outline` | 描边样式         |      |
-| `ghost`   | 幽灵(无背景)样式 |      |
-
-**变体**
-
-| Variant       | 说明             | 默认 |
-| ------------- | ---------------- | ---- |
-| `default`     | 默认样式         | ✓    |
-| `destructive` | 危险/删除样式    |      |
-| `outline`     | 描边样式         |      |
-| `secondary`   | 次要样式         |      |
-| `ghost`       | 幽灵(无背景)样式 |      |
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+export function WithActions() {
+  return (
+    <SplitButton
+      onClick={() => console.log("save")}
+      actions={[
+        { label: "Save As", onClick: () => console.log("save-as") },
+        { label: "Export PDF", onClick: () => console.log("export") },
+        { label: "Delete", destructive: true, separator: true, onClick: () => console.log("delete") },
+      ]}
+    >
+      Save
+    </SplitButton>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### SplitButton
 
-| Prop        | Type                   | Default | 说明                                    |
-| ----------- | ---------------------- | ------- | --------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名                          |
-| `label`     | `React.ReactNode`      | —       | Main button label                       |
-| `onClick`   | `() => void`           | —       | Main button click handler               |
-| `items`     | `SplitButtonItem[]`    | —       | Dropdown menu items                     |
-| `onSelect`  | `() => void`           | —       | Called when a dropdown item is selected |
-| `disabled`  | `boolean`              | —       | 是否禁用                                |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                       |
+| Prop       | Type                                                                | Default   | 说明                                       |
+| ---------- | ------------------------------------------------------------------- | --------- | ------------------------------------------ |
+| `children` | `React.ReactNode`                                                   | —         | Main button label / 主按钮文本 (required)  |
+| `onClick`  | `() => void`                                                        | —         | Main button click handler / 主按钮点击回调 |
+| `actions`  | `SplitButtonAction[]`                                               | —         | Dropdown actions / 下拉操作                |
+| `variant`  | `"default" \| "outline" \| "secondary" \| "ghost" \| "destructive"` | `default` | Button variant / 按钮变体                  |
+| `size`     | `"default" \| "xs" \| "sm" \| "lg"`                                 | `default` | Button size / 按钮大小                     |
+| `disabled` | `boolean`                                                           | `false`   | Disable / 禁用                             |
+| `icon`     | `React.ReactNode`                                                   | —         | Main button icon / 主按钮图标              |
+| `loading`  | `boolean`                                                           | `false`   | Loading state / 加载状态                   |
+
+### SplitButtonAction
+
+| Prop          | Type              | 说明                               |
+| ------------- | ----------------- | ---------------------------------- |
+| `label`       | `string`          | Action label / 操作文本 (required) |
+| `icon`        | `React.ReactNode` | Leading icon / 前置图标            |
+| `onClick`     | `() => void`      | Click handler / 点击回调           |
+| `disabled`    | `boolean`         | Disabled / 禁用                    |
+| `destructive` | `boolean`         | Destructive styling / 危险样式     |
+| `separator`   | `boolean`         | Show separator before / 显示分隔符 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **基于 Button**: 主按钮和下拉触发器复用 Button 组件的 variant/size 系统。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-split-button--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-splitbutton--docs)。

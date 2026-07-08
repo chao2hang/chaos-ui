@@ -1,0 +1,40 @@
+import { CheckoutBar } from "@/components/business/checkout-bar";
+import { CodeBlock } from "@/components/code-block";
+
+# CheckoutBar Checkout Bar
+
+> Domain-specific business components for ERP scenarios.
+
+CheckoutBar — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a checkout bar.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CheckoutBar } from "@/components/business/checkout-bar"
+
+export function Basic() {
+  return <CheckoutBar />
+}`} lang="tsx" />
+
+## API / Props
+
+### CheckoutBar
+
+| Prop        | Type                   | Default   | Description                                            |
+| ----------- | ---------------------- | --------- | ------------------------------------------------------ |
+| `className` | `string`               | —         | Custom CSS class                                       |
+| `total`     | `string \| number`     | —         | Total amount to display.                               |
+| `currency`  | `string`               | `¥`       | Currency symbol or code.                               |
+| `payLabel`  | `string`               | `Pay Now` | Checkout button label. Default "Pay Now".              |
+| `isLoading` | `boolean`              | —         | Whether the checkout is in a loading/processing state. |
+| `onPay`     | `() => void`           | —         | Called when the user clicks the pay button.            |
+| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes                      |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

@@ -1,0 +1,43 @@
+import { FeatureTour } from "@/components/business/feature-tour";
+import { CodeBlock } from "@/components/code-block";
+
+# FeatureTour Feature Tour
+
+> Domain-specific business components for ERP scenarios.
+
+<FeatureTour
+  open
+  steps={[{ target: "#btn", title: "开始", content: "点击此处开始" }]}
+  onClose={() => {}}
+/>
+FeatureTour — feature tour component.
+
+## When to Use
+
+Use when you need a feature tour.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FeatureTour } from "@/components/business/feature-tour"
+
+export function Basic() {
+  return <FeatureTour />
+}`} lang="tsx" />
+
+## API / Props
+
+### FeatureTour
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `steps`     | `Array<T>`             | —       |                                   |
+| `open`      | `boolean`              | —       | Open state (controlled)           |
+| `onClose`   | `() => void`           | —       | Close handler                     |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

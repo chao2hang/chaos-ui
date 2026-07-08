@@ -1,4 +1,4 @@
-import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { MobileTextarea } from "@/components/mobile/mobile-textarea";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileTextarea 移动端文本域
@@ -15,7 +15,7 @@ import { CodeBlock } from "@/components/code-block";
 
 ### 基础用法
 
-<CodeBlock code={`import { MobileTextarea } from "@/components/business/mobile-textarea"
+<CodeBlock code={`import { MobileTextarea } from "@/components/mobile/mobile-textarea"
 
 export function Basic() {
   return <MobileTextarea />
@@ -25,14 +25,13 @@ export function Basic() {
 
 ### MobileTextarea
 
-| Prop        | Type                               | Default | 说明                       |
-| ----------- | ---------------------------------- | ------- | -------------------------- |
-| `className` | `string`                           | —       | 自定义样式类名             |
-| ...rest     | `React.ComponentProps<"textarea">` | —       | 透传 `<textarea>` 原生属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **原生属性**: 继承所有 `<textarea>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-textarea--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobiletextarea--docs)。

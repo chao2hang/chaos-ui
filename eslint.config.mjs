@@ -164,8 +164,8 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    // 临时覆盖率检查脚本(cjs),使用 require 是合法的
-    files: ["cov-check.cjs", "cov-detail.cjs"],
+    // 临时覆盖率检查脚本和工具脚本(cjs)，使用 require 是合法的
+    files: ["cov-check.cjs", "cov-detail.cjs", "scripts/**/*.cjs"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
     },

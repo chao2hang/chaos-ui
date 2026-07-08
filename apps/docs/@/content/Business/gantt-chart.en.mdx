@@ -1,0 +1,44 @@
+import { GanttChart } from "@/components/business/gantt-chart";
+import { CodeBlock } from "@/components/code-block";
+
+# GanttChart Gantt Chart
+
+> Domain-specific business components for ERP scenarios.
+
+<GanttChart
+  tasks={[{ id: "1", name: "设计", start: "2026-06-01", end: "2026-06-05" }]}
+/>
+GanttChart — gantt chart component.
+
+## When to Use
+
+Use when you need a gantt chart.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { GanttChart } from "@/components/business/gantt-chart"
+
+export function Basic() {
+  return <GanttChart />
+}`} lang="tsx" />
+
+## API / Props
+
+### GanttChart
+
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `tasks`     | `Array<{`              | —       |                                   |
+| `id`        | `string`               | —       | DOM element id                    |
+| `name`      | `string`               | —       | Form field name                   |
+| `start`     | `string`               | —       |                                   |
+| `end`       | `string`               | —       |                                   |
+| `progress`  | `number`               | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

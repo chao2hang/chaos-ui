@@ -1,0 +1,42 @@
+import { AttachmentList } from "@/components/business/attachment-list";
+import { CodeBlock } from "@/components/code-block";
+
+# AttachmentList Attachment List
+
+> Domain-specific business components for ERP scenarios.
+
+AttachmentList — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an attachment list.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AttachmentList } from "@/components/business/attachment-list"
+
+export function Basic() {
+  return <AttachmentList />
+}`} lang="tsx" />
+
+## API / Props
+
+### AttachmentList
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `attachments` | `Array<{`              | —       |                                   |
+| `id`          | `string`               | —       | DOM element id                    |
+| `name`        | `string`               | —       | Form field name                   |
+| `size`        | `number`               | —       | Component size                    |
+| `type`        | `string`               | —       | Type                              |
+| `url`         | `string`               | —       |                                   |
+| `onRemove`    | `() => void`           | —       |                                   |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

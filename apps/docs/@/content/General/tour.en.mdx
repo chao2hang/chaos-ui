@@ -1,0 +1,74 @@
+import { Tour } from "@/components/ui/tour";
+import { CodeBlock } from "@/components/code-block";
+
+# Tour
+
+> Step-by-step guided product tour overlay.
+
+Step-by-step guided product tour overlay with spotlight, navigation, and localStorage persistence.
+
+## When to Use
+
+Use when you need to guide new users through product features. Supports spotlight on target elements and step navigation.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Tour } from "@/components/ui/tour"
+
+export function Basic() {
+  return (
+    <Tour
+      steps={[
+        { target: "#dashboard", title: "Dashboard", description: "Your overview area" },
+        { target: "#settings", title: "Settings", description: "Configure your preferences" },
+      ]}
+      onComplete={() => console.log("Tour completed")}
+    />
+  )
+}`} lang="tsx" />
+
+### Controlled
+
+<CodeBlock code={`import { Tour } from "@/components/ui/tour"
+import { useState } from "react"
+
+export function Controlled() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Tour
+      open={open}
+      onOpenChange={setOpen}
+      steps={[{ target: "#help-btn", title: "Help", description: "Click for assistance" }]}
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Tour
+
+| Prop           | Type                      | Default | Description                                              |
+| -------------- | ------------------------- | ------- | -------------------------------------------------------- |
+| `steps`        | `TourStep[]`              | —       | Tour steps / 导览步骤 (required)                         |
+| `open`         | `boolean`                 | —       | Controlled open state / 受控打开状态                     |
+| `onOpenChange` | `(open: boolean) => void` | —       | Open change callback / 打开变化回调                      |
+| `onComplete`   | `() => void`              | —       | Complete callback / 完成回调                             |
+| `onSkip`       | `() => void`              | —       | Skip callback / 跳过回调                                 |
+| `storageKey`   | `string`                  | —       | localStorage key for persistence / localStorage 持久化键 |
+
+### TourStep
+
+| Prop          | Type                                     | Default  | Description                                           |
+| ------------- | ---------------------------------------- | -------- | ----------------------------------------------------- |
+| `target`      | `string \| (() => HTMLElement \| null)`  | —        | CSS selector or element / CSS 选择器或元素 (required) |
+| `title`       | `string`                                 | —        | Step title / 步骤标题 (required)                      |
+| `description` | `React.ReactNode`                        | —        | Step description / 步骤描述                           |
+| `placement`   | `"top" \| "bottom" \| "left" \| "right"` | `bottom` | Popover placement / 弹出位置                          |
+| `offset`      | `number`                                 | `8`      | Offset from target / 与目标的偏移                     |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **localStorage**: 设置 `storageKey` 后，完成的导览不会再次显示。

@@ -1,0 +1,43 @@
+import { DockPanel } from "@/components/business/dock-panel";
+import { CodeBlock } from "@/components/code-block";
+
+# DockPanel Dock Panel
+
+> 业务组件
+
+<DockPanel side="left" collapsed={false} onToggle={() => {}}>
+  {" "}
+  <p>面板内容</p>{" "}
+</DockPanel>
+
+## 何时使用
+
+适用于Dock Panel相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { DockPanel } from "@/components/business/dock-panel"
+
+export function Basic() {
+  return <DockPanel />
+}`} lang="tsx" />
+
+## API / Props
+
+### DockPanel
+
+| Prop        | Type                            | Default | 说明              |
+| ----------- | ------------------------------- | ------- | ----------------- |
+| `className` | `string`                        | —       | 自定义样式类名    |
+| `side`      | `"left" \| "right" \| "bottom"` | —       |                   |
+| `collapsed` | `boolean`                       | `false` |                   |
+| `onToggle`  | `() => void`                    | —       |                   |
+| ...rest     | `React.HTMLAttributes`          | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-dockpanel--docs)。

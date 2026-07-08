@@ -1,0 +1,42 @@
+import { SchemaForm } from "@/components/ui/schema-form";
+import { CodeBlock } from "@/components/code-block";
+
+# SchemaForm Schema 表单
+
+> 表单控件
+
+Schema 表单 — Chaos UI 的表单控件。
+
+## 何时使用
+
+适用于Schema 表单相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { SchemaForm } from "@/components/ui/schema-form"
+
+export function Basic() {
+  return (
+    <SchemaForm
+      onSubmit={(data) => console.log(data)}
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### SchemaForm
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **表单校验**: 集成 `zod` + `react-hook-form`,支持类型安全的表单校验与提交。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-schemaform--docs)。

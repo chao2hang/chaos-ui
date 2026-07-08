@@ -1,49 +1,83 @@
-import { Transfer } from "@/components/ui/transfer"
-import { CodeBlock } from "@/components/code-block"
+import { Transfer } from "@/components/ui/transfer";
+import { CodeBlock } from "@/components/code-block";
 
 # Transfer 穿梭框
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 双栏穿梭框 / Dual-panel shuttle component for moving items between lists.
 
-穿梭框 — Chaos UI 的通用基础组件。
-Transfer — a general-purpose primitives used across the app. from Chaos UI.
+双栏穿梭框，支持在源列表和目标列表之间移动项目，含搜索和全选功能。
+Dual-panel shuttle component for moving items between source and target lists with search and select-all.
 
 ## 何时使用 / When to Use
 
-穿梭框,在左右两栏之间移动候选项进行选择。
-
-Transfer items between two columns to make a selection.
+需要在两个列表之间选择和移动项目时使用，如权限分配、角色选择。
+Use when you need to select and move items between two lists, such as permission assignment or role selection.
 
 ## 代码示例 / Examples
 
 ### 基础用法 / Basic Usage
 
 <CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+import { useState } from "react"
+
+const dataSource = [
+{ key: "1", label: "Option 1" },
+{ key: "2", label: "Option 2" },
+{ key: "3", label: "Option 3" },
+{ key: "4", label: "Option 4" },
+]
 
 export function Basic() {
-  return <Transfer />
+  const [targetKeys, setTargetKeys] = useState<string[]>([])
+  return (
+    <Transfer
+      dataSource={dataSource}
+      targetKeys={targetKeys}
+      onChange={setTargetKeys}
+    />
+  )
 }`} lang="tsx" />
 
+### 单向模式 / One Way
+
+<CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+
+export function OneWay() {
+  return (
+    <Transfer
+      dataSource={[{ key: "1", label: "Item 1" }, { key: "2", label: "Item 2" }]}
+      oneWay
+    />
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### Transfer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `dataSource` | `TransferItem[]` | — |  |
-| `targetKeys` | `string[]` | — |  |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `titles` | `[string, string]` | — |  |
-| `searchable` | `boolean` | `true` |  |
-| `filterOption` | `(...args) => unknown` | — |  |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `oneWay` | `boolean` | `false` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop         | Type                                      | Default | 说明 / Description                    |
+| ------------ | ----------------------------------------- | ------- | ------------------------------------- |
+| `dataSource` | `TransferItem[]`                          | —       | Data source / 数据源 (required)       |
+| `targetKeys` | `string[]`                                | `[]`    | Keys in target panel / 目标面板的 key |
+| `onChange`   | `(targetKeys: string[]) => void`          | —       | Change callback / 变化回调            |
+| `titles`     | `[string, string]`                        | —       | Panel titles / 面板标题               |
+| `searchable` | `boolean`                                 | `true`  | Enable search / 启用搜索              |
+| `oneWay`     | `boolean`                                 | `false` | One-way mode / 单向模式               |
+| `disabled`   | `boolean`                                 | `false` | Disable all / 全部禁用                |
+| `render`     | `(item: TransferItem) => React.ReactNode` | —       | Custom item render / 自定义渲染       |
+
+### TransferItem
+
+| Prop          | Type      | 说明 / Description                  |
+| ------------- | --------- | ----------------------------------- |
+| `key`         | `string`  | Unique key / 唯一键 (required)      |
+| `label`       | `string`  | Display label / 显示标签 (required) |
+| `description` | `string`  | Description / 描述                  |
+| `disabled`    | `boolean` | Disabled / 禁用                     |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **i18n**: 内置 `react-i18next` 支持，翻译命名空间为 `transfer`。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-transfer--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-transfer--docs)。

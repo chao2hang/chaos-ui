@@ -30,7 +30,9 @@ export function Basic() {
 | `className`    | `string`                      | —          | Custom CSS class                |
 | `title`        | `string`                      | `数据列表` | Title                           |
 | `toolbar`      | `React.ReactNode`             | —          |                                 |
-| `columns`      | `(...args) => unknown`        | —          | Column configuration            |
+| `columns`      | `Array<{`                     | —          | Column configuration            |
+| `key`          | `string`                      | —          |                                 |
+| `header`       | `string`                      | —          |                                 |
 | `data`         | `Record<string, unknown>[]`   | —          | Data source                     |
 | `total`        | `number`                      | `0`        |                                 |
 | `page`         | `number`                      | `1`        |                                 |

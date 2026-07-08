@@ -1,0 +1,42 @@
+import { DashboardGrid } from "@/components/business/dashboard-grid";
+import { CodeBlock } from "@/components/code-block";
+
+# DashboardGrid Dashboard Grid
+
+> Domain-specific business components for ERP scenarios.
+
+DashboardGrid — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a dashboard grid.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DashboardGrid } from "@/components/business/dashboard-grid"
+
+export function Basic() {
+  return <DashboardGrid />
+}`} lang="tsx" />
+
+## API / Props
+
+### DashboardGrid
+
+| Prop        | Type                    | Default  | Description                       |
+| ----------- | ----------------------- | -------- | --------------------------------- |
+| `className` | `string`                | —        | Custom CSS class                  |
+| `title`     | `string`                | `仪表盘` | 仪表盘标题                        |
+| `stats`     | `Array<{`               | —        | KPI 指标数组                      |
+| `label`     | `string`                | —        | Label text                        |
+| `value`     | `number`                | —        | Current value (controlled)        |
+| `delta`     | `number`                | —        | 环比变化，正数增长负数下降        |
+| `trend`     | `"up" \| "down"`        | —        | 显式趋势方向，省略时按 delta 推断 |
+| `columns`   | `1 \| 2 \| 3 \| 4 \| 6` | `4`      | 网格列数                          |
+| ...rest     | `React.HTMLAttributes`  | —        | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

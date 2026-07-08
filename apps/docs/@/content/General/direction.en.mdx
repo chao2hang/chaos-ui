@@ -1,0 +1,58 @@
+import { Direction } from "@/components/ui/direction";
+import { CodeBlock } from "@/components/code-block";
+
+# Direction
+
+> Text direction (LTR/RTL) wrapper for internationalization.
+
+Sets text direction (LTR/RTL) for internationalization. Wraps children with `dir` attribute and RTL-aware CSS logical properties.
+
+## When to Use
+
+Use when you need to support RTL (right-to-left) languages such as Arabic or Hebrew, ensuring text and layout are correctly mirrored.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Direction } from "@/components/ui/direction"
+
+export function Basic() {
+  return (
+    <Direction dir="rtl">
+      <p>مرحبا بالعالم</p>
+    </Direction>
+  )
+}`} lang="tsx" />
+
+### LTR / RTL / LTR vs RTL Comparison
+
+<CodeBlock code={`import { Direction } from "@/components/ui/direction"
+
+export function Comparison() {
+  return (
+    <div className="flex flex-col gap-4">
+      <Direction dir="ltr" className="rounded border p-4">
+        <p>This text reads left-to-right.</p>
+      </Direction>
+      <Direction dir="rtl" className="rounded border p-4">
+        <p>هذا النص يُقرأ من اليمين إلى اليسار.</p>
+      </Direction>
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Direction
+
+| Prop        | Type                          | Default | Description                                    |
+| ----------- | ----------------------------- | ------- | ---------------------------------------------- |
+| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向 |
+| `className` | `string`                      | —       | Custom CSS class                               |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes                |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **RTL 样式**: 当 `dir="rtl"` 时自动应用 `[direction:rtl]` CSS 规则。

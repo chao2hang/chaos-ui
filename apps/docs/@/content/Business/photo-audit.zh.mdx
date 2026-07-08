@@ -1,0 +1,40 @@
+import { PhotoAudit } from "@/components/business/photo-audit";
+import { CodeBlock } from "@/components/code-block";
+
+# PhotoAudit Photo Audit
+
+> 业务组件
+
+<PhotoAudit photos={[{ src: "/a.jpg", alt: "收据" }]} />
+
+## 何时使用
+
+适用于Photo Audit相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PhotoAudit } from "@/components/business/photo-audit"
+
+export function Basic() {
+  return <PhotoAudit />
+}`} lang="tsx" />
+
+## API / Props
+
+### PhotoAudit
+
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `photos`    | `Array<T>`             | —       |                   |
+| `onApprove` | `() => void`           | —       |                   |
+| `onReject`  | `() => void`           | —       |                   |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-photoaudit--docs)。
