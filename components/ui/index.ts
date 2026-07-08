@@ -207,7 +207,12 @@ export type { InputProps } from "./input";
 export { KeyboardShortcut } from "./keyboard-shortcut";
 export type { KeyboardShortcutProps } from "./keyboard-shortcut";
 export { Kbd, KbdGroup, kbdVariants } from "./kbd";
+import { KPIPanel as _KPIPanel, KPICard as _KPICard } from "./kpi-panel";
 export { KPIPanel, KPICard } from "./kpi-panel";
+/** @deprecated Use KPIPanel */
+export const KpiPanel = _KPIPanel;
+/** @deprecated Use KPICard */
+export const KpiCard = _KPICard;
 export type { KPIItem, KPIPanelProps } from "./kpi-panel";
 export { Label } from "./label";
 export { Menubar } from "./menubar";
@@ -222,7 +227,10 @@ export {
   navigationMenuTriggerStyle,
   NavigationMenuPositioner,
 } from "./navigation-menu";
+import { OTPField as _OTPField } from "./otp-field";
 export { OTPField, OTPFieldSeparator } from "./otp-field";
+/** @deprecated Use OTPField */
+export const OtpField = _OTPField;
 export {
   PageContainer,
   PageHeader,
@@ -258,14 +266,20 @@ export {
   ProgressLabel,
   ProgressValue,
 } from "./progress";
+import { QrCodeDisplay as _QrCodeDisplay } from "./qrcode-display";
 export { QrCodeDisplay } from "./qrcode-display";
+/** @deprecated Use QrCodeDisplay */
+export const QrcodeDisplay = _QrCodeDisplay;
 export type { QrCodeDisplayProps } from "./qrcode-display";
 export { RadioGroup, RadioGroupItem } from "./radio-group";
+import { ResizablePanelGroup as _Resizable } from "./resizable";
 export {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
 } from "./resizable";
+/** @deprecated Use ResizablePanelGroup / ResizablePanel / ResizableHandle */
+export const Resizable = _Resizable;
 export { ScrollArea, ScrollBar } from "./scroll-area";
 export {
   Select,
@@ -472,9 +486,15 @@ export { Result } from "./result";
 export type { ResultProps, ResultStatus } from "./result";
 export { Statistic } from "./statistic";
 export type { StatisticProps } from "./statistic";
+import { QRCode as _QRCode } from "./qrcode";
 export { QRCode } from "./qrcode";
+/** @deprecated Use QRCode */
+export const Qrcode = _QRCode;
 export type { QRCodeProps } from "./qrcode";
+import { AutoComplete as _AutoComplete } from "./autocomplete";
 export { AutoComplete } from "./autocomplete";
+/** @deprecated Use AutoComplete */
+export const Autocomplete = _AutoComplete;
 export type { AutoCompleteProps, AutoCompleteOption } from "./autocomplete";
 export { Mentions } from "./mentions";
 export type { MentionsProps, MentionOption } from "./mentions";
@@ -505,6 +525,12 @@ export type {
   NotificationType as NotificationVariant,
   NotificationProps,
 } from "./notification";
+
+// Sonner toast (Toaster)
+import { Toaster as _Toaster } from "./sonner";
+export { Toaster } from "./sonner";
+/** @deprecated Use Toaster */
+export const Sonner = _Toaster;
 
 // Grid system
 export { Row, Col } from "./grid";

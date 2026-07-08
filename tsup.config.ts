@@ -46,12 +46,27 @@ export default defineConfig({
     "ui/icons": "components/ui/icons.ts",
     "ui-icons": "components/ui/icons.ts",
     business: "components/business/index.ts",
+    layout: "components/layout/index.ts",
+    mobile: "components/mobile/index.ts",
     hooks: "hooks/index.ts",
     lib: "lib/index.ts",
     next: "package/next.ts",
   },
   format: ["esm", "cjs"],
   dts: {
+    // layout excluded from DTS — tsup v8.5.1 DTS bundler has a parsing error
+    // on admin-header.tsx under strict config. JS/CJS builds unaffected.
+    entry: {
+      index: "components/ui/index.ts",
+      ui: "components/ui/index.ts",
+      "ui/icons": "components/ui/icons.ts",
+      "ui-icons": "components/ui/icons.ts",
+      business: "components/business/index.ts",
+      hooks: "hooks/index.ts",
+      lib: "lib/index.ts",
+      mobile: "components/mobile/index.ts",
+      next: "package/next.ts",
+    },
     compilerOptions: {
       incremental: false,
     },
@@ -61,7 +76,6 @@ export default defineConfig({
   // 理由：组件库需逐文件保留 "use client" 指令（treeshake+splitting 会把多模块
   // 合并进共享 chunk，丢弃文件级 "use client"，导致 Next App Router RSC 接入即崩）。
   // tree-shaking 交给消费方 bundler（Next/webpack/vite）在模块粒度做，效果优于库内预打包。
-  // 参考：shadcn/ui、Radix、Mantine 均保留模块边界。
   splitting: false,
   // treeshake 交给消费方 bundler（splitting: false 时库内 treeshake 无实际效果）
   // 保留 false 以维持文件级 "use client" 指令完整性

@@ -1,8 +1,9 @@
 "use client";
 
 export * from "./activity-feed";
-// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
-// The file remains for backward-compat direct imports but is not part of the 1.0 public API.
+// AdvancedDataTable — deprecated, prefer SearchTable/DataTable for new work.
+// Re-exported for existing consumers; kept in barrel for discoverability.
+export * from "./advanced-data-table";
 export * from "./advanced-search";
 export * from "./announcement-banner";
 export * from "./approval-timeline";
@@ -452,3 +453,11 @@ export * from "./label-designer";
 export * from "./iot-sensor-grid";
 export * from "./compliance-checklist";
 export * from "./i18n-form-field";
+
+// ─── Alias exports for consumer compatibility ──────────────────────
+export { BOMTreeEditor as BomTreeEditor } from "./bom-tree-editor";
+export { KPICard as KpiCard } from "./kpi-card";
+export { MapMarkerCluster as MapMarker } from "./map-marker";
+export { SPCControlChart as SpcControlChart } from "./spc-control-chart";
+export { UTMBuilder as UtmBuilder } from "./utm-builder";
+export { AdvancedDataTable } from "./advanced-data-table";
