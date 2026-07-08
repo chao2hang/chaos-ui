@@ -1,26 +1,26 @@
 # ─── Chaos UI — Docker Compose ──────────────────────────────────
-# 一键部署: docker compose up -d
+# 一键构建部署: docker compose up -d
 #
 # 访问地址:
 #   http://localhost:${DOCS_PORT:-8080}       → 组件官网 (Next.js)
 #   http://localhost:${STORYBOOK_PORT:-3002}   → Storybook 交互式文档
 #
-# 端口可通过环境变量配置，例如:
-#   DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d
+# 端口、Storybook 地址均支持环境变量配置，例如:
+#   DOCS_PORT=3000 STORYBOOK_PORT=9000 STORYBOOK_BASE_URL=http://demo.com:9000 docker compose up -d
 #
-# 默认从 GHCR 拉取预构建镜像。
-# 如需从源码构建，取消注释 build 配置并注释 image 配置即可。
+# 环境变量:
+#   STORYBOOK_BASE_URL — Storybook 访问地址，默认 https://storybook.chaosui.com/?path=/docs/
 # ─────────────────────────────────────────────────────────────────
 
 services:
   chaos-ui:
-    # ── 方式 A: 从 registry 拉取（推荐，一键部署） ──
-    image: ghcr.io/chao2hang/chaos-ui:${TAG:-latest}
+    # ── 选项 A: 从源码构建（开发/自部署，默认） ──
+    build:
+      context: .
+      dockerfile: Dockerfile
 
-    # ── 方式 B: 从源码构建（需要 Dockerfile + 源码） ──
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+    # ── 选项 B: 从 registry 拉取（CI/CD 环境） ──
+    # image: ghcr.io/chao2hang/chaos-ui:${TAG:-latest}
 
     container_name: chaos-ui
     restart: unless-stopped
@@ -29,6 +29,7 @@ services:
       - "${STORYBOOK_PORT:-3002}:3002"
     environment:
       - NODE_ENV=production
+      - STORYBOOK_BASE_URL=${STORYBOOK_BASE_URL:-https://storybook.chaosui.com/?path=/docs/}
     healthcheck:
       test:
         [

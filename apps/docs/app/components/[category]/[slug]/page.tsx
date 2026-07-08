@@ -31,7 +31,8 @@ function findMeta(category: string, slug: string): ComponentMeta | undefined {
   );
 }
 
-const storybookBase = "http://localhost:3002/?path=/docs/";
+const storybookBase =
+  process.env.STORYBOOK_BASE_URL ?? "http://localhost:3002/?path=/docs/";
 
 /* -------------------------------------------------------------------------- */
 /*  Shared link classes                                                       */
