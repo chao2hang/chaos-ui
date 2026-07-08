@@ -39,5 +39,6 @@ export {
   MobileCardSkeleton,
   MobileDetailSkeleton,
 } from "./mobile-skeleton";
+import { MobileCardSkeleton as _MobileCardSkeleton } from "./mobile-skeleton";
 /** @deprecated Use MobileListItemSkeleton / MobileCardSkeleton / MobileDetailSkeleton */
-export const MobileSkeleton = MobileCardSkeleton;
+export const MobileSkeleton = _MobileCardSkeleton;

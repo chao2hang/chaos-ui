@@ -153,20 +153,17 @@ export {
   formatPercent,
   formatRelativeTime,
 } from "../../lib";
-export type { MessageOptions, MessageType } from "../../lib";
 
 // Layout components re-exported for convenience / 便捷导出布局组件
 export {
   DialogFormBody,
   FormStack,
 } from "@/components/layout/dialog-form-body";
-export type {
   DialogFormBodyProps,
   FormStackProps,
 } from "@/components/layout/dialog-form-body";
 export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 export { AuthLayout } from "@/components/layout/auth-layout";
-export type { AuthLayoutProps } from "@/components/layout/auth-layout";
 
 // --- auto-generated: stage 1 components ---
 export * from "./master-edit-template";
@@ -333,83 +330,45 @@ export * from "./browse-dialog";
 
 // AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
 export { AreaChart } from "./area-chart";
-export type { AreaChartProps } from "./area-chart";
 export { BarChart } from "./bar-chart";
-export type { BarChartProps } from "./bar-chart";
 export { BarListCard } from "./bar-list-card";
-export type { BarListCardProps } from "./bar-list-card";
 export { BudgetAllocator } from "./budget-allocator";
-export type { BudgetAllocatorProps } from "./budget-allocator";
 export { CompanyPicker } from "./company-picker";
-export type { CompanyPickerProps } from "./company-picker";
 export { CostCenterPicker } from "./cost-center-picker";
-export type { CostCenterPickerProps } from "./cost-center-picker";
 export { CustomerPicker } from "./customer-picker";
-export type { CustomerPickerProps } from "./customer-picker";
 export { DashboardGrid } from "./dashboard-grid";
-export type { DashboardGridProps } from "./dashboard-grid";
 export { DepartmentPicker } from "./department-picker";
-export type { DepartmentPickerProps } from "./department-picker";
 export { DistributorPicker } from "./distributor-picker";
-export type { DistributorPickerProps } from "./distributor-picker";
 export { DonutChart } from "./donut-chart";
-export type { DonutChartProps } from "./donut-chart";
 export { EmployeePicker } from "./employee-picker";
-export type { EmployeePickerProps } from "./employee-picker";
 export { ErrorPage } from "./error-page";
 export { GaugeChart } from "./gauge-chart";
-export type { GaugeChartProps } from "./gauge-chart";
 export { ImMessage } from "./im-message";
-export type { ImMessageProps } from "./im-message";
 export { KanbanColumn } from "./kanban-column";
-export type { KanbanColumnProps } from "./kanban-column";
 export { LineChart } from "./line-chart";
-export type { LineChartProps } from "./line-chart";
 export { MessageList } from "./message-list";
-export type { MessageListProps } from "./message-list";
 export { OverviewPage } from "./overview-page";
-export type { OverviewPageProps } from "./overview-page";
 export { PermissionButton } from "./permission-button";
-export type { PermissionButtonProps } from "./permission-button";
 export { PieChart } from "./pie-chart";
-export type { PieChartProps } from "./pie-chart";
 export { ProductCategoryPicker } from "./product-category-picker";
-export type { ProductCategoryPickerProps } from "./product-category-picker";
 export { PromotionRuleCard } from "./promotion-rule-card";
-export type { PromotionRuleCardProps } from "./promotion-rule-card";
 export { PromotionRuleEditor } from "./promotion-rule-editor";
-export type { PromotionRuleEditorProps } from "./promotion-rule-editor";
 export { RadarChart } from "./radar-chart";
-export type { RadarChartProps } from "./radar-chart";
 export { RadialChart } from "./radial-chart";
-export type { RadialChartProps } from "./radial-chart";
 export { RegionPicker } from "./region-picker";
-export type { RegionPickerProps } from "./region-picker";
 export { SankeyChart } from "./sankey-chart";
-export type { SankeyChartProps } from "./sankey-chart";
 export { ScatterChart } from "./scatter-chart";
-export type { ScatterChartProps } from "./scatter-chart";
 export { SkuPicker } from "./sku-picker";
-export type { SkuPickerProps } from "./sku-picker";
 export { SparkChart } from "./spark-chart";
-export type { SparkChartProps } from "./spark-chart";
 export { StatCardWithDelta } from "./stat-card-with-delta";
-export type { StatCardWithDeltaProps } from "./stat-card-with-delta";
 export { SubformTabs } from "./subform-tabs";
-export type { SubformTabsProps } from "./subform-tabs";
 export { TabCrudPage } from "./tab-crud-page";
-export type { TabCrudPageProps } from "./tab-crud-page";
 export { ThemeToggle } from "./theme-toggle";
 export { TodoListTable } from "./todo-list-table";
-export type { TodoListTableProps } from "./todo-list-table";
 export { TreeCrudPage } from "./tree-crud-page";
-export type { TreeCrudPageProps } from "./tree-crud-page";
 export { TreemapChart } from "./treemap-chart";
-export type { TreemapChartProps } from "./treemap-chart";
 export { WarehousePicker } from "./warehouse-picker";
-export type { WarehousePickerProps } from "./warehouse-picker";
 export { WaterfallChart } from "./waterfall-chart";
-export type { WaterfallChartProps } from "./waterfall-chart";
 
 // ─── P2 new business components ───────────────────────────────────
 
@@ -428,7 +387,6 @@ export * from "./leave-request-form";
 export * from "./meeting-room-booking";
 export * from "./attendance-calendar";
 export { PurchaseOrderEditor } from "./purchase-order-editor";
-export type {
   PurchaseOrderEditorProps,
   POLineItem,
 } from "./purchase-order-editor";
@@ -440,7 +398,6 @@ export * from "./customer-360-card";
 export * from "./spc-control-chart";
 export * from "./oee-dashboard";
 export { BatchGenealogyTree } from "./batch-genealogy-tree";
-export type { BatchGenealogyTreeProps } from "./batch-genealogy-tree";
 export * from "./work-order-card";
 
 // P2-C: Nice-to-have business components

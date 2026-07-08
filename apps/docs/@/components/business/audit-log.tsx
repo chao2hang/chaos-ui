@@ -24,7 +24,7 @@ const ACTION_ICONS: Record<string, React.ElementType> = {
   remove: MinusIcon,
 }
 
-interface AuditLogProps extends React.ComponentProps<"ol"> {
+export interface AuditLogProps extends React.ComponentProps<"ol"> {
   entries: AuditEntry[]
   className?: string
 }

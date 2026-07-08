@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { AdminHeader } from "./admin-header";
-import type { AdminHeaderProps, BreadcrumbItem } from "./admin-header";
+import type { AdminHeaderProps, AdminBreadcrumbItem } from "./admin-header";
 
 // Breadcrumb primitives use react-i18next.
 vi.mock("react-i18next", () => ({
@@ -16,7 +16,7 @@ describe("admin-header", () => {
   it("exports types", () => {
     const _tc1: AdminHeaderProps | undefined = undefined;
     expect(_tc1).toBeUndefined();
-    const _tc2: BreadcrumbItem | undefined = undefined;
+    const _tc2: AdminBreadcrumbItem | undefined = undefined;
     expect(_tc2).toBeUndefined();
   });
 

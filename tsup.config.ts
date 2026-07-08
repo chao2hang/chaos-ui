@@ -54,14 +54,13 @@ export default defineConfig({
   },
   format: ["esm", "cjs"],
   dts: {
-    // layout excluded from DTS — tsup v8.5.1 DTS bundler has a parsing error
-    // on admin-header.tsx under strict config. JS/CJS builds unaffected.
     entry: {
       index: "components/ui/index.ts",
       ui: "components/ui/index.ts",
       "ui/icons": "components/ui/icons.ts",
       "ui-icons": "components/ui/icons.ts",
       business: "components/business/index.ts",
+      layout: "components/layout/index.ts",
       hooks: "hooks/index.ts",
       lib: "lib/index.ts",
       mobile: "components/mobile/index.ts",

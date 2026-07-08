@@ -22,14 +22,14 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
  * />
  */
 
-interface BreadcrumbItem {
+interface AdminBreadcrumbItem {
   label: React.ReactNode;
   href?: string;
 }
 
 interface AdminHeaderProps extends React.ComponentProps<"header"> {
   /** Breadcrumb items / 面包屑项 */
-  breadcrumb?: BreadcrumbItem[];
+  breadcrumb?: AdminBreadcrumbItem[];
   /** Logo content / Logo 内容 */
   logo?: React.ReactNode;
   /** Whether to show search / 是否显示搜索 */
@@ -161,4 +161,4 @@ function AdminHeader({
 }
 
 export { AdminHeader };
-export type { AdminHeaderProps, BreadcrumbItem };
+export type { AdminHeaderProps, AdminBreadcrumbItem };
