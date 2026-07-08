@@ -225,3 +225,9 @@ export const PowerIcon = Lucide.PowerIcon;
 export const RefreshCcwIcon = Lucide.RefreshCcwIcon;
 export const TagsIcon = Lucide.TagsIcon;
 export const UnlockIcon = Lucide.UnlockIcon;
+// --- supplementary icons (added for SortableList / CopyButton / LogViewer / BarcodeScanner / ImageCropper / ProTable) ---
+export const CropIcon = Lucide.CropIcon;
+export const RotateCwIcon = Lucide.RotateCwIcon;
+export const ScanLineIcon = Lucide.ScanLineIcon;
+export const Rows3Icon = Lucide.Rows3Icon;
+export const PinOffIcon = Lucide.PinOffIcon;

@@ -41,8 +41,25 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
       href={detailHref}
       className="group border-border/60 bg-card hover:border-brand-500/40 dark:hover:border-brand-400/40 relative flex h-full flex-col rounded-xl border p-4 text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-black/40"
     >
+      {/* New badge — star icon in top-right corner */}
+      {component.isNew && (
+        <span
+          className="absolute top-2 right-2 z-10 flex items-center justify-center"
+          title={isEn ? "New" : "新组件"}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-3.5 text-amber-400 drop-shadow-sm dark:text-amber-400"
+            aria-label={isEn ? "New" : "新组件"}
+          >
+            <path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.15L2 9.36h7.61z" />
+          </svg>
+        </span>
+      )}
+
       {/* Header: name + category tag */}
-      <div className="flex items-start justify-between gap-2">
+      <div className="flex items-start justify-between gap-2 pr-5">
         <h3 className="text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 font-mono text-sm font-semibold">
           {primaryName}
         </h3>
