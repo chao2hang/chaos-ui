@@ -22,7 +22,17 @@ RUN echo "Node: $(node --version), pnpm: $(pnpm --version)" && \
 # 生成组件元数据文件
 RUN node apps/docs/scripts/generate-component-loader.mjs && \
     node apps/docs/scripts/generate-component-map.mjs && \
-    node apps/docs/scripts/generate-component-story-previews.mjs
+    node apps/docs/scripts/generate-component-story-previews.mjs && \
+    node apps/docs/scripts/generate-mdx-map.mjs
+
+# 校验生成文件非空(防止正则/路径回归再次静默清空)
+RUN echo "=== Generated file line counts ===" && \
+    wc -l apps/docs/@/components/component-loader.ts \
+          apps/docs/@/components/component-map.ts \
+          apps/docs/@/components/component-story-previews.tsx \
+          apps/docs/@/components/mdx-loaders.ts && \
+    test $(wc -l < apps/docs/@/components/component-loader.ts) -gt 5 || \
+      (echo "ERROR: component-loader.ts is empty — meta regex may be broken" && exit 1)
 
 # 构建 Storybook 静态站点
 RUN pnpm run build-storybook

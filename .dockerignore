@@ -51,8 +51,9 @@ components.json
 # tsconfig.json is needed by Next.js for path resolution (@/ alias)
 !apps/docs/tsconfig.json
 
-# Storybook source (we only need the built output)
-apps/docs/src
+# Storybook source — apps/docs/src 内的 .stories.tsx 是文档站 live preview 的
+# 构建期输入(generate-component-story-previews.mjs 读取它),必须保留。
+# 根目录 src/stories/ 仅供根 Storybook 构建用,已被 build-storybook 产物替代。
 apps/docs/stories
 
 # Temp files

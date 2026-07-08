@@ -34,7 +34,7 @@ function parseMeta() {
   const body = src.slice(arrayStart);
 
   // Match slug, name, sourcePath — the three fields we need
-  const entryRe = /\{\s*slug:\s*'([^']+)'[\s\S]*?name:\s*"([^"]+)"[\s\S]*?sourcePath:\s*'([^']+)'/g;
+  const entryRe = /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
 
   const entries = [];
   let m;

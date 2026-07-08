@@ -30,7 +30,7 @@ function parseMeta() {
   const arrayStart = src.indexOf("components: ComponentMeta[] = [");
   if (arrayStart === -1) throw new Error("Cannot find components array");
   const body = src.slice(arrayStart);
-  const entryRe = /\{\s*slug:\s*'([^']+)'[\s\S]*?name:\s*"([^"]+)"[\s\S]*?sourcePath:\s*'([^']+)'/g;
+  const entryRe = /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
   const entries = [];
   let m;
   while ((m = entryRe.exec(body)) !== null) {

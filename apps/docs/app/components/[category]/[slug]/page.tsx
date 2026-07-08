@@ -11,6 +11,7 @@ import { getServerLocale } from "@/lib/i18n/get-server-locale";
 import { dict } from "@/lib/i18n/dict";
 import type { Locale } from "@/lib/i18n/locale";
 import { ComponentPreview } from "@/components/component-preview";
+import { mdxLoaders } from "@/components/mdx-loaders";
 
 /* -------------------------------------------------------------------------- */
 /*  All 300 components — static generation for every MDX detail page          */
@@ -153,17 +154,27 @@ async function loadMdx(
   slug: string,
   locale: Locale,
 ): Promise<React.ComponentType | null> {
-  // Ensure category is URL-decoded for file-system lookup
   const cat = decodeURIComponent(category);
   const locales: Locale[] = [locale, locale === "en" ? "zh" : "en"];
   for (const loc of locales) {
-    try {
-      const mod = await import(`@/content/${cat}/${slug}.${loc}.mdx`);
-      if ((mod as { default?: React.ComponentType }).default) {
-        return (mod as { default: React.ComponentType }).default;
+    const loader = mdxLoaders[`${cat}/${slug}.${loc}`];
+    if (loader) {
+      try {
+        const mod = await loader();
+        if (mod.default) return mod.default;
+      } catch {
+        // locale-specific file doesn't exist, try next
       }
+    }
+  }
+  // Fallback: no-locale file (e.g. audio-player.mdx) — bootstrap-generated
+  const fallback = mdxLoaders[`${cat}/${slug}`];
+  if (fallback) {
+    try {
+      const mod = await fallback();
+      if (mod.default) return mod.default;
     } catch {
-      // locale-specific file doesn't exist, try next
+      // no-locale file doesn't exist either
     }
   }
   return null;

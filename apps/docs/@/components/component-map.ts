@@ -6,11 +6,14 @@ import { Accordion } from "@/components/ui/accordion";
 import { Affix } from "@/components/ui/affix";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Alert } from "@/components/ui/alert";
+import { Anchor } from "@/components/ui/anchor";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { AudioPlayer } from "@/components/ui/audio-player";
 import { Autocomplete } from "@/components/ui/autocomplete";
 import { Avatar } from "@/components/ui/avatar";
 import { BackTop } from "@/components/ui/back-top";
 import { Badge } from "@/components/ui/badge";
+import { BarcodeDisplay } from "@/components/ui/barcode-display";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { BrowseInput } from "@/components/ui/browse-input";
 import { Button } from "@/components/ui/button";
@@ -18,6 +21,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card } from "@/components/ui/card";
 import { Carousel } from "@/components/ui/carousel";
 import { Cascader } from "@/components/ui/cascader";
+import { ChatInput } from "@/components/ui/chat-input";
+import { ChatMessage } from "@/components/ui/chat-message";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible } from "@/components/ui/collapsible";
 import { ColorPicker } from "@/components/ui/color-picker";
@@ -29,6 +34,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { DepartmentBrowse } from "@/components/ui/department-browse";
 import { Descriptions } from "@/components/ui/descriptions";
 import { Dialog } from "@/components/ui/dialog";
+import { Direction } from "@/components/ui/direction";
 import { Divider } from "@/components/ui/divider";
 import { Dot } from "@/components/ui/dot";
 import { Drawer } from "@/components/ui/drawer";
@@ -44,8 +50,10 @@ import { GridLayout } from "@/components/ui/grid-layout";
 import { Grid } from "@/components/ui/grid";
 import { HoverCard } from "@/components/ui/hover-card";
 import { IconPicker } from "@/components/ui/icon-picker";
+import { Icon } from "@/components/ui/icon";
 import { ImageViewer } from "@/components/ui/image-viewer";
 import { Image } from "@/components/ui/image";
+import { InfiniteScroll } from "@/components/ui/infinite-scroll";
 import { InputGroup } from "@/components/ui/input-group";
 import { InputNumber } from "@/components/ui/input-number";
 import { InputSearch } from "@/components/ui/input-search";
@@ -56,11 +64,16 @@ import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut";
 import { KPIPanel as KpiPanel } from "@/components/ui/kpi-panel";
 import { Label } from "@/components/ui/label";
 import { List } from "@/components/ui/list";
+import { Masonry } from "@/components/ui/masonry";
 import { Mentions } from "@/components/ui/mentions";
 import { Menu } from "@/components/ui/menu";
 import { Menubar } from "@/components/ui/menubar";
 import { MessageProvider } from "@/components/ui/message-provider";
+import { Message } from "@/components/ui/message";
+import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh";
+import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action";
 import { ModalProvider } from "@/components/ui/modal-provider";
+import { NativeSelect } from "@/components/ui/native-select";
 import { NavigationMenu } from "@/components/ui/navigation-menu";
 import { Notification } from "@/components/ui/notification";
 import { NumberTicker } from "@/components/ui/number-ticker";
@@ -75,6 +88,7 @@ import { QRCode as Qrcode } from "@/components/ui/qrcode";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { ResizablePanelGroup as Resizable } from "@/components/ui/resizable";
 import { Result } from "@/components/ui/result";
+import { SchemaForm } from "@/components/ui/schema-form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
@@ -82,6 +96,7 @@ import { SequenceInput } from "@/components/ui/sequence-input";
 import { SequencePreview } from "@/components/ui/sequence-preview";
 import { Sheet } from "@/components/ui/sheet";
 import { Sidebar } from "@/components/ui/sidebar";
+import { SignaturePad } from "@/components/ui/signature-pad";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Slider } from "@/components/ui/slider";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -106,113 +121,161 @@ import { TreeSelect } from "@/components/ui/tree-select";
 import { TreeView } from "@/components/ui/tree-view";
 import { Typography } from "@/components/ui/typography";
 import { UserBrowse } from "@/components/ui/user-browse";
+import { VideoPlayer } from "@/components/ui/video-player";
 import { VirtualList } from "@/components/ui/virtual-list";
 import { VirtualTable } from "@/components/ui/virtual-table";
+import { WithPermission } from "@/components/ui/with-permission";
 import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
 import { AdminHeader } from "@/components/layout/admin-header";
+import { AdminShell } from "@/components/layout/admin-shell";
 import { AdminSider } from "@/components/layout/admin-sider";
 import { AdminTabs } from "@/components/layout/admin-tabs";
 import { AppShell } from "@/components/layout/app-shell";
+import { ArticleLayout } from "@/components/layout/article-layout";
 import { AuthLayout } from "@/components/layout/auth-layout";
 import { BlankLayout } from "@/components/layout/blank-layout";
+import { ChatLayout } from "@/components/layout/chat-layout";
 import { DashboardLayout } from "@/components/layout/dashboard-layout";
 import { DetailLayout } from "@/components/layout/detail-layout";
 import { DialogFormBody } from "@/components/layout/dialog-form-body";
+import { EmbedLayout } from "@/components/layout/embed-layout";
 import { ErrorLayout } from "@/components/layout/error-layout";
 import { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
 import { PrintLayout } from "@/components/layout/print-layout";
+import { PrintTemplateLayout } from "@/components/layout/print-template-layout";
 import { PublicLayout } from "@/components/layout/public-layout";
 import { RegionLayout } from "@/components/layout/region-layout";
+import { SplitScreen } from "@/components/layout/split-screen";
 import { TopBar } from "@/components/layout/top-bar";
+import { WizardLayout } from "@/components/layout/wizard-layout";
+import { AccountBalance } from "@/components/business/account-balance";
 import { ActivityFeed } from "@/components/business/activity-feed";
-import { AddressForm } from "@/components/business/address-form";
 import { AddressPicker } from "@/components/business/address-picker";
 import { AdvancedDataTable } from "@/components/business/advanced-data-table";
 import { AdvancedSearch } from "@/components/business/advanced-search";
-import { Anchor } from "@/components/business/anchor";
-import { AnimatedNumber } from "@/components/business/animated-number";
 import { AnnouncementBanner } from "@/components/business/announcement-banner";
+import { AnnouncementCard } from "@/components/business/announcement-card";
+import { ApplicationForm } from "@/components/business/application-form";
+import { ApprovalActionBar } from "@/components/business/approval-action-bar";
 import { ApprovalFlow } from "@/components/business/approval-flow";
 import { ApprovalTimeline } from "@/components/business/approval-timeline";
+import { ArApAgingTable } from "@/components/business/ar-ap-aging-table";
+import { AreaChart } from "@/components/business/area-chart";
 import { AsyncTaskCenter } from "@/components/business/async-task-center";
+import { AsyncTaskTrigger } from "@/components/business/async-task-trigger";
+import { AttachmentList } from "@/components/business/attachment-list";
+import { AttachmentPreview } from "@/components/business/attachment-preview";
+import { AttachmentUploader } from "@/components/business/attachment-uploader";
+import { AttendanceCalendar } from "@/components/business/attendance-calendar";
 import { AudienceSegmentBuilder } from "@/components/business/audience-segment-builder";
-import { AudioPlayer } from "@/components/business/audio-player";
 import { AuditLog } from "@/components/business/audit-log";
 import { AuditSidebar } from "@/components/business/audit-sidebar";
-import { SignInForm as AuthForms } from "@/components/business/auth-forms";
+import { AuditTrailDiff } from "@/components/business/audit-trail-diff";
 import { AuthGuard } from "@/components/business/auth-guard";
 import { AvatarGroup } from "@/components/business/avatar-group";
-import { Banner } from "@/components/business/banner";
-import { BarcodeDisplay } from "@/components/business/barcode-display";
+import { BadgeDelta } from "@/components/business/badge-delta";
+import { BarChart } from "@/components/business/bar-chart";
+import { BarListCard } from "@/components/business/bar-list-card";
+import { BarList } from "@/components/business/bar-list";
+import { BatchGenealogyTree } from "@/components/business/batch-genealogy-tree";
+import { BatchPrintDialog } from "@/components/business/batch-print-dialog";
 import { BatchSelector } from "@/components/business/batch-selector";
 import { BillFooter } from "@/components/business/bill-footer";
 import { BillHeader } from "@/components/business/bill-header";
 import { BillPage } from "@/components/business/bill-page";
+import { BillPrintTemplate } from "@/components/business/bill-print-template";
 import { BillStatusBar } from "@/components/business/bill-status-bar";
+import { BillTimeline } from "@/components/business/bill-timeline";
+import { BillTodoList } from "@/components/business/bill-todo-list";
 import { BizStatusTag } from "@/components/business/biz-status-tag";
+import { BOMTreeEditor as BomTreeEditor } from "@/components/business/bom-tree-editor";
+import { BudgetAllocator } from "@/components/business/budget-allocator";
+import { BudgetOverview } from "@/components/business/budget-overview";
 import { BudgetPacingCard } from "@/components/business/budget-pacing-card";
 import { BulkActionsToolbar } from "@/components/business/bulk-actions-toolbar";
 import { BulkImportWizard } from "@/components/business/bulk-import-wizard";
-import { CalendarMonth } from "@/components/business/calendar/calendar-month";
-import { EventDetail } from "@/components/business/calendar/event-detail";
-import { GanttChart } from "@/components/business/calendar/gantt-chart";
-import { TimeSlotPicker } from "@/components/business/calendar/time-slot-picker";
+import { CalendarView } from "@/components/business/calendar-view";
+import { Callout } from "@/components/business/callout";
 import { CampaignCalendar } from "@/components/business/campaign-calendar";
 import { CampaignCard } from "@/components/business/campaign-card";
 import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
+import { CategoryBar } from "@/components/business/category-bar";
 import { ChannelPicker } from "@/components/business/channel-picker";
+import { ChartCard } from "@/components/business/chart-card";
+import { ChartSuite } from "@/components/business/chart-suite";
 import { LineChart as Chart } from "@/components/business/chart";
-import { AreaChart } from "@/components/business/charts/area-chart";
-import { BarChart } from "@/components/business/charts/bar-chart";
-import { ChartFrame } from "@/components/business/charts/chart-frame";
-import { ComposedChartComp as ComposedChart } from "@/components/business/charts/composed-chart";
-import { FunnelChart } from "@/components/business/charts/funnel-chart";
-import { HeatmapChart } from "@/components/business/charts/heatmap-chart";
-import { LineChart } from "@/components/business/charts/line-chart";
-import { PieChartComp as PieChart } from "@/components/business/charts/pie-chart";
-import { RadarChartComp as RadarChart } from "@/components/business/charts/radar-chart";
-import { RadialChartComp as RadialChart } from "@/components/business/charts/radial-chart";
-import { SankeyChart } from "@/components/business/charts/sankey-chart";
-import { ScatterChartComp as ScatterChart } from "@/components/business/charts/scatter-chart";
-import { ChartEmpty } from "@/components/business/charts/shared/chart-empty";
-import { ChartExportButton as ChartExport } from "@/components/business/charts/shared/chart-export";
-import { ChartFullscreenButton as ChartFullscreen } from "@/components/business/charts/shared/chart-fullscreen";
-import { ChartLegend } from "@/components/business/charts/shared/chart-legend";
-import { ChartSkeleton } from "@/components/business/charts/shared/chart-skeleton";
-import { ChartTooltip } from "@/components/business/charts/shared/chart-tooltip";
-import { TreemapChart } from "@/components/business/charts/treemap-chart";
-import { WaterfallChart } from "@/components/business/charts/waterfall-chart";
-import { ChatMessageList as Chat } from "@/components/business/chat";
+import { ChatAgentStatus } from "@/components/business/chat-agent-status";
+import { ChatArtifactPanel } from "@/components/business/chat-artifact-panel";
+import { ChatBranch } from "@/components/business/chat-branch";
+import { ChatCardMessage } from "@/components/business/chat-card-message";
+import { ChatCodeBlock } from "@/components/business/chat-code-block";
+import { ChatCommandMenu } from "@/components/business/chat-command-menu";
+import { ChatContextPanel } from "@/components/business/chat-context-panel";
+import { ChatConversationSearch } from "@/components/business/chat-conversation-search";
+import { ChatConversation } from "@/components/business/chat-conversation";
+import { ChatFeedback } from "@/components/business/chat-feedback";
+import { ChatHeader } from "@/components/business/chat-header";
+import { ChatImageGallery } from "@/components/business/chat-image-gallery";
+import { ChatInputToolbar } from "@/components/business/chat-input-toolbar";
+import { ChatMarkdownRenderer } from "@/components/business/chat-markdown-renderer";
+import { ChatMentionPicker } from "@/components/business/chat-mention-picker";
+import { ChatMessageActions } from "@/components/business/chat-message-actions";
+import { ChatMessageBubble } from "@/components/business/chat-message-bubble";
+import { ChatMessageGroup } from "@/components/business/chat-message-group";
+import { ChatMessageInput } from "@/components/business/chat-message-input";
+import { ChatModelSwitcher } from "@/components/business/chat-model-switcher";
+import { ChatSharedLink } from "@/components/business/chat-shared-link";
+import { ChatShell } from "@/components/business/chat-shell";
+import { ChatSidebar } from "@/components/business/chat-sidebar";
+import { ChatStreamingText } from "@/components/business/chat-streaming-text";
+import { ChatSuggestReplies } from "@/components/business/chat-suggest-replies";
+import { ChatThinkingBlock } from "@/components/business/chat-thinking-block";
+import { ChatToolCallBlock } from "@/components/business/chat-tool-call-block";
+import { ChatVoiceMessage } from "@/components/business/chat-voice-message";
+import { CheckoutBar } from "@/components/business/checkout-bar";
 import { Chip } from "@/components/business/chip";
-import { CoachMark } from "@/components/business/coach-mark";
+import { CityBrowse } from "@/components/business/city-browse";
 import { CodeBlock } from "@/components/business/code-block";
 import { CodeEditor } from "@/components/business/code-editor";
+import { ColorBoard } from "@/components/business/color-board";
 import { ColorTag } from "@/components/business/color-tag";
 import { Combobox } from "@/components/business/combobox";
 import { CommandPalette } from "@/components/business/command-palette";
-import { CommentThread } from "@/components/business/comment-thread";
-import { Confetti } from "@/components/business/confetti";
+import { CommissionCalculator } from "@/components/business/commission-calculator";
+import { CompanyBrowse } from "@/components/business/company-browse";
+import { CompanyPicker } from "@/components/business/company-picker";
+import { ComplianceChecklist } from "@/components/business/compliance-checklist";
 import { ConfirmDialog } from "@/components/business/confirm-dialog";
-import { ConnectionStatus } from "@/components/business/connection-status";
 import { ContractTemplate } from "@/components/business/contract-template";
 import { CookieBanner } from "@/components/business/cookie-banner";
-import { CopyButton } from "@/components/business/copy-button";
+import { CostCenterPicker } from "@/components/business/cost-center-picker";
+import { CouponCard } from "@/components/business/coupon-card";
 import { CreativePreview } from "@/components/business/creative-preview";
-import { CreditCardInput } from "@/components/business/credit-card-input";
+import { CronEditor } from "@/components/business/cron-editor";
 import { CrudPage } from "@/components/business/crud-page";
 import { CrudToolbar } from "@/components/business/crud-toolbar";
-import { CurrencyInput } from "@/components/business/currency-input";
+import { Customer360Card } from "@/components/business/customer-360-card";
+import { CustomerBrowse } from "@/components/business/customer-browse";
+import { CustomerPicker } from "@/components/business/customer-picker";
+import { DashboardCanvas } from "@/components/business/dashboard-canvas";
 import { DashboardDesigner } from "@/components/business/dashboard-designer";
+import { DashboardGrid } from "@/components/business/dashboard-grid";
 import { DataTable } from "@/components/business/data-table";
 import { DateRangePicker } from "@/components/business/date-range-picker";
-import { DensitySwitcher } from "@/components/business/density-switcher";
+import { DeltaBar } from "@/components/business/delta-bar";
+import { DepartmentPicker } from "@/components/business/department-picker";
 import { DictSelect } from "@/components/business/dict-select";
 import { DiffViewerTable } from "@/components/business/diff-viewer-table";
 import { DiffViewer } from "@/components/business/diff-viewer";
-import { Dock } from "@/components/business/dock";
+import { DistributorPicker } from "@/components/business/distributor-picker";
+import { DockPanel } from "@/components/business/dock-panel";
+import { DonutCard } from "@/components/business/donut-card";
+import { DonutChart } from "@/components/business/donut-chart";
+import { DynamicFormBuilder } from "@/components/business/dynamic-form-builder";
 import { EditToolbar } from "@/components/business/edit-toolbar";
 import { EditableTreeTable } from "@/components/business/editable-tree-table";
+import { EmployeePicker } from "@/components/business/employee-picker";
 import { EmptyState } from "@/components/business/empty-state";
 import { EquipmentCard } from "@/components/business/equipment-card";
 import { ErrorBoundary } from "@/components/business/error-boundary";
@@ -221,129 +284,205 @@ import { ExpenseLineEditor } from "@/components/business/expense-line-editor";
 import { ExperimentSummary } from "@/components/business/experiment-summary";
 import { ExportButton } from "@/components/business/export-button";
 import { Fab } from "@/components/business/fab";
-import { FeatureGate } from "@/components/business/feature-gate";
+import { FeatureTour } from "@/components/business/feature-tour";
+import { FeeTypeBrowse } from "@/components/business/fee-type-browse";
 import { FieldMask } from "@/components/business/field-mask";
+import { FileCard } from "@/components/business/file-card";
 import { FileUploadManager } from "@/components/business/file-upload-manager";
 import { FilterBar } from "@/components/business/filter-bar";
 import { FilterBuilder } from "@/components/business/filter-builder";
+import { FlowTracker } from "@/components/business/flow-tracker";
 import { Forbidden } from "@/components/business/forbidden";
-import { FormAutosaveIndicator } from "@/components/business/form/form-autosave-indicator";
-import { FormDirtyWarning } from "@/components/business/form/form-dirty-warning";
-import { FormErrorSummary } from "@/components/business/form/form-error-summary";
-import { FormFieldGroup } from "@/components/business/form/form-field-group";
-import { FormProgress } from "@/components/business/form/form-progress";
-import { FormRepeater } from "@/components/business/form/form-repeater";
-import { FormStepSummary } from "@/components/business/form/form-step-summary";
+import { FormDesignerRuntime } from "@/components/business/form-designer-runtime";
+import { FormDesigner } from "@/components/business/form-designer";
 import { FormField } from "@/components/business/form-field";
 import { FormWizard } from "@/components/business/form-wizard";
 import { FormulaEditor } from "@/components/business/formula-editor";
+import { FunnelChart } from "@/components/business/funnel-chart";
+import { GanttChartPro } from "@/components/business/gantt-chart-pro";
+import { GanttChart } from "@/components/business/gantt-chart";
+import { GaugeChart } from "@/components/business/gauge-chart";
 import { Gauge } from "@/components/business/gauge";
 import { GlobalLoading } from "@/components/business/global-loading";
 import { HeatmapCalendar } from "@/components/business/heatmap-calendar";
+import { HeatmapChart } from "@/components/business/heatmap-chart";
+import { I18nFormField } from "@/components/business/i18n-form-field";
+import { ImMessage } from "@/components/business/im-message";
 import { ImageGallery } from "@/components/business/image-gallery";
 import { ImportDialog } from "@/components/business/import-dialog";
-import { InboxList } from "@/components/business/inbox-list";
+import { ImportErrorTable } from "@/components/business/import-error-table";
+import { ImportMappingWizard } from "@/components/business/import-mapping-wizard";
 import { InlineEdit } from "@/components/business/inline-edit";
 import { InventoryAlertList } from "@/components/business/inventory-alert-list";
-import { InvoicePreview } from "@/components/business/invoice-preview";
+import { InventorySnapshot } from "@/components/business/inventory-snapshot";
+import { InviteLink } from "@/components/business/invite-link";
+import { InvoiceManager } from "@/components/business/invoice-manager";
+import { InvoiceSummary } from "@/components/business/invoice-summary";
+import { IotSensorGrid } from "@/components/business/iot-sensor-grid";
+import { JournalEntryEditor } from "@/components/business/journal-entry-editor";
+import { JsonEditor } from "@/components/business/json-editor";
 import { JsonViewer } from "@/components/business/json-viewer";
 import { KanbanBoard } from "@/components/business/kanban-board";
+import { KanbanColumn } from "@/components/business/kanban-column";
 import { KPICard as KpiCard } from "@/components/business/kpi-card";
+import { LabelDesigner } from "@/components/business/label-designer";
 import { LanguageSwitcher } from "@/components/business/language-switcher";
+import { LeadPipelineBoard } from "@/components/business/lead-pipeline-board";
+import { LeaveRequestForm } from "@/components/business/leave-request-form";
+import { LineChart } from "@/components/business/line-chart";
 import { LineEditor } from "@/components/business/line-editor";
 import { LoadingPage } from "@/components/business/loading-page";
 import { MaintenanceLog } from "@/components/business/maintenance-log";
+import { MapChart } from "@/components/business/map-chart";
+import { MapMarkerCluster as MapMarker } from "@/components/business/map-marker";
+import { MapTrack } from "@/components/business/map-track";
 import { MapView } from "@/components/business/map-view";
-import { PricingCard as Marketing } from "@/components/business/marketing";
-import { MaskInput } from "@/components/business/mask-input";
+import { MarkdownEditor } from "@/components/business/markdown-editor";
+import { MarketingActivityForm } from "@/components/business/marketing-activity-form";
+import { MasterEditTemplate } from "@/components/business/master-edit-template";
+import { MasterListTemplate } from "@/components/business/master-list-template";
+import { MediaRecorderComponent as MediaRecorder } from "@/components/business/media-recorder";
+import { MeetingRoomBooking } from "@/components/business/meeting-room-booking";
+import { MessageList } from "@/components/business/message-list";
 import { MetricTrend } from "@/components/business/metric-trend";
-import { MobileAuthLayout } from "@/components/business/mobile-auth-layout";
-import { MobileBottomNav } from "@/components/business/mobile-bottom-nav";
-import { MobileButton } from "@/components/business/mobile-button";
-import { MobileCard } from "@/components/business/mobile-card";
-import { MobileChartFallback } from "@/components/business/mobile-chart-fallback";
-import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
-import { MobileDataTable } from "@/components/business/mobile-data-table";
-import { MobileDialog } from "@/components/business/mobile-dialog";
-import { MobileEmptyState } from "@/components/business/mobile-empty-state";
-import { MobileFilterBuilder } from "@/components/business/mobile-filter-builder";
-import { MobileFormAutosave } from "@/components/business/mobile-form-autosave";
-import { MobileFormField } from "@/components/business/mobile-form-field";
-import { MobileFormStepper } from "@/components/business/mobile-form-stepper";
-import { MobileFormWizard } from "@/components/business/mobile-form-wizard";
-import { MobileForm } from "@/components/business/mobile-form";
-import { MobileInput } from "@/components/business/mobile-input";
-import { MobileKanban } from "@/components/business/mobile-kanban";
-import { MobileKPICard as MobileKpiCard } from "@/components/business/mobile-kpi-card";
-import { MobileNavigation } from "@/components/business/mobile-navigation";
-import { MobilePageHeader } from "@/components/business/mobile-page-header";
-import { PullToRefresh as MobilePullToRefresh } from "@/components/business/mobile-pull-to-refresh";
-import { MobileSelect } from "@/components/business/mobile-select";
-import { MobileSheet } from "@/components/business/mobile-sheet";
-import { MobileListItemSkeleton as MobileSkeleton } from "@/components/business/mobile-skeleton";
-import { SwipeActions as MobileSwipeActions } from "@/components/business/mobile-swipe-actions";
-import { MobileTabs } from "@/components/business/mobile-tabs";
-import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { MobileActionSheet } from "@/components/business/mobile-action-sheet";
+import { MobileCamera } from "@/components/business/mobile-camera";
+import { MobileGeolocation } from "@/components/business/mobile-geolocation";
+import { MobileInfiniteScroll } from "@/components/business/mobile-infinite-scroll";
+import { MobileListItem } from "@/components/business/mobile-list-item";
+import { MobilePageShell } from "@/components/business/mobile-page-shell";
+import { MobilePicker } from "@/components/business/mobile-picker";
+import { MobileQrCodeScanner as MobileQrcodeScanner } from "@/components/business/mobile-qrcode-scanner";
+import { MobileSignature } from "@/components/business/mobile-signature";
+import { MobileTabBar } from "@/components/business/mobile-tab-bar";
+import { MultiCurrencyInput } from "@/components/business/multi-currency-input";
 import { MultiSelect } from "@/components/business/multi-select";
 import { NotificationCenter } from "@/components/business/notification-center";
-import { OnboardingChecklist } from "@/components/business/onboarding-checklist";
+import { NotificationRuleBuilder } from "@/components/business/notification-rule-builder";
+import { OaBridge } from "@/components/business/oa-bridge";
+import { OeeDashboard } from "@/components/business/oee-dashboard";
+import { OperationLog } from "@/components/business/operation-log";
 import { OrderLineEditor } from "@/components/business/order-line-editor";
 import { OrgChart } from "@/components/business/org-chart";
+import { OverviewPage } from "@/components/business/overview-page";
 import { PageHeader } from "@/components/business/page-header";
-import { PaymentForm } from "@/components/business/payment-form";
+import { PasteUpload } from "@/components/business/paste-upload";
+import { PaymentMethodSelector } from "@/components/business/payment-method-selector";
+import { PaymentResult } from "@/components/business/payment-result";
+import { PaymentSchedule } from "@/components/business/payment-schedule";
 import { PDFViewer as PdfViewer } from "@/components/business/pdf-viewer";
+import { PerformanceRankTable } from "@/components/business/performance-rank-table";
+import { PermissionButton } from "@/components/business/permission-button";
 import { PermissionMatrix } from "@/components/business/permission-matrix";
 import { PermissionWrapper } from "@/components/business/permission-wrapper";
-import { PhoneInput } from "@/components/business/phone-input";
+import { PhotoAudit } from "@/components/business/photo-audit";
+import { PieChart } from "@/components/business/pie-chart";
 import { PivotTable } from "@/components/business/pivot-table";
-import { PresenceIndicators } from "@/components/business/presence-indicators";
+import { PolicyLineEditor } from "@/components/business/policy-line-editor";
+import { PoolTrackerTable } from "@/components/business/pool-tracker-table";
+import { PreferencePanel } from "@/components/business/preference-panel";
+import { PriceAdjustBrowse } from "@/components/business/price-adjust-browse";
 import { PrintButton } from "@/components/business/print-button";
-import { ProfileHeader as Profile } from "@/components/business/profile";
+import { PrintService } from "@/components/business/print-service";
+import { PrintTemplateBuilder } from "@/components/business/print-template-builder";
+import { ProductBrowse } from "@/components/business/product-browse";
+import { ProductCategoryPicker } from "@/components/business/product-category-picker";
+import { PromotionRuleCard } from "@/components/business/promotion-rule-card";
+import { PromotionRuleEditor } from "@/components/business/promotion-rule-editor";
 import { PromptDialog } from "@/components/business/prompt-dialog";
-import { QRCode as QrCode } from "@/components/business/qr-code";
+import { PurchaseOrderEditor } from "@/components/business/purchase-order-editor";
 import { QualityInspectionForm } from "@/components/business/quality-inspection-form";
+import { QuickEntryGrid } from "@/components/business/quick-entry-grid";
+import { QuotationLineEditor } from "@/components/business/quotation-line-editor";
+import { RadarChart } from "@/components/business/radar-chart";
+import { RadialChart } from "@/components/business/radial-chart";
 import { Rating } from "@/components/business/rating";
+import { RebutNodeSelect } from "@/components/business/rebut-node-select";
+import { ReconciliationLineEditor } from "@/components/business/reconciliation-line-editor";
+import { ReconciliationSummary } from "@/components/business/reconciliation-summary";
+import { RedPacket } from "@/components/business/red-packet";
+import { RegionPicker } from "@/components/business/region-picker";
 import { RemoteSelect } from "@/components/business/remote-select";
 import { ReportBuilder } from "@/components/business/report-builder";
+import { ResourceSchedule } from "@/components/business/resource-schedule";
 import { ResponsivePreview } from "@/components/business/responsive-preview";
 import { RichTextEditor } from "@/components/business/rich-text-editor";
 import { RoleAssignment } from "@/components/business/role-assignment";
+import { RuleEditor } from "@/components/business/rule-editor";
+import { SalesOrderBrowse } from "@/components/business/sales-order-browse";
+import { SalesTargetEditor } from "@/components/business/sales-target-editor";
+import { SankeyChart } from "@/components/business/sankey-chart";
 import { SavedFilters } from "@/components/business/saved-filters";
-import { ScheduleView } from "@/components/business/schedule-view";
-import { SearchInput } from "@/components/business/search-input";
+import { ScatterChart } from "@/components/business/scatter-chart";
+import { SealStampRegistry } from "@/components/business/seal-stamp-registry";
 import { SearchTable } from "@/components/business/search-table";
 import { SegmentedControl } from "@/components/business/segmented-control";
-import { SettingsLayout } from "@/components/business/settings-layout";
+import { SerialNumberManager } from "@/components/business/serial-number-manager";
+import { SettlementStatusTag } from "@/components/business/settlement-status-tag";
 import { ShiftCalendar } from "@/components/business/shift-calendar";
-import { SignaturePad } from "@/components/business/signature-pad";
+import { ShippingWayBrowse } from "@/components/business/shipping-way-browse";
+import { SignActionButton } from "@/components/business/sign-action-button";
+import { SkuPicker } from "@/components/business/sku-picker";
+import { SocialShare } from "@/components/business/social-share";
+import { SparkChart } from "@/components/business/spark-chart";
+import { SPCControlChart as SpcControlChart } from "@/components/business/spc-control-chart";
+import { SqlEditor } from "@/components/business/sql-editor";
 import { StatCardRow } from "@/components/business/stat-card-row";
+import { StatCardWithDelta } from "@/components/business/stat-card-with-delta";
+import { StatCardWithSparkline } from "@/components/business/stat-card-with-sparkline";
 import { StatCard } from "@/components/business/stat-card";
 import { StatusBadge } from "@/components/business/status-badge";
 import { StatusTag } from "@/components/business/status-tag";
+import { StockTransferDialog } from "@/components/business/stock-transfer-dialog";
+import { SubformTabs } from "@/components/business/subform-tabs";
+import { SupplierScorecard } from "@/components/business/supplier-scorecard";
+import { TabCrudPage } from "@/components/business/tab-crud-page";
+import { TabPin } from "@/components/business/tab-pin";
+import { TargetProgress } from "@/components/business/target-progress";
+import { TaskHistory } from "@/components/business/task-history";
+import { TaskListTable } from "@/components/business/task-list-table";
+import { TaskProgress } from "@/components/business/task-progress";
+import { TaxDetailTable } from "@/components/business/tax-detail-table";
+import { TemplateDownload } from "@/components/business/template-download";
+import { TerritoryMap } from "@/components/business/territory-map";
 import { ThemeToggle } from "@/components/business/theme-toggle";
 import { TimePicker } from "@/components/business/time-picker";
-import { TopLoader } from "@/components/business/top-loader";
+import { TimelineView } from "@/components/business/timeline-view";
+import { TodoListTable } from "@/components/business/todo-list-table";
 import { Tour } from "@/components/business/tour";
+import { Tracking } from "@/components/business/tracking";
 import { Transfer } from "@/components/business/transfer";
+import { TreeCrudPage } from "@/components/business/tree-crud-page";
 import { TreeTable } from "@/components/business/tree-table";
+import { TreemapChart } from "@/components/business/treemap-chart";
 import { UnitConverter } from "@/components/business/unit-converter";
 import { UserMenu } from "@/components/business/user-menu";
 import { UtmBuilder } from "@/components/business/utm-builder";
+import { VehicleBooking } from "@/components/business/vehicle-booking";
 import { VersionHistory } from "@/components/business/version-history";
-import { VideoPlayer } from "@/components/business/video-player";
+import { WarehouseBrowse } from "@/components/business/warehouse-browse";
+import { WarehousePicker } from "@/components/business/warehouse-picker";
+import { WaterfallChart } from "@/components/business/waterfall-chart";
 import { Watermark } from "@/components/business/watermark";
-import { WorkflowViewer as Workflow } from "@/components/business/workflow";
+import { WorkOrderCard } from "@/components/business/work-order-card";
+import { WorkflowDesigner } from "@/components/business/workflow-designer";
+import { WorkflowPreview } from "@/components/business/workflow-preview";
+import { WriteoffBrowse } from "@/components/business/writeoff-browse";
+import { WriteoffFlow } from "@/components/business/writeoff-flow";
 
 export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Accordion,
   Affix,
   AlertDialog,
   Alert,
+  Anchor,
   AspectRatio,
+  AudioPlayer,
   Autocomplete,
   Avatar,
   BackTop,
   Badge,
+  BarcodeDisplay,
   Breadcrumb,
   BrowseInput,
   Button,
@@ -351,6 +490,8 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Card,
   Carousel,
   Cascader,
+  ChatInput,
+  ChatMessage,
   Checkbox,
   Collapsible,
   ColorPicker,
@@ -362,6 +503,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   DepartmentBrowse,
   Descriptions,
   Dialog,
+  Direction,
   Divider,
   Dot,
   Drawer,
@@ -377,8 +519,10 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   Grid,
   HoverCard,
   IconPicker,
+  Icon,
   ImageViewer,
   Image,
+  InfiniteScroll,
   InputGroup,
   InputNumber,
   InputSearch,
@@ -389,11 +533,16 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   KpiPanel,
   Label,
   List,
+  Masonry,
   Mentions,
   Menu,
   Menubar,
   MessageProvider,
+  Message,
+  MobilePullRefresh,
+  MobileSwipeAction,
   ModalProvider,
+  NativeSelect,
   NavigationMenu,
   Notification,
   NumberTicker,
@@ -408,6 +557,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   RadioGroup,
   Resizable,
   Result,
+  SchemaForm,
   ScrollArea,
   Select,
   Separator,
@@ -415,6 +565,7 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   SequencePreview,
   Sheet,
   Sidebar,
+  SignaturePad,
   Skeleton,
   Slider,
   Sonner,
@@ -439,113 +590,161 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   TreeView,
   Typography,
   UserBrowse,
+  VideoPlayer,
   VirtualList,
   VirtualTable,
+  WithPermission,
   AdminBreadcrumb,
   AdminHeader,
+  AdminShell,
   AdminSider,
   AdminTabs,
   AppShell,
+  ArticleLayout,
   AuthLayout,
   BlankLayout,
+  ChatLayout,
   DashboardLayout,
   DetailLayout,
   DialogFormBody,
+  EmbedLayout,
   ErrorLayout,
   MasterDetailLayout,
   MasterDetailTabs,
   PrintLayout,
+  PrintTemplateLayout,
   PublicLayout,
   RegionLayout,
+  SplitScreen,
   TopBar,
+  WizardLayout,
+  AccountBalance,
   ActivityFeed,
-  AddressForm,
   AddressPicker,
   AdvancedDataTable,
   AdvancedSearch,
-  Anchor,
-  AnimatedNumber,
   AnnouncementBanner,
+  AnnouncementCard,
+  ApplicationForm,
+  ApprovalActionBar,
   ApprovalFlow,
   ApprovalTimeline,
+  ArApAgingTable,
+  AreaChart,
   AsyncTaskCenter,
+  AsyncTaskTrigger,
+  AttachmentList,
+  AttachmentPreview,
+  AttachmentUploader,
+  AttendanceCalendar,
   AudienceSegmentBuilder,
-  AudioPlayer,
   AuditLog,
   AuditSidebar,
-  AuthForms,
+  AuditTrailDiff,
   AuthGuard,
   AvatarGroup,
-  Banner,
-  BarcodeDisplay,
+  BadgeDelta,
+  BarChart,
+  BarListCard,
+  BarList,
+  BatchGenealogyTree,
+  BatchPrintDialog,
   BatchSelector,
   BillFooter,
   BillHeader,
   BillPage,
+  BillPrintTemplate,
   BillStatusBar,
+  BillTimeline,
+  BillTodoList,
   BizStatusTag,
+  BomTreeEditor,
+  BudgetAllocator,
+  BudgetOverview,
   BudgetPacingCard,
   BulkActionsToolbar,
   BulkImportWizard,
-  CalendarMonth,
-  EventDetail,
-  GanttChart,
-  TimeSlotPicker,
+  CalendarView,
+  Callout,
   CampaignCalendar,
   CampaignCard,
   CampaignStatusTag,
+  CategoryBar,
   ChannelPicker,
+  ChartCard,
+  ChartSuite,
   Chart,
-  AreaChart,
-  BarChart,
-  ChartFrame,
-  ComposedChart,
-  FunnelChart,
-  HeatmapChart,
-  LineChart,
-  PieChart,
-  RadarChart,
-  RadialChart,
-  SankeyChart,
-  ScatterChart,
-  ChartEmpty,
-  ChartExport,
-  ChartFullscreen,
-  ChartLegend,
-  ChartSkeleton,
-  ChartTooltip,
-  TreemapChart,
-  WaterfallChart,
-  Chat,
+  ChatAgentStatus,
+  ChatArtifactPanel,
+  ChatBranch,
+  ChatCardMessage,
+  ChatCodeBlock,
+  ChatCommandMenu,
+  ChatContextPanel,
+  ChatConversationSearch,
+  ChatConversation,
+  ChatFeedback,
+  ChatHeader,
+  ChatImageGallery,
+  ChatInputToolbar,
+  ChatMarkdownRenderer,
+  ChatMentionPicker,
+  ChatMessageActions,
+  ChatMessageBubble,
+  ChatMessageGroup,
+  ChatMessageInput,
+  ChatModelSwitcher,
+  ChatSharedLink,
+  ChatShell,
+  ChatSidebar,
+  ChatStreamingText,
+  ChatSuggestReplies,
+  ChatThinkingBlock,
+  ChatToolCallBlock,
+  ChatVoiceMessage,
+  CheckoutBar,
   Chip,
-  CoachMark,
+  CityBrowse,
   CodeBlock,
   CodeEditor,
+  ColorBoard,
   ColorTag,
   Combobox,
   CommandPalette,
-  CommentThread,
-  Confetti,
+  CommissionCalculator,
+  CompanyBrowse,
+  CompanyPicker,
+  ComplianceChecklist,
   ConfirmDialog,
-  ConnectionStatus,
   ContractTemplate,
   CookieBanner,
-  CopyButton,
+  CostCenterPicker,
+  CouponCard,
   CreativePreview,
-  CreditCardInput,
+  CronEditor,
   CrudPage,
   CrudToolbar,
-  CurrencyInput,
+  Customer360Card,
+  CustomerBrowse,
+  CustomerPicker,
+  DashboardCanvas,
   DashboardDesigner,
+  DashboardGrid,
   DataTable,
   DateRangePicker,
-  DensitySwitcher,
+  DeltaBar,
+  DepartmentPicker,
   DictSelect,
   DiffViewerTable,
   DiffViewer,
-  Dock,
+  DistributorPicker,
+  DockPanel,
+  DonutCard,
+  DonutChart,
+  DynamicFormBuilder,
   EditToolbar,
   EditableTreeTable,
+  EmployeePicker,
   EmptyState,
   EquipmentCard,
   ErrorBoundary,
@@ -554,116 +753,189 @@ export const componentMap: Record<string, React.ComponentType<unknown>> = {
   ExperimentSummary,
   ExportButton,
   Fab,
-  FeatureGate,
+  FeatureTour,
+  FeeTypeBrowse,
   FieldMask,
+  FileCard,
   FileUploadManager,
   FilterBar,
   FilterBuilder,
+  FlowTracker,
   Forbidden,
-  FormAutosaveIndicator,
-  FormDirtyWarning,
-  FormErrorSummary,
-  FormFieldGroup,
-  FormProgress,
-  FormRepeater,
-  FormStepSummary,
+  FormDesignerRuntime,
+  FormDesigner,
   FormField,
   FormWizard,
   FormulaEditor,
+  FunnelChart,
+  GanttChartPro,
+  GanttChart,
+  GaugeChart,
   Gauge,
   GlobalLoading,
   HeatmapCalendar,
+  HeatmapChart,
+  I18nFormField,
+  ImMessage,
   ImageGallery,
   ImportDialog,
-  InboxList,
+  ImportErrorTable,
+  ImportMappingWizard,
   InlineEdit,
   InventoryAlertList,
-  InvoicePreview,
+  InventorySnapshot,
+  InviteLink,
+  InvoiceManager,
+  InvoiceSummary,
+  IotSensorGrid,
+  JournalEntryEditor,
+  JsonEditor,
   JsonViewer,
   KanbanBoard,
+  KanbanColumn,
   KpiCard,
+  LabelDesigner,
   LanguageSwitcher,
+  LeadPipelineBoard,
+  LeaveRequestForm,
+  LineChart,
   LineEditor,
   LoadingPage,
   MaintenanceLog,
+  MapChart,
+  MapMarker,
+  MapTrack,
   MapView,
-  Marketing,
-  MaskInput,
+  MarkdownEditor,
+  MarketingActivityForm,
+  MasterEditTemplate,
+  MasterListTemplate,
+  MediaRecorder,
+  MeetingRoomBooking,
+  MessageList,
   MetricTrend,
-  MobileAuthLayout,
-  MobileBottomNav,
-  MobileButton,
-  MobileCard,
-  MobileChartFallback,
-  MobileDashboardLayout,
-  MobileDataTable,
-  MobileDialog,
-  MobileEmptyState,
-  MobileFilterBuilder,
-  MobileFormAutosave,
-  MobileFormField,
-  MobileFormStepper,
-  MobileFormWizard,
-  MobileForm,
-  MobileInput,
-  MobileKanban,
-  MobileKpiCard,
-  MobileNavigation,
-  MobilePageHeader,
-  MobilePullToRefresh,
-  MobileSelect,
-  MobileSheet,
-  MobileSkeleton,
-  MobileSwipeActions,
-  MobileTabs,
-  MobileTextarea,
+  MobileActionSheet,
+  MobileCamera,
+  MobileGeolocation,
+  MobileInfiniteScroll,
+  MobileListItem,
+  MobilePageShell,
+  MobilePicker,
+  MobileQrcodeScanner,
+  MobileSignature,
+  MobileTabBar,
+  MultiCurrencyInput,
   MultiSelect,
   NotificationCenter,
-  OnboardingChecklist,
+  NotificationRuleBuilder,
+  OaBridge,
+  OeeDashboard,
+  OperationLog,
   OrderLineEditor,
   OrgChart,
+  OverviewPage,
   PageHeader,
-  PaymentForm,
+  PasteUpload,
+  PaymentMethodSelector,
+  PaymentResult,
+  PaymentSchedule,
   PdfViewer,
+  PerformanceRankTable,
+  PermissionButton,
   PermissionMatrix,
   PermissionWrapper,
-  PhoneInput,
+  PhotoAudit,
+  PieChart,
   PivotTable,
-  PresenceIndicators,
+  PolicyLineEditor,
+  PoolTrackerTable,
+  PreferencePanel,
+  PriceAdjustBrowse,
   PrintButton,
-  Profile,
+  PrintService,
+  PrintTemplateBuilder,
+  ProductBrowse,
+  ProductCategoryPicker,
+  PromotionRuleCard,
+  PromotionRuleEditor,
   PromptDialog,
-  QrCode,
+  PurchaseOrderEditor,
   QualityInspectionForm,
+  QuickEntryGrid,
+  QuotationLineEditor,
+  RadarChart,
+  RadialChart,
   Rating,
+  RebutNodeSelect,
+  ReconciliationLineEditor,
+  ReconciliationSummary,
+  RedPacket,
+  RegionPicker,
   RemoteSelect,
   ReportBuilder,
+  ResourceSchedule,
   ResponsivePreview,
   RichTextEditor,
   RoleAssignment,
+  RuleEditor,
+  SalesOrderBrowse,
+  SalesTargetEditor,
+  SankeyChart,
   SavedFilters,
-  ScheduleView,
-  SearchInput,
+  ScatterChart,
+  SealStampRegistry,
   SearchTable,
   SegmentedControl,
-  SettingsLayout,
+  SerialNumberManager,
+  SettlementStatusTag,
   ShiftCalendar,
-  SignaturePad,
+  ShippingWayBrowse,
+  SignActionButton,
+  SkuPicker,
+  SocialShare,
+  SparkChart,
+  SpcControlChart,
+  SqlEditor,
   StatCardRow,
+  StatCardWithDelta,
+  StatCardWithSparkline,
   StatCard,
   StatusBadge,
   StatusTag,
+  StockTransferDialog,
+  SubformTabs,
+  SupplierScorecard,
+  TabCrudPage,
+  TabPin,
+  TargetProgress,
+  TaskHistory,
+  TaskListTable,
+  TaskProgress,
+  TaxDetailTable,
+  TemplateDownload,
+  TerritoryMap,
   ThemeToggle,
   TimePicker,
-  TopLoader,
+  TimelineView,
+  TodoListTable,
   Tour,
+  Tracking,
   Transfer,
+  TreeCrudPage,
   TreeTable,
+  TreemapChart,
   UnitConverter,
   UserMenu,
   UtmBuilder,
+  VehicleBooking,
   VersionHistory,
-  VideoPlayer,
+  WarehouseBrowse,
+  WarehousePicker,
+  WaterfallChart,
   Watermark,
-  Workflow,
+  WorkOrderCard,
+  WorkflowDesigner,
+  WorkflowPreview,
+  WriteoffBrowse,
+  WriteoffFlow,
 };

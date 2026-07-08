@@ -37,9 +37,23 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  Anchor: dynamic(
+    () =>
+      import("../../src/business/Anchor.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
   AspectRatio: dynamic(
     () =>
       import("../../src/components/AspectRatio.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  AudioPlayer: dynamic(
+    () =>
+      import("../../src/business/AudioPlayer.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -68,6 +82,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   Badge: dynamic(
     () =>
       import("../../src/components/Badge.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  BarcodeDisplay: dynamic(
+    () =>
+      import("../../src/business/BarcodeDisplay.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -506,6 +527,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  SignaturePad: dynamic(
+    () =>
+      import("../../src/business/SignaturePad.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
   Skeleton: dynamic(
     () =>
       import("../../src/components/Skeleton.stories").then((m) => ({
@@ -674,6 +702,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  VideoPlayer: dynamic(
+    () =>
+      import("../../src/business/VideoPlayer.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
   VirtualList: dynamic(
     () =>
       import("../../src/components/VirtualList.stories").then((m) => ({
@@ -814,13 +849,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  AddressForm: dynamic(
-    () =>
-      import("../../src/business/AddressForm.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   AddressPicker: dynamic(
     () =>
       import("../../src/business/AddressPicker.stories").then((m) => ({
@@ -842,20 +870,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  Anchor: dynamic(
-    () =>
-      import("../../src/business/Anchor.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  AnimatedNumber: dynamic(
-    () =>
-      import("../../src/business/AnimatedNumber.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   ApprovalFlow: dynamic(
     () =>
       import("../../src/business/ApprovalFlow.stories").then((m) => ({
@@ -866,6 +880,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ApprovalTimeline: dynamic(
     () =>
       import("../../src/business/ApprovalTimeline.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  AreaChart: dynamic(
+    () =>
+      import("../../src/business/AreaChart.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -884,13 +905,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  AudioPlayer: dynamic(
-    () =>
-      import("../../src/business/AudioPlayer.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   AuditLog: dynamic(
     () =>
       import("../../src/business/AuditLog.stories").then((m) => ({
@@ -905,13 +919,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  AuthForms: dynamic(
-    () =>
-      import("../../src/business/AuthForms.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   AuthGuard: dynamic(
     () =>
       import("../../src/business/AuthGuard.stories").then((m) => ({
@@ -919,16 +926,9 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  Banner: dynamic(
+  BarChart: dynamic(
     () =>
-      import("../../src/business/Banner.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  BarcodeDisplay: dynamic(
-    () =>
-      import("../../src/business/BarcodeDisplay.stories").then((m) => ({
+      import("../../src/business/BarChart.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -982,34 +982,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  CalendarMonth: dynamic(
-    () =>
-      import("../../src/business/CalendarMonth.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  EventDetail: dynamic(
-    () =>
-      import("../../src/business/EventDetail.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  GanttChart: dynamic(
-    () =>
-      import("../../src/business/GanttChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  TimeSlotPicker: dynamic(
-    () =>
-      import("../../src/business/TimeSlotPicker.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   CampaignCalendar: dynamic(
     () =>
       import("../../src/business/CampaignCalendar.stories").then((m) => ({
@@ -1038,163 +1010,9 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  AreaChart: dynamic(
-    () =>
-      import("../../src/business/AreaChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  BarChart: dynamic(
-    () =>
-      import("../../src/business/BarChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartFrame: dynamic(
-    () =>
-      import("../../src/business/ChartFrame.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ComposedChart: dynamic(
-    () =>
-      import("../../src/business/ComposedChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FunnelChart: dynamic(
-    () =>
-      import("../../src/business/FunnelChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  HeatmapChart: dynamic(
-    () =>
-      import("../../src/business/HeatmapChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  LineChart: dynamic(
-    () =>
-      import("../../src/business/LineChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PieChart: dynamic(
-    () =>
-      import("../../src/business/PieChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  RadarChart: dynamic(
-    () =>
-      import("../../src/business/RadarChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  RadialChart: dynamic(
-    () =>
-      import("../../src/business/RadialChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SankeyChart: dynamic(
-    () =>
-      import("../../src/business/SankeyChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ScatterChart: dynamic(
-    () =>
-      import("../../src/business/ScatterChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartEmpty: dynamic(
-    () =>
-      import("../../src/business/ChartEmpty.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartExport: dynamic(
-    () =>
-      import("../../src/business/ChartExport.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartFullscreen: dynamic(
-    () =>
-      import("../../src/business/ChartFullscreen.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartLegend: dynamic(
-    () =>
-      import("../../src/business/ChartLegend.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartSkeleton: dynamic(
-    () =>
-      import("../../src/business/ChartSkeleton.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ChartTooltip: dynamic(
-    () =>
-      import("../../src/business/ChartTooltip.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  TreemapChart: dynamic(
-    () =>
-      import("../../src/business/TreemapChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  WaterfallChart: dynamic(
-    () =>
-      import("../../src/business/WaterfallChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Chat: dynamic(
-    () =>
-      import("../../src/business/Chat.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   Chip: dynamic(
     () =>
       import("../../src/business/Chip.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  CoachMark: dynamic(
-    () =>
-      import("../../src/business/CoachMark.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1234,30 +1052,9 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  CommentThread: dynamic(
-    () =>
-      import("../../src/business/CommentThread.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Confetti: dynamic(
-    () =>
-      import("../../src/business/Confetti.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   ConfirmDialog: dynamic(
     () =>
       import("../../src/business/ConfirmDialog.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ConnectionStatus: dynamic(
-    () =>
-      import("../../src/business/ConnectionStatus.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1276,23 +1073,9 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  CopyButton: dynamic(
-    () =>
-      import("../../src/business/CopyButton.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   CreativePreview: dynamic(
     () =>
       import("../../src/business/CreativePreview.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  CreditCardInput: dynamic(
-    () =>
-      import("../../src/business/CreditCardInput.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1307,13 +1090,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   CrudToolbar: dynamic(
     () =>
       import("../../src/business/CrudToolbar.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  CurrencyInput: dynamic(
-    () =>
-      import("../../src/business/CurrencyInput.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1339,13 +1115,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  DensitySwitcher: dynamic(
-    () =>
-      import("../../src/business/DensitySwitcher.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   DictSelect: dynamic(
     () =>
       import("../../src/business/DictSelect.stories").then((m) => ({
@@ -1363,13 +1132,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   DiffViewer: dynamic(
     () =>
       import("../../src/business/DiffViewer.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Dock: dynamic(
-    () =>
-      import("../../src/business/Dock.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1444,13 +1206,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  FeatureGate: dynamic(
-    () =>
-      import("../../src/business/FeatureGate.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   FieldMask: dynamic(
     () =>
       import("../../src/business/FieldMask.stories").then((m) => ({
@@ -1486,55 +1241,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  FormAutosaveIndicator: dynamic(
-    () =>
-      import("../../src/business/FormAutosaveIndicator.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormDirtyWarning: dynamic(
-    () =>
-      import("../../src/business/FormDirtyWarning.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormErrorSummary: dynamic(
-    () =>
-      import("../../src/business/FormErrorSummary.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormFieldGroup: dynamic(
-    () =>
-      import("../../src/business/FormFieldGroup.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormProgress: dynamic(
-    () =>
-      import("../../src/business/FormProgress.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormRepeater: dynamic(
-    () =>
-      import("../../src/business/FormRepeater.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  FormStepSummary: dynamic(
-    () =>
-      import("../../src/business/FormStepSummary.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   FormField: dynamic(
     () =>
       import("../../src/business/FormField.stories").then((m) => ({
@@ -1552,6 +1258,20 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   FormulaEditor: dynamic(
     () =>
       import("../../src/business/FormulaEditor.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  FunnelChart: dynamic(
+    () =>
+      import("../../src/business/FunnelChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  GanttChart: dynamic(
+    () =>
+      import("../../src/business/GanttChart.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1577,6 +1297,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  HeatmapChart: dynamic(
+    () =>
+      import("../../src/business/HeatmapChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
   ImageGallery: dynamic(
     () =>
       import("../../src/business/ImageGallery.stories").then((m) => ({
@@ -1591,13 +1318,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  InboxList: dynamic(
-    () =>
-      import("../../src/business/InboxList.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   InlineEdit: dynamic(
     () =>
       import("../../src/business/InlineEdit.stories").then((m) => ({
@@ -1608,13 +1328,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   InventoryAlertList: dynamic(
     () =>
       import("../../src/business/InventoryAlertList.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  InvoicePreview: dynamic(
-    () =>
-      import("../../src/business/InvoicePreview.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1647,6 +1360,13 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
+  LineChart: dynamic(
+    () =>
+      import("../../src/business/LineChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
   LineEditor: dynamic(
     () =>
       import("../../src/business/LineEditor.stories").then((m) => ({
@@ -1675,23 +1395,310 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  Marketing: dynamic(
-    () =>
-      import("../../src/business/Marketing.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  MaskInput: dynamic(
-    () =>
-      import("../../src/business/MaskInput.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   MetricTrend: dynamic(
     () =>
       import("../../src/business/MetricTrend.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MultiSelect: dynamic(
+    () =>
+      import("../../src/business/MultiSelect.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  NotificationCenter: dynamic(
+    () =>
+      import("../../src/business/NotificationCenter.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  OrderLineEditor: dynamic(
+    () =>
+      import("../../src/business/OrderLineEditor.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  OrgChart: dynamic(
+    () =>
+      import("../../src/business/OrgChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PageHeader: dynamic(
+    () =>
+      import("../../src/business/PageHeader.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PdfViewer: dynamic(
+    () =>
+      import("../../src/business/PdfViewer.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PermissionMatrix: dynamic(
+    () =>
+      import("../../src/business/PermissionMatrix.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PermissionWrapper: dynamic(
+    () =>
+      import("../../src/business/PermissionWrapper.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PieChart: dynamic(
+    () =>
+      import("../../src/business/PieChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PivotTable: dynamic(
+    () =>
+      import("../../src/business/PivotTable.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PrintButton: dynamic(
+    () =>
+      import("../../src/business/PrintButton.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  PromptDialog: dynamic(
+    () =>
+      import("../../src/business/PromptDialog.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  QualityInspectionForm: dynamic(
+    () =>
+      import("../../src/business/QualityInspectionForm.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  RadarChart: dynamic(
+    () =>
+      import("../../src/business/RadarChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  RadialChart: dynamic(
+    () =>
+      import("../../src/business/RadialChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  Rating: dynamic(
+    () =>
+      import("../../src/business/Rating.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  RemoteSelect: dynamic(
+    () =>
+      import("../../src/business/RemoteSelect.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  ReportBuilder: dynamic(
+    () =>
+      import("../../src/business/ReportBuilder.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  ResponsivePreview: dynamic(
+    () =>
+      import("../../src/business/ResponsivePreview.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  RichTextEditor: dynamic(
+    () =>
+      import("../../src/business/RichTextEditor.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  RoleAssignment: dynamic(
+    () =>
+      import("../../src/business/RoleAssignment.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  SankeyChart: dynamic(
+    () =>
+      import("../../src/business/SankeyChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  SavedFilters: dynamic(
+    () =>
+      import("../../src/business/SavedFilters.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  ScatterChart: dynamic(
+    () =>
+      import("../../src/business/ScatterChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  SearchTable: dynamic(
+    () =>
+      import("../../src/business/SearchTable.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  SegmentedControl: dynamic(
+    () =>
+      import("../../src/business/SegmentedControl.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  ShiftCalendar: dynamic(
+    () =>
+      import("../../src/business/ShiftCalendar.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  StatCardRow: dynamic(
+    () =>
+      import("../../src/business/StatCardRow.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  StatCard: dynamic(
+    () =>
+      import("../../src/business/StatCard.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  StatusBadge: dynamic(
+    () =>
+      import("../../src/business/StatusBadge.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  StatusTag: dynamic(
+    () =>
+      import("../../src/business/StatusTag.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  ThemeToggle: dynamic(
+    () =>
+      import("../../src/business/ThemeToggle.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  TimePicker: dynamic(
+    () =>
+      import("../../src/business/TimePicker.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  Tour: dynamic(
+    () =>
+      import("../../src/business/Tour.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  Transfer: dynamic(
+    () =>
+      import("../../src/business/Transfer.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  TreeTable: dynamic(
+    () =>
+      import("../../src/business/TreeTable.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  TreemapChart: dynamic(
+    () =>
+      import("../../src/business/TreemapChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  UnitConverter: dynamic(
+    () =>
+      import("../../src/business/UnitConverter.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  UserMenu: dynamic(
+    () =>
+      import("../../src/business/UserMenu.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  UtmBuilder: dynamic(
+    () =>
+      import("../../src/business/UtmBuilder.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  VersionHistory: dynamic(
+    () =>
+      import("../../src/business/VersionHistory.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  WaterfallChart: dynamic(
+    () =>
+      import("../../src/business/WaterfallChart.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  Watermark: dynamic(
+    () =>
+      import("../../src/business/Watermark.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1720,13 +1727,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   MobileCard: dynamic(
     () =>
       import("../../src/business/MobileCard.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  MobileChartFallback: dynamic(
-    () =>
-      import("../../src/business/MobileChartFallback.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1766,23 +1766,9 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  MobileFormAutosave: dynamic(
-    () =>
-      import("../../src/business/MobileFormAutosave.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
   MobileFormField: dynamic(
     () =>
       import("../../src/business/MobileFormField.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  MobileFormStepper: dynamic(
-    () =>
-      import("../../src/business/MobileFormStepper.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -1881,349 +1867,6 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   MobileTextarea: dynamic(
     () =>
       import("../../src/business/MobileTextarea.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  MultiSelect: dynamic(
-    () =>
-      import("../../src/business/MultiSelect.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  NotificationCenter: dynamic(
-    () =>
-      import("../../src/business/NotificationCenter.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  OnboardingChecklist: dynamic(
-    () =>
-      import("../../src/business/OnboardingChecklist.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  OrderLineEditor: dynamic(
-    () =>
-      import("../../src/business/OrderLineEditor.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  OrgChart: dynamic(
-    () =>
-      import("../../src/business/OrgChart.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PageHeader: dynamic(
-    () =>
-      import("../../src/business/PageHeader.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PaymentForm: dynamic(
-    () =>
-      import("../../src/business/PaymentForm.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PdfViewer: dynamic(
-    () =>
-      import("../../src/business/PdfViewer.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PermissionMatrix: dynamic(
-    () =>
-      import("../../src/business/PermissionMatrix.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PermissionWrapper: dynamic(
-    () =>
-      import("../../src/business/PermissionWrapper.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PhoneInput: dynamic(
-    () =>
-      import("../../src/business/PhoneInput.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PivotTable: dynamic(
-    () =>
-      import("../../src/business/PivotTable.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PresenceIndicators: dynamic(
-    () =>
-      import("../../src/business/PresenceIndicators.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PrintButton: dynamic(
-    () =>
-      import("../../src/business/PrintButton.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Profile: dynamic(
-    () =>
-      import("../../src/business/Profile.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  PromptDialog: dynamic(
-    () =>
-      import("../../src/business/PromptDialog.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  QrCode: dynamic(
-    () =>
-      import("../../src/business/QrCode.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  QualityInspectionForm: dynamic(
-    () =>
-      import("../../src/business/QualityInspectionForm.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Rating: dynamic(
-    () =>
-      import("../../src/business/Rating.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  RemoteSelect: dynamic(
-    () =>
-      import("../../src/business/RemoteSelect.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ReportBuilder: dynamic(
-    () =>
-      import("../../src/business/ReportBuilder.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ResponsivePreview: dynamic(
-    () =>
-      import("../../src/business/ResponsivePreview.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  RichTextEditor: dynamic(
-    () =>
-      import("../../src/business/RichTextEditor.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  RoleAssignment: dynamic(
-    () =>
-      import("../../src/business/RoleAssignment.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SavedFilters: dynamic(
-    () =>
-      import("../../src/business/SavedFilters.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ScheduleView: dynamic(
-    () =>
-      import("../../src/business/ScheduleView.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SearchInput: dynamic(
-    () =>
-      import("../../src/business/SearchInput.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SearchTable: dynamic(
-    () =>
-      import("../../src/business/SearchTable.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SegmentedControl: dynamic(
-    () =>
-      import("../../src/business/SegmentedControl.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SettingsLayout: dynamic(
-    () =>
-      import("../../src/business/SettingsLayout.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ShiftCalendar: dynamic(
-    () =>
-      import("../../src/business/ShiftCalendar.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  SignaturePad: dynamic(
-    () =>
-      import("../../src/business/SignaturePad.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  StatCardRow: dynamic(
-    () =>
-      import("../../src/business/StatCardRow.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  StatCard: dynamic(
-    () =>
-      import("../../src/business/StatCard.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  StatusBadge: dynamic(
-    () =>
-      import("../../src/business/StatusBadge.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  StatusTag: dynamic(
-    () =>
-      import("../../src/business/StatusTag.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  ThemeToggle: dynamic(
-    () =>
-      import("../../src/business/ThemeToggle.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  TimePicker: dynamic(
-    () =>
-      import("../../src/business/TimePicker.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  TopLoader: dynamic(
-    () =>
-      import("../../src/business/TopLoader.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Tour: dynamic(
-    () =>
-      import("../../src/business/Tour.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Transfer: dynamic(
-    () =>
-      import("../../src/business/Transfer.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  TreeTable: dynamic(
-    () =>
-      import("../../src/business/TreeTable.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  UnitConverter: dynamic(
-    () =>
-      import("../../src/business/UnitConverter.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  UserMenu: dynamic(
-    () =>
-      import("../../src/business/UserMenu.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  UtmBuilder: dynamic(
-    () =>
-      import("../../src/business/UtmBuilder.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  VersionHistory: dynamic(
-    () =>
-      import("../../src/business/VersionHistory.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  VideoPlayer: dynamic(
-    () =>
-      import("../../src/business/VideoPlayer.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Watermark: dynamic(
-    () =>
-      import("../../src/business/Watermark.stories").then((m) => ({
-        default: createStoryPreview(m),
-      })),
-    { ssr: false },
-  ),
-  Workflow: dynamic(
-    () =>
-      import("../../src/business/Workflow.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
