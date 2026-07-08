@@ -1475,6 +1475,17 @@ export const components: ComponentMeta[] = [
     storybookId: "layouts-master-detail-tabs--docs",
   },
   {
+    slug: "navigation-tabs-bar",
+    name: "NavigationTabsBar",
+    nameZh: "Navigation Tabs Bar",
+    category: "System Layout",
+    desc: "NavigationTabsBar — navigation tabs bar component.",
+    descZh: "Tab items / Tab 项列表",
+    sourcePath:
+      "packages/chaos-design-ui/components/layout/navigation-tabs-bar.tsx",
+    storybookId: "layouts-navigation-tabs-bar--docs",
+  },
+  {
     slug: "print-layout",
     name: "PrintLayout",
     nameZh: "打印布局",

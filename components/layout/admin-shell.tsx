@@ -254,7 +254,7 @@ export function AdminShell({
         {/* Tabs bar */}
         {tabs.length > 0 && (
           <AdminTabs
-            tabs={tabs}
+            items={tabs}
             {...(activeTabKey !== undefined ? { activeKey: activeTabKey } : {})}
             {...(onTabChange !== undefined ? { onChange: onTabChange } : {})}
             {...(onTabClose !== undefined ? { onClose: onTabClose } : {})}

@@ -350,6 +350,7 @@ export * from "./components/layout/admin-breadcrumb";
 export * from "./components/layout/admin-header";
 export * from "./components/layout/admin-sider";
 export * from "./components/layout/admin-tabs";
+export * from "./components/layout/navigation-tabs-bar";
 export * from "./components/layout/dialog-form-body";
 export * from "./components/layout/master-detail-layout";
 export * from "./components/layout/master-detail-tabs";

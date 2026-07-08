@@ -1489,6 +1489,20 @@ def main():
     # Write components.meta.ts
     write_meta(components)
 
+    # Sync barrel index.ts files to docs proxy (so Turbopack can resolve
+    # import { X } from "@/components/ui" in Docker builds)
+    synced_barrels = 0
+    for subfolder in ["ui", "business", "layout", "mobile"]:
+        src_idx = ROOT / "components" / subfolder / "index.ts"
+        if src_idx.exists():
+            dst_idx = DOCS_ROOT / subfolder / "index.ts"
+            dst_idx.parent.mkdir(parents=True, exist_ok=True)
+            dst_idx.write_text(src_idx.read_text())
+            synced_barrels += 1
+            print(f"  Synced barrel: {subfolder}/index.ts")
+    if synced_barrels:
+        print(f"Synced {synced_barrels} barrel index.ts files")
+
     # Print sample
     print("\n=== Sample MDX (button) ===")
     sample = CONTENT_DIR / "General" / "button.mdx"

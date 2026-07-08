@@ -1,25 +1,30 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { AdminTabs } from "./admin-tabs";
-import type { AdminTabsProps } from "./admin-tabs";
+import { NavigationTabsBar } from "./navigation-tabs-bar";
+import type {
+  NavigationTabsBarProps,
+  NavigationTabsBarTabItem,
+} from "./navigation-tabs-bar";
 
-describe("admin-tabs (alias of NavigationTabsBar)", () => {
-  it("exports AdminTabs", () => {
-    expect(AdminTabs).toBeDefined();
+describe("NavigationTabsBar", () => {
+  it("exports NavigationTabsBar", () => {
+    expect(NavigationTabsBar).toBeDefined();
   });
 
   it("exports types", () => {
-    const _tc1: AdminTabsProps | undefined = undefined;
+    const _tc1: NavigationTabsBarProps | undefined = undefined;
     expect(_tc1).toBeUndefined();
+    const _tc2: NavigationTabsBarTabItem | undefined = undefined;
+    expect(_tc2).toBeUndefined();
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/layout/admin-tabs");
-    expect(mod.AdminTabs).toBeDefined();
+    const mod = await import("@/components/layout/navigation-tabs-bar");
+    expect(mod.NavigationTabsBar).toBeDefined();
   });
 
   it("renders nothing when no items", () => {
-    const { container } = render(<AdminTabs />);
+    const { container } = render(<NavigationTabsBar />);
     expect(
       container.querySelector('[data-slot="navigation-tabs-bar"]'),
     ).not.toBeNull();
@@ -28,7 +33,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
 
   it("renders all tab labels and marks first active by default", () => {
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -42,7 +47,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("fires onChange when a tab is clicked (uncontrolled active)", () => {
     const onChange = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -57,7 +62,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("uses activeKey (controlled) and does not change internal state", () => {
     const onChange = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -72,7 +77,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
 
   it("renders tab icon when provided", () => {
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[{ key: "home", label: "Home", icon: <span>ICON</span> }]}
       />,
     );
@@ -82,7 +87,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("renders close button for closable tabs and fires onClose", () => {
     const onClose = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[{ key: "home", label: "Home", closable: true }]}
         onClose={onClose}
       />,
@@ -94,7 +99,9 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
 
   it("hides close button when closable is false", () => {
     render(
-      <AdminTabs items={[{ key: "home", label: "Home", closable: false }]} />,
+      <NavigationTabsBar
+        items={[{ key: "home", label: "Home", closable: false }]}
+      />,
     );
     expect(screen.queryByLabelText("Close tab")).toBeNull();
   });
@@ -103,7 +110,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
     const onChange = vi.fn();
     const onClose = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[{ key: "home", label: "Home" }]}
         onChange={onChange}
         onClose={onClose}
@@ -117,7 +124,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("opens context menu on right-click and triggers close action", () => {
     const onClose = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -126,6 +133,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
       />,
     );
     fireEvent.contextMenu(screen.getByText("Settings"));
+    // Menu should now be visible
     const closeMenuBtn = screen.getByText("Close");
     fireEvent.click(closeMenuBtn);
     expect(onClose).toHaveBeenCalledWith("settings");
@@ -134,7 +142,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("context menu triggers refresh action", () => {
     const onRefresh = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[{ key: "home", label: "Home" }]}
         onRefresh={onRefresh}
       />,
@@ -147,7 +155,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("context menu triggers closeOthers action", () => {
     const onCloseOthers = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -163,7 +171,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("context menu triggers closeToRight action", () => {
     const onCloseToRight = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[
           { key: "home", label: "Home" },
           { key: "settings", label: "Settings" },
@@ -179,7 +187,7 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
   it("context menu triggers closeAll action", () => {
     const onCloseAll = vi.fn();
     render(
-      <AdminTabs
+      <NavigationTabsBar
         items={[{ key: "home", label: "Home" }]}
         onCloseAll={onCloseAll}
       />,
@@ -189,9 +197,103 @@ describe("admin-tabs (alias of NavigationTabsBar)", () => {
     expect(onCloseAll).toHaveBeenCalledTimes(1);
   });
 
+  it("hides scrollbar via CSS classes", () => {
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+      />,
+    );
+    // The inner scrollable container should have the scrollbar-hiding classes
+    const scrollContainer = container.querySelector(
+      '[data-slot="navigation-tabs-bar"] > div',
+    );
+    expect(scrollContainer?.className).toContain("overflow-x-auto");
+  });
+
   it("applies className to root", () => {
-    const { container } = render(<AdminTabs className="my-tabs" />);
+    const { container } = render(<NavigationTabsBar className="my-tabs" />);
     const root = container.querySelector('[data-slot="navigation-tabs-bar"]');
     expect(root?.classList.contains("my-tabs")).toBe(true);
+  });
+
+  it("closes tab on middle-click (auxClick) with button === 1", () => {
+    const onClose = vi.fn();
+    render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+        onClose={onClose}
+      />,
+    );
+    const tabLabel = screen.getByText("Settings");
+    fireEvent(
+      tabLabel,
+      new MouseEvent("auxclick", { bubbles: true, button: 1 }),
+    );
+    expect(onClose).toHaveBeenCalledWith("settings");
+  });
+
+  it("does not close non-closable tab on middle-click", () => {
+    const onClose = vi.fn();
+    render(
+      <NavigationTabsBar
+        items={[{ key: "home", label: "Home", closable: false }]}
+        onClose={onClose}
+      />,
+    );
+    const tabLabel = screen.getByText("Home");
+    fireEvent(
+      tabLabel,
+      new MouseEvent("auxclick", { bubbles: true, button: 1 }),
+    );
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it("renders context menu with all menu items", () => {
+    const onRefresh = vi.fn();
+    const onClose = vi.fn();
+    const onCloseOthers = vi.fn();
+    const onCloseToRight = vi.fn();
+    const onCloseAll = vi.fn();
+    render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+        onRefresh={onRefresh}
+        onClose={onClose}
+        onCloseOthers={onCloseOthers}
+        onCloseToRight={onCloseToRight}
+        onCloseAll={onCloseAll}
+      />,
+    );
+    fireEvent.contextMenu(screen.getByText("Home"));
+    expect(screen.getByText("Refresh")).toBeDefined();
+    expect(screen.getByText("Close")).toBeDefined();
+    expect(screen.getByText("Close Others")).toBeDefined();
+    expect(screen.getByText("Close to Right")).toBeDefined();
+    expect(screen.getByText("Close All")).toBeDefined();
+  });
+
+  it("uses defaultActiveKey for uncontrolled initial active tab", () => {
+    const onChange = vi.fn();
+    render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+        defaultActiveKey="settings"
+        onChange={onChange}
+      />,
+    );
+    fireEvent.click(screen.getByText("Home"));
+    expect(onChange).toHaveBeenCalledWith("home");
   });
 });

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminTabs } from "@/components/layout/admin-tabs";
-import type { TabItem } from "@/components/layout/admin-tabs";
+import type { NavigationTabsBarTabItem as TabItem } from "@/components/layout/admin-tabs";
 import { HomeIcon, FileTextIcon, SettingsIcon } from "lucide-react";
 
 const meta = {
@@ -45,7 +45,7 @@ const manyTabs: TabItem[] = Array.from({ length: 8 }, (_, i) => ({
 /** Default tabs — middle tab active. */
 export const Default: Story = {
   args: {
-    tabs,
+    items: tabs,
     activeKey: "documents",
     onChange: noop,
   },
@@ -54,7 +54,7 @@ export const Default: Story = {
 /** Single tab (no close affordance). */
 export const SingleTab: Story = {
   args: {
-    tabs: [{ key: "home", label: "Home", closable: false }],
+    items: [{ key: "home", label: "Home", closable: false }],
     activeKey: "home",
     onChange: noop,
   },
@@ -63,7 +63,7 @@ export const SingleTab: Story = {
 /** Tab with disabled close (non-closable). */
 export const NonClosable: Story = {
   args: {
-    tabs: [
+    items: [
       { key: "home", label: "Home", closable: false },
       { key: "edit", label: "Editor", closable: false },
       { key: "preview", label: "Preview" },
@@ -77,7 +77,7 @@ export const NonClosable: Story = {
 /** Many tabs — horizontal scroll region. */
 export const ManyTabs: Story = {
   args: {
-    tabs: manyTabs,
+    items: manyTabs,
     activeKey: "tab-4",
     onChange: noop,
     onClose: noop,
@@ -87,7 +87,7 @@ export const ManyTabs: Story = {
 /** All tab lifecycle callbacks wired (close / closeAll / closeOthers / closeToRight / refresh). */
 export const WithLifecycleCallbacks: Story = {
   args: {
-    tabs,
+    items: tabs,
     activeKey: "documents",
     onChange: noop,
     onClose: noop,

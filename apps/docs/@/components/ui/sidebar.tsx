@@ -157,15 +157,16 @@ function SidebarProvider({
   );
 }
 
+/** @see globals.css `.dark` section for source-of-truth sidebar token values. */
 const DARK_SIDEBAR_VARS: Record<string, string> = {
-  "--sidebar-background": "oklch(0.2 0.01 260)",
-  "--sidebar-foreground": "oklch(0.9 0.005 260)",
-  "--sidebar-primary": "oklch(0.6 0.15 260)",
-  "--sidebar-primary-foreground": "oklch(1 0 0)",
-  "--sidebar-accent": "oklch(0.3 0.01 260)",
-  "--sidebar-accent-foreground": "oklch(0.9 0.005 260)",
-  "--sidebar-border": "oklch(0.3 0.01 260)",
-  "--sidebar-ring": "oklch(0.6 0.15 260)",
+  "--sidebar": "oklch(0.205 0 0)",
+  "--sidebar-foreground": "oklch(0.985 0 0)",
+  "--sidebar-primary": "oklch(0.488 0.243 264.376)",
+  "--sidebar-primary-foreground": "oklch(0.985 0 0)",
+  "--sidebar-accent": "oklch(0.269 0 0)",
+  "--sidebar-accent-foreground": "oklch(0.985 0 0)",
+  "--sidebar-border": "oklch(1 0 0 / 10%)",
+  "--sidebar-ring": "oklch(0.556 0 0)",
 };
 
 function Sidebar({

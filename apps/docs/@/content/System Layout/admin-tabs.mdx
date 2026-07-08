@@ -1,4 +1,9 @@
-import { AdminTabs } from "@/components/layout/admin-tabs";
+import {
+  NavigationTabsBar,
+  AdminTabs,
+  NavigationTabsBarTabItem,
+  AdminTabItem,
+} from "@/components/layout/admin-tabs";
 import { CodeBlock } from "@/components/code-block";
 
 # AdminTabs 管理后台标签页
@@ -18,28 +23,28 @@ Use when you need an admin tabs.
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { AdminTabs } from "@/components/layout/admin-tabs"
+<CodeBlock code={`import { NavigationTabsBar, AdminTabs, NavigationTabsBarTabItem, AdminTabItem } from "@/components/layout/admin-tabs"
 
 export function Basic() {
-  return <AdminTabs />
+  return (
+    <AdminTabs>
+      <AdminTabs>Content</AdminTabs>
+    </AdminTabs>
+  )
 }`} lang="tsx" />
 
 ## API / Props
 
 ### AdminTabs
 
-| Prop               | Type                          | Default | 说明 / Description                                          |
-| ------------------ | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className`        | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| `items`            | `AdminTabItem[]`              | —       | 选项/数据项列表 <br/> Items / data list                     |
-| `activeKey`        | `string`                      | —       |                                                             |
-| `defaultActiveKey` | `string`                      | —       |                                                             |
-| `onChange`         | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
-| ...rest            | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **复合组件**: 包含 2 个子组件(NavigationTabsBarTabItem, AdminTabItem),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-admin-tabs--docs)。
