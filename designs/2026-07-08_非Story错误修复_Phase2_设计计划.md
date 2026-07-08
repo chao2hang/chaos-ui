@@ -1,5 +1,5 @@
 ---
-status: 未执行
+status: 待审核
 created: 2026-07-08
 updated: 2026-07-08
 ---
@@ -143,3 +143,16 @@ sed -i 's/extends React\.ComponentProps<"div">/extends Omit<React.ComponentProps
 - 不改动实际组件源码（package/ 目录）
 - 不改动 Story 文件（Phase 1 已完成）
 - 不改动 tsconfig 严格性设置
+
+---
+
+## 执行记录
+
+- **2026-07-08**: 全部 6 个 Group 已完成修复并提交 (`8bb9cbc`)
+- **Group A**: 71 个 shim 文件中 `React.ComponentProps<"div">` → `React.HTMLAttributes<HTMLDivElement>`（避免 Map 溢出）
+- **Group B**: 23 个文件的 TS2484 导出冲突修复（从 `export type { ... }` 删除重复名）
+- **Group C**: `browse-dialog.tsx` 循环导入修复（指向 `../../../../../components/...`）
+- **Group D**: `component-story-previews.tsx` 重新生成（483 个入口）
+- **Group E**: UI(5) + Layout(2) + Mobile(18) + Loader(2) 修复
+- **Group F**: Hooks(2) + Lib(2) 修复
+- **验证**: Storybook 构建成功。`tsc --noEmit` 仍因 TS 5.9.3 V8 Map 溢出崩溃（0 错误后），已知限制。
