@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { VirtualList } from "@/components/ui/virtual-list"
-import { Skeleton } from "@/components/ui/skeleton"
+import type { Meta, StoryObj } from "@storybook/react";
+import { VirtualList } from "@/components/ui/virtual-list";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Item {
-  id: number
-  name: string
-  description: string
+  id: number;
+  name: string;
+  description: string;
 }
 
 const generateData = (count: number): Item[] =>
@@ -13,15 +13,15 @@ const generateData = (count: number): Item[] =>
     id: i + 1,
     name: `Item ${i + 1}`,
     description: `Description for item ${i + 1}`,
-  }))
+  }));
 
 const meta: Meta<typeof VirtualList> = {
   title: "Components/VirtualList",
   component: VirtualList,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -32,12 +32,12 @@ export const Default: Story = {
       <div className="flex items-center border-b px-4 py-2">
         <div>
           <p className="font-medium">{item.name}</p>
-          <p className="text-sm text-muted-foreground">{item.description}</p>
+          <p className="text-muted-foreground text-sm">{item.description}</p>
         </div>
       </div>
     ),
   },
-}
+};
 
 export const LargeDataset: Story = {
   args: {
@@ -50,7 +50,7 @@ export const LargeDataset: Story = {
       </div>
     ),
   },
-}
+};
 
 export const WithLoading: Story = {
   args: {
@@ -61,7 +61,7 @@ export const WithLoading: Story = {
     loadingComponent: (
       <div className="flex items-center gap-2 p-4">
         <Skeleton className="size-4 rounded-full" />
-        <span className="text-sm text-muted-foreground">Loading more...</span>
+        <span className="text-muted-foreground text-sm">Loading more...</span>
       </div>
     ),
     renderItem: (item) => (
@@ -70,4 +70,4 @@ export const WithLoading: Story = {
       </div>
     ),
   },
-}
+};

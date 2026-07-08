@@ -6,7 +6,7 @@ const meta: Meta<typeof RegionLayout> = {
   component: RegionLayout,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

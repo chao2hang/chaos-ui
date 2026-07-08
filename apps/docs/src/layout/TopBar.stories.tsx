@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { TopBar } from "@/components/layout/top-bar"
-import { Button } from "@/components/ui/button"
-import { BellIcon, SearchIcon, UserIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { TopBar } from "@/components/layout/top-bar";
+import { Button } from "@/components/ui/button";
+import { BellIcon, SearchIcon, UserIcon } from "lucide-react";
 
 const meta: Meta<typeof TopBar> = {
   title: "Layouts/TopBar",
   component: TopBar,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const sampleNav = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "Projects", href: "/projects" },
   { label: "Reports", href: "/reports" },
-]
+];
 
 export const Default: Story = {
   render: () => (
-    <div className="min-h-screen bg-muted/20">
+    <div className="bg-muted/20 min-h-screen">
       <TopBar
         nav={sampleNav}
         actions={
@@ -36,16 +36,16 @@ export const Default: Story = {
           </>
         }
       />
-      <main className="container mx-auto p-6 text-sm text-muted-foreground">
+      <main className="text-muted-foreground container mx-auto p-6 text-sm">
         Page content goes under the sticky TopBar.
       </main>
     </div>
   ),
-}
+};
 
 export const WithMegaMenu: Story = {
   render: () => (
-    <div className="min-h-screen bg-muted/20">
+    <div className="bg-muted/20 min-h-screen">
       <TopBar
         nav={[
           { label: "Home", href: "/" },
@@ -69,29 +69,27 @@ export const WithMegaMenu: Story = {
         ]}
         actions={<Button size="sm">Sign in</Button>}
       />
-      <main className="container mx-auto p-6 text-sm text-muted-foreground">
+      <main className="text-muted-foreground container mx-auto p-6 text-sm">
         Hover or focus a multi-level item to see the dropdown panel.
       </main>
     </div>
   ),
-}
+};
 
 export const Transparent: Story = {
   render: () => (
-    <div
-      className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/20"
-    >
+    <div className="from-primary/20 via-background to-secondary/20 min-h-screen bg-gradient-to-br">
       <TopBar
         variant="transparent"
         nav={sampleNav}
         actions={<Button size="sm">Get started</Button>}
       />
-      <main className="container mx-auto p-6 text-sm text-muted-foreground">
+      <main className="text-muted-foreground container mx-auto p-6 text-sm">
         Hero content sits beneath a transparent TopBar.
       </main>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -105,9 +103,9 @@ export const Dark: Story = {
           </Button>
         }
       />
-      <main className="container mx-auto p-6 text-sm text-muted-foreground">
+      <main className="text-muted-foreground container mx-auto p-6 text-sm">
         Dark theme preview of the TopBar.
       </main>
     </div>
   ),
-}
+};

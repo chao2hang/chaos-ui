@@ -9,7 +9,7 @@ const meta: Meta<typeof ResizablePanelGroup> = {
   title: "Components/Resizable",
   component: ResizablePanelGroup,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

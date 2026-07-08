@@ -6,7 +6,7 @@ const meta: Meta<typeof Affix> = {
   title: "Components/Affix",
   component: Affix,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Stepper, Step } from "@/components/ui/stepper"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Stepper, Step } from "@/components/ui/stepper";
 
 const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",
@@ -17,9 +17,9 @@ const meta: Meta<typeof Stepper> = {
       options: ["horizontal", "vertical"],
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { activeStep: 0 },
@@ -33,7 +33,7 @@ export const Default: Story = {
       </Stepper>
     </div>
   ),
-}
+};
 
 export const Step2: Story = {
   args: { activeStep: 1 },
@@ -46,7 +46,7 @@ export const Step2: Story = {
       </Stepper>
     </div>
   ),
-}
+};
 
 export const AllComplete: Story = {
   args: { activeStep: 3 },
@@ -60,7 +60,7 @@ export const AllComplete: Story = {
       </Stepper>
     </div>
   ),
-}
+};
 
 export const Vertical: Story = {
   args: { activeStep: 1, orientation: "vertical" },
@@ -73,13 +73,13 @@ export const Vertical: Story = {
       </Stepper>
     </div>
   ),
-}
+};
 
 export const AllSteps: Story = {
   render: () => (
     <div className="w-full max-w-3xl space-y-8">
       <div>
-        <p className="text-sm text-muted-foreground mb-2">Step 1 of 4</p>
+        <p className="text-muted-foreground mb-2 text-sm">Step 1 of 4</p>
         <Stepper activeStep={0}>
           <Step>Step 1</Step>
           <Step>Step 2</Step>
@@ -88,7 +88,7 @@ export const AllSteps: Story = {
         </Stepper>
       </div>
       <div>
-        <p className="text-sm text-muted-foreground mb-2">Step 2 of 4</p>
+        <p className="text-muted-foreground mb-2 text-sm">Step 2 of 4</p>
         <Stepper activeStep={1}>
           <Step>Step 1</Step>
           <Step>Step 2</Step>
@@ -97,7 +97,7 @@ export const AllSteps: Story = {
         </Stepper>
       </div>
       <div>
-        <p className="text-sm text-muted-foreground mb-2">Step 3 of 4</p>
+        <p className="text-muted-foreground mb-2 text-sm">Step 3 of 4</p>
         <Stepper activeStep={2}>
           <Step>Step 1</Step>
           <Step>Step 2</Step>
@@ -106,7 +106,7 @@ export const AllSteps: Story = {
         </Stepper>
       </div>
       <div>
-        <p className="text-sm text-muted-foreground mb-2">All Complete</p>
+        <p className="text-muted-foreground mb-2 text-sm">All Complete</p>
         <Stepper activeStep={3}>
           <Step>Step 1</Step>
           <Step>Step 2</Step>
@@ -116,4 +116,4 @@ export const AllSteps: Story = {
       </div>
     </div>
   ),
-}
+};

@@ -5,7 +5,7 @@ const meta: Meta<typeof Kbd> = {
   title: "Components/Kbd",
   component: Kbd,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

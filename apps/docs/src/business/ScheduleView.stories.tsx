@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ScheduleView } from "@/components/business/schedule-view"
-import type { ScheduleEvent } from "@/components/business/schedule-view"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ScheduleView } from "@/components/business/schedule-view";
+import type { ScheduleEvent } from "@/components/business/schedule-view";
 
 function makeEvent(
   id: string,
@@ -10,16 +10,16 @@ function makeEvent(
   endHour: number,
   color?: string,
 ): ScheduleEvent {
-  const base = new Date()
-  const monday = new Date(base)
-  const day = monday.getDay()
-  monday.setDate(monday.getDate() - (day === 0 ? 6 : day - 1) + dayOffset)
-  monday.setHours(0, 0, 0, 0)
-  const start = new Date(monday)
-  start.setHours(startHour)
-  const end = new Date(monday)
-  end.setHours(endHour)
-  return { id, title, start, end, color }
+  const base = new Date();
+  const monday = new Date(base);
+  const day = monday.getDay();
+  monday.setDate(monday.getDate() - (day === 0 ? 6 : day - 1) + dayOffset);
+  monday.setHours(0, 0, 0, 0);
+  const start = new Date(monday);
+  start.setHours(startHour);
+  const end = new Date(monday);
+  end.setHours(endHour);
+  return { id, title, start, end, color };
 }
 
 const sampleEvents: ScheduleEvent[] = [
@@ -29,7 +29,7 @@ const sampleEvents: ScheduleEvent[] = [
   makeEvent("4", "1:1 with Manager", 2, 11, 11, "#10b981"),
   makeEvent("5", "Lunch & Learn", 3, 12, 13, "#ef4444"),
   makeEvent("6", "Demo", 4, 15, 16, "#06b6d4"),
-]
+];
 
 const meta: Meta<typeof ScheduleView> = {
   title: "Business/ScheduleView",
@@ -38,22 +38,22 @@ const meta: Meta<typeof ScheduleView> = {
   tags: ["autodocs"],
   args: {
     events: sampleEvents,
-  };
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Empty: Story = {
   args: {
     events: [],
   },
-}
+};
 
 export const Dark: Story = {
   args: {
     events: sampleEvents,
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

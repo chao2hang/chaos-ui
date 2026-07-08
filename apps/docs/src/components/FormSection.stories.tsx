@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { FormSection } from "@/components/ui/form-section"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import type { Meta, StoryObj } from "@storybook/react";
+import { FormSection } from "@/components/ui/form-section";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const meta: Meta<typeof FormSection> = {
   title: "Components/FormSection",
   component: FormSection,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -26,11 +26,15 @@ export const Default: Story = {
       </div>
     </FormSection>
   ),
-}
+};
 
 export const Collapsible: Story = {
   render: () => (
-    <FormSection title="Advanced Settings" description="Configure options" collapsible>
+    <FormSection
+      title="Advanced Settings"
+      description="Configure options"
+      collapsible
+    >
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="api-key">API Key</Label>
@@ -39,11 +43,15 @@ export const Collapsible: Story = {
       </div>
     </FormSection>
   ),
-}
+};
 
 export const Required: Story = {
   render: () => (
-    <FormSection title="Required Fields" description="These fields are required" required>
+    <FormSection
+      title="Required Fields"
+      description="These fields are required"
+      required
+    >
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="username">Username</Label>
@@ -52,4 +60,4 @@ export const Required: Story = {
       </div>
     </FormSection>
   ),
-}
+};

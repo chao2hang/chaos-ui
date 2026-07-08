@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { SignaturePad } from "@/components/business/signature-pad"
+import type { Meta, StoryObj } from "@storybook/react";
+import { SignaturePad } from "@/components/business/signature-pad";
 
 const meta: Meta<typeof SignaturePad> = {
   title: "Business/SignaturePad",
@@ -9,27 +9,27 @@ const meta: Meta<typeof SignaturePad> = {
   args: {
     width: 400,
     height: 200,
-  };
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Small: Story = {
   args: {
     width: 250,
     height: 120,
   },
-}
+};
 
 export const Large: Story = {
   args: {
     width: 600,
     height: 300,
   },
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
-}
+};

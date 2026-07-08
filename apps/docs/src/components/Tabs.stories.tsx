@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
@@ -22,9 +22,9 @@ const meta: Meta<typeof Tabs> = {
       description: "The orientation of the tabs",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -37,7 +37,9 @@ export const Default: Story = {
         <Card>
           <CardHeader>
             <CardTitle>Account</CardTitle>
-            <CardDescription>Make changes to your account here.</CardDescription>
+            <CardDescription>
+              Make changes to your account here.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
@@ -71,7 +73,7 @@ export const Default: Story = {
       </TabsContent>
     </Tabs>
   ),
-}
+};
 
 export const LineVariant: Story = {
   render: () => (
@@ -86,7 +88,7 @@ export const LineVariant: Story = {
       <TabsContent value="tab3">Content for Tab 3</TabsContent>
     </Tabs>
   ),
-}
+};
 
 export const Vertical: Story = {
   render: () => (
@@ -101,7 +103,7 @@ export const Vertical: Story = {
       <TabsContent value="tab3">Help content</TabsContent>
     </Tabs>
   ),
-}
+};
 
 export const WithButtons: Story = {
   render: () => (
@@ -110,14 +112,14 @@ export const WithButtons: Story = {
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
-      <TabsContent value="preview" className="p-4 border rounded-lg">
+      <TabsContent value="preview" className="rounded-lg border p-4">
         Preview content
       </TabsContent>
-      <TabsContent value="code" className="p-4 border rounded-lg">
-        <pre className="text-sm font-mono">
+      <TabsContent value="code" className="rounded-lg border p-4">
+        <pre className="font-mono text-sm">
           {`const Component = () => {\n  return <div>Hello</div>\n}`}
         </pre>
       </TabsContent>
     </Tabs>
   ),
-}
+};

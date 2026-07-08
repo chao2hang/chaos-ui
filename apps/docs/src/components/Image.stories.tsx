@@ -5,7 +5,7 @@ const meta: Meta<typeof Image> = {
   title: "Components/Image",
   component: Image,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

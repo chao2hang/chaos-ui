@@ -10,7 +10,7 @@ const meta: Meta<typeof Autocomplete> = {
     placeholder: "Type to search...",
     disabled: false,
   },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

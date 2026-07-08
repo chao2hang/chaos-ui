@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import type { Meta, StoryObj } from "@storybook/react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const meta: Meta<typeof AspectRatio> = {
   title: "Components/AspectRatio",
@@ -11,9 +11,9 @@ const meta: Meta<typeof AspectRatio> = {
       description: "The width/height ratio applied via CSS aspect-ratio",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -27,62 +27,74 @@ export const Default: Story = {
       </AspectRatio>
     </div>
   ),
-}
+};
 
 export const Square: Story = {
   render: () => (
     <div className="w-[300px]">
       <AspectRatio ratio={1} className="bg-muted rounded-md">
-        <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex h-full w-full items-center justify-center text-sm">
           1:1 square
         </div>
       </AspectRatio>
     </div>
   ),
-}
+};
 
 export const Portrait: Story = {
   render: () => (
     <div className="w-[300px]">
       <AspectRatio ratio={3 / 4} className="bg-muted rounded-md">
-        <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex h-full w-full items-center justify-center text-sm">
           3:4 portrait
         </div>
       </AspectRatio>
     </div>
   ),
-}
+};
 
 export const Ultrawide: Story = {
   render: () => (
     <div className="w-[420px]">
       <AspectRatio ratio={21 / 9} className="bg-muted rounded-md">
-        <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex h-full w-full items-center justify-center text-sm">
           21:9 ultrawide
         </div>
       </AspectRatio>
     </div>
   ),
-}
+};
 
 export const AllRatios: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-      <AspectRatio ratio={1} className="bg-muted rounded-md flex items-center justify-center text-xs text-muted-foreground">
+      <AspectRatio
+        ratio={1}
+        className="bg-muted text-muted-foreground flex items-center justify-center rounded-md text-xs"
+      >
         1:1
       </AspectRatio>
-      <AspectRatio ratio={4 / 3} className="bg-muted rounded-md flex items-center justify-center text-xs text-muted-foreground">
+      <AspectRatio
+        ratio={4 / 3}
+        className="bg-muted text-muted-foreground flex items-center justify-center rounded-md text-xs"
+      >
         4:3
       </AspectRatio>
-      <AspectRatio ratio={16 / 9} className="bg-muted rounded-md flex items-center justify-center text-xs text-muted-foreground">
+      <AspectRatio
+        ratio={16 / 9}
+        className="bg-muted text-muted-foreground flex items-center justify-center rounded-md text-xs"
+      >
         16:9
       </AspectRatio>
-      <AspectRatio ratio={21 / 9} className="bg-muted rounded-md flex items-center justify-center text-xs text-muted-foreground">
+      <AspectRatio
+        ratio={21 / 9}
+        className="bg-muted text-muted-foreground flex items-center justify-center rounded-md text-xs"
+      >
         21:9
       </AspectRatio>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -97,4 +109,4 @@ export const Dark: Story = {
       </AspectRatio>
     </div>
   ),
-}
+};

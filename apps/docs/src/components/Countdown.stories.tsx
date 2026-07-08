@@ -7,7 +7,7 @@ const meta: Meta<typeof Countdown> = {
   component: Countdown,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

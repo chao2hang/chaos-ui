@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import type { ReactNode } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ReactNode } from "react";
 import {
   ContextMenu,
   ContextMenuTrigger,
@@ -14,7 +14,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuSubContent,
   ContextMenuGroup,
-} from "@/components/ui/context-menu"
+} from "@/components/ui/context-menu";
 
 const meta: Meta<typeof ContextMenu> = {
   title: "Components/ContextMenu",
@@ -23,15 +23,15 @@ const meta: Meta<typeof ContextMenu> = {
   parameters: {
     layout: "padded",
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const TriggerArea = ({ children }: { children: ReactNode }) => (
-  <ContextMenuTrigger className="flex h-40 w-full max-w-md items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
+  <ContextMenuTrigger className="text-muted-foreground flex h-40 w-full max-w-md items-center justify-center rounded-md border border-dashed text-sm">
     {children}
   </ContextMenuTrigger>
-)
+);
 
 export const Default: Story = {
   render: () => (
@@ -47,7 +47,7 @@ export const Default: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const WithSubMenu: Story = {
   render: () => (
@@ -71,7 +71,7 @@ export const WithSubMenu: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const WithCheckboxItems: Story = {
   render: () => (
@@ -87,7 +87,7 @@ export const WithCheckboxItems: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const WithRadioGroup: Story = {
   render: () => (
@@ -98,12 +98,14 @@ export const WithRadioGroup: Story = {
         <ContextMenuRadioGroup defaultValue="name">
           <ContextMenuRadioItem value="name">Name</ContextMenuRadioItem>
           <ContextMenuRadioItem value="size">Size</ContextMenuRadioItem>
-          <ContextMenuRadioItem value="date">Date modified</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="date">
+            Date modified
+          </ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -130,7 +132,7 @@ export const AllVariants: Story = {
       </ContextMenu>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -149,4 +151,4 @@ export const Dark: Story = {
       </ContextMenu>
     </div>
   ),
-}
+};

@@ -1,7 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { EmptyState } from "@/components/business/empty-state"
-import { Button } from "@/components/ui/button"
-import { InboxIcon, SearchXIcon, FileXIcon, AlertTriangleIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { EmptyState } from "@/components/business/empty-state";
+import { Button } from "@/components/ui/button";
+import {
+  InboxIcon,
+  SearchXIcon,
+  FileXIcon,
+  AlertTriangleIcon,
+} from "lucide-react";
 
 const meta: Meta<typeof EmptyState> = {
   title: "Business/EmptyState",
@@ -12,10 +17,10 @@ const meta: Meta<typeof EmptyState> = {
       control: { type: "select" },
       options: ["default", "search", "error", "network"],
     },
-  };
-
-export default meta
-type Story = StoryObj<typeof meta>
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -26,7 +31,7 @@ export const Default: Story = {
       action={<Button>Create Item</Button>}
     />
   ),
-}
+};
 
 export const Search: Story = {
   args: { variant: "search" },
@@ -38,7 +43,7 @@ export const Search: Story = {
       description="Try adjusting your search or filters"
     />
   ),
-}
+};
 
 export const Error: Story = {
   args: { variant: "error" },
@@ -51,7 +56,7 @@ export const Error: Story = {
       action={<Button>Retry</Button>}
     />
   ),
-}
+};
 
 export const Empty: Story = {
   render: () => (
@@ -62,4 +67,4 @@ export const Empty: Story = {
       action={<Button>Upload File</Button>}
     />
   ),
-}
+};

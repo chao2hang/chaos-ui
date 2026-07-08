@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Separator } from "@/components/ui/separator"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Separator } from "@/components/ui/separator";
 
 const meta: Meta<typeof Separator> = {
   title: "Components/Separator",
@@ -12,9 +12,9 @@ const meta: Meta<typeof Separator> = {
       description: "The orientation of the separator",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Horizontal: Story = {
   render: () => (
@@ -24,7 +24,7 @@ export const Horizontal: Story = {
       <div className="text-sm">Content below</div>
     </div>
   ),
-}
+};
 
 export const Vertical: Story = {
   render: () => (
@@ -34,17 +34,17 @@ export const Vertical: Story = {
       <div className="text-sm">Right</div>
     </div>
   ),
-}
+};
 
 export const InMenu: Story = {
   render: () => (
-    <div className="w-56 p-2 border rounded-lg">
+    <div className="w-56 rounded-lg border p-2">
       <div className="px-2 py-1.5 text-sm">Profile</div>
       <div className="px-2 py-1.5 text-sm">Settings</div>
       <Separator className="my-1" />
       <div className="px-2 py-1.5 text-sm">Help</div>
       <Separator className="my-1" />
-      <div className="px-2 py-1.5 text-sm text-destructive">Logout</div>
+      <div className="text-destructive px-2 py-1.5 text-sm">Logout</div>
     </div>
   ),
-}
+};

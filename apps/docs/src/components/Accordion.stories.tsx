@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -13,9 +13,9 @@ const meta: Meta<typeof Accordion> = {
   parameters: {
     layout: "padded",
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -42,7 +42,7 @@ export const Default: Story = {
       </Accordion>
     </div>
   ),
-}
+};
 
 export const Multiple: Story = {
   render: () => (
@@ -51,7 +51,8 @@ export const Multiple: Story = {
         <AccordionItem value="item-1">
           <AccordionTrigger>What is Chaos UI?</AccordionTrigger>
           <AccordionContent>
-            A comprehensive component library for building modern web applications.
+            A comprehensive component library for building modern web
+            applications.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
@@ -63,14 +64,16 @@ export const Multiple: Story = {
       </Accordion>
     </div>
   ),
-}
+};
 
 export const FAQ: Story = {
   render: () => (
     <div className="w-full max-w-md">
       <Accordion type="single" collapsible>
         <AccordionItem value="faq-1">
-          <AccordionTrigger>What payment methods do you accept?</AccordionTrigger>
+          <AccordionTrigger>
+            What payment methods do you accept?
+          </AccordionTrigger>
           <AccordionContent>
             We accept all major credit cards, PayPal, and bank transfers.
           </AccordionContent>
@@ -90,4 +93,4 @@ export const FAQ: Story = {
       </Accordion>
     </div>
   ),
-}
+};

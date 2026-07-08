@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { InvoicePreview } from "@/components/business/invoice-preview"
-import type { InvoiceData } from "@/components/business/invoice-preview"
+import type { Meta, StoryObj } from "@storybook/react";
+import { InvoicePreview } from "@/components/business/invoice-preview";
+import type { InvoiceData } from "@/components/business/invoice-preview";
 
 const sampleInvoice: InvoiceData = {
   id: "INV-2024-001",
@@ -25,7 +25,7 @@ const sampleInvoice: InvoiceData = {
   tax: 671.99,
   total: 9071.87,
   notes: "Thank you for your business. Payment is due within 30 days.",
-}
+};
 
 const meta: Meta<typeof InvoicePreview> = {
   title: "Business/InvoicePreview",
@@ -34,22 +34,22 @@ const meta: Meta<typeof InvoicePreview> = {
   tags: ["autodocs"],
   args: {
     invoice: sampleInvoice,
-  };
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const NoNotes: Story = {
   args: {
     invoice: { ...sampleInvoice, notes: undefined },
   },
-}
+};
 
 export const Dark: Story = {
   args: {
     invoice: sampleInvoice,
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

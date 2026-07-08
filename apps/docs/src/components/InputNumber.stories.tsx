@@ -5,7 +5,7 @@ const meta: Meta<typeof InputNumber> = {
   title: "Components/InputNumber",
   component: InputNumber,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

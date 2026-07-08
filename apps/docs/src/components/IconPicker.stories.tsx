@@ -5,7 +5,7 @@ const meta: Meta<typeof IconPicker> = {
   title: "Components/IconPicker",
   component: IconPicker,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

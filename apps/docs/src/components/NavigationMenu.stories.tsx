@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -6,15 +6,15 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 const meta: Meta<typeof NavigationMenu> = {
   title: "Components/NavigationMenu",
   component: NavigationMenu,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -52,4 +52,4 @@ export const Default: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
-}
+};

@@ -1,21 +1,21 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { PublicLayout } from "@/components/layout/public-layout"
-import { Button } from "@/components/ui/button"
+import type { Meta, StoryObj } from "@storybook/react";
+import { PublicLayout } from "@/components/layout/public-layout";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<typeof PublicLayout> = {
   title: "Layouts/PublicLayout",
   component: PublicLayout,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const defaultNav = [
   { label: "Product", href: "/product" },
   { label: "Pricing", href: "/pricing" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
-]
+];
 
 export const Default: Story = {
   render: () => (
@@ -34,7 +34,7 @@ export const Default: Story = {
         <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
           Build faster with Chaos UI
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+        <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg">
           A composable design system for modern product teams. Accessible,
           themeable, and ready for production.
         </p>
@@ -47,32 +47,36 @@ export const Default: Story = {
       </section>
     </PublicLayout>
   ),
-}
+};
 
 export const WithFooter: Story = {
   render: () => (
     <PublicLayout
       nav={defaultNav}
-      headerActions={
-        <Button size="sm">Get started</Button>
-      }
+      headerActions={<Button size="sm">Get started</Button>}
       footer={
         <div className="container mx-auto flex flex-col items-center justify-between gap-2 md:flex-row">
           <span>© 2024 Chaos UI, Inc.</span>
           <span className="space-x-4">
-            <a href="/privacy" className="hover:text-foreground">Privacy</a>
-            <a href="/terms" className="hover:text-foreground">Terms</a>
+            <a href="/privacy" className="hover:text-foreground">
+              Privacy
+            </a>
+            <a href="/terms" className="hover:text-foreground">
+              Terms
+            </a>
           </span>
         </div>
       }
     >
       <section className="container mx-auto px-4 py-16">
         <h2 className="text-3xl font-semibold">Pricing</h2>
-        <p className="mt-2 text-muted-foreground">Plans for teams of all sizes.</p>
+        <p className="text-muted-foreground mt-2">
+          Plans for teams of all sizes.
+        </p>
       </section>
     </PublicLayout>
   ),
-}
+};
 
 export const CustomLogo: Story = {
   render: () => (
@@ -83,13 +87,13 @@ export const CustomLogo: Story = {
     >
       <section className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-3xl font-semibold">Custom branding</h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="text-muted-foreground mt-2">
           Replace the default logo with your own mark.
         </p>
       </section>
     </PublicLayout>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -103,11 +107,11 @@ export const Dark: Story = {
           <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
             Marketing on dark
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg">
             PublicLayout adapts to whatever theme is active.
           </p>
         </section>
       </PublicLayout>
     </div>
   ),
-}
+};

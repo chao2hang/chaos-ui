@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { GridLayout, GridItem } from "@/components/ui/grid-layout"
-import { Card, CardContent } from "@/components/ui/card"
+import type { Meta, StoryObj } from "@storybook/react";
+import { GridLayout, GridItem } from "@/components/ui/grid-layout";
+import { Card, CardContent } from "@/components/ui/card";
 
 const meta: Meta<typeof GridLayout> = {
   title: "Components/GridLayout",
   component: GridLayout,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -20,7 +20,7 @@ export const Default: Story = {
       ))}
     </GridLayout>
   ),
-}
+};
 
 export const FourColumns: Story = {
   render: () => (
@@ -32,7 +32,7 @@ export const FourColumns: Story = {
       ))}
     </GridLayout>
   ),
-}
+};
 
 export const AutoColumns: Story = {
   render: () => (
@@ -44,19 +44,27 @@ export const AutoColumns: Story = {
       ))}
     </GridLayout>
   ),
-}
+};
 
 export const WithSpan: Story = {
   render: () => (
     <GridLayout columns={4}>
       <GridItem span={2}>
-        <Card><CardContent className="p-4 text-center">Span 2</CardContent></Card>
+        <Card>
+          <CardContent className="p-4 text-center">Span 2</CardContent>
+        </Card>
       </GridItem>
-      <Card><CardContent className="p-4 text-center">1</CardContent></Card>
-      <Card><CardContent className="p-4 text-center">1</CardContent></Card>
+      <Card>
+        <CardContent className="p-4 text-center">1</CardContent>
+      </Card>
+      <Card>
+        <CardContent className="p-4 text-center">1</CardContent>
+      </Card>
       <GridItem span={4}>
-        <Card><CardContent className="p-4 text-center">Full Width</CardContent></Card>
+        <Card>
+          <CardContent className="p-4 text-center">Full Width</CardContent>
+        </Card>
       </GridItem>
     </GridLayout>
   ),
-}
+};

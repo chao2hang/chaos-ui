@@ -7,7 +7,7 @@ const meta: Meta<typeof AdminTabs> = {
   component: AdminTabs,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

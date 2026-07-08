@@ -15,7 +15,7 @@ const meta: Meta<typeof NavigationTabsBar> = {
   component: NavigationTabsBar,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

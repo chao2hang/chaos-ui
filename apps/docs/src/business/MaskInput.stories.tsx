@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { useState } from "react"
-import { MaskInput } from "@/components/business/mask-input"
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { MaskInput } from "@/components/business/mask-input";
 
 const meta: Meta<typeof MaskInput> = {
   title: "Business/MaskInput",
@@ -9,19 +9,19 @@ const meta: Meta<typeof MaskInput> = {
   tags: ["autodocs"],
   args: {
     mask: "(999) 999-9999",
-  };
-
-export default meta
-type Story = StoryObj<typeof meta>
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const MaskInputWithState = (args: any) => {
-  const [value, setValue] = useState(args.value ?? "")
-  return <MaskInput {...args} value={value} onChange={setValue} />
-}
+  const [value, setValue] = useState(args.value ?? "");
+  return <MaskInput {...args} value={value} onChange={setValue} />;
+};
 
 export const Default: Story = {
   render: MaskInputWithState,
-}
+};
 
 export const SSNMask: Story = {
   args: {
@@ -29,7 +29,7 @@ export const SSNMask: Story = {
     placeholder: "SSN",
   },
   render: MaskInputWithState,
-}
+};
 
 export const ZipCodeMask: Story = {
   args: {
@@ -37,14 +37,14 @@ export const ZipCodeMask: Story = {
     placeholder: "ZIP Code",
   },
   render: MaskInputWithState,
-}
+};
 
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
   render: MaskInputWithState,
-}
+};
 
 export const Dark: Story = {
   args: {
@@ -53,4 +53,4 @@ export const Dark: Story = {
   },
   parameters: { backgrounds: { default: "dark" } },
   render: MaskInputWithState,
-}
+};

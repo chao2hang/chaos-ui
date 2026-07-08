@@ -5,7 +5,7 @@ const meta: Meta<typeof List> = {
   title: "Components/List",
   component: List,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

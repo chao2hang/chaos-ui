@@ -1,37 +1,37 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ErrorLayout } from "@/components/layout/error-layout"
-import { Button } from "@/components/ui/button"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ErrorLayout } from "@/components/layout/error-layout";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<typeof ErrorLayout> = {
   title: "Layouts/ErrorLayout",
   component: ErrorLayout,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
     <ErrorLayout>
       <div className="space-y-4 text-center">
-        <p className="text-6xl font-bold text-muted-foreground">404</p>
+        <p className="text-muted-foreground text-6xl font-bold">404</p>
         <h1 className="text-2xl font-semibold">Page not found</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           The page you are looking for has been moved or no longer exists.
         </p>
         <Button>Go back home</Button>
       </div>
     </ErrorLayout>
   ),
-}
+};
 
 export const ServerError: Story = {
   render: () => (
     <ErrorLayout>
       <div className="space-y-4 text-center">
-        <p className="text-6xl font-bold text-destructive">500</p>
+        <p className="text-destructive text-6xl font-bold">500</p>
         <h1 className="text-2xl font-semibold">Something went wrong</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           An unexpected error has occurred. Our team has been notified.
         </p>
         <div className="flex justify-center gap-2">
@@ -41,7 +41,7 @@ export const ServerError: Story = {
       </div>
     </ErrorLayout>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -49,9 +49,9 @@ export const Dark: Story = {
     <div className="dark">
       <ErrorLayout>
         <div className="space-y-4 text-center">
-          <p className="text-6xl font-bold text-muted-foreground">404</p>
+          <p className="text-muted-foreground text-6xl font-bold">404</p>
           <h1 className="text-2xl font-semibold">Page not found</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Dark theme preview of the error layout.
           </p>
           <Button>Go back home</Button>
@@ -59,4 +59,4 @@ export const Dark: Story = {
       </ErrorLayout>
     </div>
   ),
-}
+};

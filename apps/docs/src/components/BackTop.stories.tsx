@@ -5,7 +5,7 @@ const meta: Meta<typeof BackTop> = {
   title: "Components/BackTop",
   component: BackTop,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

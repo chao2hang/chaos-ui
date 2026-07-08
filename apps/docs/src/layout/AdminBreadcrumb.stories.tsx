@@ -6,7 +6,7 @@ const meta: Meta<typeof AdminBreadcrumb> = {
   component: AdminBreadcrumb,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

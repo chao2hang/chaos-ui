@@ -1,16 +1,22 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { DetailLayout } from "@/components/layout/detail-layout"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { EditIcon, TrashIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { DetailLayout } from "@/components/layout/detail-layout";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { EditIcon, TrashIcon } from "lucide-react";
 
 const meta: Meta<typeof DetailLayout> = {
   title: "Layouts/DetailLayout",
   component: DetailLayout,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -19,11 +25,11 @@ export const Default: Story = {
     actions: (
       <>
         <Button variant="outline" size="sm">
-          <EditIcon className="size-4 mr-1" />
+          <EditIcon className="mr-1 size-4" />
           Edit
         </Button>
         <Button variant="destructive" size="sm">
-          <TrashIcon className="size-4 mr-1" />
+          <TrashIcon className="mr-1 size-4" />
           Delete
         </Button>
       </>
@@ -35,12 +41,14 @@ export const Default: Story = {
           <CardDescription>View order information</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Order details content goes here.</p>
+          <p className="text-muted-foreground text-sm">
+            Order details content goes here.
+          </p>
         </CardContent>
       </Card>
     ),
   },
-}
+};
 
 export const WithTabs: Story = {
   args: {
@@ -53,7 +61,7 @@ export const WithTabs: Story = {
         content: (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Overview content</p>
+              <p className="text-muted-foreground text-sm">Overview content</p>
             </CardContent>
           </Card>
         ),
@@ -64,7 +72,9 @@ export const WithTabs: Story = {
         content: (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Activity log content</p>
+              <p className="text-muted-foreground text-sm">
+                Activity log content
+              </p>
             </CardContent>
           </Card>
         ),
@@ -75,11 +85,11 @@ export const WithTabs: Story = {
         content: (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Settings content</p>
+              <p className="text-muted-foreground text-sm">Settings content</p>
             </CardContent>
           </Card>
         ),
       },
     ],
   },
-}
+};

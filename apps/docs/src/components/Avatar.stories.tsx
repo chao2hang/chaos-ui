@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const meta: Meta<typeof Avatar> = {
   title: "Components/Avatar",
   component: Avatar,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -16,7 +16,7 @@ export const Default: Story = {
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   ),
-}
+};
 
 export const WithFallback: Story = {
   render: () => (
@@ -24,7 +24,7 @@ export const WithFallback: Story = {
       <AvatarFallback>JD</AvatarFallback>
     </Avatar>
   ),
-}
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -46,24 +46,24 @@ export const Sizes: Story = {
       </Avatar>
     </div>
   ),
-}
+};
 
 export const Group: Story = {
   render: () => (
     <div className="flex -space-x-2">
-      <Avatar className="border-2 border-background">
+      <Avatar className="border-background border-2">
         <AvatarImage src="https://github.com/shadcn.png" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <Avatar className="border-2 border-background">
+      <Avatar className="border-background border-2">
         <AvatarFallback>JD</AvatarFallback>
       </Avatar>
-      <Avatar className="border-2 border-background">
+      <Avatar className="border-background border-2">
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
-      <Avatar className="border-2 border-background">
+      <Avatar className="border-background border-2">
         <AvatarFallback>+5</AvatarFallback>
       </Avatar>
     </div>
   ),
-}
+};

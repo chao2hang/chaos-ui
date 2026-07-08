@@ -11,7 +11,7 @@ const meta: Meta<typeof Carousel> = {
   title: "Components/Carousel",
   component: Carousel,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

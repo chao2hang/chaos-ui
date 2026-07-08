@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { useState } from "react"
-import { MultiSelect } from "@/components/business/multi-select"
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { MultiSelect } from "@/components/business/multi-select";
 
 const options = [
   { value: "bug", label: "Bug", group: "类型" },
@@ -11,20 +11,20 @@ const options = [
   { value: "low", label: "低", group: "优先级" },
   { value: "frontend", label: "前端", group: "模块" },
   { value: "backend", label: "后端", group: "模块" },
-]
+];
 
 const meta: Meta<typeof MultiSelect> = {
   title: "Business/MultiSelect",
   component: MultiSelect,
   tags: ["autodocs"],
-  parameters: { layout: "padded" };
-
-export default meta
-type Story = StoryObj<typeof meta>
+  parameters: { layout: "padded" },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string[]>([])
+    const [value, setValue] = useState<string[]>([]);
     return (
       <MultiSelect
         {...args}
@@ -32,16 +32,16 @@ export const Default: Story = {
         value={value}
         onChange={setValue}
       />
-    )
+    );
   },
   args: {
     placeholder: "选择标签...",
   },
-}
+};
 
 export const WithSelection: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string[]>(["bug", "high", "frontend"])
+    const [value, setValue] = useState<string[]>(["bug", "high", "frontend"]);
     return (
       <MultiSelect
         {...args}
@@ -49,13 +49,13 @@ export const WithSelection: Story = {
         value={value}
         onChange={setValue}
       />
-    )
+    );
   },
-}
+};
 
 export const MaxSelected: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string[]>(["bug", "feature"])
+    const [value, setValue] = useState<string[]>(["bug", "feature"]);
     return (
       <MultiSelect
         {...args}
@@ -65,13 +65,13 @@ export const MaxSelected: Story = {
         maxSelected={3}
         placeholder="最多选 3 个"
       />
-    )
+    );
   },
-}
+};
 
 export const Dark: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string[]>(["bug", "high"])
+    const [value, setValue] = useState<string[]>(["bug", "high"]);
     return (
       <MultiSelect
         {...args}
@@ -79,7 +79,7 @@ export const Dark: Story = {
         value={value}
         onChange={setValue}
       />
-    )
+    );
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

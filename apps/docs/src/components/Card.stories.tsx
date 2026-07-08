@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Card,
   CardHeader,
@@ -7,9 +7,9 @@ import {
   CardContent,
   CardFooter,
   CardAction,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -22,9 +22,9 @@ const meta: Meta<typeof Card> = {
       description: "The size of the card",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
@@ -38,7 +38,7 @@ export const Default: Story = {
       </CardContent>
     </Card>
   ),
-}
+};
 
 export const Small: Story = {
   args: { size: "sm" },
@@ -53,7 +53,7 @@ export const Small: Story = {
       </CardContent>
     </Card>
   ),
-}
+};
 
 export const WithFooter: Story = {
   render: () => (
@@ -71,7 +71,7 @@ export const WithFooter: Story = {
       </CardFooter>
     </Card>
   ),
-}
+};
 
 export const WithAction: Story = {
   render: () => (
@@ -80,7 +80,9 @@ export const WithAction: Story = {
         <CardTitle>Card with Action</CardTitle>
         <CardDescription>Action button in header.</CardDescription>
         <CardAction>
-          <Button variant="outline" size="sm">Edit</Button>
+          <Button variant="outline" size="sm">
+            Edit
+          </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -88,7 +90,7 @@ export const WithAction: Story = {
       </CardContent>
     </Card>
   ),
-}
+};
 
 export const WithBadge: Story = {
   render: () => (
@@ -101,11 +103,13 @@ export const WithBadge: Story = {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground">Project is currently in development phase.</p>
+        <p className="text-muted-foreground text-sm">
+          Project is currently in development phase.
+        </p>
       </CardContent>
     </Card>
   ),
-}
+};
 
 export const AllSizes: Story = {
   render: () => (
@@ -116,7 +120,7 @@ export const AllSizes: Story = {
           <CardDescription>Standard spacing</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Content</p>
+          <p className="text-muted-foreground text-sm">Content</p>
         </CardContent>
       </Card>
       <Card size="sm">
@@ -125,9 +129,9 @@ export const AllSizes: Story = {
           <CardDescription>Compact spacing</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Content</p>
+          <p className="text-muted-foreground text-sm">Content</p>
         </CardContent>
       </Card>
     </div>
   ),
-}
+};

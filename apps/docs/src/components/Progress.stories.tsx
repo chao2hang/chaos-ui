@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Progress } from "@/components/ui/progress"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Progress } from "@/components/ui/progress";
 
 const meta: Meta<typeof Progress> = {
   title: "Components/Progress",
@@ -11,25 +11,25 @@ const meta: Meta<typeof Progress> = {
       description: "The progress value (0-100)",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { value: 50 },
-}
+};
 
 export const Empty: Story = {
   args: { value: 0 },
-}
+};
 
 export const Complete: Story = {
   args: { value: 100 },
-}
+};
 
 export const AllStates: Story = {
   render: () => (
-    <div className="space-y-4 w-full max-w-md">
+    <div className="w-full max-w-md space-y-4">
       <Progress value={0} />
       <Progress value={25} />
       <Progress value={50} />
@@ -37,4 +37,4 @@ export const AllStates: Story = {
       <Progress value={100} />
     </div>
   ),
-}
+};

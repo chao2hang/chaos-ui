@@ -8,7 +8,7 @@ const meta: Meta<typeof Toaster> = {
   component: Toaster,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

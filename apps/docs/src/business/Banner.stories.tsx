@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Banner } from "@/components/business/banner"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Banner } from "@/components/business/banner";
 
 const meta: Meta<typeof Banner> = {
   title: "Business/Banner",
@@ -9,23 +9,35 @@ const meta: Meta<typeof Banner> = {
   args: {
     title: "Information",
     description: "This is an informational banner.",
-  };
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
-      <Banner variant="info" title="Info" description="Informational message." />
-      <Banner variant="success" title="Success" description="Operation completed." />
+      <Banner
+        variant="info"
+        title="Info"
+        description="Informational message."
+      />
+      <Banner
+        variant="success"
+        title="Success"
+        description="Operation completed."
+      />
       <Banner variant="warning" title="Warning" description="Please review." />
-      <Banner variant="error" title="Error" description="Something went wrong." />
+      <Banner
+        variant="error"
+        title="Error"
+        description="Something went wrong."
+      />
     </div>
   ),
-}
+};
 
 export const NotClosable: Story = {
   args: {
@@ -34,7 +46,7 @@ export const NotClosable: Story = {
     title: "Persistent Banner",
     description: "This banner cannot be closed.",
   },
-}
+};
 
 export const Dark: Story = {
   args: {
@@ -43,4 +55,4 @@ export const Dark: Story = {
     description: "Banner in dark mode.",
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

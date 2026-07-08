@@ -6,7 +6,7 @@ const meta: Meta<typeof Tag> = {
   component: Tag,
   tags: ["autodocs"],
   args: { children: "Tag" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

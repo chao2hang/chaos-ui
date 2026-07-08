@@ -5,7 +5,7 @@ const meta: Meta<typeof InputSearch> = {
   title: "Components/InputSearch",
   component: InputSearch,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

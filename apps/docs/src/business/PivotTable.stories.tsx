@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { PivotTable } from "@/components/business/pivot-table"
+import type { Meta, StoryObj } from "@storybook/react";
+import { PivotTable } from "@/components/business/pivot-table";
 
 const salesData = [
   { region: "华东", product: "冰箱", amount: 12000 },
@@ -20,16 +20,16 @@ const salesData = [
   { region: "西南", product: "冰箱", amount: 5000 },
   { region: "西南", product: "空调", amount: 7000 },
   { region: "西南", product: "洗衣机", amount: 4000 },
-]
+];
 
 const meta: Meta<typeof PivotTable> = {
   title: "Business/PivotTable",
   component: PivotTable,
   tags: ["autodocs"],
-  parameters: { layout: "padded" };
-
-export default meta
-type Story = StoryObj<typeof meta>
+  parameters: { layout: "padded" },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -39,7 +39,7 @@ export const Default: Story = {
     valueField: "amount",
     aggregation: "sum",
   },
-}
+};
 
 export const Heatmap: Story = {
   args: {
@@ -50,7 +50,7 @@ export const Heatmap: Story = {
     aggregation: "sum",
     heatmap: true,
   },
-}
+};
 
 export const Empty: Story = {
   args: {
@@ -60,7 +60,7 @@ export const Empty: Story = {
     valueField: "amount",
     emptyLabel: "暂无销售数据",
   },
-}
+};
 
 export const Dark: Story = {
   args: {
@@ -71,4 +71,4 @@ export const Dark: Story = {
     heatmap: true,
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

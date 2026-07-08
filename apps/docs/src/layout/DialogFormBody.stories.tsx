@@ -8,7 +8,7 @@ const meta: Meta<typeof DialogFormBody> = {
   component: DialogFormBody,
   tags: ["autodocs"],
   parameters: { layout: "padded" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

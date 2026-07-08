@@ -6,7 +6,7 @@ const meta: Meta<typeof MasterDetailTabs> = {
   component: MasterDetailTabs,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

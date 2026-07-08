@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { BlankLayout } from "@/components/layout/blank-layout"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Meta, StoryObj } from "@storybook/react";
+import { BlankLayout } from "@/components/layout/blank-layout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const meta: Meta<typeof BlankLayout> = {
   title: "Layouts/BlankLayout",
   component: BlankLayout,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -18,14 +18,15 @@ export const Default: Story = {
           <CardTitle>Standalone Page</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">
-            Use BlankLayout for minimalist single-page surfaces that don't need navigation chrome.
+          <p className="text-muted-foreground text-sm">
+            Use BlankLayout for minimalist single-page surfaces that don't need
+            navigation chrome.
           </p>
         </CardContent>
       </Card>
     </BlankLayout>
   ),
-}
+};
 
 export const Centered: Story = {
   render: () => (
@@ -35,24 +36,24 @@ export const Centered: Story = {
           <CardTitle>Centered Surface</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Content is vertically and horizontally centered inside the viewport.
           </p>
         </CardContent>
       </Card>
     </BlankLayout>
   ),
-}
+};
 
 export const Unpadded: Story = {
   render: () => (
     <BlankLayout padded={false}>
-      <div className="border-2 border-dashed border-muted-foreground/40 p-6 text-sm text-muted-foreground">
+      <div className="border-muted-foreground/40 text-muted-foreground border-2 border-dashed p-6 text-sm">
         Padded is disabled — content stretches edge to edge.
       </div>
     </BlankLayout>
   ),
-}
+};
 
 export const Dark: Story = {
   parameters: { backgrounds: { default: "dark" } },
@@ -64,7 +65,7 @@ export const Dark: Story = {
             <CardTitle>Dark surface</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               BlankLayout on a dark background, centered.
             </p>
           </CardContent>
@@ -72,4 +73,4 @@ export const Dark: Story = {
       </BlankLayout>
     </div>
   ),
-}
+};

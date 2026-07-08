@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { WithPermission } from "@/components/ui/with-permission"
+import type { Meta, StoryObj } from "@storybook/react";
+import { WithPermission } from "@/components/ui/with-permission";
 
 const meta: Meta<typeof WithPermission> = {
   title: "Components/WithPermission",
   component: WithPermission,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-}
+};

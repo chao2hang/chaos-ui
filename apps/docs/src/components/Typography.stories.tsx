@@ -5,7 +5,7 @@ const meta: Meta<typeof Typography> = {
   title: "Components/Typography",
   component: Typography,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -6,7 +6,7 @@ const meta: Meta<typeof Dot> = {
   component: Dot,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { FormList, type FormListItem } from "@/components/ui/form-list"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { FormList, type FormListItem } from "@/components/ui/form-list";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 interface EmailItem extends FormListItem {
-  email: string
-  label: string
+  email: string;
+  label: string;
 }
 
 const meta: Meta<typeof FormList> = {
   title: "Components/FormList",
   component: FormList,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
     const [items, setItems] = useState<EmailItem[]>([
       { id: "1", email: "john@example.com", label: "John" },
-    ])
+    ]);
     return (
       <FormList<EmailItem>
         value={items}
@@ -34,9 +34,9 @@ export const Default: Story = {
               <Input
                 value={item.label}
                 onChange={(e) => {
-                  const newValue = [...items]
-                  newValue[index] = { ...item, label: e.target.value }
-                  setItems(newValue)
+                  const newValue = [...items];
+                  newValue[index] = { ...item, label: e.target.value };
+                  setItems(newValue);
                 }}
                 placeholder="Label"
               />
@@ -46,9 +46,9 @@ export const Default: Story = {
               <Input
                 value={item.email}
                 onChange={(e) => {
-                  const newValue = [...items]
-                  newValue[index] = { ...item, email: e.target.value }
-                  setItems(newValue)
+                  const newValue = [...items];
+                  newValue[index] = { ...item, email: e.target.value };
+                  setItems(newValue);
                 }}
                 placeholder="Email"
               />
@@ -57,13 +57,13 @@ export const Default: Story = {
         )}
         addButtonText="Add Email"
       />
-    )
+    );
   },
-}
+};
 
 export const WithMaxItems: Story = {
   render: () => {
-    const [items, setItems] = useState<FormListItem[]>([])
+    const [items, setItems] = useState<FormListItem[]>([]);
     return (
       <FormList
         value={items}
@@ -73,6 +73,6 @@ export const WithMaxItems: Story = {
         maxItems={3}
         addButtonText="Add Item"
       />
-    )
+    );
   },
-}
+};

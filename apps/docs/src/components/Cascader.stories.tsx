@@ -5,7 +5,7 @@ const meta: Meta<typeof Cascader> = {
   title: "Components/Cascader",
   component: Cascader,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

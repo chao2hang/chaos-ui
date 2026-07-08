@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Command,
   CommandDialog,
@@ -9,21 +9,21 @@ import {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-} from "@/components/ui/command"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
+} from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const meta: Meta<typeof Command> = {
   title: "Components/Command",
   component: Command,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Command className="rounded-lg border shadow-md max-w-md">
+    <Command className="max-w-md rounded-lg border shadow-md">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
@@ -44,11 +44,11 @@ export const Default: Story = {
       </CommandList>
     </Command>
   ),
-}
+};
 
 export const Dialog: Story = {
   render: () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     return (
       <>
         <Button onClick={() => setOpen(true)} variant="outline">
@@ -66,6 +66,6 @@ export const Dialog: Story = {
           </CommandList>
         </CommandDialog>
       </>
-    )
+    );
   },
-}
+};

@@ -6,7 +6,7 @@ const meta: Meta<typeof KeyboardShortcut> = {
   component: KeyboardShortcut,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

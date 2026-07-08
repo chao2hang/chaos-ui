@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { VirtualTable, type ColumnDef } from "@/components/ui/virtual-table"
-import { Badge } from "@/components/ui/badge"
+import type { Meta, StoryObj } from "@storybook/react";
+import { VirtualTable, type ColumnDef } from "@/components/ui/virtual-table";
+import { Badge } from "@/components/ui/badge";
 
 interface User {
-  id: number
-  name: string
-  email: string
-  role: string
-  status: "active" | "inactive" | "pending"
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: "active" | "inactive" | "pending";
 }
 
 const generateData = (count: number): User[] =>
@@ -17,7 +17,7 @@ const generateData = (count: number): User[] =>
     email: `user${i + 1}@example.com`,
     role: i % 3 === 0 ? "Admin" : i % 3 === 1 ? "Editor" : "Viewer",
     status: i % 4 === 0 ? "inactive" : i % 4 === 1 ? "pending" : "active",
-  }))
+  }));
 
 const columns: ColumnDef<User>[] = [
   { key: "id", header: "ID", width: 80 },
@@ -29,28 +29,46 @@ const columns: ColumnDef<User>[] = [
     header: "Status",
     width: 100,
     render: (row) => (
-      <Badge variant={row.status === "active" ? "default" : row.status === "pending" ? "secondary" : "outline"}>
+      <Badge
+        variant={
+          row.status === "active"
+            ? "default"
+            : row.status === "pending"
+              ? "secondary"
+              : "outline"
+        }
+      >
         {row.status}
       </Badge>
     ),
   },
-]
+];
 
 const meta: Meta<typeof VirtualTable> = {
   title: "Components/VirtualTable",
   component: VirtualTable,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { columns, data: generateData(100), estimateRowHeight: 40, height: 300 },
-}
+  args: {
+    columns,
+    data: generateData(100),
+    estimateRowHeight: 40,
+    height: 300,
+  },
+};
 
 export const LargeDataset: Story = {
-  args: { columns, data: generateData(10000), estimateRowHeight: 40, height: 300 },
-}
+  args: {
+    columns,
+    data: generateData(10000),
+    estimateRowHeight: 40,
+    height: 300,
+  },
+};
 
 export const WithRowClick: Story = {
   args: {
@@ -60,4 +78,4 @@ export const WithRowClick: Story = {
     height: 300,
     onRowClick: (row) => alert(`Clicked: ${row.name}`),
   },
-}
+};

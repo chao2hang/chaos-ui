@@ -1,48 +1,73 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const meta: Meta<typeof Sheet> = {
   title: "Components/Sheet",
   component: Sheet,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Right: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open Right</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open Right
+      </SheetTrigger>
       <SheetContent side="right">
         <SheetHeader>
           <SheetTitle>Edit Profile</SheetTitle>
-          <SheetDescription>Make changes to your profile here.</SheetDescription>
+          <SheetDescription>
+            Make changes to your profile here.
+          </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">Name</Label>
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
             <Input id="name" defaultValue="John Doe" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">Email</Label>
-            <Input id="email" defaultValue="john@example.com" className="col-span-3" />
+            <Label htmlFor="email" className="text-right">
+              Email
+            </Label>
+            <Input
+              id="email"
+              defaultValue="john@example.com"
+              className="col-span-3"
+            />
           </div>
         </div>
         <SheetFooter>
-          <SheetClose render={<Button type="submit" />}>Save changes</SheetClose>
+          <SheetClose render={<Button type="submit" />}>
+            Save changes
+          </SheetClose>
         </SheetFooter>
       </SheetContent>
     </Sheet>
   ),
-}
+};
 
 export const Left: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open Left</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open Left
+      </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Navigation</SheetTitle>
@@ -51,12 +76,14 @@ export const Left: Story = {
       </SheetContent>
     </Sheet>
   ),
-}
+};
 
 export const Top: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open Top</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open Top
+      </SheetTrigger>
       <SheetContent side="top">
         <SheetHeader>
           <SheetTitle>Top Sheet</SheetTitle>
@@ -65,12 +92,14 @@ export const Top: Story = {
       </SheetContent>
     </Sheet>
   ),
-}
+};
 
 export const Bottom: Story = {
   render: () => (
     <Sheet>
-      <SheetTrigger render={<Button variant="outline" />}>Open Bottom</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline" />}>
+        Open Bottom
+      </SheetTrigger>
       <SheetContent side="bottom">
         <SheetHeader>
           <SheetTitle>Bottom Sheet</SheetTitle>
@@ -79,4 +108,4 @@ export const Bottom: Story = {
       </SheetContent>
     </Sheet>
   ),
-}
+};

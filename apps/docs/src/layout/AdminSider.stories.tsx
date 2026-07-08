@@ -8,7 +8,7 @@ const meta: Meta<typeof AdminSider> = {
   component: AdminSider,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

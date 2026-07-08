@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Label } from "@/components/ui/label"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Label } from "@/components/ui/label";
 
 const meta: Meta<typeof Label> = {
   title: "Components/Label",
@@ -11,24 +11,27 @@ const meta: Meta<typeof Label> = {
       description: "The id of the element the label is for",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     children: "Label",
   },
-}
+};
 
 export const WithInput: Story = {
   render: () => (
     <div className="space-y-2">
       <Label htmlFor="username">Username</Label>
-      <input id="username" className="flex h-8 w-full rounded-md border border-input bg-transparent px-2.5" />
+      <input
+        id="username"
+        className="border-input flex h-8 w-full rounded-md border bg-transparent px-2.5"
+      />
     </div>
   ),
-}
+};
 
 export const Required: Story = {
   render: () => (
@@ -36,7 +39,7 @@ export const Required: Story = {
       Email <span className="text-destructive">*</span>
     </Label>
   ),
-}
+};
 
 export const Disabled: Story = {
   render: () => (
@@ -44,4 +47,4 @@ export const Disabled: Story = {
       <Label>Disabled Label</Label>
     </div>
   ),
-}
+};

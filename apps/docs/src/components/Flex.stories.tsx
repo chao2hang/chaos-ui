@@ -6,7 +6,7 @@ const meta: Meta<typeof Flex> = {
   title: "Components/Flex",
   component: Flex,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

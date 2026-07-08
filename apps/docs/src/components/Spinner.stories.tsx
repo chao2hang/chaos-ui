@@ -6,7 +6,7 @@ const meta: Meta<typeof Spinner> = {
   component: Spinner,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

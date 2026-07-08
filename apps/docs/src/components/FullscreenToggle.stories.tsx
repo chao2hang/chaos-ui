@@ -6,7 +6,7 @@ const meta: Meta<typeof FullscreenToggle> = {
   component: FullscreenToggle,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

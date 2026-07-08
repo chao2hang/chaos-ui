@@ -6,7 +6,7 @@ const meta: Meta<typeof ConfigProvider> = {
   title: "Components/ConfigProvider",
   component: ConfigProvider,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -6,7 +6,7 @@ const meta: Meta<typeof Mentions> = {
   title: "Components/Mentions",
   component: Mentions,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

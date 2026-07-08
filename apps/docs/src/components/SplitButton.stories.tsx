@@ -6,7 +6,7 @@ const meta: Meta<typeof SplitButton> = {
   title: "Components/SplitButton",
   component: SplitButton,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

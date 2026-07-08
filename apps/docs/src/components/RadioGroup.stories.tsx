@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
+import type { Meta, StoryObj } from "@storybook/react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 const meta: Meta<typeof RadioGroup> = {
   title: "Components/RadioGroup",
   component: RadioGroup,
   tags: ["autodocs"],
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -27,7 +27,7 @@ export const Default: Story = {
       </div>
     </RadioGroup>
   ),
-}
+};
 
 export const Disabled: Story = {
   render: () => (
@@ -42,25 +42,29 @@ export const Disabled: Story = {
       </div>
     </RadioGroup>
   ),
-}
+};
 
 export const WithDescription: Story = {
   render: () => (
     <RadioGroup defaultValue="card" className="grid gap-4">
-      <Label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50">
+      <Label className="hover:bg-muted/50 flex cursor-pointer items-start gap-3 rounded-lg border p-4">
         <RadioGroupItem value="card" id="card" className="mt-1" />
         <div>
           <div className="font-medium">Credit Card</div>
-          <div className="text-sm text-muted-foreground">Pay with your credit card</div>
+          <div className="text-muted-foreground text-sm">
+            Pay with your credit card
+          </div>
         </div>
       </Label>
-      <Label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50">
+      <Label className="hover:bg-muted/50 flex cursor-pointer items-start gap-3 rounded-lg border p-4">
         <RadioGroupItem value="paypal" id="paypal" className="mt-1" />
         <div>
           <div className="font-medium">PayPal</div>
-          <div className="text-sm text-muted-foreground">Pay with your PayPal account</div>
+          <div className="text-muted-foreground text-sm">
+            Pay with your PayPal account
+          </div>
         </div>
       </Label>
     </RadioGroup>
   ),
-}
+};

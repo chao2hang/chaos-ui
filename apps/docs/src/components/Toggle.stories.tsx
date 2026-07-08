@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Toggle } from "@/components/ui/toggle"
-import { Bold, Italic, Underline } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Toggle } from "@/components/ui/toggle";
+import { Bold, Italic, Underline } from "lucide-react";
 
 const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
@@ -22,33 +22,33 @@ const meta: Meta<typeof Toggle> = {
       control: "boolean",
     },
   },
-
-export default meta
-type Story = StoryObj<typeof meta>
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { children: "Toggle" },
-}
+};
 
 export const Pressed: Story = {
   args: { pressed: true, children: "Pressed" },
-}
+};
 
 export const WithIcon: Story = {
   args: { children: <Bold className="size-4" />, "aria-label": "Toggle bold" },
-}
+};
 
 export const Disabled: Story = {
   args: { disabled: true, children: "Disabled" },
-}
+};
 
 export const Outline: Story = {
   args: { variant: "outline", children: "Outline" },
-}
+};
 
 export const Toolbar: Story = {
   render: () => (
-    <div className="flex items-center gap-1 border rounded-md p-1">
+    <div className="flex items-center gap-1 rounded-md border p-1">
       <Toggle aria-label="Toggle bold" size="sm">
         <Bold className="size-4" />
       </Toggle>
@@ -60,4 +60,4 @@ export const Toolbar: Story = {
       </Toggle>
     </div>
   ),
-}
+};

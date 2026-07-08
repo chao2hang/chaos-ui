@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { QRCode } from "@/components/business/qr-code"
+import type { Meta, StoryObj } from "@storybook/react";
+import { QRCode } from "@/components/business/qr-code";
 
 const meta: Meta<typeof QRCode> = {
   title: "Business/QRCode",
@@ -8,42 +8,42 @@ const meta: Meta<typeof QRCode> = {
   tags: ["autodocs"],
   args: {
     value: "https://example.com",
-  };
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const CustomSize: Story = {
   args: {
     value: "https://example.com",
     size: 300,
   },
-}
+};
 
 export const ErrorCorrectionLevels: Story = {
   render: () => (
     <div className="flex items-start gap-4">
       <div className="text-center">
         <QRCode value="https://example.com" level="L" size={120} />
-        <p className="mt-1 text-xs text-muted-foreground">L (Low)</p>
+        <p className="text-muted-foreground mt-1 text-xs">L (Low)</p>
       </div>
       <div className="text-center">
         <QRCode value="https://example.com" level="M" size={120} />
-        <p className="mt-1 text-xs text-muted-foreground">M (Medium)</p>
+        <p className="text-muted-foreground mt-1 text-xs">M (Medium)</p>
       </div>
       <div className="text-center">
         <QRCode value="https://example.com" level="Q" size={120} />
-        <p className="mt-1 text-xs text-muted-foreground">Q (Quartile)</p>
+        <p className="text-muted-foreground mt-1 text-xs">Q (Quartile)</p>
       </div>
       <div className="text-center">
         <QRCode value="https://example.com" level="H" size={120} />
-        <p className="mt-1 text-xs text-muted-foreground">H (High)</p>
+        <p className="text-muted-foreground mt-1 text-xs">H (High)</p>
       </div>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   args: {
@@ -52,4 +52,4 @@ export const Dark: Story = {
     bgColor: "#1a1a1a",
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

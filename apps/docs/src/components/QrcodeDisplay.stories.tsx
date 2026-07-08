@@ -9,7 +9,7 @@ const meta: Meta<typeof QRCodeDisplay> = {
     value: "https://chaos-ui.dev",
     size: 200,
   },
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

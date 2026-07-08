@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { CurrencyInput } from "@/components/business/currency-input"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CurrencyInput } from "@/components/business/currency-input";
 
 const meta: Meta<typeof CurrencyInput> = {
   title: "Business/CurrencyInput",
@@ -9,16 +9,16 @@ const meta: Meta<typeof CurrencyInput> = {
   args: {
     value: undefined,
     onChange: () => {},
-  };
-
-export default meta
-type Story = StoryObj<typeof meta>
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     value: 1234.56,
   },
-}
+};
 
 export const Euro: Story = {
   args: {
@@ -26,18 +26,18 @@ export const Euro: Story = {
     currency: "EUR",
     locale: "de-DE",
   },
-}
+};
 
 export const Disabled: Story = {
   args: {
     value: 500,
     disabled: true,
   },
-}
+};
 
 export const Dark: Story = {
   args: {
     value: 1234.56,
   },
   parameters: { backgrounds: { default: "dark" } },
-}
+};

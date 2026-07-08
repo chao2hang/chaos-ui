@@ -5,7 +5,7 @@ const meta: Meta<typeof SequencePreview> = {
   title: "Components/SequencePreview",
   component: SequencePreview,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

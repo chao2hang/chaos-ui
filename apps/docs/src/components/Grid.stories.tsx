@@ -6,7 +6,7 @@ const meta: Meta<typeof Grid> = {
   title: "Components/Grid",
   component: Grid,
   tags: ["autodocs"],
-
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 
