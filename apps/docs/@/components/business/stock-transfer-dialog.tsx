@@ -49,7 +49,7 @@ function genId() { return `st-${Date.now()}-${Math.random().toString(36).slice(2
 
 function StockTransferDialog({
   transferNo, fromWarehouse, toWarehouse, onFromWarehouseChange, onToWarehouseChange,
-  warehouses = [], lines, onLinesChange, transferType = "regular", onTransferTypeChange,
+  warehouses = [], lines = [], onLinesChange, transferType = "regular", onTransferTypeChange,
   remark, onRemarkChange, onSubmit, onCancel, readOnly = false, className,
 }: StockTransferDialogProps) {
   const handleAddLine = () => onLinesChange?.([...lines, { id: genId(), productCode: "", productName: "", quantity: 1, unit: "pcs" }]);

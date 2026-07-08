@@ -58,7 +58,7 @@ interface DataTableProps<T = Record<string, unknown>> {
 }
 
 function DataTable<T = Record<string, unknown>>({
-  columns,
+  columns = [],
   dataSource = [] as T[],
   rowKey = "id" as keyof T & string,
   loading = false,

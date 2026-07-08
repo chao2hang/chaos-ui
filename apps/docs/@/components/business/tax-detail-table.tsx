@@ -33,7 +33,7 @@ interface TaxDetailTableProps {
   className?: string;
 }
 
-function TaxDetailTable({ rows, className }: TaxDetailTableProps) {
+function TaxDetailTable({ rows = [], className }: TaxDetailTableProps) {
   const totalAmount = rows.reduce((s, r) => s + r.amount, 0);
   const totalTax = rows.reduce((s, r) => s + r.taxAmount, 0);
   const totalWithTax = totalAmount + totalTax;

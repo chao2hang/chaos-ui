@@ -34,7 +34,7 @@ export interface VersionHistoryProps extends React.ComponentProps<"div"> {
  * <VersionHistory versions={items} onRestore={handleRestore} />
  */
 export function VersionHistory({
-  versions,
+  versions = [],
   onRestore,
   className,
   ...props

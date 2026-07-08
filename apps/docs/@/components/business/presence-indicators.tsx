@@ -33,7 +33,7 @@ const STATUS_COLORS: Record<
 };
 
 export function PresenceIndicators({
-  users,
+  users = [],
   max = 5,
   className,
   ...props

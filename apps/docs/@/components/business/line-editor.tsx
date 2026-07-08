@@ -69,14 +69,14 @@ interface LineEditorProps {
  * @since 0.2.0
  */
 function LineEditor({
-  columns,
-  data,
+  columns = [],
+  data = [],
   onChange,
   minRows = 1,
   maxRows = 999,
   rowKey = "id",
   footer,
-  summaryKeys,
+  summaryKeys = [],
   readOnly = false,
   loading = false,
   className,

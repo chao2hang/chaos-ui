@@ -135,7 +135,7 @@ function formatVal(v: number, unit?: string): string {
 /* -------------------------------------------------------------------------- */
 
 function SPCControlChart({
-  samples,
+  samples = [],
   title = "SPC Control Chart",
   centerLine,
   ucl,

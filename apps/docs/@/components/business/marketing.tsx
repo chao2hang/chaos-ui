@@ -114,7 +114,7 @@ interface PricingTableProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function PricingTable({
-  tiers,
+  tiers = [],
   onCta,
   className,
   ...props
@@ -192,7 +192,7 @@ interface FAQSectionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function FAQSection({
-  items,
+  items = [],
   searchable,
   className,
   ...props

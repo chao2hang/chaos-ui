@@ -83,7 +83,7 @@ const statusOrder: ComplianceItemStatus[] = ["compliant", "in_progress", "pendin
 /* -------------------------------------------------------------------------- */
 
 function ComplianceChecklist({
-  items,
+  items = [],
   title = "Compliance Checklist",
   onItemClick,
   onStatusChange,

@@ -40,7 +40,7 @@ interface BillHeaderProps {
  * @since 0.2.0
  */
 function BillHeader({
-  fields,
+  fields = [],
   title = "单据信息",
   extra,
   columns = 4,

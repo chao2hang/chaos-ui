@@ -52,7 +52,7 @@ function statusClass(status: string): string {
   return "bg-muted text-muted-foreground";
 }
 
-function TaskListTable({ tasks, className }: TaskListTableProps) {
+function TaskListTable({ tasks = [], className }: TaskListTableProps) {
   return (
     <div
       data-slot="task-list-table"

@@ -63,6 +63,15 @@ type StoryModule = {
 
 const storyPreference = ["Preview", "Default", "Basic", "Primary"];
 
+function isEmptyPreview(args: StoryArgs): boolean {
+  // No args at all → no data to show
+  if (!args || Object.keys(args).length === 0) return true;
+  // Every arg that's an array is empty → no data to show
+  const values = Object.values(args);
+  if (values.length > 0 && values.every((v) => Array.isArray(v) && v.length === 0)) return true;
+  return false;
+}
+
 function isStory(value: unknown): value is StoryLike {
   return Boolean(value && typeof value === "object");
 }
@@ -104,6 +113,23 @@ export function createStoryPreview(mod: unknown): React.ComponentType {
       ...(meta?.args ?? {}),
       ...(story.args ?? {}),
     };
+
+    // When story provides no meaningful data, show a helpful placeholder
+    // instead of rendering an empty component that looks broken.
+    if (isEmptyPreview(story.args ?? {}) && isEmptyPreview(meta?.args ?? {})) {
+      return (
+        <div className="flex min-h-[140px] items-center justify-center rounded-lg border border-dashed border-muted-foreground/20 p-6 text-center">
+          <div className="text-sm">
+            <p className="text-muted-foreground font-medium">No preview</p>
+            <p className="text-muted-foreground/60 mt-1 text-xs">
+              This story doesn&apos;t include example data.{" "}
+              <br className="hidden sm:inline" />
+              Open Storybook for interactive demos with real data.
+            </p>
+          </div>
+        </div>
+      );
+    }
 
     const node = story.render
       ? story.render(args)

@@ -121,7 +121,7 @@ function formatMoney(v: number, symbol: string): string {
 /* -------------------------------------------------------------------------- */
 
 function Customer360Card({
-  name,
+  name = "",
   logo,
   industry,
   tier,

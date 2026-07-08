@@ -25,7 +25,7 @@ interface TaskHistoryProps {
   className?: string;
 }
 
-function TaskHistory({ tasks, className }: TaskHistoryProps) {
+function TaskHistory({ tasks = [], className }: TaskHistoryProps) {
   return (
     <div
       data-slot="task-history"

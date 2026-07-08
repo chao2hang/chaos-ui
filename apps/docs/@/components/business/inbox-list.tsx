@@ -28,7 +28,7 @@ interface InboxListProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
 }
 
 export function InboxList({
-  items,
+  items = [],
   selected,
   onSelect,
   onStar,

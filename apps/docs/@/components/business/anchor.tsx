@@ -14,7 +14,7 @@ interface AnchorProps {
   className?: string
 }
 
-export function Anchor({ sections, offset = 80, className }: AnchorProps) {
+export function Anchor({ sections = [], offset = 80, className }: AnchorProps) {
   const [active, setActive] = React.useState<string>(sections[0]?.id ?? "")
 
   React.useEffect(() => {

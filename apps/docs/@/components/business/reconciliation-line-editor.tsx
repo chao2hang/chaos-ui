@@ -34,7 +34,7 @@ interface ReconciliationLineEditorProps {
 }
 
 function ReconciliationLineEditor({
-  rows,
+  rows = [],
   onChange,
   className,
 }: ReconciliationLineEditorProps) {

@@ -19,7 +19,7 @@ interface MobileBottomNavProps extends Omit<React.ComponentProps<"nav">, "onChan
 }
 
 export function MobileBottomNav({
-  items,
+  items = [],
   onChange,
   variant = "default",
   className,

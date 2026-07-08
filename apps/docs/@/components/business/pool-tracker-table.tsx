@@ -34,7 +34,7 @@ interface PoolTrackerTableProps {
   className?: string;
 }
 
-function PoolTrackerTable({ pools, className }: PoolTrackerTableProps) {
+function PoolTrackerTable({ pools = [], className }: PoolTrackerTableProps) {
   const aggregateTotal = pools.reduce((s, p) => s + p.total, 0);
   const aggregateUsed = pools.reduce((s, p) => s + p.used, 0);
   const aggregateAvailable = pools.reduce((s, p) => s + p.available, 0);

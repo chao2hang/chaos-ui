@@ -199,10 +199,10 @@ const statusRowClass: Record<DiffRowStatus, string> = {
  * side-by-side viewing modes with a summary toolbar.
  */
 function DiffViewerTable<T extends Record<string, unknown>>({
-  before,
-  after,
+  before = [],
+  after = [],
   rowKey,
-  columns,
+  columns = [],
   viewMode = "unified",
   showChangesOnly = false,
   showSummary = false,

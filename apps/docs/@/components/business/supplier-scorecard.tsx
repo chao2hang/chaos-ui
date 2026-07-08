@@ -110,7 +110,7 @@ function getTrendIcon(trend?: "up" | "down" | "stable"): React.ReactNode {
 /* -------------------------------------------------------------------------- */
 
 function SupplierScorecard({
-  supplier,
+  supplier = {} as Supplier,
   showWeightedTotal = true,
   showTrends = true,
   showBars = true,

@@ -17,7 +17,7 @@ interface MobileTabsProps {
   className?: string
 }
 
-function MobileTabs({ tabs, defaultValue, className }: MobileTabsProps) {
+function MobileTabs({ tabs = [], defaultValue, className }: MobileTabsProps) {
   return (
     <Tabs defaultValue={defaultValue || tabs[0]?.value} className={cn("w-full", className)}>
       <ScrollArea className="w-full border-b">

@@ -182,7 +182,7 @@ function InlineSparkline({
  * transaction details, and reorder actions for warehouse management.
  */
 function InventoryAlertList({
-  items,
+  items = [],
   activeTab: controlledTab,
   onTabChange,
   onItemClick,

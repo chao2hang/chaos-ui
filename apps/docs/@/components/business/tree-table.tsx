@@ -334,8 +334,8 @@ function sortTree<T extends Record<string, unknown>>(
 /* -------------------------------------------------------------------------- */
 
 function TreeTable<T extends Record<string, unknown>>({
-  columns,
-  data,
+  columns = [],
+  data = [],
   rowKey = "id" as keyof T & string,
   childrenKey = "children",
   parentKey,

@@ -16,7 +16,7 @@ interface MobileNavigationProps {
   className?: string;
 }
 
-function MobileNavigation({ items, className }: MobileNavigationProps) {
+function MobileNavigation({ items = [], className }: MobileNavigationProps) {
   return (
     <ScrollArea className={cn("w-full", className)}>
       <div className="flex gap-2 p-2">

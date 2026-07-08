@@ -157,7 +157,7 @@ export function TopBar({
  */
 export function MegaMenu({
   trigger,
-  groups,
+  groups = [],
   className,
 }: {
   trigger: React.ReactNode;

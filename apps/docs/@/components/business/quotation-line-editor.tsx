@@ -125,7 +125,7 @@ function marginColor(margin: number): string {
 
 function QuotationLineEditor({
   quoteNo,
-  lines,
+  lines = [],
   onLinesChange,
   currencySymbol = "¥",
   onSubmit,

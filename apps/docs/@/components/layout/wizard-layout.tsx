@@ -40,7 +40,7 @@ interface WizardLayoutProps {
 }
 
 function WizardLayout({
-  steps,
+  steps = [],
   current,
   onComplete,
   children,

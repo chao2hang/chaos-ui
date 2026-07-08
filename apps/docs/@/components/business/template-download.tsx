@@ -61,7 +61,7 @@ const typeLabel: Record<TemplateDownloadType, string> = {
 };
 
 function TemplateDownload({
-  templates,
+  templates = [],
   onDownload,
   emptyLabel = "暂无可用模板",
   className,

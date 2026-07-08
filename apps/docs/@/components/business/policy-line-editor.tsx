@@ -37,7 +37,7 @@ interface PolicyLineEditorProps {
 }
 
 function PolicyLineEditor({
-  rows,
+  rows = [],
   onChange,
   className,
 }: PolicyLineEditorProps) {

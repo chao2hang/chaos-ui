@@ -71,7 +71,7 @@ interface KeyboardShortcutDialogProps {
 function KeyboardShortcutDialog({
   open,
   onOpenChange,
-  groups,
+  groups = [],
   title = "Keyboard Shortcuts",
   placeholder = "Search shortcuts...",
   className,

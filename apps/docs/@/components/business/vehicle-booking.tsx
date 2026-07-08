@@ -129,8 +129,8 @@ function findConflicts(
 /* -------------------------------------------------------------------------- */
 
 function VehicleBooking({
-  vehicles,
-  bookings,
+  vehicles = [],
+  bookings = [],
   onSubmit,
   onCancel,
   readOnly = false,

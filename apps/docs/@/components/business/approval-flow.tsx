@@ -17,7 +17,7 @@ const STATUS_STYLE: Record<string, string> = {
   approved: "bg-emerald-100 text-emerald-700", pending: "bg-yellow-100 text-yellow-700",
   rejected: "bg-red-100 text-red-700", processing: "bg-blue-100 text-blue-700",
 };
-function ApprovalFlow({ nodes, edges, className }: ApprovalFlowProps) {
+function ApprovalFlow({ nodes = [], edges = [], className }: ApprovalFlowProps) {
   const order = React.useMemo(() => {
     const next = new Map<string, string>();
     edges.forEach((e) => next.set(e.from, e.to));

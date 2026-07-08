@@ -144,8 +144,8 @@ function formatMoney(v: number, symbol: string): string {
 /* -------------------------------------------------------------------------- */
 
 function CommissionCalculator({
-  tiers,
-  deals,
+  tiers = [],
+  deals = [],
   quota,
   quotaBonusRate = 0,
   currencySymbol = "¥",

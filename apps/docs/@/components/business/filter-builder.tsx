@@ -40,7 +40,7 @@ type FilterRule = {
  * <FilterBuilder fields={[{ key: "name", label: "Name" }]} onChange={handleChange} />
  */
 function FilterBuilder({
-  fields,
+  fields = [],
   onChange,
   className,
 }: {

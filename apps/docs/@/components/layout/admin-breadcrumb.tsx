@@ -41,7 +41,7 @@ function AdminBreadcrumb({
   className,
   pathname,
   routeLabels = {},
-  items,
+  items = [],
   homeLabel = "Home",
   homeHref = "/",
   separator,

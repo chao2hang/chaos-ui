@@ -39,7 +39,7 @@ const statusColors: Record<string, string> = {
  */
 function AuditSidebar({
   title = "操作日志",
-  entries,
+  entries = [],
   loading = false,
   className,
 }: AuditSidebarProps) {

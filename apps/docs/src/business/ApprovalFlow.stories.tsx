@@ -1,58 +1,26 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ApprovalFlow } from "@/components/business/approval-flow";
 
-const steps = [
-  {
-    id: "1",
-    name: "直属经理审批",
-    approver: { name: "王经理" },
-    status: "approved" as const,
-    timestamp: Date.now() - 86400_000,
-    comment: "同意，符合规范",
-  },
-  {
-    id: "2",
-    name: "部门总监审批",
-    approver: { name: "李总监" },
-    status: "approved" as const,
-    timestamp: Date.now() - 3600_000,
-  },
-  {
-    id: "3",
-    name: "财务复核",
-    approver: { name: "陈财务" },
-    status: "pending" as const,
-  },
-  {
-    id: "4",
-    name: "CEO 终批",
-    approver: { name: "CEO" },
-    status: "pending" as const,
-  },
+const nodes = [
+  { id: "1", name: "提交申请", type: "start", status: "approved" },
+  { id: "2", name: "直属经理审批", type: "approval", status: "approved" },
+  { id: "3", name: "部门总监审批", type: "approval", status: "processing" },
+  { id: "4", name: "财务复核", type: "approval", status: "pending" },
+  { id: "5", name: "CEO 终批", type: "approval", status: "pending" },
 ];
 
-const rejectedSteps = [
-  {
-    id: "1",
-    name: "直属经理审批",
-    approver: { name: "王经理" },
-    status: "approved" as const,
-    timestamp: Date.now() - 86400_000,
-  },
-  {
-    id: "2",
-    name: "部门总监审批",
-    approver: { name: "李总监" },
-    status: "rejected" as const,
-    timestamp: Date.now() - 3600_000,
-    comment: "预算超标，请重新提交",
-  },
-  {
-    id: "3",
-    name: "财务复核",
-    approver: { name: "陈财务" },
-    status: "skipped" as const,
-  },
+const edges = [
+  { from: "1", to: "2" },
+  { from: "2", to: "3" },
+  { from: "3", to: "4" },
+  { from: "4", to: "5" },
+];
+
+const rejectedNodes = [
+  { id: "1", name: "提交申请", type: "start", status: "approved" },
+  { id: "2", name: "直属经理审批", type: "approval", status: "approved" },
+  { id: "3", name: "部门总监审批", type: "approval", status: "rejected" },
+  { id: "4", name: "财务复核", type: "approval", status: "skipped" },
 ];
 
 const meta: Meta<typeof ApprovalFlow> = {
@@ -65,33 +33,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    steps,
-    currentStep: 2,
-  },
+  args: { nodes, edges },
 };
 
 export const Rejected: Story = {
   args: {
-    steps: rejectedSteps,
-    currentStep: 1,
+    nodes: rejectedNodes,
+    edges: edges.slice(0, 3),
   },
 };
 
-export const AllApproved: Story = {
+export const SingleStep: Story = {
   args: {
-    steps: steps.map((s) => ({
-      ...s,
-      status: "approved" as const,
-      timestamp: Date.now(),
-    })),
+    nodes: [{ id: "1", name: "提交申请", type: "start", status: "approved" }],
+    edges: [],
   },
-};
-
-export const Dark: Story = {
-  args: {
-    steps,
-    currentStep: 2,
-  },
-  parameters: { backgrounds: { default: "dark" } },
 };

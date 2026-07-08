@@ -73,7 +73,7 @@ const statusConfig: Record<
 function AsyncTaskCenter({
   open,
   onOpenChange,
-  tasks,
+  tasks = [],
   onCancelTask,
   onRetryTask,
   onDownloadResult,

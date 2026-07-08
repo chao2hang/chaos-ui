@@ -137,7 +137,7 @@ const logStatusConfig: Record<string, { label: string; className: string }> = {
 /* -------------------------------------------------------------------------- */
 
 function SealStampRegistry({
-  seals,
+  seals = [],
   usageLogs = [],
   onSealClick,
   onApplyUsage,

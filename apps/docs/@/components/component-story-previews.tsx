@@ -2251,7 +2251,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ),
   KpiCard: dynamic(
     () =>
-      import("../../src/business/KpiCard.stories").then((m) => ({
+      import("../../src/business/KPICard.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -2573,7 +2573,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ),
   PdfViewer: dynamic(
     () =>
-      import("../../src/business/PdfViewer.stories").then((m) => ({
+      import("../../src/business/PDFViewer.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },

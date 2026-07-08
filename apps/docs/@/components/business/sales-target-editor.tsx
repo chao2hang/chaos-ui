@@ -39,7 +39,7 @@ interface SalesTargetEditorProps {
 }
 
 function SalesTargetEditor({
-  rows,
+  rows = [],
   onChange,
   className,
 }: SalesTargetEditorProps) {

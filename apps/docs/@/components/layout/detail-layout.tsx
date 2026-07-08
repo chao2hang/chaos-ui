@@ -25,7 +25,7 @@ function DetailLayout({
   title,
   subtitle,
   children,
-  tabs,
+  tabs = [],
   actions,
   onBack,
   className,

@@ -61,7 +61,7 @@ function fmt(n: number, s = "¥") { return `${s}${n.toLocaleString("en-US", { mi
 
 function PurchaseOrderEditor({
   poNumber, vendor, onVendorChange, orderDate, expectedDelivery, paymentTerms,
-  onHeaderChange, lineItems, onLineItemsChange, approvalSteps = [],
+  onHeaderChange, lineItems = [], onLineItemsChange, approvalSteps = [],
   status = "draft", currencySymbol = "¥", readOnly = false, onSubmit, className,
 }: PurchaseOrderEditorProps) {
   const totals = React.useMemo(() => {

@@ -176,7 +176,7 @@ function computeDependencyPath(
 /* -------------------------------------------------------------------------- */
 
 function GanttChartPro({
-  tasks,
+  tasks = [],
   dependencies = [],
   zoom = "day",
   showToday = true,

@@ -15,7 +15,7 @@ interface BillPrintTemplateProps {
 function BillPrintTemplate({
   title = "",
   fields = [],
-  lines,
+  lines = [],
   className,
 }: BillPrintTemplateProps) {
   return (

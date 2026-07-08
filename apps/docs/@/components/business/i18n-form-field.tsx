@@ -70,7 +70,7 @@ function completionPct(translations: LocaleTranslation[]): number {
 function I18nFormField({
   fieldKey,
   label,
-  translations,
+  translations = [],
   onTranslationChange,
   multiline = false,
   maxLength,

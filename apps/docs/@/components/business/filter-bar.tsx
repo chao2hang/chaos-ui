@@ -43,7 +43,7 @@ interface FilterBarProps {
  * @since 0.2.0
  */
 function FilterBar({
-  fields,
+  fields = [],
   onSearch,
   onReset,
   layout = "inline",

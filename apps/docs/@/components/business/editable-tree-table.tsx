@@ -354,8 +354,8 @@ function SelectEditor({
  * provides a save/cancel toolbar when in edit mode.
  */
 function EditableTreeTable<T extends Record<string, unknown>>({
-  columns,
-  data,
+  columns = [],
+  data = [],
   rowKey = "id" as keyof T & string,
   childrenKey = "children",
   parentKey,

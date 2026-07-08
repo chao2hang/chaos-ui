@@ -20,7 +20,7 @@ interface ChatMessageListProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function ChatMessageList({
-  messages,
+  messages = [],
   currentUserId,
   className,
   ...props

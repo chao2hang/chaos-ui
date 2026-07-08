@@ -171,8 +171,8 @@ function autoMatch(
 /* -------------------------------------------------------------------------- */
 
 function ImportMappingWizard({
-  sourceColumns,
-  targetFields,
+  sourceColumns = [],
+  targetFields = [],
   mappings: controlledMappings,
   onMappingsChange,
   showSamples = true,

@@ -86,7 +86,7 @@ function formatMoney(v: number, symbol: string): string {
 /* -------------------------------------------------------------------------- */
 
 function TerritoryMap({
-  regions,
+  regions = [],
   title = "Sales Territory Map",
   currencySymbol = "¥",
   gridCols = 4,
