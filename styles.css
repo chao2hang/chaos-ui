@@ -1298,3 +1298,29 @@
   .col-start-24 { grid-column-start: 24; }
   .col-start-25 { grid-column-start: 25; }
 }
+
+/* P3-13: Turbopack safety net — ensure critical responsive utilities
+   (md:block, md:flex, md:hidden, lg:flex, lg:hidden) always generate CSS
+   even when Tailwind v4's JIT scanner misses them in minified dist bundles.
+   These are !important-free and only apply when the class is present. */
+/* stylelint-disable selector-class-pattern -- Tailwind escaped class names (sm/md/lg:) */
+@media (width >= 768px) {
+  .md\:block { display: block; }
+  .md\:flex { display: flex; }
+  .md\:hidden { display: none; }
+  .md\:grid { display: grid; }
+}
+
+@media (width >= 1024px) {
+  .lg\:block { display: block; }
+  .lg\:flex { display: flex; }
+  .lg\:hidden { display: none; }
+  .lg\:grid { display: grid; }
+}
+
+@media (width >= 640px) {
+  .sm\:block { display: block; }
+  .sm\:flex { display: flex; }
+  .sm\:hidden { display: none; }
+}
+/* stylelint-enable selector-class-pattern */

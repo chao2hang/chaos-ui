@@ -730,3 +730,17 @@ export type {
   ThemeContextValue,
   ThemeProviderProps,
 } from "./theme-provider";
+
+// P3-8: Top-level convenience re-exports of lib utilities so consumers can
+// import message / formatCurrency from the main entry without going to /business.
+// / 顶层便捷导出：消费方可直接从主入口引入 message / format* 工具函数
+export {
+  message,
+  formatCurrency,
+  formatDate,
+  formatDateTime,
+  formatNumber,
+  formatPercent,
+  formatRelativeTime,
+} from "../../lib";
+export type { MessageOptions, MessageType } from "../../lib";

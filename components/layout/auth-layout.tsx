@@ -23,51 +23,105 @@ interface AuthLayoutProps extends React.ComponentProps<"div"> {
   brand?: React.ReactNode;
   /** Brand panel background class (used when brand is a string or empty) / 品牌区背景样式 */
   brandClassName?: string;
+  /** Brand panel width ratio (default: 1/2) / 品牌区宽度比例 */
+  brandWidth?: "1/3" | "1/2" | "2/3";
+  /** Brand panel vertical alignment / 品牌区垂直对齐 */
+  brandAlign?: "start" | "center" | "end";
+  /** Brand panel horizontal alignment / 品牌区水平对齐 */
+  brandJustify?: "start" | "center" | "end";
+  /** Brand panel padding / 品牌区内边距 */
+  brandPadding?: string;
   /** Maximum width of the form panel / 表单区最大宽度 */
   formMaxWidth?: string;
+  /** Form panel vertical alignment / 表单区垂直对齐 */
+  formAlign?: "start" | "center" | "end";
+  /** Form panel padding / 表单区内边距 */
+  formPadding?: string;
+  /** Hide brand panel on screens smaller than this breakpoint / 品牌区隐藏断点 */
+  brandHideBelow?: "sm" | "md" | "lg";
 }
+
+const brandWidthMap = {
+  "1/3": "lg:w-1/3",
+  "1/2": "lg:w-1/2",
+  "2/3": "lg:w-2/3",
+};
+
+const alignMap = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+};
+
+const justifyMap = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+};
+
+const hideBelowMap = {
+  sm: "hidden sm:flex",
+  md: "hidden md:flex",
+  lg: "hidden lg:flex",
+};
 
 function AuthLayout({
   variant = "centered",
   brand,
   brandClassName,
+  brandWidth = "1/2",
+  brandAlign = "center",
+  brandJustify = "center",
+  brandPadding,
   formMaxWidth = "420px",
+  formAlign = "center",
+  formPadding,
+  brandHideBelow = "lg",
   className,
   children,
   ...props
 }: AuthLayoutProps) {
   if (variant === "split" || brand) {
+    const hideBelowClasses = hideBelowMap[brandHideBelow] ?? hideBelowMap.lg;
     return (
       <div
         data-slot="auth-layout"
         data-variant="split"
-        className={cn(
-          "flex min-h-svh bg-background",
-          className,
-        )}
+        className={cn("bg-background flex min-h-svh", className)}
         {...props}
       >
-        {/* Brand panel — hidden on mobile */}
+        {/* Brand panel — configurable visibility breakpoint, width, alignment */}
         <div
           className={cn(
-            "hidden lg:flex lg:w-1/2 lg:flex-col lg:items-center lg:justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-background border-r",
+            "from-primary/10 via-primary/5 to-background border-r bg-gradient-to-br lg:flex-col",
+            hideBelowClasses,
+            brandWidthMap[brandWidth],
+            alignMap[brandAlign],
+            justifyMap[brandJustify],
             brandClassName,
           )}
+          style={brandPadding ? { padding: brandPadding } : undefined}
         >
           {brand ?? (
             <div className="flex flex-col items-center gap-4 p-8 text-center">
-              <div className="flex size-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground text-2xl font-bold">
+              <div className="bg-primary text-primary-foreground flex size-16 items-center justify-center rounded-2xl text-2xl font-bold">
                 C
               </div>
               <div className="text-xl font-semibold">Chaos UI</div>
-              <div className="max-w-sm text-sm text-muted-foreground">
+              <div className="text-muted-foreground max-w-sm text-sm">
                 Enterprise management platform
               </div>
             </div>
           )}
         </div>
-        {/* Form panel — full width on mobile, half on desktop */}
-        <div className="flex flex-1 items-center justify-center p-4 lg:p-8">
+        {/* Form panel — full width on mobile, configurable alignment/padding */}
+        <div
+          className={cn(
+            "flex flex-1 items-center justify-center p-4 lg:p-8",
+            alignMap[formAlign],
+          )}
+          style={formPadding ? { padding: formPadding } : undefined}
+        >
           <div className="w-full" style={{ maxWidth: formMaxWidth }}>
             {children}
           </div>
@@ -82,7 +136,7 @@ function AuthLayout({
       data-slot="auth-layout"
       data-variant="centered"
       className={cn(
-        "flex min-h-svh items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-4",
+        "from-primary/10 via-background to-secondary/10 flex min-h-svh items-center justify-center bg-gradient-to-br p-4",
         className,
       )}
       {...props}
