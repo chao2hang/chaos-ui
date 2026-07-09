@@ -15,7 +15,8 @@
     "hooks/**/*.ts",
     "hooks/**/*.tsx",
     "lib/**/*.ts",
-    "package/**/*.ts"
+    "package/**/*.ts",
+    "types/**/*.d.ts"
   ],
   "exclude": [
     "node_modules",
