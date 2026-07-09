@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { MenuIcon } from "@/components/ui/icons"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { MenuIcon } from "@/components/ui/icons";
 
 /**
  * @component MasterDetailLayout
@@ -10,8 +10,9 @@ import { MenuIcon } from "@/components/ui/icons"
  * @since 0.5.0
  * @description 主从两栏布局 (master-detail)，左侧固定宽度侧边栏 + 右侧自适应主区域。
  *
- * 宽屏并排；窄屏默认堆叠为上下，开启 `collapsible` 后窄屏把 master 折叠成
- * 左侧抽屉（overlay + 遮罩），对齐 Sidebar 的 collapsible 行为。
+ * 宽屏并排；窄屏默认堆叠为上下，开启 `collapsible` 或 `responsive` 后窄屏把
+ * master 折叠成左侧抽屉（overlay + 遮罩），对齐 Sidebar 的 collapsible 行为。
+ * `responsive` 是 `collapsible` 的语义化别名，默认为 `true`（移动端自动折叠）。
  * / Master-detail two-column layout; mobile master collapses to a drawer.
  * @keywords layout, master-detail, sidebar, two-column, responsive, drawer
  * @example
@@ -19,43 +20,50 @@ import { MenuIcon } from "@/components/ui/icons"
  *   sidebar={<TreeView />}
  *   main={<SearchTable />}
  *   sidebarWidth={320}
- *   collapsible
+ *   responsive  // 移动端自动折叠为 Drawer
  * />
  */
 
 interface MasterDetailLayoutProps extends React.ComponentProps<"div"> {
   /** Sidebar content / 侧边栏内容 */
-  sidebar: React.ReactNode
+  sidebar: React.ReactNode;
   /** Main area content / 主区域内容 */
-  main: React.ReactNode
+  main: React.ReactNode;
   /** Sidebar width in px / 侧边栏宽度 */
-  sidebarWidth?: number
+  sidebarWidth?: number;
   /** Gap between sidebar and main / 间距 */
-  gap?: "sm" | "md" | "lg"
+  gap?: "sm" | "md" | "lg";
   /**
    * Collapse master into a drawer on narrow screens.
    * / 窄屏将 master 折叠为抽屉
    */
-  collapsible?: boolean
+  collapsible?: boolean;
+  /**
+   * Responsive alias for `collapsible`. When `true` (default), the sidebar
+   * automatically collapses to a Drawer on mobile. Set `false` to keep the
+   * sidebar always visible (stacks on mobile instead).
+   * / 响应式折叠：true=移动端自动折叠为 Drawer（默认），false=始终可见
+   */
+  responsive?: boolean;
   /** Controlled master drawer open state (mobile) / 受控抽屉展开 */
-  masterOpen?: boolean
+  masterOpen?: boolean;
   /** Uncontrolled default open / 非受控默认展开 */
-  defaultMasterOpen?: boolean
+  defaultMasterOpen?: boolean;
   /** Master open change callback / 展开状态变更回调 */
-  onMasterOpenChange?: (open: boolean) => void
+  onMasterOpenChange?: (open: boolean) => void;
   /** Custom toggle button (defaults to a hamburger Menu button) / 自定义切换按钮 */
-  masterToggle?: React.ReactNode
+  masterToggle?: React.ReactNode;
   /**
    * Also collapse master on desktop (not just mobile). / 桌面端也支持折叠 master
    */
-  collapsibleDesktop?: boolean
+  collapsibleDesktop?: boolean;
 }
 
 const gapMap = {
   sm: "gap-2",
   md: "gap-4",
   lg: "gap-6",
-}
+};
 
 function MasterDetailLayout({
   className,
@@ -64,6 +72,7 @@ function MasterDetailLayout({
   sidebarWidth = 300,
   gap = "md",
   collapsible = false,
+  responsive = true,
   masterOpen,
   defaultMasterOpen = false,
   onMasterOpenChange,
@@ -71,23 +80,27 @@ function MasterDetailLayout({
   collapsibleDesktop = false,
   ...props
 }: MasterDetailLayoutProps) {
-  const [internalOpen, setInternalOpen] = React.useState(defaultMasterOpen)
-  const isControlled = masterOpen !== undefined
-  const open = isControlled ? masterOpen : internalOpen
+  const [internalOpen, setInternalOpen] = React.useState(defaultMasterOpen);
+  const isControlled = masterOpen !== undefined;
+  const open = isControlled ? masterOpen : internalOpen;
 
   const setOpen = React.useCallback(
     (next: boolean) => {
-      if (!isControlled) setInternalOpen(next)
-      onMasterOpenChange?.(next)
+      if (!isControlled) setInternalOpen(next);
+      onMasterOpenChange?.(next);
     },
     [isControlled, onMasterOpenChange],
-  )
+  );
 
-  const sidebarStyle = { maxWidth: sidebarWidth } as React.CSSProperties
-  const sidebarInnerStyle = { width: "100%", maxWidth: sidebarWidth } as React.CSSProperties
+  const sidebarStyle = { maxWidth: sidebarWidth } as React.CSSProperties;
+  const sidebarInnerStyle = {
+    width: "100%",
+    maxWidth: sidebarWidth,
+  } as React.CSSProperties;
 
-  // Non-collapsible: original behavior (stack on mobile, row on desktop).
-  if (!collapsible) {
+  // `collapsible` explicitly set takes precedence; otherwise use `responsive`.
+  const shouldCollapse = collapsible || responsive;
+  if (!shouldCollapse) {
     return (
       <div
         data-slot="master-detail-layout"
@@ -102,7 +115,7 @@ function MasterDetailLayout({
         </aside>
         <div className="min-w-0 flex-1">{main}</div>
       </div>
-    )
+    );
   }
 
   // Collapsible: desktop row; mobile drawer (overlay + backdrop).
@@ -112,13 +125,13 @@ function MasterDetailLayout({
       aria-label="Toggle master"
       onClick={() => setOpen(!open)}
       className={cn(
-        "inline-flex size-9 items-center justify-center rounded-md border bg-background text-foreground hover:bg-muted",
+        "bg-background text-foreground hover:bg-muted inline-flex size-9 items-center justify-center rounded-md border",
         collapsibleDesktop ? "" : "md:hidden",
       )}
     >
       <MenuIcon className="size-4" />
     </button>
-  )
+  );
 
   return (
     <div
@@ -134,14 +147,14 @@ function MasterDetailLayout({
         style={sidebarStyle}
         className={cn(
           // desktop: static column (collapses to 0 width when collapsibleDesktop + closed)
-          "shrink-0 md:overflow-y-auto md:border-r md:static md:bg-transparent md:p-0 md:transition-all md:duration-200",
+          "shrink-0 md:static md:overflow-y-auto md:border-r md:bg-transparent md:p-0 md:transition-all md:duration-200",
           collapsibleDesktop
             ? open
               ? "md:w-auto md:translate-x-0 md:opacity-100"
-              : "md:!w-0 md:!max-w-0 md:overflow-hidden md:opacity-0 md:border-r-0"
+              : "md:!w-0 md:!max-w-0 md:overflow-hidden md:border-r-0 md:opacity-0"
             : "md:w-auto md:translate-x-0",
           // mobile: fixed drawer
-          "fixed inset-y-0 left-0 z-50 w-[85vw] max-w-[320px] border-r bg-background p-3 shadow-lg transition-transform duration-200",
+          "bg-background fixed inset-y-0 left-0 z-50 w-[85vw] max-w-[320px] border-r p-3 shadow-lg transition-transform duration-200",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
@@ -161,8 +174,8 @@ function MasterDetailLayout({
 
       <div className="min-w-0 flex-1">{main}</div>
     </div>
-  )
+  );
 }
 
-export { MasterDetailLayout }
-export type { MasterDetailLayoutProps }
+export { MasterDetailLayout };
+export type { MasterDetailLayoutProps };

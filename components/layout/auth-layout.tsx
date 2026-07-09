@@ -9,9 +9,10 @@ import { cn } from "@/lib/utils";
  * @since 0.3.0
  * @description Authentication page layout. Supports single-column (centered card)
  * and split-screen (brand left + form right) variants. Collapses to single
- * column on mobile. / 认证页布局，支持单栏居中和双栏（品牌+表单）模式
+ * column on mobile. Includes optional `footer` slot for copyright / ICP
+ * filing information. / 认证页布局，支持单栏居中和双栏（品牌+表单）模式，含底部版权 slot
  * @example
- * <AuthLayout variant="split" brand={<BrandPanel />}>
+ * <AuthLayout variant="split" brand={<BrandPanel />} footer={<span>© 2026 Chaos · 京ICP备xxxxx号</span>}>
  *   <LoginForm />
  * </AuthLayout>
  */
@@ -39,6 +40,14 @@ interface AuthLayoutProps extends React.ComponentProps<"div"> {
   formPadding?: string;
   /** Hide brand panel on screens smaller than this breakpoint / 品牌区隐藏断点 */
   brandHideBelow?: "sm" | "md" | "lg";
+  /**
+   * Footer content (bottom of the form panel in split mode, or below the
+   * card in centered mode). Use for copyright, ICP filing, legal links.
+   * / 底部内容（版权/备案/法律链接）
+   */
+  footer?: React.ReactNode;
+  /** Footer class name / 底部样式 */
+  footerClassName?: string;
 }
 
 const brandWidthMap = {
@@ -77,6 +86,8 @@ function AuthLayout({
   formAlign = "center",
   formPadding,
   brandHideBelow = "lg",
+  footer,
+  footerClassName,
   className,
   children,
   ...props
@@ -117,7 +128,7 @@ function AuthLayout({
         {/* Form panel — full width on mobile, configurable alignment/padding */}
         <div
           className={cn(
-            "flex flex-1 items-center justify-center p-4 lg:p-8",
+            "flex flex-1 flex-col items-center justify-center p-4 lg:p-8",
             alignMap[formAlign],
           )}
           style={formPadding ? { padding: formPadding } : undefined}
@@ -125,6 +136,16 @@ function AuthLayout({
           <div className="w-full" style={{ maxWidth: formMaxWidth }}>
             {children}
           </div>
+          {footer && (
+            <div
+              className={cn(
+                "text-muted-foreground/60 w-full px-4 py-3 text-center text-xs",
+                footerClassName,
+              )}
+            >
+              {footer}
+            </div>
+          )}
         </div>
       </div>
     );
@@ -136,7 +157,7 @@ function AuthLayout({
       data-slot="auth-layout"
       data-variant="centered"
       className={cn(
-        "from-primary/10 via-background to-secondary/10 flex min-h-svh items-center justify-center bg-gradient-to-br p-4",
+        "from-primary/10 via-background to-secondary/10 flex min-h-svh flex-col items-center justify-center bg-gradient-to-br p-4",
         className,
       )}
       {...props}
@@ -144,6 +165,16 @@ function AuthLayout({
       <div className="w-full" style={{ maxWidth: formMaxWidth }}>
         {children}
       </div>
+      {footer && (
+        <div
+          className={cn(
+            "text-muted-foreground/60 mt-4 w-full px-4 py-3 text-center text-xs",
+            footerClassName,
+          )}
+        >
+          {footer}
+        </div>
+      )}
     </div>
   );
 }

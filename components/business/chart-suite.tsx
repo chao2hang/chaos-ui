@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { formatNumber } from "@/lib/format";
+import { AreaChart } from "@/components/business/area-chart";
 import { BarChart } from "@/components/business/bar-chart";
 import { LineChart } from "@/components/business/line-chart";
 import { PieChart } from "@/components/business/pie-chart";
@@ -15,11 +16,11 @@ import { ScatterChart } from "@/components/business/scatter-chart";
  * @since 0.7.0
  * @description 图表套件 — dispatches to a concrete chart by `type`, normalizing
  * a generic `data` array via `xField`/`yField`/`series`.
- * @param type Chart kind: line | bar | pie | radar | scatter.
+ * @param type Chart kind: line | bar | pie | radar | scatter | area.
  * @param data Generic records (objects with xField/yField/series keys).
  * @param xField Field name for X / label.
  * @param yField Field name for Y / value.
- * @param series Field name used to group records into series (line/bar/radar).
+ * @param series Field name used to group records into series (line/bar/radar/area).
  * @param height SVG height in px.
  * @param className Extra classes on the root.
  * @example
@@ -27,7 +28,7 @@ import { ScatterChart } from "@/components/business/scatter-chart";
  */
 
 interface ChartSuiteProps {
-  type: "line" | "bar" | "pie" | "radar" | "scatter";
+  type: "line" | "bar" | "pie" | "radar" | "scatter" | "area";
   data: unknown[];
   xField?: string;
   yField?: string;
@@ -91,7 +92,12 @@ function ChartSuite({
       y: num(r[yField]),
     }));
     body = (
-      <ScatterChart data={scatterData} xLabel={xField} yLabel={yField} height={height} />
+      <ScatterChart
+        data={scatterData}
+        xLabel={xField}
+        yLabel={yField}
+        height={height}
+      />
     );
   } else if (type === "radar") {
     const axes = labels.length > 0 ? labels : ["A", "B", "C"];
@@ -106,6 +112,18 @@ function ChartSuite({
       values: recs.map((r) => num(r[yField])),
     }));
     body = <LineChart series={lineSeries} labels={labels} height={height} />;
+  } else if (type === "area") {
+    // AreaChart takes a single series; if multiple series exist we render
+    // the first one (or stack them if you prefer — current impl: first).
+    const firstSeries = grouped[0]?.[1] ?? [];
+    const areaData = firstSeries.map((r) => num(r[yField]));
+    body = (
+      <AreaChart
+        data={areaData}
+        labels={firstSeries.map((r) => str(r[xField]))}
+        height={height}
+      />
+    );
   } else {
     // bar
     const barData = rows.map((r) => ({
@@ -123,7 +141,7 @@ function ChartSuite({
       aria-label={`图表套件 (${type})，共 ${rows.length} 条数据`}
     >
       {rows.length === 0 ? (
-        <p className="py-8 text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground py-8 text-center text-sm">
           暂无数据
         </p>
       ) : (

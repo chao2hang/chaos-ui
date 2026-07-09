@@ -13,8 +13,8 @@ import { useMessage } from "@/hooks/use-message";
  * like `shortName?: string` work without type errors.
  *
  * Supports multi-field filtering (`filters`) and pre-submit validation
- * (`onValidate`), replacing the per-page useAsync + usePagination + useEffect
- * boilerplate duplicated across business list pages.
+ * (`onValidate` / `onBeforeSubmit`), replacing the per-page useAsync +
+ * usePagination + useEffect boilerplate duplicated across business list pages.
  * / 通用 CRUD 状态管理 hook，分离行类型和表单类型，支持多字段筛选与提交前校验。
  * @keywords crud, hook, pagination, form, modal, state, filter, validate
  * @example
@@ -26,6 +26,11 @@ import { useMessage } from "@/hooks/use-message";
  *     { name: "status", type: "select", options: [...] },
  *   ],
  *   onValidate: (form) => (form.code ? null : "请填写必填项"),
+ *   onBeforeSubmit: async (form) => {
+ *     // 自定义异步校验，返回 false 阻止提交
+ *     const ok = await checkCodeUnique(form.code);
+ *     return ok;
+ *   },
  *   emptyForm: { id: 0, name: "", shortName: "" },
  *   rowKey: "id",
  *   successMessage: { create: "公司创建成功", update: "更新成功", delete: "已删除" },
@@ -80,6 +85,13 @@ interface UseCrudConfig<T, F = Partial<T>> {
    * / 提交前校验：返回错误文案拦截提交，null 放行
    */
   onValidate?: (form: F) => string | null;
+  /**
+   * Pre-submit gate (runs after `onValidate`). Return `false` (or a Promise
+   * resolving to `false`) to block the submit. Use for async checks like
+   * uniqueness validation, permission checks, or confirmation dialogs.
+   * / 提交前拦截器（在 onValidate 之后执行）：返回 false 阻止提交
+   */
+  onBeforeSubmit?: (form: F, isEdit: boolean) => boolean | Promise<boolean>;
   /** Filter field descriptors (for generated filter UI). / 筛选字段描述 */
   filterFields?: FilterField[];
   /** Initial filter values. / 初始筛选值 */
@@ -150,6 +162,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     emptyForm,
     defaultPageSize = 20,
     onValidate,
+    onBeforeSubmit,
     defaultFilters = {},
     successMessage,
     deleteConfirmTitle,
@@ -170,7 +183,11 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   const fetchData = React.useCallback(async () => {
     setLoading(true);
     try {
-      const result = await fetcher(pagination.page, pagination.pageSize, filters);
+      const result = await fetcher(
+        pagination.page,
+        pagination.pageSize,
+        filters,
+      );
       setData(result.list);
       setTotal(result.total);
     } finally {
@@ -178,7 +195,9 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     }
   }, [fetcher, pagination.page, pagination.pageSize, filters]);
 
-  React.useEffect(() => { fetchData(); }, [fetchData]);
+  React.useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   // setFilters: shallow-merge patch and reset to page 1 so the new filter
   // takes effect immediately (don't stay on a now-empty high page).
@@ -215,7 +234,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
 
   const updateFormField = React.useCallback(
     <K extends keyof F>(key: K, value: F[K]) => {
-      setForm((prev) => ({ ...prev, [key]: value } as F));
+      setForm((prev) => ({ ...prev, [key]: value }) as F);
     },
     [],
   );
@@ -229,14 +248,32 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
         return;
       }
     }
+    // Async pre-submit gate: block if returns false.
+    if (onBeforeSubmit) {
+      try {
+        const ok = await onBeforeSubmit(form, isEdit);
+        if (!ok) return;
+      } catch {
+        message.error("Validation failed");
+        return;
+      }
+    }
     try {
       if (isEdit && editing && onUpdate) {
         await onUpdate(editing[rowKey] as string | number, form);
-        const msg = getSuccessMsg(successMessage, "update", "Updated successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "update",
+          "Updated successfully",
+        );
         if (msg !== false) message.success(msg);
       } else if (onCreate) {
         await onCreate(form);
-        const msg = getSuccessMsg(successMessage, "create", "Created successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "create",
+          "Created successfully",
+        );
         if (msg !== false) message.success(msg);
       }
       setModalOpen(false);
@@ -244,16 +281,34 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     } catch {
       message.error("Operation failed");
     }
-  }, [editing, form, isEdit, onCreate, onUpdate, onValidate, rowKey, fetchData, message, successMessage]);
+  }, [
+    editing,
+    form,
+    isEdit,
+    onCreate,
+    onUpdate,
+    onValidate,
+    onBeforeSubmit,
+    rowKey,
+    fetchData,
+    message,
+    successMessage,
+  ]);
 
   const handleDelete = React.useCallback(
     async (record: T) => {
       if (!onDelete) return;
-      const confirmed = globalThis.confirm?.(deleteConfirmTitle ?? "Are you sure you want to delete this item?");
+      const confirmed = globalThis.confirm?.(
+        deleteConfirmTitle ?? "Are you sure you want to delete this item?",
+      );
       if (!confirmed) return;
       try {
         await onDelete(record[rowKey] as string | number);
-        const msg = getSuccessMsg(successMessage, "delete", "Deleted successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "delete",
+          "Deleted successfully",
+        );
         if (msg !== false) message.success(msg);
         await fetchData();
       } catch {
@@ -264,12 +319,34 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   );
 
   return {
-    data, total, loading, filters, setFilters, resetFilters, pagination,
-    modalOpen, setModalOpen, editing, form, setForm, updateFormField,
-    handleAdd, handleEdit, handleSubmit, handleDelete,
-    refresh: fetchData, isEdit,
+    data,
+    total,
+    loading,
+    filters,
+    setFilters,
+    resetFilters,
+    pagination,
+    modalOpen,
+    setModalOpen,
+    editing,
+    form,
+    setForm,
+    updateFormField,
+    handleAdd,
+    handleEdit,
+    handleSubmit,
+    handleDelete,
+    refresh: fetchData,
+    isEdit,
   };
 }
 
 export { useCrud };
-export type { UseCrudConfig, UseCrudReturn, SuccessMessage, SuccessMessageMap, FilterField, Filters };
+export type {
+  UseCrudConfig,
+  UseCrudReturn,
+  SuccessMessage,
+  SuccessMessageMap,
+  FilterField,
+  Filters,
+};

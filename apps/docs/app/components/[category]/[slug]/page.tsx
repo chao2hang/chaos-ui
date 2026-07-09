@@ -11,6 +11,7 @@ import { getServerLocale } from "@/lib/i18n/get-server-locale";
 import { dict } from "@/lib/i18n/dict";
 import { type Locale } from "@/lib/i18n/locale";
 import { ComponentPreview } from "@/components/component-preview";
+import { DetailSidebar } from "@/components/detail-sidebar";
 import { mdxLoaders } from "@/components/mdx-loaders";
 
 /* -------------------------------------------------------------------------- */
@@ -211,47 +212,55 @@ export default async function ComponentDetailPage({
       : categoryLabelsZh[meta.category];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
-      {/* Breadcrumb + Storybook link row */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-        <nav className="text-muted-foreground flex items-center gap-1.5 text-sm">
-          <Link
-            href="/components"
-            className="hover:text-foreground transition-colors"
-          >
-            {d.detail.breadcrumbRoot}
-          </Link>
-          <span aria-hidden>/</span>
-          <Link
-            href={`/components#${category.replace(/\s+/g, "-").toLowerCase()}`}
-            className="hover:text-foreground transition-colors"
-          >
-            {categoryLabel}
-          </Link>
-          <span aria-hidden>/</span>
-          <span className="text-foreground font-medium">{meta.name}</span>
-        </nav>
+    <div className="flex h-[calc(100vh-3.5rem)] overflow-hidden">
+      {/* antd-style left sidebar: component list with search */}
+      <DetailSidebar components={components} />
 
-        {meta.storybookId && (
-          <a
-            href={`${storybookBase}${meta.storybookId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={outlineLinkClass}
-          >
-            {d.detail.storybookLink}
-            <ExternalLink className="size-3.5" />
-          </a>
-        )}
+      {/* Right content area: scrollable detail */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+          {/* Breadcrumb + Storybook link row */}
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+            <nav className="text-muted-foreground flex items-center gap-1.5 text-sm">
+              <Link
+                href="/components"
+                className="hover:text-foreground transition-colors"
+              >
+                {d.detail.breadcrumbRoot}
+              </Link>
+              <span aria-hidden>/</span>
+              <Link
+                href={`/components#${category.replace(/\s+/g, "-").toLowerCase()}`}
+                className="hover:text-foreground transition-colors"
+              >
+                {categoryLabel}
+              </Link>
+              <span aria-hidden>/</span>
+              <span className="text-foreground font-medium">{meta.name}</span>
+            </nav>
+
+            {meta.storybookId && (
+              <a
+                href={`${storybookBase}${meta.storybookId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={outlineLinkClass}
+              >
+                {d.detail.storybookLink}
+                <ExternalLink className="size-3.5" />
+              </a>
+            )}
+          </div>
+
+          {/* Live component preview */}
+          <ComponentPreview name={meta.name} nameZh={meta.nameZh} />
+
+          {/* MDX content */}
+          <article>
+            <MDXContent />
+          </article>
+        </div>
       </div>
-
-      {/* Live component preview */}
-      <ComponentPreview name={meta.name} nameZh={meta.nameZh} />
-
-      {/* MDX content */}
-      <article>
-        <MDXContent />
-      </article>
     </div>
   );
 }

@@ -1,12 +1,9 @@
 "use client";
 
-import { Component, useEffect, useRef, useState, type ReactNode } from "react";
-import {
-  componentLoaders,
-  businessComponentNames,
-} from "@/components/component-loader";
+import { Component, type ReactNode } from "react";
 import { componentPreviews } from "@/components/component-previews";
 import { componentStoryPreviews } from "@/components/component-story-previews";
+import { componentLoaders } from "@/components/component-loader";
 
 /* -------------------------------------------------------------------------- */
 /*  Preview chrome                                                            */
@@ -47,32 +44,15 @@ function PreviewCard({
 /*  Fallbacks                                                                 */
 /* -------------------------------------------------------------------------- */
 
-function PreviewMissing({ name }: { name: string }) {
-  return (
-    <div className="text-muted-foreground text-center">
-      <p className="text-sm">
-        暂无 <code className="text-xs">{name}</code> 的实时预览
-      </p>
-      <p className="mt-1 text-xs">请前往 Storybook 查看完整示例。</p>
-    </div>
-  );
-}
-
 function PreviewFallback({ name }: { name: string }) {
   return (
     <div className="not-prose border-muted-foreground/30 my-6 rounded-lg border border-dashed p-6 text-center">
       <p className="text-muted-foreground text-sm">
         No live preview available for <code className="text-xs">{name}</code>.
       </p>
-    </div>
-  );
-}
-
-function PreviewChecking() {
-  return (
-    <div className="text-muted-foreground flex items-center gap-2 text-xs">
-      <span className="bg-muted-foreground/25 size-2 animate-pulse rounded-full" />
-      Loading preview…
+      <p className="text-muted-foreground/60 mt-1 text-xs">
+        Open Storybook for interactive demos with real data.
+      </p>
     </div>
   );
 }
@@ -112,86 +92,6 @@ class PreviewErrorBoundary extends Component<
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Empty-render sensor                                                       */
-/*                                                                            */
-/*  Compound/headless components (Dialog, Popover, Tabs, …) render no DOM     */
-/*  when instantiated without children, so the preview area would be blank.   */
-/*  We detect that after mount and swap in a friendly missing-preview panel.  */
-/* -------------------------------------------------------------------------- */
-
-type RenderStatus = "checking" | "hasContent" | "empty";
-
-const emptyRenderGraceMs = 600;
-
-function hasMeaningfulContent(el: HTMLElement) {
-  return el.children.length > 0 || Boolean(el.textContent?.trim());
-}
-
-function EmptyRenderSensor({
-  name,
-  children,
-}: {
-  name: string;
-  children: ReactNode;
-}) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [status, setStatus] = useState<RenderStatus>("checking");
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-
-    setStatus("checking");
-
-    const check = () => {
-      if (hasMeaningfulContent(el)) {
-        setStatus("hasContent");
-        return true;
-      }
-      return false;
-    };
-
-    if (check()) return;
-
-    // Use requestAnimationFrame for initial check before falling back to MutationObserver
-    let observer: MutationObserver | null = null;
-    let timeout: number | undefined;
-
-    const rafId = requestAnimationFrame(() => {
-      if (check()) return;
-
-      observer = new MutationObserver(check);
-      observer.observe(el, {
-        childList: true,
-        characterData: true,
-        subtree: true,
-      });
-
-      timeout = window.setTimeout(() => {
-        if (!check()) setStatus("empty");
-        observer?.disconnect();
-      }, emptyRenderGraceMs);
-    });
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.clearTimeout(timeout);
-      observer?.disconnect();
-    };
-  }, [name]);
-
-  return (
-    <>
-      <div ref={wrapRef} style={{ display: status === "empty" ? "none" : "contents" }}>
-        {children}
-      </div>
-      {status === "checking" && <PreviewChecking />}
-      {status === "empty" && <PreviewMissing name={name} />}
-    </>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Main implementation                                                       */
 /* -------------------------------------------------------------------------- */
 
@@ -215,7 +115,8 @@ export function ComponentPreviewImpl({
   }
 
   // 2. Storybook fixtures cover most components without requiring duplicate
-  // docs-only demo code.
+  //    docs-only demo code. The story-preview-renderer selects the best
+  //    story, falling back to bare component instantiation with error boundary.
   const StoryPreview = componentStoryPreviews[name];
   if (StoryPreview) {
     return (
@@ -227,27 +128,20 @@ export function ComponentPreviewImpl({
     );
   }
 
-  // 3. Fall back to the auto-generated loader (bare component instantiation).
+  // 3. Last resort: try the bare component from the auto-generated loader map.
+  //    The PreviewErrorBoundary catches any crash from missing required props,
+  //    and if it crashes we show a graceful error message instead of a 500.
   const Loader = componentLoaders[name];
-  if (!Loader) {
-    return <PreviewFallback name={name} />;
-  }
-
-  // Business components need concrete data props (user, rows, …) that a bare
-  // `<Component />` instantiation can't supply. If we don't have a fixture for
-  // one, skip rendering entirely — the throw would otherwise surface in the
-  // Next.js dev overlay even though our error boundary catches it.
-  if (businessComponentNames.has(name)) {
-    return <PreviewFallback name={name} />;
-  }
-
-  return (
-    <PreviewErrorBoundary name={name}>
-      <PreviewCard name={name} nameZh={nameZh}>
-        <EmptyRenderSensor name={name}>
+  if (Loader) {
+    return (
+      <PreviewErrorBoundary name={name}>
+        <PreviewCard name={name} nameZh={nameZh}>
           <Loader />
-        </EmptyRenderSensor>
-      </PreviewCard>
-    </PreviewErrorBoundary>
-  );
+        </PreviewCard>
+      </PreviewErrorBoundary>
+    );
+  }
+
+  // 4. Truly no preview available — show a friendly fallback.
+  return <PreviewFallback name={name} />;
 }

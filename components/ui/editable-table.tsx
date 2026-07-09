@@ -58,7 +58,7 @@ function EditableTable<
   T extends Record<string, unknown> = Record<string, unknown>,
 >({
   className,
-  columns,
+  columns = [] as EditableColumn<T>[],
   data = [],
   onChange,
   rowKey = "id",

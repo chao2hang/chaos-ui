@@ -8,11 +8,20 @@ import * as React from "react";
  * @since 0.7.0
  * @description 权限校验 Hook，配合 PermissionProvider 使用。
  * 提供当前用户权限列表和校验函数。
+ *
+ * 支持两种调用方式：
+ * - `usePermission()` → 返回完整上下文（hasPermission/hasAny/hasAll/permissions）
+ * - `usePermission(action)` → 返回 boolean，便捷校验单个权限
  * / Permission hook — works with PermissionProvider to check user permissions.
  * @keywords permission, auth, role, access, guard
  * @example
+ * // 方式一：返回完整上下文
  * const { hasPermission, hasAny, hasAll } = usePermission();
  * if (hasPermission("order:create")) { ... }
+ *
+ * // 方式二：便捷校验单个权限
+ * const canCreate = usePermission("order:create");
+ * if (canCreate) { ... }
  */
 
 type PermissionCheck = (permission: string) => boolean;
@@ -62,8 +71,12 @@ function PermissionProvider({
   );
 }
 
-function usePermission(): PermissionContextValue {
-  return React.useContext(PermissionContext);
+function usePermission(): PermissionContextValue;
+function usePermission(action: string): boolean;
+function usePermission(action?: string): PermissionContextValue | boolean {
+  const ctx = React.useContext(PermissionContext);
+  if (action !== undefined) return ctx.hasPermission(action);
+  return ctx;
 }
 
 export { PermissionProvider, usePermission, PermissionContext };

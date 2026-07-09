@@ -50,11 +50,13 @@ type StoryLike = {
   args?: StoryArgs;
   decorators?: Decorator[];
   render?: (args: StoryArgs) => React.ReactNode;
+  // Storybook stories may carry `play` or other metadata
+  play?: unknown;
 };
 
 type StoryModule = {
   default?: {
-    component?: React.ComponentType<any>;
+    component?: React.ComponentType<Record<string, unknown>>;
     args?: StoryArgs;
     decorators?: Decorator[];
   };
@@ -63,51 +65,81 @@ type StoryModule = {
 
 const storyPreference = ["Preview", "Default", "Basic", "Primary", "Demo"];
 
-function isEmptyPreview(args: StoryArgs): boolean {
-  // No args at all → potentially no data to show
+/**
+ * Check if args are truly empty (no data to render).
+ * Only returns true when args is null/undefined or every value is an empty array.
+ */
+function isEmptyArgs(args: StoryArgs): boolean {
   if (!args || Object.keys(args).length === 0) return true;
-  // Every arg that's an array is empty → no data to show
   const values = Object.values(args);
-  if (values.length > 0 && values.every((v) => Array.isArray(v) && v.length === 0)) return true;
+  if (
+    values.length > 0 &&
+    values.every((v) => Array.isArray(v) && v.length === 0)
+  )
+    return true;
   return false;
 }
 
 /**
- * Pick the best story for preview, preferring stories with meaningful data
- * so the preview shows real content instead of an empty component.
+ * Pick the best story for preview.
+ *
+ * Strategy (ordered by reliability):
+ * 1. Preferred-named stories with render functions — always safe
+ * 2. Preferred-named stories with non-empty args — safe (data provided)
+ * 3. Any story with a render function — always safe
+ * 4. Any story with non-empty args — safe (data provided)
+ * 5. LAST RESORT: Preferred-named stories with empty args + component on meta.
+ *    Many simple components (Spinner, Badge, Tag, Typography) render fine
+ *    without props. The error boundary catches any that don't.
  */
 function pickBestStory(mod: StoryModule): StoryLike | null {
-  // 1. Try preferred names in order
+  // 1. Preferred names with render functions
   for (const key of storyPreference) {
     const story = mod[key];
-    if (isStory(story) && story.render) return story;
-    if (isStory(story) && !isEmptyPreview(story.args ?? {})) return story;
+    if (!isStory(story)) continue;
+    if (story.render) return story;
   }
 
-  // 2. Try any story with a render function or non-empty args
-  for (const [key, story] of Object.entries(mod)) {
-    if (key === "default" || key.startsWith("__")) continue;
-    if (isStory(story) && story.render) return story;
-    if (isStory(story) && !isEmptyPreview(story.args ?? {})) return story;
-  }
-
-  // 3. Fall back to any preferred name, even with empty args
-  // (many components render fine without props: Spinner, Badge, Tag, etc.)
+  // 2. Preferred names with non-empty args
   for (const key of storyPreference) {
     const story = mod[key];
-    if (isStory(story)) return story;
+    if (!isStory(story)) continue;
+    if (!isEmptyArgs(story.args ?? {})) return story;
   }
 
-  // 4. Fall back to any story at all
+  // 3. Any story with a render function
   for (const [key, story] of Object.entries(mod)) {
     if (key === "default" || key.startsWith("__")) continue;
-    if (isStory(story)) return story;
+    if (!isStory(story)) continue;
+    if (story.render) return story;
+  }
+
+  // 4. Any story with non-empty args
+  for (const [key, story] of Object.entries(mod)) {
+    if (key === "default" || key.startsWith("__")) continue;
+    if (!isStory(story)) continue;
+    if (!isEmptyArgs(story.args ?? {})) return story;
+  }
+
+  // 5. LAST RESORT: Preferred names with empty args (component must be on meta).
+  //    The StoryErrorBoundary will catch crashes from components that need props.
+  if (mod.default?.component) {
+    for (const key of storyPreference) {
+      const story = mod[key];
+      if (isStory(story)) return story;
+    }
+    // Or any story at all
+    for (const [key, story] of Object.entries(mod)) {
+      if (key === "default" || key.startsWith("__")) continue;
+      if (isStory(story)) return story;
+    }
   }
 
   return null;
 }
 
 function isStory(value: unknown): value is StoryLike {
+  // Must be an object but not a function (React component)
   return Boolean(value && typeof value === "object");
 }
 
@@ -135,40 +167,33 @@ export function createStoryPreview(mod: unknown): React.ComponentType {
       ...(story.args ?? {}),
     };
 
-    // If the story has a render function, always use it — it knows what to show.
-    // If no render function, try to create the component with available args.
-    // Many components (Spinner, Badge, Tag, …) render fine without any props,
-    // so we only show the "No preview" placeholder when there's truly nothing
-    // to render (no render fn, no component, and no meaningful args).
     const hasRender = typeof story.render === "function";
     const hasComponent = Boolean(meta?.component);
 
-    if (!hasRender && !hasComponent && isEmptyPreview(args)) {
-      return (
-        <div className="flex min-h-[140px] items-center justify-center rounded-lg border border-dashed border-muted-foreground/20 p-6 text-center">
-          <div className="text-sm">
-            <p className="text-muted-foreground font-medium">No preview</p>
-            <p className="text-muted-foreground/60 mt-1 text-xs">
-              This story doesn&apos;t include example data.{" "}
-              <br className="hidden sm:inline" />
-              Open Storybook for interactive demos with real data.
-            </p>
-          </div>
-        </div>
-      );
+    // Render the story node, catching any errors from render functions
+    // that throw synchronously (outside React's error boundary).
+    let node: React.ReactNode = null;
+    try {
+      node = hasRender
+        ? story.render!(args)
+        : hasComponent
+          ? React.createElement(meta!.component!, args)
+          : null;
+    } catch {
+      // render function threw synchronously — return null so the parent
+      // error boundary or fallback handles it gracefully.
+      return null;
     }
-
-    const node = hasRender
-      ? story.render!(args)
-      : hasComponent
-        ? React.createElement(meta!.component!, args)
-        : null;
 
     if (!node) return null;
 
     return (
       <StoryErrorBoundary
-        name={storyModule.default?.component?.displayName ?? storyModule.default?.component?.name ?? "Component"}
+        name={
+          storyModule.default?.component?.displayName ??
+          storyModule.default?.component?.name ??
+          "Component"
+        }
       >
         <>
           {applyDecorators(

@@ -73,6 +73,7 @@ export * from "./components/ui/sidebar";
 export * from "./components/ui/skeleton";
 export * from "./components/ui/slider";
 export * from "./components/ui/sonner";
+export * from "./components/ui/theme-provider";
 export * from "./components/ui/split-pane";
 export * from "./components/ui/stepper";
 export * from "./components/ui/switch";
