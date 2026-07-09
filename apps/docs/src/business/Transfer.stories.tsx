@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Transfer } from "@/components/ui/transfer"
+import { Transfer } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 
 const meta: Meta<typeof Transfer> = {

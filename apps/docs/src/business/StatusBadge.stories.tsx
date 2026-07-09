@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { StatusBadge } from "@/components/business/status-badge";
+import { StatusBadge } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof StatusBadge> = {
   title: "Business/StatusBadge",

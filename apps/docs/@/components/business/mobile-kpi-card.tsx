@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from "lucide-react"
 
 interface MobileKPICardProps {

@@ -1,11 +1,11 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 import {
   ArrowUpRightIcon,
   ArrowDownRightIcon,
   type LucideIcon,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component StatCardWithDelta

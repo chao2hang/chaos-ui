@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 export interface RedPacketProps {
   /** Amount or greeting text. */

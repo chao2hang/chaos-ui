@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RoleAssignment } from "@/components/business/role-assignment";
+import { RoleAssignment } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof RoleAssignment> = {
   title: "Business/RoleAssignment",

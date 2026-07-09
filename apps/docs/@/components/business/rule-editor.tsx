@@ -1,24 +1,24 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { PlusIcon, Trash2Icon, ZapIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon, ZapIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component RuleEditor

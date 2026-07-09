@@ -8,8 +8,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui";
-import { Button, Input, Label } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Button, Input, Label } from "@chaos_team/chaos-ui/ui";
 
 interface PromptDialogProps {
   open?: boolean;

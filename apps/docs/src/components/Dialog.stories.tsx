@@ -8,10 +8,10 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Dialog> = {
   title: "Components/Dialog",

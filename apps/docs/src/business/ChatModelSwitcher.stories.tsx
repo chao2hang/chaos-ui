@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatModelSwitcher } from "@/components/business/chat-model-switcher"
+import { ChatModelSwitcher } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatModelSwitcher> = {
   title: "Business/ChatModelSwitcher",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { RegionPicker } from "@/components/business/region-picker"
+import { RegionPicker } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof RegionPicker> = {
   title: "Business/RegionPicker",

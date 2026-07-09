@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ResponsivePreview } from "@/components/business/responsive-preview";
+import { ResponsivePreview } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ResponsivePreview> = {
   title: "Business/ResponsivePreview",

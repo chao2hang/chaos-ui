@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Label } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component LabeledField

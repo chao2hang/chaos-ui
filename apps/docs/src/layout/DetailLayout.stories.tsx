@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DetailLayout } from "@/components/layout/detail-layout";
-import { Button } from "@/components/ui/button";
+import { DetailLayout } from "@chaos_team/chaos-ui/layout";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@chaos_team/chaos-ui/ui";
 import { EditIcon, TrashIcon } from "lucide-react";
 
 const meta: Meta<typeof DetailLayout> = {

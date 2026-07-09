@@ -5,7 +5,7 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "@/components/ui/carousel";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Carousel> = {
   title: "Components/Carousel",

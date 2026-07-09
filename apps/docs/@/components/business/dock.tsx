@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@chaos_team/chaos-ui/ui";
 
 export interface DockItem {
   key: string;

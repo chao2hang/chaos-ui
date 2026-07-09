@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Fab } from "@/components/ui/fab";
+import { Fab } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Fab> = {
   title: "Business/Fab",

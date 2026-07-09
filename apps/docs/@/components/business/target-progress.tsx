@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { TargetIcon, TrendingUpIcon, TrendingDownIcon } from "@/components/ui/icons";
-import { formatNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import { TargetIcon, TrendingUpIcon, TrendingDownIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component TargetProgress

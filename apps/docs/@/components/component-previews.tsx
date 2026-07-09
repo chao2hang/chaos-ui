@@ -12,17 +12,17 @@
 import * as React from "react";
 import { RocketIcon, SettingsIcon, UserIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { KPIPanel } from "@/components/ui/kpi-panel";
-import { Menu } from "@/components/ui/menu";
-import { Menubar } from "@/components/ui/menubar";
-import { Popconfirm } from "@/components/ui/popconfirm";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { KPIPanel } from "@chaos_team/chaos-ui/ui";
+import { Menu } from "@chaos_team/chaos-ui/ui";
+import { Menubar } from "@chaos_team/chaos-ui/ui";
+import { Popconfirm } from "@chaos_team/chaos-ui/ui";
 import {
   MessageProvider,
   MessageContext,
-} from "@/components/ui/message-provider";
-import { ModalProvider, ModalContext } from "@/components/ui/modal-provider";
-import { KeyboardShortcutDialog } from "@/components/ui/keyboard-shortcut-dialog";
+} from "@chaos_team/chaos-ui/ui";
+import { ModalProvider, ModalContext } from "@chaos_team/chaos-ui/ui";
+import { KeyboardShortcutDialog } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogTrigger,
@@ -32,7 +32,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@chaos_team/chaos-ui/ui";
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -43,21 +43,21 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
-} from "@/components/ui/alert-dialog";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverHeader,
   PopoverTitle,
-} from "@/components/ui/popover";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+} from "@chaos_team/chaos-ui/ui";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Sheet,
   SheetTrigger,
@@ -65,7 +65,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from "@/components/ui/sheet";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Drawer,
   DrawerTrigger,
@@ -73,23 +73,23 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
-} from "@/components/ui/drawer";
+} from "@chaos_team/chaos-ui/ui";
 import {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
-} from "@/components/ui/hover-card";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@/components/ui/tooltip";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from "@/components/ui/collapsible";
+} from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -97,13 +97,13 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+} from "@chaos_team/chaos-ui/ui";
 import {
   ContextMenu,
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
-} from "@/components/ui/context-menu";
+} from "@chaos_team/chaos-ui/ui";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -112,7 +112,7 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Command,
   CommandInput,
@@ -120,34 +120,34 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
-} from "@/components/ui/command";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Result } from "@/components/ui/result";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Icon } from "@/components/ui/icon";
-import { Direction } from "@/components/ui/direction";
+} from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Switch } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { RadioGroup, RadioGroupItem } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarImage, AvatarFallback } from "@chaos_team/chaos-ui/ui";
+import { Result } from "@chaos_team/chaos-ui/ui";
+import { AspectRatio } from "@chaos_team/chaos-ui/ui";
+import { Icon } from "@chaos_team/chaos-ui/ui";
+import { Direction } from "@chaos_team/chaos-ui/ui";
 import { Search, Bell, Loader2, Star, Heart, Check } from "lucide-react";
 
 /* Layout components -------------------------------------------------------- */
-import { AdminShell } from "@/components/layout/admin-shell";
-import { ArticleLayout } from "@/components/layout/article-layout";
-import { ChatLayout } from "@/components/layout/chat-layout";
-import { EmbedLayout } from "@/components/layout/embed-layout";
-import { PrintTemplateLayout } from "@/components/layout/print-template-layout";
-import { SplitScreen } from "@/components/layout/split-screen";
-import { WizardLayout } from "@/components/layout/wizard-layout";
+import { AdminShell } from "@chaos_team/chaos-ui/layout";
+import { ArticleLayout } from "@chaos_team/chaos-ui/layout";
+import { ChatLayout } from "@chaos_team/chaos-ui/layout";
+import { EmbedLayout } from "@chaos_team/chaos-ui/layout";
+import { PrintTemplateLayout } from "@chaos_team/chaos-ui/layout";
+import { SplitScreen } from "@chaos_team/chaos-ui/layout";
+import { WizardLayout } from "@chaos_team/chaos-ui/layout";
 
 /* Business components ----------------------------------------------------- */
 import {
@@ -158,20 +158,20 @@ import {
   StarIcon,
 } from "lucide-react";
 import { ProfileHeader, ProfileForm } from "@/components/business/profile";
-import { StatCard } from "@/components/business/stat-card";
-import { AuditLog } from "@/components/business/audit-log";
-import { CampaignCard } from "@/components/business/campaign-card";
-import { AvatarGroup } from "@/components/business/avatar-group";
-import { ActivityFeed } from "@/components/business/activity-feed";
+import { StatCard } from "@chaos_team/chaos-ui/business";
+import { AuditLog } from "@chaos_team/chaos-ui/business";
+import { CampaignCard } from "@chaos_team/chaos-ui/business";
+import { AvatarGroup } from "@chaos_team/chaos-ui/business";
+import { ActivityFeed } from "@chaos_team/chaos-ui/business";
 import { AnimatedNumber } from "@/components/business/animated-number";
 import { Banner } from "@/components/business/banner";
-import { AnnouncementBanner } from "@/components/business/announcement-banner";
-import { BarcodeDisplay } from "@/components/business/barcode-display";
-import { Chip } from "@/components/business/chip";
-import { EmptyState } from "@/components/ui/empty-state";
-import { Rating } from "@/components/ui/rating";
-import { BillStatusBar } from "@/components/business/bill-status-bar";
-import { BizStatusTag } from "@/components/business/biz-status-tag";
+import { AnnouncementBanner } from "@chaos_team/chaos-ui/business";
+import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui";
+import { Chip } from "@chaos_team/chaos-ui/business";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { Rating } from "@chaos_team/chaos-ui/ui";
+import { BillStatusBar } from "@chaos_team/chaos-ui/business";
+import { BizStatusTag } from "@chaos_team/chaos-ui/business";
 
 /* -------------------------------------------------------------------------- */
 /*  Small helpers                                                             */

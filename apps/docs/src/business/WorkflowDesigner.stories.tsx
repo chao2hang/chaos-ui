@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { WorkflowDesigner } from "@/components/business/workflow-designer"
+import { WorkflowDesigner } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof WorkflowDesigner> = {
   title: "Business/WorkflowDesigner",

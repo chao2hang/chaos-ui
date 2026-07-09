@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatMarkdownRenderer } from "@/components/business/chat-markdown-renderer"
+import { ChatMarkdownRenderer } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatMarkdownRenderer> = {
   title: "Business/ChatMarkdownRenderer",

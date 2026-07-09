@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FormSection } from "@/components/ui/form-section";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FormSection } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof FormSection> = {
   title: "Components/FormSection",

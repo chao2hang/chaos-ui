@@ -23,17 +23,17 @@ import {
   StrikethroughIcon,
   ExternalLinkIcon,
   TrashIcon,
-} from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Separator } from "@/components/ui/separator";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Switch } from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
@@ -41,9 +41,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import { formatFileSize } from "@/lib/format";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatFileSize } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component RichTextEditor

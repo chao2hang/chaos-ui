@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { MessageSquareIcon, PlusIcon, SearchIcon } from "@/components/ui/icons";
-import { initials } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { MessageSquareIcon, PlusIcon, SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { initials } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component ChatSidebar

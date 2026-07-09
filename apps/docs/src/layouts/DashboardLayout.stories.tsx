@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DashboardLayout } from "@/components/layout/dashboard-layout";
+import { DashboardLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof DashboardLayout> = {
   title: "Layouts/DashboardLayout",

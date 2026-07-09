@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FormList, type FormListItem } from "@/components/ui/form-list";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FormList, type FormListItem } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 interface EmailItem extends FormListItem {

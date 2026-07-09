@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PrintLayout } from "@/components/layout/print-layout";
+import { PrintLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof PrintLayout> = {
   title: "Layouts/PrintLayout",

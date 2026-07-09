@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ColorBoard } from "@/components/business/color-board"
+import { ColorBoard } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ColorBoard> = {
   title: "Business/ColorBoard",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FeeTypeBrowse } from "@/components/business/fee-type-browse"
+import { FeeTypeBrowse } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof FeeTypeBrowse> = {
   title: "Business/FeeTypeBrowse",

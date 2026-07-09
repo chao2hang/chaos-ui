@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   XIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   CheckIcon,
   MousePointerClickIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component FeatureTour

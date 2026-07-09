@@ -14,19 +14,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui";
-import { Button } from "@/components/ui";
-import { Input } from "@/components/ui";
-import { Checkbox } from "@/components/ui";
-import { Badge } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
-} from "@/components/ui";
-import { EmptyState } from "@/components/ui/empty-state";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   ArrowUpDownIcon,
   ArrowUpIcon,
@@ -35,7 +35,7 @@ import {
   SearchIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 interface ColumnDef {
   key: string;

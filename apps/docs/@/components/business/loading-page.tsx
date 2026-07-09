@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { Loader2Icon } from "@/components/ui/icons";
+import { Loader2Icon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface LoadingPageProps extends React.ComponentProps<"div"> {
   title?: string;

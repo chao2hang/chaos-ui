@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminHeader } from "@/components/layout/admin-header";
-import { Button } from "@/components/ui/button";
+import { AdminHeader } from "@chaos_team/chaos-ui/layout";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof AdminHeader> = {
   title: "Layouts/AdminHeader",

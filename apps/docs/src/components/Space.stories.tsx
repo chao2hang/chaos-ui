@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Space } from "@/components/ui/space";
+import { Space } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Space> = {
   title: "Components/Space",

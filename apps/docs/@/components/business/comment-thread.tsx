@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
 import { MoreHorizontalIcon, ReplyIcon, SmileIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { formatRelativeTime } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@chaos_team/chaos-ui/ui";
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
 
 export interface Comment {
   id: string;

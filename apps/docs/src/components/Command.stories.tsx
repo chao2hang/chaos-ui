@@ -9,8 +9,8 @@ import {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-} from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const meta: Meta<typeof Command> = {

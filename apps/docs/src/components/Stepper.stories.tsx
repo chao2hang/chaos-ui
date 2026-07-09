@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Stepper, Step } from "@/components/ui/stepper";
+import { Stepper, Step } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",

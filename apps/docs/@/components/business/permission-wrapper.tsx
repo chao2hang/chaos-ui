@@ -2,10 +2,10 @@
 
 import * as React from "react";
 
-import { usePermission } from "@/hooks/use-permission";
-import { Button } from "@/components/ui/button";
-import type { ButtonProps } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { usePermission } from "@chaos_team/chaos-ui/hooks";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import type { ButtonProps } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component PermissionWrapper

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileQrcodeScanner } from "@/components/business/mobile-qrcode-scanner"
+import { MobileQrCodeScanner } from "@chaos_team/chaos-ui/business"
 
-const meta: Meta<typeof MobileQrcodeScanner> = {
-  title: "Business/MobileQrcodeScanner",
-  component: MobileQrcodeScanner,
+const meta: Meta<typeof MobileQrCodeScanner> = {
+  title: "Business/MobileQrCodeScanner",
+  component: MobileQrCodeScanner,
   tags: ["autodocs"],
 };
 export default meta

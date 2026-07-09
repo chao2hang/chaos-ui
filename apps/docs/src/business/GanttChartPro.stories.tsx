@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { GanttChartPro } from "@/components/business/gantt-chart-pro"
+import { GanttChartPro } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof GanttChartPro> = {
   title: "Business/GanttChartPro",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RichTextEditor } from "@/components/business/rich-text-editor";
+import { RichTextEditor } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof RichTextEditor> = {
   title: "Business/RichTextEditor",

@@ -1,11 +1,11 @@
-import type { LucideIcon } from "@/components/ui/icons";
+import type { LucideIcon } from "@chaos_team/chaos-ui/ui-icons";
 import {
   TrendingDownIcon,
   TrendingUpIcon,
   MinusIcon,
-} from "@/components/ui/icons";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component StatCard

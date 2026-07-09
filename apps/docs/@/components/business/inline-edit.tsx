@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { CheckIcon, PencilIcon, XIcon } from "@/components/ui/icons";
+import { CheckIcon, PencilIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
 
-import { Button } from "@/components/ui";
-import { Input } from "@/components/ui";
-import { Textarea } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface InlineEditProps extends Omit<
   React.ComponentProps<"div">,

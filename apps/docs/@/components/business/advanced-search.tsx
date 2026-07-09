@@ -1,21 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { SearchIcon, StarIcon } from "@/components/ui/icons";
+import { SearchIcon, StarIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 
-import { Badge } from "@/components/ui";
-import { Button } from "@/components/ui";
-import { Input } from "@/components/ui";
-import { Label } from "@/components/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface AdvancedSearchField {
   key: string;

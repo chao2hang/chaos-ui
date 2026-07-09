@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AuditTrailDiff } from "@/components/business/audit-trail-diff"
+import { AuditTrailDiff } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AuditTrailDiff> = {
   title: "Business/AuditTrailDiff",

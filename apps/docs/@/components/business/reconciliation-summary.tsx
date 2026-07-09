@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { formatCurrency } from "@/lib/format";
-import { CheckCircle2Icon, AlertTriangleIcon, BanknoteIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { CheckCircle2Icon, AlertTriangleIcon, BanknoteIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ReconciliationSummary

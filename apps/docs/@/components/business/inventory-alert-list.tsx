@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Table,
   TableHeader,
@@ -9,11 +9,11 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { EmptyState } from "@/components/ui/empty-state";
-import { ChevronDownIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Skeleton } from "@chaos_team/chaos-ui/ui";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { ChevronDownIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

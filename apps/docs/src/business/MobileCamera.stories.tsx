@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileCamera } from "@/components/business/mobile-camera"
+import { MobileCamera } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileCamera> = {
   title: "Business/MobileCamera",

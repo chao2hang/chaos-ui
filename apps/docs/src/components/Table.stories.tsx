@@ -7,8 +7,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+} from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Table> = {
   title: "Components/Table",

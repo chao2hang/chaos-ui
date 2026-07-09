@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { StarIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { StarIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component SupplierScorecard

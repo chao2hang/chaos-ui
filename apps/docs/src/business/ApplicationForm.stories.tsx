@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ApplicationForm } from "@/components/business/application-form"
+import { ApplicationForm } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ApplicationForm> = {
   title: "Business/ApplicationForm",

@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "@/components/ui/tabs";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component SubformTabs

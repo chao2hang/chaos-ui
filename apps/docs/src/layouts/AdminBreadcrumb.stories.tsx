@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminBreadcrumb } from "@/components/layout/admin-breadcrumb";
+import { AdminBreadcrumb } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof AdminBreadcrumb> = {
   title: "Layouts/AdminBreadcrumb",

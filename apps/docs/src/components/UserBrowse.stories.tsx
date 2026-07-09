@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { UserBrowse, type User } from "@/components/ui/user-browse";
+import { UserBrowse, type User } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const meta: Meta<typeof UserBrowse> = {

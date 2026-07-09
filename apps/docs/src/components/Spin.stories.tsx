@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Spin } from "@/components/ui/spin";
+import { Spin } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Spin> = {
   title: "Components/Spin",

@@ -9,11 +9,11 @@ import { css } from "@codemirror/lang-css";
 import { html } from "@codemirror/lang-html";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import type { Extension } from "@codemirror/state";
-import { CopyIcon, CheckIcon } from "@/components/ui/icons";
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { CopyIcon, CheckIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks";
 
 export type CodeEditorLanguage =
   | "javascript"

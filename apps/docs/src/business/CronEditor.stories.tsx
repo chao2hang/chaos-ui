@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CronEditor } from "@/components/business/cron-editor"
+import { CronEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CronEditor> = {
   title: "Business/CronEditor",

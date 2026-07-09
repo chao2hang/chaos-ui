@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { useCountUp } from "@/hooks/use-count-up"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface AnimatedNumberProps extends Omit<React.ComponentProps<"span">, "children"> {
   value: number

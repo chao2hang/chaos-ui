@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { EyeIcon, EyeOffIcon, CopyIcon } from "@/components/ui"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { EyeIcon, EyeOffIcon, CopyIcon } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks"
 
 type MaskRule = "phone" | "idcard" | "bankcard" | "email" | "name" | "custom"
 

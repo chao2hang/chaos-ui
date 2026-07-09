@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface MobileSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;

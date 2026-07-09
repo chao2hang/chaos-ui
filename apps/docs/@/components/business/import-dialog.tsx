@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
@@ -11,9 +11,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogBody,
-} from "@/components/ui/dialog";
-import { FileUpload } from "@/components/ui/file-upload";
-import { UploadIcon, DownloadIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { FileUpload } from "@chaos_team/chaos-ui/ui";
+import { UploadIcon, DownloadIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ImportDialog

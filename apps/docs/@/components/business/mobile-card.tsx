@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileCardProps {
   title?: string

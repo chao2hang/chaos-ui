@@ -15,7 +15,7 @@
  */
 
 import { useMemo } from "react";
-import { message, type MessageOptions } from "@/lib/message";
+import { message, type MessageOptions } from "@chaos_team/chaos-ui/lib";
 
 export interface MessageInstance {
   success: (content: React.ReactNode, options?: MessageOptions) => string | number;

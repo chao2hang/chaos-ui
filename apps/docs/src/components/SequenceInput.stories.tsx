@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SequenceInput } from "@/components/ui/sequence-input";
+import { SequenceInput } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof SequenceInput> = {
   title: "Components/SequenceInput",

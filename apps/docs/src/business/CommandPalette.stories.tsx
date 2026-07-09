@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { CommandPalette, type CommandGroup } from "@/components/business/command-palette"
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import {
   HomeIcon,
   SettingsIcon,

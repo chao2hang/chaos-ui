@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import SignaturePadLib from "signature_pad"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface SignaturePadProps {
   width?: number

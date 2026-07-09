@@ -3,9 +3,9 @@ import {
   PageContainer,
   PageHeader,
   PageContent,
-} from "@/components/ui/page-container";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
 import { PlusIcon } from "lucide-react";
 
 const meta: Meta<typeof PageContainer> = {

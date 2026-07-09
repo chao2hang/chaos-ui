@@ -6,7 +6,7 @@ import PhoneInputBase, {
 } from "react-phone-number-input"
 import "react-phone-number-input/style.css"
 import zhLocale from "react-phone-number-input/locale/zh"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface PhoneInputProps {
   value: string

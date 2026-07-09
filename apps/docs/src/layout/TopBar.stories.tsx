@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TopBar } from "@/components/layout/top-bar";
-import { Button } from "@/components/ui/button";
+import { TopBar } from "@chaos_team/chaos-ui/layout";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { BellIcon, SearchIcon, UserIcon } from "lucide-react";
 
 const meta: Meta<typeof TopBar> = {

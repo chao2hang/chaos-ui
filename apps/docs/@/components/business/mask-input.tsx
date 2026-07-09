@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { InputMask } from "@react-input/mask"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MaskInputProps {
   mask: string

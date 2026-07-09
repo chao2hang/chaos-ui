@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen, fireEvent, within } from "@testing-library/react"
-import { AppShell } from "@/components/layout/app-shell"
+import { AppShell } from "@chaos_team/chaos-ui/layout"
 
 describe("AppShell", () => {
   it("renders children and applies the app-shell slot with default variant", () => {

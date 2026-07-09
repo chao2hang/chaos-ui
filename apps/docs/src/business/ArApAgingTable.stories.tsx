@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ArApAgingTable } from "@/components/business/ar-ap-aging-table"
+import { ArApAgingTable } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ArApAgingTable> = {
   title: "Business/ArApAgingTable",

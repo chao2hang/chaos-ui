@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Table,
   TableHeader,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@/components/ui/table";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component SealStampRegistry

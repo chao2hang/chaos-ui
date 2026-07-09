@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SplitScreen } from "@/components/layout/split-screen";
+import { SplitScreen } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof SplitScreen> = {
   title: "Layouts/SplitScreen",

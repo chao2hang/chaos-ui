@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FormDesigner } from "@/components/business/form-designer"
+import { FormDesigner } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof FormDesigner> = {
   title: "Business/FormDesigner",

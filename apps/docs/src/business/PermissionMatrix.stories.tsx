@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PermissionMatrix } from "@/components/business/permission-matrix";
+import { PermissionMatrix } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof PermissionMatrix> = {
   title: "Business/PermissionMatrix",

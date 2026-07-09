@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Affix } from "@/components/ui/affix";
-import { Button } from "@/components/ui/button";
+import { Affix } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Affix> = {
   title: "Components/Affix",

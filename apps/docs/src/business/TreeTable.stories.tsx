@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TreeTable } from "@/components/business/tree-table";
+import { TreeTable } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof TreeTable> = {
   title: "Business/TreeTable",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { WriteoffBrowse } from "@/components/business/writeoff-browse"
+import { WriteoffBrowse } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof WriteoffBrowse> = {
   title: "Business/WriteoffBrowse",

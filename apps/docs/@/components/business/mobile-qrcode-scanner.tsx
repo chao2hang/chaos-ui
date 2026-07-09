@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { QrCodeIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { QrCodeIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component MobileQrCodeScanner
@@ -185,5 +185,5 @@ function MobileQrCodeScanner({ onScan, className }: MobileQrCodeScannerProps) {
 }
 
 export { MobileQrCodeScanner };
-export { MobileQrCodeScanner as MobileQrcodeScanner };
+export { MobileQrCodeScanner as MobileQrCodeScanner };
 export type { MobileQrCodeScannerProps };

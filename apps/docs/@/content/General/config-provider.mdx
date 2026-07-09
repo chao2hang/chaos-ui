@@ -1,4 +1,4 @@
-import { ConfigProvider, useConfig } from "@/components/ui/config-provider";
+import { ConfigProvider, useConfig } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # ConfigProvider 全局配置
@@ -25,7 +25,7 @@ Inject global configuration into the component tree — theme colors, border rad
 
 在应用根部包裹 `ConfigProvider`，所有子组件自动应用配置。
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function App() {
   return (
@@ -44,7 +44,7 @@ export function App() {
 
 ### 暗色模式 / Dark Mode
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 
 export function App() {
@@ -61,7 +61,7 @@ return (
 
 ### 自定义滚动条 / Custom Scrollbar
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function ScrollDemo() {
   return (
@@ -84,7 +84,7 @@ export function ScrollDemo() {
 
 ### RTL 布局 / Right-to-Left
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function ArabicApp() {
   return (
@@ -99,7 +99,7 @@ export function ArabicApp() {
 
 通过 `useConfig()` hook 在任意子组件中读取当前全局配置。
 
-<CodeBlock code={`import { useConfig } from "@/components/ui/config-provider"
+<CodeBlock code={`import { useConfig } from "@chaos_team/chaos-ui/ui"
 
 export function CurrentLocale() {
   const { locale, theme } = useConfig()

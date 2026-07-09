@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ActivityFeed } from "@/components/business/activity-feed"
+import { ActivityFeed } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ActivityFeed> = {
   title: "Business/ActivityFeed",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SerialNumberManager } from "@/components/business/serial-number-manager"
+import { SerialNumberManager } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SerialNumberManager> = {
   title: "Business/SerialNumberManager",

@@ -1,6 +1,6 @@
 import type { Category } from "@/content/components.meta";
 import { categoryLabelsEn, categoryLabelsZh } from "@/content/components.meta";
-import type { Locale } from "@/lib/i18n/locale";
+import { type Locale } from "@/lib/i18n/locale";
 
 /**
  * UI string dictionary for the docs site. Component meta already carries

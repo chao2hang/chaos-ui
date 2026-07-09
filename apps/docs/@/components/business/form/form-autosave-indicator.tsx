@@ -1,9 +1,9 @@
 "use client"
 import * as React from "react"
 import { CloudIcon, CloudOffIcon, CheckIcon, AlertCircleIcon, Loader2Icon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 import type { AutosaveStatus } from "@/hooks/use-form-autosave"
-import { formatRelativeTime } from "@/lib/format"
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib"
 
 interface FormAutosaveIndicatorProps extends React.ComponentProps<"div"> {
   status: AutosaveStatus

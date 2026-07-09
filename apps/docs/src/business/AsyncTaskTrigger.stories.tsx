@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AsyncTaskTrigger } from "@/components/business/async-task-trigger"
+import { AsyncTaskTrigger } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AsyncTaskTrigger> = {
   title: "Business/AsyncTaskTrigger",

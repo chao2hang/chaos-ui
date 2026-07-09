@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PoolTrackerTable } from "@/components/business/pool-tracker-table"
+import { PoolTrackerTable } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PoolTrackerTable> = {
   title: "Business/PoolTrackerTable",

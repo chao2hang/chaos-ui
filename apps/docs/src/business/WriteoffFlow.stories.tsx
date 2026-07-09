@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { WriteoffFlow } from "@/components/business/writeoff-flow"
+import { WriteoffFlow } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof WriteoffFlow> = {
   title: "Business/WriteoffFlow",

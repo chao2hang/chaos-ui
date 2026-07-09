@@ -4,8 +4,8 @@ import {
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",

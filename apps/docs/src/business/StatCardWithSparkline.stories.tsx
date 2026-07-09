@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { StatCardWithSparkline } from "@/components/business/stat-card-with-sparkline"
+import { StatCardWithSparkline } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof StatCardWithSparkline> = {
   title: "Business/StatCardWithSparkline",

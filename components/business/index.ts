@@ -348,7 +348,7 @@ export { DonutChart } from "./donut-chart";
 export type { DonutChartProps } from "./donut-chart";
 export { EmployeePicker } from "./employee-picker";
 export type { EmployeePickerProps } from "./employee-picker";
-export { ErrorPage } from "./error-page";
+export { ErrorPage, NotFound, InternalError, Unauthorized } from "./error-page";
 export { GaugeChart } from "./gauge-chart";
 export type { GaugeChartProps } from "./gauge-chart";
 export { ImMessage } from "./im-message";

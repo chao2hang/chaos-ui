@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CookieBanner } from "@/components/business/cookie-banner"
+import { CookieBanner } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CookieBanner> = {
   title: "Business/CookieBanner",

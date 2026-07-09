@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { EmptyState } from "@/components/ui/empty-state"
-import { cn } from "@/lib/utils"
+import { EmptyState } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileEmptyStateProps {
   variant?: string

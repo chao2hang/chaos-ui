@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SequencePreview } from "@/components/ui/sequence-preview";
+import { SequencePreview } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof SequencePreview> = {
   title: "Components/SequencePreview",

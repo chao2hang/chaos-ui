@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { KeyboardShortcutDialog } from "@/components/ui/keyboard-shortcut-dialog";
+import { KeyboardShortcutDialog } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof KeyboardShortcutDialog> = {
   title: "Components/KeyboardShortcutDialog",

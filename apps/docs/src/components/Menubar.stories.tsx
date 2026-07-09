@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Menubar } from "@/components/ui/menubar";
+import { Menubar } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Menubar> = {
   title: "Components/Menubar",

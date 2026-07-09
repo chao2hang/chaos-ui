@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button, Input } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, Input } from "@chaos_team/chaos-ui/ui";
 import {
   PlusIcon,
   Trash2Icon,
   FileTextIcon,
   GripVerticalIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PrintTemplateBuilder

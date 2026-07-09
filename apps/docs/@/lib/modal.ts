@@ -23,7 +23,7 @@
  * ```
  */
 
-import { modalStore, type ModalKind } from "@/lib/modal-store";
+import { modalStore, type ModalKind } from "@chaos_team/chaos-ui/lib";
 
 export interface ModalConfirmOptions {
   title?: React.ReactNode;

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ColorTag, type ColorTagColor } from "@/components/business/color-tag";
+import { ColorTag, type ColorTagColor } from "@chaos_team/chaos-ui/business";
 
 /**
  * Status mapping entry: [label, color].

@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { formatCurrency } from "@/lib/format";
-import { MinusIcon, PlusIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { MinusIcon, PlusIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component BudgetAllocator

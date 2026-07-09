@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { DownloadIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import { toast } from "sonner"
 
 interface ChartExportButtonProps {

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { CheckIcon, ClockIcon, XIcon } from "@/components/ui/icons";
-import { Timeline, TimelineItem } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { CheckIcon, ClockIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { Timeline, TimelineItem } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type ApprovalStepStatus =
   "approved" | "pending" | "rejected" | "skipped";

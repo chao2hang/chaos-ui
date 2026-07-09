@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render } from "@testing-library/react"
-import { Menubar } from "@/components/ui/menubar"
+import { Menubar } from "@chaos_team/chaos-ui/ui"
 
 describe("Menubar", () => {
   it("renders the menubar with the menubar ARIA role", () => {

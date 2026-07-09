@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BatchSelector } from "@/components/business/batch-selector";
+import { BatchSelector } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof BatchSelector> = {
   title: "Business/BatchSelector",

@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPinIcon, PinIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { MapPinIcon, PinIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

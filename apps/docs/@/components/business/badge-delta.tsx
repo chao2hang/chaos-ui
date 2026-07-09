@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { ArrowDownRightIcon, ArrowUpRightIcon, MinusIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { ArrowDownRightIcon, ArrowUpRightIcon, MinusIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component BadgeDelta
  * @category business/charts

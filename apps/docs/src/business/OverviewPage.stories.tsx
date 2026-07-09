@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { OverviewPage } from "@/components/business/overview-page"
+import { OverviewPage } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof OverviewPage> = {
   title: "Business/OverviewPage",

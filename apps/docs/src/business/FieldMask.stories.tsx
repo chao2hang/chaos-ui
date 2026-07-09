@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FieldMask } from "@/components/business/field-mask";
+import { FieldMask } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof FieldMask> = {
   title: "Business/FieldMask",

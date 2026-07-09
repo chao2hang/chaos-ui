@@ -8,8 +8,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+} from "@chaos_team/chaos-ui/ui"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 interface FormDirtyWarningProps {
   open: boolean

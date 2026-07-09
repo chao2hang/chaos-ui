@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SqlEditor } from "@/components/business/sql-editor"
+import { SqlEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SqlEditor> = {
   title: "Business/SqlEditor",

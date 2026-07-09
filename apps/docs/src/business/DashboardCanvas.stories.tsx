@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { DashboardCanvas } from "@/components/business/dashboard-canvas"
+import { DashboardCanvas } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof DashboardCanvas> = {
   title: "Business/DashboardCanvas",

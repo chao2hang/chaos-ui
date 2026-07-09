@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CommissionCalculator } from "@/components/business/commission-calculator"
+import { CommissionCalculator } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CommissionCalculator> = {
   title: "Business/CommissionCalculator",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdvancedSearch } from "@/components/business/advanced-search";
+import { AdvancedSearch } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof AdvancedSearch> = {
   title: "Business/AdvancedSearch",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CalendarView } from "@/components/business/calendar-view"
+import { CalendarView } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CalendarView> = {
   title: "Business/CalendarView",

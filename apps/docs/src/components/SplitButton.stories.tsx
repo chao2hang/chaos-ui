@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SplitButton } from "@/components/ui/split-button";
+import { SplitButton } from "@chaos_team/chaos-ui/ui";
 import { ChevronDownIcon } from "lucide-react";
 
 const meta: Meta<typeof SplitButton> = {

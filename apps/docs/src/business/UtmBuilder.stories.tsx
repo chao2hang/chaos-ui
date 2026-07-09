@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { UtmBuilder } from "@/components/business/utm-builder";
+import { UtmBuilder } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof UtmBuilder> = {
   title: "Business/UtmBuilder",

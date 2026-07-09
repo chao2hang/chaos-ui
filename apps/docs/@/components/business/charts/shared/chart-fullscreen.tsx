@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { MaximizeIcon, MinimizeIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 interface ChartFullscreenButtonProps {
   target: React.RefObject<HTMLElement | null>

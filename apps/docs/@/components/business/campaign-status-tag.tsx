@@ -1,7 +1,7 @@
 "use client";
 
-import { Badge } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type CampaignStatus =
   | "draft"

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
-import { BlankLayout } from "@/components/layout/blank-layout"
+import { BlankLayout } from "@chaos_team/chaos-ui/layout"
 
 describe("BlankLayout", () => {
   it("renders children inside the layout container", () => {

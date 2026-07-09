@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TaskHistory } from "@/components/business/task-history"
+import { TaskHistory } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TaskHistory> = {
   title: "Business/TaskHistory",

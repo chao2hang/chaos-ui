@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ApprovalActionBar } from "@/components/business/approval-action-bar"
+import { ApprovalActionBar } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ApprovalActionBar> = {
   title: "Business/ApprovalActionBar",

@@ -9,7 +9,7 @@ import {
   LayoutGridIcon,
   FileTextIcon,
   ImageIcon,
-} from "@/components/ui/icons"
+} from "@chaos_team/chaos-ui/ui-icons"
 
 const testDefinitions: ReportWidgetDefinition[] = [
   { type: "table", label: "Table", icon: <TableIcon />, defaultW: 6, defaultH: 4 },

@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { FileCard } from "@/components/business/file-card";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { FileCard } from "@chaos_team/chaos-ui/business";
 /**
  * @component AttachmentList
  * @category business/attachment

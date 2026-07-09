@@ -1,14 +1,14 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { NavigationTabsBar } from "@/components/layout/navigation-tabs-bar";
-import type { NavigationTabsBarTabItem } from "@/components/layout/navigation-tabs-bar";
+import { NavigationTabsBar } from "@chaos_team/chaos-ui/layout";
+import type { NavigationTabsBarTabItem } from "@chaos_team/chaos-ui/layout";
 import {
   HomeIcon,
   SettingsIcon,
   BellIcon,
   SearchIcon,
   UserIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 const meta: Meta<typeof NavigationTabsBar> = {
   title: "Layouts/NavigationTabsBar",

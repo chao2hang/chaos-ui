@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { RuleEditor } from "@/components/business/rule-editor"
+import { RuleEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof RuleEditor> = {
   title: "Business/RuleEditor",

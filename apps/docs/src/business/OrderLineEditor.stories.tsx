@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { OrderLineEditor } from "@/components/business/order-line-editor";
+import { OrderLineEditor } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof OrderLineEditor> = {
   title: "Business/OrderLineEditor",

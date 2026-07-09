@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InventoryAlertList } from "@/components/business/inventory-alert-list";
+import { InventoryAlertList } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof InventoryAlertList> = {
   title: "Business/InventoryAlertList",

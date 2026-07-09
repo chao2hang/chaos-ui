@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TreeSelect, type TreeNode } from "@/components/ui/tree-select";
+import { TreeSelect, type TreeNode } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const sampleData: TreeNode[] = [

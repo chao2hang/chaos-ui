@@ -2,15 +2,15 @@
 
 import * as React from "react";
 import { HexColorPicker } from "react-colorful";
-import { PipetteIcon, CheckIcon, XIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
+import { PipetteIcon, CheckIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component ColorBoard

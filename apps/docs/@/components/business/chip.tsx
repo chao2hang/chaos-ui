@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import { XIcon } from "@/components/ui/icons";
+import { XIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 type ChipVariant =
   | "default"

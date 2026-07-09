@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileKanban } from "@/components/business/mobile-kanban";
+import { MobileKanban } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileKanban> = {
   title: "Business/MobileKanban",

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FormWizard } from "@/components/business/form-wizard"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { FormWizard } from "@chaos_team/chaos-ui/business"
+import { Input } from "@chaos_team/chaos-ui/ui"
+import { Label } from "@chaos_team/chaos-ui/ui"
+import { Textarea } from "@chaos_team/chaos-ui/ui"
 
 const meta: Meta<typeof FormWizard> = {
   title: "Business/FormWizard",

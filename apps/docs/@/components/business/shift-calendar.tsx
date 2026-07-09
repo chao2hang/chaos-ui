@@ -1,18 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "@chaos_team/chaos-ui/ui";
+import { ScrollArea } from "@chaos_team/chaos-ui/ui";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

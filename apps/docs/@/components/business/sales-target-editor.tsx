@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/format";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Progress, ProgressIndicator } from "@/components/ui/progress";
-import { PlusIcon, Trash2Icon, TargetIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Progress, ProgressIndicator } from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon, TargetIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component SalesTargetEditor

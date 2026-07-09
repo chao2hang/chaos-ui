@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminTabs } from "@/components/layout/admin-tabs";
+import { AdminTabs } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof AdminTabs> = {
   title: "Layouts/AdminTabs",

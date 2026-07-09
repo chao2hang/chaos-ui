@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SpcControlChart } from "@/components/business/spc-control-chart"
+import { SpcControlChart } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SpcControlChart> = {
   title: "Business/SpcControlChart",

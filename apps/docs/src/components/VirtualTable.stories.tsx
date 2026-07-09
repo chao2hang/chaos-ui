@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { VirtualTable, type ColumnDef } from "@/components/ui/virtual-table";
-import { Badge } from "@/components/ui/badge";
+import { VirtualTable, type ColumnDef } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 
 interface User {
   id: number;

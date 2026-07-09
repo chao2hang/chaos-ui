@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PromptDialog } from "@/components/business/prompt-dialog";
+import { PromptDialog } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof PromptDialog> = {
   title: "Business/PromptDialog",

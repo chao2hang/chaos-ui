@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PublicLayout } from "@/components/layout/public-layout";
+import { PublicLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof PublicLayout> = {
   title: "Layouts/PublicLayout",

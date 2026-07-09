@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui";
-import { Badge } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { ScrollArea } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 
 interface AuditLogEntry {
   id: string;

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@chaos_team/chaos-ui/ui";
+import { Toaster } from "@chaos_team/chaos-ui/ui";
 import { SiteHeader } from "@/components/site-header";
 import { LocaleProvider } from "@/components/locale-provider";
 import { CommandPalette } from "@/components/command-palette";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
-import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ThemeProvider } from "@chaos_team/chaos-ui/ui";
 import "./globals.css";
 
 // Use system font stack to avoid build-time Google Fonts fetch failures in sandboxed/CI environments.

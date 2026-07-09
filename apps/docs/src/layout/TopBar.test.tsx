@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen, within, fireEvent } from "@testing-library/react"
-import { TopBar } from "@/components/layout/top-bar"
+import { TopBar } from "@chaos_team/chaos-ui/layout"
 
 describe("TopBar", () => {
   it("renders the default logo and the top-bar slot", () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
-import { ErrorLayout } from "@/components/layout/error-layout"
+import { ErrorLayout } from "@chaos_team/chaos-ui/layout"
 
 describe("ErrorLayout", () => {
   it("renders children inside the error container", () => {

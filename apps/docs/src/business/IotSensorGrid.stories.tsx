@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { IotSensorGrid } from "@/components/business/iot-sensor-grid"
+import { IotSensorGrid } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof IotSensorGrid> = {
   title: "Business/IotSensorGrid",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { track } from "@/lib/telemetry";
+import { track } from "@chaos_team/chaos-ui/lib";
 
 export interface UseTrackOptions {
   /** Event name sent to the telemetry adapter. */

@@ -1,13 +1,13 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatDate } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDate } from "@chaos_team/chaos-ui/lib";
 import {
   ClockIcon,
   FlagIcon,
   CheckIcon,
   CircleIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TodoListTable

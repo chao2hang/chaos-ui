@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AdvancedDataTable, type ColumnDef } from "@/components/business/advanced-data-table"
-import { Badge } from "@/components/ui/badge"
+import { AdvancedDataTable, type ColumnDef } from "@chaos_team/chaos-ui/business"
+import { Badge } from "@chaos_team/chaos-ui/ui"
 
 interface User {
   id: number

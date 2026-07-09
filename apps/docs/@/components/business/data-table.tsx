@@ -9,7 +9,7 @@ import {
   type SortingState,
 } from "@tanstack/react-table";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Table,
   TableHeader,
@@ -17,8 +17,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@chaos_team/chaos-ui/ui";
+import { Skeleton } from "@chaos_team/chaos-ui/ui";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 
 /**

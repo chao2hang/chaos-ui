@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { CodeEditor } from "./code-editor";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface JsonEditorProps {
   /** JSON string (controlled). */

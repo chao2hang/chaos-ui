@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import { categoryLabelsZh, categoryLabelsEn } from "@/content/components.meta";
 import type { ComponentMeta } from "@/content/components.meta";
 import { useLocale } from "@/components/locale-provider";

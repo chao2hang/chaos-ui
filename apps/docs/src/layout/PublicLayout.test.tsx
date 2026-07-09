@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen, within } from "@testing-library/react"
-import { PublicLayout } from "@/components/layout/public-layout"
+import { PublicLayout } from "@chaos_team/chaos-ui/layout"
 
 describe("PublicLayout", () => {
   it("renders children inside the public-layout container", () => {

@@ -6,7 +6,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",

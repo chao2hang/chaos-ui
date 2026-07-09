@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { MultiSelect } from "@/components/business/multi-select";
+import { MultiSelect } from "@chaos_team/chaos-ui/business";
 
 const options = [
   { value: "bug", label: "Bug", group: "类型" },

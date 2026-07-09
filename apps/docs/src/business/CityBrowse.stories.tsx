@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CityBrowse } from "@/components/business/city-browse"
+import { CityBrowse } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CityBrowse> = {
   title: "Business/CityBrowse",

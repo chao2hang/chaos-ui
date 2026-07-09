@@ -2,23 +2,23 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { InputNumber } from "@/components/ui/input-number";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { InputNumber } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Tabs,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs";
+} from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { ArrowUpDownIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { ArrowUpDownIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

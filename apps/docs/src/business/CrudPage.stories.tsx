@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CrudPage } from "@/components/business/crud-page";
+import { CrudPage } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof CrudPage> = {
   title: "Business/CrudPage",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ContractTemplate } from "@/components/business/contract-template";
+import { ContractTemplate } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ContractTemplate> = {
   title: "Business/ContractTemplate",

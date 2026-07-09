@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Forbidden } from "@/components/business/forbidden";
+import { Forbidden } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof Forbidden> = {
   title: "Business/Forbidden",

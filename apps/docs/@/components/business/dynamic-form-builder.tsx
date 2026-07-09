@@ -1,19 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Switch } from "@/components/ui/switch";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { Switch } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component DynamicFormBuilder

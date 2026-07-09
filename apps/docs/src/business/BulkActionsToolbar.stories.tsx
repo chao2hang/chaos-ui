@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { BulkActionsToolbar } from "@/components/business/bulk-actions-toolbar"
+import { BulkActionsToolbar } from "@chaos_team/chaos-ui/business"
 import { TrashIcon, DownloadIcon, TagIcon, ArchiveIcon } from "lucide-react"
 
 const meta: Meta<typeof BulkActionsToolbar> = {

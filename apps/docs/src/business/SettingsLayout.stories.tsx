@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { SettingsLayout } from "@/components/business/settings-layout"
 import type { SettingsNavEntry } from "@/components/business/settings-layout"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { Input } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 import {
   BellIcon,

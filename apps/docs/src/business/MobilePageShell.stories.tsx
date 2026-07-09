@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobilePageShell } from "@/components/business/mobile-page-shell"
+import { MobilePageShell } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobilePageShell> = {
   title: "Business/MobilePageShell",

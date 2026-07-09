@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MetricTrend, Sparkline } from "@/components/business/metric-trend"
+import { MetricTrend, Sparkline } from "@chaos_team/chaos-ui/business"
 import { UsersIcon, DollarSignIcon, TrendingUpIcon } from "lucide-react"
 
 const meta = {

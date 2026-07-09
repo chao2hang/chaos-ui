@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   InfoIcon,
   CheckCircle2Icon,
   AlertTriangleIcon,
   XCircleIcon,
   type LucideIcon,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component Callout

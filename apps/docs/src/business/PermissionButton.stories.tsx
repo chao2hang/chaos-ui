@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PermissionButton } from "@/components/business/permission-button"
+import { PermissionButton } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PermissionButton> = {
   title: "Business/PermissionButton",

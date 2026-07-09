@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PermissionWrapper } from "@/components/business/permission-wrapper";
+import { PermissionWrapper } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof PermissionWrapper> = {
   title: "Business/PermissionWrapper",

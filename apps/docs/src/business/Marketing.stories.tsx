@@ -5,7 +5,7 @@ import {
   TestimonialCard,
   FAQSection,
 } from "@/components/business/marketing"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 const meta = {
   title: "Business/Marketing",

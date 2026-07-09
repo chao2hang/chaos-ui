@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { LabelDesigner } from "@/components/business/label-designer"
+import { LabelDesigner } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof LabelDesigner> = {
   title: "Business/LabelDesigner",

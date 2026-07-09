@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AppShell } from "@/components/layout/app-shell";
+import { AppShell } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof AppShell> = {
   title: "Layouts/AppShell",

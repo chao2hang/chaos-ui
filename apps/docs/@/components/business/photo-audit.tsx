@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button, Card, CardContent, CardHeader, CardTitle, Textarea } from "@/components/ui";
-import { CheckIcon, XIcon, ImageIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, Card, CardContent, CardHeader, CardTitle, Textarea } from "@chaos_team/chaos-ui/ui";
+import { CheckIcon, XIcon, ImageIcon, ChevronLeftIcon, ChevronRightIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PhotoAudit

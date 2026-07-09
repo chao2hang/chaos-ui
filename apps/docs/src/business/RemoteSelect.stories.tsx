@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RemoteSelect } from "@/components/business/remote-select";
+import { RemoteSelect } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof RemoteSelect> = {
   title: "Business/RemoteSelect",

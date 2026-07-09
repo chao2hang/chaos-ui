@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { BudgetAllocator } from "@/components/business/budget-allocator"
+import { BudgetAllocator } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof BudgetAllocator> = {
   title: "Business/BudgetAllocator",

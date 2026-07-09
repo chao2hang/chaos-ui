@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { RotateCcwIcon } from "@/components/ui/icons";
+import { RotateCcwIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 
-import { Badge } from "@/components/ui";
-import { Button } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface VersionHistoryItem {
   id: string;

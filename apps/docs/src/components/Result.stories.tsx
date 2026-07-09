@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Result } from "@/components/ui/result";
+import { Result } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Result> = {
   title: "Components/Result",

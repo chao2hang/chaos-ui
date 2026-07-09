@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ChatLayout } from "@/components/layout/chat-layout";
+import { ChatLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof ChatLayout> = {
   title: "Layouts/ChatLayout",

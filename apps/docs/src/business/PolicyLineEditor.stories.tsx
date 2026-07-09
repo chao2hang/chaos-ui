@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PolicyLineEditor } from "@/components/business/policy-line-editor"
+import { PolicyLineEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PolicyLineEditor> = {
   title: "Business/PolicyLineEditor",

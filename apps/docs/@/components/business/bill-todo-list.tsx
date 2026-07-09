@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { ChevronRightIcon, ClockIcon } from "@/components/ui";
-import { formatDate } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { ChevronRightIcon, ClockIcon } from "@chaos_team/chaos-ui/ui";
+import { formatDate } from "@chaos_team/chaos-ui/lib";
 /**
  * @component BillTodoList
  * @category business/bill

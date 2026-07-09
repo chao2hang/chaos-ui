@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AuthLayout } from "@/components/layout/auth-layout";
+import { AuthLayout } from "@chaos_team/chaos-ui/layout";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof AuthLayout> = {
   title: "Layouts/AuthLayout",

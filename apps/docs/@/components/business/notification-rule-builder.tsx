@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Switch } from "@chaos_team/chaos-ui/ui";
 import {
   PlusIcon,
   Trash2Icon,
@@ -12,7 +12,7 @@ import {
   MailIcon,
   MessageSquareIcon,
   GlobeIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component NotificationRuleBuilder

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChartSuite } from "@/components/business/chart-suite"
+import { ChartSuite } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChartSuite> = {
   title: "Business/ChartSuite",

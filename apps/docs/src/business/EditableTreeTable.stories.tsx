@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { EditableTreeTable } from "@/components/business/editable-tree-table";
+import { EditableTreeTable } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof EditableTreeTable> = {
   title: "Business/EditableTreeTable",

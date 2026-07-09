@@ -3,8 +3,8 @@ import { useState } from "react";
 import {
   ConfigProvider,
   type ThemeConfig,
-} from "@/components/ui/config-provider";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 // ============================================================
 // Interactive demo wrapper — stateful controls + preview area

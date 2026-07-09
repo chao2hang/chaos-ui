@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SavedFilters, type SavedFilter } from "@/components/business/saved-filters"
+import { SavedFilters, type SavedFilter } from "@chaos_team/chaos-ui/business"
 import { useState } from "react"
 
 const meta = {

@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui";
-import { formatCurrency } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
 import {
   CheckCircle2Icon,
   ClockIcon,
   XIcon,
   CircleIcon,
   ArrowRightIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component WriteoffFlow

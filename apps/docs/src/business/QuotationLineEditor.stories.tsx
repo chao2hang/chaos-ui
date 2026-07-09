@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { QuotationLineEditor } from "@/components/business/quotation-line-editor"
+import { QuotationLineEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof QuotationLineEditor> = {
   title: "Business/QuotationLineEditor",

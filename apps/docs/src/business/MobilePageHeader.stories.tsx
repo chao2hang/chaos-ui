@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobilePageHeader } from "@/components/business/mobile-page-header";
+import { MobilePageHeader } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobilePageHeader> = {
   title: "Business/MobilePageHeader",

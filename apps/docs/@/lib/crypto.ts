@@ -102,7 +102,7 @@ export const subtle: SubtleCrypto | undefined =
 
 /**
  * Backward-compat default export name. Returns the module's helper bag so that
- * `import { crypto } from "@/lib/crypto"` keeps working; it is NOT the global
+ * `import { crypto } from "@chaos_team/chaos-ui/lib"` keeps working; it is NOT the global
  * `crypto` (Web Crypto). Prefer the named helpers above.
  */
 export function crypto() {

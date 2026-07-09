@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SplitPane } from "@/components/ui/split-pane";
+import { SplitPane } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof SplitPane> = {
   title: "Components/SplitPane",

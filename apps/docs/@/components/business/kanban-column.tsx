@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui";
-import { PlusIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { PlusIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component KanbanColumn

@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { CopyIcon, EditIcon, RefreshCwIcon, Trash2Icon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { CopyIcon, EditIcon, RefreshCwIcon, Trash2Icon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatMessageActions

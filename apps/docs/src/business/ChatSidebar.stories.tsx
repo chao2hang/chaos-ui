@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatSidebar } from "@/components/business/chat-sidebar"
+import { ChatSidebar } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatSidebar> = {
   title: "Business/ChatSidebar",

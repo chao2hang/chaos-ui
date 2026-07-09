@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BrowseInput } from "@/components/ui/browse-input";
+import { BrowseInput } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const meta: Meta<typeof BrowseInput> = {

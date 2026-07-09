@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import {
   Table,
   TableBody,
@@ -10,8 +10,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui"
-import { Skeleton } from "@/components/ui"
+} from "@chaos_team/chaos-ui/ui"
+import { Skeleton } from "@chaos_team/chaos-ui/ui"
 
 interface ColumnDef<T = Record<string, unknown>> {
   key: string

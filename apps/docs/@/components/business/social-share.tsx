@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { CheckIcon } from "@/components/ui/icons";
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { CheckIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks";
 
 export interface SocialShareProps {
   /** URL to share. */

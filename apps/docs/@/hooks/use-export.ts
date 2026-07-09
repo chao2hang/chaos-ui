@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { download } from "@/lib/download";
+import { download } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @hook useExport

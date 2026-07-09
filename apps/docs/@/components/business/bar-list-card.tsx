@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/format";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component BarListCard

@@ -36,7 +36,7 @@ pnpm lint
 Import a component and use it in your code:
 
 ```tsx
-import { Button } from '@/components/ui/button'
+import { Button } from '@chaos_team/chaos-ui/ui'
 
 export default function Page() {
   return (
@@ -52,10 +52,10 @@ export default function Page() {
 Every Chaos UI component follows a consistent pattern:
 
 ```tsx
-import { cn } from '@/lib/utils'
+import { cn } from '@chaos_team/chaos-ui/lib'
 
 // 1. Import the component
-import { Button } from '@/components/ui/button'
+import { Button } from '@chaos_team/chaos-ui/ui'
 
 // 2. Use it with TypeScript props
 function MyComponent() {
@@ -85,7 +85,7 @@ Chaos UI uses Tailwind CSS 4 with CSS custom properties. All components accept a
 Use the `cn()` utility to merge class names:
 
 ```tsx
-import { cn } from '@/lib/utils'
+import { cn } from '@chaos_team/chaos-ui/lib'
 
 <Button className={cn(
   "base-classes",
@@ -114,7 +114,7 @@ Override CSS variables in your `globals.css`:
 All components are fully typed. Import types directly:
 
 ```tsx
-import { Button, type ButtonProps } from '@/components/ui/button'
+import { Button, type ButtonProps } from '@chaos_team/chaos-ui/ui'
 ```
 
 ## Next Steps

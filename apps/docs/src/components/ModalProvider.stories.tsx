@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ModalProvider } from "@/components/ui/modal-provider";
+import { ModalProvider } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ModalProvider> = {
   title: "Components/ModalProvider",

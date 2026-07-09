@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Textarea } from "@/components/ui/textarea"
-import { cn } from "@/lib/utils"
+import { Textarea } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileTextareaProps extends React.ComponentProps<"textarea"> {
   // Mobile-specific props

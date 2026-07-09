@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
 import { SearchIcon, InboxIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { EmptyState } from "@/components/ui/empty-state";
-import { formatRelativeTime } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
 
 export interface InboxItem {
   id: string;

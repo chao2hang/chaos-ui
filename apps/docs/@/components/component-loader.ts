@@ -10,1562 +10,1562 @@ import dynamic from "next/dynamic";
 export const componentLoaders: Record<string, React.ComponentType<any>> = {
   Accordion: dynamic(
     () =>
-      import("@/components/ui/accordion").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Accordion,
       })),
     { ssr: false },
   ),
   Affix: dynamic(
-    () => import("@/components/ui/affix").then((m) => ({ default: m.Affix })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Affix })),
     { ssr: false },
   ),
   AlertDialog: dynamic(
     () =>
-      import("@/components/ui/alert-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.AlertDialog,
       })),
     { ssr: false },
   ),
   Alert: dynamic(
-    () => import("@/components/ui/alert").then((m) => ({ default: m.Alert })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Alert })),
     { ssr: false },
   ),
   Anchor: dynamic(
-    () => import("@/components/ui/anchor").then((m) => ({ default: m.Anchor })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Anchor })),
     { ssr: false },
   ),
   AspectRatio: dynamic(
     () =>
-      import("@/components/ui/aspect-ratio").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.AspectRatio,
       })),
     { ssr: false },
   ),
   AudioPlayer: dynamic(
     () =>
-      import("@/components/ui/audio-player").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.AudioPlayer,
       })),
     { ssr: false },
   ),
   Autocomplete: dynamic(
     () =>
-      import("@/components/ui/autocomplete").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Autocomplete,
       })),
     { ssr: false },
   ),
   Avatar: dynamic(
-    () => import("@/components/ui/avatar").then((m) => ({ default: m.Avatar })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Avatar })),
     { ssr: false },
   ),
   BackTop: dynamic(
     () =>
-      import("@/components/ui/back-top").then((m) => ({ default: m.BackTop })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.BackTop })),
     { ssr: false },
   ),
   Badge: dynamic(
-    () => import("@/components/ui/badge").then((m) => ({ default: m.Badge })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Badge })),
     { ssr: false },
   ),
   BarcodeDisplay: dynamic(
     () =>
-      import("@/components/ui/barcode-display").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.BarcodeDisplay,
       })),
     { ssr: false },
   ),
   Breadcrumb: dynamic(
     () =>
-      import("@/components/ui/breadcrumb").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Breadcrumb,
       })),
     { ssr: false },
   ),
   BrowseInput: dynamic(
     () =>
-      import("@/components/ui/browse-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.BrowseInput,
       })),
     { ssr: false },
   ),
   Button: dynamic(
-    () => import("@/components/ui/button").then((m) => ({ default: m.Button })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Button })),
     { ssr: false },
   ),
   Calendar: dynamic(
     () =>
-      import("@/components/ui/calendar").then((m) => ({ default: m.Calendar })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Calendar })),
     { ssr: false },
   ),
   Card: dynamic(
-    () => import("@/components/ui/card").then((m) => ({ default: m.Card })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Card })),
     { ssr: false },
   ),
   Carousel: dynamic(
     () =>
-      import("@/components/ui/carousel").then((m) => ({ default: m.Carousel })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Carousel })),
     { ssr: false },
   ),
   Cascader: dynamic(
     () =>
-      import("@/components/ui/cascader").then((m) => ({ default: m.Cascader })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Cascader })),
     { ssr: false },
   ),
   ChatInput: dynamic(
     () =>
-      import("@/components/ui/chat-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ChatInput,
       })),
     { ssr: false },
   ),
   ChatMessage: dynamic(
     () =>
-      import("@/components/ui/chat-message").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ChatMessage,
       })),
     { ssr: false },
   ),
   Checkbox: dynamic(
     () =>
-      import("@/components/ui/checkbox").then((m) => ({ default: m.Checkbox })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Checkbox })),
     { ssr: false },
   ),
   Collapsible: dynamic(
     () =>
-      import("@/components/ui/collapsible").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Collapsible,
       })),
     { ssr: false },
   ),
   ColorPicker: dynamic(
     () =>
-      import("@/components/ui/color-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ColorPicker,
       })),
     { ssr: false },
   ),
   Combobox: dynamic(
     () =>
-      import("@/components/ui/combobox").then((m) => ({ default: m.Combobox })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Combobox })),
     { ssr: false },
   ),
   Command: dynamic(
     () =>
-      import("@/components/ui/command").then((m) => ({ default: m.Command })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Command })),
     { ssr: false },
   ),
   ConfigProvider: dynamic(
     () =>
-      import("@/components/ui/config-provider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ConfigProvider,
       })),
     { ssr: false },
   ),
   ContextMenu: dynamic(
     () =>
-      import("@/components/ui/context-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ContextMenu,
       })),
     { ssr: false },
   ),
   Countdown: dynamic(
     () =>
-      import("@/components/ui/countdown").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Countdown,
       })),
     { ssr: false },
   ),
   DatePicker: dynamic(
     () =>
-      import("@/components/ui/date-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.DatePicker,
       })),
     { ssr: false },
   ),
   DepartmentBrowse: dynamic(
     () =>
-      import("@/components/ui/department-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.DepartmentBrowse,
       })),
     { ssr: false },
   ),
   Descriptions: dynamic(
     () =>
-      import("@/components/ui/descriptions").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Descriptions,
       })),
     { ssr: false },
   ),
   Dialog: dynamic(
-    () => import("@/components/ui/dialog").then((m) => ({ default: m.Dialog })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Dialog })),
     { ssr: false },
   ),
   Direction: dynamic(
     () =>
-      import("@/components/ui/direction").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Direction,
       })),
     { ssr: false },
   ),
   Divider: dynamic(
     () =>
-      import("@/components/ui/divider").then((m) => ({ default: m.Divider })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Divider })),
     { ssr: false },
   ),
   Dot: dynamic(
-    () => import("@/components/ui/dot").then((m) => ({ default: m.Dot })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Dot })),
     { ssr: false },
   ),
   Drawer: dynamic(
-    () => import("@/components/ui/drawer").then((m) => ({ default: m.Drawer })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Drawer })),
     { ssr: false },
   ),
   DropdownMenu: dynamic(
     () =>
-      import("@/components/ui/dropdown-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.DropdownMenu,
       })),
     { ssr: false },
   ),
   EmptyState: dynamic(
     () =>
-      import("@/components/ui/empty-state").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.EmptyState,
       })),
     { ssr: false },
   ),
   Fab: dynamic(
-    () => import("@/components/ui/fab").then((m) => ({ default: m.Fab })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Fab })),
     { ssr: false },
   ),
   FileUpload: dynamic(
     () =>
-      import("@/components/ui/file-upload").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FileUpload,
       })),
     { ssr: false },
   ),
   Flex: dynamic(
-    () => import("@/components/ui/flex").then((m) => ({ default: m.Flex })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Flex })),
     { ssr: false },
   ),
   FormGrid: dynamic(
     () =>
-      import("@/components/ui/form-grid").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FormGrid,
       })),
     { ssr: false },
   ),
   FormList: dynamic(
     () =>
-      import("@/components/ui/form-list").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FormList,
       })),
     { ssr: false },
   ),
   FormSection: dynamic(
     () =>
-      import("@/components/ui/form-section").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FormSection,
       })),
     { ssr: false },
   ),
   Form: dynamic(
-    () => import("@/components/ui/form").then((m) => ({ default: m.Form })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Form })),
     { ssr: false },
   ),
   FullscreenToggle: dynamic(
     () =>
-      import("@/components/ui/fullscreen-toggle").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FullscreenToggle,
       })),
     { ssr: false },
   ),
   GridLayout: dynamic(
     () =>
-      import("@/components/ui/grid-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.GridLayout,
       })),
     { ssr: false },
   ),
   Grid: dynamic(
-    () => import("@/components/ui/grid").then((m) => ({ default: m.Grid })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Grid })),
     { ssr: false },
   ),
   HoverCard: dynamic(
     () =>
-      import("@/components/ui/hover-card").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.HoverCard,
       })),
     { ssr: false },
   ),
   IconPicker: dynamic(
     () =>
-      import("@/components/ui/icon-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.IconPicker,
       })),
     { ssr: false },
   ),
   Icon: dynamic(
-    () => import("@/components/ui/icon").then((m) => ({ default: m.Icon })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Icon })),
     { ssr: false },
   ),
   ImageViewer: dynamic(
     () =>
-      import("@/components/ui/image-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ImageViewer,
       })),
     { ssr: false },
   ),
   Image: dynamic(
-    () => import("@/components/ui/image").then((m) => ({ default: m.Image })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Image })),
     { ssr: false },
   ),
   InfiniteScroll: dynamic(
     () =>
-      import("@/components/ui/infinite-scroll").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.InfiniteScroll,
       })),
     { ssr: false },
   ),
   InputGroup: dynamic(
     () =>
-      import("@/components/ui/input-group").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.InputGroup,
       })),
     { ssr: false },
   ),
   InputNumber: dynamic(
     () =>
-      import("@/components/ui/input-number").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.InputNumber,
       })),
     { ssr: false },
   ),
   InputSearch: dynamic(
     () =>
-      import("@/components/ui/input-search").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.InputSearch,
       })),
     { ssr: false },
   ),
   Input: dynamic(
-    () => import("@/components/ui/input").then((m) => ({ default: m.Input })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Input })),
     { ssr: false },
   ),
   Kbd: dynamic(
-    () => import("@/components/ui/kbd").then((m) => ({ default: m.Kbd })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Kbd })),
     { ssr: false },
   ),
   KeyboardShortcutDialog: dynamic(
     () =>
-      import("@/components/ui/keyboard-shortcut-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.KeyboardShortcutDialog,
       })),
     { ssr: false },
   ),
   KeyboardShortcut: dynamic(
     () =>
-      import("@/components/ui/keyboard-shortcut").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.KeyboardShortcut,
       })),
     { ssr: false },
   ),
   KpiPanel: dynamic(
     () =>
-      import("@/components/ui/kpi-panel").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.KPIPanel,
       })),
     { ssr: false },
   ),
   Label: dynamic(
-    () => import("@/components/ui/label").then((m) => ({ default: m.Label })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Label })),
     { ssr: false },
   ),
   List: dynamic(
-    () => import("@/components/ui/list").then((m) => ({ default: m.List })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.List })),
     { ssr: false },
   ),
   Masonry: dynamic(
     () =>
-      import("@/components/ui/masonry").then((m) => ({ default: m.Masonry })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Masonry })),
     { ssr: false },
   ),
   Mentions: dynamic(
     () =>
-      import("@/components/ui/mentions").then((m) => ({ default: m.Mentions })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Mentions })),
     { ssr: false },
   ),
   Menu: dynamic(
-    () => import("@/components/ui/menu").then((m) => ({ default: m.Menu })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Menu })),
     { ssr: false },
   ),
   Menubar: dynamic(
     () =>
-      import("@/components/ui/menubar").then((m) => ({ default: m.Menubar })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Menubar })),
     { ssr: false },
   ),
   MessageProvider: dynamic(
     () =>
-      import("@/components/ui/message-provider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MessageProvider,
       })),
     { ssr: false },
   ),
   Message: dynamic(
     () =>
-      import("@/components/ui/message").then((m) => ({ default: m.Message })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Message })),
     { ssr: false },
   ),
   MobilePullRefresh: dynamic(
     () =>
-      import("@/components/ui/mobile-pull-refresh").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MobilePullRefresh,
       })),
     { ssr: false },
   ),
   MobileSwipeAction: dynamic(
     () =>
-      import("@/components/ui/mobile-swipe-action").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MobileSwipeAction,
       })),
     { ssr: false },
   ),
   ModalProvider: dynamic(
     () =>
-      import("@/components/ui/modal-provider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ModalProvider,
       })),
     { ssr: false },
   ),
   NativeSelect: dynamic(
     () =>
-      import("@/components/ui/native-select").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.NativeSelect,
       })),
     { ssr: false },
   ),
   NavigationMenu: dynamic(
     () =>
-      import("@/components/ui/navigation-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.NavigationMenu,
       })),
     { ssr: false },
   ),
   Notification: dynamic(
     () =>
-      import("@/components/ui/notification").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Notification,
       })),
     { ssr: false },
   ),
   NumberTicker: dynamic(
     () =>
-      import("@/components/ui/number-ticker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.NumberTicker,
       })),
     { ssr: false },
   ),
   OtpField: dynamic(
     () =>
-      import("@/components/ui/otp-field").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.OTPField,
       })),
     { ssr: false },
   ),
   PageContainer: dynamic(
     () =>
-      import("@/components/ui/page-container").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.PageContainer,
       })),
     { ssr: false },
   ),
   Pagination: dynamic(
     () =>
-      import("@/components/ui/pagination").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Pagination,
       })),
     { ssr: false },
   ),
   Popconfirm: dynamic(
     () =>
-      import("@/components/ui/popconfirm").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Popconfirm,
       })),
     { ssr: false },
   ),
   Popover: dynamic(
     () =>
-      import("@/components/ui/popover").then((m) => ({ default: m.Popover })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Popover })),
     { ssr: false },
   ),
   Progress: dynamic(
     () =>
-      import("@/components/ui/progress").then((m) => ({ default: m.Progress })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Progress })),
     { ssr: false },
   ),
   QrcodeDisplay: dynamic(
     () =>
-      import("@/components/ui/qrcode-display").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.QRCodeDisplay,
       })),
     { ssr: false },
   ),
   Qrcode: dynamic(
-    () => import("@/components/ui/qrcode").then((m) => ({ default: m.QRCode })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.QRCode })),
     { ssr: false },
   ),
   RadioGroup: dynamic(
     () =>
-      import("@/components/ui/radio-group").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.RadioGroup,
       })),
     { ssr: false },
   ),
   Rating: dynamic(
-    () => import("@/components/ui/rating").then((m) => ({ default: m.Rating })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Rating })),
     { ssr: false },
   ),
   Resizable: dynamic(
     () =>
-      import("@/components/ui/resizable").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ResizablePanelGroup,
       })),
     { ssr: false },
   ),
   Result: dynamic(
-    () => import("@/components/ui/result").then((m) => ({ default: m.Result })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Result })),
     { ssr: false },
   ),
   SchemaForm: dynamic(
     () =>
-      import("@/components/ui/schema-form").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SchemaForm,
       })),
     { ssr: false },
   ),
   ScrollArea: dynamic(
     () =>
-      import("@/components/ui/scroll-area").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ScrollArea,
       })),
     { ssr: false },
   ),
   SegmentedControl: dynamic(
     () =>
-      import("@/components/ui/segmented-control").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SegmentedControl,
       })),
     { ssr: false },
   ),
   Select: dynamic(
-    () => import("@/components/ui/select").then((m) => ({ default: m.Select })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Select })),
     { ssr: false },
   ),
   Separator: dynamic(
     () =>
-      import("@/components/ui/separator").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Separator,
       })),
     { ssr: false },
   ),
   SequenceInput: dynamic(
     () =>
-      import("@/components/ui/sequence-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SequenceInput,
       })),
     { ssr: false },
   ),
   SequencePreview: dynamic(
     () =>
-      import("@/components/ui/sequence-preview").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SequencePreview,
       })),
     { ssr: false },
   ),
   Sheet: dynamic(
-    () => import("@/components/ui/sheet").then((m) => ({ default: m.Sheet })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Sheet })),
     { ssr: false },
   ),
   Sidebar: dynamic(
     () =>
-      import("@/components/ui/sidebar").then((m) => ({ default: m.Sidebar })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Sidebar })),
     { ssr: false },
   ),
   SignaturePad: dynamic(
     () =>
-      import("@/components/ui/signature-pad").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SignaturePad,
       })),
     { ssr: false },
   ),
   Skeleton: dynamic(
     () =>
-      import("@/components/ui/skeleton").then((m) => ({ default: m.Skeleton })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Skeleton })),
     { ssr: false },
   ),
   Slider: dynamic(
-    () => import("@/components/ui/slider").then((m) => ({ default: m.Slider })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Slider })),
     { ssr: false },
   ),
   Sonner: dynamic(
     () =>
-      import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Toaster })),
     { ssr: false },
   ),
   Space: dynamic(
-    () => import("@/components/ui/space").then((m) => ({ default: m.Space })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Space })),
     { ssr: false },
   ),
   Spin: dynamic(
-    () => import("@/components/ui/spin").then((m) => ({ default: m.Spin })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Spin })),
     { ssr: false },
   ),
   Spinner: dynamic(
     () =>
-      import("@/components/ui/spinner").then((m) => ({ default: m.Spinner })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Spinner })),
     { ssr: false },
   ),
   SplitButton: dynamic(
     () =>
-      import("@/components/ui/split-button").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SplitButton,
       })),
     { ssr: false },
   ),
   SplitPane: dynamic(
     () =>
-      import("@/components/ui/split-pane").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SplitPane,
       })),
     { ssr: false },
   ),
   Statistic: dynamic(
     () =>
-      import("@/components/ui/statistic").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Statistic,
       })),
     { ssr: false },
   ),
   Stepper: dynamic(
     () =>
-      import("@/components/ui/stepper").then((m) => ({ default: m.Stepper })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Stepper })),
     { ssr: false },
   ),
   Switch: dynamic(
-    () => import("@/components/ui/switch").then((m) => ({ default: m.Switch })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Switch })),
     { ssr: false },
   ),
   Table: dynamic(
-    () => import("@/components/ui/table").then((m) => ({ default: m.Table })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Table })),
     { ssr: false },
   ),
   Tabs: dynamic(
-    () => import("@/components/ui/tabs").then((m) => ({ default: m.Tabs })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Tabs })),
     { ssr: false },
   ),
   Tag: dynamic(
-    () => import("@/components/ui/tag").then((m) => ({ default: m.Tag })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Tag })),
     { ssr: false },
   ),
   TagsInput: dynamic(
     () =>
-      import("@/components/ui/tags-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.TagsInput,
       })),
     { ssr: false },
   ),
   Textarea: dynamic(
     () =>
-      import("@/components/ui/textarea").then((m) => ({ default: m.Textarea })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Textarea })),
     { ssr: false },
   ),
   TimePicker: dynamic(
     () =>
-      import("@/components/ui/time-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.TimePicker,
       })),
     { ssr: false },
   ),
   Timeline: dynamic(
     () =>
-      import("@/components/ui/timeline").then((m) => ({ default: m.Timeline })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Timeline })),
     { ssr: false },
   ),
   ToggleGroup: dynamic(
     () =>
-      import("@/components/ui/toggle-group").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ToggleGroup,
       })),
     { ssr: false },
   ),
   Toggle: dynamic(
-    () => import("@/components/ui/toggle").then((m) => ({ default: m.Toggle })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Toggle })),
     { ssr: false },
   ),
   Tooltip: dynamic(
     () =>
-      import("@/components/ui/tooltip").then((m) => ({ default: m.Tooltip })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Tooltip })),
     { ssr: false },
   ),
   Tour: dynamic(
-    () => import("@/components/ui/tour").then((m) => ({ default: m.Tour })),
+    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Tour })),
     { ssr: false },
   ),
   Transfer: dynamic(
     () =>
-      import("@/components/ui/transfer").then((m) => ({ default: m.Transfer })),
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Transfer })),
     { ssr: false },
   ),
   TreeSelect: dynamic(
     () =>
-      import("@/components/ui/tree-select").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.TreeSelect,
       })),
     { ssr: false },
   ),
   TreeView: dynamic(
     () =>
-      import("@/components/ui/tree-view").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.TreeView,
       })),
     { ssr: false },
   ),
   Typography: dynamic(
     () =>
-      import("@/components/ui/typography").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Typography as any,
       })),
     { ssr: false },
   ) as any,
   UserBrowse: dynamic(
     () =>
-      import("@/components/ui/user-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.UserBrowse,
       })),
     { ssr: false },
   ),
   VideoPlayer: dynamic(
     () =>
-      import("@/components/ui/video-player").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.VideoPlayer,
       })),
     { ssr: false },
   ),
   VirtualList: dynamic(
     () =>
-      import("@/components/ui/virtual-list").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.VirtualList,
       })),
     { ssr: false },
   ),
   VirtualTable: dynamic(
     () =>
-      import("@/components/ui/virtual-table").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.VirtualTable,
       })),
     { ssr: false },
   ),
   Watermark: dynamic(
     () =>
-      import("@/components/ui/watermark").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Watermark,
       })),
     { ssr: false },
   ),
   WithPermission: dynamic(
     () =>
-      import("@/components/ui/with-permission").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.WithPermission,
       })),
     { ssr: false },
   ),
   AdminBreadcrumb: dynamic(
     () =>
-      import("@/components/layout/admin-breadcrumb").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AdminBreadcrumb,
       })),
     { ssr: false },
   ),
   AdminHeader: dynamic(
     () =>
-      import("@/components/layout/admin-header").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AdminHeader,
       })),
     { ssr: false },
   ),
   AdminShell: dynamic(
     () =>
-      import("@/components/layout/admin-shell").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AdminShell,
       })),
     { ssr: false },
   ),
   AdminSider: dynamic(
     () =>
-      import("@/components/layout/admin-sider").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AdminSider,
       })),
     { ssr: false },
   ),
   AdminTabs: dynamic(
     () =>
-      import("@/components/layout/admin-tabs").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AdminTabs,
       })),
     { ssr: false },
   ),
   AppShell: dynamic(
     () =>
-      import("@/components/layout/app-shell").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AppShell,
       })),
     { ssr: false },
   ),
   ArticleLayout: dynamic(
     () =>
-      import("@/components/layout/article-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.ArticleLayout,
       })),
     { ssr: false },
   ),
   AuthLayout: dynamic(
     () =>
-      import("@/components/layout/auth-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.AuthLayout,
       })),
     { ssr: false },
   ),
   BlankLayout: dynamic(
     () =>
-      import("@/components/layout/blank-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.BlankLayout,
       })),
     { ssr: false },
   ),
   ChatLayout: dynamic(
     () =>
-      import("@/components/layout/chat-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.ChatLayout,
       })),
     { ssr: false },
   ),
   DashboardLayout: dynamic(
     () =>
-      import("@/components/layout/dashboard-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.DashboardLayout,
       })),
     { ssr: false },
   ),
   DetailLayout: dynamic(
     () =>
-      import("@/components/layout/detail-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.DetailLayout,
       })),
     { ssr: false },
   ),
   DialogFormBody: dynamic(
     () =>
-      import("@/components/layout/dialog-form-body").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.DialogFormBody,
       })),
     { ssr: false },
   ),
   EmbedLayout: dynamic(
     () =>
-      import("@/components/layout/embed-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.EmbedLayout,
       })),
     { ssr: false },
   ),
   ErrorLayout: dynamic(
     () =>
-      import("@/components/layout/error-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.ErrorLayout,
       })),
     { ssr: false },
   ),
   MasterDetailLayout: dynamic(
     () =>
-      import("@/components/layout/master-detail-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.MasterDetailLayout,
       })),
     { ssr: false },
   ),
   MasterDetailTabs: dynamic(
     () =>
-      import("@/components/layout/master-detail-tabs").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.MasterDetailTabs,
       })),
     { ssr: false },
   ),
   NavigationTabsBar: dynamic(
     () =>
-      import("@/components/layout/navigation-tabs-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.NavigationTabsBar,
       })),
     { ssr: false },
   ),
   PrintLayout: dynamic(
     () =>
-      import("@/components/layout/print-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.PrintLayout,
       })),
     { ssr: false },
   ),
   PrintTemplateLayout: dynamic(
     () =>
-      import("@/components/layout/print-template-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.PrintTemplateLayout,
       })),
     { ssr: false },
   ),
   PublicLayout: dynamic(
     () =>
-      import("@/components/layout/public-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.PublicLayout,
       })),
     { ssr: false },
   ),
   RegionLayout: dynamic(
     () =>
-      import("@/components/layout/region-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.RegionLayout,
       })),
     { ssr: false },
   ),
   SplitScreen: dynamic(
     () =>
-      import("@/components/layout/split-screen").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.SplitScreen,
       })),
     { ssr: false },
   ),
   TopBar: dynamic(
     () =>
-      import("@/components/layout/top-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.TopBar,
       })),
     { ssr: false },
   ),
   WizardLayout: dynamic(
     () =>
-      import("@/components/layout/wizard-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.WizardLayout,
       })),
     { ssr: false },
   ),
   AccountBalance: dynamic(
     () =>
-      import("@/components/business/account-balance").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AccountBalance,
       })),
     { ssr: false },
   ),
   ActivityFeed: dynamic(
     () =>
-      import("@/components/business/activity-feed").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ActivityFeed,
       })),
     { ssr: false },
   ),
   AddressPicker: dynamic(
     () =>
-      import("@/components/business/address-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AddressPicker,
       })),
     { ssr: false },
   ),
   AdvancedDataTable: dynamic(
     () =>
-      import("@/components/business/advanced-data-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AdvancedDataTable,
       })),
     { ssr: false },
   ),
   AdvancedSearch: dynamic(
     () =>
-      import("@/components/business/advanced-search").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AdvancedSearch,
       })),
     { ssr: false },
   ),
   AnnouncementBanner: dynamic(
     () =>
-      import("@/components/business/announcement-banner").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AnnouncementBanner,
       })),
     { ssr: false },
   ),
   AnnouncementCard: dynamic(
     () =>
-      import("@/components/business/announcement-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AnnouncementCard,
       })),
     { ssr: false },
   ),
   ApplicationForm: dynamic(
     () =>
-      import("@/components/business/application-form").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ApplicationForm,
       })),
     { ssr: false },
   ),
   ApprovalActionBar: dynamic(
     () =>
-      import("@/components/business/approval-action-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ApprovalActionBar,
       })),
     { ssr: false },
   ),
   ApprovalFlow: dynamic(
     () =>
-      import("@/components/business/approval-flow").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ApprovalFlow,
       })),
     { ssr: false },
   ),
   ApprovalTimeline: dynamic(
     () =>
-      import("@/components/business/approval-timeline").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ApprovalTimeline,
       })),
     { ssr: false },
   ),
   ArApAgingTable: dynamic(
     () =>
-      import("@/components/business/ar-ap-aging-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ArApAgingTable,
       })),
     { ssr: false },
   ),
   AreaChart: dynamic(
     () =>
-      import("@/components/business/area-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AreaChart,
       })),
     { ssr: false },
   ),
   AsyncTaskCenter: dynamic(
     () =>
-      import("@/components/business/async-task-center").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AsyncTaskCenter,
       })),
     { ssr: false },
   ),
   AsyncTaskTrigger: dynamic(
     () =>
-      import("@/components/business/async-task-trigger").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AsyncTaskTrigger,
       })),
     { ssr: false },
   ),
   AttachmentList: dynamic(
     () =>
-      import("@/components/business/attachment-list").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AttachmentList,
       })),
     { ssr: false },
   ),
   AttachmentPreview: dynamic(
     () =>
-      import("@/components/business/attachment-preview").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AttachmentPreview,
       })),
     { ssr: false },
   ),
   AttachmentUploader: dynamic(
     () =>
-      import("@/components/business/attachment-uploader").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AttachmentUploader,
       })),
     { ssr: false },
   ),
   AttendanceCalendar: dynamic(
     () =>
-      import("@/components/business/attendance-calendar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AttendanceCalendar,
       })),
     { ssr: false },
   ),
   AudienceSegmentBuilder: dynamic(
     () =>
-      import("@/components/business/audience-segment-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AudienceSegmentBuilder,
       })),
     { ssr: false },
   ),
   AuditLog: dynamic(
     () =>
-      import("@/components/business/audit-log").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AuditLog,
       })),
     { ssr: false },
   ),
   AuditSidebar: dynamic(
     () =>
-      import("@/components/business/audit-sidebar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AuditSidebar,
       })),
     { ssr: false },
   ),
   AuditTrailDiff: dynamic(
     () =>
-      import("@/components/business/audit-trail-diff").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AuditTrailDiff,
       })),
     { ssr: false },
   ),
   AuthGuard: dynamic(
     () =>
-      import("@/components/business/auth-guard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AuthGuard,
       })),
     { ssr: false },
   ),
   AvatarGroup: dynamic(
     () =>
-      import("@/components/business/avatar-group").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AvatarGroup,
       })),
     { ssr: false },
   ),
   BadgeDelta: dynamic(
     () =>
-      import("@/components/business/badge-delta").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BadgeDelta,
       })),
     { ssr: false },
   ),
   BarChart: dynamic(
     () =>
-      import("@/components/business/bar-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BarChart,
       })),
     { ssr: false },
   ),
   BarListCard: dynamic(
     () =>
-      import("@/components/business/bar-list-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BarListCard,
       })),
     { ssr: false },
   ),
   BarList: dynamic(
     () =>
-      import("@/components/business/bar-list").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BarList,
       })),
     { ssr: false },
   ),
   BatchGenealogyTree: dynamic(
     () =>
-      import("@/components/business/batch-genealogy-tree").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BatchGenealogyTree,
       })),
     { ssr: false },
   ),
   BatchPrintDialog: dynamic(
     () =>
-      import("@/components/business/batch-print-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BatchPrintDialog,
       })),
     { ssr: false },
   ),
   BatchSelector: dynamic(
     () =>
-      import("@/components/business/batch-selector").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BatchSelector,
       })),
     { ssr: false },
   ),
   BillFooter: dynamic(
     () =>
-      import("@/components/business/bill-footer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillFooter,
       })),
     { ssr: false },
   ),
   BillHeader: dynamic(
     () =>
-      import("@/components/business/bill-header").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillHeader,
       })),
     { ssr: false },
   ),
   BillPage: dynamic(
     () =>
-      import("@/components/business/bill-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillPage,
       })),
     { ssr: false },
   ),
   BillPrintTemplate: dynamic(
     () =>
-      import("@/components/business/bill-print-template").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillPrintTemplate,
       })),
     { ssr: false },
   ),
   BillStatusBar: dynamic(
     () =>
-      import("@/components/business/bill-status-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillStatusBar,
       })),
     { ssr: false },
   ),
   BillTimeline: dynamic(
     () =>
-      import("@/components/business/bill-timeline").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillTimeline,
       })),
     { ssr: false },
   ),
   BillTodoList: dynamic(
     () =>
-      import("@/components/business/bill-todo-list").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BillTodoList,
       })),
     { ssr: false },
   ),
   BizStatusTag: dynamic(
     () =>
-      import("@/components/business/biz-status-tag").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BizStatusTag,
       })),
     { ssr: false },
   ),
   BomTreeEditor: dynamic(
     () =>
-      import("@/components/business/bom-tree-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BOMTreeEditor,
       })),
     { ssr: false },
   ),
   BrowseDialog: dynamic(
     () =>
-      import("@/components/business/browse-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BrowseDialog,
       })),
     { ssr: false },
   ),
   BudgetAllocator: dynamic(
     () =>
-      import("@/components/business/budget-allocator").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BudgetAllocator,
       })),
     { ssr: false },
   ),
   BudgetOverview: dynamic(
     () =>
-      import("@/components/business/budget-overview").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BudgetOverview,
       })),
     { ssr: false },
   ),
   BudgetPacingCard: dynamic(
     () =>
-      import("@/components/business/budget-pacing-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BudgetPacingCard,
       })),
     { ssr: false },
   ),
   BulkActionsToolbar: dynamic(
     () =>
-      import("@/components/business/bulk-actions-toolbar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BulkActionsToolbar,
       })),
     { ssr: false },
   ),
   BulkImportWizard: dynamic(
     () =>
-      import("@/components/business/bulk-import-wizard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BulkImportWizard,
       })),
     { ssr: false },
   ),
   CalendarView: dynamic(
     () =>
-      import("@/components/business/calendar-view").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CalendarView,
       })),
     { ssr: false },
   ),
   Callout: dynamic(
     () =>
-      import("@/components/business/callout").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.Callout,
       })),
     { ssr: false },
   ),
   CampaignCalendar: dynamic(
     () =>
-      import("@/components/business/campaign-calendar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CampaignCalendar,
       })),
     { ssr: false },
   ),
   CampaignCard: dynamic(
     () =>
-      import("@/components/business/campaign-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CampaignCard,
       })),
     { ssr: false },
   ),
   CampaignStatusTag: dynamic(
     () =>
-      import("@/components/business/campaign-status-tag").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CampaignStatusTag,
       })),
     { ssr: false },
   ),
   CategoryBar: dynamic(
     () =>
-      import("@/components/business/category-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CategoryBar,
       })),
     { ssr: false },
   ),
   ChannelPicker: dynamic(
     () =>
-      import("@/components/business/channel-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChannelPicker,
       })),
     { ssr: false },
   ),
   ChartCard: dynamic(
     () =>
-      import("@/components/business/chart-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChartCard,
       })),
     { ssr: false },
   ),
   ChartSuite: dynamic(
     () =>
-      import("@/components/business/chart-suite").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChartSuite,
       })),
     { ssr: false },
   ),
   Chart: dynamic(
     () =>
-      import("@/components/business/chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LineChart,
       })),
     { ssr: false },
   ),
   ChatAgentStatus: dynamic(
     () =>
-      import("@/components/business/chat-agent-status").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatAgentStatus,
       })),
     { ssr: false },
   ),
   ChatArtifactPanel: dynamic(
     () =>
-      import("@/components/business/chat-artifact-panel").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatArtifactPanel,
       })),
     { ssr: false },
   ),
   ChatBranch: dynamic(
     () =>
-      import("@/components/business/chat-branch").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatBranch,
       })),
     { ssr: false },
   ),
   ChatCardMessage: dynamic(
     () =>
-      import("@/components/business/chat-card-message").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatCardMessage,
       })),
     { ssr: false },
   ),
   ChatCodeBlock: dynamic(
     () =>
-      import("@/components/business/chat-code-block").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatCodeBlock,
       })),
     { ssr: false },
   ),
   ChatCommandMenu: dynamic(
     () =>
-      import("@/components/business/chat-command-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatCommandMenu,
       })),
     { ssr: false },
   ),
   ChatContextPanel: dynamic(
     () =>
-      import("@/components/business/chat-context-panel").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatContextPanel,
       })),
     { ssr: false },
   ),
   ChatConversationSearch: dynamic(
     () =>
-      import("@/components/business/chat-conversation-search").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatConversationSearch,
       })),
     { ssr: false },
   ),
   ChatConversation: dynamic(
     () =>
-      import("@/components/business/chat-conversation").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatConversation,
       })),
     { ssr: false },
   ),
   ChatFeedback: dynamic(
     () =>
-      import("@/components/business/chat-feedback").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatFeedback,
       })),
     { ssr: false },
   ),
   ChatHeader: dynamic(
     () =>
-      import("@/components/business/chat-header").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatHeader,
       })),
     { ssr: false },
   ),
   ChatImageGallery: dynamic(
     () =>
-      import("@/components/business/chat-image-gallery").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatImageGallery,
       })),
     { ssr: false },
   ),
   ChatInputToolbar: dynamic(
     () =>
-      import("@/components/business/chat-input-toolbar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatInputToolbar,
       })),
     { ssr: false },
   ),
   ChatMarkdownRenderer: dynamic(
     () =>
-      import("@/components/business/chat-markdown-renderer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMarkdownRenderer,
       })),
     { ssr: false },
   ),
   ChatMentionPicker: dynamic(
     () =>
-      import("@/components/business/chat-mention-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMentionPicker,
       })),
     { ssr: false },
   ),
   ChatMessageActions: dynamic(
     () =>
-      import("@/components/business/chat-message-actions").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMessageActions,
       })),
     { ssr: false },
   ),
   ChatMessageBubble: dynamic(
     () =>
-      import("@/components/business/chat-message-bubble").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMessageBubble,
       })),
     { ssr: false },
   ),
   ChatMessageGroup: dynamic(
     () =>
-      import("@/components/business/chat-message-group").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMessageGroup,
       })),
     { ssr: false },
   ),
   ChatMessageInput: dynamic(
     () =>
-      import("@/components/business/chat-message-input").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatMessageInput,
       })),
     { ssr: false },
   ),
   ChatModelSwitcher: dynamic(
     () =>
-      import("@/components/business/chat-model-switcher").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatModelSwitcher,
       })),
     { ssr: false },
   ),
   ChatSharedLink: dynamic(
     () =>
-      import("@/components/business/chat-shared-link").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatSharedLink,
       })),
     { ssr: false },
   ),
   ChatShell: dynamic(
     () =>
-      import("@/components/business/chat-shell").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatShell,
       })),
     { ssr: false },
   ),
   ChatSidebar: dynamic(
     () =>
-      import("@/components/business/chat-sidebar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatSidebar,
       })),
     { ssr: false },
   ),
   ChatStreamingText: dynamic(
     () =>
-      import("@/components/business/chat-streaming-text").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatStreamingText,
       })),
     { ssr: false },
   ),
   ChatSuggestReplies: dynamic(
     () =>
-      import("@/components/business/chat-suggest-replies").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatSuggestReplies,
       })),
     { ssr: false },
   ),
   ChatThinkingBlock: dynamic(
     () =>
-      import("@/components/business/chat-thinking-block").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatThinkingBlock,
       })),
     { ssr: false },
   ),
   ChatToolCallBlock: dynamic(
     () =>
-      import("@/components/business/chat-tool-call-block").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatToolCallBlock,
       })),
     { ssr: false },
   ),
   ChatVoiceMessage: dynamic(
     () =>
-      import("@/components/business/chat-voice-message").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ChatVoiceMessage,
       })),
     { ssr: false },
   ),
   CheckoutBar: dynamic(
     () =>
-      import("@/components/business/checkout-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CheckoutBar,
       })),
     { ssr: false },
   ),
   Chip: dynamic(
     () =>
-      import("@/components/business/chip").then((m) => ({ default: m.Chip })),
+      import("@chaos_team/chaos-ui/business").then((m) => ({ default: m.Chip })),
     { ssr: false },
   ),
   CityBrowse: dynamic(
     () =>
-      import("@/components/business/city-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CityBrowse,
       })),
     { ssr: false },
@@ -1579,21 +1579,21 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   ),
   CodeEditor: dynamic(
     () =>
-      import("@/components/business/code-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CodeEditor,
       })),
     { ssr: false },
   ),
   ColorBoard: dynamic(
     () =>
-      import("@/components/business/color-board").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ColorBoard,
       })),
     { ssr: false },
   ),
   ColorTag: dynamic(
     () =>
-      import("@/components/business/color-tag").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ColorTag,
       })),
     { ssr: false },
@@ -1607,1867 +1607,1867 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   ),
   CommissionCalculator: dynamic(
     () =>
-      import("@/components/business/commission-calculator").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CommissionCalculator,
       })),
     { ssr: false },
   ),
   CompanyBrowse: dynamic(
     () =>
-      import("@/components/business/company-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CompanyBrowse,
       })),
     { ssr: false },
   ),
   CompanyPicker: dynamic(
     () =>
-      import("@/components/business/company-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CompanyPicker,
       })),
     { ssr: false },
   ),
   ComplianceChecklist: dynamic(
     () =>
-      import("@/components/business/compliance-checklist").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ComplianceChecklist,
       })),
     { ssr: false },
   ),
   ConfirmDialog: dynamic(
     () =>
-      import("@/components/business/confirm-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ConfirmDialog,
       })),
     { ssr: false },
   ),
   ContractTemplate: dynamic(
     () =>
-      import("@/components/business/contract-template").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ContractTemplate,
       })),
     { ssr: false },
   ),
   CookieBanner: dynamic(
     () =>
-      import("@/components/business/cookie-banner").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CookieBanner,
       })),
     { ssr: false },
   ),
   CostCenterPicker: dynamic(
     () =>
-      import("@/components/business/cost-center-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CostCenterPicker,
       })),
     { ssr: false },
   ),
   CouponCard: dynamic(
     () =>
-      import("@/components/business/coupon-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CouponCard,
       })),
     { ssr: false },
   ),
   CreativePreview: dynamic(
     () =>
-      import("@/components/business/creative-preview").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CreativePreview,
       })),
     { ssr: false },
   ),
   CronEditor: dynamic(
     () =>
-      import("@/components/business/cron-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CronEditor,
       })),
     { ssr: false },
   ),
   CrudPage: dynamic(
     () =>
-      import("@/components/business/crud-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CrudPage,
       })),
     { ssr: false },
   ),
   CrudToolbar: dynamic(
     () =>
-      import("@/components/business/crud-toolbar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CrudToolbar,
       })),
     { ssr: false },
   ),
   Customer360Card: dynamic(
     () =>
-      import("@/components/business/customer-360-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.Customer360Card,
       })),
     { ssr: false },
   ),
   CustomerBrowse: dynamic(
     () =>
-      import("@/components/business/customer-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CustomerBrowse,
       })),
     { ssr: false },
   ),
   CustomerPicker: dynamic(
     () =>
-      import("@/components/business/customer-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.CustomerPicker,
       })),
     { ssr: false },
   ),
   DashboardCanvas: dynamic(
     () =>
-      import("@/components/business/dashboard-canvas").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DashboardCanvas,
       })),
     { ssr: false },
   ),
   DashboardDesigner: dynamic(
     () =>
-      import("@/components/business/dashboard-designer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DashboardDesigner,
       })),
     { ssr: false },
   ),
   DashboardGrid: dynamic(
     () =>
-      import("@/components/business/dashboard-grid").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DashboardGrid,
       })),
     { ssr: false },
   ),
   DataTable: dynamic(
     () =>
-      import("@/components/business/data-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DataTable,
       })),
     { ssr: false },
   ),
   DateRangePicker: dynamic(
     () =>
-      import("@/components/business/date-range-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DateRangePicker,
       })),
     { ssr: false },
   ),
   DeltaBar: dynamic(
     () =>
-      import("@/components/business/delta-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DeltaBar,
       })),
     { ssr: false },
   ),
   DepartmentPicker: dynamic(
     () =>
-      import("@/components/business/department-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DepartmentPicker,
       })),
     { ssr: false },
   ),
   DictSelect: dynamic(
     () =>
-      import("@/components/business/dict-select").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DictSelect,
       })),
     { ssr: false },
   ),
   DiffViewerTable: dynamic(
     () =>
-      import("@/components/business/diff-viewer-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DiffViewerTable,
       })),
     { ssr: false },
   ),
   DiffViewer: dynamic(
     () =>
-      import("@/components/business/diff-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DiffViewer,
       })),
     { ssr: false },
   ),
   DistributorPicker: dynamic(
     () =>
-      import("@/components/business/distributor-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DistributorPicker,
       })),
     { ssr: false },
   ),
   DockPanel: dynamic(
     () =>
-      import("@/components/business/dock-panel").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DockPanel,
       })),
     { ssr: false },
   ),
   DonutCard: dynamic(
     () =>
-      import("@/components/business/donut-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DonutCard,
       })),
     { ssr: false },
   ),
   DonutChart: dynamic(
     () =>
-      import("@/components/business/donut-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DonutChart,
       })),
     { ssr: false },
   ),
   DynamicFormBuilder: dynamic(
     () =>
-      import("@/components/business/dynamic-form-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.DynamicFormBuilder,
       })),
     { ssr: false },
   ),
   EditToolbar: dynamic(
     () =>
-      import("@/components/business/edit-toolbar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.EditToolbar,
       })),
     { ssr: false },
   ),
   EditableTreeTable: dynamic(
     () =>
-      import("@/components/business/editable-tree-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.EditableTreeTable,
       })),
     { ssr: false },
   ),
   EmployeePicker: dynamic(
     () =>
-      import("@/components/business/employee-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.EmployeePicker,
       })),
     { ssr: false },
   ),
   EquipmentCard: dynamic(
     () =>
-      import("@/components/business/equipment-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.EquipmentCard,
       })),
     { ssr: false },
   ),
   ErrorBoundary: dynamic(
     () =>
-      import("@/components/business/error-boundary").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ErrorBoundary,
       })),
     { ssr: false },
   ),
   ErrorPage: dynamic(
     () =>
-      import("@/components/business/error-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ErrorPage,
       })),
     { ssr: false },
   ),
   ExpenseLineEditor: dynamic(
     () =>
-      import("@/components/business/expense-line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ExpenseLineEditor,
       })),
     { ssr: false },
   ),
   ExperimentSummary: dynamic(
     () =>
-      import("@/components/business/experiment-summary").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ExperimentSummary,
       })),
     { ssr: false },
   ),
   ExportButton: dynamic(
     () =>
-      import("@/components/business/export-button").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ExportButton,
       })),
     { ssr: false },
   ),
   FeatureTour: dynamic(
     () =>
-      import("@/components/business/feature-tour").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FeatureTour,
       })),
     { ssr: false },
   ),
   FeeTypeBrowse: dynamic(
     () =>
-      import("@/components/business/fee-type-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FeeTypeBrowse,
       })),
     { ssr: false },
   ),
   FieldMask: dynamic(
     () =>
-      import("@/components/business/field-mask").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FieldMask,
       })),
     { ssr: false },
   ),
   FileCard: dynamic(
     () =>
-      import("@/components/business/file-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FileCard,
       })),
     { ssr: false },
   ),
   FileUploadManager: dynamic(
     () =>
-      import("@/components/business/file-upload-manager").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FileUploadManager,
       })),
     { ssr: false },
   ),
   FilterBar: dynamic(
     () =>
-      import("@/components/business/filter-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FilterBar,
       })),
     { ssr: false },
   ),
   FilterBuilder: dynamic(
     () =>
-      import("@/components/business/filter-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FilterBuilder,
       })),
     { ssr: false },
   ),
   FlowTracker: dynamic(
     () =>
-      import("@/components/business/flow-tracker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FlowTracker,
       })),
     { ssr: false },
   ),
   Forbidden: dynamic(
     () =>
-      import("@/components/business/forbidden").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.Forbidden,
       })),
     { ssr: false },
   ),
   FormDesignerRuntime: dynamic(
     () =>
-      import("@/components/business/form-designer-runtime").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FormDesignerRuntime,
       })),
     { ssr: false },
   ),
   FormDesigner: dynamic(
     () =>
-      import("@/components/business/form-designer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FormDesigner,
       })),
     { ssr: false },
   ),
   FormField: dynamic(
     () =>
-      import("@/components/business/form-field").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FormField,
       })),
     { ssr: false },
   ),
   FormWizard: dynamic(
     () =>
-      import("@/components/business/form-wizard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FormWizard,
       })),
     { ssr: false },
   ),
   FormulaEditor: dynamic(
     () =>
-      import("@/components/business/formula-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FormulaEditor,
       })),
     { ssr: false },
   ),
   FunnelChart: dynamic(
     () =>
-      import("@/components/business/funnel-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.FunnelChart,
       })),
     { ssr: false },
   ),
   GanttChartPro: dynamic(
     () =>
-      import("@/components/business/gantt-chart-pro").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.GanttChartPro,
       })),
     { ssr: false },
   ),
   GanttChart: dynamic(
     () =>
-      import("@/components/business/gantt-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.GanttChart,
       })),
     { ssr: false },
   ),
   GaugeChart: dynamic(
     () =>
-      import("@/components/business/gauge-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.GaugeChart,
       })),
     { ssr: false },
   ),
   Gauge: dynamic(
     () =>
-      import("@/components/business/gauge").then((m) => ({ default: m.Gauge })),
+      import("@chaos_team/chaos-ui/business").then((m) => ({ default: m.Gauge })),
     { ssr: false },
   ),
   GlobalLoading: dynamic(
     () =>
-      import("@/components/business/global-loading").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.GlobalLoading,
       })),
     { ssr: false },
   ),
   HeatmapCalendar: dynamic(
     () =>
-      import("@/components/business/heatmap-calendar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.HeatmapCalendar,
       })),
     { ssr: false },
   ),
   HeatmapChart: dynamic(
     () =>
-      import("@/components/business/heatmap-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.HeatmapChart,
       })),
     { ssr: false },
   ),
   I18nFormField: dynamic(
     () =>
-      import("@/components/business/i18n-form-field").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.I18nFormField,
       })),
     { ssr: false },
   ),
   ImMessage: dynamic(
     () =>
-      import("@/components/business/im-message").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImMessage,
       })),
     { ssr: false },
   ),
   ImageGallery: dynamic(
     () =>
-      import("@/components/business/image-gallery").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImageGallery,
       })),
     { ssr: false },
   ),
   ImportDialog: dynamic(
     () =>
-      import("@/components/business/import-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImportDialog,
       })),
     { ssr: false },
   ),
   ImportErrorTable: dynamic(
     () =>
-      import("@/components/business/import-error-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImportErrorTable,
       })),
     { ssr: false },
   ),
   ImportMappingWizard: dynamic(
     () =>
-      import("@/components/business/import-mapping-wizard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImportMappingWizard,
       })),
     { ssr: false },
   ),
   InlineEdit: dynamic(
     () =>
-      import("@/components/business/inline-edit").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InlineEdit,
       })),
     { ssr: false },
   ),
   InventoryAlertList: dynamic(
     () =>
-      import("@/components/business/inventory-alert-list").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InventoryAlertList,
       })),
     { ssr: false },
   ),
   InventorySnapshot: dynamic(
     () =>
-      import("@/components/business/inventory-snapshot").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InventorySnapshot,
       })),
     { ssr: false },
   ),
   InviteLink: dynamic(
     () =>
-      import("@/components/business/invite-link").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InviteLink,
       })),
     { ssr: false },
   ),
   InvoiceManager: dynamic(
     () =>
-      import("@/components/business/invoice-manager").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InvoiceManager,
       })),
     { ssr: false },
   ),
   InvoiceSummary: dynamic(
     () =>
-      import("@/components/business/invoice-summary").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.InvoiceSummary,
       })),
     { ssr: false },
   ),
   IotSensorGrid: dynamic(
     () =>
-      import("@/components/business/iot-sensor-grid").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.IotSensorGrid,
       })),
     { ssr: false },
   ),
   JournalEntryEditor: dynamic(
     () =>
-      import("@/components/business/journal-entry-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.JournalEntryEditor,
       })),
     { ssr: false },
   ),
   JsonEditor: dynamic(
     () =>
-      import("@/components/business/json-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.JsonEditor,
       })),
     { ssr: false },
   ),
   JsonViewer: dynamic(
     () =>
-      import("@/components/business/json-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.JsonViewer,
       })),
     { ssr: false },
   ),
   KanbanBoard: dynamic(
     () =>
-      import("@/components/business/kanban-board").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.KanbanBoard,
       })),
     { ssr: false },
   ),
   KanbanColumn: dynamic(
     () =>
-      import("@/components/business/kanban-column").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.KanbanColumn,
       })),
     { ssr: false },
   ),
   KpiCard: dynamic(
     () =>
-      import("@/components/business/kpi-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.KPICard,
       })),
     { ssr: false },
   ),
   LabelDesigner: dynamic(
     () =>
-      import("@/components/business/label-designer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LabelDesigner,
       })),
     { ssr: false },
   ),
   LanguageSwitcher: dynamic(
     () =>
-      import("@/components/business/language-switcher").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LanguageSwitcher,
       })),
     { ssr: false },
   ),
   LeadPipelineBoard: dynamic(
     () =>
-      import("@/components/business/lead-pipeline-board").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LeadPipelineBoard,
       })),
     { ssr: false },
   ),
   LeaveRequestForm: dynamic(
     () =>
-      import("@/components/business/leave-request-form").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LeaveRequestForm,
       })),
     { ssr: false },
   ),
   LineChart: dynamic(
     () =>
-      import("@/components/business/line-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LineChart,
       })),
     { ssr: false },
   ),
   LineEditor: dynamic(
     () =>
-      import("@/components/business/line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LineEditor,
       })),
     { ssr: false },
   ),
   LoadingPage: dynamic(
     () =>
-      import("@/components/business/loading-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LoadingPage,
       })),
     { ssr: false },
   ),
   MaintenanceLog: dynamic(
     () =>
-      import("@/components/business/maintenance-log").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MaintenanceLog,
       })),
     { ssr: false },
   ),
   MapChart: dynamic(
     () =>
-      import("@/components/business/map-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MapChart,
       })),
     { ssr: false },
   ),
   MapMarker: dynamic(
     () =>
-      import("@/components/business/map-marker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MapMarkerCluster,
       })),
     { ssr: false },
   ),
   MapTrack: dynamic(
     () =>
-      import("@/components/business/map-track").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MapTrack,
       })),
     { ssr: false },
   ),
   MapView: dynamic(
     () =>
-      import("@/components/business/map-view").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MapView,
       })),
     { ssr: false },
   ),
   MarkdownEditor: dynamic(
     () =>
-      import("@/components/business/markdown-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MarkdownEditor,
       })),
     { ssr: false },
   ),
   MarketingActivityForm: dynamic(
     () =>
-      import("@/components/business/marketing-activity-form").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MarketingActivityForm,
       })),
     { ssr: false },
   ),
   MasterEditTemplate: dynamic(
     () =>
-      import("@/components/business/master-edit-template").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MasterEditTemplate,
       })),
     { ssr: false },
   ),
   MasterListTemplate: dynamic(
     () =>
-      import("@/components/business/master-list-template").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MasterListTemplate,
       })),
     { ssr: false },
   ),
   MediaRecorder: dynamic(
     () =>
-      import("@/components/business/media-recorder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MediaRecorder,
       })),
     { ssr: false },
   ),
   MeetingRoomBooking: dynamic(
     () =>
-      import("@/components/business/meeting-room-booking").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MeetingRoomBooking,
       })),
     { ssr: false },
   ),
   MessageList: dynamic(
     () =>
-      import("@/components/business/message-list").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MessageList,
       })),
     { ssr: false },
   ),
   MetricTrend: dynamic(
     () =>
-      import("@/components/business/metric-trend").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MetricTrend,
       })),
     { ssr: false },
   ),
   MobileActionSheet: dynamic(
     () =>
-      import("@/components/business/mobile-action-sheet").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileActionSheet,
       })),
     { ssr: false },
   ),
   MobileCamera: dynamic(
     () =>
-      import("@/components/business/mobile-camera").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileCamera,
       })),
     { ssr: false },
   ),
   MobileGeolocation: dynamic(
     () =>
-      import("@/components/business/mobile-geolocation").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileGeolocation,
       })),
     { ssr: false },
   ),
   MobileInfiniteScroll: dynamic(
     () =>
-      import("@/components/business/mobile-infinite-scroll").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileInfiniteScroll,
       })),
     { ssr: false },
   ),
   MobileListItem: dynamic(
     () =>
-      import("@/components/business/mobile-list-item").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileListItem,
       })),
     { ssr: false },
   ),
   MobilePageShell: dynamic(
     () =>
-      import("@/components/business/mobile-page-shell").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobilePageShell,
       })),
     { ssr: false },
   ),
   MobilePicker: dynamic(
     () =>
-      import("@/components/business/mobile-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobilePicker,
       })),
     { ssr: false },
   ),
-  MobileQrcodeScanner: dynamic(
+  MobileQrCodeScanner: dynamic(
     () =>
-      import("@/components/business/mobile-qrcode-scanner").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileQrCodeScanner,
       })),
     { ssr: false },
   ),
   MobileSignature: dynamic(
     () =>
-      import("@/components/business/mobile-signature").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileSignature,
       })),
     { ssr: false },
   ),
   MobileTabBar: dynamic(
     () =>
-      import("@/components/business/mobile-tab-bar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MobileTabBar,
       })),
     { ssr: false },
   ),
   MultiCurrencyInput: dynamic(
     () =>
-      import("@/components/business/multi-currency-input").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MultiCurrencyInput,
       })),
     { ssr: false },
   ),
   MultiSelect: dynamic(
     () =>
-      import("@/components/business/multi-select").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MultiSelect,
       })),
     { ssr: false },
   ),
   NotificationCenter: dynamic(
     () =>
-      import("@/components/business/notification-center").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.NotificationCenter,
       })),
     { ssr: false },
   ),
   NotificationRuleBuilder: dynamic(
     () =>
-      import("@/components/business/notification-rule-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.NotificationRuleBuilder,
       })),
     { ssr: false },
   ),
   OaBridge: dynamic(
     () =>
-      import("@/components/business/oa-bridge").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OaBridge,
       })),
     { ssr: false },
   ),
   OeeDashboard: dynamic(
     () =>
-      import("@/components/business/oee-dashboard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OeeDashboard,
       })),
     { ssr: false },
   ),
   OperationLog: dynamic(
     () =>
-      import("@/components/business/operation-log").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OperationLog,
       })),
     { ssr: false },
   ),
   OrderLineEditor: dynamic(
     () =>
-      import("@/components/business/order-line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OrderLineEditor,
       })),
     { ssr: false },
   ),
   OrgChart: dynamic(
     () =>
-      import("@/components/business/org-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OrgChart,
       })),
     { ssr: false },
   ),
   OverviewPage: dynamic(
     () =>
-      import("@/components/business/overview-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OverviewPage,
       })),
     { ssr: false },
   ),
   PageHeader: dynamic(
     () =>
-      import("@/components/business/page-header").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PageHeader,
       })),
     { ssr: false },
   ),
   PasteUpload: dynamic(
     () =>
-      import("@/components/business/paste-upload").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PasteUpload,
       })),
     { ssr: false },
   ),
   PaymentMethodSelector: dynamic(
     () =>
-      import("@/components/business/payment-method-selector").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PaymentMethodSelector,
       })),
     { ssr: false },
   ),
   PaymentResult: dynamic(
     () =>
-      import("@/components/business/payment-result").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PaymentResult,
       })),
     { ssr: false },
   ),
   PaymentSchedule: dynamic(
     () =>
-      import("@/components/business/payment-schedule").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PaymentSchedule,
       })),
     { ssr: false },
   ),
   PdfViewer: dynamic(
     () =>
-      import("@/components/business/pdf-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PDFViewer,
       })),
     { ssr: false },
   ),
   PerformanceRankTable: dynamic(
     () =>
-      import("@/components/business/performance-rank-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PerformanceRankTable,
       })),
     { ssr: false },
   ),
   PermissionButton: dynamic(
     () =>
-      import("@/components/business/permission-button").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PermissionButton,
       })),
     { ssr: false },
   ),
   PermissionMatrix: dynamic(
     () =>
-      import("@/components/business/permission-matrix").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PermissionMatrix,
       })),
     { ssr: false },
   ),
   PermissionWrapper: dynamic(
     () =>
-      import("@/components/business/permission-wrapper").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PermissionWrapper,
       })),
     { ssr: false },
   ),
   PhotoAudit: dynamic(
     () =>
-      import("@/components/business/photo-audit").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PhotoAudit,
       })),
     { ssr: false },
   ),
   PieChart: dynamic(
     () =>
-      import("@/components/business/pie-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PieChart,
       })),
     { ssr: false },
   ),
   PivotTable: dynamic(
     () =>
-      import("@/components/business/pivot-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PivotTable,
       })),
     { ssr: false },
   ),
   PolicyLineEditor: dynamic(
     () =>
-      import("@/components/business/policy-line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PolicyLineEditor,
       })),
     { ssr: false },
   ),
   PoolTrackerTable: dynamic(
     () =>
-      import("@/components/business/pool-tracker-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PoolTrackerTable,
       })),
     { ssr: false },
   ),
   PreferencePanel: dynamic(
     () =>
-      import("@/components/business/preference-panel").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PreferencePanel,
       })),
     { ssr: false },
   ),
   PriceAdjustBrowse: dynamic(
     () =>
-      import("@/components/business/price-adjust-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PriceAdjustBrowse,
       })),
     { ssr: false },
   ),
   PrintButton: dynamic(
     () =>
-      import("@/components/business/print-button").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PrintButton,
       })),
     { ssr: false },
   ),
   PrintService: dynamic(
     () =>
-      import("@/components/business/print-service").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PrintService,
       })),
     { ssr: false },
   ),
   PrintTemplateBuilder: dynamic(
     () =>
-      import("@/components/business/print-template-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PrintTemplateBuilder,
       })),
     { ssr: false },
   ),
   ProductBrowse: dynamic(
     () =>
-      import("@/components/business/product-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ProductBrowse,
       })),
     { ssr: false },
   ),
   ProductCategoryPicker: dynamic(
     () =>
-      import("@/components/business/product-category-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ProductCategoryPicker,
       })),
     { ssr: false },
   ),
   PromotionRuleCard: dynamic(
     () =>
-      import("@/components/business/promotion-rule-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PromotionRuleCard,
       })),
     { ssr: false },
   ),
   PromotionRuleEditor: dynamic(
     () =>
-      import("@/components/business/promotion-rule-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PromotionRuleEditor,
       })),
     { ssr: false },
   ),
   PromptDialog: dynamic(
     () =>
-      import("@/components/business/prompt-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PromptDialog,
       })),
     { ssr: false },
   ),
   PurchaseOrderEditor: dynamic(
     () =>
-      import("@/components/business/purchase-order-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.PurchaseOrderEditor,
       })),
     { ssr: false },
   ),
   QualityInspectionForm: dynamic(
     () =>
-      import("@/components/business/quality-inspection-form").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.QualityInspectionForm,
       })),
     { ssr: false },
   ),
   QuickEntryGrid: dynamic(
     () =>
-      import("@/components/business/quick-entry-grid").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.QuickEntryGrid,
       })),
     { ssr: false },
   ),
   QuotationLineEditor: dynamic(
     () =>
-      import("@/components/business/quotation-line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.QuotationLineEditor,
       })),
     { ssr: false },
   ),
   RadarChart: dynamic(
     () =>
-      import("@/components/business/radar-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RadarChart,
       })),
     { ssr: false },
   ),
   RadialChart: dynamic(
     () =>
-      import("@/components/business/radial-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RadialChart,
       })),
     { ssr: false },
   ),
   RebutNodeSelect: dynamic(
     () =>
-      import("@/components/business/rebut-node-select").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RebutNodeSelect,
       })),
     { ssr: false },
   ),
   ReconciliationLineEditor: dynamic(
     () =>
-      import("@/components/business/reconciliation-line-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ReconciliationLineEditor,
       })),
     { ssr: false },
   ),
   ReconciliationSummary: dynamic(
     () =>
-      import("@/components/business/reconciliation-summary").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ReconciliationSummary,
       })),
     { ssr: false },
   ),
   RedPacket: dynamic(
     () =>
-      import("@/components/business/red-packet").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RedPacket,
       })),
     { ssr: false },
   ),
   RegionPicker: dynamic(
     () =>
-      import("@/components/business/region-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RegionPicker,
       })),
     { ssr: false },
   ),
   RemoteSelect: dynamic(
     () =>
-      import("@/components/business/remote-select").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RemoteSelect,
       })),
     { ssr: false },
   ),
   ReportBuilder: dynamic(
     () =>
-      import("@/components/business/report-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ReportBuilder,
       })),
     { ssr: false },
   ),
   ResourceSchedule: dynamic(
     () =>
-      import("@/components/business/resource-schedule").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ResourceSchedule,
       })),
     { ssr: false },
   ),
   ResponsivePreview: dynamic(
     () =>
-      import("@/components/business/responsive-preview").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ResponsivePreview,
       })),
     { ssr: false },
   ),
   RichTextEditor: dynamic(
     () =>
-      import("@/components/business/rich-text-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RichTextEditor,
       })),
     { ssr: false },
   ),
   RoleAssignment: dynamic(
     () =>
-      import("@/components/business/role-assignment").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RoleAssignment,
       })),
     { ssr: false },
   ),
   RuleEditor: dynamic(
     () =>
-      import("@/components/business/rule-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.RuleEditor,
       })),
     { ssr: false },
   ),
   SalesOrderBrowse: dynamic(
     () =>
-      import("@/components/business/sales-order-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SalesOrderBrowse,
       })),
     { ssr: false },
   ),
   SalesTargetEditor: dynamic(
     () =>
-      import("@/components/business/sales-target-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SalesTargetEditor,
       })),
     { ssr: false },
   ),
   SankeyChart: dynamic(
     () =>
-      import("@/components/business/sankey-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SankeyChart,
       })),
     { ssr: false },
   ),
   SavedFilters: dynamic(
     () =>
-      import("@/components/business/saved-filters").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SavedFilters,
       })),
     { ssr: false },
   ),
   ScatterChart: dynamic(
     () =>
-      import("@/components/business/scatter-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ScatterChart,
       })),
     { ssr: false },
   ),
   SealStampRegistry: dynamic(
     () =>
-      import("@/components/business/seal-stamp-registry").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SealStampRegistry,
       })),
     { ssr: false },
   ),
   SearchTable: dynamic(
     () =>
-      import("@/components/business/search-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SearchTable,
       })),
     { ssr: false },
   ),
   SerialNumberManager: dynamic(
     () =>
-      import("@/components/business/serial-number-manager").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SerialNumberManager,
       })),
     { ssr: false },
   ),
   SettlementStatusTag: dynamic(
     () =>
-      import("@/components/business/settlement-status-tag").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SettlementStatusTag,
       })),
     { ssr: false },
   ),
   ShiftCalendar: dynamic(
     () =>
-      import("@/components/business/shift-calendar").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ShiftCalendar,
       })),
     { ssr: false },
   ),
   ShippingWayBrowse: dynamic(
     () =>
-      import("@/components/business/shipping-way-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ShippingWayBrowse,
       })),
     { ssr: false },
   ),
   SignActionButton: dynamic(
     () =>
-      import("@/components/business/sign-action-button").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SignActionButton,
       })),
     { ssr: false },
   ),
   SkuPicker: dynamic(
     () =>
-      import("@/components/business/sku-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SkuPicker,
       })),
     { ssr: false },
   ),
   SocialShare: dynamic(
     () =>
-      import("@/components/business/social-share").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SocialShare,
       })),
     { ssr: false },
   ),
   SparkChart: dynamic(
     () =>
-      import("@/components/business/spark-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SparkChart,
       })),
     { ssr: false },
   ),
   SpcControlChart: dynamic(
     () =>
-      import("@/components/business/spc-control-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SPCControlChart,
       })),
     { ssr: false },
   ),
   SqlEditor: dynamic(
     () =>
-      import("@/components/business/sql-editor").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SqlEditor,
       })),
     { ssr: false },
   ),
   StatCardRow: dynamic(
     () =>
-      import("@/components/business/stat-card-row").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatCardRow,
       })),
     { ssr: false },
   ),
   StatCardWithDelta: dynamic(
     () =>
-      import("@/components/business/stat-card-with-delta").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatCardWithDelta,
       })),
     { ssr: false },
   ),
   StatCardWithSparkline: dynamic(
     () =>
-      import("@/components/business/stat-card-with-sparkline").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatCardWithSparkline,
       })),
     { ssr: false },
   ),
   StatCard: dynamic(
     () =>
-      import("@/components/business/stat-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatCard,
       })),
     { ssr: false },
   ),
   StatusBadge: dynamic(
     () =>
-      import("@/components/business/status-badge").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatusBadge,
       })),
     { ssr: false },
   ),
   StatusTag: dynamic(
     () =>
-      import("@/components/business/status-tag").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StatusTag,
       })),
     { ssr: false },
   ),
   StockTransferDialog: dynamic(
     () =>
-      import("@/components/business/stock-transfer-dialog").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.StockTransferDialog,
       })),
     { ssr: false },
   ),
   SubformTabs: dynamic(
     () =>
-      import("@/components/business/subform-tabs").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SubformTabs,
       })),
     { ssr: false },
   ),
   SupplierScorecard: dynamic(
     () =>
-      import("@/components/business/supplier-scorecard").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.SupplierScorecard,
       })),
     { ssr: false },
   ),
   TabCrudPage: dynamic(
     () =>
-      import("@/components/business/tab-crud-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TabCrudPage,
       })),
     { ssr: false },
   ),
   TabPin: dynamic(
     () =>
-      import("@/components/business/tab-pin").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TabPin,
       })),
     { ssr: false },
   ),
   TargetProgress: dynamic(
     () =>
-      import("@/components/business/target-progress").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TargetProgress,
       })),
     { ssr: false },
   ),
   TaskHistory: dynamic(
     () =>
-      import("@/components/business/task-history").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TaskHistory,
       })),
     { ssr: false },
   ),
   TaskListTable: dynamic(
     () =>
-      import("@/components/business/task-list-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TaskListTable,
       })),
     { ssr: false },
   ),
   TaskProgress: dynamic(
     () =>
-      import("@/components/business/task-progress").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TaskProgress,
       })),
     { ssr: false },
   ),
   TaxDetailTable: dynamic(
     () =>
-      import("@/components/business/tax-detail-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TaxDetailTable,
       })),
     { ssr: false },
   ),
   TemplateDownload: dynamic(
     () =>
-      import("@/components/business/template-download").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TemplateDownload,
       })),
     { ssr: false },
   ),
   TerritoryMap: dynamic(
     () =>
-      import("@/components/business/territory-map").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TerritoryMap,
       })),
     { ssr: false },
   ),
   ThemeToggle: dynamic(
     () =>
-      import("@/components/business/theme-toggle").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ThemeToggle,
       })),
     { ssr: false },
   ),
   TimelineView: dynamic(
     () =>
-      import("@/components/business/timeline-view").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TimelineView,
       })),
     { ssr: false },
   ),
   TodoListTable: dynamic(
     () =>
-      import("@/components/business/todo-list-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TodoListTable,
       })),
     { ssr: false },
   ),
   Tracking: dynamic(
     () =>
-      import("@/components/business/tracking").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.Tracking,
       })),
     { ssr: false },
   ),
   TreeCrudPage: dynamic(
     () =>
-      import("@/components/business/tree-crud-page").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TreeCrudPage,
       })),
     { ssr: false },
   ),
   TreeTable: dynamic(
     () =>
-      import("@/components/business/tree-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TreeTable,
       })),
     { ssr: false },
   ),
   TreemapChart: dynamic(
     () =>
-      import("@/components/business/treemap-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.TreemapChart,
       })),
     { ssr: false },
   ),
   UnitConverter: dynamic(
     () =>
-      import("@/components/business/unit-converter").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.UnitConverter,
       })),
     { ssr: false },
   ),
   UserMenu: dynamic(
     () =>
-      import("@/components/business/user-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.UserMenu,
       })),
     { ssr: false },
   ),
   UtmBuilder: dynamic(
     () =>
-      import("@/components/business/utm-builder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.UtmBuilder,
       })),
     { ssr: false },
   ),
   VehicleBooking: dynamic(
     () =>
-      import("@/components/business/vehicle-booking").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.VehicleBooking,
       })),
     { ssr: false },
   ),
   VersionHistory: dynamic(
     () =>
-      import("@/components/business/version-history").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.VersionHistory,
       })),
     { ssr: false },
   ),
   WarehouseBrowse: dynamic(
     () =>
-      import("@/components/business/warehouse-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WarehouseBrowse,
       })),
     { ssr: false },
   ),
   WarehousePicker: dynamic(
     () =>
-      import("@/components/business/warehouse-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WarehousePicker,
       })),
     { ssr: false },
   ),
   WaterfallChart: dynamic(
     () =>
-      import("@/components/business/waterfall-chart").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WaterfallChart,
       })),
     { ssr: false },
   ),
   WorkOrderCard: dynamic(
     () =>
-      import("@/components/business/work-order-card").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WorkOrderCard,
       })),
     { ssr: false },
   ),
   WorkflowDesigner: dynamic(
     () =>
-      import("@/components/business/workflow-designer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WorkflowDesigner,
       })),
     { ssr: false },
   ),
   WorkflowPreview: dynamic(
     () =>
-      import("@/components/business/workflow-preview").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WorkflowPreview,
       })),
     { ssr: false },
   ),
   WriteoffBrowse: dynamic(
     () =>
-      import("@/components/business/writeoff-browse").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WriteoffBrowse,
       })),
     { ssr: false },
   ),
   WriteoffFlow: dynamic(
     () =>
-      import("@/components/business/writeoff-flow").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.WriteoffFlow,
       })),
     { ssr: false },
   ),
   PasswordInput: dynamic(
     () =>
-      import("@/components/ui/password-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.PasswordInput,
       })),
     { ssr: false },
   ),
   PhoneInput: dynamic(
     () =>
-      import("@/components/ui/phone-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.PhoneInput,
       })),
     { ssr: false },
   ),
   MaskedInput: dynamic(
     () =>
-      import("@/components/ui/masked-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MaskedInput,
       })),
     { ssr: false },
   ),
   MonthPicker: dynamic(
     () =>
-      import("@/components/ui/month-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MonthPicker,
       })),
     { ssr: false },
   ),
   YearPicker: dynamic(
     () =>
-      import("@/components/ui/year-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.YearPicker,
       })),
     { ssr: false },
   ),
   QuarterPicker: dynamic(
     () =>
-      import("@/components/ui/quarter-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.QuarterPicker,
       })),
     { ssr: false },
   ),
   RangeSlider: dynamic(
     () =>
-      import("@/components/ui/range-slider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.RangeSlider,
       })),
     { ssr: false },
   ),
   CountdownButton: dynamic(
     () =>
-      import("@/components/ui/countdown-button").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.CountdownButton,
       })),
     { ssr: false },
   ),
   AmountInput: dynamic(
     () =>
-      import("@/components/ui/amount-input").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.AmountInput,
       })),
     { ssr: false },
   ),
   ProTable: dynamic(
     () =>
-      import("@/components/business/pro-table").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ProTable,
       })),
     { ssr: false },
   ),
   SortableList: dynamic(
     () =>
-      import("@/components/ui/sortable-list").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SortableList,
       })),
     { ssr: false },
   ),
   CopyButton: dynamic(
     () =>
-      import("@/components/ui/copy-button").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.CopyButton,
       })),
     { ssr: false },
   ),
   LogViewer: dynamic(
     () =>
-      import("@/components/business/log-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.LogViewer,
       })),
     { ssr: false },
   ),
   BarcodeScanner: dynamic(
     () =>
-      import("@/components/business/barcode-scanner").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.BarcodeScanner,
       })),
     { ssr: false },
   ),
   ImageCropper: dynamic(
     () =>
-      import("@/components/business/image-cropper").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ImageCropper,
       })),
     { ssr: false },
   ),
   EditableTable: dynamic(
     () =>
-      import("@/components/ui/editable-table").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.EditableTable,
       })),
     { ssr: false },
   ),
   EditableDescriptions: dynamic(
     () =>
-      import("@/components/ui/editable-descriptions").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.EditableDescriptions,
       })),
     { ssr: false },
   ),
   FilterChips: dynamic(
     () =>
-      import("@/components/ui/filter-chips").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.FilterChips,
       })),
     { ssr: false },
   ),
   SavedViewSwitcher: dynamic(
     () =>
-      import("@/components/ui/saved-view").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SavedViewSwitcher,
       })),
     { ssr: false },
   ),
   SkeletonTable: dynamic(
     () =>
-      import("@/components/ui/skeleton-table").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SkeletonTable,
       })),
     { ssr: false },
   ),
   SkeletonForm: dynamic(
     () =>
-      import("@/components/ui/skeleton-form").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SkeletonForm,
       })),
     { ssr: false },
   ),
   CodeDiffViewer: dynamic(
     () =>
-      import("@/components/ui/diff-viewer-code").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.CodeDiffViewer,
       })),
     { ssr: false },
   ),
   MarkdownViewer: dynamic(
     () =>
-      import("@/components/ui/markdown-viewer").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.MarkdownViewer,
       })),
     { ssr: false },
   ),
   RichTextDisplay: dynamic(
     () =>
-      import("@/components/ui/rich-text-display").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.RichTextDisplay,
       })),
     { ssr: false },
   ),
   LazyImage: dynamic(
     () =>
-      import("@/components/ui/lazy-image").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.LazyImage,
       })),
     { ssr: false },
   ),
   KeepAlive: dynamic(
     () =>
-      import("@/components/ui/keep-alive").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.KeepAlive,
       })),
     { ssr: false },
   ),
   MultiTabManager: dynamic(
     () =>
-      import("@/components/layout/multi-tab-manager").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.MultiTabManager,
       })),
     { ssr: false },
   ),
   NotificationBadge: dynamic(
     () =>
-      import("@/components/ui/notification-badge").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.NotificationBadge,
       })),
     { ssr: false },
   ),
   NotificationDropdown: dynamic(
     () =>
-      import("@/components/ui/notification-dropdown").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.NotificationDropdown,
       })),
     { ssr: false },
   ),
   ErrorBoundaryUI: dynamic(
     () =>
-      import("@/components/ui/error-boundary-ui").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ErrorBoundaryUI,
       })),
     { ssr: false },
   ),
   I18nProvider: dynamic(
     () =>
-      import("@/components/ui/i18n-provider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.I18nProvider,
       })),
     { ssr: false },
   ),
   RTLProvider: dynamic(
     () =>
-      import("@/components/ui/rtl-provider").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.RTLProvider,
       })),
     { ssr: false },
   ),
   KeyboardShortcutsManager: dynamic(
     () =>
-      import("@/components/ui/keyboard-shortcuts-manager").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.KeyboardShortcutsManager,
       })),
     { ssr: false },
   ),
   ImmersiveLayout: dynamic(
     () =>
-      import("@/components/layout/immersive-layout").then((m) => ({
+      import("@chaos_team/chaos-ui/layout").then((m) => ({
         default: m.ImmersiveLayout,
       })),
     { ssr: false },
   ),
   OrgPicker: dynamic(
     () =>
-      import("@/components/business/org-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OrgPicker,
       })),
     { ssr: false },
   ),
   UserPicker: dynamic(
     () =>
-      import("@/components/business/user-picker").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.UserPicker,
       })),
     { ssr: false },
   ),
   AddressInput: dynamic(
     () =>
-      import("@/components/business/address-input").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AddressInput,
       })),
     { ssr: false },
   ),
   JSONViewerUI: dynamic(
     () =>
-      import("@/components/ui/json-viewer-ui").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.JSONViewerUI,
       })),
     { ssr: false },
   ),
   Heatmap: dynamic(
     () =>
-      import("@/components/ui/heatmap").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.Heatmap,
       })),
     { ssr: false },
   ),
   SegmentedFilter: dynamic(
     () =>
-      import("@/components/ui/segmented-filter").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.SegmentedFilter,
       })),
     { ssr: false },
   ),
   StatGrid: dynamic(
     () =>
-      import("@/components/ui/stat-grid").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.StatGrid,
       })),
     { ssr: false },
   ),
   RowContextMenu: dynamic(
     () =>
-      import("@/components/ui/row-context-menu").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.RowContextMenu,
       })),
     { ssr: false },
   ),
   ProgressiveImage: dynamic(
     () =>
-      import("@/components/ui/progressive-image").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.ProgressiveImage,
       })),
     { ssr: false },
   ),
   PasswordPolicyValidator: dynamic(
     () =>
-      import("@/components/ui/password-policy-validator").then((m) => ({
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
         default: m.PasswordPolicyValidator,
       })),
     { ssr: false },
   ),
   MarkdownViewerBiz: dynamic(
     () =>
-      import("@/components/business/markdown-viewer-biz").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.MarkdownViewerBiz,
       })),
     { ssr: false },
   ),
   AudioRecorder: dynamic(
     () =>
-      import("@/components/business/audio-recorder").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.AudioRecorder,
       })),
     { ssr: false },
   ),
   ScreenCapture: dynamic(
     () =>
-      import("@/components/business/screen-capture").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.ScreenCapture,
       })),
     { ssr: false },
   ),
   OrgTreeSelect: dynamic(
     () =>
-      import("@/components/business/org-tree-select").then((m) => ({
+      import("@chaos_team/chaos-ui/business").then((m) => ({
         default: m.OrgTreeSelect,
       })),
     { ssr: false },
@@ -3681,7 +3681,7 @@ export const businessComponentNames: ReadonlySet<string> = new Set([
   "MobileListItem",
   "MobilePageShell",
   "MobilePicker",
-  "MobileQrcodeScanner",
+  "MobileQrCodeScanner",
   "MobileSignature",
   "MobileTabBar",
   "MultiCurrencyInput",

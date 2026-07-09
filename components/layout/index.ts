@@ -13,6 +13,9 @@ export * from "./master-detail-layout";
 export * from "./master-detail-tabs";
 export * from "./region-layout";
 
+export { NavigationTabsBar } from "./navigation-tabs-bar";
+export type { NavigationTabsBarProps, NavigationTabsBarTabItem } from "./navigation-tabs-bar";
+
 export * from "./dialog-form-body";
 // --- auto-generated: layout ---
 export * from "./wizard-layout";

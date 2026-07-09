@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileKPICard } from "@/components/business/mobile-kpi-card";
+import { MobileKPICard } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileKPICard> = {
   title: "Business/MobileKpiCard",

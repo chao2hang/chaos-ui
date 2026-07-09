@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FormField } from "@/components/business/form-field"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { FormField } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui"
+import { Textarea } from "@chaos_team/chaos-ui/ui"
 
 const meta: Meta<typeof FormField> = {
   title: "Business/FormField",

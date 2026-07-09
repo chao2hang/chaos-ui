@@ -1,13 +1,13 @@
 "use client";
-import { BellIcon, CheckIcon, XIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { ScrollArea } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
+import { BellIcon, CheckIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { ScrollArea } from "@chaos_team/chaos-ui/ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
 import { useTranslation } from "react-i18next";
-import { EmptyState } from "@/components/ui/empty-state";
-import { formatRelativeTime } from "@/lib/format";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
 
 export interface NotificationItem {
   id: string;

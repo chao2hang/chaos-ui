@@ -4,7 +4,7 @@ import {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
-} from "@/components/ui/resizable"
+} from "@chaos_team/chaos-ui/ui"
 
 describe("Resizable", () => {
   it("renders the panel group, panels, and handle with the expected slots", () => {

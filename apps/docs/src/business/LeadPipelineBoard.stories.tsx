@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { LeadPipelineBoard } from "@/components/business/lead-pipeline-board"
+import { LeadPipelineBoard } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof LeadPipelineBoard> = {
   title: "Business/LeadPipelineBoard",

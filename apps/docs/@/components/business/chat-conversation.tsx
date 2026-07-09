@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import { ChatMessageBubble } from "./chat-message-bubble";
 
 /**

@@ -1,21 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@chaos_team/chaos-ui/ui";
 import {
   CheckCircle2Icon,
   CircleIcon,
   ClockIcon,
   XCircleIcon,
   ArrowRightIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component WorkflowPreview

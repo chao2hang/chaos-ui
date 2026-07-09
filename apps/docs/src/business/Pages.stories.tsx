@@ -7,9 +7,9 @@ import { SignInForm, SignUpForm, ForgotPasswordForm } from "@/components/busines
 import { OnboardingChecklist } from "@/components/business/onboarding-checklist"
 import { useState } from "react"
 import { BellIcon, LockIcon, UserIcon, CreditCardIcon, UsersIcon, SettingsIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { Input } from "@chaos_team/chaos-ui/ui"
+import { Avatar } from "@chaos_team/chaos-ui/ui"
 
 const tiers = [
   { id: "free", name: "免费", description: "适合个人尝试", price: 0, period: "月", features: [

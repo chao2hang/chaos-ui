@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ErrorLayout } from "@/components/layout/error-layout";
-import { Button } from "@/components/ui/button";
+import { ErrorLayout } from "@chaos_team/chaos-ui/layout";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ErrorLayout> = {
   title: "Layouts/ErrorLayout",

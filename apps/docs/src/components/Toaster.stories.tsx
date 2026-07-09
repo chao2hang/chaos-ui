@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toaster } from "@/components/ui/sonner";
-import { Button } from "@/components/ui/button";
+import { Toaster } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { toast } from "sonner";
 
 const meta: Meta<typeof Toaster> = {

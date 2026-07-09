@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { InviteLink } from "@/components/business/invite-link"
+import { InviteLink } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof InviteLink> = {
   title: "Business/InviteLink",

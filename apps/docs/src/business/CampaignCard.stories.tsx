@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CampaignCard } from "@/components/business/campaign-card"
+import { CampaignCard } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CampaignCard> = {
   title: "Business/CampaignCard",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { BatchPrintDialog } from "@/components/business/batch-print-dialog"
+import { BatchPrintDialog } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof BatchPrintDialog> = {
   title: "Business/BatchPrintDialog",

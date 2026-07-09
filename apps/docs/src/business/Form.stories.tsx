@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import {
-  FormAutosaveIndicator,
-  FormDirtyWarning,
-  FormErrorSummary,
-  FormStepSummary,
-  FormRepeater,
-  FormFieldGroup,
-  FormProgress,
-} from "@/components/business/form"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { FormAutosaveIndicator } from "@/components/business/form/form-autosave-indicator";
+import { FormDirtyWarning } from "@/components/business/form/form-dirty-warning";
+import { FormErrorSummary } from "@/components/business/form/form-error-summary";
+import { FormStepSummary } from "@/components/business/form/form-step-summary";
+import { FormRepeater } from "@/components/business/form/form-repeater";
+import { FormFieldGroup } from "@/components/business/form/form-field-group";
+import { FormProgress } from "@/components/business/form/form-progress";
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { Input } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 
 const FormMeta = {

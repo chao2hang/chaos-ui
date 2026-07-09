@@ -1,9 +1,9 @@
 "use client";
 import { useMemo } from "react";
-import { LanguagesIcon, CheckIcon } from "@/components/ui/icons";
+import { LanguagesIcon, CheckIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { useLocale } from "@/hooks/use-locale";
-import { Button } from "@/components/ui";
+import { useLocale } from "@/components/locale-provider";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,8 +12,8 @@ import {
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface LanguageOption {
   code: string;

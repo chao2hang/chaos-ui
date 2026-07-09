@@ -1,4 +1,4 @@
-import { TrophyIcon } from "@/components/ui/icons";
+import { TrophyIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 import {
   Card,
@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface ExperimentVariant {
   id: string;

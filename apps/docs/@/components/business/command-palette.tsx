@@ -2,15 +2,15 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Command as CommandPrimitive } from "cmdk";
-import { SearchIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
+import { SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogTitle,
-} from "@/components/ui";
-import { Kbd, KbdGroup } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Kbd, KbdGroup } from "@chaos_team/chaos-ui/ui";
 
 export interface CommandItem {
   id: string;

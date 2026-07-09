@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { WithPermission } from "@/components/ui/with-permission";
+import { WithPermission } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof WithPermission> = {
   title: "Components/WithPermission",

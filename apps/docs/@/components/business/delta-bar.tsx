@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component DeltaBar

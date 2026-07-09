@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { CheckoutBar } from "@/components/business/checkout-bar"
+import { CheckoutBar } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof CheckoutBar> = {
   title: "Business/CheckoutBar",

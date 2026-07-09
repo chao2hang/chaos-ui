@@ -1,14 +1,14 @@
 "use client";
-import { useTheme } from "@/components/ui/theme-provider";
-import { MoonIcon, SunIcon, MonitorIcon } from "@/components/ui/icons";
-import { Button } from "@/components/ui";
+import { useTheme } from "@chaos_team/chaos-ui/ui";
+import { MoonIcon, SunIcon, MonitorIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface ThemeToggleProps {
   className?: string;

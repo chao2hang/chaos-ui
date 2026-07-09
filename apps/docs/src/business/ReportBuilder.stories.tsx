@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ReportBuilder } from "@/components/business/report-builder";
+import { ReportBuilder } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ReportBuilder> = {
   title: "Business/ReportBuilder",

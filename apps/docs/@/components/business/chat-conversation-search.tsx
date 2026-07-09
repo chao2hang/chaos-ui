@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { SearchIcon, SearchXIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { SearchIcon, SearchXIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatConversationSearch

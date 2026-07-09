@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { QuickEntryGrid } from "@/components/business/quick-entry-grid"
+import { QuickEntryGrid } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof QuickEntryGrid> = {
   title: "Business/QuickEntryGrid",

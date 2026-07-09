@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SwipeActions } from "@/components/business/mobile-swipe-actions";
+import { SwipeActions } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof SwipeActions> = {
   title: "Business/MobileSwipeActions",

@@ -6,7 +6,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof NavigationMenu> = {
   title: "Components/NavigationMenu",

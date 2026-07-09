@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ImageGallery } from "@/components/business/image-gallery";
+import { ImageGallery } from "@chaos_team/chaos-ui/business";
 
 const images = [
   {

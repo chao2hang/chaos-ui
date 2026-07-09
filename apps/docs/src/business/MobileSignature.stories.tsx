@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileSignature } from "@/components/business/mobile-signature"
+import { MobileSignature } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileSignature> = {
   title: "Business/MobileSignature",

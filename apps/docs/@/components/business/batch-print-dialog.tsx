@@ -1,16 +1,16 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { PrinterIcon } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { PrinterIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component BatchPrintDialog
  * @category business/print

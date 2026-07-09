@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import {
   Table,
   TableHeader,
@@ -11,7 +11,7 @@ import {
   TableRow,
   TableCell,
   TableFooter,
-} from "@/components/ui/table";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component ArApAgingTable

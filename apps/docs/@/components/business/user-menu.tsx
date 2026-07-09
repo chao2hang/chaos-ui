@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,10 +9,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui";
-import { Button } from "@/components/ui";
-import { cn } from "@/lib/utils";
-import { initials } from "@/lib/format";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { initials } from "@chaos_team/chaos-ui/lib";
 
 export interface UserMenuUser {
   name: string;

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { StockTransferDialog } from "@/components/business/stock-transfer-dialog"
+import { StockTransferDialog } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof StockTransferDialog> = {
   title: "Business/StockTransferDialog",

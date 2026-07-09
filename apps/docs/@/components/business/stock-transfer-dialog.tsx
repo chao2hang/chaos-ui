@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import {
   Table,
   TableHeader,
@@ -11,8 +11,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@/components/ui/table";
-import { PlusIcon, Trash2Icon, ArrowRightIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon, ArrowRightIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component StockTransferDialog

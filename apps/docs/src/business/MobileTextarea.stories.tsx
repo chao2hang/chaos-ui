@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileTextarea } from "@/components/business/mobile-textarea";
+import { MobileTextarea } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileTextarea> = {
   title: "Business/MobileTextarea",

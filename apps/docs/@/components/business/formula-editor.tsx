@@ -2,12 +2,12 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { AlertCircleIcon, CodeIcon, CalculatorIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
+import { AlertCircleIcon, CodeIcon, CalculatorIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

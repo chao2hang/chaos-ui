@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { useInView } from "@/hooks/use-intersection-observer"
+import { useInView } from "@chaos_team/chaos-ui/hooks"
 
 export interface UseInfiniteScrollOptions {
   threshold?: number

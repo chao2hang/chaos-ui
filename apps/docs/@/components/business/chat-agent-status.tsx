@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { BrainIcon, CheckCircle2Icon, Loader2Icon, ZapIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { BrainIcon, CheckCircle2Icon, Loader2Icon, ZapIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatAgentStatus

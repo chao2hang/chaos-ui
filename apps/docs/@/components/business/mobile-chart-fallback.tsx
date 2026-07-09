@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { BarChart3Icon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 export function MobileChartFallback({ label = "图表", className }: { label?: string; className?: string }) {
   return (

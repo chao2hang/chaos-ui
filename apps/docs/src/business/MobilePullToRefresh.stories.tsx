@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh";
+import { PullToRefresh } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof PullToRefresh> = {
   title: "Business/MobilePullToRefresh",

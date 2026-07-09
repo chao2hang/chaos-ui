@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { EditToolbar } from "@/components/business/edit-toolbar";
+import { EditToolbar } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof EditToolbar> = {
   title: "Business/EditToolbar",

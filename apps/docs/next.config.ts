@@ -4,6 +4,7 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   output: "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  transpilePackages: ["@chaos_team/chaos-ui"],
   typescript: {
     ignoreBuildErrors: true,
   },

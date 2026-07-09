@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { KanbanBoard, type KanbanItem, type KanbanColumnData } from "@/components/business/kanban-board"
-import { cn } from "@/lib/utils"
+import { KanbanBoard, type KanbanItem, type KanbanColumnData } from "@chaos_team/chaos-ui/business"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileKanbanProps {
   columns: KanbanColumnData[]

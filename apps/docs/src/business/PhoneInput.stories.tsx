@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PhoneInput } from "@/components/business/phone-input";
+import { PhoneInput } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof PhoneInput> = {
   title: "Business/PhoneInput",

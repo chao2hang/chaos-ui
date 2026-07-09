@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleLayout } from "@/components/layout/article-layout";
+import { ArticleLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof ArticleLayout> = {
   title: "Layouts/ArticleLayout",

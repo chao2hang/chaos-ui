@@ -7,8 +7,8 @@ import {
   SelectContent,
   SelectValue,
   SelectItem,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface MobileSelectOption {
   value: string;

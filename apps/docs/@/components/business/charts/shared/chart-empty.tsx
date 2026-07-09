@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { InboxIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface ChartEmptyProps {
   height?: number

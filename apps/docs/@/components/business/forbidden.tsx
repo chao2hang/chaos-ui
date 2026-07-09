@@ -1,8 +1,8 @@
 "use client"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
-import { LockIcon } from "@/components/ui/icons"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { LockIcon } from "@chaos_team/chaos-ui/ui-icons"
 
 interface ForbiddenProps {
   /** 自定义标题 */

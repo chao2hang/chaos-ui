@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LineEditor } from "@/components/business/line-editor";
+import { LineEditor } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof LineEditor> = {
   title: "Business/LineEditor",

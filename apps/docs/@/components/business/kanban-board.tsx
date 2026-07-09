@@ -15,14 +15,14 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Badge,
   Button,
   Collapsible,
   CollapsibleContent,
-} from "@/components/ui";
-import { ChevronDownIcon, GripVerticalIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { ChevronDownIcon, GripVerticalIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 type KanbanItem = {
   id: string;

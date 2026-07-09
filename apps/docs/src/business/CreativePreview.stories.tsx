@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CreativePreview } from "@/components/business/creative-preview";
+import { CreativePreview } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof CreativePreview> = {
   title: "Business/CreativePreview",

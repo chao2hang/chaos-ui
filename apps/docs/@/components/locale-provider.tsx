@@ -10,12 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import {
-  DEFAULT_LOCALE,
-  isLocale,
-  LOCALE_COOKIE,
-  type Locale,
-} from "@/lib/i18n/locale";
+import { DEFAULT_LOCALE, isLocale, LOCALE_COOKIE, type Locale } from "@/lib/i18n/locale";
 
 interface LocaleContextValue {
   locale: Locale;

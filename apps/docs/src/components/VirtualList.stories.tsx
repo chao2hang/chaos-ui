@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { VirtualList } from "@/components/ui/virtual-list";
-import { Skeleton } from "@/components/ui/skeleton";
+import { VirtualList } from "@chaos_team/chaos-ui/ui";
+import { Skeleton } from "@chaos_team/chaos-ui/ui";
 
 interface Item {
   id: number;

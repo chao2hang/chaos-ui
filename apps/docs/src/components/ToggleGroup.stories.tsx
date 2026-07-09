@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "@chaos_team/chaos-ui/ui";
 import { Bold, Italic, Underline } from "lucide-react";
 
 const meta: Meta<typeof ToggleGroup> = {

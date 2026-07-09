@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { OaBridge } from "@/components/business/oa-bridge"
+import { OaBridge } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof OaBridge> = {
   title: "Business/OaBridge",

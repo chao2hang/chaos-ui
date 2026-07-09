@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { LoadingPage, FullPageLoader } from "@/components/business/loading-page"
+import { LoadingPage, FullPageLoader } from "@chaos_team/chaos-ui/business"
 
 const meta = {
   title: "Business/LoadingPage",

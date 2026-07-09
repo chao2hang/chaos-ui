@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AuthGuard } from "@/components/business/auth-guard";
+import { AuthGuard } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof AuthGuard> = {
   title: "Business/AuthGuard",

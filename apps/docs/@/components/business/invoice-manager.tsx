@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { formatCurrency } from "@/lib/format";
-import { ReceiptIcon, SendIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { ReceiptIcon, SendIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component InvoiceManager

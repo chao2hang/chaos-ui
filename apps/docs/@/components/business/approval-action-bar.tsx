@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { CheckIcon, XIcon, SendIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { CheckIcon, XIcon, SendIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component ApprovalActionBar
  * @category business/bill

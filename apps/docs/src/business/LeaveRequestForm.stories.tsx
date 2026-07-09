@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { LeaveRequestForm } from "@/components/business/leave-request-form"
+import { LeaveRequestForm } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof LeaveRequestForm> = {
   title: "Business/LeaveRequestForm",

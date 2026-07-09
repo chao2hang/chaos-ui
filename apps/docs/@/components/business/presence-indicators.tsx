@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Dot } from "@/components/ui/dot";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { initials } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Dot } from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@chaos_team/chaos-ui/ui";
+import { initials } from "@chaos_team/chaos-ui/lib";
 
 export type PresenceStatus = "online" | "away" | "busy" | "offline" | "typing";
 

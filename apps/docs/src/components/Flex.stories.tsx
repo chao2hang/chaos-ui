@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Flex } from "@/components/ui/flex";
+import { Flex } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Flex> = {
   title: "Components/Flex",

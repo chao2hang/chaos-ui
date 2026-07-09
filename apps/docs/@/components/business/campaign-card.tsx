@@ -2,7 +2,7 @@ import {
   CalendarDaysIcon,
   DollarSignIcon,
   RadioTowerIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -13,12 +13,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui";
-import { Progress } from "@/components/ui";
-import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
-import type { CampaignStatus } from "@/components/business/campaign-status-tag";
-import type { MarketingChannel } from "@/components/business/channel-picker";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { Progress } from "@chaos_team/chaos-ui/ui";
+import { CampaignStatusTag } from "@chaos_team/chaos-ui/business";
+import type { CampaignStatus } from "@chaos_team/chaos-ui/business";
+import type { MarketingChannel } from "@chaos_team/chaos-ui/business";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface CampaignMetric {
   label: string;

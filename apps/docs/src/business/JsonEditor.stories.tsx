@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { JsonEditor } from "@/components/business/json-editor"
+import { JsonEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof JsonEditor> = {
   title: "Business/JsonEditor",

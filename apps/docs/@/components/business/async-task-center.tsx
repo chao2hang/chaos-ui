@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   XIcon,
   AlertCircleIcon,
@@ -10,11 +10,11 @@ import {
   RefreshCwIcon,
   DownloadIcon,
   ChevronDownIcon,
-} from "@/components/ui";
-import { Button } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { Progress } from "@/components/ui";
-import { ScrollArea } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Progress } from "@chaos_team/chaos-ui/ui";
+import { ScrollArea } from "@chaos_team/chaos-ui/ui";
 import {
   Drawer,
   DrawerContent,
@@ -22,7 +22,7 @@ import {
   DrawerTitle,
   DrawerDescription,
   DrawerClose,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 type TaskStatus = "pending" | "running" | "completed" | "failed";
 

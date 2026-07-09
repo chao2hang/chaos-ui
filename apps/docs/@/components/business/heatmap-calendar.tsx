@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface HeatmapCalendarProps extends React.ComponentProps<"div"> {
   data: Array<{ date: string | Date; value: number }>;

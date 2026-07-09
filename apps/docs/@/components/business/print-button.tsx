@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import type { ButtonProps } from "@/components/ui/button";
-import { PrinterIcon } from "@/components/ui/icons";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import type { ButtonProps } from "@chaos_team/chaos-ui/ui";
+import { PrinterIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PrintButton

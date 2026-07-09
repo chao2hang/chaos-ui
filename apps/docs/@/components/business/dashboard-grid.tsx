@@ -1,12 +1,12 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatCompactNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatCompactNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 import {
   ArrowDownRightIcon,
   ArrowUpRightIcon,
   TrendingDownIcon,
   TrendingUpIcon,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component DashboardGrid

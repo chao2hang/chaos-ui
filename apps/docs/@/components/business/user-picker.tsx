@@ -2,18 +2,18 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarFallback } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { SearchIcon, UserIcon, MailIcon, XIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { SearchIcon, UserIcon, MailIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

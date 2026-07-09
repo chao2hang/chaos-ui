@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { UploadIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { UploadIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component AttachmentUploader
  * @category business/attachment

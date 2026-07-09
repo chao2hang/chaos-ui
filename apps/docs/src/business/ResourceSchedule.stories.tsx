@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ResourceSchedule } from "@/components/business/resource-schedule"
+import { ResourceSchedule } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ResourceSchedule> = {
   title: "Business/ResourceSchedule",

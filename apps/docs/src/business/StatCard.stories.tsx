@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { StatCard } from "@/components/business/stat-card"
+import { StatCard } from "@chaos_team/chaos-ui/business"
 import { TrendingUpIcon, TrendingDownIcon, UsersIcon } from "lucide-react"
 
 const meta: Meta<typeof StatCard> = {

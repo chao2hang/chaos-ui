@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ImageGallery } from "@/components/business/image-gallery"
-import { VideoPlayer } from "@/components/business/video-player"
-import { AudioPlayer } from "@/components/business/audio-player"
-import { PDFViewer } from "@/components/business/pdf-viewer"
+import { ImageGallery } from "@chaos_team/chaos-ui/business"
+import { VideoPlayer } from "@chaos_team/chaos-ui/ui"
+import { AudioPlayer } from "@chaos_team/chaos-ui/ui"
+import { PDFViewer } from "@chaos_team/chaos-ui/business"
 
 const DEMO_VIDEO = "https://files.vidstack.io/sprite-fight/720p.mp4"
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AttendanceCalendar } from "@/components/business/attendance-calendar"
+import { AttendanceCalendar } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AttendanceCalendar> = {
   title: "Business/AttendanceCalendar",

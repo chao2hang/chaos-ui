@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ImportMappingWizard } from "@/components/business/import-mapping-wizard"
+import { ImportMappingWizard } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ImportMappingWizard> = {
   title: "Business/ImportMappingWizard",

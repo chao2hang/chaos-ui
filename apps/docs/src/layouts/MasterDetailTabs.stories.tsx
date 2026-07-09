@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
+import { MasterDetailTabs } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof MasterDetailTabs> = {
   title: "Layouts/MasterDetailTabs",

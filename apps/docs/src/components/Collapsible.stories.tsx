@@ -3,8 +3,8 @@ import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from "@/components/ui/collapsible";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { ChevronsUpDownIcon } from "lucide-react";
 
 const meta: Meta<typeof Collapsible> = {

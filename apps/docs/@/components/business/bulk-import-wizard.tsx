@@ -6,13 +6,13 @@ import {
   CheckCircle2Icon,
   FileSpreadsheetIcon,
   UploadIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
-import { Badge } from "@/components/ui";
-import { Button } from "@/components/ui";
-import { Progress } from "@/components/ui";
-import { Step, Stepper } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Progress } from "@chaos_team/chaos-ui/ui";
+import { Step, Stepper } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type BulkImportStep = "upload" | "mapping" | "validation" | "complete";
 

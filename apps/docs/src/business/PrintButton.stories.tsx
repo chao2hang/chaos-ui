@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PrintButton } from "@/components/business/print-button";
+import { PrintButton } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof PrintButton> = {
   title: "Business/PrintButton",

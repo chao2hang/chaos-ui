@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DictSelect } from "@/components/business/dict-select";
+import { DictSelect } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof DictSelect> = {
   title: "Business/DictSelect",

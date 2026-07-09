@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SparkChart } from "@/components/business/spark-chart"
+import { SparkChart } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SparkChart> = {
   title: "Business/SparkChart",

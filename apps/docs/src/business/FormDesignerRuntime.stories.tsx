@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FormDesignerRuntime } from "@/components/business/form-designer-runtime"
+import { FormDesignerRuntime } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof FormDesignerRuntime> = {
   title: "Business/FormDesignerRuntime",

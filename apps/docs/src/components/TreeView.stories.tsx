@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TreeView, type TreeNode } from "@/components/ui/tree-view";
+import { TreeView, type TreeNode } from "@chaos_team/chaos-ui/ui";
 
 const sampleData: TreeNode[] = [
   {

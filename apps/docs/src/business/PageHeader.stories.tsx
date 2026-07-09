@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PageHeader } from "@/components/business/page-header"
-import { Button } from "@/components/ui/button"
+import { PageHeader } from "@chaos_team/chaos-ui/business"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import { PlusIcon, DownloadIcon } from "lucide-react"
 
 const meta: Meta<typeof PageHeader> = {

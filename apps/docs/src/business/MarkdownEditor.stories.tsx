@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MarkdownEditor } from "@/components/business/markdown-editor"
+import { MarkdownEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MarkdownEditor> = {
   title: "Business/MarkdownEditor",

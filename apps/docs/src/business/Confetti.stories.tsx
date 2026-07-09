@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Confetti } from "@/components/business/confetti"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 
 const meta: Meta<typeof Confetti> = {

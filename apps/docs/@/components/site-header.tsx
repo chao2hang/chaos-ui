@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from "@/components/ui/theme-provider";
-import { Button } from "@/components/ui/button";
+import { useTheme } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { Moon, Sun, Languages, ExternalLink } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import { useDict } from "@/hooks/use-dict";

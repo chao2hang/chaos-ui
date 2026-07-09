@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InfiniteScroll } from "@/components/ui/infinite-scroll";
+import { InfiniteScroll } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof InfiniteScroll> = {
   title: "Components/InfiniteScroll",

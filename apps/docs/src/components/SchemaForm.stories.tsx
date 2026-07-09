@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SchemaForm } from "@/components/ui/schema-form";
+import { SchemaForm } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof SchemaForm> = {
   title: "Components/SchemaForm",

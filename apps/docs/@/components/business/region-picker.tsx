@@ -3,17 +3,17 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
 import {
   CheckIcon,
   ChevronDownIcon,
   MapPinIcon,
   SearchIcon,
   XIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component RegionPicker

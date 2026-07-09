@@ -273,7 +273,7 @@ function renderBusinessSection(
   collapsed: Set<string>,
   toggleCollapse: (key: string) => void,
   isEn: boolean,
-  dict: ReturnType<typeof import("@/hooks/use-dict").useDict>,
+  dict: ReturnType<typeof import("@chaos_team/chaos-ui/hooks").useDict>,
 ) {
   const subGroups = groupByBusinessSub(list);
 

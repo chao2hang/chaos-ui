@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ThemeToggle } from "@/components/business/theme-toggle"
+import { ThemeToggle } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ThemeToggle> = {
   title: "Business/ThemeToggle",

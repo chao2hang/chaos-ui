@@ -1,8 +1,8 @@
 "use client"
 import * as React from "react"
 import { SearchIcon, XIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Input } from "@/components/ui/input"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { Input } from "@chaos_team/chaos-ui/ui"
 
 export interface SearchResult {
   id: string

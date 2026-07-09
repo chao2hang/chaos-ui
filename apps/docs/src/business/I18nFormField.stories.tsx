@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { I18nFormField } from "@/components/business/i18n-form-field"
+import { I18nFormField } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof I18nFormField> = {
   title: "Business/I18nFormField",

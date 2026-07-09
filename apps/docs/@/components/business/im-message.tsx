@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatRelativeTime } from "@/lib/format";
-import { PaperclipIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
+import { PaperclipIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component ImMessage

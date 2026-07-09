@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { DonutCard } from "@/components/business/donut-card"
+import { DonutCard } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof DonutCard> = {
   title: "Business/DonutCard",

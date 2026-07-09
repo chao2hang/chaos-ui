@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { DistributorPicker } from "@/components/business/distributor-picker"
+import { DistributorPicker } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof DistributorPicker> = {
   title: "Business/DistributorPicker",

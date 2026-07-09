@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render } from "@testing-library/react"
-import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { Kbd, KbdGroup } from "@chaos_team/chaos-ui/ui"
 
 describe("Kbd", () => {
   it("renders a kbd element with the kbd slot", () => {

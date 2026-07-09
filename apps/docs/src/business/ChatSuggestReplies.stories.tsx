@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatSuggestReplies } from "@/components/business/chat-suggest-replies"
+import { ChatSuggestReplies } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatSuggestReplies> = {
   title: "Business/ChatSuggestReplies",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AreaChart } from "@/components/business/area-chart";
+import { AreaChart } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof AreaChart> = {
   title: "Business/Chart",

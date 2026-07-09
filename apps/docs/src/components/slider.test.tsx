@@ -7,7 +7,7 @@ import {
   SliderTrack,
   SliderIndicator,
   SliderThumb,
-} from "@/components/ui/slider"
+} from "@chaos_team/chaos-ui/ui"
 
 const BasicSlider = (props: ComponentProps<typeof Slider>) => (
   <Slider defaultValue={25} {...props}>

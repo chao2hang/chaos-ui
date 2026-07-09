@@ -11,8 +11,8 @@ import {
   MediaBufferingIndicator,
 } from "@vidstack/react"
 import { PlayIcon, PauseIcon, Volume2Icon, VolumeXIcon, SkipBackIcon, SkipForwardIcon, Loader2Icon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 export interface AudioPlayerProps {
   src: string

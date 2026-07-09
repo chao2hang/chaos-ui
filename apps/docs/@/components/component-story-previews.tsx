@@ -2445,7 +2445,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
       })),
     { ssr: false },
   ),
-  MobileQrcodeScanner: dynamic(
+  MobileQrCodeScanner: dynamic(
     () =>
       import("../../src/business/MobileQrcodeScanner.stories").then((m) => ({
         default: createStoryPreview(m),

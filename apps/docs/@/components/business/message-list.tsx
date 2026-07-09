@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatRelativeTime } from "@/lib/format";
-import { BellIcon, InfoIcon, AlertTriangleIcon, CheckCircle2Icon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
+import { BellIcon, InfoIcon, AlertTriangleIcon, CheckCircle2Icon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component MessageList

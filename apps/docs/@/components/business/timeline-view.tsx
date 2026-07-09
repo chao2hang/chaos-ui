@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatDate } from "@/lib/format";
-import { ClockIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDate } from "@chaos_team/chaos-ui/lib";
+import { ClockIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TimelineView

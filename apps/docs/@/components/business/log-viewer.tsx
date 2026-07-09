@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { TerminalIcon } from "@/components/ui/icons";
+import { TerminalIcon } from "@chaos_team/chaos-ui/ui-icons";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type LogLevel = "INFO" | "WARN" | "ERROR" | "DEBUG" | "TRACE";
 

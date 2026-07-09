@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TodoListTable } from "@/components/business/todo-list-table"
+import { TodoListTable } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TodoListTable> = {
   title: "Business/TodoListTable",

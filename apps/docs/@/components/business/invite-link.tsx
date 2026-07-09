@@ -1,10 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CopyIcon, CheckIcon } from "@/components/ui/icons";
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { CopyIcon, CheckIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks";
 
 export interface InviteLinkProps {
   /** The invite URL. */

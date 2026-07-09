@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 import { ResponsiveContainer, AreaChart, Area } from "recharts";
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component KPICard

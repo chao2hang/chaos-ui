@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FullscreenToggle } from "@/components/ui/fullscreen-toggle";
+import { FullscreenToggle } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof FullscreenToggle> = {
   title: "Components/FullscreenToggle",

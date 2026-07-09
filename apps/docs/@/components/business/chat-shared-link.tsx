@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { ExternalLinkIcon, Link2Icon } from "@/components/ui/icons";
-import { truncate } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { ExternalLinkIcon, Link2Icon } from "@chaos_team/chaos-ui/ui-icons";
+import { truncate } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component ChatSharedLink

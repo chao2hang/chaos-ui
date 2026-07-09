@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component GlobalLoading

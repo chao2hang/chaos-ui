@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PivotTable } from "@/components/business/pivot-table";
+import { PivotTable } from "@chaos_team/chaos-ui/business";
 
 const salesData = [
   { region: "华东", product: "冰箱", amount: 12000 },

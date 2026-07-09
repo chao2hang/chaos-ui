@@ -7,7 +7,7 @@ import {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-} from "@/components/ui/pagination";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",

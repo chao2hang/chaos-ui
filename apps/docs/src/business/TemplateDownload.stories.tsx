@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TemplateDownload } from "@/components/business/template-download"
+import { TemplateDownload } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TemplateDownload> = {
   title: "Business/TemplateDownload",

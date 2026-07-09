@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { FileIcon, DownloadIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { FileIcon, DownloadIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

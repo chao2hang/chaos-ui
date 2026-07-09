@@ -3826,10 +3826,10 @@ export const components: ComponentMeta[] = [
   },
   {
     slug: "mobile-qrcode-scanner",
-    name: "MobileQrcodeScanner",
+    name: "MobileQrCodeScanner",
     nameZh: "Mobile Qrcode Scanner",
     category: "Business",
-    desc: "MobileQrcodeScanner — a business component for ERP / enterprise scenarios.",
+    desc: "MobileQrCodeScanner — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Qrcode Scanner — 面向 ERP/企业场景的业务组件。",
     sourcePath:
       "packages/chaos-design-ui/components/business/mobile-qrcode-scanner.tsx",

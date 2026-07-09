@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileFormWizard } from "@/components/business/mobile-form-wizard";
+import { MobileFormWizard } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileFormWizard> = {
   title: "Business/MobileFormWizard",

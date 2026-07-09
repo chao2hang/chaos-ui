@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileGeolocation } from "@/components/business/mobile-geolocation"
+import { MobileGeolocation } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileGeolocation> = {
   title: "Business/MobileGeolocation",

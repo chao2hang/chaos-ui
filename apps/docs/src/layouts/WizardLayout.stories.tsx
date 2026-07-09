@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { WizardLayout } from "@/components/layout/wizard-layout";
+import { WizardLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof WizardLayout> = {
   title: "Layouts/WizardLayout",

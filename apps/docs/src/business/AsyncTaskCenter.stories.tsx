@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AsyncTaskCenter } from "@/components/business/async-task-center";
+import { AsyncTaskCenter } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof AsyncTaskCenter> = {
   title: "Business/AsyncTaskCenter",

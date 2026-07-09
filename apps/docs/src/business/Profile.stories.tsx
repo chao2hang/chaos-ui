@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ProfileHeader, ProfileForm } from "@/components/business/profile"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 const meta = {
   title: "Business/Profile",

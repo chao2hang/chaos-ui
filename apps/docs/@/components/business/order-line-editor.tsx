@@ -2,11 +2,11 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { LineEditor } from "@/components/business/line-editor";
-import type { LineEditorColumn } from "@/components/business/line-editor";
-import { InputNumber } from "@/components/ui/input-number";
-import { Input } from "@/components/ui/input";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { LineEditor } from "@chaos_team/chaos-ui/business";
+import type { LineEditorColumn } from "@chaos_team/chaos-ui/business";
+import { InputNumber } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component OrderLineEditor

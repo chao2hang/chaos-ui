@@ -1,20 +1,20 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { PlusIcon, Trash2Icon, TagIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon, TagIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PromotionRuleEditor

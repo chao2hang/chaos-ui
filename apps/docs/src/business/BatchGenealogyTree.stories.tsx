@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { BatchGenealogyTree } from "@/components/business/batch-genealogy-tree"
+import { BatchGenealogyTree } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof BatchGenealogyTree> = {
   title: "Business/BatchGenealogyTree",

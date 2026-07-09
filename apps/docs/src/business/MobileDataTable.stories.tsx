@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   MobileDataTable,
   type MobileColumn,
-} from "@/components/business/mobile-data-table";
+} from "@chaos_team/chaos-ui/mobile";
 
 interface Order {
   id: string;

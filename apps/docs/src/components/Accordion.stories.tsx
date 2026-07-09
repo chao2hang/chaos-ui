@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",

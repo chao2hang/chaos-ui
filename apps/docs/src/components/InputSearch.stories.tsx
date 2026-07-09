@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InputSearch } from "@/components/ui/input-search";
+import { InputSearch } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof InputSearch> = {
   title: "Components/InputSearch",

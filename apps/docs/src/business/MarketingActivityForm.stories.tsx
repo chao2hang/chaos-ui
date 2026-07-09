@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MarketingActivityForm } from "@/components/business/marketing-activity-form"
+import { MarketingActivityForm } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MarketingActivityForm> = {
   title: "Business/MarketingActivityForm",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileCard } from "@/components/business/mobile-card";
+import { MobileCard } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileCard> = {
   title: "Business/MobileCard",

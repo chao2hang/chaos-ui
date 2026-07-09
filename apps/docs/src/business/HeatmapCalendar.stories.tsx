@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HeatmapCalendar } from "@/components/business/heatmap-calendar";
+import { HeatmapCalendar } from "@chaos_team/chaos-ui/business";
 
 function generateData(days: number) {
   const data: Array<{ date: string; value: number }> = [];

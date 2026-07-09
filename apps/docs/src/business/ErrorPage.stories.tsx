@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ErrorPage, NotFound, InternalError, Unauthorized } from "@/components/business/error-page"
+import { ErrorPage, NotFound, InternalError, Unauthorized } from "@chaos_team/chaos-ui/business"
 
 const meta = {
   title: "Business/ErrorPage",

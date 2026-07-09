@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FeatureTour } from "@/components/business/feature-tour"
+import { FeatureTour } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof FeatureTour> = {
   title: "Business/FeatureTour",

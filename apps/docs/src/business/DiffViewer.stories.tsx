@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DiffViewer } from "@/components/business/diff-viewer";
+import { DiffViewer } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof DiffViewer> = {
   title: "Business/DiffViewer",

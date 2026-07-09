@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MediaRecorder } from "@/components/business/media-recorder"
+import { MediaRecorder } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MediaRecorder> = {
   title: "Business/MediaRecorder",

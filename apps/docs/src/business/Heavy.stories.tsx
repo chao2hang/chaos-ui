@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { RichTextEditor } from "@/components/business/rich-text-editor"
-import { CodeEditor } from "@/components/business/code-editor"
+import { RichTextEditor } from "@chaos_team/chaos-ui/business"
+import { CodeEditor } from "@chaos_team/chaos-ui/business"
 import { useState } from "react"
 
 const meta = {

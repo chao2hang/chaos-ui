@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { GlobalLoading } from "@/components/business/global-loading";
+import { GlobalLoading } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof GlobalLoading> = {
   title: "Business/GlobalLoading",

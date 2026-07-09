@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { FormField } from "@/components/business/form-field"
-import { cn } from "@/lib/utils"
+import { FormField } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileFormFieldProps {
   label?: string

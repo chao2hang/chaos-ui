@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { FormWizard } from "@/components/business/form-wizard"
-import { cn } from "@/lib/utils"
+import { FormWizard } from "@chaos_team/chaos-ui/business"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileFormWizardProps {
   steps: {

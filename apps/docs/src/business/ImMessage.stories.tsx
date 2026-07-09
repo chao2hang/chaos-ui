@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ImMessage } from "@/components/business/im-message"
+import { ImMessage } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ImMessage> = {
   title: "Business/ImMessage",

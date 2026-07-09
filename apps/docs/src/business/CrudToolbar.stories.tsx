@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CrudToolbar } from "@/components/business/crud-toolbar";
+import { CrudToolbar } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof CrudToolbar> = {
   title: "Business/CrudToolbar",

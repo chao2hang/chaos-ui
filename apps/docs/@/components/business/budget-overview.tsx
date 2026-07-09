@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatCurrency } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
 /**
  * @component BudgetOverview
  * @category business/finance

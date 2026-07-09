@@ -1,13 +1,13 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Button, Stepper, Step } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, Stepper, Step } from "@chaos_team/chaos-ui/ui";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   CheckIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 type WizardRenderContext = {
   formData: Record<string, unknown>;

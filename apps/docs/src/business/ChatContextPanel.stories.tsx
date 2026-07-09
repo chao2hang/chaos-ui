@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatContextPanel } from "@/components/business/chat-context-panel"
+import { ChatContextPanel } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatContextPanel> = {
   title: "Business/ChatContextPanel",

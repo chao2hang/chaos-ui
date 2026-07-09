@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PrintTemplateBuilder } from "@/components/business/print-template-builder"
+import { PrintTemplateBuilder } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PrintTemplateBuilder> = {
   title: "Business/PrintTemplateBuilder",

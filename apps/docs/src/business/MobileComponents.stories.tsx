@@ -1,23 +1,23 @@
 "use client";
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileButton } from "@/components/business/mobile-button";
-import { MobileInput } from "@/components/business/mobile-input";
-import { MobileTextarea } from "@/components/business/mobile-textarea";
-import { MobileSelect } from "@/components/business/mobile-select";
-import { MobileDialog } from "@/components/business/mobile-dialog";
-import { MobileSheet } from "@/components/business/mobile-sheet";
-import { MobileCard } from "@/components/business/mobile-card";
-import { MobileKPICard } from "@/components/business/mobile-kpi-card";
-import { MobileDataTable } from "@/components/business/mobile-data-table";
-import { MobileForm } from "@/components/business/mobile-form";
-import { MobileFormField } from "@/components/business/mobile-form-field";
-import { MobileEmptyState } from "@/components/business/mobile-empty-state";
-import { MobileNavigation } from "@/components/business/mobile-navigation";
-import { MobileTabs } from "@/components/mobile/mobile-tabs";
-import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
-import { MobileAuthLayout } from "@/components/business/mobile-auth-layout";
-import { ResponsivePreview } from "@/components/business/responsive-preview";
+import { MobileButton } from "@chaos_team/chaos-ui/mobile";
+import { MobileInput } from "@chaos_team/chaos-ui/mobile";
+import { MobileTextarea } from "@chaos_team/chaos-ui/mobile";
+import { MobileSelect } from "@chaos_team/chaos-ui/mobile";
+import { MobileDialog } from "@chaos_team/chaos-ui/mobile";
+import { MobileSheet } from "@chaos_team/chaos-ui/mobile";
+import { MobileCard } from "@chaos_team/chaos-ui/mobile";
+import { MobileKPICard } from "@chaos_team/chaos-ui/mobile";
+import { MobileDataTable } from "@chaos_team/chaos-ui/mobile";
+import { MobileForm } from "@chaos_team/chaos-ui/mobile";
+import { MobileFormField } from "@chaos_team/chaos-ui/mobile";
+import { MobileEmptyState } from "@chaos_team/chaos-ui/mobile";
+import { MobileNavigation } from "@chaos_team/chaos-ui/mobile";
+import { MobileTabs } from "@chaos_team/chaos-ui/mobile";
+import { MobileDashboardLayout } from "@chaos_team/chaos-ui/mobile";
+import { MobileAuthLayout } from "@chaos_team/chaos-ui/mobile";
+import { ResponsivePreview } from "@chaos_team/chaos-ui/business";
 import {
   DollarSignIcon,
   UsersIcon,

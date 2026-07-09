@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { FilterBuilder } from "@/components/business/filter-builder"
-import { cn } from "@/lib/utils"
+import { FilterBuilder } from "@chaos_team/chaos-ui/business"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileFilterBuilderProps {
   fields: { key: string; label: string }[]

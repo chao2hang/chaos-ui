@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
+import { MobileDashboardLayout } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileDashboardLayout> = {
   title: "Business/MobileDashboardLayout",

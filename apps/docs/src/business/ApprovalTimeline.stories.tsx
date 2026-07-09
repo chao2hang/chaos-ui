@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ApprovalTimeline } from "@/components/business/approval-timeline";
+import { ApprovalTimeline } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ApprovalTimeline> = {
   title: "Business/ApprovalTimeline",

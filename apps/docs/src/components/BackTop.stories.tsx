@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BackTop } from "@/components/ui/back-top";
+import { BackTop } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof BackTop> = {
   title: "Components/BackTop",

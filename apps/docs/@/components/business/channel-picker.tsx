@@ -8,10 +8,10 @@ import {
   MessageSquareIcon,
   RadioTowerIcon,
   SmartphoneIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type MarketingChannel =
   "email" | "sms" | "push" | "social" | "ads" | "offline";

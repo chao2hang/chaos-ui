@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { NotificationRuleBuilder } from "@/components/business/notification-rule-builder"
+import { NotificationRuleBuilder } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof NotificationRuleBuilder> = {
   title: "Business/NotificationRuleBuilder",

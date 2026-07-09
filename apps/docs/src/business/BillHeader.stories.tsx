@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BillHeader } from "@/components/business/bill-header";
+import { BillHeader } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof BillHeader> = {
   title: "Business/BillHeader",

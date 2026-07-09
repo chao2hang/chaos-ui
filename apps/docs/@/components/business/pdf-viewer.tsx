@@ -13,9 +13,9 @@ import {
   MaximizeIcon,
   FileTextIcon,
   AlertTriangleIcon,
-} from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 // Configure pdf.js worker from CDN — consumers can override
 // `pdfjs.GlobalWorkerOptions.workerSrc` to use a local copy.

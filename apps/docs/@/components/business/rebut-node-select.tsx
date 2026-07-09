@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button, ScrollArea, Separator } from "@/components/ui";
-import { CheckCircle2Icon, ArrowRightIcon, SearchIcon, XIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, ScrollArea, Separator } from "@chaos_team/chaos-ui/ui";
+import { CheckCircle2Icon, ArrowRightIcon, SearchIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component RebutNodeSelect

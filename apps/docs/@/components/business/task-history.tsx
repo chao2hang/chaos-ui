@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatDateTime } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDateTime } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component TaskHistory

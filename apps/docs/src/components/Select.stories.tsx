@@ -8,7 +8,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",

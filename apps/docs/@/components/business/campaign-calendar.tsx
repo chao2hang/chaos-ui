@@ -1,7 +1,7 @@
-import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
-import type { CampaignStatus } from "@/components/business/campaign-status-tag";
-import type { MarketingChannel } from "@/components/business/channel-picker";
-import { cn } from "@/lib/utils";
+import { CampaignStatusTag } from "@chaos_team/chaos-ui/business";
+import type { CampaignStatus } from "@chaos_team/chaos-ui/business";
+import type { MarketingChannel } from "@chaos_team/chaos-ui/business";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface CampaignCalendarEvent {
   id: string;

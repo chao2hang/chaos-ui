@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { AlertTriangleIcon } from "@/components/ui/icons";
+import { AlertTriangleIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 import {
   Dialog,
@@ -9,8 +9,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui";
-import { Button } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface ConfirmDialogProps {
   open?: boolean;

@@ -3,9 +3,9 @@ import {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
-} from "@/components/ui/hover-card";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof HoverCard> = {
   title: "Components/HoverCard",

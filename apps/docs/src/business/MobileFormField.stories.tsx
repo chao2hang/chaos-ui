@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileFormField } from "@/components/business/mobile-form-field";
+import { MobileFormField } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileFormField> = {
   title: "Business/MobileFormField",

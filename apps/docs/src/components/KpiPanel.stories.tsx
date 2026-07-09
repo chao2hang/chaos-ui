@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { KPIPanel, type KPIItem } from "@/components/ui/kpi-panel";
+import { KPIPanel, type KPIItem } from "@chaos_team/chaos-ui/ui";
 import {
   DollarSignIcon,
   UsersIcon,

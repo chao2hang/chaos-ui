@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { ArrowRightIcon, Building2Icon, CheckCircle2Icon, SendIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { ArrowRightIcon, Building2Icon, CheckCircle2Icon, SendIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component OaBridge

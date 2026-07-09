@@ -1,18 +1,18 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
-import { Input } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { PlusIcon, Trash2Icon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon } from "@chaos_team/chaos-ui/ui-icons";
 
 const defaultOperators: Array<{ value: string; labelKey: string }> = [
   { value: "eq", labelKey: "filterBuilder.operator.equals" },

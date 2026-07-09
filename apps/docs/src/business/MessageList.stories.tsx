@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MessageList } from "@/components/business/message-list"
+import { MessageList } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MessageList> = {
   title: "Business/MessageList",

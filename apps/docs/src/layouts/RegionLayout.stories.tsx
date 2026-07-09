@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RegionLayout } from "@/components/layout/region-layout";
+import { RegionLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof RegionLayout> = {
   title: "Layouts/RegionLayout",

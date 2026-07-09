@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { UserMenu } from "@/components/business/user-menu"
+import { UserMenu } from "@chaos_team/chaos-ui/business"
 import {
   CreditCardIcon,
   HelpCircleIcon,

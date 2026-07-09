@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import { CookieIcon, XIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
+import { CookieIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface CookieBannerProps {
   open?: boolean;

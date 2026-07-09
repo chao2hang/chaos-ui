@@ -1,4 +1,4 @@
-import { ConfigProvider, useConfig } from "@/components/ui/config-provider";
+import { ConfigProvider, useConfig } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # ConfigProvider
@@ -19,7 +19,7 @@ Inject global configuration into the component tree — theme colors, border rad
 ### Basic Usage
 
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function App() {
   return (
@@ -38,7 +38,7 @@ export function App() {
 
 ### Dark Mode
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 
 export function App() {
@@ -55,7 +55,7 @@ return (
 
 ### Custom Scrollbar
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function ScrollDemo() {
   return (
@@ -78,7 +78,7 @@ export function ScrollDemo() {
 
 ### Right-to-Left
 
-<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+<CodeBlock code={`import { ConfigProvider } from "@chaos_team/chaos-ui/ui"
 
 export function ArabicApp() {
   return (
@@ -92,7 +92,7 @@ export function ArabicApp() {
 ### Reading Config via Hook
 
 
-<CodeBlock code={`import { useConfig } from "@/components/ui/config-provider"
+<CodeBlock code={`import { useConfig } from "@chaos_team/chaos-ui/ui"
 
 export function CurrentLocale() {
   const { locale, theme } = useConfig()

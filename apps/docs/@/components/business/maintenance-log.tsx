@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Timeline,
   TimelineItem,
   TimelineDot,
   TimelineConnector,
   TimelineContent,
-} from "@/components/ui/timeline";
+} from "@chaos_team/chaos-ui/ui";
 import {
   WrenchIcon,
   AlertCircleIcon,
@@ -18,7 +18,7 @@ import {
   ClockIcon,
   ActivityIcon,
   SettingsIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

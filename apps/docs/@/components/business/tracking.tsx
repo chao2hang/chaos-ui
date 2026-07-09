@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
-import { TrendingUpIcon, TrendingDownIcon } from "@/components/ui/icons";
-import { formatNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { TrendingUpIcon, TrendingDownIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component Tracking

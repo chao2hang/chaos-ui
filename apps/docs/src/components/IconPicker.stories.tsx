@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconPicker } from "@/components/ui/icon-picker";
+import { IconPicker } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof IconPicker> = {
   title: "Components/IconPicker",

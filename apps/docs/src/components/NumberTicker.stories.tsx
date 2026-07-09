@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { NumberTicker } from "@/components/ui/number-ticker";
+import { NumberTicker } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof NumberTicker> = {
   title: "Components/NumberTicker",

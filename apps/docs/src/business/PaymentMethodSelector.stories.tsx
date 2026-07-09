@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PaymentMethodSelector } from "@/components/business/payment-method-selector"
+import { PaymentMethodSelector } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PaymentMethodSelector> = {
   title: "Business/PaymentMethodSelector",

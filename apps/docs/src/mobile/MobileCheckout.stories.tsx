@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileCheckout } from "@/components/mobile/mobile-checkout";
+import { MobileCheckout } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileCheckout> = {
   title: "Mobile/MobileCheckout",

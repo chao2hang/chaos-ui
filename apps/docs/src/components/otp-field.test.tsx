@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest"
 import { render, fireEvent, screen } from "@testing-library/react"
-import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
+import { OTPField, OTPFieldSeparator } from "@chaos_team/chaos-ui/ui"
 
 describe("OTPField", () => {
   it("renders the requested number of input cells", () => {

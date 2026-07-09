@@ -1,12 +1,12 @@
 import type * as React from "react";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { buttonVariants } from "@chaos_team/chaos-ui/ui";
 import {
   DownloadIcon,
   FileTextIcon,
   FileIcon,
   FilePlusIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TemplateDownload

@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
+import { Input } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileInputProps extends React.ComponentProps<typeof Input> {
   // Mobile-specific props

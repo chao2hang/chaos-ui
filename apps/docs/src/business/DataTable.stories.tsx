@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { DataTable, type Column } from "@/components/business/data-table"
-import { StatusTag } from "@/components/business/status-tag"
-import { Button } from "@/components/ui/button"
+import { DataTable, type Column } from "@chaos_team/chaos-ui/business"
+import { StatusTag } from "@chaos_team/chaos-ui/business"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 interface Order {
   id: string

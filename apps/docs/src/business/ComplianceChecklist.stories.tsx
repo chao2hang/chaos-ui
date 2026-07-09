@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ComplianceChecklist } from "@/components/business/compliance-checklist"
+import { ComplianceChecklist } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ComplianceChecklist> = {
   title: "Business/ComplianceChecklist",

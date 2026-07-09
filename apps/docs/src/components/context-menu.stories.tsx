@@ -14,7 +14,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuSubContent,
   ContextMenuGroup,
-} from "@/components/ui/context-menu";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ContextMenu> = {
   title: "Components/ContextMenu",

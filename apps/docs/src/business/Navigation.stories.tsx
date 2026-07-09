@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { TopLoader } from "@/components/business/top-loader"
-import { Anchor } from "@/components/business/anchor"
+import { Anchor } from "@chaos_team/chaos-ui/ui"
 import { SearchInput } from "@/components/business/search-input"
 import { Dock } from "@/components/business/dock"
 import { HomeIcon, SearchIcon, BellIcon, MessageCircleIcon, UserIcon, SettingsIcon } from "lucide-react"

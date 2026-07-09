@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { usePagination } from "@/hooks/use-pagination";
-import { useMessage } from "@/hooks/use-message";
+import { usePagination } from "@chaos_team/chaos-ui/hooks";
+import { useMessage } from "@chaos_team/chaos-ui/hooks";
 
 /**
  * @hook useCrud

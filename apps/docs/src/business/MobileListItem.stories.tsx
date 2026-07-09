@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileListItem } from "@/components/business/mobile-list-item"
+import { MobileListItem } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileListItem> = {
   title: "Business/MobileListItem",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TreeCrudPage } from "@/components/business/tree-crud-page"
+import { TreeCrudPage } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TreeCrudPage> = {
   title: "Business/TreeCrudPage",

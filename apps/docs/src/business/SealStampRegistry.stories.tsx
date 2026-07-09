@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SealStampRegistry } from "@/components/business/seal-stamp-registry"
+import { SealStampRegistry } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SealStampRegistry> = {
   title: "Business/SealStampRegistry",

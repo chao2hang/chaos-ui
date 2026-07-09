@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
-} from "@/components/ui/carousel"
+} from "@chaos_team/chaos-ui/ui"
 
 const ThreeSlides = () => (
   <Carousel>

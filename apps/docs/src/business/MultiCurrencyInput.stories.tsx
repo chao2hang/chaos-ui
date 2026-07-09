@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MultiCurrencyInput } from "@/components/business/multi-currency-input"
+import { MultiCurrencyInput } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MultiCurrencyInput> = {
   title: "Business/MultiCurrencyInput",

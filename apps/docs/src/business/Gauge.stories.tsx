@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Gauge, RadialProgress } from "@/components/business/gauge"
+import { Gauge, RadialProgress } from "@chaos_team/chaos-ui/business"
 
 const meta = {
   title: "Business/Gauge",

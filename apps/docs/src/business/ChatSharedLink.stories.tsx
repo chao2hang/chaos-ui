@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatSharedLink } from "@/components/business/chat-shared-link"
+import { ChatSharedLink } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatSharedLink> = {
   title: "Business/ChatSharedLink",

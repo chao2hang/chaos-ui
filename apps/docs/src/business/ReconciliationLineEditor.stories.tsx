@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ReconciliationLineEditor } from "@/components/business/reconciliation-line-editor"
+import { ReconciliationLineEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ReconciliationLineEditor> = {
   title: "Business/ReconciliationLineEditor",

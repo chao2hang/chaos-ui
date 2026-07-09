@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   CreditCardIcon,
   BanknoteIcon,
   SmartphoneIcon,
-} from "@/components/ui/icons";
-import { Label } from "@/components/ui/label";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { Label } from "@chaos_team/chaos-ui/ui";
 
 export type PaymentMethod = "card" | "wechat" | "alipay" | "transfer";
 

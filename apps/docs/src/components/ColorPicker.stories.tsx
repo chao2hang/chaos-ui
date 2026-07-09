@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ColorPicker } from "@/components/ui/color-picker";
+import { ColorPicker } from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const meta: Meta<typeof ColorPicker> = {

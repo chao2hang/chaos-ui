@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Cascader } from "@/components/ui/cascader";
+import { Cascader } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Cascader> = {
   title: "Components/Cascader",

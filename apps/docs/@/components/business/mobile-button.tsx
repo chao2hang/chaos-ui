@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface MobileButtonProps extends React.ComponentProps<typeof Button> {
   fullWidth?: boolean

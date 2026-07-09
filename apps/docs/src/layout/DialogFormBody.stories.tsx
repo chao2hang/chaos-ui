@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DialogFormBody } from "@/components/layout/dialog-form-body";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { DialogFormBody } from "@chaos_team/chaos-ui/layout";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof DialogFormBody> = {
   title: "Layouts/DialogFormBody",

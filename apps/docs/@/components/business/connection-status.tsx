@@ -2,8 +2,8 @@
 import * as React from "react";
 import { WifiOffIcon, RefreshCwIcon, CheckIcon } from "lucide-react";
 import { useOnlineStatus } from "@/hooks/use-online-status";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 type SyncState = "online" | "offline" | "syncing";
 

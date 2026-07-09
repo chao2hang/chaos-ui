@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "@/components/ui";
-import { PageContainer, PageHeader } from "@/components/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { PageContainer, PageHeader } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 import { FilterBar, type FilterField } from "./filter-bar";
 import { SearchTable, type ColumnDef } from "./search-table";
 

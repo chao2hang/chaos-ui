@@ -1,12 +1,12 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatCompactNumber } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatCompactNumber } from "@chaos_team/chaos-ui/lib";
 import {
   ArrowUpRightIcon,
   ArrowDownRightIcon,
   LayoutDashboardIcon,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component OverviewPage

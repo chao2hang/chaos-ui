@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FilterBuilder } from "@/components/business/filter-builder"
+import { FilterBuilder } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof FilterBuilder> = {
   title: "Business/FilterBuilder",

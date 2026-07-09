@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render } from "@testing-library/react"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { AspectRatio } from "@chaos_team/chaos-ui/ui"
 
 describe("AspectRatio", () => {
   it("renders a div with data-slot=aspect-ratio", () => {

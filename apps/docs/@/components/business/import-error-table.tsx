@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { AlertTriangleIcon, DownloadIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { AlertTriangleIcon, DownloadIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ImportErrorTable

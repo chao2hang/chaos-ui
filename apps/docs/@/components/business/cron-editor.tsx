@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import cronstrue from "cronstrue";
-import { ClockIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { SegmentedControl } from "@/components/ui/segmented-control";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { ClockIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { SegmentedControl } from "@chaos_team/chaos-ui/ui";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component CronEditor

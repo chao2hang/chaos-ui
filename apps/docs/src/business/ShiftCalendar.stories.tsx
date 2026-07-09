@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ShiftCalendar } from "@/components/business/shift-calendar";
+import { ShiftCalendar } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ShiftCalendar> = {
   title: "Business/ShiftCalendar",

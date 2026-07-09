@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertTitle, AlertDescription } from "@chaos_team/chaos-ui/ui";
 import {
   AlertCircleIcon,
   CheckCircle2Icon,

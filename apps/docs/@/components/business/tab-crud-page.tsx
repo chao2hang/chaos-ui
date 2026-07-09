@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Button,
   Card,
@@ -11,8 +11,8 @@ import {
   Tabs,
   TabsList,
   TabsTrigger,
-} from "@/components/ui";
-import { PlusIcon, SearchIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TabCrudPage

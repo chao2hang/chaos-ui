@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component FunnelChart

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ColorTag } from "@/components/business/color-tag";
+import { ColorTag } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof ColorTag> = {
   title: "Business/ColorTag",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BulkImportWizard } from "@/components/business/bulk-import-wizard";
+import { BulkImportWizard } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof BulkImportWizard> = {
   title: "Business/BulkImportWizard",

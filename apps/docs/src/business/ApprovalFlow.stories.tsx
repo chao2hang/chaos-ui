@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ApprovalFlow } from "@/components/business/approval-flow";
+import { ApprovalFlow } from "@chaos_team/chaos-ui/business";
 
 const nodes = [
   { id: "1", name: "提交申请", type: "start", status: "approved" },

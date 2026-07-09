@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { ImageIcon, CheckIcon, RotateCcwIcon } from "@/components/ui/icons";
+import { ImageIcon, CheckIcon, RotateCcwIcon } from "@chaos_team/chaos-ui/ui-icons";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@chaos_team/chaos-ui/ui";
 
 export interface CropResult {
   blob: Blob;

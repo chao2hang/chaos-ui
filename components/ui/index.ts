@@ -274,6 +274,8 @@ export {
 } from "./progress";
 import { QrCodeDisplay as _QrCodeDisplay } from "./qrcode-display";
 export { QrCodeDisplay } from "./qrcode-display";
+/** Alias for QrCodeDisplay (capital R variant for consumer compatibility) */
+export { QrCodeDisplay as QRCodeDisplay } from "./qrcode-display";
 /** @deprecated Use QrCodeDisplay */
 export const QrcodeDisplay = _QrCodeDisplay;
 export type { QrCodeDisplayProps } from "./qrcode-display";
@@ -720,3 +722,7 @@ export type {
   PasswordPolicyValidatorProps,
   PolicyRule,
 } from "./password-policy-validator";
+
+// Theme provider (re-exports next-themes with typed context)
+export { ThemeProvider, useTheme } from "./theme-provider";
+export type { Theme, ThemeContextValue, ThemeProviderProps } from "./theme-provider";

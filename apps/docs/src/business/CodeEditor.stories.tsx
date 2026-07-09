@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CodeEditor } from "@/components/business/code-editor";
+import { CodeEditor } from "@chaos_team/chaos-ui/business";
 
 const sampleCode = `function greet(name: string): string {
   return \`Hello, \${name}!\`

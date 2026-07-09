@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
-import { MobilePageHeader } from "@/components/business/mobile-page-header"
+import { cn } from "@chaos_team/chaos-ui/lib"
+import { MobilePageHeader } from "@chaos_team/chaos-ui/mobile"
 
 interface MobileDashboardLayoutProps {
   children: React.ReactNode

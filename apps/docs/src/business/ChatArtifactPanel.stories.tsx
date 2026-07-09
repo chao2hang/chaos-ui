@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatArtifactPanel } from "@/components/business/chat-artifact-panel"
+import { ChatArtifactPanel } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatArtifactPanel> = {
   title: "Business/ChatArtifactPanel",

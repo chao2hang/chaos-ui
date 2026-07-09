@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { FileIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { FileIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component AttachmentPreview
  * @category business/attachment

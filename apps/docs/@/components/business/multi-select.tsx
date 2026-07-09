@@ -5,13 +5,13 @@ import {
   ChevronDownIcon,
   SearchIcon,
   XIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { Input } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
 
 export interface MultiSelectOption {
   value: string;

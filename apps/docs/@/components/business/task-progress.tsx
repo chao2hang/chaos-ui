@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { CheckCircle2Icon, Loader2Icon, XCircleIcon, ClockIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { CheckCircle2Icon, Loader2Icon, XCircleIcon, ClockIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TaskProgress

@@ -9,8 +9,8 @@ import {
   type ColumnDef as TanstackColumnDef,
 } from "@tanstack/react-table";
 
-import { cn } from "@/lib/utils";
-import { arrayToTree, type TreeNode } from "@/lib/tree";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { arrayToTree, type TreeNode } from "@chaos_team/chaos-ui/lib";
 import {
   Table,
   TableHeader,
@@ -19,8 +19,8 @@ import {
   TableRow,
   TableCell,
   TableCaption,
-} from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@chaos_team/chaos-ui/ui";
+import { Skeleton } from "@chaos_team/chaos-ui/ui";
 import {
   ChevronRightIcon,
   ChevronDownIcon,
@@ -28,7 +28,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
   Loader2Icon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TreeTable

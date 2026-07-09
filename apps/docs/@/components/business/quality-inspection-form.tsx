@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Form,
   FormField,
@@ -10,24 +10,24 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { InputNumber } from "@/components/ui/input-number";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "@chaos_team/chaos-ui/ui";
+import { InputNumber } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { RadioGroup, RadioGroupItem } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
+} from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 import {
   CheckCircleIcon,
   XCircleIcon,
   CameraIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */

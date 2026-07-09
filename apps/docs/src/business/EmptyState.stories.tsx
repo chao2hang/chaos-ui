@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { EmptyState } from "@/components/ui/empty-state";
-import { Button } from "@/components/ui/button";
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   InboxIcon,
   SearchXIcon,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PhotoAudit } from "@/components/business/photo-audit"
+import { PhotoAudit } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PhotoAudit> = {
   title: "Business/PhotoAudit",

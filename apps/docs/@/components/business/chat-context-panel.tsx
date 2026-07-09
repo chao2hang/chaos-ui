@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component ChatContextPanel

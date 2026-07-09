@@ -3,7 +3,7 @@ import {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
-} from "@/components/ui/resizable";
+} from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ResizablePanelGroup> = {
   title: "Components/Resizable",

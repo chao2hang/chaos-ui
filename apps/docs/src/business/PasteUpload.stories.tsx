@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PasteUpload } from "@/components/business/paste-upload"
+import { PasteUpload } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PasteUpload> = {
   title: "Business/PasteUpload",

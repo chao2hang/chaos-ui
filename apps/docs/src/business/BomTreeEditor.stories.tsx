@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { BomTreeEditor } from "@/components/business/bom-tree-editor"
+import { BomTreeEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof BomTreeEditor> = {
   title: "Business/BomTreeEditor",

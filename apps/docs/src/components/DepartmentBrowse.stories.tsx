@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   DepartmentBrowse,
   type Department,
-} from "@/components/ui/department-browse";
+} from "@chaos_team/chaos-ui/ui";
 import { useState } from "react";
 
 const meta: Meta<typeof DepartmentBrowse> = {

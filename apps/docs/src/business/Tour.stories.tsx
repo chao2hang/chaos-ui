@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Tour, type TourStep } from "@/components/ui/tour"
+import { Tour, type TourStep } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 
 const meta = {
   title: "Business/Tour",

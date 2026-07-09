@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TabPin } from "@/components/business/tab-pin"
+import { TabPin } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TabPin> = {
   title: "Business/TabPin",

@@ -4,7 +4,7 @@ import axios, {
   type AxiosRequestConfig,
 } from "axios";
 import { toast } from "sonner";
-import { logger } from "@/lib/logger";
+import { logger } from "@chaos_team/chaos-ui/lib";
 
 export interface ApiError {
   status: number;

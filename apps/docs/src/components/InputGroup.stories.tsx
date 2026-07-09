@@ -4,7 +4,7 @@ import {
   InputGroupInput,
   InputGroupAddon,
   InputGroupText,
-} from "@/components/ui/input-group";
+} from "@chaos_team/chaos-ui/ui";
 import { SearchIcon, MailIcon, InfoIcon } from "lucide-react";
 
 const meta: Meta<typeof InputGroup> = {

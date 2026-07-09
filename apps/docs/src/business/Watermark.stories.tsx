@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Watermark } from "@/components/ui/watermark"
+import { Watermark } from "@chaos_team/chaos-ui/ui"
 
 const meta: Meta<typeof Watermark> = {
   title: "Business/Watermark",

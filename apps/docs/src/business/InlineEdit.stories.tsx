@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InlineEdit } from "@/components/business/inline-edit";
+import { InlineEdit } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof InlineEdit> = {
   title: "Business/InlineEdit",

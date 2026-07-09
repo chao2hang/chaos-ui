@@ -9,7 +9,7 @@ import {
 import type { ComponentMeta } from "@/content/components.meta";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
 import { dict } from "@/lib/i18n/dict";
-import type { Locale } from "@/lib/i18n/locale";
+import { type Locale } from "@/lib/i18n/locale";
 import { ComponentPreview } from "@/components/component-preview";
 import { mdxLoaders } from "@/components/mdx-loaders";
 

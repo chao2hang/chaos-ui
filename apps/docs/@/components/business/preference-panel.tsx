@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Sheet,
   SheetContent,
@@ -12,8 +12,8 @@ import {
   Separator,
   Switch,
   Button,
-} from "@/components/ui";
-import { SunIcon, MoonIcon, MonitorIcon, BellIcon, LanguagesIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { SunIcon, MoonIcon, MonitorIcon, BellIcon, LanguagesIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PreferencePanel

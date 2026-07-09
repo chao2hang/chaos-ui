@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Mentions } from "@/components/ui/mentions";
+import { Mentions } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Mentions> = {
   title: "Components/Mentions",

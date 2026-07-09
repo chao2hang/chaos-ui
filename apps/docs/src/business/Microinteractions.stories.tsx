@@ -3,7 +3,7 @@ import { AnimatedNumber } from "@/components/business/animated-number"
 import { Confetti } from "@/components/business/confetti"
 import { CoachMark } from "@/components/business/coach-mark"
 import { DensitySwitcher } from "@/components/business/density-switcher"
-import { Button } from "@/components/ui/button"
+import { Button } from "@chaos_team/chaos-ui/ui"
 import { useState } from "react"
 import { toast } from "sonner"
 

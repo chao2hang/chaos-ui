@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AvatarGroup } from "@/components/business/avatar-group"
+import { AvatarGroup } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AvatarGroup> = {
   title: "Business/AvatarGroup",

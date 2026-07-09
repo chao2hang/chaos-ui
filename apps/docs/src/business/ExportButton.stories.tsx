@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ExportButton } from "@/components/business/export-button"
+import { ExportButton } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ExportButton> = {
   title: "Business/ExportButton",

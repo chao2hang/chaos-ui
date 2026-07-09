@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { GridLayout, GridItem } from "@/components/ui/grid-layout";
-import { Card, CardContent } from "@/components/ui/card";
+import { GridLayout, GridItem } from "@chaos_team/chaos-ui/ui";
+import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof GridLayout> = {
   title: "Components/GridLayout",

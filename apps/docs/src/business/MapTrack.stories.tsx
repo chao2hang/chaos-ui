@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MapTrack } from "@/components/business/map-track"
+import { MapTrack } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MapTrack> = {
   title: "Business/MapTrack",

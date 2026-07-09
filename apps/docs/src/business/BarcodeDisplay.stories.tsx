@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BarcodeDisplay } from "@/components/business/barcode-display";
+import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof BarcodeDisplay> = {
   title: "Business/BarcodeDisplay",

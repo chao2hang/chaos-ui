@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
-import { PrintLayout } from "@/components/layout/print-layout"
+import { PrintLayout } from "@chaos_team/chaos-ui/layout"
 
 describe("PrintLayout", () => {
   it("renders children inside the print root", () => {

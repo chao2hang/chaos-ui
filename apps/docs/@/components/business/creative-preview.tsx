@@ -4,7 +4,7 @@ import {
   MailIcon,
   MessageSquareIcon,
   SmartphoneIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 import type { ComponentType } from "react";
 import {
   Badge,
@@ -16,8 +16,8 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type CreativePreviewMode = "email" | "push" | "social" | "ad";
 export type CreativePreviewViewport = "desktop" | "mobile";

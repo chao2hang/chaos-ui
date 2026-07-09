@@ -6,10 +6,10 @@ import {
   BookmarkCheckIcon,
   ChevronDownIcon,
   TrashIcon,
-} from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { Input } from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 export interface SavedFilter {
   id: string;

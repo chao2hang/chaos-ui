@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { QrCodeIcon, BarcodeIcon } from "@/components/ui/icons";
+import { QrCodeIcon, BarcodeIcon } from "@chaos_team/chaos-ui/ui-icons";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface BarcodeScannerProps extends Omit<
   React.ComponentProps<"div">,

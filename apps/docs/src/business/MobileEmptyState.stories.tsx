@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileEmptyState } from "@/components/business/mobile-empty-state";
+import { MobileEmptyState } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileEmptyState> = {
   title: "Business/MobileEmptyState",

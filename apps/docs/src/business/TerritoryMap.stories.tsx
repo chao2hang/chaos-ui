@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { TerritoryMap } from "@/components/business/territory-map"
+import { TerritoryMap } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof TerritoryMap> = {
   title: "Business/TerritoryMap",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LineChart } from "@/components/business/chart";
+import { LineChart } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof LineChart> = {
   title: "Business/LineChart",

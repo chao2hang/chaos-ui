@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileBottomNav } from "@/components/business/mobile-bottom-nav";
+import { MobileBottomNav } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileBottomNav> = {
   title: "Business/MobileBottomNav",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toggle } from "@/components/ui/toggle";
+import { Toggle } from "@chaos_team/chaos-ui/ui";
 import { Bold, Italic, Underline } from "lucide-react";
 
 const meta: Meta<typeof Toggle> = {

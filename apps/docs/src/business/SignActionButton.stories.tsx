@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SignActionButton } from "@/components/business/sign-action-button"
+import { SignActionButton } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SignActionButton> = {
   title: "Business/SignActionButton",

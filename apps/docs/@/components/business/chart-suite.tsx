@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/format";
-import { BarChart } from "@/components/business/bar-chart";
-import { LineChart } from "@/components/business/line-chart";
-import { PieChart } from "@/components/business/pie-chart";
-import { RadarChart } from "@/components/business/radar-chart";
-import { ScatterChart } from "@/components/business/scatter-chart";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber } from "@chaos_team/chaos-ui/lib";
+import { BarChart } from "@chaos_team/chaos-ui/business";
+import { LineChart } from "@chaos_team/chaos-ui/business";
+import { PieChart } from "@chaos_team/chaos-ui/business";
+import { RadarChart } from "@chaos_team/chaos-ui/business";
+import { ScatterChart } from "@chaos_team/chaos-ui/business";
 
 /**
  * @component ChartSuite

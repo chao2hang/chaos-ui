@@ -1,19 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { UsersIcon } from "@/components/ui/icons";
+import { UsersIcon } from "@chaos_team/chaos-ui/ui-icons";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { FilterBuilder } from "@/components/business/filter-builder";
-import { Transfer } from "@/components/ui/transfer";
-import type { TransferItem } from "@/components/ui/transfer";
-import { cn } from "@/lib/utils";
+} from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { FilterBuilder } from "@chaos_team/chaos-ui/business";
+import { Transfer } from "@chaos_team/chaos-ui/ui";
+import type { TransferItem } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface AudienceSegmentBuilderProps {
   fields: Array<{ key: string; label: string }>;

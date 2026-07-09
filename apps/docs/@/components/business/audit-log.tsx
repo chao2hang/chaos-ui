@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { ChevronDownIcon, ChevronRightIcon } from "@/components/ui/icons";
+import { ChevronDownIcon, ChevronRightIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 
-import { Avatar, AvatarFallback } from "@/components/ui";
-import { Badge } from "@/components/ui";
-import { Button } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export type AuditLogStatus = "success" | "warning" | "error" | "info";
 

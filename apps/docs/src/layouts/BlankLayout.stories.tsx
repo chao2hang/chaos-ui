@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BlankLayout } from "@/components/layout/blank-layout";
+import { BlankLayout } from "@chaos_team/chaos-ui/layout";
 
 const meta: Meta<typeof BlankLayout> = {
   title: "Layouts/BlankLayout",

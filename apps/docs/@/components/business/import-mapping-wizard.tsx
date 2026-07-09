@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 import {
   Table,
   TableHeader,
@@ -11,13 +11,13 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@/components/ui/table";
+} from "@chaos_team/chaos-ui/ui";
 import {
   ArrowRightIcon,
   CheckCircle2Icon,
   AlertCircleIcon,
   ArrowLeftIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ImportMappingWizard

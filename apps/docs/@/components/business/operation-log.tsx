@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatDateTime } from "@/lib/format";
-import { UserIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDateTime } from "@chaos_team/chaos-ui/lib";
+import { UserIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component OperationLog

@@ -15,12 +15,12 @@ import {
   EyeIcon,
   PencilIcon,
   Columns3Icon,
-} from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { SegmentedControl } from "@/components/ui/segmented-control";
-import { ChatMarkdownRenderer } from "@/components/business/chat-markdown-renderer";
+} from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { SegmentedControl } from "@chaos_team/chaos-ui/ui";
+import { ChatMarkdownRenderer } from "@chaos_team/chaos-ui/business";
 
 /**
  * @component MarkdownEditor

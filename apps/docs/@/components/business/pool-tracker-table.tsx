@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/format";
-import { WalletIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber } from "@chaos_team/chaos-ui/lib";
+import { WalletIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PoolTrackerTable

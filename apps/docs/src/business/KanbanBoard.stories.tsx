@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { KanbanBoard } from "@/components/business/kanban-board"
+import { KanbanBoard } from "@chaos_team/chaos-ui/business"
 import { useState } from "react"
 
 const meta: Meta<typeof KanbanBoard> = {

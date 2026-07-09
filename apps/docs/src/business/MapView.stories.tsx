@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MapView } from "@/components/business/map-view";
+import { MapView } from "@chaos_team/chaos-ui/business";
 
 const markers = [
   {

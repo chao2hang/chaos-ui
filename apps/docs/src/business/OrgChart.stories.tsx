@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { OrgChart } from "@/components/business/org-chart";
-import type { OrgNode, OrgEdge } from "@/components/business/org-chart";
+import { OrgChart } from "@chaos_team/chaos-ui/business";
+import type { OrgNode, OrgEdge } from "@chaos_team/chaos-ui/business";
 
 const sampleNodes: OrgNode[] = [
   { id: "1", name: "Alice Chen", title: "CEO", department: "Executive" },

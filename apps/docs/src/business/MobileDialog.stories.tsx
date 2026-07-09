@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileDialog } from "@/components/business/mobile-dialog";
+import { MobileDialog } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileDialog> = {
   title: "Business/MobileDialog",

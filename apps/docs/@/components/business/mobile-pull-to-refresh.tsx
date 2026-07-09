@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { ArrowDownIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface PullToRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
   onRefresh: () => Promise<void> | void;

@@ -3,9 +3,9 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Badge } from "@/components/ui";
-import { Checkbox } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 export interface RoleAssignmentPrincipal {
   id: string;

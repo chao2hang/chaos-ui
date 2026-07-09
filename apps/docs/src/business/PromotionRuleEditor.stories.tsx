@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PromotionRuleEditor } from "@/components/business/promotion-rule-editor"
+import { PromotionRuleEditor } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PromotionRuleEditor> = {
   title: "Business/PromotionRuleEditor",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Statistic } from "@/components/ui/statistic";
+import { Statistic } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Statistic> = {
   title: "Components/Statistic",

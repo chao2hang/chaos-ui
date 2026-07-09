@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AttachmentUploader } from "@/components/business/attachment-uploader"
+import { AttachmentUploader } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AttachmentUploader> = {
   title: "Business/AttachmentUploader",

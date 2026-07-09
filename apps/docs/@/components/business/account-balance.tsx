@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { formatCurrency } from "@/lib/format";
-import { ArrowDownRightIcon, ArrowUpRightIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { ArrowDownRightIcon, ArrowUpRightIcon } from "@chaos_team/chaos-ui/ui";
 /**
  * @component AccountBalance
  * @category business/finance

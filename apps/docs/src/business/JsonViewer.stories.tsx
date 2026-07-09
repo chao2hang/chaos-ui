@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { JsonViewer } from "@/components/business/json-viewer";
+import { JsonViewer } from "@chaos_team/chaos-ui/business";
 
 const sampleData = {
   name: "张三",

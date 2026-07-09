@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { CheckIcon, CircleIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 interface FormStep {
   id: string

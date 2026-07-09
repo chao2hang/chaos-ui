@@ -5,8 +5,8 @@ import {
   TimelineDot,
   TimelineConnector,
   TimelineContent,
-} from "@/components/ui/timeline";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+} from "@chaos_team/chaos-ui/ui";
+import { Avatar, AvatarFallback } from "@chaos_team/chaos-ui/ui";
 import { CheckCircle2Icon, ClockIcon, XCircleIcon } from "lucide-react";
 
 const meta: Meta<typeof Timeline> = {

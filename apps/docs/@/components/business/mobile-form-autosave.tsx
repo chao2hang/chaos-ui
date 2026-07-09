@@ -2,7 +2,7 @@
 import * as React from "react";
 import { FormAutosaveIndicator } from "./form/form-autosave-indicator";
 import type { AutosaveStatus } from "@/hooks/use-form-autosave";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface MobileFormAutosaveProps extends React.HTMLAttributes<HTMLDivElement> {
   status: AutosaveStatus;

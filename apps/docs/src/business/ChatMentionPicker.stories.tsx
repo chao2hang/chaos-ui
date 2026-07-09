@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChatMentionPicker } from "@/components/business/chat-mention-picker"
+import { ChatMentionPicker } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof ChatMentionPicker> = {
   title: "Business/ChatMentionPicker",

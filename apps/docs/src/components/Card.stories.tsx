@@ -7,9 +7,9 @@ import {
   CardContent,
   CardFooter,
   CardAction,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",

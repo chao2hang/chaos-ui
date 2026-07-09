@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button, Input, Label, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { PlusIcon, Trash2Icon, CopyIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, Input, Label, Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import { PlusIcon, Trash2Icon, CopyIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component SerialNumberManager

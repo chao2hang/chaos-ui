@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Card,
   CardContent,
@@ -16,7 +16,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 export type Aggregation = "sum" | "count" | "avg" | "min" | "max";
 

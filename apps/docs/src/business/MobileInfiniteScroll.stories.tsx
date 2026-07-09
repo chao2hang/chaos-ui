@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileInfiniteScroll } from "@/components/business/mobile-infinite-scroll"
+import { MobileInfiniteScroll } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileInfiniteScroll> = {
   title: "Business/MobileInfiniteScroll",

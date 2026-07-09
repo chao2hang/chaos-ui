@@ -3,10 +3,10 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
-import { cn } from "@/lib/utils";
-import { formatDate } from "@/lib/format";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDate } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
@@ -14,8 +14,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { CheckIcon, ReceiptIcon, SearchIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { CheckIcon, ReceiptIcon, SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PriceAdjustBrowse

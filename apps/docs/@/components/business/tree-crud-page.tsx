@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button, Input, Separator } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button, Input, Separator } from "@chaos_team/chaos-ui/ui";
 import {
   ChevronRightIcon,
   ChevronDownIcon,
@@ -13,7 +13,7 @@ import {
   RefreshCwIcon,
   SearchIcon,
   XIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component TreeCrudPage

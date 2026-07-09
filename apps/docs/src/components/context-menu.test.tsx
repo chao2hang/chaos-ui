@@ -11,7 +11,7 @@ import {
   ContextMenuCheckboxItem,
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
-} from "@/components/ui/context-menu"
+} from "@chaos_team/chaos-ui/ui"
 
 describe("ContextMenu", () => {
   beforeAll(() => {

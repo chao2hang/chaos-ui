@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Countdown } from "@/components/ui/countdown";
+import { Countdown } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Countdown> = {
   title: "Components/Countdown",

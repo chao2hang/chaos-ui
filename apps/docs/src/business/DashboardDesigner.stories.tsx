@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DashboardDesigner } from "@/components/business/dashboard-designer";
+import { DashboardDesigner } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof DashboardDesigner> = {
   title: "Business/DashboardDesigner",

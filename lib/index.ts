@@ -1,3 +1,5 @@
+"use client";
+
 export { cn } from "./utils";
 export { storage, sessionStorage } from "./storage";
 export { eventBus, EventBus } from "./event-bus";
@@ -30,6 +32,7 @@ export {
   formatCurrency,
   formatPercent,
   formatNumber,
+  initials,
 } from "./format";
 export { logger, type LogLevel } from "./logger";
 export {

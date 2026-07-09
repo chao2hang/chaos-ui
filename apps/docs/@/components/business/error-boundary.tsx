@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { AlertTriangleIcon, RefreshCwIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
+import { AlertTriangleIcon, RefreshCwIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface ErrorBoundaryProps {
   fallback?:

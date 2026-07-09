@@ -8,9 +8,9 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { AlertCircleIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { AlertCircleIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @hook useConfirmAsync

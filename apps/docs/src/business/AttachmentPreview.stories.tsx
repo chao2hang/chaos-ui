@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { AttachmentPreview } from "@/components/business/attachment-preview"
+import { AttachmentPreview } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof AttachmentPreview> = {
   title: "Business/AttachmentPreview",

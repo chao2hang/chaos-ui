@@ -11,7 +11,7 @@ import {
   SidebarInset,
   SidebarFooter,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from "@chaos_team/chaos-ui/ui";
 import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react";
 
 const meta: Meta<typeof Sidebar> = {

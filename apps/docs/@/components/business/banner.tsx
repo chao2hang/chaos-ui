@@ -2,7 +2,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { XIcon, InfoIcon, CheckCircleIcon, AlertTriangleIcon, XCircleIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 const bannerVariants = cva(
   "relative flex w-full items-start gap-3 border-b px-4 py-3 text-sm",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AuditLog } from "@/components/business/audit-log";
+import { AuditLog } from "@chaos_team/chaos-ui/business";
 
   const entries: any[] = [
   {

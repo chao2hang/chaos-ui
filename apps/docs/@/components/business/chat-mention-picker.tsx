@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { initials } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Avatar, AvatarFallback, AvatarImage } from "@chaos_team/chaos-ui/ui";
+import { initials } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component ChatMentionPicker

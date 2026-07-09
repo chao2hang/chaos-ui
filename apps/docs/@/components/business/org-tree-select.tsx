@@ -2,20 +2,20 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { TreeView } from "@/components/ui/tree-view";
+} from "@chaos_team/chaos-ui/ui";
+import { TreeView } from "@chaos_team/chaos-ui/ui";
 import {
   Building2Icon,
   ChevronDownIcon,
   SearchIcon,
   XIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

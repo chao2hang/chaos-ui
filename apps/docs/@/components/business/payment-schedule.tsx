@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatDate, formatCurrency } from "@/lib/format";
-import { CalendarIcon, CheckCircle2Icon, ClockIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatDate, formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { CalendarIcon, CheckCircle2Icon, ClockIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component PaymentSchedule

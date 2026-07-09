@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ChatMessage } from "@/components/ui/chat-message";
+import { ChatMessage } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ChatMessage> = {
   title: "Components/ChatMessage",

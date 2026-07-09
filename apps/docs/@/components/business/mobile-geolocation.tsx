@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { MapPinIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { MapPinIcon, RefreshCwIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component MobileGeolocation

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { MobileActionSheet } from "@/components/business/mobile-action-sheet"
+import { MobileActionSheet } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof MobileActionSheet> = {
   title: "Business/MobileActionSheet",

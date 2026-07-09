@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileSheet } from "@/components/business/mobile-sheet";
+import { MobileSheet } from "@chaos_team/chaos-ui/mobile";
 
 const meta: Meta<typeof MobileSheet> = {
   title: "Business/MobileSheet",

@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from "@/components/ui";
-import { TagIcon, CalendarIcon, ClockIcon, EditIcon, CopyIcon } from "@/components/ui/icons";
-import { formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from "@chaos_team/chaos-ui/ui";
+import { TagIcon, CalendarIcon, ClockIcon, EditIcon, CopyIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
  * @component PromotionRuleCard

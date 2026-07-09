@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Combobox } from "@/components/ui/combobox";
+import { Combobox } from "@chaos_team/chaos-ui/ui";
 
 const options = [
   { value: "react", label: "React", group: "前端框架" },

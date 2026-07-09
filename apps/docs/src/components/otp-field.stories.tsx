@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field";
+import { OTPField, OTPFieldSeparator } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof OTPField> = {
   title: "Components/OtpField",

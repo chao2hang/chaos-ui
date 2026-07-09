@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/format";
-import { MapPinIcon } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatNumber } from "@chaos_team/chaos-ui/lib";
+import { MapPinIcon } from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component MapChart

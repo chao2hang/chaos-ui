@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
-import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@/components/ui/icons";
+import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Card, CardContent } from "@/components/ui";
-import { Dot } from "@/components/ui";
-import { formatNumber, formatPercent } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
+import { Dot } from "@chaos_team/chaos-ui/ui";
+import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 interface SparklineProps {
   data: number[];

@@ -1,30 +1,30 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
+} from "@chaos_team/chaos-ui/ui"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { Input } from "@chaos_team/chaos-ui/ui"
+import { Badge } from "@chaos_team/chaos-ui/ui"
+import { ScrollArea } from "@chaos_team/chaos-ui/ui"
+import { Separator } from "@chaos_team/chaos-ui/ui"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet"
+} from "@chaos_team/chaos-ui/ui"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@chaos_team/chaos-ui/ui"
 import {
   PlusIcon,
   Trash2Icon,
@@ -39,7 +39,7 @@ import {
   FileTextIcon,
   ChevronDownIcon,
   SettingsIcon,
-} from "@/components/ui/icons"
+} from "@chaos_team/chaos-ui/ui-icons"
 
 /** Widget type identifiers for the dashboard designer */
 type DashboardWidgetType =

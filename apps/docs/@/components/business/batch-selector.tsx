@@ -2,11 +2,11 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,
   DialogContent,
@@ -14,13 +14,13 @@ import {
   DialogTitle,
   DialogFooter,
   DialogBody,
-} from "@/components/ui/dialog";
+} from "@chaos_team/chaos-ui/ui";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
   PackageIcon,
   SearchIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

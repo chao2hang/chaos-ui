@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FileUpload } from "@/components/ui/file-upload";
-import { Button } from "@/components/ui/button";
+import { FileUpload } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { UploadIcon } from "lucide-react";
 
 const meta: Meta<typeof FileUpload> = {

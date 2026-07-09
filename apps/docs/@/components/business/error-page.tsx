@@ -8,12 +8,12 @@ import {
   ServerCrashIcon,
   ShieldAlertIcon,
   WrenchIcon,
-} from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui";
-import { Button, buttonVariants } from "@/components/ui";
-import { Separator } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { Button, buttonVariants } from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 
 interface ErrorPageProps {
   status?: 403 | 404 | 500 | 503;

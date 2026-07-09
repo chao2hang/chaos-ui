@@ -1,22 +1,22 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
-import { Input } from "@/components/ui";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
 import {
   MoreHorizontalIcon,
   SearchIcon,
   RefreshCwIcon,
   PlusIcon,
   TrashIcon,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui";
+} from "@chaos_team/chaos-ui/ui";
 
 interface CrudToolbarAction {
   key: string;

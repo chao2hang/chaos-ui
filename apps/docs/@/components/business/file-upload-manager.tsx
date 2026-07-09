@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { FileUpload, Button, Badge, Progress } from "@/components/ui";
-import { Trash2Icon, GridIcon, ListIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/utils";
+import { FileUpload, Button, Badge, Progress } from "@chaos_team/chaos-ui/ui";
+import { Trash2Icon, GridIcon, ListIcon } from "@chaos_team/chaos-ui/ui-icons";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 type ManagedFile = {
   file?: File;

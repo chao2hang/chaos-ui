@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { render } from "@testing-library/react"
-import { Dot } from "@/components/ui/dot"
+import { Dot } from "@chaos_team/chaos-ui/ui"
 
 describe("Dot", () => {
   it("renders a span with the dot slot", () => {

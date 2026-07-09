@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SocialShare } from "@/components/business/social-share"
+import { SocialShare } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof SocialShare> = {
   title: "Business/SocialShare",

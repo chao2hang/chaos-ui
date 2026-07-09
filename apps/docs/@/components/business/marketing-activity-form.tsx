@@ -1,21 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { formatCurrency } from "@/lib/format";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { formatCurrency } from "@chaos_team/chaos-ui/lib";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Switch } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import { MegaphoneIcon, SendIcon } from "@/components/ui/icons";
+} from "@chaos_team/chaos-ui/ui";
+import { MegaphoneIcon, SendIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component MarketingActivityForm

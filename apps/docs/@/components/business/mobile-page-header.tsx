@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { PageHeader } from "@/components/business/page-header"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { PageHeader } from "@chaos_team/chaos-ui/business"
+import { Button } from "@chaos_team/chaos-ui/ui"
+import { cn } from "@chaos_team/chaos-ui/lib"
 import { ArrowLeftIcon, MenuIcon } from "lucide-react"
 
 interface MobilePageHeaderProps {

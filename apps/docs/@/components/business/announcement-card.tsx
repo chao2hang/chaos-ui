@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { PinIcon } from "@/components/ui";
-import { formatDate } from "@/lib/format";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { PinIcon } from "@chaos_team/chaos-ui/ui";
+import { formatDate } from "@chaos_team/chaos-ui/lib";
 /**
  * @component AnnouncementCard
  * @category business/dashboard

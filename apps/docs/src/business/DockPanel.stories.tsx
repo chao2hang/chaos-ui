@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { DockPanel } from "@/components/business/dock-panel"
+import { DockPanel } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof DockPanel> = {
   title: "Business/DockPanel",

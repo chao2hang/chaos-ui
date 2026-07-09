@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { PreferencePanel } from "@/components/business/preference-panel"
+import { PreferencePanel } from "@chaos_team/chaos-ui/business"
 
 const meta: Meta<typeof PreferencePanel> = {
   title: "Business/PreferencePanel",

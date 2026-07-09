@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { Loader2Icon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@chaos_team/chaos-ui/lib"
 
 export function ChartSkeleton({ height = 320, className }: { height?: number; className?: string }) {
   return (

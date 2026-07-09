@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { FileUploadManager } from "@/components/business/file-upload-manager"
+import { FileUploadManager } from "@chaos_team/chaos-ui/business"
 import { useState } from "react"
 
 interface UploadedFile {

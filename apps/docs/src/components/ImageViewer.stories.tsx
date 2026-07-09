@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ImageViewer } from "@/components/ui/image-viewer";
+import { ImageViewer } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ImageViewer> = {
   title: "Components/ImageViewer",
