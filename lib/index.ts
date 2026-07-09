@@ -28,11 +28,15 @@ export {
 export {
   formatDate,
   formatDateTime,
+  formatTime,
   formatRelativeTime,
   formatCurrency,
   formatPercent,
   formatNumber,
+  formatCompactNumber,
+  formatFileSize,
   initials,
+  truncate,
 } from "./format";
 export { logger, type LogLevel } from "./logger";
 export {

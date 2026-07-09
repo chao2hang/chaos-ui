@@ -295,7 +295,10 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Grid: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Grid })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({
+        default: m.GridLayout,
+      })),
     { ssr: false },
   ),
   HoverCard: dynamic(
@@ -1979,7 +1982,7 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   FormField: dynamic(
     () =>
       import("@chaos_team/chaos-ui/business").then((m) => ({
-        default: m.FormField,
+        default: m.CrudFormField,
       })),
     { ssr: false },
   ),
@@ -2035,7 +2038,7 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   GlobalLoading: dynamic(
     () =>
       import("@chaos_team/chaos-ui/business").then((m) => ({
-        default: m.GlobalLoading,
+        default: m.GlobalLoadingProvider,
       })),
     { ssr: false },
   ),

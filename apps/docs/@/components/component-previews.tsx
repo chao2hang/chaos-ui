@@ -17,8 +17,8 @@ import { KPIPanel } from "@chaos_team/chaos-ui/ui";
 import { Menu } from "@chaos_team/chaos-ui/ui";
 import { Menubar } from "@chaos_team/chaos-ui/ui";
 import { Popconfirm } from "@chaos_team/chaos-ui/ui";
-import { MessageProvider, MessageContext } from "@chaos_team/chaos-ui/ui";
-import { ModalProvider, ModalContext } from "@chaos_team/chaos-ui/ui";
+import { MessageProvider } from "@chaos_team/chaos-ui/ui";
+import { ModalProvider } from "@chaos_team/chaos-ui/ui";
 import { KeyboardShortcutDialog } from "@chaos_team/chaos-ui/ui";
 import {
   Dialog,

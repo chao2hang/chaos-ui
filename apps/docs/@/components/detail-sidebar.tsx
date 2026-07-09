@@ -151,9 +151,9 @@ export function DetailSidebar({ components }: DetailSidebarProps) {
           const data = catData.get(cat);
           if (!data) return null;
 
+          const hasCurrent = currentComp?.category === cat;
           const isCollapsed = collapsedCats.has(cat) && !hasCurrent;
           const sectionId = sectionIdForCategory(cat);
-          const hasCurrent = currentComp?.category === cat;
 
           return (
             <div key={cat} className="mb-0.5">
