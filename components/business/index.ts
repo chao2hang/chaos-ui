@@ -480,3 +480,12 @@ export { ScreenCapture } from "./screen-capture";
 export type { ScreenCaptureProps } from "./screen-capture";
 export { OrgTreeSelect } from "./org-tree-select";
 export type { OrgTreeSelectProps } from "./org-tree-select";
+
+// ─── P1.5 业务组件 — Sprint 3-5 必须组件 ──────────────────────────
+export * from "./status-action-buttons";
+export * from "./price-ladder-editor";
+export * from "./price-match-result";
+export * from "./gift-line-editor";
+export * from "./invoice-title-picker";
+export * from "./integration-exception-workbench";
+export * from "./expense-pool-detail";

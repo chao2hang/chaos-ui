@@ -1,6 +1,6 @@
 {
   "name": "@chaos_team/chaos-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
   "license": "MIT",
@@ -67,6 +67,11 @@
       "types": "./dist/business.d.ts",
       "import": "./dist/business.js",
       "require": "./dist/business.cjs"
+    },
+    "./business/server": {
+      "types": "./dist/business-server.d.ts",
+      "import": "./dist/business-server.js",
+      "require": "./dist/business-server.cjs"
     },
     "./hooks": {
       "types": "./dist/hooks.d.ts",
