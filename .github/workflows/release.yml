@@ -27,20 +27,10 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Typecheck
-        run: pnpm run typecheck
-
-      - name: Run tests
-        run: pnpm test
-
-      - name: Check no-BOM
-        run: pnpm run check:no-bom
-
+      # 质量闸门（typecheck / test / no-BOM / smoke）由 pnpm publish
+      # 的 prepublishOnly 钩子统一执行，此处不重复，省 ~6.5min。
       - name: Build package (+ size-limit)
         run: pnpm run prepack
-
-      - name: Smoke test (tarball integrity)
-        run: pnpm run smoke
 
       - name: Publish to npmjs.org
         run: pnpm publish --access public --no-git-checks
