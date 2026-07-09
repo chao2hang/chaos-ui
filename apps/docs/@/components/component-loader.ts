@@ -735,10 +735,10 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   Typography: dynamic(
     () =>
       import("@/components/ui/typography").then((m) => ({
-        default: m.Typography,
+        default: m.Typography as any,
       })),
     { ssr: false },
-  ),
+  ) as any,
   UserBrowse: dynamic(
     () =>
       import("@/components/ui/user-browse").then((m) => ({
@@ -2285,7 +2285,7 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   MediaRecorder: dynamic(
     () =>
       import("@/components/business/media-recorder").then((m) => ({
-        default: m.MediaRecorderComponent,
+        default: m.MediaRecorder,
       })),
     { ssr: false },
   ),
@@ -3136,6 +3136,342 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
       })),
     { ssr: false },
   ),
+  PasswordInput: dynamic(
+    () =>
+      import("@/components/ui/password-input").then((m) => ({
+        default: m.PasswordInput,
+      })),
+    { ssr: false },
+  ),
+  PhoneInput: dynamic(
+    () =>
+      import("@/components/ui/phone-input").then((m) => ({
+        default: m.PhoneInput,
+      })),
+    { ssr: false },
+  ),
+  MaskedInput: dynamic(
+    () =>
+      import("@/components/ui/masked-input").then((m) => ({
+        default: m.MaskedInput,
+      })),
+    { ssr: false },
+  ),
+  MonthPicker: dynamic(
+    () =>
+      import("@/components/ui/month-picker").then((m) => ({
+        default: m.MonthPicker,
+      })),
+    { ssr: false },
+  ),
+  YearPicker: dynamic(
+    () =>
+      import("@/components/ui/year-picker").then((m) => ({
+        default: m.YearPicker,
+      })),
+    { ssr: false },
+  ),
+  QuarterPicker: dynamic(
+    () =>
+      import("@/components/ui/quarter-picker").then((m) => ({
+        default: m.QuarterPicker,
+      })),
+    { ssr: false },
+  ),
+  RangeSlider: dynamic(
+    () =>
+      import("@/components/ui/range-slider").then((m) => ({
+        default: m.RangeSlider,
+      })),
+    { ssr: false },
+  ),
+  CountdownButton: dynamic(
+    () =>
+      import("@/components/ui/countdown-button").then((m) => ({
+        default: m.CountdownButton,
+      })),
+    { ssr: false },
+  ),
+  AmountInput: dynamic(
+    () =>
+      import("@/components/ui/amount-input").then((m) => ({
+        default: m.AmountInput,
+      })),
+    { ssr: false },
+  ),
+  ProTable: dynamic(
+    () =>
+      import("@/components/business/pro-table").then((m) => ({
+        default: m.ProTable,
+      })),
+    { ssr: false },
+  ),
+  SortableList: dynamic(
+    () =>
+      import("@/components/ui/sortable-list").then((m) => ({
+        default: m.SortableList,
+      })),
+    { ssr: false },
+  ),
+  CopyButton: dynamic(
+    () =>
+      import("@/components/ui/copy-button").then((m) => ({
+        default: m.CopyButton,
+      })),
+    { ssr: false },
+  ),
+  LogViewer: dynamic(
+    () =>
+      import("@/components/business/log-viewer").then((m) => ({
+        default: m.LogViewer,
+      })),
+    { ssr: false },
+  ),
+  BarcodeScanner: dynamic(
+    () =>
+      import("@/components/business/barcode-scanner").then((m) => ({
+        default: m.BarcodeScanner,
+      })),
+    { ssr: false },
+  ),
+  ImageCropper: dynamic(
+    () =>
+      import("@/components/business/image-cropper").then((m) => ({
+        default: m.ImageCropper,
+      })),
+    { ssr: false },
+  ),
+  EditableTable: dynamic(
+    () =>
+      import("@/components/ui/editable-table").then((m) => ({
+        default: m.EditableTable,
+      })),
+    { ssr: false },
+  ),
+  EditableDescriptions: dynamic(
+    () =>
+      import("@/components/ui/editable-descriptions").then((m) => ({
+        default: m.EditableDescriptions,
+      })),
+    { ssr: false },
+  ),
+  FilterChips: dynamic(
+    () =>
+      import("@/components/ui/filter-chips").then((m) => ({
+        default: m.FilterChips,
+      })),
+    { ssr: false },
+  ),
+  SavedViewSwitcher: dynamic(
+    () =>
+      import("@/components/ui/saved-view").then((m) => ({
+        default: m.SavedViewSwitcher,
+      })),
+    { ssr: false },
+  ),
+  SkeletonTable: dynamic(
+    () =>
+      import("@/components/ui/skeleton-table").then((m) => ({
+        default: m.SkeletonTable,
+      })),
+    { ssr: false },
+  ),
+  SkeletonForm: dynamic(
+    () =>
+      import("@/components/ui/skeleton-form").then((m) => ({
+        default: m.SkeletonForm,
+      })),
+    { ssr: false },
+  ),
+  CodeDiffViewer: dynamic(
+    () =>
+      import("@/components/ui/diff-viewer-code").then((m) => ({
+        default: m.CodeDiffViewer,
+      })),
+    { ssr: false },
+  ),
+  MarkdownViewer: dynamic(
+    () =>
+      import("@/components/ui/markdown-viewer").then((m) => ({
+        default: m.MarkdownViewer,
+      })),
+    { ssr: false },
+  ),
+  RichTextDisplay: dynamic(
+    () =>
+      import("@/components/ui/rich-text-display").then((m) => ({
+        default: m.RichTextDisplay,
+      })),
+    { ssr: false },
+  ),
+  LazyImage: dynamic(
+    () =>
+      import("@/components/ui/lazy-image").then((m) => ({
+        default: m.LazyImage,
+      })),
+    { ssr: false },
+  ),
+  KeepAlive: dynamic(
+    () =>
+      import("@/components/ui/keep-alive").then((m) => ({
+        default: m.KeepAlive,
+      })),
+    { ssr: false },
+  ),
+  MultiTabManager: dynamic(
+    () =>
+      import("@/components/layout/multi-tab-manager").then((m) => ({
+        default: m.MultiTabManager,
+      })),
+    { ssr: false },
+  ),
+  NotificationBadge: dynamic(
+    () =>
+      import("@/components/ui/notification-badge").then((m) => ({
+        default: m.NotificationBadge,
+      })),
+    { ssr: false },
+  ),
+  NotificationDropdown: dynamic(
+    () =>
+      import("@/components/ui/notification-dropdown").then((m) => ({
+        default: m.NotificationDropdown,
+      })),
+    { ssr: false },
+  ),
+  ErrorBoundaryUI: dynamic(
+    () =>
+      import("@/components/ui/error-boundary-ui").then((m) => ({
+        default: m.ErrorBoundaryUI,
+      })),
+    { ssr: false },
+  ),
+  I18nProvider: dynamic(
+    () =>
+      import("@/components/ui/i18n-provider").then((m) => ({
+        default: m.I18nProvider,
+      })),
+    { ssr: false },
+  ),
+  RTLProvider: dynamic(
+    () =>
+      import("@/components/ui/rtl-provider").then((m) => ({
+        default: m.RTLProvider,
+      })),
+    { ssr: false },
+  ),
+  KeyboardShortcutsManager: dynamic(
+    () =>
+      import("@/components/ui/keyboard-shortcuts-manager").then((m) => ({
+        default: m.KeyboardShortcutsManager,
+      })),
+    { ssr: false },
+  ),
+  ImmersiveLayout: dynamic(
+    () =>
+      import("@/components/layout/immersive-layout").then((m) => ({
+        default: m.ImmersiveLayout,
+      })),
+    { ssr: false },
+  ),
+  OrgPicker: dynamic(
+    () =>
+      import("@/components/business/org-picker").then((m) => ({
+        default: m.OrgPicker,
+      })),
+    { ssr: false },
+  ),
+  UserPicker: dynamic(
+    () =>
+      import("@/components/business/user-picker").then((m) => ({
+        default: m.UserPicker,
+      })),
+    { ssr: false },
+  ),
+  AddressInput: dynamic(
+    () =>
+      import("@/components/business/address-input").then((m) => ({
+        default: m.AddressInput,
+      })),
+    { ssr: false },
+  ),
+  JSONViewerUI: dynamic(
+    () =>
+      import("@/components/ui/json-viewer-ui").then((m) => ({
+        default: m.JSONViewerUI,
+      })),
+    { ssr: false },
+  ),
+  Heatmap: dynamic(
+    () =>
+      import("@/components/ui/heatmap").then((m) => ({
+        default: m.Heatmap,
+      })),
+    { ssr: false },
+  ),
+  SegmentedFilter: dynamic(
+    () =>
+      import("@/components/ui/segmented-filter").then((m) => ({
+        default: m.SegmentedFilter,
+      })),
+    { ssr: false },
+  ),
+  StatGrid: dynamic(
+    () =>
+      import("@/components/ui/stat-grid").then((m) => ({
+        default: m.StatGrid,
+      })),
+    { ssr: false },
+  ),
+  RowContextMenu: dynamic(
+    () =>
+      import("@/components/ui/row-context-menu").then((m) => ({
+        default: m.RowContextMenu,
+      })),
+    { ssr: false },
+  ),
+  ProgressiveImage: dynamic(
+    () =>
+      import("@/components/ui/progressive-image").then((m) => ({
+        default: m.ProgressiveImage,
+      })),
+    { ssr: false },
+  ),
+  PasswordPolicyValidator: dynamic(
+    () =>
+      import("@/components/ui/password-policy-validator").then((m) => ({
+        default: m.PasswordPolicyValidator,
+      })),
+    { ssr: false },
+  ),
+  MarkdownViewerBiz: dynamic(
+    () =>
+      import("@/components/business/markdown-viewer-biz").then((m) => ({
+        default: m.MarkdownViewerBiz,
+      })),
+    { ssr: false },
+  ),
+  AudioRecorder: dynamic(
+    () =>
+      import("@/components/business/audio-recorder").then((m) => ({
+        default: m.AudioRecorder,
+      })),
+    { ssr: false },
+  ),
+  ScreenCapture: dynamic(
+    () =>
+      import("@/components/business/screen-capture").then((m) => ({
+        default: m.ScreenCapture,
+      })),
+    { ssr: false },
+  ),
+  OrgTreeSelect: dynamic(
+    () =>
+      import("@/components/business/org-tree-select").then((m) => ({
+        default: m.OrgTreeSelect,
+      })),
+    { ssr: false },
+  ),
 };
 
 /**
@@ -3456,4 +3792,11 @@ export const businessComponentNames: ReadonlySet<string> = new Set([
   "WorkflowPreview",
   "WriteoffBrowse",
   "WriteoffFlow",
+  "BarcodeScanner",
+  "ImageCropper",
+  "OrgPicker",
+  "UserPicker",
+  "MarkdownViewerBiz",
+  "AudioRecorder",
+  "ScreenCapture",
 ]);

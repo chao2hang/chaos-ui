@@ -20,17 +20,16 @@ const generateData = (count: number): User[] =>
   }))
 
 const columns: ColumnDef[] = [
-  { key: "id", header: "ID", width: 80 },
-  { key: "name", header: "Name", width: 150 },
-  { key: "email", header: "Email", width: 200 },
-  { key: "role", header: "Role", width: 100 },
+  { key: "id", header: "ID" },
+  { key: "name", header: "Name" },
+  { key: "email", header: "Email" },
+  { key: "role", header: "Role" },
   {
     key: "status",
     header: "Status",
-    width: 100,
     render: (row) => (
       <Badge variant={row.status === "active" ? "default" : row.status === "pending" ? "secondary" : "outline"}>
-        {row.status}
+        {String(row.status ?? "")}
       </Badge>
     ),
   },
@@ -45,18 +44,18 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { columns, data: generateData(20) as Record<string, unknown>[], pageSize: 10 },
+  args: { columns, data: generateData(20) as unknown as Record<string, unknown>[], pageSize: 10 },
 }
 
 export const LargeDataset: Story = {
-  args: { columns, data: generateData(100) as Record<string, unknown>[], pageSize: 10 },
+  args: { columns, data: generateData(100) as unknown as Record<string, unknown>[], pageSize: 10 },
 }
 
 export const WithRowClick: Story = {
   args: {
     columns,
-    data: generateData(20) as Record<string, unknown>[],
+    data: generateData(20) as unknown as Record<string, unknown>[],
     pageSize: 10,
-    onRowClick: (row) => alert(`Clicked: ${row.name}`),
+    onRowClick: (row) => alert(`Clicked: ${row.name as string}`),
   },
 }

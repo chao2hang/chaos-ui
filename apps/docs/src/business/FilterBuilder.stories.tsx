@@ -22,13 +22,3 @@ const fields = [
 export const Default: Story = {
   args: { fields },
 }
-
-export const WithInitialFilters: Story = {
-  args: {
-    fields,
-    initialFilters: [
-      { field: "status", operator: "equals", value: "active" },
-      { field: "age", operator: "greater_than", value: "18" },
-    ],
-  },
-}

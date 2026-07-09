@@ -71,8 +71,8 @@ function DataTable<T = Record<string, unknown>>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
 
-  const tanstackColumns = React.useMemo(() =>
-    () =>
+  const tanstackColumns = React.useMemo(
+    () => () =>
       columns.map((col) => ({
         id: col.key,
         accessorKey: col.key as string,
@@ -83,7 +83,7 @@ function DataTable<T = Record<string, unknown>>({
         cell: (info: any) =>
           col.render
             ? col.render(info.getValue(), info.row.original, info.row.index)
-            : (info.getValue() as React.ReactNode) ?? "—",
+            : ((info.getValue() as React.ReactNode) ?? "—"),
       })),
     [columns, sortable],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ColumnDef<T> accessorKey typing workaround
@@ -100,10 +100,17 @@ function DataTable<T = Record<string, unknown>>({
     enableSorting: sortable,
   });
 
-  const sizePadding = size === "sm" ? "px-2 py-1.5" : size === "lg" ? "px-4 py-3" : "px-3 py-2";
+  const sizePadding =
+    size === "sm" ? "px-2 py-1.5" : size === "lg" ? "px-4 py-3" : "px-3 py-2";
 
   return (
-    <div data-slot="data-table" className={cn("overflow-x-auto rounded-lg border border-border", className)}>
+    <div
+      data-slot="data-table"
+      className={cn(
+        "border-border overflow-x-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -126,15 +133,25 @@ function DataTable<T = Record<string, unknown>>({
                       col?.fixed === "right" && "right-0",
                     )}
                     style={col?.width ? { width: col.width } : undefined}
-                    onClick={canSort ? header.column.getToggleSortingHandler() : undefined}
+                    onClick={
+                      canSort
+                        ? header.column.getToggleSortingHandler()
+                        : undefined
+                    }
                   >
                     <span className="flex items-center gap-1">
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                      {canSort && (
-                        sort === "asc" ? <ArrowUp className="size-3" /> :
-                        sort === "desc" ? <ArrowDown className="size-3" /> :
-                        <ArrowUpDown className="size-3 opacity-40" />
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
                       )}
+                      {canSort &&
+                        (sort === "asc" ? (
+                          <ArrowUp className="size-3" />
+                        ) : sort === "desc" ? (
+                          <ArrowDown className="size-3" />
+                        ) : (
+                          <ArrowUpDown className="size-3 opacity-40" />
+                        ))}
                     </span>
                   </TableHead>
                 );
@@ -146,7 +163,11 @@ function DataTable<T = Record<string, unknown>>({
           {loading ? (
             Array.from({ length: 5 }).map((_, i) => (
               <TableRow key={`skeleton-${i}`}>
-                {expandable && <TableCell className={sizePadding}><Skeleton className="size-4" /></TableCell>}
+                {expandable && (
+                  <TableCell className={sizePadding}>
+                    <Skeleton className="size-4" />
+                  </TableCell>
+                )}
                 {columns.map((col) => (
                   <TableCell key={col.key} className={sizePadding}>
                     <Skeleton className="h-4 w-full" />
@@ -156,7 +177,10 @@ function DataTable<T = Record<string, unknown>>({
             ))
           ) : table.getRowModel().rows.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={columns.length + (expandable ? 1 : 0)} className="py-12 text-center text-muted-foreground">
+              <TableCell
+                colSpan={columns.length + (expandable ? 1 : 0)}
+                className="text-muted-foreground py-12 text-center"
+              >
                 {emptyText}
               </TableCell>
             </TableRow>
@@ -172,7 +196,19 @@ function DataTable<T = Record<string, unknown>>({
                   <TableRow>
                     {expandable && (
                       <TableCell className={cn(sizePadding, "w-10")}>
-                        <button type="button" onClick={() => setExpanded((prev) => ({ ...prev, [String(key)]: !isExpanded }) as Record<string, boolean>)} className="flex items-center justify-center">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpanded(
+                              (prev) =>
+                                ({
+                                  ...prev,
+                                  [String(key)]: !isExpanded,
+                                }) as Record<string, boolean>,
+                            )
+                          }
+                          className="flex items-center justify-center"
+                        >
                           {isExpanded ? "▼" : "▶"}
                         </button>
                       </TableCell>
@@ -188,14 +224,20 @@ function DataTable<T = Record<string, unknown>>({
                             col?.align === "right" && "text-right",
                           )}
                         >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </TableCell>
                       );
                     })}
                   </TableRow>
                   {expandable && isExpanded && (
                     <TableRow>
-                      <TableCell colSpan={columns.length + 1} className="bg-muted/20 px-8 py-4">
+                      <TableCell
+                        colSpan={columns.length + 1}
+                        className="bg-muted/20 px-8 py-4"
+                      >
                         {expandable.rowExpand(row.original)}
                       </TableCell>
                     </TableRow>

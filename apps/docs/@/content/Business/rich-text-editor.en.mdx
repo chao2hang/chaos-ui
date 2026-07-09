@@ -1,5 +1,5 @@
-import { RichTextEditor } from "@/components/business/rich-text-editor";
-import { CodeBlock } from "@/components/code-block";
+import { RichTextEditor } from "@/components/business/rich-text-editor"
+import { CodeBlock } from "@/components/code-block"
 
 # RichTextEditor
 
@@ -11,6 +11,7 @@ RichTextEditor — a business component for ERP / enterprise scenarios.
 
 Provide formatted rich-text editing (bold, lists, links, etc.).
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,22 +22,25 @@ export function Basic() {
   return <RichTextEditor />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### RichTextEditor
 
-| Prop          | Type                   | Default       | Description                       |
-| ------------- | ---------------------- | ------------- | --------------------------------- |
-| `className`   | `string`               | —             | Custom CSS class                  |
-| `value`       | `string`               | ``            | Current value (controlled)        |
-| `onChange`    | `() => void`           | —             | Callback when value changes       |
-| `placeholder` | `string`               | `开始输入...` | Placeholder text                  |
-| `editable`    | `boolean`              | `true`        |                                   |
-| `showToolbar` | `boolean`              | `true`        |                                   |
-| `minHeight`   | `number`               | `200`         |                                   |
-| `onUpload`    | `(...args) => unknown` | —             |                                   |
-| ...rest       | `React.HTMLAttributes` | —             | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | `` | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `placeholder` | `string` | `开始输入...` | Placeholder text |
+| `editable` | `boolean` | `true` |  |
+| `showToolbar` | `boolean` | `true` |  |
+| `minHeight` | `number` | `200` |  |
+| `onUpload` | `(...args) => unknown` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

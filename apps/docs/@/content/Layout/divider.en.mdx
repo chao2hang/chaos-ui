@@ -1,5 +1,5 @@
-import { Divider } from "@/components/ui/divider";
-import { CodeBlock } from "@/components/code-block";
+import { Divider } from "@/components/ui/divider"
+import { CodeBlock } from "@/components/code-block"
 
 # Divider
 
@@ -10,6 +10,7 @@ Content separator; supports horizontal/vertical and labels.
 ## When to Use
 
 Use when you need a divider.
+
 
 ## Examples
 
@@ -23,51 +24,52 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Divider variant="default">Default</Divider>
   <Divider variant="muted">Muted</Divider>
   <Divider variant="primary">Primary</Divider>
   <Divider variant="dashed">Dashed</Divider>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **orientation**
 
-| orientation  | Description | 默认 |
-| ------------ | ----------- | ---- |
-| `horizontal` |             | ✓    |
-| `vertical`   |             |      |
+| orientation | Description | 默认 |
+|---|---|---|
+| `horizontal` |  | ✓ |
+| `vertical` |  |  |
 
 **Variant**
 
-| Variant   | Description   | 默认 |
-| --------- | ------------- | ---- |
-| `default` | Default style | ✓    |
-| `muted`   |               |      |
-| `primary` | Primary style |      |
-| `dashed`  |               |      |
+| Variant | Description | 默认 |
+|---|---|---|
+| `default` | Default style | ✓ |
+| `muted` |  |  |
+| `primary` | Primary style |  |
+| `dashed` |  |  |
 
 **Size**
 
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
+| Size | Description | 默认 |
+|---|---|---|
+| `default` | Default size | ✓ |
 
 ## API / Props
 
 ### Divider
 
-| Prop            | Type                            | Default  | Description                                                   |
-| --------------- | ------------------------------- | -------- | ------------------------------------------------------------- |
-| `className`     | `string`                        | —        | Custom CSS class                                              |
-| `label`         | `React.ReactNode`               | —        | Optional text in the middle                                   |
-| `labelPosition` | `"left" \| "center" \| "right"` | `center` | Text alignment                                                |
-| `decorative`    | `boolean`                       | `false`  | If true, renders as a decorative separator (no semantic role) |
-| ...rest         | `React.ComponentProps<"div">`   | —        | Inherits all `<div>` attributes                               |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `label` | `React.ReactNode` | — | Optional text in the middle |
+| `labelPosition` | `"left" \| "center" \| "right"` | `center` | Text alignment |
+| `decorative` | `boolean` | `false` | If true, renders as a decorative separator (no semantic role) |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
+
+
+

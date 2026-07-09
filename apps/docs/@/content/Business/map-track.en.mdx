@@ -1,5 +1,5 @@
-import { MapTrack } from "@/components/business/map-track";
-import { CodeBlock } from "@/components/code-block";
+import { MapTrack } from "@/components/business/map-track"
+import { CodeBlock } from "@/components/code-block"
 
 # MapTrack
 
@@ -11,6 +11,7 @@ MapTrack — a business component for ERP / enterprise scenarios.
 
 Use when you need a map track.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,22 +22,25 @@ export function Basic() {
   return <MapTrack />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MapTrack
 
-| Prop        | Type                   | Default   | Description                                                  |
-| ----------- | ---------------------- | --------- | ------------------------------------------------------------ |
-| `className` | `string`               | —         | Custom CSS class                                             |
-| `map`       | `AMap.Map \| null`     | —         | AMap instance from MapView's `onReady`.                      |
-| `points`    | `MapTrackPoint[]`      | —         | Track point array in chronological order.                    |
-| `playing`   | `boolean`              | `false`   | Whether the track animation is playing.                      |
-| `speed`     | `number`               | `10`      | Playback speed multiplier. Default: 10 (10 points per tick). |
-| `color`     | `string`               | `#1677FF` | Track line color. Default: "#1677FF".                        |
-| `onStart`   | `() => void`           | —         | Called when playback starts.                                 |
-| `onEnd`     | `() => void`           | —         | Called when playback ends (reaches last point).              |
-| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes                            |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `map` | `AMap.Map \| null` | — | AMap instance from MapView's `onReady`. |
+| `points` | `MapTrackPoint[]` | — | Track point array in chronological order. |
+| `playing` | `boolean` | `false` | Whether the track animation is playing. |
+| `speed` | `number` | `10` | Playback speed multiplier. Default: 10 (10 points per tick). |
+| `color` | `string` | `#1677FF` | Track line color. Default: "#1677FF". |
+| `onStart` | `() => void` | — | Called when playback starts. |
+| `onEnd` | `() => void` | — | Called when playback ends (reaches last point). |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

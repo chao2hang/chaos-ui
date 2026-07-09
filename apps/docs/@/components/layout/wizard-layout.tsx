@@ -66,9 +66,10 @@ function WizardLayout({
                 <span
                   className={cn(
                     "flex size-7 shrink-0 items-center justify-center rounded-full border text-sm font-medium",
-                    isCompleted && "border-primary bg-primary text-primary-foreground",
+                    isCompleted &&
+                      "border-primary bg-primary text-primary-foreground",
                     isCurrent &&
-                      "border-primary bg-primary/10 text-primary ring-2 ring-primary/30",
+                      "border-primary bg-primary/10 text-primary ring-primary/30 ring-2",
                     !isCompleted &&
                       !isCurrent &&
                       "border-input bg-background text-muted-foreground",
@@ -86,14 +87,14 @@ function WizardLayout({
                     {step.title}
                   </span>
                   {step.description ? (
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-muted-foreground text-xs">
                       {step.description}
                     </span>
                   ) : null}
                 </span>
                 {index < steps.length - 1 ? (
                   <span
-                    className="mx-1 h-px flex-1 bg-border"
+                    className="bg-border mx-1 h-px flex-1"
                     aria-hidden="true"
                   />
                 ) : null}
@@ -102,9 +103,7 @@ function WizardLayout({
           })}
         </ol>
       </nav>
-      <main className="min-h-0 flex-1">
-        {children}
-      </main>
+      <main className="min-h-0 flex-1">{children}</main>
       {onComplete && safeCurrent >= steps.length - 1 ? (
         <span className="sr-only" aria-live="polite">
           已到达最后一步

@@ -13,9 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
-import {
-  ChevronDownIcon,
-} from "@/components/ui/icons";
+import { ChevronDownIcon } from "@/components/ui/icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */
@@ -101,8 +99,7 @@ const severityConfig: Record<
   critical: {
     label: "Critical",
     rowBg: "bg-red-50 dark:bg-red-950/10",
-    badgeClass:
-      "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
+    badgeClass: "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
   },
   warning: {
     label: "Warning",
@@ -231,7 +228,7 @@ function InventoryAlertList({
         data-slot="inventory-alert-list"
         className={cn("space-y-3", className)}
       >
-        <div className="flex gap-1 rounded-lg bg-muted/50 p-1">
+        <div className="bg-muted/50 flex gap-1 rounded-lg p-1">
           {filterTabs.map((tab) => (
             <Skeleton key={tab.key} className="h-8 w-20" />
           ))}
@@ -253,7 +250,7 @@ function InventoryAlertList({
       {/* Filter tabs */}
       <div
         data-testid="filter-tabs"
-        className="flex gap-1 rounded-lg bg-muted/50 p-1"
+        className="bg-muted/50 flex gap-1 rounded-lg p-1"
       >
         {filterTabs.map((tab) => (
           <button
@@ -268,7 +265,7 @@ function InventoryAlertList({
             )}
           >
             {tab.label}
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground text-xs">
               ({counts[tab.key] ?? 0})
             </span>
           </button>
@@ -301,10 +298,7 @@ function InventoryAlertList({
               return (
                 <React.Fragment key={item.id}>
                   <TableRow
-                    className={cn(
-                      cfg.rowBg,
-                      onItemClick && "cursor-pointer",
-                    )}
+                    className={cn(cfg.rowBg, onItemClick && "cursor-pointer")}
                     onClick={() => onItemClick?.(item)}
                     data-testid={`row-${item.id}`}
                   >
@@ -335,7 +329,7 @@ function InventoryAlertList({
                       <div className="flex flex-col">
                         <span className="font-medium">{item.name}</span>
                         {item.code && (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-muted-foreground text-xs">
                             {item.code}
                           </span>
                         )}
@@ -345,8 +339,10 @@ function InventoryAlertList({
                       <span
                         className={cn(
                           "font-mono font-semibold",
-                          item.severity === "critical" && "text-red-600 dark:text-red-400",
-                          item.severity === "warning" && "text-amber-600 dark:text-amber-400",
+                          item.severity === "critical" &&
+                            "text-red-600 dark:text-red-400",
+                          item.severity === "warning" &&
+                            "text-amber-600 dark:text-amber-400",
                         )}
                       >
                         {item.currentQty}
@@ -354,7 +350,7 @@ function InventoryAlertList({
                       </span>
                     </TableCell>
                     <TableCell className="text-right">
-                      <span className="font-mono text-muted-foreground">
+                      <span className="text-muted-foreground font-mono">
                         {item.safetyStock ?? "\u2014"}
                       </span>
                     </TableCell>
@@ -374,14 +370,14 @@ function InventoryAlertList({
                         {item.trend && item.trend.length >= 2 ? (
                           <InlineSparkline data={item.trend} />
                         ) : (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-muted-foreground text-xs">
                             &mdash;
                           </span>
                         )}
                       </TableCell>
                     )}
                     <TableCell>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-muted-foreground text-sm">
                         {item.warehouse ?? "\u2014"}
                       </span>
                     </TableCell>
@@ -402,57 +398,70 @@ function InventoryAlertList({
                     </TableCell>
                   </TableRow>
                   {/* Expandable transaction detail */}
-                  {showTransactions && isExpanded && item.recentTransactions && (
-                    <TableRow>
-                      <TableCell
-                        colSpan={
-                          7 + (showTrend ? 1 : 0) + (showTransactions ? 1 : 0)
-                        }
-                        className="bg-muted/30 p-3"
-                      >
-                        <div className="ml-8">
-                          <p className="mb-2 text-xs font-semibold text-muted-foreground">
-                            Recent Transactions
-                          </p>
-                          <table className="w-full text-xs">
-                            <thead>
-                              <tr className="text-muted-foreground">
-                                <th className="pb-1 text-left font-medium">Date</th>
-                                <th className="pb-1 text-left font-medium">Type</th>
-                                <th className="pb-1 text-right font-medium">Qty</th>
-                                <th className="pb-1 text-right font-medium">Ref</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {item.recentTransactions.map((tx, ti) => (
-                                <tr key={ti} className="border-t border-border/50">
-                                  <td className="py-1">{tx.date}</td>
-                                  <td className="py-1">
-                                    <span
-                                      className={cn(
-                                        "inline-flex items-center rounded px-1.5 py-0.5 text-xs font-medium",
-                                        tx.type === "in"
-                                          ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
-                                          : "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-                                      )}
-                                    >
-                                      {tx.type === "in" ? "IN" : "OUT"}
-                                    </span>
-                                  </td>
-                                  <td className="py-1 text-right font-mono">
-                                    {tx.quantity}
-                                  </td>
-                                  <td className="py-1 text-right text-muted-foreground">
-                                    {tx.reference ?? "\u2014"}
-                                  </td>
+                  {showTransactions &&
+                    isExpanded &&
+                    item.recentTransactions && (
+                      <TableRow>
+                        <TableCell
+                          colSpan={
+                            7 + (showTrend ? 1 : 0) + (showTransactions ? 1 : 0)
+                          }
+                          className="bg-muted/30 p-3"
+                        >
+                          <div className="ml-8">
+                            <p className="text-muted-foreground mb-2 text-xs font-semibold">
+                              Recent Transactions
+                            </p>
+                            <table className="w-full text-xs">
+                              <thead>
+                                <tr className="text-muted-foreground">
+                                  <th className="pb-1 text-left font-medium">
+                                    Date
+                                  </th>
+                                  <th className="pb-1 text-left font-medium">
+                                    Type
+                                  </th>
+                                  <th className="pb-1 text-right font-medium">
+                                    Qty
+                                  </th>
+                                  <th className="pb-1 text-right font-medium">
+                                    Ref
+                                  </th>
                                 </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  )}
+                              </thead>
+                              <tbody>
+                                {item.recentTransactions.map((tx, ti) => (
+                                  <tr
+                                    key={ti}
+                                    className="border-border/50 border-t"
+                                  >
+                                    <td className="py-1">{tx.date}</td>
+                                    <td className="py-1">
+                                      <span
+                                        className={cn(
+                                          "inline-flex items-center rounded px-1.5 py-0.5 text-xs font-medium",
+                                          tx.type === "in"
+                                            ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                                            : "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+                                        )}
+                                      >
+                                        {tx.type === "in" ? "IN" : "OUT"}
+                                      </span>
+                                    </td>
+                                    <td className="py-1 text-right font-mono">
+                                      {tx.quantity}
+                                    </td>
+                                    <td className="text-muted-foreground py-1 text-right">
+                                      {tx.reference ?? "\u2014"}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    )}
                 </React.Fragment>
               );
             })}

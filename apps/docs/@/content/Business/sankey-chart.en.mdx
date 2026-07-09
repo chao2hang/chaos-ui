@@ -1,5 +1,5 @@
-import { SankeyChart } from "@/components/business/sankey-chart";
-import { CodeBlock } from "@/components/code-block";
+import { SankeyChart } from "@/components/business/sankey-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # SankeyChart Sankey Chart
 
@@ -11,6 +11,7 @@ SankeyChart — sankey chart component.
 
 Use when you need a sankey chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,16 +22,19 @@ export function Basic() {
   return <SankeyChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SankeyChart
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `flows`     | `Array<T>`             | —       | Source → target flows.            |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `flows` | `Array<T>` | — | Source → target flows. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

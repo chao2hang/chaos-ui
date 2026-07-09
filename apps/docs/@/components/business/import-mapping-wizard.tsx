@@ -123,7 +123,9 @@ function autoMatch(
   for (const target of targetFields) {
     // Try exact match (case-insensitive)
     const exactMatch = sourceColumns.find(
-      (s) => s.name.toLowerCase() === target.name.toLowerCase() && !usedSources.has(s.name),
+      (s) =>
+        s.name.toLowerCase() === target.name.toLowerCase() &&
+        !usedSources.has(s.name),
     );
     if (exactMatch) {
       result.push({
@@ -181,13 +183,16 @@ function ImportMappingWizard({
   className,
 }: ImportMappingWizardProps) {
   /* ---- internal mappings state (uncontrolled fallback) ---- */
-  const [internalMappings, setInternalMappings] = React.useState<ColumnMapping[]>(() =>
+  const [internalMappings, setInternalMappings] = React.useState<
+    ColumnMapping[]
+  >(() =>
     controlledMappings.length > 0
       ? controlledMappings
       : autoMatch(sourceColumns, targetFields),
   );
 
-  const mappings = controlledMappings.length > 0 ? controlledMappings : internalMappings;
+  const mappings =
+    controlledMappings.length > 0 ? controlledMappings : internalMappings;
 
   const updateMapping = (target: string, source: string) => {
     const sourceCol = sourceColumns.find((s) => s.name === source);
@@ -198,9 +203,10 @@ function ImportMappingWizard({
             ...m,
             source,
             autoMatched: false,
-            typeMatch: sourceCol && targetField
-              ? checkTypeMatch(sourceCol.detectedType, targetField.type)
-              : true,
+            typeMatch:
+              sourceCol && targetField
+                ? checkTypeMatch(sourceCol.detectedType, targetField.type)
+                : true,
           }
         : m,
     );
@@ -225,16 +231,28 @@ function ImportMappingWizard({
     const mapped = mappings.filter((m) => m.source).length;
     const required = targetFields.filter((t) => t.required).length;
     const requiredMapped = mappings.filter(
-      (m) => m.source && targetFields.find((t) => t.name === m.target)?.required,
+      (m) =>
+        m.source && targetFields.find((t) => t.name === m.target)?.required,
     ).length;
-    const typeMismatches = mappings.filter((m) => m.source && !m.typeMatch).length;
-    return { mapped, total: mappings.length, required, requiredMapped, typeMismatches };
+    const typeMismatches = mappings.filter(
+      (m) => m.source && !m.typeMatch,
+    ).length;
+    return {
+      mapped,
+      total: mappings.length,
+      required,
+      requiredMapped,
+      typeMismatches,
+    };
   }, [mappings, targetFields]);
 
-  const canContinue = stats.requiredMapped === stats.required && stats.typeMismatches === 0;
+  const canContinue =
+    stats.requiredMapped === stats.required && stats.typeMismatches === 0;
 
   /* ---- used sources for dropdown filtering ---- */
-  const usedSources = new Set(mappings.filter((m) => m.source).map((m) => m.source));
+  const usedSources = new Set(
+    mappings.filter((m) => m.source).map((m) => m.source),
+  );
 
   return (
     <div
@@ -242,12 +260,19 @@ function ImportMappingWizard({
       className={cn("space-y-4", className)}
     >
       {/* Summary bar */}
-      <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-muted/30 px-4 py-2">
-        <span className="text-sm font-medium text-foreground">Mapping Summary:</span>
+      <div className="border-border bg-muted/30 flex flex-wrap items-center gap-3 rounded-lg border px-4 py-2">
+        <span className="text-foreground text-sm font-medium">
+          Mapping Summary:
+        </span>
         <Badge variant="default" className="text-xs">
           {stats.mapped}/{stats.total} mapped
         </Badge>
-        <Badge variant={stats.requiredMapped === stats.required ? "default" : "destructive"} className="text-xs">
+        <Badge
+          variant={
+            stats.requiredMapped === stats.required ? "default" : "destructive"
+          }
+          className="text-xs"
+        >
           {stats.requiredMapped}/{stats.required} required
         </Badge>
         {stats.typeMismatches > 0 && (
@@ -255,13 +280,18 @@ function ImportMappingWizard({
             {stats.typeMismatches} type mismatch
           </Badge>
         )}
-        <Button variant="outline" size="sm" onClick={handleAutoMatch} className="ml-auto">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleAutoMatch}
+          className="ml-auto"
+        >
           Auto-Match
         </Button>
       </div>
 
       {/* Mapping table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -271,27 +301,41 @@ function ImportMappingWizard({
               <TableHead className="w-20">Type</TableHead>
               <TableHead className="w-16">Required</TableHead>
               <TableHead className="w-16">Status</TableHead>
-              {showSamples && <TableHead className="min-w-[200px]">Sample Data</TableHead>}
+              {showSamples && (
+                <TableHead className="min-w-[200px]">Sample Data</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
             {mappings.map((mapping) => {
-              const target = targetFields.find((t) => t.name === mapping.target);
-              const sourceCol = sourceColumns.find((s) => s.name === mapping.source);
+              const target = targetFields.find(
+                (t) => t.name === mapping.target,
+              );
+              const sourceCol = sourceColumns.find(
+                (s) => s.name === mapping.source,
+              );
               const isUnmapped = !mapping.source;
               const hasTypeMismatch = mapping.source && !mapping.typeMatch;
               return (
                 <TableRow
                   key={mapping.target}
                   data-slot="import-mapping-row"
-                  data-status={isUnmapped ? "unmapped" : hasTypeMismatch ? "mismatch" : "mapped"}
+                  data-status={
+                    isUnmapped
+                      ? "unmapped"
+                      : hasTypeMismatch
+                        ? "mismatch"
+                        : "mapped"
+                  }
                 >
                   {/* Source column dropdown */}
                   <TableCell>
                     <select
-                      className="h-8 w-full rounded border border-input bg-background px-2 text-sm"
+                      className="border-input bg-background h-8 w-full rounded border px-2 text-sm"
                       value={mapping.source}
-                      onChange={(e) => updateMapping(mapping.target, e.target.value)}
+                      onChange={(e) =>
+                        updateMapping(mapping.target, e.target.value)
+                      }
                       aria-label={`Source column for ${mapping.target}`}
                     >
                       <option value="">— Not mapped —</option>
@@ -299,7 +343,9 @@ function ImportMappingWizard({
                         <option
                           key={s.name}
                           value={s.name}
-                          disabled={usedSources.has(s.name) && s.name !== mapping.source}
+                          disabled={
+                            usedSources.has(s.name) && s.name !== mapping.source
+                          }
                         >
                           {s.name}
                           {s.detectedType ? ` (${s.detectedType})` : ""}
@@ -310,16 +356,18 @@ function ImportMappingWizard({
 
                   {/* Arrow */}
                   <TableCell className="text-center">
-                    <ArrowRightIcon className="mx-auto size-4 text-muted-foreground" />
+                    <ArrowRightIcon className="text-muted-foreground mx-auto size-4" />
                   </TableCell>
 
                   {/* Target field */}
                   <TableCell>
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-foreground">
+                      <span className="text-foreground text-sm font-medium">
                         {target?.label ?? mapping.target}
                       </span>
-                      <span className="text-xs text-muted-foreground">{mapping.target}</span>
+                      <span className="text-muted-foreground text-xs">
+                        {mapping.target}
+                      </span>
                     </div>
                   </TableCell>
 
@@ -343,7 +391,7 @@ function ImportMappingWizard({
                   <TableCell className="text-center">
                     {isUnmapped ? (
                       target?.required ? (
-                        <AlertCircleIcon className="mx-auto size-4 text-destructive" />
+                        <AlertCircleIcon className="text-destructive mx-auto size-4" />
                       ) : (
                         <span className="text-muted-foreground">—</span>
                       )
@@ -358,13 +406,15 @@ function ImportMappingWizard({
                   {showSamples && (
                     <TableCell>
                       {sourceCol?.samples ? (
-                        <div className="flex flex-col gap-0.5 text-xs text-muted-foreground">
+                        <div className="text-muted-foreground flex flex-col gap-0.5 text-xs">
                           {sourceCol.samples.slice(0, 3).map((s, i) => (
-                            <span key={i} className="truncate">{s}</span>
+                            <span key={i} className="truncate">
+                              {s}
+                            </span>
                           ))}
                         </div>
                       ) : (
-                        <span className="text-xs text-muted-foreground">—</span>
+                        <span className="text-muted-foreground text-xs">—</span>
                       )}
                     </TableCell>
                   )}

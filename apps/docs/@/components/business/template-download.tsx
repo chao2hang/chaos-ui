@@ -1,7 +1,12 @@
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui";
-import { DownloadIcon, FileTextIcon, FileIcon, FilePlusIcon } from "@/components/ui/icons";
+import {
+  DownloadIcon,
+  FileTextIcon,
+  FileIcon,
+  FilePlusIcon,
+} from "@/components/ui/icons";
 
 /**
  * @component TemplateDownload
@@ -45,11 +50,30 @@ interface TemplateDownloadProps {
 }
 
 const typeIcon: Record<TemplateDownloadType, React.ReactNode> = {
-  docx: <FileTextIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />,
-  xlsx: <FilePlusIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />,
-  pdf: <FileTextIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />,
-  csv: <FileIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />,
-  other: <FileIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />,
+  docx: (
+    <FileTextIcon
+      className="text-muted-foreground size-4 shrink-0"
+      aria-hidden
+    />
+  ),
+  xlsx: (
+    <FilePlusIcon
+      className="text-muted-foreground size-4 shrink-0"
+      aria-hidden
+    />
+  ),
+  pdf: (
+    <FileTextIcon
+      className="text-muted-foreground size-4 shrink-0"
+      aria-hidden
+    />
+  ),
+  csv: (
+    <FileIcon className="text-muted-foreground size-4 shrink-0" aria-hidden />
+  ),
+  other: (
+    <FileIcon className="text-muted-foreground size-4 shrink-0" aria-hidden />
+  ),
 };
 
 const typeLabel: Record<TemplateDownloadType, string> = {
@@ -71,7 +95,7 @@ function TemplateDownload({
       <p
         data-slot="template-download"
         className={cn(
-          "rounded-md border border-dashed bg-muted/40 px-3 py-6 text-center text-sm text-muted-foreground",
+          "bg-muted/40 text-muted-foreground rounded-md border border-dashed px-3 py-6 text-center text-sm",
           className,
         )}
       >
@@ -85,7 +109,7 @@ function TemplateDownload({
       data-slot="template-download"
       role="list"
       className={cn(
-        "flex flex-col divide-y divide-border rounded-lg border bg-card text-card-foreground",
+        "divide-border bg-card text-card-foreground flex flex-col divide-y rounded-lg border",
         className,
       )}
     >
@@ -98,7 +122,9 @@ function TemplateDownload({
           {typeIcon[template.type]}
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium">{template.name}</p>
-            <p className="text-xs text-muted-foreground">{typeLabel[template.type]}</p>
+            <p className="text-muted-foreground text-xs">
+              {typeLabel[template.type]}
+            </p>
           </div>
           <a
             data-slot="template-download-link"

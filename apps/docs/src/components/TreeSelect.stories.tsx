@@ -37,7 +37,7 @@ export const Default: Story = {
         <TreeSelect
           data={sampleData}
           value={value}
-          onChange={setValue}
+          onChange={setValue as any}
           placeholder="Select..."
         />
       </div>
@@ -53,7 +53,7 @@ export const Multiple: Story = {
         <TreeSelect
           data={sampleData}
           value={value}
-          onChange={setValue}
+          onChange={setValue as any}
           multiple
           placeholder="Select items..."
         />

@@ -1,0 +1,39 @@
+import { Heatmap } from "@/components/ui/heatmap"
+import { CodeBlock } from "@/components/code-block"
+
+# Heatmap
+
+> Data display components for presenting information.
+
+Heatmap — GitHub-style calendar heatmap with color scale and cell click.
+
+## When to Use
+
+Use when you need a heatmap.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Heatmap } from "@/components/ui/heatmap"
+
+export function Basic() {
+  return <Heatmap />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### Heatmap
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

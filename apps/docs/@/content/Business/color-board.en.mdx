@@ -1,5 +1,5 @@
-import { ColorBoard } from "@/components/business/color-board";
-import { CodeBlock } from "@/components/code-block";
+import { ColorBoard } from "@/components/business/color-board"
+import { CodeBlock } from "@/components/code-block"
 
 # ColorBoard Color Board
 
@@ -11,6 +11,7 @@ ColorBoard — a business component for ERP / enterprise scenarios.
 
 Use when you need a color board.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,23 +22,26 @@ export function Basic() {
   return <ColorBoard />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ColorBoard
 
-| Prop               | Type                   | Default   | Description                                   |
-| ------------------ | ---------------------- | --------- | --------------------------------------------- |
-| `className`        | `string`               | —         | Custom CSS class                              |
-| `value`            | `string`               | `#3b82f6` | 当前颜色值(HEX 格式,如 #3b82f6)               |
-| `onChange`         | `() => void`           | —         | 颜色变化回调                                  |
-| `format`           | `ColorFormat`          | `hex`     | 显示格式标签                                  |
-| `presets`          | `string[]`             | —         | 预设颜色列表                                  |
-| `history`          | `boolean`              | `true`    | 是否启用历史记录(localStorage 持久化)         |
-| `enableEyeDropper` | `boolean`              | `true`    | 是否启用吸管按钮(需浏览器支持 EyeDropper API) |
-| `enableAlpha`      | `boolean`              | `false`   | 是否启用透明度滑块                            |
-| `showSwatches`     | `boolean`              | `true`    | 是否显示预设色板                              |
-| ...rest            | `React.HTMLAttributes` | —         | Inherits standard HTML attributes             |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | `#3b82f6` | 当前颜色值(HEX 格式,如 #3b82f6) |
+| `onChange` | `() => void` | — | 颜色变化回调 |
+| `format` | `ColorFormat` | `hex` | 显示格式标签 |
+| `presets` | `string[]` | — | 预设颜色列表 |
+| `history` | `boolean` | `true` | 是否启用历史记录(localStorage 持久化) |
+| `enableEyeDropper` | `boolean` | `true` | 是否启用吸管按钮(需浏览器支持 EyeDropper API) |
+| `enableAlpha` | `boolean` | `false` | 是否启用透明度滑块 |
+| `showSwatches` | `boolean` | `true` | 是否显示预设色板 |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,0 +1,39 @@
+import { ImageCropper } from "@/components/business/image-cropper"
+import { CodeBlock } from "@/components/code-block"
+
+# ImageCropper
+
+> Domain-specific business components for ERP scenarios.
+
+ImageCropper — Image cropper with drag-to-select crop region and preview.
+
+## When to Use
+
+Use when you need a imagecropper.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ImageCropper } from "@/components/business/image-cropper"
+
+export function Basic() {
+  return <ImageCropper />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ImageCropper
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

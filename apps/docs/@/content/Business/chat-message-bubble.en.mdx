@@ -1,5 +1,5 @@
-import { ChatMessageBubble } from "@/components/business/chat-message-bubble";
-import { CodeBlock } from "@/components/code-block";
+import { ChatMessageBubble } from "@/components/business/chat-message-bubble"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatMessageBubble Chat Message Bubble
 
@@ -11,6 +11,7 @@ ChatMessageBubble — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat message bubble.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <ChatMessageBubble />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatMessageBubble
 
-| Prop        | Type                                | Default | Description                       |
-| ----------- | ----------------------------------- | ------- | --------------------------------- |
-| `className` | `string`                            | —       | Custom CSS class                  |
-| `role`      | `"user" \| "assistant" \| "system"` | —       |                                   |
-| `content`   | `string`                            | —       | Content                           |
-| `avatar`    | `React.ReactNode`                   | —       |                                   |
-| `name`      | `string`                            | —       | Form field name                   |
-| `time`      | `string`                            | —       |                                   |
-| `status`    | `string`                            | —       | Status                            |
-| ...rest     | `React.HTMLAttributes`              | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `role` | `"user" \| "assistant" \| "system"` | — |  |
+| `content` | `string` | — | Content |
+| `avatar` | `React.ReactNode` | — |  |
+| `name` | `string` | — | Form field name |
+| `time` | `string` | — |  |
+| `status` | `string` | — | Status |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

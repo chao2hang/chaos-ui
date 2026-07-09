@@ -11,6 +11,7 @@ BarcodeDisplay — a business component for ERP / enterprise scenarios.
 
 Use when you need a barcode display.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,15 +26,17 @@ export function Basic() {
 
 ### BarcodeDisplay
 
-| Prop        | Type                            | Default   | Description                     |
-| ----------- | ------------------------------- | --------- | ------------------------------- |
-| `className` | `string`                        | —         | Custom CSS class                |
-| `value`     | `string`                        | —         | Current value (controlled)      |
-| `format`    | `"CODE128" \| "EAN13" \| "UPC"` | `CODE128` |                                 |
-| `width`     | `number`                        | `2`       | Component width                 |
-| `height`    | `number`                        | `100`     | Component height                |
-| ...rest     | `React.ComponentProps<"div">`   | —         | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | ------------------------------- | --------- | ----------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `format`    | `"CODE128" \| "EAN13" \| "UPC"` | `CODE128` |                                                             |
+| `width` | `number` | `2` | Component width |
+| `height` | `number` | `100` | Component height |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

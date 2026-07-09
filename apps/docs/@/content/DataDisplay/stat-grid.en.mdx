@@ -1,0 +1,39 @@
+import { StatGrid } from "@/components/ui/stat-grid"
+import { CodeBlock } from "@/components/code-block"
+
+# StatGrid
+
+> Data display components for presenting information.
+
+StatGrid — Responsive metric/stat grid with auto-layout and trend indicators.
+
+## When to Use
+
+Use when you need a statgrid.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { StatGrid } from "@/components/ui/stat-grid"
+
+export function Basic() {
+  return <StatGrid />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### StatGrid
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

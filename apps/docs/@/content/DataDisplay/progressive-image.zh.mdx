@@ -1,0 +1,40 @@
+import { ProgressiveImage } from "@/components/ui/progressive-image"
+import { CodeBlock } from "@/components/code-block"
+
+# ProgressiveImage 渐进式图片
+
+> 数据展示
+
+渐进式图片 — 渐进式图片加载，支持模糊到清晰交叉渐显。
+
+## 何时使用
+
+需要渐进式图片功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ProgressiveImage } from "@/components/ui/progressive-image"
+
+export function Basic() {
+  return <ProgressiveImage />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ProgressiveImage
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-progressiveimage--docs)。
+

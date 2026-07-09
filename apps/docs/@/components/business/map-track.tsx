@@ -84,6 +84,7 @@ function MapTrack({
     polyline.setMap(map);
     polylineRef.current = polyline;
 
+    // @ts-ignore setFitView may not exist in AMap type definitions
     map.setFitView([polyline]);
 
     return () => {

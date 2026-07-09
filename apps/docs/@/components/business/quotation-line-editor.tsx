@@ -154,14 +154,23 @@ function QuotationLineEditor({
     onLinesChange?.(lines.filter((l) => l.id !== id));
   };
 
-  const handleLineChange = (id: string, field: keyof QuotationLine, value: string | number) => {
+  const handleLineChange = (
+    id: string,
+    field: keyof QuotationLine,
+    value: string | number,
+  ) => {
     onLinesChange?.(
       lines.map((l) => {
         if (l.id !== id) return l;
-        if (field === "productCode" || field === "productName" || field === "unit") {
+        if (
+          field === "productCode" ||
+          field === "productName" ||
+          field === "unit"
+        ) {
           return { ...l, [field]: value as string };
         }
-        const numVal = typeof value === "string" ? parseFloat(value) || 0 : value;
+        const numVal =
+          typeof value === "string" ? parseFloat(value) || 0 : value;
         return { ...l, [field]: numVal };
       }),
     );
@@ -178,16 +187,25 @@ function QuotationLineEditor({
   return (
     <div
       data-slot="quotation-line-editor"
-      className={cn("space-y-4 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-4 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
-        <h3 className="text-lg font-semibold text-foreground">Quotation Editor</h3>
-        {quoteNo && <Badge variant="outline" className="font-mono">{quoteNo}</Badge>}
+      <div className="border-border flex items-center justify-between border-b pb-3">
+        <h3 className="text-foreground text-lg font-semibold">
+          Quotation Editor
+        </h3>
+        {quoteNo && (
+          <Badge variant="outline" className="font-mono">
+            {quoteNo}
+          </Badge>
+        )}
       </div>
 
       {/* Line items table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -209,7 +227,10 @@ function QuotationLineEditor({
           <TableBody>
             {lines.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={readOnly ? 11 : 12} className="py-6 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={readOnly ? 11 : 12}
+                  className="text-muted-foreground py-6 text-center"
+                >
                   No line items
                 </TableCell>
               </TableRow>
@@ -223,7 +244,13 @@ function QuotationLineEditor({
                       <Input
                         className="h-8 font-mono text-sm"
                         value={line.productCode}
-                        onChange={(e) => handleLineChange(line.id, "productCode", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(
+                            line.id,
+                            "productCode",
+                            e.target.value,
+                          )
+                        }
                         disabled={readOnly}
                         aria-label="Product code"
                       />
@@ -232,7 +259,13 @@ function QuotationLineEditor({
                       <Input
                         className="h-8 text-sm"
                         value={line.productName}
-                        onChange={(e) => handleLineChange(line.id, "productName", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(
+                            line.id,
+                            "productName",
+                            e.target.value,
+                          )
+                        }
                         disabled={readOnly}
                         aria-label="Product name"
                       />
@@ -242,7 +275,9 @@ function QuotationLineEditor({
                         type="number"
                         className="h-8 text-right tabular-nums"
                         value={line.quantity}
-                        onChange={(e) => handleLineChange(line.id, "quantity", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(line.id, "quantity", e.target.value)
+                        }
                         disabled={readOnly}
                         aria-label="Quantity"
                         min={0}
@@ -252,7 +287,9 @@ function QuotationLineEditor({
                       <Input
                         className="h-8 text-sm"
                         value={line.unit}
-                        onChange={(e) => handleLineChange(line.id, "unit", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(line.id, "unit", e.target.value)
+                        }
                         disabled={readOnly}
                         aria-label="Unit"
                       />
@@ -262,7 +299,9 @@ function QuotationLineEditor({
                         type="number"
                         className="h-8 text-right tabular-nums"
                         value={line.unitCost}
-                        onChange={(e) => handleLineChange(line.id, "unitCost", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(line.id, "unitCost", e.target.value)
+                        }
                         disabled={readOnly}
                         aria-label="Unit cost"
                         min={0}
@@ -273,7 +312,9 @@ function QuotationLineEditor({
                         type="number"
                         className="h-8 text-right tabular-nums"
                         value={line.unitPrice}
-                        onChange={(e) => handleLineChange(line.id, "unitPrice", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(line.id, "unitPrice", e.target.value)
+                        }
                         disabled={readOnly}
                         aria-label="Unit price"
                         min={0}
@@ -284,23 +325,39 @@ function QuotationLineEditor({
                         type="number"
                         className="h-8 text-right tabular-nums"
                         value={line.discountPct}
-                        onChange={(e) => handleLineChange(line.id, "discountPct", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(
+                            line.id,
+                            "discountPct",
+                            e.target.value,
+                          )
+                        }
                         disabled={readOnly}
                         aria-label="Discount percent"
                         min={0}
                         max={100}
                       />
                     </TableCell>
-                    <TableCell className="text-right text-sm tabular-nums text-muted-foreground">
+                    <TableCell className="text-muted-foreground text-right text-sm tabular-nums">
                       {formatMoney(netUnitPrice(line), currencySymbol)}
                     </TableCell>
-                    <TableCell className="text-right text-sm font-medium tabular-nums text-foreground">
+                    <TableCell className="text-foreground text-right text-sm font-medium tabular-nums">
                       {formatMoney(lineSubtotal(line), currencySymbol)}
                     </TableCell>
-                    <TableCell className={cn("text-right text-sm tabular-nums", marginColor(margin))}>
+                    <TableCell
+                      className={cn(
+                        "text-right text-sm tabular-nums",
+                        marginColor(margin),
+                      )}
+                    >
                       {formatMoney(profit, currencySymbol)}
                     </TableCell>
-                    <TableCell className={cn("text-right text-sm font-semibold tabular-nums", marginColor(margin))}>
+                    <TableCell
+                      className={cn(
+                        "text-right text-sm font-semibold tabular-nums",
+                        marginColor(margin),
+                      )}
+                    >
                       {margin.toFixed(1)}%
                     </TableCell>
                     <TableCell>
@@ -308,7 +365,9 @@ function QuotationLineEditor({
                         type="number"
                         className="h-8 text-right tabular-nums"
                         value={line.taxRate ?? 0}
-                        onChange={(e) => handleLineChange(line.id, "taxRate", e.target.value)}
+                        onChange={(e) =>
+                          handleLineChange(line.id, "taxRate", e.target.value)
+                        }
                         disabled={readOnly}
                         aria-label="Tax rate"
                         min={0}
@@ -336,17 +395,29 @@ function QuotationLineEditor({
             <TableFooter>
               <TableRow className="bg-muted/30 font-semibold">
                 <TableCell colSpan={7}>Total</TableCell>
-                <TableCell className="text-right text-muted-foreground">—</TableCell>
-                <TableCell className="text-right tabular-nums text-foreground">
+                <TableCell className="text-muted-foreground text-right">
+                  —
+                </TableCell>
+                <TableCell className="text-foreground text-right tabular-nums">
                   {formatMoney(subtotal, currencySymbol)}
                 </TableCell>
-                <TableCell className={cn("text-right tabular-nums", marginColor(overallMargin))}>
+                <TableCell
+                  className={cn(
+                    "text-right tabular-nums",
+                    marginColor(overallMargin),
+                  )}
+                >
                   {formatMoney(totalProfit, currencySymbol)}
                 </TableCell>
-                <TableCell className={cn("text-right tabular-nums", marginColor(overallMargin))}>
+                <TableCell
+                  className={cn(
+                    "text-right tabular-nums",
+                    marginColor(overallMargin),
+                  )}
+                >
                   {overallMargin.toFixed(1)}%
                 </TableCell>
-                <TableCell className="text-right text-muted-foreground">
+                <TableCell className="text-muted-foreground text-right">
                   {formatMoney(totalTax, currencySymbol)}
                 </TableCell>
                 {!readOnly && <TableCell />}
@@ -360,16 +431,25 @@ function QuotationLineEditor({
       <div className="flex items-center justify-between">
         <div className="space-y-1 text-sm">
           <div className="text-muted-foreground">
-            Subtotal: <strong className="text-foreground tabular-nums">{formatMoney(subtotal, currencySymbol)}</strong>
+            Subtotal:{" "}
+            <strong className="text-foreground tabular-nums">
+              {formatMoney(subtotal, currencySymbol)}
+            </strong>
             {"  ·  "}
-            Tax: <strong className="text-foreground tabular-nums">{formatMoney(totalTax, currencySymbol)}</strong>
+            Tax:{" "}
+            <strong className="text-foreground tabular-nums">
+              {formatMoney(totalTax, currencySymbol)}
+            </strong>
             {"  ·  "}
             <span className={cn("font-semibold", marginColor(overallMargin))}>
               Margin: {overallMargin.toFixed(1)}%
             </span>
           </div>
-          <div className="text-base font-bold text-foreground">
-            Grand Total: <span className="tabular-nums">{formatMoney(grandTotal, currencySymbol)}</span>
+          <div className="text-foreground text-base font-bold">
+            Grand Total:{" "}
+            <span className="tabular-nums">
+              {formatMoney(grandTotal, currencySymbol)}
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-2">

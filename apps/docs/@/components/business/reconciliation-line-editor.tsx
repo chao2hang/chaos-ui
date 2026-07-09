@@ -70,7 +70,7 @@ function ReconciliationLineEditor({
     >
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b border-border bg-muted/40 text-left">
+          <tr className="border-border bg-muted/40 border-b text-left">
             <th scope="col" className="px-3 py-2 font-medium">
               经销商
             </th>
@@ -88,7 +88,10 @@ function ReconciliationLineEditor({
         <tbody>
           {localRows.length === 0 ? (
             <tr>
-              <td colSpan={4} className="px-3 py-4 text-center text-muted-foreground">
+              <td
+                colSpan={4}
+                className="text-muted-foreground px-3 py-4 text-center"
+              >
                 暂无对账明细
               </td>
             </tr>
@@ -97,14 +100,11 @@ function ReconciliationLineEditor({
               <tr
                 key={row.id}
                 data-slot="reconciliation-line-editor-row"
-                className="border-b border-border last:border-0"
+                className="border-border border-b last:border-0"
               >
                 <td className="px-3 py-2">{row.distributor}</td>
                 <td className="px-3 py-2 text-right">
-                  <label
-                    htmlFor={`order-${row.id}`}
-                    className="sr-only"
-                  >
+                  <label htmlFor={`order-${row.id}`} className="sr-only">
                     订单金额
                   </label>
                   <input
@@ -120,14 +120,11 @@ function ReconciliationLineEditor({
                         orderAmount: parseNumber(e.target.value),
                       })
                     }
-                    className="w-28 rounded-md border border-input bg-transparent px-2 py-1 text-right outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="border-input focus-visible:border-ring focus-visible:ring-ring/50 w-28 rounded-md border bg-transparent px-2 py-1 text-right outline-none focus-visible:ring-3"
                   />
                 </td>
                 <td className="px-3 py-2 text-right">
-                  <label
-                    htmlFor={`deduction-${row.id}`}
-                    className="sr-only"
-                  >
+                  <label htmlFor={`deduction-${row.id}`} className="sr-only">
                     扣减
                   </label>
                   <input
@@ -143,7 +140,7 @@ function ReconciliationLineEditor({
                         deduction: parseNumber(e.target.value),
                       })
                     }
-                    className="w-28 rounded-md border border-input bg-transparent px-2 py-1 text-right outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="border-input focus-visible:border-ring focus-visible:ring-ring/50 w-28 rounded-md border bg-transparent px-2 py-1 text-right outline-none focus-visible:ring-3"
                   />
                 </td>
                 <td

@@ -19,7 +19,7 @@ export interface AuditLogEntry {
   };
   action: string;
   target: string;
-  timestamp: string;
+  timestamp: string | number;
   status?: AuditLogStatus;
   details?: React.ReactNode;
 }
@@ -124,7 +124,7 @@ export function AuditLog({
               </div>
               <div className="flex shrink-0 items-center gap-2">
                 <time className="text-muted-foreground text-xs">
-                  {entry.timestamp}
+                  {String(entry.timestamp)}
                 </time>
                 {hasDetails && (
                   <Button

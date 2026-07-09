@@ -1,10 +1,5 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
-import { CodeBlock } from "@/components/code-block";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
+import { CodeBlock } from "@/components/code-block"
 
 # Accordion
 
@@ -15,6 +10,7 @@ Vertically stacked collapsible panels; can expand one or more at a time.
 ## When to Use
 
 Display grouped content that users can expand or collapse as needed.
+
 
 ## Examples
 
@@ -33,16 +29,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Accordion
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 3 个子组件(AccordionItem, AccordionTrigger, AccordionContent),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

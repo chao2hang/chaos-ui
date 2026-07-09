@@ -46,14 +46,14 @@ export function Multiple() {
 
 ### WithPermission
 
-| Prop          | Type                 | Default | 说明                                                         |
+| Prop | Type | Default | 说明 |
 | ------------- | -------------------- | ------- | ------------------------------------------------------------ |
 | `permissions` | `string[]`           | `[]`    | Current user's permissions / 当前用户权限列表                |
 | `require`     | `string \| string[]` | —       | Required permission(s) / 需要的权限                          |
 | `mode`        | `"any" \| "all"`     | `any`   | Check mode: any=all-satisfied, all=every-required / 校验模式 |
 | `fallback`    | `React.ReactNode`    | `null`  | Fallback content / 兜底内容                                  |
 | `children`    | `React.ReactNode`    | —       | Guarded children / 受控子内容                                |
-| `className`   | `string`             | —       | 自定义样式类名                                               |
+| `className` | `string` | — | 自定义样式类名 |
 
 ## 注意事项
 
@@ -61,3 +61,4 @@ export function Multiple() {
 - **校验模式**: `mode="any"` 任一权限满足即渲染，`mode="all"` 需全部权限满足。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-withpermission--docs)。
+

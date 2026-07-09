@@ -1,5 +1,5 @@
-import { CrudPage } from "@/components/business/crud-page";
-import { CodeBlock } from "@/components/code-block";
+import { CrudPage } from "@/components/business/crud-page"
+import { CodeBlock } from "@/components/code-block"
 
 # CrudPage 增删改查页面
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要增删改查页面功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,24 +22,25 @@ export function Basic() {
   return <CrudPage />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### CrudPage
 
-| Prop           | Type                          | Default    | 说明                  |
-| -------------- | ----------------------------- | ---------- | --------------------- |
-| `className`    | `string`                      | —          | 自定义样式类名        |
-| `title`        | `string`                      | `数据列表` | 标题                  |
-| `toolbar`      | `React.ReactNode`             | —          |                       |
-| `columns`      | `Array<{`                     | —          | 列配置                |
-| `key`          | `string`                      | —          |                       |
-| `header`       | `string`                      | —          |                       |
-| `data`         | `Record<string, unknown>[]`   | —          | 数据源                |
-| `total`        | `number`                      | `0`        |                       |
-| `page`         | `number`                      | `1`        |                       |
-| `onPageChange` | `() => void`                  | —          |                       |
-| `onCreate`     | `() => void`                  | —          |                       |
-| ...rest        | `React.ComponentProps<"div">` | —          | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | `数据列表` | 标题 |
+| `toolbar` | `React.ReactNode` | — |  |
+| `columns` | `Array<{` | — | 列配置 |
+| `key` | `string` | — |  |
+| `header` | `string` | — |  |
+| `data` | `Record<string, unknown>[]` | — | 数据源 |
+| `total` | `number` | `0` |  |
+| `page` | `number` | `1` |  |
+| `onPageChange` | `() => void` | — |  |
+| `onCreate` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -46,3 +48,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-crudpage--docs)。
+

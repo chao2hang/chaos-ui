@@ -29,7 +29,7 @@ function TaskHistory({ tasks = [], className }: TaskHistoryProps) {
   return (
     <div
       data-slot="task-history"
-      className={cn("overflow-x-auto rounded-lg ring-1 ring-border", className)}
+      className={cn("ring-border overflow-x-auto rounded-lg ring-1", className)}
     >
       <table className="w-full text-sm">
         <thead className="bg-muted/50 text-muted-foreground">
@@ -51,27 +51,30 @@ function TaskHistory({ tasks = [], className }: TaskHistoryProps) {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-border">
+        <tbody className="divide-border divide-y">
           {tasks.map((task) => (
             <tr key={task.id} className="hover:bg-muted/30">
               <td className="px-3 py-2 tabular-nums">{task.id}</td>
               <td className="px-3 py-2">{task.type}</td>
               <td className="px-3 py-2">
-                <span className="rounded bg-muted px-1.5 py-0.5 text-xs">
+                <span className="bg-muted rounded px-1.5 py-0.5 text-xs">
                   {task.status}
                 </span>
               </td>
-              <td className="px-3 py-2 text-muted-foreground tabular-nums">
+              <td className="text-muted-foreground px-3 py-2 tabular-nums">
                 {formatDateTime(task.startTime)}
               </td>
-              <td className="px-3 py-2 text-muted-foreground tabular-nums">
+              <td className="text-muted-foreground px-3 py-2 tabular-nums">
                 {task.endTime ? formatDateTime(task.endTime) : "—"}
               </td>
             </tr>
           ))}
           {tasks.length === 0 ? (
             <tr>
-              <td colSpan={5} className="px-3 py-6 text-center text-muted-foreground">
+              <td
+                colSpan={5}
+                className="text-muted-foreground px-3 py-6 text-center"
+              >
                 暂无历史任务
               </td>
             </tr>

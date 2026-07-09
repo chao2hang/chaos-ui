@@ -1,5 +1,5 @@
-import { Table } from "@/components/ui/table";
-import { CodeBlock } from "@/components/code-block";
+import { Table } from "@/components/ui/table"
+import { CodeBlock } from "@/components/code-block"
 
 # Table
 
@@ -10,6 +10,7 @@ Displays row/column data; the fundamental data display component.
 ## When to Use
 
 Display structured tabular data with sorting, filtering, and pagination.
+
 
 ## Examples
 
@@ -36,16 +37,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Table
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 7 个子组件(TableHeader, TableBody, TableFooter, TableHead, TableRow…),使用组合模式按需导入。
+
+

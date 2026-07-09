@@ -1,0 +1,39 @@
+import { DateRangePicker } from "@/components/ui/date-range-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# DateRangePicker
+
+> Form components for data entry and collection.
+
+DateRangePicker — Date range picker with start and end date selection.
+
+## When to Use
+
+Use when you need a daterangepicker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DateRangePicker } from "@/components/ui/date-range-picker"
+
+export function Basic() {
+  return <DateRangePicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### DateRangePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

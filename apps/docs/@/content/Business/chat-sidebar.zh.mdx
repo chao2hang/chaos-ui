@@ -1,5 +1,5 @@
-import { ChatSidebar } from "@/components/business/chat-sidebar";
-import { CodeBlock } from "@/components/code-block";
+import { ChatSidebar } from "@/components/business/chat-sidebar"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatSidebar Chat Sidebar
 
@@ -11,6 +11,7 @@ Chat Sidebar — 面向 ERP/企业场景的业务组件。
 
 适用于Chat Sidebar相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,25 +22,27 @@ export function Basic() {
   return <ChatSidebar />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatSidebar
 
-| Prop            | Type                   | Default | 说明              |
-| --------------- | ---------------------- | ------- | ----------------- |
-| `className`     | `string`               | —       | 自定义样式类名    |
-| `conversations` | `Array<{`              | —       |                   |
-| `id`            | `string`               | —       | DOM 元素 id       |
-| `title`         | `string`               | —       | 标题              |
-| `unread`        | `number`               | —       |                   |
-| `lastMessage`   | `string`               | —       |                   |
-| `time`          | `string`               | —       |                   |
-| `activeId`      | `string`               | —       |                   |
-| `onSelect`      | `() => void`           | —       | 选中回调          |
-| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `conversations` | `Array<{` | — |  |
+| `id` | `string` | — | DOM 元素 id |
+| `title` | `string` | — | 标题 |
+| `unread` | `number` | — |  |
+| `lastMessage` | `string` | — |  |
+| `time` | `string` | — |  |
+| `activeId` | `string` | — |  |
+| `onSelect` | `() => void` | — | 选中回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chatsidebar--docs)。
+

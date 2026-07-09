@@ -1,0 +1,41 @@
+import { KeepAlive } from "@/components/ui/keep-alive"
+import { CodeBlock } from "@/components/code-block"
+
+# KeepAlive 页面缓存
+
+> 导航组件 / Navigation components for page routing and orientation.
+
+页面缓存 — 页面缓存组件，跨标签/路由切换保持状态。
+KeepAlive — Page cache component — preserve state across tab/route switches.
+
+## 何时使用 / When to Use
+
+需要页面缓存功能时使用本组件。
+
+Use when you need a keepalive.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { KeepAlive } from "@/components/ui/keep-alive"
+
+export function Basic() {
+  return <KeepAlive />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### KeepAlive
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keepalive--docs)。

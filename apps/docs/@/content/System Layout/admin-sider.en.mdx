@@ -11,6 +11,7 @@ AdminSider — a system-level layout shell for admin/dashboard/auth pages.
 
 Use when you need an admin sider.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,22 +26,24 @@ export function Basic() {
 
 ### AdminSider
 
-| Prop                 | Type                            | Default | Description                       |
-| -------------------- | ------------------------------- | ------- | --------------------------------- |
-| `className`          | `string`                        | —       | Custom CSS class                  |
-| `menuItems`          | `MenuItem[]`                    | —       | Menu items                        |
-| `selectedKey`        | `string`                        | —       | Selected menu key                 |
-| `onItemClick`        | `(item: MenuItem) => void`      | —       | Menu click handler                |
-| `collapsed`          | `boolean`                       | `false` | Whether collapsed                 |
-| `onCollapse`         | `(collapsed: boolean) => void`  | —       | Collapse change callback          |
-| `logo`               | `ReactNode`                     | —       | Logo content                      |
-| `footer`             | `ReactNode`                     | —       | Footer content                    |
-| `width`              | `number`                        | `240`   | Expanded width                    |
-| `collapsedWidth`     | `number`                        | `64`    | Collapsed width                   |
-| `mobileOpen`         | `boolean`                       | `false` | Mobile open state                 |
-| `onMobileOpenChange` | `(open: boolean) => void`       | —       | Mobile open change callback       |
-| ...rest              | `React.ComponentProps<"aside">` | —       | Inherits all `<aside>` attributes |
+| Prop | Type | Default | Description |
+| -------------------- | ------------------------------- | ------- | --------------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `menuItems` | `MenuItem[]` | — | Menu items |
+| `selectedKey` | `string` | — | Selected menu key |
+| `onItemClick` | `(item: MenuItem) => void` | — | Menu click handler |
+| `collapsed` | `boolean` | `false` | Whether collapsed |
+| `onCollapse` | `(collapsed: boolean) => void` | — | Collapse change callback |
+| `logo` | `ReactNode` | — | Logo content |
+| `footer` | `ReactNode` | — | Footer content |
+| `width` | `number` | `240` | Expanded width |
+| `collapsedWidth` | `number` | `64` | Collapsed width |
+| `mobileOpen` | `boolean` | `false` | Mobile open state |
+| `onMobileOpenChange` | `(open: boolean) => void` | — | Mobile open change callback |
+| ...rest | `React.ComponentProps<"aside">` | — | Inherits all `<aside>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,0 +1,40 @@
+import { UserPicker } from "@/components/business/user-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# UserPicker 用户选择器
+
+> 业务组件
+
+用户选择器 — 用户选择器对话框，支持搜索与已选标签栏。
+
+## 何时使用
+
+需要用户选择器功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { UserPicker } from "@/components/business/user-picker"
+
+export function Basic() {
+  return <UserPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### UserPicker
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-userpicker--docs)。
+

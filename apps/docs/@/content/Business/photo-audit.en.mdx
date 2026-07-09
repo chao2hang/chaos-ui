@@ -1,5 +1,5 @@
-import { PhotoAudit } from "@/components/business/photo-audit";
-import { CodeBlock } from "@/components/code-block";
+import { PhotoAudit } from "@/components/business/photo-audit"
+import { CodeBlock } from "@/components/code-block"
 
 # PhotoAudit Photo Audit
 
@@ -12,6 +12,7 @@ PhotoAudit — photo audit component.
 
 Use when you need a photo audit.
 
+
 ## Examples
 
 ### Basic Usage
@@ -22,18 +23,21 @@ export function Basic() {
   return <PhotoAudit />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PhotoAudit
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `photos`    | `Array<T>`             | —       |                                   |
-| `onApprove` | `() => void`           | —       |                                   |
-| `onReject`  | `() => void`           | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `photos` | `Array<T>` | — |  |
+| `onApprove` | `() => void` | — |  |
+| `onReject` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

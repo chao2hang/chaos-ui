@@ -1,5 +1,5 @@
-import { InvoiceSummary } from "@/components/business/invoice-summary";
-import { CodeBlock } from "@/components/code-block";
+import { InvoiceSummary } from "@/components/business/invoice-summary"
+import { CodeBlock } from "@/components/code-block"
 
 # InvoiceSummary Invoice Summary
 
@@ -11,6 +11,7 @@ InvoiceSummary — a business component for ERP / enterprise scenarios.
 
 Use when you need an invoice summary.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <InvoiceSummary />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### InvoiceSummary
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `total`     | `number`               | —       |                                   |
-| `issued`    | `number`               | —       |                                   |
-| `pending`   | `number`               | —       |                                   |
-| `amount`    | `number`               | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `total` | `number` | — |  |
+| `issued` | `number` | — |  |
+| `pending` | `number` | — |  |
+| `amount` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

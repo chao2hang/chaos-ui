@@ -1,0 +1,39 @@
+import { AmountInput } from "@/components/ui/amount-input"
+import { CodeBlock } from "@/components/code-block"
+
+# AmountInput
+
+> Form components for data entry and collection.
+
+AmountInput — Currency amount input with thousand separators and precision control.
+
+## When to Use
+
+Use when you need a amountinput.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AmountInput } from "@/components/ui/amount-input"
+
+export function Basic() {
+  return <AmountInput />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### AmountInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

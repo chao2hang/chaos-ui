@@ -1,15 +1,16 @@
-import { WaterfallChart } from "@/components/business/waterfall-chart";
-import { CodeBlock } from "@/components/code-block";
+import { WaterfallChart } from "@/components/business/waterfall-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # WaterfallChart Waterfall Chart
 
 > 业务组件
 
-absolute totals when `absolute` is true. 瀑布图(财务分析)
+absolute totals when `absolute` is true.  瀑布图(财务分析)
 
 ## 何时使用
 
 适用于Waterfall Chart相关场景。
+
 
 ## 代码示例
 
@@ -21,19 +22,21 @@ export function Basic() {
   return <WaterfallChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### WaterfallChart
 
-| Prop        | Type                   | Default | 说明                                                       |
-| ----------- | ---------------------- | ------- | ---------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名                                             |
-| `data`      | `Array<T>`             | —       | Steps: label + value (delta, or absolute when `absolute`). |
-| `height`    | `number`               | —       | 组件高度                                                   |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                                          |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `data` | `Array<T>` | — | Steps: label + value (delta, or absolute when `absolute`). |
+| `height` | `number` | — | 组件高度 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-waterfallchart--docs)。
+

@@ -1,5 +1,5 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { CodeBlock } from "@/components/code-block";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { CodeBlock } from "@/components/code-block"
 
 # Tabs 标签页
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 在同一块区域切换多个平级内容面板,保持上下文连贯。
+
 
 ## 代码示例
 
@@ -32,40 +33,35 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tabs variant="default">Default</Tabs>
   <Tabs variant="line">Line</Tabs>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 状态
 
-<CodeBlock
-  code={`<Tabs>Normal</Tabs>
-<Tabs disabled>Disabled</Tabs>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<Tabs>Normal</Tabs>
+<Tabs disabled>Disabled</Tabs>`} lang="tsx" />
+
 
 ## 样式变体
 
 **变体**
 
-| Variant   | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认样式 | ✓    |
-| `line`    |          |      |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `line` |  |  |
 
 ## API / Props
 
 ### Tabs
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -75,3 +71,4 @@ export function Basic() {
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tabs--docs)。
+

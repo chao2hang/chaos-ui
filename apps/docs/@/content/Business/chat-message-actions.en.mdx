@@ -1,5 +1,5 @@
-import { ChatMessageActions } from "@/components/business/chat-message-actions";
-import { CodeBlock } from "@/components/code-block";
+import { ChatMessageActions } from "@/components/business/chat-message-actions"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatMessageActions Chat Message Actions
 
@@ -11,6 +11,7 @@ ChatMessageActions — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat message actions.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <ChatMessageActions />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatMessageActions
 
-| Prop           | Type                   | Default | Description                       |
-| -------------- | ---------------------- | ------- | --------------------------------- |
-| `className`    | `string`               | —       | Custom CSS class                  |
-| `onReply`      | `() => void`           | —       |                                   |
-| `onCopy`       | `() => void`           | —       |                                   |
-| `onDelete`     | `() => void`           | —       |                                   |
-| `onRegenerate` | `() => void`           | —       |                                   |
-| ...rest        | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `onReply` | `() => void` | — |  |
+| `onCopy` | `() => void` | — |  |
+| `onDelete` | `() => void` | — |  |
+| `onRegenerate` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

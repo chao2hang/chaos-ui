@@ -36,9 +36,9 @@ import { components } from "@/content/components.meta";
 
 const stats = [
   { value: `${components.length}+`, label: "Components", labelZh: "组件" },
-  { value: "19", label: "Hooks", labelZh: "钩子" },
-  { value: "5", label: "Utility Modules", labelZh: "工具模块" },
-  { value: "8", label: "Subpath Exports", labelZh: "子路径导出" },
+  { value: "58", label: "Hooks", labelZh: "钩子" },
+  { value: "25", label: "Utility Modules", labelZh: "工具库" },
+  { value: "11", label: "Subpath Exports", labelZh: "子路径导出" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -90,9 +90,9 @@ const features = [
     icon: TreePine,
     title: "Tree-shaking 子路径",
     titleEn: "Tree-shaking Subpaths",
-    desc: "8 个独立导出入口，按需引入，打包体积优化，ESM + CJS 双格式。",
+    desc: "11 个独立导出入口，按需引入，打包体积优化，ESM + CJS 双格式。",
     descEn:
-      "8 independent entry points for tree-shaking. Import only what you need. ESM + CJS dual format.",
+      "11 independent entry points for tree-shaking. Import only what you need. ESM + CJS dual format.",
   },
 ];
 
@@ -105,7 +105,7 @@ const categories = [
     icon: Puzzle,
     title: "UI Primitives 基础组件",
     titleEn: "UI Primitives",
-    count: "60+",
+    count: "145",
     items: [
       "Button",
       "Dialog",
@@ -127,7 +127,7 @@ const categories = [
     icon: Blocks,
     title: "Business 业务组件",
     titleEn: "Business Components",
-    count: "80+",
+    count: "312",
     items: [
       "DataTable",
       "CampaignCard",
@@ -149,7 +149,7 @@ const categories = [
     icon: Layers,
     title: "Layout 布局组件",
     titleEn: "Layout Components",
-    count: "15+",
+    count: "25",
     items: [
       "AdminShell",
       "AppShell",
@@ -195,7 +195,7 @@ export default async function Home() {
               className="mb-6 gap-1.5 px-3 py-1 text-xs"
             >
               <Sparkles className="size-3" />
-              v1.0.0 — Now Available
+              v1.0.7 — 稳定版
             </Badge>
 
             <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
@@ -276,14 +276,17 @@ export default async function Home() {
             {/* Subpath exports */}
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {[
+                "@chaos_team/chaos-ui",
                 "@chaos_team/chaos-ui/ui",
                 "@chaos_team/chaos-ui/business",
                 "@chaos_team/chaos-ui/hooks",
                 "@chaos_team/chaos-ui/lib",
+                "@chaos_team/chaos-ui/layout",
+                "@chaos_team/chaos-ui/mobile",
                 "@chaos_team/chaos-ui/next",
+                "@chaos_team/chaos-ui/ui/icons",
                 "@chaos_team/chaos-ui/ui-icons",
                 "@chaos_team/chaos-ui/styles.css",
-                "@chaos_team/chaos-ui/ui/icons",
               ].map((path) => (
                 <code
                   key={path}

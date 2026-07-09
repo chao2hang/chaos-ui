@@ -1,63 +1,86 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui";
 
-type LineColumnType = "text" | "number" | "select" | "date" | "custom"
+type LineColumnType = "text" | "number" | "select" | "date" | "custom";
 
 interface LineColumn {
   /** 列标识 */
-  key: string
+  key: string;
   /** 列标题 */
-  title: string
+  title: string;
   /** 列宽 */
-  width?: number | string
+  width?: number | string;
   /** 列类型 */
-  type?: LineColumnType
+  type?: LineColumnType;
   /** 是否可编辑（默认 true） */
-  editable?: boolean
+  editable?: boolean;
   /** 是否固定（不参与滚动） */
-  fixed?: boolean
+  fixed?: boolean;
   /** 是否自动计算 */
-  compute?: (row: Record<string, unknown>, allRows: Record<string, unknown>[]) => unknown
+  compute?: (
+    row: Record<string, unknown>,
+    allRows: Record<string, unknown>[],
+  ) => unknown;
   /** 自定义渲染 */
-  render?: (value: unknown, row: Record<string, unknown>, index: number) => React.ReactNode
+  render?: (
+    value: unknown,
+    row: Record<string, unknown>,
+    index: number,
+  ) => React.ReactNode;
   /** 自定义编辑组件 */
-  editRender?: (value: unknown, row: Record<string, unknown>, onChange: (val: unknown) => void) => React.ReactNode
+  editRender?: (
+    value: unknown,
+    row: Record<string, unknown>,
+    onChange: (val: unknown) => void,
+  ) => React.ReactNode;
   /** 自定义编辑器组件 (alias, used by order/expense line editors) */
-  renderEditor?: (value: unknown, row: Record<string, unknown>, index: number, onChange: (val: unknown) => void) => React.ReactNode
+  renderEditor?: (
+    value: unknown,
+    row: Record<string, unknown>,
+    index: number,
+    onChange: (val: unknown) => void,
+  ) => React.ReactNode;
   /** 对齐方式 */
-  align?: "left" | "center" | "right"
+  align?: "left" | "center" | "right";
   /** 默认值（新增行时） */
-  defaultValue?: unknown
+  defaultValue?: unknown;
 }
 
 interface LineEditorProps {
   /** 列定义 */
-  columns: LineColumn[]
+  columns: LineColumn[];
   /** 行数据 */
-  data: Record<string, unknown>[]
+  data: Record<string, unknown>[];
   /** 数据变更回调 */
-  onChange?: (data: Record<string, unknown>[]) => void
+  onChange?: (data: Record<string, unknown>[]) => void;
   /** 最少行数（默认 1） */
-  minRows?: number | undefined
+  minRows?: number | undefined;
   /** 最多行数 */
-  maxRows?: number | undefined
+  maxRows?: number | undefined;
   /** 行标识 key */
-  rowKey?: string | undefined
+  rowKey?: string | undefined;
   /** 底部汇总渲染 */
-  footer?: React.ReactNode | undefined
+  footer?: React.ReactNode | undefined;
   /** 合计行自动计算（指定哪些列需要汇总） */
-  summaryKeys?: string[] | undefined
+  summaryKeys?: string[] | undefined;
   /** 是否只读 */
-  readOnly?: boolean | undefined
+  readOnly?: boolean | undefined;
   /** 加载态 */
-  loading?: boolean | undefined
+  loading?: boolean | undefined;
   /** 空状态文案 */
-  emptyText?: string | undefined
-  className?: string | undefined
+  emptyText?: string | undefined;
+  className?: string | undefined;
 }
 
 /**
@@ -82,8 +105,8 @@ function LineEditor({
   className,
 }: LineEditorProps) {
   const handleCellChange = (rowIndex: number, key: string, value: unknown) => {
-    const newData = [...data]
-    newData[rowIndex] = { ...newData[rowIndex], [key]: value }
+    const newData = [...data];
+    newData[rowIndex] = { ...newData[rowIndex], [key]: value };
 
     // Recompute computed columns
     for (const col of columns) {
@@ -91,35 +114,38 @@ function LineEditor({
         newData[rowIndex] = {
           ...newData[rowIndex],
           [col.key]: col.compute(newData[rowIndex]!, newData),
-        }
+        };
       }
     }
 
-    onChange?.(newData)
-  }
+    onChange?.(newData);
+  };
 
   const handleAddRow = () => {
-    if (data.length >= maxRows) return
-    const newRow: Record<string, unknown> = { [rowKey]: crypto.randomUUID() }
+    if (data.length >= maxRows) return;
+    const newRow: Record<string, unknown> = { [rowKey]: crypto.randomUUID() };
     for (const col of columns) {
       if (col.defaultValue !== undefined) {
-        newRow[col.key] = col.defaultValue
+        newRow[col.key] = col.defaultValue;
       }
     }
-    onChange?.([...data, newRow])
-  }
+    onChange?.([...data, newRow]);
+  };
 
   const handleRemoveRow = (index: number) => {
-    if (data.length <= minRows) return
-    const newData = data.filter((_, i) => i !== index)
-    onChange?.(newData)
-  }
+    if (data.length <= minRows) return;
+    const newData = data.filter((_, i) => i !== index);
+    onChange?.(newData);
+  };
 
   // Compute summary values
-  const summary: Record<string, unknown> = {}
+  const summary: Record<string, unknown> = {};
   if (summaryKeys) {
     for (const key of summaryKeys) {
-      summary[key] = data.reduce((sum, row) => sum + (Number(row[key]) || 0), 0)
+      summary[key] = data.reduce(
+        (sum, row) => sum + (Number(row[key]) || 0),
+        0,
+      );
     }
   }
 
@@ -131,37 +157,44 @@ function LineEditor({
             {columns.map((col, j) => (
               <div
                 key={j}
-                className="h-8 animate-pulse rounded bg-muted"
+                className="bg-muted h-8 animate-pulse rounded"
                 style={{ width: col.width || 120 }}
               />
             ))}
           </div>
         ))}
       </div>
-    )
+    );
   }
 
   const alignClass: Record<string, string> = {
     left: "text-left",
     center: "text-center",
     right: "text-right",
-  }
+  };
 
-  const toRenderValue = (col: LineColumn, value: unknown, row: Record<string, unknown>, rowIndex: number) => {
+  const toRenderValue = (
+    col: LineColumn,
+    value: unknown,
+    row: Record<string, unknown>,
+    rowIndex: number,
+  ) => {
     if (col.render) {
-      return col.render(value, row, rowIndex)
+      return col.render(value, row, rowIndex);
     }
     if (col.editRender && !readOnly && col.editable !== false) {
-      return col.editRender(value, row, (val) => handleCellChange(rowIndex, col.key, val))
+      return col.editRender(value, row, (val) =>
+        handleCellChange(rowIndex, col.key, val),
+      );
     }
     if (col.type === "number") {
-      return value != null ? Number(value).toLocaleString() : "-"
+      return value != null ? Number(value).toLocaleString() : "-";
     }
     if (col.type === "custom") {
-      return value != null ? String(value) : "-"
+      return value != null ? String(value) : "-";
     }
-    return value != null ? String(value) : "-"
-  }
+    return value != null ? String(value) : "-";
+  };
 
   return (
     <div data-slot="line-editor" className={cn("space-y-2", className)}>
@@ -180,20 +213,25 @@ function LineEditor({
                   {col.title}
                 </TableHead>
               ))}
-              {!readOnly && <TableHead className="w-16 text-center">操作</TableHead>}
+              {!readOnly && (
+                <TableHead className="w-16 text-center">操作</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
             {data.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={columns.length + (readOnly ? 1 : 2)} className="py-8 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={columns.length + (readOnly ? 1 : 2)}
+                  className="text-muted-foreground py-8 text-center"
+                >
                   暂无明细行，点击下方&ldquo;添加行&rdquo;开始
                 </TableCell>
               </TableRow>
             ) : (
               data.map((row, rowIndex) => (
                 <TableRow key={String(row[rowKey] || rowIndex)}>
-                  <TableCell className="text-center text-sm text-muted-foreground">
+                  <TableCell className="text-muted-foreground text-center text-sm">
                     {rowIndex + 1}
                   </TableCell>
                   {columns.map((col) => (
@@ -213,7 +251,13 @@ function LineEditor({
                         onClick={() => handleRemoveRow(rowIndex)}
                         className="text-muted-foreground hover:text-destructive"
                       >
-                        <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg
+                          className="size-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
                           <path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14" />
                         </svg>
                       </Button>
@@ -227,7 +271,7 @@ function LineEditor({
           {/* Summary row */}
           {summaryKeys && summaryKeys.length > 0 && data.length > 0 && (
             <TableBody>
-              <TableRow className="border-t-2 bg-muted/50 font-medium">
+              <TableRow className="bg-muted/50 border-t-2 font-medium">
                 <TableCell className="text-center">合计</TableCell>
                 {columns.map((col) => (
                   <TableCell
@@ -263,8 +307,8 @@ function LineEditor({
 
       {footer && readOnly && <div>{footer}</div>}
     </div>
-  )
+  );
 }
 
-export { LineEditor }
-export type { LineEditorProps, LineColumn, LineColumn as LineEditorColumn }
+export { LineEditor };
+export type { LineEditorProps, LineColumn, LineColumn as LineEditorColumn };

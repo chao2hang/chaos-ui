@@ -104,8 +104,20 @@ function aggregateByRep(
   tiers: CommissionTier[],
   quota?: number,
   quotaBonusRate?: number,
-): Map<string, { totalAmount: number; totalCommission: number; dealCount: number; quotaMet: boolean; bonus: number }> {
-  const map = new Map<string, { deals: CommissionDeal[]; totalAmount: number }>();
+): Map<
+  string,
+  {
+    totalAmount: number;
+    totalCommission: number;
+    dealCount: number;
+    quotaMet: boolean;
+    bonus: number;
+  }
+> {
+  const map = new Map<
+    string,
+    { deals: CommissionDeal[]; totalAmount: number }
+  >();
 
   for (const d of deals) {
     if (!map.has(d.rep)) map.set(d.rep, { deals: [], totalAmount: 0 });
@@ -114,7 +126,16 @@ function aggregateByRep(
     entry.totalAmount += d.amount;
   }
 
-  const result = new Map<string, { totalAmount: number; totalCommission: number; dealCount: number; quotaMet: boolean; bonus: number }>();
+  const result = new Map<
+    string,
+    {
+      totalAmount: number;
+      totalCommission: number;
+      dealCount: number;
+      quotaMet: boolean;
+      bonus: number;
+    }
+  >();
   for (const [rep, entry] of map) {
     let totalCommission = 0;
     for (const d of entry.deals) {
@@ -123,7 +144,10 @@ function aggregateByRep(
       totalCommission += base - override;
     }
     const quotaMet = quota != null && entry.totalAmount >= quota;
-    const bonus = quotaMet && quotaBonusRate ? (entry.totalAmount * quotaBonusRate) / 100 : 0;
+    const bonus =
+      quotaMet && quotaBonusRate
+        ? (entry.totalAmount * quotaBonusRate) / 100
+        : 0;
     result.set(rep, {
       totalAmount: entry.totalAmount,
       totalCommission,
@@ -155,7 +179,14 @@ function CommissionCalculator({
   const handleAddDeal = () => {
     onDealsChange?.([
       ...deals,
-      { id: genId(), rep: "", dealNo: "", customer: "", amount: 0, date: new Date().toISOString().slice(0, 10) },
+      {
+        id: genId(),
+        rep: "",
+        dealNo: "",
+        customer: "",
+        amount: 0,
+        date: new Date().toISOString().slice(0, 10),
+      },
     ]);
   };
 
@@ -163,12 +194,19 @@ function CommissionCalculator({
     onDealsChange?.(deals.filter((d) => d.id !== id));
   };
 
-  const handleDealChange = (id: string, field: keyof CommissionDeal, value: string | number) => {
+  const handleDealChange = (
+    id: string,
+    field: keyof CommissionDeal,
+    value: string | number,
+  ) => {
     onDealsChange?.(
       deals.map((d) => {
         if (d.id !== id) return d;
         if (field === "amount" || field === "overridePct") {
-          return { ...d, [field]: typeof value === "string" ? parseFloat(value) || 0 : value };
+          return {
+            ...d,
+            [field]: typeof value === "string" ? parseFloat(value) || 0 : value,
+          };
         }
         return { ...d, [field]: value as string };
       }),
@@ -182,29 +220,48 @@ function CommissionCalculator({
   );
 
   const grandTotalAmount = deals.reduce((s, d) => s + d.amount, 0);
-  const grandTotalCommission = Array.from(repData.values()).reduce((s, r) => s + r.totalCommission + r.bonus, 0);
+  const grandTotalCommission = Array.from(repData.values()).reduce(
+    (s, r) => s + r.totalCommission + r.bonus,
+    0,
+  );
 
   return (
     <div
       data-slot="commission-calculator"
-      className={cn("space-y-4 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-4 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
-        <h3 className="text-lg font-semibold text-foreground">Commission Calculator</h3>
+      <div className="border-border flex items-center justify-between border-b pb-3">
+        <h3 className="text-foreground text-lg font-semibold">
+          Commission Calculator
+        </h3>
         <div className="flex items-center gap-3 text-sm">
           <span className="text-muted-foreground">
-            Total Sales: <strong className="text-foreground tabular-nums">{formatMoney(grandTotalAmount, currencySymbol)}</strong>
+            Total Sales:{" "}
+            <strong className="text-foreground tabular-nums">
+              {formatMoney(grandTotalAmount, currencySymbol)}
+            </strong>
           </span>
           <span className="text-muted-foreground">
-            Total Commission: <strong className="text-primary tabular-nums">{formatMoney(grandTotalCommission, currencySymbol)}</strong>
+            Total Commission:{" "}
+            <strong className="text-primary tabular-nums">
+              {formatMoney(grandTotalCommission, currencySymbol)}
+            </strong>
           </span>
         </div>
       </div>
 
       {/* Tier structure display */}
-      <div className="flex flex-wrap items-center gap-2" data-slot="commission-tiers">
-        <span className="text-xs font-medium text-muted-foreground">Tiers:</span>
+      <div
+        className="flex flex-wrap items-center gap-2"
+        data-slot="commission-tiers"
+      >
+        <span className="text-muted-foreground text-xs font-medium">
+          Tiers:
+        </span>
         {tiers.map((t, i) => (
           <Badge key={i} variant="outline" className="text-xs">
             {t.to === Infinity
@@ -216,36 +273,72 @@ function CommissionCalculator({
         ))}
         {quota != null && (
           <Badge variant="outline" className="text-xs text-emerald-600">
-            Quota: {currencySymbol}{quota.toLocaleString()} → +{quotaBonusRate}% bonus
+            Quota: {currencySymbol}
+            {quota.toLocaleString()} → +{quotaBonusRate}% bonus
           </Badge>
         )}
       </div>
 
       {/* Summary by rep */}
       {repData.size > 0 && (
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3" data-slot="rep-summary">
+        <div
+          className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"
+          data-slot="rep-summary"
+        >
           {Array.from(repData.entries()).map(([rep, data]) => (
             <div
               key={rep}
               data-slot="rep-card"
               className={cn(
                 "rounded-lg border p-3",
-                data.quotaMet ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30" : "border-border bg-muted/20",
+                data.quotaMet
+                  ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30"
+                  : "border-border bg-muted/20",
               )}
             >
               <div className="flex items-center justify-between">
-                <span className="font-medium text-foreground">{rep}</span>
-                {data.quotaMet && <Badge className="text-[10px] bg-emerald-100 text-emerald-700">Quota Met</Badge>}
-              </div>
-              <div className="mt-1 space-y-0.5 text-xs text-muted-foreground">
-                <div>Sales: <span className="font-medium tabular-nums text-foreground">{formatMoney(data.totalAmount, currencySymbol)}</span></div>
-                <div>Deals: <span className="font-medium text-foreground">{data.dealCount}</span></div>
-                <div>Commission: <span className="font-medium tabular-nums text-foreground">{formatMoney(data.totalCommission, currencySymbol)}</span></div>
-                {data.bonus > 0 && (
-                  <div>Bonus: <span className="font-medium tabular-nums text-emerald-600">{formatMoney(data.bonus, currencySymbol)}</span></div>
+                <span className="text-foreground font-medium">{rep}</span>
+                {data.quotaMet && (
+                  <Badge className="bg-emerald-100 text-[10px] text-emerald-700">
+                    Quota Met
+                  </Badge>
                 )}
-                <div className="border-t border-border pt-0.5">
-                  Total: <span className="font-bold tabular-nums text-primary">{formatMoney(data.totalCommission + data.bonus, currencySymbol)}</span>
+              </div>
+              <div className="text-muted-foreground mt-1 space-y-0.5 text-xs">
+                <div>
+                  Sales:{" "}
+                  <span className="text-foreground font-medium tabular-nums">
+                    {formatMoney(data.totalAmount, currencySymbol)}
+                  </span>
+                </div>
+                <div>
+                  Deals:{" "}
+                  <span className="text-foreground font-medium">
+                    {data.dealCount}
+                  </span>
+                </div>
+                <div>
+                  Commission:{" "}
+                  <span className="text-foreground font-medium tabular-nums">
+                    {formatMoney(data.totalCommission, currencySymbol)}
+                  </span>
+                </div>
+                {data.bonus > 0 && (
+                  <div>
+                    Bonus:{" "}
+                    <span className="font-medium text-emerald-600 tabular-nums">
+                      {formatMoney(data.bonus, currencySymbol)}
+                    </span>
+                  </div>
+                )}
+                <div className="border-border border-t pt-0.5">
+                  Total:{" "}
+                  <span className="text-primary font-bold tabular-nums">
+                    {formatMoney(
+                      data.totalCommission + data.bonus,
+                      currencySymbol,
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -254,7 +347,7 @@ function CommissionCalculator({
       )}
 
       {/* Deals table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
@@ -271,65 +364,143 @@ function CommissionCalculator({
           <TableBody>
             {deals.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={onDealsChange ? 8 : 7} className="py-6 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={onDealsChange ? 8 : 7}
+                  className="text-muted-foreground py-6 text-center"
+                >
                   No deals
                 </TableCell>
               </TableRow>
             ) : (
               deals.map((deal) => {
                 const baseCommission = calcCommission(deal.amount, tiers);
-                const overrideAmount = (baseCommission * (deal.overridePct ?? 0)) / 100;
+                const overrideAmount =
+                  (baseCommission * (deal.overridePct ?? 0)) / 100;
                 const netCommission = baseCommission - overrideAmount;
                 return (
                   <TableRow key={deal.id} data-slot="commission-deal">
                     <TableCell>
                       {onDealsChange ? (
-                        <Input className="h-8 text-sm" value={deal.rep} onChange={(e) => handleDealChange(deal.id, "rep", e.target.value)} aria-label="Rep name" />
+                        <Input
+                          className="h-8 text-sm"
+                          value={deal.rep}
+                          onChange={(e) =>
+                            handleDealChange(deal.id, "rep", e.target.value)
+                          }
+                          aria-label="Rep name"
+                        />
                       ) : (
-                        <span className="text-sm font-medium text-foreground">{deal.rep}</span>
+                        <span className="text-foreground text-sm font-medium">
+                          {deal.rep}
+                        </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {onDealsChange ? (
-                        <Input className="h-8 font-mono text-sm" value={deal.dealNo} onChange={(e) => handleDealChange(deal.id, "dealNo", e.target.value)} aria-label="Deal number" />
+                        <Input
+                          className="h-8 font-mono text-sm"
+                          value={deal.dealNo}
+                          onChange={(e) =>
+                            handleDealChange(deal.id, "dealNo", e.target.value)
+                          }
+                          aria-label="Deal number"
+                        />
                       ) : (
-                        <span className="font-mono text-xs text-muted-foreground">{deal.dealNo}</span>
+                        <span className="text-muted-foreground font-mono text-xs">
+                          {deal.dealNo}
+                        </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {onDealsChange ? (
-                        <Input className="h-8 text-sm" value={deal.customer} onChange={(e) => handleDealChange(deal.id, "customer", e.target.value)} aria-label="Customer" />
+                        <Input
+                          className="h-8 text-sm"
+                          value={deal.customer}
+                          onChange={(e) =>
+                            handleDealChange(
+                              deal.id,
+                              "customer",
+                              e.target.value,
+                            )
+                          }
+                          aria-label="Customer"
+                        />
                       ) : (
-                        <span className="text-sm text-muted-foreground">{deal.customer}</span>
+                        <span className="text-muted-foreground text-sm">
+                          {deal.customer}
+                        </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {onDealsChange ? (
-                        <Input type="number" className="h-8 text-right tabular-nums" value={deal.amount} onChange={(e) => handleDealChange(deal.id, "amount", e.target.value)} aria-label="Amount" min={0} />
+                        <Input
+                          type="number"
+                          className="h-8 text-right tabular-nums"
+                          value={deal.amount}
+                          onChange={(e) =>
+                            handleDealChange(deal.id, "amount", e.target.value)
+                          }
+                          aria-label="Amount"
+                          min={0}
+                        />
                       ) : (
-                        <span className="text-sm tabular-nums text-foreground">{formatMoney(deal.amount, currencySymbol)}</span>
+                        <span className="text-foreground text-sm tabular-nums">
+                          {formatMoney(deal.amount, currencySymbol)}
+                        </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {onDealsChange ? (
-                        <Input type="date" className="h-8 text-sm" value={deal.date} onChange={(e) => handleDealChange(deal.id, "date", e.target.value)} aria-label="Date" />
+                        <Input
+                          type="date"
+                          className="h-8 text-sm"
+                          value={deal.date}
+                          onChange={(e) =>
+                            handleDealChange(deal.id, "date", e.target.value)
+                          }
+                          aria-label="Date"
+                        />
                       ) : (
-                        <span className="text-sm text-muted-foreground">{deal.date}</span>
+                        <span className="text-muted-foreground text-sm">
+                          {deal.date}
+                        </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {onDealsChange ? (
-                        <Input type="number" className="h-8 text-right tabular-nums" value={deal.overridePct ?? 0} onChange={(e) => handleDealChange(deal.id, "overridePct", e.target.value)} aria-label="Override percent" min={0} max={100} />
+                        <Input
+                          type="number"
+                          className="h-8 text-right tabular-nums"
+                          value={deal.overridePct ?? 0}
+                          onChange={(e) =>
+                            handleDealChange(
+                              deal.id,
+                              "overridePct",
+                              e.target.value,
+                            )
+                          }
+                          aria-label="Override percent"
+                          min={0}
+                          max={100}
+                        />
                       ) : (
-                        <span className="text-sm tabular-nums text-muted-foreground">{deal.overridePct ?? 0}%</span>
+                        <span className="text-muted-foreground text-sm tabular-nums">
+                          {deal.overridePct ?? 0}%
+                        </span>
                       )}
                     </TableCell>
-                    <TableCell className="text-right text-sm font-semibold tabular-nums text-primary">
+                    <TableCell className="text-primary text-right text-sm font-semibold tabular-nums">
                       {formatMoney(netCommission, currencySymbol)}
                     </TableCell>
                     {onDealsChange && (
                       <TableCell>
-                        <Button variant="ghost" size="icon-sm" onClick={() => handleRemoveDeal(deal.id)} className="text-muted-foreground hover:text-destructive" aria-label="Remove deal">
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          onClick={() => handleRemoveDeal(deal.id)}
+                          className="text-muted-foreground hover:text-destructive"
+                          aria-label="Remove deal"
+                        >
                           <Trash2Icon className="size-4" />
                         </Button>
                       </TableCell>
@@ -343,10 +514,14 @@ function CommissionCalculator({
             <TableFooter>
               <TableRow className="bg-muted/30 font-semibold">
                 <TableCell colSpan={3}>Grand Total</TableCell>
-                <TableCell className="text-right tabular-nums text-foreground">{formatMoney(grandTotalAmount, currencySymbol)}</TableCell>
+                <TableCell className="text-foreground text-right tabular-nums">
+                  {formatMoney(grandTotalAmount, currencySymbol)}
+                </TableCell>
                 <TableCell />
                 <TableCell />
-                <TableCell className="text-right tabular-nums text-primary">{formatMoney(grandTotalCommission, currencySymbol)}</TableCell>
+                <TableCell className="text-primary text-right tabular-nums">
+                  {formatMoney(grandTotalCommission, currencySymbol)}
+                </TableCell>
                 {onDealsChange && <TableCell />}
               </TableRow>
             </TableFooter>

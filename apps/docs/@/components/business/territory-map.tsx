@@ -95,25 +95,38 @@ function TerritoryMap({
 }: TerritoryMapProps) {
   const totalSales = regions.reduce((s, r) => s + r.sales, 0);
   const totalTarget = regions.reduce((s, r) => s + r.target, 0);
-  const overallAchievement = totalTarget > 0 ? achievementPct(totalSales, totalTarget) : 0;
+  const overallAchievement =
+    totalTarget > 0 ? achievementPct(totalSales, totalTarget) : 0;
   const totalCustomers = regions.reduce((s, r) => s + r.customerCount, 0);
 
   return (
     <div
       data-slot="territory-map"
-      className={cn("space-y-4 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-4 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+      <div className="border-border flex items-center justify-between border-b pb-3">
+        <h3 className="text-foreground text-lg font-semibold">{title}</h3>
         <div className="flex items-center gap-3 text-sm">
           <span className="text-muted-foreground">
-            Sales: <strong className="text-foreground tabular-nums">{formatMoney(totalSales, currencySymbol)}</strong>
+            Sales:{" "}
+            <strong className="text-foreground tabular-nums">
+              {formatMoney(totalSales, currencySymbol)}
+            </strong>
           </span>
           <span className="text-muted-foreground">
-            Target: <strong className="text-foreground tabular-nums">{formatMoney(totalTarget, currencySymbol)}</strong>
+            Target:{" "}
+            <strong className="text-foreground tabular-nums">
+              {formatMoney(totalTarget, currencySymbol)}
+            </strong>
           </span>
-          <Badge variant={overallAchievement >= 100 ? "default" : "destructive"} className="text-xs">
+          <Badge
+            variant={overallAchievement >= 100 ? "default" : "destructive"}
+            className="text-xs"
+          >
             {overallAchievement.toFixed(1)}%
           </Badge>
         </div>
@@ -139,13 +152,17 @@ function TerritoryMap({
                   ? {
                       gridColumnStart: region.gridArea.col + 1,
                       gridRowStart: region.gridArea.row + 1,
-                      gridColumnEnd: region.gridArea.colSpan ? `span ${region.gridArea.colSpan}` : undefined,
-                      gridRowEnd: region.gridArea.rowSpan ? `span ${region.gridArea.rowSpan}` : undefined,
+                      gridColumnEnd: region.gridArea.colSpan
+                        ? `span ${region.gridArea.colSpan}`
+                        : undefined,
+                      gridRowEnd: region.gridArea.rowSpan
+                        ? `span ${region.gridArea.rowSpan}`
+                        : undefined,
                     }
                   : undefined
               }
               className={cn(
-                "relative overflow-hidden rounded-lg border border-border p-3 transition-shadow",
+                "border-border relative overflow-hidden rounded-lg border p-3 transition-shadow",
                 onRegionClick && "cursor-pointer hover:shadow-md",
                 isUnassigned && "border-dashed",
               )}
@@ -189,8 +206,13 @@ function TerritoryMap({
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 border-t border-border pt-3" data-slot="territory-legend">
-        <span className="text-xs font-medium text-muted-foreground">Coverage:</span>
+      <div
+        className="border-border flex flex-wrap items-center gap-3 border-t pt-3"
+        data-slot="territory-legend"
+      >
+        <span className="text-muted-foreground text-xs font-medium">
+          Coverage:
+        </span>
         {[
           { label: "≥100%", color: "bg-emerald-500" },
           { label: "80–99%", color: "bg-blue-500" },
@@ -200,10 +222,10 @@ function TerritoryMap({
         ].map((l) => (
           <div key={l.label} className="flex items-center gap-1">
             <span className={cn("size-3 rounded", l.color)} />
-            <span className="text-xs text-muted-foreground">{l.label}</span>
+            <span className="text-muted-foreground text-xs">{l.label}</span>
           </div>
         ))}
-        <span className="ml-auto text-xs text-muted-foreground">
+        <span className="text-muted-foreground ml-auto text-xs">
           {totalCustomers} total customers · {regions.length} regions
         </span>
       </div>

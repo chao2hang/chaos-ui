@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { CodeBlock } from "@/components/code-block";
+import { Badge } from "@/components/ui/badge"
+import { CodeBlock } from "@/components/code-block"
 
 # Badge
 
@@ -10,6 +10,7 @@ Small status/number indicator pinned to a corner, often used on notification ico
 ## When to Use
 
 Display status, tags, counts, or categorizations as compact pills.
+
 
 ## Examples
 
@@ -23,40 +24,40 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Badge variant="default">Default</Badge>
   <Badge variant="secondary">Secondary</Badge>
   <Badge variant="destructive">Destructive</Badge>
   <Badge variant="outline">Outline</Badge>
   <Badge variant="ghost">Ghost</Badge>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Variant**
 
-| Variant       | Description                 | 默认 |
-| ------------- | --------------------------- | ---- |
-| `default`     | Default style               | ✓    |
-| `secondary`   | Secondary action style      |      |
-| `destructive` | Destructive/danger style    |      |
-| `outline`     | Outlined style              |      |
-| `ghost`       | Ghost (no background) style |      |
-| `link`        | Link style                  |      |
+| Variant | Description | 默认 |
+|---|---|---|
+| `default` | Default style | ✓ |
+| `secondary` | Secondary action style |  |
+| `destructive` | Destructive/danger style |  |
+| `outline` | Outlined style |  |
+| `ghost` | Ghost (no background) style |  |
+| `link` | Link style |  |
 
 ## API / Props
 
 ### Badge
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

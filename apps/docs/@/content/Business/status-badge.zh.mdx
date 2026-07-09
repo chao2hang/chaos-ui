@@ -1,5 +1,5 @@
-import { StatusBadge } from "@/components/business/status-badge";
-import { CodeBlock } from "@/components/code-block";
+import { StatusBadge } from "@/components/business/status-badge"
+import { CodeBlock } from "@/components/code-block"
 
 # StatusBadge 状态徽章
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要状态徽章功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,29 +22,30 @@ export function Basic() {
   return <StatusBadge />
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **状态**
 
-| status       | 说明 | 默认 |
-| ------------ | ---- | ---- |
-| `default`    |      | ✓    |
-| `success`    |      |      |
-| `warning`    |      |      |
-| `error`      |      |      |
-| `info`       |      |      |
-| `processing` |      |      |
+| status | 说明 | 默认 |
+|---|---|---|
+| `default` |  | ✓ |
+| `success` |  |  |
+| `warning` |  |  |
+| `error` |  |  |
+| `info` |  |  |
+| `processing` |  |  |
 
 ## API / Props
 
 ### StatusBadge
 
-| Prop        | Type                           | Default | 说明                   |
-| ----------- | ------------------------------ | ------- | ---------------------- |
-| `className` | `string`                       | —       | 自定义样式类名         |
-| `label`     | `string`                       | —       | 标签文本               |
-| `dot`       | `boolean`                      | `true`  |                        |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `label` | `string` | — | 标签文本 |
+| `dot` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 |
 
 ## 注意事项
 
@@ -52,3 +54,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-statusbadge--docs)。
+

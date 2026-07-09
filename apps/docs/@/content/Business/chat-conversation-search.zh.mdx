@@ -1,5 +1,5 @@
-import { ChatConversationSearch } from "@/components/business/chat-conversation-search";
-import { CodeBlock } from "@/components/code-block";
+import { ChatConversationSearch } from "@/components/business/chat-conversation-search"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatConversationSearch Chat Conversation Search
 
@@ -11,6 +11,7 @@ Chat Conversation Search — 面向 ERP/企业场景的业务组件。
 
 适用于Chat Conversation Search相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,20 +22,22 @@ export function Basic() {
   return <ChatConversationSearch />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatConversationSearch
 
-| Prop            | Type                   | Default | 说明              |
-| --------------- | ---------------------- | ------- | ----------------- |
-| `className`     | `string`               | —       | 自定义样式类名    |
-| `query`         | `string`               | —       |                   |
-| `onQueryChange` | `() => void`           | —       |                   |
-| `results`       | `Array<T>`             | —       |                   |
-| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `query` | `string` | — |  |
+| `onQueryChange` | `() => void` | — |  |
+| `results` | `Array<T>` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chatconversationsearch--docs)。
+

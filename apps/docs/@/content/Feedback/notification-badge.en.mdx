@@ -1,0 +1,39 @@
+import { NotificationBadge } from "@/components/ui/notification-badge"
+import { CodeBlock } from "@/components/code-block"
+
+# NotificationBadge
+
+> Feedback components for user interaction and status.
+
+NotificationBadge — Header notification badge with unread count dot.
+
+## When to Use
+
+Use when you need a notificationbadge.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { NotificationBadge } from "@/components/ui/notification-badge"
+
+export function Basic() {
+  return <NotificationBadge />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### NotificationBadge
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

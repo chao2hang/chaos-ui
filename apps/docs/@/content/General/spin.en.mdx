@@ -46,18 +46,18 @@ export function Sizes() {
 ## Size Reference
 
 | Size | Description | 默认 |
-| ---- | ----------- | ---- |
-| `xs` | Extra small |      |
-| `sm` | Small       |      |
-| `md` | Medium      | ✓    |
-| `lg` | Large       |      |
-| `xl` | Extra large |      |
+| ---- | -------------------- | ---- |
+| `xs` | Extra small |  |
+| `sm` | Small |  |
+| `md` | Medium | ✓ |
+| `lg` | Large |  |
+| `xl` | Extra large |  |
 
 ## API / Props
 
 ### Spin
 
-| Prop        | Type                                   | Default | Description                                  |
+| Prop | Type | Default | Description |
 | ----------- | -------------------------------------- | ------- | -------------------------------------------- |
 | `spinning`  | `boolean`                              | `true`  | Whether to show spinner / 是否加载中         |
 | `tip`       | `React.ReactNode`                      | —       | Loading tip text / 加载提示文本              |
@@ -65,9 +65,11 @@ export function Sizes() {
 | `delay`     | `number`                               | `0`     | Delay before showing spinner (ms) / 延迟显示 |
 | `indicator` | `React.ReactNode`                      | —       | Custom spinner indicator / 自定义指示器      |
 | `children`  | `React.ReactNode`                      | —       | Wrapped content / 包裹的内容                 |
-| `className` | `string`                               | —       | Custom CSS class                             |
+| `className` | `string` | — | Custom CSS class |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **无 children 时**: 当不传 children 时，仅显示加载指示器。
+
+

@@ -1,0 +1,39 @@
+import { AudioRecorder } from "@/components/business/audio-recorder"
+import { CodeBlock } from "@/components/code-block"
+
+# AudioRecorder
+
+> Domain-specific business components for ERP scenarios.
+
+AudioRecorder — Audio recording component with waveform animation and timer.
+
+## When to Use
+
+Use when you need a audiorecorder.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AudioRecorder } from "@/components/business/audio-recorder"
+
+export function Basic() {
+  return <AudioRecorder />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### AudioRecorder
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

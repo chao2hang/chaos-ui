@@ -1,5 +1,5 @@
-import { FormSection } from "@/components/ui/form-section";
-import { CodeBlock } from "@/components/code-block";
+import { FormSection } from "@/components/ui/form-section"
+import { CodeBlock } from "@/components/code-block"
 
 # FormSection
 
@@ -10,6 +10,7 @@ FormSection — a form controls for user input and data submission. from Chaos U
 ## When to Use
 
 Use when you need a form section.
+
 
 ## Examples
 
@@ -23,41 +24,41 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <FormSection variant="default">Default</FormSection>
   <FormSection variant="elevated">Elevated</FormSection>
   <FormSection variant="flat">Flat</FormSection>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Variant**
 
-| Variant    | Description   | 默认 |
-| ---------- | ------------- | ---- |
-| `default`  | Default style | ✓    |
-| `elevated` |               |      |
-| `flat`     |               |      |
+| Variant | Description | 默认 |
+|---|---|---|
+| `default` | Default style | ✓ |
+| `elevated` |  |  |
+| `flat` |  |  |
 
 ## API / Props
 
 ### FormSection
 
-| Prop               | Type                   | Default | Description                       |
-| ------------------ | ---------------------- | ------- | --------------------------------- |
-| `className`        | `string`               | —       | Custom CSS class                  |
-| `title`            | `string`               | —       | Title                             |
-| `description`      | `string`               | —       | Description text                  |
-| `collapsible`      | `boolean`              | `false` |                                   |
-| `defaultCollapsed` | `boolean`              | `false` |                                   |
-| `required`         | `boolean`              | —       | Whether required                  |
-| `extra`            | `React.ReactNode`      | —       |                                   |
-| ...rest            | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `description` | `string` | — | Description text |
+| `collapsible` | `boolean` | `false` |  |
+| `defaultCollapsed` | `boolean` | `false` |  |
+| `required` | `boolean` | — | Whether required |
+| `extra` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -46,11 +46,11 @@ export function Comparison() {
 
 ### Direction
 
-| Prop        | Type                          | Default | 说明                                           |
-| ----------- | ----------------------------- | ------- | ---------------------------------------------- |
-| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向 |
-| `className` | `string`                      | —       | 自定义样式类名                                 |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                          |
+| Prop | Type | Default | 说明 |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向              |
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -59,3 +59,4 @@ export function Comparison() {
 - **RTL 样式**: 当 `dir="rtl"` 时自动应用 `[direction:rtl]` CSS 规则。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-direction--docs)。
+

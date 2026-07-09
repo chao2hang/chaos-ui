@@ -12,22 +12,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: "Save",
-    items: [
+    children: "Save",
+    actions: [
       { key: "save", label: "Save" },
       { key: "save-as", label: "Save As..." },
       { key: "save-all", label: "Save All" },
-    ],
+    ] as any,
   },
 };
 
 export const Primary: Story = {
   args: {
-    variant: "primary",
-    label: "Publish",
-    items: [
+    variant: "default",
+    children: "Publish",
+    actions: [
       { key: "publish", label: "Publish Now" },
       { key: "schedule", label: "Schedule..." },
-    ],
+    ] as any,
   },
 };

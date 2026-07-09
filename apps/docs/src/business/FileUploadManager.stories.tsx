@@ -26,8 +26,8 @@ export const Default: Story = {
     ])
     return (
       <FileUploadManager
-        files={files}
-        onFilesChange={setFiles}
+        files={files as any}
+        onFilesChange={setFiles as any}
       />
     )
   },

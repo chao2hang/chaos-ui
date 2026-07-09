@@ -1,0 +1,39 @@
+import { KeepAlive } from "@/components/ui/keep-alive"
+import { CodeBlock } from "@/components/code-block"
+
+# KeepAlive
+
+> Navigation components for page routing and orientation.
+
+KeepAlive — Page cache component — preserve state across tab/route switches.
+
+## When to Use
+
+Use when you need a keepalive.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { KeepAlive } from "@/components/ui/keep-alive"
+
+export function Basic() {
+  return <KeepAlive />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### KeepAlive
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

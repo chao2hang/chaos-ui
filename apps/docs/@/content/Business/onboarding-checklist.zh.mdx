@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 新手引导任务清单,引导用户完成关键步骤。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -25,17 +26,18 @@ export function Basic() {
 
 ### OnboardingChecklist
 
-| Prop           | Type                   | Default    | 说明              |
-| -------------- | ---------------------- | ---------- | ----------------- |
-| `className`    | `string`               | —          | 自定义样式类名    |
-| `steps`        | `OnboardingStep[]`     | —          |                   |
-| `completedIds` | `string[]`             | —          |                   |
-| `onToggle`     | `() => void`           | —          |                   |
-| `title`        | `string`               | `开始使用` | 标题              |
-| ...rest        | `React.HTMLAttributes` | —          | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+| -------------- | ---------------------- | ---------- | --------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `steps`        | `OnboardingStep[]`     | —          |                                                           |
+| `completedIds` | `string[]`             | —          |                                                           |
+| `onToggle`     | `() => void`           | —          |                                                           |
+| `title` | `string` | `开始使用` | 标题 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-onboarding-checklist--docs)。
+

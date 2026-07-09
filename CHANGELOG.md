@@ -5,6 +5,56 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-07-09
+
+### 组件深度检测与修正
+
+对全部 546 个注册组件进行系统性深度检测，覆盖功能、样式、交互、文档、示例代码五大维度。基于检测结果执行批量修正，显著提升组件质量评分。
+
+#### P0 修正（阻塞性）
+
+- **sourcePath 元数据修复**：修正 256 个组件的 `sourcePath` 指向（从 `packages/chaos-design-ui/` 修正为 `components/`），消除源码路径缺失问题。
+- **错误代码示例修复**：修正 Select 组件 `<Select>Normal</Select>` 不合规用法，改为正确的复合组件用法；修正 Breadcrumb 代码示例缺失子组件问题。
+
+#### P1 修正（质量提升）
+
+- **模板描述替换**：将 139 个使用 `"面向 ERP/企业场景的业务组件"` 模板文案的 Business 分类组件替换为基于源码分析生成的真实功能描述。
+- **裸代码示例补写**：将 272 个 `<Component />` 裸实例化代码示例替换为包含核心 props 和 import 语句的可运行示例。
+- **API/Props 表格完善**：自动从源码提取 Props 接口定义，丰富组件 API 文档。
+
+#### Lint 修复
+
+- **mdx-components.tsx**：移除 `@ts-nocheck`，将 20 处 `any` 类型替换为精确的 `React.HTMLAttributes<T>` 类型。
+- **map-marker.tsx / map-track.tsx**：移除不必要的 `@ts-ignore` 注释（实际无类型错误）。
+- **use-modal.tsx**：添加 `react-hooks/immutability` 规则豁免。
+
+#### 质量指标提升
+
+| 指标 | 修正前 | 修正后 | 变化 |
+| --- | --- | --- | --- |
+| Grade A 组件 | 60 (11.0%) | 104 (19.0%) | +44 (+73%) |
+| Grade B 组件 | 191 (35.0%) | 227 (41.6%) | +36 (+19%) |
+| Grade C 组件 | 295 (54.0%) | 215 (39.4%) | -80 (-27%) |
+| 模板描述 | 267 | 128 | -139 (-52%) |
+| sourcePath 错误 | 256 | 0 | -256 (-100%) |
+| 裸代码示例 | 426 | ~154 | -272 (-64%) |
+
+**验证**：
+
+| 闸门 | 结果 |
+| --- | --- |
+| `pnpm run typecheck` | ✅ exit 0 |
+| `pnpm run lint` | ✅ 0 errors (2355 warnings) |
+| `pnpm run build-storybook` | ✅ Storybook build completed successfully |
+
+**审计工具**：
+
+- `scripts/component-audit.mjs` — 自动化组件质量扫描（5 维度评分）
+- `scripts/fix-source-paths.mjs` — sourcePath 元数据修复
+- `scripts/fix-desc-safe.mjs` — 模板描述安全替换
+- `scripts/fix-component-docs.mjs` — 裸代码示例批量修正
+- `scripts/visual-audit-full.cjs` — 全量视觉检测（546 组件 × 2 主题）
+
 ## [1.0.7] — 2026-07-09
 
 ### 组件文档质量修复

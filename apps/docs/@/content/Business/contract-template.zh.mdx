@@ -1,5 +1,5 @@
-import { ContractTemplate } from "@/components/business/contract-template";
-import { CodeBlock } from "@/components/code-block";
+import { ContractTemplate } from "@/components/business/contract-template"
+import { CodeBlock } from "@/components/code-block"
 
 # ContractTemplate 合同模板
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要合同模板功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,19 +22,20 @@ export function Basic() {
   return <ContractTemplate />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ContractTemplate
 
-| Prop         | Type                          | Default    | 说明                  |
-| ------------ | ----------------------------- | ---------- | --------------------- |
-| `className`  | `string`                      | —          | 自定义样式类名        |
-| `title`      | `string`                      | `合同模板` | 标题                  |
-| `fields`     | `ContractField[]`             | —          |                       |
-| `onChange`   | `() => void`                  | —          | 值变化回调            |
-| `onPreview`  | `() => void`                  | —          |                       |
-| `onDownload` | `() => void`                  | —          |                       |
-| ...rest      | `React.ComponentProps<"div">` | —          | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | `合同模板` | 标题 |
+| `fields` | `ContractField[]` | — |  |
+| `onChange` | `() => void` | — | 值变化回调 |
+| `onPreview` | `() => void` | — |  |
+| `onDownload` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -41,3 +43,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-contracttemplate--docs)。
+

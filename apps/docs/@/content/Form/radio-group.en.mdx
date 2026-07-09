@@ -1,5 +1,5 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { CodeBlock } from "@/components/code-block";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { CodeBlock } from "@/components/code-block"
 
 # RadioGroup
 
@@ -10,6 +10,7 @@ RadioGroup — a form controls for user input and data submission. from Chaos UI
 ## When to Use
 
 Use when you need a radio group.
+
 
 ## Examples
 
@@ -27,23 +28,23 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<RadioGroup>Normal</RadioGroup>
-<RadioGroup disabled>Disabled</RadioGroup>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<RadioGroup>Normal</RadioGroup>
+<RadioGroup disabled>Disabled</RadioGroup>`} lang="tsx" />
+
 
 ## API / Props
 
 ### RadioGroup
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 1 个子组件(RadioGroupItem),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

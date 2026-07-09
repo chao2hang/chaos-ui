@@ -1,5 +1,5 @@
-import { WarehousePicker } from "@/components/business/warehouse-picker";
-import { CodeBlock } from "@/components/code-block";
+import { WarehousePicker } from "@/components/business/warehouse-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # WarehousePicker Warehouse Picker
 
@@ -12,6 +12,7 @@ WarehousePicker — warehouse picker component.
 
 Use when you need a warehouse picker.
 
+
 ## Examples
 
 ### Basic Usage
@@ -22,23 +23,26 @@ export function Basic() {
   return <WarehousePicker />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### WarehousePicker
 
-| Prop                | Type                      | Default | Description                       |
-| ------------------- | ------------------------- | ------- | --------------------------------- |
-| `className`         | `string`                  | —       | Custom CSS class                  |
-| `value`             | `string`                  | —       | Current value (controlled)        |
-| `onChange`          | `() => void`              | —       | Callback when value changes       |
-| `options`           | `WarehousePickerOption[]` | —       | Available options                 |
-| `placeholder`       | `string`                  | —       | Placeholder text                  |
-| `searchPlaceholder` | `string`                  | —       |                                   |
-| `emptyText`         | `string`                  | —       |                                   |
-| `disabled`          | `boolean`                 | `false` | Whether disabled                  |
-| `clearable`         | `boolean`                 | `true`  |                                   |
-| ...rest             | `React.HTMLAttributes`    | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `options` | `WarehousePickerOption[]` | — | Available options |
+| `placeholder` | `string` | — | Placeholder text |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Whether disabled |
+| `clearable` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

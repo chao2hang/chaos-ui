@@ -105,7 +105,9 @@ function isWeekend(date: Date): boolean {
 
 /** Get ISO week number. */
 function getWeekNumber(date: Date): number {
-  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const d = new Date(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+  );
   const dayNum = d.getUTCDay() || 7;
   d.setUTCDate(d.getUTCDate() + 4 - dayNum);
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
@@ -246,7 +248,10 @@ function GanttChartPro({
       const offset = Math.max(0, daysBetween(dateRange.start, s));
       const dur = task.isMilestone
         ? 0
-        : Math.max(1, daysBetween(new Date(task.start), new Date(task.end)) + 1);
+        : Math.max(
+            1,
+            daysBetween(new Date(task.start), new Date(task.end)) + 1,
+          );
       map.set(task.id, {
         startX: taskListWidth + offset * colWidth,
         endX: taskListWidth + (offset + dur) * colWidth,
@@ -300,7 +305,7 @@ function GanttChartPro({
     <div
       data-slot="gantt-chart-pro"
       className={cn(
-        "w-full overflow-auto rounded-lg border border-border bg-card",
+        "border-border bg-card w-full overflow-auto rounded-lg border",
         className,
       )}
       role="figure"
@@ -309,16 +314,16 @@ function GanttChartPro({
       <div style={{ minWidth: totalWidth, position: "relative" }}>
         {/* ---------- Header ---------- */}
         <div
-          className="sticky top-0 z-10 flex border-b border-border bg-muted/50 backdrop-blur"
+          className="border-border bg-muted/50 sticky top-0 z-10 flex border-b backdrop-blur"
           style={{ height: 48 }}
         >
           {/* Task list header */}
           {showTaskList && (
             <div
-              className="shrink-0 border-r border-border px-3 py-2"
+              className="border-border shrink-0 border-r px-3 py-2"
               style={{ width: taskListWidth }}
             >
-              <span className="text-xs font-medium text-foreground">Task</span>
+              <span className="text-foreground text-xs font-medium">Task</span>
             </div>
           )}
           {/* Timeline header */}
@@ -327,24 +332,24 @@ function GanttChartPro({
               <div
                 key={cell.day}
                 className={cn(
-                  "shrink-0 border-r border-border/50 text-center",
+                  "border-border/50 shrink-0 border-r text-center",
                   cell.isWeekendDay && "bg-muted/30",
                 )}
                 style={{ width: colWidth }}
               >
-                <div className="h-6 border-b border-border/30">
+                <div className="border-border/30 h-6 border-b">
                   {cell.monthLabel && (
-                    <span className="text-[10px] font-semibold text-primary">
+                    <span className="text-primary text-[10px] font-semibold">
                       {cell.monthLabel}
                     </span>
                   )}
                   {cell.weekLabel && !cell.monthLabel && zoom !== "day" && (
-                    <span className="text-[8px] text-muted-foreground">
+                    <span className="text-muted-foreground text-[8px]">
                       {cell.weekLabel}
                     </span>
                   )}
                 </div>
-                <div className="h-6 flex items-center justify-center">
+                <div className="flex h-6 items-center justify-center">
                   {cell.label && (
                     <span
                       className={cn(
@@ -372,7 +377,7 @@ function GanttChartPro({
               return (
                 <div
                   key={`sep-${cell.day}`}
-                  className="absolute top-0 bottom-0 border-l border-border/20"
+                  className="border-border/20 absolute top-0 bottom-0 border-l"
                   style={{ left: taskListWidth + cell.day * colWidth }}
                 />
               );
@@ -394,7 +399,7 @@ function GanttChartPro({
           {/* Task rows */}
           {flatTasks.length === 0 ? (
             <div
-              className="flex items-center justify-center text-sm text-muted-foreground"
+              className="text-muted-foreground flex items-center justify-center text-sm"
               style={{ height: 80 }}
             >
               No tasks
@@ -413,7 +418,7 @@ function GanttChartPro({
                   key={task.id}
                   role="row"
                   className={cn(
-                    "flex items-center border-b border-border/30 hover:bg-muted/20",
+                    "border-border/30 hover:bg-muted/20 flex items-center border-b",
                     index % 2 === 1 && "bg-muted/5",
                   )}
                   style={{ height: rowHeight }}
@@ -421,7 +426,7 @@ function GanttChartPro({
                   {/* Task name cell */}
                   {showTaskList && (
                     <div
-                      className="shrink-0 truncate border-r border-border px-2 py-1"
+                      className="border-border shrink-0 truncate border-r px-2 py-1"
                       style={{
                         width: taskListWidth,
                         paddingLeft: 8 + depth * 16,
@@ -439,7 +444,7 @@ function GanttChartPro({
                         {task.name}
                       </span>
                       {task.assignee && (
-                        <span className="ml-1 text-[10px] text-muted-foreground">
+                        <span className="text-muted-foreground ml-1 text-[10px]">
                           ({task.assignee})
                         </span>
                       )}
@@ -486,10 +491,7 @@ function GanttChartPro({
                         style={{
                           left: pos.startX,
                           top: barTop,
-                          width: Math.max(
-                            colWidth,
-                            pos.endX - pos.startX,
-                          ),
+                          width: Math.max(colWidth, pos.endX - pos.startX),
                           height: barHeight,
                         }}
                         title={`${task.name}: ${formatDate(task.start)} → ${formatDate(task.end)} (${progress}%)`}
@@ -501,8 +503,8 @@ function GanttChartPro({
                           )}
                           style={{ width: `${progress}%` }}
                         />
-                        {(pos.endX - pos.startX) > 60 && (
-                          <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium text-foreground/80">
+                        {pos.endX - pos.startX > 60 && (
+                          <span className="text-foreground/80 absolute inset-0 flex items-center justify-center text-[10px] font-medium">
                             {progress}%
                           </span>
                         )}
@@ -518,7 +520,7 @@ function GanttChartPro({
           {dependencies.length > 0 && flatTasks.length > 0 && (
             <svg
               data-slot="gantt-dependencies"
-              className="pointer-events-none absolute left-0 top-0"
+              className="pointer-events-none absolute top-0 left-0"
               width={totalWidth}
               height={totalHeight}
               style={{ zIndex: 5 }}
@@ -548,16 +550,28 @@ function GanttChartPro({
                 let toPoint: Point;
 
                 if (type === "FS") {
-                  fromPoint = { x: fromPos.endX + lag * colWidth, y: fromPos.y };
+                  fromPoint = {
+                    x: fromPos.endX + lag * colWidth,
+                    y: fromPos.y,
+                  };
                   toPoint = { x: toPos.startX, y: toPos.y };
                 } else if (type === "SS") {
-                  fromPoint = { x: fromPos.startX + lag * colWidth, y: fromPos.y };
+                  fromPoint = {
+                    x: fromPos.startX + lag * colWidth,
+                    y: fromPos.y,
+                  };
                   toPoint = { x: toPos.startX, y: toPos.y };
                 } else if (type === "FF") {
-                  fromPoint = { x: fromPos.endX + lag * colWidth, y: fromPos.y };
+                  fromPoint = {
+                    x: fromPos.endX + lag * colWidth,
+                    y: fromPos.y,
+                  };
                   toPoint = { x: toPos.endX, y: toPos.y };
                 } else {
-                  fromPoint = { x: fromPos.startX + lag * colWidth, y: fromPos.y };
+                  fromPoint = {
+                    x: fromPos.startX + lag * colWidth,
+                    y: fromPos.y,
+                  };
                   toPoint = { x: toPos.endX, y: toPos.y };
                 }
 
@@ -570,7 +584,11 @@ function GanttChartPro({
                     key={`dep-${idx}`}
                     d={path}
                     fill="none"
-                    stroke={isCritical ? "var(--destructive)" : "var(--muted-foreground)"}
+                    stroke={
+                      isCritical
+                        ? "var(--destructive)"
+                        : "var(--muted-foreground)"
+                    }
                     strokeWidth={isCritical ? 1.5 : 1}
                     strokeDasharray={isCritical ? "0" : "3 2"}
                     markerEnd={`url(#${arrowId})`}

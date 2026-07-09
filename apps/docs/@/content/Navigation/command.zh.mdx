@@ -1,5 +1,5 @@
-import { Command } from "@/components/ui/command";
-import { CodeBlock } from "@/components/code-block";
+import { Command } from "@/components/ui/command"
+import { CodeBlock } from "@/components/code-block"
 
 # Command 命令面板
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 命令面板/快捷键搜索,通过输入快速定位命令或内容。
+
 
 ## 代码示例
 
@@ -25,14 +26,15 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Command
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -40,3 +42,4 @@ export function Basic() {
 - **复合组件**: 包含 8 个子组件(CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup…),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-command--docs)。
+

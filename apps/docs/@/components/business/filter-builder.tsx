@@ -100,12 +100,12 @@ function FilterBuilder({
           </SelectContent>
         </Select>
         <Button variant="outline" size="sm" onClick={addFilter}>
-          <PlusIcon className="size-3 mr-1" />
+          <PlusIcon className="mr-1 size-3" />
           {t("filterBuilder.addFilter")}
         </Button>
       </div>
       {filters.length === 0 && (
-        <p className="text-sm text-muted-foreground py-4 text-center">
+        <p className="text-muted-foreground py-4 text-center text-sm">
           {t("filterBuilder.empty")}
         </p>
       )}
@@ -152,12 +152,12 @@ function FilterBuilder({
             size="icon-sm"
             onClick={() => removeFilter(i)}
           >
-            <Trash2Icon className="size-4 text-destructive" />
+            <Trash2Icon className="text-destructive size-4" />
           </Button>
         </div>
       ))}
       {filters.length > 0 && (
-        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center gap-1 text-xs">
           <Badge variant="outline">
             {t("filterBuilder.activeCount", { count: filters.length })}
           </Badge>

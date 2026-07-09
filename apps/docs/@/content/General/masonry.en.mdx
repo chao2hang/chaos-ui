@@ -47,13 +47,15 @@ export function Responsive() {
 
 ### Masonry
 
-| Prop        | Type                                         | Default | Description                                          |
-| ----------- | -------------------------------------------- | ------- | ---------------------------------------------------- |
-| `columns`   | `number \| { default?, sm?, md?, lg?, xl? }` | `3`     | Column count or responsive config / 列数或响应式配置 |
-| `gap`       | `number`                                     | `16`    | Gap between items in pixels / 项目间距（像素）       |
-| `className` | `string`                                     | —       | Custom CSS class                                     |
-| ...rest     | `React.ComponentProps<"div">`                | —       | Inherits all `<div>` attributes                      |
+| Prop | Type | Default | Description |
+| ----------- | -------------------------------------------- | ------- | ----------------------------------------------------------- |
+| `columns`   | `number \| { default?, sm?, md?, lg?, xl? }` | `3`     | Column count or responsive config / 列数或响应式配置        |
+| `gap`       | `number`                                     | `16`    | Gap between items in pixels / 项目间距（像素）              |
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **CSS columns**: 基于 CSS `column-count` 实现，子元素自动 `break-inside-avoid`。
+
+

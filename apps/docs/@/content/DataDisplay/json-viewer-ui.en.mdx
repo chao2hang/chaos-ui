@@ -1,0 +1,39 @@
+import { JSONViewerUI } from "@/components/ui/json-viewer-ui"
+import { CodeBlock } from "@/components/code-block"
+
+# JSONViewerUI
+
+> Data display components for presenting information.
+
+JSONViewerUI — Lightweight JSON tree viewer with collapsible nodes and syntax highlighting.
+
+## When to Use
+
+Use when you need a jsonviewerui.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { JSONViewerUI } from "@/components/ui/json-viewer-ui"
+
+export function Basic() {
+  return <JSONViewerUI />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### JSONViewerUI
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

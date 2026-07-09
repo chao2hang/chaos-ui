@@ -1,0 +1,39 @@
+import { PhoneInput } from "@/components/ui/phone-input"
+import { CodeBlock } from "@/components/code-block"
+
+# PhoneInput
+
+> Form components for data entry and collection.
+
+PhoneInput — International phone number input with country code selector.
+
+## When to Use
+
+Use when you need a phoneinput.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PhoneInput } from "@/components/ui/phone-input"
+
+export function Basic() {
+  return <PhoneInput />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### PhoneInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

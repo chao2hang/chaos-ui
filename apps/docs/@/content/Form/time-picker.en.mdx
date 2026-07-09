@@ -1,5 +1,5 @@
-import { TimePicker } from "@/components/ui/time-picker";
-import { CodeBlock } from "@/components/code-block";
+import { TimePicker } from "@/components/ui/time-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # TimePicker
 
@@ -10,6 +10,7 @@ TimePicker — a form controls for user input and data submission. from Chaos UI
 ## When to Use
 
 Use when you need a time picker.
+
 
 ## Examples
 
@@ -23,27 +24,27 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<TimePicker>Normal</TimePicker>
-<TimePicker disabled>Disabled</TimePicker>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<TimePicker>Normal</TimePicker>
+<TimePicker disabled>Disabled</TimePicker>`} lang="tsx" />
+
 
 ## API / Props
 
 ### TimePicker
 
-| Prop          | Type                             | Default    | Description                       |
-| ------------- | -------------------------------- | ---------- | --------------------------------- |
-| `className`   | `string`                         | —          | Custom CSS class                  |
-| `value`       | `string`                         | —          | Current value (controlled)        |
-| `onChange`    | `() => void`                     | —          | Callback when value changes       |
-| `step`        | `1 \| 5 \| 10 \| 15 \| 30 \| 60` | `1`        | Step value                        |
-| `format`      | `"12h" \| "24h"`                 | `24h`      |                                   |
-| `disabled`    | `boolean`                        | —          | Whether disabled                  |
-| `placeholder` | `string`                         | `选择时间` | Placeholder text                  |
-| ...rest       | `React.HTMLAttributes`           | —          | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `step` | `1 \| 5 \| 10 \| 15 \| 30 \| 60` | `1` | Step value |
+| `format` | `"12h" \| "24h"` | `24h` |  |
+| `disabled` | `boolean` | — | Whether disabled |
+| `placeholder` | `string` | `选择时间` | Placeholder text |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

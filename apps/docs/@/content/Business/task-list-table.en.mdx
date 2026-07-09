@@ -1,18 +1,17 @@
-import { TaskListTable } from "@/components/business/task-list-table";
-import { CodeBlock } from "@/components/code-block";
+import { TaskListTable } from "@/components/business/task-list-table"
+import { CodeBlock } from "@/components/code-block"
 
 # TaskListTable Task List Table
 
 > Domain-specific business components for ERP scenarios.
 
-<TaskListTable
-  tasks={[{ id: "1", title: "对账", status: "进行中", priority: "高" }]}
-/>
+<TaskListTable tasks={[{ id:"1", title:"对账", status:"进行中", priority:"高" }]} />
 TaskListTable — task list table component.
 
 ## When to Use
 
 Use when you need a task list table.
+
 
 ## Examples
 
@@ -24,22 +23,25 @@ export function Basic() {
   return <TaskListTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TaskListTable
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `tasks`     | `Array<{`              | —       |                                   |
-| `id`        | `string`               | —       | DOM element id                    |
-| `title`     | `string`               | —       | Title                             |
-| `status`    | `string`               | —       | Status                            |
-| `priority`  | `string`               | —       |                                   |
-| `assignee`  | `string`               | —       |                                   |
-| `deadline`  | `string`               | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `tasks` | `Array<{` | — |  |
+| `id` | `string` | — | DOM element id |
+| `title` | `string` | — | Title |
+| `status` | `string` | — | Status |
+| `priority` | `string` | — |  |
+| `assignee` | `string` | — |  |
+| `deadline` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

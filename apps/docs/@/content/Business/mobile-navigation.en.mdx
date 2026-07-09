@@ -1,5 +1,5 @@
-import { MobileNavigation } from "@/components/mobile/mobile-navigation";
-import { CodeBlock } from "@/components/code-block";
+import { MobileNavigation } from "@/components/mobile/mobile-navigation"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileNavigation
 
@@ -11,6 +11,7 @@ MobileNavigation — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile navigation.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <MobileNavigation />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileNavigation
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `items`     | `{`                    | —       | Items / data list                 |
-| `label`     | `string`               | —       | Label text                        |
-| `href`      | `string`               | —       | Hyperlink URL                     |
-| `icon`      | `React.ElementType`    | —       | Icon element                      |
-| `active`    | `boolean`              | —       |                                   |
-| `onClick`   | `() => void`           | —       | Click handler                     |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `{` | — | Items / data list |
+| `label` | `string` | — | Label text |
+| `href` | `string` | — | Hyperlink URL |
+| `icon` | `React.ElementType` | — | Icon element |
+| `active` | `boolean` | — |  |
+| `onClick` | `() => void` | — | Click handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

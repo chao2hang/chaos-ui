@@ -1,5 +1,5 @@
-import { ChatInput } from "@/components/ui/chat-input";
-import { CodeBlock } from "@/components/code-block";
+import { ChatInput } from "@/components/ui/chat-input"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatInput Chat Input
 
@@ -11,6 +11,7 @@ ChatInput — a form controls for user input and data submission. from Chaos UI.
 
 Use when you need a chat input.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <ChatInput />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatInput
 
-| Prop          | Type                   | Default | Description                       |
-| ------------- | ---------------------- | ------- | --------------------------------- |
-| `className`   | `string`               | —       | Custom CSS class                  |
-| `value`       | `string`               | —       | current value                     |
-| `onChange`    | `() => void`           | —       | change handler                    |
-| `onSend`      | `() => void`           | —       | send handler                      |
-| `placeholder` | `string`               | —       | placeholder                       |
-| `disabled`    | `boolean`              | —       | disabled                          |
-| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | current value |
+| `onChange` | `() => void` | — | change handler |
+| `onSend` | `() => void` | — | send handler |
+| `placeholder` | `string` | — | placeholder |
+| `disabled` | `boolean` | — | disabled |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

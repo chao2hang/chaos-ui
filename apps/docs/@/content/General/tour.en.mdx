@@ -49,7 +49,7 @@ export function Controlled() {
 
 ### Tour
 
-| Prop           | Type                      | Default | Description                                              |
+| Prop | Type | Default | Description |
 | -------------- | ------------------------- | ------- | -------------------------------------------------------- |
 | `steps`        | `TourStep[]`              | —       | Tour steps / 导览步骤 (required)                         |
 | `open`         | `boolean`                 | —       | Controlled open state / 受控打开状态                     |
@@ -60,7 +60,7 @@ export function Controlled() {
 
 ### TourStep
 
-| Prop          | Type                                     | Default  | Description                                           |
+| Prop | Type | Default | Description |
 | ------------- | ---------------------------------------- | -------- | ----------------------------------------------------- |
 | `target`      | `string \| (() => HTMLElement \| null)`  | —        | CSS selector or element / CSS 选择器或元素 (required) |
 | `title`       | `string`                                 | —        | Step title / 步骤标题 (required)                      |
@@ -72,3 +72,5 @@ export function Controlled() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **localStorage**: 设置 `storageKey` 后，完成的导览不会再次显示。
+
+

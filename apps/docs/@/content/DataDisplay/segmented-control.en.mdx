@@ -1,5 +1,5 @@
-import { SegmentedControl } from "@/components/ui/segmented-control";
-import { CodeBlock } from "@/components/code-block";
+import { SegmentedControl } from "@/components/ui/segmented-control"
+import { CodeBlock } from "@/components/code-block"
 
 # SegmentedControl
 
@@ -10,6 +10,7 @@ SegmentedControl — a components for presenting data and content. from Chaos UI
 ## When to Use
 
 Use when you need a segmented control.
+
 
 ## Examples
 
@@ -23,54 +24,51 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <SegmentedControl size="sm">Sm</SegmentedControl>
   <SegmentedControl size="default">Default</SegmentedControl>
   <SegmentedControl size="lg">Lg</SegmentedControl>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### States
 
-<CodeBlock
-  code={`<SegmentedControl>Normal</SegmentedControl>
-<SegmentedControl disabled>Disabled</SegmentedControl>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<SegmentedControl>Normal</SegmentedControl>
+<SegmentedControl disabled>Disabled</SegmentedControl>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Size**
 
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
+| Size | Description | 默认 |
+|---|---|---|
+| `default` | Default size | ✓ |
+| `sm` | Small |  |
+| `lg` | Large |  |
 
 **fullWidth**
 
 | fullWidth | Description | 默认 |
-| --------- | ----------- | ---- |
-| `true`    |             | ✓    |
-| `false`   |             |      |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### SegmentedControl
 
-| Prop           | Type                       | Default | Description                       |
-| -------------- | -------------------------- | ------- | --------------------------------- |
-| `className`    | `string`                   | —       | Custom CSS class                  |
-| `options`      | `SegmentedControlOption[]` | —       | Available options                 |
-| `value`        | `string`                   | —       | Current value (controlled)        |
-| `onChange`     | `() => void`               | —       | Callback when value changes       |
-| `defaultValue` | `string`                   | —       | Default value (uncontrolled)      |
-| ...rest        | `React.HTMLAttributes`     | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `options` | `SegmentedControlOption[]` | — | Available options |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `defaultValue` | `string` | — | Default value (uncontrolled) |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

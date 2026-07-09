@@ -39,13 +39,13 @@ export function Multiple() {
 
 ### KeyboardShortcut
 
-| Prop          | Type                          | Default      | 说明                                  |
-| ------------- | ----------------------------- | ------------ | ------------------------------------- |
-| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required) |
-| `description` | `string`                      | —            | Description text / 描述文本           |
-| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                         |
-| `className`   | `string`                      | —            | 自定义样式类名                        |
-| ...rest       | `React.ComponentProps<"div">` | —            | 透传 `<div>` 原生属性                 |
+| Prop | Type | Default | 说明 |
+| ------------- | ----------------------------- | ------------ | ----------------------------------------------------------- |
+| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required)                       |
+| `description` | `string`                      | —            | Description text / 描述文本                                 |
+| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                                               |
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -53,3 +53,4 @@ export function Multiple() {
 - **基于 Kbd 组件**: 内部使用 `Kbd` 和 `KbdGroup` 组件渲染按键。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboardshortcut--docs)。
+

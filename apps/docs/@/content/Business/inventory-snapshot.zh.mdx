@@ -1,20 +1,16 @@
-import { InventorySnapshot } from "@/components/business/inventory-snapshot";
-import { CodeBlock } from "@/components/code-block";
+import { InventorySnapshot } from "@/components/business/inventory-snapshot"
+import { CodeBlock } from "@/components/code-block"
 
 # InventorySnapshot Inventory Snapshot
 
 > 业务组件
 
-<InventorySnapshot
-  items={[
-    { id: "s1", name: "原料A", qty: 120, status: "normal" },
-    { id: "s2", name: "原料B", qty: 5, status: "low" },
-  ]}
-/>
+<InventorySnapshot items={[ { id: "s1", name: "原料A", qty: 120, status: "normal" }, { id: "s2", name: "原料B", qty: 5, status: "low" }, ]} />
 
 ## 何时使用
 
 适用于Inventory Snapshot相关场景。
+
 
 ## 代码示例
 
@@ -26,22 +22,24 @@ export function Basic() {
   return <InventorySnapshot />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### InventorySnapshot
 
-| Prop        | Type                         | Default | 说明              |
-| ----------- | ---------------------------- | ------- | ----------------- |
-| `className` | `string`                     | —       | 自定义样式类名    |
-| `items`     | `Array<{`                    | —       | 选项/数据项列表   |
-| `id`        | `string`                     | —       | DOM 元素 id       |
-| `name`      | `string`                     | —       | 表单字段名        |
-| `qty`       | `number`                     | —       |                   |
-| `status`    | `"normal" \| "low" \| "out"` | —       | 状态              |
-| ...rest     | `React.HTMLAttributes`       | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `items` | `Array<{` | — | 选项/数据项列表 |
+| `id` | `string` | — | DOM 元素 id |
+| `name` | `string` | — | 表单字段名 |
+| `qty` | `number` | — |  |
+| `status` | `"normal" \| "low" \| "out"` | — | 状态 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-inventorysnapshot--docs)。
+

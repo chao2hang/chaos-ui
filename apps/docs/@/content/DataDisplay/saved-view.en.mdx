@@ -1,0 +1,39 @@
+import { SavedViewSwitcher } from "@/components/ui/saved-view"
+import { CodeBlock } from "@/components/code-block"
+
+# SavedViewSwitcher
+
+> Data display components for presenting information.
+
+SavedViewSwitcher — Saved view switcher for list pages — save and restore filter+column presets.
+
+## When to Use
+
+Use when you need a savedviewswitcher.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SavedViewSwitcher } from "@/components/ui/saved-view"
+
+export function Basic() {
+  return <SavedViewSwitcher />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SavedViewSwitcher
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

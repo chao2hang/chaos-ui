@@ -1,5 +1,5 @@
-import { Switch } from "@/components/ui/switch";
-import { CodeBlock } from "@/components/code-block";
+import { Switch } from "@/components/ui/switch"
+import { CodeBlock } from "@/components/code-block"
 
 # Switch 开关
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 两种状态之间的切换,典型用于开/关、启用/禁用。
+
 
 ## 代码示例
 
@@ -23,20 +24,18 @@ export function Basic() {
 
 ### 状态
 
-<CodeBlock
-  code={`<Switch>Normal</Switch>
-<Switch disabled>Disabled</Switch>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<Switch>Normal</Switch>
+<Switch disabled>Disabled</Switch>`} lang="tsx" />
+
 
 ## API / Props
 
 ### Switch
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -44,3 +43,4 @@ export function Basic() {
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-switch--docs)。
+

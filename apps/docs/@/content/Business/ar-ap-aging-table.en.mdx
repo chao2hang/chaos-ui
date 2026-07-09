@@ -1,5 +1,5 @@
-import { ArApAgingTable } from "@/components/business/ar-ap-aging-table";
-import { CodeBlock } from "@/components/code-block";
+import { ArApAgingTable } from "@/components/business/ar-ap-aging-table"
+import { CodeBlock } from "@/components/code-block"
 
 # ArApAgingTable Ar Ap Aging Table
 
@@ -11,6 +11,7 @@ ArApAgingTable — a business component for ERP / enterprise scenarios.
 
 Use when you need an ar ap aging table.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <ArApAgingTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ArApAgingTable
 
-| Prop             | Type                   | Default | Description                                              |
-| ---------------- | ---------------------- | ------- | -------------------------------------------------------- |
-| `className`      | `string`               | —       | Custom CSS class                                         |
-| `entries`        | `AgingEntry[]`         | —       | Entries to display.                                      |
-| `asOfDate`       | `string`               | —       | Reference date for aging calculation. Defaults to today. |
-| `type`           | `"ar" \| "ap"`         | `ar`    | "ar" for receivable, "ap" for payable.                   |
-| `buckets`        | `AgingBucket[]`        | —       | Custom bucket definitions.                               |
-| `currencySymbol` | `string`               | `¥`     | Currency symbol for display.                             |
-| `onRowClick`     | `() => void`           | —       | Row click handler.                                       |
-| ...rest          | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                        |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `entries` | `AgingEntry[]` | — | Entries to display. |
+| `asOfDate` | `string` | — | Reference date for aging calculation. Defaults to today. |
+| `type` | `"ar" \| "ap"` | `ar` | "ar" for receivable, "ap" for payable. |
+| `buckets` | `AgingBucket[]` | — | Custom bucket definitions. |
+| `currencySymbol` | `string` | `¥` | Currency symbol for display. |
+| `onRowClick` | `() => void` | — | Row click handler. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

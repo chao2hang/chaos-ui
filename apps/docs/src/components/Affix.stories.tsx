@@ -13,14 +13,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: <Button>Fixed Button</Button>,
-    offset: 10,
+    offsetTop: 10,
   },
 };
 
 export const Top: Story = {
   args: {
     children: <Button>Top Affix</Button>,
-    position: "top",
-    offset: 10,
+    offsetTop: 10,
   },
 };

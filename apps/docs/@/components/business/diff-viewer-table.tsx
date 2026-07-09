@@ -174,7 +174,10 @@ function computeDiff<T extends Record<string, unknown>>(
 
 const statusConfig: Record<
   DiffRowStatus,
-  { label: string; variant: "default" | "destructive" | "secondary" | "outline" }
+  {
+    label: string;
+    variant: "default" | "destructive" | "secondary" | "outline";
+  }
 > = {
   added: { label: "Added", variant: "default" },
   removed: { label: "Removed", variant: "destructive" },
@@ -260,11 +263,12 @@ function DiffViewerTable<T extends Record<string, unknown>>({
       const value = diffRow.beforeRow
         ? (diffRow.beforeRow as Record<string, unknown>)[col.key]
         : undefined;
-      const content = col.render && diffRow.beforeRow
-        ? col.render(value as T[keyof T], diffRow.beforeRow)
-        : ((value as React.ReactNode) ?? "\u2014");
+      const content =
+        col.render && diffRow.beforeRow
+          ? col.render(value as T[keyof T], diffRow.beforeRow)
+          : ((value as React.ReactNode) ?? "\u2014");
       return (
-        <span className="line-through text-muted-foreground">{content}</span>
+        <span className="text-muted-foreground line-through">{content}</span>
       );
     }
 
@@ -281,7 +285,7 @@ function DiffViewerTable<T extends Record<string, unknown>>({
       return (
         <div data-slot="diff-cell-changed">
           <span>{afterContent}</span>
-          <span className="block text-xs text-muted-foreground line-through">
+          <span className="text-muted-foreground block text-xs line-through">
             {beforeContent}
           </span>
         </div>
@@ -338,7 +342,7 @@ function DiffViewerTable<T extends Record<string, unknown>>({
           <TableRow>
             <TableCell
               colSpan={columns.length + 1}
-              className="py-12 text-center text-muted-foreground"
+              className="text-muted-foreground py-12 text-center"
             >
               No differences found
             </TableCell>
@@ -391,15 +395,18 @@ function DiffViewerTable<T extends Record<string, unknown>>({
   return (
     <div
       data-slot="diff-viewer-table"
-      className={cn("overflow-x-auto rounded-lg border border-border", className)}
+      className={cn(
+        "border-border overflow-x-auto rounded-lg border",
+        className,
+      )}
     >
       {/* Summary toolbar */}
       {showSummary && (
         <div
           data-slot="diff-viewer-summary"
-          className="flex flex-wrap items-center gap-3 border-b border-border bg-muted/30 px-3 py-2"
+          className="border-border bg-muted/30 flex flex-wrap items-center gap-3 border-b px-3 py-2"
         >
-          <span className="mr-2 text-sm font-medium text-foreground">
+          <span className="text-foreground mr-2 text-sm font-medium">
             Summary
           </span>
           <Badge variant="default" className="text-xs">
@@ -414,7 +421,7 @@ function DiffViewerTable<T extends Record<string, unknown>>({
           <Badge variant="outline" className="text-xs">
             {counts.unchanged} Unchanged
           </Badge>
-          <span className="ml-auto text-xs text-muted-foreground">
+          <span className="text-muted-foreground ml-auto text-xs">
             {filteredRows.length} of {diffRows.length} rows shown
           </span>
         </div>
@@ -426,10 +433,10 @@ function DiffViewerTable<T extends Record<string, unknown>>({
       ) : (
         <div
           data-slot="diff-side-by-side"
-          className="grid grid-cols-2 divide-x divide-border"
+          className="divide-border grid grid-cols-2 divide-x"
         >
           <div data-slot="diff-side-before">
-            <div className="border-b border-border bg-muted/20 px-3 py-1.5 text-xs font-medium text-muted-foreground">
+            <div className="border-border bg-muted/20 text-muted-foreground border-b px-3 py-1.5 text-xs font-medium">
               Before
             </div>
             {renderTable(
@@ -439,7 +446,7 @@ function DiffViewerTable<T extends Record<string, unknown>>({
             )}
           </div>
           <div data-slot="diff-side-after">
-            <div className="border-b border-border bg-muted/20 px-3 py-1.5 text-xs font-medium text-muted-foreground">
+            <div className="border-border bg-muted/20 text-muted-foreground border-b px-3 py-1.5 text-xs font-medium">
               After
             </div>
             {renderTable(
@@ -455,8 +462,4 @@ function DiffViewerTable<T extends Record<string, unknown>>({
 }
 
 export { DiffViewerTable };
-export type {
-  DiffViewerTableProps,
-  DiffColumn,
-  DiffRowStatus,
-};
+export type { DiffViewerTableProps, DiffColumn, DiffRowStatus };

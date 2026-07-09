@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要管理后台侧边栏功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -25,21 +26,21 @@ export function Basic() {
 
 ### AdminSider
 
-| Prop                 | Type                            | Default | 说明                    |
-| -------------------- | ------------------------------- | ------- | ----------------------- |
-| `className`          | `string`                        | —       | 自定义样式类名          |
-| `menuItems`          | `MenuItem[]`                    | —       | 菜单项列表              |
-| `selectedKey`        | `string`                        | —       | 选中的菜单 key          |
-| `onItemClick`        | `(item: MenuItem) => void`      | —       | 菜单点击回调            |
-| `collapsed`          | `boolean`                       | `false` | 是否折叠                |
-| `onCollapse`         | `(collapsed: boolean) => void`  | —       | 折叠变更回调            |
-| `logo`               | `ReactNode`                     | —       | Logo 内容               |
-| `footer`             | `ReactNode`                     | —       | 底部内容                |
-| `width`              | `number`                        | `240`   | 展开宽度                |
-| `collapsedWidth`     | `number`                        | `64`    | 折叠宽度                |
-| `mobileOpen`         | `boolean`                       | `false` | 移动端是否打开          |
-| `onMobileOpenChange` | `(open: boolean) => void`       | —       | 移动端打开变更回调      |
-| ...rest              | `React.ComponentProps<"aside">` | —       | 透传 `<aside>` 原生属性 |
+| Prop | Type | Default | 说明 |
+| -------------------- | ------------------------------- | ------- | --------------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `menuItems` | `MenuItem[]` | — | 菜单项列表 |
+| `selectedKey` | `string` | — | 选中的菜单 key |
+| `onItemClick` | `(item: MenuItem) => void` | — | 菜单点击回调 |
+| `collapsed` | `boolean` | `false` | 是否折叠 |
+| `onCollapse` | `(collapsed: boolean) => void` | — | 折叠变更回调 |
+| `logo` | `ReactNode` | — | Logo 内容 |
+| `footer` | `ReactNode` | — | 底部内容 |
+| `width` | `number` | `240` | 展开宽度 |
+| `collapsedWidth` | `number` | `64` | 折叠宽度 |
+| `mobileOpen` | `boolean` | `false` | 移动端是否打开 |
+| `onMobileOpenChange` | `(open: boolean) => void` | — | 移动端打开变更回调 |
+| ...rest | `React.ComponentProps<"aside">` | — | 透传 `<aside>` 原生属性 |
 
 ## 注意事项
 
@@ -47,3 +48,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<aside>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-adminsider--docs)。
+

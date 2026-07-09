@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要设置布局功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -25,17 +26,18 @@ export function Basic() {
 
 ### SettingsLayout
 
-| Prop          | Type                          | Default | 说明                  |
-| ------------- | ----------------------------- | ------- | --------------------- |
-| `className`   | `string`                      | —       | 自定义样式类名        |
-| `nav`         | `SettingsNavEntry[]`          | —       |                       |
-| `active`      | `string`                      | —       |                       |
-| `onNavChange` | `() => void`                  | —       |                       |
-| `sections`    | `SettingsSection[]`           | —       |                       |
-| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `nav`         | `SettingsNavEntry[]`          | —       |                                                             |
+| `active`      | `string`                      | —       |                                                             |
+| `onNavChange` | `() => void`                  | —       |                                                             |
+| `sections`    | `SettingsSection[]`           | —       |                                                             |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-settings-layout--docs)。
+

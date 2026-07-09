@@ -1,5 +1,5 @@
-import { MapMarkerCluster } from "@/components/business/map-marker";
-import { CodeBlock } from "@/components/code-block";
+import { MapMarkerCluster } from "@/components/business/map-marker"
+import { CodeBlock } from "@/components/code-block"
 
 # MapMarker
 
@@ -11,6 +11,7 @@ MapMarker — a business component for ERP / enterprise scenarios.
 
 Use when you need a map marker.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <MapMarkerCluster />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MapMarkerCluster
 
-| Prop        | Type                   | Default | Description                                      |
-| ----------- | ---------------------- | ------- | ------------------------------------------------ |
-| `className` | `string`               | —       | Custom CSS class                                 |
-| `map`       | `AMap.Map \| null`     | —       | AMap instance returned from MapView's `onReady`. |
-| `markers`   | `MapMarkerData[]`      | —       | Marker data array.                               |
-| `cluster`   | `boolean`              | `true`  | Cluster enabled. Default true.                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `map` | `AMap.Map \| null` | — | AMap instance returned from MapView's `onReady`. |
+| `markers` | `MapMarkerData[]` | — | Marker data array. |
+| `cluster` | `boolean` | `true` | Cluster enabled. Default true. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

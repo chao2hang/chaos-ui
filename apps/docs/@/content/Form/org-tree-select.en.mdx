@@ -1,0 +1,39 @@
+import { OrgTreeSelect } from "@/components/business/org-tree-select"
+import { CodeBlock } from "@/components/code-block"
+
+# OrgTreeSelect
+
+> Form components for data entry and collection.
+
+OrgTreeSelect — Organization tree selector with popover, search and single/multi select.
+
+## When to Use
+
+Use when you need a orgtreeselect.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { OrgTreeSelect } from "@/components/business/org-tree-select"
+
+export function Basic() {
+  return <OrgTreeSelect />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### OrgTreeSelect
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,5 +1,5 @@
-import { AnnouncementBanner } from "@/components/business/announcement-banner";
-import { CodeBlock } from "@/components/code-block";
+import { AnnouncementBanner } from "@/components/business/announcement-banner"
+import { CodeBlock } from "@/components/code-block"
 
 # AnnouncementBanner
 
@@ -10,6 +10,7 @@ AnnouncementBanner — a business component for ERP / enterprise scenarios.
 ## When to Use
 
 Use when you need an announcement banner.
+
 
 ## Examples
 
@@ -23,42 +24,42 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <AnnouncementBanner variant="info">Info</AnnouncementBanner>
   <AnnouncementBanner variant="warning">Warning</AnnouncementBanner>
   <AnnouncementBanner variant="success">Success</AnnouncementBanner>
   <AnnouncementBanner variant="error">Error</AnnouncementBanner>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Variant**
 
-| Variant   | Description         | 默认 |
-| --------- | ------------------- | ---- |
-| `info`    | Informational style | ✓    |
-| `warning` | Warning style       |      |
-| `success` | Success style       |      |
-| `error`   | Error style         |      |
+| Variant | Description | 默认 |
+|---|---|---|
+| `info` | Informational style | ✓ |
+| `warning` | Warning style |  |
+| `success` | Success style |  |
+| `error` | Error style |  |
 
 ## API / Props
 
 ### AnnouncementBanner
 
-| Prop          | Type                          | Default | Description                     |
-| ------------- | ----------------------------- | ------- | ------------------------------- |
-| `className`   | `string`                      | —       | Custom CSS class                |
-| `message`     | `string`                      | —       | Message content                 |
-| `action`      | `React.ReactNode`             | —       |                                 |
-| `dismissible` | `boolean`                     | `true`  |                                 |
-| `onDismiss`   | `() => void`                  | —       |                                 |
-| `icon`        | `React.ElementType`           | —       | Icon element                    |
-| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `message` | `string` | — | Message content |
+| `action` | `React.ReactNode` | — |  |
+| `dismissible` | `boolean` | `true` |  |
+| `onDismiss` | `() => void` | — |  |
+| `icon` | `React.ElementType` | — | Icon element |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

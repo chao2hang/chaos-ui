@@ -1,0 +1,41 @@
+import { MultiTabManager } from "@/components/layout/multi-tab-manager"
+import { CodeBlock } from "@/components/code-block"
+
+# MultiTabManager 多标签管理
+
+> 布局组件 / Layout primitives for structuring pages.
+
+多标签管理 — 多标签管理器，支持右键菜单（关闭其他/右侧/刷新）与缓存策略。
+MultiTabManager — Multi-tab manager with right-click menu — close others/right/refresh and cache strategy.
+
+## 何时使用 / When to Use
+
+需要多标签管理功能时使用本组件。
+
+Use when you need a multitabmanager.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { MultiTabManager } from "@/components/layout/multi-tab-manager"
+
+export function Basic() {
+  return <MultiTabManager />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MultiTabManager
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-multitabmanager--docs)。

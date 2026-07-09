@@ -1,5 +1,5 @@
-import { ImageViewer } from "@/components/ui/image-viewer";
-import { CodeBlock } from "@/components/code-block";
+import { ImageViewer } from "@/components/ui/image-viewer"
+import { CodeBlock } from "@/components/code-block"
 
 # ImageViewer
 
@@ -11,6 +11,7 @@ ImageViewer — a components for presenting data and content. from Chaos UI.
 
 Use when you need an image viewer.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,30 +22,33 @@ export function Basic() {
   return <ImageViewer />
 }`} lang="tsx" />
 
+
 ## Style Variants
 
 **open**
 
-| open    | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
+| open | Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### ImageViewer
 
-| Prop           | Type                              | Default | Description                         |
-| -------------- | --------------------------------- | ------- | ----------------------------------- |
-| `className`    | `string`                          | —       | Custom CSS class                    |
-| `open`         | `boolean`                         | —       | Whether the viewer is open          |
-| `onClose`      | `() => void`                      | —       | Called when the viewer should close |
-| `src`          | `string`                          | —       | Image source URL                    |
-| `alt`          | `string`                          | ``      | Image alt text                      |
-| `images`       | `{ src: string; alt?: string }[]` | —       | List of images for gallery mode     |
-| `initialIndex` | `number`                          | `0`     | Initial index for gallery mode      |
-| ...rest        | `React.ComponentProps<"div">`     | —       | Inherits all `<div>` attributes     |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `open` | `boolean` | — | Whether the viewer is open |
+| `onClose` | `() => void` | — | Called when the viewer should close |
+| `src` | `string` | — | Image source URL |
+| `alt` | `string` | `` | Image alt text |
+| `images` | `{ src: string; alt?: string }[]` | — | List of images for gallery mode |
+| `initialIndex` | `number` | `0` | Initial index for gallery mode |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

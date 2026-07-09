@@ -1,5 +1,5 @@
-import { ImMessage } from "@/components/business/im-message";
-import { CodeBlock } from "@/components/code-block";
+import { ImMessage } from "@/components/business/im-message"
+import { CodeBlock } from "@/components/code-block"
 
 # ImMessage Im Message
 
@@ -11,6 +11,7 @@ Im Message — 面向 ERP/企业场景的业务组件。
 
 适用于Im Message相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,23 +22,25 @@ export function Basic() {
   return <ImMessage />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ImMessage
 
-| Prop          | Type                       | Default    | 说明              |
-| ------------- | -------------------------- | ---------- | ----------------- |
-| `className`   | `string`                   | —          | 自定义样式类名    |
-| `direction`   | `"sent" \| "received"`     | `received` | 消息方向          |
-| `author`      | `string`                   | ``         | 发送者名称        |
-| `content`     | `string`                   | ``         | 消息正文          |
-| `timestamp`   | `string \| number \| Date` | —          | 消息时间          |
-| `attachments` | `Array<T>`                 | —          | 附件文件名列表    |
-| `avatarUrl`   | `string`                   | —          | 头像地址（可选）  |
-| ...rest       | `React.HTMLAttributes`     | —          | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `direction` | `"sent" \| "received"` | `received` | 消息方向 |
+| `author` | `string` | `` | 发送者名称 |
+| `content` | `string` | `` | 消息正文 |
+| `timestamp` | `string \| number \| Date` | — | 消息时间 |
+| `attachments` | `Array<T>` | — | 附件文件名列表 |
+| `avatarUrl` | `string` | — | 头像地址（可选） |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-immessage--docs)。
+

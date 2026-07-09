@@ -54,8 +54,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    columns,
-    data: generateData(100),
+    columns: columns as any,
+    data: generateData(100) as any,
     estimateRowHeight: 40,
     height: 300,
   },
@@ -63,8 +63,8 @@ export const Default: Story = {
 
 export const LargeDataset: Story = {
   args: {
-    columns,
-    data: generateData(10000),
+    columns: columns as any,
+    data: generateData(10000) as any,
     estimateRowHeight: 40,
     height: 300,
   },
@@ -72,10 +72,10 @@ export const LargeDataset: Story = {
 
 export const WithRowClick: Story = {
   args: {
-    columns,
-    data: generateData(100),
+    columns: columns as any,
+    data: generateData(100) as any,
     estimateRowHeight: 40,
     height: 300,
-    onRowClick: (row) => alert(`Clicked: ${row.name}`),
+    onRowClick: (row: any) => alert(`Clicked: ${row.name}`),
   },
 };

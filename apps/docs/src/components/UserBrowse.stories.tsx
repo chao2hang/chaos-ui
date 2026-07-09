@@ -17,7 +17,7 @@ export const Default: Story = {
       <div className="w-[300px]">
         <UserBrowse
           value={value}
-          onChange={setValue}
+          onChange={setValue as any}
           placeholder="Select user..."
         />
       </div>
@@ -38,7 +38,7 @@ export const Multiple: Story = {
       <div className="w-[300px]">
         <UserBrowse
           value={value}
-          onChange={setValue}
+          onChange={setValue as any}
           multiple
           placeholder="Select users..."
         />

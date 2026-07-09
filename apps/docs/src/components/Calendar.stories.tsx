@@ -9,11 +9,11 @@ const meta: Meta<typeof Calendar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
   render: () => <Calendar mode="single" className="rounded-md border" />,
 };
 
-export const WithSelectedDate: Story = {
+export const WithSelectedDate = {
   render: () => {
     const today = new Date();
     return (
@@ -22,10 +22,10 @@ export const WithSelectedDate: Story = {
   },
 };
 
-export const Multiple: Story = {
+export const Multiple = {
   render: () => <Calendar mode="multiple" className="rounded-md border" />,
 };
 
-export const Range: Story = {
+export const Range = {
   render: () => <Calendar mode="range" className="rounded-md border" />,
 };

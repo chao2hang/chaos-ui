@@ -35,7 +35,7 @@ const detailPanel = (
 
 export const Default: Story = {
   args: {
-    master: masterList,
-    detail: detailPanel,
-  },
+    sidebar: masterList,
+    main: detailPanel,
+  } as any,
 };

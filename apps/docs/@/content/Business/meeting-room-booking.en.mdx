@@ -1,5 +1,5 @@
-import { MeetingRoomBooking } from "@/components/business/meeting-room-booking";
-import { CodeBlock } from "@/components/code-block";
+import { MeetingRoomBooking } from "@/components/business/meeting-room-booking"
+import { CodeBlock } from "@/components/code-block"
 
 # MeetingRoomBooking Meeting Room Booking
 
@@ -11,6 +11,7 @@ MeetingRoomBooking — a business component for ERP / enterprise scenarios.
 
 Use when you need a meeting room booking.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,30 +22,33 @@ export function Basic() {
   return <MeetingRoomBooking />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MeetingRoomBooking
 
-| Prop                    | Type                   | Default | Description                       |
-| ----------------------- | ---------------------- | ------- | --------------------------------- |
-| `className`             | `string`               | —       | Custom CSS class                  |
-| `rooms`                 | `MeetingRoom[]`        | —       |                                   |
-| `existingBookings`      | `ExistingBooking[]`    | —       |                                   |
-| `selectedRoom`          | `string`               | ``      |                                   |
-| `onRoomChange`          | `() => void`           | —       |                                   |
-| `date`                  | `string`               | ``      |                                   |
-| `onDateChange`          | `() => void`           | —       |                                   |
-| `startTime`             | `string`               | `09:00` |                                   |
-| `endTime`               | `string`               | `10:00` |                                   |
-| `onTimeChange`          | `() => void`           | —       |                                   |
-| `title`                 | `string`               | ``      | Title                             |
-| `onTitleChange`         | `() => void`           | —       |                                   |
-| `attendeeCount`         | `number`               | `1`     |                                   |
-| `onAttendeeCountChange` | `() => void`           | —       |                                   |
-| `onBook`                | `() => void`           | —       |                                   |
-| `readOnly`              | `boolean`              | `false` | Whether read-only                 |
-| ...rest                 | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rooms` | `MeetingRoom[]` | — |  |
+| `existingBookings` | `ExistingBooking[]` | — |  |
+| `selectedRoom` | `string` | `` |  |
+| `onRoomChange` | `() => void` | — |  |
+| `date` | `string` | `` |  |
+| `onDateChange` | `() => void` | — |  |
+| `startTime` | `string` | `09:00` |  |
+| `endTime` | `string` | `10:00` |  |
+| `onTimeChange` | `() => void` | — |  |
+| `title` | `string` | `` | Title |
+| `onTitleChange` | `() => void` | — |  |
+| `attendeeCount` | `number` | `1` |  |
+| `onAttendeeCountChange` | `() => void` | — |  |
+| `onBook` | `() => void` | — |  |
+| `readOnly` | `boolean` | `false` | Whether read-only |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

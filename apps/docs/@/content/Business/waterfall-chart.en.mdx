@@ -1,5 +1,5 @@
-import { WaterfallChart } from "@/components/business/waterfall-chart";
-import { CodeBlock } from "@/components/code-block";
+import { WaterfallChart } from "@/components/business/waterfall-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # WaterfallChart Waterfall Chart
 
@@ -11,6 +11,7 @@ WaterfallChart — waterfall chart component.
 
 Use when you need a waterfall chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,17 +22,20 @@ export function Basic() {
   return <WaterfallChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### WaterfallChart
 
-| Prop        | Type                   | Default | Description                                                |
-| ----------- | ---------------------- | ------- | ---------------------------------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                                           |
-| `data`      | `Array<T>`             | —       | Steps: label + value (delta, or absolute when `absolute`). |
-| `height`    | `number`               | —       | Component height                                           |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                          |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `Array<T>` | — | Steps: label + value (delta, or absolute when `absolute`). |
+| `height` | `number` | — | Component height |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

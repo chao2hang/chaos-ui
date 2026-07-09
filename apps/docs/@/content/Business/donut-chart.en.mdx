@@ -1,5 +1,5 @@
-import { DonutChart } from "@/components/business/donut-chart";
-import { CodeBlock } from "@/components/code-block";
+import { DonutChart } from "@/components/business/donut-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # DonutChart Donut Chart
 
@@ -11,6 +11,7 @@ DonutChart — donut chart component.
 
 Use when you need a donut chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <DonutChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### DonutChart
 
-| Prop          | Type                   | Default | Description                       |
-| ------------- | ---------------------- | ------- | --------------------------------- |
-| `className`   | `string`               | —       | Custom CSS class                  |
-| `data`        | `Array<T>`             | —       | Segments to render.               |
-| `size`        | `number`               | `128`   | Donut pixel size.                 |
-| `thickness`   | `number`               | `12`    | Stroke thickness.                 |
-| `centerLabel` | `string`               | —       | Center hole label.                |
-| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `Array<T>` | — | Segments to render. |
+| `size` | `number` | `128` | Donut pixel size. |
+| `thickness` | `number` | `12` | Stroke thickness. |
+| `centerLabel` | `string` | — | Center hole label. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -25,7 +25,8 @@ import {
 /* -------------------------------------------------------------------------- */
 
 /** Seal type. */
-type SealType = "official" | "financial" | "contract" | "hr" | "invoice" | "personal";
+type SealType =
+  "official" | "financial" | "contract" | "hr" | "invoice" | "personal";
 
 /** Seal status. */
 type SealStatus = "active" | "custody" | "stored" | "lost" | "revoked";
@@ -102,7 +103,8 @@ const typeLabels: Record<SealType, string> = {
 
 const typeColors: Record<SealType, string> = {
   official: "bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-200",
-  financial: "bg-emerald-200 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200",
+  financial:
+    "bg-emerald-200 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200",
   contract: "bg-blue-200 text-blue-700 dark:bg-blue-950 dark:text-blue-200",
   hr: "bg-violet-200 text-violet-700 dark:bg-violet-950 dark:text-violet-200",
   invoice: "bg-amber-200 text-amber-700 dark:bg-amber-950 dark:text-amber-200",
@@ -126,10 +128,24 @@ const statusColors: Record<SealStatus, string> = {
 };
 
 const logStatusConfig: Record<string, { label: string; className: string }> = {
-  pending: { label: "Pending", className: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300" },
-  approved: { label: "Approved", className: "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300" },
-  rejected: { label: "Rejected", className: "bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300" },
-  completed: { label: "Completed", className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300" },
+  pending: {
+    label: "Pending",
+    className:
+      "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
+  },
+  approved: {
+    label: "Approved",
+    className: "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
+  },
+  rejected: {
+    label: "Rejected",
+    className: "bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300",
+  },
+  completed: {
+    label: "Completed",
+    className:
+      "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
+  },
 };
 
 /* -------------------------------------------------------------------------- */
@@ -150,18 +166,26 @@ function SealStampRegistry({
   return (
     <div
       data-slot="seal-stamp-registry"
-      className={cn("space-y-5 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-5 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="border-border flex items-center justify-between border-b pb-3">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">Seal &amp; Stamp Registry</h3>
-          <p className="text-sm text-muted-foreground">
-            {seals.length} registered · {activeCount} active · {custodyCount} in custody
+          <h3 className="text-foreground text-lg font-semibold">
+            Seal &amp; Stamp Registry
+          </h3>
+          <p className="text-muted-foreground text-sm">
+            {seals.length} registered · {activeCount} active · {custodyCount} in
+            custody
           </p>
         </div>
         {!readOnly && onApplyUsage && (
-          <Button size="sm" onClick={onApplyUsage}>Apply for Usage</Button>
+          <Button size="sm" onClick={onApplyUsage}>
+            Apply for Usage
+          </Button>
         )}
       </div>
 
@@ -174,17 +198,21 @@ function SealStampRegistry({
             data-seal-id={seal.id}
             onClick={() => onSealClick?.(seal)}
             className={cn(
-              "rounded-lg border border-border bg-muted/20 p-4",
-              onSealClick && "cursor-pointer hover:bg-muted/40",
+              "border-border bg-muted/20 rounded-lg border p-4",
+              onSealClick && "hover:bg-muted/40 cursor-pointer",
             )}
           >
             {/* Seal image / placeholder */}
             <div className="mb-2 flex items-center justify-center">
               {seal.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={seal.imageUrl} alt={seal.name} className="size-16 rounded-full border-2 border-border object-cover" />
+                <img
+                  src={seal.imageUrl}
+                  alt={seal.name}
+                  className="border-border size-16 rounded-full border-2 object-cover"
+                />
               ) : (
-                <div className="flex size-16 items-center justify-center rounded-full border-2 border-dashed border-border bg-card text-2xl">
+                <div className="border-border bg-card flex size-16 items-center justify-center rounded-full border-2 border-dashed text-2xl">
                   🔏
                 </div>
               )}
@@ -192,13 +220,20 @@ function SealStampRegistry({
 
             {/* Name & type */}
             <div className="text-center">
-              <div className="font-medium text-foreground">{seal.name}</div>
-              <div className="font-mono text-xs text-muted-foreground">{seal.regNo}</div>
+              <div className="text-foreground font-medium">{seal.name}</div>
+              <div className="text-muted-foreground font-mono text-xs">
+                {seal.regNo}
+              </div>
             </div>
 
             {/* Type badge */}
             <div className="mt-2 flex justify-center">
-              <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", typeColors[seal.type])}>
+              <span
+                className={cn(
+                  "rounded-full px-2 py-0.5 text-xs font-medium",
+                  typeColors[seal.type],
+                )}
+              >
                 {typeLabels[seal.type]}
               </span>
             </div>
@@ -207,7 +242,9 @@ function SealStampRegistry({
             <div className="mt-2 space-y-1 text-xs">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Custodian:</span>
-                <span className="font-medium text-foreground">{seal.custodian}</span>
+                <span className="text-foreground font-medium">
+                  {seal.custodian}
+                </span>
               </div>
               {seal.department && (
                 <div className="flex items-center justify-between">
@@ -227,7 +264,9 @@ function SealStampRegistry({
               )}
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Status:</span>
-                <span className={cn("font-medium", statusColors[seal.status])}>{statusLabels[seal.status]}</span>
+                <span className={cn("font-medium", statusColors[seal.status])}>
+                  {statusLabels[seal.status]}
+                </span>
               </div>
             </div>
           </div>
@@ -237,8 +276,10 @@ function SealStampRegistry({
       {/* Usage log table */}
       {usageLogs.length > 0 && (
         <div data-slot="seal-usage-log">
-          <h4 className="mb-2 text-sm font-semibold text-foreground">Recent Usage Log</h4>
-          <div className="overflow-x-auto rounded-lg border border-border">
+          <h4 className="text-foreground mb-2 text-sm font-semibold">
+            Recent Usage Log
+          </h4>
+          <div className="border-border overflow-x-auto rounded-lg border">
             <Table>
               <TableHeader>
                 <TableRow className="bg-muted/30">
@@ -251,15 +292,29 @@ function SealStampRegistry({
               </TableHeader>
               <TableBody>
                 {usageLogs.map((log) => {
-                const cfg = logStatusConfig[log.status] ?? logStatusConfig.pending!;
-                return (
-                  <TableRow key={log.id} data-slot="usage-log-row">
-                    <TableCell className="font-medium text-foreground">{log.applicant}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{log.document}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{log.date}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{log.approver}</TableCell>
-                    <TableCell>
-                        <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", cfg!.className)}>
+                  const cfg =
+                    logStatusConfig[log.status] ?? logStatusConfig.pending!;
+                  return (
+                    <TableRow key={log.id} data-slot="usage-log-row">
+                      <TableCell className="text-foreground font-medium">
+                        {log.applicant}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-sm">
+                        {log.document}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-sm">
+                        {log.date}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-sm">
+                        {log.approver}
+                      </TableCell>
+                      <TableCell>
+                        <span
+                          className={cn(
+                            "rounded-full px-2 py-0.5 text-xs font-medium",
+                            cfg!.className,
+                          )}
+                        >
                           {cfg!.label}
                         </span>
                       </TableCell>
@@ -276,4 +331,10 @@ function SealStampRegistry({
 }
 
 export { SealStampRegistry };
-export type { SealStampRegistryProps, SealRecord, SealUsageLog, SealType, SealStatus };
+export type {
+  SealStampRegistryProps,
+  SealRecord,
+  SealUsageLog,
+  SealType,
+  SealStatus,
+};

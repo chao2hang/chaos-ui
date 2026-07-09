@@ -1,5 +1,5 @@
-import { Dot } from "@/components/ui/dot";
-import { CodeBlock } from "@/components/code-block";
+import { Dot } from "@/components/ui/dot"
+import { CodeBlock } from "@/components/code-block"
 
 # Dot
 
@@ -10,6 +10,7 @@ Small dot status indicator used for online status, notification dots, or list it
 ## When to Use
 
 Use when you need a dot.
+
 
 ## Examples
 
@@ -23,65 +24,63 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Dot variant="default">Default</Dot>
   <Dot variant="primary">Primary</Dot>
   <Dot variant="success">Success</Dot>
   <Dot variant="warning">Warning</Dot>
   <Dot variant="destructive">Destructive</Dot>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Dot size="sm">Sm</Dot>
   <Dot size="default">Default</Dot>
   <Dot size="lg">Lg</Dot>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Size**
 
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `sm`      | Small        |      |
-| `default` | Default size | ✓    |
-| `lg`      | Large        |      |
+| Size | Description | 默认 |
+|---|---|---|
+| `sm` | Small |  |
+| `default` | Default size | ✓ |
+| `lg` | Large |  |
 
 **Variant**
 
-| Variant       | Description              | 默认 |
-| ------------- | ------------------------ | ---- |
-| `default`     | Default style            | ✓    |
-| `primary`     | Primary style            |      |
-| `success`     | Success style            |      |
-| `warning`     | Warning style            |      |
-| `destructive` | Destructive/danger style |      |
-| `info`        | Informational style      |      |
+| Variant | Description | 默认 |
+|---|---|---|
+| `default` | Default style | ✓ |
+| `primary` | Primary style |  |
+| `success` | Success style |  |
+| `warning` | Warning style |  |
+| `destructive` | Destructive/danger style |  |
+| `info` | Informational style |  |
 
 **pulse**
 
-| pulse   | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
+| pulse | Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### Dot
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
+
+
+

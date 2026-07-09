@@ -1,0 +1,39 @@
+import { ImmersiveLayout } from "@/components/layout/immersive-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# ImmersiveLayout
+
+> Layout primitives for structuring pages.
+
+ImmersiveLayout — Immersive full-screen layout that hides sidebar/header/tabs for dashboards.
+
+## When to Use
+
+Use when you need a immersivelayout.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ImmersiveLayout } from "@/components/layout/immersive-layout"
+
+export function Basic() {
+  return <ImmersiveLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ImmersiveLayout
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

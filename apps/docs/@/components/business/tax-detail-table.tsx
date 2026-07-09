@@ -48,7 +48,7 @@ function TaxDetailTable({ rows = [], className }: TaxDetailTableProps) {
         id="tax-detail-table-title"
         className="flex items-center gap-1.5 text-sm font-medium"
       >
-        <CalculatorIcon className="size-4 text-primary" aria-hidden="true" />
+        <CalculatorIcon className="text-primary size-4" aria-hidden="true" />
         <span>税务明细</span>
       </h3>
 
@@ -59,41 +59,68 @@ function TaxDetailTable({ rows = [], className }: TaxDetailTableProps) {
           </caption>
           <thead className="bg-muted/50">
             <tr>
-              <th scope="col" className="px-3 py-2 text-left font-medium">项目</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">金额</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">税率</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">税额</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">价税合计</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium">
+                项目
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                金额
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                税率
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                税额
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                价税合计
+              </th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
               <tr key={row.id} className="border-t">
                 <td className="px-3 py-2 font-medium">{row.name}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatCurrency(row.amount)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatPercent(row.taxRate)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatCurrency(row.taxAmount)}</td>
-                <td className="px-3 py-2 text-right tabular-nums font-medium">
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatCurrency(row.amount)}
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatPercent(row.taxRate)}
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatCurrency(row.taxAmount)}
+                </td>
+                <td className="px-3 py-2 text-right font-medium tabular-nums">
                   {formatCurrency(row.amount + row.taxAmount)}
                 </td>
               </tr>
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-3 py-6 text-center text-muted-foreground">
+                <td
+                  colSpan={5}
+                  className="text-muted-foreground px-3 py-6 text-center"
+                >
                   暂无税务明细
                 </td>
               </tr>
             ) : null}
           </tbody>
           {rows.length > 0 ? (
-            <tfoot className="border-t bg-muted/30 font-semibold">
+            <tfoot className="bg-muted/30 border-t font-semibold">
               <tr>
                 <td className="px-3 py-2">合计</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatCurrency(totalAmount)}</td>
-                <td className="px-3 py-2 text-right text-muted-foreground">—</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatCurrency(totalTax)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatCurrency(totalWithTax)}</td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatCurrency(totalAmount)}
+                </td>
+                <td className="text-muted-foreground px-3 py-2 text-right">
+                  —
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatCurrency(totalTax)}
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatCurrency(totalWithTax)}
+                </td>
               </tr>
             </tfoot>
           ) : null}

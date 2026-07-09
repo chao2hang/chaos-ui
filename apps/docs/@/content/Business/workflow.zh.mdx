@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要工作流功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -30,16 +31,16 @@ export function Basic() {
 
 ### WorkflowViewer
 
-| Prop           | Type                          | Default | 说明                  |
-| -------------- | ----------------------------- | ------- | --------------------- |
-| `className`    | `string`                      | —       | 自定义样式类名        |
-| `nodes`        | `Node<WorkflowNodeData>[]`    | —       |                       |
-| `edges`        | `Edge[]`                      | —       |                       |
-| `onNodeClick`  | `() => void`                  | —       |                       |
-| `showControls` | `boolean`                     | `true`  |                       |
-| `showMinimap`  | `boolean`                     | `false` |                       |
-| `height`       | `number`                      | `480`   | 组件高度              |
-| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+| -------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `nodes`        | `Node<WorkflowNodeData>[]`    | —       |                                                             |
+| `edges`        | `Edge[]`                      | —       |                                                             |
+| `onNodeClick`  | `() => void`                  | —       |                                                             |
+| `showControls` | `boolean`                     | `true`  |                                                             |
+| `showMinimap`  | `boolean`                     | `false` |                                                             |
+| `height` | `number` | `480` | 组件高度 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -47,3 +48,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-workflow--docs)。
+

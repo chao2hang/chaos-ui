@@ -1,5 +1,5 @@
-import { Calendar, CalendarDayButton } from "@/components/ui/calendar";
-import { CodeBlock } from "@/components/code-block";
+import { Calendar, CalendarDayButton } from "@/components/ui/calendar"
+import { CodeBlock } from "@/components/code-block"
 
 # Calendar 日历
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 以日历面板方式展示/选择日期。
+
 
 ## 代码示例
 
@@ -27,20 +28,18 @@ export function Basic() {
 
 ### 状态
 
-<CodeBlock
-  code={`<Calendar>Normal</Calendar>
-<Calendar disabled>Disabled</Calendar>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<Calendar>Normal</Calendar>
+<Calendar disabled>Disabled</Calendar>`} lang="tsx" />
+
 
 ## API / Props
 
 ### Calendar
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -48,3 +47,4 @@ export function Basic() {
 - **复合组件**: 包含 1 个子组件(CalendarDayButton),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-calendar--docs)。
+

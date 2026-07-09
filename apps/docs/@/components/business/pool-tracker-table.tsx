@@ -49,7 +49,7 @@ function PoolTrackerTable({ pools = [], className }: PoolTrackerTableProps) {
         id="pool-tracker-table-title"
         className="flex items-center gap-1.5 text-sm font-medium"
       >
-        <WalletIcon className="size-4 text-primary" aria-hidden="true" />
+        <WalletIcon className="text-primary size-4" aria-hidden="true" />
         <span>资金池跟踪</span>
       </h3>
 
@@ -60,27 +60,46 @@ function PoolTrackerTable({ pools = [], className }: PoolTrackerTableProps) {
           </caption>
           <thead className="bg-muted/50">
             <tr>
-              <th scope="col" className="px-3 py-2 text-left font-medium">资金池</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">总额</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">已用</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium">可用</th>
-              <th scope="col" className="px-3 py-2 text-left font-medium">使用率</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium">
+                资金池
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                总额
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                已用
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium">
+                可用
+              </th>
+              <th scope="col" className="px-3 py-2 text-left font-medium">
+                使用率
+              </th>
             </tr>
           </thead>
           <tbody>
             {pools.map((pool) => {
-              const pct = pool.total > 0 ? Math.min(100, (pool.used / pool.total) * 100) : 0;
+              const pct =
+                pool.total > 0
+                  ? Math.min(100, (pool.used / pool.total) * 100)
+                  : 0;
               const isLow = pct >= 80;
               return (
                 <tr key={pool.id} className="border-t">
                   <td className="px-3 py-2 font-medium">{pool.name}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatNumber(pool.total)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatNumber(pool.used)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatNumber(pool.available)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {formatNumber(pool.total)}
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {formatNumber(pool.used)}
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {formatNumber(pool.available)}
+                  </td>
                   <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <div
-                        className="h-2 flex-1 overflow-hidden rounded bg-muted"
+                        className="bg-muted h-2 flex-1 overflow-hidden rounded"
                         role="progressbar"
                         aria-valuenow={Math.round(pct)}
                         aria-valuemin={0}
@@ -110,19 +129,28 @@ function PoolTrackerTable({ pools = [], className }: PoolTrackerTableProps) {
             })}
             {pools.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-3 py-6 text-center text-muted-foreground">
+                <td
+                  colSpan={5}
+                  className="text-muted-foreground px-3 py-6 text-center"
+                >
                   暂无资金池
                 </td>
               </tr>
             ) : null}
           </tbody>
           {pools.length > 0 ? (
-            <tfoot className="border-t bg-muted/30 font-medium">
+            <tfoot className="bg-muted/30 border-t font-medium">
               <tr>
                 <td className="px-3 py-2">合计</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatNumber(aggregateTotal)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatNumber(aggregateUsed)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{formatNumber(aggregateAvailable)}</td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatNumber(aggregateTotal)}
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatNumber(aggregateUsed)}
+                </td>
+                <td className="px-3 py-2 text-right tabular-nums">
+                  {formatNumber(aggregateAvailable)}
+                </td>
                 <td className="px-3 py-2" />
               </tr>
             </tfoot>

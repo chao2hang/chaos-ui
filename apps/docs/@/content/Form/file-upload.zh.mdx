@@ -1,5 +1,5 @@
-import { FileUpload, FileList } from "@/components/ui/file-upload";
-import { CodeBlock } from "@/components/code-block";
+import { FileUpload, FileList } from "@/components/ui/file-upload"
+import { CodeBlock } from "@/components/code-block"
 
 # FileUpload 文件上传
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 文件上传组件,支持拖拽、批量上传和进度反馈。
+
 
 ## 代码示例
 
@@ -25,20 +26,21 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### FileUpload
 
-| Prop        | Type                       | Default | 说明              |
-| ----------- | -------------------------- | ------- | ----------------- |
-| `className` | `string`                   | —       | 自定义样式类名    |
-| `onDrop`    | `() => void`               | —       |                   |
-| `accept`    | `Record<string, string[]>` | —       |                   |
-| `maxFiles`  | `number`                   | `5`     |                   |
-| `maxSize`   | `number`                   | —       |                   |
-| `disabled`  | `boolean`                  | —       | 是否禁用          |
-| `dropzone`  | `boolean`                  | `false` |                   |
-| ...rest     | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `onDrop` | `() => void` | — |  |
+| `accept` | `Record<string, string[]>` | — |  |
+| `maxFiles` | `number` | `5` |  |
+| `maxSize` | `number` | — |  |
+| `disabled` | `boolean` | — | 是否禁用 |
+| `dropzone` | `boolean` | `false` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -46,3 +48,4 @@ export function Basic() {
 - **复合组件**: 包含 1 个子组件(FileList),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-fileupload--docs)。
+

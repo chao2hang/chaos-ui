@@ -1,5 +1,5 @@
-import { BadgeDelta } from "@/components/business/badge-delta";
-import { CodeBlock } from "@/components/code-block";
+import { BadgeDelta } from "@/components/business/badge-delta"
+import { CodeBlock } from "@/components/code-block"
 
 # BadgeDelta Badge Delta
 
@@ -11,6 +11,7 @@ BadgeDelta — a business component for ERP / enterprise scenarios.
 
 Use when you need a badge delta.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <BadgeDelta />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### BadgeDelta
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `value`     | `number`               | —       | Current value (controlled)        |
-| `suffix`    | `string`               | `%`     | Suffix content                    |
-| `prefix`    | `string`               | —       | Prefix content                    |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `number` | — | Current value (controlled) |
+| `suffix` | `string` | `%` | Suffix content |
+| `prefix` | `string` | — | Prefix content |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

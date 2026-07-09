@@ -1,5 +1,5 @@
-import { RadialChart } from "@/components/business/radial-chart";
-import { CodeBlock } from "@/components/code-block";
+import { RadialChart } from "@/components/business/radial-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # RadialChart Radial Chart
 
@@ -11,6 +11,7 @@ RadialChart — radial chart component.
 
 Use when you need a radial chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <RadialChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### RadialChart
 
-| Prop        | Type                   | Default   | Description                       |
-| ----------- | ---------------------- | --------- | --------------------------------- |
-| `className` | `string`               | —         | Custom CSS class                  |
-| `value`     | `number`               | `66`      | Current value.                    |
-| `max`       | `number`               | `100`     | Ceiling.                          |
-| `label`     | `string`               | `达成率`  | Caption below the ring.           |
-| `color`     | `string`               | `#3b82f6` | Ring color.                       |
-| `size`      | `number`               | `120`     | Pixel size.                       |
-| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `number` | `66` | Current value. |
+| `max` | `number` | `100` | Ceiling. |
+| `label` | `string` | `达成率` | Caption below the ring. |
+| `color` | `string` | `#3b82f6` | Ring color. |
+| `size` | `number` | `120` | Pixel size. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,5 +1,5 @@
-import { ChatArtifactPanel } from "@/components/business/chat-artifact-panel";
-import { CodeBlock } from "@/components/code-block";
+import { ChatArtifactPanel } from "@/components/business/chat-artifact-panel"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatArtifactPanel Chat Artifact Panel
 
@@ -11,6 +11,7 @@ ChatArtifactPanel — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat artifact panel.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <ChatArtifactPanel />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatArtifactPanel
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `title`     | `string`               | —       | Title                             |
-| `type`      | `string`               | —       | Type                              |
-| `content`   | `string`               | —       | Content                           |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `type` | `string` | — | Type |
+| `content` | `string` | — | Content |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

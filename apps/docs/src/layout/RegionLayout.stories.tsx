@@ -12,13 +12,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    header: <div className="bg-muted p-4 text-center text-sm">Header</div>,
+    top: <div className="bg-muted p-4 text-center text-sm">Header</div>,
     left: <div className="bg-muted p-4 text-sm">Sidebar</div>,
+    main: <div className="p-4 text-sm">Main Content</div>,
     right: <div className="bg-muted p-4 text-sm">Info Panel</div>,
-    footer: <div className="bg-muted p-4 text-center text-sm">Footer</div>,
+    bottom: <div className="bg-muted p-4 text-center text-sm">Footer</div>,
   },
 };
 
 export const ContentOnly: Story = {
-  args: {},
+  args: {
+    main: <div className="p-4 text-sm">Main Content</div>,
+  },
 };

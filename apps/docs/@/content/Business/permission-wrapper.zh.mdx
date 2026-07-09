@@ -1,5 +1,5 @@
-import { PermissionWrapper } from "@/components/business/permission-wrapper";
-import { CodeBlock } from "@/components/code-block";
+import { PermissionWrapper } from "@/components/business/permission-wrapper"
+import { CodeBlock } from "@/components/code-block"
 
 # PermissionWrapper 权限包装器
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要权限包装器功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,22 +22,24 @@ export function Basic() {
   return <PermissionWrapper />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PermissionWrapper
 
-| Prop              | Type                   | Default | 说明              |
-| ----------------- | ---------------------- | ------- | ----------------- |
-| `className`       | `string`               | —       | 自定义样式类名    |
-| `permission`      | `string \| string[]`   | —       |                   |
-| `permissions`     | `string[]`             | —       |                   |
-| `mode`            | `"all" \| "any"`       | `any`   |                   |
-| `fallback`        | `React.ReactNode`      | —       |                   |
-| `userPermissions` | `string[]`             | —       |                   |
-| ...rest           | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `permission` | `string \| string[]` | — |  |
+| `permissions` | `string[]` | — |  |
+| `mode` | `"all" \| "any"` | `any` |  |
+| `fallback` | `React.ReactNode` | — |  |
+| `userPermissions` | `string[]` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-permissionwrapper--docs)。
+

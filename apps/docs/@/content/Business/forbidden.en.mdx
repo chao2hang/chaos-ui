@@ -1,5 +1,5 @@
-import { Forbidden } from "@/components/business/forbidden";
-import { CodeBlock } from "@/components/code-block";
+import { Forbidden } from "@/components/business/forbidden"
+import { CodeBlock } from "@/components/code-block"
 
 # Forbidden 403
 
@@ -11,6 +11,7 @@ Forbidden — a business component for ERP / enterprise scenarios.
 
 Use when you need a forbidden.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <Forbidden />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Forbidden
 
-| Prop          | Type                          | Default                                  | Description                     |
-| ------------- | ----------------------------- | ---------------------------------------- | ------------------------------- |
-| `className`   | `string`                      | —                                        | Custom CSS class                |
-| `title`       | `string`                      | `403 无权限`                             | Title                           |
-| `description` | `string`                      | `您没有访问此页面的权限，请联系管理员。` | Description text                |
-| `action`      | `React.ReactNode`             | —                                        |                                 |
-| ...rest       | `React.ComponentProps<"div">` | —                                        | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | `403 无权限` | Title |
+| `description` | `string` | `您没有访问此页面的权限，请联系管理员。` | Description text |
+| `action` | `React.ReactNode` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -66,8 +66,7 @@ export function Counter() {
             value={js}
             onChange={setJs}
             language="typescript"
-            filename="Counter.tsx"
-            height={260}
+            minHeight={260}
           />
         </section>
         <section className="space-y-2">
@@ -76,8 +75,7 @@ export function Counter() {
             value={json}
             onChange={setJson}
             language="json"
-            filename="package.json"
-            height={200}
+            minHeight={200}
           />
         </section>
         <section className="space-y-2">
@@ -86,8 +84,7 @@ export function Counter() {
             value={css}
             onChange={setCss}
             language="css"
-            filename="alert.css"
-            height={220}
+            minHeight={220}
           />
         </section>
       </div>
@@ -107,9 +104,8 @@ export const AllVariants: Story = {
         <CodeEditor
           value='const greeting = "Hello, Chaos UI!"'
           language="javascript"
-          filename="example.js"
-          readonly
-          height={120}
+          readOnly
+          minHeight={120}
         />
       </section>
     </div>

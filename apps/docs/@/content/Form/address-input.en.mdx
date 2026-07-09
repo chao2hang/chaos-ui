@@ -1,0 +1,39 @@
+import { AddressInput } from "@/components/business/address-input"
+import { CodeBlock } from "@/components/code-block"
+
+# AddressInput
+
+> Form components for data entry and collection.
+
+AddressInput — Structured address input — province/city/district + street + detail + geolocation.
+
+## When to Use
+
+Use when you need a addressinput.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AddressInput } from "@/components/business/address-input"
+
+export function Basic() {
+  return <AddressInput />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### AddressInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

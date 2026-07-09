@@ -1,0 +1,39 @@
+import { CountdownButton } from "@/components/ui/countdown-button"
+import { CodeBlock } from "@/components/code-block"
+
+# CountdownButton
+
+> Form components for data entry and collection.
+
+CountdownButton — Button with countdown timer for verification code sending.
+
+## When to Use
+
+Use when you need a countdownbutton.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CountdownButton } from "@/components/ui/countdown-button"
+
+export function Basic() {
+  return <CountdownButton />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CountdownButton
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

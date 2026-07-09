@@ -1,5 +1,5 @@
-import { MobileSelect } from "@/components/mobile/mobile-select";
-import { CodeBlock } from "@/components/code-block";
+import { MobileSelect } from "@/components/mobile/mobile-select"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileSelect
 
@@ -11,6 +11,7 @@ MobileSelect — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile select.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <MobileSelect />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileSelect
 
-| Prop            | Type                   | Default | Description                       |
-| --------------- | ---------------------- | ------- | --------------------------------- |
-| `className`     | `string`               | —       | Custom CSS class                  |
-| `options`       | `MobileSelectOption[]` | —       | Available options                 |
-| `value`         | `string`               | —       | Current value (controlled)        |
-| `onValueChange` | `() => void`           | —       |                                   |
-| `placeholder`   | `string`               | —       | Placeholder text                  |
-| `disabled`      | `boolean`              | —       | Whether disabled                  |
-| ...rest         | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `options` | `MobileSelectOption[]` | — | Available options |
+| `value` | `string` | — | Current value (controlled) |
+| `onValueChange` | `() => void` | — |  |
+| `placeholder` | `string` | — | Placeholder text |
+| `disabled` | `boolean` | — | Whether disabled |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

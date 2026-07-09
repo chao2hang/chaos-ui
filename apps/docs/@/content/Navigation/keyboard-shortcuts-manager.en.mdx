@@ -1,0 +1,39 @@
+import { KeyboardShortcutsManager } from "@/components/ui/keyboard-shortcuts-manager"
+import { CodeBlock } from "@/components/code-block"
+
+# KeyboardShortcutsManager
+
+> Navigation components for page routing and orientation.
+
+KeyboardShortcutsManager — Global keyboard shortcuts manager with registration and conflict detection.
+
+## When to Use
+
+Use when you need a keyboardshortcutsmanager.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { KeyboardShortcutsManager } from "@/components/ui/keyboard-shortcuts-manager"
+
+export function Basic() {
+  return <KeyboardShortcutsManager />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### KeyboardShortcutsManager
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

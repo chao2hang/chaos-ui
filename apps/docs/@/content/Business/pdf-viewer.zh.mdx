@@ -1,5 +1,5 @@
-import { PDFViewer } from "@/components/business/pdf-viewer";
-import { CodeBlock } from "@/components/code-block";
+import { PDFViewer } from "@/components/business/pdf-viewer"
+import { CodeBlock } from "@/components/code-block"
 
 # PdfViewer PDF 查看器
 
@@ -11,6 +11,7 @@ PDF 查看器 — 面向 ERP/企业场景的业务组件。
 
 适用于PDF 查看器相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,16 +22,17 @@ export function Basic() {
   return <PDFViewer />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PDFViewer
 
-| Prop        | Type                          | Default | 说明                  |
-| ----------- | ----------------------------- | ------- | --------------------- |
-| `className` | `string`                      | —       | 自定义样式类名        |
-| `src`       | `string`                      | —       | 资源地址              |
-| `title`     | `string`                      | —       | 标题                  |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `src` | `string` | — | 资源地址 |
+| `title` | `string` | — | 标题 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -38,3 +40,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-pdfviewer--docs)。
+

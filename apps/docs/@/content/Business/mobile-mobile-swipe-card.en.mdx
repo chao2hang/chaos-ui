@@ -11,6 +11,7 @@ MobileSwipeCard — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile swipe card.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,13 +26,15 @@ export function Basic() {
 
 ### MobileSwipeCard
 
-| Prop         | Type                   | Default | Description                               |
-| ------------ | ---------------------- | ------- | ----------------------------------------- |
-| `className`  | `string`               | —       | Custom CSS class                          |
-| `height`     | `number`               | `400`   | Height of the card stack.                 |
-| `onComplete` | `() => void`           | —       | Called when the last card is swiped away. |
-| ...rest      | `React.HTMLAttributes` | —       | Inherits standard HTML attributes         |
+| Prop | Type | Default | Description |
+| ------------ | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `height`     | `number`               | `400`   | Height of the card stack.                                 |
+| `onComplete` | `() => void`           | —       | Called when the last card is swiped away.                 |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

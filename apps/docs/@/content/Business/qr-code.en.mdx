@@ -11,6 +11,7 @@ QrCode — a business component for ERP / enterprise scenarios.
 
 Generate and display a QR code.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,16 +26,18 @@ export function Basic() {
 
 ### QRCode
 
-| Prop        | Type                       | Default   | Description                       |
-| ----------- | -------------------------- | --------- | --------------------------------- |
-| `className` | `string`                   | —         | Custom CSS class                  |
-| `value`     | `string`                   | —         | Current value (controlled)        |
-| `size`      | `number`                   | `200`     | Component size                    |
-| `level`     | `"L" \| "M" \| "Q" \| "H"` | `M`       | Level / severity                  |
-| `fgColor`   | `string`                   | `#000000` |                                   |
-| `bgColor`   | `string`                   | `#ffffff` |                                   |
-| ...rest     | `React.HTMLAttributes`     | —         | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+| ----------- | -------------------------- | --------- | --------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `size` | `number` | `200` | Component size |
+| `level` | `"L" \| "M" \| "Q" \| "H"` | `M` | Level / severity |
+| `fgColor`   | `string`                   | `#000000` |                                                           |
+| `bgColor`   | `string`                   | `#ffffff` |                                                           |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

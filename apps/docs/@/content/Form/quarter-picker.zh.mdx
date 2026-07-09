@@ -1,0 +1,40 @@
+import { QuarterPicker } from "@/components/ui/quarter-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# QuarterPicker 季度选择
+
+> 表单组件
+
+季度选择 — 季度选择器，支持年份导航与 Q1-Q4 选择。
+
+## 何时使用
+
+需要季度选择功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { QuarterPicker } from "@/components/ui/quarter-picker"
+
+export function Basic() {
+  return <QuarterPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### QuarterPicker
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-quarterpicker--docs)。
+

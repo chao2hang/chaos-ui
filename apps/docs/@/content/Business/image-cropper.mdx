@@ -1,0 +1,41 @@
+import { ImageCropper } from "@/components/business/image-cropper"
+import { CodeBlock } from "@/components/code-block"
+
+# ImageCropper 图片裁剪
+
+> 业务组件 / Domain-specific business components for ERP scenarios.
+
+图片裁剪 — 图片裁剪组件，支持拖拽选区裁剪与预览。
+ImageCropper — Image cropper with drag-to-select crop region and preview.
+
+## 何时使用 / When to Use
+
+需要图片裁剪功能时使用本组件。
+
+Use when you need a imagecropper.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { ImageCropper } from "@/components/business/image-cropper"
+
+export function Basic() {
+  return <ImageCropper />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ImageCropper
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-imagecropper--docs)。

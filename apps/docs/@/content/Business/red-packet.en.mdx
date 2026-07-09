@@ -1,5 +1,5 @@
-import { RedPacket } from "@/components/business/red-packet";
-import { CodeBlock } from "@/components/code-block";
+import { RedPacket } from "@/components/business/red-packet"
+import { CodeBlock } from "@/components/code-block"
 
 # RedPacket Red Packet
 
@@ -11,6 +11,7 @@ RedPacket — a business component for ERP / enterprise scenarios.
 
 Use when you need a red packet.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <RedPacket />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### RedPacket
 
-| Prop        | Type                   | Default | Description                             |
-| ----------- | ---------------------- | ------- | --------------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                        |
-| `label`     | `string`               | —       | Amount or greeting text.                |
-| `subtitle`  | `string`               | —       | Subtitle.                               |
-| `opened`    | `boolean`              | —       | Whether the red packet has been opened. |
-| `onOpen`    | `() => void`           | —       | Called when user clicks to open.        |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes       |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `label` | `string` | — | Amount or greeting text. |
+| `subtitle` | `string` | — | Subtitle. |
+| `opened` | `boolean` | — | Whether the red packet has been opened. |
+| `onOpen` | `() => void` | — | Called when user clicks to open. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

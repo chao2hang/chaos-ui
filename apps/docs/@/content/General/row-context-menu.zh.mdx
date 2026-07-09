@@ -1,0 +1,40 @@
+import { RowContextMenu } from "@/components/ui/row-context-menu"
+import { CodeBlock } from "@/components/code-block"
+
+# RowContextMenu 行右键菜单
+
+> 通用组件
+
+行右键菜单 — 表格/列表行右键菜单，支持图标、危险项与分隔线。
+
+## 何时使用
+
+需要行右键菜单功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { RowContextMenu } from "@/components/ui/row-context-menu"
+
+export function Basic() {
+  return <RowContextMenu />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### RowContextMenu
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-rowcontextmenu--docs)。
+

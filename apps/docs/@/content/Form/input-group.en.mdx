@@ -1,5 +1,5 @@
-import { InputGroup } from "@/components/ui/input-group";
-import { CodeBlock } from "@/components/code-block";
+import { InputGroup } from "@/components/ui/input-group"
+import { CodeBlock } from "@/components/code-block"
 
 # InputGroup
 
@@ -10,6 +10,7 @@ InputGroup — a form controls for user input and data submission. from Chaos UI
 ## When to Use
 
 Use when you need an input group.
+
 
 ## Examples
 
@@ -27,53 +28,50 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <InputGroup size="xs">Xs</InputGroup>
   <InputGroup size="sm">Sm</InputGroup>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### States
 
-<CodeBlock
-  code={`<InputGroup>Normal</InputGroup>
-<InputGroup disabled>Disabled</InputGroup>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<InputGroup>Normal</InputGroup>
+<InputGroup disabled>Disabled</InputGroup>`} lang="tsx" />
+
 
 ## Style Variants
 
 **align**
 
-| align          | Description | 默认 |
-| -------------- | ----------- | ---- |
-| `inline-start` |             | ✓    |
-| `inline-end`   |             |      |
-| `block-start`  |             |      |
-| `block-end`    |             |      |
+| align | Description | 默认 |
+|---|---|---|
+| `inline-start` |  | ✓ |
+| `inline-end` |  |  |
+| `block-start` |  |  |
+| `block-end` |  |  |
 
 **Size**
 
-| Size      | Description      | 默认 |
-| --------- | ---------------- | ---- |
-| `xs`      | Extra small      | ✓    |
-| `sm`      | Small            |      |
-| `icon-xs` | Extra small icon |      |
-| `icon-sm` | Small icon       |      |
+| Size | Description | 默认 |
+|---|---|---|
+| `xs` | Extra small | ✓ |
+| `sm` | Small |  |
+| `icon-xs` | Extra small icon |  |
+| `icon-sm` | Small icon |  |
 
 ## API / Props
 
 ### InputGroup
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 5 个子组件(InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea),使用组合模式按需导入。
+
+

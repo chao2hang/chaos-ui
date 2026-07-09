@@ -11,6 +11,7 @@ Tour — a business component for ERP / enterprise scenarios.
 
 Use when you need a tour.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,17 +26,19 @@ export function Basic() {
 
 ### Tour
 
-| Prop           | Type                   | Default | Description                       |
-| -------------- | ---------------------- | ------- | --------------------------------- |
-| `className`    | `string`               | —       | Custom CSS class                  |
-| `steps`        | `TourStep[]`           | —       |                                   |
-| `open`         | `boolean`              | —       | Open state (controlled)           |
-| `onOpenChange` | `() => void`           | —       | Callback when open state changes  |
-| `onComplete`   | `() => void`           | —       |                                   |
-| `onSkip`       | `() => void`           | —       |                                   |
-| `storageKey`   | `string`               | —       |                                   |
-| ...rest        | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `steps`        | `TourStep[]`           | —       |                                                           |
+| `open` | `boolean` | — | Open state (controlled) |
+| `onOpenChange` | `() => void` | — | Callback when open state changes |
+| `onComplete`   | `() => void`           | —       |                                                           |
+| `onSkip`       | `() => void`           | —       |                                                           |
+| `storageKey`   | `string`               | —       |                                                           |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

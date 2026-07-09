@@ -1,0 +1,39 @@
+import { ErrorBoundaryUI } from "@/components/ui/error-boundary-ui"
+import { CodeBlock } from "@/components/code-block"
+
+# ErrorBoundaryUI
+
+> Feedback components for user interaction and status.
+
+ErrorBoundaryUI — React error boundary UI with fallback render and reset.
+
+## When to Use
+
+Use when you need a errorboundaryui.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ErrorBoundaryUI } from "@/components/ui/error-boundary-ui"
+
+export function Basic() {
+  return <ErrorBoundaryUI />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ErrorBoundaryUI
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

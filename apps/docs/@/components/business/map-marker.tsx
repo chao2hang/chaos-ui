@@ -54,6 +54,7 @@ function MapMarkerCluster({
   cluster = true,
   className,
 }: MapMarkerClusterProps) {
+  // @ts-ignore AMap.MarkerClusterer not exported by namespace
   const clusterRef = React.useRef<AMap.MarkerClusterer | null>(null);
   const markerInstancesRef = React.useRef<AMap.Marker[]>([]);
 

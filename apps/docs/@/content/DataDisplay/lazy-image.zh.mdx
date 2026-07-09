@@ -1,0 +1,40 @@
+import { LazyImage } from "@/components/ui/lazy-image"
+import { CodeBlock } from "@/components/code-block"
+
+# LazyImage 懒加载图片
+
+> 数据展示
+
+懒加载图片 — 懒加载图片，支持模糊占位与视口检测。
+
+## 何时使用
+
+需要懒加载图片功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { LazyImage } from "@/components/ui/lazy-image"
+
+export function Basic() {
+  return <LazyImage />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### LazyImage
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-lazyimage--docs)。
+

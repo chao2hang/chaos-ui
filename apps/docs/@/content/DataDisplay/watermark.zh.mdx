@@ -1,5 +1,5 @@
-import { Watermark } from "@/components/ui/watermark";
-import { CodeBlock } from "@/components/code-block";
+import { Watermark } from "@/components/ui/watermark"
+import { CodeBlock } from "@/components/code-block"
 
 # Watermark 水印
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要水印功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,40 +24,38 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Watermark size="sm">Sm</Watermark>
   <Watermark size="default">Default</Watermark>
   <Watermark size="lg">Lg</Watermark>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 | ✓ |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
 
 ## API / Props
 
 ### Watermark
 
-| Prop        | Type                          | Default | 说明                           |
-| ----------- | ----------------------------- | ------- | ------------------------------ |
-| `className` | `string`                      | —       | 自定义样式类名                 |
-| `content`   | `string`                      | —       | Text content for the watermark |
-| `rotate`    | `number`                      | `-22`   | Rotation angle in degrees      |
-| `gap`       | `number`                      | `100`   | Gap between repeated marks     |
-| `opacity`   | `number`                      | `0.1`   | Opacity of the watermark       |
-| `color`     | `string`                      | `#000`  | Text color                     |
-| `fontSize`  | `number`                      | `14`    | Font size override             |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性          |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `content` | `string` | — | Text content for the watermark |
+| `rotate` | `number` | `-22` | Rotation angle in degrees |
+| `gap` | `number` | `100` | Gap between repeated marks |
+| `opacity` | `number` | `0.1` | Opacity of the watermark |
+| `color` | `string` | `#000` | Text color |
+| `fontSize` | `number` | `14` | Font size override |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -65,3 +64,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-watermark--docs)。
+

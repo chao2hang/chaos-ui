@@ -1,25 +1,17 @@
-import { OperationLog } from "@/components/business/operation-log";
-import { CodeBlock } from "@/components/code-block";
+import { OperationLog } from "@/components/business/operation-log"
+import { CodeBlock } from "@/components/code-block"
 
 # OperationLog Operation Log
 
 > Domain-specific business components for ERP scenarios.
 
-<OperationLog
-  logs={[
-    {
-      id: "1",
-      action: "审批通过",
-      operator: "李四",
-      timestamp: "2026-01-01T09:00:00Z",
-    },
-  ]}
-/>
+<OperationLog logs={[{ id:"1", action:"审批通过", operator:"李四", timestamp:"2026-01-01T09:00:00Z" }]} />
 OperationLog — operation log component.
 
 ## When to Use
 
 Use when you need an operation log.
+
 
 ## Examples
 
@@ -31,21 +23,24 @@ export function Basic() {
   return <OperationLog />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### OperationLog
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `logs`      | `Array<{`              | —       |                                   |
-| `id`        | `string`               | —       | DOM element id                    |
-| `action`    | `string`               | —       |                                   |
-| `operator`  | `string`               | —       |                                   |
-| `timestamp` | `string`               | —       |                                   |
-| `detail`    | `string`               | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `logs` | `Array<{` | — |  |
+| `id` | `string` | — | DOM element id |
+| `action` | `string` | — |  |
+| `operator` | `string` | — |  |
+| `timestamp` | `string` | — |  |
+| `detail` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

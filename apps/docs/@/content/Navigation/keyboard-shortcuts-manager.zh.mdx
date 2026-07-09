@@ -1,0 +1,40 @@
+import { KeyboardShortcutsManager } from "@/components/ui/keyboard-shortcuts-manager"
+import { CodeBlock } from "@/components/code-block"
+
+# KeyboardShortcutsManager 快捷键管理器
+
+> 导航组件
+
+快捷键管理器 — 全局快捷键管理器，支持注册与冲突检测。
+
+## 何时使用
+
+需要快捷键管理器功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { KeyboardShortcutsManager } from "@/components/ui/keyboard-shortcuts-manager"
+
+export function Basic() {
+  return <KeyboardShortcutsManager />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### KeyboardShortcutsManager
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboardshortcutsmanager--docs)。
+

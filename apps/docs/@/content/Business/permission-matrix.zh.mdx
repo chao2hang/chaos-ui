@@ -1,5 +1,5 @@
-import { PermissionMatrix } from "@/components/business/permission-matrix";
-import { CodeBlock } from "@/components/code-block";
+import { PermissionMatrix } from "@/components/business/permission-matrix"
+import { CodeBlock } from "@/components/code-block"
 
 # PermissionMatrix 权限矩阵
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要权限矩阵功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,18 +22,19 @@ export function Basic() {
   return <PermissionMatrix />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PermissionMatrix
 
-| Prop          | Type                          | Default | 说明                  |
-| ------------- | ----------------------------- | ------- | --------------------- |
-| `className`   | `string`                      | —       | 自定义样式类名        |
-| `permissions` | `PermissionItem[]`            | —       |                       |
-| `roles`       | `string[]`                    | —       |                       |
-| `value`       | `Record<string, string[]>`    | —       | 当前值(受控)          |
-| `onChange`    | `() => void`                  | —       | 值变化回调            |
-| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `permissions` | `PermissionItem[]` | — |  |
+| `roles` | `string[]` | — |  |
+| `value` | `Record<string, string[]>` | — | 当前值(受控) |
+| `onChange` | `() => void` | — | 值变化回调 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -40,3 +42,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-permissionmatrix--docs)。
+

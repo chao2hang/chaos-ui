@@ -1,0 +1,39 @@
+import { MarkdownViewer } from "@/components/ui/markdown-viewer"
+import { CodeBlock } from "@/components/code-block"
+
+# MarkdownViewer
+
+> Data display components for presenting information.
+
+MarkdownViewer — Read-only Markdown renderer with syntax highlighting.
+
+## When to Use
+
+Use when you need a markdownviewer.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MarkdownViewer } from "@/components/ui/markdown-viewer"
+
+export function Basic() {
+  return <MarkdownViewer />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MarkdownViewer
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

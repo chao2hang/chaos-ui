@@ -1,5 +1,5 @@
-import { Descriptions } from "@/components/ui/descriptions";
-import { CodeBlock } from "@/components/code-block";
+import { Descriptions } from "@/components/ui/descriptions"
+import { CodeBlock } from "@/components/code-block"
 
 # Descriptions
 
@@ -10,6 +10,7 @@ Key-value list of read-only fields; common on detail pages.
 ## When to Use
 
 Use when you need a descriptions.
+
 
 ## Examples
 
@@ -23,50 +24,51 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Descriptions size="sm">Sm</Descriptions>
   <Descriptions size="default">Default</Descriptions>
   <Descriptions size="lg">Lg</Descriptions>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **layout**
 
-| layout       | Description | 默认 |
-| ------------ | ----------- | ---- |
-| `horizontal` |             | ✓    |
-| `vertical`   |             |      |
+| layout | Description | 默认 |
+|---|---|---|
+| `horizontal` |  | ✓ |
+| `vertical` |  |  |
 
 **Size**
 
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
+| Size | Description | 默认 |
+|---|---|---|
+| `default` | Default size | ✓ |
+| `sm` | Small |  |
+| `lg` | Large |  |
 
 **bordered**
 
 | bordered | Description | 默认 |
-| -------- | ----------- | ---- |
-| `true`   |             | ✓    |
-| `false`  |             |      |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### Descriptions
 
-| Prop         | Type                          | Default | Description                     |
-| ------------ | ----------------------------- | ------- | ------------------------------- |
-| `className`  | `string`                      | —       | Custom CSS class                |
-| `items`      | `DescriptionItem[]`           | —       | Items / data list               |
-| `column`     | `number`                      | `3`     | Column count                    |
-| `labelWidth` | `string \| number`            | —       | Label width                     |
-| ...rest      | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `DescriptionItem[]` | — | Items / data list |
+| `column` | `number` | `3` | Column count |
+| `labelWidth` | `string \| number` | — | Label width |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
+
+
+

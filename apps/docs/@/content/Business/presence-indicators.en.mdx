@@ -11,6 +11,7 @@ PresenceIndicators — a business component for ERP / enterprise scenarios.
 
 Use when you need a presence indicators.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,13 +26,15 @@ export function Basic() {
 
 ### PresenceIndicators
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `users`     | `PresenceUser[]`              | —       |                                 |
-| `max`       | `number`                      | `5`     | Maximum value                   |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `users`     | `PresenceUser[]`              | —       |                                                             |
+| `max` | `number` | `5` | Maximum value |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

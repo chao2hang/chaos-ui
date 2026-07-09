@@ -77,7 +77,16 @@ function SalesTargetEditor({
     const id = `row-${Date.now()}`;
     commit([
       ...localRows,
-      { id, year: new Date().getFullYear(), region: "", q1: 0, q2: 0, q3: 0, q4: 0, annual: 0 },
+      {
+        id,
+        year: new Date().getFullYear(),
+        region: "",
+        q1: 0,
+        q2: 0,
+        q3: 0,
+        q4: 0,
+        annual: 0,
+      },
     ]);
   };
 
@@ -89,28 +98,47 @@ function SalesTargetEditor({
       className={cn("flex flex-col gap-3", className)}
     >
       <div className="flex items-center gap-2">
-        <TargetIcon className="size-5 text-muted-foreground" aria-hidden />
+        <TargetIcon className="text-muted-foreground size-5" aria-hidden />
         <h3 className="text-base font-medium">销售目标</h3>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="border-b text-left text-muted-foreground">
-              <th scope="col" className="px-2 py-1.5 font-medium">年度</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">区域</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">Q1</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">Q2</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">Q3</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">Q4</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">年度合计</th>
-              <th scope="col" className="px-2 py-1.5 font-medium">操作</th>
+            <tr className="text-muted-foreground border-b text-left">
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                年度
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                区域
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                Q1
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                Q2
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                Q3
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                Q4
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                年度合计
+              </th>
+              <th scope="col" className="px-2 py-1.5 font-medium">
+                操作
+              </th>
             </tr>
           </thead>
           <tbody>
             {localRows.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-2 py-4 text-center text-muted-foreground">
+                <td
+                  colSpan={8}
+                  className="text-muted-foreground px-2 py-4 text-center"
+                >
                   暂无目标数据
                 </td>
               </tr>
@@ -127,7 +155,9 @@ function SalesTargetEditor({
                         onChange={(e) =>
                           commit(
                             localRows.map((r) =>
-                              r.id === row.id ? { ...r, region: e.target.value } : r,
+                              r.id === row.id
+                                ? { ...r, region: e.target.value }
+                                : r,
                             ),
                           )
                         }
@@ -151,7 +181,7 @@ function SalesTargetEditor({
                         <Progress value={pct} aria-label={`年度合计 ${row.id}`}>
                           <ProgressIndicator style={{ width: `${pct}%` }} />
                         </Progress>
-                        <span className="text-xs tabular-nums text-muted-foreground">
+                        <span className="text-muted-foreground text-xs tabular-nums">
                           {formatNumber(row.annual)}
                         </span>
                       </div>
@@ -176,7 +206,9 @@ function SalesTargetEditor({
       </div>
 
       <div className="flex items-center justify-between">
-        <Label className="text-muted-foreground">共 {localRows.length} 条</Label>
+        <Label className="text-muted-foreground">
+          共 {localRows.length} 条
+        </Label>
         <Button type="button" variant="outline" size="sm" onClick={addRow}>
           <PlusIcon className="size-4" aria-hidden />
           新增目标

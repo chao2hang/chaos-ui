@@ -11,6 +11,7 @@ FormStepSummary — a business component for ERP / enterprise scenarios.
 
 Use when you need a form step summary.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,14 +26,16 @@ export function Basic() {
 
 ### FormStepSummary
 
-| Prop        | Type                         | Default | Description                    |
-| ----------- | ---------------------------- | ------- | ------------------------------ |
-| `className` | `string`                     | —       | Custom CSS class               |
-| `steps`     | `FormStep[]`                 | —       |                                |
-| `values`    | `Record<string, unknown>`    | —       |                                |
-| `onJumpTo`  | `() => void`                 | —       |                                |
-| ...rest     | `React.ComponentProps<"ol">` | —       | Inherits all `<ol>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | ---------------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `steps`     | `FormStep[]`                 | —       |                                                           |
+| `values`    | `Record<string, unknown>`    | —       |                                                           |
+| `onJumpTo`  | `() => void`                 | —       |                                                           |
+| ...rest | `React.ComponentProps<"ol">` | — | Inherits all `<ol>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

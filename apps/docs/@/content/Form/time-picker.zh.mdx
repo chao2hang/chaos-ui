@@ -1,5 +1,5 @@
-import { TimePicker } from "@/components/ui/time-picker";
-import { CodeBlock } from "@/components/code-block";
+import { TimePicker } from "@/components/ui/time-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # TimePicker 时间选择器
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要时间选择器功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,29 +24,28 @@ export function Basic() {
 
 ### 状态
 
-<CodeBlock
-  code={`<TimePicker>Normal</TimePicker>
-<TimePicker disabled>Disabled</TimePicker>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<TimePicker>Normal</TimePicker>
+<TimePicker disabled>Disabled</TimePicker>`} lang="tsx" />
+
 
 ## API / Props
 
 ### TimePicker
 
-| Prop          | Type                             | Default    | 说明              |
-| ------------- | -------------------------------- | ---------- | ----------------- |
-| `className`   | `string`                         | —          | 自定义样式类名    |
-| `value`       | `string`                         | —          | 当前值(受控)      |
-| `onChange`    | `() => void`                     | —          | 值变化回调        |
-| `step`        | `1 \| 5 \| 10 \| 15 \| 30 \| 60` | `1`        | 步长              |
-| `format`      | `"12h" \| "24h"`                 | `24h`      |                   |
-| `disabled`    | `boolean`                        | —          | 是否禁用          |
-| `placeholder` | `string`                         | `选择时间` | 占位文本          |
-| ...rest       | `React.HTMLAttributes`           | —          | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `value` | `string` | — | 当前值(受控) |
+| `onChange` | `() => void` | — | 值变化回调 |
+| `step` | `1 \| 5 \| 10 \| 15 \| 30 \| 60` | `1` | 步长 |
+| `format` | `"12h" \| "24h"` | `24h` |  |
+| `disabled` | `boolean` | — | 是否禁用 |
+| `placeholder` | `string` | `选择时间` | 占位文本 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-timepicker--docs)。
+

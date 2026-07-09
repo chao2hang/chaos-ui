@@ -19,8 +19,8 @@ export const Default: Story = {
 };
 
 export const Finished: Story = {
-  args: {
-    target: Date.now() - 1000,
-    finishedText: "Expired!",
+  render: () => {
+    const pastTarget = React.useMemo(() => Date.now() - 1000, []);
+    return <Countdown target={pastTarget} />;
   },
 };

@@ -1,15 +1,16 @@
-import { AreaChart } from "@/components/business/area-chart";
-import { CodeBlock } from "@/components/code-block";
+import { AreaChart } from "@/components/business/area-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # AreaChart Area Chart
 
 > 业务组件
 
-面积图(趋势+填充)
+ 面积图(趋势+填充)
 
 ## 何时使用
 
 适用于Area Chart相关场景。
+
 
 ## 代码示例
 
@@ -21,21 +22,23 @@ export function Basic() {
   return <AreaChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AreaChart
 
-| Prop        | Type                   | Default        | 说明                                   |
-| ----------- | ---------------------- | -------------- | -------------------------------------- |
-| `className` | `string`               | —              | 自定义样式类名                         |
-| `data`      | `number[]`             | —              | Numeric series values, left-to-right.  |
-| `labels`    | `string[]`             | —              | X-axis labels aligned 1:1 with `data`. |
-| `height`    | `number`               | `180`          | SVG height in px.                      |
-| `color`     | `string`               | `currentColor` | Stroke + fill color.                   |
-| ...rest     | `React.HTMLAttributes` | —              | 透传原生 DOM 属性                      |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `data` | `number[]` | — | Numeric series values, left-to-right. |
+| `labels` | `string[]` | — | X-axis labels aligned 1:1 with `data`. |
+| `height` | `number` | `180` | SVG height in px. |
+| `color` | `string` | `currentColor` | Stroke + fill color. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-areachart--docs)。
+

@@ -1,5 +1,5 @@
-import { PieChart } from "@/components/business/pie-chart";
-import { CodeBlock } from "@/components/code-block";
+import { PieChart } from "@/components/business/pie-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # PieChart Pie Chart
 
@@ -11,6 +11,7 @@ PieChart — a business component for ERP / enterprise scenarios.
 
 Use when you need a pie chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,17 +22,20 @@ export function Basic() {
   return <PieChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PieChart
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `data`      | `Array<T>`             | —       | Slices to render.                 |
-| `size`      | `number`               | —       | Pie pixel size.                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `Array<T>` | — | Slices to render. |
+| `size` | `number` | — | Pie pixel size. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

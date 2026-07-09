@@ -39,14 +39,16 @@ export function Multiple() {
 
 ### KeyboardShortcut
 
-| Prop          | Type                          | Default      | Description                           |
-| ------------- | ----------------------------- | ------------ | ------------------------------------- |
-| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required) |
-| `description` | `string`                      | —            | Description text / 描述文本           |
-| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                         |
-| `className`   | `string`                      | —            | Custom CSS class                      |
-| ...rest       | `React.ComponentProps<"div">` | —            | Inherits all `<div>` attributes       |
+| Prop | Type | Default | Description |
+| ------------- | ----------------------------- | ------------ | ----------------------------------------------------------- |
+| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required)                       |
+| `description` | `string`                      | —            | Description text / 描述文本                                 |
+| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                                               |
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

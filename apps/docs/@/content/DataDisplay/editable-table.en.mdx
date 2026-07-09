@@ -1,0 +1,39 @@
+import { EditableTable } from "@/components/ui/editable-table"
+import { CodeBlock } from "@/components/code-block"
+
+# EditableTable
+
+> Data display components for presenting information.
+
+EditableTable — Inline editable table with row add, edit, delete and batch operations.
+
+## When to Use
+
+Use when you need a editabletable.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EditableTable } from "@/components/ui/editable-table"
+
+export function Basic() {
+  return <EditableTable />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### EditableTable
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

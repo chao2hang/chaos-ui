@@ -91,10 +91,9 @@ function KeyboardShortcutDialog({
           <CommandGroup key={group.title} heading={group.title}>
             {group.shortcuts.map((shortcut, idx) => {
               // Build a unique value for cmdk filtering: description + all key names
-              const filterValue = [
-                shortcut.description,
-                ...shortcut.keys,
-              ].join(" ");
+              const filterValue = [shortcut.description, ...shortcut.keys].join(
+                " ",
+              );
               return (
                 <CommandItem
                   key={`${group.title}-${idx}`}
@@ -128,8 +127,4 @@ function KeyboardShortcutDialog({
 }
 
 export { KeyboardShortcutDialog };
-export type {
-  KeyboardShortcutDialogProps,
-  ShortcutItem,
-  ShortcutGroup,
-};
+export type { KeyboardShortcutDialogProps, ShortcutItem, ShortcutGroup };

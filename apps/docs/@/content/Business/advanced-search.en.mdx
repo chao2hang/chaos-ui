@@ -1,5 +1,5 @@
-import { AdvancedSearch } from "@/components/business/advanced-search";
-import { CodeBlock } from "@/components/code-block";
+import { AdvancedSearch } from "@/components/business/advanced-search"
+import { CodeBlock } from "@/components/code-block"
 
 # AdvancedSearch
 
@@ -11,6 +11,7 @@ AdvancedSearch — a business component for ERP / enterprise scenarios.
 
 Use when you need an advanced search.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <AdvancedSearch />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AdvancedSearch
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `fields`    | `SearchField[]`               | —       |                                 |
-| `onSearch`  | `() => void`                  | —       |                                 |
-| `onReset`   | `() => void`                  | —       |                                 |
-| `loading`   | `boolean`                     | `false` | Loading state                   |
-| `compact`   | `boolean`                     | `false` |                                 |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `fields` | `SearchField[]` | — |  |
+| `onSearch` | `() => void` | — |  |
+| `onReset` | `() => void` | — |  |
+| `loading` | `boolean` | `false` | Loading state |
+| `compact` | `boolean` | `false` |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

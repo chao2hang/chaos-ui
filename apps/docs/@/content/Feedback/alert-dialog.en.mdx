@@ -1,5 +1,5 @@
-import { AlertDialog } from "@/components/ui/alert-dialog";
-import { CodeBlock } from "@/components/code-block";
+import { AlertDialog } from "@/components/ui/alert-dialog"
+import { CodeBlock } from "@/components/code-block"
 
 # AlertDialog
 
@@ -10,6 +10,7 @@ Blocking confirmation dialog for destructive actions, styled for emphasis.
 ## When to Use
 
 Use when you need an alert dialog.
+
 
 ## Examples
 
@@ -31,16 +32,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AlertDialog
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 8 个子组件(AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription…),使用组合模式按需导入。
+
+

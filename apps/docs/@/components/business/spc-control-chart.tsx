@@ -63,7 +63,8 @@ function mean(values: number[]): number {
 
 function stdDev(values: number[], avg: number): number {
   if (values.length < 2) return 0;
-  const variance = values.reduce((s, v) => s + (v - avg) ** 2, 0) / (values.length - 1);
+  const variance =
+    values.reduce((s, v) => s + (v - avg) ** 2, 0) / (values.length - 1);
   return Math.sqrt(variance);
 }
 
@@ -192,16 +193,22 @@ function SPCControlChart({
   const warningLCL = cl - 2 * sd;
 
   // Cpk calculation (simplified — assumes symmetric spec)
-  const cpk = sd > 0 ? Math.min((computedUCL - cl) / (3 * sd), (cl - computedLCL) / (3 * sd)) : 0;
+  const cpk =
+    sd > 0
+      ? Math.min((computedUCL - cl) / (3 * sd), (cl - computedLCL) / (3 * sd))
+      : 0;
 
   return (
     <div
       data-slot="spc-control-chart"
-      className={cn("space-y-3 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-3 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+        <h3 className="text-foreground text-lg font-semibold">{title}</h3>
         <div className="flex items-center gap-3 text-sm">
           <Badge variant="outline" className="text-xs">
             CL: {formatVal(cl, unit)}
@@ -209,11 +216,18 @@ function SPCControlChart({
           <Badge variant="outline" className="text-xs">
             σ: {formatVal(sd, unit)}
           </Badge>
-          <Badge variant={cpk >= 1.33 ? "default" : "destructive"} className="text-xs">
+          <Badge
+            variant={cpk >= 1.33 ? "default" : "destructive"}
+            className="text-xs"
+          >
             Cpk: {cpk.toFixed(2)}
           </Badge>
           {violations.size > 0 && (
-            <Badge variant="destructive" className="text-xs" data-slot="violation-badge">
+            <Badge
+              variant="destructive"
+              className="text-xs"
+              data-slot="violation-badge"
+            >
               {violations.size} violation{violations.size > 1 ? "s" : ""}
             </Badge>
           )}
@@ -259,7 +273,12 @@ function SPCControlChart({
                 strokeDasharray="6 4"
                 className="text-amber-500"
               />
-              <text x={padding.left - 8} y={yScale(warningUCL) - 4} textAnchor="end" className="fill-amber-600 text-[10px]">
+              <text
+                x={padding.left - 8}
+                y={yScale(warningUCL) - 4}
+                textAnchor="end"
+                className="fill-amber-600 text-[10px]"
+              >
                 +2σ: {formatVal(warningUCL, unit)}
               </text>
               <line
@@ -272,7 +291,12 @@ function SPCControlChart({
                 strokeDasharray="6 4"
                 className="text-amber-500"
               />
-              <text x={padding.left - 8} y={yScale(warningLCL) + 12} textAnchor="end" className="fill-amber-600 text-[10px]">
+              <text
+                x={padding.left - 8}
+                y={yScale(warningLCL) + 12}
+                textAnchor="end"
+                className="fill-amber-600 text-[10px]"
+              >
                 -2σ: {formatVal(warningLCL, unit)}
               </text>
             </>
@@ -289,7 +313,12 @@ function SPCControlChart({
             strokeDasharray="8 4"
             className="text-destructive"
           />
-          <text x={padding.left - 8} y={yScale(computedUCL) - 4} textAnchor="end" className="fill-destructive text-[10px] font-medium">
+          <text
+            x={padding.left - 8}
+            y={yScale(computedUCL) - 4}
+            textAnchor="end"
+            className="fill-destructive text-[10px] font-medium"
+          >
             UCL: {formatVal(computedUCL, unit)}
           </text>
 
@@ -304,7 +333,12 @@ function SPCControlChart({
             strokeDasharray="8 4"
             className="text-destructive"
           />
-          <text x={padding.left - 8} y={yScale(computedLCL) + 12} textAnchor="end" className="fill-destructive text-[10px] font-medium">
+          <text
+            x={padding.left - 8}
+            y={yScale(computedLCL) + 12}
+            textAnchor="end"
+            className="fill-destructive text-[10px] font-medium"
+          >
             LCL: {formatVal(computedLCL, unit)}
           </text>
 
@@ -318,7 +352,12 @@ function SPCControlChart({
             strokeWidth="1.5"
             className="text-primary"
           />
-          <text x={padding.left - 8} y={yScale(cl) - 4} textAnchor="end" className="fill-primary text-[10px] font-medium">
+          <text
+            x={padding.left - 8}
+            y={yScale(cl) - 4}
+            textAnchor="end"
+            className="fill-primary text-[10px] font-medium"
+          >
             CL: {formatVal(cl, unit)}
           </text>
 
@@ -393,15 +432,21 @@ function SPCControlChart({
       </div>
 
       {/* Summary stats */}
-      <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+      <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-xs">
         <span>n = {samples.length}</span>
         <span>Min = {formatVal(Math.min(...values), unit)}</span>
         <span>Max = {formatVal(Math.max(...values), unit)}</span>
-        <span>Range = {formatVal(Math.max(...values) - Math.min(...values), unit)}</span>
+        <span>
+          Range = {formatVal(Math.max(...values) - Math.min(...values), unit)}
+        </span>
         {violations.size === 0 ? (
-          <Badge variant="outline" className="text-xs text-emerald-600">Process in control</Badge>
+          <Badge variant="outline" className="text-xs text-emerald-600">
+            Process in control
+          </Badge>
         ) : (
-          <Badge variant="destructive" className="text-xs">Out of control — investigate</Badge>
+          <Badge variant="destructive" className="text-xs">
+            Out of control — investigate
+          </Badge>
         )}
       </div>
     </div>

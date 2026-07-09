@@ -1,5 +1,5 @@
-import { TemplateDownload } from "@/components/business/template-download";
-import { CodeBlock } from "@/components/code-block";
+import { TemplateDownload } from "@/components/business/template-download"
+import { CodeBlock } from "@/components/code-block"
 
 # TemplateDownload Template Download
 
@@ -11,6 +11,7 @@ TemplateDownload — a business component for ERP / enterprise scenarios.
 
 Use when you need a template download.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <TemplateDownload />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TemplateDownload
 
-| Prop         | Type                     | Default        | Description                                                    |
-| ------------ | ------------------------ | -------------- | -------------------------------------------------------------- |
-| `className`  | `string`                 | —              | Custom CSS class                                               |
-| `templates`  | `TemplateDownloadItem[]` | —              | Templates available for download.                              |
-| `onDownload` | `() => void`             | —              | Called with the selected template when a link is clicked.      |
-| `emptyLabel` | `string`                 | `暂无可用模板` | Text shown when the list is empty. Defaults to "暂无可用模板". |
-| ...rest      | `React.HTMLAttributes`   | —              | Inherits standard HTML attributes                              |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `templates` | `TemplateDownloadItem[]` | — | Templates available for download. |
+| `onDownload` | `() => void` | — | Called with the selected template when a link is clicked. |
+| `emptyLabel` | `string` | `暂无可用模板` | Text shown when the list is empty. Defaults to "暂无可用模板". |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+

@@ -1,5 +1,5 @@
-import { ColorTag } from "@/components/business/color-tag";
-import { CodeBlock } from "@/components/code-block";
+import { ColorTag } from "@/components/business/color-tag"
+import { CodeBlock } from "@/components/code-block"
 
 # ColorTag
 
@@ -11,6 +11,7 @@ ColorTag — a business component for ERP / enterprise scenarios.
 
 Use when you need a color tag.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,32 +22,35 @@ export function Basic() {
   return <ColorTag />
 }`} lang="tsx" />
 
+
 ## Style Variants
 
 **color**
 
-| color    | Description | 默认 |
-| -------- | ----------- | ---- |
-| `red`    |             |      |
-| `orange` |             |      |
-| `yellow` |             |      |
-| `green`  |             |      |
-| `blue`   |             |      |
-| `purple` |             |      |
-| `pink`   |             |      |
-| `gray`   |             | ✓    |
+| color | Description | 默认 |
+|---|---|---|
+| `red` |  |  |
+| `orange` |  |  |
+| `yellow` |  |  |
+| `green` |  |  |
+| `blue` |  |  |
+| `purple` |  |  |
+| `pink` |  |  |
+| `gray` |  | ✓ |
 
 ## API / Props
 
 ### ColorTag
 
-| Prop        | Type                           | Default | Description                      |
-| ----------- | ------------------------------ | ------- | -------------------------------- |
-| `className` | `string`                       | —       | Custom CSS class                 |
-| `label`     | `string`                       | —       | Label text                       |
-| `dot`       | `boolean`                      | `true`  |                                  |
-| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `label` | `string` | — | Label text |
+| `dot` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"span">` | — | Inherits all `<span>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

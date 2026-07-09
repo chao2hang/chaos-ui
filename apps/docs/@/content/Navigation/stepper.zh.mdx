@@ -1,5 +1,5 @@
-import { Stepper, Step } from "@/components/ui/stepper";
-import { CodeBlock } from "@/components/code-block";
+import { Stepper, Step } from "@/components/ui/stepper"
+import { CodeBlock } from "@/components/code-block"
 
 # Stepper 步骤条
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要步骤条功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,19 +22,21 @@ export function Basic() {
   return <Stepper>Default</Stepper>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Stepper
 
-| Prop          | Type                         | Default      | 说明              |
-| ------------- | ---------------------------- | ------------ | ----------------- |
-| `className`   | `string`                     | —            | 自定义样式类名    |
-| `activeStep`  | `number`                     | `0`          |                   |
-| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向          |
-| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `activeStep` | `number` | `0` |  |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-stepper--docs)。
+

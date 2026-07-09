@@ -1,0 +1,39 @@
+import { MarkdownViewerBiz } from "@/components/business/markdown-viewer-biz"
+import { CodeBlock } from "@/components/code-block"
+
+# MarkdownViewerBiz
+
+> Domain-specific business components for ERP scenarios.
+
+MarkdownViewerBiz — Business markdown viewer with attachment support and download links.
+
+## When to Use
+
+Use when you need a markdownviewerbiz.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MarkdownViewerBiz } from "@/components/business/markdown-viewer-biz"
+
+export function Basic() {
+  return <MarkdownViewerBiz />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MarkdownViewerBiz
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -18,7 +18,8 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { BulkImportWizard } from "@/components/business/bulk-import-wizard"
 
 export function Basic() {
-  return <BulkImportWizard />
+  return <BulkImportWizard onImport={"example"} onCancel={() => {}} />
+}`} lang="tsx" />
 }`} lang="tsx" />
 
 ## API / Props

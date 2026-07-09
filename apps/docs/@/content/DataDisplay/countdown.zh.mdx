@@ -1,5 +1,5 @@
-import { Countdown } from "@/components/ui/countdown";
-import { CodeBlock } from "@/components/code-block";
+import { Countdown } from "@/components/ui/countdown"
+import { CodeBlock } from "@/components/code-block"
 
 # Countdown 倒计时
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要倒计时功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,57 +24,52 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Countdown variant="default">Default</Countdown>
   <Countdown variant="primary">Primary</Countdown>
   <Countdown variant="muted">Muted</Countdown>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Countdown size="sm">Sm</Countdown>
   <Countdown size="default">Default</Countdown>
   <Countdown size="lg">Lg</Countdown>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **变体**
 
-| Variant   | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认样式 | ✓    |
-| `primary` | 主要样式 |      |
-| `muted`   |          |      |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `primary` | 主要样式 |  |
+| `muted` |  |  |
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 | ✓ |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
 
 ## API / Props
 
 ### Countdown
 
-| Prop        | Type                           | Default    | 说明                                          |
-| ----------- | ------------------------------ | ---------- | --------------------------------------------- |
-| `className` | `string`                       | —          | 自定义样式类名                                |
-| `target`    | `Date \| number \| string`     | —          | Target date/time (ISO string or timestamp)    |
-| `onFinish`  | `() => void`                   | —          | Called when countdown reaches 0               |
-| `format`    | `string`                       | `HH:mm:ss` | Format: D=days, H=hours, M=minutes, S=seconds |
-| ...rest     | `React.ComponentProps<"span">` | —          | 透传 `<span>` 原生属性                        |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `target` | `Date \| number \| string` | — | Target date/time (ISO string or timestamp) |
+| `onFinish` | `() => void` | — | Called when countdown reaches 0 |
+| `format` | `string` | `HH:mm:ss` | Format: D=days, H=hours, M=minutes, S=seconds |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 |
 
 ## 注意事项
 
@@ -82,3 +78,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-countdown--docs)。
+

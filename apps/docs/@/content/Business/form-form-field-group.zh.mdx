@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要表单字段分组功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -25,14 +26,14 @@ export function Basic() {
 
 ### FormFieldGroup
 
-| Prop          | Type                               | Default | 说明                       |
-| ------------- | ---------------------------------- | ------- | -------------------------- |
-| `className`   | `string`                           | —       | 自定义样式类名             |
-| `legend`      | `string`                           | —       |                            |
-| `description` | `string`                           | —       | 描述文本                   |
-| `required`    | `boolean`                          | —       | 是否必填                   |
-| `columns`     | `1 \| 2 \| 3`                      | `1`     | 列配置                     |
-| ...rest       | `React.ComponentProps<"fieldset">` | —       | 透传 `<fieldset>` 原生属性 |
+| Prop | Type | Default | 说明 |
+| ------------- | ---------------------------------- | ------- | --------------------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `legend`      | `string`                           | —       |                                                                       |
+| `description` | `string` | — | 描述文本 |
+| `required` | `boolean` | — | 是否必填 |
+| `columns` | `1 \| 2 \| 3` | `1` | 列配置 |
+| ...rest | `React.ComponentProps<"fieldset">` | — | 透传 `<fieldset>` 原生属性 |
 
 ## 注意事项
 
@@ -40,3 +41,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<fieldset>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-form-form-field-group--docs)。
+

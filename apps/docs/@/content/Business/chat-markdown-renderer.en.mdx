@@ -1,5 +1,5 @@
-import { ChatMarkdownRenderer } from "@/components/business/chat-markdown-renderer";
-import { CodeBlock } from "@/components/code-block";
+import { ChatMarkdownRenderer } from "@/components/business/chat-markdown-renderer"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatMarkdownRenderer Chat Markdown Renderer
 
@@ -11,6 +11,7 @@ ChatMarkdownRenderer — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat markdown renderer.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,16 +22,19 @@ export function Basic() {
   return <ChatMarkdownRenderer />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatMarkdownRenderer
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `content`   | `string`               | —       | Content                           |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `content` | `string` | — | Content |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

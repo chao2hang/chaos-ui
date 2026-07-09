@@ -1,5 +1,5 @@
-import { AccountBalance } from "@/components/business/account-balance";
-import { CodeBlock } from "@/components/code-block";
+import { AccountBalance } from "@/components/business/account-balance"
+import { CodeBlock } from "@/components/code-block"
 
 # AccountBalance Account Balance
 
@@ -11,6 +11,7 @@ AccountBalance — a business component for ERP / enterprise scenarios.
 
 Use when you need an account balance.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <AccountBalance />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AccountBalance
 
-| Prop        | Type                   | Default    | Description                       |
-| ----------- | ---------------------- | ---------- | --------------------------------- |
-| `className` | `string`               | —          | Custom CSS class                  |
-| `balance`   | `number`               | —          |                                   |
-| `currency`  | `string`               | `CNY`      |                                   |
-| `label`     | `string`               | `账户余额` | Label text                        |
-| `trend`     | `number`               | —          |                                   |
-| ...rest     | `React.HTMLAttributes` | —          | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `balance` | `number` | — |  |
+| `currency` | `string` | `CNY` |  |
+| `label` | `string` | `账户余额` | Label text |
+| `trend` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

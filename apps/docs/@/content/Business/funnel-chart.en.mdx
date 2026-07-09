@@ -1,5 +1,5 @@
-import { FunnelChart } from "@/components/business/funnel-chart";
-import { CodeBlock } from "@/components/code-block";
+import { FunnelChart } from "@/components/business/funnel-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # FunnelChart Funnel Chart
 
@@ -11,6 +11,7 @@ FunnelChart — funnel chart component.
 
 Use when you need a funnel chart.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,17 +22,20 @@ export function Basic() {
   return <FunnelChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### FunnelChart
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `data`      | `Array<T>`             | —       | Data source                       |
-| `height`    | `number`               | `44`    | Component height                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `Array<T>` | — | Data source |
+| `height` | `number` | `44` | Component height |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

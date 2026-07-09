@@ -1,5 +1,5 @@
-import { ChatMessageInput } from "@/components/business/chat-message-input";
-import { CodeBlock } from "@/components/code-block";
+import { ChatMessageInput } from "@/components/business/chat-message-input"
+import { CodeBlock } from "@/components/code-block"
 
 # ChatMessageInput Chat Message Input
 
@@ -11,6 +11,7 @@ ChatMessageInput — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat message input.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <ChatMessageInput />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ChatMessageInput
 
-| Prop          | Type                   | Default             | Description                       |
-| ------------- | ---------------------- | ------------------- | --------------------------------- |
-| `className`   | `string`               | —                   | Custom CSS class                  |
-| `value`       | `string`               | —                   | Current value (controlled)        |
-| `onChange`    | `() => void`           | —                   | Callback when value changes       |
-| `onSend`      | `() => void`           | —                   |                                   |
-| `placeholder` | `string`               | `Type a message...` | Placeholder text                  |
-| `disabled`    | `boolean`              | `false`             | Whether disabled                  |
-| `maxLength`   | `number`               | —                   | Maximum input length              |
-| ...rest       | `React.HTMLAttributes` | —                   | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `onSend` | `() => void` | — |  |
+| `placeholder` | `string` | `Type a message...` | Placeholder text |
+| `disabled` | `boolean` | `false` | Whether disabled |
+| `maxLength` | `number` | — | Maximum input length |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

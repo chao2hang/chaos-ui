@@ -1,15 +1,16 @@
-import { SparkChart } from "@/components/business/spark-chart";
-import { CodeBlock } from "@/components/code-block";
+import { SparkChart } from "@/components/business/spark-chart"
+import { CodeBlock } from "@/components/code-block"
 
 # SparkChart Spark Chart
 
 > 业务组件
 
-迷你趋势图
+ 迷你趋势图
 
 ## 何时使用
 
 适用于Spark Chart相关场景。
+
 
 ## 代码示例
 
@@ -21,21 +22,23 @@ export function Basic() {
   return <SparkChart />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SparkChart
 
-| Prop        | Type                   | Default        | 说明              |
-| ----------- | ---------------------- | -------------- | ----------------- |
-| `className` | `string`               | —              | 自定义样式类名    |
-| `data`      | `number[]`             | —              | Numeric series.   |
-| `width`     | `number`               | `120`          | SVG width in px.  |
-| `height`    | `number`               | `32`           | SVG height in px. |
-| `color`     | `string`               | `currentColor` | Line color.       |
-| ...rest     | `React.HTMLAttributes` | —              | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `data` | `number[]` | — | Numeric series. |
+| `width` | `number` | `120` | SVG width in px. |
+| `height` | `number` | `32` | SVG height in px. |
+| `color` | `string` | `currentColor` | Line color. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-sparkchart--docs)。
+

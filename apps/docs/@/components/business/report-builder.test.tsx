@@ -7,7 +7,7 @@ import {
   TableIcon,
   BarChart3Icon,
   LayoutGridIcon,
-  TypeIcon,
+  FileTextIcon,
   ImageIcon,
 } from "@/components/ui/icons"
 
@@ -15,7 +15,7 @@ const testDefinitions: ReportWidgetDefinition[] = [
   { type: "table", label: "Table", icon: <TableIcon />, defaultW: 6, defaultH: 4 },
   { type: "chart", label: "Chart", icon: <BarChart3Icon />, defaultW: 6, defaultH: 4 },
   { type: "kpi", label: "KPI", icon: <LayoutGridIcon />, defaultW: 3, defaultH: 2 },
-  { type: "text", label: "Text", icon: <TypeIcon />, defaultW: 4, defaultH: 2 },
+  { type: "text", label: "Text", icon: <FileTextIcon />, defaultW: 4, defaultH: 2 },
   { type: "image", label: "Image", icon: <ImageIcon />, defaultW: 4, defaultH: 3 },
 ]
 

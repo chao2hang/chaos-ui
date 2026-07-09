@@ -1,0 +1,39 @@
+import { LazyImage } from "@/components/ui/lazy-image"
+import { CodeBlock } from "@/components/code-block"
+
+# LazyImage
+
+> Data display components for presenting information.
+
+LazyImage — Lazy-loaded image with blur-up placeholder and viewport detection.
+
+## When to Use
+
+Use when you need a lazyimage.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { LazyImage } from "@/components/ui/lazy-image"
+
+export function Basic() {
+  return <LazyImage />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### LazyImage
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

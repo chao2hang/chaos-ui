@@ -1,5 +1,5 @@
-import { NativeSelect } from "@/components/ui/native-select";
-import { CodeBlock } from "@/components/code-block";
+import { NativeSelect } from "@/components/ui/native-select"
+import { CodeBlock } from "@/components/code-block"
 
 # NativeSelect Native Select
 
@@ -11,6 +11,7 @@ NativeSelect — a form controls for user input and data submission. from Chaos 
 
 Use when you need a native select.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <NativeSelect />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### NativeSelect
 
-| Prop          | Type                                       | Default   | Description                                          |
-| ------------- | ------------------------------------------ | --------- | ---------------------------------------------------- |
-| `className`   | `string`                                   | —         | Custom CSS class                                     |
-| `options`     | `(NativeSelectOption \| NativeSelectGr...` | —         | Flat options or grouped options / 扁平选项或分组选项 |
-| `placeholder` | `string`                                   | —         | Placeholder option text / 占位选项文本               |
-| `size`        | `"sm" \| "default"`                        | `default` | Size variant / 尺寸变体                              |
-| `error`       | `boolean`                                  | —         | Whether to show error styling / 是否显示错误样式     |
-| ...rest       | `React.HTMLAttributes`                     | —         | Inherits standard HTML attributes                    |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `options` | `(NativeSelectOption \| NativeSelectGr...` | — | Flat options or grouped options / 扁平选项或分组选项 |
+| `placeholder` | `string` | — | Placeholder option text / 占位选项文本 |
+| `size` | `"sm" \| "default"` | `default` | Size variant / 尺寸变体 |
+| `error` | `boolean` | — | Whether to show error styling / 是否显示错误样式 |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

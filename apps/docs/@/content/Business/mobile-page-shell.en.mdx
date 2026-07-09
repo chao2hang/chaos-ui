@@ -1,19 +1,17 @@
-import { MobilePageShell } from "@/components/business/mobile-page-shell";
-import { CodeBlock } from "@/components/code-block";
+import { MobilePageShell } from "@/components/business/mobile-page-shell"
+import { CodeBlock } from "@/components/code-block"
 
 # MobilePageShell Mobile Page Shell
 
 > Domain-specific business components for ERP scenarios.
 
-<MobilePageShell title="订单详情" onBack={() => history.back()}>
-  {" "}
-  <p>内容</p>{" "}
-</MobilePageShell>
+<MobilePageShell title="订单详情" onBack={() => history.back()}> <p>内容</p> </MobilePageShell>
 MobilePageShell — mobile page shell component.
 
 ## When to Use
 
 Use when you need a mobile page shell.
+
 
 ## Examples
 
@@ -25,17 +23,20 @@ export function Basic() {
   return <MobilePageShell />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobilePageShell
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `title`     | `string`               | —       | Title                             |
-| `onBack`    | `() => void`           | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `onBack` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,15 +1,16 @@
-import { CalendarView } from "@/components/business/calendar-view";
-import { CodeBlock } from "@/components/code-block";
+import { CalendarView } from "@/components/business/calendar-view"
+import { CodeBlock } from "@/components/code-block"
 
 # CalendarView Calendar View
 
 > 业务组件
 
-<CalendarView events={[{ id: "1", date: "2026-06-15", title: "盘点" }]} />
+<CalendarView events={[{id:"1",date:"2026-06-15",title:"盘点"}]} />
 
 ## 何时使用
 
 适用于Calendar View相关场景。
+
 
 ## 代码示例
 
@@ -23,25 +24,24 @@ export function Basic() {
 
 ### 状态
 
-<CodeBlock
-  code={`<CalendarView>Normal</CalendarView>
-<CalendarView disabled>Disabled</CalendarView>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<CalendarView>Normal</CalendarView>
+<CalendarView disabled>Disabled</CalendarView>`} lang="tsx" />
+
 
 ## API / Props
 
 ### CalendarView
 
-| Prop           | Type                   | Default | 说明              |
-| -------------- | ---------------------- | ------- | ----------------- |
-| `className`    | `string`               | —       | 自定义样式类名    |
-| `events`       | `Array<T>`             | —       |                   |
-| `onDateSelect` | `() => void`           | —       |                   |
-| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `events` | `Array<T>` | — |  |
+| `onDateSelect` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-calendarview--docs)。
+

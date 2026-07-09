@@ -1,5 +1,5 @@
-import { BillHeader } from "@/components/business/bill-header";
-import { CodeBlock } from "@/components/code-block";
+import { BillHeader } from "@/components/business/bill-header"
+import { CodeBlock } from "@/components/code-block"
 
 # BillHeader
 
@@ -11,6 +11,7 @@ BillHeader — a business component for ERP / enterprise scenarios.
 
 Use when you need a bill header.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,23 +22,26 @@ export function Basic() {
   return <BillHeader />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### BillHeader
 
-| Prop              | Type                          | Default    | Description                     |
-| ----------------- | ----------------------------- | ---------- | ------------------------------- |
-| `className`       | `string`                      | —          | Custom CSS class                |
-| `companyName`     | `string`                      | `公司名称` |                                 |
-| `companyAddress`  | `string`                      | —          |                                 |
-| `companyPhone`    | `string`                      | —          |                                 |
-| `invoiceNumber`   | `string`                      | —          |                                 |
-| `invoiceDate`     | `string`                      | —          |                                 |
-| `dueDate`         | `string`                      | —          |                                 |
-| `customerName`    | `string`                      | —          |                                 |
-| `customerAddress` | `string`                      | —          |                                 |
-| ...rest           | `React.ComponentProps<"div">` | —          | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `companyName` | `string` | `公司名称` |  |
+| `companyAddress` | `string` | — |  |
+| `companyPhone` | `string` | — |  |
+| `invoiceNumber` | `string` | — |  |
+| `invoiceDate` | `string` | — |  |
+| `dueDate` | `string` | — |  |
+| `customerName` | `string` | — |  |
+| `customerAddress` | `string` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

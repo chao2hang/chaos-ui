@@ -1,5 +1,5 @@
-import { ImportErrorTable } from "@/components/business/import-error-table";
-import { CodeBlock } from "@/components/code-block";
+import { ImportErrorTable } from "@/components/business/import-error-table"
+import { CodeBlock } from "@/components/code-block"
 
 # ImportErrorTable Import Error Table
 
@@ -11,6 +11,7 @@ ImportErrorTable — a business component for ERP / enterprise scenarios.
 
 Use when you need an import error table.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <ImportErrorTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ImportErrorTable
 
-| Prop        | Type                   | Default | Description                                           |
-| ----------- | ---------------------- | ------- | ----------------------------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                                      |
-| `errors`    | `Array<{`              | —       | Validation errors, one per offending import row.      |
-| `row`       | `number`               | —       | 1-based source spreadsheet row number.                |
-| `field`     | `string`               | —       | Field/column that failed validation, if known.        |
-| `value`     | `string`               | —       | The raw value that failed, if known.                  |
-| `message`   | `string`               | —       | Human-readable reason the row was rejected.           |
-| `onExport`  | `() => void`           | —       | Called when the user clicks the export-errors button. |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                     |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `errors` | `Array<{` | — | Validation errors, one per offending import row. |
+| `row` | `number` | — | 1-based source spreadsheet row number. |
+| `field` | `string` | — | Field/column that failed validation, if known. |
+| `value` | `string` | — | The raw value that failed, if known. |
+| `message` | `string` | — | Human-readable reason the row was rejected. |
+| `onExport` | `() => void` | — | Called when the user clicks the export-errors button. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

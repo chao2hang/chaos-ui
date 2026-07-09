@@ -15,7 +15,7 @@ export const Info: Story = {
     type: "info",
     title: "Information",
     description: "This is an info notification.",
-  },
+  } as any,
 };
 
 export const Success: Story = {
@@ -23,7 +23,7 @@ export const Success: Story = {
     type: "success",
     title: "Success",
     description: "Operation completed successfully.",
-  },
+  } as any,
 };
 
 export const Warning: Story = {
@@ -31,11 +31,11 @@ export const Warning: Story = {
     type: "warning",
     title: "Warning",
     description: "Please check your input.",
-  },
+  } as any,
 };
 
 export const Error: Story = {
-  args: { type: "error", title: "Error", description: "Something went wrong." },
+  args: { type: "error", title: "Error", description: "Something went wrong." } as any,
 };
 
 export const Closable: Story = {
@@ -44,5 +44,5 @@ export const Closable: Story = {
     title: "Closable",
     description: "Click X to dismiss.",
     onClose: () => {},
-  },
+  } as any,
 };

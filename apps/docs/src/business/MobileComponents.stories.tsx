@@ -14,7 +14,7 @@ import { MobileForm } from "@/components/business/mobile-form";
 import { MobileFormField } from "@/components/business/mobile-form-field";
 import { MobileEmptyState } from "@/components/business/mobile-empty-state";
 import { MobileNavigation } from "@/components/business/mobile-navigation";
-import { MobileTabs } from "@/components/business/mobile-tabs";
+import { MobileTabs } from "@/components/mobile/mobile-tabs";
 import { MobileDashboardLayout } from "@/components/business/mobile-dashboard-layout";
 import { MobileAuthLayout } from "@/components/business/mobile-auth-layout";
 import { ResponsivePreview } from "@/components/business/responsive-preview";

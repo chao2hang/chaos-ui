@@ -1,5 +1,5 @@
-import { PerformanceRankTable } from "@/components/business/performance-rank-table";
-import { CodeBlock } from "@/components/code-block";
+import { PerformanceRankTable } from "@/components/business/performance-rank-table"
+import { CodeBlock } from "@/components/code-block"
 
 # PerformanceRankTable Performance Rank Table
 
@@ -12,6 +12,7 @@ PerformanceRankTable — performance rank table component.
 
 Use when you need a performance rank table.
 
+
 ## Examples
 
 ### Basic Usage
@@ -22,21 +23,24 @@ export function Basic() {
   return <PerformanceRankTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PerformanceRankTable
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `rows`      | `Array<{`              | —       | Row data                          |
-| `id`        | `string`               | —       | DOM element id                    |
-| `rank`      | `number`               | —       |                                   |
-| `name`      | `string`               | —       | Form field name                   |
-| `amount`    | `number`               | —       |                                   |
-| `growth`    | `number`               | —       |                                   |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rows` | `Array<{` | — | Row data |
+| `id` | `string` | — | DOM element id |
+| `rank` | `number` | — |  |
+| `name` | `string` | — | Form field name |
+| `amount` | `number` | — |  |
+| `growth` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

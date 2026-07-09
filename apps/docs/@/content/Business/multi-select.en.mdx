@@ -1,5 +1,5 @@
-import { MultiSelect } from "@/components/business/multi-select";
-import { CodeBlock } from "@/components/code-block";
+import { MultiSelect } from "@/components/business/multi-select"
+import { CodeBlock } from "@/components/code-block"
 
 # MultiSelect
 
@@ -10,6 +10,7 @@ Select multiple options from a panel; selections shown as tags.
 ## When to Use
 
 Select multiple values from a predefined list.
+
 
 ## Examples
 
@@ -23,31 +24,31 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<MultiSelect>Normal</MultiSelect>
-<MultiSelect disabled>Disabled</MultiSelect>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<MultiSelect>Normal</MultiSelect>
+<MultiSelect disabled>Disabled</MultiSelect>`} lang="tsx" />
+
 
 ## API / Props
 
 ### MultiSelect
 
-| Prop                | Type                   | Default            | Description                       |
-| ------------------- | ---------------------- | ------------------ | --------------------------------- |
-| `className`         | `string`               | —                  | Custom CSS class                  |
-| `options`           | `MultiSelectOption[]`  | —                  | Available options                 |
-| `value`             | `string[]`             | —                  | Current value (controlled)        |
-| `onChange`          | `() => void`           | —                  | Callback when value changes       |
-| `placeholder`       | `string`               | `Select...`        | Placeholder text                  |
-| `searchPlaceholder` | `string`               | `Search...`        |                                   |
-| `emptyText`         | `string`               | `No results found` |                                   |
-| `disabled`          | `boolean`              | —                  | Whether disabled                  |
-| `maxCount`          | `number`               | `3`                |                                   |
-| `maxSelected`       | `number`               | —                  |                                   |
-| `clearable`         | `boolean`              | `true`             |                                   |
-| ...rest             | `React.HTMLAttributes` | —                  | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `options` | `MultiSelectOption[]` | — | Available options |
+| `value` | `string[]` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `placeholder` | `string` | `Select...` | Placeholder text |
+| `searchPlaceholder` | `string` | `Search...` |  |
+| `emptyText` | `string` | `No results found` |  |
+| `disabled` | `boolean` | — | Whether disabled |
+| `maxCount` | `number` | `3` |  |
+| `maxSelected` | `number` | — |  |
+| `clearable` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

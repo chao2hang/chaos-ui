@@ -36,14 +36,16 @@ export function Basic() {
 
 ### MobilePullRefresh
 
-| Prop         | Type                          | Default | Description                             |
+| Prop | Type | Default | Description |
 | ------------ | ----------------------------- | ------- | --------------------------------------- |
 | `onRefresh`  | `() => Promise<void> \| void` | —       | Refresh callback / 刷新回调             |
 | `refreshing` | `boolean`                     | `false` | Refreshing state / 刷新状态             |
 | `children`   | `React.ReactNode`             | —       | Content / 子内容                        |
 | `threshold`  | `number`                      | `60`    | Pull threshold in px / 触发阈值（像素） |
-| `className`  | `string`                      | —       | Custom CSS class                        |
+| `className` | `string` | — | Custom CSS class |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

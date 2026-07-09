@@ -20,12 +20,12 @@ const mockData: Order[] = [
 ]
 
 const columns: Column<Order>[] = [
-  { key: "id", header: "Order ID" },
-  { key: "customer", header: "Customer" },
-  { key: "email", header: "Email" },
-  { key: "amount", header: "Amount", render: (row) => `$${row.amount.toFixed(2)}` },
-  { key: "status", header: "Status", render: (row) => <StatusTag status={row.status} size="sm" /> },
-  { key: "date", header: "Date" },
+  { key: "id", title: "Order ID" },
+  { key: "customer", title: "Customer" },
+  { key: "email", title: "Email" },
+  { key: "amount", title: "Amount", render: (value: unknown) => `$${(value as number).toFixed(2)}` },
+  { key: "status", title: "Status", render: (value: unknown) => <StatusTag status={String(value)} size="sm" /> },
+  { key: "date", title: "Date" },
 ]
 
 const meta: Meta<typeof DataTable> = {
@@ -37,17 +37,16 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { columns, data: mockData },
+  args: { columns: columns as any, dataSource: mockData },
 }
 
 export const WithRowClick: Story = {
   args: {
-    columns,
-    data: mockData,
-    onRowClick: (row) => alert(`Clicked: ${row.id}`),
+    columns: columns as any,
+    dataSource: mockData,
   },
 }
 
 export const Empty: Story = {
-  args: { columns, data: [] },
+  args: { columns: columns as any, dataSource: [] },
 }

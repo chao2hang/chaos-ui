@@ -40,13 +40,28 @@ function priorityClass(priority: string): string {
 
 function statusClass(status: string): string {
   const s = status.toLowerCase();
-  if (s.includes("完成") || s === "done" || s === "completed" || s === "success") {
+  if (
+    s.includes("完成") ||
+    s === "done" ||
+    s === "completed" ||
+    s === "success"
+  ) {
     return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-500";
   }
-  if (s.includes("进行") || s === "running" || s === "active" || s === "in progress") {
+  if (
+    s.includes("进行") ||
+    s === "running" ||
+    s === "active" ||
+    s === "in progress"
+  ) {
     return "bg-primary/10 text-primary";
   }
-  if (s.includes("取消") || s.includes("失败") || s === "failed" || s === "cancelled") {
+  if (
+    s.includes("取消") ||
+    s.includes("失败") ||
+    s === "failed" ||
+    s === "cancelled"
+  ) {
     return "bg-destructive/10 text-destructive";
   }
   return "bg-muted text-muted-foreground";
@@ -56,7 +71,7 @@ function TaskListTable({ tasks = [], className }: TaskListTableProps) {
   return (
     <div
       data-slot="task-list-table"
-      className={cn("overflow-x-auto rounded-lg ring-1 ring-border", className)}
+      className={cn("ring-border overflow-x-auto rounded-lg ring-1", className)}
     >
       <table className="w-full text-sm">
         <thead className="bg-muted/50 text-muted-foreground">
@@ -78,7 +93,7 @@ function TaskListTable({ tasks = [], className }: TaskListTableProps) {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-border">
+        <tbody className="divide-border divide-y">
           {tasks.map((task) => (
             <tr key={task.id} className="hover:bg-muted/30">
               <td className="px-3 py-2 font-medium">{task.title}</td>
@@ -102,10 +117,10 @@ function TaskListTable({ tasks = [], className }: TaskListTableProps) {
                   {task.priority}
                 </span>
               </td>
-              <td className="px-3 py-2 text-muted-foreground">
+              <td className="text-muted-foreground px-3 py-2">
                 {task.assignee ?? "—"}
               </td>
-              <td className="px-3 py-2 text-muted-foreground">
+              <td className="text-muted-foreground px-3 py-2">
                 {task.deadline ? (
                   <span className="inline-flex items-center gap-1">
                     <ClockIcon className="size-3" />
@@ -119,7 +134,10 @@ function TaskListTable({ tasks = [], className }: TaskListTableProps) {
           ))}
           {tasks.length === 0 ? (
             <tr>
-              <td colSpan={5} className="px-3 py-6 text-center text-muted-foreground">
+              <td
+                colSpan={5}
+                className="text-muted-foreground px-3 py-6 text-center"
+              >
                 暂无任务
               </td>
             </tr>

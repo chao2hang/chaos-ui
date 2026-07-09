@@ -1,5 +1,5 @@
-import { BOMTreeEditor } from "@/components/business/bom-tree-editor";
-import { CodeBlock } from "@/components/code-block";
+import { BOMTreeEditor } from "@/components/business/bom-tree-editor"
+import { CodeBlock } from "@/components/code-block"
 
 # BomTreeEditor Bom Tree Editor
 
@@ -11,6 +11,7 @@ BomTreeEditor — a business component for ERP / enterprise scenarios.
 
 Use when you need a bom tree editor.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <BOMTreeEditor />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### BOMTreeEditor
 
-| Prop             | Type                   | Default | Description                       |
-| ---------------- | ---------------------- | ------- | --------------------------------- |
-| `className`      | `string`               | —       | Custom CSS class                  |
-| `items`          | `BOMItem[]`            | —       | BOM items (tree structure)        |
-| `onChange`       | `() => void`           | —       | Change callback                   |
-| `readOnly`       | `boolean`              | `false` | Read-only mode                    |
-| `showCostRollup` | `boolean`              | `true`  | Show cost rollup column           |
-| `currencySymbol` | `string`               | `¥`     | Currency symbol (default: "¥")    |
-| ...rest          | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `BOMItem[]` | — | BOM items (tree structure) |
+| `onChange` | `() => void` | — | Change callback |
+| `readOnly` | `boolean` | `false` | Read-only mode |
+| `showCostRollup` | `boolean` | `true` | Show cost rollup column |
+| `currencySymbol` | `string` | `¥` | Currency symbol (default: "¥") |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

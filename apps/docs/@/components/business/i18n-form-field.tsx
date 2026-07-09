@@ -81,29 +81,41 @@ function I18nFormField({
     translations[0]?.locale ?? "",
   );
 
-  const activeTranslation = translations.find((t) => t.locale === activeLocale) ?? translations[0];
+  const activeTranslation =
+    translations.find((t) => t.locale === activeLocale) ?? translations[0];
   const sourceTranslation = translations.find((t) => t.isSource);
   const completion = completionPct(translations);
 
   const completionColor =
-    completion === 100 ? "text-emerald-600" : completion >= 50 ? "text-amber-600" : "text-destructive";
+    completion === 100
+      ? "text-emerald-600"
+      : completion >= 50
+        ? "text-amber-600"
+        : "text-destructive";
 
   return (
     <div
       data-slot="i18n-form-field"
       data-field-key={fieldKey}
-      className={cn("space-y-2 rounded-lg border border-border bg-card p-4", className)}
+      className={cn(
+        "border-border bg-card space-y-2 rounded-lg border p-4",
+        className,
+      )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           {label && (
-            <label className="text-sm font-medium text-foreground">{label}</label>
+            <label className="text-foreground text-sm font-medium">
+              {label}
+            </label>
           )}
-          <span className="font-mono text-xs text-muted-foreground">{fieldKey}</span>
+          <span className="text-muted-foreground font-mono text-xs">
+            {fieldKey}
+          </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-muted-foreground">Translation:</span>
+          <span className="text-muted-foreground text-xs">Translation:</span>
           <Badge variant="outline" className={cn("text-xs", completionColor)}>
             {completion.toFixed(0)}%
           </Badge>
@@ -111,7 +123,10 @@ function I18nFormField({
       </div>
 
       {/* Locale tabs */}
-      <div className="flex flex-wrap gap-1 border-b border-border pb-2" data-slot="locale-tabs">
+      <div
+        className="border-border flex flex-wrap gap-1 border-b pb-2"
+        data-slot="locale-tabs"
+      >
         {translations.map((t) => {
           const isActive = t.locale === activeLocale;
           const isFilled = t.text.trim().length > 0;
@@ -138,7 +153,12 @@ function I18nFormField({
                 </span>
               )}
               {!t.isSource && (
-                <span className={cn("size-1.5 rounded-full", isFilled ? "bg-emerald-500" : "bg-muted-foreground/30")} />
+                <span
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    isFilled ? "bg-emerald-500" : "bg-muted-foreground/30",
+                  )}
+                />
               )}
             </button>
           );
@@ -148,38 +168,53 @@ function I18nFormField({
       {/* Editing area */}
       <div className="space-y-2">
         {/* Source reference (if not editing source) */}
-        {sourceTranslation && activeTranslation && !activeTranslation.isSource && (
-          <div data-slot="source-reference" className="rounded-md border border-blue-200 bg-blue-50 px-3 py-2 dark:border-blue-900 dark:bg-blue-950/30">
-            <div className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400">
-              <span>{sourceTranslation.flag}</span>
-              <span className="font-medium">Source ({sourceTranslation.label}):</span>
+        {sourceTranslation &&
+          activeTranslation &&
+          !activeTranslation.isSource && (
+            <div
+              data-slot="source-reference"
+              className="rounded-md border border-blue-200 bg-blue-50 px-3 py-2 dark:border-blue-900 dark:bg-blue-950/30"
+            >
+              <div className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400">
+                <span>{sourceTranslation.flag}</span>
+                <span className="font-medium">
+                  Source ({sourceTranslation.label}):
+                </span>
+              </div>
+              <div className="text-foreground mt-0.5 text-sm">
+                {sourceTranslation.text || "—"}
+              </div>
             </div>
-            <div className="mt-0.5 text-sm text-foreground">{sourceTranslation.text || "—"}</div>
-          </div>
-        )}
+          )}
 
         {/* Input */}
         <div>
           <div className="mb-1 flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground text-xs">
               {activeTranslation?.flag} {activeTranslation?.label}
               {activeTranslation?.isSource && " (Source)"}
             </span>
             {maxLength && (
-              <span className={cn(
-                "text-xs tabular-nums",
-                (activeTranslation?.text.length ?? 0) > maxLength ? "text-destructive" : "text-muted-foreground",
-              )}>
+              <span
+                className={cn(
+                  "text-xs tabular-nums",
+                  (activeTranslation?.text.length ?? 0) > maxLength
+                    ? "text-destructive"
+                    : "text-muted-foreground",
+                )}
+              >
                 {activeTranslation?.text.length ?? 0} / {maxLength}
               </span>
             )}
           </div>
           {multiline ? (
             <textarea
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              className="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-1 focus-visible:outline-none"
               rows={3}
               value={activeTranslation?.text ?? ""}
-              onChange={(e) => onTranslationChange?.(activeLocale, e.target.value)}
+              onChange={(e) =>
+                onTranslationChange?.(activeLocale, e.target.value)
+              }
               disabled={readOnly}
               aria-label={`Translation for ${activeTranslation?.label}`}
               maxLength={maxLength}
@@ -188,7 +223,9 @@ function I18nFormField({
             <Input
               className="text-sm"
               value={activeTranslation?.text ?? ""}
-              onChange={(e) => onTranslationChange?.(activeLocale, e.target.value)}
+              onChange={(e) =>
+                onTranslationChange?.(activeLocale, e.target.value)
+              }
               disabled={readOnly}
               aria-label={`Translation for ${activeTranslation?.label}`}
               maxLength={maxLength}

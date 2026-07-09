@@ -1,19 +1,17 @@
-import { RebutNodeSelect } from "@/components/business/rebut-node-select";
-import { CodeBlock } from "@/components/code-block";
+import { RebutNodeSelect } from "@/components/business/rebut-node-select"
+import { CodeBlock } from "@/components/code-block"
 
 # RebutNodeSelect Rebut Node Select
 
 > Domain-specific business components for ERP scenarios.
 
-<RebutNodeSelect
-  nodes={[{ id: "n1", name: "部门审批" }]}
-  onSelect={console.log}
-/>
+<RebutNodeSelect nodes={[{ id: "n1", name: "部门审批" }]} onSelect={console.log} />
 RebutNodeSelect — rebut node select component.
 
 ## When to Use
 
 Use when you need a rebut node select.
+
 
 ## Examples
 
@@ -25,17 +23,20 @@ export function Basic() {
   return <RebutNodeSelect />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### RebutNodeSelect
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `nodes`     | `Array<T>`             | —       |                                   |
-| `onSelect`  | `() => void`           | —       | Selection handler                 |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `nodes` | `Array<T>` | — |  |
+| `onSelect` | `() => void` | — | Selection handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

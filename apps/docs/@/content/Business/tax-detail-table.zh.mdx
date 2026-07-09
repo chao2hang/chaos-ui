@@ -1,5 +1,5 @@
-import { TaxDetailTable } from "@/components/business/tax-detail-table";
-import { CodeBlock } from "@/components/code-block";
+import { TaxDetailTable } from "@/components/business/tax-detail-table"
+import { CodeBlock } from "@/components/code-block"
 
 # TaxDetailTable Tax Detail Table
 
@@ -11,6 +11,7 @@ Tax Detail Table — 面向 ERP/企业场景的业务组件。
 
 适用于Tax Detail Table相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,23 +22,25 @@ export function Basic() {
   return <TaxDetailTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TaxDetailTable
 
-| Prop        | Type                   | Default | 说明                                       |
-| ----------- | ---------------------- | ------- | ------------------------------------------ |
-| `className` | `string`               | —       | 自定义样式类名                             |
-| `rows`      | `Array<{`              | —       | Taxable line items.                        |
-| `id`        | `string`               | —       | DOM 元素 id                                |
-| `name`      | `string`               | —       | 表单字段名                                 |
-| `amount`    | `number`               | —       | Taxable amount (currency units).           |
-| `taxRate`   | `number`               | —       | Tax rate as a fraction, e.g. 0.13 for 13%. |
-| `taxAmount` | `number`               | —       | Computed tax payable for this line.        |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                          |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `rows` | `Array<{` | — | Taxable line items. |
+| `id` | `string` | — | DOM 元素 id |
+| `name` | `string` | — | 表单字段名 |
+| `amount` | `number` | — | Taxable amount (currency units). |
+| `taxRate` | `number` | — | Tax rate as a fraction, e.g. 0.13 for 13%. |
+| `taxAmount` | `number` | — | Computed tax payable for this line. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-taxdetailtable--docs)。
+

@@ -1,5 +1,5 @@
-import { IconPicker } from "@/components/ui/icon-picker";
-import { CodeBlock } from "@/components/code-block";
+import { IconPicker } from "@/components/ui/icon-picker"
+import { CodeBlock } from "@/components/code-block"
 
 # IconPicker
 
@@ -10,6 +10,7 @@ IconPicker — a form controls for user input and data submission. from Chaos UI
 ## When to Use
 
 Use when you need an icon picker.
+
 
 ## Examples
 
@@ -23,40 +24,40 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <IconPicker size="sm">Sm</IconPicker>
   <IconPicker size="default">Default</IconPicker>
   <IconPicker size="lg">Lg</IconPicker>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **Size**
 
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
+| Size | Description | 默认 |
+|---|---|---|
+| `default` | Default size | ✓ |
+| `sm` | Small |  |
+| `lg` | Large |  |
 
 ## API / Props
 
 ### IconPicker
 
-| Prop                | Type                              | Default           | Description                                   |
-| ------------------- | --------------------------------- | ----------------- | --------------------------------------------- |
-| `className`         | `string`                          | —                 | Custom CSS class                              |
-| `value`             | `string`                          | —                 | Selected icon value                           |
-| `onChange`          | `() => void`                      | —                 | Change handler                                |
-| `icons`             | `Record<string, React.ReactNode>` | —                 | Icons to display - map of value to React node |
-| `columns`           | `number`                          | `6`               | Columns in the grid                           |
-| `searchPlaceholder` | `string`                          | `Search icons...` | Placeholder when searching                    |
-| ...rest             | `React.ComponentProps<"div">`     | —                 | Inherits all `<div>` attributes               |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Selected icon value |
+| `onChange` | `() => void` | — | Change handler |
+| `icons` | `Record<string, React.ReactNode>` | — | Icons to display - map of value to React node |
+| `columns` | `number` | `6` | Columns in the grid |
+| `searchPlaceholder` | `string` | `Search icons...` | Placeholder when searching |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,5 +1,5 @@
-import { MobileListItem } from "@/components/business/mobile-list-item";
-import { CodeBlock } from "@/components/code-block";
+import { MobileListItem } from "@/components/business/mobile-list-item"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileListItem Mobile List Item
 
@@ -12,6 +12,7 @@ MobileListItem — mobile list item component.
 
 Use when you need a mobile list item.
 
+
 ## Examples
 
 ### Basic Usage
@@ -22,19 +23,22 @@ export function Basic() {
   return <MobileListItem />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileListItem
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `title`     | `string`               | —       | Title                             |
-| `subtitle`  | `string`               | —       |                                   |
-| `trailing`  | `React.ReactNode`      | —       |                                   |
-| `onClick`   | `() => void`           | —       | Click handler                     |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `subtitle` | `string` | — |  |
+| `trailing` | `React.ReactNode` | — |  |
+| `onClick` | `() => void` | — | Click handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

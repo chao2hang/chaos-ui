@@ -1,0 +1,39 @@
+import { NotificationDropdown } from "@/components/ui/notification-dropdown"
+import { CodeBlock } from "@/components/code-block"
+
+# NotificationDropdown
+
+> Feedback components for user interaction and status.
+
+NotificationDropdown — Header notification dropdown panel with read/unread and clear all.
+
+## When to Use
+
+Use when you need a notificationdropdown.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { NotificationDropdown } from "@/components/ui/notification-dropdown"
+
+export function Basic() {
+  return <NotificationDropdown />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### NotificationDropdown
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -33,15 +33,15 @@ export function Basic() {
 
 ### SignaturePad
 
-| Prop        | Type         | Default | Description                          |
-| ----------- | ------------ | ------- | ------------------------------------ |
-| `className` | `string`     | —       | Custom CSS class                     |
-| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调   |
-| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调 |
+| Prop | Type | Default | Description |
+| ----------- | ------------ | ------- | ------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调    |
+| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调  |
 
 ### Imperative Handle (ref)
 
-| Method             | Type                                | Description                              |
+| Method | Type | Description |
 | ------------------ | ----------------------------------- | ---------------------------------------- |
 | `clear()`          | `() => void`                        | Clear the canvas / 清空画布              |
 | `isEmpty()`        | `() => boolean`                     | Check if canvas has ink / 检查是否有签名 |
@@ -53,3 +53,5 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **Canvas API**: 基于 HTML5 Canvas 实现，需浏览器支持。
+
+

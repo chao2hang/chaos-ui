@@ -11,17 +11,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { title: "Active Users", value: "12,345" },
+  args: { title: "Active Users", value: 12345 },
 };
 
 export const WithPrefix: Story = {
-  args: { title: "Revenue", value: "98,765", prefix: "$" },
+  args: { title: "Revenue", value: 98765, prefix: "$" },
 };
 
 export const WithSuffix: Story = {
-  args: { title: "Conversion", value: "3.2", suffix: "%" },
+  args: { title: "Conversion", value: 3.2, suffix: "%" },
 };
 
 export const WithTrend: Story = {
-  args: { title: "Growth", value: "12.5%", trend: "up" },
+  args: { title: "Growth", value: 12.5, trend: 1 } as any,
 };

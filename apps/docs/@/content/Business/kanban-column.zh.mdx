@@ -1,5 +1,5 @@
-import { KanbanColumn } from "@/components/business/kanban-column";
-import { CodeBlock } from "@/components/code-block";
+import { KanbanColumn } from "@/components/business/kanban-column"
+import { CodeBlock } from "@/components/code-block"
 
 # KanbanColumn Kanban Column
 
@@ -11,6 +11,7 @@ Kanban Column — 面向 ERP/企业场景的业务组件。
 
 适用于Kanban Column相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,25 +22,27 @@ export function Basic() {
   return <KanbanColumn />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### KanbanColumn
 
-| Prop          | Type                   | Default    | 说明              |
-| ------------- | ---------------------- | ---------- | ----------------- |
-| `className`   | `string`               | —          | 自定义样式类名    |
-| `title`       | `string`               | `未命名列` | 标题              |
-| `accent`      | `string`               | `primary`  | 列强调色          |
-| `cards`       | `Array<{`              | —          | 卡片列表          |
-| `id`          | `string`               | —          | DOM 元素 id       |
-| `label`       | `string`               | —          | 标签文本          |
-| `assignee`    | `string`               | —          |                   |
-| `onAddCard`   | `() => void`           | —          | 新增卡片回调      |
-| `onCardClick` | `() => void`           | —          | 卡片点击回调      |
-| ...rest       | `React.HTMLAttributes` | —          | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | `未命名列` | 标题 |
+| `accent` | `string` | `primary` | 列强调色 |
+| `cards` | `Array<{` | — | 卡片列表 |
+| `id` | `string` | — | DOM 元素 id |
+| `label` | `string` | — | 标签文本 |
+| `assignee` | `string` | — |  |
+| `onAddCard` | `() => void` | — | 新增卡片回调 |
+| `onCardClick` | `() => void` | — | 卡片点击回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-kanbancolumn--docs)。
+

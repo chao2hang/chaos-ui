@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Single: Story = {
   render: () => (
-    <ToggleGroup type="single" defaultValue="bold">
+    <ToggleGroup {...({ type: "single", defaultValue: "bold" } as any)}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="size-4" />
       </ToggleGroupItem>
@@ -28,7 +28,7 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <ToggleGroup type="multiple" defaultValue={["bold", "italic"]}>
+    <ToggleGroup {...({ type: "multiple", defaultValue: ["bold", "italic"] } as any)}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="size-4" />
       </ToggleGroupItem>
@@ -44,7 +44,7 @@ export const Multiple: Story = {
 
 export const WithText: Story = {
   render: () => (
-    <ToggleGroup type="single" defaultValue="left">
+    <ToggleGroup {...({ type: "single", defaultValue: "left" } as any)}>
       <ToggleGroupItem value="left">Left</ToggleGroupItem>
       <ToggleGroupItem value="center">Center</ToggleGroupItem>
       <ToggleGroupItem value="right">Right</ToggleGroupItem>

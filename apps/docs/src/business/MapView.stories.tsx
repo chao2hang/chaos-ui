@@ -35,7 +35,6 @@ export const Default: Story = {
   args: {
     center: [35.8617, 104.1954],
     zoom: 4,
-    markers,
   },
 };
 
@@ -43,7 +42,6 @@ export const ZoomedIn: Story = {
   args: {
     center: [39.9042, 116.4074],
     zoom: 13,
-    markers: [markers[0]],
     height: 500,
   },
 };
@@ -52,7 +50,6 @@ export const Dark: Story = {
   args: {
     center: [35.8617, 104.1954],
     zoom: 4,
-    markers,
   },
   parameters: { backgrounds: { default: "dark" } },
 };

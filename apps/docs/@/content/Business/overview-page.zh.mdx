@@ -1,5 +1,5 @@
-import { OverviewPage } from "@/components/business/overview-page";
-import { CodeBlock } from "@/components/code-block";
+import { OverviewPage } from "@/components/business/overview-page"
+import { CodeBlock } from "@/components/code-block"
 
 # OverviewPage Overview Page
 
@@ -11,6 +11,7 @@ Overview Page — 面向 ERP/企业场景的业务组件。
 
 适用于Overview Page相关场景。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,25 +22,27 @@ export function Basic() {
   return <OverviewPage />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### OverviewPage
 
-| Prop         | Type                   | Default | 说明              |
-| ------------ | ---------------------- | ------- | ----------------- |
-| `className`  | `string`               | —       | 自定义样式类名    |
-| `title`      | `string`               | `总览`  | 页面标题          |
-| `subtitle`   | `string`               | ``      | 副标题            |
-| `kpis`       | `Array<{`              | —       | KPI 指标数组      |
-| `label`      | `string`               | —       | 标签文本          |
-| `value`      | `number`               | —       | 当前值(受控)      |
-| `delta`      | `number`               | —       |                   |
-| `unit`       | `string`               | —       |                   |
-| `activities` | `Array<T>`             | —       | 最近活动条目      |
-| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | `总览` | 页面标题 |
+| `subtitle` | `string` | `` | 副标题 |
+| `kpis` | `Array<{` | — | KPI 指标数组 |
+| `label` | `string` | — | 标签文本 |
+| `value` | `number` | — | 当前值(受控) |
+| `delta` | `number` | — |  |
+| `unit` | `string` | — |  |
+| `activities` | `Array<T>` | — | 最近活动条目 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-overviewpage--docs)。
+

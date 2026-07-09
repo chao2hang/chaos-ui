@@ -135,10 +135,10 @@ function flattenTree<T extends Record<string, unknown>>(
   const result: FlatRow<T>[] = [];
 
   for (const node of tree) {
-    const key = (node as Record<string, unknown>)[rowKeyField] as string | number;
+    const key = (node as Record<string, unknown>)[rowKeyField] as
+      string | number;
     const children = (node as Record<string, unknown>)[childrenField] as
-      | T[]
-      | undefined;
+      T[] | undefined;
     const hasChildren = Array.isArray(children) && children.length > 0;
     const isExpanded = expanded.has(key);
 
@@ -146,7 +146,13 @@ function flattenTree<T extends Record<string, unknown>>(
 
     if (hasChildren && isExpanded) {
       result.push(
-        ...flattenTree(children, rowKeyField, childrenField, expanded, depth + 1),
+        ...flattenTree(
+          children,
+          rowKeyField,
+          childrenField,
+          expanded,
+          depth + 1,
+        ),
       );
     }
   }
@@ -166,8 +172,7 @@ function applyChanges<T extends Record<string, unknown>>(
   return data.map((node) => {
     const key = String((node as Record<string, unknown>)[rowKeyField]);
     const children = (node as Record<string, unknown>)[childrenField] as
-      | T[]
-      | undefined;
+      T[] | undefined;
     let updated = node;
 
     const rowChanges = changes.get(key);
@@ -214,8 +219,7 @@ function computeDirtyRows<T extends Record<string, unknown>>(
         dirty.push(node);
       }
       const children = (node as Record<string, unknown>)[childrenField] as
-        | T[]
-        | undefined;
+        T[] | undefined;
       if (Array.isArray(children) && children.length > 0) {
         walk(children);
       }
@@ -332,7 +336,7 @@ function SelectEditor({
           onCancel();
         }
       }}
-      className="h-7 rounded border border-input bg-background px-1 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+      className="border-input bg-background focus:ring-ring h-7 rounded border px-1 text-sm focus:ring-1 focus:outline-none"
     >
       {options.map((opt) => (
         <option key={String(opt.value)} value={String(opt.value)}>
@@ -548,20 +552,17 @@ function EditableTreeTable<T extends Record<string, unknown>>({
   }, [onCancel]);
 
   /** Toggle expand/collapse. */
-  const handleToggleExpand = React.useCallback(
-    (key: string | number) => {
-      setInternalExpanded((prev) => {
-        const next = new Set(prev);
-        if (next.has(key)) {
-          next.delete(key);
-        } else {
-          next.add(key);
-        }
-        return next;
-      });
-    },
-    [],
-  );
+  const handleToggleExpand = React.useCallback((key: string | number) => {
+    setInternalExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  }, []);
 
   /* ---- size padding ---- */
   const sizePadding =
@@ -594,8 +595,7 @@ function EditableTreeTable<T extends Record<string, unknown>>({
           data-dirty={dirty || undefined}
           className={cn(
             "group/cell relative min-h-[1.5rem] rounded px-1 py-0.5 transition-colors",
-            isColumnEditable(col, row) &&
-              "cursor-pointer hover:bg-muted/50",
+            isColumnEditable(col, row) && "hover:bg-muted/50 cursor-pointer",
             dirty && "bg-warning/10",
           )}
           onClick={() => startEditing(rowKeyValue, col, row)}
@@ -613,7 +613,7 @@ function EditableTreeTable<T extends Record<string, unknown>>({
         >
           {displayContent}
           {isColumnEditable(col, row) && !dirty && (
-            <PencilIcon className="absolute right-0.5 top-0.5 size-3 text-muted-foreground opacity-0 transition-opacity group-hover/cell:opacity-100" />
+            <PencilIcon className="text-muted-foreground absolute top-0.5 right-0.5 size-3 opacity-0 transition-opacity group-hover/cell:opacity-100" />
           )}
         </div>
       );
@@ -652,7 +652,7 @@ function EditableTreeTable<T extends Record<string, unknown>>({
         {editError && (
           <p
             data-slot="editable-cell-error"
-            className="mt-0.5 text-xs text-destructive"
+            className="text-destructive mt-0.5 text-xs"
           >
             {editError}
           </p>
@@ -665,15 +665,18 @@ function EditableTreeTable<T extends Record<string, unknown>>({
   return (
     <div
       data-slot="editable-tree-table"
-      className={cn("overflow-x-auto rounded-lg border border-border", className)}
+      className={cn(
+        "border-border overflow-x-auto rounded-lg border",
+        className,
+      )}
     >
       {/* Toolbar */}
       {showToolbar && editMode && (
         <div
           data-slot="editable-tree-table-toolbar"
-          className="sticky bottom-0 z-10 flex items-center justify-between border-t border-border bg-background px-3 py-2"
+          className="border-border bg-background sticky bottom-0 z-10 flex items-center justify-between border-t px-3 py-2"
         >
-          <span className="text-sm text-muted-foreground">
+          <span className="text-muted-foreground text-sm">
             {dirtyCount > 0
               ? `${dirtyCount} unsaved change${dirtyCount > 1 ? "s" : ""}`
               : "No changes"}
@@ -737,7 +740,7 @@ function EditableTreeTable<T extends Record<string, unknown>>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="py-12 text-center text-muted-foreground"
+                className="text-muted-foreground py-12 text-center"
               >
                 {emptyText}
               </TableCell>
@@ -746,8 +749,15 @@ function EditableTreeTable<T extends Record<string, unknown>>({
             flatRows.map((fr, idx) => (
               <TableRow key={fr.key} data-depth={fr.depth}>
                 {columns.map((col, colIdx) => {
-                  const value = getCellValue(fr.key, col.key, fr.row as unknown as T);
-                  const isEditable = isColumnEditable(col, fr.row as unknown as T);
+                  const value = getCellValue(
+                    fr.key,
+                    col.key,
+                    fr.row as unknown as T,
+                  );
+                  const isEditable = isColumnEditable(
+                    col,
+                    fr.row as unknown as T,
+                  );
 
                   return (
                     <TableCell
@@ -773,10 +783,8 @@ function EditableTreeTable<T extends Record<string, unknown>>({
                               type="button"
                               data-slot="editable-tree-table-expand"
                               onClick={() => handleToggleExpand(fr.key)}
-                              className="inline-flex size-5 shrink-0 items-center justify-center rounded hover:bg-muted"
-                              aria-label={
-                                fr.isExpanded ? "Collapse" : "Expand"
-                              }
+                              className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
+                              aria-label={fr.isExpanded ? "Collapse" : "Expand"}
                             >
                               {fr.isExpanded ? (
                                 <ChevronDownIcon className="size-4" />
@@ -790,22 +798,30 @@ function EditableTreeTable<T extends Record<string, unknown>>({
                           )}
                           <span className="min-w-0 flex-1">
                             {isEditable
-                              ? renderEditor(col, fr.row as unknown as T, fr.key)
-                              : (col.render
-                                  ? col.render(
-                                      value as T[keyof T],
-                                      fr.row as unknown as T,
-                                      idx,
-                                    )
-                                  : ((value as React.ReactNode) ?? "\u2014"))}
+                              ? renderEditor(
+                                  col,
+                                  fr.row as unknown as T,
+                                  fr.key,
+                                )
+                              : col.render
+                                ? col.render(
+                                    value as T[keyof T],
+                                    fr.row as unknown as T,
+                                    idx,
+                                  )
+                                : ((value as React.ReactNode) ?? "\u2014")}
                           </span>
                         </span>
                       ) : isEditable ? (
                         renderEditor(col, fr.row as unknown as T, fr.key)
+                      ) : col.render ? (
+                        col.render(
+                          value as T[keyof T],
+                          fr.row as unknown as T,
+                          idx,
+                        )
                       ) : (
-                        (col.render
-                          ? col.render(value as T[keyof T], fr.row as unknown as T, idx)
-                          : ((value as React.ReactNode) ?? "\u2014"))
+                        ((value as React.ReactNode) ?? "\u2014")
                       )}
                     </TableCell>
                   );
@@ -820,7 +836,4 @@ function EditableTreeTable<T extends Record<string, unknown>>({
 }
 
 export { EditableTreeTable };
-export type {
-  EditableTreeTableProps,
-  EditableTreeTableColumn,
-};
+export type { EditableTreeTableProps, EditableTreeTableColumn };

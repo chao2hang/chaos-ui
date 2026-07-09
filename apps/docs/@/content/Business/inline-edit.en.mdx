@@ -1,5 +1,5 @@
-import { InlineEdit } from "@/components/business/inline-edit";
-import { CodeBlock } from "@/components/code-block";
+import { InlineEdit } from "@/components/business/inline-edit"
+import { CodeBlock } from "@/components/code-block"
 
 # InlineEdit
 
@@ -11,6 +11,7 @@ InlineEdit — a business component for ERP / enterprise scenarios.
 
 Use when you need an inline edit.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <InlineEdit />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### InlineEdit
 
-| Prop          | Type                           | Default    | Description                      |
-| ------------- | ------------------------------ | ---------- | -------------------------------- |
-| `className`   | `string`                       | —          | Custom CSS class                 |
-| `value`       | `string`                       | —          | Current value (controlled)       |
-| `onChange`    | `() => void`                   | —          | Callback when value changes      |
-| `onSave`      | `() => void`                   | —          |                                  |
-| `placeholder` | `string`                       | `点击编辑` | Placeholder text                 |
-| ...rest       | `React.ComponentProps<"span">` | —          | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `onSave` | `() => void` | — |  |
+| `placeholder` | `string` | `点击编辑` | Placeholder text |
+| ...rest | `React.ComponentProps<"span">` | — | Inherits all `<span>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

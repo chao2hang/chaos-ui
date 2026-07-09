@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AuditLog } from "@/components/business/audit-log";
 
-const entries = [
+  const entries: any[] = [
   {
     id: "1",
     actor: { name: "Alice" },
@@ -29,7 +29,7 @@ const entries = [
     id: "4",
     actor: { name: "Alice" },
     action: "login",
-    target: undefined,
+    target: "System",
     timestamp: Date.now() - 60_000,
     ip: "192.168.1.100",
   },
@@ -37,7 +37,7 @@ const entries = [
     id: "5",
     actor: { name: "Bob" },
     action: "logout",
-    target: undefined,
+    target: "System",
     timestamp: Date.now() - 30_000,
   },
 ];
@@ -53,7 +53,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    entries,
+    entries: entries as any,
   },
 };
 
@@ -65,7 +65,7 @@ export const WithChanges: Story = {
 
 export const Dark: Story = {
   args: {
-    entries,
+    entries: entries as any,
   },
   parameters: { backgrounds: { default: "dark" } },
 };

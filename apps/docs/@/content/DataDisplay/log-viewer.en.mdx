@@ -1,0 +1,39 @@
+import { LogViewer } from "@/components/business/log-viewer"
+import { CodeBlock } from "@/components/code-block"
+
+# LogViewer
+
+> Data display components for presenting information.
+
+LogViewer — Streaming log viewer with search, filter and auto-scroll.
+
+## When to Use
+
+Use when you need a logviewer.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { LogViewer } from "@/components/business/log-viewer"
+
+export function Basic() {
+  return <LogViewer />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### LogViewer
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

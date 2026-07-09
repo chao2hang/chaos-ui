@@ -1,0 +1,39 @@
+import { ProgressiveImage } from "@/components/ui/progressive-image"
+import { CodeBlock } from "@/components/code-block"
+
+# ProgressiveImage
+
+> Data display components for presenting information.
+
+ProgressiveImage — Progressive image loading with blur-up cross-fade.
+
+## When to Use
+
+Use when you need a progressiveimage.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ProgressiveImage } from "@/components/ui/progressive-image"
+
+export function Basic() {
+  return <ProgressiveImage />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ProgressiveImage
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

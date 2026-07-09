@@ -1,5 +1,5 @@
-import { PrintTemplateLayout } from "@/components/layout/print-template-layout";
-import { CodeBlock } from "@/components/code-block";
+import { PrintTemplateLayout } from "@/components/layout/print-template-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # PrintTemplateLayout Print Template Layout
 
@@ -11,6 +11,7 @@ PrintTemplateLayout — a system-level layout shell for admin/dashboard/auth pag
 
 Use when you need a print template layout.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,16 +22,19 @@ export function Basic() {
   return <PrintTemplateLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PrintTemplateLayout
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `title`     | `string`               | —       | Page title rendered as an `<h1>`. |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Page title rendered as an `<h1>`. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -686,7 +686,7 @@ function MenuDemo() {
             shortcut: "⌘⌫",
           },
           { key: "disabled", label: "Archived", disabled: true },
-        ]}
+        ] as any}
       />
     </div>
   );
@@ -771,7 +771,7 @@ function AuditLogDemo() {
   ];
   return (
     <div className="w-full max-w-xl">
-      <AuditLog entries={entries} />
+      <AuditLog entries={entries as any} />
     </div>
   );
 }
@@ -782,11 +782,13 @@ function CampaignCardDemo() {
       <CampaignCard
         name="春季新品上线"
         status="active"
-        startDate="2026-03-01"
-        endDate="2026-03-31"
+        dateRange="2026-03-01 ~ 2026-03-31"
         budget={42000}
-        location="华东"
-        reachCount={124000}
+        channels={[]}
+        spent={21000}
+        metrics={[
+          { label: "触达", value: 124000 },
+        ]}
       />
     </div>
   );
@@ -877,7 +879,7 @@ function BannerDemo() {
 function AnnouncementBannerDemo() {
   return (
     <div className="w-full max-w-xl">
-      <AnnouncementBanner message="🎉 Chaos UI v1.0 已发布,欢迎升级体验。" />
+      <AnnouncementBanner announcements={[{ id: "1", title: "Chaos UI v1.0 已发布,欢迎升级体验。", priority: "info" }]} />
     </div>
   );
 }
@@ -927,9 +929,9 @@ function RatingDemo() {
 function BillStatusBarDemo() {
   return (
     <div className="flex flex-col items-center gap-3">
-      <BillStatusBar currentStatus="pending" />
-      <BillStatusBar currentStatus="approved" />
-      <BillStatusBar currentStatus="rejected" />
+      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "current" }]} />
+      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "completed" }]} />
+      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "rejected" }]} />
     </div>
   );
 }
@@ -1017,54 +1019,23 @@ function PopconfirmDemo() {
 
 function MessageProviderDemo() {
   return (
-    <MessageProvider>
-      <div className="flex flex-wrap gap-2">
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => {
-            const ctx = React.useContext(MessageContext);
-            ctx?.show({ content: "操作成功！", type: "success" });
-          }}
-        >
-          成功消息
-        </Button>
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => {
-            const ctx = React.useContext(MessageContext);
-            ctx?.show({ content: "操作失败", type: "error" });
-          }}
-        >
-          错误消息
-        </Button>
-      </div>
-    </MessageProvider>
+    <div className="flex flex-wrap gap-2">
+      <MessageProvider />
+      <p className="text-muted-foreground text-sm">
+        MessageProvider 提供全局消息弹窗上下文
+      </p>
+    </div>
   );
 }
 
 function ModalProviderDemo() {
   return (
-    <ModalProvider>
-      <div className="space-y-4 text-center">
-        <p className="text-muted-foreground text-sm">
-          ModalProvider 提供全局弹窗上下文
-        </p>
-        <Button
-          size="sm"
-          onClick={() => {
-            const ctx = React.useContext(ModalContext);
-            ctx?.openModal({
-              title: "示例弹窗",
-              content: <p className="text-sm">管理的弹窗</p>,
-            });
-          }}
-        >
-          打开弹窗
-        </Button>
-      </div>
-    </ModalProvider>
+    <div className="space-y-4 text-center">
+      <ModalProvider />
+      <p className="text-muted-foreground text-sm">
+        ModalProvider 提供全局弹窗上下文
+      </p>
+    </div>
   );
 }
 

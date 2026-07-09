@@ -1,5 +1,5 @@
-import { Tag } from "@/components/ui/tag";
-import { CodeBlock } from "@/components/code-block";
+import { Tag } from "@/components/ui/tag"
+import { CodeBlock } from "@/components/code-block"
 
 # Tag 标签
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要标签功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,71 +24,66 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag variant="default">Default</Tag>
   <Tag variant="secondary">Secondary</Tag>
   <Tag variant="destructive">Destructive</Tag>
   <Tag variant="outline">Outline</Tag>
   <Tag variant="success">Success</Tag>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag size="sm">Sm</Tag>
   <Tag size="default">Default</Tag>
   <Tag size="lg">Lg</Tag>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **变体**
 
-| Variant       | 说明          | 默认 |
-| ------------- | ------------- | ---- |
-| `default`     | 默认样式      | ✓    |
-| `secondary`   | 次要样式      |      |
-| `destructive` | 危险/删除样式 |      |
-| `outline`     | 描边样式      |      |
-| `success`     | 成功状态      |      |
-| `warning`     | 警告状态      |      |
-| `info`        | 信息提示      |      |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `secondary` | 次要样式 |  |
+| `destructive` | 危险/删除样式 |  |
+| `outline` | 描边样式 |  |
+| `success` | 成功状态 |  |
+| `warning` | 警告状态 |  |
+| `info` | 信息提示 |  |
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 | ✓ |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
 
 **rounded**
 
-| rounded   | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `default` |      | ✓    |
-| `full`    |      |      |
-| `none`    |      |      |
+| rounded | 说明 | 默认 |
+|---|---|---|
+| `default` |  | ✓ |
+| `full` |  |  |
+| `none` |  |  |
 
 ## API / Props
 
 ### Tag
 
-| Prop        | Type                           | Default | 说明                                  |
-| ----------- | ------------------------------ | ------- | ------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名                        |
-| `closable`  | `boolean`                      | `false` | Whether the tag can be closed/removed |
-| `onClose`   | `() => void`                   | —       | Called when close button is clicked   |
-| `icon`      | `React.ReactNode`              | —       | Icon element                          |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性                |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `closable` | `boolean` | `false` | Whether the tag can be closed/removed |
+| `onClose` | `() => void` | — | Called when close button is clicked |
+| `icon` | `React.ReactNode` | — | Icon element |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 |
 
 ## 注意事项
 
@@ -96,3 +92,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tag--docs)。
+

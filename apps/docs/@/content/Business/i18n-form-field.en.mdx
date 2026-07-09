@@ -1,5 +1,5 @@
-import { I18nFormField } from "@/components/business/i18n-form-field";
-import { CodeBlock } from "@/components/code-block";
+import { I18nFormField } from "@/components/business/i18n-form-field"
+import { CodeBlock } from "@/components/code-block"
 
 # I18nFormField I18N Form Field
 
@@ -11,6 +11,7 @@ I18nFormField — a business component for ERP / enterprise scenarios.
 
 Use when you need an i18n form field.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,22 +22,25 @@ export function Basic() {
   return <I18nFormField />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### I18nFormField
 
-| Prop                  | Type                   | Default | Description                       |
-| --------------------- | ---------------------- | ------- | --------------------------------- |
-| `className`           | `string`               | —       | Custom CSS class                  |
-| `fieldKey`            | `string`               | —       | Field key / identifier.           |
-| `label`               | `string`               | —       | Field label.                      |
-| `translations`        | `LocaleTranslation[]`  | —       | Translations for each locale.     |
-| `onTranslationChange` | `() => void`           | —       | On translation change.            |
-| `multiline`           | `boolean`              | `false` | Textarea mode for long text.      |
-| `maxLength`           | `number`               | —       | Max character limit.              |
-| `readOnly`            | `boolean`              | `false` | Read-only mode.                   |
-| ...rest               | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `fieldKey` | `string` | — | Field key / identifier. |
+| `label` | `string` | — | Field label. |
+| `translations` | `LocaleTranslation[]` | — | Translations for each locale. |
+| `onTranslationChange` | `() => void` | — | On translation change. |
+| `multiline` | `boolean` | `false` | Textarea mode for long text. |
+| `maxLength` | `number` | — | Max character limit. |
+| `readOnly` | `boolean` | `false` | Read-only mode. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

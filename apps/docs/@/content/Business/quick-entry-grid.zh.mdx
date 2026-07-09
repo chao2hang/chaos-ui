@@ -1,17 +1,16 @@
-import { QuickEntryGrid } from "@/components/business/quick-entry-grid";
-import { CodeBlock } from "@/components/code-block";
+import { QuickEntryGrid } from "@/components/business/quick-entry-grid"
+import { CodeBlock } from "@/components/code-block"
 
 # QuickEntryGrid Quick Entry Grid
 
 > 业务组件
 
-<QuickEntryGrid
-  entries={[{ id: "bill", label: "新建账单", onClick: () => {} }]}
-/>
+<QuickEntryGrid entries={[{ id: "bill", label: "新建账单", onClick: () => {} }]} />
 
 ## 何时使用
 
 适用于Quick Entry Grid相关场景。
+
 
 ## 代码示例
 
@@ -23,22 +22,24 @@ export function Basic() {
   return <QuickEntryGrid />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### QuickEntryGrid
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| `entries`   | `Array<{`              | —       |                   |
-| `id`        | `string`               | —       | DOM 元素 id       |
-| `icon`      | `React.ReactNode`      | —       | 图标元素          |
-| `label`     | `string`               | —       | 标签文本          |
-| `onClick`   | `() => void`           | —       | 点击回调          |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `entries` | `Array<{` | — |  |
+| `id` | `string` | — | DOM 元素 id |
+| `icon` | `React.ReactNode` | — | 图标元素 |
+| `label` | `string` | — | 标签文本 |
+| `onClick` | `() => void` | — | 点击回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-quickentrygrid--docs)。
+

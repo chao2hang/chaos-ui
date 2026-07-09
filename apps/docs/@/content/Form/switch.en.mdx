@@ -1,5 +1,5 @@
-import { Switch } from "@/components/ui/switch";
-import { CodeBlock } from "@/components/code-block";
+import { Switch } from "@/components/ui/switch"
+import { CodeBlock } from "@/components/code-block"
 
 # Switch
 
@@ -10,6 +10,7 @@ Toggle switch representing binary state — more visually intuitive than a check
 ## When to Use
 
 Toggle between two states, typically on/off or enabled/disabled.
+
 
 ## Examples
 
@@ -23,22 +24,22 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<Switch>Normal</Switch>
-<Switch disabled>Disabled</Switch>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<Switch>Normal</Switch>
+<Switch disabled>Disabled</Switch>`} lang="tsx" />
+
 
 ## API / Props
 
 ### Switch
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

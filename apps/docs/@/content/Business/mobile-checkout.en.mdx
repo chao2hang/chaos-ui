@@ -1,5 +1,5 @@
-import { MobileCheckout } from "@/components/mobile/mobile-checkout";
-import { CodeBlock } from "@/components/code-block";
+import { MobileCheckout } from "@/components/mobile/mobile-checkout"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileCheckout Mobile Checkout
 
@@ -11,6 +11,7 @@ MobileCheckout — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile checkout.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,21 +22,24 @@ export function Basic() {
   return <MobileCheckout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileCheckout
 
-| Prop        | Type                   | Default   | Description                       |
-| ----------- | ---------------------- | --------- | --------------------------------- |
-| `className` | `string`               | —         | Custom CSS class                  |
-| `total`     | `string`               | —         | Total amount string.              |
-| `itemCount` | `number`               | —         | Item count.                       |
-| `payLabel`  | `string`               | `Pay Now` | Pay button label.                 |
-| `isLoading` | `boolean`              | —         | Whether payment is in progress.   |
-| `onPay`     | `() => void`           | —         | Called when user taps pay.        |
-| `onBack`    | `() => void`           | —         | Called when user taps back.       |
-| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `total` | `string` | — | Total amount string. |
+| `itemCount` | `number` | — | Item count. |
+| `payLabel` | `string` | `Pay Now` | Pay button label. |
+| `isLoading` | `boolean` | — | Whether payment is in progress. |
+| `onPay` | `() => void` | — | Called when user taps pay. |
+| `onBack` | `() => void` | — | Called when user taps back. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

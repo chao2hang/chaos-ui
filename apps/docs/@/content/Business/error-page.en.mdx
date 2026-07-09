@@ -1,10 +1,5 @@
-import {
-  ErrorPage,
-  NotFound,
-  InternalError,
-  Unauthorized,
-} from "@/components/business/error-page";
-import { CodeBlock } from "@/components/code-block";
+import { ErrorPage, NotFound, InternalError, Unauthorized } from "@/components/business/error-page"
+import { CodeBlock } from "@/components/code-block"
 
 # ErrorPage
 
@@ -16,6 +11,7 @@ ErrorPage — a business component for ERP / enterprise scenarios.
 
 Use when you need an error page.
 
+
 ## Examples
 
 ### Basic Usage
@@ -26,23 +22,26 @@ export function Basic() {
   return <ErrorPage>Default</ErrorPage>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ErrorPage
 
-| Prop           | Type                       | Default | Description                       |
-| -------------- | -------------------------- | ------- | --------------------------------- |
-| `className`    | `string`                   | —       | Custom CSS class                  |
-| `status`       | `403 \| 404 \| 500 \| 503` | `404`   | Status                            |
-| `title`        | `string`                   | —       | Title                             |
-| `description`  | `string`                   | —       | Description text                  |
-| `homeHref`     | `string`                   | `/`     |                                   |
-| `showHome`     | `boolean`                  | `true`  |                                   |
-| `showBack`     | `boolean`                  | `true`  |                                   |
-| `onBack`       | `() => void`               | —       |                                   |
-| `illustration` | `React.ReactNode`          | —       |                                   |
-| ...rest        | `React.HTMLAttributes`     | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `status` | `403 \| 404 \| 500 \| 503` | `404` | Status |
+| `title` | `string` | — | Title |
+| `description` | `string` | — | Description text |
+| `homeHref` | `string` | `/` |  |
+| `showHome` | `boolean` | `true` |  |
+| `showBack` | `boolean` | `true` |  |
+| `onBack` | `() => void` | — |  |
+| `illustration` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+

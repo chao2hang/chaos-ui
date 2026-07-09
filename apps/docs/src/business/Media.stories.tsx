@@ -37,7 +37,7 @@ export const GalleryExample: Story = {
   render: () => (
     <div className="max-w-3xl space-y-3">
       <h3 className="text-sm font-medium">Image Gallery 3 列</h3>
-      <ImageGallery images={moreImages} columns={3} />
+      <ImageGallery images={moreImages as any} />
     </div>
   ),
 }
@@ -46,7 +46,7 @@ export const GalleryFiveCol: Story = {
   render: () => (
     <div className="max-w-4xl space-y-3">
       <h3 className="text-sm font-medium">Image Gallery 5 列</h3>
-      <ImageGallery images={sampleImages} columns={5} />
+      <ImageGallery images={sampleImages as any} />
     </div>
   ),
 }
@@ -58,7 +58,6 @@ export const VideoExample: Story = {
       <VideoPlayer
         src={DEMO_VIDEO}
         title="Sprite Fight"
-        crossOrigin="anonymous"
       />
     </div>
   ),
@@ -83,7 +82,6 @@ export const VideoAutoplayMuted: Story = {
       <VideoPlayer
         src={DEMO_VIDEO}
         title="Sprite Fight"
-        crossOrigin="anonymous"
         autoplay
       />
     </div>
@@ -97,7 +95,6 @@ export const VideoWithPoster: Story = {
       <VideoPlayer
         src={DEMO_VIDEO}
         title="Sprite Fight"
-        crossOrigin="anonymous"
       />
     </div>
   ),
@@ -123,7 +120,6 @@ export const PDFExample: Story = {
       <PDFViewer
         src="/sample.pdf"
         title="产品白皮书 2026"
-        height={500}
       />
     </div>
   ),
@@ -134,7 +130,7 @@ export const AllVariants: Story = {
     <div className="max-w-5xl space-y-8">
       <section>
         <h3 className="mb-3 text-base font-semibold">Image Gallery</h3>
-        <ImageGallery images={sampleImages} columns={4} />
+        <ImageGallery images={sampleImages as any} />
       </section>
       <section>
         <h3 className="mb-3 text-base font-semibold">Audio Player</h3>
@@ -150,7 +146,7 @@ export const AllVariants: Story = {
       <section>
         <h3 className="mb-3 text-base font-semibold">PDF Viewer</h3>
         <div className="h-96">
-          <PDFViewer src="/sample.pdf" title="文档" height={384} />
+          <PDFViewer src="/sample.pdf" title="文档" />
         </div>
       </section>
     </div>
