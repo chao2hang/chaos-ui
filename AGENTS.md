@@ -5,7 +5,8 @@ This project is a Storybook-first React/Next.js component library for Chaos UI.
 ## Project Defaults
 
 - Primary component browser: Storybook.
-- Daily development command: `npm run dev` starts the docs site on port `3001`.
+- Daily development command: `pnpm run dev:all` starts tsup --watch + docs site on port `3001` (component source changes auto-rebuild and hot-reload).
+- Docs-only development: `pnpm run dev` starts just the docs site.
 - Next.js app command: `npm run app:dev`.
 - Prefer npm scripts in docs and examples unless a task explicitly targets another package manager.
 - Do not restore the old `/styleguide` app as the main component browsing surface.

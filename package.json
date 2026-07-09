@@ -110,6 +110,8 @@
   "packageManager": "pnpm@11.3.0",
   "scripts": {
     "dev": "pnpm --filter chaos-ui-docs dev:next",
+    "dev:pkg": "tsup --watch components --watch hooks --watch lib --watch package",
+    "dev:all": "concurrently -n pkg,docs -c blue,green \"pnpm:dev:pkg\" \"pnpm:dev\"",
     "dev:sb": "storybook dev -p 6006",
     "dev:app": "next dev",
     "build": "pnpm --filter chaos-ui-docs build",
