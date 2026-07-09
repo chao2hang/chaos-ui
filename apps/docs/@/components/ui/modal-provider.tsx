@@ -1,131 +1,172 @@
 "use client";
 
+/**
+ * @component ModalProvider
+ * @category ui/feedback
+ * @since 0.3.0
+ * @description Mounts the global modal host at app root. Required for `Modal.confirm()` static API to work.
+ * Must be mounted inside the React tree (e.g. in app/layout.tsx).
+ * @keywords modal, dialog, confirm, provider, imperative
+ * @example
+ * ```tsx
+ * // app/layout.tsx
+ * import { ModalProvider } from '@chaos_team/chaos-ui';
+ * import { MessageProvider } from '@chaos_team/chaos-ui/next';
+ *
+ * export default function RootLayout({ children }) {
+ *   return (
+ *     <html>
+ *       <body>
+ *         <ModalProvider />
+ *         <MessageProvider />
+ *         {children}
+ *       </body>
+ *     </html>
+ *   );
+ * }
+ * ```
+ */
+
 import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import {
+  useImperativeModals,
+  modalStore,
+  type ImperativeModalConfig,
+} from "@/lib/modal-store";
+import { cn } from "@/lib/utils";
+import {
+  CircleCheckIcon,
+  InfoIcon,
+  TriangleAlertIcon,
+  OctagonXIcon,
+  AlertCircleIcon,
+} from "@/components/ui/icons";
 
-interface ModalConfig {
-  id: string;
-  content: React.ReactNode;
-  title?: React.ReactNode;
-  onClose?: () => void;
-  closable?: boolean;
-}
+/**
+ * Context for modal API — allows child components to access
+ * the modal provider's openModal method.
+ */
+const ModalContext = React.createContext<{
+  openModal?: (config: { title?: React.ReactNode; content?: React.ReactNode }) => void;
+} | null>(null);
 
-interface ModalContextValue {
-  modals: ModalConfig[];
-  openModal: (config: Omit<ModalConfig, "id">) => string;
-  closeModal: (id: string) => void;
-  closeAll: () => void;
-}
+const kindIcons: Record<string, React.ReactNode> = {
+  confirm: <AlertCircleIcon className="text-primary size-5" />,
+  info: <InfoIcon className="size-5 text-blue-500" />,
+  warning: <TriangleAlertIcon className="size-5 text-amber-500" />,
+  success: <CircleCheckIcon className="size-5 text-emerald-500" />,
+  error: <OctagonXIcon className="text-destructive size-5" />,
+};
 
-const ModalContext = React.createContext<ModalContextValue | null>(null);
+const kindOkText: Record<string, string> = {
+  confirm: "确认",
+  info: "知道了",
+  warning: "知道了",
+  success: "好的",
+  error: "知道了",
+};
 
-function useModal(): ModalContextValue {
-  const ctx = React.useContext(ModalContext);
-  if (!ctx) {
-    throw new Error("useModal must be used within a ModalProvider");
-  }
-  return ctx;
-}
+function ImperativeModal({ config }: { config: ImperativeModalConfig }) {
+  const [loading, setLoading] = React.useState(false);
 
-interface ModalProviderProps extends React.ComponentProps<"div"> {
-  children: React.ReactNode;
-}
-
-function ModalProvider({ children, ...props }: ModalProviderProps) {
-  const [modals, setModals] = React.useState<ModalConfig[]>([]);
-
-  const openModal = React.useCallback(
-    (config: Omit<ModalConfig, "id">): string => {
-      const id = `modal-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
-      setModals((prev) => [...prev, { ...config, id }]);
-      return id;
-    },
-    [],
-  );
-
-  const closeModal = React.useCallback((id: string) => {
-    setModals((prev) => {
-      const modal = prev.find((m) => m.id === id);
-      if (modal?.onClose) {
-        setTimeout(() => modal.onClose?.(), 0);
+  const handleOk = React.useCallback(async () => {
+    setLoading(true);
+    try {
+      if (config.resolve) {
+        await config.resolve(true);
       }
-      return prev.filter((m) => m.id !== id);
-    });
-  }, []);
+    } finally {
+      setLoading(false);
+      modalStore.close(config.id, true);
+    }
+  }, [config]);
 
-  const closeAll = React.useCallback(() => {
-    setModals((prev) => {
-      prev.forEach((m) => {
-        setTimeout(() => m.onClose?.(), 0);
-      });
-      return [];
-    });
-  }, []);
+  const handleCancel = React.useCallback(() => {
+    config.resolve?.(false);
+    modalStore.close(config.id, false);
+  }, [config]);
 
-  const contextValue = React.useMemo(
-    () => ({ modals, openModal, closeModal, closeAll }),
-    [modals, openModal, closeModal, closeAll],
+  const handleOpenChange = React.useCallback(
+    (open: boolean) => {
+      if (!open) {
+        // User dismiss via mask/esc — treat as cancel
+        config.resolve?.(false);
+        modalStore.close(config.id, false);
+      }
+    },
+    [config],
   );
+
+  const showCancel = config.kind === "confirm";
+  const icon = config.icon ?? kindIcons[config.kind];
+  const defaultOkText = kindOkText[config.kind] ?? "OK";
+  const canDismiss = config.maskClosable !== false;
 
   return (
-    <ModalContext.Provider value={contextValue}>
-      {children}
-      {modals.map((modal, index) => (
-        <div
-          key={modal.id}
-          data-slot="modal-provider-overlay"
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50"
-          style={{ zIndex: 60 + index }}
-          onClick={(e) => {
-            if (e.target === e.currentTarget && modal.closable !== false) {
-              closeModal(modal.id);
+    <Dialog
+      open
+      onOpenChange={handleOpenChange}
+      disablePointerDismissal={!canDismiss}
+    >
+      <DialogContent
+        className={cn("sm:max-w-[425px]")}
+        style={{
+          maxWidth:
+            typeof config.width === "number"
+              ? `${config.width}px`
+              : config.width,
+        }}
+        showCloseButton={false}
+      >
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            {icon}
+            {config.title ?? ""}
+          </DialogTitle>
+          {config.content && (
+            <DialogDescription>{config.content}</DialogDescription>
+          )}
+        </DialogHeader>
+        <DialogFooter>
+          {showCancel && (
+            <Button variant="outline" onClick={handleCancel} disabled={loading}>
+              {config.cancelText ?? "取消"}
+            </Button>
+          )}
+          <Button
+            variant={
+              config.okVariant === "destructive" ? "destructive" : "default"
             }
-          }}
-          aria-modal="true"
-          role="dialog"
-          {...props}
-        >
-          <div
-            data-slot="modal-provider-content"
-            className="bg-background relative w-full max-w-lg rounded-lg border p-6 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
+            onClick={handleOk}
+            disabled={loading}
           >
-            {(modal.title || modal.closable !== false) && (
-              <div className="mb-4 flex items-center justify-between">
-                {modal.title && (
-                  <h2 className="text-lg font-semibold">{modal.title}</h2>
-                )}
-                {modal.closable !== false && (
-                  <button
-                    type="button"
-                    onClick={() => closeModal(modal.id)}
-                    className="hover:bg-accent ml-auto rounded p-1"
-                    aria-label="Close"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M18 6 6 18" />
-                      <path d="m6 6 12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            )}
-            {modal.content}
-          </div>
-        </div>
-      ))}
-    </ModalContext.Provider>
+            {loading ? "处理中..." : (config.okText ?? defaultOkText)}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 
-export { ModalProvider, useModal, ModalContext };
+export function ModalProvider() {
+  const modals = useImperativeModals();
+
+  return (
+    <div data-slot="modal-provider">
+      {modals.map((config) => (
+        <ImperativeModal key={config.id} config={config} />
+      ))}
+    </div>
+  );
+}
+
+export { ModalContext };

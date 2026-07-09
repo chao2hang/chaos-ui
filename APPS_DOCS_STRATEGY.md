@@ -115,7 +115,7 @@ apps/docs/package.json  --("chaos-design-ui": "file:../../packages/chaos-design-
    "typecheck": "tsc --noEmit",
    "check": "pnpm lint && pnpm typecheck"
    ```
-7. **`apps/docs/eslint.config.mjs`**：显式声明 `files: ["src/**", "app/**", "next.config.ts", "proxy-server.mjs"]`（不含 `@/`，因为 `@/` 已不存在；包源由包自身 lint 负责）。
+7. **`apps/docs/eslint.config.mjs`**：显式声明 `files: ["src/**", "app/**", "next.config.ts"]`（不含 `@/`，因为 `@/` 已不存在；包源由包自身 lint 负责）。
 8. 在 `turbo.json`（或根 CI）注册 `chaos-ui-docs` 的 `lint` + `typecheck` 任务，确保 docs 进入 monorepo 校验门。
 9. （可选）确认 `packages/chaos-design-ui` 是否补齐自己 `package.json` 的 `lint` / `typecheck` / `test` 脚本——若原本缺失，本次一并补齐，使「包源」成为单一被测对象。
 

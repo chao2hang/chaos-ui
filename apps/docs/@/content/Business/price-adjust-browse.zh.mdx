@@ -1,0 +1,47 @@
+import { PriceAdjustBrowse } from "@/components/business/price-adjust-browse"
+import { CodeBlock } from "@/components/code-block"
+
+# PriceAdjustBrowse Price Adjust Browse
+
+> 业务组件
+
+Price Adjust Browse — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Price Adjust Browse相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PriceAdjustBrowse } from "@/components/business/price-adjust-browse"
+
+export function Basic() {
+  return <PriceAdjustBrowse />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### PriceAdjustBrowse
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `open` | `boolean` | — | 是否打开(受控) |
+| `onOpenChange` | `() => void` | — | 打开状态变化回调 |
+| `onSelect` | `() => void` | — | 选中回调 |
+| `items` | `PriceAdjustBrowseItem[]` | — | 选项/数据项列表 |
+| `title` | `string` | — | 标题 |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-priceadjustbrowse--docs)。
+

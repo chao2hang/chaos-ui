@@ -1,0 +1,39 @@
+import { QuarterPicker } from "@/components/ui/quarter-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# QuarterPicker
+
+> Form components for data entry and collection.
+
+QuarterPicker — Quarter picker with year navigation and Q1-Q4 buttons.
+
+## When to Use
+
+Use when you need a quarterpicker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { QuarterPicker } from "@/components/ui/quarter-picker"
+
+export function Basic() {
+  return <QuarterPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### QuarterPicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

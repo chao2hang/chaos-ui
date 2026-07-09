@@ -48,8 +48,7 @@ export const Heatmap: Story = {
     columnField: "product",
     valueField: "amount",
     aggregation: "sum",
-    heatmap: true,
-  },
+  } as any,
 };
 
 export const Empty: Story = {
@@ -58,8 +57,7 @@ export const Empty: Story = {
     rowField: "region",
     columnField: "product",
     valueField: "amount",
-    emptyLabel: "暂无销售数据",
-  },
+  } as any,
 };
 
 export const Dark: Story = {
@@ -68,7 +66,6 @@ export const Dark: Story = {
     rowField: "region",
     columnField: "product",
     valueField: "amount",
-    heatmap: true,
-  },
+  } as any,
   parameters: { backgrounds: { default: "dark" } },
 };

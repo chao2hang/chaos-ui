@@ -1,0 +1,41 @@
+import { CodeDiffViewer } from "@/components/ui/diff-viewer-code"
+import { CodeBlock } from "@/components/code-block"
+
+# CodeDiffViewer 代码差异对比
+
+> 数据展示 / Data display components for presenting information.
+
+代码差异对比 — 代码级差异查看器，支持并排与内联模式。
+CodeDiffViewer — Code-level diff viewer with side-by-side and inline modes.
+
+## 何时使用 / When to Use
+
+需要代码差异对比功能时使用本组件。
+
+Use when you need a codediffviewer.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { CodeDiffViewer } from "@/components/ui/diff-viewer-code"
+
+export function Basic() {
+  return <CodeDiffViewer />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CodeDiffViewer
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-diffviewercode--docs)。

@@ -1,8 +1,5 @@
-import {
-  CampaignStatusTag,
-  StatusMap,
-} from "@/components/business/campaign-status-tag";
-import { CodeBlock } from "@/components/code-block";
+import { CampaignStatusTag, StatusMap } from "@/components/business/campaign-status-tag"
+import { CodeBlock } from "@/components/code-block"
 
 # CampaignStatusTag
 
@@ -13,6 +10,7 @@ CampaignStatusTag — a business component for ERP / enterprise scenarios.
 ## When to Use
 
 Use when you need a campaign status tag.
+
 
 ## Examples
 
@@ -29,17 +27,20 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### CampaignStatusTag
 
-| Prop        | Type                           | Default | Description                      |
-| ----------- | ------------------------------ | ------- | -------------------------------- |
-| `className` | `string`                       | —       | Custom CSS class                 |
-| `status`    | `string`                       | —       | Status                           |
-| `label`     | `string`                       | —       | Label text                       |
-| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `status` | `string` | — | Status |
+| `label` | `string` | — | Label text |
+| ...rest | `React.ComponentProps<"span">` | — | Inherits all `<span>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

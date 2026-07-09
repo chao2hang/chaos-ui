@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { AudienceSegmentBuilder } from "@/components/business/audience-segment-builder";
 import type { AudienceSegmentBuilderProps } from "@/components/business/audience-segment-builder";
-import type { TransferItem } from "@/components/business/transfer";
+import type { TransferItem } from "@/components/ui/transfer";
 
 const fields = [
   { key: "lifetime_value", label: "Lifetime value" },

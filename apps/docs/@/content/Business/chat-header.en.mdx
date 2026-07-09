@@ -1,0 +1,43 @@
+import { ChatHeader } from "@/components/business/chat-header"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatHeader Chat Header
+
+> Domain-specific business components for ERP scenarios.
+
+ChatHeader — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat header.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatHeader } from "@/components/business/chat-header"
+
+export function Basic() {
+  return <ChatHeader />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatHeader
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `subtitle` | `string` | — |  |
+| `status` | `string` | — | Status |
+| `actions` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

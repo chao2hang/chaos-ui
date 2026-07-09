@@ -1,0 +1,42 @@
+import { WizardLayout } from "@/components/layout/wizard-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# WizardLayout Wizard Layout
+
+> System-level layout shells for admin pages.
+
+WizardLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a wizard layout.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { WizardLayout } from "@/components/layout/wizard-layout"
+
+export function Basic() {
+  return <WizardLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### WizardLayout
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `steps` | `Array<WizardStep>` | — |  |
+| `current` | `number` | — |  |
+| `onComplete` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

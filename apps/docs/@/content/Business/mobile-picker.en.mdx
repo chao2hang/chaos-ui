@@ -1,0 +1,42 @@
+import { MobilePicker } from "@/components/business/mobile-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# MobilePicker Mobile Picker
+
+> Domain-specific business components for ERP scenarios.
+
+MobilePicker — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a mobile picker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MobilePicker } from "@/components/business/mobile-picker"
+
+export function Basic() {
+  return <MobilePicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MobilePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `options` | `Array<T>` | — | Available options |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,0 +1,39 @@
+import { ScreenCapture } from "@/components/business/screen-capture"
+import { CodeBlock } from "@/components/code-block"
+
+# ScreenCapture
+
+> Domain-specific business components for ERP scenarios.
+
+ScreenCapture — Screen capture and annotation component with getDisplayMedia API.
+
+## When to Use
+
+Use when you need a screencapture.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ScreenCapture } from "@/components/business/screen-capture"
+
+export function Basic() {
+  return <ScreenCapture />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ScreenCapture
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

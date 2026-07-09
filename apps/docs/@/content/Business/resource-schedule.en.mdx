@@ -1,0 +1,46 @@
+import { ResourceSchedule } from "@/components/business/resource-schedule"
+import { CodeBlock } from "@/components/code-block"
+
+# ResourceSchedule Resource Schedule
+
+> Domain-specific business components for ERP scenarios.
+
+Resource schedule — timeline view of resource bookings.
+ResourceSchedule — resource schedule component.
+
+## When to Use
+
+Use when you need a resource schedule.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ResourceSchedule } from "@/components/business/resource-schedule"
+
+export function Basic() {
+  return <ResourceSchedule />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ResourceSchedule
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `resources` | `Array<T>` | — |  |
+| `bookings` | `Array<{` | — |  |
+| `resourceId` | `string` | — |  |
+| `start` | `string` | — |  |
+| `end` | `string` | — |  |
+| `title` | `string` | — | Title |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

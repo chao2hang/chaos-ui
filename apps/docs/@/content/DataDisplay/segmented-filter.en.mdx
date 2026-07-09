@@ -1,0 +1,39 @@
+import { SegmentedFilter } from "@/components/ui/segmented-filter"
+import { CodeBlock } from "@/components/code-block"
+
+# SegmentedFilter
+
+> Data display components for presenting information.
+
+SegmentedFilter — Segmented filter control with count badges for BI/dashboard scenarios.
+
+## When to Use
+
+Use when you need a segmentedfilter.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SegmentedFilter } from "@/components/ui/segmented-filter"
+
+export function Basic() {
+  return <SegmentedFilter />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SegmentedFilter
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

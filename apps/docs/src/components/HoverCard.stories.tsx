@@ -45,7 +45,7 @@ export const Default: Story = {
 export const UserProfile: Story = {
   render: () => (
     <HoverCard>
-      <HoverCardTrigger asChild>
+      <HoverCardTrigger {...({ asChild: true } as any)}>
         <a href="#" className="text-sm font-medium underline">
           @shadcn
         </a>

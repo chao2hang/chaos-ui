@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # NumberTicker
 
-> General-purpose primitives used across the app.
+> Animated number counter for KPI/statistic displays.
 
-NumberTicker — a general-purpose primitives used across the app. from Chaos UI.
+Animated number counter for KPI/statistic displays with easing and prefix/suffix support.
 
 ## When to Use
 
-Use when you need a number ticker.
+Use for displaying statistics or KPI numbers, with smooth animation from 0 to the target value.
 
 ## Examples
 
@@ -18,71 +18,41 @@ Use when you need a number ticker.
 <CodeBlock code={`import { NumberTicker } from "@/components/ui/number-ticker"
 
 export function Basic() {
-  return <NumberTicker />
+  return <NumberTicker value={12345} />
 }`} lang="tsx" />
 
-### Variants
+### With Prefix & Suffix
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
-<div className="flex flex-wrap items-center gap-3">
-  <NumberTicker variant="default">Default</NumberTicker>
-  <NumberTicker variant="primary">Primary</NumberTicker>
-  <NumberTicker variant="success">Success</NumberTicker>
-  <NumberTicker variant="warning">Warning</NumberTicker>
-  <NumberTicker variant="destructive">Destructive</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { NumberTicker } from "@/components/ui/number-ticker"
 
-### Sizes
-
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <NumberTicker size="sm">Sm</NumberTicker>
-  <NumberTicker size="default">Default</NumberTicker>
-  <NumberTicker size="lg">Lg</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
-
-## Style Variants
-
-**Variant**
-
-| Variant       | Description              | 默认 |
-| ------------- | ------------------------ | ---- |
-| `default`     | Default style            | ✓    |
-| `primary`     | Primary style            |      |
-| `success`     | Success style            |      |
-| `warning`     | Warning style            |      |
-| `destructive` | Destructive/danger style |      |
-
-**Size**
-
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
-| `xl`      | Extra large  |      |
+export function PrefixSuffix() {
+  return (
+    <div className="flex flex-col gap-2">
+      <NumberTicker value={125430} prefix="¥" />
+      <NumberTicker value={42.7} decimals={1} suffix="%" />
+      <NumberTicker value={9805} duration={2000} />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### NumberTicker
 
-| Prop        | Type                           | Default | Description                      |
-| ----------- | ------------------------------ | ------- | -------------------------------- |
-| `className` | `string`                       | —       | Custom CSS class                 |
-| `value`     | `number`                       | —       | Target value                     |
-| `duration`  | `number`                       | `1000`  | Duration of animation in ms      |
-| `decimals`  | `number`                       | `0`     | Decimal places to show           |
-| `prefix`    | `string`                       | —       | Prefix text                      |
-| `suffix`    | `string`                       | —       | Suffix text                      |
-| `easing`    | `boolean`                      | `true`  | Use easing instead of linear     |
-| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | -------------------------------------- | --------- | --------------------------------------------- |
+| `value`     | `number`                               | —         | Target number / 目标数字 (required)           |
+| `from`      | `number`                               | `0`       | Starting number / 起始数字                    |
+| `duration`  | `number`                               | `1000`    | Animation duration in ms / 动画时长           |
+| `easing`    | `"linear" \| "easeOut" \| "easeInOut"` | `easeOut` | Easing function / 缓动函数                    |
+| `format`    | `(n: number) => string`                | —         | Custom formatter / 自定义格式化               |
+| `decimals`  | `number`                               | `0`       | Decimal places / 小数位数                     |
+| `prefix`    | `React.ReactNode`                      | —         | Prefix / 前缀                                 |
+| `suffix`    | `React.ReactNode`                      | —         | Suffix / 后缀                                 |
+| `reAnimate` | `boolean`                              | `true`    | Re-animate on value change / 值变化时重新动画 |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

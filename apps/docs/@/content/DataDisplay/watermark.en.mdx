@@ -1,0 +1,64 @@
+import { Watermark } from "@/components/ui/watermark"
+import { CodeBlock } from "@/components/code-block"
+
+# Watermark
+
+> Components for presenting data and content.
+
+Overlays specified text/image watermark on content for copyright.
+
+## When to Use
+
+Use when you need a watermark.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Watermark } from "@/components/ui/watermark"
+
+export function Basic() {
+  return <Watermark />
+}`} lang="tsx" />
+
+### Sizes
+
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Watermark size="sm">Sm</Watermark>
+  <Watermark size="default">Default</Watermark>
+  <Watermark size="lg">Lg</Watermark>
+</div>`} lang="tsx" />
+
+
+## Style Variants
+
+**Size**
+
+| Size | Description | 默认 |
+|---|---|---|
+| `default` | Default size | ✓ |
+| `sm` | Small |  |
+| `lg` | Large |  |
+
+## API / Props
+
+### Watermark
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `content` | `string` | — | Text content for the watermark |
+| `rotate` | `number` | `-22` | Rotation angle in degrees |
+| `gap` | `number` | `100` | Gap between repeated marks |
+| `opacity` | `number` | `0.1` | Opacity of the watermark |
+| `color` | `string` | `#000` | Text color |
+| `fontSize` | `number` | `14` | Font size override |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

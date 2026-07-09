@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { EmptyState } from "@/components/business/empty-state"
+import { EmptyState } from "@/components/ui/empty-state"
 import { cn } from "@/lib/utils"
 
 interface MobileEmptyStateProps {

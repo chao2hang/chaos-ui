@@ -1,109 +1,170 @@
 "use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { SearchIcon, RotateCcwIcon, FilterIcon } from "lucide-react";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Card, CardContent } from "@/components/ui";
 
-export interface FilterField {
+interface FilterField {
   key: string;
   label: string;
-  type?: "text" | "select" | "date";
-  options?: { label: string; value: string }[];
+  type?: "input" | "select" | "date-picker" | "date-range-picker" | "custom";
   placeholder?: string;
+  /** For select type: options */
+  options?: { label: string; value: string }[];
+  /** For custom type */
+  render?: (
+    value: unknown,
+    onChange: (key: string, val: unknown) => void,
+  ) => React.ReactNode;
+  /** Default value */
+  defaultValue?: unknown;
 }
 
-interface FilterBarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FilterBarProps {
+  /** Filter fields definition */
   fields: FilterField[];
-  onFilter?: (values: Record<string, string>) => void;
+  /** Search callback with current filter values */
+  onSearch: (values: Record<string, unknown>) => void;
+  /** Reset callback */
   onReset?: () => void;
+  /** Layout: inline (horizontal) or card */
+  layout?: "inline" | "card";
+  /** Show collapse/expand for long filter bars (> 4 fields) */
+  collapsible?: boolean;
+  /** Loading state */
+  loading?: boolean;
   className?: string;
 }
 
+/**
+ * 搜索/筛选栏 —— 对标 qxy-mop 所有列表页的 Form layout="inline"。
+ *
+ * @component FilterBar
+ * @category business/crud
+ * @since 0.2.0
+ */
 function FilterBar({
-  fields,
-  onFilter,
+  fields = [],
+  onSearch,
   onReset,
+  layout = "inline",
+  collapsible = true,
+  loading = false,
   className,
-  ...props
 }: FilterBarProps) {
-  const [values, setValues] = React.useState<Record<string, string>>({});
+  const [values, setValues] = React.useState<Record<string, unknown>>(() => {
+    const initial: Record<string, unknown> = {};
+    for (const f of fields) {
+      if (f.defaultValue !== undefined) initial[f.key] = f.defaultValue;
+    }
+    return initial;
+  });
+  const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (key: string, value: string) => {
+  const handleChange = (key: string, value: unknown) => {
     setValues((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleFilter = () => {
-    onFilter?.(values);
-  };
-
+  const handleSearch = () => onSearch(values);
   const handleReset = () => {
     setValues({});
     onReset?.();
   };
 
-  return (
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+  // Show first 3 fields when collapsed, all when expanded
+  const visibleFields = collapsible && !expanded ? fields.slice(0, 3) : fields;
+  const hiddenCount = fields.length - 3;
+
+  const renderField = (field: FilterField) => {
+    if (field.render) {
+      return field.render(values[field.key], handleChange);
+    }
+
+    if (field.type === "select" && field.options) {
+      return (
+        <select
+          className="bg-background h-9 rounded-md border px-3 text-sm"
+          value={String(values[field.key] ?? "")}
+          onChange={(e) => handleChange(field.key, e.target.value || undefined)}
+        >
+          <option value="">{field.placeholder || field.label}</option>
+          {field.options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    // Default: input
+    return (
+      <Input
+        placeholder={field.placeholder || `请输入${field.label}`}
+        value={String(values[field.key] ?? "")}
+        onChange={(e) => handleChange(field.key, e.target.value)}
+        onKeyDown={handleKeyDown}
+        className="w-44"
+      />
+    );
+  };
+
+  const content = (
     <div
       data-slot="filter-bar"
-      className={cn("flex flex-wrap items-end gap-2", className)}
-      {...props}
+      className={cn("flex flex-wrap items-end gap-3", className)}
+      onKeyDown={handleKeyDown}
     >
-      <FilterIcon className="text-muted-foreground mb-2 size-4" />
-      {fields.map((field) => (
+      {visibleFields.map((field) => (
         <div key={field.key} className="flex flex-col gap-1">
-          <label className="text-muted-foreground text-[11px]">
+          <label className="text-muted-foreground text-xs font-medium">
             {field.label}
           </label>
-          {field.type === "select" && field.options ? (
-            <Select
-              value={values[field.key] ?? ""}
-              onValueChange={(v) => handleChange(field.key, v)}
-            >
-              <SelectTrigger className="h-8 w-[140px]">
-                <SelectValue placeholder={field.placeholder ?? field.label} />
-              </SelectTrigger>
-              <SelectContent>
-                {field.options.map((o) => (
-                  <SelectItem key={o.value} value={o.value}>
-                    {o.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          ) : (
-            <Input
-              type={field.type === "date" ? "date" : "text"}
-              value={values[field.key] ?? ""}
-              onChange={(e) => handleChange(field.key, e.target.value)}
-              placeholder={field.placeholder ?? field.label}
-              className="h-8 w-[160px]"
-            />
-          )}
+          {renderField(field)}
         </div>
       ))}
-      <div className="mb-[2px] flex gap-1">
-        <Button size="sm" onClick={handleFilter} className="h-8">
-          <SearchIcon className="size-3.5" />
-          筛选
+
+      <div className="flex items-center gap-2">
+        <Button size="sm" onClick={handleSearch} disabled={loading}>
+          查询
         </Button>
         <Button
           size="sm"
           variant="outline"
           onClick={handleReset}
-          className="h-8"
+          disabled={loading}
         >
-          <RotateCcwIcon className="size-3.5" />
+          重置
         </Button>
+
+        {collapsible && hiddenCount > 0 && (
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "收起" : `展开 (${hiddenCount})`}
+          </Button>
+        )}
       </div>
     </div>
   );
+
+  if (layout === "card") {
+    return (
+      <Card data-slot="filter-bar">
+        <CardContent className="pt-4">{content}</CardContent>
+      </Card>
+    );
+  }
+
+  return content;
 }
 
 export { FilterBar };

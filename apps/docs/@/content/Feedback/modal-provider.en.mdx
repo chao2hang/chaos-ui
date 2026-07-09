@@ -1,9 +1,5 @@
-import {
-  ModalProvider,
-  Modal,
-  ModalContext,
-} from "@/components/ui/modal-provider";
-import { CodeBlock } from "@/components/code-block";
+import { ModalProvider, Modal, ModalContext } from "@/components/ui/modal-provider"
+import { CodeBlock } from "@/components/code-block"
 
 # ModalProvider
 
@@ -14,6 +10,7 @@ ModalProvider — a feedback and status communication to the user. from Chaos UI
 ## When to Use
 
 Use when you need a modal provider.
+
 
 ## Examples
 
@@ -31,15 +28,18 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ModalProvider
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,5 +1,5 @@
-import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field";
-import { CodeBlock } from "@/components/code-block";
+import { OTPField, OTPFieldSeparator } from "@/components/ui/otp-field"
+import { CodeBlock } from "@/components/code-block"
 
 # OtpField
 
@@ -10,6 +10,7 @@ One-time password input with individual cells for each character; auto-focuses n
 ## When to Use
 
 One-time password / SMS verification code input.
+
 
 ## Examples
 
@@ -27,28 +28,28 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<OTPField>Normal</OTPField>
-<OTPField disabled>Disabled</OTPField>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<OTPField>Normal</OTPField>
+<OTPField disabled>Disabled</OTPField>`} lang="tsx" />
+
 
 ## API / Props
 
 ### OTPField
 
-| Prop             | Type                   | Default | Description                       |
-| ---------------- | ---------------------- | ------- | --------------------------------- |
-| `className`      | `string`               | —       | Custom CSS class                  |
-| `length`         | `number`               | —       |                                   |
-| `value`          | `string`               | —       | Current value (controlled)        |
-| `onValueChange`  | `() => void`           | —       |                                   |
-| `mask`           | `boolean`              | `false` |                                   |
-| `inputClassName` | `string`               | —       |                                   |
-| ...rest          | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `length` | `number` | — |  |
+| `value` | `string` | — | Current value (controlled) |
+| `onValueChange` | `() => void` | — |  |
+| `mask` | `boolean` | `false` |  |
+| `inputClassName` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 1 个子组件(OTPFieldSeparator),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

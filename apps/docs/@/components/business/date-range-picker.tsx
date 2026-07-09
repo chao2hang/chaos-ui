@@ -1,108 +1,121 @@
-"use client"
-import * as React from "react"
-import { DateRange } from "react-day-picker"
-import { CalendarIcon, ChevronDownIcon } from "lucide-react"
-import { formatDate } from "@/lib/format"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+"use client";
+import * as React from "react";
+import type { DateRange } from "react-day-picker";
+import { CalendarIcon, ChevronDownIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import { formatDate } from "@/lib/format";
+import { cn } from "@/lib/utils";
+import { Button, Calendar } from "@/components/ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
 
 interface DateRangePickerProps {
-  value?: DateRange
-  onChange?: (range: DateRange | undefined) => void
-  placeholder?: string
-  numberOfMonths?: number
-  disabled?: boolean
-  align?: "start" | "center" | "end"
-  className?: string
-  presets?: boolean
+  value?: DateRange;
+  onChange?: (range: DateRange | undefined) => void;
+  placeholder?: string;
+  numberOfMonths?: number;
+  disabled?: boolean;
+  align?: "start" | "center" | "end";
+  className?: string;
+  presets?: boolean;
 }
 
-const DEFAULT_PRESETS: Array<{ label: string; getRange: () => DateRange }> = [
-  {
-    label: "今天",
-    getRange: () => {
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      return { from: today, to: today }
+function getPresets(
+  t: ReturnType<typeof useTranslation>["t"],
+): Array<{ label: string; getRange: () => DateRange }> {
+  return [
+    {
+      label: t("dateRangePicker.today"),
+      getRange: () => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return { from: today, to: today };
+      },
     },
-  },
-  {
-    label: "昨天",
-    getRange: () => {
-      const y = new Date()
-      y.setDate(y.getDate() - 1)
-      y.setHours(0, 0, 0, 0)
-      return { from: y, to: y }
+    {
+      label: t("dateRangePicker.yesterday"),
+      getRange: () => {
+        const y = new Date();
+        y.setDate(y.getDate() - 1);
+        y.setHours(0, 0, 0, 0);
+        return { from: y, to: y };
+      },
     },
-  },
-  {
-    label: "最近 7 天",
-    getRange: () => {
-      const to = new Date()
-      to.setHours(23, 59, 59, 999)
-      const from = new Date()
-      from.setDate(from.getDate() - 6)
-      from.setHours(0, 0, 0, 0)
-      return { from, to }
+    {
+      label: t("dateRangePicker.last7Days"),
+      getRange: () => {
+        const to = new Date();
+        to.setHours(23, 59, 59, 999);
+        const from = new Date();
+        from.setDate(from.getDate() - 6);
+        from.setHours(0, 0, 0, 0);
+        return { from, to };
+      },
     },
-  },
-  {
-    label: "最近 30 天",
-    getRange: () => {
-      const to = new Date()
-      to.setHours(23, 59, 59, 999)
-      const from = new Date()
-      from.setDate(from.getDate() - 29)
-      from.setHours(0, 0, 0, 0)
-      return { from, to }
+    {
+      label: t("dateRangePicker.last30Days"),
+      getRange: () => {
+        const to = new Date();
+        to.setHours(23, 59, 59, 999);
+        const from = new Date();
+        from.setDate(from.getDate() - 29);
+        from.setHours(0, 0, 0, 0);
+        return { from, to };
+      },
     },
-  },
-  {
-    label: "本月",
-    getRange: () => {
-      const now = new Date()
-      const from = new Date(now.getFullYear(), now.getMonth(), 1)
-      const to = new Date(now.getFullYear(), now.getMonth() + 1, 0)
-      return { from, to }
+    {
+      label: t("dateRangePicker.thisMonth"),
+      getRange: () => {
+        const now = new Date();
+        const from = new Date(now.getFullYear(), now.getMonth(), 1);
+        const to = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        return { from, to };
+      },
     },
-  },
-  {
-    label: "上月",
-    getRange: () => {
-      const now = new Date()
-      const from = new Date(now.getFullYear(), now.getMonth() - 1, 1)
-      const to = new Date(now.getFullYear(), now.getMonth(), 0)
-      return { from, to }
+    {
+      label: t("dateRangePicker.lastMonth"),
+      getRange: () => {
+        const now = new Date();
+        const from = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        const to = new Date(now.getFullYear(), now.getMonth(), 0);
+        return { from, to };
+      },
     },
-  },
-]
+  ];
+}
 
+/**
+ * @component DateRangePicker
+ * @category business/picker
+ * @since 0.2.0
+ * @description Calendar-based date range picker with preset ranges and multi-month view / 基于日历的日期范围选择器，支持预设范围和多月视图
+ * @keywords date, range, picker, calendar, preset
+ * @example
+ * <DateRangePicker value={range} onChange={setRange} />
+ */
 export function DateRangePicker({
   value,
   onChange,
-  placeholder = "选择日期范围",
+  placeholder,
   numberOfMonths = 2,
   disabled,
   align = "start",
   className,
   presets = true,
 }: DateRangePickerProps) {
-  const [open, setOpen] = React.useState(false)
+  const { t } = useTranslation("transfer");
+  const [open, setOpen] = React.useState(false);
+  const resolvedPlaceholder = placeholder ?? t("dateRangePicker.placeholder");
+
+  const DEFAULT_PRESETS = React.useMemo(() => getPresets(t), [t]);
 
   const label = React.useMemo(() => {
-    if (!value?.from) return placeholder
-    if (!value.to) return formatDate(value.from, { dateStyle: "medium" })
+    if (!value?.from) return resolvedPlaceholder;
+    if (!value.to) return formatDate(value.from, { dateStyle: "medium" });
     if (value.from.getTime() === value.to.getTime()) {
-      return formatDate(value.from, { dateStyle: "medium" })
+      return formatDate(value.from, { dateStyle: "medium" });
     }
-    return `${formatDate(value.from, { dateStyle: "medium" })} - ${formatDate(value.to, { dateStyle: "medium" })}`
-  }, [value, placeholder])
+    return `${formatDate(value.from, { dateStyle: "medium" })} - ${formatDate(value.to, { dateStyle: "medium" })}`;
+  }, [value, resolvedPlaceholder]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -114,7 +127,7 @@ export function DateRangePicker({
             className={cn(
               "w-[300px] justify-start text-left font-normal",
               !value?.from && "text-muted-foreground",
-              className
+              className,
             )}
           />
         }
@@ -134,8 +147,8 @@ export function DateRangePicker({
                   size="sm"
                   className="justify-start"
                   onClick={() => {
-                    onChange?.(preset.getRange())
-                    setOpen(false)
+                    onChange?.(preset.getRange());
+                    setOpen(false);
                   }}
                 >
                   {preset.label}
@@ -146,12 +159,13 @@ export function DateRangePicker({
           <Calendar
             mode="range"
             selected={value}
-            onSelect={onChange}
+            {...(onChange ? { onSelect: onChange } : { onSelect: () => {} })}
             numberOfMonths={numberOfMonths}
             autoFocus
+            required={false}
           />
         </div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

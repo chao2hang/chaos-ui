@@ -1,0 +1,39 @@
+import { OrgPicker } from "@/components/business/org-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# OrgPicker
+
+> Domain-specific business components for ERP scenarios.
+
+OrgPicker — Organization selector dialog with department tree and member multi-select.
+
+## When to Use
+
+Use when you need a orgpicker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { OrgPicker } from "@/components/business/org-picker"
+
+export function Basic() {
+  return <OrgPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### OrgPicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

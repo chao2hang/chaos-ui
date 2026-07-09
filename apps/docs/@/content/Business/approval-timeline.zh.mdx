@@ -1,5 +1,5 @@
-import { ApprovalTimeline } from "@/components/business/approval-timeline";
-import { CodeBlock } from "@/components/code-block";
+import { ApprovalTimeline } from "@/components/business/approval-timeline"
+import { CodeBlock } from "@/components/code-block"
 
 # ApprovalTimeline 审批时间线
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要审批时间线功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,19 +22,21 @@ export function Basic() {
   return <ApprovalTimeline />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ApprovalTimeline
 
-| Prop        | Type                         | Default | 说明                 |
-| ----------- | ---------------------------- | ------- | -------------------- |
-| `className` | `string`                     | —       | 自定义样式类名       |
-| `steps`     | `ApprovalStep[]`             | —       |                      |
-| ...rest     | `React.ComponentProps<"ol">` | —       | 透传 `<ol>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `steps` | `ApprovalStep[]` | — |  |
+| ...rest | `React.ComponentProps<"ol">` | — | 透传 `<ol>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<ol>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-approval-timeline--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-approvaltimeline--docs)。
+

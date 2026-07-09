@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ResponsiveContainer,
   RadarChart as RechartsRadarChart,
@@ -9,14 +9,14 @@ import {
   PolarRadiusAxis,
   Tooltip,
   Legend,
-} from "recharts"
-import { ChartTooltip } from "./shared/chart-tooltip"
-import { ChartLegend } from "./shared/chart-legend"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
+} from "recharts";
+import { ChartTooltip } from "./shared/chart-tooltip";
+import { ChartLegend } from "./shared/chart-legend";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
 
 export function RadarChartComp({
-  data,
+  data = [],
   xKey = "subject",
   yKey = "value",
   series,
@@ -29,7 +29,7 @@ export function RadarChartComp({
   enableFullscreen,
   className,
 }: BaseChartProps) {
-  const keys = series?.map((s) => s.key) ?? [yKey]
+  const keys = series?.map((s) => s.key) ?? [yKey];
   return (
     <ChartFrame
       data={data}
@@ -43,7 +43,11 @@ export function RadarChartComp({
       <ResponsiveContainer width="100%" height={height ?? 320}>
         <RechartsRadarChart data={data}>
           <PolarGrid stroke="var(--border)" />
-          <PolarAngleAxis dataKey={xKey} stroke="var(--muted-foreground)" fontSize={12} />
+          <PolarAngleAxis
+            dataKey={xKey}
+            stroke="var(--muted-foreground)"
+            fontSize={12}
+          />
           <PolarRadiusAxis stroke="var(--muted-foreground)" fontSize={10} />
           {showTooltip && <Tooltip content={<ChartTooltip />} />}
           {showLegend && <Legend content={<ChartLegend />} />}
@@ -60,5 +64,5 @@ export function RadarChartComp({
         </RechartsRadarChart>
       </ResponsiveContainer>
     </ChartFrame>
-  )
+  );
 }

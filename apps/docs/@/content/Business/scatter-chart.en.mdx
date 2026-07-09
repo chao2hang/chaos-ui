@@ -1,0 +1,43 @@
+import { ScatterChart } from "@/components/business/scatter-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# ScatterChart Scatter Chart
+
+> Domain-specific business components for ERP scenarios.
+
+ScatterChart — scatter chart component.
+
+## When to Use
+
+Use when you need a scatter chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ScatterChart } from "@/components/business/scatter-chart"
+
+export function Basic() {
+  return <ScatterChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ScatterChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `Array<T>` | — | Points to plot. |
+| `xLabel` | `string` | — | X-axis caption. |
+| `yLabel` | `string` | — | Y-axis caption. |
+| `height` | `number` | — | SVG height in px. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

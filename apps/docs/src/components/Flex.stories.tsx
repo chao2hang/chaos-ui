@@ -39,7 +39,7 @@ export const WithGap: Story = {
 
 export const Column: Story = {
   args: {
-    direction: "column",
+    direction: "col",
     gap: 2,
     children: [
       <Box key="1">1</Box>,

@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { EmptyState } from "@/components/business/empty-state"
+import { EmptyState } from "@/components/ui/empty-state"
 import { formatRelativeTime } from "@/lib/format"
 
 export interface NotificationItem {

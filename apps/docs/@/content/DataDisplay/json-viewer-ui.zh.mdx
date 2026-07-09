@@ -1,0 +1,40 @@
+import { JSONViewerUI } from "@/components/ui/json-viewer-ui"
+import { CodeBlock } from "@/components/code-block"
+
+# JSONViewerUI JSON查看器
+
+> 数据展示
+
+JSON查看器 — 轻量 JSON 树查看器，支持折叠节点与语法高亮。
+
+## 何时使用
+
+需要JSON查看器功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { JSONViewerUI } from "@/components/ui/json-viewer-ui"
+
+export function Basic() {
+  return <JSONViewerUI />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### JSONViewerUI
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-jsonviewerui--docs)。
+

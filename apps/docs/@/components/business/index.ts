@@ -1,14 +1,20 @@
 "use client";
 
 export * from "./activity-feed";
-// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
-// The file remains for backward-compat direct imports but is not part of the 1.0 public API.
+// AdvancedDataTable — deprecated, prefer SearchTable/DataTable for new work.
+// Re-exported for existing consumers; kept in barrel for discoverability.
+export * from "./advanced-data-table";
 export * from "./advanced-search";
 export * from "./announcement-banner";
 export * from "./approval-timeline";
 export * from "./async-task-center";
 export * from "./audience-segment-builder";
-export { AuditLog, type AuditLogStatus, type AuditEntry } from "./audit-log";
+export {
+  AuditLog,
+  type AuditLogStatus,
+  type AuditLogEntry,
+  type AuditLogProps,
+} from "./audit-log";
 export * from "./audit-sidebar";
 export * from "./auth-guard";
 export * from "./permission-wrapper";
@@ -37,7 +43,11 @@ export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
 export * from "./cookie-banner";
-export { CrudPage, type FormField as CrudFormField } from "./crud-page";
+export {
+  CrudPage,
+  type CrudPageProps,
+  type FormField as CrudFormField,
+} from "./crud-page";
 export * from "./crud-toolbar";
 export * from "./creative-preview";
 export * from "./data-table";
@@ -46,6 +56,7 @@ export * from "./diff-viewer";
 export * from "./dict-select";
 export {
   RemoteSelect,
+  type RemoteSelectProps,
   type RemoteOption,
   type RemoteFetcher,
 } from "./remote-select";
@@ -107,10 +118,10 @@ export * from "./rating";
 export * from "./responsive-preview";
 export * from "./role-assignment";
 export * from "./saved-filters";
-export { SearchTable } from "./search-table";
+export { SearchTable, type SearchTableProps } from "./search-table";
 export * from "./segmented-control";
 export * from "./social-share";
-export { SqlEditor } from "./sql-editor";
+export { SqlEditor, type SqlEditorProps } from "./sql-editor";
 export * from "./stat-card";
 export * from "./stat-card-row";
 export * from "./status-tag";
@@ -126,6 +137,7 @@ export * from "./color-tag";
 
 export {
   StatusBadge,
+  type StatusBadgeProps,
   type StatusPreset,
   type StatusMapping,
 } from "./status-badge";
@@ -142,14 +154,20 @@ export {
   formatPercent,
   formatRelativeTime,
 } from "../../lib";
+export type { MessageOptions, MessageType } from "../../lib";
 
 // Layout components re-exported for convenience / 便捷导出布局组件
 export {
   DialogFormBody,
   FormStack,
 } from "@/components/layout/dialog-form-body";
+export type {
+  DialogFormBodyProps,
+  FormStackProps,
+} from "@/components/layout/dialog-form-body";
 export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
 export { AuthLayout } from "@/components/layout/auth-layout";
+export type { AuthLayoutProps } from "@/components/layout/auth-layout";
 
 // --- auto-generated: stage 1 components ---
 export * from "./master-edit-template";
@@ -316,45 +334,83 @@ export * from "./browse-dialog";
 
 // AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
 export { AreaChart } from "./area-chart";
+export type { AreaChartProps } from "./area-chart";
 export { BarChart } from "./bar-chart";
+export type { BarChartProps } from "./bar-chart";
 export { BarListCard } from "./bar-list-card";
+export type { BarListCardProps } from "./bar-list-card";
 export { BudgetAllocator } from "./budget-allocator";
+export type { BudgetAllocatorProps } from "./budget-allocator";
 export { CompanyPicker } from "./company-picker";
+export type { CompanyPickerProps } from "./company-picker";
 export { CostCenterPicker } from "./cost-center-picker";
+export type { CostCenterPickerProps } from "./cost-center-picker";
 export { CustomerPicker } from "./customer-picker";
+export type { CustomerPickerProps } from "./customer-picker";
 export { DashboardGrid } from "./dashboard-grid";
+export type { DashboardGridProps } from "./dashboard-grid";
 export { DepartmentPicker } from "./department-picker";
+export type { DepartmentPickerProps } from "./department-picker";
 export { DistributorPicker } from "./distributor-picker";
+export type { DistributorPickerProps } from "./distributor-picker";
 export { DonutChart } from "./donut-chart";
+export type { DonutChartProps } from "./donut-chart";
 export { EmployeePicker } from "./employee-picker";
+export type { EmployeePickerProps } from "./employee-picker";
 export { ErrorPage } from "./error-page";
 export { GaugeChart } from "./gauge-chart";
+export type { GaugeChartProps } from "./gauge-chart";
 export { ImMessage } from "./im-message";
+export type { ImMessageProps } from "./im-message";
 export { KanbanColumn } from "./kanban-column";
+export type { KanbanColumnProps } from "./kanban-column";
 export { LineChart } from "./line-chart";
+export type { LineChartProps } from "./line-chart";
 export { MessageList } from "./message-list";
+export type { MessageListProps } from "./message-list";
 export { OverviewPage } from "./overview-page";
+export type { OverviewPageProps } from "./overview-page";
 export { PermissionButton } from "./permission-button";
+export type { PermissionButtonProps } from "./permission-button";
 export { PieChart } from "./pie-chart";
+export type { PieChartProps } from "./pie-chart";
 export { ProductCategoryPicker } from "./product-category-picker";
+export type { ProductCategoryPickerProps } from "./product-category-picker";
 export { PromotionRuleCard } from "./promotion-rule-card";
+export type { PromotionRuleCardProps } from "./promotion-rule-card";
 export { PromotionRuleEditor } from "./promotion-rule-editor";
+export type { PromotionRuleEditorProps } from "./promotion-rule-editor";
 export { RadarChart } from "./radar-chart";
+export type { RadarChartProps } from "./radar-chart";
 export { RadialChart } from "./radial-chart";
+export type { RadialChartProps } from "./radial-chart";
 export { RegionPicker } from "./region-picker";
+export type { RegionPickerProps } from "./region-picker";
 export { SankeyChart } from "./sankey-chart";
+export type { SankeyChartProps } from "./sankey-chart";
 export { ScatterChart } from "./scatter-chart";
+export type { ScatterChartProps } from "./scatter-chart";
 export { SkuPicker } from "./sku-picker";
+export type { SkuPickerProps } from "./sku-picker";
 export { SparkChart } from "./spark-chart";
+export type { SparkChartProps } from "./spark-chart";
 export { StatCardWithDelta } from "./stat-card-with-delta";
+export type { StatCardWithDeltaProps } from "./stat-card-with-delta";
 export { SubformTabs } from "./subform-tabs";
+export type { SubformTabsProps } from "./subform-tabs";
 export { TabCrudPage } from "./tab-crud-page";
+export type { TabCrudPageProps } from "./tab-crud-page";
 export { ThemeToggle } from "./theme-toggle";
 export { TodoListTable } from "./todo-list-table";
+export type { TodoListTableProps } from "./todo-list-table";
 export { TreeCrudPage } from "./tree-crud-page";
+export type { TreeCrudPageProps } from "./tree-crud-page";
 export { TreemapChart } from "./treemap-chart";
+export type { TreemapChartProps } from "./treemap-chart";
 export { WarehousePicker } from "./warehouse-picker";
+export type { WarehousePickerProps } from "./warehouse-picker";
 export { WaterfallChart } from "./waterfall-chart";
+export type { WaterfallChartProps } from "./waterfall-chart";
 
 // ─── P2 new business components ───────────────────────────────────
 
@@ -373,6 +429,10 @@ export * from "./leave-request-form";
 export * from "./meeting-room-booking";
 export * from "./attendance-calendar";
 export { PurchaseOrderEditor } from "./purchase-order-editor";
+export type {
+  PurchaseOrderEditorProps,
+  POLineItem,
+} from "./purchase-order-editor";
 export * from "./stock-transfer-dialog";
 export * from "./ar-ap-aging-table";
 export * from "./lead-pipeline-board";
@@ -381,6 +441,7 @@ export * from "./customer-360-card";
 export * from "./spc-control-chart";
 export * from "./oee-dashboard";
 export { BatchGenealogyTree } from "./batch-genealogy-tree";
+export type { BatchGenealogyTreeProps } from "./batch-genealogy-tree";
 export * from "./work-order-card";
 
 // P2-C: Nice-to-have business components
@@ -392,3 +453,11 @@ export * from "./label-designer";
 export * from "./iot-sensor-grid";
 export * from "./compliance-checklist";
 export * from "./i18n-form-field";
+
+// ─── Alias exports for consumer compatibility ──────────────────────
+export { BOMTreeEditor as BomTreeEditor } from "./bom-tree-editor";
+export { KPICard as KpiCard } from "./kpi-card";
+export { MapMarkerCluster as MapMarker } from "./map-marker";
+export { SPCControlChart as SpcControlChart } from "./spc-control-chart";
+export { UTMBuilder as UtmBuilder } from "./utm-builder";
+export { AdvancedDataTable } from "./advanced-data-table";

@@ -121,7 +121,7 @@ class PreviewErrorBoundary extends Component<
 
 type RenderStatus = "checking" | "hasContent" | "empty";
 
-const emptyRenderGraceMs = 900;
+const emptyRenderGraceMs = 600;
 
 function hasMeaningfulContent(el: HTMLElement) {
   return el.children.length > 0 || Boolean(el.textContent?.trim());
@@ -153,21 +153,30 @@ function EmptyRenderSensor({
 
     if (check()) return;
 
-    const observer = new MutationObserver(check);
-    observer.observe(el, {
-      childList: true,
-      characterData: true,
-      subtree: true,
+    // Use requestAnimationFrame for initial check before falling back to MutationObserver
+    let observer: MutationObserver | null = null;
+    let timeout: number | undefined;
+
+    const rafId = requestAnimationFrame(() => {
+      if (check()) return;
+
+      observer = new MutationObserver(check);
+      observer.observe(el, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+
+      timeout = window.setTimeout(() => {
+        if (!check()) setStatus("empty");
+        observer?.disconnect();
+      }, emptyRenderGraceMs);
     });
 
-    const timeout = window.setTimeout(() => {
-      if (!check()) setStatus("empty");
-      observer.disconnect();
-    }, emptyRenderGraceMs);
-
     return () => {
+      cancelAnimationFrame(rafId);
       window.clearTimeout(timeout);
-      observer.disconnect();
+      observer?.disconnect();
     };
   }, [name]);
 

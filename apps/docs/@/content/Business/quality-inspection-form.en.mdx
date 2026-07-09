@@ -1,5 +1,5 @@
-import { QualityInspectionForm } from "@/components/business/quality-inspection-form";
-import { CodeBlock } from "@/components/code-block";
+import { QualityInspectionForm } from "@/components/business/quality-inspection-form"
+import { CodeBlock } from "@/components/code-block"
 
 # QualityInspectionForm
 
@@ -11,6 +11,7 @@ QualityInspectionForm — a business component for ERP / enterprise scenarios.
 
 Use when you need a quality inspection form.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <QualityInspectionForm />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### QualityInspectionForm
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `items`     | `InspectionItem[]`            | —       | Items / data list               |
-| `onChange`  | `() => void`                  | —       | Callback when value changes     |
-| `onSubmit`  | `() => void`                  | —       | Submit handler                  |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `InspectionItem[]` | — | Items / data list |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `onSubmit` | `() => void` | — | Submit handler |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

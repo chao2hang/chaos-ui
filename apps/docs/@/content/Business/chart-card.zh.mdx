@@ -1,0 +1,39 @@
+import { ChartCard } from "@/components/business/chart-card";
+import { CodeBlock } from "@/components/code-block";
+
+# ChartCard Chart Card
+
+> 业务组件
+
+## 何时使用
+
+适用于Chart Card相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ChartCard } from "@/components/business/chart-card"
+
+export function Basic() {
+  return <ChartCard title={"example"} description={"example"} footer={<span>content</span>} />
+}`} lang="tsx" />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChartCard
+
+| Prop          | Type                   | Default | 说明              |
+| ------------- | ---------------------- | ------- | ----------------- |
+| `className`   | `string`               | —       | 自定义样式类名    |
+| `title`       | `string`               | —       | 标题              |
+| `description` | `string`               | —       | 描述文本          |
+| `footer`      | `React.ReactNode`      | —       |                   |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chartcard--docs)。

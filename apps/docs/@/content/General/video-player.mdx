@@ -1,18 +1,17 @@
-import { VideoPlayer } from "@/components/ui/video-player"
-import { CodeBlock } from "@/components/code-block"
+import { VideoPlayer } from "@/components/ui/video-player";
+import { CodeBlock } from "@/components/code-block";
 
 # VideoPlayer 视频播放器
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 视频播放器 / Styled video player with play/pause, seek bar, volume, and fullscreen.
 
-视频播放器 — Chaos UI 的通用基础组件。
-VideoPlayer — a general-purpose primitives used across the app. from Chaos UI.
+带播放/暂停、进度条、音量和全屏切换的视频播放器。
+Styled video player with play/pause, seek bar, volume, and fullscreen toggle.
 
 ## 何时使用 / When to Use
 
-播放视频内容,支持播放/暂停、进度条、音量控制。
-
-Play video content with play/pause, progress, and volume controls.
+需要播放视频文件时使用，如视频预览、教程播放、监控回放。
+Use when you need to play video files, such as video previews, tutorial playback, or surveillance replay.
 
 ## 代码示例 / Examples
 
@@ -21,28 +20,40 @@ Play video content with play/pause, progress, and volume controls.
 <CodeBlock code={`import { VideoPlayer } from "@/components/ui/video-player"
 
 export function Basic() {
-  return <VideoPlayer />
+  return <VideoPlayer src="/video/sample.mp4" />
 }`} lang="tsx" />
 
+### 带封面图 / With Poster
+
+<CodeBlock code={`import { VideoPlayer } from "@/components/ui/video-player"
+
+export function WithPoster() {
+  return (
+    <VideoPlayer
+      src="/video/sample.mp4"
+      poster="/images/poster.jpg"
+    />
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### VideoPlayer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `src` | `string` | — | Video source URL. |
-| `poster` | `string` | — | Poster image URL. |
-| `autoPlay` | `boolean` | — | Whether to auto-play on mount. Default false. |
-| `showControls` | `boolean` | `true` | Whether to show controls overlay. Default true. |
-| `onEnded` | `() => void` | — | Called when playback ends. |
-| `onPlay` | `() => void` | — |  |
-| `onPause` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type         | Default | 说明 / Description                       |
+| -------------- | ------------ | ------- | ---------------------------------------- |
+| `src`          | `string`     | —       | Video source URL / 视频源地址 (required) |
+| `poster`       | `string`     | —       | Poster image URL / 封面图地址            |
+| `autoPlay`     | `boolean`    | `false` | Auto-play on mount / 自动播放            |
+| `showControls` | `boolean`    | `true`  | Show controls overlay / 显示控制层       |
+| `className`    | `string`     | —       | 自定义样式类名 <br/> Custom CSS class    |
+| `onEnded`      | `() => void` | —       | Playback end callback / 播放结束回调     |
+| `onPlay`       | `() => void` | —       | Play callback / 播放回调                 |
+| `onPause`      | `() => void` | —       | Pause callback / 暂停回调                |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必填 `src`**: 必须传入视频文件 URL，否则无法播放。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-videoplayer--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-videoplayer--docs)。

@@ -11,12 +11,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    value: "A001-A100, B001-B050",
-  },
+    prefix: "ORDER",
+    date: new Date(),
+    seq: 42,
+  } as any,
 };
 
 export const Single: Story = {
   args: {
-    value: "INV-2024-0001 ~ INV-2024-0099",
-  },
+    prefix: "INV",
+    date: new Date(),
+    seq: 1,
+  } as any,
 };

@@ -1,58 +1,143 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const spinnerVariants = cva("animate-spin", {
-  variants: {
-    variant: {
-      default: "text-primary",
-      muted: "text-muted-foreground",
-      white: "text-white",
-    },
-    size: {
-      default: "size-5",
-      sm: "size-3.5",
-      lg: "size-8",
-      xl: "size-12",
-    },
-  },
-  defaultVariants: { variant: "default", size: "default" },
-});
+/**
+ * @component Spinner
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 纯加载指示器 / Pure loading spinner indicator
+ * @keywords spinner, loading, indicator, circular
+ * @example
+ * <Spinner size="md" />
+ * <Spinner variant="dots" />
+ */
 
-interface SpinnerProps
-  extends React.ComponentProps<"svg">, VariantProps<typeof spinnerVariants> {
-  /** Accessible label */
+type SpinnerSize = "xs" | "sm" | "md" | "lg" | "xl";
+type SpinnerVariant = "circle" | "dots" | "bars";
+
+const sizeMap: Record<SpinnerSize, string> = {
+  xs: "size-3",
+  sm: "size-4",
+  md: "size-5",
+  lg: "size-7",
+  xl: "size-9",
+};
+
+const borderMap: Record<SpinnerSize, string> = {
+  xs: "border",
+  sm: "border-2",
+  md: "border-2",
+  lg: "border-[3px]",
+  xl: "border-4",
+};
+
+interface SpinnerProps extends React.ComponentProps<"span"> {
+  /** Spinner size / 大小 */
+  size?: SpinnerSize;
+  /** Spinner variant / 变体 */
+  variant?: SpinnerVariant;
+  /** Spinner color / 颜色 */
+  color?: "primary" | "secondary" | "muted" | "destructive" | "current";
+  /** Accessible label / 无障碍标签 */
   label?: string;
 }
 
+const colorMap: Record<string, string> = {
+  primary: "text-primary",
+  secondary: "text-secondary-foreground",
+  muted: "text-muted-foreground",
+  destructive: "text-destructive",
+  current: "text-current",
+};
+
 function Spinner({
   className,
-  variant,
-  size,
-  label = "Loading...",
+  size = "md",
+  variant = "circle",
+  color = "primary",
+  label = "Loading",
   ...props
 }: SpinnerProps) {
+  if (variant === "dots") {
+    return (
+      <span
+        role="status"
+        aria-label={label}
+        data-slot="spinner"
+        data-variant="dots"
+        className={cn(
+          "inline-flex items-center gap-1",
+          colorMap[color],
+          className,
+        )}
+        {...props}
+      >
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className={cn(
+              "animate-bounce rounded-full bg-current",
+              sizeMap[size],
+            )}
+            style={{ animationDelay: `${i * 150}ms`, animationDuration: "1s" }}
+          />
+        ))}
+        <span className="sr-only">{label}</span>
+      </span>
+    );
+  }
+
+  if (variant === "bars") {
+    return (
+      <span
+        role="status"
+        aria-label={label}
+        data-slot="spinner"
+        data-variant="bars"
+        className={cn(
+          "inline-flex items-end gap-0.5",
+          colorMap[color],
+          className,
+        )}
+        {...props}
+      >
+        {[0, 1, 2, 3].map((i) => (
+          <span
+            key={i}
+            className="animate-pulse bg-current"
+            style={{
+              width: "3px",
+              height: "100%",
+              animationDelay: `${i * 100}ms`,
+              animationDuration: "1s",
+            }}
+          />
+        ))}
+        <span className="sr-only">{label}</span>
+      </span>
+    );
+  }
+
   return (
-    <svg
-      data-slot="spinner"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={cn(spinnerVariants({ variant, size }), className)}
+    <span
       role="status"
       aria-label={label}
+      data-slot="spinner"
+      data-variant="circle"
+      className={cn(
+        "inline-block animate-spin rounded-full border-current border-t-transparent",
+        sizeMap[size],
+        borderMap[size],
+        colorMap[color],
+        className,
+      )}
       {...props}
     >
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
+      <span className="sr-only">{label}</span>
+    </span>
   );
 }
 
-export { Spinner, spinnerVariants };
+export { Spinner };
+export type { SpinnerProps };

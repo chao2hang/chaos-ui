@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { SegmentedControl } from "./segmented-control";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 
 type Opt = "a" | "b" | "c";
 const options: { value: Opt; label: string }[] = [
@@ -99,7 +99,7 @@ describe("SegmentedControl", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/segmented-control");
+    const mod = await import("@/components/ui/segmented-control");
     expect(mod.SegmentedControl).toBeDefined();
   });
 });

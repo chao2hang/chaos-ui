@@ -1,4 +1,4 @@
-import { Watermark } from "@/components/business/watermark";
+import { Watermark } from "@/components/ui/watermark";
 import { CodeBlock } from "@/components/code-block";
 
 # Watermark
@@ -11,11 +11,12 @@ Overlays specified text/image watermark on content for copyright.
 
 Use when you need a watermark.
 
+
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { Watermark } from "@/components/business/watermark"
+<CodeBlock code={`import { Watermark } from "@/components/ui/watermark"
 
 export function Basic() {
   return <Watermark />
@@ -25,20 +26,22 @@ export function Basic() {
 
 ### Watermark
 
-| Prop        | Type                   | Default    | Description                       |
-| ----------- | ---------------------- | ---------- | --------------------------------- |
-| `className` | `string`               | —          | Custom CSS class                  |
-| `text`      | `string`               | `内部资料` |                                   |
-| `image`     | `string`               | —          |                                   |
-| `rotate`    | `number`               | `-22`      |                                   |
-| `gap`       | `[number, number]`     | —          | Gap between items                 |
-| `fontSize`  | `number`               | `14`       |                                   |
-| `fullPage`  | `boolean`              | `true`     |                                   |
-| `zIndex`    | `number`               | `1000`     |                                   |
-| `opacity`   | `number`               | `0.08`     |                                   |
-| `color`     | `string`               | `#000`     | Color theme                       |
-| ...rest     | `React.HTMLAttributes` | —          | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+| ----------- | ---------------------- | ---------- | --------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `text`      | `string`               | `内部资料` |                                                           |
+| `image`     | `string`               | —          |                                                           |
+| `rotate`    | `number`               | `-22`      |                                                           |
+| `gap` | `[number, number]` | — | Gap between items |
+| `fontSize`  | `number`               | `14`       |                                                           |
+| `fullPage`  | `boolean`              | `true`     |                                                           |
+| `zIndex`    | `number`               | `1000`     |                                                           |
+| `opacity`   | `number`               | `0.08`     |                                                           |
+| `color` | `string` | `#000` | Color theme |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,0 +1,41 @@
+import { RuleEditor } from "@/components/business/rule-editor"
+import { CodeBlock } from "@/components/code-block"
+
+# RuleEditor Rule Editor
+
+> Domain-specific business components for ERP scenarios.
+
+RuleEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a rule editor.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RuleEditor } from "@/components/business/rule-editor"
+
+export function Basic() {
+  return <RuleEditor />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### RuleEditor
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rules` | `Array<RuleItem>` | — |  |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

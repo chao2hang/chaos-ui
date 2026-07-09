@@ -1,5 +1,5 @@
-import { Stepper, Step } from "@/components/ui/stepper";
-import { CodeBlock } from "@/components/code-block";
+import { Stepper, Step } from "@/components/ui/stepper"
+import { CodeBlock } from "@/components/code-block"
 
 # Stepper
 
@@ -11,6 +11,7 @@ Horizontal stepper guiding users through a multi-step workflow.
 
 Use when you need a stepper.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,17 +22,20 @@ export function Basic() {
   return <Stepper>Default</Stepper>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Stepper
 
-| Prop          | Type                         | Default      | Description                       |
-| ------------- | ---------------------------- | ------------ | --------------------------------- |
-| `className`   | `string`                     | —            | Custom CSS class                  |
-| `activeStep`  | `number`                     | `0`          |                                   |
-| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Orientation                       |
-| ...rest       | `React.HTMLAttributes`       | —            | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `activeStep` | `number` | `0` |  |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Orientation |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+

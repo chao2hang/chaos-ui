@@ -1,10 +1,5 @@
-import {
-  ErrorPage,
-  NotFound,
-  InternalError,
-  Unauthorized,
-} from "@/components/business/error-page";
-import { CodeBlock } from "@/components/code-block";
+import { ErrorPage, NotFound, InternalError, Unauthorized } from "@/components/business/error-page"
+import { CodeBlock } from "@/components/code-block"
 
 # ErrorPage 错误页
 
@@ -16,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要错误页功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -26,25 +22,27 @@ export function Basic() {
   return <ErrorPage>Default</ErrorPage>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ErrorPage
 
-| Prop           | Type                       | Default | 说明              |
-| -------------- | -------------------------- | ------- | ----------------- |
-| `className`    | `string`                   | —       | 自定义样式类名    |
-| `status`       | `403 \| 404 \| 500 \| 503` | `404`   | 状态              |
-| `title`        | `string`                   | —       | 标题              |
-| `description`  | `string`                   | —       | 描述文本          |
-| `homeHref`     | `string`                   | `/`     |                   |
-| `showHome`     | `boolean`                  | `true`  |                   |
-| `showBack`     | `boolean`                  | `true`  |                   |
-| `onBack`       | `() => void`               | —       |                   |
-| `illustration` | `React.ReactNode`          | —       |                   |
-| ...rest        | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `status` | `403 \| 404 \| 500 \| 503` | `404` | 状态 |
+| `title` | `string` | — | 标题 |
+| `description` | `string` | — | 描述文本 |
+| `homeHref` | `string` | `/` |  |
+| `showHome` | `boolean` | `true` |  |
+| `showBack` | `boolean` | `true` |  |
+| `onBack` | `() => void` | — |  |
+| `illustration` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-error-page--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-errorpage--docs)。
+

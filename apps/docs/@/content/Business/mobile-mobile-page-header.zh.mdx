@@ -1,0 +1,45 @@
+import { MobilePageHeader } from "@/components/mobile/mobile-page-header";
+import { CodeBlock } from "@/components/code-block";
+
+# MobilePageHeader Mobile Mobile Page Header
+
+> 业务组件
+
+Mobile Mobile Page Header — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Mobile Mobile Page Header相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobilePageHeader } from "@/components/mobile/mobile-page-header"
+
+export function Basic() {
+  return <MobilePageHeader />
+}`} lang="tsx" />
+
+## API / Props
+
+### MobilePageHeader
+
+| Prop | Type | Default | 说明 |
+| ----------------- | ------------------------------------ | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | — | 标题 |
+| `description` | `string` | — | 描述文本 |
+| `breadcrumbItems` | `{ label: string; href?: string }[]` | —       |                                                           |
+| `actions`         | `React.ReactNode`                    | —       |                                                           |
+| `onBack`          | `() => void`                         | —       |                                                           |
+| `onMenu`          | `() => void`                         | —       |                                                           |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-mobile-page-header--docs)。
+

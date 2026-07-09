@@ -1,0 +1,54 @@
+import { StockTransferDialog } from "@/components/business/stock-transfer-dialog"
+import { CodeBlock } from "@/components/code-block"
+
+# StockTransferDialog Stock Transfer Dialog
+
+> Domain-specific business components for ERP scenarios.
+
+StockTransferDialog — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a stock transfer dialog.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { StockTransferDialog } from "@/components/business/stock-transfer-dialog"
+
+export function Basic() {
+  return <StockTransferDialog />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### StockTransferDialog
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `transferNo` | `string` | — |  |
+| `fromWarehouse` | `string` | — |  |
+| `toWarehouse` | `string` | — |  |
+| `onFromWarehouseChange` | `() => void` | — |  |
+| `onToWarehouseChange` | `() => void` | — |  |
+| `warehouses` | `string[]` | — |  |
+| `lines` | `TransferLine[]` | — |  |
+| `onLinesChange` | `() => void` | — |  |
+| `transferType` | `"regular" \| "urgent"` | `regular` |  |
+| `onTransferTypeChange` | `() => void` | — |  |
+| `remark` | `string` | — |  |
+| `onRemarkChange` | `() => void` | — |  |
+| `onSubmit` | `() => void` | — | Submit handler |
+| `onCancel` | `() => void` | — |  |
+| `readOnly` | `boolean` | `false` | Whether read-only |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

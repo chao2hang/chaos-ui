@@ -1,18 +1,17 @@
-import { Direction } from "@/components/ui/direction"
-import { CodeBlock } from "@/components/code-block"
+import { Direction } from "@/components/ui/direction";
+import { CodeBlock } from "@/components/code-block";
 
-# Direction
+# Direction 方向
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 文本方向设置 / Text direction (LTR/RTL) wrapper for internationalization.
 
-Direction — Chaos UI 的通用基础组件。
-Direction — a general-purpose primitives used across the app. from Chaos UI.
+设置文本方向（LTR/RTL）以支持国际化，包装子元素并应用 RTL 感知的 CSS 逻辑属性。
+Sets text direction (LTR/RTL) for internationalization. Wraps children with `dir` attribute and RTL-aware CSS logical properties.
 
 ## 何时使用 / When to Use
 
-适用于Direction相关场景。
-
-Use when you need a direction.
+需要支持阿拉伯语、希伯来语等 RTL（从右到左）语言时使用，确保文本和布局正确镜像。
+Use when you need to support RTL (right-to-left) languages such as Arabic or Hebrew, ensuring text and layout are correctly mirrored.
 
 ## 代码示例 / Examples
 
@@ -21,23 +20,44 @@ Use when you need a direction.
 <CodeBlock code={`import { Direction } from "@/components/ui/direction"
 
 export function Basic() {
-  return <Direction />
+  return (
+    <Direction dir="rtl">
+      <p>مرحبا بالعالم</p>
+    </Direction>
+  )
 }`} lang="tsx" />
 
+### LTR / RTL 对比 / LTR vs RTL Comparison
+
+<CodeBlock code={`import { Direction } from "@/components/ui/direction"
+
+export function Comparison() {
+  return (
+    <div className="flex flex-col gap-4">
+      <Direction dir="ltr" className="rounded border p-4">
+        <p>This text reads left-to-right.</p>
+      </Direction>
+      <Direction dir="rtl" className="rounded border p-4">
+        <p>هذا النص يُقرأ من اليمين إلى اليسار.</p>
+      </Direction>
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### Direction
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `dir` | `DirectionValue` | `ltr` | Text direction / 文本方向 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向              |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **RTL 样式**: 当 `dir="rtl"` 时自动应用 `[direction:rtl]` CSS 规则。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-direction--docs)。

@@ -1,120 +1,76 @@
 "use client";
 import * as React from "react";
-import {
-  CircleIcon,
-  CheckCircle2Icon,
-  XCircleIcon,
-  ClockIcon,
-  MessageCircleIcon,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { formatRelativeTime } from "@/lib/format";
-
-export interface ApprovalStep {
-  id: string;
-  name: string;
-  approver: { name: string; avatar?: string };
-  status: "pending" | "approved" | "rejected" | "skipped";
-  timestamp?: number | string | Date;
-  comment?: string;
-}
-
-interface ApprovalFlowProps extends React.HTMLAttributes<HTMLDivElement> {
-  steps: ApprovalStep[];
-  currentStep?: number;
-  onApprove?: (stepId: string) => void;
-  onReject?: (stepId: string) => void;
+import { CheckIcon, ClockIcon, XIcon, ChevronRightIcon } from "@/components/ui";
+/**
+ * @component ApprovalFlow
+ * @category business/bill
+ * @since 0.7.0
+ * @description 审批流程图
+ */
+interface ApprovalFlowProps {
+  nodes: Array<{ id: string; name: string; type: string; status?: string }>;
+  edges: Array<{ from: string; to: string }>;
   className?: string;
 }
-
-const STATUS_ICONS = {
-  pending: ClockIcon,
-  approved: CheckCircle2Icon,
-  rejected: XCircleIcon,
-  skipped: CircleIcon,
-} as const;
-
-const STATUS_STYLES = {
-  pending: "text-warning",
-  approved: "text-success",
-  rejected: "text-destructive",
-  skipped: "text-muted-foreground",
-} as const;
-
-export function ApprovalFlow({
-  steps,
-  currentStep,
-  onApprove,
-  onReject,
+const STATUS_STYLE: Record<string, string> = {
+  approved: "bg-emerald-100 text-emerald-700",
+  pending: "bg-yellow-100 text-yellow-700",
+  rejected: "bg-red-100 text-red-700",
+  processing: "bg-blue-100 text-blue-700",
+};
+function ApprovalFlow({
+  nodes = [],
+  edges = [],
   className,
-  ...props
 }: ApprovalFlowProps) {
+  const order = React.useMemo(() => {
+    const next = new Map<string, string>();
+    edges.forEach((e) => next.set(e.from, e.to));
+    const starts = nodes.filter((n) => !edges.some((e) => e.to === n.id));
+    const out: typeof nodes = [];
+    let cur: string | undefined = starts[0]?.id;
+    const seen = new Set<string>();
+    while (cur && !seen.has(cur)) {
+      seen.add(cur);
+      const n = nodes.find((x) => x.id === cur);
+      if (n) out.push(n);
+      cur = next.get(cur);
+    }
+    if (out.length === 0) return nodes;
+    return out;
+  }, [nodes, edges]);
   return (
     <div
       data-slot="approval-flow"
-      className={cn("space-y-3", className)}
-      {...props}
+      className={cn("flex flex-wrap items-center gap-2", className)}
     >
-      {steps.map((step, i) => {
-        const Icon = STATUS_ICONS[step.status];
-        const isCurrent = i === currentStep;
-        return (
-          <div
-            key={step.id}
-            className={cn(
-              "flex items-start gap-3 rounded-md border p-3",
-              isCurrent && "border-primary/50 bg-primary/5",
-              step.status === "approved" && "border-success/30",
-              step.status === "rejected" && "border-destructive/30",
-            )}
-          >
-            <Icon
+      {order.map((n, i) => (
+        <React.Fragment key={n.id}>
+          <div className="bg-card flex items-center gap-2 rounded-lg border px-3 py-2 text-sm">
+            <span
               className={cn(
-                "mt-0.5 size-5 shrink-0",
-                STATUS_STYLES[step.status],
+                "flex size-5 items-center justify-center rounded-full text-xs",
+                STATUS_STYLE[n.status ?? "pending"] ?? "bg-muted",
               )}
-            />
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">{step.name}</span>
-                <span className="text-muted-foreground text-xs">
-                  {step.approver.name}
-                </span>
-                {step.timestamp && (
-                  <span className="text-muted-foreground text-xs">
-                    · {formatRelativeTime(step.timestamp)}
-                  </span>
-                )}
-              </div>
-              {step.comment && (
-                <div className="bg-muted/30 text-muted-foreground mt-1 flex items-start gap-1.5 rounded px-2 py-1.5 text-xs">
-                  <MessageCircleIcon className="mt-0.5 size-3 shrink-0" />
-                  <span>{step.comment}</span>
-                </div>
+            >
+              {n.status === "approved" ? (
+                <CheckIcon className="size-3" />
+              ) : n.status === "rejected" ? (
+                <XIcon className="size-3" />
+              ) : (
+                <ClockIcon className="size-3" />
               )}
-            </div>
-            {isCurrent && (onApprove || onReject) && (
-              <div className="flex gap-1">
-                {onReject && (
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    onClick={() => onReject(step.id)}
-                  >
-                    拒绝
-                  </Button>
-                )}
-                {onApprove && (
-                  <Button size="xs" onClick={() => onApprove(step.id)}>
-                    同意
-                  </Button>
-                )}
-              </div>
-            )}
+            </span>
+            <span className="font-medium">{n.name}</span>
           </div>
-        );
-      })}
+          {i < order.length - 1 && (
+            <ChevronRightIcon className="text-muted-foreground size-4" />
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 }
+export { ApprovalFlow };
+export type { ApprovalFlowProps };

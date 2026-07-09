@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SegmentedControl } from "@/components/business/segmented-control"
+import { SegmentedControl } from "@/components/ui/segmented-control"
 import { useState } from "react"
 import { GridIcon, ListIcon, LayoutGridIcon } from "lucide-react"
 

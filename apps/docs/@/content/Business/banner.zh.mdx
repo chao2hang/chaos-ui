@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要横幅功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -38,27 +39,27 @@ export function Basic() {
 
 **变体**
 
-| Variant   | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `info`    | 信息提示 | ✓    |
-| `success` | 成功状态 |      |
-| `warning` | 警告状态 |      |
-| `error`   | 错误状态 |      |
+| Variant | 说明 | 默认 |
+| --------- | ------------------------------ | ---- |
+| `info` | 信息提示 | ✓ |
+| `success` | 成功状态 |  |
+| `warning` | 警告状态 |  |
+| `error` | 错误状态 |  |
 
 ## API / Props
 
 ### Banner
 
-| Prop          | Type                   | Default | 说明              |
-| ------------- | ---------------------- | ------- | ----------------- |
-| `className`   | `string`               | —       | 自定义样式类名    |
-| `variant`     | `BannerVariant`        | `info`  | 样式变体          |
-| `title`       | `string`               | —       | 标题              |
-| `description` | `string`               | —       | 描述文本          |
-| `action`      | `React.ReactNode`      | —       |                   |
-| `closable`    | `boolean`              | `true`  |                   |
-| `onClose`     | `() => void`           | —       | 关闭回调          |
-| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `variant` | `BannerVariant` | `info` | 样式变体 |
+| `title` | `string` | — | 标题 |
+| `description` | `string` | — | 描述文本 |
+| `action`      | `React.ReactNode`      | —       |                                                           |
+| `closable`    | `boolean`              | `true`  |                                                           |
+| `onClose` | `() => void` | — | 关闭回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -66,3 +67,4 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-banner--docs)。
+

@@ -1,67 +1,182 @@
 "use client";
-
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ChevronUpIcon } from "@/components/ui/icons";
 
-const fabVariants = cva(
-  "inline-flex items-center justify-center rounded-full shadow-lg transition-all duration-200 hover:shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-border bg-background hover:bg-accent hover:text-accent-foreground",
-        ghost:
-          "bg-transparent shadow-none hover:bg-accent hover:text-accent-foreground",
-      },
-      size: {
-        default: "size-14",
-        sm: "size-10",
-        lg: "size-16",
-      },
-      position: {
-        "bottom-right": "fixed bottom-6 right-6 z-50",
-        "bottom-left": "fixed bottom-6 left-6 z-50",
-        "top-right": "fixed top-6 right-6 z-50",
-        "top-left": "fixed top-6 left-6 z-50",
-        none: "",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-      position: "bottom-right",
-    },
-  },
-);
+interface FabProps extends React.ComponentProps<typeof Button> {
+  icon?: React.ReactNode;
+  label?: string;
+  position?: "bottom-right" | "bottom-left" | "bottom-center";
+  offset?: number;
+}
 
-interface FabProps
-  extends React.ComponentProps<"button">, VariantProps<typeof fabVariants> {}
+const positionClass: Record<NonNullable<FabProps["position"]>, string> = {
+  "bottom-right": "right-4",
+  "bottom-left": "left-4",
+  "bottom-center": "left-1/2 -translate-x-1/2",
+};
 
-function Fab({
+/**
+ * @component Fab
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Floating Action Button fixed to the screen edge for primary actions / 固定在屏幕边缘的浮动操作按钮，用于主要操作
+ * @keywords fab, floating, action, button, fixed
+ * @example
+ * <Fab icon={<PlusIcon />} position="bottom-right" />
+ */
+export function Fab({
+  icon,
+  label,
+  position = "bottom-right",
+  offset = 4,
   className,
-  variant,
-  size,
-  position,
-  children,
   ...props
 }: FabProps) {
   return (
-    <button
+    <Button
       data-slot="fab"
-      type="button"
-      className={cn(fabVariants({ variant, size, position }), className)}
+      size={label ? "default" : "icon-lg"}
+      className={cn(
+        "fixed bottom-4 z-40 rounded-full shadow-lg",
+        positionClass[position],
+        className,
+      )}
+      style={{ bottom: `calc(${offset} * 0.25rem + 1rem)` }}
       {...props}
     >
-      {children}
-    </button>
+      {icon}
+      {label && <span>{label}</span>}
+    </Button>
   );
 }
 
-export { Fab, fabVariants };
+interface FabSpeedDialAction {
+  icon: React.ReactNode;
+  label: string;
+  onClick?: () => void;
+}
+
+interface FabSpeedDialProps {
+  icon: React.ReactNode;
+  actions: FabSpeedDialAction[];
+  position?: "bottom-right" | "bottom-left";
+}
+
+/**
+ * @component FabSpeedDial
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Floating action button that expands into a radial menu of speed-dial actions / 展开为放射状快捷菜单的浮动操作按钮
+ * @keywords fab, speed-dial, radial, menu, floating, actions
+ * @example
+ * <FabSpeedDial icon={<PlusIcon />} actions={[{ icon: <EditIcon />, label: "Edit", onClick: () => {} }]} />
+ */
+export function FabSpeedDial({
+  icon,
+  actions,
+  position = "bottom-right",
+}: FabSpeedDialProps) {
+  const { t } = useTranslation("navigation");
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div
+      data-slot="fab-speed-dial"
+      className={cn(
+        "fixed bottom-4 z-40 flex flex-col-reverse items-end gap-2",
+        position === "bottom-right" ? "right-4" : "left-4",
+      )}
+    >
+      {open && (
+        <div className="flex flex-col-reverse items-end gap-2">
+          {actions.map((a, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className="bg-foreground/90 text-background rounded-md px-2 py-1 text-xs shadow-md">
+                {a.label}
+              </span>
+              <Button
+                size="icon"
+                variant="secondary"
+                onClick={() => {
+                  a.onClick?.();
+                  setOpen(false);
+                }}
+                className="rounded-full shadow-md"
+              >
+                {a.icon}
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+      <Button
+        size="icon-lg"
+        onClick={() => setOpen((v) => !v)}
+        className="rounded-full shadow-lg"
+        aria-expanded={open}
+        aria-label={open ? t("fab.speedDialClose") : t("fab.speedDialOpen")}
+      >
+        {icon}
+      </Button>
+    </div>
+  );
+}
+
+interface BackTopProps {
+  threshold?: number;
+  target?: React.RefObject<HTMLElement | null>;
+  className?: string;
+}
+
+/**
+ * @component BackTop
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Button that appears after scrolling past a threshold, scrolls back to top / 滚动超过阈值后出现的返回顶部按钮
+ * @keywords back-top, scroll, top, button, navigation
+ * @example
+ * <BackTop threshold={300} />
+ */
+export function BackTop({ threshold = 400, target, className }: BackTopProps) {
+  const { t } = useTranslation("navigation");
+  const [visible, setVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = target?.current ?? window;
+    const onScroll = () => {
+      const top = target?.current ? target.current.scrollTop : window.scrollY;
+      setVisible(top > threshold);
+    };
+    el.addEventListener("scroll", onScroll as EventListener);
+    onScroll();
+    return () => el.removeEventListener("scroll", onScroll as EventListener);
+  }, [target, threshold]);
+
+  const scrollToTop = () => {
+    if (target?.current) {
+      target.current.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  if (!visible) return null;
+
+  return (
+    <Button
+      data-slot="back-top"
+      variant="secondary"
+      size="icon"
+      onClick={scrollToTop}
+      className={cn(
+        "fixed right-4 bottom-4 z-30 rounded-full shadow-md",
+        className,
+      )}
+      aria-label={t("fab.backTop")}
+    >
+      <ChevronUpIcon />
+    </Button>
+  );
+}

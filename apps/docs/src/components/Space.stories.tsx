@@ -39,7 +39,7 @@ export const Vertical: Story = {
 
 export const LargeGap: Story = {
   args: {
-    size: "large",
+    size: "lg",
     children: [
       <Item key="a">A</Item>,
       <Item key="b">B</Item>,

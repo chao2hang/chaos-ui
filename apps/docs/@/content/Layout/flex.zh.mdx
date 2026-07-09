@@ -1,5 +1,5 @@
-import { Flex } from "@/components/ui/flex";
-import { CodeBlock } from "@/components/code-block";
+import { Flex } from "@/components/ui/flex"
+import { CodeBlock } from "@/components/code-block"
 
 # Flex 弹性布局
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要弹性布局功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,65 +22,66 @@ export function Basic() {
   return <Flex>Default</Flex>
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **方向**
 
-| direction        | 说明 | 默认 |
-| ---------------- | ---- | ---- |
-| `row`            |      | ✓    |
-| `column`         |      |      |
-| `row-reverse`    |      |      |
-| `column-reverse` |      |      |
+| direction | 说明 | 默认 |
+|---|---|---|
+| `row` |  | ✓ |
+| `column` |  |  |
+| `row-reverse` |  |  |
+| `column-reverse` |  |  |
 
 **wrap**
 
-| wrap           | 说明 | 默认 |
-| -------------- | ---- | ---- |
-| `nowrap`       |      | ✓    |
-| `wrap`         |      |      |
-| `wrap-reverse` |      |      |
+| wrap | 说明 | 默认 |
+|---|---|---|
+| `nowrap` |  | ✓ |
+| `wrap` |  |  |
+| `wrap-reverse` |  |  |
 
 **主轴对齐**
 
-| justify   | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `start`   |      | ✓    |
-| `center`  |      |      |
-| `end`     |      |      |
-| `between` |      |      |
-| `around`  |      |      |
-| `evenly`  |      |      |
+| justify | 说明 | 默认 |
+|---|---|---|
+| `start` |  | ✓ |
+| `center` |  |  |
+| `end` |  |  |
+| `between` |  |  |
+| `around` |  |  |
+| `evenly` |  |  |
 
 **对齐**
 
-| align      | 说明 | 默认 |
-| ---------- | ---- | ---- |
-| `start`    |      |      |
-| `center`   |      |      |
-| `end`      |      |      |
-| `baseline` |      |      |
-| `stretch`  |      | ✓    |
+| align | 说明 | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  |  |
+| `end` |  |  |
+| `baseline` |  |  |
+| `stretch` |  | ✓ |
 
 **gap**
 
-| gap    | 说明 | 默认 |
-| ------ | ---- | ---- |
-| `none` |      | ✓    |
-| `xs`   |      |      |
-| `sm`   |      |      |
-| `md`   |      |      |
-| `lg`   |      |      |
-| `xl`   |      |      |
+| gap | 说明 | 默认 |
+|---|---|---|
+| `none` |  | ✓ |
+| `xs` |  |  |
+| `sm` |  |  |
+| `md` |  |  |
+| `lg` |  |  |
+| `xl` |  |  |
 
 ## API / Props
 
 ### Flex
 
-| Prop        | Type                          | Default | 说明                  |
-| ----------- | ----------------------------- | ------- | --------------------- |
-| `className` | `string`                      | —       | 自定义样式类名        |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -87,3 +89,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-flex--docs)。
+

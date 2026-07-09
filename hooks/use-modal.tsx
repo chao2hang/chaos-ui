@@ -144,15 +144,15 @@ export function useModal(): ModalInstance {
   // Attach the modal element to the instance for rendering.
   // useCallback returns a function whose type can't declare extra props in TS,
   // so we cast to attach the `.modal` render node (read by ModalRenderer).
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/immutability
   (confirm as any).modal = modal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/immutability
   (info as any).modal = modal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/immutability
   (warning as any).modal = modal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/immutability
   (success as any).modal = modal;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/immutability
   (error as any).modal = modal;
 
   return {

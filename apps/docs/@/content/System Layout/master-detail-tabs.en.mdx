@@ -1,5 +1,5 @@
-import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
-import { CodeBlock } from "@/components/code-block";
+import { MasterDetailTabs } from "@/components/layout/master-detail-tabs"
+import { CodeBlock } from "@/components/code-block"
 
 # MasterDetailTabs
 
@@ -11,6 +11,7 @@ MasterDetailTabs — a system-level layout shell for admin/dashboard/auth pages.
 
 Use when you need a master detail tabs.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,19 +22,22 @@ export function Basic() {
   return <MasterDetailTabs />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MasterDetailTabs
 
-| Prop               | Type                          | Default | Description                     |
-| ------------------ | ----------------------------- | ------- | ------------------------------- |
-| `className`        | `string`                      | —       | Custom CSS class                |
-| `items`            | `MasterDetailTabItem[]`       | —       | Items / data list               |
-| `activeKey`        | `string`                      | —       |                                 |
-| `defaultActiveKey` | `string`                      | —       |                                 |
-| `onChange`         | `() => void`                  | —       | Callback when value changes     |
-| ...rest            | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `MasterDetailTabItem[]` | — | Items / data list |
+| `activeKey` | `string` | — |  |
+| `defaultActiveKey` | `string` | — |  |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

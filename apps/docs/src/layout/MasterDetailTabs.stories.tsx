@@ -30,7 +30,8 @@ const tabs = [
 
 export const Default: Story = {
   args: {
-    items: tabs,
-    defaultActiveKey: "overview",
-  },
+    master: <div className="p-4">Master panel content</div>,
+    details: { overview: tabs[0], details: tabs[1], settings: tabs[2] },
+    activeDetail: "overview",
+  } as any,
 };

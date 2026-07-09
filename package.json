@@ -1,6 +1,6 @@
 {
   "name": "@chaos_team/chaos-ui",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "type": "module",
   "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
   "license": "MIT",
@@ -109,7 +109,7 @@
   },
   "packageManager": "pnpm@11.3.0",
   "scripts": {
-    "dev": "concurrently -n proxy,next -c cyan,green --kill-others --kill-others-on-fail \"node apps/docs/proxy-server.mjs\" \"pnpm --filter chaos-ui-docs dev:next\"",
+    "dev": "pnpm --filter chaos-ui-docs dev:next",
     "dev:sb": "storybook dev -p 6006",
     "dev:app": "next dev",
     "build": "pnpm --filter chaos-ui-docs build",

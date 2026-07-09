@@ -1,0 +1,47 @@
+import { PaymentResult } from "@/components/business/payment-result"
+import { CodeBlock } from "@/components/code-block"
+
+# PaymentResult Payment Result
+
+> 业务组件
+
+Payment Result — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Payment Result相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { PaymentResult } from "@/components/business/payment-result"
+
+export function Basic() {
+  return <PaymentResult />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### PaymentResult
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `status` | `"success" \| "fail"` | — | Result status. |
+| `orderId` | `string` | — | Order or transaction ID. |
+| `amount` | `string` | — | Amount paid. |
+| `primaryLabel` | `string` | — | Primary action button label. |
+| `onPrimary` | `() => void` | — | Called on primary action click. |
+| `secondaryLabel` | `string` | — | Secondary action button label. |
+| `onSecondary` | `() => void` | — | Called on secondary action click. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-paymentresult--docs)。
+

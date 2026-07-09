@@ -1,0 +1,44 @@
+import { DonutChart } from "@/components/business/donut-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# DonutChart Donut Chart
+
+> 业务组件
+
+ 环形图(占比)
+
+## 何时使用
+
+适用于Donut Chart相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { DonutChart } from "@/components/business/donut-chart"
+
+export function Basic() {
+  return <DonutChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### DonutChart
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `data` | `Array<T>` | — | Segments to render. |
+| `size` | `number` | `128` | Donut pixel size. |
+| `thickness` | `number` | `12` | Stroke thickness. |
+| `centerLabel` | `string` | — | Center hole label. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-donutchart--docs)。
+

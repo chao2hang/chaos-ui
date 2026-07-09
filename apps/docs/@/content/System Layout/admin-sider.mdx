@@ -1,5 +1,5 @@
-import { AdminSider } from "@/components/layout/admin-sider"
-import { CodeBlock } from "@/components/code-block"
+import { AdminSider } from "@/components/layout/admin-sider";
+import { CodeBlock } from "@/components/code-block";
 
 # AdminSider 管理后台侧边栏
 
@@ -24,18 +24,25 @@ export function Basic() {
   return <AdminSider />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AdminSider
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `AdminSiderItem[]` | — | 选项/数据项列表 <br/> Items / data list |
-| `activeKey` | `string` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| ...rest | `React.ComponentProps<"aside">` | — | 透传 `<aside>` 原生属性 <br/> Inherits all `<aside>` attributes |
+| Prop                 | Type                            | Default | 说明 / Description                                              |
+| -------------------- | ------------------------------- | ------- | --------------------------------------------------------------- |
+| `className`          | `string`                        | —       | 自定义样式类名 <br/> Custom CSS class                           |
+| `menuItems`          | `MenuItem[]`                    | —       | 菜单项列表 <br/> Menu items                                     |
+| `selectedKey`        | `string`                        | —       | 选中的菜单 key <br/> Selected menu key                          |
+| `onItemClick`        | `(item: MenuItem) => void`      | —       | 菜单点击回调 <br/> Menu click handler                           |
+| `collapsed`          | `boolean`                       | `false` | 是否折叠 <br/> Whether collapsed                                |
+| `onCollapse`         | `(collapsed: boolean) => void`  | —       | 折叠变更回调 <br/> Collapse change callback                     |
+| `logo`               | `ReactNode`                     | —       | Logo 内容 <br/> Logo content                                    |
+| `footer`             | `ReactNode`                     | —       | 底部内容 <br/> Footer content                                   |
+| `width`              | `number`                        | `240`   | 展开宽度 <br/> Expanded width                                   |
+| `collapsedWidth`     | `number`                        | `64`    | 折叠宽度 <br/> Collapsed width                                  |
+| `mobileOpen`         | `boolean`                       | `false` | 移动端是否打开 <br/> Mobile open state                          |
+| `onMobileOpenChange` | `(open: boolean) => void`       | —       | 移动端打开变更回调 <br/> Mobile open change callback            |
+| ...rest              | `React.ComponentProps<"aside">` | —       | 透传 `<aside>` 原生属性 <br/> Inherits all `<aside>` attributes |
 
 ## 注意事项 / Notes
 

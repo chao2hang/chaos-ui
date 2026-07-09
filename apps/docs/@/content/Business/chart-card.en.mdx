@@ -1,0 +1,39 @@
+import { ChartCard } from "@/components/business/chart-card";
+import { CodeBlock } from "@/components/code-block";
+
+# ChartCard Chart Card
+
+> Domain-specific business components for ERP scenarios.
+
+ChartCard — a card wrapper for chart visualizations with title and description.
+ChartCard — chart card component.
+
+## When to Use
+
+Use when you need a chart card.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChartCard } from "@/components/business/chart-card"
+
+export function Basic() {
+  return <ChartCard />
+}`} lang="tsx" />
+
+## API / Props
+
+### ChartCard
+
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `title`       | `string`               | —       | Title                             |
+| `description` | `string`               | —       | Description text                  |
+| `footer`      | `React.ReactNode`      | —       |                                   |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+
+## Notes
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。

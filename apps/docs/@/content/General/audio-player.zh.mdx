@@ -1,0 +1,59 @@
+import { AudioPlayer } from "@/components/ui/audio-player";
+import { CodeBlock } from "@/components/code-block";
+
+# AudioPlayer 音频播放器
+
+> 音频播放器
+
+带播放/暂停、进度条、音量、倍速控制的音频播放器。
+
+## 何时使用
+
+需要播放音频文件时使用，如语音消息、音乐播放、播客收听。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { AudioPlayer } from "@/components/ui/audio-player"
+
+export function Basic() {
+  return <AudioPlayer src="/audio/sample.mp3" />
+}`} lang="tsx" />
+
+### 带音量和倍速
+
+<CodeBlock code={`import { AudioPlayer } from "@/components/ui/audio-player"
+
+export function FullControls() {
+  return (
+    <AudioPlayer
+      src="/audio/sample.mp3"
+      showVolume
+      showSpeed
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### AudioPlayer
+
+| Prop | Type | Default | 说明 |
+| ------------ | ------------ | ------- | ---------------------------------------- |
+| `src`        | `string`     | —       | Audio source URL / 音频源地址 (required) |
+| `autoPlay`   | `boolean`    | `false` | Auto-play on mount / 自动播放            |
+| `showVolume` | `boolean`    | `true`  | Show volume control / 显示音量控制       |
+| `showSpeed`  | `boolean`    | `false` | Show speed selector / 显示倍速选择       |
+| `className` | `string` | — | 自定义样式类名 |
+| `onEnded`    | `() => void` | —       | Playback end callback / 播放结束回调     |
+| `onPlay`     | `() => void` | —       | Play callback / 播放回调                 |
+| `onPause`    | `() => void` | —       | Pause callback / 暂停回调                |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必填 `src`**: 必须传入音频文件 URL，否则无法播放。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-audioplayer--docs)。
+

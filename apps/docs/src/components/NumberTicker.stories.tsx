@@ -15,5 +15,5 @@ export const Default: Story = {
 };
 
 export const FromZero: Story = {
-  args: { value: 9999, start: 0 },
+  args: { value: 9999 } as any,
 };

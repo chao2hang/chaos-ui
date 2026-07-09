@@ -1,5 +1,5 @@
-import { ReportBuilder } from "@/components/business/report-builder";
-import { CodeBlock } from "@/components/code-block";
+import { ReportBuilder } from "@/components/business/report-builder"
+import { CodeBlock } from "@/components/code-block"
 
 # ReportBuilder
 
@@ -11,6 +11,7 @@ ReportBuilder — a business component for ERP / enterprise scenarios.
 
 Use when you need a report builder.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,22 +22,25 @@ export function Basic() {
   return <ReportBuilder />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ReportBuilder
 
-| Prop              | Type                          | Default | Description                     |
-| ----------------- | ----------------------------- | ------- | ------------------------------- |
-| `className`       | `string`                      | —       | Custom CSS class                |
-| `fields`          | `ReportField[]`               | —       |                                 |
-| `filters`         | `ReportFilter[]`              | —       |                                 |
-| `onFieldsChange`  | `() => void`                  | —       |                                 |
-| `onFiltersChange` | `() => void`                  | —       |                                 |
-| `onPreview`       | `() => void`                  | —       |                                 |
-| `onExport`        | `() => void`                  | —       |                                 |
-| `availableFields` | `string[]`                    | —       |                                 |
-| ...rest           | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `fields` | `ReportField[]` | — |  |
+| `filters` | `ReportFilter[]` | — |  |
+| `onFieldsChange` | `() => void` | — |  |
+| `onFiltersChange` | `() => void` | — |  |
+| `onPreview` | `() => void` | — |  |
+| `onExport` | `() => void` | — |  |
+| `availableFields` | `string[]` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,98 +1,69 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { useCountdown } from "@/hooks/use-countdown";
 import { cn } from "@/lib/utils";
 
-const countdownVariants = cva(
-  "inline-flex items-center gap-1 font-mono tabular-nums",
-  {
-    variants: {
-      variant: {
-        default: "text-foreground",
-        primary: "text-primary",
-        muted: "text-muted-foreground",
-      },
-      size: {
-        default: "text-2xl",
-        sm: "text-lg",
-        lg: "text-4xl",
-      },
-    },
-    defaultVariants: { variant: "default", size: "default" },
-  },
-);
+/**
+ * @component Countdown
+ * @category ui/data-display
+ * @since 0.5.0
+ * @description Countdown display — renders useCountdown as a UI component.
+ * / 倒计时组件，将 useCountdown hook 呈现为 UI
+ * @keywords countdown, timer, deadline
+ * @example
+ * <Countdown target={Date.now() + 3600000} format="HH:mm:ss" />
+ */
 
-interface CountdownProps
-  extends React.ComponentProps<"span">, VariantProps<typeof countdownVariants> {
-  /** Target date/time (ISO string or timestamp) */
-  target: Date | number | string;
-  /** Called when countdown reaches 0 */
+type CountdownFormat = "HH:mm:ss" | "mm:ss" | "dd:HH:mm:ss" | "ms" | string;
+
+interface CountdownProps {
+  /** Target timestamp (ms) / 目标时间戳 */
+  target: number;
+  /** Display format / 显示格式 */
+  format?: CountdownFormat;
+  /** Called when countdown reaches zero / 倒计时结束时回调 */
   onFinish?: () => void;
-  /** Format: D=days, H=hours, M=minutes, S=seconds */
-  format?: string;
+  /** Whether to show days / 是否显示天 */
+  days?: boolean;
+  className?: string;
 }
 
 function Countdown({
-  className,
-  variant,
-  size,
   target,
-  onFinish,
   format = "HH:mm:ss",
-  ...props
+  onFinish,
+  days = false,
+  className,
 }: CountdownProps) {
-  const [remaining, setRemaining] = React.useState(0);
-  const finished = React.useRef(false);
+  const { days: d, hours: h, minutes: m, seconds: s, isFinished, totalSeconds } = useCountdown(target);
 
   React.useEffect(() => {
-    const targetTime =
-      typeof target === "string" || typeof target === "number"
-        ? new Date(target).getTime()
-        : target.getTime();
+    if (isFinished) onFinish?.();
+  }, [isFinished, onFinish]);
 
-    const tick = () => {
-      const now = Date.now();
-      const diff = Math.max(0, targetTime - now);
-      setRemaining(diff);
+  const pad = (n: number) => String(n).padStart(2, "0");
 
-      if (diff <= 0 && !finished.current) {
-        finished.current = true;
-        onFinish?.();
-      }
-    };
-
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, [target, onFinish]);
-
-  const formatTime = (ms: number): string => {
-    const totalSeconds = Math.floor(ms / 1000);
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    return format
-      .replace("DD", String(days).padStart(2, "0"))
-      .replace("HH", String(hours).padStart(2, "0"))
-      .replace("mm", String(minutes).padStart(2, "0"))
-      .replace("ss", String(seconds).padStart(2, "0"));
-  };
+  let display: string;
+  if (format === "ms") {
+    display = String(Math.max(0, totalSeconds * 1000));
+  } else if (format === "mm:ss") {
+    display = `${pad(m)}:${pad(s)}`;
+  } else if (format === "dd:HH:mm:ss" || days) {
+    display = `${d}:${pad(h)}:${pad(m)}:${pad(s)}`;
+  } else {
+    display = `${pad(h)}:${pad(m)}:${pad(s)}`;
+  }
 
   return (
     <span
       data-slot="countdown"
-      className={cn(countdownVariants({ variant, size }), className)}
-      aria-live="polite"
-      role="timer"
-      {...props}
+      className={cn("font-mono tabular-nums", className)}
     >
-      {formatTime(remaining)}
+      {isFinished ? "00:00:00" : display}
     </span>
   );
 }
 
-export { Countdown, countdownVariants };
+export { Countdown };
+export type { CountdownProps, CountdownFormat };

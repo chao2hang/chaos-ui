@@ -1,0 +1,39 @@
+import { FilterChips } from "@/components/ui/filter-chips"
+import { CodeBlock } from "@/components/code-block"
+
+# FilterChips
+
+> Data display components for presenting information.
+
+FilterChips — Active filter chips bar with per-chip removal and clear all.
+
+## When to Use
+
+Use when you need a filterchips.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { FilterChips } from "@/components/ui/filter-chips"
+
+export function Basic() {
+  return <FilterChips />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### FilterChips
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

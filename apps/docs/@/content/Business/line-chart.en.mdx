@@ -1,0 +1,42 @@
+import { LineChart } from "@/components/business/line-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# LineChart Line Chart
+
+> Domain-specific business components for ERP scenarios.
+
+LineChart — line chart component.
+
+## When to Use
+
+Use when you need a line chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { LineChart } from "@/components/business/line-chart"
+
+export function Basic() {
+  return <LineChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### LineChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `series` | `Array<T>` | — | One or more named series. |
+| `labels` | `string[]` | — | X-axis labels aligned 1:1 with each series values. |
+| `height` | `number` | — | SVG height in px. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

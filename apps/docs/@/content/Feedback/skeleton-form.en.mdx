@@ -1,0 +1,39 @@
+import { SkeletonForm } from "@/components/ui/skeleton-form"
+import { CodeBlock } from "@/components/code-block"
+
+# SkeletonForm
+
+> Feedback components for user interaction and status.
+
+SkeletonForm — Form skeleton placeholder with field-aware shimmer.
+
+## When to Use
+
+Use when you need a skeletonform.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SkeletonForm } from "@/components/ui/skeleton-form"
+
+export function Basic() {
+  return <SkeletonForm />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SkeletonForm
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

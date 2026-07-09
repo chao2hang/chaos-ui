@@ -1,5 +1,5 @@
-import { TreeTable } from "@/components/business/tree-table";
-import { CodeBlock } from "@/components/code-block";
+import { TreeTable } from "@/components/business/tree-table"
+import { CodeBlock } from "@/components/code-block"
 
 # TreeTable 树形表格
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要树形表格功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,21 +22,25 @@ export function Basic() {
   return <TreeTable />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TreeTable
 
-| Prop              | Type                          | Default | 说明                  |
-| ----------------- | ----------------------------- | ------- | --------------------- |
-| `className`       | `string`                      | —       | 自定义样式类名        |
-| `data`            | `TreeNode[]`                  | —       | 数据源                |
-| `columns`         | `(...args) => unknown`        | —       | 列配置                |
-| `defaultExpanded` | `boolean`                     | `false` |                       |
-| ...rest           | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `data` | `TreeNode[]` | — | 数据源 |
+| `columns` | `Array<{` | — | 列配置 |
+| `key` | `string` | — |  |
+| `header` | `string` | — |  |
+| `defaultExpanded` | `boolean` | `false` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tree-table--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-treetable--docs)。
+

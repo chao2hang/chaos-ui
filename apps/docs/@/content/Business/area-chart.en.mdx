@@ -1,0 +1,43 @@
+import { AreaChart } from "@/components/business/area-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# AreaChart Area Chart
+
+> Domain-specific business components for ERP scenarios.
+
+AreaChart — area chart component.
+
+## When to Use
+
+Use when you need an area chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { AreaChart } from "@/components/business/area-chart"
+
+export function Basic() {
+  return <AreaChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### AreaChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `number[]` | — | Numeric series values, left-to-right. |
+| `labels` | `string[]` | — | X-axis labels aligned 1:1 with `data`. |
+| `height` | `number` | `180` | SVG height in px. |
+| `color` | `string` | `currentColor` | Stroke + fill color. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

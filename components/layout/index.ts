@@ -32,3 +32,9 @@ export { TopBar } from "./top-bar";
 // ─── AdminShell (0.8.0) ──────────────────────────────────────────
 export { AdminShell } from "./admin-shell";
 export type { AdminShellProps } from "./admin-shell";
+
+// ─── Enterprise UI 底座补齐 — 布局组件 ────────────────────────────
+export { MultiTabManager } from "./multi-tab-manager";
+export type { MultiTabManagerProps, TabInfo } from "./multi-tab-manager";
+export { ImmersiveLayout } from "./immersive-layout";
+export type { ImmersiveLayoutProps } from "./immersive-layout";

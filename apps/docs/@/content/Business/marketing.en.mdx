@@ -16,6 +16,7 @@ Marketing — a business component for ERP / enterprise scenarios.
 
 Use when you need a marketing.
 
+
 ## Examples
 
 ### Basic Usage
@@ -36,13 +37,15 @@ export function Basic() {
 
 ### PricingCard
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `tier`      | `PricingTier`                 | —       |                                 |
-| `onCta`     | `() => void`                  | —       |                                 |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `tier`      | `PricingTier`                 | —       |                                                             |
+| `onCta`     | `() => void`                  | —       |                                                             |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

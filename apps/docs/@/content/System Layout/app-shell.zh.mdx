@@ -1,5 +1,5 @@
-import { AppShell } from "@/components/layout/app-shell";
-import { CodeBlock } from "@/components/code-block";
+import { AppShell } from "@/components/layout/app-shell"
+import { CodeBlock } from "@/components/code-block"
 
 # AppShell 应用外壳
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 应用外壳,提供顶部导航、侧边栏、主区域布局。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,27 +22,29 @@ export function Basic() {
   return <AppShell />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AppShell
 
-| Prop                 | Type                                  | Default   | 说明                  |
-| -------------------- | ------------------------------------- | --------- | --------------------- |
-| `className`          | `string`                              | —         | 自定义样式类名        |
-| `header`             | `React.ReactNode`                     | —         |                       |
-| `sidebar`            | `React.ReactNode`                     | —         |                       |
-| `aside`              | `React.ReactNode`                     | —         |                       |
-| `footer`             | `React.ReactNode`                     | —         |                       |
-| `sidebarWidth`       | `number`                              | `240`     |                       |
-| `asideWidth`         | `number`                              | `280`     |                       |
-| `sidebarCollapsible` | `boolean`                             | `true`    |                       |
-| `defaultCollapsed`   | `boolean`                             | `false`   |                       |
-| `variant`            | `"default" \| "floating" \| "sticky"` | `default` | 样式变体              |
-| ...rest              | `React.ComponentProps<"div">`         | —         | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `header` | `React.ReactNode` | — |  |
+| `sidebar` | `React.ReactNode` | — |  |
+| `aside` | `React.ReactNode` | — |  |
+| `footer` | `React.ReactNode` | — |  |
+| `sidebarWidth` | `number` | `240` |  |
+| `asideWidth` | `number` | `280` |  |
+| `sidebarCollapsible` | `boolean` | `true` |  |
+| `defaultCollapsed` | `boolean` | `false` |  |
+| `variant` | `"default" \| "floating" \| "sticky"` | `default` | 样式变体 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-app-shell--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-appshell--docs)。
+

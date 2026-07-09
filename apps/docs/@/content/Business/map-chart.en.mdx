@@ -1,0 +1,42 @@
+import { MapChart } from "@/components/business/map-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# MapChart Map Chart
+
+> Domain-specific business components for ERP scenarios.
+
+Map chart — renders a regional map with distributed markers (no real geo dependency). Markers are distributed in a deterministic grid so layout is stable.
+MapChart — map chart component.
+
+## When to Use
+
+Use when you need a map chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MapChart } from "@/components/business/map-chart"
+
+export function Basic() {
+  return <MapChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MapChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `region` | `string` | — |  |
+| `data` | `Array<T>` | — | Data source |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

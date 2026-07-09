@@ -1,0 +1,43 @@
+import { ArticleLayout } from "@/components/layout/article-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# ArticleLayout Article Layout
+
+> 系统布局
+
+Article Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+
+## 何时使用
+
+适用于Article Layout相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ArticleLayout } from "@/components/layout/article-layout"
+
+export function Basic() {
+  return <ArticleLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ArticleLayout
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `React.ReactNode` | — | Optional article header title rendered inside an `<header>`. |
+| `toc` | `React.ReactNode` | — | Optional table-of-contents rendered as a sticky `<aside>`. |
+| `footer` | `React.ReactNode` | — | Optional article footer. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-articlelayout--docs)。
+

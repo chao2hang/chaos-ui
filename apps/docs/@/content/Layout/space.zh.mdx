@@ -1,5 +1,5 @@
-import { Space } from "@/components/ui/space";
-import { CodeBlock } from "@/components/code-block";
+import { Space } from "@/components/ui/space"
+import { CodeBlock } from "@/components/code-block"
 
 # Space 间距
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要间距功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,60 +24,58 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Space size="xs">Xs</Space>
   <Space size="sm">Sm</Space>
   <Space size="lg">Lg</Space>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **方向**
 
-| direction    | 说明 | 默认 |
-| ------------ | ---- | ---- |
-| `horizontal` |      | ✓    |
-| `vertical`   |      |      |
+| direction | 说明 | 默认 |
+|---|---|---|
+| `horizontal` |  | ✓ |
+| `vertical` |  |  |
 
 **尺寸**
 
 | Size | 说明 | 默认 |
-| ---- | ---- | ---- |
-| `xs` | 超小 |      |
-| `sm` | 小号 | ✓    |
-| `md` |      |      |
-| `lg` | 大号 |      |
-| `xl` | 超大 |      |
+|---|---|---|
+| `xs` | 超小 |  |
+| `sm` | 小号 | ✓ |
+| `md` |  |  |
+| `lg` | 大号 |  |
+| `xl` | 超大 |  |
 
 **wrap**
 
-| wrap    | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
+| wrap | 说明 | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **对齐**
 
-| align      | 说明 | 默认 |
-| ---------- | ---- | ---- |
-| `start`    |      |      |
-| `center`   |      | ✓    |
-| `end`      |      |      |
-| `baseline` |      |      |
+| align | 说明 | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  | ✓ |
+| `end` |  |  |
+| `baseline` |  |  |
 
 ## API / Props
 
 ### Space
 
-| Prop        | Type                          | Default | 说明                         |
-| ----------- | ----------------------------- | ------- | ---------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名               |
-| `split`     | `React.ReactNode`             | —       | Split items with a separator |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性        |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `split` | `React.ReactNode` | — | Split items with a separator |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -84,3 +83,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-space--docs)。
+

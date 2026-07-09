@@ -1,0 +1,48 @@
+import { DistributorPicker } from "@/components/business/distributor-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# DistributorPicker Distributor Picker
+
+> Domain-specific business components for ERP scenarios.
+
+Distributor picker — combobox trigger with a filterable popover.
+DistributorPicker — distributor picker component.
+
+## When to Use
+
+Use when you need a distributor picker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { DistributorPicker } from "@/components/business/distributor-picker"
+
+export function Basic() {
+  return <DistributorPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### DistributorPicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `options` | `DistributorPickerOption[]` | — | Available options |
+| `placeholder` | `string` | — | Placeholder text |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Whether disabled |
+| `clearable` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

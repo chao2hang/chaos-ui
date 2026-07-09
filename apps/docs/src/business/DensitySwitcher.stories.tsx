@@ -57,8 +57,8 @@ export const Sizes: Story = {
 export const Uncontrolled: Story = {
   render: () => (
     <div className="flex items-center gap-2">
-      <DensitySwitcher density="compact">紧凑</DensitySwitcher>
-      <DensitySwitcher density="default">默认</DensitySwitcher>
+      <DensitySwitcher open density="compact">紧凑</DensitySwitcher>
+      <DensitySwitcher open density="default">默认</DensitySwitcher>
     </div>
   ),
 }

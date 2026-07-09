@@ -1,0 +1,47 @@
+import { CompanyPicker } from "@/components/business/company-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# CompanyPicker Company Picker
+
+> Domain-specific business components for ERP scenarios.
+
+CompanyPicker — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a company picker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CompanyPicker } from "@/components/business/company-picker"
+
+export function Basic() {
+  return <CompanyPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CompanyPicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Selected value. / 选中值 |
+| `onChange` | `() => void` | — | Value change callback. / 值变更回调 |
+| `options` | `CompanyPickerOption[]` | — | Options. / 选项 |
+| `placeholder` | `string` | — | Trigger placeholder. / 占位 |
+| `searchPlaceholder` | `string` | — | Search placeholder. / 搜索占位 |
+| `emptyText` | `string` | — | Empty-state text. / 空状态 |
+| `disabled` | `boolean` | `false` | Disabled. / 禁用 |
+| `clearable` | `boolean` | `true` | Allow clearing. / 可清除 |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

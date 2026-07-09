@@ -29,11 +29,17 @@ const comments = [
   },
 ]
 
-const steps = [
-  { id: "1", name: "直属经理审批", approver: { name: "王经理" }, status: "approved" as const, timestamp: Date.now() - 86400_000, comment: "同意" },
-  { id: "2", name: "部门总监审批", approver: { name: "李总监" }, status: "approved" as const, timestamp: Date.now() - 3600_000, comment: "符合规范" },
-  { id: "3", name: "财务复核", approver: { name: "陈财务" }, status: "pending" as const },
-  { id: "4", name: "CEO 终批", approver: { name: "CEO" }, status: "pending" as const },
+const approvalNodes = [
+  { id: "1", name: "直属经理审批", type: "approval", status: "approved" },
+  { id: "2", name: "部门总监审批", type: "approval", status: "approved" },
+  { id: "3", name: "财务复核", type: "approval", status: "pending" },
+  { id: "4", name: "CEO 终批", type: "approval", status: "pending" },
+]
+
+const approvalEdges = [
+  { from: "1", to: "2" },
+  { from: "2", to: "3" },
+  { from: "3", to: "4" },
 ]
 
 const audit = [
@@ -83,25 +89,17 @@ export const CommentsExample: Story = {
 }
 
 export const ApprovalExample: Story = {
-  render: () => {
-    const [current, setCurrent] = useState(2)
-    return (
-      <div className="max-w-2xl space-y-3">
-        <ApprovalFlow
-          steps={steps}
-          currentStep={current}
-          onApprove={() => setCurrent((c) => c + 1)}
-          onReject={() => console.info("rejected")}
-        />
-      </div>
-    )
-  },
+  render: () => (
+    <div className="max-w-2xl space-y-3">
+      <ApprovalFlow nodes={approvalNodes} edges={approvalEdges} />
+    </div>
+  ),
 }
 
 export const AuditExample: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
-      <AuditLog entries={audit} />
+      <AuditLog entries={audit as any} />
     </div>
   ),
 }
@@ -149,13 +147,13 @@ export const AllVariants: Story = {
       <section>
         <h3 className="mb-3 text-base font-semibold">ApprovalFlow 审批流</h3>
         <div className="max-w-2xl">
-          <ApprovalFlow steps={steps} currentStep={2} />
+          <ApprovalFlow nodes={approvalNodes} edges={approvalEdges} />
         </div>
       </section>
       <section>
         <h3 className="mb-3 text-base font-semibold">AuditLog 审计日志</h3>
         <div className="max-w-2xl">
-          <AuditLog entries={audit} />
+          <AuditLog entries={audit as any} />
         </div>
       </section>
       <section>

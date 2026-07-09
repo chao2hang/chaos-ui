@@ -1,22 +1,28 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 interface ResponsivePreviewProps {
-  children: React.ReactNode
-  device?: "mobile" | "tablet" | "desktop"
-  showFrame?: boolean
-  showLabel?: boolean
-  className?: string
+  children: React.ReactNode;
+  device?: "mobile" | "tablet" | "desktop";
+  showFrame?: boolean;
+  showLabel?: boolean;
+  className?: string;
 }
 
-const deviceSizes = {
-  mobile: { width: 375, height: 667, label: "Mobile" },
-  tablet: { width: 768, height: 1024, label: "Tablet" },
-  desktop: { width: 1024, height: 768, label: "Desktop" },
-}
-
+/**
+ * @component ResponsivePreview
+ * @category business/ux
+ * @since 0.2.0
+ * @description Preview content at mobile, tablet, or desktop viewport sizes in a framed container / 在移动端、平板或桌面视口尺寸的框架容器中预览内容
+ * @keywords responsive, preview, mobile, tablet, desktop, viewport
+ * @example
+ * <ResponsivePreview device="mobile">
+ *   <MyComponent />
+ * </ResponsivePreview>
+ */
 function ResponsivePreview({
   children,
   device = "desktop",
@@ -24,10 +30,22 @@ function ResponsivePreview({
   showLabel = true,
   className,
 }: ResponsivePreviewProps) {
-  const size = deviceSizes[device]
+  const { t } = useTranslation("marketing");
+
+  const deviceSizes = {
+    mobile: { width: 375, height: 667, label: t("responsivePreview.mobile") },
+    tablet: { width: 768, height: 1024, label: t("responsivePreview.tablet") },
+    desktop: {
+      width: 1024,
+      height: 768,
+      label: t("responsivePreview.desktop"),
+    },
+  };
+
+  const size = deviceSizes[device];
 
   return (
-    <div className={cn("flex flex-col items-center gap-2", className)}>
+    <div data-slot="responsive-preview" className={cn("flex flex-col items-center gap-2", className)}>
       {showLabel && (
         <div className="text-xs text-muted-foreground font-medium">
           {size.label} ({size.width} × {size.height})
@@ -36,20 +54,18 @@ function ResponsivePreview({
       <div
         className={cn(
           "border rounded-lg overflow-hidden bg-background",
-          showFrame && "shadow-lg"
+          showFrame && "shadow-lg",
         )}
         style={{
           width: showFrame ? Math.min(size.width, 800) : "100%",
           height: showFrame ? Math.min(size.height, 600) : "auto",
         }}
       >
-        <div className="w-full h-full overflow-auto">
-          {children}
-        </div>
+        <div className="w-full h-full overflow-auto">{children}</div>
       </div>
     </div>
-  )
+  );
 }
 
-export { ResponsivePreview, deviceSizes }
-export type { ResponsivePreviewProps }
+export { ResponsivePreview };
+export type { ResponsivePreviewProps };

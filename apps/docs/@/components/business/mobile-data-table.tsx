@@ -1,27 +1,36 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
 interface MobileColumn<T> {
-  key: string
-  header: string
-  render?: (row: T) => React.ReactNode
-  primary?: boolean
+  key: string;
+  header: string;
+  render?: (row: T) => React.ReactNode;
+  primary?: boolean;
 }
 
 interface MobileDataTableProps<T> {
-  columns: MobileColumn<T>[]
-  data: T[]
-  onRowClick?: (row: T) => void
-  className?: string
+  columns: MobileColumn<T>[];
+  data: T[];
+  onRowClick?: (row: T) => void;
+  className?: string;
 }
 
-function MobileDataTable<T>({ columns, data, onRowClick, className }: MobileDataTableProps<T>) {
-  const primaryColumn = columns.find((col) => col.primary) || columns[0]
-  const secondaryColumns = columns.filter((col) => col.key !== primaryColumn.key)
+function MobileDataTable<T>({
+  columns,
+  data,
+  onRowClick,
+  className,
+}: MobileDataTableProps<T>) {
+  if (!columns?.length || !data) return null;
+  const primaryColumn = columns.find((col) => col.primary) || columns[0];
+  if (!primaryColumn) return null;
+  const secondaryColumns = columns.filter(
+    (col) => col.key !== primaryColumn.key,
+  );
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -29,22 +38,27 @@ function MobileDataTable<T>({ columns, data, onRowClick, className }: MobileData
         <Card
           key={rowIndex}
           className={cn(
-            "cursor-pointer transition-colors hover:bg-muted/50",
-            onRowClick && "active:bg-muted"
+            "hover:bg-muted/50 cursor-pointer transition-colors",
+            onRowClick && "active:bg-muted",
           )}
           onClick={() => onRowClick?.(row)}
         >
           <CardContent className="p-3">
             <div className="flex items-center justify-between">
-              <div className="font-medium text-sm">
+              <div className="text-sm font-medium">
                 {primaryColumn.render
                   ? primaryColumn.render(row)
-                  : String((row as Record<string, unknown>)[primaryColumn.key] ?? "")}
+                  : String(
+                      (row as Record<string, unknown>)[primaryColumn.key] ?? "",
+                    )}
               </div>
             </div>
             <div className="mt-2 flex flex-wrap gap-2">
               {secondaryColumns.map((col) => (
-                <div key={col.key} className="flex items-center gap-1 text-xs text-muted-foreground">
+                <div
+                  key={col.key}
+                  className="text-muted-foreground flex items-center gap-1 text-xs"
+                >
                   <span className="font-medium">{col.header}:</span>
                   <span>
                     {col.render
@@ -58,8 +72,8 @@ function MobileDataTable<T>({ columns, data, onRowClick, className }: MobileData
         </Card>
       ))}
     </div>
-  )
+  );
 }
 
-export { MobileDataTable }
-export type { MobileColumn, MobileDataTableProps }
+export { MobileDataTable };
+export type { MobileColumn, MobileDataTableProps };

@@ -1,0 +1,42 @@
+import { ChatSuggestReplies } from "@/components/business/chat-suggest-replies"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatSuggestReplies Chat Suggest Replies
+
+> 业务组件
+
+Chat Suggest Replies — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Chat Suggest Replies相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ChatSuggestReplies } from "@/components/business/chat-suggest-replies"
+
+export function Basic() {
+  return <ChatSuggestReplies />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatSuggestReplies
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `suggestions` | `string[]` | — |  |
+| `onSelect` | `() => void` | — | 选中回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chatsuggestreplies--docs)。
+

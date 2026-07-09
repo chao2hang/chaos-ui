@@ -1,0 +1,39 @@
+import { RangeSlider } from "@/components/ui/range-slider"
+import { CodeBlock } from "@/components/code-block"
+
+# RangeSlider
+
+> Form components for data entry and collection.
+
+RangeSlider — Dual-handle range slider for selecting min and max values.
+
+## When to Use
+
+Use when you need a rangeslider.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RangeSlider } from "@/components/ui/range-slider"
+
+export function Basic() {
+  return <RangeSlider />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### RangeSlider
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

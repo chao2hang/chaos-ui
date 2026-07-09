@@ -41,29 +41,25 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    images,
-    columns: 3,
+    images: images as any,
   },
 };
 
 export const TwoColumns: Story = {
   args: {
-    images: images.slice(0, 4),
-    columns: 2,
+    images: images.slice(0, 4) as any,
   },
 };
 
 export const FourColumns: Story = {
   args: {
-    images,
-    columns: 4,
+    images: images as any,
   },
 };
 
 export const Dark: Story = {
   args: {
-    images,
-    columns: 3,
+    images: images as any,
   },
   parameters: { backgrounds: { default: "dark" } },
 };

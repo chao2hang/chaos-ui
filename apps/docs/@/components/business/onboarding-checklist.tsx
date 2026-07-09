@@ -23,7 +23,7 @@ interface OnboardingChecklistProps extends Omit<
 }
 
 export function OnboardingChecklist({
-  steps,
+  steps = [],
   completedIds = [],
   onToggle,
   title = "开始使用",

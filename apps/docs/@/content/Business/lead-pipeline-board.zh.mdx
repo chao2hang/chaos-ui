@@ -1,0 +1,46 @@
+import { LeadPipelineBoard } from "@/components/business/lead-pipeline-board"
+import { CodeBlock } from "@/components/code-block"
+
+# LeadPipelineBoard Lead Pipeline Board
+
+> 业务组件
+
+Lead Pipeline Board — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Lead Pipeline Board相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { LeadPipelineBoard } from "@/components/business/lead-pipeline-board"
+
+export function Basic() {
+  return <LeadPipelineBoard />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### LeadPipelineBoard
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `stages` | `PipelineStage[]` | — | Stage definitions in funnel order. |
+| `deals` | `Deal[]` | — | All deals. |
+| `onDealMove` | `() => void` | — | Callback when a deal moves to a different stage. |
+| `onDealClick` | `() => void` | — | Deal click handler. |
+| `currencySymbol` | `string` | `¥` | Currency symbol for display. |
+| `readOnly` | `boolean` | `false` | Read-only mode disables drag. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-leadpipelineboard--docs)。
+

@@ -1,0 +1,41 @@
+import { ReconciliationLineEditor } from "@/components/business/reconciliation-line-editor"
+import { CodeBlock } from "@/components/code-block"
+
+# ReconciliationLineEditor Reconciliation Line Editor
+
+> Domain-specific business components for ERP scenarios.
+
+ReconciliationLineEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a reconciliation line editor.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ReconciliationLineEditor } from "@/components/business/reconciliation-line-editor"
+
+export function Basic() {
+  return <ReconciliationLineEditor />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ReconciliationLineEditor
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rows` | `ReconciliationRow[]` | — | Row data |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,5 +1,5 @@
-import { MobileKPICard } from "@/components/business/mobile-kpi-card";
-import { CodeBlock } from "@/components/code-block";
+import { MobileKPICard } from "@/components/mobile/mobile-kpi-card"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileKpiCard KPI
 
@@ -11,30 +11,34 @@ MobileKpiCard — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile kpi card.
 
+
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileKPICard } from "@/components/business/mobile-kpi-card"
+<CodeBlock code={`import { MobileKPICard } from "@/components/mobile/mobile-kpi-card"
 
 export function Basic() {
   return <MobileKPICard />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileKPICard
 
-| Prop         | Type                                    | Default   | Description                       |
-| ------------ | --------------------------------------- | --------- | --------------------------------- |
-| `className`  | `string`                                | —         | Custom CSS class                  |
-| `title`      | `string`                                | —         | Title                             |
-| `value`      | `string`                                | —         | Current value (controlled)        |
-| `change`     | `string`                                | —         |                                   |
-| `changeType` | `"positive" \| "negative" \| "neutral"` | `neutral` |                                   |
-| `icon`       | `React.ElementType`                     | —         | Icon element                      |
-| ...rest      | `React.HTMLAttributes`                  | —         | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `value` | `string` | — | Current value (controlled) |
+| `change` | `string` | — |  |
+| `changeType` | `"positive" \| "negative" \| "neutral"` | `neutral` |  |
+| `icon` | `React.ElementType` | — | Icon element |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

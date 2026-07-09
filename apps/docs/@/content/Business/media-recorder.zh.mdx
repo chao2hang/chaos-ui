@@ -1,0 +1,50 @@
+import { MediaRecorderComponent, MediaRecorder } from "@/components/business/media-recorder"
+import { CodeBlock } from "@/components/code-block"
+
+# MediaRecorder Media Recorder
+
+> 业务组件
+
+Media Recorder — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Media Recorder相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MediaRecorderComponent, MediaRecorder } from "@/components/business/media-recorder"
+
+export function Basic() {
+  return (
+    <MediaRecorder>
+      <MediaRecorder>Content</MediaRecorder>
+    </MediaRecorder>
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MediaRecorder
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `onStop` | `() => void` | — | Called with the recorded Blob when recording stops. |
+| `onStart` | `() => void` | — | Called when recording starts. |
+| `mimeType` | `string` | — | MIME type for the recording. Default audio/webm. |
+| `screen` | `boolean` | — | Whether to record video (screen) instead of audio. Default false. |
+| `maxDuration` | `number` | — | Maximum recording duration in seconds. 0 = unlimited. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **复合组件**: 包含 1 个子组件(MediaRecorderComponent),使用组合模式按需导入。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mediarecorder--docs)。
+

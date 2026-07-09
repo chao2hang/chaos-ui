@@ -1,8 +1,5 @@
-import {
-  ResponsivePreview,
-  Sizes,
-} from "@/components/business/responsive-preview";
-import { CodeBlock } from "@/components/code-block";
+import { ResponsivePreview, Sizes } from "@/components/business/responsive-preview"
+import { CodeBlock } from "@/components/code-block"
 
 # ResponsivePreview
 
@@ -13,6 +10,7 @@ ResponsivePreview — a business component for ERP / enterprise scenarios.
 ## When to Use
 
 Use when you need a responsive preview.
+
 
 ## Examples
 
@@ -29,18 +27,21 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ResponsivePreview
 
-| Prop        | Type                                | Default   | Description                       |
-| ----------- | ----------------------------------- | --------- | --------------------------------- |
-| `className` | `string`                            | —         | Custom CSS class                  |
-| `device`    | `"mobile" \| "tablet" \| "desktop"` | `desktop` |                                   |
-| `showFrame` | `boolean`                           | `true`    |                                   |
-| `showLabel` | `boolean`                           | `true`    |                                   |
-| ...rest     | `React.HTMLAttributes`              | —         | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `device` | `"mobile" \| "tablet" \| "desktop"` | `desktop` |  |
+| `showFrame` | `boolean` | `true` |  |
+| `showLabel` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

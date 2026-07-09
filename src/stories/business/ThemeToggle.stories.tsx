@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ThemeProvider } from "next-themes"
+import { ThemeProvider } from "@/components/ui/theme-provider"
 import { ThemeToggle } from "@/components/business/theme-toggle"
 
 const meta = {

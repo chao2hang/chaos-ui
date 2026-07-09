@@ -1,0 +1,62 @@
+import { InfiniteScroll } from "@/components/ui/infinite-scroll";
+import { CodeBlock } from "@/components/code-block";
+
+# InfiniteScroll
+
+> Scroll-based load-more wrapper.
+
+Scroll-based load-more wrapper using IntersectionObserver; triggers onLoadMore when a sentinel enters the viewport.
+
+## When to Use
+
+Use for paginated long lists that need to load more data on scroll, replacing traditional pagination.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { InfiniteScroll } from "@/components/ui/infinite-scroll"
+import { useState, useCallback } from "react"
+
+export function Basic() {
+  const [items, setItems] = useState(Array.from({ length: 20 }, (_, i) => i))
+  const [hasMore, setHasMore] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+const loadMore = useCallback(() => {
+setLoading(true)
+setTimeout(() => {
+setItems(prev => [...prev, ...Array.from({ length: 10 }, (_, i) => prev.length + i)])
+if (items.length >= 100) setHasMore(false)
+setLoading(false)
+}, 1000)
+}, [items.length])
+
+return (
+<InfiniteScroll onLoadMore={loadMore} hasMore={hasMore} loading={loading}>
+{items.map(i => <div key={i}>Item {i}</div>)}
+</InfiniteScroll>
+)
+}`} lang="tsx" />
+
+## API / Props
+
+### InfiniteScroll
+
+| Prop | Type | Default | Description |
+| ----------------- | --------------------- | ---------------- | ------------------------------------------- |
+| `onLoadMore`      | `() => void`          | —                | Load more callback / 加载更多回调           |
+| `hasMore`         | `boolean`             | `true`           | Whether more data exists / 是否还有更多数据 |
+| `loading`         | `boolean`             | `false`          | Whether currently loading / 是否正在加载    |
+| `loader`          | `React.ReactNode`     | —                | Custom loading indicator / 自定义加载指示器 |
+| `threshold`       | `string`              | `"200px"`        | Trigger distance / 触发距离                 |
+| `scrollContainer` | `HTMLElement \| null` | —                | Custom scroll container / 自定义滚动容器    |
+| `endMessage`      | `React.ReactNode`     | `"No more data"` | End message / 无更多数据提示                |
+| `children`        | `React.ReactNode`     | —                | Scroll content / 滚动内容                   |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **IntersectionObserver**: 使用原生 IntersectionObserver API，需浏览器支持。
+
+

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileTabs } from "@/components/business/mobile-tabs";
+import { MobileTabs } from "@/components/mobile/mobile-tabs";
 
 const meta: Meta<typeof MobileTabs> = {
   title: "Business/MobileTabs",

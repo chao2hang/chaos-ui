@@ -1,72 +1,91 @@
-"use client";
 import * as React from "react";
+
+import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-interface DiffViewerProps extends React.HTMLAttributes<HTMLDivElement> {
-  left: string;
-  right: string;
-  leftTitle?: string;
-  rightTitle?: string;
-  className?: string;
+export type DiffChangeType = "added" | "removed" | "changed" | "unchanged";
+
+export interface DiffViewerItem {
+  field: string;
+  label?: string;
+  before?: React.ReactNode;
+  after?: React.ReactNode;
+  type?: DiffChangeType;
 }
 
-function DiffViewer({
-  left,
-  right,
-  leftTitle = "修改前",
-  rightTitle = "修改后",
+export interface DiffViewerProps extends React.ComponentProps<"div"> {
+  items: DiffViewerItem[];
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const badgeVariant: Record<
+  DiffChangeType,
+  "default" | "secondary" | "destructive" | "outline"
+> = {
+  added: "default",
+  removed: "destructive",
+  changed: "secondary",
+  unchanged: "outline",
+};
+
+/**
+ * @component DiffViewer
+ * @category business/data
+ * @since 0.2.0
+ * @description Side-by-side diff viewer for comparing field-level changes with type badges (added/removed/changed) / 并排差异对比视图，展示字段级变更并标记变更类型
+ * @keywords diff, compare, changes, data, audit
+ * @example
+ * <DiffViewer items={[{ field: "name", before: "Old", after: "New" }]} />
+ */
+export function DiffViewer({
+  items,
+  beforeLabel = "Before",
+  afterLabel = "After",
   className,
   ...props
 }: DiffViewerProps) {
-  const leftLines = left.split("\n");
-  const rightLines = right.split("\n");
-  const maxLen = Math.max(leftLines.length, rightLines.length);
-
   return (
     <div
       data-slot="diff-viewer"
-      className={cn(
-        "bg-border grid grid-cols-2 gap-px overflow-hidden rounded-lg font-mono text-sm",
-        className,
-      )}
+      className={cn("overflow-hidden rounded-lg border", className)}
       {...props}
     >
-      <div className="bg-muted/30 text-muted-foreground px-3 py-1.5 text-xs font-medium">
-        {leftTitle}
+      <div className="grid grid-cols-[minmax(140px,0.7fr)_1fr_1fr_auto] border-b bg-muted/40 px-4 py-2 text-xs font-medium text-muted-foreground">
+        <span>Field</span>
+        <span>{beforeLabel}</span>
+        <span>{afterLabel}</span>
+        <span>Change</span>
       </div>
-      <div className="bg-muted/30 text-muted-foreground px-3 py-1.5 text-xs font-medium">
-        {rightTitle}
+      <div className="divide-y">
+        {items.map((item) => {
+          const type = item.type ?? "changed";
+          return (
+            <div
+              key={item.field}
+              className="grid grid-cols-[minmax(140px,0.7fr)_1fr_1fr_auto] gap-3 px-4 py-3 text-sm"
+            >
+              <span className="font-medium">{item.label ?? item.field}</span>
+              <span
+                className={cn(
+                  type === "removed" && "text-destructive line-through",
+                )}
+              >
+                {item.before ?? "-"}
+              </span>
+              <span
+                className={cn(
+                  type === "added" && "text-success",
+                  type === "changed" && "font-medium",
+                )}
+              >
+                {item.after ?? "-"}
+              </span>
+              <Badge variant={badgeVariant[type]}>{type}</Badge>
+            </div>
+          );
+        })}
       </div>
-      {Array.from({ length: maxLen }).map((_, i) => {
-        const l = leftLines[i] ?? "";
-        const r = rightLines[i] ?? "";
-        const changed = l !== r;
-        return (
-          <React.Fragment key={i}>
-            <pre
-              className={cn(
-                "bg-background min-h-[1.5rem] px-3 py-0.5 whitespace-pre-wrap",
-                changed &&
-                  "bg-red-50 text-red-900 dark:bg-red-950/20 dark:text-red-200",
-              )}
-            >
-              {l || "\u00A0"}
-            </pre>
-            <pre
-              className={cn(
-                "bg-background min-h-[1.5rem] px-3 py-0.5 whitespace-pre-wrap",
-                changed &&
-                  "bg-green-50 text-green-900 dark:bg-green-950/20 dark:text-green-200",
-              )}
-            >
-              {r || "\u00A0"}
-            </pre>
-          </React.Fragment>
-        );
-      })}
     </div>
   );
 }
-
-export { DiffViewer };
-export type { DiffViewerProps };

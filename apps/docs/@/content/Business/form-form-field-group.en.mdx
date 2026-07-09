@@ -11,6 +11,7 @@ FormFieldGroup — a business component for ERP / enterprise scenarios.
 
 Use when you need a form field group.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,15 +26,17 @@ export function Basic() {
 
 ### FormFieldGroup
 
-| Prop          | Type                               | Default | Description                          |
-| ------------- | ---------------------------------- | ------- | ------------------------------------ |
-| `className`   | `string`                           | —       | Custom CSS class                     |
-| `legend`      | `string`                           | —       |                                      |
-| `description` | `string`                           | —       | Description text                     |
-| `required`    | `boolean`                          | —       | Whether required                     |
-| `columns`     | `1 \| 2 \| 3`                      | `1`     | Column configuration                 |
-| ...rest       | `React.ComponentProps<"fieldset">` | —       | Inherits all `<fieldset>` attributes |
+| Prop | Type | Default | Description |
+| ------------- | ---------------------------------- | ------- | --------------------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `legend`      | `string`                           | —       |                                                                       |
+| `description` | `string` | — | Description text |
+| `required` | `boolean` | — | Whether required |
+| `columns` | `1 \| 2 \| 3` | `1` | Column configuration |
+| ...rest | `React.ComponentProps<"fieldset">` | — | Inherits all `<fieldset>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

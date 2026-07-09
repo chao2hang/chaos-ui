@@ -25,7 +25,7 @@ interface MobileSelectProps {
 }
 
 function MobileSelect({
-  options,
+  options = [],
   value,
   onValueChange,
   placeholder,

@@ -1,0 +1,43 @@
+import { SparkChart } from "@/components/business/spark-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# SparkChart Spark Chart
+
+> Domain-specific business components for ERP scenarios.
+
+SparkChart — spark chart component.
+
+## When to Use
+
+Use when you need a spark chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SparkChart } from "@/components/business/spark-chart"
+
+export function Basic() {
+  return <SparkChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SparkChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `number[]` | — | Numeric series. |
+| `width` | `number` | `120` | SVG width in px. |
+| `height` | `number` | `32` | SVG height in px. |
+| `color` | `string` | `currentColor` | Line color. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

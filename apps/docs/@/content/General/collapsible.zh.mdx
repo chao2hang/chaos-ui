@@ -7,24 +7,46 @@ import { CodeBlock } from "@/components/code-block";
 
 # Collapsible 折叠面板
 
-> 通用基础组件
+> 可折叠区域根容器
 
-折叠面板 — Chaos UI 的通用基础组件。
+可折叠/展开区域的根容器，基于 Base UI 构建，配合 Trigger 和 Content 子组件使用。
 
 ## 何时使用
 
-需要折叠面板功能时使用本组件。
+需要折叠/展开内容区域时使用，如 FAQ、设置面板、详情区域。
 
 ## 代码示例
 
 ### 基础用法
 
 <CodeBlock code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
+import { Button } from "@/components/ui/button"
 
 export function Basic() {
   return (
     <Collapsible>
-      <CollapsibleContent>Content</CollapsibleContent>
+      <CollapsibleTrigger render={<Button variant="ghost" size="sm">Toggle</Button>} />
+      <CollapsibleContent className="mt-2 text-sm">
+        This content is revealed when expanded.
+      </CollapsibleContent>
+    </Collapsible>
+  )
+}`} lang="tsx" />
+
+### 受控模式
+
+<CodeBlock code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+
+export function Controlled() {
+  const [open, setOpen] = useState(true)
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger render={<Button variant="ghost" size="sm">{open ? "收起" : "展开"}</Button>} />
+      <CollapsibleContent className="mt-2 text-sm">
+        Controlled collapsible content.
+      </CollapsibleContent>
     </Collapsible>
   )
 }`} lang="tsx" />
@@ -33,15 +55,30 @@ export function Basic() {
 
 ### Collapsible
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+| -------------- | ------------------------- | ------- | ------------------------------------ |
+| `open`         | `boolean`                 | —       | Controlled open state / 受控展开状态 |
+| `defaultOpen`  | `boolean`                 | `false` | Default open state / 默认展开状态    |
+| `onOpenChange` | `(open: boolean) => void` | —       | Open change callback / 展开变化回调  |
+| `disabled`     | `boolean`                 | `false` | Disable toggle / 禁用切换            |
+
+### CollapsibleTrigger
+
+| Prop | Type | Default | 说明 |
+| ---------- | -------------------- | ------- | ------------------------------------------ |
+| `render`   | `React.ReactElement` | —       | Render prop for trigger element / 触发元素 |
+| `disabled` | `boolean`            | `false` | Disable trigger / 禁用触发器               |
+
+### CollapsibleContent
+
+| Prop | Type | Default | 说明 |
+| ---------- | ----------------- | ------- | ------------------------------ |
+| `children` | `React.ReactNode` | —       | Collapsible content / 折叠内容 |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **复合组件**: 包含 2 个子组件(CollapsibleTrigger, CollapsibleContent),使用组合模式按需导入。
-- **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+- **Base UI**: 基于 `@base-ui/react/collapsible` 构建，无障碍(a11y)开箱即用。
+- **复合组件**: 需配合 `CollapsibleTrigger` 和 `CollapsibleContent` 使用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-collapsible--docs)。
+

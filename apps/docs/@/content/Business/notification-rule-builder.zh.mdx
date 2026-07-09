@@ -1,0 +1,47 @@
+import { NotificationRuleBuilder } from "@/components/business/notification-rule-builder"
+import { CodeBlock } from "@/components/code-block"
+
+# NotificationRuleBuilder Notification Rule Builder
+
+> 业务组件
+
+Notification Rule Builder — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Notification Rule Builder相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { NotificationRuleBuilder } from "@/components/business/notification-rule-builder"
+
+export function Basic() {
+  return <NotificationRuleBuilder />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### NotificationRuleBuilder
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `rule` | `NotificationRule` | — | Rule data |
+| `onChange` | `() => void` | — | Change callback |
+| `events` | `EventOption[]` | — | Available events |
+| `fields` | `FieldOption[]` | — | Available fields for conditions |
+| `recipientOptions` | `{ type: RuleRecipient["type"]; label:...` | — | Available recipients |
+| `templates` | `{ id: string; name: string }[]` | — | Available templates |
+| `readOnly` | `boolean` | `false` | Read-only mode |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-notificationrulebuilder--docs)。
+

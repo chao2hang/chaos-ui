@@ -1,0 +1,50 @@
+import { Customer360Card } from "@/components/business/customer-360-card"
+import { CodeBlock } from "@/components/code-block"
+
+# Customer360Card Customer 360 Card
+
+> Domain-specific business components for ERP scenarios.
+
+Customer360Card — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a customer360 card.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Customer360Card } from "@/components/business/customer-360-card"
+
+export function Basic() {
+  return <Customer360Card />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### Customer360Card
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `name` | `string` | — | Customer name. |
+| `logo` | `string` | — | Customer logo URL. |
+| `industry` | `string` | — | Industry classification. |
+| `tier` | `"platinum" \| "gold" \| "silver" \| "...` | — | Customer tier/level. |
+| `healthScore` | `number` | — | Health score 0–100. |
+| `metrics` | `CustomerMetric[]` | — | Key metrics. |
+| `contacts` | `CustomerContact[]` | — | Contact persons. |
+| `activities` | `CustomerActivity[]` | — | Recent activities. |
+| `lifetimeValue` | `number` | — | Total lifetime value. |
+| `currencySymbol` | `string` | `¥` | Currency symbol. |
+| `tags` | `string[]` | — | Tags. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,101 +1,130 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 
-const anchorVariants = cva("", {
-  variants: {
-    direction: {
-      vertical: "flex flex-col gap-1",
-      horizontal: "flex flex-row gap-3",
-    },
-  },
-  defaultVariants: { direction: "vertical" },
-});
+/**
+ * @component Anchor
+ * @category ui/navigation
+ * @since 0.5.0
+ * @description Anchor navigation for long pages (docs, forms).
+ * Scrolls to target section and highlights the active anchor.
+ * @example
+ * <Anchor
+ *   items={[
+ *     { key: "basic", href: "#basic", label: "Basic Info" },
+ *     { key: "detail", href: "#detail", label: "Details" },
+ *   ]}
+ * />
+ */
 
-const anchorLinkVariants = cva(
-  "block text-sm transition-colors hover:text-foreground",
-  {
-    variants: {
-      active: {
-        true: "text-primary font-medium",
-        false: "text-muted-foreground",
-      },
-    },
-    defaultVariants: { active: false },
-  },
-);
-
-interface AnchorLink {
+interface AnchorItem {
   key: string;
   href: string;
-  title: string;
+  label: React.ReactNode;
+  level?: number;
 }
 
-interface AnchorProps
-  extends React.ComponentProps<"nav">, VariantProps<typeof anchorVariants> {
-  links: AnchorLink[];
-  /** Offset for active link detection */
-  offset?: number;
-  /** Replace history or push */
-  replace?: boolean;
+interface AnchorProps extends Omit<React.ComponentProps<"nav">, "onChange"> {
+  items: AnchorItem[];
+  activeKey?: string;
+  onActiveChange?: (key: string) => void;
+  offsetTop?: number;
+  getContainer?: () => HTMLElement | Window;
 }
 
 function Anchor({
+  items,
+  activeKey: controlledActiveKey,
+  onActiveChange,
+  offsetTop = 80,
+  getContainer,
   className,
-  direction,
-  links,
-  offset = 0,
   ...props
 }: AnchorProps) {
-  const [activeKey, setActiveKey] = React.useState<string>("");
+  const [internalActiveKey, setInternalActiveKey] = React.useState<string>(
+    items[0]?.key ?? "",
+  );
+  const activeKey = controlledActiveKey ?? internalActiveKey;
+  const containerRef = React.useRef<HTMLElement | Window | null>(null);
+  // Hold latest activeKey + onActiveChange in refs so the scroll handler effect
+  // doesn't depend on them — otherwise an unmemoized onActiveChange or each
+  // activeKey change re-binds the scroll listener every scroll event (storm).
+  const activeKeyRef = React.useRef(activeKey);
+  activeKeyRef.current = activeKey;
+  const onActiveChangeRef = React.useRef(onActiveChange);
+  onActiveChangeRef.current = onActiveChange;
 
   React.useEffect(() => {
+    containerRef.current = getContainer?.() ?? window;
+  }, [getContainer]);
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const handleScroll = () => {
-      for (const link of links) {
-        const el = document.querySelector(link.href);
+      for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        if (!item) continue;
+        const el = document.querySelector(item.href) as HTMLElement | null;
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= offset + 100 && rect.bottom >= offset) {
-            setActiveKey(link.key);
+          if (rect.top <= offsetTop) {
+            if (item.key !== activeKeyRef.current) {
+              setInternalActiveKey(item.key);
+              onActiveChangeRef.current?.(item.key);
+            }
             return;
           }
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    container.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [links, offset]);
+    return () => container.removeEventListener("scroll", handleScroll);
+    // Only re-bind when items/offsetTop/getContainer change — not on activeKey
+    // or onActiveChange (held in refs).
+  }, [items, offsetTop, getContainer]);
+
+  const handleClick = (item: AnchorItem) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.querySelector(item.href) as HTMLElement | null;
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setInternalActiveKey(item.key);
+      onActiveChange?.(item.key);
+      window.history.replaceState(null, "", item.href);
+    }
+  };
 
   return (
     <nav
       data-slot="anchor"
-      className={cn(anchorVariants({ direction }), className)}
+      className={cn("flex flex-col gap-1", className)}
       {...props}
     >
-      {links.map((link) => (
+      {items.map((item) => (
         <a
-          key={link.key}
-          data-slot="anchor-link"
-          href={link.href}
-          className={cn(anchorLinkVariants({ active: activeKey === link.key }))}
-          onClick={(e) => {
-            e.preventDefault();
-            const el = document.querySelector(link.href);
-            if (el) {
-              el.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
+          key={item.key}
+          href={item.href}
+          onClick={handleClick(item)}
+          className={cn(
+            "block rounded-md px-3 py-1.5 text-sm transition-colors",
+            item.level === 2 && "pl-6",
+            item.level === 3 && "pl-9",
+            item.key === activeKey
+              ? "bg-muted font-medium text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
         >
-          {link.title}
+          {item.label}
         </a>
       ))}
     </nav>
   );
 }
 
-export { Anchor, anchorVariants, anchorLinkVariants };
+export { Anchor };
+export type { AnchorItem, AnchorProps };

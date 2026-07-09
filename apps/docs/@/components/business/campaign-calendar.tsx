@@ -1,101 +1,115 @@
-"use client";
-import * as React from "react";
+import { CampaignStatusTag } from "@/components/business/campaign-status-tag";
+import type { CampaignStatus } from "@/components/business/campaign-status-tag";
+import type { MarketingChannel } from "@/components/business/channel-picker";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
-export interface CampaignEvent {
+export interface CampaignCalendarEvent {
   id: string;
   name: string;
-  date: string;
-  status: "planned" | "active" | "ended";
+  date: Date | string;
+  status: CampaignStatus;
+  channel?: MarketingChannel;
 }
 
-interface CampaignCalendarProps extends React.HTMLAttributes<HTMLDivElement> {
-  events: CampaignEvent[];
-  year?: number;
-  month?: number;
-  onMonthChange?: (year: number, month: number) => void;
+export interface CampaignCalendarProps {
+  month: Date;
+  events: CampaignCalendarEvent[];
   className?: string;
 }
 
-const statusStyles: Record<CampaignEvent["status"], string> = {
-  planned: "bg-blue-100 text-blue-800 border-blue-300",
-  active: "bg-green-100 text-green-800 border-green-300",
-  ended: "bg-gray-100 text-gray-500 border-gray-300",
-};
+function toDate(value: Date | string) {
+  return value instanceof Date ? value : new Date(value);
+}
 
-function CampaignCalendar({
+function sameDay(a: Date, b: Date) {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+/**
+ * @component CampaignCalendar
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description Monthly calendar grid displaying campaigns with status tags and channel info per day / 按月展示营销活动的日历视图，每天显示活动状态和渠道信息
+ * @keywords calendar, campaign, schedule, month, events
+ * @example
+ * <CampaignCalendar month={new Date()} events={[{ id: "1", name: "Sale", date: new Date(), status: "active" }]} />
+ */
+export function CampaignCalendar({
+  month,
   events,
-  year = new Date().getFullYear(),
-  month = new Date().getMonth() + 1,
-  onMonthChange,
   className,
-  ...props
 }: CampaignCalendarProps) {
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const firstDayOfWeek = new Date(year, month - 1, 1).getDay();
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-
-  const prevMonth = () => {
-    const m = month === 1 ? 12 : month - 1;
-    const y = month === 1 ? year - 1 : year;
-    onMonthChange?.(y, m);
-  };
-
-  const nextMonth = () => {
-    const m = month === 12 ? 1 : month + 1;
-    const y = month === 12 ? year + 1 : year;
-    onMonthChange?.(y, m);
-  };
+  const first = new Date(month.getFullYear(), month.getMonth(), 1);
+  const daysInMonth = new Date(
+    month.getFullYear(),
+    month.getMonth() + 1,
+    0,
+  ).getDate();
+  const leading = first.getDay();
+  const cells = Array.from({ length: leading + daysInMonth }, (_, index) =>
+    index < leading
+      ? null
+      : new Date(month.getFullYear(), month.getMonth(), index - leading + 1),
+  );
 
   return (
     <div
       data-slot="campaign-calendar"
-      className={cn("space-y-3", className)}
-      {...props}
+      className={cn("overflow-hidden rounded-lg border", className)}
     >
-      <div className="flex items-center justify-between">
-        <Button size="icon-sm" variant="outline" onClick={prevMonth}>
-          <ChevronLeftIcon className="size-4" />
-        </Button>
-        <span className="font-semibold">
-          {year}年{month}月
-        </span>
-        <Button size="icon-sm" variant="outline" onClick={nextMonth}>
-          <ChevronRightIcon className="size-4" />
-        </Button>
-      </div>
-      <div className="text-muted-foreground grid grid-cols-7 gap-1 text-center text-xs font-medium">
-        {["日", "一", "二", "三", "四", "五", "六"].map((d) => (
-          <div key={d} className="py-1">
-            {d}
+      <div className="bg-muted/30 text-muted-foreground grid grid-cols-7 border-b text-xs font-medium">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+          <div key={day} className="px-3 py-2 text-center">
+            {day}
           </div>
         ))}
-        {Array.from({ length: firstDayOfWeek }).map((_, i) => (
-          <div key={`e${i}`} />
-        ))}
-        {days.map((day) => {
-          const dateStr = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-          const dayEvents = events.filter((e) => e.date === dateStr);
+      </div>
+      <div className="grid grid-cols-7">
+        {cells.map((date, index) => {
+          const dayEvents = date
+            ? events.filter((event) => sameDay(toDate(event.date), date))
+            : [];
           return (
             <div
-              key={day}
-              className="hover:border-primary/50 min-h-[70px] rounded border p-1 transition-colors"
+              key={date?.toISOString() ?? `empty-${index}`}
+              className="min-h-28 border-r border-b p-2 last:border-r-0"
             >
-              <span className="text-muted-foreground text-xs">{day}</span>
-              {dayEvents.map((ev) => (
-                <Badge
-                  key={ev.id}
-                  className={cn(
-                    "mt-0.5 block truncate text-[10px]",
-                    statusStyles[ev.status],
-                  )}
-                >
-                  {ev.name}
-                </Badge>
-              ))}
+              {date && (
+                <>
+                  <div className="mb-2 text-xs font-medium tabular-nums">
+                    {date.getDate()}
+                  </div>
+                  <div className="space-y-1">
+                    {dayEvents.slice(0, 3).map((event) => (
+                      <div
+                        key={event.id}
+                        className="bg-muted/60 rounded-md p-1.5"
+                      >
+                        <div className="truncate text-xs font-medium">
+                          {event.name}
+                        </div>
+                        <div className="mt-1 flex items-center gap-1">
+                          <CampaignStatusTag status={event.status} size="sm" />
+                          {event.channel && (
+                            <span className="text-muted-foreground truncate text-[0.65rem]">
+                              {event.channel}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                    {dayEvents.length > 3 && (
+                      <div className="text-muted-foreground text-[0.65rem]">
+                        +{dayEvents.length - 3} more
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
           );
         })}
@@ -103,6 +117,3 @@ function CampaignCalendar({
     </div>
   );
 }
-
-export { CampaignCalendar };
-export type { CampaignCalendarProps };

@@ -1,110 +1,100 @@
+"use client";
+
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Spinner } from "./spinner";
 
-const spinVariants = cva("relative", {
-  variants: {
-    size: {
-      default: "",
-      sm: "",
-      lg: "",
-    },
-  },
-  defaultVariants: { size: "default" },
-});
+/**
+ * @component Spin
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 局部加载包裹组件 / Spin wrapper for partial loading (antd Spin equivalent)
+ * @keywords spin, loading, wrapper, overlay, partial
+ * @example
+ * <Spin spinning={loading} tip="Loading...">
+ *   <Content />
+ * </Spin>
+ */
 
-interface SpinProps
-  extends React.ComponentProps<"div">, VariantProps<typeof spinVariants> {
-  /** Whether to show spinner */
+interface SpinProps {
+  /** Whether spinning / 是否加载中 */
   spinning?: boolean;
-  /** Custom spinner indicator */
-  indicator?: React.ReactNode;
-  /** Tip text under spinner */
+  /** Loading tip text / 加载提示文本 */
   tip?: React.ReactNode;
-  /** Delay before showing spinner (ms) */
+  /** Spinner size / 大小 */
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  /** Delay before showing spinner (ms) / 延迟显示 */
   delay?: number;
+  /** Wrapped content / 包裹的内容 */
   children?: React.ReactNode;
+  /** Custom indicator / 自定义指示器 */
+  indicator?: React.ReactNode;
+  /** Wrapper className / 包裹器类名 */
+  className?: string;
+  /** Content wrapper className / 内容包裹器类名 */
+  contentClassName?: string;
 }
 
 function Spin({
-  className,
-  size,
   spinning = true,
-  indicator,
   tip,
+  size = "md",
   delay = 0,
   children,
-  ...props
+  indicator,
+  className,
+  contentClassName,
 }: SpinProps) {
-  const [showSpinner, setShowSpinner] = React.useState(!delay);
+  const [show, setShow] = React.useState(spinning && delay === 0);
 
   React.useEffect(() => {
-    if (!spinning) {
-      setShowSpinner(false);
-      return;
-    }
-    if (delay > 0) {
-      const timer = setTimeout(() => setShowSpinner(true), delay);
+    if (spinning && delay > 0) {
+      // Hide during the delay window, then show after it elapses.
+      setShow(false);
+      const timer = setTimeout(() => setShow(true), delay);
       return () => clearTimeout(timer);
     }
-    setShowSpinner(true);
+    setShow(spinning);
   }, [spinning, delay]);
 
-  const defaultIndicator = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size === "sm" ? 16 : size === "lg" ? 32 : 20}
-      height={size === "sm" ? 16 : size === "lg" ? 32 : 20}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-primary animate-spin"
-      aria-hidden="true"
-    >
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
-  );
-
   if (!children) {
-    return spinning ? (
+    return (
       <div
         data-slot="spin"
-        className={cn(
-          "inline-flex flex-col items-center justify-center gap-2",
-          spinVariants({ size }),
-          className,
-        )}
-        role="status"
-        aria-label={typeof tip === "string" ? tip : "Loading"}
-        {...props}
+        className={cn("inline-flex flex-col items-center gap-2", className)}
       >
-        {indicator ?? defaultIndicator}
-        {tip && <span className="text-muted-foreground text-sm">{tip}</span>}
+        {indicator ?? <Spinner size={size} />}
+        {tip && <span className="text-sm text-muted-foreground">{tip}</span>}
       </div>
-    ) : null;
+    );
   }
 
   return (
     <div
       data-slot="spin"
-      className={cn(spinVariants({ size }), className)}
-      {...props}
+      className={cn("relative", className)}
     >
-      {showSpinner && (
-        <div className="bg-background/50 absolute inset-0 z-10 flex flex-col items-center justify-center gap-2">
-          {indicator ?? defaultIndicator}
-          {tip && <span className="text-muted-foreground text-sm">{tip}</span>}
-        </div>
-      )}
-      <div className={cn(showSpinner && "pointer-events-none opacity-50")}>
+      <div
+        className={cn(
+          "transition-opacity",
+          show && "opacity-30 pointer-events-none",
+          contentClassName,
+        )}
+      >
         {children}
       </div>
+      {show && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2">
+          {indicator ?? <Spinner size={size} />}
+          {tip && (
+            <span className="text-sm text-muted-foreground">{tip}</span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
-export { Spin, spinVariants };
+export { Spin };
+export type { SpinProps };

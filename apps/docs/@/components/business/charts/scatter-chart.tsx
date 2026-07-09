@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ResponsiveContainer,
   ScatterChart as RechartsScatterChart,
@@ -9,14 +9,14 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts"
-import { ChartTooltip } from "./shared/chart-tooltip"
-import { ChartLegend } from "./shared/chart-legend"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
+} from "recharts";
+import { ChartTooltip } from "./shared/chart-tooltip";
+import { ChartLegend } from "./shared/chart-legend";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
 
 export function ScatterChartComp({
-  data,
+  data = [],
   xKey = "x",
   yKey = "y",
   series,
@@ -30,7 +30,7 @@ export function ScatterChartComp({
   enableFullscreen,
   className,
 }: BaseChartProps) {
-  const keys = series?.map((s) => s.key) ?? [yKey]
+  const keys = series?.map((s) => s.key) ?? [yKey];
   return (
     <ChartFrame
       data={data}
@@ -42,11 +42,28 @@ export function ScatterChartComp({
       className={className}
     >
       <ResponsiveContainer width="100%" height={height ?? 320}>
-        <RechartsScatterChart margin={{ top: 10, right: 10, bottom: 10, left: 0 }}>
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />}
-          <XAxis dataKey={xKey} stroke="var(--muted-foreground)" fontSize={12} />
-          <YAxis dataKey={yKey} stroke="var(--muted-foreground)" fontSize={12} />
-          {showTooltip && <Tooltip content={<ChartTooltip />} cursor={{ strokeDasharray: "3 3" }} />}
+        <RechartsScatterChart
+          margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
+        >
+          {showGrid && (
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          )}
+          <XAxis
+            dataKey={xKey}
+            stroke="var(--muted-foreground)"
+            fontSize={12}
+          />
+          <YAxis
+            dataKey={yKey}
+            stroke="var(--muted-foreground)"
+            fontSize={12}
+          />
+          {showTooltip && (
+            <Tooltip
+              content={<ChartTooltip />}
+              cursor={{ strokeDasharray: "3 3" }}
+            />
+          )}
           {showLegend && <Legend content={<ChartLegend />} />}
           {keys.map((key, i) => (
             <Scatter
@@ -59,5 +76,5 @@ export function ScatterChartComp({
         </RechartsScatterChart>
       </ResponsiveContainer>
     </ChartFrame>
-  )
+  );
 }

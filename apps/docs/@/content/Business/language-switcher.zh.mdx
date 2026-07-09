@@ -1,5 +1,5 @@
-import { LanguageSwitcher } from "@/components/business/language-switcher";
-import { CodeBlock } from "@/components/code-block";
+import { LanguageSwitcher } from "@/components/business/language-switcher"
+import { CodeBlock } from "@/components/code-block"
 
 # LanguageSwitcher 语言切换
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要语言切换功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,21 +22,23 @@ export function Basic() {
   return <LanguageSwitcher />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### LanguageSwitcher
 
-| Prop        | Type                           | Default | 说明              |
-| ----------- | ------------------------------ | ------- | ----------------- |
-| `className` | `string`                       | —       | 自定义样式类名    |
-| `value`     | `string`                       | —       | 当前值(受控)      |
-| `onChange`  | `() => void`                   | —       | 值变化回调        |
-| `options`   | `LanguageOption[]`             | —       | 可选项列表        |
-| `align`     | `"start" \| "center" \| "end"` | `end`   | 对齐方式          |
-| ...rest     | `React.HTMLAttributes`         | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `value` | `string` | — | 当前值(受控) |
+| `onChange` | `() => void` | — | 值变化回调 |
+| `options` | `LanguageOption[]` | — | 可选项列表 |
+| `align` | `"start" \| "center" \| "end"` | `end` | 对齐方式 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-language-switcher--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-languageswitcher--docs)。
+

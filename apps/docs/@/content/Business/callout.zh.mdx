@@ -1,0 +1,42 @@
+import { Callout } from "@/components/business/callout";
+import { CodeBlock } from "@/components/code-block";
+
+# Callout
+
+> 业务组件
+
+<Callout variant="warning" title="注意">
+  请核对数据
+</Callout>
+
+## 何时使用
+
+适用于Callout相关场景。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Callout } from "@/components/business/callout"
+
+export function Basic() {
+  return <Callout title={"example"} variant={undefined} />
+}`} lang="tsx" />
+}`} lang="tsx" />
+
+## API / Props
+
+### Callout
+
+| Prop        | Type                                       | Default   | 说明              |
+| ----------- | ------------------------------------------ | --------- | ----------------- |
+| `className` | `string`                                   | —         | 自定义样式类名    |
+| `title`     | `string`                                   | —         | 标题              |
+| `variant`   | `"default" \| "info" \| "success" \| "...` | `default` | 样式变体          |
+| ...rest     | `React.HTMLAttributes`                     | —         | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-callout--docs)。

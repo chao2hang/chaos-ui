@@ -1,7 +1,8 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -37,22 +38,71 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
-)
+  },
+);
 
+export type ButtonProps = ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & {
+    /** Leading icon, rendered before children / 前置图标 */
+    icon?: React.ReactNode;
+    /** Trailing icon, rendered after children / 后置图标 */
+    iconRight?: React.ReactNode;
+  };
+
+/**
+ * @component Button
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description Interactive button with multiple variants, sizes, and icon support / 交互按钮，支持多种变体、尺寸和图标
+ * @keywords button, action, submit, click, icon
+ * @example
+ * <Button variant="default" size="default">Click me</Button>
+ * <Button variant="outline" icon={<SettingsIcon />}>Settings</Button>
+ */
 function Button({
   className,
   variant = "default",
   size = "default",
+  icon,
+  iconRight,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
+  const hasIcon = icon != null || iconRight != null;
+
+  const computedClassName = React.useMemo(
+    () => cn(buttonVariants({ variant, size, className })),
+    [variant, size, className],
+  );
+
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={computedClassName}
       {...props}
-    />
-  )
+    >
+      {hasIcon ? (
+        <>
+          {icon != null && (
+            <span data-icon="inline-start" className="shrink-0">
+              {icon}
+            </span>
+          )}
+          {children}
+          {iconRight != null && (
+            <span data-icon="inline-end" className="shrink-0">
+              {iconRight}
+            </span>
+          )}
+        </>
+      ) : (
+        children
+      )}
+    </ButtonPrimitive>
+  );
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };
+
+const MemoizedButton = React.memo(Button);
+export { MemoizedButton as ButtonMemo };

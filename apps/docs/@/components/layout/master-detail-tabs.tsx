@@ -2,75 +2,80 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui";
 
-interface MasterDetailTabItem {
-  key: string;
-  label: string;
-  content?: React.ReactNode;
+interface MasterDetailTabsProps {
+  master: React.ReactNode;
+  details: Record<string, { label: string; content: React.ReactNode }>;
+  activeDetail?: string;
+  onDetailChange?: (key: string) => void;
+  masterWidth?: string;
+  className?: string;
 }
 
-interface MasterDetailTabsProps extends Omit<
-  React.ComponentProps<"div">,
-  "onChange"
-> {
-  items: MasterDetailTabItem[];
-  activeKey?: string;
-  defaultActiveKey?: string;
-  onChange?: (key: string) => void;
-}
-
-export function MasterDetailTabs({
-  items,
-  activeKey: controlledActiveKey,
-  defaultActiveKey,
-  onChange,
+/**
+ * 主-明细-标签页布局 —— 左主表 + 右标签页明细。
+ *
+ * @component MasterDetailTabs
+ * @category layout/business
+ * @since 0.2.0
+ */
+function MasterDetailTabs({
+  master,
+  details,
+  activeDetail,
+  onDetailChange,
+  masterWidth = "40%",
   className,
-  ...props
 }: MasterDetailTabsProps) {
-  const [internalActiveKey, setInternalActiveKey] = React.useState(
-    defaultActiveKey ?? items[0]?.key ?? "",
-  );
-
-  const activeKey = controlledActiveKey ?? internalActiveKey;
-  const activeItem = items.find((item) => item.key === activeKey);
-
-  const handleChange = React.useCallback(
-    (key: string) => {
-      if (!controlledActiveKey) {
-        setInternalActiveKey(key);
-      }
-      onChange?.(key);
-    },
-    [controlledActiveKey, onChange],
+  const detailKeys = Object.keys(details);
+  const [active, setActive] = React.useState(
+    activeDetail || detailKeys[0] || "",
   );
 
   return (
     <div
       data-slot="master-detail-tabs"
-      className={cn("flex h-full flex-col", className)}
-      {...props}
+      className={cn("flex h-full flex-col gap-0 lg:flex-row", className)}
     >
-      <div className="flex shrink-0 items-center gap-0 border-b" role="tablist">
-        {items.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            role="tab"
-            aria-selected={activeKey === item.key}
-            onClick={() => handleChange(item.key)}
-            className={cn(
-              "relative px-4 py-2.5 text-sm font-medium transition-colors",
-              "after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.5 after:rounded-full after:transition-colors",
-              activeKey === item.key
-                ? "text-primary after:bg-primary"
-                : "text-muted-foreground hover:text-foreground after:bg-transparent",
-            )}
-          >
-            {item.label}
-          </button>
-        ))}
+      <div
+        className="shrink-0 overflow-auto border-r lg:w-[40%]"
+        style={{ width: masterWidth }}
+      >
+        {master}
       </div>
-      <div className="flex-1 overflow-y-auto">{activeItem?.content}</div>
+
+      <div className="flex flex-1 flex-col overflow-hidden">
+        <Tabs
+          value={active}
+          onValueChange={(v) => {
+            setActive(v);
+            onDetailChange?.(v);
+          }}
+        >
+          <div className="border-b px-4 pt-2">
+            <TabsList>
+              {detailKeys.map((key) => (
+                <TabsTrigger key={key} value={key}>
+                  {details[key]!.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+          {detailKeys.map((key) => (
+            <TabsContent
+              key={key}
+              value={key}
+              className="m-0 flex-1 overflow-auto p-4"
+            >
+              {details[key]!.content}
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
     </div>
   );
 }
+
+export { MasterDetailTabs };
+export type { MasterDetailTabsProps };

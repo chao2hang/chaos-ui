@@ -1,0 +1,42 @@
+import { SalesTargetEditor } from "@/components/business/sales-target-editor"
+import { CodeBlock } from "@/components/code-block"
+
+# SalesTargetEditor Sales Target Editor
+
+> Domain-specific business components for ERP scenarios.
+
+<SalesTargetEditor rows={[{ id: "1", year: 2026, region: "华东", q1: 100, q2: 120, q3: 130, q4: 150, annual: 500 }]} />
+SalesTargetEditor — sales target editor component.
+
+## When to Use
+
+Use when you need a sales target editor.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SalesTargetEditor } from "@/components/business/sales-target-editor"
+
+export function Basic() {
+  return <SalesTargetEditor />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SalesTargetEditor
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rows` | `SalesTargetRow[]` | — | Row data |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

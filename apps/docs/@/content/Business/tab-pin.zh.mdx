@@ -1,0 +1,44 @@
+import { TabPin } from "@/components/business/tab-pin"
+import { CodeBlock } from "@/components/code-block"
+
+# TabPin Tab Pin
+
+> 业务组件
+
+<TabPin id="tab-1" label="销售订单" pinned onPin={(id) => {}} />
+
+## 何时使用
+
+适用于Tab Pin相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { TabPin } from "@/components/business/tab-pin"
+
+export function Basic() {
+  return <TabPin />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### TabPin
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `id` | `string` | — | DOM 元素 id |
+| `label` | `string` | — | 标签文本 |
+| `pinned` | `boolean` | `false` |  |
+| `onPin` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-tabpin--docs)。
+

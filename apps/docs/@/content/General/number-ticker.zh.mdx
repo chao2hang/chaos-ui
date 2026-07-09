@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # NumberTicker 数字跳动
 
-> 通用基础组件
+> 动画数字计数器
 
-数字跳动 — Chaos UI 的通用基础组件。
+用于 KPI/统计展示的动画数字计数器，支持缓动函数和前缀/后缀。
 
 ## 何时使用
 
-需要数字跳动功能时使用本组件。
+展示统计数据、KPI 面板中的数字时使用，数字从 0 平滑动画到目标值。
 
 ## 代码示例
 
@@ -18,75 +18,43 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { NumberTicker } from "@/components/ui/number-ticker"
 
 export function Basic() {
-  return <NumberTicker />
+  return <NumberTicker value={12345} />
 }`} lang="tsx" />
 
-### 变体
+### 带前缀后缀
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
-<div className="flex flex-wrap items-center gap-3">
-  <NumberTicker variant="default">Default</NumberTicker>
-  <NumberTicker variant="primary">Primary</NumberTicker>
-  <NumberTicker variant="success">Success</NumberTicker>
-  <NumberTicker variant="warning">Warning</NumberTicker>
-  <NumberTicker variant="destructive">Destructive</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { NumberTicker } from "@/components/ui/number-ticker"
 
-### 尺寸
-
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <NumberTicker size="sm">Sm</NumberTicker>
-  <NumberTicker size="default">Default</NumberTicker>
-  <NumberTicker size="lg">Lg</NumberTicker>
-</div>`}
-  lang="tsx"
-/>
-
-## 样式变体
-
-**变体**
-
-| Variant       | 说明          | 默认 |
-| ------------- | ------------- | ---- |
-| `default`     | 默认样式      | ✓    |
-| `primary`     | 主要样式      |      |
-| `success`     | 成功状态      |      |
-| `warning`     | 警告状态      |      |
-| `destructive` | 危险/删除样式 |      |
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
-| `xl`      | 超大     |      |
+export function PrefixSuffix() {
+  return (
+    <div className="flex flex-col gap-2">
+      <NumberTicker value={125430} prefix="¥" />
+      <NumberTicker value={42.7} decimals={1} suffix="%" />
+      <NumberTicker value={9805} duration={2000} />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### NumberTicker
 
-| Prop        | Type                           | Default | 说明                         |
-| ----------- | ------------------------------ | ------- | ---------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名               |
-| `value`     | `number`                       | —       | Target value                 |
-| `duration`  | `number`                       | `1000`  | Duration of animation in ms  |
-| `decimals`  | `number`                       | `0`     | Decimal places to show       |
-| `prefix`    | `string`                       | —       | Prefix text                  |
-| `suffix`    | `string`                       | —       | Suffix text                  |
-| `easing`    | `boolean`                      | `true`  | Use easing instead of linear |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性       |
+| Prop | Type | Default | 说明 |
+| ----------- | -------------------------------------- | --------- | --------------------------------------------- |
+| `value`     | `number`                               | —         | Target number / 目标数字 (required)           |
+| `from`      | `number`                               | `0`       | Starting number / 起始数字                    |
+| `duration`  | `number`                               | `1000`    | Animation duration in ms / 动画时长           |
+| `easing`    | `"linear" \| "easeOut" \| "easeInOut"` | `easeOut` | Easing function / 缓动函数                    |
+| `format`    | `(n: number) => string`                | —         | Custom formatter / 自定义格式化               |
+| `decimals`  | `number`                               | `0`       | Decimal places / 小数位数                     |
+| `prefix`    | `React.ReactNode`                      | —         | Prefix / 前缀                                 |
+| `suffix`    | `React.ReactNode`                      | —         | Suffix / 后缀                                 |
+| `reAnimate` | `boolean`                              | `true`    | Re-animate on value change / 值变化时重新动画 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
+- **无障碍**: 检测 `prefers-reduced-motion`，如用户偏好减少动画则直接显示最终值。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-number-ticker--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-numberticker--docs)。
+

@@ -53,15 +53,28 @@ function Tag({
 }: TagProps) {
   const colorClass = (tagColorMap as Record<string, string>)[color] ?? tagColorMap.default;
 
+  const computedClassName = React.useMemo(
+    () => cn(
+      "inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium",
+      bordered && "border",
+      colorClass,
+      className,
+    ),
+    [colorClass, bordered, className],
+  );
+
+  const handleClose = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onClose?.();
+    },
+    [onClose],
+  );
+
   return (
     <span
       data-slot="tag"
-      className={cn(
-        "inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium",
-        bordered && "border",
-        colorClass,
-        className,
-      )}
+      className={computedClassName}
       {...props}
     >
       {icon && <span className="shrink-0">{icon}</span>}
@@ -69,10 +82,7 @@ function Tag({
       {closable && (
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose?.();
-          }}
+          onClick={handleClose}
           className="ml-0.5 shrink-0 rounded-sm p-0.5 hover:bg-black/10 dark:hover:bg-white/10"
           aria-label="Close"
         >
@@ -103,3 +113,6 @@ function TagGroup({
 
 export { Tag, TagGroup };
 export type { TagProps, TagColor };
+
+const MemoizedTag = React.memo(Tag);
+export { MemoizedTag as TagMemo };

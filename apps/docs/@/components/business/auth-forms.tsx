@@ -23,7 +23,7 @@ interface SignInFormProps extends Omit<
 
 export function SignInForm({
   onSubmit,
-  ssoProviders,
+  ssoProviders = [],
   signupHref,
   forgotHref,
   className,

@@ -11,14 +11,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const users = [
-  { id: "1", name: "Alice", avatar: "" },
-  { id: "2", name: "Bob", avatar: "" },
-  { id: "3", name: "Charlie", avatar: "" },
+  { value: "alice", label: "Alice" },
+  { value: "bob", label: "Bob" },
+  { value: "charlie", label: "Charlie" },
 ];
 
 export const Default: Story = {
   args: {
+    options: users,
     placeholder: "Type @ to mention...",
-    onSearch: async () => users,
   },
 };

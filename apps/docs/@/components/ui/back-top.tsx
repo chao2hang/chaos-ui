@@ -1,102 +1,118 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { ArrowUp } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
-const backTopVariants = cva(
-  "fixed z-50 flex items-center justify-center rounded-full shadow-md transition-all duration-300 hover:shadow-lg",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        outline:
-          "border border-border bg-background text-foreground hover:bg-muted",
-        ghost: "bg-transparent text-muted-foreground hover:text-foreground",
-      },
-      size: {
-        default: "size-10",
-        sm: "size-8",
-        lg: "size-12",
-      },
-    },
-    defaultVariants: { variant: "default", size: "default" },
-  },
-);
+/**
+ * @component BackTop
+ * @category ui/primitives
+ * @since 0.2.0
+ * @description 回到顶部按钮 / Back to top button
+ * @keywords back-top, scroll, top, up
+ * @example
+ * <BackTop />
+ * <BackTop visibilityHeight={300} />
+ */
 
-interface BackTopProps
-  extends React.ComponentProps<"button">, VariantProps<typeof backTopVariants> {
-  /** Scroll container target */
-  target?: () => HTMLElement | Window | null;
-  /** Threshold in px before showing */
+interface BackTopProps {
+  /** Visibility threshold (px scrolled before showing) / 显示阈值 */
   visibilityHeight?: number;
+  /** Scroll target (default: window) / 滚动目标 */
+  target?: () => HTMLElement | Window;
+  /** Click callback / 点击回调 */
+  onClick?: () => void;
+  /** Custom children / 自定义内容 */
+  children?: React.ReactNode;
+  /** Button className / 按钮类名 */
+  className?: string;
+  /** Visibility duration (ms) / 显隐动画时长 */
+  duration?: number;
+  /** Position / 位置 */
+  position?: {
+    right?: number;
+    bottom?: number;
+  };
 }
 
 function BackTop({
-  className,
-  variant,
-  size,
-  target,
   visibilityHeight = 400,
+  target,
+  onClick,
   children,
-  ...props
+  className,
+  duration = 300,
+  position = { right: 24, bottom: 48 },
 }: BackTopProps) {
   const [visible, setVisible] = React.useState(false);
-
-  React.useEffect(() => {
-    const container = target?.() ?? window;
-    const handleScroll = () => {
-      const scrollTop =
-        container instanceof Window
-          ? window.scrollY
-          : (container as HTMLElement).scrollTop;
-      setVisible(scrollTop > visibilityHeight);
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [target, visibilityHeight]);
+  // Hold the latest target fn in a ref so the scroll listener effect doesn't
+  // re-bind every render (target is a function whose identity changes inline).
+  const targetRef = React.useRef(target);
+  targetRef.current = target;
 
   const scrollToTop = () => {
-    const container = target?.() ?? window;
-    if (container instanceof Window) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    const targetEl = targetRef.current?.() ?? window;
+    if (targetEl === window) {
+      const start = window.scrollY;
+      const startTime = performance.now();
+      const animate = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        window.scrollTo(0, start * (1 - easeOut));
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
     } else {
-      container?.scrollTo({ top: 0, behavior: "smooth" });
+      (targetEl as HTMLElement).scrollTo({ top: 0, behavior: "smooth" });
     }
+    onClick?.();
   };
+
+  const handleScroll = React.useCallback(() => {
+    const targetEl = targetRef.current?.() ?? window;
+    const scrollTop =
+      targetEl === window
+        ? window.scrollY
+        : (targetEl as HTMLElement).scrollTop;
+    setVisible(scrollTop > visibilityHeight);
+  }, [visibilityHeight]);
+
+  React.useEffect(() => {
+    const targetEl = targetRef.current?.() ?? window;
+    targetEl.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => targetEl.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   if (!visible) return null;
 
   return (
-    <button
+    <div
       data-slot="back-top"
-      type="button"
-      onClick={scrollToTop}
-      className={cn(backTopVariants({ variant, size }), className)}
-      aria-label="Back to top"
-      {...props}
+      className={cn("fixed z-50 transition-opacity", className)}
+      style={{
+        right: position.right,
+        bottom: position.bottom,
+      }}
     >
       {children ?? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
+        <Button
+          variant="default"
+          size="icon"
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          className="shadow-lg"
         >
-          <path d="M18 15l-6-6-6 6" />
-        </svg>
+          <ArrowUp className="size-4" />
+        </Button>
       )}
-    </button>
+    </div>
   );
 }
 
-export { BackTop, backTopVariants };
+export { BackTop };
+export type { BackTopProps };

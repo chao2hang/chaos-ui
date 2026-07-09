@@ -1,0 +1,43 @@
+import { ChatToolCallBlock } from "@/components/business/chat-tool-call-block"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatToolCallBlock Chat Tool Call Block
+
+> Domain-specific business components for ERP scenarios.
+
+ChatToolCallBlock — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat tool call block.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatToolCallBlock } from "@/components/business/chat-tool-call-block"
+
+export function Basic() {
+  return <ChatToolCallBlock />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatToolCallBlock
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `toolName` | `string` | — |  |
+| `toolInput` | `unknown` | — |  |
+| `toolOutput` | `unknown` | — |  |
+| `status` | `"calling" \| "success" \| "error"` | — | Status |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

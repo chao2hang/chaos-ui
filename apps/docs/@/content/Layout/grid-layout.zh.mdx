@@ -1,5 +1,5 @@
-import { GridLayout, GridItem } from "@/components/ui/grid-layout";
-import { CodeBlock } from "@/components/code-block";
+import { GridLayout, GridItem } from "@/components/ui/grid-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # GridLayout 栅格布局
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要栅格布局功能时使用本组件。
+
 
 ## 代码示例
 
@@ -25,66 +26,68 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **columns**
 
 | columns | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `1`     |      | ✓    |
-| `2`     |      |      |
-| `3`     |      |      |
-| `4`     |      |      |
-| `5`     |      |      |
-| `6`     |      |      |
-| `12`    |      |      |
-| `auto`  |      |      |
+|---|---|---|
+| `1` |  | ✓ |
+| `2` |  |  |
+| `3` |  |  |
+| `4` |  |  |
+| `5` |  |  |
+| `6` |  |  |
+| `12` |  |  |
+| `auto` |  |  |
 
 **gap**
 
-| gap       | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `none`    |      |      |
-| `sm`      |      |      |
-| `default` |      | ✓    |
-| `lg`      |      |      |
-| `xl`      |      |      |
+| gap | 说明 | 默认 |
+|---|---|---|
+| `none` |  |  |
+| `sm` |  |  |
+| `default` |  | ✓ |
+| `lg` |  |  |
+| `xl` |  |  |
 
 **对齐**
 
-| align     | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `start`   |      |      |
-| `center`  |      |      |
-| `end`     |      |      |
-| `stretch` |      | ✓    |
+| align | 说明 | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  |  |
+| `end` |  |  |
+| `stretch` |  | ✓ |
 
 **主轴对齐**
 
-| justify   | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `start`   |      | ✓    |
-| `center`  |      |      |
-| `end`     |      |      |
-| `between` |      |      |
+| justify | 说明 | 默认 |
+|---|---|---|
+| `start` |  | ✓ |
+| `center` |  |  |
+| `end` |  |  |
+| `between` |  |  |
 
 ## API / Props
 
 ### GridLayout
 
-| Prop         | Type                   | Default | 说明              |
-| ------------ | ---------------------- | ------- | ----------------- |
-| `className`  | `string`               | —       | 自定义样式类名    |
-| `responsive` | `{`                    | —       |                   |
-| `sm`         | `number`               | —       |                   |
-| `md`         | `number`               | —       |                   |
-| `lg`         | `number`               | —       |                   |
-| `xl`         | `number`               | —       |                   |
-| ...rest      | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `responsive` | `{` | — |  |
+| `sm` | `number` | — |  |
+| `md` | `number` | — |  |
+| `lg` | `number` | — |  |
+| `xl` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **复合组件**: 包含 1 个子组件(GridItem),使用组合模式按需导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-grid-layout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-gridlayout--docs)。
+

@@ -1,9 +1,5 @@
-import {
-  AuthGuard,
-  AuthGuardProvider,
-  Permissions,
-} from "@/components/business/auth-guard";
-import { CodeBlock } from "@/components/code-block";
+import { AuthGuard, AuthGuardProvider, Permissions } from "@/components/business/auth-guard"
+import { CodeBlock } from "@/components/code-block"
 
 # AuthGuard 认证守卫
 
@@ -14,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要认证守卫功能时使用本组件。
+
 
 ## 代码示例
 
@@ -29,22 +26,24 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AuthGuard
 
-| Prop          | Type                   | Default | 说明              |
-| ------------- | ---------------------- | ------- | ----------------- |
-| `className`   | `string`               | —       | 自定义样式类名    |
-| `permission`  | `string \| string[]`   | —       |                   |
-| `permissions` | `string[]`             | —       |                   |
-| `mode`        | `"all" \| "any"`       | `any`   |                   |
-| `fallback`    | `React.ReactNode`      | —       |                   |
-| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `permission` | `string \| string[]` | — |  |
+| `permissions` | `string[]` | — |  |
+| `mode` | `"all" \| "any"` | `any` |  |
+| `fallback` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 1 个子组件(AuthGuardProvider),使用组合模式按需导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-auth-guard--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-authguard--docs)。
+

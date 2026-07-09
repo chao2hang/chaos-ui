@@ -1,179 +1,142 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDownIcon, Loader2 } from "@/components/ui/icons";
 
-const splitButtonVariants = cva("inline-flex isolate", {
-  variants: {
-    size: {
-      default: "",
-      sm: "",
-      lg: "",
-    },
-    variant: {
-      default: "",
-      outline: "",
-      ghost: "",
-    },
-  },
-  defaultVariants: { size: "default", variant: "default" },
-});
+/**
+ * @component SplitButton
+ * @category ui/actions
+ * @since 0.2.0
+ * @description A button with a main action area and a dropdown trigger for more actions / 带主操作区域和下拉菜单触发器的分割按钮
+ */
 
-const buttonBaseVariants = cva(
-  "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-      },
-      size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 px-3 text-xs",
-        lg: "h-10 px-6",
-      },
-    },
-    defaultVariants: { variant: "default", size: "default" },
-  },
-);
-
-interface SplitButtonItem {
-  key: string;
-  label: React.ReactNode;
+/** A single action item displayed in the SplitButton dropdown */
+export interface SplitButtonAction {
+  /** Label text for the action */
+  label: string;
+  /** Optional leading icon */
   icon?: React.ReactNode;
+  /** Click handler */
+  onClick?: () => void;
+  /** Whether the action is disabled */
   disabled?: boolean;
-  danger?: boolean;
+  /** Whether to render with destructive styling */
+  destructive?: boolean;
+  /** Show a separator before this item */
+  separator?: boolean;
 }
 
-interface SplitButtonProps
-  extends
-    Omit<React.ComponentProps<"div">, "onClick">,
-    VariantProps<typeof splitButtonVariants> {
+export interface SplitButtonProps {
   /** Main button label */
-  label: React.ReactNode;
+  children: React.ReactNode;
   /** Main button click handler */
   onClick?: () => void;
-  /** Dropdown menu items */
-  items?: SplitButtonItem[];
-  /** Called when a dropdown item is selected */
-  onSelect?: (key: string) => void;
+  /** Dropdown actions */
+  actions?: SplitButtonAction[];
+  /** Button variant (same as Button) */
+  variant?: "default" | "outline" | "secondary" | "ghost" | "destructive";
+  /** Button size */
+  size?: "default" | "xs" | "sm" | "lg";
+  /** Disabled state */
   disabled?: boolean;
+  /** Icon for main button */
+  icon?: React.ReactNode;
+  /** Loading state */
+  loading?: boolean;
+  /** Additional CSS class name */
+  className?: string;
 }
 
-function SplitButton({
-  className,
-  size = "default",
-  variant = "default",
-  label,
-  onClick,
-  items = [],
-  onSelect,
-  disabled,
-  ...props
-}: SplitButtonProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+const triggerSizeMap: Record<string, "icon-xs" | "icon-sm" | "icon" | "icon-lg"> = {
+  xs: "icon-xs",
+  sm: "icon-sm",
+  default: "icon",
+  lg: "icon-lg",
+};
 
-  React.useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+function SplitButton({
+  children,
+  onClick,
+  actions,
+  variant = "default",
+  size = "default",
+  disabled = false,
+  icon,
+  loading = false,
+  className,
+}: SplitButtonProps) {
+  const isDisabled = disabled || loading;
+  const triggerIconSize = triggerSizeMap[size] ?? "icon";
+  const hasActions = actions != null && actions.length > 0;
 
   return (
     <div
-      ref={ref}
       data-slot="split-button"
-      className={cn(splitButtonVariants({ size, variant }), className)}
-      {...props}
+      className={cn("inline-flex items-center", className)}
     >
-      <button
-        type="button"
+      <Button
+        variant={variant}
+        size={size}
+        disabled={isDisabled}
         onClick={onClick}
-        disabled={disabled}
-        className={cn(
-          buttonBaseVariants({ variant, size }),
-          "rounded-l-md rounded-r-none",
-          items.length > 0 && "border-primary-foreground/20 border-r",
-        )}
+        icon={loading ? <Loader2 className="animate-spin" /> : icon}
+        className="rounded-r-none"
       >
-        {label}
-      </button>
-      {items.length > 0 && (
-        <>
-          <button
-            type="button"
-            disabled={disabled}
-            onClick={() => setIsOpen(!isOpen)}
+        {children}
+      </Button>
+
+      {hasActions && (
+        <DropdownMenu disabled={isDisabled}>
+          <DropdownMenuTrigger
             className={cn(
-              buttonBaseVariants({ variant, size }),
-              "rounded-l-none rounded-r-md px-2",
+              buttonVariants({ variant, size: triggerIconSize }),
+              "-ml-px rounded-l-none"
             )}
-            aria-expanded={isOpen}
-            aria-haspopup="menu"
-            aria-label="More options"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
-          {isOpen && (
-            <div className="bg-popover absolute top-full right-0 z-50 mt-1 min-w-[160px] rounded-md border p-1 shadow-md">
-              <ul role="menu">
-                {items.map((item) => (
-                  <li
-                    key={item.key}
-                    role="menuitem"
-                    aria-disabled={item.disabled}
-                    className={cn(
-                      "hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none",
-                      item.disabled && "pointer-events-none opacity-50",
-                      item.danger && "text-destructive hover:bg-destructive/10",
-                    )}
-                    onClick={() => {
-                      if (!item.disabled) {
-                        onSelect?.(item.key);
-                        setIsOpen(false);
-                      }
-                    }}
-                  >
-                    {item.icon && (
-                      <span className="size-4 shrink-0">{item.icon}</span>
-                    )}
-                    {item.label}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </>
+            <ChevronDownIcon />
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end">
+            {actions.map((action, index) => {
+              const items: React.ReactNode[] = [];
+
+              if (action.separator && index > 0) {
+                items.push(
+                  <DropdownMenuSeparator key={`sep-${index}`} />
+                );
+              }
+
+              items.push(
+                <DropdownMenuItem
+                  key={action.label}
+                  variant={action.destructive ? "destructive" : "default"}
+                  disabled={action.disabled}
+                  onClick={action.onClick}
+                >
+                  {action.icon != null && (
+                    <span className="shrink-0">{action.icon}</span>
+                  )}
+                  {action.label}
+                </DropdownMenuItem>
+              );
+
+              return items;
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       )}
     </div>
   );
 }
 
-export { SplitButton, splitButtonVariants };
+export { SplitButton };

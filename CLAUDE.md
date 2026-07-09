@@ -15,7 +15,7 @@ Chaos UI (`@chaos_team/chaos-ui`) is a Storybook-first React/Next.js enterprise 
 
 ```bash
 pnpm run storybook    # Start Storybook on port 3002
-pnpm run dev          # Start component docs site on port 8080
+pnpm run dev          # Start component docs site on port 3001
 pnpm run check        # typecheck + lint + lint:css + lint:deps
 pnpm run test         # Run vitest tests
 pnpm run build:pkg    # Build package with tsup

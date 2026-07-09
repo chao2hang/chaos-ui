@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site-header";
 import { LocaleProvider } from "@/components/locale-provider";
+import { CommandPalette } from "@/components/command-palette";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 
 // Use system font stack to avoid build-time Google Fonts fetch failures in sandboxed/CI environments.
@@ -74,6 +75,7 @@ export default async function RootLayout({
             <TooltipProvider>
               <SiteHeader />
               <main className="flex-1">{children}</main>
+              <CommandPalette />
             </TooltipProvider>
             <Toaster richColors position="top-right" />
           </ThemeProvider>

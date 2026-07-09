@@ -1,5 +1,5 @@
-import { TreeView } from "@/components/ui/tree-view";
-import { CodeBlock } from "@/components/code-block";
+import { TreeView } from "@/components/ui/tree-view"
+import { CodeBlock } from "@/components/code-block"
 
 # TreeView
 
@@ -11,6 +11,7 @@ TreeView — a components for presenting data and content. from Chaos UI.
 
 Use when you need a tree view.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,25 +22,28 @@ export function Basic() {
   return <TreeView />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### TreeView
 
-| Prop                 | Type                   | Default | Description                       |
-| -------------------- | ---------------------- | ------- | --------------------------------- |
-| `className`          | `string`               | —       | Custom CSS class                  |
-| `data`               | `TreeNode[]`           | —       | Data source                       |
-| `selectedIds`        | `string[]`             | —       |                                   |
-| `defaultSelectedIds` | `string[]`             | —       |                                   |
-| `expandedIds`        | `string[]`             | —       |                                   |
-| `defaultExpandedIds` | `string[]`             | —       |                                   |
-| `onSelect`           | `() => void`           | —       | Selection handler                 |
-| `onExpand`           | `() => void`           | —       |                                   |
-| `showCheckbox`       | `boolean`              | `false` |                                   |
-| `showIcon`           | `boolean`              | `true`  |                                   |
-| `disabled`           | `boolean`              | `false` | Whether disabled                  |
-| ...rest              | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `data` | `TreeNode[]` | — | Data source |
+| `selectedIds` | `string[]` | — |  |
+| `defaultSelectedIds` | `string[]` | — |  |
+| `expandedIds` | `string[]` | — |  |
+| `defaultExpandedIds` | `string[]` | — |  |
+| `onSelect` | `() => void` | — | Selection handler |
+| `onExpand` | `() => void` | — |  |
+| `showCheckbox` | `boolean` | `false` |  |
+| `showIcon` | `boolean` | `true` |  |
+| `disabled` | `boolean` | `false` | Whether disabled |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

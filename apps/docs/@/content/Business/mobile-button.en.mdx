@@ -1,5 +1,5 @@
-import { MobileButton } from "@/components/business/mobile-button";
-import { CodeBlock } from "@/components/code-block";
+import { MobileButton } from "@/components/mobile/mobile-button"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileButton
 
@@ -11,26 +11,30 @@ MobileButton — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile button.
 
+
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileButton } from "@/components/business/mobile-button"
+<CodeBlock code={`import { MobileButton } from "@/components/mobile/mobile-button"
 
 export function Basic() {
   return <MobileButton />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileButton
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| `fullWidth` | `boolean`              | `true`  | Take full parent width            |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `fullWidth` | `boolean` | `true` | Take full parent width |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

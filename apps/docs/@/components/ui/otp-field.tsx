@@ -1,19 +1,27 @@
-"use client"
-import * as React from "react"
-import { OTPFieldPreview as OTPFieldPrimitive } from "@base-ui/react/otp-field"
+"use client";
+import * as React from "react";
+import { OTPFieldPreview as OTPFieldPrimitive } from "@base-ui/react/otp-field";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-interface OTPFieldProps
-  extends Omit<OTPFieldPrimitive.Root.Props, "children"> {
-  length: number
-  value?: string
-  onValueChange?: (value: string | null) => void
-  mask?: boolean
-  className?: string
-  inputClassName?: string
+interface OTPFieldProps extends Omit<OTPFieldPrimitive.Root.Props, "children"> {
+  length: number;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  mask?: boolean;
+  className?: string;
+  inputClassName?: string;
 }
 
+/**
+ * @component OTPField
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description One-time password input field with individual character slots / 一次性密码输入字段，每个字符独立输入框
+ * @keywords otp, one-time password, verification code, input, token, 2fa
+ * @example
+ * <OTPField length={6} onValueChange={(v) => console.log(v)} />
+ */
 function OTPField({
   length,
   value,
@@ -38,25 +46,38 @@ function OTPField({
           key={i}
           data-slot="otp-field-input"
           className={cn(
-            "flex size-9 items-center justify-center rounded-md border border-input bg-background text-foreground text-center text-base font-medium shadow-xs transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-            inputClassName
+            "border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 flex size-9 items-center justify-center rounded-md border text-center text-base font-medium shadow-xs transition-colors focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+            inputClassName,
           )}
         />
       ))}
     </OTPFieldPrimitive.Root>
-  )
+  );
 }
 
-function OTPFieldSeparator({ className, ...props }: React.ComponentProps<"div">) {
+/**
+ * @component OTPFieldSeparator
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description Visual separator between OTP field groups / OTP字段组之间的视觉分隔符
+ * @keywords otp, separator, divider, verification code
+ * @example
+ * <OTPFieldSeparator />
+ */
+function OTPFieldSeparator({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="otp-field-separator"
-      className={cn("flex items-center text-muted-foreground/50", className)}
+      className={cn("text-muted-foreground/50 flex items-center", className)}
       {...props}
     >
       <OTPFieldPrimitive.Separator>—</OTPFieldPrimitive.Separator>
     </div>
-  )
+  );
 }
 
-export { OTPField, OTPFieldSeparator }
+export { OTPField, OTPFieldSeparator };
+export { OTPField as OtpField };

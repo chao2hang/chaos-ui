@@ -1,0 +1,40 @@
+import { EditableTable } from "@/components/ui/editable-table"
+import { CodeBlock } from "@/components/code-block"
+
+# EditableTable 可编辑表格
+
+> 数据展示
+
+可编辑表格 — 行内可编辑表格，支持增删改与批量操作。
+
+## 何时使用
+
+需要可编辑表格功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { EditableTable } from "@/components/ui/editable-table"
+
+export function Basic() {
+  return <EditableTable />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### EditableTable
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-editabletable--docs)。
+

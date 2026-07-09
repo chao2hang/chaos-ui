@@ -1,5 +1,5 @@
-import { InputNumber } from "@/components/ui/input-number";
-import { CodeBlock } from "@/components/code-block";
+import { InputNumber } from "@/components/ui/input-number"
+import { CodeBlock } from "@/components/code-block"
 
 # InputNumber 数字输入
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要数字输入功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,54 +24,50 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <InputNumber size="sm">Sm</InputNumber>
   <InputNumber size="default">Default</InputNumber>
   <InputNumber size="lg">Lg</InputNumber>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 状态
 
-<CodeBlock
-  code={`<InputNumber>Normal</InputNumber>
-<InputNumber disabled>Disabled</InputNumber>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<InputNumber>Normal</InputNumber>
+<InputNumber disabled>Disabled</InputNumber>`} lang="tsx" />
+
 
 ## 样式变体
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 | ✓ |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
 
 ## API / Props
 
 ### InputNumber
 
-| Prop          | Type                   | Default | 说明                 |
-| ------------- | ---------------------- | ------- | -------------------- |
-| `className`   | `string`               | —       | 自定义样式类名       |
-| `value`       | `number`               | —       | 当前值(受控)         |
-| `onChange`    | `() => void`           | —       | 值变化回调           |
-| `min`         | `number`               | —       | 最小值               |
-| `max`         | `number`               | —       | 最大值               |
-| `step`        | `number`               | `1`     | 步长                 |
-| `showStepper` | `boolean`              | `true`  | Show stepper buttons |
-| `allowEmpty`  | `boolean`              | `false` | Allow empty value    |
-| `suffix`      | `React.ReactNode`      | —       | Suffix text          |
-| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性    |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `value` | `number` | — | 当前值(受控) |
+| `onChange` | `() => void` | — | 值变化回调 |
+| `min` | `number` | — | 最小值 |
+| `max` | `number` | — | 最大值 |
+| `step` | `number` | `1` | 步长 |
+| `showStepper` | `boolean` | `true` | Show stepper buttons |
+| `allowEmpty` | `boolean` | `false` | Allow empty value |
+| `suffix` | `React.ReactNode` | — | Suffix text |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-input-number--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-inputnumber--docs)。
+

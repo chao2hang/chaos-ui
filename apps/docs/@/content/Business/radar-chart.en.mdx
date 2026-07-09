@@ -1,0 +1,42 @@
+import { RadarChart } from "@/components/business/radar-chart"
+import { CodeBlock } from "@/components/code-block"
+
+# RadarChart Radar Chart
+
+> Domain-specific business components for ERP scenarios.
+
+RadarChart — radar chart component.
+
+## When to Use
+
+Use when you need a radar chart.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { RadarChart } from "@/components/business/radar-chart"
+
+export function Basic() {
+  return <RadarChart />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### RadarChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `axes` | `string[]` | — | Dimension labels (vertices). |
+| `series` | `Array<T>` | — | Named series; each `values` array aligns 1:1 with `axes`. |
+| `max` | `number` | — | Scale ceiling. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

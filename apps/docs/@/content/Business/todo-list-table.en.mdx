@@ -1,0 +1,41 @@
+import { TodoListTable } from "@/components/business/todo-list-table"
+import { CodeBlock } from "@/components/code-block"
+
+# TodoListTable Todo List Table
+
+> Domain-specific business components for ERP scenarios.
+
+TodoListTable — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a todo list table.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { TodoListTable } from "@/components/business/todo-list-table"
+
+export function Basic() {
+  return <TodoListTable />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### TodoListTable
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `TodoItem[]` | — | Todo items. Defaults to a small sample list so the table is never empty. |
+| `onToggle` | `() => void` | — | Called with the toggled item id whenever a checkbox is clicked. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

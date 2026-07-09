@@ -1,0 +1,42 @@
+import { BillPrintTemplate } from "@/components/business/bill-print-template"
+import { CodeBlock } from "@/components/code-block"
+
+# BillPrintTemplate Bill Print Template
+
+> Domain-specific business components for ERP scenarios.
+
+BillPrintTemplate — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a bill print template.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BillPrintTemplate } from "@/components/business/bill-print-template"
+
+export function Basic() {
+  return <BillPrintTemplate />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### BillPrintTemplate
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | — | Title |
+| `fields` | `Array<T>` | — |  |
+| `lines` | `Array<Record<K,V>>` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

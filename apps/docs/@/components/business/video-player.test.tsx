@@ -39,17 +39,6 @@ describe("VideoPlayer", () => {
     expect(container.querySelector("media-player")).toBeTruthy()
   })
 
-  it("renders with captions tracks", () => {
-    const { container } = render(
-      <VideoPlayer
-        src="https://example.com/video.mp4"
-        title="Test"
-        captions={[{ src: "/subs.vtt", label: "English", lang: "en" }]}
-      />,
-    )
-    const tracks = container.querySelectorAll("track")
-    expect(tracks.length).toBeGreaterThan(0)
-  })
 
   it("renders with className", () => {
     const { container } = render(

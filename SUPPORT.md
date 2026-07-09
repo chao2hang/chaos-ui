@@ -5,7 +5,7 @@
 ### Documentation
 
 - **Storybook**: Run `npm run storybook` to start Storybook locally on port 3002.
-- **Docs Site**: Run `npm run dev` to start the component docs on port 8080.
+- **Docs Site**: Run `npm run dev` to start the component docs on port 3001.
 - **Component Index**: See [COMPONENT_INDEX.md](./COMPONENT_INDEX.md) for the full component catalog.
 - **Hooks Index**: See [HOOKS_INDEX.md](./HOOKS_INDEX.md) for available hooks.
 - **Lib Index**: See [LIB_INDEX.md](./LIB_INDEX.md) for utility modules.

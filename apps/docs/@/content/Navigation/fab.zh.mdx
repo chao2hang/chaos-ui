@@ -1,0 +1,92 @@
+import { Fab } from "@/components/ui/fab"
+import { CodeBlock } from "@/components/code-block"
+
+# Fab 悬浮按钮
+
+> 导航组件
+
+悬浮在页面右下角的圆形操作按钮,用于最主要的创建/新增操作。
+
+## 何时使用
+
+需要悬浮按钮功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Fab } from "@/components/ui/fab"
+
+export function Basic() {
+  return <Fab />
+}`} lang="tsx" />
+
+### 变体
+
+<CodeBlock code={`{/* 展示 variant 变体 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Fab variant="default">Default</Fab>
+  <Fab variant="secondary">Secondary</Fab>
+  <Fab variant="destructive">Destructive</Fab>
+  <Fab variant="outline">Outline</Fab>
+  <Fab variant="ghost">Ghost</Fab>
+</div>`} lang="tsx" />
+
+### 尺寸
+
+<CodeBlock code={`{/* 尺寸对照 */}
+<div className="flex flex-wrap items-center gap-3">
+  <Fab size="sm">Sm</Fab>
+  <Fab size="default">Default</Fab>
+  <Fab size="lg">Lg</Fab>
+</div>`} lang="tsx" />
+
+
+## 样式变体
+
+**变体**
+
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `secondary` | 次要样式 |  |
+| `destructive` | 危险/删除样式 |  |
+| `outline` | 描边样式 |  |
+| `ghost` | 幽灵(无背景)样式 |  |
+
+**尺寸**
+
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 | ✓ |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
+
+**position**
+
+| position | 说明 | 默认 |
+|---|---|---|
+| `bottom-right` |  | ✓ |
+| `bottom-left` |  |  |
+| `top-right` |  |  |
+| `top-left` |  |  |
+| `none` |  |  |
+
+## API / Props
+
+### Fab
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.ComponentProps<"button">` | — | 透传 `<button>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<button>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-fab--docs)。
+

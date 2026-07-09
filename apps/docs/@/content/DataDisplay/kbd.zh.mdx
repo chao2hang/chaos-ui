@@ -1,5 +1,5 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import { CodeBlock } from "@/components/code-block";
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { CodeBlock } from "@/components/code-block"
 
 # Kbd 键盘按键
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要键盘按键功能时使用本组件。
+
 
 ## 代码示例
 
@@ -27,34 +28,32 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Kbd size="sm">Sm</Kbd>
   <Kbd size="default">Default</Kbd>
   <Kbd size="lg">Lg</Kbd>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `sm`      | 小号     |      |
-| `default` | 默认尺寸 | ✓    |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `sm` | 小号 |  |
+| `default` | 默认尺寸 | ✓ |
+| `lg` | 大号 |  |
 
 ## API / Props
 
 ### Kbd
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -62,3 +61,4 @@ export function Basic() {
 - **复合组件**: 包含 1 个子组件(KbdGroup),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-kbd--docs)。
+

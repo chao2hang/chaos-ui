@@ -1,5 +1,5 @@
-import { AudienceSegmentBuilder } from "@/components/business/audience-segment-builder";
-import { CodeBlock } from "@/components/code-block";
+import { AudienceSegmentBuilder } from "@/components/business/audience-segment-builder"
+import { CodeBlock } from "@/components/code-block"
 
 # AudienceSegmentBuilder
 
@@ -11,6 +11,7 @@ AudienceSegmentBuilder — a business component for ERP / enterprise scenarios.
 
 Use when you need an audience segment builder.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,17 +22,20 @@ export function Basic() {
   return <AudienceSegmentBuilder />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AudienceSegmentBuilder
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `rules`     | `SegmentRule[]`               | —       |                                 |
-| `onChange`  | `() => void`                  | —       | Callback when value changes     |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `rules` | `SegmentRule[]` | — |  |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslation } from "react-i18next";
+import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { initials } from "@/lib/format";
 
@@ -9,7 +10,7 @@ export interface AvatarUser {
   src?: string;
 }
 
-interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AvatarGroupProps extends React.ComponentProps<"div"> {
   users: AvatarUser[];
   max?: number;
   size?: "sm" | "default" | "lg" | "xl";
@@ -31,8 +32,17 @@ const ringMap = {
   xl: "ring-2",
 } as const;
 
+/**
+ * @component AvatarGroup
+ * @category business/ux
+ * @since 0.2.0
+ * @description Overlapping avatar cluster with overflow indicator, supporting multiple sizes / 重叠头像组，支持溢出显示和多种尺寸
+ * @keywords avatar, group, users, overflow, stack
+ * @example
+ * <AvatarGroup users={[{ name: "Alice" }, { name: "Bob" }]} max={3} />
+ */
 export function AvatarGroup({
-  users,
+  users = [],
   max = 4,
   size = "default",
   showOverflow = true,
@@ -40,6 +50,7 @@ export function AvatarGroup({
   className,
   ...props
 }: AvatarGroupProps) {
+  const { t } = useTranslation("transfer");
   const visible = users.slice(0, max);
   const overflow = users.length - max;
 
@@ -64,18 +75,19 @@ export function AvatarGroup({
         </Avatar>
       ))}
       {overflow > 0 && showOverflow && (
-        <button
+        <Button
           type="button"
+          variant="ghost"
           onClick={onOverflowClick}
           className={cn(
             "border-background bg-muted text-muted-foreground inline-flex shrink-0 items-center justify-center rounded-full border font-medium",
             sizeMap[size],
             ringMap[size],
           )}
-          aria-label={`查看全部 ${users.length} 个`}
+          aria-label={t("avatarGroup.viewAll", { count: users.length })}
         >
           +{overflow}
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -1,5 +1,5 @@
-import { MasterDetailLayout } from "@/components/layout/master-detail-layout";
-import { CodeBlock } from "@/components/code-block";
+import { MasterDetailLayout } from "@/components/layout/master-detail-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # MasterDetailLayout
 
@@ -11,6 +11,7 @@ MasterDetailLayout — a system-level layout shell for admin/dashboard/auth page
 
 Use when you need a master detail layout.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,22 +22,25 @@ export function Basic() {
   return <MasterDetailLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MasterDetailLayout
 
-| Prop                 | Type                          | Default | Description                     |
-| -------------------- | ----------------------------- | ------- | ------------------------------- |
-| `className`          | `string`                      | —       | Custom CSS class                |
-| `master`             | `React.ReactNode`             | —       |                                 |
-| `detail`             | `React.ReactNode`             | —       |                                 |
-| `masterWidth`        | `number`                      | —       |                                 |
-| `defaultMasterWidth` | `number`                      | `320`   |                                 |
-| `minMasterWidth`     | `number`                      | `240`   |                                 |
-| `maxMasterWidth`     | `number`                      | `480`   |                                 |
-| `resizable`          | `boolean`                     | `true`  |                                 |
-| ...rest              | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `master` | `React.ReactNode` | — |  |
+| `detail` | `React.ReactNode` | — |  |
+| `masterWidth` | `number` | — |  |
+| `defaultMasterWidth` | `number` | `320` |  |
+| `minMasterWidth` | `number` | `240` |  |
+| `maxMasterWidth` | `number` | `480` |  |
+| `resizable` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -31,7 +31,7 @@ export function useAsync<T, Args extends unknown[] = []>(
   const run = React.useCallback(
     async (...args: Args) => {
       lastArgs.current = args
-      setState({ status: "pending", data: state.data, error: undefined })
+      setState((current) => ({ status: "pending", data: current.data, error: undefined }))
       try {
         const data = await fn(...args)
         if (!mountedRef.current) return
@@ -44,15 +44,16 @@ export function useAsync<T, Args extends unknown[] = []>(
         throw error
       }
     },
-    [fn, state.data]
+    [fn]
   )
 
   React.useEffect(() => {
-    if (immediate) {
-      const args = (lastArgs.current ?? []) as Args
-      const id = requestAnimationFrame(() => run(...args))
-      return () => cancelAnimationFrame(id)
-    }
+    if (!immediate) return
+    const timeout = window.setTimeout(() => {
+      run(...((lastArgs.current ?? []) as Args))
+    }, 0)
+
+    return () => window.clearTimeout(timeout)
   }, [immediate, run])
 
   return { ...state, run, isLoading: state.status === "pending" }

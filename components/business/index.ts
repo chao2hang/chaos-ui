@@ -39,7 +39,6 @@ export * from "./chart";
 export * from "./chip";
 export * from "./code-block";
 export * from "./code-editor";
-export * from "./combobox";
 export * from "./command-palette";
 export * from "./confirm-dialog";
 export * from "./cookie-banner";
@@ -60,12 +59,10 @@ export {
   type RemoteOption,
   type RemoteFetcher,
 } from "./remote-select";
-export * from "./empty-state";
 export * from "./error-boundary";
 export * from "./expense-line-editor";
 export * from "./experiment-summary";
 export * from "./export-button";
-export * from "./fab";
 export * from "./field-mask";
 export * from "./file-upload-manager";
 export * from "./filter-bar";
@@ -114,24 +111,18 @@ export * from "./page-header";
 export * from "./permission-matrix";
 export * from "./pivot-table";
 export * from "./prompt-dialog";
-export * from "./rating";
 export * from "./responsive-preview";
 export * from "./role-assignment";
 export * from "./saved-filters";
 export { SearchTable, type SearchTableProps } from "./search-table";
-export * from "./segmented-control";
 export * from "./social-share";
 export { SqlEditor, type SqlEditorProps } from "./sql-editor";
 export * from "./stat-card";
 export * from "./stat-card-row";
 export * from "./status-tag";
-export * from "./time-picker";
-export * from "./tour";
-export * from "./transfer";
 export * from "./user-menu";
 export * from "./utm-builder";
 export * from "./version-history";
-export * from "./watermark";
 
 export * from "./color-tag";
 
@@ -461,3 +452,31 @@ export { MapMarkerCluster as MapMarker } from "./map-marker";
 export { SPCControlChart as SpcControlChart } from "./spc-control-chart";
 export { UTMBuilder as UtmBuilder } from "./utm-builder";
 export { AdvancedDataTable } from "./advanced-data-table";
+
+// ─── Enterprise UI 底座补齐 — 业务组件 ────────────────────────────
+export { ProTable } from "./pro-table";
+export type {
+  ProTableProps,
+  ProColumn,
+  SavedView as ProSavedView,
+} from "./pro-table";
+export { LogViewer } from "./log-viewer";
+export type { LogViewerProps, LogEntry } from "./log-viewer";
+export { BarcodeScanner } from "./barcode-scanner";
+export type { BarcodeScannerProps } from "./barcode-scanner";
+export { ImageCropper } from "./image-cropper";
+export type { ImageCropperProps } from "./image-cropper";
+export { OrgPicker } from "./org-picker";
+export type { OrgPickerProps, OrgNode, OrgMember } from "./org-picker";
+export { UserPicker } from "./user-picker";
+export type { UserPickerProps, UserItem } from "./user-picker";
+export { AddressInput } from "./address-input";
+export type { AddressInputProps, AddressValue } from "./address-input";
+export { MarkdownViewerBiz } from "./markdown-viewer-biz";
+export type { MarkdownViewerBizProps } from "./markdown-viewer-biz";
+export { AudioRecorder } from "./audio-recorder";
+export type { AudioRecorderProps } from "./audio-recorder";
+export { ScreenCapture } from "./screen-capture";
+export type { ScreenCaptureProps } from "./screen-capture";
+export { OrgTreeSelect } from "./org-tree-select";
+export type { OrgTreeSelectProps } from "./org-tree-select";

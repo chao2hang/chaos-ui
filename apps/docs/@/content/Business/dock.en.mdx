@@ -11,6 +11,7 @@ Dock — a business component for ERP / enterprise scenarios.
 
 Use when you need a dock.
 
+
 ## Examples
 
 ### Basic Usage
@@ -25,14 +26,16 @@ export function Basic() {
 
 ### Dock
 
-| Prop            | Type                          | Default      | Description                     |
-| --------------- | ----------------------------- | ------------ | ------------------------------- |
-| `className`     | `string`                      | —            | Custom CSS class                |
-| `items`         | `DockItem[]`                  | —            | Items / data list               |
-| `orientation`   | `"horizontal" \| "vertical"`  | `horizontal` | Orientation                     |
-| `magnification` | `boolean`                     | `true`       |                                 |
-| ...rest         | `React.ComponentProps<"div">` | —            | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+| --------------- | ----------------------------- | ------------ | ----------------------------------------------------------- |
+| `className` | `string` | — | Custom CSS class |
+| `items` | `DockItem[]` | — | Items / data list |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Orientation |
+| `magnification` | `boolean`                     | `true`       |                                                             |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

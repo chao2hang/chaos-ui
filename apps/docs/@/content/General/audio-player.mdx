@@ -1,18 +1,17 @@
-import { AudioPlayer } from "@/components/ui/audio-player"
-import { CodeBlock } from "@/components/code-block"
+import { AudioPlayer } from "@/components/ui/audio-player";
+import { CodeBlock } from "@/components/code-block";
 
 # AudioPlayer 音频播放器
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 音频播放器 / Styled audio player with play/pause, seek bar, volume, and speed controls.
 
-音频播放器 — Chaos UI 的通用基础组件。
-AudioPlayer — a general-purpose primitives used across the app. from Chaos UI.
+带播放/暂停、进度条、音量、倍速控制的音频播放器。
+Styled audio player with play/pause, seek bar, volume, and speed controls.
 
 ## 何时使用 / When to Use
 
-需要音频播放器功能时使用本组件。
-
-Use when you need an audio player.
+需要播放音频文件时使用，如语音消息、音乐播放、播客收听。
+Use when you need to play audio files, such as voice messages, music playback, or podcast listening.
 
 ## 代码示例 / Examples
 
@@ -21,28 +20,41 @@ Use when you need an audio player.
 <CodeBlock code={`import { AudioPlayer } from "@/components/ui/audio-player"
 
 export function Basic() {
-  return <AudioPlayer />
+  return <AudioPlayer src="/audio/sample.mp3" />
 }`} lang="tsx" />
 
+### 带音量和倍速 / With Volume & Speed
+
+<CodeBlock code={`import { AudioPlayer } from "@/components/ui/audio-player"
+
+export function FullControls() {
+  return (
+    <AudioPlayer
+      src="/audio/sample.mp3"
+      showVolume
+      showSpeed
+    />
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### AudioPlayer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `src` | `string` | — | Audio source URL. |
-| `autoPlay` | `boolean` | — | Whether to auto-play on mount. Default false. |
-| `showVolume` | `boolean` | `true` | Whether to show volume control. Default true. |
-| `showSpeed` | `boolean` | — | Whether to show playback speed selector. Default false. |
-| `onEnded` | `() => void` | — | Called when playback ends. |
-| `onPlay` | `() => void` | — | Called on play/pause/timeline interaction. |
-| `onPause` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop         | Type         | Default | 说明 / Description                       |
+| ------------ | ------------ | ------- | ---------------------------------------- |
+| `src`        | `string`     | —       | Audio source URL / 音频源地址 (required) |
+| `autoPlay`   | `boolean`    | `false` | Auto-play on mount / 自动播放            |
+| `showVolume` | `boolean`    | `true`  | Show volume control / 显示音量控制       |
+| `showSpeed`  | `boolean`    | `false` | Show speed selector / 显示倍速选择       |
+| `className`  | `string`     | —       | 自定义样式类名 <br/> Custom CSS class    |
+| `onEnded`    | `() => void` | —       | Playback end callback / 播放结束回调     |
+| `onPlay`     | `() => void` | —       | Play callback / 播放回调                 |
+| `onPause`    | `() => void` | —       | Pause callback / 暂停回调                |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必填 `src`**: 必须传入音频文件 URL，否则无法播放。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-audioplayer--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-audioplayer--docs)。

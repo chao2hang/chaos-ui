@@ -1,0 +1,44 @@
+import { ChatHeader } from "@/components/business/chat-header"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatHeader Chat Header
+
+> 业务组件
+
+Chat Header — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Chat Header相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ChatHeader } from "@/components/business/chat-header"
+
+export function Basic() {
+  return <ChatHeader />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatHeader
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | — | 标题 |
+| `subtitle` | `string` | — |  |
+| `status` | `string` | — | 状态 |
+| `actions` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chatheader--docs)。
+

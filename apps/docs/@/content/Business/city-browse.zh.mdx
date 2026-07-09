@@ -1,0 +1,47 @@
+import { CityBrowse } from "@/components/business/city-browse"
+import { CodeBlock } from "@/components/code-block"
+
+# CityBrowse City Browse
+
+> 业务组件
+
+City Browse — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于City Browse相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { CityBrowse } from "@/components/business/city-browse"
+
+export function Basic() {
+  return <CityBrowse />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CityBrowse
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `open` | `boolean` | — | Whether the dialog is open. / 是否打开 |
+| `onOpenChange` | `() => void` | — | Open state change handler. / 开关回调 |
+| `onSelect` | `() => void` | — | Called with the selected city item. / 选中回调 |
+| `items` | `CityBrowseItem[]` | — | City list to browse (defaults to an empty list). / 候选城市 |
+| `title` | `string` | — | Dialog title (defaults to localized "选择城市"). |
+| `searchPlaceholder` | `string` | — | Search placeholder. / 搜索占位 |
+| `emptyText` | `string` | — | Empty-state text. / 空状态文案 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-citybrowse--docs)。
+

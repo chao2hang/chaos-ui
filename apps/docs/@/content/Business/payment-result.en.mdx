@@ -1,0 +1,46 @@
+import { PaymentResult } from "@/components/business/payment-result"
+import { CodeBlock } from "@/components/code-block"
+
+# PaymentResult Payment Result
+
+> Domain-specific business components for ERP scenarios.
+
+PaymentResult — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a payment result.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { PaymentResult } from "@/components/business/payment-result"
+
+export function Basic() {
+  return <PaymentResult />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### PaymentResult
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `status` | `"success" \| "fail"` | — | Result status. |
+| `orderId` | `string` | — | Order or transaction ID. |
+| `amount` | `string` | — | Amount paid. |
+| `primaryLabel` | `string` | — | Primary action button label. |
+| `onPrimary` | `() => void` | — | Called on primary action click. |
+| `secondaryLabel` | `string` | — | Secondary action button label. |
+| `onSecondary` | `() => void` | — | Called on secondary action click. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

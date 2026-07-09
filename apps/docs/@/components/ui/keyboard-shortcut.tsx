@@ -1,62 +1,60 @@
+"use client";
+
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
-const keyboardShortcutVariants = cva(
-  "inline-flex items-center justify-center rounded border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-xs font-medium text-muted-foreground shadow-sm",
-  {
-    variants: {
-      size: {
-        default: "min-w-[1.5rem] h-5",
-        sm: "min-w-[1.25rem] h-4 text-[10px]",
-        lg: "min-w-[2rem] h-6 text-sm",
-      },
-    },
-    defaultVariants: { size: "default" },
-  },
-);
-
-interface KeyboardShortcutProps
-  extends
-    React.ComponentProps<"kbd">,
-    VariantProps<typeof keyboardShortcutVariants> {
-  /** The keys to display */
-  keys: string | string[];
-  /** Separator between keys */
-  separator?: string;
+/**
+ * @component KeyboardShortcut
+ * @category ui/utility
+ * @since 0.7.0
+ * @description 键盘快捷键展示组件 — 渲染格式化的快捷键提示。
+ * / Keyboard shortcut display — renders formatted key combination hints.
+ * @keywords keyboard, shortcut, hotkey, kbd, shortcut display
+ * @example
+ * <KeyboardShortcut keys={["Ctrl", "K"]} description="Open command palette" />
+ */
+interface KeyboardShortcutProps extends React.ComponentProps<"div"> {
+  /** Key combination to display / 按键组合 */
+  keys: string[];
+  /** Optional description text / 描述文本 */
+  description?: string;
+  /** Layout: "horizontal" (keys + description inline) or "vertical" / 布局 */
+  layout?: "horizontal" | "vertical";
 }
 
 function KeyboardShortcut({
-  className,
-  size,
   keys,
-  separator = "+",
+  description,
+  layout = "horizontal",
+  className,
   ...props
 }: KeyboardShortcutProps) {
-  const keyList = Array.isArray(keys) ? keys : [keys];
-
   return (
-    <kbd
+    <div
       data-slot="keyboard-shortcut"
-      className={cn("inline-flex items-center gap-0.5", className)}
+      className={cn(
+        "flex items-center gap-2",
+        layout === "vertical" && "flex-col gap-1",
+        className,
+      )}
       {...props}
     >
-      {keyList.map((key, i) => (
-        <React.Fragment key={i}>
-          <span
-            data-slot="keyboard-shortcut-key"
-            className={cn(keyboardShortcutVariants({ size }))}
-          >
-            {key}
-          </span>
-          {i < keyList.length - 1 && (
-            <span className="text-muted-foreground text-xs">{separator}</span>
-          )}
-        </React.Fragment>
-      ))}
-    </kbd>
+      {description && (
+        <span className="text-muted-foreground text-sm">{description}</span>
+      )}
+      <KbdGroup>
+        {keys.map((key, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <span className="text-muted-foreground text-xs">+</span>}
+            <Kbd>{key}</Kbd>
+          </React.Fragment>
+        ))}
+      </KbdGroup>
+    </div>
   );
 }
 
-export { KeyboardShortcut, keyboardShortcutVariants };
+export { KeyboardShortcut };
+export type { KeyboardShortcutProps };

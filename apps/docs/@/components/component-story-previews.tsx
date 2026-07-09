@@ -2251,7 +2251,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ),
   KpiCard: dynamic(
     () =>
-      import("../../src/business/KpiCard.stories").then((m) => ({
+      import("../../src/business/KPICard.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -2573,7 +2573,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ),
   PdfViewer: dynamic(
     () =>
-      import("../../src/business/PdfViewer.stories").then((m) => ({
+      import("../../src/business/PDFViewer.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },
@@ -3386,6 +3386,34 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   MobileTextarea: dynamic(
     () =>
       import("../../src/business/MobileTextarea.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MobileCheckout: dynamic(
+    () =>
+      import("../../src/mobile/MobileCheckout.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MobileShareSheet: dynamic(
+    () =>
+      import("../../src/mobile/MobileShareSheet.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  MobileSwipeCard: dynamic(
+    () =>
+      import("../../src/mobile/MobileSwipeCard.stories").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),
+  OtpField: dynamic(
+    () =>
+      import("../../src/components/OtpField.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },

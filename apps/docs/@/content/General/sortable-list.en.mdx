@@ -1,0 +1,39 @@
+import { SortableList } from "@/components/ui/sortable-list"
+import { CodeBlock } from "@/components/code-block"
+
+# SortableList
+
+> General-purpose utility components.
+
+SortableList — Generic drag-and-drop sortable list with reordering support.
+
+## When to Use
+
+Use when you need a sortablelist.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SortableList } from "@/components/ui/sortable-list"
+
+export function Basic() {
+  return <SortableList />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SortableList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

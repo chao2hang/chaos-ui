@@ -1,0 +1,47 @@
+import { ShippingWayBrowse } from "@/components/business/shipping-way-browse"
+import { CodeBlock } from "@/components/code-block"
+
+# ShippingWayBrowse Shipping Way Browse
+
+> 业务组件
+
+Shipping Way Browse — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Shipping Way Browse相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { ShippingWayBrowse } from "@/components/business/shipping-way-browse"
+
+export function Basic() {
+  return <ShippingWayBrowse />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ShippingWayBrowse
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `open` | `boolean` | — | 是否打开(受控) |
+| `onOpenChange` | `() => void` | — | 打开状态变化回调 |
+| `onSelect` | `() => void` | — | 选中回调 |
+| `items` | `ShippingWayBrowseItem[]` | — | 选项/数据项列表 |
+| `title` | `string` | — | 标题 |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-shippingwaybrowse--docs)。
+

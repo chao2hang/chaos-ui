@@ -19,10 +19,10 @@ const meta: Meta<typeof Drawer> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
   render: () => (
     <Drawer>
-      <DrawerTrigger render={<Button variant="outline" />}>
+      <DrawerTrigger {...({ render: <Button variant="outline" /> } as any)}>
         Open Drawer
       </DrawerTrigger>
       <DrawerContent>
@@ -33,7 +33,7 @@ export const Default: Story = {
         <div className="p-4 pb-0">Drawer content area</div>
         <DrawerFooter>
           <Button>Submit</Button>
-          <DrawerClose render={<Button variant="outline" />}>
+          <DrawerClose {...({ render: <Button variant="outline" /> } as any)}>
             Cancel
           </DrawerClose>
         </DrawerFooter>

@@ -1,0 +1,54 @@
+import { WorkOrderCard } from "@/components/business/work-order-card"
+import { CodeBlock } from "@/components/code-block"
+
+# WorkOrderCard Work Order Card
+
+> 业务组件
+
+Work Order Card — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Work Order Card相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { WorkOrderCard } from "@/components/business/work-order-card"
+
+export function Basic() {
+  return <WorkOrderCard />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### WorkOrderCard
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `orderNo` | `string` | — | Work order number. |
+| `product` | `string` | — | Product being manufactured. |
+| `productCode` | `string` | — | Product code. |
+| `status` | `WorkOrderStatus` | — | Work order status. |
+| `plannedStart` | `string` | — | Planned start date. |
+| `plannedEnd` | `string` | — | Planned end date. |
+| `plannedQty` | `number` | — | Total planned quantity. |
+| `completedQty` | `number` | — | Completed quantity. |
+| `unit` | `string` | `pcs` | Unit. |
+| `priority` | `"low" \| "medium" \| "high" \| "urgent"` | `medium` | Priority. |
+| `workCenter` | `string` | — | Assigned work center. |
+| `operations` | `WorkOrderOperation[]` | — | Operations / routing steps. |
+| `supervisor` | `string` | — | Responsible person. |
+| `onClick` | `() => void` | — | Click handler for the card. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-workordercard--docs)。
+

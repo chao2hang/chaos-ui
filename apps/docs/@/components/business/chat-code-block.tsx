@@ -1,2 +1,81 @@
-// Auto-generated shim — re-exports from components/business/chat-code-block.tsx
-export { ChatCodeBlock } from "../../../../../components/business/chat-code-block";
+"use client";
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { CheckIcon, CopyIcon, FileTextIcon } from "@/components/ui/icons";
+
+/**
+ * @component ChatCodeBlock
+ * @category business/chat
+ * @since 0.7.0
+ * @description 代码块（带语言标签、文件名与一键复制）
+ * @keywords chat, code, block
+ * @example
+ * <ChatCodeBlock code="console.log('hi')" language="ts" />
+ */
+
+interface ChatCodeBlockProps {
+  code: string;
+  language?: string;
+  filename?: string;
+  className?: string;
+}
+
+function ChatCodeBlock({ code, language, filename, className }: ChatCodeBlockProps) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = React.useCallback(() => {
+    void navigator.clipboard?.writeText(code).then(() => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    });
+  }, [code]);
+
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleCopy();
+      }
+    },
+    [handleCopy],
+  );
+
+  return (
+    <div
+      data-slot="chat-code-block"
+      className={cn("overflow-hidden rounded-lg border border-border bg-muted/40", className)}
+    >
+      <div className="flex items-center justify-between gap-2 border-b border-border bg-muted/60 px-3 py-1.5">
+        <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted-foreground">
+          {filename ? (
+            <>
+              <FileTextIcon className="size-3.5 shrink-0" aria-hidden />
+              <span className="truncate font-medium text-foreground">{filename}</span>
+            </>
+          ) : (
+            <span className="uppercase tracking-wide">{language ?? "text"}</span>
+          )}
+        </div>
+        <Button
+          type="button"
+          variant="ghost"
+          size="xs"
+          onClick={handleCopy}
+          onKeyDown={handleKeyDown}
+          aria-label="Copy code"
+        >
+          {copied ? <CheckIcon className="size-3.5" aria-hidden /> : <CopyIcon className="size-3.5" aria-hidden />}
+          {copied ? "Copied" : "Copy"}
+        </Button>
+      </div>
+      <pre className="overflow-x-auto p-3 text-xs leading-relaxed">
+        <code className="font-mono">{code}</code>
+      </pre>
+    </div>
+  );
+}
+
+export { ChatCodeBlock };
+export type { ChatCodeBlockProps };

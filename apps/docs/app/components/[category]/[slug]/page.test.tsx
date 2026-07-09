@@ -35,7 +35,6 @@ vi.mock(
   () => ({
     getServerLocale: vi.fn(async () => mocks.locale),
   }),
-  { virtual: true },
 );
 
 vi.mock(
@@ -67,7 +66,6 @@ vi.mock(
       },
     },
   }),
-  { virtual: true },
 );
 
 vi.mock(
@@ -81,7 +79,6 @@ vi.mock(
       Feedback: "Feedback",
     },
   }),
-  { virtual: true },
 );
 
 vi.mock(
@@ -89,7 +86,6 @@ vi.mock(
   () => ({
     ComponentPreview: () => null,
   }),
-  { virtual: true },
 );
 
 async function renderPage(params: { category: string; slug: string }) {

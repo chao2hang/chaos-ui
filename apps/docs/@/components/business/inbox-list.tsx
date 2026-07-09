@@ -4,7 +4,7 @@ import { SearchIcon, InboxIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { EmptyState } from "@/components/business/empty-state";
+import { EmptyState } from "@/components/ui/empty-state";
 import { formatRelativeTime } from "@/lib/format";
 
 export interface InboxItem {
@@ -28,7 +28,7 @@ interface InboxListProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
 }
 
 export function InboxList({
-  items,
+  items = [],
   selected,
   onSelect,
   onStar,

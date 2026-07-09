@@ -1,157 +1,82 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
-const sequenceInputVariants = cva("flex items-center gap-2", {
-  variants: {
-    size: {
-      default: "[&>input]:size-10 [&>input]:text-base",
-      sm: "[&>input]:size-8 [&>input]:text-sm",
-      lg: "[&>input]:size-12 [&>input]:text-lg",
-    },
-  },
-  defaultVariants: { size: "default" },
-});
-
-interface SequenceInputProps
-  extends
-    Omit<React.ComponentProps<"div">, "onChange">,
-    VariantProps<typeof sequenceInputVariants> {
-  /** Number of input slots */
-  length?: number;
-  /** Current value (string of digits) */
-  value?: string;
-  /** Called when value changes */
+/**
+ * @component SequenceInput
+ * @category ui/form
+ * @since 0.7.0
+ * @description 编号输入框 — 带前缀/后缀和自动补零的编号输入。
+ * / Sequence input — with prefix/suffix and auto-zero-fill.
+ * @keywords sequence, number, input, code, prefix, zero-fill
+ * @example
+ * <SequenceInput prefix="ORD-" zeroFill={4} value="123" onChange={setVal} />
+ */
+interface SequenceInputProps extends Omit<
+  React.ComponentProps<typeof Input>,
+  "onChange"
+> {
+  /** Prefix prepended to the value / 前缀 */
+  prefix?: string;
+  /** Suffix appended to the value / 后缀 */
+  suffix?: string;
+  /** Zero-fill length (0 = disabled) / 补零位数 */
+  zeroFill?: number;
+  /** Value change callback — receives the full sequence string / 值变更回调 */
   onChange?: (value: string) => void;
-  /** Called when all slots are filled */
-  onComplete?: (value: string) => void;
-  /** Allowed characters regex */
-  pattern?: string;
-  /** Input type */
-  type?: "text" | "number" | "alphanumeric";
-  /** Auto-focus first input */
-  autoFocus?: boolean;
-  disabled?: boolean;
+  /** Raw numeric/text value (without prefix/suffix) / 原始值 */
+  value?: string;
 }
 
 function SequenceInput({
-  className,
-  size,
-  length = 6,
+  prefix = "",
+  suffix = "",
+  zeroFill = 0,
   value = "",
   onChange,
-  onComplete,
-  pattern = "[a-zA-Z0-9]",
-  type = "text",
-  autoFocus = false,
-  disabled,
+  className,
   ...props
 }: SequenceInputProps) {
-  const inputsRef = React.useRef<(HTMLInputElement | null)[]>([]);
-  const [internalValue, setInternalValue] = React.useState<string[]>(
-    Array.from({ length }, (_, i) => value[i] ?? ""),
-  );
-
-  React.useEffect(() => {
-    setInternalValue(Array.from({ length }, (_, i) => value[i] ?? ""));
-  }, [value, length]);
-
-  const handleChange = (index: number, char: string) => {
-    if (char && !new RegExp(`^${pattern}$`).test(char)) return;
-
-    const newValue = [...internalValue];
-    newValue[index] = char;
-    setInternalValue(newValue);
-
-    const joined = newValue.join("");
-    onChange?.(joined);
-
-    if (joined.length === length && !newValue.includes("")) {
-      onComplete?.(joined);
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let raw = e.target.value;
+    if (zeroFill > 0 && /^\d+$/.test(raw)) {
+      raw = raw.padStart(zeroFill, "0");
     }
-
-    // Auto-focus next input
-    if (char && index < length - 1) {
-      inputsRef.current[index + 1]?.focus();
-    }
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    index: number,
-  ) => {
-    if (e.key === "Backspace") {
-      if (!internalValue[index] && index > 0) {
-        // Move to previous input
-        const newValue = [...internalValue];
-        newValue[index - 1] = "";
-        setInternalValue(newValue);
-        onChange?.(newValue.join(""));
-        inputsRef.current[index - 1]?.focus();
-      } else {
-        const newValue = [...internalValue];
-        newValue[index] = "";
-        setInternalValue(newValue);
-        onChange?.(newValue.join(""));
-      }
-    } else if (e.key === "ArrowLeft" && index > 0) {
-      inputsRef.current[index - 1]?.focus();
-    } else if (e.key === "ArrowRight" && index < length - 1) {
-      inputsRef.current[index + 1]?.focus();
-    }
-  };
-
-  const handlePaste = (e: React.ClipboardEvent) => {
-    e.preventDefault();
-    const pasted = e.clipboardData.getData("text/plain").slice(0, length);
-    const newValue = [...internalValue];
-    for (let i = 0; i < pasted.length; i++) {
-      if (new RegExp(`^${pattern}$`).test(pasted[i])) {
-        newValue[i] = pasted[i];
-      }
-    }
-    setInternalValue(newValue);
-    onChange?.(newValue.join(""));
-    const nextEmpty = newValue.findIndex((v) => !v);
-    if (nextEmpty >= 0) {
-      inputsRef.current[nextEmpty]?.focus();
-    } else {
-      inputsRef.current[length - 1]?.focus();
-    }
+    onChange?.(raw);
   };
 
   return (
     <div
       data-slot="sequence-input"
-      className={cn(sequenceInputVariants({ size }), className)}
-      onPaste={handlePaste}
-      {...props}
+      className={cn(
+        "border-input bg-background flex items-center rounded-md border",
+        "focus-within:ring-ring/50 focus-within:ring-2",
+        className,
+      )}
     >
-      {Array.from({ length }, (_, i) => (
-        <input
-          key={i}
-          ref={(el) => {
-            inputsRef.current[i] = el;
-          }}
-          type={type === "number" ? "text" : "text"}
-          inputMode={type === "number" ? "numeric" : "text"}
-          maxLength={1}
-          value={internalValue[i]}
-          onChange={(e) => handleChange(i, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(e, i)}
-          disabled={disabled}
-          autoFocus={autoFocus && i === 0}
-          className={cn(
-            "border-input focus-visible:ring-ring rounded-md border bg-transparent text-center shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          )}
-          aria-label={`Digit ${i + 1} of ${length}`}
-        />
-      ))}
+      {prefix && (
+        <span className="text-muted-foreground px-2 text-sm select-none">
+          {prefix}
+        </span>
+      )}
+      <Input
+        type="text"
+        value={value}
+        onChange={handleInput}
+        className="border-0 shadow-none focus-visible:ring-0"
+        {...props}
+      />
+      {suffix && (
+        <span className="text-muted-foreground px-2 text-sm select-none">
+          {suffix}
+        </span>
+      )}
     </div>
   );
 }
 
-export { SequenceInput, sequenceInputVariants };
+export { SequenceInput };
+export type { SequenceInputProps };

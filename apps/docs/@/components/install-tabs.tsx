@@ -13,12 +13,21 @@ const commandStrings = {
 const cssImportCode = `/* styles.css */
 @import "@chaos_team/chaos-ui/styles.css";`;
 
-const usageCode = `import { Button } from "@chaos_team/chaos-ui/ui";
-import { useCrud } from "@chaos_team/chaos-ui/hooks";
-import { cn } from "@chaos_team/chaos-ui/lib";
+const usageCode = `import { Button, Input, DataTable } from "@chaos_team/chaos-ui/ui";
+import { BillPage, CrudPage } from "@chaos_team/chaos-ui/business";
+import { AdminShell } from "@chaos_team/chaos-ui/layout";
+import { useCrud, useClipboard } from "@chaos_team/chaos-ui/hooks";
+import { cn, storage } from "@chaos_team/chaos-ui/lib";
+import { NextThemeProvider } from "@chaos_team/chaos-ui/next";
 
 export default function App() {
-  return <Button>Click me</Button>;
+  return (
+    <NextThemeProvider>
+      <AdminShell>
+        <Button>Click me</Button>
+      </AdminShell>
+    </NextThemeProvider>
+  );
 }`;
 
 async function highlight(

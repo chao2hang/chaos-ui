@@ -1,5 +1,5 @@
-import { ImageGallery } from "@/components/business/image-gallery";
-import { CodeBlock } from "@/components/code-block";
+import { ImageGallery } from "@/components/business/image-gallery"
+import { CodeBlock } from "@/components/code-block"
 
 # ImageGallery 图片画廊
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要图片画廊功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,21 +22,23 @@ export function Basic() {
   return <ImageGallery />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### ImageGallery
 
-| Prop             | Type                          | Default | 说明                  |
-| ---------------- | ----------------------------- | ------- | --------------------- |
-| `className`      | `string`                      | —       | 自定义样式类名        |
-| `images`         | `GalleryImage[]`              | —       |                       |
-| `columns`        | `2 \| 3 \| 4 \| 5`            | `3`     | 列配置                |
-| `enableLightbox` | `boolean`                     | `true`  |                       |
-| ...rest          | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `images` | `GalleryImage[]` | — |  |
+| `columns` | `2 \| 3 \| 4 \| 5` | `3` | 列配置 |
+| `enableLightbox` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-image-gallery--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-imagegallery--docs)。
+

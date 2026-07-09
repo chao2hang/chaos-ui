@@ -26,7 +26,7 @@ interface DockProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function Dock({
-  items,
+  items = [],
   orientation = "horizontal",
   magnification = true,
   className,

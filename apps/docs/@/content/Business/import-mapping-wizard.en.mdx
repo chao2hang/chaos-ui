@@ -1,0 +1,46 @@
+import { ImportMappingWizard } from "@/components/business/import-mapping-wizard"
+import { CodeBlock } from "@/components/code-block"
+
+# ImportMappingWizard Import Mapping Wizard
+
+> Domain-specific business components for ERP scenarios.
+
+ImportMappingWizard — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need an import mapping wizard.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ImportMappingWizard } from "@/components/business/import-mapping-wizard"
+
+export function Basic() {
+  return <ImportMappingWizard />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ImportMappingWizard
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `sourceColumns` | `SourceColumn[]` | — | Source columns from the file |
+| `targetFields` | `TargetField[]` | — | Target fields in the system |
+| `mappings` | `ColumnMapping[]` | — | Current mappings |
+| `onMappingsChange` | `() => void` | — | Mapping change callback |
+| `showSamples` | `boolean` | `true` | Show sample data preview |
+| `onBack` | `() => void` | — | Back button handler |
+| `onContinue` | `() => void` | — | Continue/next button handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

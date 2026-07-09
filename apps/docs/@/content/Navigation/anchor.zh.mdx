@@ -1,0 +1,61 @@
+import { Anchor } from "@/components/ui/anchor"
+import { CodeBlock } from "@/components/code-block"
+
+# Anchor 锚点
+
+> 导航组件
+
+跳转到页面指定位置的锚点导航,常用于目录。
+
+## 何时使用
+
+需要锚点功能时使用本组件。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Anchor } from "@/components/ui/anchor"
+
+export function Basic() {
+  return <Anchor />
+}`} lang="tsx" />
+
+
+## 样式变体
+
+**方向**
+
+| direction | 说明 | 默认 |
+|---|---|---|
+| `vertical` |  | ✓ |
+| `horizontal` |  |  |
+
+**active**
+
+| active | 说明 | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
+
+## API / Props
+
+### Anchor
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `links` | `AnchorLink[]` | — |  |
+| `offset` | `number` | `0` | Offset for active link detection |
+| `replace` | `boolean` | — | Replace history or push |
+| ...rest | `React.ComponentProps<"nav">` | — | 透传 `<nav>` 原生属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
+- **原生属性**: 继承所有 `<nav>` 原生 HTML 属性。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-anchor--docs)。
+

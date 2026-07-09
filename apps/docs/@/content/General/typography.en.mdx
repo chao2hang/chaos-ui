@@ -1,150 +1,101 @@
-import { Typography } from "@/components/ui/typography";
+import {
+  Typography,
+  H1,
+  H2,
+  Text,
+  Paragraph,
+  Blockquote,
+  InlineCode,
+} from "@/components/ui/typography";
 import { CodeBlock } from "@/components/code-block";
 
 # Typography
 
-> General-purpose primitives used across the app.
+> Typography component suite.
 
-Typography — a general-purpose primitives used across the app. from Chaos UI.
+Typography component suite: H1–H6, Text, Paragraph, Blockquote, InlineCode, and more for consistent text hierarchy.
 
 ## When to Use
 
-Use when you need a typography.
+Use when you need consistent text hierarchy, color, size, and styling — replacing ad-hoc Tailwind classes.
 
 ## Examples
 
-### Basic Usage
+### Headings
 
-<CodeBlock code={`import { Typography, Title, Paragraph, Text, Link } from "@/components/ui/typography"
+<CodeBlock code={`import { H1, H2, H3 } from "@/components/ui/typography"
 
-export function Basic() {
+export function Headings() {
   return (
-    <Typography>
-      <Title>Content</Title>
-    </Typography>
+    <div className="space-y-2">
+      <H1>Heading 1</H1>
+      <H2>Heading 2</H2>
+      <H3>Heading 3</H3>
+    </div>
   )
 }`} lang="tsx" />
 
-### Variants
+### Text Variants
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Typography variant="default">Default</Typography>
-  <Typography variant="muted">Muted</Typography>
-  <Typography variant="destructive">Destructive</Typography>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { Text } from "@/components/ui/typography"
 
-### Sizes
+export function TextVariants() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Text variant="default">Default text</Text>
+      <Text variant="muted">Muted text</Text>
+      <Text variant="primary">Primary text</Text>
+      <Text variant="destructive">Destructive text</Text>
+      <Text variant="success">Success text</Text>
+    </div>
+  )
+}`} lang="tsx" />
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Typography size="sm">Sm</Typography>
-  <Typography size="default">Default</Typography>
-  <Typography size="lg">Lg</Typography>
-</div>`}
-  lang="tsx"
-/>
+### Paragraph & Blockquote
 
-## Style Variants
+<CodeBlock code={`import { Paragraph, Blockquote, InlineCode } from "@/components/ui/typography"
 
-**type**
-
-| type        | Description | 默认 |
-| ----------- | ----------- | ---- |
-| `default`   |             | ✓    |
-| `secondary` |             |      |
-| `success`   |             |      |
-| `warning`   |             |      |
-| `danger`    |             |      |
-| `disabled`  |             |      |
-
-**strong**
-
-| strong  | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
-
-**italic**
-
-| italic  | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
-
-**underline**
-
-| underline | Description | 默认 |
-| --------- | ----------- | ---- |
-| `true`    |             | ✓    |
-| `false`   |             |      |
-
-**delete**
-
-| delete  | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
-
-**code**
-
-| code    | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
-
-**mark**
-
-| mark    | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
-
-**keyboard**
-
-| keyboard | Description | 默认 |
-| -------- | ----------- | ---- |
-| `true`   |             | ✓    |
-| `false`  |             |      |
-
-**level**
-
-| level | Description | 默认 |
-| ----- | ----------- | ---- |
-| `1`   |             | ✓    |
-| `2`   |             |      |
-| `3`   |             |      |
-| `4`   |             |      |
-| `5`   |             |      |
-| `6`   |             |      |
-
-**Size**
-
-| Size      | Description  | 默认 |
-| --------- | ------------ | ---- |
-| `default` | Default size | ✓    |
-| `sm`      | Small        |      |
-| `lg`      | Large        |      |
-
-**Variant**
-
-| Variant       | Description              | 默认 |
-| ------------- | ------------------------ | ---- |
-| `default`     | Default style            | ✓    |
-| `muted`       |                          |      |
-| `destructive` | Destructive/danger style |      |
+export function Misc() {
+  return (
+    <div className="space-y-3">
+      <Paragraph>This is a paragraph with relaxed leading.</Paragraph>
+      <Paragraph muted>This is a muted paragraph.</Paragraph>
+      <Blockquote>This is a blockquote with a left border.</Blockquote>
+      <p>Use <InlineCode>InlineCode</InlineCode> for code snippets.</p>
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
-### Typography
+### Text
 
-| Prop        | Type                           | Default | Description                      |
-| ----------- | ------------------------------ | ------- | -------------------------------- |
-| `className` | `string`                       | —       | Custom CSS class                 |
-| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+| ----------- | --------------------------------------------------------------------------------------------- | --------- | ----------------------------- |
+| `size`      | `"xs" \| "sm" \| "base" \| "lg" \| "xl" \| "2xl"`                                             | `base`    | Text size / 文本大小          |
+| `weight`    | `"normal" \| "medium" \| "semibold" \| "bold"`                                                | `normal`  | Text weight / 文本粗细        |
+| `variant`   | `"default" \| "muted" \| "primary" \| "secondary" \| "destructive" \| "success" \| "warning"` | `default` | Text color variant / 文本颜色 |
+| `italic`    | `boolean`                                                                                     | `false`   | Italic / 斜体                 |
+| `underline` | `boolean`                                                                                     | `false`   | Underline / 下划线            |
+| `strike`    | `boolean`                                                                                     | `false`   | Strikethrough / 删除线        |
+| `truncate`  | `boolean`                                                                                     | `false`   | Truncate / 截断               |
+
+### Typography Namespace
+
+| Member | Description |
+| --------------------------------- | ------------------------------ |
+| `Typography.H1` – `Typography.H6` | Heading components |
+| `Typography.Text` | Text component |
+| `Typography.Paragraph` | Paragraph component |
+| `Typography.Blockquote` | Blockquote |
+| `Typography.InlineCode` | Inline code |
+| `Typography.Lead` | Lead text |
+| `Typography.Large` | Large text |
+| `Typography.Small` | Small text |
+| `Typography.Muted` | Muted text |
+| `Typography.List` | List |
 
 ## Notes
+
+
+

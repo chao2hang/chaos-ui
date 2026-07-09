@@ -1,5 +1,5 @@
-import { BillPage } from "@/components/business/bill-page";
-import { CodeBlock } from "@/components/code-block";
+import { BillPage } from "@/components/business/bill-page"
+import { CodeBlock } from "@/components/code-block"
 
 # BillPage
 
@@ -11,6 +11,7 @@ BillPage — a business component for ERP / enterprise scenarios.
 
 Use when you need a bill page.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,18 +22,21 @@ export function Basic() {
   return <BillPage />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### BillPage
 
-| Prop          | Type                                      | Default | Description                     |
-| ------------- | ----------------------------------------- | ------- | ------------------------------- |
-| `className`   | `string`                                  | —       | Custom CSS class                |
-| `headerProps` | `React.ComponentProps<typeof BillHeader>` | —       |                                 |
-| `footerProps` | `React.ComponentProps<typeof BillFooter>` | —       |                                 |
-| `lineItems`   | `BillLineItem[]`                          | —       |                                 |
-| ...rest       | `React.ComponentProps<"div">`             | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `headerProps` | `React.ComponentProps<typeof BillHeader>` | — |  |
+| `footerProps` | `React.ComponentProps<typeof BillFooter>` | — |  |
+| `lineItems` | `BillLineItem[]` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

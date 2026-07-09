@@ -1,5 +1,5 @@
-import { FormGrid, FormGridItem } from "@/components/ui/form-grid";
-import { CodeBlock } from "@/components/code-block";
+import { FormGrid, FormGridItem } from "@/components/ui/form-grid"
+import { CodeBlock } from "@/components/code-block"
 
 # FormGrid 表单栅格
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要表单栅格功能时使用本组件。
+
 
 ## 代码示例
 
@@ -25,37 +26,39 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **columns**
 
 | columns | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `1`     |      | ✓    |
-| `2`     |      |      |
-| `3`     |      |      |
-| `4`     |      |      |
+|---|---|---|
+| `1` |  | ✓ |
+| `2` |  |  |
+| `3` |  |  |
+| `4` |  |  |
 
 **gap**
 
-| gap       | 说明 | 默认 |
-| --------- | ---- | ---- |
-| `sm`      |      |      |
-| `default` |      | ✓    |
-| `lg`      |      |      |
+| gap | 说明 | 默认 |
+|---|---|---|
+| `sm` |  |  |
+| `default` |  | ✓ |
+| `lg` |  |  |
 
 ## API / Props
 
 ### FormGrid
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **复合组件**: 包含 1 个子组件(FormGridItem),使用组合模式按需导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-form-grid--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-formgrid--docs)。
+

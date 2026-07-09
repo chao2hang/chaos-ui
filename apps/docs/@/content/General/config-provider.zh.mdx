@@ -1,33 +1,112 @@
-import {
-  ConfigProvider,
-  ConfigContext,
-  Config,
-} from "@/components/ui/config-provider";
+import { ConfigProvider, useConfig } from "@/components/ui/config-provider";
 import { CodeBlock } from "@/components/code-block";
 
 # ConfigProvider 全局配置
 
 > 通用基础组件
 
-为组件树提供全局配置(主题、尺寸、国际化、前缀)。
+为组件树注入全局配置——主题色、圆角、暗色模式、尺寸、国际化语言、文字方向（RTL/LTR）以及滚动条样式。只需在应用根部包裹一次，所有子组件自动继承配置。
 
 ## 何时使用
 
-需要全局配置功能时使用本组件。
+- **统一主题色**：修改 `primaryColor`，整个应用的按钮、链接等组件统一变色，无需逐个覆盖 CSS。
+- **暗色模式切换**：通过 `darkMode` 一键切换亮/暗主题。
+- **国际化（i18n）**：设置 `locale` 控制组件内置文案的语言（如 `"zh-CN"`
+- **RTL 布局**：设置 `direction="rtl"` 适配阿拉伯语等从右到左的阅读方向。
+- **CSS 变量注入**：通过 `theme.cssVars` 向组件树注入任意 CSS 自定义属性，实现深度主题定制。
+- **滚动条样式**：通过 `theme.scrollbar` 统一控制子树内所有滚动容器的滚动条外观。
+
+> **与 antd ConfigProvider 的关系**：Chaos UI 的 ConfigProvider 是 antd ConfigProvider 的轻量替代。antd 使用 `theme` token 对象控制主题，Chaos UI 使用 CSS 自定义属性 (`--primary`, `--radius`) 实现，更贴近原生 Web 标准。
 
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { ConfigProvider, ConfigContext, Config } from "@/components/ui/config-provider"
+在应用根部包裹 `ConfigProvider`，所有子组件自动应用配置。
 
-export function Basic() {
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+
+export function App() {
   return (
-    <div className="space-y-4">
-  <ConfigProvider />
-  <ConfigContext />
-  <Config />
-    </div>
+    <ConfigProvider
+      locale="zh-CN"
+      theme={{
+        primaryColor: "#6366f1",
+        borderRadius: 8,
+      }}
+    >
+      {/* 所有子组件自动继承主题配置 */}
+      <YourApp />
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### 暗色模式
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+import { useState } from "react"
+
+export function App() {
+  const [dark, setDark] = useState(false)
+
+return (
+<ConfigProvider theme={{ darkMode: dark }}>
+<button onClick={() => setDark(!dark)}>
+切换为 {dark ? "亮色" : "暗色"} 模式
+</button>
+</ConfigProvider>
+)
+}`} lang="tsx" />
+
+### 自定义滚动条
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+
+export function ScrollDemo() {
+  return (
+    <ConfigProvider
+      theme={{
+        scrollbar: {
+          variant: "thin",
+          thumbColor: "rgb(99 102 241 / 0.5)",        // 滑块颜色
+          thumbHoverColor: "rgb(99 102 241 / 0.8)",    // hover 颜色
+        },
+      }}
+    >
+      <div className="h-40 overflow-y-auto">
+        {/* 这段内容会自动获得细滚动条 + 自定义滑块颜色 */}
+        <LongContent />
+      </div>
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### RTL 布局
+
+<CodeBlock code={`import { ConfigProvider } from "@/components/ui/config-provider"
+
+export function ArabicApp() {
+  return (
+    <ConfigProvider direction="rtl" locale="ar">
+      {/* 所有子组件自动变为从右到左布局 */}
+      <YourApp />
+    </ConfigProvider>
+  )
+}`} lang="tsx" />
+
+### 提取当前配置
+
+通过 `useConfig()` hook 在任意子组件中读取当前全局配置。
+
+<CodeBlock code={`import { useConfig } from "@/components/ui/config-provider"
+
+export function CurrentLocale() {
+  const { locale, theme } = useConfig()
+  return (
+    <p>
+      当前语言：{locale}，
+      主色：{theme?.primaryColor ?? "默认"}
+    </p>
   )
 }`} lang="tsx" />
 
@@ -35,13 +114,44 @@ export function Basic() {
 
 ### ConfigProvider
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+| ----------------------- | --------------------------------------------- | --------- | ---------------------------------------------------------------------- |
+| `children` | `React.ReactNode` | — | 需要注入配置的子组件树 |
+| `locale` | `string` | `"zh-CN"` | 国际化语言代码，如 `"zh-CN"`, `"en-US"` |
+| `direction` | `"ltr"` \| `"rtl"` | `"ltr"` | 文字排列方向 |
+| `theme` | `ThemeConfig` | — | 主题配置对象（主题色、圆角、暗色模式、滚动条等） |
+| `prefixCls` | `string` | `"chaos"` | CSS 类名前缀，与 antd 风格兼容 |
+| `disableAnimation` | `boolean` | `false` | 全局禁用动效 |
+| `renderEmpty` | `(componentName?: string) => React.ReactNode` | — | 自定义空状态占位渲染 |
+| `form.validateMessages` | `Record<string, string>` | — | 表单校验文案覆写 |
+
+### ThemeConfig
+
+主题配置对象，控制全局视觉风格。
+
+| Field | Type | Default | 说明 |
+| --------------- | -------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `primaryColor`  | `string`                                                 | —           | 主题色（任意 CSS 颜色值）注入为 `--primary` CSS 变量 |
+| `borderRadius`  | `number`                                                 | —           | 全局圆角半径（px），注入为 `--radius` CSS 变量       |
+| `darkMode`      | `boolean`                                                | —           | 是否启用暗色模式，在根元素上添加 `class="dark"`      |
+| `componentSize` | `"sm"` \| `"default"` \| `"lg"` | `"default"` | 全局组件尺寸 |
+| `scrollbar`     | `ScrollbarConfig` \| `"thin"` \| `"default"` \| `"none"` | —           | 滚动条样式，支持简写字符串或详细配置对象             |
+| `cssVars`       | `Record<string, string>`                                 | —           | 注入任意 CSS 自定义属性，实现深度主题定制            |
+
+### ScrollbarConfig
+
+| Field | Type | Default | 说明 |
+| ----------------- | ----------------------------------- | ---------------------- | ----------------------------------------------------------------------- |
+| `variant`         | `"thin"` \| `"default"` \| `"none"` | —                      | 滚动条样式：`"thin"`（细滚动条）、`"default"`（默认）、`"none"`（隐藏） |
+| `thumbColor` | `string` | `rgb(15 23 42 / 0.18)` | 滚动条滑块颜色 |
+| `thumbHoverColor` | `string` | `rgb(15 23 42 / 0.3)` | 滚动条滑块 hover 颜色 |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **必须包裹 children**：`ConfigProvider` 通过 React Context 向下传递配置，因此必须包裹需要应用配置的子组件。
+- **CSS 变量注入**：`theme.primaryColor` 和 `theme.borderRadius` 会分别注入为 `--primary` 和 `--radius` CSS 变量，组件库内部通过 `var(--primary)` 等引用这些变量。自定义 `cssVars` 可注入任意其他变量。
+- **嵌套支持**：多个 `ConfigProvider` 可以嵌套使用，子级配置会覆盖父级的同名字段。
+- **与 antd 的差异**：Chaos UI 使用 CSS 自定义属性（`--primary`, `--radius`）而非 antd 的 `theme.token` 对象。这意味着你可以直接在 CSS 中通过 `var(--primary)` 访问主题色，更加灵活。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-config-provider--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-configprovider--docs)。
+

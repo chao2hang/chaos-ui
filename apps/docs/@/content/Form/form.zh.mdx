@@ -1,5 +1,5 @@
-import { Form, FormItem, FormField } from "@/components/ui/form";
-import { CodeBlock } from "@/components/code-block";
+import { Form, FormItem, FormField } from "@/components/ui/form"
+import { CodeBlock } from "@/components/code-block"
 
 # Form 表单
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要收集、校验、提交用户输入的结构化数据。
+
 
 ## 代码示例
 
@@ -25,26 +26,27 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **layout**
 
-| layout       | 说明 | 默认 |
-| ------------ | ---- | ---- |
-| `vertical`   |      | ✓    |
-| `horizontal` |      |      |
-| `inline`     |      |      |
+| layout | 说明 | 默认 |
+|---|---|---|
+| `vertical` |  | ✓ |
+| `horizontal` |  |  |
+| `inline` |  |  |
 
 ## API / Props
 
 ### Form
 
-| Prop        | Type                           | Default | 说明                                                |
-| ----------- | ------------------------------ | ------- | --------------------------------------------------- |
-| `className` | `string`                       | —       | 自定义样式类名                                      |
-| `onSubmit`  | `() => void`                   | —       | Called on submit with form data                     |
-| `errors`    | `Record<string, string>`       | —       | Validation errors map (field name -> error message) |
-| ...rest     | `React.ComponentProps<"form">` | —       | 透传 `<form>` 原生属性                              |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `onSubmit` | `() => void` | — | Called on submit with form data |
+| `errors` | `Record<string, string>` | — | Validation errors map (field name -> error message) |
+| ...rest | `React.ComponentProps<"form">` | — | 透传 `<form>` 原生属性 |
 
 ## 注意事项
 
@@ -53,4 +55,5 @@ export function Basic() {
 - **复合组件**: 包含 2 个子组件(FormItem, FormField),使用组合模式按需导入。
 - **原生属性**: 继承所有 `<form>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-form--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-form--docs)。
+

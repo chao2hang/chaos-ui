@@ -7,7 +7,19 @@ export function useCountdown(target: Date | number | string) {
 
   React.useEffect(() => {
     if (Number.isNaN(targetTime)) return
-    const id = setInterval(() => setNow(Date.now()), 1000)
+    // If already past the target, no need to tick.
+    if (targetTime <= Date.now()) return
+    const id = setInterval(() => {
+      const current = Date.now()
+      // Stop ticking once the countdown finishes; update now first so the
+      // final render reflects isFinished=true (otherwise now stays stale).
+      if (targetTime <= current) {
+        setNow(current)
+        clearInterval(id)
+        return
+      }
+      setNow(current)
+    }, 1000)
     return () => clearInterval(id)
   }, [targetTime])
 
@@ -17,7 +29,8 @@ export function useCountdown(target: Date | number | string) {
   const hours = Math.floor((totalSeconds % 86400) / 3600)
   const minutes = Math.floor((totalSeconds % 3600) / 60)
   const seconds = totalSeconds % 60
-  const isFinished = diff <= 0
+  // Finished when diff hits 0 OR target was invalid (NaN) — treat as elapsed.
+  const isFinished = diff <= 0 || Number.isNaN(targetTime)
 
   return { days, hours, minutes, seconds, isFinished, totalSeconds }
 }

@@ -1,171 +1,118 @@
 "use client";
 
 import * as React from "react";
-
+import { toString as qrToString, toCanvas as qrToCanvas } from "qrcode";
 import { cn } from "@/lib/utils";
 
-interface QRCodeProps extends React.ComponentProps<"div"> {
-  /** URL or text to encode */
+/**
+ * @component QRCode
+ * @category ui/data-display
+ * @since 0.5.0
+ * @description QR Code generation component using the `qrcode` library.
+ * Renders as SVG by default for crisp rendering at any scale.
+ * / 二维码生成组件，基于 qrcode 库
+ * @keywords qrcode, qr, code, scan, share
+ * @example
+ * <QRCode value="https://example.com" size={128} />
+ * <QRCode value="https://example.com" renderAs="canvas" />
+ */
+
+interface QRCodeProps extends Omit<React.ComponentProps<"div">, "children"> {
+  /** QR Code content / 二维码内容 */
   value: string;
-  /** Size in pixels */
+  /** Size in px / 尺寸，默认 128 */
   size?: number;
-  /** Foreground color */
+  /** Error correction level / 纠错等级，默认 "M" */
+  level?: "L" | "M" | "Q" | "H";
+  /** Foreground color / 前景色 */
   fgColor?: string;
-  /** Background color */
+  /** Background color / 背景色 */
   bgColor?: string;
-  /** Include download button */
-  downloadable?: boolean;
-  /** Filename for download */
-  downloadFileName?: string;
-  /** Loading state */
-  loading?: boolean;
-  /** Error state */
-  error?: boolean;
+  /** Whether to include a quiet zone margin / 是否包含留白边距 */
+  includeMargin?: boolean;
+  /** Render mode / 渲染模式，默认 "svg" */
+  renderAs?: "svg" | "canvas";
 }
 
 function QRCode({
   className,
   value,
-  size = 200,
-  fgColor = "#000000",
-  bgColor = "#ffffff",
-  downloadable = false,
-  downloadFileName = "qrcode.png",
-  loading = false,
-  error = false,
+  size = 128,
+  level = "M",
+  fgColor = "#000",
+  bgColor = "#fff",
+  includeMargin = true,
+  renderAs = "svg",
   ...props
 }: QRCodeProps) {
+  const [svgData, setSvgData] = React.useState<string>("");
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const [error, setError] = React.useState<string | undefined>();
 
   React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    canvas.style.width = `${size}px`;
-    canvas.style.height = `${size}px`;
-    ctx.scale(dpr, dpr);
-
-    // Background
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, size, size);
-
-    if (error || loading) return;
-
-    // Generate simplified QR-like pattern
-    const modules = 21;
-    const moduleSize = Math.floor(size / (modules + 8));
-    const offset = Math.floor((size - modules * moduleSize) / 2);
-
-    const hash = new Uint8Array(441); // 21*21
-    const bytes = new TextEncoder().encode(value);
-    for (let i = 0; i < 441; i++) {
-      hash[i] = bytes[i % bytes.length] ^ (i * 3 + 17);
-    }
-
-    ctx.fillStyle = fgColor;
-    for (let row = 0; row < modules; row++) {
-      for (let col = 0; col < modules; col++) {
-        // Finder patterns
-        if (
-          (row < 7 && col < 7) ||
-          (row < 7 && col >= modules - 7) ||
-          (row >= modules - 7 && col < 7)
-        ) {
-          const fr =
-            row < 7 ? row : row >= modules - 7 ? row - (modules - 7) : row;
-          const fc =
-            col < 7 ? col : col >= modules - 7 ? col - (modules - 7) : col;
-          const isOn =
-            fr === 0 ||
-            fr === 6 ||
-            fc === 0 ||
-            fc === 6 ||
-            (fr >= 2 && fr <= 4 && fc >= 2 && fc <= 4);
-          if (isOn) {
-            ctx.fillRect(
-              offset + col * moduleSize,
-              offset + row * moduleSize,
-              moduleSize,
-              moduleSize,
-            );
-          }
-        } else if (hash[row * modules + col] > 127) {
-          ctx.fillRect(
-            offset + col * moduleSize,
-            offset + row * moduleSize,
-            moduleSize,
-            moduleSize,
-          );
-        }
+    if (renderAs === "svg") {
+      qrToString(value, {
+        type: "svg",
+        width: size,
+        margin: includeMargin ? 4 : 0,
+        errorCorrectionLevel: level,
+        color: {
+          dark: fgColor,
+          light: bgColor,
+        },
+      })
+        .then((svg: string) => {
+          setSvgData(svg);
+          setError(undefined);
+        })
+        .catch((err: { message: string }) => setError(err.message));
+    } else {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        qrToCanvas(canvas, value, {
+          width: size,
+          margin: includeMargin ? 4 : 0,
+          errorCorrectionLevel: level,
+          color: {
+            dark: fgColor,
+            light: bgColor,
+          },
+        })
+          .then(() => setError(undefined))
+          .catch((err: { message: string }) => setError(err.message));
       }
     }
-  }, [value, size, fgColor, bgColor, loading, error]);
+  }, [value, size, level, fgColor, bgColor, includeMargin, renderAs]);
 
-  const handleDownload = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const link = document.createElement("a");
-    link.download = downloadFileName;
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  };
+  if (error) {
+    return (
+      <div
+        data-slot="qrcode"
+        className={cn(
+          "inline-flex items-center justify-center rounded-md border border-destructive/30 bg-destructive/5 text-destructive text-xs",
+          className,
+        )}
+        style={{ width: size, height: size }}
+        {...props}
+      >
+        QR Error
+      </div>
+    );
+  }
 
   return (
-    <div
-      data-slot="qrcode"
-      className={cn("inline-flex flex-col items-center gap-2", className)}
-      {...props}
-    >
-      <div className="relative">
-        <canvas
-          ref={canvasRef}
-          style={{ width: size, height: size }}
-          className="rounded-md border"
-          role="img"
-          aria-label={`QR Code: ${value}`}
+    <div data-slot="qrcode" className={cn("inline-block", className)} {...props}>
+      {renderAs === "svg" ? (
+        <span
+          dangerouslySetInnerHTML={{ __html: svgData }}
+          style={{ display: "inline-block", width: size, height: size }}
         />
-        {loading && (
-          <div className="bg-background/80 absolute inset-0 flex items-center justify-center rounded-md">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-muted-foreground animate-spin"
-            >
-              <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-            </svg>
-          </div>
-        )}
-        {error && (
-          <div className="bg-background/80 absolute inset-0 flex items-center justify-center rounded-md">
-            <span className="text-muted-foreground text-sm">
-              Failed to generate QR code
-            </span>
-          </div>
-        )}
-      </div>
-      {downloadable && value && !loading && !error && (
-        <button
-          type="button"
-          onClick={handleDownload}
-          className="text-muted-foreground hover:text-foreground text-xs underline"
-        >
-          Download
-        </button>
+      ) : (
+        <canvas ref={canvasRef} />
       )}
     </div>
   );
 }
 
 export { QRCode };
+export type { QRCodeProps };

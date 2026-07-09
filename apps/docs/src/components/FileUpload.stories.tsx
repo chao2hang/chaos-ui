@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <FileUpload>
+    <FileUpload {...({} as any)}>
       <Button variant="outline">
         <UploadIcon />
         Upload File
@@ -24,7 +24,7 @@ export const Default: Story = {
 
 export const Dropzone: Story = {
   render: () => (
-    <FileUpload dropzone>
+    <FileUpload {...({} as any)}>
       <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8">
         <UploadIcon className="text-muted-foreground mb-2 size-8" />
         <p className="text-sm font-medium">Drop files here</p>

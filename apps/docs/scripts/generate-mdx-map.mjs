@@ -30,7 +30,7 @@ function scanMdxFiles(dir) {
     if (statSync(fullPath).isDirectory()) {
       entries.push(...scanMdxFiles(fullPath));
     } else if (name.endsWith(".mdx")) {
-      const rel = relative(CONTENT_DIR, fullPath);
+      const rel = relative(CONTENT_DIR, fullPath).split("\\").join("/");
       // Key examples: "General/affix.en", "General/affix", "Business/approval-flow.zh"
       const key = rel.replace(/\.mdx$/, "");
       entries.push({ key, fullPath });

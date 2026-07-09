@@ -1,0 +1,43 @@
+import { BillPrintTemplate } from "@/components/business/bill-print-template"
+import { CodeBlock } from "@/components/code-block"
+
+# BillPrintTemplate Bill Print Template
+
+> 业务组件
+
+Bill Print Template — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Bill Print Template相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { BillPrintTemplate } from "@/components/business/bill-print-template"
+
+export function Basic() {
+  return <BillPrintTemplate />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### BillPrintTemplate
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | — | 标题 |
+| `fields` | `Array<T>` | — |  |
+| `lines` | `Array<Record<K,V>>` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-billprinttemplate--docs)。
+

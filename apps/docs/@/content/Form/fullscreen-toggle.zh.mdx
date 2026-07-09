@@ -1,5 +1,5 @@
-import { FullscreenToggle } from "@/components/ui/fullscreen-toggle";
-import { CodeBlock } from "@/components/code-block";
+import { FullscreenToggle } from "@/components/ui/fullscreen-toggle"
+import { CodeBlock } from "@/components/code-block"
 
 # FullscreenToggle 全屏切换
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要全屏切换功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,56 +24,51 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <FullscreenToggle variant="default">Default</FullscreenToggle>
   <FullscreenToggle variant="outline">Outline</FullscreenToggle>
   <FullscreenToggle variant="ghost">Ghost</FullscreenToggle>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <FullscreenToggle size="sm">Sm</FullscreenToggle>
   <FullscreenToggle size="default">Default</FullscreenToggle>
   <FullscreenToggle size="lg">Lg</FullscreenToggle>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **变体**
 
-| Variant   | 说明             | 默认 |
-| --------- | ---------------- | ---- |
-| `default` | 默认样式         |      |
-| `outline` | 描边样式         |      |
-| `ghost`   | 幽灵(无背景)样式 | ✓    |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 |  |
+| `outline` | 描边样式 |  |
+| `ghost` | 幽灵(无背景)样式 | ✓ |
 
 **尺寸**
 
-| Size      | 说明       | 默认 |
-| --------- | ---------- | ---- |
-| `default` | 默认尺寸   |      |
-| `sm`      | 小号       |      |
-| `lg`      | 大号       |      |
-| `icon`    | 图标正方形 | ✓    |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认尺寸 |  |
+| `sm` | 小号 |  |
+| `lg` | 大号 |  |
+| `icon` | 图标正方形 | ✓ |
 
 ## API / Props
 
 ### FullscreenToggle
 
-| Prop        | Type                             | Default | 说明                                                               |
-| ----------- | -------------------------------- | ------- | ------------------------------------------------------------------ |
-| `className` | `string`                         | —       | 自定义样式类名                                                     |
-| `target`    | `React.RefObject<HTMLElement>`   | —       | Target element to fullscreen. Defaults to document.documentElement |
-| ...rest     | `React.ComponentProps<"button">` | —       | 透传 `<button>` 原生属性                                           |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `target` | `React.RefObject<HTMLElement>` | — | Target element to fullscreen. Defaults to document.documentElement |
+| ...rest | `React.ComponentProps<"button">` | — | 透传 `<button>` 原生属性 |
 
 ## 注意事项
 
@@ -80,4 +76,5 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<button>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-fullscreen-toggle--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-fullscreentoggle--docs)。
+

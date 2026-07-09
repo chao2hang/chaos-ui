@@ -1,5 +1,5 @@
-import { AsyncTaskCenter } from "@/components/business/async-task-center";
-import { CodeBlock } from "@/components/code-block";
+import { AsyncTaskCenter } from "@/components/business/async-task-center"
+import { CodeBlock } from "@/components/code-block"
 
 # AsyncTaskCenter 异步任务中心
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要异步任务中心功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,21 +22,23 @@ export function Basic() {
   return <AsyncTaskCenter />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### AsyncTaskCenter
 
-| Prop        | Type                          | Default | 说明                  |
-| ----------- | ----------------------------- | ------- | --------------------- |
-| `className` | `string`                      | —       | 自定义样式类名        |
-| `tasks`     | `AsyncTask[]`                 | —       |                       |
-| `onRetry`   | `() => void`                  | —       |                       |
-| `onDelete`  | `() => void`                  | —       |                       |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `tasks` | `AsyncTask[]` | — |  |
+| `onRetry` | `() => void` | — |  |
+| `onDelete` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-async-task-center--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-asynctaskcenter--docs)。
+

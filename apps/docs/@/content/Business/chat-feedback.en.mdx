@@ -1,0 +1,42 @@
+import { ChatFeedback } from "@/components/business/chat-feedback"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatFeedback Chat Feedback
+
+> Domain-specific business components for ERP scenarios.
+
+ChatFeedback — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat feedback.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatFeedback } from "@/components/business/chat-feedback"
+
+export function Basic() {
+  return <ChatFeedback />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatFeedback
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `onLike` | `() => void` | — |  |
+| `onDislike` | `() => void` | — |  |
+| `onComment` | `() => void` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

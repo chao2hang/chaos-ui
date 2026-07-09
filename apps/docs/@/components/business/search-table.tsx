@@ -1,7 +1,8 @@
-"use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui"
 import {
   Table,
   TableBody,
@@ -9,111 +10,214 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { SearchIcon, XIcon } from "lucide-react";
+} from "@/components/ui"
+import { Skeleton } from "@/components/ui"
 
-export interface SearchTableColumn {
-  key: string;
-  header: string;
-  render?: (row: Record<string, unknown>) => React.ReactNode;
+interface ColumnDef<T = Record<string, unknown>> {
+  key: string
+  title: string
+  dataIndex?: keyof T & string
+  width?: number | string
+  /**
+   * Cell renderer. `value` is typed as `T[keyof T]` (the union of field values)
+   * so consumers don't need `as` casts for the common case.
+   * / 单元格渲染，value 类型为 T 的字段值联合，减少 as 断言
+   */
+  render?: (value: T[keyof T], record: T, index: number) => React.ReactNode
+  ellipsis?: boolean
+  align?: "left" | "center" | "right"
+  fixed?: "left" | "right"
 }
 
-interface SearchTableProps extends React.HTMLAttributes<HTMLDivElement> {
-  columns: SearchTableColumn[];
-  data: Record<string, unknown>[];
-  searchKeys?: string[];
-  searchPlaceholder?: string;
-  className?: string;
+interface SearchTableProps<T = Record<string, unknown>> {
+  columns: ColumnDef<T>[]
+  dataSource: T[]
+  rowKey?: keyof T & string
+  loading?: boolean
+  pagination?: false | {
+    current: number
+    pageSize: number
+    total: number
+    onChange: (page: number, pageSize: number) => void
+  } | undefined
+  emptyText?: string
+  /** Callback when a row is clicked */
+  onRow?: (record: T, index: number) => {
+    onClick?: () => void
+    [key: string]: unknown
+  }
+  className?: string
 }
 
-function SearchTable({
+/**
+ * 搜索 + 表格组合（不含弹窗）。
+ * 对标 qxy-mop 所有列表页的标准布局。
+ *
+ * 泛型 `<T>` 让 columns/render/dataSource 类型联动，消除消费方的 `as` 断言：
+ *
+ * ```tsx
+ * const cols: ColumnDef<Company>[] = [
+ *   { key: "isActive", title: "状态", render: (v) => v },
+ * ]
+ * <SearchTable<Company> columns={cols} dataSource={companies} />
+ * ```
+ *
+ * @component SearchTable
+ * @category business/crud
+ * @since 0.2.0
+ */
+function SearchTable<T extends Record<string, unknown> = Record<string, unknown>>({
   columns,
-  data,
-  searchKeys,
-  searchPlaceholder = "搜索...",
+  dataSource,
+  rowKey = "id",
+  loading = false,
+  pagination,
+  emptyText = "暂无数据",
+  onRow,
   className,
-  ...props
-}: SearchTableProps) {
-  const [query, setQuery] = React.useState("");
+}: SearchTableProps<T>) {
+  const alignClass: Record<string, string> = {
+    left: "text-left",
+    center: "text-center",
+    right: "text-right",
+  }
 
-  const filtered =
-    query && searchKeys
-      ? data.filter((row) =>
-          searchKeys.some((key) => {
-            const val = String(row[key] ?? "").toLowerCase();
-            return val.includes(query.toLowerCase());
-          }),
-        )
-      : data;
+  const getValue = (record: T, col: ColumnDef<T>) => {
+    const key = (col.dataIndex || col.key) as keyof T
+    return record[key]
+  }
 
   return (
-    <div
-      data-slot="search-table"
-      className={cn("space-y-3", className)}
-      {...props}
-    >
-      {searchKeys && (
-        <div className="relative max-w-xs">
-          <SearchIcon className="text-muted-foreground absolute top-2 left-2.5 size-4" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={searchPlaceholder}
-            className="h-9 pr-8 pl-8"
-          />
-          {query && (
-            <button
-              onClick={() => setQuery("")}
-              className="text-muted-foreground hover:text-foreground absolute top-2 right-2"
-            >
-              <XIcon className="size-4" />
-            </button>
-          )}
-        </div>
-      )}
-      <div className="rounded-md border">
+    <div data-slot="search-table" className={cn("space-y-2", className)}>
+      <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               {columns.map((col) => (
-                <TableHead key={col.key}>{col.header}</TableHead>
+                <TableHead
+                  key={col.key}
+                  className={alignClass[col.align || "left"]}
+                  style={{ width: col.width, minWidth: col.width }}
+                >
+                  {col.title}
+                </TableHead>
               ))}
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filtered.length === 0 ? (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="text-muted-foreground py-12 text-center"
-                >
-                  {query ? "未找到匹配的数据" : "暂无数据"}
-                </TableCell>
-              </TableRow>
-            ) : (
-              filtered.map((row, i) => (
-                <TableRow key={i}>
-                  {columns.map((col) => (
-                    <TableCell key={col.key}>
-                      {col.render
-                        ? col.render(row)
-                        : String(row[col.key] ?? "")}
+            {loading ? (
+              Array.from({ length: 5 }).map((_, ri) => (
+                <TableRow key={ri}>
+                  {columns.map((_, ci) => (
+                    <TableCell key={ci}>
+                      <Skeleton className="h-4 w-full" />
                     </TableCell>
                   ))}
                 </TableRow>
               ))
+            ) : dataSource.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="py-12 text-center text-muted-foreground"
+                >
+                  {emptyText}
+                </TableCell>
+              </TableRow>
+            ) : (
+              dataSource.map((record, rowIndex) => {
+                const rowProps = onRow?.(record, rowIndex)
+                return (
+                  <TableRow
+                    key={String(record[rowKey] || rowIndex)}
+                    className={cn(rowProps?.onClick && "cursor-pointer hover:bg-muted/50")}
+                    onClick={rowProps?.onClick}
+                  >
+                    {columns.map((col) => {
+                      const value = getValue(record, col)
+                      const content = col.render
+                        ? col.render(value, record, rowIndex)
+                        : value != null
+                          ? String(value)
+                          : "-"
+
+                      return (
+                        <TableCell
+                          key={col.key}
+                          className={cn(
+                            alignClass[col.align || "left"],
+                            col.ellipsis && "truncate max-w-0",
+                          )}
+                        >
+                          {content}
+                        </TableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })
             )}
           </TableBody>
         </Table>
       </div>
-      {query && (
-        <p className="text-muted-foreground text-xs">
-          共 {filtered.length} 条结果
-        </p>
+
+      {/* Pagination */}
+      {pagination && (
+        <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <span>
+            共 {pagination.total} 条
+          </span>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={pagination.current <= 1}
+              onClick={() =>
+                pagination.onChange(pagination.current - 1, pagination.pageSize)
+              }
+            >
+              上一页
+            </Button>
+            {Array.from(
+              { length: Math.ceil(pagination.total / pagination.pageSize) },
+              (_, i) => i + 1,
+            )
+              .slice(
+                Math.max(0, pagination.current - 3),
+                Math.min(
+                  Math.ceil(pagination.total / pagination.pageSize),
+                  pagination.current + 2,
+                ),
+              )
+              .map((page) => (
+                <Button
+                  key={page}
+                  variant={page === pagination.current ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => pagination.onChange(page, pagination.pageSize)}
+                >
+                  {page}
+                </Button>
+              ))}
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={
+                pagination.current >=
+                Math.ceil(pagination.total / pagination.pageSize)
+              }
+              onClick={() =>
+                pagination.onChange(pagination.current + 1, pagination.pageSize)
+              }
+            >
+              下一页
+            </Button>
+          </div>
+        </div>
       )}
     </div>
-  );
+  )
 }
 
-export { SearchTable };
-export type { SearchTableProps };
+export { SearchTable }
+export type { SearchTableProps, ColumnDef }

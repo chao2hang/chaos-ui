@@ -188,10 +188,10 @@ function NavGroup({
 }
 
 export function SettingsLayout({
-  nav,
+  nav = [],
   active,
   onNavChange,
-  sections,
+  sections = [],
   className,
   ...props
 }: SettingsLayoutProps) {

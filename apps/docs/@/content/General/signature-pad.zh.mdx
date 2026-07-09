@@ -1,0 +1,58 @@
+import { SignaturePad } from "@/components/ui/signature-pad";
+import { CodeBlock } from "@/components/code-block";
+
+# SignaturePad 签名板
+
+> 签名板
+
+基于画布的签名板，支持撤销、清除和导出为 data URL/Blob。
+
+## 何时使用
+
+需要用户手写签名时使用，如合同签署、审批确认、电子表单。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { SignaturePad } from "@/components/ui/signature-pad"
+import { useRef } from "react"
+
+export function Basic() {
+  const ref = useRef(null)
+  return (
+    <div className="flex flex-col gap-2">
+      <SignaturePad ref={ref} />
+      <button onClick={() => ref.current?.clear()}>Clear</button>
+      <button onClick={() => console.log(ref.current?.toDataURL())}>Export</button>
+    </div>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### SignaturePad
+
+| Prop | Type | Default | 说明 |
+| ----------- | ------------ | ------- | ------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调    |
+| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调  |
+
+### Imperative Handle (ref)
+
+| Method | Type | 说明 |
+| ------------------ | ----------------------------------- | ---------------------------------------- |
+| `clear()`          | `() => void`                        | Clear the canvas / 清空画布              |
+| `isEmpty()`        | `() => boolean`                     | Check if canvas has ink / 检查是否有签名 |
+| `toDataURL(type?)` | `(type?: string) => string \| null` | Export as data URL / 导出为 data URL     |
+| `toBlob()`         | `() => Promise<Blob \| null>`       | Export as Blob / 导出为 Blob             |
+| `undo()`           | `() => void`                        | Undo last stroke / 撤销上一笔            |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Canvas API**: 基于 HTML5 Canvas 实现，需浏览器支持。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-signaturepad--docs)。
+

@@ -53,7 +53,7 @@ COPY --from=builder /app/package.json /app/pnpm-workspace.yaml ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages ./packages
 
-# apps/docs 构建产物 + 源码（proxy、public）
+# apps/docs 构建产物 + 源码（public）
 COPY --from=builder /app/apps/docs ./apps/docs
 
 # Storybook 静态站点
@@ -63,6 +63,6 @@ COPY --from=builder /app/storybook-static ./storybook-static
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 3001
 
 ENTRYPOINT ["docker-entrypoint.sh"]

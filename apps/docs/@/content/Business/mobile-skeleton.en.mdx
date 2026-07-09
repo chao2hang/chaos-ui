@@ -1,9 +1,5 @@
-import {
-  MobileListItemSkeleton,
-  MobileCardSkeleton,
-  MobileDetailSkeleton,
-} from "@/components/business/mobile-skeleton";
-import { CodeBlock } from "@/components/code-block";
+import { MobileListItemSkeleton, MobileCardSkeleton, MobileDetailSkeleton } from "@/components/mobile/mobile-skeleton"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileSkeleton
 
@@ -15,23 +11,28 @@ MobileSkeleton — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile skeleton.
 
+
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { MobileListItemSkeleton } from "@/components/business/mobile-skeleton"
+<CodeBlock code={`import { MobileListItemSkeleton } from "@/components/mobile/mobile-skeleton"
 
 export function Basic() {
   return <MobileListItemSkeleton>Default</MobileListItemSkeleton>
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MobileListItemSkeleton
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
+
+
+

@@ -1,0 +1,42 @@
+import { SocialShare } from "@/components/business/social-share"
+import { CodeBlock } from "@/components/code-block"
+
+# SocialShare Social Share
+
+> Domain-specific business components for ERP scenarios.
+
+SocialShare — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a social share.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SocialShare } from "@/components/business/social-share"
+
+export function Basic() {
+  return <SocialShare />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SocialShare
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `url` | `string` | — | URL to share. |
+| `title` | `string` | — | Title for the shared content. |
+| `platforms` | `("wechat" \| "weibo" \| "qq" \| "link...` | — | Platforms to show. Default: wechat, weibo, qq, link. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

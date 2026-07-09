@@ -1,0 +1,46 @@
+import { MobileCheckout } from "@/components/mobile/mobile-checkout"
+import { CodeBlock } from "@/components/code-block"
+
+# MobileCheckout Mobile Checkout
+
+> 业务组件
+
+Mobile Checkout — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Mobile Checkout相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobileCheckout } from "@/components/mobile/mobile-checkout"
+
+export function Basic() {
+  return <MobileCheckout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MobileCheckout
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `total` | `string` | — | Total amount string. |
+| `itemCount` | `number` | — | Item count. |
+| `payLabel` | `string` | `Pay Now` | Pay button label. |
+| `isLoading` | `boolean` | — | Whether payment is in progress. |
+| `onPay` | `() => void` | — | Called when user taps pay. |
+| `onBack` | `() => void` | — | Called when user taps back. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/mobile-mobilecheckout--docs)。
+

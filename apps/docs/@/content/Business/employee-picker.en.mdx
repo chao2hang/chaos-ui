@@ -1,0 +1,48 @@
+import { EmployeePicker } from "@/components/business/employee-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# EmployeePicker Employee Picker
+
+> Domain-specific business components for ERP scenarios.
+
+Employee picker — combobox trigger with a filterable popover.
+EmployeePicker — employee picker component.
+
+## When to Use
+
+Use when you need an employee picker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { EmployeePicker } from "@/components/business/employee-picker"
+
+export function Basic() {
+  return <EmployeePicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### EmployeePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | Current value (controlled) |
+| `onChange` | `() => void` | — | Callback when value changes |
+| `options` | `EmployeePickerOption[]` | — | Available options |
+| `placeholder` | `string` | — | Placeholder text |
+| `searchPlaceholder` | `string` | — |  |
+| `emptyText` | `string` | — |  |
+| `disabled` | `boolean` | `false` | Whether disabled |
+| `clearable` | `boolean` | `true` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

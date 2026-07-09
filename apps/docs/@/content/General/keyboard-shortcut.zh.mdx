@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # KeyboardShortcut 键盘快捷键
 
-> 通用基础组件
+> 键盘快捷键展示
 
-键盘快捷键 — Chaos UI 的通用基础组件。
+键盘快捷键展示组件，渲染格式化的快捷键提示，可附带描述文本。
 
 ## 何时使用
 
-需要键盘快捷键功能时使用本组件。
+在界面中展示快捷键提示时使用，如设置页面、帮助文档、命令面板。
 
 ## 代码示例
 
@@ -18,45 +18,39 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut"
 
 export function Basic() {
-  return <KeyboardShortcut>Default</KeyboardShortcut>
+  return <KeyboardShortcut keys={["Ctrl", "K"]} description="Open command palette" />
 }`} lang="tsx" />
 
-### 尺寸
+### 多个快捷键
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <KeyboardShortcut size="sm">Sm</KeyboardShortcut>
-  <KeyboardShortcut size="default">Default</KeyboardShortcut>
-  <KeyboardShortcut size="lg">Lg</KeyboardShortcut>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { KeyboardShortcut } from "@/components/ui/keyboard-shortcut"
 
-## 样式变体
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+export function Multiple() {
+  return (
+    <div className="flex flex-col gap-2">
+      <KeyboardShortcut keys={["Ctrl", "N"]} description="New file" />
+      <KeyboardShortcut keys={["Ctrl", "S"]} description="Save" />
+      <KeyboardShortcut keys={["Ctrl", "Shift", "Z"]} description="Redo" />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### KeyboardShortcut
 
-| Prop        | Type                          | Default | 说明                   |
-| ----------- | ----------------------------- | ------- | ---------------------- |
-| `className` | `string`                      | —       | 自定义样式类名         |
-| `keys`      | `string \| string[]`          | —       | The keys to display    |
-| `separator` | `string`                      | `+`     | Separator between keys |
-| ...rest     | `React.ComponentProps<"kbd">` | —       | 透传 `<kbd>` 原生属性  |
+| Prop | Type | Default | 说明 |
+| ------------- | ----------------------------- | ------------ | ----------------------------------------------------------- |
+| `keys`        | `string[]`                    | —            | Key combination / 按键组合 (required)                       |
+| `description` | `string`                      | —            | Description text / 描述文本                                 |
+| `layout`      | `"horizontal" \| "vertical"`  | `horizontal` | Layout / 布局                                               |
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<kbd>` 原生 HTML 属性。
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **基于 Kbd 组件**: 内部使用 `Kbd` 和 `KbdGroup` 组件渲染按键。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboard-shortcut--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-keyboardshortcut--docs)。
+

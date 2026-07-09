@@ -1,0 +1,42 @@
+import { ChatThinkingBlock } from "@/components/business/chat-thinking-block"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatThinkingBlock Chat Thinking Block
+
+> Domain-specific business components for ERP scenarios.
+
+ChatThinkingBlock — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a chat thinking block.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatThinkingBlock } from "@/components/business/chat-thinking-block"
+
+export function Basic() {
+  return <ChatThinkingBlock />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatThinkingBlock
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `content` | `string` | — | Content |
+| `duration` | `number` | — | Duration in milliseconds |
+| `collapsed` | `boolean` | `false` |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

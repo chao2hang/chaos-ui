@@ -24,7 +24,7 @@ interface CommentThreadProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function CommentThread({
-  comments,
+  comments = [],
   onReply,
   onReact,
   className,

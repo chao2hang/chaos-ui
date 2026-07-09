@@ -1,5 +1,5 @@
-import { MasterDetailTabs } from "@/components/layout/master-detail-tabs";
-import { CodeBlock } from "@/components/code-block";
+import { MasterDetailTabs } from "@/components/layout/master-detail-tabs"
+import { CodeBlock } from "@/components/code-block"
 
 # MasterDetailTabs 主次标签布局
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要主次标签布局功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,22 +22,24 @@ export function Basic() {
   return <MasterDetailTabs />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MasterDetailTabs
 
-| Prop               | Type                          | Default | 说明                  |
-| ------------------ | ----------------------------- | ------- | --------------------- |
-| `className`        | `string`                      | —       | 自定义样式类名        |
-| `items`            | `MasterDetailTabItem[]`       | —       | 选项/数据项列表       |
-| `activeKey`        | `string`                      | —       |                       |
-| `defaultActiveKey` | `string`                      | —       |                       |
-| `onChange`         | `() => void`                  | —       | 值变化回调            |
-| ...rest            | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `items` | `MasterDetailTabItem[]` | — | 选项/数据项列表 |
+| `activeKey` | `string` | — |  |
+| `defaultActiveKey` | `string` | — |  |
+| `onChange` | `() => void` | — | 值变化回调 |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-master-detail-tabs--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-masterdetailtabs--docs)。
+

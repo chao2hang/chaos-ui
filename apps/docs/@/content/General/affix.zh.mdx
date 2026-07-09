@@ -1,5 +1,5 @@
-import { Affix } from "@/components/ui/affix";
-import { CodeBlock } from "@/components/code-block";
+import { Affix } from "@/components/ui/affix"
+import { CodeBlock } from "@/components/code-block"
 
 # Affix 固钉
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要固钉功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,29 +22,30 @@ export function Basic() {
   return <Affix />
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **position**
 
-| position       | 说明 | 默认 |
-| -------------- | ---- | ---- |
-| `top`          |      |      |
-| `bottom`       |      |      |
-| `top-start`    |      |      |
-| `top-end`      |      |      |
-| `bottom-start` |      |      |
-| `bottom-end`   |      | ✓    |
+| position | 说明 | 默认 |
+|---|---|---|
+| `top` |  |  |
+| `bottom` |  |  |
+| `top-start` |  |  |
+| `top-end` |  |  |
+| `bottom-start` |  |  |
+| `bottom-end` |  | ✓ |
 
 ## API / Props
 
 ### Affix
 
-| Prop        | Type                          | Default | 说明                                      |
-| ----------- | ----------------------------- | ------- | ----------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名                            |
-| `offset`    | `number`                      | `0`     | Offset from the target position in pixels |
-| `target`    | `(...args) => unknown`        | —       | Target container ref to observe scroll    |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                     |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `offset` | `number` | `0` | Offset from the target position in pixels |
+| `target` | `(...args) => unknown` | — | Target container ref to observe scroll |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -52,3 +54,4 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-affix--docs)。
+

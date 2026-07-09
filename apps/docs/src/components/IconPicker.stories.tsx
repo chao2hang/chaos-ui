@@ -11,13 +11,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    searchPlaceholder: "Select an icon",
-    icons: {
-      smile: "😊",
-      heart: "❤️",
-      star: "⭐",
-      fire: "🔥",
-      thumbsUp: "👍",
-    },
-  },
+    icons: [
+      { id: "smile", label: "😊" },
+      { id: "heart", label: "❤️" },
+      { id: "star", label: "⭐" },
+      { id: "fire", label: "🔥" },
+      { id: "thumbsUp", label: "👍" },
+    ],
+  } as any,
 };

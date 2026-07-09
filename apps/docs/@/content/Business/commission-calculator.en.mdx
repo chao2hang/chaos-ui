@@ -1,0 +1,45 @@
+import { CommissionCalculator } from "@/components/business/commission-calculator"
+import { CodeBlock } from "@/components/code-block"
+
+# CommissionCalculator Commission Calculator
+
+> Domain-specific business components for ERP scenarios.
+
+CommissionCalculator — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a commission calculator.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { CommissionCalculator } from "@/components/business/commission-calculator"
+
+export function Basic() {
+  return <CommissionCalculator />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### CommissionCalculator
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `tiers` | `CommissionTier[]` | — | Commission tier structure. |
+| `deals` | `CommissionDeal[]` | — | Sales deals. |
+| `quota` | `number` | — | Quota for multiplier. If met, bonus rate applies. |
+| `quotaBonusRate` | `number` | `0` | Bonus rate when quota is met. |
+| `currencySymbol` | `string` | `¥` | Currency symbol. |
+| `onDealsChange` | `() => void` | — | On deals change. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

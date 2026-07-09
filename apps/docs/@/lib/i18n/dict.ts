@@ -78,6 +78,21 @@ export interface DictShape {
   card: {
     browseStorybook: string;
   };
+  sidebar: {
+    searchPlaceholder: string;
+    collapseAll: string;
+    expandAll: string;
+    toggleLabel: string;
+  };
+  palette: {
+    searchPlaceholder: string;
+    noResults: string;
+    hint: string;
+  };
+  businessSub: {
+    collapse: string;
+    expand: string;
+  };
 }
 
 const zh: DictShape = {
@@ -155,6 +170,21 @@ const zh: DictShape = {
   },
   card: {
     browseStorybook: "在 Storybook 中浏览",
+  },
+  sidebar: {
+    searchPlaceholder: "筛选组件…",
+    collapseAll: "全部折叠",
+    expandAll: "全部展开",
+    toggleLabel: "切换侧边栏",
+  },
+  palette: {
+    searchPlaceholder: "搜索组件…",
+    noResults: "无匹配结果",
+    hint: "↑↓ 导航  ↵ 跳转  Esc 关闭",
+  },
+  businessSub: {
+    collapse: "折叠",
+    expand: "展开",
   },
 };
 
@@ -235,6 +265,21 @@ const en: DictShape = {
   },
   card: {
     browseStorybook: "Browse in Storybook",
+  },
+  sidebar: {
+    searchPlaceholder: "Filter components…",
+    collapseAll: "Collapse all",
+    expandAll: "Expand all",
+    toggleLabel: "Toggle sidebar",
+  },
+  palette: {
+    searchPlaceholder: "Search components…",
+    noResults: "No results",
+    hint: "↑↓ navigate  ↵ open  Esc close",
+  },
+  businessSub: {
+    collapse: "Collapse",
+    expand: "Expand",
   },
 };
 

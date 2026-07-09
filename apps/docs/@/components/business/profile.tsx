@@ -196,7 +196,7 @@ interface ProfileFormProps extends Omit<
 }
 
 export function ProfileForm({
-  fields,
+  fields = [],
   onSubmit,
   submitLabel = "保存",
   className,

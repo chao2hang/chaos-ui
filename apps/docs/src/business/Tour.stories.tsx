@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Tour, type TourStep } from "@/components/business/tour"
+import { Tour, type TourStep } from "@/components/ui/tour"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 

@@ -134,7 +134,7 @@ export default function RootLayout({ children }) {
 - **入口**: `/components` — 8 分区搜索总览，卡片式跳转
 - **详情页**: `/components/[category]/[slug]` — 基于 MDX 的组件文档 + 实时预览（Storybook 驱动）
 - **预览覆盖**: 331/331 组件，**100%** 有实时预览（Story 或手写 Demo）
-- **启动**: `npm run dev`，访问 `http://localhost:8080`
+- **启动**: `npm run dev`，访问 `http://localhost:3001`
 - **Storybook**: 独立运行于 `http://localhost:3002`，使用 `npm run storybook` 启动
 
 ## 组件清单
@@ -156,7 +156,7 @@ export default function RootLayout({ children }) {
 ## 开发
 
 ```bash
-# 启动组件官网 (Next.js + 反向代理, 端口 8080)
+# 启动组件官网 (Next.js, 端口 3001)
 npm run dev
 
 	# 独立启动 Storybook (端口 3002)
@@ -187,21 +187,17 @@ pnpm run format
 
 Docker 镜像托管在 **GitHub Container Registry**：`ghcr.io/chao2hang/chaos-ui`。推 `main` 分支时自动构建。
 
-容器内运行双服务：反向代理 + Next.js 展示站，同时通过 `serve` 提供 Storybook 静态文件：
+容器内运行 Next.js 展示站，同时通过 `serve` 提供 Storybook 静态文件：
 
 ```
                     容器内部
                 ┌──────────────────┐
                 │                  │
-    :8080 ────►│  proxy-server    │
-                │    (Node.js)     │
-                │       │          │
-                │       ▼          │
-	                │   Next.js        │
-	                │   :3001           │
-	                └──────────────────┘
+    :3001 ────►│   Next.js        │
+                │   :3001          │
+                └──────────────────┘
 
-	    :3002 ────►│  serve           │
+    :3002 ────►│  serve           │
                 │  storybook-static│
                 └──────────────────┘
 ```
@@ -217,12 +213,12 @@ docker build -t ghcr.io/chao2hang/chaos-ui:latest .
 ```bash
 docker run -d \
   --name chaos-ui \
-  -p 8080:8080 \
+  -p 3001:3001 \
   -p 3002:3002 \
   chaos-ui:latest
 
 # 访问
-#   http://localhost:8080             → Next.js 展示站
+#   http://localhost:3001             → Next.js 展示站
 #   http://localhost:3002             → Storybook 组件库
 ```
 
@@ -239,7 +235,7 @@ docker compose up -d --build
 DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d
 ```
 
-端口可通过环境变量 `DOCS_PORT`（默认 `8080`）和 `STORYBOOK_PORT`（默认 `3002`）配置。
+端口可通过环境变量 `DOCS_PORT`（默认 `3001`）和 `STORYBOOK_PORT`（默认 `3002`）配置。
 
 ### GitHub Actions Release
 

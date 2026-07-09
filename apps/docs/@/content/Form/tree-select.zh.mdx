@@ -1,5 +1,5 @@
-import { TreeSelect } from "@/components/ui/tree-select";
-import { CodeBlock } from "@/components/code-block";
+import { TreeSelect } from "@/components/ui/tree-select"
+import { CodeBlock } from "@/components/code-block"
 
 # TreeSelect 树选择
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 在树形层级结构中选择节点。
+
 
 ## 代码示例
 
@@ -23,31 +24,30 @@ export function Basic() {
 
 ### 状态
 
-<CodeBlock
-  code={`<TreeSelect>Normal</TreeSelect>
-<TreeSelect disabled>Disabled</TreeSelect>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<TreeSelect>Normal</TreeSelect>
+<TreeSelect disabled>Disabled</TreeSelect>`} lang="tsx" />
+
 
 ## API / Props
 
 ### TreeSelect
 
-| Prop           | Type                   | Default     | 说明              |
-| -------------- | ---------------------- | ----------- | ----------------- |
-| `className`    | `string`               | —           | 自定义样式类名    |
-| `value`        | `string \| string[]`   | —           | 当前值(受控)      |
-| `defaultValue` | `string \| string[]`   | —           | 默认值(非受控)    |
-| `placeholder`  | `string`               | `Select...` | 占位文本          |
-| `disabled`     | `boolean`              | —           | 是否禁用          |
-| `multiple`     | `boolean`              | `false`     | 是否多选          |
-| `maxCount`     | `number`               | —           |                   |
-| `data`         | `TreeNode[]`           | —           | 数据源            |
-| `onChange`     | `() => void`           | —           | 值变化回调        |
-| ...rest        | `React.HTMLAttributes` | —           | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `value` | `string \| string[]` | — | 当前值(受控) |
+| `defaultValue` | `string \| string[]` | — | 默认值(非受控) |
+| `placeholder` | `string` | `Select...` | 占位文本 |
+| `disabled` | `boolean` | — | 是否禁用 |
+| `multiple` | `boolean` | `false` | 是否多选 |
+| `maxCount` | `number` | — |  |
+| `data` | `TreeNode[]` | — | 数据源 |
+| `onChange` | `() => void` | — | 值变化回调 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-tree-select--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-treeselect--docs)。
+

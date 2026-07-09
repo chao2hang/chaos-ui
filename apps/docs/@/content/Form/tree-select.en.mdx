@@ -1,5 +1,5 @@
-import { TreeSelect } from "@/components/ui/tree-select";
-import { CodeBlock } from "@/components/code-block";
+import { TreeSelect } from "@/components/ui/tree-select"
+import { CodeBlock } from "@/components/code-block"
 
 # TreeSelect
 
@@ -10,6 +10,7 @@ Select from tree-structured data; supports single/multi-select and search.
 ## When to Use
 
 Select a node from a hierarchical tree structure.
+
 
 ## Examples
 
@@ -23,29 +24,29 @@ export function Basic() {
 
 ### States
 
-<CodeBlock
-  code={`<TreeSelect>Normal</TreeSelect>
-<TreeSelect disabled>Disabled</TreeSelect>`}
-  lang="tsx"
-/>
+<CodeBlock code={`<TreeSelect>Normal</TreeSelect>
+<TreeSelect disabled>Disabled</TreeSelect>`} lang="tsx" />
+
 
 ## API / Props
 
 ### TreeSelect
 
-| Prop           | Type                   | Default     | Description                       |
-| -------------- | ---------------------- | ----------- | --------------------------------- |
-| `className`    | `string`               | —           | Custom CSS class                  |
-| `value`        | `string \| string[]`   | —           | Current value (controlled)        |
-| `defaultValue` | `string \| string[]`   | —           | Default value (uncontrolled)      |
-| `placeholder`  | `string`               | `Select...` | Placeholder text                  |
-| `disabled`     | `boolean`              | —           | Whether disabled                  |
-| `multiple`     | `boolean`              | `false`     | Multiple selection                |
-| `maxCount`     | `number`               | —           |                                   |
-| `data`         | `TreeNode[]`           | —           | Data source                       |
-| `onChange`     | `() => void`           | —           | Callback when value changes       |
-| ...rest        | `React.HTMLAttributes` | —           | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string \| string[]` | — | Current value (controlled) |
+| `defaultValue` | `string \| string[]` | — | Default value (uncontrolled) |
+| `placeholder` | `string` | `Select...` | Placeholder text |
+| `disabled` | `boolean` | — | Whether disabled |
+| `multiple` | `boolean` | `false` | Multiple selection |
+| `maxCount` | `number` | — |  |
+| `data` | `TreeNode[]` | — | Data source |
+| `onChange` | `() => void` | — | Callback when value changes |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

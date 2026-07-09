@@ -1,5 +1,5 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import {
   ResponsiveContainer,
   BarChart as RechartsBarChart,
@@ -9,14 +9,14 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts"
-import { ChartTooltip } from "./shared/chart-tooltip"
-import { ChartLegend } from "./shared/chart-legend"
-import { ChartFrame } from "./chart-frame"
-import { PALETTE, type BaseChartProps } from "./types"
+} from "recharts";
+import { ChartTooltip } from "./shared/chart-tooltip";
+import { ChartLegend } from "./shared/chart-legend";
+import { ChartFrame } from "./chart-frame";
+import { PALETTE, type BaseChartProps } from "./types";
 
 export function BarChart({
-  data,
+  data = [],
   xKey = "x",
   yKey = "y",
   series,
@@ -32,7 +32,7 @@ export function BarChart({
   enableFullscreen,
   className,
 }: BaseChartProps & { layout?: "horizontal" | "vertical"; stacked?: boolean }) {
-  const keys = series?.map((s) => s.key) ?? [yKey]
+  const keys = series?.map((s) => s.key) ?? [yKey];
   return (
     <ChartFrame
       data={data}
@@ -49,15 +49,31 @@ export function BarChart({
           layout={layout === "vertical" ? "vertical" : "horizontal"}
           margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
         >
-          {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />}
+          {showGrid && (
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          )}
           {layout === "vertical" ? (
             <>
-              <XAxis type="number" stroke="var(--muted-foreground)" fontSize={12} />
-              <YAxis type="category" dataKey={xKey} stroke="var(--muted-foreground)" fontSize={12} width={80} />
+              <XAxis
+                type="number"
+                stroke="var(--muted-foreground)"
+                fontSize={12}
+              />
+              <YAxis
+                type="category"
+                dataKey={xKey}
+                stroke="var(--muted-foreground)"
+                fontSize={12}
+                width={80}
+              />
             </>
           ) : (
             <>
-              <XAxis dataKey={xKey} stroke="var(--muted-foreground)" fontSize={12} />
+              <XAxis
+                dataKey={xKey}
+                stroke="var(--muted-foreground)"
+                fontSize={12}
+              />
               <YAxis stroke="var(--muted-foreground)" fontSize={12} />
             </>
           )}
@@ -76,5 +92,5 @@ export function BarChart({
         </RechartsBarChart>
       </ResponsiveContainer>
     </ChartFrame>
-  )
+  );
 }

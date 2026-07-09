@@ -1,8 +1,9 @@
 "use client";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
-interface HeatmapCalendarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface HeatmapCalendarProps extends React.ComponentProps<"div"> {
   data: Array<{ date: string | Date; value: number }>;
   startDate?: Date;
   endDate?: Date;
@@ -53,6 +54,15 @@ function buildMatrix(
   return map;
 }
 
+/**
+ * @component HeatmapCalendar
+ * @category business/charts
+ * @since 0.2.0
+ * @description GitHub-style heatmap calendar chart for visualizing daily activity data with configurable color stops / GitHub 风格的热力日历图，用于可视化每日活动数据，支持自定义颜色阶梯
+ * @keywords heatmap, calendar, chart, contribution, daily, activity
+ * @example
+ * <HeatmapCalendar data={[{ date: "2025-01-01", value: 5 }]} />
+ */
 export function HeatmapCalendar({
   data,
   startDate,
@@ -65,6 +75,7 @@ export function HeatmapCalendar({
   showLegend = true,
   colorStops,
 }: HeatmapCalendarProps) {
+  const { t } = useTranslation("chart");
   const [now] = React.useState(() => Date.now());
   const start = startOfDay(
     startDate ?? new Date(now - 365 * 24 * 60 * 60 * 1000),
@@ -115,18 +126,36 @@ export function HeatmapCalendar({
       if (month !== lastMonth && m.day === weekStartsOn) {
         labels.push({
           x: m.week * (cellSize + gap),
-          label: `${m.date.getMonth() + 1}月`,
+          label: t("heatmapCalendar.monthLabel", {
+            count: m.date.getMonth() + 1,
+          }),
         });
         lastMonth = month;
       }
     });
     return labels;
-  }, [matrix, cellSize, gap, weekStartsOn]);
+  }, [matrix, cellSize, gap, weekStartsOn, t]);
 
   const dayLabels =
     weekStartsOn === 0
-      ? ["", "一", "", "三", "", "五", ""]
-      : ["日", "", "二", "", "四", "", "六"];
+      ? [
+          "",
+          t("heatmapCalendar.day.mon"),
+          "",
+          t("heatmapCalendar.day.wed"),
+          "",
+          t("heatmapCalendar.day.fri"),
+          "",
+        ]
+      : [
+          t("heatmapCalendar.day.sun"),
+          "",
+          t("heatmapCalendar.day.tue"),
+          "",
+          t("heatmapCalendar.day.thu"),
+          "",
+          t("heatmapCalendar.day.sat"),
+        ];
 
   return (
     <div
@@ -145,7 +174,7 @@ export function HeatmapCalendar({
     >
       <div className="flex" style={{ gap }}>
         <div
-          className="text-muted-foreground flex flex-col text-[0.6rem]"
+          className="flex flex-col text-[0.6rem] text-muted-foreground"
           style={{ gap, paddingTop: cellSize + gap + 4 }}
         >
           {dayLabels.map((d, i) => (
@@ -158,7 +187,7 @@ export function HeatmapCalendar({
           ))}
         </div>
         <div className="flex-1">
-          <div className="text-muted-foreground relative mb-1 h-4 text-[0.6rem]">
+          <div className="relative mb-1 h-4 text-[0.6rem] text-muted-foreground">
             {monthLabels.map((m, i) => (
               <span key={i} className="absolute" style={{ left: m.x }}>
                 {m.label}
@@ -192,8 +221,8 @@ export function HeatmapCalendar({
         </div>
       </div>
       {showLegend && (
-        <div className="text-muted-foreground mt-2 flex items-center justify-end gap-1 text-[0.6rem]">
-          <span>少</span>
+        <div className="mt-2 flex items-center justify-end gap-1 text-[0.6rem] text-muted-foreground">
+          <span>{t("heatmapCalendar.less")}</span>
           {Array.from({ length: levels }).map((_, i) => (
             <span
               key={i}
@@ -205,7 +234,7 @@ export function HeatmapCalendar({
               }}
             />
           ))}
-          <span>多</span>
+          <span>{t("heatmapCalendar.more")}</span>
         </div>
       )}
     </div>

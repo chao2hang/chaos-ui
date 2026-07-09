@@ -349,7 +349,7 @@ import { MarkdownEditor } from "@/components/business/markdown-editor";
 import { MarketingActivityForm } from "@/components/business/marketing-activity-form";
 import { MasterEditTemplate } from "@/components/business/master-edit-template";
 import { MasterListTemplate } from "@/components/business/master-list-template";
-import { MediaRecorderComponent as MediaRecorder } from "@/components/business/media-recorder";
+import { MediaRecorder } from "@/components/business/media-recorder";
 import { MeetingRoomBooking } from "@/components/business/meeting-room-booking";
 import { MessageList } from "@/components/business/message-list";
 import { MetricTrend } from "@/components/business/metric-trend";
@@ -598,7 +598,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Transfer,
   TreeSelect,
   TreeView,
-  Typography,
+  Typography: Typography as any,
   UserBrowse,
   VideoPlayer,
   VirtualList,

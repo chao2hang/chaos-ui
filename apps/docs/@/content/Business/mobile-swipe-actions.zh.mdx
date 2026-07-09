@@ -1,5 +1,5 @@
-import { SwipeActions } from "@/components/business/mobile-swipe-actions";
-import { CodeBlock } from "@/components/code-block";
+import { SwipeActions } from "@/components/mobile/mobile-swipe-actions"
+import { CodeBlock } from "@/components/code-block"
 
 # MobileSwipeActions 移动端滑动操作
 
@@ -11,36 +11,43 @@ import { CodeBlock } from "@/components/code-block";
 
 需要移动端滑动操作功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { SwipeActions } from "@/components/business/mobile-swipe-actions"
+<CodeBlock code={`import { SwipeActions } from "@/components/mobile/mobile-swipe-actions"
 
 export function Basic() {
   return <SwipeActions />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### SwipeActions
 
-| Prop           | Type                          | Default | 说明                  |
-| -------------- | ----------------------------- | ------- | --------------------- |
-| `className`    | `string`                      | —       | 自定义样式类名        |
-| `onSwipeLeft`  | `() => void`                  | —       |                       |
-| `onSwipeRight` | `() => void`                  | —       |                       |
-| `onSwipeUp`    | `() => void`                  | —       |                       |
-| `onSwipeDown`  | `() => void`                  | —       |                       |
-| `threshold`    | `number`                      | `80`    |                       |
-| `disabled`     | `boolean`                     | —       | 是否禁用              |
-| `leftAction`   | `() => void`                  | —       |                       |
-| `rightAction`  | `() => void`                  | —       |                       |
-| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `onSwipeLeft` | `() => void` | — |  |
+| `onSwipeRight` | `() => void` | — |  |
+| `onSwipeUp` | `() => void` | — |  |
+| `onSwipeDown` | `() => void` | — |  |
+| `threshold` | `number` | `80` |  |
+| `disabled` | `boolean` | — | 是否禁用 |
+| `leftAction` | `{` | — |  |
+| `label` | `string` | — | 标签文本 |
+| `color` | `string` | — | 颜色主题 |
+| `onClick` | `() => void` | — | 点击回调 |
+| `icon` | `React.ReactNode` | — | 图标元素 |
+| `rightAction` | `{` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-swipe-actions--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobileswipeactions--docs)。
+

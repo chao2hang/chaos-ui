@@ -1,0 +1,43 @@
+import { OaBridge } from "@/components/business/oa-bridge"
+import { CodeBlock } from "@/components/code-block"
+
+# OaBridge Oa Bridge
+
+> Domain-specific business components for ERP scenarios.
+
+<OaBridge billId="EXP-2026-001" billType="报销单" onSubmit={async (id) => {}} />
+OaBridge — oa bridge component.
+
+## When to Use
+
+Use when you need an oa bridge.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { OaBridge } from "@/components/business/oa-bridge"
+
+export function Basic() {
+  return <OaBridge />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### OaBridge
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `billId` | `string` | — |  |
+| `billType` | `string` | — |  |
+| `onSubmit` | `() => void` | — | Submit handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

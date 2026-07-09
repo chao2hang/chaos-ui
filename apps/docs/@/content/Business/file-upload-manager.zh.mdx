@@ -1,5 +1,5 @@
-import { FileUploadManager } from "@/components/business/file-upload-manager";
-import { CodeBlock } from "@/components/code-block";
+import { FileUploadManager } from "@/components/business/file-upload-manager"
+import { CodeBlock } from "@/components/code-block"
 
 # FileUploadManager 文件上传管理器
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要文件上传管理器功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,22 +22,24 @@ export function Basic() {
   return <FileUploadManager />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### FileUploadManager
 
-| Prop            | Type                       | Default | 说明              |
-| --------------- | -------------------------- | ------- | ----------------- |
-| `className`     | `string`                   | —       | 自定义样式类名    |
-| `files`         | `FileInfo[]`               | —       |                   |
-| `onFilesChange` | `() => void`               | —       |                   |
-| `accept`        | `Record<string, string[]>` | —       |                   |
-| `maxFiles`      | `number`                   | `10`    |                   |
-| `maxSize`       | `number`                   | —       |                   |
-| ...rest         | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `files` | `FileInfo[]` | — |  |
+| `onFilesChange` | `() => void` | — |  |
+| `accept` | `Record<string, string[]>` | — |  |
+| `maxFiles` | `number` | `10` |  |
+| `maxSize` | `number` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-file-upload-manager--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-fileuploadmanager--docs)。
+

@@ -1,162 +1,173 @@
 "use client";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Stepper } from "@/components/ui/stepper";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  UploadIcon,
-  FileSpreadsheetIcon,
-  CheckIcon,
-  XIcon,
-} from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-interface BulkImportWizardProps extends React.HTMLAttributes<HTMLDivElement> {
-  onImport?: (data: Record<string, string>[]) => void;
-  onCancel?: () => void;
-  className?: string;
+import * as React from "react";
+import {
+  CheckCircle2Icon,
+  FileSpreadsheetIcon,
+  UploadIcon,
+} from "@/components/ui/icons";
+
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { Progress } from "@/components/ui";
+import { Step, Stepper } from "@/components/ui";
+import { cn } from "@/lib/utils";
+
+export type BulkImportStep = "upload" | "mapping" | "validation" | "complete";
+
+export interface BulkImportValidationRow {
+  row: number;
+  status: "valid" | "warning" | "error";
+  message: string;
 }
 
-const SAMPLE_DATA = [
-  { name: "张三", email: "zhangsan@example.com", department: "技术部" },
-  { name: "李四", email: "lisi@example.com", department: "市场部" },
-];
+export interface BulkImportWizardProps extends React.ComponentProps<"div"> {
+  step?: BulkImportStep;
+  filename?: string;
+  progress?: number;
+  mappings?: Array<{ source: string; target: string }>;
+  validationRows?: BulkImportValidationRow[];
+  importedCount?: number;
+  onUpload?: () => void;
+  onContinue?: () => void;
+}
 
-function BulkImportWizard({
-  onImport,
-  onCancel,
+const stepIndex: Record<BulkImportStep, number> = {
+  upload: 0,
+  mapping: 1,
+  validation: 2,
+  complete: 3,
+};
+
+/**
+ * @component BulkImportWizard
+ * @category business/ux
+ * @since 0.2.0
+ * @description Multi-step import wizard with upload, field mapping, validation preview, and completion steps / 多步骤批量导入向导，包含上传、字段映射、校验和完成步骤
+ * @keywords import, bulk, wizard, upload, mapping, validation
+ * @example
+ * <BulkImportWizard step="upload" onUpload={() => {}} onContinue={() => {}} />
+ */
+export function BulkImportWizard({
+  step = "upload",
+  filename,
+  progress = 0,
+  mappings = [],
+  validationRows = [],
+  importedCount,
+  onUpload,
+  onContinue,
   className,
   ...props
 }: BulkImportWizardProps) {
-  const [step, setStep] = React.useState(0);
-  const [file, setFile] = React.useState<File | null>(null);
-  const [preview, setPreview] = React.useState<Record<string, string>[]>([]);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (f) {
-      setFile(f);
-      setPreview(SAMPLE_DATA);
-      setStep(1);
-    }
-  };
-
+  const { t } = useTranslation("upload");
   return (
     <div
       data-slot="bulk-import-wizard"
-      className={cn("space-y-6", className)}
+      className={cn("space-y-6 rounded-lg border p-6", className)}
       {...props}
     >
-      <Stepper
-        steps={["上传文件", "预览数据", "确认导入"]}
-        current={step}
-        className="mx-auto w-full max-w-lg"
-      />
-      {step === 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">上传文件</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center gap-4 py-8">
-            <div className="bg-muted flex size-20 items-center justify-center rounded-full">
-              <UploadIcon className="text-muted-foreground size-8" />
-            </div>
-            <p className="text-muted-foreground text-sm">
-              拖拽文件到此处，或点击选择文件
+      <Stepper activeStep={stepIndex[step]}>
+        <Step>{t("bulkImportWizard.upload")}</Step>
+        <Step>{t("bulkImportWizard.mapFields")}</Step>
+        <Step>{t("bulkImportWizard.validate")}</Step>
+        <Step>{t("bulkImportWizard.complete")}</Step>
+      </Stepper>
+
+      {step === "upload" && (
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed p-8 text-center">
+          <UploadIcon className="text-muted-foreground size-8" />
+          <div>
+            <p className="text-sm font-medium">
+              {t("bulkImportWizard.uploadTitle")}
             </p>
             <p className="text-muted-foreground text-xs">
-              支持 .xlsx, .csv 格式
+              {t("bulkImportWizard.uploadDescription")}
             </p>
-            <Input
-              type="file"
-              accept=".xlsx,.csv"
-              onChange={handleFileChange}
-              className="max-w-xs"
-            />
-          </CardContent>
-        </Card>
+          </div>
+          <Button type="button" onClick={onUpload}>
+            {t("bulkImportWizard.selectFile")}
+          </Button>
+        </div>
       )}
-      {step === 1 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">
-              预览数据 ({preview.length} 条记录)
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  {Object.keys(preview[0] ?? {}).map((k) => (
-                    <TableHead key={k}>{k}</TableHead>
-                  ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {preview.map((row, i) => (
-                  <TableRow key={i}>
-                    {Object.values(row).map((v, j) => (
-                      <TableCell key={j}>{v}</TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+
+      {step === "mapping" && (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-sm">
+            <FileSpreadsheetIcon className="text-muted-foreground size-4" />
+            <span>{filename ?? "audience-import.csv"}</span>
+          </div>
+          <div className="grid gap-2">
+            {mappings.map((mapping) => (
+              <div
+                key={`${mapping.source}-${mapping.target}`}
+                className="flex items-center justify-between rounded-md border p-3 text-sm"
+              >
+                <span>{mapping.source}</span>
+                <span className="text-muted-foreground">
+                  {t("bulkImportWizard.mapsTo")}
+                </span>
+                <Badge variant="outline">{mapping.target}</Badge>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
-      {step === 2 && (
-        <Card>
-          <CardContent className="flex flex-col items-center gap-4 py-12">
-            <div className="bg-success/10 flex size-16 items-center justify-center rounded-full">
-              <CheckIcon className="text-success size-8" />
-            </div>
-            <p className="text-lg font-medium">导入完成</p>
-            <p className="text-muted-foreground text-sm">
-              共导入 {preview.length} 条记录
+
+      {step === "validation" && (
+        <div className="space-y-3">
+          <Progress value={progress} />
+          <div className="divide-y rounded-lg border">
+            {validationRows.map((row) => (
+              <div
+                key={`${row.row}-${row.message}`}
+                className="flex items-center justify-between gap-3 p-3 text-sm"
+              >
+                <span>Row {row.row}</span>
+                <span className="text-muted-foreground flex-1">
+                  {row.message}
+                </span>
+                <Badge
+                  variant={
+                    row.status === "error"
+                      ? "destructive"
+                      : row.status === "warning"
+                        ? "secondary"
+                        : "default"
+                  }
+                >
+                  {row.status}
+                </Badge>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {step === "complete" && (
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg border p-8 text-center">
+          <CheckCircle2Icon className="text-success size-10" />
+          <div>
+            <p className="text-sm font-medium">
+              {t("bulkImportWizard.importComplete")}
             </p>
-          </CardContent>
-        </Card>
+            <p className="text-muted-foreground text-xs">
+              {t("bulkImportWizard.recordsImported", {
+                count: importedCount ?? 0,
+              })}
+            </p>
+          </div>
+        </div>
       )}
-      <div className="flex justify-end gap-3">
-        {step > 0 && step < 2 && (
-          <Button variant="outline" onClick={() => setStep((s) => s - 1)}>
-            上一步
+
+      {step !== "complete" && (
+        <div className="flex justify-end">
+          <Button type="button" onClick={onContinue}>
+            {t("bulkImportWizard.continue")}
           </Button>
-        )}
-        {step === 0 && (
-          <Button variant="outline" onClick={onCancel}>
-            取消
-          </Button>
-        )}
-        {step === 1 && (
-          <Button
-            onClick={() => {
-              setStep(2);
-              onImport?.(preview);
-            }}
-          >
-            确认导入
-          </Button>
-        )}
-        {step === 2 && (
-          <Button variant="outline" onClick={onCancel}>
-            关闭
-          </Button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
-
-export { BulkImportWizard };
-export type { BulkImportWizardProps };

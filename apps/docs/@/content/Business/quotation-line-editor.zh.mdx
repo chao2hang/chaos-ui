@@ -1,0 +1,47 @@
+import { QuotationLineEditor } from "@/components/business/quotation-line-editor"
+import { CodeBlock } from "@/components/code-block"
+
+# QuotationLineEditor Quotation Line Editor
+
+> 业务组件
+
+Quotation Line Editor — 面向 ERP/企业场景的业务组件。
+
+## 何时使用
+
+适用于Quotation Line Editor相关场景。
+
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { QuotationLineEditor } from "@/components/business/quotation-line-editor"
+
+export function Basic() {
+  return <QuotationLineEditor />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### QuotationLineEditor
+
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `quoteNo` | `string` | — | Quote number. |
+| `lines` | `QuotationLine[]` | — | Line items. |
+| `onLinesChange` | `() => void` | — | Lines change callback. |
+| `currencySymbol` | `string` | `¥` | Currency symbol. |
+| `onSubmit` | `() => void` | — | Submit handler. |
+| `onCancel` | `() => void` | — | Cancel handler. |
+| `readOnly` | `boolean` | `false` | Read-only mode. |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-quotationlineeditor--docs)。
+

@@ -1,102 +1,119 @@
-"use client";
-import * as React from "react";
+import { TrophyIcon } from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui";
+import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { TrendingUpIcon, TrendingDownIcon, MinusIcon } from "lucide-react";
 
-interface ExperimentSummaryProps extends React.ComponentProps<typeof Card> {
+export interface ExperimentVariant {
+  id: string;
   name: string;
-  controlRate: number;
-  variantRate: number;
-  metric?: string;
-  confidence?: number;
-  status?: "running" | "completed" | "stopped";
+  sampleSize: number;
+  conversionRate: number;
+  lift?: number;
+  winner?: boolean;
 }
 
-function ExperimentSummary({
-  name,
-  controlRate,
-  variantRate,
-  metric = "转化率",
-  confidence = 95,
-  status = "running",
-  className,
-  ...props
-}: ExperimentSummaryProps) {
-  const lift =
-    controlRate > 0 ? ((variantRate - controlRate) / controlRate) * 100 : 0;
-  const isSignificant = confidence >= 95;
-  const liftLabel = lift >= 0 ? `+${lift.toFixed(1)}%` : `${lift.toFixed(1)}%`;
+export interface ExperimentSummaryProps {
+  name: string;
+  status?: "draft" | "running" | "completed";
+  hypothesis?: string;
+  variants: ExperimentVariant[];
+  primaryMetric?: string;
+  className?: string;
+}
 
+/**
+ * @component ExperimentSummary
+ * @category business/dashboard
+ * @since 0.2.0
+ * @description A/B experiment summary card showing variant comparison with conversion rates, lift, and winner badges / A/B 实验摘要卡片，展示变体对比、转化率、提升幅度及优胜标记
+ * @keywords experiment, ab-test, variant, conversion, summary
+ * @example
+ * <ExperimentSummary name="Homepage Test" variants={[{ id: "a", name: "Control", sampleSize: 1000, conversionRate: 3.2 }]} />
+ */
+export function ExperimentSummary({
+  name,
+  status = "running",
+  hypothesis,
+  variants,
+  primaryMetric,
+  className,
+}: ExperimentSummaryProps) {
+  const { t } = useTranslation("marketing");
+  const resolvedMetric = primaryMetric ?? t("experimentSummary.primaryMetric");
   return (
-    <Card data-slot="experiment-summary" className={className} {...props}>
-      <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-base">{name}</CardTitle>
-          <Badge
-            variant={status === "running" ? "default" : "secondary"}
-            className="text-xs"
-          >
-            {status === "running"
-              ? "运行中"
-              : status === "completed"
-                ? "已完成"
-                : "已停止"}
+    <Card data-slot="experiment-summary" className={className}>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <TrophyIcon className="size-4" />
+          {name}
+          <Badge variant="secondary">
+            {t(`experimentSummary.status.${status}`)}
           </Badge>
-        </div>
+        </CardTitle>
+        {hypothesis && <CardDescription>{hypothesis}</CardDescription>}
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-muted/30 rounded-lg p-3 text-center">
-            <p className="text-muted-foreground text-xs">对照组 ({metric})</p>
-            <p className="mt-1 text-xl font-bold">
-              {(controlRate * 100).toFixed(1)}%
-            </p>
-          </div>
-          <div className="bg-primary/5 rounded-lg p-3 text-center">
-            <p className="text-muted-foreground text-xs">实验组 ({metric})</p>
-            <p className="mt-1 text-xl font-bold">
-              {(variantRate * 100).toFixed(1)}%
-            </p>
-          </div>
+      <CardContent className="space-y-3">
+        <div className="text-xs font-medium text-muted-foreground">
+          {resolvedMetric}
         </div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="flex items-center gap-1">
-            {lift > 0 ? (
-              <TrendingUpIcon className="text-success size-4" />
-            ) : lift < 0 ? (
-              <TrendingDownIcon className="text-destructive size-4" />
-            ) : (
-              <MinusIcon className="text-muted-foreground size-4" />
-            )}
-            <span
-              className={cn(
-                lift > 0
-                  ? "text-success"
-                  : lift < 0
-                    ? "text-destructive"
-                    : "text-muted-foreground",
-              )}
-            >
-              提升 {liftLabel}
-            </span>
-          </span>
-          <span
-            className={cn(
-              "text-xs",
-              isSignificant ? "text-success" : "text-muted-foreground",
-            )}
-          >
-            置信度 {confidence}% {isSignificant ? "✓ 显著" : ""}
-          </span>
+        <div className="overflow-hidden rounded-lg border">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/30 text-xs text-muted-foreground">
+              <tr>
+                <th className="px-3 py-2 text-left font-medium">
+                  {t("experimentSummary.variant")}
+                </th>
+                <th className="px-3 py-2 text-right font-medium">
+                  {t("experimentSummary.sample")}
+                </th>
+                <th className="px-3 py-2 text-right font-medium">
+                  {t("experimentSummary.rate")}
+                </th>
+                <th className="px-3 py-2 text-right font-medium">
+                  {t("experimentSummary.lift")}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {variants.map((variant) => (
+                <tr
+                  key={variant.id}
+                  className={cn("border-t", variant.winner && "bg-success/10")}
+                >
+                  <td className="px-3 py-2 font-medium">
+                    <span className="inline-flex items-center gap-2">
+                      {variant.name}
+                      {variant.winner && (
+                        <Badge className="bg-success text-success-foreground">
+                          {t("experimentSummary.winner")}
+                        </Badge>
+                      )}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {(variant.sampleSize ?? 0).toLocaleString()}
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {(variant.conversionRate ?? 0).toFixed(2)}%
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {variant.lift === undefined
+                      ? "-"
+                      : `${variant.lift > 0 ? "+" : ""}${variant.lift.toFixed(1)}%`}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <Progress value={confidence} className="h-1.5" />
       </CardContent>
     </Card>
   );
 }
-
-export { ExperimentSummary };
-export type { ExperimentSummaryProps };

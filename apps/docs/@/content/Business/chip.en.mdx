@@ -1,5 +1,5 @@
-import { Chip } from "@/components/business/chip";
-import { CodeBlock } from "@/components/code-block";
+import { Chip } from "@/components/business/chip"
+import { CodeBlock } from "@/components/code-block"
 
 # Chip
 
@@ -11,6 +11,7 @@ Chip — a business component for ERP / enterprise scenarios.
 
 Use when you need a chip.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,20 +22,23 @@ export function Basic() {
   return <Chip />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Chip
 
-| Prop        | Type                           | Default   | Description                      |
-| ----------- | ------------------------------ | --------- | -------------------------------- |
-| `className` | `string`                       | —         | Custom CSS class                 |
-| `variant`   | `ChipVariant`                  | `default` | Style variant                    |
-| `size`      | `ChipSize`                     | `default` | Component size                   |
-| `removable` | `boolean`                      | —         |                                  |
-| `onRemove`  | `() => void`                   | —         |                                  |
-| `icon`      | `React.ReactNode`              | —         | Icon element                     |
-| ...rest     | `React.ComponentProps<"span">` | —         | Inherits all `<span>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `variant` | `ChipVariant` | `default` | Style variant |
+| `size` | `ChipSize` | `default` | Component size |
+| `removable` | `boolean` | — |  |
+| `onRemove` | `() => void` | — |  |
+| `icon` | `React.ReactNode` | — | Icon element |
+| ...rest | `React.ComponentProps<"span">` | — | Inherits all `<span>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

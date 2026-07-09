@@ -1,0 +1,39 @@
+import { MonthPicker } from "@/components/ui/month-picker"
+import { CodeBlock } from "@/components/code-block"
+
+# MonthPicker
+
+> Form components for data entry and collection.
+
+MonthPicker — Month-only picker with year navigation and month grid.
+
+## When to Use
+
+Use when you need a monthpicker.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MonthPicker } from "@/components/ui/month-picker"
+
+export function Basic() {
+  return <MonthPicker />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MonthPicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

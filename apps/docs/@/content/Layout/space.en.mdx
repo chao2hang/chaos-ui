@@ -1,5 +1,5 @@
-import { Space } from "@/components/ui/space";
-import { CodeBlock } from "@/components/code-block";
+import { Space } from "@/components/ui/space"
+import { CodeBlock } from "@/components/code-block"
 
 # Space
 
@@ -10,6 +10,7 @@ Space — a layout primitives for structuring pages. for structuring page region
 ## When to Use
 
 Use when you need a space.
+
 
 ## Examples
 
@@ -23,59 +24,60 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Space size="xs">Xs</Space>
   <Space size="sm">Sm</Space>
   <Space size="lg">Lg</Space>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## Style Variants
 
 **direction**
 
-| direction    | Description | 默认 |
-| ------------ | ----------- | ---- |
-| `horizontal` |             | ✓    |
-| `vertical`   |             |      |
+| direction | Description | 默认 |
+|---|---|---|
+| `horizontal` |  | ✓ |
+| `vertical` |  |  |
 
 **Size**
 
 | Size | Description | 默认 |
-| ---- | ----------- | ---- |
-| `xs` | Extra small |      |
-| `sm` | Small       | ✓    |
-| `md` |             |      |
-| `lg` | Large       |      |
-| `xl` | Extra large |      |
+|---|---|---|
+| `xs` | Extra small |  |
+| `sm` | Small | ✓ |
+| `md` |  |  |
+| `lg` | Large |  |
+| `xl` | Extra large |  |
 
 **wrap**
 
-| wrap    | Description | 默认 |
-| ------- | ----------- | ---- |
-| `true`  |             | ✓    |
-| `false` |             |      |
+| wrap | Description | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 **align**
 
-| align      | Description | 默认 |
-| ---------- | ----------- | ---- |
-| `start`    |             |      |
-| `center`   |             | ✓    |
-| `end`      |             |      |
-| `baseline` |             |      |
+| align | Description | 默认 |
+|---|---|---|
+| `start` |  |  |
+| `center` |  | ✓ |
+| `end` |  |  |
+| `baseline` |  |  |
 
 ## API / Props
 
 ### Space
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `split`     | `React.ReactNode`             | —       | Split items with a separator    |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `split` | `React.ReactNode` | — | Split items with a separator |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
+
+
+

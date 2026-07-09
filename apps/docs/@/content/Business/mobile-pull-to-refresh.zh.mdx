@@ -1,5 +1,5 @@
-import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh";
-import { CodeBlock } from "@/components/code-block";
+import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh"
+import { CodeBlock } from "@/components/code-block"
 
 # MobilePullToRefresh 移动端下拉刷新
 
@@ -11,34 +11,37 @@ import { CodeBlock } from "@/components/code-block";
 
 需要移动端下拉刷新功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { PullToRefresh } from "@/components/business/mobile-pull-to-refresh"
+<CodeBlock code={`import { PullToRefresh } from "@/components/mobile/mobile-pull-to-refresh"
 
 export function Basic() {
   return <PullToRefresh />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### PullToRefresh
 
-| Prop             | Type                          | Default       | 说明                  |
-| ---------------- | ----------------------------- | ------------- | --------------------- |
-| `className`      | `string`                      | —             | 自定义样式类名        |
-| `onRefresh`      | `() => void`                  | —             |                       |
-| `threshold`      | `number`                      | `60`          |                       |
-| `disabled`       | `boolean`                     | —             | 是否禁用              |
-| `refreshingText` | `string`                      | `正在刷新...` |                       |
-| `pullText`       | `string`                      | `下拉刷新`    |                       |
-| `releaseText`    | `string`                      | `释放刷新`    |                       |
-| ...rest          | `React.ComponentProps<"div">` | —             | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `onRefresh` | `() => void` | — |  |
+| `threshold` | `number` | `60` |  |
+| `disabled` | `boolean` | — | 是否禁用 |
+| `refreshingText` | `string` | — |  |
+| `pullText` | `string` | — |  |
+| `releaseText` | `string` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-pull-to-refresh--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobilepulltorefresh--docs)。
+

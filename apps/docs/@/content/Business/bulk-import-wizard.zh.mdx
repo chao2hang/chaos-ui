@@ -18,7 +18,8 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { BulkImportWizard } from "@/components/business/bulk-import-wizard"
 
 export function Basic() {
-  return <BulkImportWizard />
+  return <BulkImportWizard onImport={"example"} onCancel={() => {}} />
+}`} lang="tsx" />
 }`} lang="tsx" />
 
 ## API / Props
@@ -37,4 +38,4 @@ export function Basic() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-bulk-import-wizard--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-bulkimportwizard--docs)。

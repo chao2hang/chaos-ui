@@ -1,0 +1,39 @@
+import { MaskedInput } from "@/components/ui/masked-input"
+import { CodeBlock } from "@/components/code-block"
+
+# MaskedInput
+
+> Form components for data entry and collection.
+
+MaskedInput — Format-masked input for ID cards, bank cards, IP addresses, etc.
+
+## When to Use
+
+Use when you need a maskedinput.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { MaskedInput } from "@/components/ui/masked-input"
+
+export function Basic() {
+  return <MaskedInput />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### MaskedInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

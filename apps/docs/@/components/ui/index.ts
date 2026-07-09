@@ -7,6 +7,7 @@ export {
   AccordionContent,
 } from "./accordion";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./alert";
+export type { AlertProps, AlertVariant } from "./alert";
 export {
   AlertDialog,
   AlertDialogTrigger,
@@ -20,7 +21,9 @@ export {
 } from "./alert-dialog";
 export { AspectRatio } from "./aspect-ratio";
 export { AudioPlayer } from "./audio-player";
+export type { AudioPlayerProps } from "./audio-player";
 export { VideoPlayer } from "./video-player";
+export type { VideoPlayerProps } from "./video-player";
 export {
   Avatar,
   AvatarImage,
@@ -40,8 +43,11 @@ export {
   BreadcrumbEllipsis,
 } from "./breadcrumb";
 export { BarcodeDisplay } from "./barcode-display";
+export type { BarcodeDisplayProps } from "./barcode-display";
 export { BrowseInput, browseInputVariants } from "./browse-input";
+export type { BrowseInputProps } from "./browse-input";
 export { Button, buttonVariants } from "./button";
+export type { ButtonProps } from "./button";
 export { Calendar, CalendarDayButton } from "./calendar";
 export {
   Card,
@@ -51,7 +57,7 @@ export {
   CardAction,
   CardDescription,
   CardContent,
-  CardAction,
+  CardSection,
 } from "./card";
 export {
   Carousel,
@@ -62,6 +68,7 @@ export {
   CarouselDots,
 } from "./carousel";
 export { Checkbox } from "./checkbox";
+export type { CheckboxProps } from "./checkbox";
 export {
   Collapsible,
   CollapsibleTrigger,
@@ -96,6 +103,7 @@ export {
   ContextMenuTrigger,
 } from "./context-menu";
 export { DepartmentBrowse } from "./department-browse";
+export type { Department, DepartmentBrowseProps } from "./department-browse";
 export {
   Dialog,
   DialogClose,
@@ -108,6 +116,15 @@ export {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
+} from "./dialog";
+export type {
+  DialogProps,
+  DialogContentProps,
+  DialogHeaderProps,
+  DialogFooterProps,
+  DialogBodyProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
 } from "./dialog";
 export { Dot, dotVariants } from "./dot";
 export {
@@ -141,23 +158,42 @@ export {
 } from "./dropdown-menu";
 export { FileUpload, FileList } from "./file-upload";
 export { FormGrid, FormGridItem, formGridVariants } from "./form-grid";
+export type { FormGridProps, FormGridItemProps } from "./form-grid";
 export { FormList } from "./form-list";
+export type { FormListItem, FormListProps } from "./form-list";
 export { FormSection, formSectionVariants } from "./form-section";
+export type { FormSectionProps } from "./form-section";
 export {
   Form,
   FormControl,
   FormDescription,
-  useFormField,
+  FormField,
   FormItem,
   FormLabel,
   FormMessage,
   useFormField,
 } from "./form";
+export type {
+  FormItemProps,
+  FormLabelProps,
+  FormControlProps,
+  FormDescriptionProps,
+  FormMessageProps,
+} from "./form";
 export { SchemaForm } from "./schema-form";
+export type {
+  SchemaFormProps,
+  SchemaFormFieldOverride,
+  SchemaFormFieldType,
+  SchemaFormFieldOption,
+} from "./schema-form";
 export { FullscreenToggle } from "./fullscreen-toggle";
+export type { FullscreenToggleProps } from "./fullscreen-toggle";
 export { GridLayout, GridItem, gridLayoutVariants } from "./grid-layout";
+export type { GridLayoutProps, GridItemProps } from "./grid-layout";
 export { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
 export { ImageViewer } from "./image-viewer";
+export type { ImageViewerProps, ImageViewerImage } from "./image-viewer";
 export {
   InputGroup,
   InputGroupAddon,
@@ -167,9 +203,17 @@ export {
   InputGroupTextarea,
 } from "./input-group";
 export { Input } from "./input";
+export type { InputProps } from "./input";
 export { KeyboardShortcut } from "./keyboard-shortcut";
+export type { KeyboardShortcutProps } from "./keyboard-shortcut";
 export { Kbd, KbdGroup, kbdVariants } from "./kbd";
+import { KPIPanel as _KPIPanel, KPICard as _KPICard } from "./kpi-panel";
 export { KPIPanel, KPICard } from "./kpi-panel";
+/** @deprecated Use KPIPanel */
+export const KpiPanel = _KPIPanel;
+/** @deprecated Use KPICard */
+export const KpiCard = _KPICard;
+export type { KPIItem, KPIPanelProps } from "./kpi-panel";
 export { Label } from "./label";
 export { Menubar } from "./menubar";
 export {
@@ -183,12 +227,20 @@ export {
   navigationMenuTriggerStyle,
   NavigationMenuPositioner,
 } from "./navigation-menu";
+import { OTPField as _OTPField } from "./otp-field";
 export { OTPField, OTPFieldSeparator } from "./otp-field";
+/** @deprecated Use OTPField */
+export const OtpField = _OTPField;
 export {
   PageContainer,
   PageHeader,
   PageContent,
   pageContainerVariants,
+} from "./page-container";
+export type {
+  PageContainerProps,
+  PageHeaderProps,
+  PageContentProps,
 } from "./page-container";
 export {
   Pagination,
@@ -214,13 +266,20 @@ export {
   ProgressLabel,
   ProgressValue,
 } from "./progress";
-export { QRCodeDisplay } from "./qrcode-display";
+import { QrCodeDisplay as _QrCodeDisplay } from "./qrcode-display";
+export { QrCodeDisplay } from "./qrcode-display";
+/** @deprecated Use QrCodeDisplay */
+export const QrcodeDisplay = _QrCodeDisplay;
+export type { QrCodeDisplayProps } from "./qrcode-display";
 export { RadioGroup, RadioGroupItem } from "./radio-group";
+import { ResizablePanelGroup as _Resizable } from "./resizable";
 export {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
 } from "./resizable";
+/** @deprecated Use ResizablePanelGroup / ResizablePanel / ResizableHandle */
+export const Resizable = _Resizable;
 export { ScrollArea, ScrollBar } from "./scroll-area";
 export {
   Select,
@@ -234,8 +293,16 @@ export {
   SelectTrigger,
   SelectValue,
 } from "./select";
+export type {
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectValueProps,
+} from "./select";
 export { SequenceInput } from "./sequence-input";
+export type { SequenceInputProps } from "./sequence-input";
 export { SequencePreview } from "./sequence-preview";
+export type { SequencePreviewProps } from "./sequence-preview";
 export { Separator } from "./separator";
 export {
   Sheet,
@@ -282,8 +349,10 @@ export {
   SliderThumb,
 } from "./slider";
 export { SplitPane } from "./split-pane";
+export type { SplitPaneProps } from "./split-pane";
 export { Stepper, Step } from "./stepper";
 export { Switch } from "./switch";
+export type { SwitchProps } from "./switch";
 export {
   Table,
   TableHeader,
@@ -294,6 +363,16 @@ export {
   TableCell,
   TableCaption,
 } from "./table";
+export type {
+  TableProps,
+  TableHeaderProps,
+  TableBodyProps,
+  TableFooterProps,
+  TableRowProps,
+  TableHeadProps,
+  TableCellProps,
+  TableCaptionProps,
+} from "./table";
 export {
   Tabs,
   TabsList,
@@ -303,6 +382,7 @@ export {
 } from "./tabs";
 export { TagsInput } from "./tags-input";
 export { Textarea } from "./textarea";
+export type { TextareaProps } from "./textarea";
 export {
   Timeline,
   TimelineItem,
@@ -323,13 +403,21 @@ export {
   TooltipProvider,
 } from "./tooltip";
 export { TreeSelect } from "./tree-select";
+export type { TreeNode, TreeSelectProps } from "./tree-select";
 export { TreeView } from "./tree-view";
+export type { TreeNode as TreeViewNode, TreeViewProps } from "./tree-view";
 export { UserBrowse } from "./user-browse";
+export type { User, UserBrowseProps } from "./user-browse";
 export { VirtualList } from "./virtual-list";
+export type { VirtualListProps } from "./virtual-list";
 export { VirtualTable } from "./virtual-table";
+export type { ColumnDef, VirtualTableProps } from "./virtual-table";
 export { Space } from "./space";
+export type { SpaceProps } from "./space";
 export { Flex } from "./flex";
+export type { FlexProps } from "./flex";
 export { Divider } from "./divider";
+export type { DividerProps } from "./divider";
 export {
   Typography,
   H1,
@@ -348,16 +436,27 @@ export {
   Muted,
   List,
 } from "./typography";
+export type { TextProps, ParagraphProps } from "./typography";
 export { Spinner } from "./spinner";
+export type { SpinnerProps } from "./spinner";
 export { InputSearch } from "./input-search";
+export type { InputSearchProps } from "./input-search";
 export { InputNumber } from "./input-number";
+export type { InputNumberProps } from "./input-number";
 export { DatePicker } from "./date-picker";
-export { Descriptions, Descriptions } from "./descriptions";
+export type { DatePickerProps } from "./date-picker";
+export { Descriptions, DescriptionsItem } from "./descriptions";
+export type { DescriptionsProps, DescriptionItem } from "./descriptions";
 export { Popconfirm } from "./popconfirm";
+export type { PopconfirmProps } from "./popconfirm";
 export { Spin } from "./spin";
+export type { SpinProps } from "./spin";
 export { Affix } from "./affix";
+export type { AffixProps } from "./affix";
 export { BackTop } from "./back-top";
+export type { BackTopProps } from "./back-top";
 export { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
+export type { ConfigContextValue, ThemeConfig } from "./config-provider";
 // Retained in main barrel — note that it depends on sonner/next-themes (optional peer).
 export { ModalProvider } from "./modal-provider";
 export {
@@ -367,16 +466,40 @@ export {
   MenuDivider,
   MenuItemGroup,
 } from "./menu";
+export type {
+  MenuProps,
+  MenuItemConfig,
+  MenuClickInfo,
+  MenuMode,
+  MenuTheme,
+  MenuSize,
+  MenuItemProps,
+} from "./menu";
 export * from "./icons";
 export { Cascader } from "./cascader";
-export { Image } from "./image";
-export { Tag } from "./tag";
+export type { CascaderProps, CascaderOption } from "./cascader";
+export { Image, ImageGroup } from "./image";
+export type { ImageProps } from "./image";
+export { Tag, TagGroup } from "./tag";
+export type { TagProps, TagColor } from "./tag";
 export { Result } from "./result";
+export type { ResultProps, ResultStatus } from "./result";
 export { Statistic } from "./statistic";
+export type { StatisticProps } from "./statistic";
+import { QRCode as _QRCode } from "./qrcode";
 export { QRCode } from "./qrcode";
-export { Autocomplete } from "./autocomplete";
+/** @deprecated Use QRCode */
+export const Qrcode = _QRCode;
+export type { QRCodeProps } from "./qrcode";
+import { AutoComplete as _AutoComplete } from "./autocomplete";
+export { AutoComplete } from "./autocomplete";
+/** @deprecated Use AutoComplete */
+export const Autocomplete = _AutoComplete;
+export type { AutoCompleteProps, AutoCompleteOption } from "./autocomplete";
 export { Mentions } from "./mentions";
+export type { MentionsProps, MentionOption } from "./mentions";
 export { Countdown } from "./countdown";
+export type { CountdownProps, CountdownFormat } from "./countdown";
 
 // Promoted from business/
 export { Rating } from "./rating";
@@ -390,37 +513,77 @@ export { Watermark } from "./watermark";
 
 export { Combobox, type ComboboxOption } from "./combobox";
 
-export { Fab } from "./fab";
+export { Fab, FabSpeedDial } from "./fab";
 
 // New UI components
 export { Anchor } from "./anchor";
-export { List as DataList } from "./list";
+export type { AnchorItem, AnchorProps } from "./anchor";
+export { List as DataList, ListHeader, ListItem, ListFooter } from "./list";
+export type { ListProps as DataListProps, ListItemProps } from "./list";
 export { Notification } from "./notification";
+export type {
+  NotificationType as NotificationVariant,
+  NotificationProps,
+} from "./notification";
+
+// Sonner toast (Toaster)
+import { Toaster as _Toaster } from "./sonner";
+export { Toaster } from "./sonner";
+/** @deprecated Use Toaster */
+export const Sonner = _Toaster;
 
 // Grid system
-export { Row } from "./grid";
+export { Row, Col } from "./grid";
+export type { RowProps, ColProps, ColSpan, ResponsiveCol } from "./grid";
 
 export { ChatInput } from "./chat-input";
+export type { ChatInputProps } from "./chat-input";
 export { ChatMessage } from "./chat-message";
+export type { ChatMessageProps } from "./chat-message";
 export { MessageProvider } from "./message-provider";
+export type { MessageProviderProps } from "./message-provider";
 export { MobilePullRefresh } from "./mobile-pull-refresh";
+export type { MobilePullRefreshProps } from "./mobile-pull-refresh";
 export { MobileSwipeAction } from "./mobile-swipe-action";
+export type { MobileSwipeActionProps } from "./mobile-swipe-action";
 export { WithPermission } from "./with-permission";
+export type { WithPermissionProps } from "./with-permission";
 
 // ─── P0/P1 new components (0.8.0) ────────────────────────────────
 export { Icon } from "./icon";
+export type { IconProps, IconSize } from "./icon";
 export { Transfer } from "./transfer";
+export type { TransferItem } from "./transfer";
 export { TimePicker, formatTimeInput } from "./time-picker";
-export { PictureWall } from "./file-upload";
+export { PictureWall, PictureCard } from "./file-upload";
+export type { UploadFile } from "./file-upload";
 export { InfiniteScroll } from "./infinite-scroll";
+export type { InfiniteScrollProps } from "./infinite-scroll";
 export { Masonry } from "./masonry";
+export type { MasonryProps, ColumnConfig } from "./masonry";
 export { NativeSelect } from "./native-select";
+export type {
+  NativeSelectProps,
+  NativeSelectOption,
+  NativeSelectGroup,
+} from "./native-select";
 export { Message } from "./message";
+export type { MessageProps, MessageVariant } from "./message";
 export { Direction } from "./direction";
+export type { DirectionProps, DirectionValue } from "./direction";
 
 // ─── P0/P1 new UI components ─────────────────────────────────────
 export { SplitButton } from "./split-button";
+export type { SplitButtonProps } from "./split-button";
 export { SignaturePad } from "./signature-pad";
+export type { SignaturePadProps, SignaturePadHandle } from "./signature-pad";
 export { IconPicker } from "./icon-picker";
+export type { IconPickerProps, IconItem } from "./icon-picker";
 export { NumberTicker } from "./number-ticker";
+export type { NumberTickerProps } from "./number-ticker";
 export { KeyboardShortcutDialog } from "./keyboard-shortcut-dialog";
+export type {
+  KeyboardShortcutDialogProps,
+  ShortcutGroup,
+  ShortcutItem,
+} from "./keyboard-shortcut-dialog";

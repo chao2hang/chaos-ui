@@ -1,5 +1,5 @@
-import { Menubar } from "@/components/ui/menubar";
-import { CodeBlock } from "@/components/code-block";
+import { Menubar } from "@/components/ui/menubar"
+import { CodeBlock } from "@/components/code-block"
 
 # Menubar
 
@@ -11,6 +11,7 @@ Horizontal menu bar providing grouped dropdown menus.
 
 Use when you need a menubar.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,16 +22,19 @@ export function Basic() {
   return <Menubar />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### Menubar
 
-| Prop        | Type                   | Default | Description                       |
-| ----------- | ---------------------- | ------- | --------------------------------- |
-| `className` | `string`               | —       | Custom CSS class                  |
-| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
+
+

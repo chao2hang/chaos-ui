@@ -12,14 +12,21 @@ type Story = StoryObj<typeof meta>;
 const items = ["Item 1", "Item 2", "Item 3"];
 
 export const Default: Story = {
-  args: {
-    children: items.map((item) => <li key={item}>{item}</li>),
-  },
+  render: () => (
+    <List {...({} as any)}>
+      {items.map((item) => (
+        <li key={item} className="text-sm">{item}</li>
+      ))}
+    </List>
+  ),
 };
 
 export const Ordered: Story = {
-  args: {
-    ordered: true,
-    children: items.map((item) => <li key={item}>{item}</li>),
-  },
+  render: () => (
+    <List {...({ ordered: true } as any)}>
+      {items.map((item) => (
+        <li key={item} className="text-sm">{item}</li>
+      ))}
+    </List>
+  ),
 };

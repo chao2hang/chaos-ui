@@ -53,6 +53,7 @@ export default defineConfig({
     next: "package/next.ts",
   },
   format: ["esm", "cjs"],
+  tsconfig: "tsconfig.build.json",
   dts: {
     entry: {
       index: "components/ui/index.ts",
@@ -65,9 +66,6 @@ export default defineConfig({
       lib: "lib/index.ts",
       mobile: "components/mobile/index.ts",
       next: "package/next.ts",
-    },
-    compilerOptions: {
-      incremental: false,
     },
   },
   clean: true,

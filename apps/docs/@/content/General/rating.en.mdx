@@ -1,0 +1,73 @@
+import { Rating } from "@/components/ui/rating";
+import { CodeBlock } from "@/components/code-block";
+
+# Rating
+
+> Star rating component.
+
+Star rating component with half-star and read-only support, for review and scoring scenarios.
+
+## When to Use
+
+Use when you need to rate content or display ratings, such as product reviews or service scores.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Rating } from "@/components/ui/rating"
+
+export function Basic() {
+  return <Rating defaultValue={4} />
+}`} lang="tsx" />
+
+### Half Star
+
+<CodeBlock code={`import { Rating } from "@/components/ui/rating"
+
+export function HalfStar() {
+  return <Rating defaultValue={3.5} allowHalf />
+}`} lang="tsx" />
+
+### Readonly
+
+<CodeBlock code={`import { Rating } from "@/components/ui/rating"
+
+export function Readonly() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Rating defaultValue={5} readonly size="sm" />
+      <Rating defaultValue={4} readonly size="default" />
+      <Rating defaultValue={2.5} readonly allowHalf size="lg" />
+    </div>
+  )
+}`} lang="tsx" />
+
+## Size Reference
+
+| Size | Description | 默认 |
+| --------- | ------------------ | ---- |
+| `sm` | Small |  |
+| `default` | Default | ✓ |
+| `lg` | Large |  |
+
+## API / Props
+
+### Rating
+
+| Prop | Type | Default | Description |
+| -------------- | --------------------------- | --------- | ------------------------------------- |
+| `value`        | `number`                    | —         | Controlled value / 受控值             |
+| `defaultValue` | `number`                    | `0`       | Default value / 默认值                |
+| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调            |
+| `max`          | `number`                    | `5`       | Max stars / 最大星数                  |
+| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小                  |
+| `readonly`     | `boolean`                   | `false`   | Read-only / 只读                      |
+| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星           |
+| `className` | `string` | — | Custom CSS class |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

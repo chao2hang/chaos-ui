@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # SequencePreview 序列预览
 
-> 通用基础组件
+> 编号预览组件
 
-序列预览 — Chaos UI 的通用基础组件。
+编号预览组件，展示编号规则生成的示例，含前缀、日期和补零序号。
 
 ## 何时使用
 
-需要序列预览功能时使用本组件。
+配置编号规则时预览生成结果时使用，如订单号、工单号、流水号规则配置。
 
 ## 代码示例
 
@@ -18,46 +18,39 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { SequencePreview } from "@/components/ui/sequence-preview"
 
 export function Basic() {
-  return <SequencePreview>Default</SequencePreview>
+  return <SequencePreview prefix="ORD" seq={1} zeroFill={4} />
 }`} lang="tsx" />
 
-### 尺寸
+### 自定义格式
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <SequencePreview size="sm">Sm</SequencePreview>
-  <SequencePreview size="default">Default</SequencePreview>
-  <SequencePreview size="lg">Lg</SequencePreview>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { SequencePreview } from "@/components/ui/sequence-preview"
 
-## 样式变体
-
-**尺寸**
-
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+export function CustomFormat() {
+  return (
+    <div className="flex flex-col gap-2">
+      <SequencePreview prefix="INV" dateFormat="YYMMDD" seq={42} zeroFill={6} />
+      <SequencePreview prefix="TKT" dateFormat="none" seq={100} separator="/" />
+    </div>
+  )
+}`} lang="tsx" />
 
 ## API / Props
 
 ### SequencePreview
 
-| Prop           | Type                          | Default | 说明                                  |
-| -------------- | ----------------------------- | ------- | ------------------------------------- |
-| `className`    | `string`                      | —       | 自定义样式类名                        |
-| `value`        | `string`                      | —       | The sequence value to preview         |
-| `mask`         | `string`                      | `•`     | Character to use for hidden chars     |
-| `visibleChars` | `number`                      | —       | Show only last N chars, mask the rest |
-| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                 |
+| Prop | Type | Default | 说明 |
+| ------------ | ---------------------------------- | ------------ | ------------------------------------- |
+| `prefix`     | `string`                           | `""`         | Prefix / 前缀                         |
+| `date`       | `Date`                             | `new Date()` | Date used in sequence / 编号中的日期  |
+| `dateFormat` | `"YYYYMMDD" \| "YYMMDD" \| "none"` | `YYYYMMDD`   | Date format / 日期格式                |
+| `seq`        | `number`                           | `1`          | Sequence number / 序号                |
+| `zeroFill`   | `number`                           | `4`          | Zero-fill width / 补零位数            |
+| `separator`  | `string`                           | `"-"`        | Separator / 分隔符                    |
+| `className` | `string` | — | 自定义样式类名 |
 
 ## 注意事项
 
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **纯展示组件**: 仅展示生成的编号，不涉及实际编号分配逻辑。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sequence-preview--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sequencepreview--docs)。
+

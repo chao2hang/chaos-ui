@@ -1,0 +1,42 @@
+import { ChatLayout } from "@/components/layout/chat-layout"
+import { CodeBlock } from "@/components/code-block"
+
+# ChatLayout Chat Layout
+
+> System-level layout shells for admin pages.
+
+ChatLayout — a system-level layout shell for admin/dashboard/auth pages.
+
+## When to Use
+
+Use when you need a chat layout.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { ChatLayout } from "@/components/layout/chat-layout"
+
+export function Basic() {
+  return <ChatLayout />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### ChatLayout
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `sidebar` | `React.ReactNode` | — |  |
+| `messagesArea` | `React.ReactNode` | — |  |
+| `inputArea` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

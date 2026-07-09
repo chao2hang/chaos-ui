@@ -1,0 +1,80 @@
+import { Transfer } from "@/components/ui/transfer";
+import { CodeBlock } from "@/components/code-block";
+
+# Transfer
+
+> Dual-panel shuttle component for moving items between lists.
+
+Dual-panel shuttle component for moving items between source and target lists with search and select-all.
+
+## When to Use
+
+Use when you need to select and move items between two lists, such as permission assignment or role selection.
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+import { useState } from "react"
+
+const dataSource = [
+{ key: "1", label: "Option 1" },
+{ key: "2", label: "Option 2" },
+{ key: "3", label: "Option 3" },
+{ key: "4", label: "Option 4" },
+]
+
+export function Basic() {
+  const [targetKeys, setTargetKeys] = useState<string[]>([])
+  return (
+    <Transfer
+      dataSource={dataSource}
+      targetKeys={targetKeys}
+      onChange={setTargetKeys}
+    />
+  )
+}`} lang="tsx" />
+
+### One Way
+
+<CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+
+export function OneWay() {
+  return (
+    <Transfer
+      dataSource={[{ key: "1", label: "Item 1" }, { key: "2", label: "Item 2" }]}
+      oneWay
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Transfer
+
+| Prop | Type | Default | Description |
+| ------------ | ----------------------------------------- | ------- | ------------------------------------- |
+| `dataSource` | `TransferItem[]`                          | —       | Data source / 数据源 (required)       |
+| `targetKeys` | `string[]`                                | `[]`    | Keys in target panel / 目标面板的 key |
+| `onChange`   | `(targetKeys: string[]) => void`          | —       | Change callback / 变化回调            |
+| `titles`     | `[string, string]`                        | —       | Panel titles / 面板标题               |
+| `searchable` | `boolean`                                 | `true`  | Enable search / 启用搜索              |
+| `oneWay`     | `boolean`                                 | `false` | One-way mode / 单向模式               |
+| `disabled`   | `boolean`                                 | `false` | Disable all / 全部禁用                |
+| `render`     | `(item: TransferItem) => React.ReactNode` | —       | Custom item render / 自定义渲染       |
+
+### TransferItem
+
+| Prop | Type | Description |
+| ------------- | --------- | ----------------------------------- |
+| `key`         | `string`  | Unique key / 唯一键 (required)      |
+| `label`       | `string`  | Display label / 显示标签 (required) |
+| `description` | `string`  | Description / 描述                  |
+| `disabled`    | `boolean` | Disabled / 禁用                     |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

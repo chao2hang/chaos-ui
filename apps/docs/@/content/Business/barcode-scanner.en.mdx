@@ -1,0 +1,39 @@
+import { BarcodeScanner } from "@/components/business/barcode-scanner"
+import { CodeBlock } from "@/components/code-block"
+
+# BarcodeScanner
+
+> Domain-specific business components for ERP scenarios.
+
+BarcodeScanner — Barcode scanner input with camera support and gun-style capture.
+
+## When to Use
+
+Use when you need a barcodescanner.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { BarcodeScanner } from "@/components/business/barcode-scanner"
+
+export function Basic() {
+  return <BarcodeScanner />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### BarcodeScanner
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

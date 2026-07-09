@@ -1,218 +1,218 @@
 "use client";
-
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XIcon,
+} from "@/components/ui/icons";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-const tourVariants = cva("", {
-  variants: {
-    size: {
-      default: "",
-      sm: "",
-    },
-  },
-  defaultVariants: { size: "default" },
-});
-
-interface TourStep {
-  title: React.ReactNode;
-  description: React.ReactNode;
-  /** CSS selector for the target element */
-  target: string;
-  /** Placement relative to the target */
+export interface TourStep {
+  target: string | (() => HTMLElement | null);
+  title: string;
+  description?: React.ReactNode;
   placement?: "top" | "bottom" | "left" | "right";
+  offset?: number;
 }
 
-interface TourProps
-  extends React.ComponentProps<"div">, VariantProps<typeof tourVariants> {
-  /** Whether the tour is active */
+interface TourProps {
+  steps: TourStep[];
   open?: boolean;
-  /** Called when tour finishes or is dismissed */
-  onClose?: () => void;
-  /** Called when a step is completed */
-  onFinish?: () => void;
-  /** Tour steps */
-  steps?: TourStep[];
-  /** Current step index (controlled) */
-  current?: number;
-  /** Called when step changes */
-  onStepChange?: (step: number) => void;
+  onOpenChange?: (open: boolean) => void;
+  onComplete?: () => void;
+  onSkip?: () => void;
+  storageKey?: string;
+  className?: string;
 }
 
-function Tour({
+/**
+ * @component Tour
+ * @category ui/overlay
+ * @since 0.2.0
+ * @description Step-by-step guided product tour overlay with spotlight, navigation, and localStorage persistence / 逐步引导式产品导览覆盖层，带有聚焦高亮、导航和 localStorage 持久化
+ * @keywords tour, onboarding, guide, walkthrough, spotlight, 导览, 引导
+ * @example
+ * <Tour
+ *   steps={[
+ *     { target: "#dashboard", title: "Dashboard", description: "Your overview" },
+ *   ]}
+ *   onComplete={() => console.log("tour done")}
+ * />
+ */
+export function Tour({
+  steps,
+  open,
+  onOpenChange,
+  onComplete,
+  onSkip,
+  storageKey,
   className,
-  open = false,
-  onClose,
-  onFinish,
-  steps = [],
-  current: controlledStep,
-  onStepChange,
-  ...props
 }: TourProps) {
-  const [internalStep, setInternalStep] = React.useState(0);
-  const [tooltipPos, setTooltipPos] = React.useState({ top: 0, left: 0 });
-  const currentStep = controlledStep ?? internalStep;
-
-  const step = steps[currentStep];
+  const { t } = useTranslation("tour");
+  const [internalOpen, setInternalOpen] = React.useState<boolean>(() => {
+    if (typeof window === "undefined" || !storageKey) return true;
+    try {
+      return localStorage.getItem(storageKey) !== "1";
+    } catch {
+      return true;
+    }
+  });
+  const [index, setIndex] = React.useState(0);
+  const [rect, setRect] = React.useState<DOMRect | null>(null);
+  const isOpen = open ?? internalOpen;
+  const setOpen = React.useCallback(
+    (v: boolean) => {
+      if (open === undefined) setInternalOpen(v);
+      onOpenChange?.(v);
+    },
+    [open, onOpenChange],
+  );
 
   React.useEffect(() => {
-    if (!open || !step) return;
-    const updatePosition = () => {
-      const el = document.querySelector(step.target);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const placement = step.placement ?? "bottom";
-        let top = 0;
-        let left = 0;
-
-        switch (placement) {
-          case "bottom":
-            top = rect.bottom + 8;
-            left = rect.left + rect.width / 2;
-            break;
-          case "top":
-            top = rect.top - 8;
-            left = rect.left + rect.width / 2;
-            break;
-          case "left":
-            top = rect.top + rect.height / 2;
-            left = rect.left - 8;
-            break;
-          case "right":
-            top = rect.top + rect.height / 2;
-            left = rect.right + 8;
-            break;
-        }
-        setTooltipPos({ top, left });
-      }
-    };
-
-    updatePosition();
-    window.addEventListener("scroll", updatePosition, { passive: true });
-    window.addEventListener("resize", updatePosition);
+    if (!isOpen) return;
+    const step = steps[index];
+    if (!step) return;
+    const el =
+      typeof step.target === "function"
+        ? step.target()
+        : document.querySelector(step.target);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    const update = () => setRect((el as HTMLElement).getBoundingClientRect());
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el as HTMLElement);
+    window.addEventListener("scroll", update, true);
+    window.addEventListener("resize", update);
     return () => {
-      window.removeEventListener("scroll", updatePosition);
-      window.removeEventListener("resize", updatePosition);
+      ro.disconnect();
+      window.removeEventListener("scroll", update, true);
+      window.removeEventListener("resize", update);
     };
-  }, [open, step]);
+  }, [isOpen, index, steps]);
 
-  const goTo = (index: number) => {
-    if (index < 0 || index >= steps.length) return;
-    if (controlledStep === undefined) setInternalStep(index);
-    onStepChange?.(index);
+  const finish = (skipped: boolean) => {
+    if (skipped) onSkip?.();
+    else onComplete?.();
+    if (storageKey) localStorage.setItem(storageKey, "1");
+    setOpen(false);
+    setIndex(0);
   };
 
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      goTo(currentStep + 1);
+  if (!isOpen || !rect) return null;
+  const step = steps[index] ?? { target: "", title: "" };
+  const placement = step.placement ?? "bottom";
+  const offset = step.offset ?? 8;
+  const popoverWidth = Math.min(320, window.innerWidth - 16);
+
+  const popoverStyle: React.CSSProperties = (() => {
+    const style: React.CSSProperties = { position: "fixed", zIndex: 9999 };
+    if (placement === "bottom") {
+      style.top = rect.bottom + offset;
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2;
+    } else if (placement === "top") {
+      style.top = rect.top - offset - 200;
+      style.left = rect.left + rect.width / 2 - popoverWidth / 2;
+    } else if (placement === "right") {
+      style.top = rect.top + rect.height / 2 - 100;
+      style.left = rect.right + offset;
     } else {
-      onFinish?.();
-      onClose?.();
+      style.top = rect.top + rect.height / 2 - 100;
+      style.left = rect.left - offset - popoverWidth;
     }
-  };
-
-  if (!open || !step) return null;
+    Object.assign(style, {
+      left: Math.max(
+        8,
+        Math.min(style.left as number, window.innerWidth - popoverWidth - 8),
+      ),
+      top: Math.max(8, Math.min(style.top as number, window.innerHeight - 220)),
+      width: popoverWidth,
+    });
+    return style;
+  })();
 
   return (
-    <div data-slot="tour" className={tourVariants()} {...props}>
-      {/* Backdrop */}
+    <>
       <div
-        data-slot="tour-backdrop"
-        className={cn(
-          "fixed inset-0 z-[99] bg-black/40 transition-opacity",
-          className,
-        )}
-        onClick={onClose}
+        aria-hidden
+        className="fixed inset-0 z-[9998] bg-black/40 transition-opacity"
+        onClick={() => finish(true)}
       />
-
-      {/* Highlighted target */}
-      {step && (
-        <div
-          data-slot="tour-highlight"
-          className="ring-primary fixed z-[100] rounded-md ring-2 ring-offset-2 transition-all"
-          style={{
-            top: 0,
-            left: 0,
-            width: 0,
-            height: 0,
-          }}
-          ref={(el) => {
-            if (el) {
-              const target = document.querySelector(step.target);
-              if (target) {
-                const rect = target.getBoundingClientRect();
-                el.style.top = `${rect.top - 4}px`;
-                el.style.left = `${rect.left - 4}px`;
-                el.style.width = `${rect.width + 8}px`;
-                el.style.height = `${rect.height + 8}px`;
-              }
-            }
-          }}
-        />
-      )}
-
-      {/* Tooltip */}
       <div
-        data-slot="tour-tooltip"
-        className="bg-popover fixed z-[101] w-72 rounded-lg border p-4 shadow-lg"
+        aria-hidden
+        className="ring-primary/60 fixed z-[9999] rounded-md ring-4 transition-all"
         style={{
-          top: tooltipPos.top,
-          left: tooltipPos.left,
-          transform: "translate(-50%, 0)",
+          top: rect.top - 4,
+          left: rect.left - 4,
+          width: rect.width + 8,
+          height: rect.height + 8,
         }}
+      />
+      <Card
+        data-slot="tour"
+        className={cn("shadow-xl", className)}
+        style={popoverStyle}
       >
-        <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-semibold">{step.title}</h3>
-          <button
-            type="button"
-            onClick={onClose}
-            className="hover:bg-accent rounded p-0.5"
-            aria-label="Close tour"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        <CardHeader className="pb-2">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <CardDescription>
+                {index + 1} / {steps.length}
+              </CardDescription>
+              <CardTitle className="text-base">{step.title}</CardTitle>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => finish(true)}
+              aria-label={t("tour.close")}
             >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-        </div>
-        <p className="text-muted-foreground text-sm">{step.description}</p>
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-muted-foreground text-xs">
-            {currentStep + 1} / {steps.length}
-          </span>
-          <div className="flex gap-2">
-            {currentStep > 0 && (
-              <button
-                type="button"
-                onClick={() => goTo(currentStep - 1)}
-                className="border-input hover:bg-accent inline-flex h-8 items-center rounded-md border bg-transparent px-3 text-xs"
-              >
-                Previous
-              </button>
-            )}
-            <button
-              type="button"
-              onClick={handleNext}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-8 items-center rounded-md px-3 text-xs"
-            >
-              {currentStep === steps.length - 1 ? "Finish" : "Next"}
-            </button>
+              <XIcon />
+            </Button>
           </div>
-        </div>
-      </div>
-    </div>
+        </CardHeader>
+        {step.description && (
+          <CardContent className="text-muted-foreground text-sm">
+            {step.description}
+          </CardContent>
+        )}
+        <CardFooter className="flex flex-wrap items-center justify-between gap-2">
+          <Button variant="ghost" size="sm" onClick={() => finish(true)}>
+            {t("tour.skip")}
+          </Button>
+          <div className="flex flex-wrap items-center justify-end gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={index === 0}
+              onClick={() => setIndex((i) => Math.max(0, i - 1))}
+            >
+              <ChevronLeftIcon />
+              {t("tour.previous")}
+            </Button>
+            {index < steps.length - 1 ? (
+              <Button size="sm" onClick={() => setIndex((i) => i + 1)}>
+                {t("tour.next")}
+                <ChevronRightIcon />
+              </Button>
+            ) : (
+              <Button size="sm" onClick={() => finish(false)}>
+                {t("tour.complete")}
+              </Button>
+            )}
+          </div>
+        </CardFooter>
+      </Card>
+    </>
   );
 }
-
-export { Tour, tourVariants };

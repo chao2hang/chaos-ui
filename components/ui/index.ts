@@ -49,6 +49,8 @@ export type { BrowseInputProps } from "./browse-input";
 export { Button, buttonVariants } from "./button";
 export type { ButtonProps } from "./button";
 export { Calendar, CalendarDayButton } from "./calendar";
+export { Captcha, generateCode } from "./captcha";
+export type { CaptchaProps, CaptchaVisualOptions } from "./captcha";
 export {
   Card,
   CardHeader,
@@ -229,6 +231,10 @@ export {
 } from "./navigation-menu";
 import { OTPField as _OTPField } from "./otp-field";
 export { OTPField, OTPFieldSeparator } from "./otp-field";
+export { OfficeDocPreview, detectDocType } from "./office-doc-preview";
+export type { OfficeDocPreviewProps, DocType } from "./office-doc-preview";
+export { OrgTree } from "./org-tree";
+export type { OrgTreeProps, OrgTreeNode } from "./org-tree";
 /** @deprecated Use OTPField */
 export const OtpField = _OTPField;
 export {
@@ -439,10 +445,19 @@ export {
 export type { TextProps, ParagraphProps } from "./typography";
 export { Spinner } from "./spinner";
 export type { SpinnerProps } from "./spinner";
+export { SpreadsheetEditor } from "./spreadsheet-editor";
+export type {
+  SpreadsheetEditorProps,
+  SpreadsheetColumnDef,
+  RowData,
+  CellCoords,
+} from "./spreadsheet-editor";
 export { InputSearch } from "./input-search";
 export type { InputSearchProps } from "./input-search";
 export { InputNumber } from "./input-number";
 export type { InputNumberProps } from "./input-number";
+export { InputNumberWithUnit } from "./input-number-with-unit";
+export type { InputNumberWithUnitProps } from "./input-number-with-unit";
 export { DatePicker } from "./date-picker";
 export type { DatePickerProps } from "./date-picker";
 export { Descriptions, DescriptionsItem } from "./descriptions";
@@ -587,3 +602,121 @@ export type {
   ShortcutGroup,
   ShortcutItem,
 } from "./keyboard-shortcut-dialog";
+export { TwoFactorAuth, generateDefaultBackupCodes } from "./two-factor-auth";
+export type { TwoFactorAuthProps } from "./two-factor-auth";
+export { Scheduler } from "./scheduler";
+export type { SchedulerProps, SchedulerEvent, ViewMode } from "./scheduler";
+export { FileManager } from "./file-manager";
+export type { FileManagerProps, FileNode } from "./file-manager";
+export { GlobalSearch } from "./global-search";
+export type { GlobalSearchProps, SearchResult } from "./global-search";
+export { FeedbackSurvey } from "./feedback-survey";
+export type { FeedbackSurveyProps } from "./feedback-survey";
+export { KnowledgeBase } from "./knowledge-base";
+export type {
+  KnowledgeBaseProps,
+  WikiArticle,
+  WikiCategory,
+} from "./knowledge-base";
+export { HelpDesk } from "./help-desk";
+export type {
+  HelpDeskProps,
+  Ticket,
+  TicketStatus,
+  TicketPriority,
+  TicketReply,
+} from "./help-desk";
+
+// ─── Enterprise UI 底座补齐 — P0/P1/P2 组件 ───────────────────────
+export { PasswordInput, PasswordStrengthMeter } from "./password-input";
+export type { PasswordInputProps } from "./password-input";
+export { PhoneInput } from "./phone-input";
+export type { PhoneInputProps, CountryOption } from "./phone-input";
+export { MaskedInput } from "./masked-input";
+export type { MaskedInputProps } from "./masked-input";
+export { DateRangePicker } from "./date-range-picker";
+export type { DateRangePickerProps } from "./date-range-picker";
+export { MonthPicker } from "./month-picker";
+export type { MonthPickerProps } from "./month-picker";
+export { YearPicker } from "./year-picker";
+export type { YearPickerProps } from "./year-picker";
+export { QuarterPicker } from "./quarter-picker";
+export type { QuarterPickerProps, QuarterValue } from "./quarter-picker";
+export { RangeSlider } from "./range-slider";
+export type { RangeSliderProps } from "./range-slider";
+export { CountdownButton } from "./countdown-button";
+export type { CountdownButtonProps } from "./countdown-button";
+export { AmountInput } from "./amount-input";
+export type { AmountInputProps } from "./amount-input";
+export { SortableList } from "./sortable-list";
+export type { SortableListProps } from "./sortable-list";
+export { CopyButton } from "./copy-button";
+export type { CopyButtonProps } from "./copy-button";
+export { EditableTable } from "./editable-table";
+export type { EditableTableProps, EditableColumn } from "./editable-table";
+export { EditableDescriptions } from "./editable-descriptions";
+export type {
+  EditableDescriptionsProps,
+  EditableDescriptionItem,
+} from "./editable-descriptions";
+export { FilterChips } from "./filter-chips";
+export type { FilterChipsProps, FilterChip } from "./filter-chips";
+export { SavedViewSwitcher } from "./saved-view";
+export type { SavedViewProps, SavedView } from "./saved-view";
+export { SkeletonTable } from "./skeleton-table";
+export type { SkeletonTableProps } from "./skeleton-table";
+export { SkeletonForm } from "./skeleton-form";
+export type { SkeletonFormProps } from "./skeleton-form";
+export { CodeDiffViewer } from "./diff-viewer-code";
+export type { CodeDiffViewerProps } from "./diff-viewer-code";
+export { MarkdownViewer } from "./markdown-viewer";
+export type { MarkdownViewerProps } from "./markdown-viewer";
+export { RichTextDisplay } from "./rich-text-display";
+export type { RichTextDisplayProps } from "./rich-text-display";
+export { LazyImage } from "./lazy-image";
+export type { LazyImageProps } from "./lazy-image";
+export { KeepAlive, useKeepAlive } from "./keep-alive";
+export type { KeepAliveProps } from "./keep-alive";
+export { NotificationBadge } from "./notification-badge";
+export type { NotificationBadgeProps } from "./notification-badge";
+export { NotificationDropdown } from "./notification-dropdown";
+export type {
+  NotificationDropdownProps,
+  NotificationItem,
+} from "./notification-dropdown";
+export { GlobalLoading } from "./global-loading";
+export type { GlobalLoadingProps } from "./global-loading";
+export { ErrorBoundaryUI } from "./error-boundary-ui";
+export type { ErrorBoundaryUIProps } from "./error-boundary-ui";
+export { I18nProvider, useI18n } from "./i18n-provider";
+export type { I18nProviderProps } from "./i18n-provider";
+export { RTLProvider, useRTL } from "./rtl-provider";
+export type { RTLProviderProps } from "./rtl-provider";
+export {
+  KeyboardShortcutsManager,
+  useKeyboardShortcuts,
+} from "./keyboard-shortcuts-manager";
+export type {
+  KeyboardShortcutsManagerProps,
+  ShortcutDef,
+} from "./keyboard-shortcuts-manager";
+export { JSONViewerUI } from "./json-viewer-ui";
+export type { JSONViewerUIProps } from "./json-viewer-ui";
+export { Heatmap } from "./heatmap";
+export type { HeatmapProps, HeatmapPoint } from "./heatmap";
+export { SegmentedFilter } from "./segmented-filter";
+export type {
+  SegmentedFilterProps,
+  SegmentFilterOption,
+} from "./segmented-filter";
+export { StatGrid } from "./stat-grid";
+export type { StatGridProps, StatItem } from "./stat-grid";
+export { RowContextMenu } from "./row-context-menu";
+export type { RowContextMenuProps, RowMenuItem } from "./row-context-menu";
+export { ProgressiveImage } from "./progressive-image";
+export type { ProgressiveImageProps } from "./progressive-image";
+export { PasswordPolicyValidator } from "./password-policy-validator";
+export type {
+  PasswordPolicyValidatorProps,
+  PolicyRule,
+} from "./password-policy-validator";

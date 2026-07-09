@@ -1,192 +1,172 @@
 "use client";
 
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { XIcon } from "@/components/ui/icons";
 
-const imageViewerVariants = cva(
-  "fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4",
-  {
-    variants: {
-      open: {
-        true: "",
-        false: "hidden",
-      },
-    },
-    defaultVariants: { open: false },
-  },
-);
-
-interface ImageViewerProps
-  extends
-    React.ComponentProps<"div">,
-    VariantProps<typeof imageViewerVariants> {
-  /** Whether the viewer is open */
-  open?: boolean;
-  /** Called when the viewer should close */
-  onClose?: () => void;
-  /** Image source URL */
-  src?: string;
-  /** Image alt text */
+/**
+ * @component ImageViewer
+ * @category ui/display
+ * @since 0.7.0
+ * @description 图片查看器 — 全屏遮罩 + 缩放 + 旋转 + 上一张/下一张。
+ * / Image viewer — fullscreen overlay with zoom, rotate, and navigation.
+ * @keywords image, viewer, gallery, zoom, rotate, lightbox
+ * @example
+ * <ImageViewer
+ *   open={open}
+ *   onOpenChange={setOpen}
+ *   images={[{ src: "/img1.jpg", alt: "Image 1" }]}
+ *   index={0}
+ * />
+ */
+interface ImageViewerImage {
+  src: string;
   alt?: string;
-  /** List of images for gallery mode */
-  images?: { src: string; alt?: string }[];
-  /** Initial index for gallery mode */
-  initialIndex?: number;
+}
+
+interface ImageViewerProps {
+  /** Open state / 是否打开 */
+  open: boolean;
+  /** Open change callback / 开关回调 */
+  onOpenChange: (open: boolean) => void;
+  /** Image list / 图片列表 */
+  images: ImageViewerImage[];
+  /** Initial image index / 初始索引 */
+  index?: number;
 }
 
 function ImageViewer({
-  className,
-  open: controlledOpen,
-  onClose,
-  src,
-  alt = "",
+  open,
+  onOpenChange,
   images,
-  initialIndex = 0,
-  ...props
+  index = 0,
 }: ImageViewerProps) {
-  const [internalOpen, setInternalOpen] = React.useState(false);
-  const [currentIndex, setCurrentIndex] = React.useState(initialIndex);
-  const [scale, setScale] = React.useState(1);
-
-  const isOpen = controlledOpen ?? internalOpen;
-  const imageList = images ?? (src ? [{ src, alt }] : []);
-  const current = imageList[currentIndex];
+  const [current, setCurrent] = React.useState(index);
+  const [zoom, setZoom] = React.useState(1);
+  const [rotation, setRotation] = React.useState(0);
 
   React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-      if (e.key === "Escape") {
-        onClose?.() ?? setInternalOpen(false);
-      } else if (e.key === "ArrowLeft" && imageList.length > 1) {
-        setCurrentIndex((i) => (i - 1 + imageList.length) % imageList.length);
-      } else if (e.key === "ArrowRight" && imageList.length > 1) {
-        setCurrentIndex((i) => (i + 1) % imageList.length);
-      }
-    };
+    if (open) {
+      setCurrent(index);
+      setZoom(1);
+      setRotation(0);
+    }
+  }, [open, index]);
 
-    document.addEventListener("keydown", handleKeyDown);
-    if (isOpen) document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isOpen, onClose, imageList.length]);
+  if (!open || images.length === 0) return null;
 
-  React.useEffect(() => {
-    setScale(1);
-  }, [currentIndex]);
+  const image = images[current];
+  if (!image) return null;
 
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    setScale((s) =>
-      Math.max(0.5, Math.min(5, s + (e.deltaY > 0 ? -0.1 : 0.1))),
-    );
-  };
-
-  if (!isOpen) return null;
+  const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
+  const next = () => setCurrent((c) => (c + 1) % images.length);
 
   return (
     <div
       data-slot="image-viewer"
-      className={cn(imageViewerVariants({ open: isOpen }), className)}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          onClose?.() ?? setInternalOpen(false);
-        }
-      }}
-      {...props}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90"
+      onClick={() => onOpenChange(false)}
     >
-      <button
-        type="button"
-        onClick={() => {
-          onClose?.() ?? setInternalOpen(false);
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute top-4 right-4 text-white hover:bg-white/10"
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenChange(false);
         }}
-        className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-        aria-label="Close viewer"
+        aria-label="Close"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
-      </button>
+        <XIcon />
+      </Button>
 
-      {imageList.length > 1 && (
+      {images.length > 1 && (
         <>
-          <button
-            type="button"
-            onClick={() =>
-              setCurrentIndex(
-                (i) => (i - 1 + imageList.length) % imageList.length,
-              )
-            }
-            className="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-            aria-label="Previous image"
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-4 text-white hover:bg-white/10"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="Previous"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => setCurrentIndex((i) => (i + 1) % imageList.length)}
-            className="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-            aria-label="Next image"
+            {"<"}
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 text-white hover:bg-white/10"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="Next"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
+            {">"}
+          </Button>
         </>
       )}
 
-      <img
-        src={current?.src}
-        alt={current?.alt ?? ""}
-        style={{ transform: `scale(${scale})` }}
-        className="max-h-[90vh] max-w-[90vw] object-contain transition-transform"
-        onWheel={handleWheel}
-        draggable={false}
-      />
-
-      {imageList.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-sm text-white">
-          {currentIndex + 1} / {imageList.length}
+      <div className="flex flex-col items-center gap-3">
+        <img
+          src={image.src}
+          alt={image.alt ?? ""}
+          className="max-h-[80vh] max-w-[90vw] object-contain transition-transform"
+          style={{
+            transform: `scale(${zoom}) rotate(${rotation}deg)`,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-white/30 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoom((z) => Math.max(0.5, z - 0.25));
+            }}
+          >
+            Zoom Out
+          </Button>
+          <span className="text-sm text-white/70 tabular-nums">
+            {Math.round(zoom * 100)}%
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-white/30 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoom((z) => Math.min(3, z + 0.25));
+            }}
+          >
+            Zoom In
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-white/30 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRotation((r) => (r + 90) % 360);
+            }}
+          >
+            Rotate
+          </Button>
         </div>
-      )}
+        {images.length > 1 && (
+          <span className="text-xs text-white/50">
+            {current + 1} / {images.length}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
-export { ImageViewer, imageViewerVariants };
+export { ImageViewer };
+export type { ImageViewerProps, ImageViewerImage };

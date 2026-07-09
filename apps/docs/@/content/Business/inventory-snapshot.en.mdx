@@ -1,0 +1,45 @@
+import { InventorySnapshot } from "@/components/business/inventory-snapshot"
+import { CodeBlock } from "@/components/code-block"
+
+# InventorySnapshot Inventory Snapshot
+
+> Domain-specific business components for ERP scenarios.
+
+<InventorySnapshot items={[ { id: "s1", name: "原料A", qty: 120, status: "normal" }, { id: "s2", name: "原料B", qty: 5, status: "low" }, ]} />
+InventorySnapshot — inventory snapshot component.
+
+## When to Use
+
+Use when you need an inventory snapshot.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { InventorySnapshot } from "@/components/business/inventory-snapshot"
+
+export function Basic() {
+  return <InventorySnapshot />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### InventorySnapshot
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `items` | `Array<{` | — | Items / data list |
+| `id` | `string` | — | DOM element id |
+| `name` | `string` | — | Form field name |
+| `qty` | `number` | — |  |
+| `status` | `"normal" \| "low" \| "out"` | — | Status |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

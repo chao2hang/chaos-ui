@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
-import { Watermark } from "./watermark";
+import { Watermark } from "@/components/ui/watermark";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
@@ -74,7 +74,7 @@ describe("Watermark", () => {
   });
 
   it("module is importable", async () => {
-    const mod = await import("@/components/business/watermark");
+    const mod = await import("@/components/ui/watermark");
     expect(mod.Watermark).toBeDefined();
   });
 });

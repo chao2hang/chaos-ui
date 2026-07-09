@@ -1,5 +1,5 @@
-import { MasterDetailLayout } from "@/components/layout/master-detail-layout";
-import { CodeBlock } from "@/components/code-block";
+import { MasterDetailLayout } from "@/components/layout/master-detail-layout"
+import { CodeBlock } from "@/components/code-block"
 
 # MasterDetailLayout 主次布局
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要主次布局功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,25 +22,27 @@ export function Basic() {
   return <MasterDetailLayout />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### MasterDetailLayout
 
-| Prop                 | Type                          | Default | 说明                  |
-| -------------------- | ----------------------------- | ------- | --------------------- |
-| `className`          | `string`                      | —       | 自定义样式类名        |
-| `master`             | `React.ReactNode`             | —       |                       |
-| `detail`             | `React.ReactNode`             | —       |                       |
-| `masterWidth`        | `number`                      | —       |                       |
-| `defaultMasterWidth` | `number`                      | `320`   |                       |
-| `minMasterWidth`     | `number`                      | `240`   |                       |
-| `maxMasterWidth`     | `number`                      | `480`   |                       |
-| `resizable`          | `boolean`                     | `true`  |                       |
-| ...rest              | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `master` | `React.ReactNode` | — |  |
+| `detail` | `React.ReactNode` | — |  |
+| `masterWidth` | `number` | — |  |
+| `defaultMasterWidth` | `number` | `320` |  |
+| `minMasterWidth` | `number` | `240` |  |
+| `maxMasterWidth` | `number` | `480` |  |
+| `resizable` | `boolean` | `true` |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-master-detail-layout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-masterdetaillayout--docs)。
+

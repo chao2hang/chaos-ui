@@ -1,5 +1,5 @@
-import { CrudPage } from "@/components/business/crud-page";
-import { CodeBlock } from "@/components/code-block";
+import { CrudPage } from "@/components/business/crud-page"
+import { CodeBlock } from "@/components/code-block"
 
 # CrudPage
 
@@ -11,6 +11,7 @@ CrudPage — a business component for ERP / enterprise scenarios.
 
 Use when you need a crud page.
 
+
 ## Examples
 
 ### Basic Usage
@@ -21,23 +22,28 @@ export function Basic() {
   return <CrudPage />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### CrudPage
 
-| Prop           | Type                          | Default    | Description                     |
-| -------------- | ----------------------------- | ---------- | ------------------------------- |
-| `className`    | `string`                      | —          | Custom CSS class                |
-| `title`        | `string`                      | `数据列表` | Title                           |
-| `toolbar`      | `React.ReactNode`             | —          |                                 |
-| `columns`      | `(...args) => unknown`        | —          | Column configuration            |
-| `data`         | `Record<string, unknown>[]`   | —          | Data source                     |
-| `total`        | `number`                      | `0`        |                                 |
-| `page`         | `number`                      | `1`        |                                 |
-| `onPageChange` | `() => void`                  | —          |                                 |
-| `onCreate`     | `() => void`                  | —          |                                 |
-| ...rest        | `React.ComponentProps<"div">` | —          | Inherits all `<div>` attributes |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `title` | `string` | `数据列表` | Title |
+| `toolbar` | `React.ReactNode` | — |  |
+| `columns` | `Array<{` | — | Column configuration |
+| `key` | `string` | — |  |
+| `header` | `string` | — |  |
+| `data` | `Record<string, unknown>[]` | — | Data source |
+| `total` | `number` | `0` |  |
+| `page` | `number` | `1` |  |
+| `onPageChange` | `() => void` | — |  |
+| `onCreate` | `() => void` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

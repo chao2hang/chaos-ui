@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 收件地址填写与编辑表单。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -29,13 +30,13 @@ export function Basic() {
 
 ### AddressForm
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| `value`     | `AddressValue`         | —       | 当前值(受控)      |
-| `onChange`  | `() => void`           | —       | 值变化回调        |
-| `country`   | `string`               | —       |                   |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string` | — | 自定义样式类名 |
+| `value` | `AddressValue` | — | 当前值(受控) |
+| `onChange` | `() => void` | — | 值变化回调 |
+| `country`   | `string`               | —       |                                                           |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -43,3 +44,4 @@ export function Basic() {
 - **表单校验**: 集成 `zod` + `react-hook-form`,支持类型安全的表单校验与提交。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-address-form--docs)。
+

@@ -1,119 +1,147 @@
-import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "axios"
-import { toast } from "sonner"
-import { logger } from "@/lib/logger"
+import axios, {
+  AxiosError,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+} from "axios";
+import { toast } from "sonner";
+import { logger } from "@/lib/logger";
 
 export interface ApiError {
-  status: number
-  code?: string
-  message: string
-  details?: unknown
+  status: number;
+  code?: string;
+  message: string;
+  details?: unknown;
 }
 
 export interface ApiClientConfig {
-  baseURL?: string
-  timeout?: number
-  getToken?: () => string | null | Promise<string | null>
-  onError?: (error: ApiError) => void
-  showErrorToast?: boolean
+  baseURL?: string;
+  timeout?: number;
+  getToken?: () => string | null | Promise<string | null>;
+  refreshToken?: () => Promise<string | null>;
+  onTokenExpired?: () => void;
+  onError?: (error: ApiError) => void;
+  showErrorToast?: boolean;
 }
 
 export class ApiClient {
-  private instance: AxiosInstance
+  private instance: AxiosInstance;
 
   constructor(config: ApiClientConfig = {}) {
     const {
       baseURL = "/api",
       timeout = 30000,
       getToken,
+      refreshToken,
+      onTokenExpired,
       onError,
       showErrorToast = true,
-    } = config
+    } = config;
 
-    this.instance = axios.create({ baseURL, timeout })
+    this.instance = axios.create({ baseURL, timeout });
 
     this.instance.interceptors.request.use(async (cfg) => {
       if (getToken) {
-        const token = await getToken()
+        const token = await getToken();
         if (token) {
-          cfg.headers.set("Authorization", `Bearer ${token}`)
+          cfg.headers.set("Authorization", `Bearer ${token}`);
         }
       }
-      return cfg
-    })
+      return cfg;
+    });
 
     this.instance.interceptors.response.use(
       (res) => res,
-      (err: AxiosError<{ message?: string; code?: string; details?: unknown }>) => {
-        const status = err.response?.status ?? 0
-        const data = err.response?.data
+      async (
+        err: AxiosError<{ message?: string; code?: string; details?: unknown }>,
+      ) => {
+        const status = err.response?.status ?? 0;
+        const data = err.response?.data;
+
+        // Token refresh on 401
+        if (status === 401 && refreshToken && err.config) {
+          try {
+            const newToken = await refreshToken();
+            if (newToken && err.config.headers) {
+              err.config.headers.set("Authorization", `Bearer ${newToken}`);
+              return this.instance.request(err.config);
+            }
+          } catch {
+            // Refresh failed — fall through to error handling
+          }
+          onTokenExpired?.();
+        }
+
         const apiError: ApiError = {
           status,
-          code: data?.code,
+          ...(data?.code !== undefined ? { code: data.code } : {}),
           message: data?.message ?? err.message ?? "Request failed",
-          details: data?.details,
-        }
-        logger.error("API error", { url: err.config?.url, ...apiError })
-        onError?.(apiError)
+          ...(data?.details !== undefined ? { details: data.details } : {}),
+        };
+        logger.error("API error", { url: err.config?.url, ...apiError });
+        onError?.(apiError);
         if (showErrorToast) {
           if (status === 0) {
-            toast.error("网络连接失败")
+            toast.error("网络连接失败");
           } else if (status >= 500) {
-            toast.error("服务异常，请稍后重试")
+            toast.error("服务异常，请稍后重试");
           } else if (status === 401) {
-            toast.error("登录已过期")
+            toast.error("登录已过期");
           } else if (status === 403) {
-            toast.error("没有访问权限")
+            toast.error("没有访问权限");
           } else if (status >= 400) {
-            toast.error(apiError.message)
+            toast.error(apiError.message);
           }
         }
-        return Promise.reject(apiError)
-      }
-    )
+        return Promise.reject(apiError);
+      },
+    );
   }
 
   get<T>(url: string, config?: AxiosRequestConfig) {
-    return this.instance.get<T>(url, config).then((r) => r.data)
+    return this.instance.get<T>(url, config).then((r) => r.data);
   }
 
   post<T>(url: string, body?: unknown, config?: AxiosRequestConfig) {
-    return this.instance.post<T>(url, body, config).then((r) => r.data)
+    return this.instance.post<T>(url, body, config).then((r) => r.data);
   }
 
   put<T>(url: string, body?: unknown, config?: AxiosRequestConfig) {
-    return this.instance.put<T>(url, body, config).then((r) => r.data)
+    return this.instance.put<T>(url, body, config).then((r) => r.data);
   }
 
   patch<T>(url: string, body?: unknown, config?: AxiosRequestConfig) {
-    return this.instance.patch<T>(url, body, config).then((r) => r.data)
+    return this.instance.patch<T>(url, body, config).then((r) => r.data);
   }
 
   delete<T>(url: string, config?: AxiosRequestConfig) {
-    return this.instance.delete<T>(url, config).then((r) => r.data)
+    return this.instance.delete<T>(url, config).then((r) => r.data);
   }
 
   setHeader(key: string, value: string) {
-    this.instance.defaults.headers.common[key] = value
+    this.instance.defaults.headers.common[key] = value;
   }
 
   removeHeader(key: string) {
-    delete this.instance.defaults.headers.common[key]
+    delete this.instance.defaults.headers.common[key];
   }
 }
 
-let defaultClient: ApiClient | null = null
+let defaultClient: ApiClient | null = null;
 
 export function getApiClient(config?: ApiClientConfig): ApiClient {
   if (!defaultClient) {
-    defaultClient = new ApiClient(config)
+    defaultClient = new ApiClient(config);
   }
-  return defaultClient
+  return defaultClient;
 }
 
-export async function safeRequest<T>(fn: () => Promise<T>, fallback?: T): Promise<T | undefined> {
+export async function safeRequest<T>(
+  fn: () => Promise<T>,
+  fallback?: T,
+): Promise<T | undefined> {
   try {
-    return await fn()
+    return await fn();
   } catch {
-    return fallback
+    return fallback;
   }
 }

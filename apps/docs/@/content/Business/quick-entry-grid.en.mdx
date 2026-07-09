@@ -1,0 +1,45 @@
+import { QuickEntryGrid } from "@/components/business/quick-entry-grid"
+import { CodeBlock } from "@/components/code-block"
+
+# QuickEntryGrid Quick Entry Grid
+
+> Domain-specific business components for ERP scenarios.
+
+<QuickEntryGrid entries={[{ id: "bill", label: "新建账单", onClick: () => {} }]} />
+QuickEntryGrid — quick entry grid component.
+
+## When to Use
+
+Use when you need a quick entry grid.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { QuickEntryGrid } from "@/components/business/quick-entry-grid"
+
+export function Basic() {
+  return <QuickEntryGrid />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### QuickEntryGrid
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `entries` | `Array<{` | — |  |
+| `id` | `string` | — | DOM element id |
+| `icon` | `React.ReactNode` | — | Icon element |
+| `label` | `string` | — | Label text |
+| `onClick` | `() => void` | — | Click handler |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

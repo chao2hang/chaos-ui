@@ -22,7 +22,7 @@ export const Default: Story = {
         <h4 className="text-sm font-semibold">
           @peduarte starred 3 repositories
         </h4>
-        <CollapsibleTrigger asChild>
+        <CollapsibleTrigger {...({ asChild: true } as any)}>
           <Button variant="ghost" size="sm">
             <ChevronsUpDownIcon className="size-4" />
             <span className="sr-only">Toggle</span>

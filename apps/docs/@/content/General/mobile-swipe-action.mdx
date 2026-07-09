@@ -1,18 +1,17 @@
-import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action"
-import { CodeBlock } from "@/components/code-block"
+import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action";
+import { CodeBlock } from "@/components/code-block";
 
-# MobileSwipeAction Mobile Swipe Action
+# MobileSwipeAction 滑动操作
 
-> 通用基础组件 / General-purpose primitives used across the app.
+> 移动端滑动操作行 / Swipe action row for mobile.
 
-Mobile Swipe Action — Chaos UI 的通用基础组件。
-MobileSwipeAction — a general-purpose primitives used across the app. from Chaos UI.
+移动端滑动操作行，左右拖拽时揭示操作按钮。
+Swipe action row for mobile; reveals left/right action buttons on drag.
 
 ## 何时使用 / When to Use
 
-适用于Mobile Swipe Action相关场景。
-
-Use when you need a mobile swipe action.
+移动端列表项需要快捷操作（删除、收藏等）时使用，节省屏幕空间。
+Use on mobile list items that need quick actions (delete, favorite, etc.) to save screen space.
 
 ## 代码示例 / Examples
 
@@ -21,24 +20,39 @@ Use when you need a mobile swipe action.
 <CodeBlock code={`import { MobileSwipeAction } from "@/components/ui/mobile-swipe-action"
 
 export function Basic() {
-  return <MobileSwipeAction />
+  return (
+    <MobileSwipeAction
+      rightActions={[
+        { key: "delete", label: "删除", color: "destructive", onClick: () => {} },
+      ]}
+    >
+      <div className="p-4">Swipe left to reveal actions</div>
+    </MobileSwipeAction>
+  )
 }`} lang="tsx" />
-
 
 ## API / Props
 
 ### MobileSwipeAction
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `leftActions` | `SwipeActionDef[]` | — | 左侧操作按钮 / left action buttons |
-| `rightActions` | `SwipeActionDef[]` | — | 右侧操作按钮 / right action buttons |
-| `actionWidth` | `number` | `80` | 单个操作按钮宽度(px) / action button width |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type               | Default | 说明 / Description                  |
+| -------------- | ------------------ | ------- | ----------------------------------- |
+| `leftActions`  | `SwipeActionDef[]` | —       | Left action buttons / 左侧操作按钮  |
+| `rightActions` | `SwipeActionDef[]` | —       | Right action buttons / 右侧操作按钮 |
+| `children`     | `React.ReactNode`  | —       | Row content / 行内容                |
+
+### SwipeActionDef
+
+| Prop      | Type                                      | 说明 / Description                  |
+| --------- | ----------------------------------------- | ----------------------------------- |
+| `key`     | `string`                                  | Unique key / 唯一键 (required)      |
+| `label`   | `string`                                  | Button label / 按钮文本 (required)  |
+| `onClick` | `() => void`                              | Click handler / 点击回调 (required) |
+| `color`   | `"default" \| "primary" \| "destructive"` | Button color / 按钮颜色             |
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **移动端专用**: 基于触摸事件，适用于移动端场景。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobileswipeaction--docs)。

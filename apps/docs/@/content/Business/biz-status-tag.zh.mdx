@@ -1,5 +1,5 @@
-import { BizStatusTag, Labels } from "@/components/business/biz-status-tag";
-import { CodeBlock } from "@/components/code-block";
+import { BizStatusTag, Labels } from "@/components/business/biz-status-tag"
+import { CodeBlock } from "@/components/code-block"
 
 # BizStatusTag 业务状态标签
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要业务状态标签功能时使用本组件。
+
 
 ## 代码示例
 
@@ -26,30 +27,31 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
+
 ## 样式变体
 
 **状态**
 
-| status       | 说明 | 默认 |
-| ------------ | ---- | ---- |
-| `active`     |      |      |
-| `inactive`   |      |      |
-| `pending`    |      | ✓    |
-| `processing` |      |      |
-| `error`      |      |      |
-| `completed`  |      |      |
-| `cancelled`  |      |      |
-| `warning`    |      |      |
+| status | 说明 | 默认 |
+|---|---|---|
+| `active` |  |  |
+| `inactive` |  |  |
+| `pending` |  | ✓ |
+| `processing` |  |  |
+| `error` |  |  |
+| `completed` |  |  |
+| `cancelled` |  |  |
+| `warning` |  |  |
 
 ## API / Props
 
 ### BizStatusTag
 
-| Prop        | Type                           | Default | 说明                   |
-| ----------- | ------------------------------ | ------- | ---------------------- |
-| `className` | `string`                       | —       | 自定义样式类名         |
-| `label`     | `string`                       | —       | 标签文本               |
-| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `label` | `string` | — | 标签文本 |
+| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 |
 
 ## 注意事项
 
@@ -57,4 +59,5 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-biz-status-tag--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-bizstatustag--docs)。
+

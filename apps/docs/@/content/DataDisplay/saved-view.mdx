@@ -1,0 +1,41 @@
+import { SavedViewSwitcher } from "@/components/ui/saved-view"
+import { CodeBlock } from "@/components/code-block"
+
+# SavedViewSwitcher 保存视图
+
+> 数据展示 / Data display components for presenting information.
+
+保存视图 — 保存视图切换器，保存/恢复筛选与列预设。
+SavedViewSwitcher — Saved view switcher for list pages — save and restore filter+column presets.
+
+## 何时使用 / When to Use
+
+需要保存视图功能时使用本组件。
+
+Use when you need a savedviewswitcher.
+
+## 代码示例 / Examples
+
+### 基础用法 / Basic Usage
+
+<CodeBlock code={`import { SavedViewSwitcher } from "@/components/ui/saved-view"
+
+export function Basic() {
+  return <SavedViewSwitcher />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SavedViewSwitcher
+
+| Prop | Type | Default | 说明 / Description |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+## 注意事项 / Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-savedview--docs)。

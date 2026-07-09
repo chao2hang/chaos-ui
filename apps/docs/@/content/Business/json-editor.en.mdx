@@ -1,0 +1,48 @@
+import { JsonEditor } from "@/components/business/json-editor"
+import { CodeBlock } from "@/components/code-block"
+
+# JsonEditor Json Editor
+
+> Domain-specific business components for ERP scenarios.
+
+JsonEditor — a business component for ERP / enterprise scenarios.
+
+## When to Use
+
+Use when you need a json editor.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { JsonEditor } from "@/components/business/json-editor"
+
+export function Basic() {
+  return <JsonEditor />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### JsonEditor
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| `value` | `string` | — | JSON string (controlled). |
+| `onChange` | `() => void` | — | Called on every change. |
+| `placeholder` | `string` | — | Placeholder text. |
+| `readOnly` | `boolean \| undefined` | — | Whether the editor is read-only. |
+| `minHeight` | `number` | `200` | Minimum height. |
+| `maxHeight` | `number` | — | Maximum height. |
+| `autoFormat` | `boolean \| undefined` | — | If true, auto-formats the JSON value on mount and on external value changes. |
+| `onFocus` | `() => void` | — | Called when the editor receives focus. |
+| `onBlur` | `() => void` | — | Called when the editor loses focus. |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

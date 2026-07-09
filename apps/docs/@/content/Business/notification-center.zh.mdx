@@ -1,5 +1,5 @@
-import { NotificationCenter } from "@/components/business/notification-center";
-import { CodeBlock } from "@/components/code-block";
+import { NotificationCenter } from "@/components/business/notification-center"
+import { CodeBlock } from "@/components/code-block"
 
 # NotificationCenter 通知中心
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 站内消息/通知聚合列表,展示未读/已读状态。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,24 +22,26 @@ export function Basic() {
   return <NotificationCenter />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### NotificationCenter
 
-| Prop            | Type                           | Default    | 说明              |
-| --------------- | ------------------------------ | ---------- | ----------------- |
-| `className`     | `string`                       | —          | 自定义样式类名    |
-| `notifications` | `NotificationItem[]`           | —          |                   |
-| `onMarkRead`    | `() => void`                   | —          |                   |
-| `onMarkAllRead` | `() => void`                   | —          |                   |
-| `onClear`       | `() => void`                   | —          |                   |
-| `onItemClick`   | `() => void`                   | —          |                   |
-| `align`         | `"start" \| "center" \| "end"` | `end`      | 对齐方式          |
-| `emptyText`     | `string`                       | `暂无通知` |                   |
-| ...rest         | `React.HTMLAttributes`         | —          | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `notifications` | `NotificationItem[]` | — |  |
+| `onMarkRead` | `() => void` | — |  |
+| `onMarkAllRead` | `() => void` | — |  |
+| `onClear` | `() => void` | — |  |
+| `onItemClick` | `() => void` | — |  |
+| `align` | `"start" \| "center" \| "end"` | `end` | 对齐方式 |
+| `emptyText` | `string` | `暂无通知` |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-notification-center--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-notificationcenter--docs)。
+

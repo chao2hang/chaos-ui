@@ -1,0 +1,53 @@
+import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh";
+import { CodeBlock } from "@/components/code-block";
+
+# MobilePullRefresh 下拉刷新
+
+> 移动端下拉刷新
+
+移动端下拉刷新容器，触摸下拉超过阈值时触发 onRefresh。
+
+## 何时使用
+
+移动端列表页面需要下拉刷新数据时使用。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { MobilePullRefresh } from "@/components/ui/mobile-pull-refresh"
+import { useState } from "react"
+
+export function Basic() {
+  const [refreshing, setRefreshing] = useState(false)
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await fetchData()
+    setRefreshing(false)
+  }
+  return (
+    <MobilePullRefresh refreshing={refreshing} onRefresh={onRefresh}>
+      <div>List items...</div>
+    </MobilePullRefresh>
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### MobilePullRefresh
+
+| Prop | Type | Default | 说明 |
+| ------------ | ----------------------------- | ------- | --------------------------------------- |
+| `onRefresh`  | `() => Promise<void> \| void` | —       | Refresh callback / 刷新回调             |
+| `refreshing` | `boolean`                     | `false` | Refreshing state / 刷新状态             |
+| `children`   | `React.ReactNode`             | —       | Content / 子内容                        |
+| `threshold`  | `number`                      | `60`    | Pull threshold in px / 触发阈值（像素） |
+| `className` | `string` | — | 自定义样式类名 |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **移动端专用**: 基于触摸事件，适用于移动端场景。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobilepullrefresh--docs)。
+

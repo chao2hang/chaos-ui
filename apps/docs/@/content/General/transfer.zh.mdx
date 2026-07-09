@@ -1,0 +1,82 @@
+import { Transfer } from "@/components/ui/transfer";
+import { CodeBlock } from "@/components/code-block";
+
+# Transfer 穿梭框
+
+> 双栏穿梭框
+
+双栏穿梭框，支持在源列表和目标列表之间移动项目，含搜索和全选功能。
+
+## 何时使用
+
+需要在两个列表之间选择和移动项目时使用，如权限分配、角色选择。
+
+## 代码示例
+
+### 基础用法
+
+<CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+import { useState } from "react"
+
+const dataSource = [
+{ key: "1", label: "Option 1" },
+{ key: "2", label: "Option 2" },
+{ key: "3", label: "Option 3" },
+{ key: "4", label: "Option 4" },
+]
+
+export function Basic() {
+  const [targetKeys, setTargetKeys] = useState<string[]>([])
+  return (
+    <Transfer
+      dataSource={dataSource}
+      targetKeys={targetKeys}
+      onChange={setTargetKeys}
+    />
+  )
+}`} lang="tsx" />
+
+### 单向模式
+
+<CodeBlock code={`import { Transfer } from "@/components/ui/transfer"
+
+export function OneWay() {
+  return (
+    <Transfer
+      dataSource={[{ key: "1", label: "Item 1" }, { key: "2", label: "Item 2" }]}
+      oneWay
+    />
+  )
+}`} lang="tsx" />
+
+## API / Props
+
+### Transfer
+
+| Prop | Type | Default | 说明 |
+| ------------ | ----------------------------------------- | ------- | ------------------------------------- |
+| `dataSource` | `TransferItem[]`                          | —       | Data source / 数据源 (required)       |
+| `targetKeys` | `string[]`                                | `[]`    | Keys in target panel / 目标面板的 key |
+| `onChange`   | `(targetKeys: string[]) => void`          | —       | Change callback / 变化回调            |
+| `titles`     | `[string, string]`                        | —       | Panel titles / 面板标题               |
+| `searchable` | `boolean`                                 | `true`  | Enable search / 启用搜索              |
+| `oneWay`     | `boolean`                                 | `false` | One-way mode / 单向模式               |
+| `disabled`   | `boolean`                                 | `false` | Disable all / 全部禁用                |
+| `render`     | `(item: TransferItem) => React.ReactNode` | —       | Custom item render / 自定义渲染       |
+
+### TransferItem
+
+| Prop | Type | 说明 |
+| ------------- | --------- | ----------------------------------- |
+| `key`         | `string`  | Unique key / 唯一键 (required)      |
+| `label`       | `string`  | Display label / 显示标签 (required) |
+| `description` | `string`  | Description / 描述                  |
+| `disabled`    | `boolean` | Disabled / 禁用                     |
+
+## 注意事项
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **i18n**: 内置 `react-i18next` 支持，翻译命名空间为 `transfer`。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-transfer--docs)。
+

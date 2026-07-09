@@ -1,5 +1,5 @@
-import { FormSection } from "@/components/ui/form-section";
-import { CodeBlock } from "@/components/code-block";
+import { FormSection } from "@/components/ui/form-section"
+import { CodeBlock } from "@/components/code-block"
 
 # FormSection 表单分区
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要表单分区功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,44 +24,43 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <FormSection variant="default">Default</FormSection>
   <FormSection variant="elevated">Elevated</FormSection>
   <FormSection variant="flat">Flat</FormSection>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **变体**
 
-| Variant    | 说明     | 默认 |
-| ---------- | -------- | ---- |
-| `default`  | 默认样式 | ✓    |
-| `elevated` |          |      |
-| `flat`     |          |      |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `elevated` |  |  |
+| `flat` |  |  |
 
 ## API / Props
 
 ### FormSection
 
-| Prop               | Type                   | Default | 说明              |
-| ------------------ | ---------------------- | ------- | ----------------- |
-| `className`        | `string`               | —       | 自定义样式类名    |
-| `title`            | `string`               | —       | 标题              |
-| `description`      | `string`               | —       | 描述文本          |
-| `collapsible`      | `boolean`              | `false` |                   |
-| `defaultCollapsed` | `boolean`              | `false` |                   |
-| `required`         | `boolean`              | —       | 是否必填          |
-| `extra`            | `React.ReactNode`      | —       |                   |
-| ...rest            | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `title` | `string` | — | 标题 |
+| `description` | `string` | — | 描述文本 |
+| `collapsible` | `boolean` | `false` |  |
+| `defaultCollapsed` | `boolean` | `false` |  |
+| `required` | `boolean` | — | 是否必填 |
+| `extra` | `React.ReactNode` | — |  |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-form-section--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-formsection--docs)。
+

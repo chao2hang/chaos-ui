@@ -1,5 +1,5 @@
-import { Dot } from "@/components/ui/dot";
-import { CodeBlock } from "@/components/code-block";
+import { Dot } from "@/components/ui/dot"
+import { CodeBlock } from "@/components/code-block"
 
 # Dot 状态点
 
@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/code-block";
 ## 何时使用
 
 需要状态点功能时使用本组件。
+
 
 ## 代码示例
 
@@ -23,69 +24,65 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock
-  code={`{/* 展示 variant 变体 */}
+<CodeBlock code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Dot variant="default">Default</Dot>
   <Dot variant="primary">Primary</Dot>
   <Dot variant="success">Success</Dot>
   <Dot variant="warning">Warning</Dot>
   <Dot variant="destructive">Destructive</Dot>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
 
 ### 尺寸
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
+<CodeBlock code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Dot size="sm">Sm</Dot>
   <Dot size="default">Default</Dot>
   <Dot size="lg">Lg</Dot>
-</div>`}
-  lang="tsx"
-/>
+</div>`} lang="tsx" />
+
 
 ## 样式变体
 
 **尺寸**
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `sm`      | 小号     |      |
-| `default` | 默认尺寸 | ✓    |
-| `lg`      | 大号     |      |
+| Size | 说明 | 默认 |
+|---|---|---|
+| `sm` | 小号 |  |
+| `default` | 默认尺寸 | ✓ |
+| `lg` | 大号 |  |
 
 **变体**
 
-| Variant       | 说明          | 默认 |
-| ------------- | ------------- | ---- |
-| `default`     | 默认样式      | ✓    |
-| `primary`     | 主要样式      |      |
-| `success`     | 成功状态      |      |
-| `warning`     | 警告状态      |      |
-| `destructive` | 危险/删除样式 |      |
-| `info`        | 信息提示      |      |
+| Variant | 说明 | 默认 |
+|---|---|---|
+| `default` | 默认样式 | ✓ |
+| `primary` | 主要样式 |  |
+| `success` | 成功状态 |  |
+| `warning` | 警告状态 |  |
+| `destructive` | 危险/删除样式 |  |
+| `info` | 信息提示 |  |
 
 **pulse**
 
-| pulse   | 说明 | 默认 |
-| ------- | ---- | ---- |
-| `true`  |      | ✓    |
-| `false` |      |      |
+| pulse | 说明 | 默认 |
+|---|---|---|
+| `true` |  | ✓ |
+| `false` |  |  |
 
 ## API / Props
 
 ### Dot
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-dot--docs)。
+

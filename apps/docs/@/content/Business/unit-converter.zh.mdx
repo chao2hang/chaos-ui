@@ -1,5 +1,5 @@
-import { UnitConverter } from "@/components/business/unit-converter";
-import { CodeBlock } from "@/components/code-block";
+import { UnitConverter } from "@/components/business/unit-converter"
+import { CodeBlock } from "@/components/code-block"
 
 # UnitConverter 单位换算
 
@@ -11,6 +11,7 @@ import { CodeBlock } from "@/components/code-block";
 
 需要单位换算功能时使用本组件。
 
+
 ## 代码示例
 
 ### 基础用法
@@ -21,19 +22,21 @@ export function Basic() {
   return <UnitConverter />
 }`} lang="tsx" />
 
+
 ## API / Props
 
 ### UnitConverter
 
-| Prop        | Type                          | Default | 说明                  |
-| ----------- | ----------------------------- | ------- | --------------------- |
-| `className` | `string`                      | —       | 自定义样式类名        |
-| `units`     | `string[]`                    | —       |                       |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop | Type | Default | 说明 |
+|---|---|---|---|
+| `className` | `string` | — | 自定义样式类名 |
+| `units` | `string[]` | — |  |
+| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-unit-converter--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-unitconverter--docs)。
+

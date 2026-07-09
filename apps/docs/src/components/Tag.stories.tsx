@@ -12,16 +12,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = { args: { children: "Default" } };
 export const Primary: Story = {
-  args: { variant: "primary", children: "Primary" },
+  args: { color: "primary", children: "Primary" },
 };
 export const Success: Story = {
-  args: { variant: "success", children: "Success" },
+  args: { color: "success", children: "Success" },
 };
 export const Warning: Story = {
-  args: { variant: "warning", children: "Warning" },
+  args: { color: "warning", children: "Warning" },
 };
 export const Destructive: Story = {
-  args: { variant: "destructive", children: "Destructive" },
+  args: { color: "destructive", children: "Destructive" },
 };
 export const Closable: Story = {
   args: { closable: true, children: "Closable" },

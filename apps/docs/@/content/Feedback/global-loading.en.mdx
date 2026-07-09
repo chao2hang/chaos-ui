@@ -1,0 +1,39 @@
+import { GlobalLoading } from "@/components/ui/global-loading"
+import { CodeBlock } from "@/components/code-block"
+
+# GlobalLoading
+
+> Feedback components for user interaction and status.
+
+GlobalLoading — Global loading indicator for route switches and full-page loads.
+
+## When to Use
+
+Use when you need a globalloading.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { GlobalLoading } from "@/components/ui/global-loading"
+
+export function Basic() {
+  return <GlobalLoading />
+}`} lang="tsx" />
+
+
+## API / Props
+
+### GlobalLoading
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

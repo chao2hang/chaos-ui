@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div className="w-full max-w-2xl">
-      <Accordion type="single" collapsible>
+      <Accordion type="single" collapsible {...({} as any)}>
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
           <AccordionContent>
@@ -47,7 +47,7 @@ export const Default: Story = {
 export const Multiple: Story = {
   render: () => (
     <div className="w-full max-w-2xl">
-      <Accordion type="multiple">
+      <Accordion type="multiple" {...({} as any)}>
         <AccordionItem value="item-1">
           <AccordionTrigger>What is Chaos UI?</AccordionTrigger>
           <AccordionContent>
@@ -69,7 +69,7 @@ export const Multiple: Story = {
 export const FAQ: Story = {
   render: () => (
     <div className="w-full max-w-md">
-      <Accordion type="single" collapsible>
+      <Accordion type="single" collapsible {...({} as any)}>
         <AccordionItem value="faq-1">
           <AccordionTrigger>
             What payment methods do you accept?

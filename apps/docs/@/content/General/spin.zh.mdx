@@ -3,13 +3,13 @@ import { CodeBlock } from "@/components/code-block";
 
 # Spin 加载中
 
-> 通用基础组件
+> 局部加载包裹组件
 
-加载中 — Chaos UI 的通用基础组件。
+局部加载包裹组件，在子内容上叠加加载指示器，支持延迟显示和提示文本。
 
 ## 何时使用
 
-需要加载中功能时使用本组件。
+页面局部内容正在加载时使用，可包裹内容区域并显示加载遮罩。
 
 ## 代码示例
 
@@ -18,47 +18,59 @@ import { CodeBlock } from "@/components/code-block";
 <CodeBlock code={`import { Spin } from "@/components/ui/spin"
 
 export function Basic() {
-  return <Spin>Default</Spin>
+  return <Spin spinning>Content</Spin>
 }`} lang="tsx" />
 
-### 尺寸
+### 带提示文本
 
-<CodeBlock
-  code={`{/* 尺寸对照 */}
-<div className="flex flex-wrap items-center gap-3">
-  <Spin size="sm">Sm</Spin>
-  <Spin size="default">Default</Spin>
-  <Spin size="lg">Lg</Spin>
-</div>`}
-  lang="tsx"
-/>
+<CodeBlock code={`import { Spin } from "@/components/ui/spin"
 
-## 样式变体
+export function WithTip() {
+  return <Spin spinning tip="Loading...">Content</Spin>
+}`} lang="tsx" />
 
-**尺寸**
+### 尺寸对照
 
-| Size      | 说明     | 默认 |
-| --------- | -------- | ---- |
-| `default` | 默认尺寸 | ✓    |
-| `sm`      | 小号     |      |
-| `lg`      | 大号     |      |
+<CodeBlock code={`import { Spin } from "@/components/ui/spin"
+
+export function Sizes() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <Spin size="sm" spinning />
+      <Spin size="md" spinning />
+      <Spin size="lg" spinning />
+    </div>
+  )
+}`} lang="tsx" />
+
+## 尺寸说明
+
+| Size | 说明 | 默认 |
+| ---- | -------------------- | ---- |
+| `xs` | 超小 |  |
+| `sm` | 小号 |  |
+| `md` | 中号 | ✓ |
+| `lg` | 大号 |  |
+| `xl` | 超大号 |  |
 
 ## API / Props
 
 ### Spin
 
-| Prop        | Type                          | Default | 说明                              |
-| ----------- | ----------------------------- | ------- | --------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名                    |
-| `spinning`  | `boolean`                     | `true`  | Whether to show spinner           |
-| `indicator` | `React.ReactNode`             | —       | Custom spinner indicator          |
-| `tip`       | `React.ReactNode`             | —       | Tip text under spinner            |
-| `delay`     | `number`                      | `0`     | Delay before showing spinner (ms) |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性             |
+| Prop | Type | Default | 说明 |
+| ----------- | -------------------------------------- | ------- | -------------------------------------------- |
+| `spinning`  | `boolean`                              | `true`  | Whether to show spinner / 是否加载中         |
+| `tip`       | `React.ReactNode`                      | —       | Loading tip text / 加载提示文本              |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `md`    | Spinner size / 大小                          |
+| `delay`     | `number`                               | `0`     | Delay before showing spinner (ms) / 延迟显示 |
+| `indicator` | `React.ReactNode`                      | —       | Custom spinner indicator / 自定义指示器      |
+| `children`  | `React.ReactNode`                      | —       | Wrapped content / 包裹的内容                 |
+| `className` | `string` | — | 自定义样式类名 |
 
 ## 注意事项
 
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **无 children 时**: 当不传 children 时，仅显示加载指示器。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-spin--docs)。
+

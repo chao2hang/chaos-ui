@@ -1,0 +1,43 @@
+import { SchemaForm } from "@/components/ui/schema-form"
+import { CodeBlock } from "@/components/code-block"
+
+# SchemaForm Schema
+
+> Form controls for user input and data submission.
+
+SchemaForm — a form controls for user input and data submission. from Chaos UI.
+
+## When to Use
+
+Use when you need a schema form.
+
+
+## Examples
+
+### Basic Usage
+
+<CodeBlock code={`import { SchemaForm } from "@/components/ui/schema-form"
+
+export function Basic() {
+  return (
+    <SchemaForm
+      onSubmit={(data) => console.log(data)}
+    />
+  )
+}`} lang="tsx" />
+
+
+## API / Props
+
+### SchemaForm
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Custom CSS class |
+| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+
+## Notes
+
+- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+
+

@@ -36,6 +36,7 @@ function eventsByDate(
   events: CalendarViewProps["events"],
 ): Map<string, CalendarViewProps["events"]> {
   const map = new Map<string, CalendarViewProps["events"]>();
+  if (!events || !Array.isArray(events)) return map;
   for (const e of events) {
     const list = map.get(e.date);
     if (list) list.push(e);
