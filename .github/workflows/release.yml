@@ -42,9 +42,6 @@ jobs:
       - name: Smoke test (tarball integrity)
         run: pnpm run smoke
 
-      - name: Build Storybook
-        run: pnpm run build-storybook
-
       - name: Publish to npmjs.org
         run: pnpm publish --access public --no-git-checks
         env:
