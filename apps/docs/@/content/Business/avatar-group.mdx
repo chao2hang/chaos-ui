@@ -1,5 +1,5 @@
-import { AvatarGroup } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AvatarGroup } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AvatarGroup 头像组
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <AvatarGroup />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AvatarGroup
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `users` | `AvatarUser[]` | — |  |
-| `max` | `number` | `4` | 最大值 <br/> Maximum value |
-| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `default` | 组件尺寸 <br/> Component size |
-| `showOverflow` | `boolean` | `true` |  |
-| `onOverflowClick` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop              | Type                                | Default   | 说明 / Description                                          |
+| ----------------- | ----------------------------------- | --------- | ----------------------------------------------------------- |
+| `className`       | `string`                            | —         | 自定义样式类名 <br/> Custom CSS class                       |
+| `users`           | `AvatarUser[]`                      | —         |                                                             |
+| `max`             | `number`                            | `4`       | 最大值 <br/> Maximum value                                  |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"` | `default` | 组件尺寸 <br/> Component size                               |
+| `showOverflow`    | `boolean`                           | `true`    |                                                             |
+| `onOverflowClick` | `() => void`                        | —         |                                                             |
+| ...rest           | `React.ComponentProps<"div">`       | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

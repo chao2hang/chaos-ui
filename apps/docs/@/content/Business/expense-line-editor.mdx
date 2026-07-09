@@ -1,5 +1,5 @@
-import { ExpenseLineEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ExpenseLineEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ExpenseLineEditor 费用行编辑器
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <ExpenseLineEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ExpenseLineEditor
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `lines` | `ExpenseLine[]` | — |  |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `categories` | `string[]` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop         | Type                          | Default | 说明 / Description                                          |
+| ------------ | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`  | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `lines`      | `ExpenseLine[]`               | —       |                                                             |
+| `onChange`   | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
+| `categories` | `string[]`                    | —       |                                                             |
+| ...rest      | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

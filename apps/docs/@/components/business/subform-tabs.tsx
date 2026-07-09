@@ -109,7 +109,7 @@ function SubformTabs({
           <TabsContent key={tab.id} value={tab.id}>
             <div className="flex flex-col gap-4 py-2">
               {tab.fields.length === 0 ? (
-                <p className="text-sm text-muted-foreground">该分区暂无字段</p>
+                <p className="text-muted-foreground text-sm">该分区暂无字段</p>
               ) : (
                 tab.fields.map((field) => {
                   const id = `sft-${tab.id}-${field.name}`;

@@ -13,7 +13,13 @@ import {
   Switch,
   Button,
 } from "@chaos_team/chaos-ui/ui";
-import { SunIcon, MoonIcon, MonitorIcon, BellIcon, LanguagesIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  SunIcon,
+  MoonIcon,
+  MonitorIcon,
+  BellIcon,
+  LanguagesIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PreferencePanel
@@ -42,15 +48,21 @@ interface PrefItemProps {
   onChange: (checked: boolean) => void;
 }
 
-function PrefItem({ icon, label, description, checked, onChange }: PrefItemProps) {
+function PrefItem({
+  icon,
+  label,
+  description,
+  checked,
+  onChange,
+}: PrefItemProps) {
   return (
     <li className="flex items-center gap-3 py-3">
-      <span className="flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
+      <span className="bg-muted text-muted-foreground flex size-8 items-center justify-center rounded-md">
         {icon}
       </span>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium">{label}</p>
-        <p className="truncate text-xs text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground truncate text-xs">{description}</p>
       </div>
       <Switch
         checked={checked}
@@ -61,7 +73,11 @@ function PrefItem({ icon, label, description, checked, onChange }: PrefItemProps
   );
 }
 
-function PreferencePanel({ open, onOpenChange, className }: PreferencePanelProps) {
+function PreferencePanel({
+  open,
+  onOpenChange,
+  className,
+}: PreferencePanelProps) {
   const [theme, setTheme] = React.useState<Theme>("system");
   const [notifyBill, setNotifyBill] = React.useState(true);
   const [notifyApproval, setNotifyApproval] = React.useState(true);
@@ -75,12 +91,17 @@ function PreferencePanel({ open, onOpenChange, className }: PreferencePanelProps
   };
 
   const cycleTheme = () => {
-    setTheme((t) => (t === "light" ? "dark" : t === "dark" ? "system" : "light"));
+    setTheme((t) =>
+      t === "light" ? "dark" : t === "dark" ? "system" : "light",
+    );
   };
 
   return (
     <Sheet data-slot="preference-panel" open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className={cn("w-full sm:max-w-sm", className)}>
+      <SheetContent
+        side="right"
+        className={cn("w-full sm:max-w-sm", className)}
+      >
         <SheetHeader>
           <SheetTitle>偏好设置</SheetTitle>
           <SheetDescription>调整界面主题、通知与显示偏好。</SheetDescription>
@@ -88,15 +109,28 @@ function PreferencePanel({ open, onOpenChange, className }: PreferencePanelProps
 
         <div className="flex items-center justify-between px-1 py-3">
           <div className="flex items-center gap-3">
-            <span className="flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
-              {theme === "light" ? <SunIcon /> : theme === "dark" ? <MoonIcon /> : <MonitorIcon />}
+            <span className="bg-muted text-muted-foreground flex size-8 items-center justify-center rounded-md">
+              {theme === "light" ? (
+                <SunIcon />
+              ) : theme === "dark" ? (
+                <MoonIcon />
+              ) : (
+                <MonitorIcon />
+              )}
             </span>
             <div>
               <p className="text-sm font-medium">主题模式</p>
-              <p className="text-xs text-muted-foreground">{themeLabel[theme]}</p>
+              <p className="text-muted-foreground text-xs">
+                {themeLabel[theme]}
+              </p>
             </div>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={cycleTheme}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={cycleTheme}
+          >
             切换
           </Button>
         </div>
@@ -135,7 +169,13 @@ function PreferencePanel({ open, onOpenChange, className }: PreferencePanelProps
         </ul>
 
         <div className="mt-auto flex items-center justify-end gap-2 border-t pt-4">
-          <SheetClose render={<Button type="button" variant="outline">关闭</Button>} />
+          <SheetClose
+            render={
+              <Button type="button" variant="outline">
+                关闭
+              </Button>
+            }
+          />
         </div>
       </SheetContent>
     </Sheet>

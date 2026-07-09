@@ -1,17 +1,19 @@
-import { DockPanel } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DockPanel } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DockPanel Dock Panel
 
 > Domain-specific business components for ERP scenarios.
 
-<DockPanel side="left" collapsed={false} onToggle={() => {}}> <p>面板内容</p> </DockPanel>
+<DockPanel side="left" collapsed={false} onToggle={() => {}}>
+  {" "}
+  <p>面板内容</p>{" "}
+</DockPanel>
 DockPanel — dock panel component.
 
 ## When to Use
 
 Use when you need a dock panel.
-
 
 ## Examples
 
@@ -23,21 +25,18 @@ export function Basic() {
   return <DockPanel />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DockPanel
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `side` | `"left" \| "right" \| "bottom"` | — |  |
-| `collapsed` | `boolean` | `false` |  |
-| `onToggle` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                            | Default | Description                       |
+| ----------- | ------------------------------- | ------- | --------------------------------- |
+| `className` | `string`                        | —       | Custom CSS class                  |
+| `side`      | `"left" \| "right" \| "bottom"` | —       |                                   |
+| `collapsed` | `boolean`                       | `false` |                                   |
+| `onToggle`  | `() => void`                    | —       |                                   |
+| ...rest     | `React.HTMLAttributes`          | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,5 +1,5 @@
-import { TerritoryMap } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TerritoryMap } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TerritoryMap Territory Map
 
@@ -11,7 +11,6 @@ Territory Map — 面向 ERP/企业场景的业务组件。
 
 适用于Territory Map相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,24 +21,22 @@ export function Basic() {
   return <TerritoryMap />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TerritoryMap
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `regions` | `TerritoryRegion[]` | — | Territory regions. |
-| `title` | `string` | `Sales Territory Map` | Map title. |
-| `currencySymbol` | `string` | `¥` | Currency symbol. |
-| `gridCols` | `number` | `4` | Grid columns for layout. |
-| `onRegionClick` | `() => void` | — | Region click handler. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop             | Type                   | Default               | 说明                     |
+| ---------------- | ---------------------- | --------------------- | ------------------------ |
+| `className`      | `string`               | —                     | 自定义样式类名           |
+| `regions`        | `TerritoryRegion[]`    | —                     | Territory regions.       |
+| `title`          | `string`               | `Sales Territory Map` | Map title.               |
+| `currencySymbol` | `string`               | `¥`                   | Currency symbol.         |
+| `gridCols`       | `number`               | `4`                   | Grid columns for layout. |
+| `onRegionClick`  | `() => void`           | —                     | Region click handler.    |
+| ...rest          | `React.HTMLAttributes` | —                     | 透传原生 DOM 属性        |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-territorymap--docs)。
-

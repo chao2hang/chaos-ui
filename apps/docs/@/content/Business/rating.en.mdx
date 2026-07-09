@@ -11,7 +11,6 @@ Rating — a business component for ERP / enterprise scenarios.
 
 Use when you need a rating.
 
-
 ## Examples
 
 ### Basic Usage
@@ -26,21 +25,19 @@ export function Basic() {
 
 ### Rating
 
-| Prop | Type | Default | Description |
-| --------------- | --------------------------- | --------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `value` | `number` | — | Current value (controlled) |
-| `defaultValue` | `number` | — | Default value (uncontrolled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `max` | `number` | `5` | Maximum value |
-| `size` | `"sm" \| "default" \| "lg"` | `default` | Component size |
-| `readonly`      | `boolean`                   | —         |                                                           |
-| `allowHalf`     | `boolean`                   | —         |                                                           |
-| `iconClassName` | `string`                    | —         |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop            | Type                        | Default   | Description                       |
+| --------------- | --------------------------- | --------- | --------------------------------- |
+| `className`     | `string`                    | —         | Custom CSS class                  |
+| `value`         | `number`                    | —         | Current value (controlled)        |
+| `defaultValue`  | `number`                    | —         | Default value (uncontrolled)      |
+| `onChange`      | `() => void`                | —         | Callback when value changes       |
+| `max`           | `number`                    | `5`       | Maximum value                     |
+| `size`          | `"sm" \| "default" \| "lg"` | `default` | Component size                    |
+| `readonly`      | `boolean`                   | —         |                                   |
+| `allowHalf`     | `boolean`                   | —         |                                   |
+| `iconClassName` | `string`                    | —         |                                   |
+| ...rest         | `React.HTMLAttributes`      | —         | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

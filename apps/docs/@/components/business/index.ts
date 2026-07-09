@@ -157,10 +157,7 @@ export {
 export type { MessageOptions, MessageType } from "../../lib";
 
 // Layout components re-exported for convenience / 便捷导出布局组件
-export {
-  DialogFormBody,
-  FormStack,
-} from "@chaos_team/chaos-ui/layout";
+export { DialogFormBody, FormStack } from "@chaos_team/chaos-ui/layout";
 export type {
   DialogFormBodyProps,
   FormStackProps,

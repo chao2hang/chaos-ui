@@ -53,12 +53,12 @@ const STATUS_MAP: Record<
   },
   pending: {
     label: "待处理",
-    icon: <CircleIcon className="size-4 text-muted-foreground" aria-hidden />,
+    icon: <CircleIcon className="text-muted-foreground size-4" aria-hidden />,
     tone: "border-border bg-muted/30",
   },
   rejected: {
     label: "已驳回",
-    icon: <XCircleIcon className="size-4 text-destructive" aria-hidden />,
+    icon: <XCircleIcon className="text-destructive size-4" aria-hidden />,
     tone: "border-destructive/30 bg-destructive/5",
   },
 };
@@ -67,9 +67,7 @@ function statusOf(status: string | undefined) {
   return (
     STATUS_MAP[status ?? "pending"] ?? {
       label: status ?? "未知",
-      icon: (
-        <CircleIcon className="size-4 text-muted-foreground" aria-hidden />
-      ),
+      icon: <CircleIcon className="text-muted-foreground size-4" aria-hidden />,
       tone: "border-border bg-muted/30",
     }
   );
@@ -94,8 +92,7 @@ function WorkflowPreview({
     outgoing.set(edge.from, list);
   }
 
-  const nameOf = (id: string) =>
-    nodes.find((n) => n.id === id)?.name ?? id;
+  const nameOf = (id: string) => nodes.find((n) => n.id === id)?.name ?? id;
 
   const stats = nodes.reduce(
     (acc, n) => {
@@ -131,7 +128,7 @@ function WorkflowPreview({
 
           {/* 节点流向 */}
           {nodes.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground py-6 text-center text-sm">
               暂无节点。
             </p>
           ) : (
@@ -148,7 +145,7 @@ function WorkflowPreview({
                       )}
                     >
                       <span
-                        className="flex size-6 shrink-0 items-center justify-center rounded-full bg-background text-xs font-medium tabular-nums"
+                        className="bg-background flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-medium tabular-nums"
                         aria-hidden
                       >
                         {index + 1}
@@ -167,12 +164,9 @@ function WorkflowPreview({
                         {nexts.map((toId, i) => (
                           <li
                             key={`${toId}-${i}`}
-                            className="flex items-center gap-1.5 text-sm text-muted-foreground"
+                            className="text-muted-foreground flex items-center gap-1.5 text-sm"
                           >
-                            <ArrowRightIcon
-                              className="size-3.5"
-                              aria-hidden
-                            />
+                            <ArrowRightIcon className="size-3.5" aria-hidden />
                             <span>{nameOf(toId)}</span>
                           </li>
                         ))}
@@ -184,7 +178,7 @@ function WorkflowPreview({
             </ol>
           )}
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             共 {nodes.length} 个节点，{edges.length} 条连线。
           </p>
         </CardContent>

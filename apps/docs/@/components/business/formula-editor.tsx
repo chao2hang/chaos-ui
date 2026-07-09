@@ -7,7 +7,11 @@ import { Textarea } from "@chaos_team/chaos-ui/ui";
 import { Badge } from "@chaos_team/chaos-ui/ui";
 import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
 import { Separator } from "@chaos_team/chaos-ui/ui";
-import { AlertCircleIcon, CodeIcon, CalculatorIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  AlertCircleIcon,
+  CodeIcon,
+  CalculatorIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */
@@ -73,7 +77,8 @@ export interface FormulaEditorProps {
 /*  Safe Expression Evaluator (recursive descent parser, NO eval)             */
 /* -------------------------------------------------------------------------- */
 
-type TokenKind = "number" | "ident" | "op" | "lparen" | "rparen" | "comma" | "eof";
+type TokenKind =
+  "number" | "ident" | "op" | "lparen" | "rparen" | "comma" | "eof";
 
 interface Token {
   kind: TokenKind;
@@ -85,26 +90,48 @@ function tokenize(expr: string): Token[] {
   let i = 0;
   while (i < expr.length) {
     const ch = expr[i]!;
-    if (/\s/.test(ch)) { i++; continue; }
+    if (/\s/.test(ch)) {
+      i++;
+      continue;
+    }
     if (/[0-9.]/.test(ch)) {
       let num = "";
-      while (i < expr.length && /[0-9.]/.test(expr[i]!)) { num += expr[i]!; i++; }
+      while (i < expr.length && /[0-9.]/.test(expr[i]!)) {
+        num += expr[i]!;
+        i++;
+      }
       tokens.push({ kind: "number", value: num });
       continue;
     }
     if (/[a-zA-Z_$@]/.test(ch)) {
       let ident = "";
-      while (i < expr.length && /[a-zA-Z0-9_$@]/.test(expr[i]!)) { ident += expr[i]!; i++; }
+      while (i < expr.length && /[a-zA-Z0-9_$@]/.test(expr[i]!)) {
+        ident += expr[i]!;
+        i++;
+      }
       tokens.push({ kind: "ident", value: ident });
       continue;
     }
     if ("+-*/%".includes(ch)) {
       tokens.push({ kind: "op", value: ch });
-      i++; continue;
+      i++;
+      continue;
     }
-    if (ch === "(") { tokens.push({ kind: "lparen", value: "(" }); i++; continue; }
-    if (ch === ")") { tokens.push({ kind: "rparen", value: ")" }); i++; continue; }
-    if (ch === ",") { tokens.push({ kind: "comma", value: "," }); i++; continue; }
+    if (ch === "(") {
+      tokens.push({ kind: "lparen", value: "(" });
+      i++;
+      continue;
+    }
+    if (ch === ")") {
+      tokens.push({ kind: "rparen", value: ")" });
+      i++;
+      continue;
+    }
+    if (ch === ",") {
+      tokens.push({ kind: "comma", value: "," });
+      i++;
+      continue;
+    }
     // Skip unknown
     i++;
   }
@@ -123,8 +150,12 @@ class Parser {
     this.vars = vars;
   }
 
-  private peek(): Token { return this.tokens[this.pos]!; }
-  private advance(): Token { return this.tokens[this.pos++]!; }
+  private peek(): Token {
+    return this.tokens[this.pos]!;
+  }
+  private advance(): Token {
+    return this.tokens[this.pos++]!;
+  }
 
   parse(): number {
     const result = this.parseExpr();
@@ -137,7 +168,10 @@ class Parser {
 
   private parseAddSub(): number {
     let left = this.parseMulDiv();
-    while (this.peek().kind === "op" && (this.peek().value === "+" || this.peek().value === "-")) {
+    while (
+      this.peek().kind === "op" &&
+      (this.peek().value === "+" || this.peek().value === "-")
+    ) {
       const op = this.advance().value;
       const right = this.parseMulDiv();
       left = op === "+" ? left + right : left - right;
@@ -191,7 +225,9 @@ class Parser {
         return this.parseFunctionCall(tok.value);
       }
       // Variable lookup - strip leading $ if present
-      const varName = tok.value.startsWith("$") ? tok.value.slice(1) : tok.value;
+      const varName = tok.value.startsWith("$")
+        ? tok.value.slice(1)
+        : tok.value;
       return this.vars[varName] ?? 0;
     }
 
@@ -214,15 +250,25 @@ class Parser {
 
     const upper = name.toUpperCase();
     switch (upper) {
-      case "SUM": return args.reduce((a, b) => a + b, 0);
-      case "AVG": return args.length > 0 ? args.reduce((a, b) => a + b, 0) / args.length : 0;
-      case "MIN": return Math.min(...args);
-      case "MAX": return Math.max(...args);
-      case "ABS": return Math.abs(args[0] ?? 0);
-      case "ROUND": return args.length > 1
-        ? Math.round((args[0] ?? 0) * Math.pow(10, args[1] ?? 0)) / Math.pow(10, args[1] ?? 0)
-        : Math.round(args[0] ?? 0);
-      default: return NaN;
+      case "SUM":
+        return args.reduce((a, b) => a + b, 0);
+      case "AVG":
+        return args.length > 0
+          ? args.reduce((a, b) => a + b, 0) / args.length
+          : 0;
+      case "MIN":
+        return Math.min(...args);
+      case "MAX":
+        return Math.max(...args);
+      case "ABS":
+        return Math.abs(args[0] ?? 0);
+      case "ROUND":
+        return args.length > 1
+          ? Math.round((args[0] ?? 0) * Math.pow(10, args[1] ?? 0)) /
+              Math.pow(10, args[1] ?? 0)
+          : Math.round(args[0] ?? 0);
+      default:
+        return NaN;
     }
   }
 }
@@ -236,9 +282,14 @@ export function safeEvaluate(
     // Substitute variable names with their values
     let expr = formula;
     // Sort variable names by length (longest first) to avoid partial replacements
-    const sortedKeys = Object.keys(variables).sort((a, b) => b.length - a.length);
+    const sortedKeys = Object.keys(variables).sort(
+      (a, b) => b.length - a.length,
+    );
     for (const key of sortedKeys) {
-      const pattern = new RegExp(`\\$?${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "g");
+      const pattern = new RegExp(
+        `\\$?${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
+        "g",
+      );
       expr = expr.replace(pattern, `(${variables[key]})`);
     }
 
@@ -301,7 +352,9 @@ export function FormulaEditor({
   const [internalValue, setInternalValue] = React.useState(value);
   const [autocompleteOpen, setAutocompleteOpen] = React.useState(false);
   const [autocompleteFilter, setAutocompleteFilter] = React.useState("");
-  const [autocompleteTrigger, setAutocompleteTrigger] = React.useState<"$" | "@">("$");
+  const [autocompleteTrigger, setAutocompleteTrigger] = React.useState<
+    "$" | "@"
+  >("$");
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [cursorTriggerPos, setCursorTriggerPos] = React.useState(-1);
 
@@ -365,9 +418,14 @@ export function FormulaEditor({
   const previewFormula = React.useMemo(() => {
     if (!showPreview || !currentValue.trim()) return null;
     let display = currentValue;
-    const sortedKeys = Object.keys(sampleValues).sort((a, b) => b.length - a.length);
+    const sortedKeys = Object.keys(sampleValues).sort(
+      (a, b) => b.length - a.length,
+    );
     for (const key of sortedKeys) {
-      const pattern = new RegExp(`\\$${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "g");
+      const pattern = new RegExp(
+        `\\$${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
+        "g",
+      );
       display = display.replace(pattern, String(sampleValues[key]));
     }
     return display;
@@ -377,11 +435,17 @@ export function FormulaEditor({
   const autocompleteItems = React.useMemo(() => {
     if (autocompleteTrigger === "$") {
       return variables.filter(
-        (v) => !autocompleteFilter || v.name.toLowerCase().includes(autocompleteFilter) || v.label.toLowerCase().includes(autocompleteFilter),
+        (v) =>
+          !autocompleteFilter ||
+          v.name.toLowerCase().includes(autocompleteFilter) ||
+          v.label.toLowerCase().includes(autocompleteFilter),
       );
     }
     return functions.filter(
-      (f) => !autocompleteFilter || f.name.toLowerCase().includes(autocompleteFilter) || f.label.toLowerCase().includes(autocompleteFilter),
+      (f) =>
+        !autocompleteFilter ||
+        f.name.toLowerCase().includes(autocompleteFilter) ||
+        f.label.toLowerCase().includes(autocompleteFilter),
     );
   }, [autocompleteTrigger, autocompleteFilter, variables, functions]);
 
@@ -459,7 +523,10 @@ export function FormulaEditor({
         setActiveIndex((prev) => (prev + 1) % autocompleteItems.length);
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        setActiveIndex((prev) => (prev - 1 + autocompleteItems.length) % autocompleteItems.length);
+        setActiveIndex(
+          (prev) =>
+            (prev - 1 + autocompleteItems.length) % autocompleteItems.length,
+        );
       } else if (e.key === "Enter") {
         e.preventDefault();
         handleAutocompleteSelect(autocompleteItems[activeIndex]!);
@@ -467,14 +534,16 @@ export function FormulaEditor({
         setAutocompleteOpen(false);
       }
     },
-    [autocompleteOpen, autocompleteItems, activeIndex, handleAutocompleteSelect],
+    [
+      autocompleteOpen,
+      autocompleteItems,
+      activeIndex,
+      handleAutocompleteSelect,
+    ],
   );
 
   return (
-    <div
-      data-slot="formula-editor"
-      className={cn("space-y-3", className)}
-    >
+    <div data-slot="formula-editor" className={cn("space-y-3", className)}>
       {/* Editor area */}
       <div className="relative">
         <Textarea
@@ -496,7 +565,7 @@ export function FormulaEditor({
         {autocompleteOpen && autocompleteItems.length > 0 && (
           <div
             data-testid="autocomplete-dropdown"
-            className="absolute z-50 mt-1 max-h-48 w-full overflow-auto rounded-md border bg-popover p-1 shadow-md"
+            className="bg-popover absolute z-50 mt-1 max-h-48 w-full overflow-auto rounded-md border p-1 shadow-md"
           >
             {autocompleteItems.map((item, idx) => {
               const isActive = idx === activeIndex;
@@ -507,7 +576,9 @@ export function FormulaEditor({
                   type="button"
                   className={cn(
                     "flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
-                    isActive ? "bg-accent text-accent-foreground" : "hover:bg-accent/50",
+                    isActive
+                      ? "bg-accent text-accent-foreground"
+                      : "hover:bg-accent/50",
                   )}
                   data-testid={`autocomplete-item-${item.name}`}
                   onMouseDown={(e) => {
@@ -517,9 +588,9 @@ export function FormulaEditor({
                   onMouseEnter={() => setActiveIndex(idx)}
                 >
                   {isVar ? (
-                    <CodeIcon className="size-3.5 text-muted-foreground" />
+                    <CodeIcon className="text-muted-foreground size-3.5" />
                   ) : (
-                    <CalculatorIcon className="size-3.5 text-muted-foreground" />
+                    <CalculatorIcon className="text-muted-foreground size-3.5" />
                   )}
                   <span className="font-mono">{item.name}</span>
                   <span className="text-muted-foreground">{item.label}</span>
@@ -534,7 +605,7 @@ export function FormulaEditor({
       {validationError && (
         <div
           data-testid="formula-error"
-          className="flex items-center gap-1.5 text-sm text-destructive"
+          className="text-destructive flex items-center gap-1.5 text-sm"
         >
           <AlertCircleIcon className="size-3.5" />
           <span>{validationError}</span>
@@ -546,13 +617,15 @@ export function FormulaEditor({
         <div data-testid="insertion-toolbar" className="space-y-2">
           {variables.length > 0 && (
             <div className="space-y-1">
-              <span className="text-xs font-medium text-muted-foreground">Variables</span>
+              <span className="text-muted-foreground text-xs font-medium">
+                Variables
+              </span>
               <div className="flex flex-wrap gap-1">
                 {variables.map((v) => (
                   <Badge
                     key={v.name}
                     variant="outline"
-                    className="cursor-pointer hover:bg-accent"
+                    className="hover:bg-accent cursor-pointer"
                     data-testid={`var-badge-${v.name}`}
                     onClick={() => handleInsertVariable(v.name)}
                     role="button"
@@ -570,13 +643,15 @@ export function FormulaEditor({
 
           {functions.length > 0 && (
             <div className="space-y-1">
-              <span className="text-xs font-medium text-muted-foreground">Functions</span>
+              <span className="text-muted-foreground text-xs font-medium">
+                Functions
+              </span>
               <div className="flex flex-wrap gap-1">
                 {functions.map((f) => (
                   <Badge
                     key={f.name}
                     variant="outline"
-                    className="cursor-pointer hover:bg-accent"
+                    className="hover:bg-accent cursor-pointer"
                     data-testid={`fn-badge-${f.name}`}
                     onClick={() => handleInsertFunction(f)}
                     role="button"
@@ -598,25 +673,31 @@ export function FormulaEditor({
           <CardContent className="space-y-2 pt-4">
             {previewFormula && (
               <div className="space-y-1">
-                <span className="text-xs font-medium text-muted-foreground">Formula</span>
+                <span className="text-muted-foreground text-xs font-medium">
+                  Formula
+                </span>
                 <div
                   data-testid="preview-formula"
-                  className="rounded bg-background px-2 py-1 font-mono text-sm"
+                  className="bg-background rounded px-2 py-1 font-mono text-sm"
                 >
                   {previewFormula}
                 </div>
               </div>
             )}
             <div className="space-y-1">
-              <span className="text-xs font-medium text-muted-foreground">Result</span>
+              <span className="text-muted-foreground text-xs font-medium">
+                Result
+              </span>
               <div
                 data-testid="preview-result"
                 className={cn(
-                  "rounded bg-background px-2 py-1 font-mono text-sm font-semibold",
+                  "bg-background rounded px-2 py-1 font-mono text-sm font-semibold",
                   previewResult === null && "text-muted-foreground",
                 )}
               >
-                {previewResult !== null ? String(previewResult) : "Cannot evaluate"}
+                {previewResult !== null
+                  ? String(previewResult)
+                  : "Cannot evaluate"}
               </div>
             </div>
           </CardContent>

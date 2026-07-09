@@ -26,19 +26,24 @@ function formatMs(ms: number): string {
   return `${(ms / 1000).toFixed(1)}s`;
 }
 
-function ChatThinkingBlock({ content, duration, collapsed = false, className }: ChatThinkingBlockProps) {
+function ChatThinkingBlock({
+  content,
+  duration,
+  collapsed = false,
+  className,
+}: ChatThinkingBlockProps) {
   const [open, setOpen] = React.useState(!collapsed);
 
   return (
     <div
       data-slot="chat-thinking-block"
-      className={cn("rounded-lg border border-border bg-muted/30", className)}
+      className={cn("border-border bg-muted/30 rounded-lg border", className)}
     >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center gap-1.5 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-muted/50"
+        className="text-muted-foreground hover:bg-muted/50 flex w-full items-center gap-1.5 px-3 py-2 text-xs font-medium"
       >
         <ChevronRightIcon
           className={cn("size-3.5 transition-transform", open && "rotate-90")}
@@ -51,8 +56,8 @@ function ChatThinkingBlock({ content, duration, collapsed = false, className }: 
         ) : null}
       </button>
       {open ? (
-        <div className="border-t border-border px-3 py-2">
-          <p className="whitespace-pre-wrap break-words text-xs leading-relaxed text-muted-foreground">
+        <div className="border-border border-t px-3 py-2">
+          <p className="text-muted-foreground text-xs leading-relaxed break-words whitespace-pre-wrap">
             {content}
           </p>
         </div>

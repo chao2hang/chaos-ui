@@ -1,5 +1,5 @@
-import { MarkdownViewerBiz } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MarkdownViewerBiz } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MarkdownViewerBiz
 
@@ -11,7 +11,6 @@ MarkdownViewerBiz — Business markdown viewer with attachment support and downl
 
 Use when you need a markdownviewerbiz.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,18 +21,15 @@ export function Basic() {
   return <MarkdownViewerBiz />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MarkdownViewerBiz
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

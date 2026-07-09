@@ -1,5 +1,5 @@
-import { Progress } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Progress } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Progress
 
@@ -10,7 +10,6 @@ Shows current progress of an operation.
 ## When to Use
 
 Show current completion progress of an operation.
-
 
 ## Examples
 
@@ -26,20 +25,17 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Progress
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 4 个子组件(ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

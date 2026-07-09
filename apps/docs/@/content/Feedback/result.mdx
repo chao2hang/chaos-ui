@@ -1,5 +1,5 @@
-import { Result } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Result } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Result 结果页
 
@@ -26,46 +26,48 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Result size="sm">Sm</Result>
   <Result size="default">Default</Result>
   <Result size="lg">Lg</Result>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **状态 / status**
 
-| status | 说明 / Description | 默认 |
-|---|---|---|
-| `success` |  | ✓ |
-| `error` |  |  |
-| `info` |  |  |
-| `warning` |  |  |
+| status    | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `success` |                    | ✓    |
+| `error`   |                    |      |
+| `info`    |                    |      |
+| `warning` |                    |      |
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 ## API / Props
 
 ### Result
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `status` | `"success" \| "error" \| "info" \| "wa...` | `info` | Status determines default icon and color |
-| `title` | `React.ReactNode` | — | Title text |
-| `subtitle` | `React.ReactNode` | — | Subtitle / description |
-| `icon` | `React.ReactNode` | — | Custom icon override |
-| `extra` | `React.ReactNode` | — | Extra content (e.g., action buttons) |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                                       | Default | 说明 / Description                                          |
+| ----------- | ------------------------------------------ | ------- | ----------------------------------------------------------- |
+| `className` | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `status`    | `"success" \| "error" \| "info" \| "wa...` | `info`  | Status determines default icon and color                    |
+| `title`     | `React.ReactNode`                          | —       | Title text                                                  |
+| `subtitle`  | `React.ReactNode`                          | —       | Subtitle / description                                      |
+| `icon`      | `React.ReactNode`                          | —       | Custom icon override                                        |
+| `extra`     | `React.ReactNode`                          | —       | Extra content (e.g., action buttons)                        |
+| ...rest     | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

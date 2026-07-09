@@ -1,5 +1,5 @@
-import { MultiSelect } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MultiSelect } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MultiSelect 多选
 
@@ -26,28 +26,30 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock code={`<MultiSelect>Normal</MultiSelect>
-<MultiSelect disabled>Disabled</MultiSelect>`} lang="tsx" />
-
+<CodeBlock
+  code={`<MultiSelect>Normal</MultiSelect>
+<MultiSelect disabled>Disabled</MultiSelect>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### MultiSelect
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `options` | `MultiSelectOption[]` | — | 可选项列表 <br/> Available options |
-| `value` | `string[]` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `placeholder` | `string` | `Select...` | 占位文本 <br/> Placeholder text |
-| `searchPlaceholder` | `string` | `Search...` |  |
-| `emptyText` | `string` | `No results found` |  |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `maxCount` | `number` | `3` |  |
-| `maxSelected` | `number` | — |  |
-| `clearable` | `boolean` | `true` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                   | Default            | 说明 / Description                                        |
+| ------------------- | ---------------------- | ------------------ | --------------------------------------------------------- |
+| `className`         | `string`               | —                  | 自定义样式类名 <br/> Custom CSS class                     |
+| `options`           | `MultiSelectOption[]`  | —                  | 可选项列表 <br/> Available options                        |
+| `value`             | `string[]`             | —                  | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`          | `() => void`           | —                  | 值变化回调 <br/> Callback when value changes              |
+| `placeholder`       | `string`               | `Select...`        | 占位文本 <br/> Placeholder text                           |
+| `searchPlaceholder` | `string`               | `Search...`        |                                                           |
+| `emptyText`         | `string`               | `No results found` |                                                           |
+| `disabled`          | `boolean`              | —                  | 是否禁用 <br/> Whether disabled                           |
+| `maxCount`          | `number`               | `3`                |                                                           |
+| `maxSelected`       | `number`               | —                  |                                                           |
+| `clearable`         | `boolean`              | `true`             |                                                           |
+| ...rest             | `React.HTMLAttributes` | —                  | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { Pagination } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Pagination } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Pagination
 
@@ -10,7 +10,6 @@ Splits long data sets across pages when rendering all at once would be too heavy
 ## When to Use
 
 Split large datasets into pages to avoid rendering too much at once.
-
 
 ## Examples
 
@@ -26,18 +25,15 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Pagination
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 6 个子组件(PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext…),使用组合模式按需导入。
-
-

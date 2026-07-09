@@ -1,5 +1,5 @@
-import { DiffViewer } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DiffViewer } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DiffViewer 差异查看器
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <DiffViewer />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DiffViewer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `left` | `string` | — |  |
-| `right` | `string` | — |  |
-| `leftTitle` | `string` | `修改前` |  |
-| `rightTitle` | `string` | `修改后` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop         | Type                          | Default  | 说明 / Description                                          |
+| ------------ | ----------------------------- | -------- | ----------------------------------------------------------- |
+| `className`  | `string`                      | —        | 自定义样式类名 <br/> Custom CSS class                       |
+| `left`       | `string`                      | —        |                                                             |
+| `right`      | `string`                      | —        |                                                             |
+| `leftTitle`  | `string`                      | `修改前` |                                                             |
+| `rightTitle` | `string`                      | `修改后` |                                                             |
+| ...rest      | `React.ComponentProps<"div">` | —        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

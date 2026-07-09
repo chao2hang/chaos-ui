@@ -67,9 +67,16 @@ function DashboardGrid({
     >
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">{title}</h2>
-        <span className="text-xs text-muted-foreground">{stats.length} 项指标</span>
+        <span className="text-muted-foreground text-xs">
+          {stats.length} 项指标
+        </span>
       </div>
-      <div className={cn("grid grid-cols-1 gap-4", COLS_CLASS[columns] ?? COLS_CLASS[4])}>
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-4",
+          COLS_CLASS[columns] ?? COLS_CLASS[4],
+        )}
+      >
         {stats.map((s) => {
           const isUp = s.trend ? s.trend === "up" : (s.delta ?? 0) >= 0;
           const TrendIcon = isUp ? TrendingUpIcon : TrendingDownIcon;
@@ -77,9 +84,9 @@ function DashboardGrid({
           return (
             <div
               key={s.label}
-              className="flex flex-col gap-1 rounded-lg border bg-card p-4"
+              className="bg-card flex flex-col gap-1 rounded-lg border p-4"
             >
-              <span className="text-xs text-muted-foreground">{s.label}</span>
+              <span className="text-muted-foreground text-xs">{s.label}</span>
               <span className="text-2xl font-semibold tabular-nums">
                 {formatCompactNumber(s.value)}
               </span>
@@ -100,7 +107,9 @@ function DashboardGrid({
         })}
       </div>
       {stats.length === 0 && (
-        <p className="py-8 text-center text-sm text-muted-foreground">暂无指标数据</p>
+        <p className="text-muted-foreground py-8 text-center text-sm">
+          暂无指标数据
+        </p>
       )}
     </div>
   );

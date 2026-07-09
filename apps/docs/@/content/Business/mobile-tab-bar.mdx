@@ -1,11 +1,18 @@
-import { MobileTabBar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MobileTabBar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileTabBar Mobile Tab Bar
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<MobileTabBar tabs={[{id:"home",label:"首页"},{id:"me",label:"我的"}]} activeId="home" onSelect={setTab} />
+<MobileTabBar
+  tabs={[
+    { id: "home", label: "首页" },
+    { id: "me", label: "我的" },
+  ]}
+  activeId="home"
+  onSelect={setTab}
+/>
 MobileTabBar — mobile tab bar component.
 
 ## 何时使用 / When to Use
@@ -24,18 +31,17 @@ export function Basic() {
   return <MobileTabBar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileTabBar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `tabs` | `Array<T>` | — |  |
-| `activeId` | `string` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `tabs`      | `Array<T>`             | —       |                                                           |
+| `activeId`  | `string`               | —       |                                                           |
+| `onSelect`  | `() => void`           | —       | 选中回调 <br/> Selection handler                          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

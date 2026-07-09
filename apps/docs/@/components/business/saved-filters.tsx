@@ -87,64 +87,64 @@ export function SavedFilters({
             <DropdownMenuLabel>{resolvedLabel}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {filters.length === 0 ? (
-            <div className="px-2 py-6 text-center text-xs text-muted-foreground">
-              {t("savedFilters.empty")}
-            </div>
-          ) : (
-            filters.map((f) => (
-              <DropdownMenuItem
-                key={f.id}
-                onClick={() => onApply?.(f.id)}
-                className="flex items-center justify-between"
-              >
-                <span className="flex items-center gap-2">
-                  {f.isPinned ? (
-                    <BookmarkCheckIcon className="size-3.5 text-primary" />
-                  ) : (
-                    <BookmarkIcon className="size-3.5" />
-                  )}
-                  <span className="truncate">{f.name}</span>
-                </span>
-                <div className="flex items-center gap-1">
-                  {f.id === activeId && (
-                    <span className="rounded bg-primary/10 px-1 text-[0.65rem] text-primary">
-                      {t("savedFilters.apply")}
-                    </span>
-                  )}
-                  {onPin && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon-xs"
-                      aria-label={t("savedFilters.pin")}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onPin(f.id);
-                      }}
-                      className="opacity-50 hover:opacity-100"
-                    >
-                      <BookmarkIcon className="size-3" />
-                    </Button>
-                  )}
-                  {onDelete && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon-xs"
-                      aria-label={t("savedFilters.delete")}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDelete(f.id);
-                      }}
-                      className="opacity-50 hover:opacity-100 hover:text-destructive"
-                    >
-                      <TrashIcon className="size-3" />
-                    </Button>
-                  )}
-                </div>
-              </DropdownMenuItem>
-            ))
-          )}
+              <div className="text-muted-foreground px-2 py-6 text-center text-xs">
+                {t("savedFilters.empty")}
+              </div>
+            ) : (
+              filters.map((f) => (
+                <DropdownMenuItem
+                  key={f.id}
+                  onClick={() => onApply?.(f.id)}
+                  className="flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-2">
+                    {f.isPinned ? (
+                      <BookmarkCheckIcon className="text-primary size-3.5" />
+                    ) : (
+                      <BookmarkIcon className="size-3.5" />
+                    )}
+                    <span className="truncate">{f.name}</span>
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {f.id === activeId && (
+                      <span className="bg-primary/10 text-primary rounded px-1 text-[0.65rem]">
+                        {t("savedFilters.apply")}
+                      </span>
+                    )}
+                    {onPin && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon-xs"
+                        aria-label={t("savedFilters.pin")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onPin(f.id);
+                        }}
+                        className="opacity-50 hover:opacity-100"
+                      >
+                        <BookmarkIcon className="size-3" />
+                      </Button>
+                    )}
+                    {onDelete && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon-xs"
+                        aria-label={t("savedFilters.delete")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete(f.id);
+                        }}
+                        className="hover:text-destructive opacity-50 hover:opacity-100"
+                      >
+                        <TrashIcon className="size-3" />
+                      </Button>
+                    )}
+                  </div>
+                </DropdownMenuItem>
+              ))
+            )}
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

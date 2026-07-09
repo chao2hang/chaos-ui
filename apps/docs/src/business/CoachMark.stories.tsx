@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { CoachMark } from "@/components/business/coach-mark"
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { useRef, useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CoachMark } from "@/components/business/coach-mark";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { useRef, useState } from "react";
 
 const meta: Meta<typeof CoachMark> = {
   title: "Business/CoachMark",
@@ -9,13 +9,13 @@ const meta: Meta<typeof CoachMark> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const [open, setOpen] = useState(false)
-    const [target, setTarget] = useState<HTMLElement | null>(null)
+    const [open, setOpen] = useState(false);
+    const [target, setTarget] = useState<HTMLElement | null>(null);
     return (
       <div className="space-y-3">
         <Button
@@ -34,14 +34,14 @@ export const Default: Story = {
           onSkip={() => setOpen(false)}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const Placements: Story = {
   render: () => {
-    const ref = useRef<HTMLButtonElement>(null)
-    const [open, setOpen] = useState(true)
+    const ref = useRef<HTMLButtonElement>(null);
+    const [open, setOpen] = useState(true);
     return (
       <div className="grid grid-cols-2 gap-12 p-12">
         <Button ref={ref}>目标元素</Button>
@@ -54,11 +54,11 @@ export const Placements: Story = {
           placement="top"
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

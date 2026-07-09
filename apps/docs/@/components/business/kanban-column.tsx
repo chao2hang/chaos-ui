@@ -68,14 +68,25 @@ function KanbanColumn({
   return (
     <div
       data-slot="kanban-column"
-      className={cn("flex w-72 shrink-0 flex-col gap-2 rounded-lg border bg-muted/30 p-2", className)}
+      className={cn(
+        "bg-muted/30 flex w-72 shrink-0 flex-col gap-2 rounded-lg border p-2",
+        className,
+      )}
       role="group"
       aria-label={`看板列 ${title}`}
     >
       <div className="flex items-center gap-2 px-1">
-        <span className={cn("size-2 rounded-full", ACCENT_CLASS[accent] ?? ACCENT_CLASS.primary)} aria-hidden="true" />
+        <span
+          className={cn(
+            "size-2 rounded-full",
+            ACCENT_CLASS[accent] ?? ACCENT_CLASS.primary,
+          )}
+          aria-hidden="true"
+        />
         <span className="text-sm font-medium">{title}</span>
-        <Badge variant="secondary" className="ml-auto">{cards.length}</Badge>
+        <Badge variant="secondary" className="ml-auto">
+          {cards.length}
+        </Badge>
       </div>
       <ul className="flex flex-col gap-2" role="list">
         {cards.map((c) => (
@@ -85,14 +96,16 @@ function KanbanColumn({
               tabIndex={0}
               onClick={() => onCardClick?.(c.id)}
               onKeyDown={(e) => handleKeyDown(e, c.id)}
-              className="flex flex-col gap-1.5 cursor-pointer rounded-lg border bg-card p-3 shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="bg-card hover:bg-accent focus-visible:ring-ring flex cursor-pointer flex-col gap-1.5 rounded-lg border p-3 shadow-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
               aria-label={`卡片 ${c.title}`}
             >
               <span className="text-sm font-medium">{c.title}</span>
               <div className="flex items-center gap-2">
                 {c.label && <Badge variant="outline">{c.label}</Badge>}
                 {c.assignee && (
-                  <span className="ml-auto text-xs text-muted-foreground">{c.assignee}</span>
+                  <span className="text-muted-foreground ml-auto text-xs">
+                    {c.assignee}
+                  </span>
                 )}
               </div>
             </div>
@@ -100,12 +113,14 @@ function KanbanColumn({
         ))}
       </ul>
       {cards.length === 0 && (
-        <p className="py-3 text-center text-xs text-muted-foreground">暂无卡片</p>
+        <p className="text-muted-foreground py-3 text-center text-xs">
+          暂无卡片
+        </p>
       )}
       <button
         type="button"
         onClick={onAddCard}
-        className="flex items-center justify-center gap-1 rounded-md border border-dashed py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground flex items-center justify-center gap-1 rounded-md border border-dashed py-1.5 text-xs transition-colors"
       >
         <PlusIcon className="size-3" />
         新增卡片

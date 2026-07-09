@@ -1,5 +1,5 @@
-import { AnnouncementBanner } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AnnouncementBanner } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AnnouncementBanner 公告横幅
 
@@ -26,39 +26,41 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <AnnouncementBanner variant="info">Info</AnnouncementBanner>
   <AnnouncementBanner variant="warning">Warning</AnnouncementBanner>
   <AnnouncementBanner variant="success">Success</AnnouncementBanner>
   <AnnouncementBanner variant="error">Error</AnnouncementBanner>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant | 说明 / Description | 默认 |
-|---|---|---|
-| `info` | 信息提示 / Informational style | ✓ |
-| `warning` | 警告状态 / Warning style |  |
-| `success` | 成功状态 / Success style |  |
-| `error` | 错误状态 / Error style |  |
+| Variant   | 说明 / Description             | 默认 |
+| --------- | ------------------------------ | ---- |
+| `info`    | 信息提示 / Informational style | ✓    |
+| `warning` | 警告状态 / Warning style       |      |
+| `success` | 成功状态 / Success style       |      |
+| `error`   | 错误状态 / Error style         |      |
 
 ## API / Props
 
 ### AnnouncementBanner
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `message` | `string` | — | 提示消息内容 <br/> Message content |
-| `action` | `React.ReactNode` | — |  |
-| `dismissible` | `boolean` | `true` |  |
-| `onDismiss` | `() => void` | — |  |
-| `icon` | `React.ElementType` | — | 图标元素 <br/> Icon element |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | 说明 / Description                                          |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `message`     | `string`                      | —       | 提示消息内容 <br/> Message content                          |
+| `action`      | `React.ReactNode`             | —       |                                                             |
+| `dismissible` | `boolean`                     | `true`  |                                                             |
+| `onDismiss`   | `() => void`                  | —       |                                                             |
+| `icon`        | `React.ElementType`           | —       | 图标元素 <br/> Icon element                                 |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

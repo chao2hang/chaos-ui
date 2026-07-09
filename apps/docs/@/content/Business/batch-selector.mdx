@@ -1,5 +1,5 @@
-import { BatchSelector } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BatchSelector } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BatchSelector 批量选择器
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <BatchSelector />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BatchSelector
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `selectedIds` | `string[]` | — |  |
-| `total` | `number` | — |  |
-| `onSelectAll` | `() => void` | — |  |
-| `onDeselectAll` | `() => void` | — |  |
-| `actions` | `React.ReactNode` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop            | Type                          | Default | 说明 / Description                                          |
+| --------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `selectedIds`   | `string[]`                    | —       |                                                             |
+| `total`         | `number`                      | —       |                                                             |
+| `onSelectAll`   | `() => void`                  | —       |                                                             |
+| `onDeselectAll` | `() => void`                  | —       |                                                             |
+| `actions`       | `React.ReactNode`             | —       |                                                             |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

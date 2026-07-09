@@ -68,7 +68,12 @@ function WaterfallChart({
       role="img"
       aria-label={`瀑布图，共 ${data.length} 步`}
     >
-      <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="presentation">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        width="100%"
+        height={height}
+        role="presentation"
+      >
         <line
           x1={pad}
           y1={yAt(0)}
@@ -91,7 +96,10 @@ function WaterfallChart({
             <g key={r.label}>
               <rect x={x} y={yTop} width={barW} height={h} fill={fill} rx={3}>
                 <title>
-                  {r.label}: {r.absolute ? formatNumber(r.value) : `${r.delta >= 0 ? "+" : ""}${formatNumber(r.delta)}`}
+                  {r.label}:{" "}
+                  {r.absolute
+                    ? formatNumber(r.value)
+                    : `${r.delta >= 0 ? "+" : ""}${formatNumber(r.delta)}`}
                 </title>
               </rect>
               {i < rows.length - 1 && !r.absolute ? (

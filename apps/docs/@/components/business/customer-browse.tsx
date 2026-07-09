@@ -14,7 +14,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, SearchIcon, UsersIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckIcon,
+  SearchIcon,
+  UsersIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component CustomerBrowse
@@ -73,9 +77,11 @@ function CustomerBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
-  const resolvedTitle = title ?? t("customerBrowse.title", { defaultValue: "选择客户" });
+  const resolvedTitle =
+    title ?? t("customerBrowse.title", { defaultValue: "选择客户" });
   const resolvedSearch =
-    searchPlaceholder ?? t("customerBrowse.search", { defaultValue: "搜索客户" });
+    searchPlaceholder ??
+    t("customerBrowse.search", { defaultValue: "搜索客户" });
   const resolvedEmpty =
     emptyText ?? t("customerBrowse.empty", { defaultValue: "无匹配客户" });
 
@@ -117,7 +123,10 @@ function CustomerBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="customer-browse" className={cn("sm:max-w-md", className)}>
+      <DialogContent
+        data-slot="customer-browse"
+        className={cn("sm:max-w-md", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
@@ -140,7 +149,7 @@ function CustomerBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -154,8 +163,8 @@ function CustomerBrowse({
                   aria-pressed={isSelected}
                   onClick={() => toggle(c)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     c.disabled && "pointer-events-none opacity-50",
                   )}
@@ -164,13 +173,13 @@ function CustomerBrowse({
                   <span className="flex-1 truncate">
                     {c.name}
                     {c.contact && (
-                      <span className="ml-1 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-1 text-xs">
                         · {c.contact}
                       </span>
                     )}
                   </span>
                   {c.phone && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {c.phone}
                     </span>
                   )}
@@ -182,7 +191,11 @@ function CustomerBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
           <Button

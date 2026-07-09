@@ -1,5 +1,5 @@
-import { Watermark } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Watermark } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Watermark 水印
 
@@ -26,38 +26,40 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Watermark size="sm">Sm</Watermark>
   <Watermark size="default">Default</Watermark>
   <Watermark size="lg">Lg</Watermark>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 ## API / Props
 
 ### Watermark
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `content` | `string` | — | Text content for the watermark |
-| `rotate` | `number` | `-22` | Rotation angle in degrees |
-| `gap` | `number` | `100` | Gap between repeated marks |
-| `opacity` | `number` | `0.1` | Opacity of the watermark |
-| `color` | `string` | `#000` | Text color |
-| `fontSize` | `number` | `14` | Font size override |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `content`   | `string`                      | —       | Text content for the watermark                              |
+| `rotate`    | `number`                      | `-22`   | Rotation angle in degrees                                   |
+| `gap`       | `number`                      | `100`   | Gap between repeated marks                                  |
+| `opacity`   | `number`                      | `0.1`   | Opacity of the watermark                                    |
+| `color`     | `string`                      | `#000`  | Text color                                                  |
+| `fontSize`  | `number`                      | `14`    | Font size override                                          |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

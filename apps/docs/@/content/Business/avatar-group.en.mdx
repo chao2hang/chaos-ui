@@ -1,5 +1,5 @@
-import { AvatarGroup } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AvatarGroup } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AvatarGroup
 
@@ -11,7 +11,6 @@ Stacked group of avatars with a +N overflow indicator.
 
 Use when you need an avatar group.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <AvatarGroup />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AvatarGroup
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `users` | `AvatarUser[]` | — |  |
-| `max` | `number` | `4` | Maximum value |
-| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `default` | Component size |
-| `showOverflow` | `boolean` | `true` |  |
-| `onOverflowClick` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop              | Type                                | Default   | Description                     |
+| ----------------- | ----------------------------------- | --------- | ------------------------------- |
+| `className`       | `string`                            | —         | Custom CSS class                |
+| `users`           | `AvatarUser[]`                      | —         |                                 |
+| `max`             | `number`                            | `4`       | Maximum value                   |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"` | `default` | Component size                  |
+| `showOverflow`    | `boolean`                           | `true`    |                                 |
+| `onOverflowClick` | `() => void`                        | —         |                                 |
+| ...rest           | `React.ComponentProps<"div">`       | —         | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

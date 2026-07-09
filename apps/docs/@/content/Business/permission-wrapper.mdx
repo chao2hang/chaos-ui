@@ -1,5 +1,5 @@
-import { PermissionWrapper } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PermissionWrapper } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PermissionWrapper 权限包装器
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <PermissionWrapper />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PermissionWrapper
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `permission` | `string \| string[]` | — |  |
-| `permissions` | `string[]` | — |  |
-| `mode` | `"all" \| "any"` | `any` |  |
-| `fallback` | `React.ReactNode` | — |  |
-| `userPermissions` | `string[]` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop              | Type                   | Default | 说明 / Description                                        |
+| ----------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`       | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `permission`      | `string \| string[]`   | —       |                                                           |
+| `permissions`     | `string[]`             | —       |                                                           |
+| `mode`            | `"all" \| "any"`       | `any`   |                                                           |
+| `fallback`        | `React.ReactNode`      | —       |                                                           |
+| `userPermissions` | `string[]`             | —       |                                                           |
+| ...rest           | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

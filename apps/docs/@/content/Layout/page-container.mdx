@@ -1,5 +1,9 @@
-import { PageContainer, PageHeader, PageContent } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  PageContainer,
+  PageHeader,
+  PageContent,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # PageContainer 页面容器
 
@@ -30,50 +34,52 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <PageContainer size="sm">Sm</PageContainer>
   <PageContainer size="default">Default</PageContainer>
   <PageContainer size="lg">Lg</PageContainer>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `sm` | 小号 / Small |  |
-| `default` | 默认尺寸 / Default size | ✓ |
-| `lg` | 大号 / Large |  |
-| `full` |  |  |
-| `none` |  |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `sm`      | 小号 / Small            |      |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `lg`      | 大号 / Large            |      |
+| `full`    |                         |      |
+| `none`    |                         |      |
 
 **padding / padding**
 
-| padding | 说明 / Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
+| padding   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `none`    |                    |      |
+| `sm`      |                    |      |
+| `default` |                    | ✓    |
+| `lg`      |                    |      |
 
 **center / center**
 
-| center | 说明 / Description | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| center  | 说明 / Description | 默认 |
+| ------- | ------------------ | ---- |
+| `true`  |                    | ✓    |
+| `false` |                    |      |
 
 ## API / Props
 
 ### PageContainer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

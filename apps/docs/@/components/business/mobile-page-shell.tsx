@@ -26,11 +26,16 @@ interface MobilePageShellProps {
   className?: string;
 }
 
-function MobilePageShell({ title, onBack, children, className }: MobilePageShellProps) {
+function MobilePageShell({
+  title,
+  onBack,
+  children,
+  className,
+}: MobilePageShellProps) {
   return (
     <div
       data-slot="mobile-page-shell"
-      className={cn("flex h-full min-h-0 flex-col bg-background", className)}
+      className={cn("bg-background flex h-full min-h-0 flex-col", className)}
     >
       <header
         data-slot="mobile-page-shell-header"
@@ -41,7 +46,7 @@ function MobilePageShell({ title, onBack, children, className }: MobilePageShell
             type="button"
             onClick={onBack}
             aria-label="返回"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-foreground hover:bg-muted"
+            className="text-foreground hover:bg-muted inline-flex size-9 shrink-0 items-center justify-center rounded-md"
           >
             <ChevronLeftIcon className="size-5" />
           </button>
@@ -50,7 +55,9 @@ function MobilePageShell({ title, onBack, children, className }: MobilePageShell
           {title ?? ""}
         </h1>
         {/* Spacer to keep the title visually centered when a back button is present. */}
-        {onBack ? <span className="size-9 shrink-0" aria-hidden="true" /> : null}
+        {onBack ? (
+          <span className="size-9 shrink-0" aria-hidden="true" />
+        ) : null}
       </header>
       <main
         data-slot="mobile-page-shell-body"

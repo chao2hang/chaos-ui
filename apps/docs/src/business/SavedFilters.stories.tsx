@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { SavedFilters, type SavedFilter } from "@chaos_team/chaos-ui/business"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { SavedFilters, type SavedFilter } from "@chaos_team/chaos-ui/business";
+import { useState } from "react";
 
 const meta = {
   title: "Business/SavedFilters",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const seed: SavedFilter[] = [
   {
@@ -37,7 +37,7 @@ const seed: SavedFilter[] = [
     filters: { date: "last-month" },
     createdAt: "2025-12-30",
   },
-]
+];
 
 export const Default: Story = {
   render: () => (
@@ -50,12 +50,12 @@ export const Default: Story = {
       onPin={(id) => console.info("pin", id)}
     />
   ),
-}
+};
 
 export const Interactive: Story = {
   render: () => {
-    const [list, setList] = useState(seed)
-    const [active, setActive] = useState("2")
+    const [list, setList] = useState(seed);
+    const [active, setActive] = useState("2");
     return (
       <SavedFilters
         filters={list}
@@ -75,23 +75,27 @@ export const Interactive: Story = {
         onDelete={(id) => setList((prev) => prev.filter((f) => f.id !== id))}
         onPin={(id) =>
           setList((prev) =>
-            prev.map((f) => (f.id === id ? { ...f, isPinned: !f.isPinned } : f)),
+            prev.map((f) =>
+              f.id === id ? { ...f, isPinned: !f.isPinned } : f,
+            ),
           )
         }
       />
-    )
+    );
   },
-}
+};
 
 export const ReadOnly: Story = {
   render: () => (
     <SavedFilters filters={seed} onApply={(id) => console.info("apply", id)} />
   ),
-}
+};
 
 export const Empty: Story = {
-  render: () => <SavedFilters filters={[]} onSave={(name) => console.info("save", name)} />,
-}
+  render: () => (
+    <SavedFilters filters={[]} onSave={(name) => console.info("save", name)} />
+  ),
+};
 
 export const CustomLabel: Story = {
   render: () => (
@@ -101,9 +105,9 @@ export const CustomLabel: Story = {
       onApply={(id) => console.info("apply", id)}
     />
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

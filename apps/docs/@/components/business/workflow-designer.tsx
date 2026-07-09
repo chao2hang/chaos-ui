@@ -127,11 +127,13 @@ function WorkflowDesigner({
   };
 
   const removeEdge = (idx: number) => {
-    emit(items, edgesState.filter((_, i) => i !== idx));
+    emit(
+      items,
+      edgesState.filter((_, i) => i !== idx),
+    );
   };
 
-  const idToName = (id: string) =>
-    items.find((n) => n.id === id)?.name ?? id;
+  const idToName = (id: string) => items.find((n) => n.id === id)?.name ?? id;
 
   return (
     <div
@@ -148,7 +150,7 @@ function WorkflowDesigner({
         <CardContent className="flex flex-col gap-4">
           {/* 节点画布 */}
           {items.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground py-6 text-center text-sm">
               暂无节点，请新增节点。
             </p>
           ) : (
@@ -268,7 +270,7 @@ function WorkflowDesigner({
             </div>
 
             {edgesState.length === 0 ? (
-              <p className="mt-2 text-xs text-muted-foreground">暂无连线。</p>
+              <p className="text-muted-foreground mt-2 text-xs">暂无连线。</p>
             ) : (
               <ul role="list" className="mt-2 flex flex-col gap-1">
                 {edgesState.map((edge, idx) => (
@@ -280,9 +282,7 @@ function WorkflowDesigner({
                       {idToName(edge.from)}
                     </span>
                     <span className="text-muted-foreground">→</span>
-                    <span className="text-foreground">
-                      {idToName(edge.to)}
-                    </span>
+                    <span className="text-foreground">{idToName(edge.to)}</span>
                     <Button
                       type="button"
                       variant="ghost"
@@ -299,7 +299,7 @@ function WorkflowDesigner({
             )}
           </div>
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             共 {items.length} 个节点，{edgesState.length} 条连线。
           </p>
         </CardContent>

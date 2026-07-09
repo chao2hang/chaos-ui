@@ -35,6 +35,7 @@ setLoading(false)
 }, [items.length])
 
 return (
+
 <InfiniteScroll onLoadMore={loadMore} hasMore={hasMore} loading={loading}>
 {items.map(i => <div key={i}>Item {i}</div>)}
 </InfiniteScroll>

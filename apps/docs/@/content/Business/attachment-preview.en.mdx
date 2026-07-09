@@ -1,5 +1,5 @@
-import { AttachmentPreview } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AttachmentPreview } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AttachmentPreview Attachment Preview
 
@@ -11,7 +11,6 @@ AttachmentPreview — a business component for ERP / enterprise scenarios.
 
 Use when you need an attachment preview.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <AttachmentPreview />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AttachmentPreview
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `url` | `string` | — |  |
-| `type` | `string` | — | Type |
-| `name` | `string` | — | Form field name |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `url`       | `string`               | —       |                                   |
+| `type`      | `string`               | —       | Type                              |
+| `name`      | `string`               | —       | Form field name                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

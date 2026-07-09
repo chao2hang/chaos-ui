@@ -20,7 +20,10 @@ interface MobileSignatureProps {
   className?: string;
 }
 
-function getPoint(event: React.PointerEvent<HTMLCanvasElement>, canvas: HTMLCanvasElement) {
+function getPoint(
+  event: React.PointerEvent<HTMLCanvasElement>,
+  canvas: HTMLCanvasElement,
+) {
   const rect = canvas.getBoundingClientRect();
   return {
     x: ((event.clientX - rect.left) / rect.width) * canvas.width,
@@ -39,7 +42,8 @@ function MobileSignature({ onSave, className }: MobileSignatureProps) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+    const dpr =
+      typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
     const rect = canvas.getBoundingClientRect();
     const targetW = Math.max(1, Math.round(rect.width * dpr));
     const targetH = Math.max(1, Math.round(rect.height * dpr));
@@ -64,7 +68,10 @@ function MobileSignature({ onSave, className }: MobileSignatureProps) {
     ensureSize();
   }, [ensureSize]);
 
-  const stroke = (from: { x: number; y: number }, to: { x: number; y: number }) => {
+  const stroke = (
+    from: { x: number; y: number },
+    to: { x: number; y: number },
+  ) => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -123,9 +130,9 @@ function MobileSignature({ onSave, className }: MobileSignatureProps) {
   return (
     <div
       data-slot="mobile-signature"
-      className={cn("flex flex-col gap-2 text-foreground", className)}
+      className={cn("text-foreground flex flex-col gap-2", className)}
     >
-      <div className="relative h-40 w-full overflow-hidden rounded-lg border bg-background">
+      <div className="bg-background relative h-40 w-full overflow-hidden rounded-lg border">
         <canvas
           ref={canvasRef}
           data-slot="mobile-signature-canvas"
@@ -138,18 +145,21 @@ function MobileSignature({ onSave, className }: MobileSignatureProps) {
           aria-label="签名画板"
         />
         {!hasInk ? (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <div className="text-muted-foreground pointer-events-none absolute inset-0 flex items-center justify-center gap-2 text-sm">
             <SignatureIcon className="size-5" aria-hidden="true" />
             <span>请在此处签名</span>
           </div>
         ) : null}
-        <div className="pointer-events-none absolute inset-x-0 bottom-3 border-b border-dashed border-border" aria-hidden="true" />
+        <div
+          className="border-border pointer-events-none absolute inset-x-0 bottom-3 border-b border-dashed"
+          aria-hidden="true"
+        />
       </div>
       <div className="flex justify-end gap-2">
         <button
           type="button"
           onClick={clear}
-          className="inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm hover:bg-muted"
+          className="hover:bg-muted inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm"
         >
           <Trash2Icon className="size-4" aria-hidden="true" />
           清除
@@ -158,7 +168,7 @@ function MobileSignature({ onSave, className }: MobileSignatureProps) {
           type="button"
           onClick={save}
           disabled={!hasInk}
-          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground disabled:opacity-50"
+          className="bg-primary text-primary-foreground inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium disabled:opacity-50"
         >
           <SignatureIcon className="size-4" aria-hidden="true" />
           保存

@@ -2,7 +2,12 @@
 
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { XIcon, AlertTriangleIcon, InfoIcon, BellIcon } from "@chaos_team/chaos-ui/ui";
+import {
+  XIcon,
+  AlertTriangleIcon,
+  InfoIcon,
+  BellIcon,
+} from "@chaos_team/chaos-ui/ui";
 import { Button } from "@chaos_team/chaos-ui/ui";
 
 type BannerPriority = "info" | "warning" | "critical";

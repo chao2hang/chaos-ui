@@ -88,9 +88,9 @@ function FormWizard({
       </Stepper>
 
       <div className="min-h-[200px] rounded-lg border p-6">
-        <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
+        <h3 className="mb-1 text-lg font-semibold">{step.title}</h3>
         {step.description && (
-          <p className="text-sm text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-4 text-sm">
             {step.description}
           </p>
         )}
@@ -99,18 +99,18 @@ function FormWizard({
 
       <div className="flex justify-between">
         <Button variant="outline" onClick={handleBack} disabled={isFirst}>
-          <ChevronLeftIcon className="size-4 mr-1" />
+          <ChevronLeftIcon className="mr-1 size-4" />
           {t("formWizard.back")}
         </Button>
         <Button onClick={handleNext}>
           {isLast ? (
             <>
-              <CheckIcon className="size-4 mr-1" /> {t("formWizard.submit")}
+              <CheckIcon className="mr-1 size-4" /> {t("formWizard.submit")}
             </>
           ) : (
             <>
               {t("formWizard.next")}{" "}
-              <ChevronRightIcon className="size-4 ml-1" />
+              <ChevronRightIcon className="ml-1 size-4" />
             </>
           )}
         </Button>

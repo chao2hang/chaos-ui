@@ -1,27 +1,38 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { KanbanBoard } from "@chaos_team/chaos-ui/business"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { KanbanBoard } from "@chaos_team/chaos-ui/business";
+import { useState } from "react";
 
 const meta: Meta<typeof KanbanBoard> = {
   title: "Business/KanbanBoard",
   component: KanbanBoard,
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const initialColumns = [
-  { id: "todo", title: "To Do", items: [{ id: "1", title: "Design homepage" }, { id: "2", title: "Write docs" }] },
-  { id: "doing", title: "In Progress", items: [{ id: "3", title: "Build feature X" }] },
+  {
+    id: "todo",
+    title: "To Do",
+    items: [
+      { id: "1", title: "Design homepage" },
+      { id: "2", title: "Write docs" },
+    ],
+  },
+  {
+    id: "doing",
+    title: "In Progress",
+    items: [{ id: "3", title: "Build feature X" }],
+  },
   { id: "done", title: "Done", items: [{ id: "4", title: "Fix bug Y" }] },
-]
+];
 
 export const Default: Story = {
   render: () => {
-    const [columns, setColumns] = useState(initialColumns)
-    return <KanbanBoard columns={columns} onColumnsChange={setColumns} />
+    const [columns, setColumns] = useState(initialColumns);
+    return <KanbanBoard columns={columns} onColumnsChange={setColumns} />;
   },
-}
+};
 
 export const Empty: Story = {
   args: {
@@ -31,4 +42,4 @@ export const Empty: Story = {
       { id: "done", title: "Done", items: [] },
     ],
   },
-}
+};

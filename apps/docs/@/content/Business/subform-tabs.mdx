@@ -1,11 +1,11 @@
-import { SubformTabs } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SubformTabs } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SubformTabs Subform Tabs
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 子表单 tab
+子表单 tab
 SubformTabs — subform tabs component.
 
 ## 何时使用 / When to Use
@@ -24,18 +24,17 @@ export function Basic() {
   return <SubformTabs />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SubformTabs
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `tabs` | `SubformTab[]` | — | Tab sections to render. Defaults to a basic info / contact layout. |
-| `value` | `Record<string, unknown>` | — | Field values keyed by name. |
-| `onChange` | `() => void` | — | Called with the merged values whenever a field changes. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                      | Default | 说明 / Description                                                 |
+| ----------- | ------------------------- | ------- | ------------------------------------------------------------------ |
+| `className` | `string`                  | —       | 自定义样式类名 <br/> Custom CSS class                              |
+| `tabs`      | `SubformTab[]`            | —       | Tab sections to render. Defaults to a basic info / contact layout. |
+| `value`     | `Record<string, unknown>` | —       | Field values keyed by name.                                        |
+| `onChange`  | `() => void`              | —       | Called with the merged values whenever a field changes.            |
+| ...rest     | `React.HTMLAttributes`    | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes          |
 
 ## 注意事项 / Notes
 

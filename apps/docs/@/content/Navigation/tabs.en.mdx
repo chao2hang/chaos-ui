@@ -1,5 +1,10 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Tabs
 
@@ -10,7 +15,6 @@ Switch between sibling content views on the same page.
 ## When to Use
 
 Switch between multiple sibling content panels while preserving context.
-
 
 ## Examples
 
@@ -33,40 +37,43 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tabs variant="default">Default</Tabs>
   <Tabs variant="line">Line</Tabs>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### States
 
-<CodeBlock code={`<Tabs>Normal</Tabs>
-<Tabs disabled>Disabled</Tabs>`} lang="tsx" />
-
+<CodeBlock
+  code={`<Tabs>Normal</Tabs>
+<Tabs disabled>Disabled</Tabs>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Variant**
 
-| Variant | Description | 默认 |
-|---|---|---|
-| `default` | Default style | ✓ |
-| `line` |  |  |
+| Variant   | Description   | 默认 |
+| --------- | ------------- | ---- |
+| `default` | Default style | ✓    |
+| `line`    |               |      |
 
 ## API / Props
 
 ### Tabs
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 3 个子组件(TabsList, TabsTrigger, TabsContent),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

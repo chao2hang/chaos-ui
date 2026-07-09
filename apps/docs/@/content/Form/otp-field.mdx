@@ -1,5 +1,5 @@
-import { OTPField, OTPFieldSeparator } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { OTPField, OTPFieldSeparator } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # OtpField 验证码输入
 
@@ -30,23 +30,25 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock code={`<OTPField>Normal</OTPField>
-<OTPField disabled>Disabled</OTPField>`} lang="tsx" />
-
+<CodeBlock
+  code={`<OTPField>Normal</OTPField>
+<OTPField disabled>Disabled</OTPField>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### OTPField
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `length` | `number` | — |  |
-| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onValueChange` | `() => void` | — |  |
-| `mask` | `boolean` | `false` |  |
-| `inputClassName` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop             | Type                   | Default | 说明 / Description                                        |
+| ---------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`      | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `length`         | `number`               | —       |                                                           |
+| `value`          | `string`               | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onValueChange`  | `() => void`           | —       |                                                           |
+| `mask`           | `boolean`              | `false` |                                                           |
+| `inputClassName` | `string`               | —       |                                                           |
+| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

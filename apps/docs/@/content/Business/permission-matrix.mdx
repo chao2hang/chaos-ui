@@ -1,5 +1,5 @@
-import { PermissionMatrix } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PermissionMatrix } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PermissionMatrix 权限矩阵
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <PermissionMatrix />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PermissionMatrix
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `permissions` | `PermissionItem[]` | — |  |
-| `roles` | `string[]` | — |  |
-| `value` | `Record<string, string[]>` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | 说明 / Description                                          |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `permissions` | `PermissionItem[]`            | —       |                                                             |
+| `roles`       | `string[]`                    | —       |                                                             |
+| `value`       | `Record<string, string[]>`    | —       | 当前值(受控) <br/> Current value (controlled)               |
+| `onChange`    | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

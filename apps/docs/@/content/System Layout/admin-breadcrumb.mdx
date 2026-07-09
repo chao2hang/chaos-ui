@@ -1,5 +1,5 @@
-import { AdminBreadcrumb } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { AdminBreadcrumb } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # AdminBreadcrumb 管理后台面包屑
 
@@ -24,17 +24,16 @@ export function Basic() {
   return <AdminBreadcrumb />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AdminBreadcrumb
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `AdminBreadcrumbItem[]` | — | 选项/数据项列表 <br/> Items / data list |
-| `separator` | `React.ReactNode` | `/` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `items`     | `AdminBreadcrumbItem[]`       | —       | 选项/数据项列表 <br/> Items / data list                     |
+| `separator` | `React.ReactNode`             | `/`     |                                                             |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

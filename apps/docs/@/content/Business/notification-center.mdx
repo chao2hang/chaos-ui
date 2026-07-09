@@ -1,5 +1,5 @@
-import { NotificationCenter } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { NotificationCenter } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # NotificationCenter 通知中心
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <NotificationCenter />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### NotificationCenter
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `notifications` | `NotificationItem[]` | — |  |
-| `onMarkRead` | `() => void` | — |  |
-| `onMarkAllRead` | `() => void` | — |  |
-| `onClear` | `() => void` | — |  |
-| `onItemClick` | `() => void` | — |  |
-| `align` | `"start" \| "center" \| "end"` | `end` | 对齐方式 <br/> Alignment |
-| `emptyText` | `string` | `暂无通知` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop            | Type                           | Default    | 说明 / Description                                        |
+| --------------- | ------------------------------ | ---------- | --------------------------------------------------------- |
+| `className`     | `string`                       | —          | 自定义样式类名 <br/> Custom CSS class                     |
+| `notifications` | `NotificationItem[]`           | —          |                                                           |
+| `onMarkRead`    | `() => void`                   | —          |                                                           |
+| `onMarkAllRead` | `() => void`                   | —          |                                                           |
+| `onClear`       | `() => void`                   | —          |                                                           |
+| `onItemClick`   | `() => void`                   | —          |                                                           |
+| `align`         | `"start" \| "center" \| "end"` | `end`      | 对齐方式 <br/> Alignment                                  |
+| `emptyText`     | `string`                       | `暂无通知` |                                                           |
+| ...rest         | `React.HTMLAttributes`         | —          | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { TodoListTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TodoListTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TodoListTable Todo List Table
 
@@ -11,7 +11,6 @@ Todo List Table — 面向 ERP/企业场景的业务组件。
 
 适用于Todo List Table相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,21 +21,19 @@ export function Basic() {
   return <TodoListTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TodoListTable
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `items` | `TodoItem[]` | — | Todo items. Defaults to a small sample list so the table is never empty. |
-| `onToggle` | `() => void` | — | Called with the toggled item id whenever a checkbox is clicked. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明                                                                     |
+| ----------- | ---------------------- | ------- | ------------------------------------------------------------------------ |
+| `className` | `string`               | —       | 自定义样式类名                                                           |
+| `items`     | `TodoItem[]`           | —       | Todo items. Defaults to a small sample list so the table is never empty. |
+| `onToggle`  | `() => void`           | —       | Called with the toggled item id whenever a checkbox is clicked.          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                                                        |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-todolisttable--docs)。
-

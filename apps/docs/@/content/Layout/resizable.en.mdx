@@ -1,5 +1,9 @@
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Resizable
 
@@ -10,7 +14,6 @@ Layout container whose panels can be resized by dragging.
 ## When to Use
 
 Use when you need a resizable.
-
 
 ## Examples
 
@@ -28,26 +31,23 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ResizablePanelGroup
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `defaultSize` | `number` | — |  |
-| `minSize` | `number` | — |  |
-| `maxSize` | `number` | — |  |
-| `collapsible` | `boolean` | — |  |
-| `collapsedSize` | `number` | — |  |
-| `onCollapse` | `() => void` | — |  |
-| `onExpand` | `() => void` | — |  |
-| `onResize` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop            | Type                          | Default | Description                     |
+| --------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`     | `string`                      | —       | Custom CSS class                |
+| `defaultSize`   | `number`                      | —       |                                 |
+| `minSize`       | `number`                      | —       |                                 |
+| `maxSize`       | `number`                      | —       |                                 |
+| `collapsible`   | `boolean`                     | —       |                                 |
+| `collapsedSize` | `number`                      | —       |                                 |
+| `onCollapse`    | `() => void`                  | —       |                                 |
+| `onExpand`      | `() => void`                  | —       |                                 |
+| `onResize`      | `() => void`                  | —       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

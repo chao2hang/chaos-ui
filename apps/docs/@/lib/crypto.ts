@@ -61,7 +61,10 @@ export function randomBytes(length: number): Uint8Array {
 
 /** Encode a UTF-8 string to Base64 (browser-safe). */
 export function toBase64(input: string): string {
-  if (typeof globalThis !== "undefined" && typeof globalThis.btoa === "function") {
+  if (
+    typeof globalThis !== "undefined" &&
+    typeof globalThis.btoa === "function"
+  ) {
     return globalThis.btoa(unescape(encodeURIComponent(input)));
   }
   return Buffer.from(input, "utf-8").toString("base64");
@@ -69,7 +72,10 @@ export function toBase64(input: string): string {
 
 /** Decode a Base64 string to UTF-8. */
 export function fromBase64(input: string): string {
-  if (typeof globalThis !== "undefined" && typeof globalThis.atob === "function") {
+  if (
+    typeof globalThis !== "undefined" &&
+    typeof globalThis.atob === "function"
+  ) {
     return decodeURIComponent(escape(globalThis.atob(input)));
   }
   return Buffer.from(input, "base64").toString("utf-8");

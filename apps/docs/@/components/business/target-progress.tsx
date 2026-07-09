@@ -1,8 +1,17 @@
 "use client";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
-import { TargetIcon, TrendingUpIcon, TrendingDownIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
+import {
+  TargetIcon,
+  TrendingUpIcon,
+  TrendingDownIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
@@ -24,7 +33,12 @@ interface TargetProgressProps {
   className?: string;
 }
 
-function TargetProgress({ target, actual, period, className }: TargetProgressProps) {
+function TargetProgress({
+  target,
+  actual,
+  period,
+  className,
+}: TargetProgressProps) {
   const rate = target > 0 ? actual / target : 0;
   const displayRate = Math.min(1, rate);
   const isOver = actual >= target && target > 0;
@@ -35,21 +49,23 @@ function TargetProgress({ target, actual, period, className }: TargetProgressPro
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center gap-2">
-            <TargetIcon className="size-4 text-primary" />
+            <TargetIcon className="text-primary size-4" />
             目标进度
           </span>
           {period && (
-            <span className="text-xs font-normal text-muted-foreground">{period}</span>
+            <span className="text-muted-foreground text-xs font-normal">
+              {period}
+            </span>
           )}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-xs text-muted-foreground">实际 / 目标</p>
+            <p className="text-muted-foreground text-xs">实际 / 目标</p>
             <p className="text-2xl font-semibold tabular-nums">
               {formatNumber(actual)}
-              <span className="ml-1 text-sm font-normal text-muted-foreground">
+              <span className="text-muted-foreground ml-1 text-sm font-normal">
                 / {formatNumber(target)}
               </span>
             </p>
@@ -69,7 +85,7 @@ function TargetProgress({ target, actual, period, className }: TargetProgressPro
 
         <div className="flex flex-col gap-1.5">
           <div
-            className="h-2 w-full overflow-hidden rounded-full bg-muted"
+            className="bg-muted h-2 w-full overflow-hidden rounded-full"
             role="progressbar"
             aria-valuenow={Math.round(displayRate * 100)}
             aria-valuemin={0}
@@ -84,8 +100,10 @@ function TargetProgress({ target, actual, period, className }: TargetProgressPro
               style={{ width: `${displayRate * 100}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground">
-            {isOver ? "已达成目标" : `还差 ${formatNumber(Math.max(0, target - actual))} 达成目标`}
+          <p className="text-muted-foreground text-xs">
+            {isOver
+              ? "已达成目标"
+              : `还差 ${formatNumber(Math.max(0, target - actual))} 达成目标`}
           </p>
         </div>
       </CardContent>

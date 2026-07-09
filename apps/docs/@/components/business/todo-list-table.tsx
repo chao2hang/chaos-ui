@@ -72,10 +72,18 @@ function TodoListTable({ items, onToggle, className }: TodoListTableProps) {
         <caption className="sr-only">待办事项</caption>
         <thead className="bg-muted/50">
           <tr>
-            <th scope="col" className="w-10 px-3 py-2 text-center font-medium">完成</th>
-            <th scope="col" className="px-3 py-2 text-left font-medium">事项</th>
-            <th scope="col" className="px-3 py-2 text-left font-medium">优先级</th>
-            <th scope="col" className="px-3 py-2 text-left font-medium">截止日期</th>
+            <th scope="col" className="w-10 px-3 py-2 text-center font-medium">
+              完成
+            </th>
+            <th scope="col" className="px-3 py-2 text-left font-medium">
+              事项
+            </th>
+            <th scope="col" className="px-3 py-2 text-left font-medium">
+              优先级
+            </th>
+            <th scope="col" className="px-3 py-2 text-left font-medium">
+              截止日期
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -88,7 +96,11 @@ function TodoListTable({ items, onToggle, className }: TodoListTableProps) {
                     type="button"
                     role="checkbox"
                     aria-checked={completed}
-                    aria-label={completed ? `标记「${item.title}」为未完成` : `标记「${item.title}」为已完成`}
+                    aria-label={
+                      completed
+                        ? `标记「${item.title}」为未完成`
+                        : `标记「${item.title}」为已完成`
+                    }
                     onClick={() => onToggle?.(item.id)}
                     className={cn(
                       "inline-flex size-5 items-center justify-center rounded border transition-colors",
@@ -100,14 +112,19 @@ function TodoListTable({ items, onToggle, className }: TodoListTableProps) {
                     {completed ? (
                       <CheckIcon className="size-3.5" aria-hidden="true" />
                     ) : (
-                      <CircleIcon className="size-3 text-transparent" aria-hidden="true" />
+                      <CircleIcon
+                        className="size-3 text-transparent"
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
                 </td>
                 <td
                   className={cn(
                     "px-3 py-2",
-                    completed ? "text-muted-foreground line-through" : "font-medium",
+                    completed
+                      ? "text-muted-foreground line-through"
+                      : "font-medium",
                   )}
                 >
                   {item.title}
@@ -127,7 +144,7 @@ function TodoListTable({ items, onToggle, className }: TodoListTableProps) {
                     <span className="text-muted-foreground">—</span>
                   )}
                 </td>
-                <td className="px-3 py-2 text-muted-foreground">
+                <td className="text-muted-foreground px-3 py-2">
                   {item.deadline ? (
                     <span className="inline-flex items-center gap-1">
                       <ClockIcon className="size-3" aria-hidden="true" />

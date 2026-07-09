@@ -1,5 +1,5 @@
-import { Image } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Image } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Image
 
@@ -11,7 +11,6 @@ Enhanced image with preview, error fallback, and lazy loading.
 
 Use when you need an image.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,46 +21,43 @@ export function Basic() {
   return <Image />
 }`} lang="tsx" />
 
-
 ## Style Variants
 
 **fit**
 
-| fit | Description | 默认 |
-|---|---|---|
-| `cover` |  | ✓ |
-| `contain` |  |  |
-| `fill` |  |  |
-| `none` |  |  |
+| fit       | Description | 默认 |
+| --------- | ----------- | ---- |
+| `cover`   |             | ✓    |
+| `contain` |             |      |
+| `fill`    |             |      |
+| `none`    |             |      |
 
 **rounded**
 
-| rounded | Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
-| `full` |  |  |
+| rounded   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `none`    |             |      |
+| `sm`      |             |      |
+| `default` |             | ✓    |
+| `lg`      |             |      |
+| `full`    |             |      |
 
 ## API / Props
 
 ### Image
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `src` | `string` | — | Source URL |
-| `alt` | `string` | — | Alternative text |
-| `fallback` | `React.ReactNode` | — | Fallback element shown while loading or on error |
-| `width` | `number \| string` | — | Width |
-| `height` | `number \| string` | — | Height |
-| `onError` | `() => void` | — | Called when image fails to load |
-| `onLoad` | `() => void` | — | Called when image loads successfully |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | Description                                      |
+| ----------- | ----------------------------- | ------- | ------------------------------------------------ |
+| `className` | `string`                      | —       | Custom CSS class                                 |
+| `src`       | `string`                      | —       | Source URL                                       |
+| `alt`       | `string`                      | —       | Alternative text                                 |
+| `fallback`  | `React.ReactNode`             | —       | Fallback element shown while loading or on error |
+| `width`     | `number \| string`            | —       | Width                                            |
+| `height`    | `number \| string`            | —       | Height                                           |
+| `onError`   | `() => void`                  | —       | Called when image fails to load                  |
+| `onLoad`    | `() => void`                  | —       | Called when image loads successfully             |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes                  |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

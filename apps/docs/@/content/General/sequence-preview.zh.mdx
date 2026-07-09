@@ -38,19 +38,18 @@ export function CustomFormat() {
 
 ### SequencePreview
 
-| Prop | Type | Default | 说明 |
-| ------------ | ---------------------------------- | ------------ | ------------------------------------- |
-| `prefix`     | `string`                           | `""`         | Prefix / 前缀                         |
-| `date`       | `Date`                             | `new Date()` | Date used in sequence / 编号中的日期  |
-| `dateFormat` | `"YYYYMMDD" \| "YYMMDD" \| "none"` | `YYYYMMDD`   | Date format / 日期格式                |
-| `seq`        | `number`                           | `1`          | Sequence number / 序号                |
-| `zeroFill`   | `number`                           | `4`          | Zero-fill width / 补零位数            |
-| `separator`  | `string`                           | `"-"`        | Separator / 分隔符                    |
-| `className` | `string` | — | 自定义样式类名 |
+| Prop         | Type                               | Default      | 说明                                 |
+| ------------ | ---------------------------------- | ------------ | ------------------------------------ |
+| `prefix`     | `string`                           | `""`         | Prefix / 前缀                        |
+| `date`       | `Date`                             | `new Date()` | Date used in sequence / 编号中的日期 |
+| `dateFormat` | `"YYYYMMDD" \| "YYMMDD" \| "none"` | `YYYYMMDD`   | Date format / 日期格式               |
+| `seq`        | `number`                           | `1`          | Sequence number / 序号               |
+| `zeroFill`   | `number`                           | `4`          | Zero-fill width / 补零位数           |
+| `separator`  | `string`                           | `"-"`        | Separator / 分隔符                   |
+| `className`  | `string`                           | —            | 自定义样式类名                       |
 
 ## 注意事项
 
 - **纯展示组件**: 仅展示生成的编号，不涉及实际编号分配逻辑。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sequencepreview--docs)。
-

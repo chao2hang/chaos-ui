@@ -70,7 +70,9 @@ interface OeeDashboardProps {
 /* -------------------------------------------------------------------------- */
 
 function oee(e: OeeEquipment): number {
-  return (e.availability / 100) * (e.performance / 100) * (e.quality / 100) * 100;
+  return (
+    (e.availability / 100) * (e.performance / 100) * (e.quality / 100) * 100
+  );
 }
 
 function gaugeColor(value: number, target: number): string {
@@ -156,10 +158,14 @@ function Gauge({
           <span className={cn("text-2xl font-bold", gaugeColor(value, target))}>
             {formatPct(value)}
           </span>
-          {sublabel && <span className="text-[10px] text-muted-foreground">{sublabel}</span>}
+          {sublabel && (
+            <span className="text-muted-foreground text-[10px]">
+              {sublabel}
+            </span>
+          )}
         </div>
       </div>
-      <span className="mt-1 text-sm font-medium text-foreground">{label}</span>
+      <span className="text-foreground mt-1 text-sm font-medium">{label}</span>
     </div>
   );
 }
@@ -181,45 +187,87 @@ function OeeDashboard({
   return (
     <div
       data-slot="oee-dashboard"
-      className={cn("space-y-5 rounded-xl border border-border bg-card p-5 shadow-sm", className)}
+      className={cn(
+        "border-border bg-card space-y-5 rounded-xl border p-5 shadow-sm",
+        className,
+      )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="border-border flex items-center justify-between border-b pb-3">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          <p className="text-sm text-muted-foreground">{equipment.name}</p>
+          <h3 className="text-foreground text-lg font-semibold">{title}</h3>
+          <p className="text-muted-foreground text-sm">{equipment.name}</p>
         </div>
-        <Badge variant={oeeValue >= targetOee ? "default" : "destructive"} className="text-sm">
+        <Badge
+          variant={oeeValue >= targetOee ? "default" : "destructive"}
+          className="text-sm"
+        >
           Target: {formatPct(targetOee)}
         </Badge>
       </div>
 
       {/* Gauges row */}
       <div className="flex flex-wrap items-center justify-around gap-4">
-        <Gauge label="OEE" value={oeeValue} target={targetOee} sublabel="Overall" />
-        <Gauge label="Availability" value={equipment.availability} target={90} sublabel={`${formatMin(equipment.runTime)} / ${formatMin(equipment.plannedTime)}`} />
-        <Gauge label="Performance" value={equipment.performance} target={95} sublabel={`${equipment.totalUnits} units`} />
-        <Gauge label="Quality" value={equipment.quality} target={99} sublabel={`${equipment.defectUnits} defects`} />
+        <Gauge
+          label="OEE"
+          value={oeeValue}
+          target={targetOee}
+          sublabel="Overall"
+        />
+        <Gauge
+          label="Availability"
+          value={equipment.availability}
+          target={90}
+          sublabel={`${formatMin(equipment.runTime)} / ${formatMin(equipment.plannedTime)}`}
+        />
+        <Gauge
+          label="Performance"
+          value={equipment.performance}
+          target={95}
+          sublabel={`${equipment.totalUnits} units`}
+        />
+        <Gauge
+          label="Quality"
+          value={equipment.quality}
+          target={99}
+          sublabel={`${equipment.defectUnits} defects`}
+        />
       </div>
 
       {/* Loss breakdown */}
       {losses.length > 0 && (
         <div data-slot="oee-losses">
-          <h4 className="mb-2 text-sm font-semibold text-foreground">
-            Loss Breakdown <span className="text-muted-foreground">({formatMin(totalLossMinutes)} total)</span>
+          <h4 className="text-foreground mb-2 text-sm font-semibold">
+            Loss Breakdown{" "}
+            <span className="text-muted-foreground">
+              ({formatMin(totalLossMinutes)} total)
+            </span>
           </h4>
           <div className="space-y-1.5">
             {losses.map((loss, i) => {
-              const pct = totalLossMinutes > 0 ? (loss.minutes / totalLossMinutes) * 100 : 0;
+              const pct =
+                totalLossMinutes > 0
+                  ? (loss.minutes / totalLossMinutes) * 100
+                  : 0;
               return (
-                <div key={i} data-slot="loss-item" className="flex items-center gap-2">
-                  <span className="w-32 shrink-0 text-xs text-muted-foreground">{loss.label}</span>
-                  <div className="relative h-5 flex-1 overflow-hidden rounded bg-muted">
+                <div
+                  key={i}
+                  data-slot="loss-item"
+                  className="flex items-center gap-2"
+                >
+                  <span className="text-muted-foreground w-32 shrink-0 text-xs">
+                    {loss.label}
+                  </span>
+                  <div className="bg-muted relative h-5 flex-1 overflow-hidden rounded">
                     <div
-                      className={cn("h-full rounded transition-all", lossCategoryColors[loss.category] ?? "bg-muted-foreground")}
+                      className={cn(
+                        "h-full rounded transition-all",
+                        lossCategoryColors[loss.category] ??
+                          "bg-muted-foreground",
+                      )}
                       style={{ width: `${pct}%` }}
                     />
-                    <span className="absolute inset-0 flex items-center justify-end pr-2 text-[10px] font-medium text-foreground">
+                    <span className="text-foreground absolute inset-0 flex items-center justify-end pr-2 text-[10px] font-medium">
                       {formatMin(loss.minutes)} ({formatPct(pct)})
                     </span>
                   </div>
@@ -232,22 +280,42 @@ function OeeDashboard({
 
       {/* Key metrics grid */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-lg border border-border bg-muted/20 p-3" data-slot="oee-metric">
-          <div className="text-xs text-muted-foreground">Planned Time</div>
-          <div className="mt-0.5 text-lg font-bold tabular-nums text-foreground">{formatMin(equipment.plannedTime)}</div>
+        <div
+          className="border-border bg-muted/20 rounded-lg border p-3"
+          data-slot="oee-metric"
+        >
+          <div className="text-muted-foreground text-xs">Planned Time</div>
+          <div className="text-foreground mt-0.5 text-lg font-bold tabular-nums">
+            {formatMin(equipment.plannedTime)}
+          </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/20 p-3" data-slot="oee-metric">
-          <div className="text-xs text-muted-foreground">Run Time</div>
-          <div className="mt-0.5 text-lg font-bold tabular-nums text-foreground">{formatMin(equipment.runTime)}</div>
+        <div
+          className="border-border bg-muted/20 rounded-lg border p-3"
+          data-slot="oee-metric"
+        >
+          <div className="text-muted-foreground text-xs">Run Time</div>
+          <div className="text-foreground mt-0.5 text-lg font-bold tabular-nums">
+            {formatMin(equipment.runTime)}
+          </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/20 p-3" data-slot="oee-metric">
-          <div className="text-xs text-muted-foreground">Downtime</div>
-          <div className="mt-0.5 text-lg font-bold tabular-nums text-destructive">{formatMin(equipment.downtime)}</div>
+        <div
+          className="border-border bg-muted/20 rounded-lg border p-3"
+          data-slot="oee-metric"
+        >
+          <div className="text-muted-foreground text-xs">Downtime</div>
+          <div className="text-destructive mt-0.5 text-lg font-bold tabular-nums">
+            {formatMin(equipment.downtime)}
+          </div>
         </div>
-        <div className="rounded-lg border border-border bg-muted/20 p-3" data-slot="oee-metric">
-          <div className="text-xs text-muted-foreground">Defect Rate</div>
-          <div className="mt-0.5 text-lg font-bold tabular-nums text-foreground">
-            {equipment.totalUnits > 0 ? formatPct((equipment.defectUnits / equipment.totalUnits) * 100) : "0.0%"}
+        <div
+          className="border-border bg-muted/20 rounded-lg border p-3"
+          data-slot="oee-metric"
+        >
+          <div className="text-muted-foreground text-xs">Defect Rate</div>
+          <div className="text-foreground mt-0.5 text-lg font-bold tabular-nums">
+            {equipment.totalUnits > 0
+              ? formatPct((equipment.defectUnits / equipment.totalUnits) * 100)
+              : "0.0%"}
           </div>
         </div>
       </div>

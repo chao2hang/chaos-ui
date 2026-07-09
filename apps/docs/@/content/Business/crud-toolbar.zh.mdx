@@ -1,5 +1,5 @@
-import { CrudToolbar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CrudToolbar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CrudToolbar 增删改查工具栏
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要增删改查工具栏功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,23 +21,22 @@ export function Basic() {
   return <CrudToolbar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CrudToolbar
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `onAdd` | `() => void` | — |  |
-| `onDelete` | `() => void` | — |  |
-| `onExport` | `() => void` | — |  |
-| `onImport` | `() => void` | — |  |
-| `onRefresh` | `() => void` | — |  |
-| `onSearch` | `() => void` | — |  |
-| `searchPlaceholder` | `string` | `搜索...` |  |
-| `selectedCount` | `number` | `0` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop                | Type                          | Default   | 说明                  |
+| ------------------- | ----------------------------- | --------- | --------------------- |
+| `className`         | `string`                      | —         | 自定义样式类名        |
+| `onAdd`             | `() => void`                  | —         |                       |
+| `onDelete`          | `() => void`                  | —         |                       |
+| `onExport`          | `() => void`                  | —         |                       |
+| `onImport`          | `() => void`                  | —         |                       |
+| `onRefresh`         | `() => void`                  | —         |                       |
+| `onSearch`          | `() => void`                  | —         |                       |
+| `searchPlaceholder` | `string`                      | `搜索...` |                       |
+| `selectedCount`     | `number`                      | `0`       |                       |
+| ...rest             | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -46,4 +44,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-crudtoolbar--docs)。
-

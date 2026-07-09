@@ -3,7 +3,11 @@ import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon } from "@chaos_team/chaos-ui/ui";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component DockPanel
@@ -40,7 +44,13 @@ const PANEL_CLASS: Record<DockPanelProps["side"], string> = {
   bottom: "h-48",
 };
 
-function DockPanel({ side, collapsed = false, onToggle, children, className }: DockPanelProps) {
+function DockPanel({
+  side,
+  collapsed = false,
+  onToggle,
+  children,
+  className,
+}: DockPanelProps) {
   const isVertical = side === "bottom";
   const ToggleIcon =
     side === "left"
@@ -48,7 +58,9 @@ function DockPanel({ side, collapsed = false, onToggle, children, className }: D
       : side === "right"
         ? ChevronRightIcon
         : ChevronUpIcon;
-  const label = collapsed ? `展开${side === "bottom" ? "下方" : "侧栏"}面板` : `折叠${side === "bottom" ? "下方" : "侧栏"}面板`;
+  const label = collapsed
+    ? `展开${side === "bottom" ? "下方" : "侧栏"}面板`
+    : `折叠${side === "bottom" ? "下方" : "侧栏"}面板`;
 
   return (
     <div
@@ -57,7 +69,7 @@ function DockPanel({ side, collapsed = false, onToggle, children, className }: D
     >
       <div
         className={cn(
-          "flex shrink-0 items-center justify-center border-muted bg-card",
+          "border-muted bg-card flex shrink-0 items-center justify-center",
           isVertical ? "h-8 w-full border-t" : "w-8 flex-col border-r",
         )}
       >
@@ -68,12 +80,17 @@ function DockPanel({ side, collapsed = false, onToggle, children, className }: D
           aria-label={label}
           onClick={onToggle}
         >
-          <ToggleIcon className={cn("size-4 transition-transform", collapsed && "rotate-180")} />
+          <ToggleIcon
+            className={cn(
+              "size-4 transition-transform",
+              collapsed && "rotate-180",
+            )}
+          />
         </Button>
       </div>
       <div
         className={cn(
-          "overflow-hidden border-muted bg-card transition-all",
+          "border-muted bg-card overflow-hidden transition-all",
           isVertical ? "border-t" : "border-l",
           PANEL_CLASS[side],
           collapsed ? (isVertical ? "h-0" : "w-0") : "",
@@ -82,7 +99,9 @@ function DockPanel({ side, collapsed = false, onToggle, children, className }: D
         aria-label="停靠面板内容"
         aria-hidden={collapsed}
       >
-        <div className={cn("h-full overflow-auto p-3", isVertical ? "" : "w-64")}>
+        <div
+          className={cn("h-full overflow-auto p-3", isVertical ? "" : "w-64")}
+        >
           {collapsed ? null : children}
         </div>
       </div>

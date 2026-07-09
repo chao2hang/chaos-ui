@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Tour, type TourStep } from "@chaos_team/chaos-ui/ui"
-import { useState } from "react"
-import { Button } from "@chaos_team/chaos-ui/ui"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Tour, type TourStep } from "@chaos_team/chaos-ui/ui";
+import { useState } from "react";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta = {
   title: "Business/Tour",
   parameters: { layout: "fullscreen" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const steps: TourStep[] = [
   {
@@ -36,41 +36,53 @@ const steps: TourStep[] = [
     title: "准备好了",
     description: "开始你的协作之旅吧！",
   },
-]
+];
 
 function Page() {
   return (
     <div className="grid h-screen grid-cols-[200px_1fr_200px] gap-4 p-8">
-      <aside className="rounded-md border bg-card p-4">
-        <div id="tour-step-1" className="rounded bg-primary/10 p-2 text-sm font-medium">
+      <aside className="bg-card rounded-md border p-4">
+        <div
+          id="tour-step-1"
+          className="bg-primary/10 rounded p-2 text-sm font-medium"
+        >
           工作台
         </div>
       </aside>
-      <main className="rounded-md border bg-card p-4">
-        <div id="tour-step-2" className="rounded bg-success/10 p-2 text-sm font-medium">
+      <main className="bg-card rounded-md border p-4">
+        <div
+          id="tour-step-2"
+          className="bg-success/10 rounded p-2 text-sm font-medium"
+        >
           + 新建项目
         </div>
-        <div className="mt-6 text-xs text-muted-foreground">主内容区</div>
+        <div className="text-muted-foreground mt-6 text-xs">主内容区</div>
       </main>
-      <aside className="rounded-md border bg-card p-4">
-        <div id="tour-step-3" className="rounded bg-warning/10 p-2 text-sm font-medium">
+      <aside className="bg-card rounded-md border p-4">
+        <div
+          id="tour-step-3"
+          className="bg-warning/10 rounded p-2 text-sm font-medium"
+        >
           通知
         </div>
-        <div id="tour-step-4" className="mt-4 rounded bg-muted p-2 text-sm font-medium">
+        <div
+          id="tour-step-4"
+          className="bg-muted mt-4 rounded p-2 text-sm font-medium"
+        >
           头像
         </div>
       </aside>
     </div>
-  )
+  );
 }
 
 export const Default: Story = {
   render: () => {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(true);
     return (
       <>
         <Page />
-        <div className="fixed left-1/2 top-4 z-[10000] -translate-x-1/2">
+        <div className="fixed top-4 left-1/2 z-[10000] -translate-x-1/2">
           <Button size="sm" onClick={() => setOpen(true)}>
             重新开始引导
           </Button>
@@ -83,9 +95,9 @@ export const Default: Story = {
           onSkip={() => console.info("skip")}
         />
       </>
-    )
+    );
   },
-}
+};
 
 export const OpenOnce: Story = {
   render: () => (
@@ -98,7 +110,7 @@ export const OpenOnce: Story = {
       />
     </>
   ),
-}
+};
 
 export const CustomPlacement: Story = {
   render: () => {
@@ -116,15 +128,15 @@ export const CustomPlacement: Story = {
         placement: "right",
         description: "popover 显示在目标元素右侧",
       },
-    ]
+    ];
     return (
       <>
         <Page />
         <Tour steps={custom} open />
       </>
-    )
+    );
   },
-}
+};
 
 export const SingleStep: Story = {
   render: () => (
@@ -142,9 +154,9 @@ export const SingleStep: Story = {
       />
     </>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

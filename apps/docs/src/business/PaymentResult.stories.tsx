@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { PaymentResult } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import { PaymentResult } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof PaymentResult> = {
   title: "Business/PaymentResult",
   component: PaymentResult,
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-}
+};

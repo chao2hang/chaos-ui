@@ -1,5 +1,5 @@
-import { ChartSuite } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ChartSuite } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ChartSuite Chart Suite
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <ChartSuite />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChartSuite
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `type` | `"line" \| "bar" \| "pie" \| "radar" \...` | — | 类型 <br/> Type |
-| `data` | `unknown[]` | — | 数据源 <br/> Data source |
-| `xField` | `string` | `x` |  |
-| `yField` | `string` | `y` |  |
-| `series` | `string` | — |  |
-| `height` | `number` | `200` | 组件高度 <br/> Component height |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                                       | Default | 说明 / Description                                        |
+| ----------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
+| `className` | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `type`      | `"line" \| "bar" \| "pie" \| "radar" \...` | —       | 类型 <br/> Type                                           |
+| `data`      | `unknown[]`                                | —       | 数据源 <br/> Data source                                  |
+| `xField`    | `string`                                   | `x`     |                                                           |
+| `yField`    | `string`                                   | `y`     |                                                           |
+| `series`    | `string`                                   | —       |                                                           |
+| `height`    | `number`                                   | `200`   | 组件高度 <br/> Component height                           |
+| ...rest     | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

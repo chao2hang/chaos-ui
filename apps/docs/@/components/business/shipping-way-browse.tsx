@@ -14,7 +14,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, SearchIcon, TruckIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckIcon,
+  SearchIcon,
+  TruckIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ShippingWayBrowse
@@ -68,11 +72,14 @@ function ShippingWayBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
-  const resolvedTitle = title ?? t("shippingWayBrowse.title", { defaultValue: "选择运输方式" });
+  const resolvedTitle =
+    title ?? t("shippingWayBrowse.title", { defaultValue: "选择运输方式" });
   const resolvedSearch =
-    searchPlaceholder ?? t("shippingWayBrowse.search", { defaultValue: "搜索运输方式" });
+    searchPlaceholder ??
+    t("shippingWayBrowse.search", { defaultValue: "搜索运输方式" });
   const resolvedEmpty =
-    emptyText ?? t("shippingWayBrowse.empty", { defaultValue: "无匹配运输方式" });
+    emptyText ??
+    t("shippingWayBrowse.empty", { defaultValue: "无匹配运输方式" });
 
   const filtered = React.useMemo(() => {
     if (!query.trim()) return items;
@@ -104,11 +111,16 @@ function ShippingWayBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="shipping-way-browse" className={cn("sm:max-w-md", className)}>
+      <DialogContent
+        data-slot="shipping-way-browse"
+        className={cn("sm:max-w-md", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {t("shippingWayBrowse.description", { defaultValue: "从列表中选择运输方式" })}
+            {t("shippingWayBrowse.description", {
+              defaultValue: "从列表中选择运输方式",
+            })}
           </DialogDescription>
         </DialogHeader>
 
@@ -125,7 +137,7 @@ function ShippingWayBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -139,8 +151,8 @@ function ShippingWayBrowse({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedId(s.id)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     s.disabled && "pointer-events-none opacity-50",
                   )}
@@ -148,12 +160,12 @@ function ShippingWayBrowse({
                   <TruckIcon className="size-4 shrink-0 opacity-50" />
                   <span className="flex-1 truncate">{s.name}</span>
                   {s.code && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {s.code}
                     </span>
                   )}
                   {s.carrier && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {s.carrier}
                     </span>
                   )}
@@ -165,10 +177,18 @@ function ShippingWayBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
-          <Button type="button" disabled={selectedId == null} onClick={handleConfirm}>
+          <Button
+            type="button"
+            disabled={selectedId == null}
+            onClick={handleConfirm}
+          >
             {t("shippingWayBrowse.confirm", { defaultValue: "确定" })}
           </Button>
         </DialogFooter>

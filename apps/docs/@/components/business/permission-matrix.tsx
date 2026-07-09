@@ -101,7 +101,7 @@ export function PermissionMatrix({
                 <div>
                   <p className="text-sm font-medium">{resource.label}</p>
                   {resource.description && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       {resource.description}
                     </p>
                   )}

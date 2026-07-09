@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { MetricTrend, Sparkline } from "@chaos_team/chaos-ui/business"
-import { UsersIcon, DollarSignIcon, TrendingUpIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { MetricTrend, Sparkline } from "@chaos_team/chaos-ui/business";
+import { UsersIcon, DollarSignIcon, TrendingUpIcon } from "lucide-react";
 
 const meta = {
   title: "Business/MetricTrend",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -39,7 +39,7 @@ export const Default: Story = {
       />
     </div>
   ),
-}
+};
 
 export const Loading: Story = {
   render: () => (
@@ -48,24 +48,24 @@ export const Loading: Story = {
       <MetricTrend label="正常" value={1234} change={5.6} />
     </div>
   ),
-}
+};
 
 export const SparklineExample: Story = {
   render: () => (
-    <div className="flex items-end gap-6 text-success">
+    <div className="text-success flex items-end gap-6">
       <div>
-        <div className="text-xs text-muted-foreground">上涨</div>
+        <div className="text-muted-foreground text-xs">上涨</div>
         <Sparkline data={[1, 3, 2, 4, 5, 6, 7, 8]} width={120} height={40} />
       </div>
       <div className="text-destructive">
-        <div className="text-xs text-muted-foreground">下跌</div>
+        <div className="text-muted-foreground text-xs">下跌</div>
         <Sparkline data={[8, 7, 6, 4, 3, 2, 1, 0]} width={120} height={40} />
       </div>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

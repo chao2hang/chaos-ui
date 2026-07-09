@@ -1,5 +1,5 @@
-import { WriteoffFlow } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { WriteoffFlow } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # WriteoffFlow Writeoff Flow
 
@@ -12,7 +12,6 @@ WriteoffFlow — writeoff flow component.
 
 Use when you need a writeoff flow.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,19 +22,16 @@ export function Basic() {
   return <WriteoffFlow />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### WriteoffFlow
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `steps` | `Array<T>` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `steps`     | `Array<T>`             | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

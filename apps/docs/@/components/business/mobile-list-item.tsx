@@ -26,7 +26,13 @@ interface MobileListItemProps {
   className?: string;
 }
 
-function MobileListItem({ title, subtitle, trailing, onClick, className }: MobileListItemProps) {
+function MobileListItem({
+  title,
+  subtitle,
+  trailing,
+  onClick,
+  className,
+}: MobileListItemProps) {
   const interactive = typeof onClick === "function";
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -47,21 +53,27 @@ function MobileListItem({ title, subtitle, trailing, onClick, className }: Mobil
       aria-label={interactive ? title : undefined}
       className={cn(
         "flex min-h-12 items-center gap-3 px-4 py-2 text-sm",
-        interactive && "cursor-pointer hover:bg-muted focus-visible:bg-muted focus-visible:outline-none",
+        interactive &&
+          "hover:bg-muted focus-visible:bg-muted cursor-pointer focus-visible:outline-none",
         className,
       )}
     >
       <div className="min-w-0 flex-1">
         <div className="truncate font-medium">{title}</div>
         {subtitle ? (
-          <div className="truncate text-xs text-muted-foreground">{subtitle}</div>
+          <div className="text-muted-foreground truncate text-xs">
+            {subtitle}
+          </div>
         ) : null}
       </div>
       {trailing ? (
-        <div className="shrink-0 text-muted-foreground">{trailing}</div>
+        <div className="text-muted-foreground shrink-0">{trailing}</div>
       ) : null}
       {interactive ? (
-        <ChevronRightIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+        <ChevronRightIcon
+          className="text-muted-foreground size-4 shrink-0"
+          aria-hidden="true"
+        />
       ) : null}
     </div>
   );

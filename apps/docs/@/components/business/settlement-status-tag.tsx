@@ -1,6 +1,11 @@
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { CheckCircle2Icon, ClockIcon, AlertTriangleIcon, CircleIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckCircle2Icon,
+  ClockIcon,
+  AlertTriangleIcon,
+  CircleIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component SettlementStatusTag
@@ -29,12 +34,14 @@ const STATUS_MAP: Record<
   partial: {
     label: "部分结算",
     icon: <ClockIcon />,
-    className: "bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
+    className:
+      "bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
   },
   settled: {
     label: "已结算",
     icon: <CheckCircle2Icon />,
-    className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
+    className:
+      "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
   },
   overdue: {
     label: "逾期",

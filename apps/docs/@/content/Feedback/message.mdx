@@ -1,5 +1,5 @@
-import { Message } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Message } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Message 全局消息
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <Message />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Message
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `variant` | `MessageVariant` | `info` | Message variant / 消息变体 |
-| `icon` | `React.ReactNode` | — | Custom icon (overrides variant default) / 自定义图标 |
-| `action` | `React.ReactNode` | — | Optional action element (button, link) / 可选操作元素 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `variant`   | `MessageVariant`              | `info`  | Message variant / 消息变体                                  |
+| `icon`      | `React.ReactNode`             | —       | Custom icon (overrides variant default) / 自定义图标        |
+| `action`    | `React.ReactNode`             | —       | Optional action element (button, link) / 可选操作元素       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

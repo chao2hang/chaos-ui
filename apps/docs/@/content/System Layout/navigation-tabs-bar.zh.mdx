@@ -1,5 +1,5 @@
-import { NavigationTabsBar } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { NavigationTabsBar } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # NavigationTabsBar Navigation Tabs Bar
 
@@ -11,7 +11,6 @@ Tab items / Tab 项列表
 
 适用于Navigation Tabs Bar相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,28 +21,26 @@ export function Basic() {
   return <NavigationTabsBar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### NavigationTabsBar
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `items` | `NavigationTabsBarTabItem[]` | — | Tab items / Tab 项列表 |
-| `activeKey` | `string` | — | Active tab key / 当前激活的 tab key |
-| `defaultActiveKey` | `string` | — | Default active tab key (uncontrolled) / 默认激活的 tab key（非受控） |
-| `onChange` | `() => void` | — | Tab change callback / Tab 切换回调 |
-| `onClose` | `() => void` | — | Tab close callback / Tab 关闭回调 |
-| `onCloseAll` | `() => void` | — | Close all tabs callback / 关闭全部回调 |
-| `onCloseOthers` | `() => void` | — | Close other tabs callback / 关闭其他回调 |
-| `onCloseToRight` | `() => void` | — | Close tabs to the right callback / 关闭右侧回调 |
-| `onRefresh` | `() => void` | — | Refresh tab callback / 刷新回调 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop               | Type                         | Default | 说明                                                                 |
+| ------------------ | ---------------------------- | ------- | -------------------------------------------------------------------- |
+| `className`        | `string`                     | —       | 自定义样式类名                                                       |
+| `items`            | `NavigationTabsBarTabItem[]` | —       | Tab items / Tab 项列表                                               |
+| `activeKey`        | `string`                     | —       | Active tab key / 当前激活的 tab key                                  |
+| `defaultActiveKey` | `string`                     | —       | Default active tab key (uncontrolled) / 默认激活的 tab key（非受控） |
+| `onChange`         | `() => void`                 | —       | Tab change callback / Tab 切换回调                                   |
+| `onClose`          | `() => void`                 | —       | Tab close callback / Tab 关闭回调                                    |
+| `onCloseAll`       | `() => void`                 | —       | Close all tabs callback / 关闭全部回调                               |
+| `onCloseOthers`    | `() => void`                 | —       | Close other tabs callback / 关闭其他回调                             |
+| `onCloseToRight`   | `() => void`                 | —       | Close tabs to the right callback / 关闭右侧回调                      |
+| `onRefresh`        | `() => void`                 | —       | Refresh tab callback / 刷新回调                                      |
+| ...rest            | `React.HTMLAttributes`       | —       | 透传原生 DOM 属性                                                    |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-navigationtabsbar--docs)。
-

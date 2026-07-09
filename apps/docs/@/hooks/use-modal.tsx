@@ -83,8 +83,7 @@ export function useModal(): ModalInstance {
   );
 
   const info = React.useCallback(
-    (options: Omit<ModalOptions, "okVariant" | "cancelText">) =>
-      open(options),
+    (options: Omit<ModalOptions, "okVariant" | "cancelText">) => open(options),
     [open],
   );
 
@@ -113,7 +112,12 @@ export function useModal(): ModalInstance {
       }}
     >
       <DialogContent
-        style={{ maxWidth: typeof modalState.options.width === "number" ? `${modalState.options.width}px` : modalState.options.width }}
+        style={{
+          maxWidth:
+            typeof modalState.options.width === "number"
+              ? `${modalState.options.width}px`
+              : modalState.options.width,
+        }}
       >
         <DialogHeader>
           {modalState.options.title && (
@@ -130,11 +134,15 @@ export function useModal(): ModalInstance {
             </Button>
           )}
           <Button
-            variant={modalState.options.okVariant === "destructive" ? "destructive" : "default"}
+            variant={
+              modalState.options.okVariant === "destructive"
+                ? "destructive"
+                : "default"
+            }
             onClick={handleOk}
             disabled={loading}
           >
-            {loading ? "Loading..." : modalState.options.okText ?? "OK"}
+            {loading ? "Loading..." : (modalState.options.okText ?? "OK")}
           </Button>
         </DialogFooter>
       </DialogContent>

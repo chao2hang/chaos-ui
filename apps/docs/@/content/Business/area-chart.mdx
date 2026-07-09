@@ -1,11 +1,11 @@
-import { AreaChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AreaChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AreaChart Area Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 面积图(趋势+填充)
+面积图(趋势+填充)
 AreaChart — area chart component.
 
 ## 何时使用 / When to Use
@@ -24,19 +24,18 @@ export function Basic() {
   return <AreaChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AreaChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `number[]` | — | Numeric series values, left-to-right. |
-| `labels` | `string[]` | — | X-axis labels aligned 1:1 with `data`. |
-| `height` | `number` | `180` | SVG height in px. |
-| `color` | `string` | `currentColor` | Stroke + fill color. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default        | 说明 / Description                                        |
+| ----------- | ---------------------- | -------------- | --------------------------------------------------------- |
+| `className` | `string`               | —              | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`      | `number[]`             | —              | Numeric series values, left-to-right.                     |
+| `labels`    | `string[]`             | —              | X-axis labels aligned 1:1 with `data`.                    |
+| `height`    | `number`               | `180`          | SVG height in px.                                         |
+| `color`     | `string`               | `currentColor` | Stroke + fill color.                                      |
+| ...rest     | `React.HTMLAttributes` | —              | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

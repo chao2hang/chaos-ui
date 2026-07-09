@@ -38,9 +38,9 @@ function LabeledField({
       )}
       {children}
       {description && !error && (
-        <p className="text-xs text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground text-xs">{description}</p>
       )}
-      {error && <p className="text-xs text-destructive">{error}</p>}
+      {error && <p className="text-destructive text-xs">{error}</p>}
     </div>
   );
 }

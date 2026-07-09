@@ -1,5 +1,5 @@
-import { RemoteSelect } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RemoteSelect } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RemoteSelect 远程选择器
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <RemoteSelect />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RemoteSelect
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `onSearch` | `(...args) => unknown` | — |  |
-| `placeholder` | `string` | `搜索并选择...` | 占位文本 <br/> Placeholder text |
-| `debounceMs` | `number` | `300` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default         | 说明 / Description                                        |
+| ------------- | ---------------------- | --------------- | --------------------------------------------------------- |
+| `className`   | `string`               | —               | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`       | `string`               | —               | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`    | `() => void`           | —               | 值变化回调 <br/> Callback when value changes              |
+| `onSearch`    | `(...args) => unknown` | —               |                                                           |
+| `placeholder` | `string`               | `搜索并选择...` | 占位文本 <br/> Placeholder text                           |
+| `debounceMs`  | `number`               | `300`           |                                                           |
+| ...rest       | `React.HTMLAttributes` | —               | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

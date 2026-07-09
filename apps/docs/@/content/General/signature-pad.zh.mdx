@@ -33,15 +33,15 @@ export function Basic() {
 
 ### SignaturePad
 
-| Prop | Type | Default | 说明 |
-| ----------- | ------------ | ------- | ------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调    |
-| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调  |
+| Prop        | Type         | Default | 说明                                 |
+| ----------- | ------------ | ------- | ------------------------------------ |
+| `className` | `string`     | —       | 自定义样式类名                       |
+| `onEnd`     | `() => void` | —       | Stroke end callback / 笔画结束回调   |
+| `onBegin`   | `() => void` | —       | Stroke begin callback / 笔画开始回调 |
 
 ### Imperative Handle (ref)
 
-| Method | Type | 说明 |
+| Method             | Type                                | 说明                                     |
 | ------------------ | ----------------------------------- | ---------------------------------------- |
 | `clear()`          | `() => void`                        | Clear the canvas / 清空画布              |
 | `isEmpty()`        | `() => boolean`                     | Check if canvas has ink / 检查是否有签名 |
@@ -55,4 +55,3 @@ export function Basic() {
 - **Canvas API**: 基于 HTML5 Canvas 实现，需浏览器支持。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-signaturepad--docs)。
-

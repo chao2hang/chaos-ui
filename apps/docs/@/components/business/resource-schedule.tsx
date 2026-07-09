@@ -38,7 +38,11 @@ const DAY_START = 8 * 60; // 08:00
 const DAY_END = 20 * 60; // 20:00
 const DAY_SPAN = DAY_END - DAY_START;
 
-function ResourceSchedule({ resources = [], bookings = [], className }: ResourceScheduleProps) {
+function ResourceSchedule({
+  resources = [],
+  bookings = [],
+  className,
+}: ResourceScheduleProps) {
   const bookingsByResource = React.useMemo(() => {
     const map = new Map<string, typeof bookings>();
     for (const b of bookings) {
@@ -59,11 +63,18 @@ function ResourceSchedule({ resources = [], bookings = [], className }: Resource
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr>
-            <th scope="col" className="sticky left-0 z-10 w-32 border-b border-r bg-card px-3 py-2 text-left text-xs font-medium text-muted-foreground">
+            <th
+              scope="col"
+              className="bg-card text-muted-foreground sticky left-0 z-10 w-32 border-r border-b px-3 py-2 text-left text-xs font-medium"
+            >
               资源
             </th>
             {HOURS.map((h) => (
-              <th key={h} scope="col" className="border-b px-1 py-2 text-center text-xs font-medium text-muted-foreground tabular-nums">
+              <th
+                key={h}
+                scope="col"
+                className="text-muted-foreground border-b px-1 py-2 text-center text-xs font-medium tabular-nums"
+              >
                 {String(h).padStart(2, "0")}:00
               </th>
             ))}
@@ -72,7 +83,10 @@ function ResourceSchedule({ resources = [], bookings = [], className }: Resource
         <tbody>
           {resources.length === 0 ? (
             <tr>
-              <td colSpan={HOURS.length + 1} className="px-3 py-6 text-center text-muted-foreground">
+              <td
+                colSpan={HOURS.length + 1}
+                className="text-muted-foreground px-3 py-6 text-center"
+              >
                 暂无资源
               </td>
             </tr>
@@ -81,7 +95,10 @@ function ResourceSchedule({ resources = [], bookings = [], className }: Resource
               const rowBookings = bookingsByResource.get(resource.id) ?? [];
               return (
                 <tr key={resource.id} className="border-b last:border-b-0">
-                  <th scope="row" className="sticky left-0 z-10 w-32 border-r bg-card px-3 py-2 text-left text-xs font-medium">
+                  <th
+                    scope="row"
+                    className="bg-card sticky left-0 z-10 w-32 border-r px-3 py-2 text-left text-xs font-medium"
+                  >
                     {resource.name}
                   </th>
                   <td colSpan={HOURS.length} className="relative h-12 p-0">
@@ -90,14 +107,18 @@ function ResourceSchedule({ resources = [], bookings = [], className }: Resource
                       {HOURS.map((_, i) => (
                         <div
                           key={i}
-                          className="absolute top-0 bottom-0 border-r border-border/40"
+                          className="border-border/40 absolute top-0 bottom-0 border-r"
                           style={{ left: `${(i / HOURS.length) * 100}%` }}
                         />
                       ))}
                       {rowBookings.map((booking, idx) => {
                         const startMin = toMinutes(booking.start);
                         const endMin = toMinutes(booking.end);
-                        if (Number.isNaN(startMin) || Number.isNaN(endMin) || endMin <= startMin) {
+                        if (
+                          Number.isNaN(startMin) ||
+                          Number.isNaN(endMin) ||
+                          endMin <= startMin
+                        ) {
                           return null;
                         }
                         const left = ((startMin - DAY_START) / DAY_SPAN) * 100;
@@ -105,7 +126,7 @@ function ResourceSchedule({ resources = [], bookings = [], className }: Resource
                         return (
                           <div
                             key={`${booking.resourceId}-${idx}`}
-                            className="absolute top-1 bottom-1 flex items-center rounded bg-primary/80 px-1.5 text-[10px] font-medium text-primary-foreground shadow-sm"
+                            className="bg-primary/80 text-primary-foreground absolute top-1 bottom-1 flex items-center rounded px-1.5 text-[10px] font-medium shadow-sm"
                             style={{
                               left: `${Math.max(0, left)}%`,
                               width: `${Math.min(100 - left, width)}%`,

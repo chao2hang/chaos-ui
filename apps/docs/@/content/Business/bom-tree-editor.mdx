@@ -1,5 +1,5 @@
-import { BOMTreeEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BOMTreeEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BomTreeEditor Bom Tree Editor
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <BOMTreeEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BOMTreeEditor
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `BOMItem[]` | — | BOM items (tree structure) |
-| `onChange` | `() => void` | — | Change callback |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| `showCostRollup` | `boolean` | `true` | Show cost rollup column |
-| `currencySymbol` | `string` | `¥` | Currency symbol (default: "¥") |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop             | Type                   | Default | 说明 / Description                                        |
+| ---------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`      | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `items`          | `BOMItem[]`            | —       | BOM items (tree structure)                                |
+| `onChange`       | `() => void`           | —       | Change callback                                           |
+| `readOnly`       | `boolean`              | `false` | Read-only mode                                            |
+| `showCostRollup` | `boolean`              | `true`  | Show cost rollup column                                   |
+| `currencySymbol` | `string`               | `¥`     | Currency symbol (default: "¥")                            |
+| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

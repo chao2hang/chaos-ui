@@ -1,5 +1,5 @@
-import { GridLayout, GridItem } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { GridLayout, GridItem } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # GridLayout
 
@@ -10,7 +10,6 @@ GridLayout — a layout primitives for structuring pages. for structuring page r
 ## When to Use
 
 Use when you need a grid layout.
-
 
 ## Examples
 
@@ -26,66 +25,63 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## Style Variants
 
 **columns**
 
 | columns | Description | 默认 |
-|---|---|---|
-| `1` |  | ✓ |
-| `2` |  |  |
-| `3` |  |  |
-| `4` |  |  |
-| `5` |  |  |
-| `6` |  |  |
-| `12` |  |  |
-| `auto` |  |  |
+| ------- | ----------- | ---- |
+| `1`     |             | ✓    |
+| `2`     |             |      |
+| `3`     |             |      |
+| `4`     |             |      |
+| `5`     |             |      |
+| `6`     |             |      |
+| `12`    |             |      |
+| `auto`  |             |      |
 
 **gap**
 
-| gap | Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
-| `xl` |  |  |
+| gap       | Description | 默认 |
+| --------- | ----------- | ---- |
+| `none`    |             |      |
+| `sm`      |             |      |
+| `default` |             | ✓    |
+| `lg`      |             |      |
+| `xl`      |             |      |
 
 **align**
 
-| align | Description | 默认 |
-|---|---|---|
-| `start` |  |  |
-| `center` |  |  |
-| `end` |  |  |
-| `stretch` |  | ✓ |
+| align     | Description | 默认 |
+| --------- | ----------- | ---- |
+| `start`   |             |      |
+| `center`  |             |      |
+| `end`     |             |      |
+| `stretch` |             | ✓    |
 
 **justify**
 
-| justify | Description | 默认 |
-|---|---|---|
-| `start` |  | ✓ |
-| `center` |  |  |
-| `end` |  |  |
-| `between` |  |  |
+| justify   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `start`   |             | ✓    |
+| `center`  |             |      |
+| `end`     |             |      |
+| `between` |             |      |
 
 ## API / Props
 
 ### GridLayout
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `responsive` | `{` | — |  |
-| `sm` | `number` | — |  |
-| `md` | `number` | — |  |
-| `lg` | `number` | — |  |
-| `xl` | `number` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop         | Type                   | Default | Description                       |
+| ------------ | ---------------------- | ------- | --------------------------------- |
+| `className`  | `string`               | —       | Custom CSS class                  |
+| `responsive` | `{`                    | —       |                                   |
+| `sm`         | `number`               | —       |                                   |
+| `md`         | `number`               | —       |                                   |
+| `lg`         | `number`               | —       |                                   |
+| `xl`         | `number`               | —       |                                   |
+| ...rest      | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 1 个子组件(GridItem),使用组合模式按需导入。
-
-

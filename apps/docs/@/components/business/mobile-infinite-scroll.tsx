@@ -65,7 +65,7 @@ function MobileInfiniteScroll({
       {children}
       <div
         ref={sentinelRef}
-        className="flex items-center justify-center gap-2 py-3 text-xs text-muted-foreground"
+        className="text-muted-foreground flex items-center justify-center gap-2 py-3 text-xs"
         aria-live="polite"
       >
         {loading ? (

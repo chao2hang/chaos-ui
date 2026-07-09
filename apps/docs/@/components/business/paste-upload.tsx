@@ -3,10 +3,7 @@
 import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
-import {
-  ClipboardListIcon,
-  UploadIcon,
-} from "@chaos_team/chaos-ui/ui-icons";
+import { ClipboardListIcon, UploadIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PasteUpload
@@ -81,7 +78,7 @@ function PasteUpload({ onPaste, children, className }: PasteUploadProps) {
       onPaste={handlePaste}
       onKeyDown={handleKey}
       className={cn(
-        "flex min-h-32 flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-muted/40 p-6 text-center text-sm text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+        "bg-muted/40 text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 flex min-h-32 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center text-sm outline-none focus-visible:ring-3",
         className,
       )}
     >
@@ -89,23 +86,20 @@ function PasteUpload({ onPaste, children, className }: PasteUploadProps) {
         <>
           <span
             aria-hidden="true"
-            className="flex size-9 items-center justify-center rounded-md bg-muted text-foreground"
+            className="bg-muted text-foreground flex size-9 items-center justify-center rounded-md"
           >
             <ClipboardListIcon />
           </span>
-          <p className="font-medium text-foreground">粘贴文件以上传</p>
+          <p className="text-foreground font-medium">粘贴文件以上传</p>
           <p className="flex items-center gap-1 text-xs">
-            <UploadIcon aria-hidden="true" className="size-3.5" />
-            按 Ctrl/Cmd + V 粘贴图片或文件
+            <UploadIcon aria-hidden="true" className="size-3.5" />按 Ctrl/Cmd +
+            V 粘贴图片或文件
           </p>
         </>
       )}
 
       {lastCount !== null && (
-        <p
-          role="status"
-          className="mt-1 text-xs text-primary"
-        >
+        <p role="status" className="text-primary mt-1 text-xs">
           已捕获 {lastCount} 个文件
         </p>
       )}

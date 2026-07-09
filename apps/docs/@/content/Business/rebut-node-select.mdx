@@ -1,11 +1,14 @@
-import { RebutNodeSelect } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RebutNodeSelect } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RebutNodeSelect Rebut Node Select
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<RebutNodeSelect nodes={[{ id: "n1", name: "部门审批" }]} onSelect={console.log} />
+<RebutNodeSelect
+  nodes={[{ id: "n1", name: "部门审批" }]}
+  onSelect={console.log}
+/>
 RebutNodeSelect — rebut node select component.
 
 ## 何时使用 / When to Use
@@ -24,17 +27,16 @@ export function Basic() {
   return <RebutNodeSelect />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RebutNodeSelect
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `nodes` | `Array<T>` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `nodes`     | `Array<T>`             | —       |                                                           |
+| `onSelect`  | `() => void`           | —       | 选中回调 <br/> Selection handler                          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

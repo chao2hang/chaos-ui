@@ -50,6 +50,7 @@ export function App() {
   const [dark, setDark] = useState(false)
 
 return (
+
 <ConfigProvider theme={{ darkMode: dark }}>
 <button onClick={() => setDark(!dark)}>
 切换为 {dark ? "亮色" : "暗色"} 模式
@@ -114,37 +115,37 @@ export function CurrentLocale() {
 
 ### ConfigProvider
 
-| Prop | Type | Default | 说明 |
-| ----------------------- | --------------------------------------------- | --------- | ---------------------------------------------------------------------- |
-| `children` | `React.ReactNode` | — | 需要注入配置的子组件树 |
-| `locale` | `string` | `"zh-CN"` | 国际化语言代码，如 `"zh-CN"`, `"en-US"` |
-| `direction` | `"ltr"` \| `"rtl"` | `"ltr"` | 文字排列方向 |
-| `theme` | `ThemeConfig` | — | 主题配置对象（主题色、圆角、暗色模式、滚动条等） |
-| `prefixCls` | `string` | `"chaos"` | CSS 类名前缀，与 antd 风格兼容 |
-| `disableAnimation` | `boolean` | `false` | 全局禁用动效 |
-| `renderEmpty` | `(componentName?: string) => React.ReactNode` | — | 自定义空状态占位渲染 |
-| `form.validateMessages` | `Record<string, string>` | — | 表单校验文案覆写 |
+| Prop                    | Type                                          | Default   | 说明                                             |
+| ----------------------- | --------------------------------------------- | --------- | ------------------------------------------------ |
+| `children`              | `React.ReactNode`                             | —         | 需要注入配置的子组件树                           |
+| `locale`                | `string`                                      | `"zh-CN"` | 国际化语言代码，如 `"zh-CN"`, `"en-US"`          |
+| `direction`             | `"ltr"` \| `"rtl"`                            | `"ltr"`   | 文字排列方向                                     |
+| `theme`                 | `ThemeConfig`                                 | —         | 主题配置对象（主题色、圆角、暗色模式、滚动条等） |
+| `prefixCls`             | `string`                                      | `"chaos"` | CSS 类名前缀，与 antd 风格兼容                   |
+| `disableAnimation`      | `boolean`                                     | `false`   | 全局禁用动效                                     |
+| `renderEmpty`           | `(componentName?: string) => React.ReactNode` | —         | 自定义空状态占位渲染                             |
+| `form.validateMessages` | `Record<string, string>`                      | —         | 表单校验文案覆写                                 |
 
 ### ThemeConfig
 
 主题配置对象，控制全局视觉风格。
 
-| Field | Type | Default | 说明 |
+| Field           | Type                                                     | Default     | 说明                                                 |
 | --------------- | -------------------------------------------------------- | ----------- | ---------------------------------------------------- |
 | `primaryColor`  | `string`                                                 | —           | 主题色（任意 CSS 颜色值）注入为 `--primary` CSS 变量 |
 | `borderRadius`  | `number`                                                 | —           | 全局圆角半径（px），注入为 `--radius` CSS 变量       |
 | `darkMode`      | `boolean`                                                | —           | 是否启用暗色模式，在根元素上添加 `class="dark"`      |
-| `componentSize` | `"sm"` \| `"default"` \| `"lg"` | `"default"` | 全局组件尺寸 |
+| `componentSize` | `"sm"` \| `"default"` \| `"lg"`                          | `"default"` | 全局组件尺寸                                         |
 | `scrollbar`     | `ScrollbarConfig` \| `"thin"` \| `"default"` \| `"none"` | —           | 滚动条样式，支持简写字符串或详细配置对象             |
 | `cssVars`       | `Record<string, string>`                                 | —           | 注入任意 CSS 自定义属性，实现深度主题定制            |
 
 ### ScrollbarConfig
 
-| Field | Type | Default | 说明 |
+| Field             | Type                                | Default                | 说明                                                                    |
 | ----------------- | ----------------------------------- | ---------------------- | ----------------------------------------------------------------------- |
 | `variant`         | `"thin"` \| `"default"` \| `"none"` | —                      | 滚动条样式：`"thin"`（细滚动条）、`"default"`（默认）、`"none"`（隐藏） |
-| `thumbColor` | `string` | `rgb(15 23 42 / 0.18)` | 滚动条滑块颜色 |
-| `thumbHoverColor` | `string` | `rgb(15 23 42 / 0.3)` | 滚动条滑块 hover 颜色 |
+| `thumbColor`      | `string`                            | `rgb(15 23 42 / 0.18)` | 滚动条滑块颜色                                                          |
+| `thumbHoverColor` | `string`                            | `rgb(15 23 42 / 0.3)`  | 滚动条滑块 hover 颜色                                                   |
 
 ## 注意事项
 
@@ -154,4 +155,3 @@ export function CurrentLocale() {
 - **与 antd 的差异**：Chaos UI 使用 CSS 自定义属性（`--primary`, `--radius`）而非 antd 的 `theme.token` 对象。这意味着你可以直接在 CSS 中通过 `var(--primary)` 访问主题色，更加灵活。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-configprovider--docs)。
-

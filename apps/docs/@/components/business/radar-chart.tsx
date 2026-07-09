@@ -59,10 +59,12 @@ function RadarChart({
         {rings.map((ring, i) => (
           <polygon
             key={i}
-            points={axes.map((_, j) => {
-              const a = angleAt(j);
-              return `${cx + r * ring * Math.cos(a)},${cy + r * ring * Math.sin(a)}`;
-            }).join(" ")}
+            points={axes
+              .map((_, j) => {
+                const a = angleAt(j);
+                return `${cx + r * ring * Math.cos(a)},${cy + r * ring * Math.sin(a)}`;
+              })
+              .join(" ")}
             fill="none"
             className="stroke-muted-foreground/20"
             strokeWidth={0.5}
@@ -131,12 +133,18 @@ function RadarChart({
           );
         })}
       </svg>
-      <ul className="mt-1 flex flex-wrap justify-center gap-3 text-[10px]" role="list">
+      <ul
+        className="mt-1 flex flex-wrap justify-center gap-3 text-[10px]"
+        role="list"
+      >
         {series.map((s, si) => (
           <li key={s.name} className="flex items-center gap-1">
             <span
               className="inline-block size-2 rounded-sm"
-              style={{ backgroundColor: s.color ?? RADAR_PALETTE[si % RADAR_PALETTE.length] }}
+              style={{
+                backgroundColor:
+                  s.color ?? RADAR_PALETTE[si % RADAR_PALETTE.length],
+              }}
               aria-hidden="true"
             />
             {s.name}

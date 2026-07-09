@@ -4,7 +4,11 @@ import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Badge } from "@chaos_team/chaos-ui/ui";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { MessageSquareIcon, PlusIcon, SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  MessageSquareIcon,
+  PlusIcon,
+  SearchIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { initials } from "@chaos_team/chaos-ui/lib";
 
 /**

@@ -1,5 +1,5 @@
-import { CrudPage } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CrudPage } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CrudPage 增删改查页面
 
@@ -24,25 +24,24 @@ export function Basic() {
   return <CrudPage />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CrudPage
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `string` | `数据列表` | 标题 <br/> Title |
-| `toolbar` | `React.ReactNode` | — |  |
-| `columns` | `Array<{` | — | 列配置 <br/> Column configuration |
-| `key` | `string` | — |  |
-| `header` | `string` | — |  |
-| `data` | `Record<string, unknown>[]` | — | 数据源 <br/> Data source |
-| `total` | `number` | `0` |  |
-| `page` | `number` | `1` |  |
-| `onPageChange` | `() => void` | — |  |
-| `onCreate` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop           | Type                          | Default    | 说明 / Description                                          |
+| -------------- | ----------------------------- | ---------- | ----------------------------------------------------------- |
+| `className`    | `string`                      | —          | 自定义样式类名 <br/> Custom CSS class                       |
+| `title`        | `string`                      | `数据列表` | 标题 <br/> Title                                            |
+| `toolbar`      | `React.ReactNode`             | —          |                                                             |
+| `columns`      | `Array<{`                     | —          | 列配置 <br/> Column configuration                           |
+| `key`          | `string`                      | —          |                                                             |
+| `header`       | `string`                      | —          |                                                             |
+| `data`         | `Record<string, unknown>[]`   | —          | 数据源 <br/> Data source                                    |
+| `total`        | `number`                      | `0`        |                                                             |
+| `page`         | `number`                      | `1`        |                                                             |
+| `onPageChange` | `() => void`                  | —          |                                                             |
+| `onCreate`     | `() => void`                  | —          |                                                             |
+| ...rest        | `React.ComponentProps<"div">` | —          | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

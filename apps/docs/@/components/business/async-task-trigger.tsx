@@ -10,20 +10,31 @@ import { RefreshCwIcon } from "@chaos_team/chaos-ui/ui";
  * @description 异步任务触发器
  */
 interface AsyncTaskTriggerProps {
-taskType: string;
+  taskType: string;
   params?: Record<string, unknown>;
   onComplete?: (result: unknown) => void;
   children?: React.ReactNode;
   className?: string;
 }
-function AsyncTaskTrigger({ taskType, params, onComplete, children, className }: AsyncTaskTriggerProps) {
+function AsyncTaskTrigger({
+  taskType,
+  params,
+  onComplete,
+  children,
+  className,
+}: AsyncTaskTriggerProps) {
   const [loading, setLoading] = React.useState(false);
   const run = React.useCallback(() => {
     setLoading(true);
-    Promise.resolve(onComplete?.({ taskType, params })).finally(() => setLoading(false));
+    Promise.resolve(onComplete?.({ taskType, params })).finally(() =>
+      setLoading(false),
+    );
   }, [taskType, params, onComplete]);
   return (
-    <div data-slot="async-task-trigger" className={cn("inline-flex items-center gap-2", className)}>
+    <div
+      data-slot="async-task-trigger"
+      className={cn("inline-flex items-center gap-2", className)}
+    >
       <Button onClick={run} disabled={loading}>
         <RefreshCwIcon className={cn("size-4", loading && "animate-spin")} />
         {children ?? "执行任务"}

@@ -35,7 +35,12 @@ interface MultiCurrencyInputProps {
   /** Amount value in the selected (source) currency */
   value?: number;
   /** Change callback with amount and computed base amount */
-  onChange?: (amount: number, baseAmount: number, currency: string, rate: number) => void;
+  onChange?: (
+    amount: number,
+    baseAmount: number,
+    currency: string,
+    rate: number,
+  ) => void;
   /** Available currencies (default: common set) */
   currencies?: CurrencyOption[];
   /** Selected currency code */
@@ -88,10 +93,7 @@ function formatMoney(value: number, symbol: string): string {
   })}`;
 }
 
-function getCurrencySymbol(
-  currencies: CurrencyOption[],
-  code: string,
-): string {
+function getCurrencySymbol(currencies: CurrencyOption[], code: string): string {
   return currencies.find((c) => c.code === code)?.symbol ?? code;
 }
 
@@ -134,7 +136,12 @@ function MultiCurrencyInput({
   /* ---- handlers ---- */
   const handleAmountChange = (v: string) => {
     const numVal = parseFloat(v) || 0;
-    onChange?.(numVal, Math.round(numVal * effectiveRate * 100) / 100, currency, effectiveRate);
+    onChange?.(
+      numVal,
+      Math.round(numVal * effectiveRate * 100) / 100,
+      currency,
+      effectiveRate,
+    );
   };
 
   const handleCurrencyChange = (code: string) => {
@@ -160,7 +167,7 @@ function MultiCurrencyInput({
       <div className="flex items-stretch gap-2">
         {/* Currency selector */}
         <select
-          className="h-9 shrink-0 rounded-md border border-input bg-background px-2 text-sm font-medium"
+          className="border-input bg-background h-9 shrink-0 rounded-md border px-2 text-sm font-medium"
           value={currency}
           onChange={(e) => handleCurrencyChange(e.target.value)}
           disabled={readOnly}
@@ -175,7 +182,7 @@ function MultiCurrencyInput({
 
         {/* Amount input */}
         <div className="relative flex-1">
-          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+          <span className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm">
             {sourceSymbol}
           </span>
           <Input
@@ -198,9 +205,7 @@ function MultiCurrencyInput({
           {/* Exchange rate */}
           <div className="flex items-center gap-2 text-xs">
             <span className="text-muted-foreground">Exchange Rate:</span>
-            <span className="text-muted-foreground">
-              1 {currency} =
-            </span>
+            <span className="text-muted-foreground">1 {currency} =</span>
             {allowRateOverride && !readOnly ? (
               <Input
                 type="number"
@@ -212,8 +217,9 @@ function MultiCurrencyInput({
                 min={0}
               />
             ) : (
-              <span className="font-medium tabular-nums text-foreground">
-                {baseSymbol}{effectiveRate.toFixed(4)}
+              <span className="text-foreground font-medium tabular-nums">
+                {baseSymbol}
+                {effectiveRate.toFixed(4)}
               </span>
             )}
             <span className="text-muted-foreground">{baseCurrency}</span>
@@ -221,14 +227,14 @@ function MultiCurrencyInput({
 
           {/* Conversion result */}
           <div
-            className="flex items-center gap-2 rounded-md border border-border bg-muted/30 px-3 py-1.5"
+            className="border-border bg-muted/30 flex items-center gap-2 rounded-md border px-3 py-1.5"
             data-slot="currency-conversion"
           >
-            <span className="text-sm tabular-nums text-muted-foreground">
+            <span className="text-muted-foreground text-sm tabular-nums">
               {formatMoney(value, sourceSymbol)} {currency}
             </span>
-            <ArrowRightIcon className="size-3.5 text-muted-foreground" />
-            <span className="text-sm font-semibold tabular-nums text-foreground">
+            <ArrowRightIcon className="text-muted-foreground size-3.5" />
+            <span className="text-foreground text-sm font-semibold tabular-nums">
               {formatMoney(baseAmount, baseSymbol)} {baseCurrency}
             </span>
           </div>
@@ -237,8 +243,10 @@ function MultiCurrencyInput({
 
       {/* Same currency note */}
       {showConversion && isSameCurrency && (
-        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Badge variant="outline" className="text-[10px]">Same currency</Badge>
+        <div className="text-muted-foreground flex items-center gap-1 text-xs">
+          <Badge variant="outline" className="text-[10px]">
+            Same currency
+          </Badge>
           <span>No conversion needed</span>
         </div>
       )}

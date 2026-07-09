@@ -103,7 +103,7 @@ function FileUploadManager({
                 <GridIcon className="size-3.5" />
               </Button>
               <Button variant="ghost" size="icon-xs" onClick={handleClearAll}>
-                <Trash2Icon className="size-3.5 text-destructive" />
+                <Trash2Icon className="text-destructive size-3.5" />
               </Button>
             </div>
           </div>
@@ -112,8 +112,12 @@ function FileUploadManager({
             <div className="space-y-2">
               {files.map((file, i) => {
                 const pct = formatProgress(file.progress);
-                const isUploading = file.status === "uploading" || (pct !== null && pct < 100);
-                const isComplete = pct === 100 || file.status === "done" || file.status === "complete";
+                const isUploading =
+                  file.status === "uploading" || (pct !== null && pct < 100);
+                const isComplete =
+                  pct === 100 ||
+                  file.status === "done" ||
+                  file.status === "complete";
                 return (
                   <div
                     key={i}
@@ -124,15 +128,24 @@ function FileUploadManager({
                   >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium truncate">{file.name}</span>
-                        <span className="text-xs text-muted-foreground shrink-0">
+                        <span className="truncate text-sm font-medium">
+                          {file.name}
+                        </span>
+                        <span className="text-muted-foreground shrink-0 text-xs">
                           {(file.size / 1024).toFixed(1)} KB
                         </span>
                         {isUploading && pct !== null && (
-                          <span className="text-xs text-muted-foreground shrink-0 tabular-nums">{pct}%</span>
+                          <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
+                            {pct}%
+                          </span>
                         )}
                         {isComplete && (
-                          <Badge variant="secondary" className="shrink-0 text-[0.65rem] px-1.5 py-0">Done</Badge>
+                          <Badge
+                            variant="secondary"
+                            className="shrink-0 px-1.5 py-0 text-[0.65rem]"
+                          >
+                            Done
+                          </Badge>
                         )}
                       </div>
                       {/* Progress bar for uploading files */}
@@ -144,7 +157,7 @@ function FileUploadManager({
                       variant="ghost"
                       size="icon-xs"
                       onClick={() => handleRemove(i)}
-                      className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
                     >
                       <Trash2Icon className="size-3.5" />
                     </Button>
@@ -153,34 +166,38 @@ function FileUploadManager({
               })}
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
               {files.map((file, i) => {
                 const pct = formatProgress(file.progress);
-                const isUploading = file.status === "uploading" || (pct !== null && pct < 100);
-                const isComplete = pct === 100 || file.status === "done" || file.status === "complete";
+                const isUploading =
+                  file.status === "uploading" || (pct !== null && pct < 100);
+                const isComplete =
+                  pct === 100 ||
+                  file.status === "done" ||
+                  file.status === "complete";
                 return (
                   <div
                     key={i}
                     className={cn(
-                      "group relative rounded-lg border overflow-hidden",
+                      "group relative overflow-hidden rounded-lg border",
                       isComplete && "border-success/30",
                     )}
                   >
                     {file.type?.startsWith("image/") ? (
-                      <div className="aspect-square bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                      <div className="bg-muted text-muted-foreground flex aspect-square items-center justify-center text-xs">
                         Image
                       </div>
                     ) : (
-                      <div className="aspect-square bg-muted flex items-center justify-center">
-                        <span className="text-xs text-muted-foreground uppercase font-medium">
+                      <div className="bg-muted flex aspect-square items-center justify-center">
+                        <span className="text-muted-foreground text-xs font-medium uppercase">
                           {file.name?.split(".").pop() || "File"}
                         </span>
                       </div>
                     )}
                     {/* Progress overlay for uploading files in grid view */}
                     {isUploading && pct !== null && (
-                      <div className="absolute inset-x-0 bottom-0 bg-background/80 backdrop-blur-sm px-2 py-1.5">
-                        <div className="flex items-center justify-between text-xs mb-1">
+                      <div className="bg-background/80 absolute inset-x-0 bottom-0 px-2 py-1.5 backdrop-blur-sm">
+                        <div className="mb-1 flex items-center justify-between text-xs">
                           <span className="tabular-nums">{pct}%</span>
                         </div>
                         <Progress value={pct} className="h-1.5" />
@@ -188,12 +205,19 @@ function FileUploadManager({
                     )}
                     {isComplete && (
                       <div className="absolute top-1 right-1">
-                        <Badge variant="secondary" className="text-[0.6rem] px-1 py-0">Done</Badge>
+                        <Badge
+                          variant="secondary"
+                          className="px-1 py-0 text-[0.6rem]"
+                        >
+                          Done
+                        </Badge>
                       </div>
                     )}
                     <div className="p-2">
-                      <p className="text-xs truncate font-medium">{file.name}</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="truncate text-xs font-medium">
+                        {file.name}
+                      </p>
+                      <p className="text-muted-foreground text-xs">
                         {(file.size / 1024).toFixed(1)} KB
                       </p>
                     </div>
@@ -201,7 +225,7 @@ function FileUploadManager({
                       variant="ghost"
                       size="icon-xs"
                       onClick={() => handleRemove(i)}
-                      className="absolute top-1 right-1 size-5 rounded-full bg-destructive p-0 text-destructive-foreground opacity-0 hover:bg-destructive/80 group-hover:opacity-100 transition-opacity"
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/80 absolute top-1 right-1 size-5 rounded-full p-0 opacity-0 transition-opacity group-hover:opacity-100"
                     >
                       <Trash2Icon className="size-3" />
                     </Button>

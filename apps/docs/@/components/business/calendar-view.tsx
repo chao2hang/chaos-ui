@@ -44,11 +44,7 @@ function eventsByDate(
   return map;
 }
 
-function CalendarView({
-  events,
-  onDateSelect,
-  className,
-}: CalendarViewProps) {
+function CalendarView({ events, onDateSelect, className }: CalendarViewProps) {
   const today = new Date();
   const [cursor, setCursor] = React.useState(
     new Date(today.getFullYear(), today.getMonth(), 1),
@@ -78,10 +74,7 @@ function CalendarView({
     onDateSelect?.(iso);
   };
 
-  const onKeyDown = (
-    e: React.KeyboardEvent,
-    iso: string | null,
-  ) => {
+  const onKeyDown = (e: React.KeyboardEvent, iso: string | null) => {
     if (!iso) return;
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -94,13 +87,13 @@ function CalendarView({
   return (
     <div
       data-slot="calendar-view"
-      className={cn("w-full rounded-lg border bg-card p-3 text-sm", className)}
+      className={cn("bg-card w-full rounded-lg border p-3 text-sm", className)}
     >
       <div className="mb-2 flex items-center justify-between">
         <button
           type="button"
           aria-label="上一月"
-          className="inline-flex size-7 items-center justify-center rounded-md hover:bg-muted"
+          className="hover:bg-muted inline-flex size-7 items-center justify-center rounded-md"
           onClick={() => go(-1)}
         >
           <ChevronLeftIcon className="size-4" />
@@ -111,14 +104,14 @@ function CalendarView({
         <button
           type="button"
           aria-label="下一月"
-          className="inline-flex size-7 items-center justify-center rounded-md hover:bg-muted"
+          className="hover:bg-muted inline-flex size-7 items-center justify-center rounded-md"
           onClick={() => go(1)}
         >
           <ChevronRightIcon className="size-4" />
         </button>
       </div>
       <div
-        className="grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground"
+        className="text-muted-foreground grid grid-cols-7 gap-1 text-center text-xs"
         role="row"
       >
         {WEEKDAYS.map((w) => (
@@ -151,7 +144,7 @@ function CalendarView({
               onKeyDown={(e) => onKeyDown(e, iso)}
               onClick={() => choose(iso)}
               className={cn(
-                "flex min-h-9 flex-col items-center justify-center rounded-md border border-transparent text-sm tabular-nums hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "hover:bg-muted focus-visible:ring-ring flex min-h-9 flex-col items-center justify-center rounded-md border border-transparent text-sm tabular-nums focus-visible:ring-2 focus-visible:outline-none",
                 isToday && "border-primary font-semibold",
                 isSelected && "bg-primary text-primary-foreground",
               )}
@@ -175,7 +168,7 @@ function CalendarView({
       {selected && (
         <ul className="mt-3 border-t pt-2" role="list" aria-live="polite">
           {(eventMap.get(selected) ?? []).length === 0 && (
-            <li className="text-xs text-muted-foreground">{selected} 无事件</li>
+            <li className="text-muted-foreground text-xs">{selected} 无事件</li>
           )}
           {eventMap.get(selected)?.map((ev) => (
             <li

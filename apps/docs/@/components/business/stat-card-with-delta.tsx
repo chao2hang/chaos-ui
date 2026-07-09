@@ -43,25 +43,24 @@ function StatCardWithDelta({
   className,
 }: StatCardWithDeltaProps) {
   const positive = delta >= 0;
-  const display =
-    typeof value === "number" ? formatNumber(value) : value;
+  const display = typeof value === "number" ? formatNumber(value) : value;
   const TrendIcon = positive ? ArrowUpRightIcon : ArrowDownRightIcon;
 
   return (
     <div
       data-slot="stat-card-with-delta"
       className={cn(
-        "flex items-center gap-3 rounded-lg border bg-card p-4",
+        "bg-card flex items-center gap-3 rounded-lg border p-4",
         className,
       )}
     >
       {Icon ? (
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
+        <span className="bg-muted text-muted-foreground flex size-10 shrink-0 items-center justify-center rounded-md">
           <Icon className="size-5" aria-hidden="true" />
         </span>
       ) : null}
       <div className="min-w-0 flex-1">
-        <p className="truncate text-xs text-muted-foreground">{label}</p>
+        <p className="text-muted-foreground truncate text-xs">{label}</p>
         <p className="mt-0.5 text-xl font-semibold tabular-nums">{display}</p>
       </div>
       <span

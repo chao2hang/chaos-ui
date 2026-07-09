@@ -1,5 +1,8 @@
-import { MediaRecorderComponent, MediaRecorder } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import {
+  MediaRecorderComponent,
+  MediaRecorder,
+} from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MediaRecorder Media Recorder
 
@@ -28,20 +31,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MediaRecorder
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `onStop` | `() => void` | — | Called with the recorded Blob when recording stops. |
-| `onStart` | `() => void` | — | Called when recording starts. |
-| `mimeType` | `string` | — | MIME type for the recording. Default audio/webm. |
-| `screen` | `boolean` | — | Whether to record video (screen) instead of audio. Default false. |
-| `maxDuration` | `number` | — | Maximum recording duration in seconds. 0 = unlimited. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default | 说明 / Description                                                |
+| ------------- | ---------------------- | ------- | ----------------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                             |
+| `onStop`      | `() => void`           | —       | Called with the recorded Blob when recording stops.               |
+| `onStart`     | `() => void`           | —       | Called when recording starts.                                     |
+| `mimeType`    | `string`               | —       | MIME type for the recording. Default audio/webm.                  |
+| `screen`      | `boolean`              | —       | Whether to record video (screen) instead of audio. Default false. |
+| `maxDuration` | `number`               | —       | Maximum recording duration in seconds. 0 = unlimited.             |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes         |
 
 ## 注意事项 / Notes
 

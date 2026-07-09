@@ -1,29 +1,29 @@
-"use client"
-import * as React from "react"
-import { MaximizeIcon, MinimizeIcon } from "lucide-react"
-import { Button } from "@chaos_team/chaos-ui/ui"
+"use client";
+import * as React from "react";
+import { MaximizeIcon, MinimizeIcon } from "lucide-react";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface ChartFullscreenButtonProps {
-  target: React.RefObject<HTMLElement | null>
+  target: React.RefObject<HTMLElement | null>;
 }
 
 export function ChartFullscreenButton({ target }: ChartFullscreenButtonProps) {
-  const [isFullscreen, setIsFullscreen] = React.useState(false)
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   React.useEffect(() => {
-    const handler = () => setIsFullscreen(!!document.fullscreenElement)
-    document.addEventListener("fullscreenchange", handler)
-    return () => document.removeEventListener("fullscreenchange", handler)
-  }, [])
+    const handler = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", handler);
+    return () => document.removeEventListener("fullscreenchange", handler);
+  }, []);
 
   const toggle = async () => {
-    if (!target.current) return
+    if (!target.current) return;
     if (isFullscreen) {
-      await document.exitFullscreen()
+      await document.exitFullscreen();
     } else {
-      await target.current.requestFullscreen()
+      await target.current.requestFullscreen();
     }
-  }
+  };
 
   return (
     <Button
@@ -36,5 +36,5 @@ export function ChartFullscreenButton({ target }: ChartFullscreenButtonProps) {
     >
       {isFullscreen ? <MinimizeIcon /> : <MaximizeIcon />}
     </Button>
-  )
+  );
 }

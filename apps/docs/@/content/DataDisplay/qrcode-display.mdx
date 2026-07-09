@@ -1,5 +1,5 @@
-import { QRCodeDisplay } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { QRCodeDisplay } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # QrcodeDisplay 二维码展示
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <QRCodeDisplay />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### QRCodeDisplay
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | Text to encode in QR code |
-| `size` | `number` | `200` | Size in pixels |
-| `fgColor` | `string` | `#000000` | Foreground color |
-| `bgColor` | `string` | `#ffffff` | Background color |
-| `level` | `"L" \| "M" \| "Q" \| "H"` | `M` | Error correction level |
-| `includeMargin` | `boolean` | `true` | Include margin/padding |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop            | Type                          | Default   | 说明 / Description                                          |
+| --------------- | ----------------------------- | --------- | ----------------------------------------------------------- |
+| `className`     | `string`                      | —         | 自定义样式类名 <br/> Custom CSS class                       |
+| `value`         | `string`                      | —         | Text to encode in QR code                                   |
+| `size`          | `number`                      | `200`     | Size in pixels                                              |
+| `fgColor`       | `string`                      | `#000000` | Foreground color                                            |
+| `bgColor`       | `string`                      | `#ffffff` | Background color                                            |
+| `level`         | `"L" \| "M" \| "Q" \| "H"`    | `M`       | Error correction level                                      |
+| `includeMargin` | `boolean`                     | `true`    | Include margin/padding                                      |
+| ...rest         | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

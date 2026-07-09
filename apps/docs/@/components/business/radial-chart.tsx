@@ -54,7 +54,13 @@ function RadialChart({
       aria-label={`${label}: ${formatNumber(value)} / ${formatNumber(max)}`}
     >
       <div className="relative" style={{ width: size, height: size }}>
-        <svg viewBox="0 0 100 100" className="-rotate-90" width={size} height={size} role="presentation">
+        <svg
+          viewBox="0 0 100 100"
+          className="-rotate-90"
+          width={size}
+          height={size}
+          role="presentation"
+        >
           <circle
             cx={center}
             cy={center}
@@ -80,12 +86,12 @@ function RadialChart({
           <span className="text-lg font-semibold tabular-nums">
             {formatPercent(ratio)}
           </span>
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-muted-foreground text-[10px]">
             {formatNumber(value)}/{formatNumber(max)}
           </span>
         </div>
       </div>
-      <span className="mt-1 text-xs text-muted-foreground">{label}</span>
+      <span className="text-muted-foreground mt-1 text-xs">{label}</span>
     </div>
   );
 }

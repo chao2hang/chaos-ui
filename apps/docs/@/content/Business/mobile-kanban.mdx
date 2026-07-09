@@ -1,5 +1,5 @@
-import { MobileKanban } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileKanban } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileKanban 移动端看板
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <MobileKanban />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileKanban
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `columns` | `KanbanColumnData[]` | — | 列配置 <br/> Column configuration |
-| `onColumnsChange` | `() => void` | — |  |
-| `renderCard` | `(...args) => unknown` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop              | Type                   | Default | 说明 / Description                                        |
+| ----------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`       | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `columns`         | `KanbanColumnData[]`   | —       | 列配置 <br/> Column configuration                         |
+| `onColumnsChange` | `() => void`           | —       |                                                           |
+| `renderCard`      | `(...args) => unknown` | —       |                                                           |
+| ...rest           | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

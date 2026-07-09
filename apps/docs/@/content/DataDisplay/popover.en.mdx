@@ -1,5 +1,5 @@
-import { Popover } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Popover } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Popover
 
@@ -10,7 +10,6 @@ Click/hover-triggered floating card that can hold rich content (forms, lists, ch
 ## When to Use
 
 A floating layer triggered by click for lightweight actions or information.
-
 
 ## Examples
 
@@ -32,20 +31,17 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Popover
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 5 个子组件(PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

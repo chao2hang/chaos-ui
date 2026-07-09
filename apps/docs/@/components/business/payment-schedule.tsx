@@ -3,7 +3,11 @@
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { formatDate, formatCurrency } from "@chaos_team/chaos-ui/lib";
-import { CalendarIcon, CheckCircle2Icon, ClockIcon } from "@chaos_team/chaos-ui/ui";
+import {
+  CalendarIcon,
+  CheckCircle2Icon,
+  ClockIcon,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component PaymentSchedule

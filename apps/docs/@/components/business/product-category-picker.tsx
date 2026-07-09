@@ -6,7 +6,11 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Input } from "@chaos_team/chaos-ui/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chaos_team/chaos-ui/ui";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -82,11 +86,14 @@ function ProductCategoryPicker({
   const [query, setQuery] = React.useState("");
 
   const resolvedPlaceholder =
-    placeholder ?? t("productCategoryPicker.placeholder", { defaultValue: "请选择商品分类" });
+    placeholder ??
+    t("productCategoryPicker.placeholder", { defaultValue: "请选择商品分类" });
   const resolvedSearch =
-    searchPlaceholder ?? t("productCategoryPicker.search", { defaultValue: "搜索分类" });
+    searchPlaceholder ??
+    t("productCategoryPicker.search", { defaultValue: "搜索分类" });
   const resolvedEmpty =
-    emptyText ?? t("productCategoryPicker.empty", { defaultValue: "无匹配分类" });
+    emptyText ??
+    t("productCategoryPicker.empty", { defaultValue: "无匹配分类" });
 
   const selected = options.find((o) => o.value === value);
 
@@ -112,7 +119,11 @@ function ProductCategoryPicker({
   }, [options, query]);
 
   return (
-    <Popover data-slot="product-category-picker" open={open} onOpenChange={setOpen}>
+    <Popover
+      data-slot="product-category-picker"
+      open={open}
+      onOpenChange={setOpen}
+    >
       <PopoverTrigger
         render={
           <Button
@@ -131,13 +142,17 @@ function ProductCategoryPicker({
         }
       >
         <FolderIcon className="size-4 shrink-0 opacity-50" />
-        <span className="flex-1 truncate">{selected?.label ?? resolvedPlaceholder}</span>
+        <span className="flex-1 truncate">
+          {selected?.label ?? resolvedPlaceholder}
+        </span>
         <span className="flex items-center gap-1">
           {clearable && selected && (
             <span
               role="button"
               tabIndex={0}
-              aria-label={t("productCategoryPicker.clear", { defaultValue: "清除" })}
+              aria-label={t("productCategoryPicker.clear", {
+                defaultValue: "清除",
+              })}
               onClick={(e) => {
                 e.stopPropagation();
                 onChange?.(undefined);
@@ -149,7 +164,7 @@ function ProductCategoryPicker({
                   onChange?.(undefined);
                 }
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -171,7 +186,7 @@ function ProductCategoryPicker({
           </div>
           <ul role="tree" className="max-h-64 overflow-y-auto p-1">
             {rows.length === 0 && (
-              <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+              <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
@@ -183,7 +198,9 @@ function ProductCategoryPicker({
                     variant="ghost"
                     size="sm"
                     type="button"
-                    {...(o.disabled !== undefined ? { disabled: o.disabled } : {})}
+                    {...(o.disabled !== undefined
+                      ? { disabled: o.disabled }
+                      : {})}
                     onClick={() => {
                       onChange?.(o.value);
                       setOpen(false);

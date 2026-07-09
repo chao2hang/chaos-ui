@@ -46,7 +46,9 @@ function HeatmapChart({ data, className }: HeatmapChartProps) {
   const cellStyle = (v: number): React.CSSProperties => {
     if (v <= 0) return {};
     const t = v / max;
-    return { backgroundColor: `rgba(59,130,246,${(0.15 + t * 0.85).toFixed(2)})` };
+    return {
+      backgroundColor: `rgba(59,130,246,${(0.15 + t * 0.85).toFixed(2)})`,
+    };
   };
 
   return (
@@ -64,7 +66,7 @@ function HeatmapChart({ data, className }: HeatmapChartProps) {
               <th
                 key={x}
                 scope="col"
-                className="px-1 text-center text-muted-foreground"
+                className="text-muted-foreground px-1 text-center"
               >
                 {x}
               </th>
@@ -74,7 +76,10 @@ function HeatmapChart({ data, className }: HeatmapChartProps) {
         <tbody>
           {ys.map((y) => (
             <tr key={y}>
-              <th scope="row" className="truncate pr-1 text-left text-muted-foreground">
+              <th
+                scope="row"
+                className="text-muted-foreground truncate pr-1 text-left"
+              >
                 {y}
               </th>
               {xs.map((x) => {

@@ -1,11 +1,11 @@
-import { GaugeChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { GaugeChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # GaugeChart Gauge Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 仪表盘图
+仪表盘图
 GaugeChart — gauge chart component.
 
 ## 何时使用 / When to Use
@@ -24,20 +24,19 @@ export function Basic() {
   return <GaugeChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### GaugeChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `number` | `64` | Current value. |
-| `min` | `number` | `0` | Range floor. |
-| `max` | `number` | `100` | Range ceiling. |
-| `label` | `string` | — | Caption below the gauge. |
-| `color` | `string` | `#3b82f6` | Arc color. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default   | 说明 / Description                                        |
+| ----------- | ---------------------- | --------- | --------------------------------------------------------- |
+| `className` | `string`               | —         | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`     | `number`               | `64`      | Current value.                                            |
+| `min`       | `number`               | `0`       | Range floor.                                              |
+| `max`       | `number`               | `100`     | Range ceiling.                                            |
+| `label`     | `string`               | —         | Caption below the gauge.                                  |
+| `color`     | `string`               | `#3b82f6` | Arc color.                                                |
+| ...rest     | `React.HTMLAttributes` | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

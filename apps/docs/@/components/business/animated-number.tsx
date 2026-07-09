@@ -1,16 +1,19 @@
-"use client"
-import * as React from "react"
-import { useCountUp } from "@/hooks/use-count-up"
-import { cn } from "@chaos_team/chaos-ui/lib"
+"use client";
+import * as React from "react";
+import { useCountUp } from "@/hooks/use-count-up";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
-interface AnimatedNumberProps extends Omit<React.ComponentProps<"span">, "children"> {
-  value: number
-  duration?: number
-  decimals?: number
-  prefix?: string
-  suffix?: string
-  format?: (v: number) => string
-  className?: string
+interface AnimatedNumberProps extends Omit<
+  React.ComponentProps<"span">,
+  "children"
+> {
+  value: number;
+  duration?: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  format?: (v: number) => string;
+  className?: string;
 }
 
 export function AnimatedNumber({
@@ -23,12 +26,12 @@ export function AnimatedNumber({
   className,
   ...props
 }: AnimatedNumberProps) {
-  const ref = React.useRef<HTMLSpanElement>(null)
-  useCountUp(ref, value, duration, decimals, prefix, suffix, format)
+  const ref = React.useRef<HTMLSpanElement>(null);
+  useCountUp(ref, value, duration, decimals, prefix, suffix, format);
 
   const initialText = format
     ? format(0)
-    : `${prefix}${(0).toFixed(decimals)}${suffix}`
+    : `${prefix}${(0).toFixed(decimals)}${suffix}`;
 
   return (
     <span
@@ -39,5 +42,5 @@ export function AnimatedNumber({
     >
       {initialText}
     </span>
-  )
+  );
 }

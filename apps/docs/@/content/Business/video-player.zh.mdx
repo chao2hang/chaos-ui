@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block";
 
 播放视频内容,支持播放/暂停、进度条、音量控制。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -26,20 +25,19 @@ export function Basic() {
 
 ### VideoPlayer
 
-| Prop | Type | Default | 说明 |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `src` | `string` | — | 资源地址 |
-| `poster`    | `string`               | —       |                                                           |
-| `title` | `string` | — | 标题 |
-| `autoplay`  | `boolean`              | `false` |                                                           |
-| `loop`      | `boolean`              | `false` |                                                           |
-| `muted`     | `boolean`              | `false` |                                                           |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `src`       | `string`               | —       | 资源地址          |
+| `poster`    | `string`               | —       |                   |
+| `title`     | `string`               | —       | 标题              |
+| `autoplay`  | `boolean`              | `false` |                   |
+| `loop`      | `boolean`              | `false` |                   |
+| `muted`     | `boolean`              | `false` |                   |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-video-player--docs)。
-

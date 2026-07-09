@@ -1,5 +1,5 @@
-import { PromotionRuleEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PromotionRuleEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PromotionRuleEditor Promotion Rule Editor
 
@@ -11,7 +11,6 @@ PromotionRuleEditor — promotion rule editor component.
 
 Use when you need a promotion rule editor.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,20 +21,17 @@ export function Basic() {
   return <PromotionRuleEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PromotionRuleEditor
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `rules` | `PromotionRule[]` | — | Initial rules. Defaults to a single empty starter rule. |
-| `onChange` | `() => void` | — | Called with the current rules whenever they change. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                                             |
+| ----------- | ---------------------- | ------- | ------------------------------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                                        |
+| `rules`     | `PromotionRule[]`      | —       | Initial rules. Defaults to a single empty starter rule. |
+| `onChange`  | `() => void`           | —       | Called with the current rules whenever they change.     |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                       |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

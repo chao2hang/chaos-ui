@@ -55,7 +55,10 @@ function InvoiceManager({ invoices, onIssue, className }: InvoiceManagerProps) {
   return (
     <div
       data-slot="invoice-manager"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
       role="region"
       aria-label="发票管理"
     >
@@ -64,7 +67,7 @@ function InvoiceManager({ invoices, onIssue, className }: InvoiceManagerProps) {
           <ReceiptIcon className="size-4" />
           发票管理
         </span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           共 {invoices.length} 张 · 合计 {formatCurrency(total)}
         </span>
       </div>
@@ -77,9 +80,15 @@ function InvoiceManager({ invoices, onIssue, className }: InvoiceManagerProps) {
           const canIssue = inv.status === "pending" || inv.status === "draft";
           return (
             <li key={inv.id} className="flex items-center gap-3 py-2 text-sm">
-              <span className="font-mono text-xs text-muted-foreground">{inv.number}</span>
-              <span className={cn("rounded px-1.5 py-0.5 text-xs", meta.tone)}>{meta.label}</span>
-              <span className="ml-auto font-medium tabular-nums">{formatCurrency(inv.amount)}</span>
+              <span className="text-muted-foreground font-mono text-xs">
+                {inv.number}
+              </span>
+              <span className={cn("rounded px-1.5 py-0.5 text-xs", meta.tone)}>
+                {meta.label}
+              </span>
+              <span className="ml-auto font-medium tabular-nums">
+                {formatCurrency(inv.amount)}
+              </span>
               {canIssue && (
                 <Button
                   type="button"
@@ -98,7 +107,9 @@ function InvoiceManager({ invoices, onIssue, className }: InvoiceManagerProps) {
         })}
       </ul>
       {invoices.length === 0 && (
-        <p className="py-4 text-center text-sm text-muted-foreground">暂无发票</p>
+        <p className="text-muted-foreground py-4 text-center text-sm">
+          暂无发票
+        </p>
       )}
     </div>
   );

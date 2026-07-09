@@ -1,28 +1,31 @@
-"use client"
-import * as React from "react"
-import { CheckIcon, XIcon } from "lucide-react"
-import { cn } from "@chaos_team/chaos-ui/lib"
+"use client";
+import * as React from "react";
+import { CheckIcon, XIcon } from "lucide-react";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface DensitySwitcherProps {
-  open: boolean
-  density?: "compact" | "default" | "comfortable"
-  onChange?: (open: boolean) => void
-  className?: string
-  size?: "sm" | "default" | "lg"
-  children?: React.ReactNode
+  open: boolean;
+  density?: "compact" | "default" | "comfortable";
+  onChange?: (open: boolean) => void;
+  className?: string;
+  size?: "sm" | "default" | "lg";
+  children?: React.ReactNode;
 }
 
-const DENSITY_STYLES: Record<NonNullable<DensitySwitcherProps["density"]>, string> = {
+const DENSITY_STYLES: Record<
+  NonNullable<DensitySwitcherProps["density"]>,
+  string
+> = {
   compact: "h-7 px-2 text-xs",
   default: "h-9 px-3 text-sm",
   comfortable: "h-11 px-4 text-base",
-}
+};
 
 const SIZE_STYLES: Record<NonNullable<DensitySwitcherProps["size"]>, string> = {
   sm: "scale-75",
   default: "scale-100",
   lg: "scale-125",
-}
+};
 
 export function DensitySwitcher({
   open: openProp,
@@ -32,14 +35,14 @@ export function DensitySwitcher({
   size = "default",
   children,
 }: DensitySwitcherProps) {
-  const [open, setOpen] = React.useState(openProp ?? false)
+  const [open, setOpen] = React.useState(openProp ?? false);
   React.useEffect(() => {
-    if (openProp !== undefined) setOpen(openProp)
-  }, [openProp])
+    if (openProp !== undefined) setOpen(openProp);
+  }, [openProp]);
   const handleChange = (checked: boolean) => {
-    setOpen(checked)
-    onChange?.(checked)
-  }
+    setOpen(checked);
+    onChange?.(checked);
+  };
   return (
     <button
       type="button"
@@ -49,21 +52,23 @@ export function DensitySwitcher({
       data-density={density}
       onClick={() => handleChange(!open)}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md border bg-muted/30 px-2 py-1 text-xs transition-colors hover:bg-muted",
+        "bg-muted/30 hover:bg-muted inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors",
         DENSITY_STYLES[density],
-        className
+        className,
       )}
     >
       <span
         className={cn(
           "flex size-4 items-center justify-center rounded-full transition-all",
           SIZE_STYLES[size],
-          open ? "bg-primary text-primary-foreground" : "bg-background text-muted-foreground"
+          open
+            ? "bg-primary text-primary-foreground"
+            : "bg-background text-muted-foreground",
         )}
       >
         {open ? <CheckIcon className="size-3" /> : <XIcon className="size-3" />}
       </span>
       <span className="text-xs">{children ?? "密度"}</span>
     </button>
-  )
+  );
 }

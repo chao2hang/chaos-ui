@@ -1,11 +1,11 @@
-import { RadialChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RadialChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RadialChart Radial Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 径向图(达成率)
+径向图(达成率)
 RadialChart — radial chart component.
 
 ## 何时使用 / When to Use
@@ -24,20 +24,19 @@ export function Basic() {
   return <RadialChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RadialChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `number` | `66` | Current value. |
-| `max` | `number` | `100` | Ceiling. |
-| `label` | `string` | `达成率` | Caption below the ring. |
-| `color` | `string` | `#3b82f6` | Ring color. |
-| `size` | `number` | `120` | Pixel size. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default   | 说明 / Description                                        |
+| ----------- | ---------------------- | --------- | --------------------------------------------------------- |
+| `className` | `string`               | —         | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`     | `number`               | `66`      | Current value.                                            |
+| `max`       | `number`               | `100`     | Ceiling.                                                  |
+| `label`     | `string`               | `达成率`  | Caption below the ring.                                   |
+| `color`     | `string`               | `#3b82f6` | Ring color.                                               |
+| `size`      | `number`               | `120`     | Pixel size.                                               |
+| ...rest     | `React.HTMLAttributes` | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -8,18 +8,38 @@ import { FileIcon } from "@chaos_team/chaos-ui/ui";
  * @description 附件预览
  */
 interface AttachmentPreviewProps {
-url: string;
+  url: string;
   type: string;
   name?: string;
   className?: string;
 }
-function AttachmentPreview({ url, type, name, className }: AttachmentPreviewProps) {
+function AttachmentPreview({
+  url,
+  type,
+  name,
+  className,
+}: AttachmentPreviewProps) {
   return (
-    <div data-slot="attachment-preview" className={cn("flex items-center justify-center overflow-hidden rounded-lg border bg-muted/30 p-4", className)}>
+    <div
+      data-slot="attachment-preview"
+      className={cn(
+        "bg-muted/30 flex items-center justify-center overflow-hidden rounded-lg border p-4",
+        className,
+      )}
+    >
       {type.startsWith("image/") ? (
-        <img src={url} alt={name ?? "附件"} className="max-h-80 object-contain" />
+        <img
+          src={url}
+          alt={name ?? "附件"}
+          className="max-h-80 object-contain"
+        />
       ) : (
-        <a href={url} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-muted-foreground hover:text-foreground flex flex-col items-center gap-2 text-sm"
+        >
           <FileIcon className="size-10" />
           <span className="underline">{name ?? "打开附件"}</span>
         </a>

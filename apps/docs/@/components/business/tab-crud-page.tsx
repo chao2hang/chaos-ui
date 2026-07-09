@@ -91,11 +91,14 @@ function TabCrudPage({
   };
 
   return (
-    <div data-slot="tab-crud-page" className={cn("flex flex-col gap-3", className)}>
+    <div
+      data-slot="tab-crud-page"
+      className={cn("flex flex-col gap-3", className)}
+    >
       <Card>
         <CardContent className="flex flex-wrap items-center gap-2 p-3">
           <div className="relative min-w-[12rem] flex-1">
-            <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               type="search"
               value={currentQuery}

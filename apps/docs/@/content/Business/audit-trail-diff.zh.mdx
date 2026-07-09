@@ -1,5 +1,5 @@
-import { AuditTrailDiff } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AuditTrailDiff } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AuditTrailDiff Audit Trail Diff
 
@@ -11,7 +11,6 @@ Audit Trail Diff — 面向 ERP/企业场景的业务组件。
 
 适用于Audit Trail Diff相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,25 +21,23 @@ export function Basic() {
   return <AuditTrailDiff />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AuditTrailDiff
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `entries` | `AuditChangeEntry[]` | — | Audit change entries |
-| `showFilter` | `boolean` | `true` | Show search/filter bar (default: true) |
-| `showEntity` | `boolean` | `true` | Show entity column (default: true) |
-| `showUser` | `boolean` | `true` | Show user column (default: true) |
-| `showTimestamp` | `boolean` | `true` | Show timestamp column (default: true) |
-| `showReason` | `boolean` | `false` | Show reason column (default: false) |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop            | Type                   | Default | 说明                                   |
+| --------------- | ---------------------- | ------- | -------------------------------------- |
+| `className`     | `string`               | —       | 自定义样式类名                         |
+| `entries`       | `AuditChangeEntry[]`   | —       | Audit change entries                   |
+| `showFilter`    | `boolean`              | `true`  | Show search/filter bar (default: true) |
+| `showEntity`    | `boolean`              | `true`  | Show entity column (default: true)     |
+| `showUser`      | `boolean`              | `true`  | Show user column (default: true)       |
+| `showTimestamp` | `boolean`              | `true`  | Show timestamp column (default: true)  |
+| `showReason`    | `boolean`              | `false` | Show reason column (default: false)    |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                      |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-audittraildiff--docs)。
-

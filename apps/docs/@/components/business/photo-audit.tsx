@@ -2,8 +2,21 @@
 
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Button, Card, CardContent, CardHeader, CardTitle, Textarea } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, XIcon, ImageIcon, ChevronLeftIcon, ChevronRightIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Textarea,
+} from "@chaos_team/chaos-ui/ui";
+import {
+  CheckIcon,
+  XIcon,
+  ImageIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PhotoAudit
@@ -25,7 +38,12 @@ interface PhotoAuditProps {
   className?: string;
 }
 
-function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditProps) {
+function PhotoAudit({
+  photos = [],
+  onApprove,
+  onReject,
+  className,
+}: PhotoAuditProps) {
   const [active, setActive] = React.useState(0);
   const [reason, setReason] = React.useState("");
   const [decisions, setDecisions] = React.useState<
@@ -79,14 +97,16 @@ function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditP
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>照片审核</span>
-          <span className="text-sm font-normal text-muted-foreground tabular-nums">
-            {photos.length > 0 ? `${safeIndex + 1} / ${photos.length}` : "0 / 0"}
+          <span className="text-muted-foreground text-sm font-normal tabular-nums">
+            {photos.length > 0
+              ? `${safeIndex + 1} / ${photos.length}`
+              : "0 / 0"}
           </span>
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {current ? (
-          <figure className="overflow-hidden rounded-lg border bg-muted">
+          <figure className="bg-muted overflow-hidden rounded-lg border">
             <img
               src={current.src}
               alt={current.alt ?? `照片 ${safeIndex + 1}`}
@@ -94,7 +114,7 @@ function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditP
               loading="lazy"
             />
             <figcaption className="flex items-center justify-between px-3 py-2 text-sm">
-              <span className="truncate text-muted-foreground">
+              <span className="text-muted-foreground truncate">
                 {current.alt ?? `照片 ${safeIndex + 1}`}
               </span>
               {decisions[safeIndex]?.status === "approved" && (
@@ -103,14 +123,14 @@ function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditP
                 </span>
               )}
               {decisions[safeIndex]?.status === "rejected" && (
-                <span className="inline-flex items-center gap-1 text-destructive">
+                <span className="text-destructive inline-flex items-center gap-1">
                   <XIcon /> 已驳回
                 </span>
               )}
             </figcaption>
           </figure>
         ) : (
-          <div className="flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed text-muted-foreground">
+          <div className="text-muted-foreground flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed">
             <ImageIcon className="size-8" />
             <span className="text-sm">暂无待审核照片</span>
           </div>
@@ -129,7 +149,11 @@ function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditP
               <Button type="button" variant="outline" onClick={handleApprove}>
                 <CheckIcon /> 通过
               </Button>
-              <Button type="button" variant="destructive" onClick={handleReject}>
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={handleReject}
+              >
                 <XIcon /> 驳回
               </Button>
               <div className="ml-auto flex items-center gap-1">
@@ -149,7 +173,9 @@ function PhotoAudit({ photos = [], onApprove, onReject, className }: PhotoAuditP
                   size="icon-sm"
                   aria-label="下一张"
                   disabled={safeIndex >= photos.length - 1}
-                  onClick={() => setActive((i) => Math.min(i + 1, photos.length - 1))}
+                  onClick={() =>
+                    setActive((i) => Math.min(i + 1, photos.length - 1))
+                  }
                 >
                   <ChevronRightIcon />
                 </Button>

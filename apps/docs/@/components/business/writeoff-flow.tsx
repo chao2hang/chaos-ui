@@ -36,7 +36,10 @@ interface WriteoffFlowProps {
   className?: string;
 }
 
-const STATUS_MAP: Record<WriteoffStatus, { label: string; icon: React.ReactNode; tone: string }> = {
+const STATUS_MAP: Record<
+  WriteoffStatus,
+  { label: string; icon: React.ReactNode; tone: string }
+> = {
   done: {
     label: "已完成",
     icon: <CheckCircle2Icon className="size-4" />,
@@ -61,9 +64,27 @@ const STATUS_MAP: Record<WriteoffStatus, { label: string; icon: React.ReactNode;
 
 function resolveStatus(status: string): WriteoffStatus {
   const normalized = status.toLowerCase();
-  if (normalized === "done" || normalized === "completed" || normalized === "finish" || normalized === "finished") return "done";
-  if (normalized === "doing" || normalized === "active" || normalized === "processing" || normalized === "current") return "doing";
-  if (normalized === "rejected" || normalized === "fail" || normalized === "failed" || normalized === "error") return "rejected";
+  if (
+    normalized === "done" ||
+    normalized === "completed" ||
+    normalized === "finish" ||
+    normalized === "finished"
+  )
+    return "done";
+  if (
+    normalized === "doing" ||
+    normalized === "active" ||
+    normalized === "processing" ||
+    normalized === "current"
+  )
+    return "doing";
+  if (
+    normalized === "rejected" ||
+    normalized === "fail" ||
+    normalized === "failed" ||
+    normalized === "error"
+  )
+    return "rejected";
   return "pending";
 }
 
@@ -72,7 +93,10 @@ function WriteoffFlow({ steps = [], className }: WriteoffFlowProps) {
     return (
       <div
         data-slot="writeoff-flow"
-        className={cn("flex items-center gap-2 rounded-lg border border-dashed p-6 text-sm text-muted-foreground", className)}
+        className={cn(
+          "text-muted-foreground flex items-center gap-2 rounded-lg border border-dashed p-6 text-sm",
+          className,
+        )}
         role="status"
       >
         <CircleIcon className="size-4" />
@@ -99,7 +123,7 @@ function WriteoffFlow({ steps = [], className }: WriteoffFlowProps) {
             {!isLast && (
               <span
                 className={cn(
-                  "absolute left-[15px] top-8 bottom-0 w-0.5",
+                  "absolute top-8 bottom-0 left-[15px] w-0.5",
                   isDone ? "bg-emerald-500" : "bg-border",
                 )}
                 aria-hidden="true"
@@ -107,10 +131,11 @@ function WriteoffFlow({ steps = [], className }: WriteoffFlowProps) {
             )}
             <span
               className={cn(
-                "relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border-2 bg-background",
+                "bg-background relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border-2",
                 isDone && "border-emerald-500",
                 status === "doing" && "border-primary",
-                (status === "pending" || status === "rejected") && "border-muted-foreground/30",
+                (status === "pending" || status === "rejected") &&
+                  "border-muted-foreground/30",
                 config.tone,
               )}
               aria-hidden="true"
@@ -128,18 +153,22 @@ function WriteoffFlow({ steps = [], className }: WriteoffFlowProps) {
                         ? "destructive"
                         : "secondary"
                   }
-                  className={cn(status === "doing" && "border-primary text-primary")}
+                  className={cn(
+                    status === "doing" && "border-primary text-primary",
+                  )}
                 >
                   {config.label}
                 </Badge>
                 {step.amount !== undefined && (
-                  <span className="text-xs text-muted-foreground tabular-nums">
+                  <span className="text-muted-foreground text-xs tabular-nums">
                     {formatCurrency(step.amount)}
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground tabular-nums">
-                <span>步骤 {idx + 1} / {steps.length}</span>
+              <div className="text-muted-foreground flex items-center gap-1 text-xs tabular-nums">
+                <span>
+                  步骤 {idx + 1} / {steps.length}
+                </span>
                 {!isLast && (
                   <>
                     <ArrowRightIcon className="size-3" aria-hidden="true" />

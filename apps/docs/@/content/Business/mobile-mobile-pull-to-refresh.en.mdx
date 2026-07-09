@@ -11,7 +11,6 @@ MobilePullToRefresh — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile pull to refresh.
 
-
 ## Examples
 
 ### Basic Usage
@@ -26,19 +25,17 @@ export function Basic() {
 
 ### PullToRefresh
 
-| Prop | Type | Default | Description |
-| ---------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `onRefresh`      | `() => void`                  | —       |                                                             |
-| `threshold`      | `number`                      | `60`    |                                                             |
-| `disabled` | `boolean` | — | Whether disabled |
-| `refreshingText` | `string`                      | —       |                                                             |
-| `pullText`       | `string`                      | —       |                                                             |
-| `releaseText`    | `string`                      | —       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop             | Type                          | Default | Description                     |
+| ---------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`      | `string`                      | —       | Custom CSS class                |
+| `onRefresh`      | `() => void`                  | —       |                                 |
+| `threshold`      | `number`                      | `60`    |                                 |
+| `disabled`       | `boolean`                     | —       | Whether disabled                |
+| `refreshingText` | `string`                      | —       |                                 |
+| `pullText`       | `string`                      | —       |                                 |
+| `releaseText`    | `string`                      | —       |                                 |
+| ...rest          | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

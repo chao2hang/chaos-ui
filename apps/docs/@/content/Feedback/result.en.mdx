@@ -1,5 +1,5 @@
-import { Result } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Result } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Result
 
@@ -10,7 +10,6 @@ Feedback for an operation result (success/fail/warning/404/403), typically full-
 ## When to Use
 
 Use when you need a result.
-
 
 ## Examples
 
@@ -24,48 +23,47 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Result size="sm">Sm</Result>
   <Result size="default">Default</Result>
   <Result size="lg">Lg</Result>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **status**
 
-| status | Description | 默认 |
-|---|---|---|
-| `success` |  | ✓ |
-| `error` |  |  |
-| `info` |  |  |
-| `warning` |  |  |
+| status    | Description | 默认 |
+| --------- | ----------- | ---- |
+| `success` |             | ✓    |
+| `error`   |             |      |
+| `info`    |             |      |
+| `warning` |             |      |
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `default` | Default size | ✓ |
-| `sm` | Small |  |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
 
 ## API / Props
 
 ### Result
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `status` | `"success" \| "error" \| "info" \| "wa...` | `info` | Status determines default icon and color |
-| `title` | `React.ReactNode` | — | Title text |
-| `subtitle` | `React.ReactNode` | — | Subtitle / description |
-| `icon` | `React.ReactNode` | — | Custom icon override |
-| `extra` | `React.ReactNode` | — | Extra content (e.g., action buttons) |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                                       | Default | Description                              |
+| ----------- | ------------------------------------------ | ------- | ---------------------------------------- |
+| `className` | `string`                                   | —       | Custom CSS class                         |
+| `status`    | `"success" \| "error" \| "info" \| "wa...` | `info`  | Status determines default icon and color |
+| `title`     | `React.ReactNode`                          | —       | Title text                               |
+| `subtitle`  | `React.ReactNode`                          | —       | Subtitle / description                   |
+| `icon`      | `React.ReactNode`                          | —       | Custom icon override                     |
+| `extra`     | `React.ReactNode`                          | —       | Extra content (e.g., action buttons)     |
+| ...rest     | `React.ComponentProps<"div">`              | —       | Inherits all `<div>` attributes          |
 
 ## Notes
-
-
-

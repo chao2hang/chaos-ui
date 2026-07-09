@@ -125,9 +125,21 @@ function MarkdownEditor({
   );
 
   const modeOptions = [
-    { value: "editor" as const, label: "编辑", icon: <PencilIcon className="size-3.5" /> },
-    { value: "split" as const, label: "分屏", icon: <Columns3Icon className="size-3.5" /> },
-    { value: "preview" as const, label: "预览", icon: <EyeIcon className="size-3.5" /> },
+    {
+      value: "editor" as const,
+      label: "编辑",
+      icon: <PencilIcon className="size-3.5" />,
+    },
+    {
+      value: "split" as const,
+      label: "分屏",
+      icon: <Columns3Icon className="size-3.5" />,
+    },
+    {
+      value: "preview" as const,
+      label: "预览",
+      icon: <EyeIcon className="size-3.5" />,
+    },
   ];
 
   const heightStyle =
@@ -136,7 +148,7 @@ function MarkdownEditor({
   return (
     <div
       data-slot="markdown-editor"
-      className={cn("flex flex-col rounded-md border bg-background", className)}
+      className={cn("bg-background flex flex-col rounded-md border", className)}
     >
       {/* Toolbar */}
       {toolbar && (
@@ -207,9 +219,7 @@ function MarkdownEditor({
             {value.trim() ? (
               <ChatMarkdownRenderer content={value} />
             ) : (
-              <p className="text-sm text-muted-foreground">
-                {placeholder}
-              </p>
+              <p className="text-muted-foreground text-sm">{placeholder}</p>
             )}
           </div>
         )}

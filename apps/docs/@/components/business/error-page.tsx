@@ -147,18 +147,18 @@ export function ErrorPage({
     <div
       data-slot="error-page"
       className={cn(
-        "flex min-h-[60vh] items-center justify-center bg-background px-4 py-10 sm:px-6",
+        "bg-background flex min-h-[60vh] items-center justify-center px-4 py-10 sm:px-6",
         className,
       )}
     >
-      <div className="grid w-full max-w-5xl overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <div className="bg-card text-card-foreground grid w-full max-w-5xl overflow-hidden rounded-xl border shadow-sm lg:grid-cols-[minmax(0,1fr)_20rem]">
         <section className="flex min-w-0 flex-col justify-between gap-10 p-6 sm:p-8 lg:p-10">
           <div className="space-y-8">
             <div className="flex flex-wrap items-center gap-3">
               <Badge variant="outline" className="h-6 rounded-md font-mono">
                 {status}
               </Badge>
-              <span className="text-xs font-medium uppercase text-muted-foreground">
+              <span className="text-muted-foreground text-xs font-medium uppercase">
                 {meta.label}
               </span>
             </div>
@@ -178,7 +178,7 @@ export function ErrorPage({
               <div className="min-w-0 space-y-3">
                 <p
                   className={cn(
-                    "font-mono text-5xl font-semibold leading-none sm:text-6xl",
+                    "font-mono text-5xl leading-none font-semibold sm:text-6xl",
                     meta.accent,
                   )}
                 >
@@ -187,7 +187,7 @@ export function ErrorPage({
                 <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
                   {resolvedTitle}
                 </h1>
-                <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+                <p className="text-muted-foreground max-w-xl text-sm leading-6 sm:text-base">
                   {resolvedDescription}
                 </p>
               </div>
@@ -214,31 +214,31 @@ export function ErrorPage({
           </div>
         </section>
 
-        <aside className="border-t bg-muted/35 p-6 sm:p-8 lg:border-l lg:border-t-0">
+        <aside className="bg-muted/35 border-t p-6 sm:p-8 lg:border-t-0 lg:border-l">
           <div className="flex h-full flex-col justify-between gap-8">
             <div className="space-y-5">
               <div className="flex items-center gap-2 text-sm font-medium">
-                <LifeBuoyIcon className="size-4 text-muted-foreground" />
+                <LifeBuoyIcon className="text-muted-foreground size-4" />
                 {t("errorPage.context")}
               </div>
               <Separator />
               <dl className="space-y-5 text-sm">
                 <div className="space-y-1">
-                  <dt className="text-xs font-medium uppercase text-muted-foreground">
+                  <dt className="text-muted-foreground text-xs font-medium uppercase">
                     {t("errorPage.impact")}
                   </dt>
                   <dd className="text-foreground">{meta.impact}</dd>
                 </div>
                 <div className="space-y-1">
-                  <dt className="text-xs font-medium uppercase text-muted-foreground">
+                  <dt className="text-muted-foreground text-xs font-medium uppercase">
                     {t("errorPage.action")}
                   </dt>
-                  <dd className="leading-6 text-foreground">{meta.action}</dd>
+                  <dd className="text-foreground leading-6">{meta.action}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="rounded-lg border bg-background/70 p-3 text-xs leading-5 text-muted-foreground">
+            <div className="bg-background/70 text-muted-foreground rounded-lg border p-3 text-xs leading-5">
               Request ID
               会在生产环境由上游网关注入，组件仅负责稳定呈现错误状态。
             </div>

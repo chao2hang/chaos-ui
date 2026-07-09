@@ -1,5 +1,5 @@
-import { MapTrack } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MapTrack } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MapTrack 地图轨迹
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <MapTrack />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MapTrack
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `map` | `AMap.Map \| null` | — | AMap instance from MapView's `onReady`. |
-| `points` | `MapTrackPoint[]` | — | Track point array in chronological order. |
-| `playing` | `boolean` | `false` | Whether the track animation is playing. |
-| `speed` | `number` | `10` | Playback speed multiplier. Default: 10 (10 points per tick). |
-| `color` | `string` | `#1677FF` | Track line color. Default: "#1677FF". |
-| `onStart` | `() => void` | — | Called when playback starts. |
-| `onEnd` | `() => void` | — | Called when playback ends (reaches last point). |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default   | 说明 / Description                                           |
+| ----------- | ---------------------- | --------- | ------------------------------------------------------------ |
+| `className` | `string`               | —         | 自定义样式类名 <br/> Custom CSS class                        |
+| `map`       | `AMap.Map \| null`     | —         | AMap instance from MapView's `onReady`.                      |
+| `points`    | `MapTrackPoint[]`      | —         | Track point array in chronological order.                    |
+| `playing`   | `boolean`              | `false`   | Whether the track animation is playing.                      |
+| `speed`     | `number`               | `10`      | Playback speed multiplier. Default: 10 (10 points per tick). |
+| `color`     | `string`               | `#1677FF` | Track line color. Default: "#1677FF".                        |
+| `onStart`   | `() => void`           | —         | Called when playback starts.                                 |
+| `onEnd`     | `() => void`           | —         | Called when playback ends (reaches last point).              |
+| ...rest     | `React.HTMLAttributes` | —         | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes    |
 
 ## 注意事项 / Notes
 

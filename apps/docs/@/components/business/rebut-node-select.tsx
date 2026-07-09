@@ -3,7 +3,12 @@
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button, ScrollArea, Separator } from "@chaos_team/chaos-ui/ui";
-import { CheckCircle2Icon, ArrowRightIcon, SearchIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckCircle2Icon,
+  ArrowRightIcon,
+  SearchIcon,
+  XIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component RebutNodeSelect
@@ -22,7 +27,11 @@ interface RebutNodeSelectProps {
   className?: string;
 }
 
-function RebutNodeSelect({ nodes = [], onSelect, className }: RebutNodeSelectProps) {
+function RebutNodeSelect({
+  nodes = [],
+  onSelect,
+  className,
+}: RebutNodeSelectProps) {
   const [query, setQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
@@ -37,33 +46,36 @@ function RebutNodeSelect({ nodes = [], onSelect, className }: RebutNodeSelectPro
   return (
     <div
       data-slot="rebut-node-select"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
       role="group"
       aria-label="驳回节点选择"
     >
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">选择驳回节点</h3>
-        <span className="text-xs text-muted-foreground tabular-nums">
+        <span className="text-muted-foreground text-xs tabular-nums">
           共 {nodes.length} 个节点
         </span>
       </div>
 
       <div className="relative">
-        <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="搜索节点名称"
           aria-label="搜索节点名称"
-          className="h-8 w-full rounded-md border border-input bg-transparent pl-8 pr-8 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="border-input focus-visible:border-ring focus-visible:ring-ring/50 h-8 w-full rounded-md border bg-transparent pr-8 pl-8 text-sm outline-none focus-visible:ring-3"
         />
         {query && (
           <button
             type="button"
             aria-label="清除搜索"
             onClick={() => setQuery("")}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
           >
             <XIcon className="size-4" />
           </button>
@@ -84,7 +96,7 @@ function RebutNodeSelect({ nodes = [], onSelect, className }: RebutNodeSelectPro
                     onClick={() => setSelectedId(node.id)}
                     aria-pressed={isSelected}
                     className={cn(
-                      "flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+                      "focus-visible:ring-ring/50 flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors outline-none focus-visible:ring-3",
                       isSelected
                         ? "bg-primary/10 text-primary"
                         : "hover:bg-muted",
@@ -93,18 +105,24 @@ function RebutNodeSelect({ nodes = [], onSelect, className }: RebutNodeSelectPro
                     <CheckCircle2Icon
                       className={cn(
                         "size-4 shrink-0",
-                        isSelected ? "text-primary" : "text-muted-foreground/40",
+                        isSelected
+                          ? "text-primary"
+                          : "text-muted-foreground/40",
                       )}
                     />
                     <span className="flex-1 truncate">{node.name}</span>
-                    {isSelected && <ArrowRightIcon className="size-4 text-primary" />}
+                    {isSelected && (
+                      <ArrowRightIcon className="text-primary size-4" />
+                    )}
                   </button>
                 </li>
               );
             })}
           </ul>
         ) : (
-          <p className="py-6 text-center text-sm text-muted-foreground">无匹配节点</p>
+          <p className="text-muted-foreground py-6 text-center text-sm">
+            无匹配节点
+          </p>
         )}
       </ScrollArea>
 

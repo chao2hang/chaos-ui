@@ -3,7 +3,11 @@ import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { MoreVerticalIcon, RefreshCwIcon, SettingsIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  MoreVerticalIcon,
+  RefreshCwIcon,
+  SettingsIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatHeader
@@ -23,7 +27,13 @@ interface ChatHeaderProps {
   className?: string;
 }
 
-function ChatHeader({ title, subtitle, status, actions, className }: ChatHeaderProps) {
+function ChatHeader({
+  title,
+  subtitle,
+  status,
+  actions,
+  className,
+}: ChatHeaderProps) {
   return (
     <header
       data-slot="chat-header"
@@ -34,26 +44,47 @@ function ChatHeader({ title, subtitle, status, actions, className }: ChatHeaderP
           {title}
         </h2>
         {subtitle ? (
-          <p className="truncate text-xs text-muted-foreground" title={subtitle}>
+          <p
+            className="text-muted-foreground truncate text-xs"
+            title={subtitle}
+          >
             {subtitle}
           </p>
         ) : null}
       </div>
       {status ? (
-        <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground" aria-label={`Status: ${status}`}>
+        <span
+          className="bg-muted text-muted-foreground shrink-0 rounded-full px-2 py-0.5 text-xs"
+          aria-label={`Status: ${status}`}
+        >
           {status}
         </span>
       ) : null}
       <div className="flex shrink-0 items-center gap-1">
         {actions ?? (
           <>
-            <Button type="button" variant="ghost" size="icon-sm" aria-label="Refresh conversation">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Refresh conversation"
+            >
               <RefreshCwIcon className="size-4" aria-hidden />
             </Button>
-            <Button type="button" variant="ghost" size="icon-sm" aria-label="Conversation settings">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label="Conversation settings"
+            >
               <SettingsIcon className="size-4" aria-hidden />
             </Button>
-            <Button type="button" variant="ghost" size="icon-sm" aria-label="More options">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label="More options"
+            >
               <MoreVerticalIcon className="size-4" aria-hidden />
             </Button>
           </>

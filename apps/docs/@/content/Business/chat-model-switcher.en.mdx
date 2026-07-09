@@ -1,5 +1,5 @@
-import { ChatModelSwitcher } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ChatModelSwitcher } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ChatModelSwitcher Chat Model Switcher
 
@@ -11,7 +11,6 @@ ChatModelSwitcher — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat model switcher.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <ChatModelSwitcher />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChatModelSwitcher
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `models` | `Array<T>` | — |  |
-| `activeId` | `string` | — |  |
-| `onSwitch` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `models`    | `Array<T>`             | —       |                                   |
+| `activeId`  | `string`               | —       |                                   |
+| `onSwitch`  | `() => void`           | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

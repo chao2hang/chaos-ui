@@ -1,5 +1,5 @@
-import { TreeTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TreeTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TreeTable 树形表格
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <TreeTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TreeTable
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `TreeNode[]` | — | 数据源 <br/> Data source |
-| `columns` | `Array<{` | — | 列配置 <br/> Column configuration |
-| `key` | `string` | — |  |
-| `header` | `string` | — |  |
-| `defaultExpanded` | `boolean` | `false` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop              | Type                          | Default | 说明 / Description                                          |
+| ----------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`       | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `data`            | `TreeNode[]`                  | —       | 数据源 <br/> Data source                                    |
+| `columns`         | `Array<{`                     | —       | 列配置 <br/> Column configuration                           |
+| `key`             | `string`                      | —       |                                                             |
+| `header`          | `string`                      | —       |                                                             |
+| `defaultExpanded` | `boolean`                     | `false` |                                                             |
+| ...rest           | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

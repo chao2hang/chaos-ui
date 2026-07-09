@@ -1,5 +1,5 @@
-import { OrgChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { OrgChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # OrgChart 组织架构图
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <OrgChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### OrgChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `nodes` | `OrgNode[]` | — |  |
-| `edges` | `OrgEdge[]` | — |  |
-| `onNodeClick` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | 说明 / Description                                          |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `nodes`       | `OrgNode[]`                   | —       |                                                             |
+| `edges`       | `OrgEdge[]`                   | —       |                                                             |
+| `onNodeClick` | `() => void`                  | —       |                                                             |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

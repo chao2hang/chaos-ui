@@ -1,5 +1,5 @@
-import { TopBar, MegaMenu } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { TopBar, MegaMenu } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # TopBar 顶部栏
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要顶部栏功能时使用本组件。
-
 
 ## 代码示例
 
@@ -27,21 +26,20 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TopBar
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `logo` | `React.ReactNode` | `Chaos UI` |  |
-| `logoHref` | `string` | `/` |  |
-| `nav` | `TopBarItem[]` | — |  |
-| `actions` | `React.ReactNode` | — |  |
-| `sticky` | `boolean` | `true` |  |
-| `variant` | `"default" \| "transparent" \| "bordered"` | `default` | 样式变体 |
-| ...rest | `React.ComponentProps<"header">` | — | 透传 `<header>` 原生属性 |
+| Prop        | Type                                       | Default    | 说明                     |
+| ----------- | ------------------------------------------ | ---------- | ------------------------ |
+| `className` | `string`                                   | —          | 自定义样式类名           |
+| `logo`      | `React.ReactNode`                          | `Chaos UI` |                          |
+| `logoHref`  | `string`                                   | `/`        |                          |
+| `nav`       | `TopBarItem[]`                             | —          |                          |
+| `actions`   | `React.ReactNode`                          | —          |                          |
+| `sticky`    | `boolean`                                  | `true`     |                          |
+| `variant`   | `"default" \| "transparent" \| "bordered"` | `default`  | 样式变体                 |
+| ...rest     | `React.ComponentProps<"header">`           | —          | 透传 `<header>` 原生属性 |
 
 ## 注意事项
 
@@ -49,4 +47,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<header>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-topbar--docs)。
-

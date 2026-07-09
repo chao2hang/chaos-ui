@@ -33,6 +33,7 @@ setLoading(false)
 }, [items.length])
 
 return (
+
 <InfiniteScroll onLoadMore={loadMore} hasMore={hasMore} loading={loading}>
 {items.map(i => <div key={i}>Item {i}</div>)}
 </InfiniteScroll>
@@ -43,7 +44,7 @@ return (
 
 ### InfiniteScroll
 
-| Prop | Type | Default | Description |
+| Prop              | Type                  | Default          | Description                                 |
 | ----------------- | --------------------- | ---------------- | ------------------------------------------- |
 | `onLoadMore`      | `() => void`          | —                | Load more callback / 加载更多回调           |
 | `hasMore`         | `boolean`             | `true`           | Whether more data exists / 是否还有更多数据 |
@@ -58,5 +59,3 @@ return (
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **IntersectionObserver**: 使用原生 IntersectionObserver API，需浏览器支持。
-
-

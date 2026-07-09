@@ -1,5 +1,5 @@
-import { TaskProgress } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TaskProgress } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TaskProgress Task Progress
 
@@ -12,7 +12,6 @@ TaskProgress — task progress component.
 
 Use when you need a task progress.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,21 +22,18 @@ export function Basic() {
   return <TaskProgress />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TaskProgress
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `percent` | `number` | — |  |
-| `status` | `string` | — | Status |
-| `message` | `string` | — | Message content |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `percent`   | `number`               | —       |                                   |
+| `status`    | `string`               | —       | Status                            |
+| `message`   | `string`               | —       | Message content                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

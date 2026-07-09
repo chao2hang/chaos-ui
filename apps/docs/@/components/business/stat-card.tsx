@@ -4,7 +4,12 @@ import {
   TrendingUpIcon,
   MinusIcon,
 } from "@chaos_team/chaos-ui/ui-icons";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
 import { cn } from "@chaos_team/chaos-ui/lib";
 
 /**
@@ -41,10 +46,10 @@ function StatCard({
   return (
     <Card data-slot="stat-card" className={cn(className)}>
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-muted-foreground text-sm font-medium">
           {title}
         </CardTitle>
-        {Icon && <Icon className="size-4 text-muted-foreground" />}
+        {Icon && <Icon className="text-muted-foreground size-4" />}
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>

@@ -62,9 +62,7 @@ function MasterEditTemplate({
         )}
         <h2 className="text-lg font-semibold">{title}</h2>
       </div>
-      <div className="flex-1 rounded-lg border bg-card p-4">
-        {children}
-      </div>
+      <div className="bg-card flex-1 rounded-lg border p-4">{children}</div>
       <div className="flex items-center justify-end gap-2 border-t pt-3">
         {onCancel && (
           <Button

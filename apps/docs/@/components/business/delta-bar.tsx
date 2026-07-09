@@ -22,21 +22,13 @@ interface DeltaBarProps {
   className?: string;
 }
 
-function DeltaBar({
-  value,
-  maxValue,
-  label,
-  className,
-}: DeltaBarProps) {
+function DeltaBar({ value, maxValue, label, className }: DeltaBarProps) {
   const positive = value >= 0;
   const max = maxValue ?? Math.max(1, Math.abs(value));
   const pct = Math.min(100, Math.max(0, (Math.abs(value) / max) * 100));
 
   return (
-    <div
-      data-slot="delta-bar"
-      className={cn("flex flex-col gap-1", className)}
-    >
+    <div data-slot="delta-bar" className={cn("flex flex-col gap-1", className)}>
       {label ? (
         <div className="flex items-center justify-between text-xs">
           <span className="text-muted-foreground">{label}</span>
@@ -52,7 +44,7 @@ function DeltaBar({
         </div>
       ) : null}
       <div
-        className="relative h-2 w-full overflow-hidden rounded-full bg-muted"
+        className="bg-muted relative h-2 w-full overflow-hidden rounded-full"
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={-max}

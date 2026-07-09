@@ -1,5 +1,5 @@
-import { Chip } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { Chip } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # Chip 标签片
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <Chip />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Chip
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `variant` | `ChipVariant` | `default` | 样式变体 <br/> Style variant |
-| `size` | `ChipSize` | `default` | 组件尺寸 <br/> Component size |
-| `removable` | `boolean` | — |  |
-| `onRemove` | `() => void` | — |  |
-| `icon` | `React.ReactNode` | — | 图标元素 <br/> Icon element |
-| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop        | Type                           | Default   | 说明 / Description                                            |
+| ----------- | ------------------------------ | --------- | ------------------------------------------------------------- |
+| `className` | `string`                       | —         | 自定义样式类名 <br/> Custom CSS class                         |
+| `variant`   | `ChipVariant`                  | `default` | 样式变体 <br/> Style variant                                  |
+| `size`      | `ChipSize`                     | `default` | 组件尺寸 <br/> Component size                                 |
+| `removable` | `boolean`                      | —         |                                                               |
+| `onRemove`  | `() => void`                   | —         |                                                               |
+| `icon`      | `React.ReactNode`              | —         | 图标元素 <br/> Icon element                                   |
+| ...rest     | `React.ComponentProps<"span">` | —         | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

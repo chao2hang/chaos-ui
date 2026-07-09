@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   NotificationCenter,
   type NotificationItem,
-} from "@chaos_team/chaos-ui/business"
-import { useState } from "react"
+} from "@chaos_team/chaos-ui/business";
+import { useState } from "react";
 
 const meta = {
   title: "Business/NotificationCenter",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const seed: NotificationItem[] = [
   {
@@ -57,7 +57,7 @@ const seed: NotificationItem[] = [
     read: true,
     type: "info",
   },
-]
+];
 
 export const Default: Story = {
   render: () => (
@@ -71,17 +71,19 @@ export const Default: Story = {
       />
     </div>
   ),
-}
+};
 
 export const Interactive: Story = {
   render: () => {
-    const [list, setList] = useState(seed)
+    const [list, setList] = useState(seed);
     return (
       <div className="flex h-[300px] items-start justify-center p-10">
         <NotificationCenter
           notifications={list}
           onMarkRead={(id) =>
-            setList((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)))
+            setList((prev) =>
+              prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+            )
           }
           onMarkAllRead={() =>
             setList((prev) => prev.map((n) => ({ ...n, read: true })))
@@ -89,9 +91,9 @@ export const Interactive: Story = {
           onClear={() => setList([])}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const Empty: Story = {
   render: () => (
@@ -99,7 +101,7 @@ export const Empty: Story = {
       <NotificationCenter notifications={[]} emptyText="没有未读消息" />
     </div>
   ),
-}
+};
 
 export const ManyUnread: Story = {
   render: () => {
@@ -110,16 +112,16 @@ export const ManyUnread: Story = {
       timestamp: Date.now() - i * 60_000,
       read: false,
       type: (["info", "success", "warning", "error"] as const)[i % 4],
-    }))
+    }));
     return (
       <div className="flex h-[400px] items-start justify-center p-10">
         <NotificationCenter notifications={many} />
       </div>
-    )
+    );
   },
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

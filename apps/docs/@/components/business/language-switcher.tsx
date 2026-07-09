@@ -102,7 +102,7 @@ export function LanguageSwitcher({
             <div className="flex flex-col gap-0.5">
               <span className="text-sm">{opt.nativeLabel ?? opt.label}</span>
               {opt.nativeLabel && opt.nativeLabel !== opt.label && (
-                <span className="text-xs text-muted-foreground">
+                <span className="text-muted-foreground text-xs">
                   {opt.label}
                 </span>
               )}

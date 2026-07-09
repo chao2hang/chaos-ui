@@ -1,5 +1,5 @@
-import { Anchor } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Anchor } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Anchor
 
@@ -11,7 +11,6 @@ Jumps to specified positions on a page; commonly used for table of contents.
 
 Use when you need an anchor.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,37 +21,34 @@ export function Basic() {
   return <Anchor />
 }`} lang="tsx" />
 
-
 ## Style Variants
 
 **direction**
 
-| direction | Description | 默认 |
-|---|---|---|
-| `vertical` |  | ✓ |
-| `horizontal` |  |  |
+| direction    | Description | 默认 |
+| ------------ | ----------- | ---- |
+| `vertical`   |             | ✓    |
+| `horizontal` |             |      |
 
 **active**
 
-| active | Description | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| active  | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
 
 ## API / Props
 
 ### Anchor
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `links` | `AnchorLink[]` | — |  |
-| `offset` | `number` | `0` | Offset for active link detection |
-| `replace` | `boolean` | — | Replace history or push |
-| ...rest | `React.ComponentProps<"nav">` | — | Inherits all `<nav>` attributes |
+| Prop        | Type                          | Default | Description                      |
+| ----------- | ----------------------------- | ------- | -------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                 |
+| `links`     | `AnchorLink[]`                | —       |                                  |
+| `offset`    | `number`                      | `0`     | Offset for active link detection |
+| `replace`   | `boolean`                     | —       | Replace history or push          |
+| ...rest     | `React.ComponentProps<"nav">` | —       | Inherits all `<nav>` attributes  |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

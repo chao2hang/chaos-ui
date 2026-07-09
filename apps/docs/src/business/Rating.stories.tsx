@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Rating } from "@chaos_team/chaos-ui/ui"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Rating } from "@chaos_team/chaos-ui/ui";
+import { useState } from "react";
 
 const meta: Meta<typeof Rating> = {
   title: "Business/Rating",
@@ -8,20 +8,20 @@ const meta: Meta<typeof Rating> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const [v, setV] = useState(3)
+    const [v, setV] = useState(3);
     return (
       <div className="space-y-3">
         <Rating value={v} onChange={setV} />
-        <p className="text-xs text-muted-foreground">当前：{v} 星</p>
+        <p className="text-muted-foreground text-xs">当前：{v} 星</p>
       </div>
-    )
+    );
   },
-}
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -31,13 +31,17 @@ export const Sizes: Story = {
       <Rating size="lg" defaultValue={5} />
     </div>
   ),
-}
+};
 
 export const HalfStar: Story = {
   render: () => (
-    <Rating defaultValue={3.5} allowHalf onChange={(v) => console.info("rate", v)} />
+    <Rating
+      defaultValue={3.5}
+      allowHalf
+      onChange={(v) => console.info("rate", v)}
+    />
   ),
-}
+};
 
 export const Readonly: Story = {
   render: () => (
@@ -47,9 +51,9 @@ export const Readonly: Story = {
       <Rating value={3.5} readonly allowHalf />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

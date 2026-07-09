@@ -1,5 +1,5 @@
-import { SealStampRegistry } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SealStampRegistry } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SealStampRegistry Seal Stamp Registry
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <SealStampRegistry />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SealStampRegistry
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `seals` | `SealRecord[]` | — | Registered seals. |
-| `usageLogs` | `SealUsageLog[]` | — | Usage log entries. |
-| `onSealClick` | `() => void` | — | Seal click handler. |
-| `onApplyUsage` | `() => void` | — | Apply for usage handler. |
-| `readOnly` | `boolean` | `false` | Read-only mode. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `seals`        | `SealRecord[]`         | —       | Registered seals.                                         |
+| `usageLogs`    | `SealUsageLog[]`       | —       | Usage log entries.                                        |
+| `onSealClick`  | `() => void`           | —       | Seal click handler.                                       |
+| `onApplyUsage` | `() => void`           | —       | Apply for usage handler.                                  |
+| `readOnly`     | `boolean`              | `false` | Read-only mode.                                           |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

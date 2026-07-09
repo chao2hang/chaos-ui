@@ -1,8 +1,21 @@
 "use client";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from "@chaos_team/chaos-ui/ui";
-import { TagIcon, CalendarIcon, ClockIcon, EditIcon, CopyIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Badge,
+  Button,
+} from "@chaos_team/chaos-ui/ui";
+import {
+  TagIcon,
+  CalendarIcon,
+  ClockIcon,
+  EditIcon,
+  CopyIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
@@ -75,7 +88,7 @@ function PromotionRuleCard({
       <CardHeader>
         <CardTitle className="flex items-center justify-between gap-2">
           <span className="flex items-center gap-2 truncate">
-            <TagIcon className="size-4 text-primary" />
+            <TagIcon className="text-primary size-4" />
             <span className="truncate">{name}</span>
           </span>
           {active ? (
@@ -107,7 +120,7 @@ function PromotionRuleCard({
           </div>
         </dl>
 
-        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex flex-wrap items-center gap-3 text-xs">
           <span className="inline-flex items-center gap-1">
             <CalendarIcon /> {startDate ?? "即日起"}
           </span>

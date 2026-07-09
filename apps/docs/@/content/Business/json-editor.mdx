@@ -1,5 +1,5 @@
-import { JsonEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { JsonEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # JsonEditor Json Editor
 
@@ -24,24 +24,23 @@ export function Basic() {
   return <JsonEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### JsonEditor
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | JSON string (controlled). |
-| `onChange` | `() => void` | — | Called on every change. |
-| `placeholder` | `string` | — | Placeholder text. |
-| `readOnly` | `boolean \| undefined` | — | Whether the editor is read-only. |
-| `minHeight` | `number` | `200` | Minimum height. |
-| `maxHeight` | `number` | — | Maximum height. |
-| `autoFormat` | `boolean \| undefined` | — | If true, auto-formats the JSON value on mount and on external value changes. |
-| `onFocus` | `() => void` | — | Called when the editor receives focus. |
-| `onBlur` | `() => void` | — | Called when the editor loses focus. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default | 说明 / Description                                                           |
+| ------------- | ---------------------- | ------- | ---------------------------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                                        |
+| `value`       | `string`               | —       | JSON string (controlled).                                                    |
+| `onChange`    | `() => void`           | —       | Called on every change.                                                      |
+| `placeholder` | `string`               | —       | Placeholder text.                                                            |
+| `readOnly`    | `boolean \| undefined` | —       | Whether the editor is read-only.                                             |
+| `minHeight`   | `number`               | `200`   | Minimum height.                                                              |
+| `maxHeight`   | `number`               | —       | Maximum height.                                                              |
+| `autoFormat`  | `boolean \| undefined` | —       | If true, auto-formats the JSON value on mount and on external value changes. |
+| `onFocus`     | `() => void`           | —       | Called when the editor receives focus.                                       |
+| `onBlur`      | `() => void`           | —       | Called when the editor loses focus.                                          |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes                    |
 
 ## 注意事项 / Notes
 

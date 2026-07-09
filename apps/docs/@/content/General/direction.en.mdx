@@ -46,15 +46,13 @@ export function Comparison() {
 
 ### Direction
 
-| Prop | Type | Default | Description |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向              |
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | Description                                    |
+| ----------- | ----------------------------- | ------- | ---------------------------------------------- |
+| `dir`       | `DirectionValue`              | `ltr`   | Text direction (`"ltr"` or `"rtl"`) / 文本方向 |
+| `className` | `string`                      | —       | Custom CSS class                               |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes                |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **RTL 样式**: 当 `dir="rtl"` 时自动应用 `[direction:rtl]` CSS 规则。
-
-

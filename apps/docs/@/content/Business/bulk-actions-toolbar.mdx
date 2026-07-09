@@ -1,5 +1,5 @@
-import { BulkActionsToolbar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BulkActionsToolbar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BulkActionsToolbar 批量操作工具栏
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <BulkActionsToolbar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BulkActionsToolbar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `count` | `number` | — |  |
-| `selectedCount` | `number` | — |  |
-| `onClear` | `() => void` | — |  |
-| `actions` | `BulkAction[]` | — |  |
-| `label` | `string` | `已选择` | 标签文本 <br/> Label text |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop            | Type                          | Default  | 说明 / Description                                          |
+| --------------- | ----------------------------- | -------- | ----------------------------------------------------------- |
+| `className`     | `string`                      | —        | 自定义样式类名 <br/> Custom CSS class                       |
+| `count`         | `number`                      | —        |                                                             |
+| `selectedCount` | `number`                      | —        |                                                             |
+| `onClear`       | `() => void`                  | —        |                                                             |
+| `actions`       | `BulkAction[]`                | —        |                                                             |
+| `label`         | `string`                      | `已选择` | 标签文本 <br/> Label text                                   |
+| ...rest         | `React.ComponentProps<"div">` | —        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { SegmentedControl } from "@chaos_team/chaos-ui/ui"
-import { useState } from "react"
-import { GridIcon, ListIcon, LayoutGridIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { SegmentedControl } from "@chaos_team/chaos-ui/ui";
+import { useState } from "react";
+import { GridIcon, ListIcon, LayoutGridIcon } from "lucide-react";
 
 const meta: Meta<typeof SegmentedControl> = {
   title: "Business/SegmentedControl",
@@ -9,14 +9,14 @@ const meta: Meta<typeof SegmentedControl> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-type View = "list" | "grid" | "card"
+type View = "list" | "grid" | "card";
 
 export const Default: Story = {
   render: () => {
-    const [v, setV] = useState<View>("grid")
+    const [v, setV] = useState<View>("grid");
     return (
       <div className="space-y-3">
         <SegmentedControl<View>
@@ -28,15 +28,15 @@ export const Default: Story = {
             { value: "card", label: "卡片" },
           ]}
         />
-        <p className="text-xs text-muted-foreground">当前：{v}</p>
+        <p className="text-muted-foreground text-xs">当前：{v}</p>
       </div>
-    )
+    );
   },
-}
+};
 
 export const WithIcons: Story = {
   render: () => {
-    const [v, setV] = useState<"list" | "grid">("list")
+    const [v, setV] = useState<"list" | "grid">("list");
     return (
       <SegmentedControl
         value={v}
@@ -46,9 +46,9 @@ export const WithIcons: Story = {
           { value: "grid", label: "网格", icon: <LayoutGridIcon /> },
         ]}
       />
-    )
+    );
   },
-}
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -82,7 +82,7 @@ export const Sizes: Story = {
       />
     </div>
   ),
-}
+};
 
 export const WithDisabled: Story = {
   render: () => (
@@ -95,9 +95,9 @@ export const WithDisabled: Story = {
       ]}
     />
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

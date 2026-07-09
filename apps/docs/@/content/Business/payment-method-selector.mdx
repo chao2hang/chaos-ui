@@ -1,5 +1,5 @@
-import { PaymentMethodSelector } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PaymentMethodSelector } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PaymentMethodSelector Payment Method Selector
 
@@ -24,17 +24,16 @@ export function Basic() {
   return <PaymentMethodSelector />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PaymentMethodSelector
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `PaymentMethod` | — | Currently selected payment method. |
-| `onChange` | `() => void` | — | Called when the user selects a method. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`     | `PaymentMethod`        | —       | Currently selected payment method.                        |
+| `onChange`  | `() => void`           | —       | Called when the user selects a method.                    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

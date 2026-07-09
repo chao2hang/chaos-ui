@@ -1,5 +1,5 @@
-import { MapChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MapChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MapChart Map Chart
 
@@ -12,7 +12,6 @@ MapChart — map chart component.
 
 Use when you need a map chart.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,20 +22,17 @@ export function Basic() {
   return <MapChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MapChart
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `region` | `string` | — |  |
-| `data` | `Array<T>` | — | Data source |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `region`    | `string`               | —       |                                   |
+| `data`      | `Array<T>`             | —       | Data source                       |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

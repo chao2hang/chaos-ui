@@ -30,7 +30,11 @@ export interface DonutChartProps {
   className?: string;
 }
 
-const DEFAULT_DONUT_DATA: Array<{ label: string; value: number; color?: string }> = [
+const DEFAULT_DONUT_DATA: Array<{
+  label: string;
+  value: number;
+  color?: string;
+}> = [
   { label: "已完成", value: 56, color: "#3b82f6" },
   { label: "进行中", value: 28, color: "#10b981" },
   { label: "待处理", value: 16, color: "#f59e0b" },
@@ -56,7 +60,13 @@ function DonutChart({
       aria-label={`环形图，共 ${data.length} 段，总计 ${total}`}
     >
       <div className="relative shrink-0" style={{ width: size, height: size }}>
-        <svg viewBox="0 0 100 100" className="-rotate-90" role="presentation" width={size} height={size}>
+        <svg
+          viewBox="0 0 100 100"
+          className="-rotate-90"
+          role="presentation"
+          width={size}
+          height={size}
+        >
           {data.map((d) => {
             const frac = d.value / total;
             const seg = (
@@ -95,7 +105,9 @@ function DonutChart({
               aria-hidden="true"
             />
             <span className="text-muted-foreground">{d.label}</span>
-            <span className="ml-auto tabular-nums">{formatNumber(d.value)}</span>
+            <span className="ml-auto tabular-nums">
+              {formatNumber(d.value)}
+            </span>
           </li>
         ))}
       </ul>

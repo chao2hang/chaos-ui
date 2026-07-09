@@ -1,5 +1,5 @@
-import { TopBar, MegaMenu } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { TopBar, MegaMenu } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # TopBar 顶部栏
 
@@ -29,21 +29,20 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TopBar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `logo` | `React.ReactNode` | `Chaos UI` |  |
-| `logoHref` | `string` | `/` |  |
-| `nav` | `TopBarItem[]` | — |  |
-| `actions` | `React.ReactNode` | — |  |
-| `sticky` | `boolean` | `true` |  |
-| `variant` | `"default" \| "transparent" \| "bordered"` | `default` | 样式变体 <br/> Style variant |
-| ...rest | `React.ComponentProps<"header">` | — | 透传 `<header>` 原生属性 <br/> Inherits all `<header>` attributes |
+| Prop        | Type                                       | Default    | 说明 / Description                                                |
+| ----------- | ------------------------------------------ | ---------- | ----------------------------------------------------------------- |
+| `className` | `string`                                   | —          | 自定义样式类名 <br/> Custom CSS class                             |
+| `logo`      | `React.ReactNode`                          | `Chaos UI` |                                                                   |
+| `logoHref`  | `string`                                   | `/`        |                                                                   |
+| `nav`       | `TopBarItem[]`                             | —          |                                                                   |
+| `actions`   | `React.ReactNode`                          | —          |                                                                   |
+| `sticky`    | `boolean`                                  | `true`     |                                                                   |
+| `variant`   | `"default" \| "transparent" \| "bordered"` | `default`  | 样式变体 <br/> Style variant                                      |
+| ...rest     | `React.ComponentProps<"header">`           | —          | 透传 `<header>` 原生属性 <br/> Inherits all `<header>` attributes |
 
 ## 注意事项 / Notes
 

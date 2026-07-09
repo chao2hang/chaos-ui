@@ -1,5 +1,5 @@
-import { SwipeActions } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { SwipeActions } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileSwipeActions 移动端滑动操作
 
@@ -24,27 +24,26 @@ export function Basic() {
   return <SwipeActions />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SwipeActions
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `onSwipeLeft` | `() => void` | — |  |
-| `onSwipeRight` | `() => void` | — |  |
-| `onSwipeUp` | `() => void` | — |  |
-| `onSwipeDown` | `() => void` | — |  |
-| `threshold` | `number` | `80` |  |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `leftAction` | `{` | — |  |
-| `label` | `string` | — | 标签文本 <br/> Label text |
-| `color` | `string` | — | 颜色主题 <br/> Color theme |
-| `onClick` | `() => void` | — | 点击回调 <br/> Click handler |
-| `icon` | `React.ReactNode` | — | 图标元素 <br/> Icon element |
-| `rightAction` | `{` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop           | Type                          | Default | 说明 / Description                                          |
+| -------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`    | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `onSwipeLeft`  | `() => void`                  | —       |                                                             |
+| `onSwipeRight` | `() => void`                  | —       |                                                             |
+| `onSwipeUp`    | `() => void`                  | —       |                                                             |
+| `onSwipeDown`  | `() => void`                  | —       |                                                             |
+| `threshold`    | `number`                      | `80`    |                                                             |
+| `disabled`     | `boolean`                     | —       | 是否禁用 <br/> Whether disabled                             |
+| `leftAction`   | `{`                           | —       |                                                             |
+| `label`        | `string`                      | —       | 标签文本 <br/> Label text                                   |
+| `color`        | `string`                      | —       | 颜色主题 <br/> Color theme                                  |
+| `onClick`      | `() => void`                  | —       | 点击回调 <br/> Click handler                                |
+| `icon`         | `React.ReactNode`             | —       | 图标元素 <br/> Icon element                                 |
+| `rightAction`  | `{`                           | —       |                                                             |
+| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

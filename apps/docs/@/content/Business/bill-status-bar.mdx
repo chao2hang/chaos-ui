@@ -1,5 +1,5 @@
-import { BillStatusBar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BillStatusBar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BillStatusBar 账单状态栏
 
@@ -24,28 +24,27 @@ export function Basic() {
   return <BillStatusBar />
 }`} lang="tsx" />
 
-
 ## 样式变体 / Style Variants
 
 **状态 / status**
 
-| status | 说明 / Description | 默认 |
-|---|---|---|
-| `draft` |  | ✓ |
-| `pending` |  |  |
-| `approved` |  |  |
-| `rejected` |  |  |
-| `paid` |  |  |
+| status     | 说明 / Description | 默认 |
+| ---------- | ------------------ | ---- |
+| `draft`    |                    | ✓    |
+| `pending`  |                    |      |
+| `approved` |                    |      |
+| `rejected` |                    |      |
+| `paid`     |                    |      |
 
 ## API / Props
 
 ### BillStatusBar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `currentStatus` | `"draft" \| "pending" \| "approved" \|...` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop            | Type                                       | Default | 说明 / Description                                          |
+| --------------- | ------------------------------------------ | ------- | ----------------------------------------------------------- |
+| `className`     | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `currentStatus` | `"draft" \| "pending" \| "approved" \|...` | —       |                                                             |
+| ...rest         | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

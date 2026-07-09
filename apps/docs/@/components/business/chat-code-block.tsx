@@ -3,7 +3,11 @@ import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, CopyIcon, FileTextIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckIcon,
+  CopyIcon,
+  FileTextIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatCodeBlock
@@ -22,7 +26,12 @@ interface ChatCodeBlockProps {
   className?: string;
 }
 
-function ChatCodeBlock({ code, language, filename, className }: ChatCodeBlockProps) {
+function ChatCodeBlock({
+  code,
+  language,
+  filename,
+  className,
+}: ChatCodeBlockProps) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = React.useCallback(() => {
@@ -45,17 +54,24 @@ function ChatCodeBlock({ code, language, filename, className }: ChatCodeBlockPro
   return (
     <div
       data-slot="chat-code-block"
-      className={cn("overflow-hidden rounded-lg border border-border bg-muted/40", className)}
+      className={cn(
+        "border-border bg-muted/40 overflow-hidden rounded-lg border",
+        className,
+      )}
     >
-      <div className="flex items-center justify-between gap-2 border-b border-border bg-muted/60 px-3 py-1.5">
-        <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted-foreground">
+      <div className="border-border bg-muted/60 flex items-center justify-between gap-2 border-b px-3 py-1.5">
+        <div className="text-muted-foreground flex min-w-0 items-center gap-1.5 text-xs">
           {filename ? (
             <>
               <FileTextIcon className="size-3.5 shrink-0" aria-hidden />
-              <span className="truncate font-medium text-foreground">{filename}</span>
+              <span className="text-foreground truncate font-medium">
+                {filename}
+              </span>
             </>
           ) : (
-            <span className="uppercase tracking-wide">{language ?? "text"}</span>
+            <span className="tracking-wide uppercase">
+              {language ?? "text"}
+            </span>
           )}
         </div>
         <Button
@@ -66,7 +82,11 @@ function ChatCodeBlock({ code, language, filename, className }: ChatCodeBlockPro
           onKeyDown={handleKeyDown}
           aria-label="Copy code"
         >
-          {copied ? <CheckIcon className="size-3.5" aria-hidden /> : <CopyIcon className="size-3.5" aria-hidden />}
+          {copied ? (
+            <CheckIcon className="size-3.5" aria-hidden />
+          ) : (
+            <CopyIcon className="size-3.5" aria-hidden />
+          )}
           {copied ? "Copied" : "Copy"}
         </Button>
       </div>

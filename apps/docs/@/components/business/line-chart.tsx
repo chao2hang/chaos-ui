@@ -74,7 +74,13 @@ function LineChart({
                 strokeLinecap="round"
               />
               {s.values.map((v, i) => (
-                <circle key={i} cx={pad + i * stepX} cy={yAt(v)} r={2.5} fill={color}>
+                <circle
+                  key={i}
+                  cx={pad + i * stepX}
+                  cy={yAt(v)}
+                  r={2.5}
+                  fill={color}
+                >
                   <title>
                     {s.name} {labels[i] ?? i}: {formatNumber(v)}
                   </title>
@@ -90,14 +96,21 @@ function LineChart({
             <span key={s.name} className="flex items-center gap-1">
               <span
                 className="inline-block size-2 rounded-sm"
-                style={{ backgroundColor: s.color ?? LINE_PALETTE[si % LINE_PALETTE.length] }}
+                style={{
+                  backgroundColor:
+                    s.color ?? LINE_PALETTE[si % LINE_PALETTE.length],
+                }}
                 aria-hidden="true"
               />
               {s.name}
             </span>
           ))}
         </li>
-        <li className="flex justify-between text-muted-foreground" role="list" style={{ flex: 1 }}>
+        <li
+          className="text-muted-foreground flex justify-between"
+          role="list"
+          style={{ flex: 1 }}
+        >
           {labels.slice(0, len).map((l, i) => (
             <span key={i}>{l}</span>
           ))}

@@ -6,7 +6,11 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Input } from "@chaos_team/chaos-ui/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chaos_team/chaos-ui/ui";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -67,9 +71,11 @@ function DistributorPicker({
   const [query, setQuery] = React.useState("");
 
   const resolvedPlaceholder =
-    placeholder ?? t("distributorPicker.placeholder", { defaultValue: "请选择经销商" });
+    placeholder ??
+    t("distributorPicker.placeholder", { defaultValue: "请选择经销商" });
   const resolvedSearch =
-    searchPlaceholder ?? t("distributorPicker.search", { defaultValue: "搜索经销商" });
+    searchPlaceholder ??
+    t("distributorPicker.search", { defaultValue: "搜索经销商" });
   const resolvedEmpty =
     emptyText ?? t("distributorPicker.empty", { defaultValue: "无匹配经销商" });
 
@@ -107,13 +113,17 @@ function DistributorPicker({
         }
       >
         <TruckIcon className="size-4 shrink-0 opacity-50" />
-        <span className="flex-1 truncate">{selected?.label ?? resolvedPlaceholder}</span>
+        <span className="flex-1 truncate">
+          {selected?.label ?? resolvedPlaceholder}
+        </span>
         <span className="flex items-center gap-1">
           {clearable && selected && (
             <span
               role="button"
               tabIndex={0}
-              aria-label={t("distributorPicker.clear", { defaultValue: "清除" })}
+              aria-label={t("distributorPicker.clear", {
+                defaultValue: "清除",
+              })}
               onClick={(e) => {
                 e.stopPropagation();
                 onChange?.(undefined);
@@ -125,7 +135,7 @@ function DistributorPicker({
                   onChange?.(undefined);
                 }
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -147,7 +157,7 @@ function DistributorPicker({
           </div>
           <ul role="listbox" className="max-h-64 overflow-y-auto p-1">
             {filtered.length === 0 && (
-              <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+              <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
@@ -159,7 +169,9 @@ function DistributorPicker({
                     variant="ghost"
                     size="sm"
                     type="button"
-                    {...(o.disabled !== undefined ? { disabled: o.disabled } : {})}
+                    {...(o.disabled !== undefined
+                      ? { disabled: o.disabled }
+                      : {})}
                     onClick={() => {
                       onChange?.(o.value);
                       setOpen(false);
@@ -173,7 +185,7 @@ function DistributorPicker({
                   >
                     <span className="flex-1 truncate">{o.label}</span>
                     {o.region && (
-                      <span className="shrink-0 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground shrink-0 text-xs">
                         {o.region}
                       </span>
                     )}

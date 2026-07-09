@@ -43,8 +43,7 @@ function StatCardWithSparkline({
       : TrendingDownIcon
     : null;
 
-  const data =
-    sparklineData.length > 0 ? sparklineData : [4, 8, 6, 10, 7, 12];
+  const data = sparklineData.length > 0 ? sparklineData : [4, 8, 6, 10, 7, 12];
   const w = 120;
   const h = 36;
   const max = Math.max(1, ...data);
@@ -63,16 +62,14 @@ function StatCardWithSparkline({
     <div
       data-slot="stat-card-with-sparkline"
       className={cn(
-        "flex flex-col gap-2 rounded-lg border bg-card p-4",
+        "bg-card flex flex-col gap-2 rounded-lg border p-4",
         className,
       )}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="truncate text-xs text-muted-foreground">{label}</p>
-          <p className="mt-0.5 text-xl font-semibold tabular-nums">
-            {display}
-          </p>
+          <p className="text-muted-foreground truncate text-xs">{label}</p>
+          <p className="mt-0.5 text-xl font-semibold tabular-nums">{display}</p>
         </div>
         {hasTrend && TrendIcon ? (
           <span

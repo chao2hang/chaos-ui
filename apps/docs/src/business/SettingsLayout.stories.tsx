@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { SettingsLayout } from "@/components/business/settings-layout"
-import type { SettingsNavEntry } from "@/components/business/settings-layout"
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { Input } from "@chaos_team/chaos-ui/ui"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { SettingsLayout } from "@/components/business/settings-layout";
+import type { SettingsNavEntry } from "@/components/business/settings-layout";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { useState } from "react";
 import {
   BellIcon,
   CreditCardIcon,
@@ -17,7 +17,7 @@ import {
   UserIcon,
   UsersIcon,
   WebhookIcon,
-} from "lucide-react"
+} from "lucide-react";
 
 const meta: Meta<typeof SettingsLayout> = {
   title: "Business/SettingsLayout",
@@ -25,12 +25,12 @@ const meta: Meta<typeof SettingsLayout> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const [active, setActive] = useState("account")
+    const [active, setActive] = useState("account");
     return (
       <SettingsLayout
         nav={[
@@ -67,7 +67,7 @@ export const Default: Story = {
             title: "偏好设置",
             description: "个性化您的体验",
             content: (
-              <div className="space-y-3 text-sm text-muted-foreground">
+              <div className="text-muted-foreground space-y-3 text-sm">
                 <p>语言、主题、通知等偏好</p>
               </div>
             ),
@@ -77,18 +77,20 @@ export const Default: Story = {
             title: "安全",
             description: "保护您的账户",
             content: (
-              <p className="text-sm text-muted-foreground">两步验证、登录设备等</p>
+              <p className="text-muted-foreground text-sm">
+                两步验证、登录设备等
+              </p>
             ),
           },
         ]}
       />
-    )
+    );
   },
-}
+};
 
 export const ThreeLevel: Story = {
   render: () => {
-    const [active, setActive] = useState("profile")
+    const [active, setActive] = useState("profile");
     const nav: SettingsNavEntry[] = [
       {
         key: "user",
@@ -147,7 +149,7 @@ export const ThreeLevel: Story = {
           { key: "storage", label: "存储" },
         ],
       },
-    ]
+    ];
     return (
       <SettingsLayout
         nav={nav}
@@ -158,14 +160,16 @@ export const ThreeLevel: Story = {
             key: active,
             title: `${active} 设置`,
             content: (
-              <p className="text-sm text-muted-foreground">当前选中: {active}</p>
+              <p className="text-muted-foreground text-sm">
+                当前选中: {active}
+              </p>
             ),
           },
         ]}
       />
-    )
+    );
   },
-}
+};
 
 export const SingleSection: Story = {
   render: () => (
@@ -179,17 +183,17 @@ export const SingleSection: Story = {
         {
           key: "account",
           title: "账户",
-          content: <p className="text-sm text-muted-foreground">账户信息</p>,
+          content: <p className="text-muted-foreground text-sm">账户信息</p>,
         },
         {
           key: "team",
           title: "团队",
-          content: <p className="text-sm text-muted-foreground">团队管理</p>,
+          content: <p className="text-muted-foreground text-sm">团队管理</p>,
         },
       ]}
     />
   ),
-}
+};
 
 export const WithBadges: Story = {
   render: () => (
@@ -209,9 +213,9 @@ export const WithBadges: Story = {
       ]}
     />
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

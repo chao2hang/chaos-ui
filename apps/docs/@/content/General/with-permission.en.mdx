@@ -46,17 +46,15 @@ export function Multiple() {
 
 ### WithPermission
 
-| Prop | Type | Default | Description |
+| Prop          | Type                 | Default | Description                                                  |
 | ------------- | -------------------- | ------- | ------------------------------------------------------------ |
 | `permissions` | `string[]`           | `[]`    | Current user's permissions / 当前用户权限列表                |
 | `require`     | `string \| string[]` | —       | Required permission(s) / 需要的权限                          |
 | `mode`        | `"any" \| "all"`     | `any`   | Check mode: any=all-satisfied, all=every-required / 校验模式 |
 | `fallback`    | `React.ReactNode`    | `null`  | Fallback content / 兜底内容                                  |
 | `children`    | `React.ReactNode`    | —       | Guarded children / 受控子内容                                |
-| `className` | `string` | — | Custom CSS class |
+| `className`   | `string`             | —       | Custom CSS class                                             |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@chaos_team/chaos-ui/lib"
+import * as React from "react";
+import { cn } from "@chaos_team/chaos-ui/lib";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-} from "@chaos_team/chaos-ui/ui"
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { Input } from "@chaos_team/chaos-ui/ui"
-import { Badge } from "@chaos_team/chaos-ui/ui"
-import { ScrollArea } from "@chaos_team/chaos-ui/ui"
-import { Separator } from "@chaos_team/chaos-ui/ui"
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Badge } from "@chaos_team/chaos-ui/ui";
+import { ScrollArea } from "@chaos_team/chaos-ui/ui";
+import { Separator } from "@chaos_team/chaos-ui/ui";
 import {
   PlusIcon,
   Trash2Icon,
@@ -26,76 +26,111 @@ import {
   ImageIcon,
   LayoutGridIcon,
   EyeIcon,
-} from "@chaos_team/chaos-ui/ui-icons"
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /** Widget type identifiers for the report builder */
-type ReportWidgetType = "table" | "chart" | "kpi" | "text" | "image"
+type ReportWidgetType = "table" | "chart" | "kpi" | "text" | "image";
 
 /** A single widget placed on the report canvas */
 interface ReportWidget {
-  id: string
-  type: ReportWidgetType
+  id: string;
+  type: ReportWidgetType;
   /** Widget title */
-  title: string
+  title: string;
   /** Position in grid (12-column layout) */
-  x: number
-  y: number
+  x: number;
+  y: number;
   /** Size in grid units */
-  w: number
-  h: number
+  w: number;
+  h: number;
   /** Widget-specific config */
-  config: Record<string, unknown>
+  config: Record<string, unknown>;
 }
 
 /** Definition describing an available widget type in the palette */
 interface ReportWidgetDefinition {
-  type: ReportWidgetType
-  label: string
-  icon: React.ReactNode
+  type: ReportWidgetType;
+  label: string;
+  icon: React.ReactNode;
   /** Default width/height when added to canvas */
-  defaultW: number
-  defaultH: number
+  defaultW: number;
+  defaultH: number;
   /** Default config */
-  defaultConfig?: Record<string, unknown>
+  defaultConfig?: Record<string, unknown>;
 }
 
 interface ReportBuilderProps {
   /** Current widgets on the canvas */
-  widgets?: ReportWidget[]
+  widgets?: ReportWidget[];
   /** Widget change handler */
-  onChange?: (widgets: ReportWidget[]) => void
+  onChange?: (widgets: ReportWidget[]) => void;
   /** Available widget types */
-  definitions?: ReportWidgetDefinition[]
+  definitions?: ReportWidgetDefinition[];
   /** Save handler */
-  onSave?: (widgets: ReportWidget[]) => void
+  onSave?: (widgets: ReportWidget[]) => void;
   /** Preview handler */
-  onPreview?: (widgets: ReportWidget[]) => void
+  onPreview?: (widgets: ReportWidget[]) => void;
   /** Custom property editor for selected widget */
   renderPropertyEditor?: (
     widget: ReportWidget,
     onUpdate: (config: Record<string, unknown>) => void,
-  ) => React.ReactNode
+  ) => React.ReactNode;
   /** Grid column count (default: 12) */
-  columns?: number
+  columns?: number;
   /** Canvas height */
-  canvasHeight?: number
+  canvasHeight?: number;
   /** Read-only mode */
-  readOnly?: boolean
-  className?: string
+  readOnly?: boolean;
+  className?: string;
 }
 
 const DEFAULT_DEFINITIONS: ReportWidgetDefinition[] = [
-  { type: "table", label: "Table", icon: <TableIcon />, defaultW: 6, defaultH: 4, defaultConfig: { columnCount: 5 } },
-  { type: "chart", label: "Chart", icon: <BarChart3Icon />, defaultW: 6, defaultH: 4, defaultConfig: { chartType: "bar" } },
-  { type: "kpi", label: "KPI", icon: <LayoutGridIcon />, defaultW: 3, defaultH: 2, defaultConfig: { value: "0", unit: "" } },
-  { type: "text", label: "Text", icon: <FileTextIcon />, defaultW: 4, defaultH: 2, defaultConfig: { text: "" } },
-  { type: "image", label: "Image", icon: <ImageIcon />, defaultW: 4, defaultH: 3, defaultConfig: { src: "" } },
-]
+  {
+    type: "table",
+    label: "Table",
+    icon: <TableIcon />,
+    defaultW: 6,
+    defaultH: 4,
+    defaultConfig: { columnCount: 5 },
+  },
+  {
+    type: "chart",
+    label: "Chart",
+    icon: <BarChart3Icon />,
+    defaultW: 6,
+    defaultH: 4,
+    defaultConfig: { chartType: "bar" },
+  },
+  {
+    type: "kpi",
+    label: "KPI",
+    icon: <LayoutGridIcon />,
+    defaultW: 3,
+    defaultH: 2,
+    defaultConfig: { value: "0", unit: "" },
+  },
+  {
+    type: "text",
+    label: "Text",
+    icon: <FileTextIcon />,
+    defaultW: 4,
+    defaultH: 2,
+    defaultConfig: { text: "" },
+  },
+  {
+    type: "image",
+    label: "Image",
+    icon: <ImageIcon />,
+    defaultW: 4,
+    defaultH: 3,
+    defaultConfig: { src: "" },
+  },
+];
 
-const HISTORY_LIMIT = 20
+const HISTORY_LIMIT = 20;
 
 function generateId(): string {
-  return `w_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+  return `w_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
 /** Find the next available Y position below existing widgets */
@@ -104,9 +139,9 @@ function findNextPosition(
   _w: number,
   _columns: number,
 ): { x: number; y: number } {
-  if (widgets.length === 0) return { x: 0, y: 0 }
-  const maxY = Math.max(...widgets.map((wid) => wid.y + wid.h))
-  return { x: 0, y: maxY }
+  if (widgets.length === 0) return { x: 0, y: 0 };
+  const maxY = Math.max(...widgets.map((wid) => wid.y + wid.h));
+  return { x: 0, y: maxY };
 }
 
 /** Lightweight drag-and-drop report designer for building custom query reports. */
@@ -122,34 +157,36 @@ export function ReportBuilder({
   readOnly = false,
   className,
 }: ReportBuilderProps) {
-  const [internalWidgets, setInternalWidgets] = React.useState<ReportWidget[]>([])
-  const widgets = controlledWidgets ?? internalWidgets
+  const [internalWidgets, setInternalWidgets] = React.useState<ReportWidget[]>(
+    [],
+  );
+  const widgets = controlledWidgets ?? internalWidgets;
 
-  const [selectedId, setSelectedId] = React.useState<string | null>(null)
-  const [history, setHistory] = React.useState<ReportWidget[][]>([])
-  const [future, setFuture] = React.useState<ReportWidget[][]>([])
+  const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [history, setHistory] = React.useState<ReportWidget[][]>([]);
+  const [future, setFuture] = React.useState<ReportWidget[][]>([]);
 
-  const selectedWidget = widgets.find((w) => w.id === selectedId) ?? null
+  const selectedWidget = widgets.find((w) => w.id === selectedId) ?? null;
 
   function pushHistory(next: ReportWidget[]) {
-    setHistory((prev) => [...prev.slice(-(HISTORY_LIMIT - 1)), widgets])
-    setFuture([])
-    onChange?.(next)
+    setHistory((prev) => [...prev.slice(-(HISTORY_LIMIT - 1)), widgets]);
+    setFuture([]);
+    onChange?.(next);
     if (controlledWidgets === undefined) {
-      setInternalWidgets(next)
+      setInternalWidgets(next);
     }
   }
 
   function updateWidgets(next: ReportWidget[]) {
-    onChange?.(next)
+    onChange?.(next);
     if (controlledWidgets === undefined) {
-      setInternalWidgets(next)
+      setInternalWidgets(next);
     }
   }
 
   function handleAddWidget(def: ReportWidgetDefinition) {
-    if (readOnly) return
-    const pos = findNextPosition(widgets, def.defaultW, columns)
+    if (readOnly) return;
+    const pos = findNextPosition(widgets, def.defaultW, columns);
     const newWidget: ReportWidget = {
       id: generateId(),
       type: def.type,
@@ -159,57 +196,63 @@ export function ReportBuilder({
       w: def.defaultW,
       h: def.defaultH,
       config: { ...(def.defaultConfig ?? {}) },
-    }
-    pushHistory([...widgets, newWidget])
-    setSelectedId(newWidget.id)
+    };
+    pushHistory([...widgets, newWidget]);
+    setSelectedId(newWidget.id);
   }
 
   function handleDeleteWidget(id: string) {
-    if (readOnly) return
-    pushHistory(widgets.filter((w) => w.id !== id))
-    if (selectedId === id) setSelectedId(null)
+    if (readOnly) return;
+    pushHistory(widgets.filter((w) => w.id !== id));
+    if (selectedId === id) setSelectedId(null);
   }
 
   function handleUpdateWidget(id: string, patch: Partial<ReportWidget>) {
-    const next = widgets.map((w) => (w.id === id ? { ...w, ...patch } : w))
-    updateWidgets(next)
+    const next = widgets.map((w) => (w.id === id ? { ...w, ...patch } : w));
+    updateWidgets(next);
   }
 
-  function handleUpdateConfig(id: string, configPatch: Record<string, unknown>) {
+  function handleUpdateConfig(
+    id: string,
+    configPatch: Record<string, unknown>,
+  ) {
     const next = widgets.map((w) =>
       w.id === id ? { ...w, config: { ...w.config, ...configPatch } } : w,
-    )
-    updateWidgets(next)
+    );
+    updateWidgets(next);
   }
 
   function handleUndo() {
-    if (history.length === 0) return
-    const prev = history[history.length - 1]!
-    setHistory((h) => h.slice(0, -1))
-    setFuture((f) => [...f.slice(-(HISTORY_LIMIT - 1)), widgets])
-    updateWidgets(prev)
+    if (history.length === 0) return;
+    const prev = history[history.length - 1]!;
+    setHistory((h) => h.slice(0, -1));
+    setFuture((f) => [...f.slice(-(HISTORY_LIMIT - 1)), widgets]);
+    updateWidgets(prev);
   }
 
   function handleRedo() {
-    if (future.length === 0) return
-    const next = future[future.length - 1]!
-    setFuture((f) => f.slice(0, -1))
-    setHistory((h) => [...h.slice(-(HISTORY_LIMIT - 1)), widgets])
-    updateWidgets(next)
+    if (future.length === 0) return;
+    const next = future[future.length - 1]!;
+    setFuture((f) => f.slice(0, -1));
+    setHistory((h) => [...h.slice(-(HISTORY_LIMIT - 1)), widgets]);
+    updateWidgets(next);
   }
 
-  const CELL_W_PCT = 100 / columns
-  const ROW_H = 60
+  const CELL_W_PCT = 100 / columns;
+  const ROW_H = 60;
 
   return (
     <div
       data-slot="report-builder"
-      className={cn("flex h-full min-h-[500px] flex-col border border-border bg-background rounded-lg overflow-hidden", className)}
+      className={cn(
+        "border-border bg-background flex h-full min-h-[500px] flex-col overflow-hidden rounded-lg border",
+        className,
+      )}
     >
       {/* Toolbar */}
       <div
         data-slot="report-builder-toolbar"
-        className="flex items-center gap-2 border-b border-border px-3 py-2"
+        className="border-border flex items-center gap-2 border-b px-3 py-2"
       >
         {!readOnly && (
           <>
@@ -263,9 +306,9 @@ export function ReportBuilder({
         {!readOnly && (
           <div
             data-slot="report-builder-palette"
-            className="w-52 shrink-0 border-r border-border"
+            className="border-border w-52 shrink-0 border-r"
           >
-            <div className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            <div className="text-muted-foreground px-3 py-2 text-xs font-semibold tracking-wider uppercase">
               Widgets
             </div>
             <ScrollArea className="h-[calc(100%-2rem)]">
@@ -276,13 +319,13 @@ export function ReportBuilder({
                     type="button"
                     onClick={() => handleAddWidget(def)}
                     data-testid={`palette-${def.type}`}
-                    className="flex items-center gap-2 rounded-md border border-border bg-card px-2.5 py-2 text-sm text-left transition-colors hover:bg-muted cursor-pointer"
+                    className="border-border bg-card hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md border px-2.5 py-2 text-left text-sm transition-colors"
                   >
                     <span className="text-muted-foreground [&_svg]:size-4">
                       {def.icon}
                     </span>
                     <span>{def.label}</span>
-                    <PlusIcon className="ml-auto size-3.5 text-muted-foreground" />
+                    <PlusIcon className="text-muted-foreground ml-auto size-3.5" />
                   </button>
                 ))}
               </div>
@@ -291,10 +334,7 @@ export function ReportBuilder({
         )}
 
         {/* Center: canvas */}
-        <div
-          data-slot="report-builder-canvas"
-          className="flex-1 overflow-auto"
-        >
+        <div data-slot="report-builder-canvas" className="flex-1 overflow-auto">
           <div
             className="relative"
             style={{
@@ -304,11 +344,11 @@ export function ReportBuilder({
               backgroundSize: `${CELL_W_PCT}% ${ROW_H}px`,
             }}
             onClick={(e) => {
-              if (e.target === e.currentTarget) setSelectedId(null)
+              if (e.target === e.currentTarget) setSelectedId(null);
             }}
           >
             {widgets.map((widget) => {
-              const isSelected = widget.id === selectedId
+              const isSelected = widget.id === selectedId;
               return (
                 <div
                   key={widget.id}
@@ -316,9 +356,9 @@ export function ReportBuilder({
                   data-widget-id={widget.id}
                   data-widget-type={widget.type}
                   className={cn(
-                    "absolute rounded-lg border bg-card transition-shadow",
+                    "bg-card absolute rounded-lg border transition-shadow",
                     isSelected
-                      ? "ring-2 ring-primary border-primary z-10"
+                      ? "ring-primary border-primary z-10 ring-2"
                       : "border-border hover:border-primary/40",
                   )}
                   style={{
@@ -328,17 +368,20 @@ export function ReportBuilder({
                     height: widget.h * ROW_H,
                   }}
                   onClick={(e) => {
-                    e.stopPropagation()
-                    setSelectedId(widget.id)
+                    e.stopPropagation();
+                    setSelectedId(widget.id);
                   }}
                 >
                   <Card className="h-full border-0 ring-0">
-                    <CardHeader className="flex-row items-center gap-1 py-1.5 px-2">
-                      <GripVerticalIcon className="size-3.5 text-muted-foreground shrink-0 cursor-grab" />
-                      <CardTitle className="text-xs truncate flex-1">
+                    <CardHeader className="flex-row items-center gap-1 px-2 py-1.5">
+                      <GripVerticalIcon className="text-muted-foreground size-3.5 shrink-0 cursor-grab" />
+                      <CardTitle className="flex-1 truncate text-xs">
                         {widget.title}
                       </CardTitle>
-                      <Badge variant="outline" className="text-[10px] px-1 shrink-0">
+                      <Badge
+                        variant="outline"
+                        className="shrink-0 px-1 text-[10px]"
+                      >
                         {widget.type}
                       </Badge>
                       {!readOnly && (
@@ -346,8 +389,8 @@ export function ReportBuilder({
                           variant="ghost"
                           size="icon-xs"
                           onClick={(e) => {
-                            e.stopPropagation()
-                            handleDeleteWidget(widget.id)
+                            e.stopPropagation();
+                            handleDeleteWidget(widget.id);
                           }}
                           data-testid={`delete-widget-${widget.id}`}
                           className="shrink-0"
@@ -356,45 +399,47 @@ export function ReportBuilder({
                         </Button>
                       )}
                     </CardHeader>
-                    <CardContent className="flex-1 flex items-center justify-center text-muted-foreground text-xs px-2 pb-2">
+                    <CardContent className="text-muted-foreground flex flex-1 items-center justify-center px-2 pb-2 text-xs">
                       {widget.type === "kpi" && (
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-foreground">
+                          <div className="text-foreground text-2xl font-bold">
                             {String(widget.config.value ?? "0")}
                           </div>
-                          <div className="text-[10px]">{String(widget.config.unit ?? "")}</div>
+                          <div className="text-[10px]">
+                            {String(widget.config.unit ?? "")}
+                          </div>
                         </div>
                       )}
                       {widget.type === "text" && (
-                        <p className="text-left w-full truncate">
+                        <p className="w-full truncate text-left">
                           {String(widget.config.text ?? "Text content")}
                         </p>
                       )}
                       {widget.type === "table" && (
                         <div className="w-full space-y-1">
                           {Array.from({ length: 3 }).map((_, i) => (
-                            <div key={i} className="h-2 rounded bg-muted" />
+                            <div key={i} className="bg-muted h-2 rounded" />
                           ))}
                         </div>
                       )}
                       {widget.type === "chart" && (
-                        <div className="flex items-end gap-1 h-10">
+                        <div className="flex h-10 items-end gap-1">
                           {[60, 80, 45, 90, 70].map((h, i) => (
                             <div
                               key={i}
-                              className="w-3 rounded-t bg-primary/40"
+                              className="bg-primary/40 w-3 rounded-t"
                               style={{ height: `${h}%` }}
                             />
                           ))}
                         </div>
                       )}
                       {widget.type === "image" && (
-                        <ImageIcon className="size-8 text-muted-foreground/40" />
+                        <ImageIcon className="text-muted-foreground/40 size-8" />
                       )}
                     </CardContent>
                   </Card>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -403,9 +448,9 @@ export function ReportBuilder({
         {selectedWidget && !readOnly && (
           <div
             data-slot="report-builder-properties"
-            className="w-64 shrink-0 border-l border-border overflow-y-auto"
+            className="border-border w-64 shrink-0 overflow-y-auto border-l"
           >
-            <div className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center">
+            <div className="text-muted-foreground flex items-center px-3 py-2 text-xs font-semibold tracking-wider uppercase">
               Properties
               <Button
                 variant="ghost"
@@ -420,19 +465,31 @@ export function ReportBuilder({
             <Separator />
             <div className="space-y-3 p-3">
               <div>
-                <label className="text-xs text-muted-foreground" htmlFor="rb-title">Title</label>
+                <label
+                  className="text-muted-foreground text-xs"
+                  htmlFor="rb-title"
+                >
+                  Title
+                </label>
                 <Input
                   id="rb-title"
                   data-testid="property-title"
                   value={selectedWidget.title}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleUpdateWidget(selectedWidget.id, { title: e.target.value })
+                    handleUpdateWidget(selectedWidget.id, {
+                      title: e.target.value,
+                    })
                   }
                 />
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-x">X</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-x"
+                  >
+                    X
+                  </label>
                   <Input
                     id="rb-x"
                     type="number"
@@ -441,12 +498,19 @@ export function ReportBuilder({
                     max={columns - selectedWidget.w}
                     value={selectedWidget.x}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateWidget(selectedWidget.id, { x: Math.max(0, Number(e.target.value)) })
+                      handleUpdateWidget(selectedWidget.id, {
+                        x: Math.max(0, Number(e.target.value)),
+                      })
                     }
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-y">Y</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-y"
+                  >
+                    Y
+                  </label>
                   <Input
                     id="rb-y"
                     type="number"
@@ -454,12 +518,19 @@ export function ReportBuilder({
                     min={0}
                     value={selectedWidget.y}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateWidget(selectedWidget.id, { y: Math.max(0, Number(e.target.value)) })
+                      handleUpdateWidget(selectedWidget.id, {
+                        y: Math.max(0, Number(e.target.value)),
+                      })
                     }
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-w">W</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-w"
+                  >
+                    W
+                  </label>
                   <Input
                     id="rb-w"
                     type="number"
@@ -468,12 +539,22 @@ export function ReportBuilder({
                     max={columns}
                     value={selectedWidget.w}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateWidget(selectedWidget.id, { w: Math.min(columns, Math.max(1, Number(e.target.value))) })
+                      handleUpdateWidget(selectedWidget.id, {
+                        w: Math.min(
+                          columns,
+                          Math.max(1, Number(e.target.value)),
+                        ),
+                      })
                     }
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-h">H</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-h"
+                  >
+                    H
+                  </label>
                   <Input
                     id="rb-h"
                     type="number"
@@ -481,7 +562,9 @@ export function ReportBuilder({
                     min={1}
                     value={selectedWidget.h}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateWidget(selectedWidget.id, { h: Math.max(1, Number(e.target.value)) })
+                      handleUpdateWidget(selectedWidget.id, {
+                        h: Math.max(1, Number(e.target.value)),
+                      })
                     }
                   />
                 </div>
@@ -490,7 +573,12 @@ export function ReportBuilder({
               {/* Type-specific config */}
               {selectedWidget.type === "table" && (
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-colcount">Column Count</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-colcount"
+                  >
+                    Column Count
+                  </label>
                   <Input
                     id="rb-colcount"
                     type="number"
@@ -498,21 +586,30 @@ export function ReportBuilder({
                     min={1}
                     value={Number(selectedWidget.config.columnCount ?? 5)}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateConfig(selectedWidget.id, { columnCount: Number(e.target.value) })
+                      handleUpdateConfig(selectedWidget.id, {
+                        columnCount: Number(e.target.value),
+                      })
                     }
                   />
                 </div>
               )}
               {selectedWidget.type === "chart" && (
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-charttype">Chart Type</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-charttype"
+                  >
+                    Chart Type
+                  </label>
                   <select
                     id="rb-charttype"
                     data-testid="property-chart-type"
-                    className="flex h-8 w-full rounded-lg border border-input bg-transparent px-2 text-sm"
+                    className="border-input flex h-8 w-full rounded-lg border bg-transparent px-2 text-sm"
                     value={String(selectedWidget.config.chartType ?? "bar")}
                     onChange={(e) =>
-                      handleUpdateConfig(selectedWidget.id, { chartType: e.target.value })
+                      handleUpdateConfig(selectedWidget.id, {
+                        chartType: e.target.value,
+                      })
                     }
                   >
                     <option value="bar">Bar</option>
@@ -524,13 +621,20 @@ export function ReportBuilder({
               )}
               {selectedWidget.type === "text" && (
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-text">Text</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-text"
+                  >
+                    Text
+                  </label>
                   <Input
                     id="rb-text"
                     data-testid="property-text"
                     value={String(selectedWidget.config.text ?? "")}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateConfig(selectedWidget.id, { text: e.target.value })
+                      handleUpdateConfig(selectedWidget.id, {
+                        text: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -538,24 +642,38 @@ export function ReportBuilder({
               {selectedWidget.type === "kpi" && (
                 <>
                   <div>
-                    <label className="text-xs text-muted-foreground" htmlFor="rb-kpi-value">Value</label>
+                    <label
+                      className="text-muted-foreground text-xs"
+                      htmlFor="rb-kpi-value"
+                    >
+                      Value
+                    </label>
                     <Input
                       id="rb-kpi-value"
                       data-testid="property-kpi-value"
                       value={String(selectedWidget.config.value ?? "")}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleUpdateConfig(selectedWidget.id, { value: e.target.value })
+                        handleUpdateConfig(selectedWidget.id, {
+                          value: e.target.value,
+                        })
                       }
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground" htmlFor="rb-kpi-unit">Unit</label>
+                    <label
+                      className="text-muted-foreground text-xs"
+                      htmlFor="rb-kpi-unit"
+                    >
+                      Unit
+                    </label>
                     <Input
                       id="rb-kpi-unit"
                       data-testid="property-kpi-unit"
                       value={String(selectedWidget.config.unit ?? "")}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleUpdateConfig(selectedWidget.id, { unit: e.target.value })
+                        handleUpdateConfig(selectedWidget.id, {
+                          unit: e.target.value,
+                        })
                       }
                     />
                   </div>
@@ -563,13 +681,20 @@ export function ReportBuilder({
               )}
               {selectedWidget.type === "image" && (
                 <div>
-                  <label className="text-xs text-muted-foreground" htmlFor="rb-img-src">Image URL</label>
+                  <label
+                    className="text-muted-foreground text-xs"
+                    htmlFor="rb-img-src"
+                  >
+                    Image URL
+                  </label>
                   <Input
                     id="rb-img-src"
                     data-testid="property-image-src"
                     value={String(selectedWidget.config.src ?? "")}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleUpdateConfig(selectedWidget.id, { src: e.target.value })
+                      handleUpdateConfig(selectedWidget.id, {
+                        src: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -588,7 +713,7 @@ export function ReportBuilder({
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export type {
@@ -596,4 +721,4 @@ export type {
   ReportWidget,
   ReportWidgetDefinition,
   ReportBuilderProps,
-}
+};

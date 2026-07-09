@@ -82,7 +82,7 @@ function MarketingActivityForm({
       onSubmit={handleSubmit}
     >
       <div className="flex items-center gap-2">
-        <MegaphoneIcon className="size-5 text-muted-foreground" aria-hidden />
+        <MegaphoneIcon className="text-muted-foreground size-5" aria-hidden />
         <h3 className="text-base font-medium">营销活动</h3>
       </div>
 
@@ -120,7 +120,7 @@ function MarketingActivityForm({
             value={Number.isFinite(budget) ? budget : 0}
             onChange={(e) => setBudget(e.target.valueAsNumber)}
           />
-          <span className="text-xs text-muted-foreground tabular-nums">
+          <span className="text-muted-foreground text-xs tabular-nums">
             {formatCurrency(budget)}
           </span>
         </div>

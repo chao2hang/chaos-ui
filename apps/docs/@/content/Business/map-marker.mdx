@@ -1,5 +1,5 @@
-import { MapMarkerCluster } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MapMarkerCluster } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MapMarker 地图标记
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <MapMarkerCluster />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MapMarkerCluster
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `map` | `AMap.Map \| null` | — | AMap instance returned from MapView's `onReady`. |
-| `markers` | `MapMarkerData[]` | — | Marker data array. |
-| `cluster` | `boolean` | `true` | Cluster enabled. Default true. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `map`       | `AMap.Map \| null`     | —       | AMap instance returned from MapView's `onReady`.          |
+| `markers`   | `MapMarkerData[]`      | —       | Marker data array.                                        |
+| `cluster`   | `boolean`              | `true`  | Cluster enabled. Default true.                            |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { LanguageSwitcher } from "@chaos_team/chaos-ui/business"
-import { useState } from "react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { LanguageSwitcher } from "@chaos_team/chaos-ui/business";
+import { useState } from "react";
 
 const meta: Meta<typeof LanguageSwitcher> = {
   title: "Business/LanguageSwitcher",
@@ -8,20 +8,20 @@ const meta: Meta<typeof LanguageSwitcher> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const [v, setV] = useState("zh-CN")
+    const [v, setV] = useState("zh-CN");
     return (
       <div className="space-y-3">
         <LanguageSwitcher value={v} onChange={setV} />
-        <p className="text-xs text-muted-foreground">当前：{v}</p>
+        <p className="text-muted-foreground text-xs">当前：{v}</p>
       </div>
-    )
+    );
   },
-}
+};
 
 export const CustomOptions: Story = {
   render: () => (
@@ -36,13 +36,13 @@ export const CustomOptions: Story = {
       ]}
     />
   ),
-}
+};
 
 export const Uncontrolled: Story = {
   render: () => <LanguageSwitcher onChange={(c) => console.info("lang", c)} />,
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

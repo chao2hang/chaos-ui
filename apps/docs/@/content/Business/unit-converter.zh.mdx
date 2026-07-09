@@ -1,5 +1,5 @@
-import { UnitConverter } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { UnitConverter } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # UnitConverter 单位换算
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要单位换算功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,16 +21,15 @@ export function Basic() {
   return <UnitConverter />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### UnitConverter
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `units` | `string[]` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop        | Type                          | Default | 说明                  |
+| ----------- | ----------------------------- | ------- | --------------------- |
+| `className` | `string`                      | —       | 自定义样式类名        |
+| `units`     | `string[]`                    | —       |                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -39,4 +37,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-unitconverter--docs)。
-

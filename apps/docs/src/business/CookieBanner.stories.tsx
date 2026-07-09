@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { CookieBanner } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import { CookieBanner } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof CookieBanner> = {
   title: "Business/CookieBanner",
@@ -7,20 +7,20 @@ const meta: Meta<typeof CookieBanner> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     open: true,
   },
   render: (args) => (
-    <div className="relative h-72 overflow-hidden rounded-md border bg-muted/20">
+    <div className="bg-muted/20 relative h-72 overflow-hidden rounded-md border">
       <p className="p-4 text-sm">页面内容</p>
       <CookieBanner {...args} />
     </div>
   ),
-}
+};
 
 export const WithPolicy: Story = {
   args: {
@@ -29,12 +29,12 @@ export const WithPolicy: Story = {
     policyText: "查看隐私政策",
   },
   render: (args) => (
-    <div className="relative h-72 overflow-hidden rounded-md border bg-muted/20">
+    <div className="bg-muted/20 relative h-72 overflow-hidden rounded-md border">
       <p className="p-4 text-sm">带隐私政策链接</p>
       <CookieBanner {...args} />
     </div>
   ),
-}
+};
 
 export const TopPosition: Story = {
   args: {
@@ -44,14 +44,14 @@ export const TopPosition: Story = {
     description: "我们改进了 Cookie 策略，请确认是否继续。",
   },
   render: (args) => (
-    <div className="relative h-72 overflow-hidden rounded-md border bg-muted/20">
+    <div className="bg-muted/20 relative h-72 overflow-hidden rounded-md border">
       <p className="p-4 text-sm">顶部位置</p>
       <CookieBanner {...args} />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

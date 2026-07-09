@@ -1,5 +1,9 @@
-import { AuthGuard, AuthGuardProvider, Permissions } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import {
+  AuthGuard,
+  AuthGuardProvider,
+  Permissions,
+} from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AuthGuard 认证守卫
 
@@ -28,19 +32,18 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AuthGuard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `permission` | `string \| string[]` | — |  |
-| `permissions` | `string[]` | — |  |
-| `mode` | `"all" \| "any"` | `any` |  |
-| `fallback` | `React.ReactNode` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `permission`  | `string \| string[]`   | —       |                                                           |
+| `permissions` | `string[]`             | —       |                                                           |
+| `mode`        | `"all" \| "any"`       | `any`   |                                                           |
+| `fallback`    | `React.ReactNode`      | —       |                                                           |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

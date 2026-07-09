@@ -13,7 +13,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { SearchIcon, UserIcon, MailIcon, XIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  SearchIcon,
+  UserIcon,
+  MailIcon,
+  XIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

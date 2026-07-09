@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@chaos_team/chaos-ui/ui";
 import {
   Card,
   CardContent,

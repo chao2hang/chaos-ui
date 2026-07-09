@@ -25,11 +25,7 @@ import {
 
 /** Possible operational states for a piece of equipment. */
 export type EquipmentStatus =
-  | "running"
-  | "idle"
-  | "maintenance"
-  | "fault"
-  | "offline";
+  "running" | "idle" | "maintenance" | "fault" | "offline";
 
 /** A single metric displayed on the equipment card. */
 export interface EquipmentMetric {
@@ -102,7 +98,10 @@ const statusConfig: Record<
   },
 };
 
-const trendIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const trendIcons: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   up: TrendingUpIcon,
   down: TrendingDownIcon,
   flat: MinusIcon,
@@ -223,10 +222,8 @@ function EquipmentCard({
                           <TrendIcon
                             className={cn(
                               "size-3",
-                              metric.trend === "up" &&
-                                "text-emerald-500",
-                              metric.trend === "down" &&
-                                "text-red-500",
+                              metric.trend === "up" && "text-emerald-500",
+                              metric.trend === "down" && "text-red-500",
                               metric.trend === "flat" &&
                                 "text-muted-foreground",
                             )}

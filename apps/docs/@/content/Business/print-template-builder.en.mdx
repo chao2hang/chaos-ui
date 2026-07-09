@@ -1,5 +1,5 @@
-import { PrintTemplateBuilder } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PrintTemplateBuilder } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PrintTemplateBuilder Print Template Builder
 
@@ -11,7 +11,6 @@ PrintTemplateBuilder — a business component for ERP / enterprise scenarios.
 
 Use when you need a print template builder.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,20 +21,17 @@ export function Basic() {
   return <PrintTemplateBuilder />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PrintTemplateBuilder
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `template` | `PrintTemplateModel` | — | Template to edit. Defaults to an empty template. |
-| `onChange` | `() => void` | — | Receives the updated template on every edit. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                                      |
+| ----------- | ---------------------- | ------- | ------------------------------------------------ |
+| `className` | `string`               | —       | Custom CSS class                                 |
+| `template`  | `PrintTemplateModel`   | —       | Template to edit. Defaults to an empty template. |
+| `onChange`  | `() => void`           | —       | Receives the updated template on every edit.     |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

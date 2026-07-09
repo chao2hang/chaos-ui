@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { FormWizard } from "@chaos_team/chaos-ui/business"
-import { Input } from "@chaos_team/chaos-ui/ui"
-import { Label } from "@chaos_team/chaos-ui/ui"
-import { Textarea } from "@chaos_team/chaos-ui/ui"
+import type { Meta, StoryObj } from "@storybook/react";
+import { FormWizard } from "@chaos_team/chaos-ui/business";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { Label } from "@chaos_team/chaos-ui/ui";
+import { Textarea } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof FormWizard> = {
   title: "Business/FormWizard",
   component: FormWizard,
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -49,7 +49,7 @@ export const Default: Story = {
           description: "Review and submit",
           render: () => (
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Click Submit to create your account.
               </p>
             </div>
@@ -59,4 +59,4 @@ export const Default: Story = {
       onComplete={() => alert("Wizard completed!")}
     />
   ),
-}
+};

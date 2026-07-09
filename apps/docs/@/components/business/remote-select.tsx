@@ -38,7 +38,10 @@ export interface RemoteOption {
 /** Fetcher receives the search keyword and returns options. / 按 keyword 查询 */
 export type RemoteFetcher = (keyword: string) => Promise<RemoteOption[]>;
 
-export interface RemoteSelectProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+export interface RemoteSelectProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   /** Async fetcher (receives keyword, returns options). / 异步查询函数 */
   fetcher: RemoteFetcher;
   /** Selected value / 选中值 */
@@ -124,7 +127,15 @@ export function RemoteSelect({
     }, debounceMs);
 
     return () => clearTimeout(handle);
-  }, [keyword, open, fetcher, debounceMs, cache, minKeywordLength, initialOptions]);
+  }, [
+    keyword,
+    open,
+    fetcher,
+    debounceMs,
+    cache,
+    minKeywordLength,
+    initialOptions,
+  ]);
 
   // Cache the selected option so the trigger label survives searches that
   // replace `options` (the selected item may no longer be in the result list).
@@ -141,7 +152,11 @@ export function RemoteSelect({
   const triggerSize = size === "sm" ? "sm" : "default";
 
   return (
-    <div data-slot="remote-select" className={cn("w-full", className)} {...props}>
+    <div
+      data-slot="remote-select"
+      className={cn("w-full", className)}
+      {...props}
+    >
       <Select
         value={value !== undefined ? String(value) : undefined}
         onValueChange={(v) => {
@@ -171,14 +186,14 @@ export function RemoteSelect({
             />
           </div>
           {error && (
-            <div className="px-3 py-2 text-xs text-destructive">{error}</div>
+            <div className="text-destructive px-3 py-2 text-xs">{error}</div>
           )}
           {loading ? (
             <div className="p-2">
               <Skeleton className="h-6 w-full" />
             </div>
           ) : options.length === 0 ? (
-            <div className="px-3 py-6 text-center text-sm text-muted-foreground">
+            <div className="text-muted-foreground px-3 py-6 text-center text-sm">
               {keyword ? "无匹配项" : "输入关键词搜索"}
             </div>
           ) : (

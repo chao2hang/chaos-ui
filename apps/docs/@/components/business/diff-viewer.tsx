@@ -51,7 +51,7 @@ export function DiffViewer({
       className={cn("overflow-hidden rounded-lg border", className)}
       {...props}
     >
-      <div className="grid grid-cols-[minmax(140px,0.7fr)_1fr_1fr_auto] border-b bg-muted/40 px-4 py-2 text-xs font-medium text-muted-foreground">
+      <div className="bg-muted/40 text-muted-foreground grid grid-cols-[minmax(140px,0.7fr)_1fr_1fr_auto] border-b px-4 py-2 text-xs font-medium">
         <span>Field</span>
         <span>{beforeLabel}</span>
         <span>{afterLabel}</span>

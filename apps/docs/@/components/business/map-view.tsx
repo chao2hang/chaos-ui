@@ -10,7 +10,10 @@ import { cn } from "@chaos_team/chaos-ui/lib";
  */
 let amapPromise: Promise<Record<string, unknown>> | null = null;
 
-function loadAMap(key: string, version = "2.0"): Promise<Record<string, unknown>> {
+function loadAMap(
+  key: string,
+  version = "2.0",
+): Promise<Record<string, unknown>> {
   if (amapPromise) return amapPromise;
 
   amapPromise = new Promise((resolve, reject) => {
@@ -22,7 +25,9 @@ function loadAMap(key: string, version = "2.0"): Promise<Record<string, unknown>
     script.src = `https://webapi.amap.com/maps?v=${version}&key=${key}`;
     script.onload = () => {
       if ((window as unknown as { AMap?: Record<string, unknown> }).AMap) {
-        resolve((window as unknown as { AMap?: Record<string, unknown> }).AMap!);
+        resolve(
+          (window as unknown as { AMap?: Record<string, unknown> }).AMap!,
+        );
       } else {
         reject(new Error("AMap JSAPI loaded but AMap not found on window"));
       }
@@ -82,7 +87,8 @@ function MapView({
 
   const key =
     amapKey ||
-    (typeof process !== "undefined" && (process.env as Record<string, string>).AMAP_KEY) ||
+    (typeof process !== "undefined" &&
+      (process.env as Record<string, string>).AMAP_KEY) ||
     "";
 
   React.useEffect(() => {
@@ -97,7 +103,10 @@ function MapView({
       .then((amap: Record<string, unknown>) => {
         if (cancelled || !containerRef.current) return;
         const AMap = amap as Record<string, unknown>;
-        const MapCtor = AMap.Map as new (el: HTMLElement, opts: Record<string, unknown>) => AMap.Map;
+        const MapCtor = AMap.Map as new (
+          el: HTMLElement,
+          opts: Record<string, unknown>,
+        ) => AMap.Map;
         const map = new MapCtor(containerRef.current, {
           center,
           zoom,
@@ -109,7 +118,9 @@ function MapView({
 
         if (onClick) {
           map.on("click", (e: unknown) => {
-            const ev = e as { lnglat: { getLng: () => number; getLat: () => number } };
+            const ev = e as {
+              lnglat: { getLng: () => number; getLat: () => number };
+            };
             onClick([ev.lnglat.getLng(), ev.lnglat.getLat()]);
           });
         }
@@ -130,17 +141,20 @@ function MapView({
   return (
     <div
       data-slot="map-view"
-      className={cn("relative overflow-hidden rounded-lg border bg-muted", className)}
+      className={cn(
+        "bg-muted relative overflow-hidden rounded-lg border",
+        className,
+      )}
       style={{ height }}
     >
       {loading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-muted/80">
-          <span className="text-sm text-muted-foreground">{t("loading")}</span>
+        <div className="bg-muted/80 absolute inset-0 z-10 flex items-center justify-center">
+          <span className="text-muted-foreground text-sm">{t("loading")}</span>
         </div>
       )}
       {error && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-muted/80">
-          <span className="text-sm text-destructive">{error}</span>
+        <div className="bg-muted/80 absolute inset-0 z-10 flex items-center justify-center">
+          <span className="text-destructive text-sm">{error}</span>
         </div>
       )}
       <div ref={containerRef} className="size-full" />

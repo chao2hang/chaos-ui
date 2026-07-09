@@ -1,5 +1,5 @@
-import { MasterDetailLayout } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { MasterDetailLayout } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # MasterDetailLayout 主次布局
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <MasterDetailLayout />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MasterDetailLayout
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `master` | `React.ReactNode` | — |  |
-| `detail` | `React.ReactNode` | — |  |
-| `masterWidth` | `number` | — |  |
-| `defaultMasterWidth` | `number` | `320` |  |
-| `minMasterWidth` | `number` | `240` |  |
-| `maxMasterWidth` | `number` | `480` |  |
-| `resizable` | `boolean` | `true` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop                 | Type                          | Default | 说明 / Description                                          |
+| -------------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`          | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `master`             | `React.ReactNode`             | —       |                                                             |
+| `detail`             | `React.ReactNode`             | —       |                                                             |
+| `masterWidth`        | `number`                      | —       |                                                             |
+| `defaultMasterWidth` | `number`                      | `320`   |                                                             |
+| `minMasterWidth`     | `number`                      | `240`   |                                                             |
+| `maxMasterWidth`     | `number`                      | `480`   |                                                             |
+| `resizable`          | `boolean`                     | `true`  |                                                             |
+| ...rest              | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

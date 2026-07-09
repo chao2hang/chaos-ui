@@ -119,7 +119,7 @@ function RuleEditor({ rules = [], onChange, className }: RuleEditorProps) {
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {items.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground py-6 text-center text-sm">
               暂无规则，请点击新增。
             </p>
           ) : (
@@ -228,7 +228,7 @@ function RuleEditor({ rules = [], onChange, className }: RuleEditorProps) {
               新增规则
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             共 {items.length} 条规则。
           </p>
         </CardContent>

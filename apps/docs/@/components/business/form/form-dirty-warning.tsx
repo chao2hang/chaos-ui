@@ -1,6 +1,6 @@
-"use client"
-import * as React from "react"
-import { AlertTriangleIcon, XIcon } from "lucide-react"
+"use client";
+import * as React from "react";
+import { AlertTriangleIcon, XIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -8,19 +8,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chaos_team/chaos-ui/ui"
-import { Button } from "@chaos_team/chaos-ui/ui"
+} from "@chaos_team/chaos-ui/ui";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface FormDirtyWarningProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  onDiscard: () => void
-  onSave?: () => Promise<void> | void
-  message?: string
-  saveText?: string
-  discardText?: string
-  cancelText?: string
-  saving?: boolean
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onDiscard: () => void;
+  onSave?: () => Promise<void> | void;
+  message?: string;
+  saveText?: string;
+  discardText?: string;
+  cancelText?: string;
+  saving?: boolean;
 }
 
 export function FormDirtyWarning({
@@ -34,23 +34,23 @@ export function FormDirtyWarning({
   cancelText = "取消",
   saving,
 }: FormDirtyWarningProps) {
-  const [pending, setPending] = React.useState(false)
+  const [pending, setPending] = React.useState(false);
   const handleSave = async () => {
-    if (!onSave) return
-    setPending(true)
+    if (!onSave) return;
+    setPending(true);
     try {
-      await onSave()
-      onOpenChange(false)
+      await onSave();
+      onOpenChange(false);
     } finally {
-      setPending(false)
+      setPending(false);
     }
-  }
+  };
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent showCloseButton={false} className="sm:max-w-sm">
         <DialogHeader>
           <div className="flex items-start gap-3">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-warning/10 text-warning">
+            <div className="bg-warning/10 text-warning flex size-9 shrink-0 items-center justify-center rounded-full">
               <AlertTriangleIcon className="size-4" />
             </div>
             <div>
@@ -60,10 +60,18 @@ export function FormDirtyWarning({
           </div>
         </DialogHeader>
         <DialogFooter className="flex-col-reverse gap-2 sm:flex-row">
-          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={pending || saving}>
+          <Button
+            variant="outline"
+            onClick={() => onOpenChange(false)}
+            disabled={pending || saving}
+          >
             {cancelText}
           </Button>
-          <Button variant="destructive" onClick={onDiscard} disabled={pending || saving}>
+          <Button
+            variant="destructive"
+            onClick={onDiscard}
+            disabled={pending || saving}
+          >
             <XIcon />
             {discardText}
           </Button>
@@ -75,5 +83,5 @@ export function FormDirtyWarning({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

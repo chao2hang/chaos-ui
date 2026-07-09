@@ -1,5 +1,5 @@
-import { TreeTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TreeTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TreeTable
 
@@ -11,7 +11,6 @@ TreeTable — a business component for ERP / enterprise scenarios.
 
 Use when you need a tree table.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <TreeTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TreeTable
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `data` | `TreeNode[]` | — | Data source |
-| `columns` | `Array<{` | — | Column configuration |
-| `key` | `string` | — |  |
-| `header` | `string` | — |  |
-| `defaultExpanded` | `boolean` | `false` |  |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop              | Type                          | Default | Description                     |
+| ----------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`       | `string`                      | —       | Custom CSS class                |
+| `data`            | `TreeNode[]`                  | —       | Data source                     |
+| `columns`         | `Array<{`                     | —       | Column configuration            |
+| `key`             | `string`                      | —       |                                 |
+| `header`          | `string`                      | —       |                                 |
+| `defaultExpanded` | `boolean`                     | `false` |                                 |
+| ...rest           | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ErrorBoundary } from "@chaos_team/chaos-ui/business"
-import { Button } from "@chaos_team/chaos-ui/ui"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ErrorBoundary } from "@chaos_team/chaos-ui/business";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof ErrorBoundary> = {
   title: "Business/ErrorBoundary",
@@ -8,12 +8,12 @@ const meta: Meta<typeof ErrorBoundary> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function Bomb({ shouldThrow }: { shouldThrow: boolean }) {
-  if (shouldThrow) throw new Error("炸弹爆炸了")
-  return <div className="p-4 text-sm">正常内容</div>
+  if (shouldThrow) throw new Error("炸弹爆炸了");
+  return <div className="p-4 text-sm">正常内容</div>;
 }
 
 export const Default: Story = {
@@ -24,7 +24,7 @@ export const Default: Story = {
       </ErrorBoundary>
     </div>
   ),
-}
+};
 
 export const WithError: Story = {
   render: () => (
@@ -34,24 +34,26 @@ export const WithError: Story = {
       </ErrorBoundary>
     </div>
   ),
-}
+};
 
 export const CustomFallback: Story = {
   render: () => (
     <ErrorBoundary
       fallback={(error, reset) => (
-        <div className="space-y-3 rounded-md border bg-muted/30 p-6 text-center">
+        <div className="bg-muted/30 space-y-3 rounded-md border p-6 text-center">
           <p className="text-sm">自定义错误：{error.message}</p>
-          <Button size="sm" onClick={reset}>重试</Button>
+          <Button size="sm" onClick={reset}>
+            重试
+          </Button>
         </div>
       )}
     >
       <Bomb shouldThrow={true} />
     </ErrorBoundary>
   ),
-}
+};
 
 export const Dark: Story = {
   ...WithError,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

@@ -83,11 +83,12 @@ function Callout({
         className,
       )}
     >
-      <Icon className={cn("mt-0.5 size-5 shrink-0", v.icon)} aria-hidden="true" />
+      <Icon
+        className={cn("mt-0.5 size-5 shrink-0", v.icon)}
+        aria-hidden="true"
+      />
       <div className="min-w-0 flex-1">
-        {title ? (
-          <p className="font-semibold leading-snug">{title}</p>
-        ) : null}
+        {title ? <p className="leading-snug font-semibold">{title}</p> : null}
         <div className={cn(title ? "mt-0.5" : "", "text-sm leading-snug")}>
           {children}
         </div>

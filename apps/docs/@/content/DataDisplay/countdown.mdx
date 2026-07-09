@@ -1,5 +1,5 @@
-import { Countdown } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Countdown } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Countdown 倒计时
 
@@ -26,52 +26,57 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Countdown variant="default">Default</Countdown>
   <Countdown variant="primary">Primary</Countdown>
   <Countdown variant="muted">Muted</Countdown>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Countdown size="sm">Sm</Countdown>
   <Countdown size="default">Default</Countdown>
   <Countdown size="lg">Lg</Countdown>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认样式 / Default style | ✓ |
-| `primary` | 主要样式 / Primary style |  |
-| `muted` |  |  |
+| Variant   | 说明 / Description       | 默认 |
+| --------- | ------------------------ | ---- |
+| `default` | 默认样式 / Default style | ✓    |
+| `primary` | 主要样式 / Primary style |      |
+| `muted`   |                          |      |
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 ## API / Props
 
 ### Countdown
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `target` | `Date \| number \| string` | — | Target date/time (ISO string or timestamp) |
-| `onFinish` | `() => void` | — | Called when countdown reaches 0 |
-| `format` | `string` | `HH:mm:ss` | Format: D=days, H=hours, M=minutes, S=seconds |
-| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop        | Type                           | Default    | 说明 / Description                                            |
+| ----------- | ------------------------------ | ---------- | ------------------------------------------------------------- |
+| `className` | `string`                       | —          | 自定义样式类名 <br/> Custom CSS class                         |
+| `target`    | `Date \| number \| string`     | —          | Target date/time (ISO string or timestamp)                    |
+| `onFinish`  | `() => void`                   | —          | Called when countdown reaches 0                               |
+| `format`    | `string`                       | `HH:mm:ss` | Format: D=days, H=hours, M=minutes, S=seconds                 |
+| ...rest     | `React.ComponentProps<"span">` | —          | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { SearchTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SearchTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SearchTable 搜索表格
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <SearchTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SearchTable
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `columns` | `SearchTableColumn[]` | — | 列配置 <br/> Column configuration |
-| `data` | `Record<string, unknown>[]` | — | 数据源 <br/> Data source |
-| `searchKeys` | `string[]` | — |  |
-| `searchPlaceholder` | `string` | `搜索...` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop                | Type                          | Default   | 说明 / Description                                          |
+| ------------------- | ----------------------------- | --------- | ----------------------------------------------------------- |
+| `className`         | `string`                      | —         | 自定义样式类名 <br/> Custom CSS class                       |
+| `columns`           | `SearchTableColumn[]`         | —         | 列配置 <br/> Column configuration                           |
+| `data`              | `Record<string, unknown>[]`   | —         | 数据源 <br/> Data source                                    |
+| `searchKeys`        | `string[]`                    | —         |                                                             |
+| `searchPlaceholder` | `string`                      | `搜索...` |                                                             |
+| ...rest             | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

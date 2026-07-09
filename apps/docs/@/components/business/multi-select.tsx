@@ -11,7 +11,11 @@ import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Badge } from "@chaos_team/chaos-ui/ui";
 import { Input } from "@chaos_team/chaos-ui/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chaos_team/chaos-ui/ui";
 
 export interface MultiSelectOption {
   value: string;

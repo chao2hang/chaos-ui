@@ -68,7 +68,15 @@ function PolicyLineEditor({
     const id = `row-${Date.now()}`;
     commit([
       ...localRows,
-      { id, name: "", type: "discount", condition: "", reward: "", quota: 0, used: 0 },
+      {
+        id,
+        name: "",
+        type: "discount",
+        condition: "",
+        reward: "",
+        quota: 0,
+        used: 0,
+      },
     ]);
   };
 
@@ -79,20 +87,37 @@ function PolicyLineEditor({
     >
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b text-left text-muted-foreground">
-            <th scope="col" className="px-2 py-1.5 font-medium">政策名称</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">类型</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">条件</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">奖励</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">额度</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">使用量</th>
-            <th scope="col" className="px-2 py-1.5 font-medium">操作</th>
+          <tr className="text-muted-foreground border-b text-left">
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              政策名称
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              类型
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              条件
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              奖励
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              额度
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              使用量
+            </th>
+            <th scope="col" className="px-2 py-1.5 font-medium">
+              操作
+            </th>
           </tr>
         </thead>
         <tbody>
           {localRows.length === 0 ? (
             <tr>
-              <td colSpan={7} className="px-2 py-4 text-center text-muted-foreground">
+              <td
+                colSpan={7}
+                className="text-muted-foreground px-2 py-4 text-center"
+              >
                 暂无政策明细
               </td>
             </tr>
@@ -106,28 +131,36 @@ function PolicyLineEditor({
                     <Input
                       aria-label={`政策名称 ${row.id}`}
                       value={row.name}
-                      onChange={(e) => updateField(row.id, "name", e.target.value)}
+                      onChange={(e) =>
+                        updateField(row.id, "name", e.target.value)
+                      }
                     />
                   </td>
                   <td className="px-2 py-1.5">
                     <Input
                       aria-label={`类型 ${row.id}`}
                       value={row.type}
-                      onChange={(e) => updateField(row.id, "type", e.target.value)}
+                      onChange={(e) =>
+                        updateField(row.id, "type", e.target.value)
+                      }
                     />
                   </td>
                   <td className="px-2 py-1.5">
                     <Input
                       aria-label={`条件 ${row.id}`}
                       value={row.condition}
-                      onChange={(e) => updateField(row.id, "condition", e.target.value)}
+                      onChange={(e) =>
+                        updateField(row.id, "condition", e.target.value)
+                      }
                     />
                   </td>
                   <td className="px-2 py-1.5">
                     <Input
                       aria-label={`奖励 ${row.id}`}
                       value={row.reward}
-                      onChange={(e) => updateField(row.id, "reward", e.target.value)}
+                      onChange={(e) =>
+                        updateField(row.id, "reward", e.target.value)
+                      }
                     />
                   </td>
                   <td className="px-2 py-1.5">
@@ -145,7 +178,7 @@ function PolicyLineEditor({
                       <Progress value={pct} aria-label={`使用进度 ${row.id}`}>
                         <ProgressIndicator style={{ width: `${pct}%` }} />
                       </Progress>
-                      <span className="text-xs tabular-nums text-muted-foreground">
+                      <span className="text-muted-foreground text-xs tabular-nums">
                         {row.used} / {row.quota}
                       </span>
                     </div>
@@ -169,7 +202,9 @@ function PolicyLineEditor({
       </table>
 
       <div className="flex items-center justify-between">
-        <Label className="text-muted-foreground">共 {localRows.length} 条</Label>
+        <Label className="text-muted-foreground">
+          共 {localRows.length} 条
+        </Label>
         <Button type="button" variant="outline" size="sm" onClick={addRow}>
           <PlusIcon className="size-4" aria-hidden />
           新增政策

@@ -55,15 +55,19 @@ function MasterListTemplate({
       <div className="flex flex-wrap items-center gap-3">
         <h2 className="text-lg font-semibold">{title}</h2>
         {onSearch && (
-          <form role="search" onSubmit={handleSearch} className="relative ml-auto">
-            <SearchIcon className="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <form
+            role="search"
+            onSubmit={handleSearch}
+            className="relative ml-auto"
+          >
+            <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2" />
             <input
               type="search"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder={searchPlaceholder}
               aria-label={searchPlaceholder}
-              className="h-8 w-56 rounded-lg border bg-background pl-8 pr-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="bg-background focus-visible:ring-ring h-8 w-56 rounded-lg border pr-3 pl-8 text-sm outline-none focus-visible:ring-2"
             />
           </form>
         )}
@@ -73,8 +77,12 @@ function MasterListTemplate({
           </Button>
         )}
       </div>
-      <div className="flex-1 rounded-lg border bg-card">
-        {children ?? <p className="p-8 text-center text-sm text-muted-foreground">暂无数据</p>}
+      <div className="bg-card flex-1 rounded-lg border">
+        {children ?? (
+          <p className="text-muted-foreground p-8 text-center text-sm">
+            暂无数据
+          </p>
+        )}
       </div>
     </div>
   );

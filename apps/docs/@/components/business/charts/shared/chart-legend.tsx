@@ -1,23 +1,26 @@
-"use client"
-import * as React from "react"
-import { cn } from "@chaos_team/chaos-ui/lib"
+"use client";
+import * as React from "react";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface LegendPayloadEntry {
-  value?: string
-  color?: string
+  value?: string;
+  color?: string;
 }
 
 interface ChartLegendProps {
-  payload?: LegendPayloadEntry[]
-  className?: string
+  payload?: LegendPayloadEntry[];
+  className?: string;
 }
 
 export function ChartLegend({ payload, className }: ChartLegendProps) {
-  if (!payload?.length) return null
+  if (!payload?.length) return null;
   return (
     <ul
       data-slot="chart-legend"
-      className={cn("flex flex-wrap items-center justify-center gap-3 text-xs", className)}
+      className={cn(
+        "flex flex-wrap items-center justify-center gap-3 text-xs",
+        className,
+      )}
     >
       {payload.map((entry: LegendPayloadEntry, i: number) => (
         <li key={i} className="flex items-center gap-1.5">
@@ -29,5 +32,5 @@ export function ChartLegend({ payload, className }: ChartLegendProps) {
         </li>
       ))}
     </ul>
-  )
+  );
 }

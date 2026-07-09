@@ -1,11 +1,11 @@
-import { StatCardWithDelta } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { StatCardWithDelta } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # StatCardWithDelta Stat Card With Delta
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 统计卡 + 增减标签
+统计卡 + 增减标签
 StatCardWithDelta — stat card with delta component.
 
 ## 何时使用 / When to Use
@@ -24,19 +24,18 @@ export function Basic() {
   return <StatCardWithDelta />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### StatCardWithDelta
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `label` | `string` | `指标` | KPI caption. |
-| `value` | `string \| number` | `0` | KPI value. |
-| `delta` | `number` | `0` | Trend percentage. |
-| `icon` | `LucideIcon` | — | Leading icon component. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `label`     | `string`               | `指标`  | KPI caption.                                              |
+| `value`     | `string \| number`     | `0`     | KPI value.                                                |
+| `delta`     | `number`               | `0`     | Trend percentage.                                         |
+| `icon`      | `LucideIcon`           | —       | Leading icon component.                                   |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

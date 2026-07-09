@@ -1,5 +1,5 @@
-import { ChatAgentStatus } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ChatAgentStatus } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ChatAgentStatus Chat Agent Status
 
@@ -24,17 +24,16 @@ export function Basic() {
   return <ChatAgentStatus />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChatAgentStatus
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `status` | `"idle" \| "thinking" \| "acting" \| "...` | — | 状态 <br/> Status |
-| `label` | `string` | — | 标签文本 <br/> Label text |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                                       | Default | 说明 / Description                                        |
+| ----------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
+| `className` | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `status`    | `"idle" \| "thinking" \| "acting" \| "...` | —       | 状态 <br/> Status                                         |
+| `label`     | `string`                                   | —       | 标签文本 <br/> Label text                                 |
+| ...rest     | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

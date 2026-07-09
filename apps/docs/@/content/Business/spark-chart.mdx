@@ -1,11 +1,11 @@
-import { SparkChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SparkChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SparkChart Spark Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 迷你趋势图
+迷你趋势图
 SparkChart — spark chart component.
 
 ## 何时使用 / When to Use
@@ -24,19 +24,18 @@ export function Basic() {
   return <SparkChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SparkChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `number[]` | — | Numeric series. |
-| `width` | `number` | `120` | SVG width in px. |
-| `height` | `number` | `32` | SVG height in px. |
-| `color` | `string` | `currentColor` | Line color. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default        | 说明 / Description                                        |
+| ----------- | ---------------------- | -------------- | --------------------------------------------------------- |
+| `className` | `string`               | —              | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`      | `number[]`             | —              | Numeric series.                                           |
+| `width`     | `number`               | `120`          | SVG width in px.                                          |
+| `height`    | `number`               | `32`           | SVG height in px.                                         |
+| `color`     | `string`               | `currentColor` | Line color.                                               |
+| ...rest     | `React.HTMLAttributes` | —              | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { EmbedLayout } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { EmbedLayout } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # EmbedLayout Embed Layout
 
@@ -11,7 +11,6 @@ EmbedLayout — a system-level layout shell for admin/dashboard/auth pages.
 
 Use when you need an embed layout.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,19 +21,16 @@ export function Basic() {
   return <EmbedLayout />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### EmbedLayout
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `header` | `React.ReactNode` | — | Optional top bar (title/actions) rendered inside a `<header>`. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                                                    |
+| ----------- | ---------------------- | ------- | -------------------------------------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                                               |
+| `header`    | `React.ReactNode`      | —       | Optional top bar (title/actions) rendered inside a `<header>`. |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                              |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

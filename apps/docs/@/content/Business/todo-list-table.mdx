@@ -1,5 +1,5 @@
-import { TodoListTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TodoListTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TodoListTable Todo List Table
 
@@ -24,17 +24,16 @@ export function Basic() {
   return <TodoListTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TodoListTable
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `TodoItem[]` | — | Todo items. Defaults to a small sample list so the table is never empty. |
-| `onToggle` | `() => void` | — | Called with the toggled item id whenever a checkbox is clicked. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                                       |
+| ----------- | ---------------------- | ------- | ------------------------------------------------------------------------ |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                                    |
+| `items`     | `TodoItem[]`           | —       | Todo items. Defaults to a small sample list so the table is never empty. |
+| `onToggle`  | `() => void`           | —       | Called with the toggled item id whenever a checkbox is clicked.          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes                |
 
 ## 注意事项 / Notes
 

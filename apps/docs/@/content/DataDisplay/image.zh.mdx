@@ -1,5 +1,5 @@
-import { Image } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Image } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Image 图片
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要图片功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,43 +21,42 @@ export function Basic() {
   return <Image />
 }`} lang="tsx" />
 
-
 ## 样式变体
 
 **fit**
 
-| fit | 说明 | 默认 |
-|---|---|---|
-| `cover` |  | ✓ |
-| `contain` |  |  |
-| `fill` |  |  |
-| `none` |  |  |
+| fit       | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `cover`   |      | ✓    |
+| `contain` |      |      |
+| `fill`    |      |      |
+| `none`    |      |      |
 
 **rounded**
 
-| rounded | 说明 | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
-| `full` |  |  |
+| rounded   | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `none`    |      |      |
+| `sm`      |      |      |
+| `default` |      | ✓    |
+| `lg`      |      |      |
+| `full`    |      |      |
 
 ## API / Props
 
 ### Image
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `src` | `string` | — | 资源地址 |
-| `alt` | `string` | — | 替代文本 |
-| `fallback` | `React.ReactNode` | — | Fallback element shown while loading or on error |
-| `width` | `number \| string` | — | Width |
-| `height` | `number \| string` | — | Height |
-| `onError` | `() => void` | — | Called when image fails to load |
-| `onLoad` | `() => void` | — | Called when image loads successfully |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop        | Type                          | Default | 说明                                             |
+| ----------- | ----------------------------- | ------- | ------------------------------------------------ |
+| `className` | `string`                      | —       | 自定义样式类名                                   |
+| `src`       | `string`                      | —       | 资源地址                                         |
+| `alt`       | `string`                      | —       | 替代文本                                         |
+| `fallback`  | `React.ReactNode`             | —       | Fallback element shown while loading or on error |
+| `width`     | `number \| string`            | —       | Width                                            |
+| `height`    | `number \| string`            | —       | Height                                           |
+| `onError`   | `() => void`                  | —       | Called when image fails to load                  |
+| `onLoad`    | `() => void`                  | —       | Called when image loads successfully             |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性                            |
 
 ## 注意事项
 
@@ -67,4 +65,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-image--docs)。
-

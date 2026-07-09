@@ -1,5 +1,5 @@
-import { Checkbox } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Checkbox } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Checkbox
 
@@ -10,7 +10,6 @@ Multi-select from a group, or standalone toggle for binary state.
 ## When to Use
 
 Select multiple items from a group, or toggle a single binary state.
-
 
 ## Examples
 
@@ -24,22 +23,22 @@ export function Basic() {
 
 ### States
 
-<CodeBlock code={`<Checkbox>Normal</Checkbox>
-<Checkbox disabled>Disabled</Checkbox>`} lang="tsx" />
-
+<CodeBlock
+  code={`<Checkbox>Normal</Checkbox>
+<Checkbox disabled>Disabled</Checkbox>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### Checkbox
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

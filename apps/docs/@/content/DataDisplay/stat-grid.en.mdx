@@ -1,5 +1,5 @@
-import { StatGrid } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { StatGrid } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # StatGrid
 
@@ -11,7 +11,6 @@ StatGrid — Responsive metric/stat grid with auto-layout and trend indicators.
 
 Use when you need a statgrid.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,18 +21,15 @@ export function Basic() {
   return <StatGrid />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### StatGrid
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

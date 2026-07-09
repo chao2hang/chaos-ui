@@ -1,5 +1,5 @@
-import { HeatmapCalendar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { HeatmapCalendar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # HeatmapCalendar 热力日历
 
@@ -24,25 +24,24 @@ export function Basic() {
   return <HeatmapCalendar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### HeatmapCalendar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `Array<T>` | — | 数据源 <br/> Data source |
-| `startDate` | `Date` | — |  |
-| `endDate` | `Date` | — |  |
-| `weekStartsOn` | `0 \| 1` | `0` |  |
-| `cellSize` | `number` | `12` |  |
-| `gap` | `number` | `2` | 间距 <br/> Gap between items |
-| `levels` | `number` | `5` |  |
-| `legendClassName` | `string` | — |  |
-| `showLegend` | `boolean` | `true` |  |
-| `colorStops` | `[string, string, string, string, string]` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop              | Type                                       | Default | 说明 / Description                                          |
+| ----------------- | ------------------------------------------ | ------- | ----------------------------------------------------------- |
+| `className`       | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `data`            | `Array<T>`                                 | —       | 数据源 <br/> Data source                                    |
+| `startDate`       | `Date`                                     | —       |                                                             |
+| `endDate`         | `Date`                                     | —       |                                                             |
+| `weekStartsOn`    | `0 \| 1`                                   | `0`     |                                                             |
+| `cellSize`        | `number`                                   | `12`    |                                                             |
+| `gap`             | `number`                                   | `2`     | 间距 <br/> Gap between items                                |
+| `levels`          | `number`                                   | `5`     |                                                             |
+| `legendClassName` | `string`                                   | —       |                                                             |
+| `showLegend`      | `boolean`                                  | `true`  |                                                             |
+| `colorStops`      | `[string, string, string, string, string]` | —       |                                                             |
+| ...rest           | `React.ComponentProps<"div">`              | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

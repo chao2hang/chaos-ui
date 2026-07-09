@@ -41,7 +41,8 @@ function TreemapChart({
   className,
 }: TreemapChartProps) {
   const total = data.reduce((s, d) => s + d.value, 0) || 1;
-  const cols = data.length <= 2 ? data.length : Math.ceil(Math.sqrt(data.length));
+  const cols =
+    data.length <= 2 ? data.length : Math.ceil(Math.sqrt(data.length));
 
   return (
     <div

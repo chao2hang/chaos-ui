@@ -1,5 +1,5 @@
-import { DeltaBar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DeltaBar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DeltaBar Delta Bar
 
@@ -11,7 +11,6 @@ DeltaBar — delta bar component.
 
 Use when you need a delta bar.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <DeltaBar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DeltaBar
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `number` | — | Current value (controlled) |
-| `maxValue` | `number` | — |  |
-| `label` | `string` | — | Label text |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `value`     | `number`               | —       | Current value (controlled)        |
+| `maxValue`  | `number`               | —       |                                   |
+| `label`     | `string`               | —       | Label text                        |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
-
-

@@ -1,11 +1,11 @@
-import { CalendarView } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CalendarView } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CalendarView Calendar View
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<CalendarView events={[{id:"1",date:"2026-06-15",title:"盘点"}]} />
+<CalendarView events={[{ id: "1", date: "2026-06-15", title: "盘点" }]} />
 CalendarView — calendar view component.
 
 ## 何时使用 / When to Use
@@ -26,20 +26,22 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock code={`<CalendarView>Normal</CalendarView>
-<CalendarView disabled>Disabled</CalendarView>`} lang="tsx" />
-
+<CodeBlock
+  code={`<CalendarView>Normal</CalendarView>
+<CalendarView disabled>Disabled</CalendarView>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### CalendarView
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `events` | `Array<T>` | — |  |
-| `onDateSelect` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `events`       | `Array<T>`             | —       |                                                           |
+| `onDateSelect` | `() => void`           | —       |                                                           |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

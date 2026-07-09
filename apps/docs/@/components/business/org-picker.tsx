@@ -13,7 +13,11 @@ import {
   DialogTitle,
 } from "@chaos_team/chaos-ui/ui";
 import { TreeView } from "@chaos_team/chaos-ui/ui";
-import { Building2Icon, SearchIcon, UsersIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  Building2Icon,
+  SearchIcon,
+  UsersIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */

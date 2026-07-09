@@ -1,5 +1,5 @@
-import { MultiCurrencyInput } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MultiCurrencyInput } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MultiCurrencyInput Multi Currency Input
 
@@ -24,28 +24,27 @@ export function Basic() {
   return <MultiCurrencyInput />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MultiCurrencyInput
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `number` | `0` | Amount value in the selected (source) currency |
-| `onChange` | `() => void` | — | Change callback with amount and computed base amount |
-| `currencies` | `CurrencyOption[]` | — | Available currencies (default: common set) |
-| `currency` | `string` | `USD` | Selected currency code |
-| `onCurrencyChange` | `() => void` | — | Currency change callback |
-| `baseCurrency` | `string` | `CNY` | Base currency code (default: "CNY") |
-| `rate` | `number` | — | Exchange rate (1 source = rate base). If not provided, looked up from rates map |
-| `onRateChange` | `() => void` | — | Rate override callback |
-| `rates` | `Record<string, number>` | — | Exchange rate map (e.g. USD: 7.25, EUR: 7.85) |
-| `readOnly` | `boolean` | — | Read-only mode |
-| `allowRateOverride` | `boolean` | — | Allow manual rate override (default: true) |
-| `showConversion` | `boolean` | — | Show conversion preview (default: true) |
-| `placeholder` | `string` | — | Placeholder text |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                     | Default | 说明 / Description                                                              |
+| ------------------- | ------------------------ | ------- | ------------------------------------------------------------------------------- |
+| `className`         | `string`                 | —       | 自定义样式类名 <br/> Custom CSS class                                           |
+| `value`             | `number`                 | `0`     | Amount value in the selected (source) currency                                  |
+| `onChange`          | `() => void`             | —       | Change callback with amount and computed base amount                            |
+| `currencies`        | `CurrencyOption[]`       | —       | Available currencies (default: common set)                                      |
+| `currency`          | `string`                 | `USD`   | Selected currency code                                                          |
+| `onCurrencyChange`  | `() => void`             | —       | Currency change callback                                                        |
+| `baseCurrency`      | `string`                 | `CNY`   | Base currency code (default: "CNY")                                             |
+| `rate`              | `number`                 | —       | Exchange rate (1 source = rate base). If not provided, looked up from rates map |
+| `onRateChange`      | `() => void`             | —       | Rate override callback                                                          |
+| `rates`             | `Record<string, number>` | —       | Exchange rate map (e.g. USD: 7.25, EUR: 7.85)                                   |
+| `readOnly`          | `boolean`                | —       | Read-only mode                                                                  |
+| `allowRateOverride` | `boolean`                | —       | Allow manual rate override (default: true)                                      |
+| `showConversion`    | `boolean`                | —       | Show conversion preview (default: true)                                         |
+| `placeholder`       | `string`                 | —       | Placeholder text                                                                |
+| ...rest             | `React.HTMLAttributes`   | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes                       |
 
 ## 注意事项 / Notes
 

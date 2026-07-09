@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { LoadingPage, FullPageLoader } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import { LoadingPage, FullPageLoader } from "@chaos_team/chaos-ui/business";
 
 const meta = {
   title: "Business/LoadingPage",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -16,7 +16,7 @@ export const Default: Story = {
       <LoadingPage title="加载中..." description="请稍候片刻" />
     </div>
   ),
-}
+};
 
 export const Dots: Story = {
   render: () => (
@@ -24,7 +24,7 @@ export const Dots: Story = {
       <LoadingPage title="正在准备数据" variant="dots" />
     </div>
   ),
-}
+};
 
 export const Pulse: Story = {
   render: () => (
@@ -32,7 +32,7 @@ export const Pulse: Story = {
       <LoadingPage title="同步中" variant="pulse" />
     </div>
   ),
-}
+};
 
 export const FullPageExample: Story = {
   render: () => (
@@ -42,9 +42,9 @@ export const FullPageExample: Story = {
       </FullPageLoader>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

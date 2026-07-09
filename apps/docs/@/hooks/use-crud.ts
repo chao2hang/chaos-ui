@@ -170,7 +170,11 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   const fetchData = React.useCallback(async () => {
     setLoading(true);
     try {
-      const result = await fetcher(pagination.page, pagination.pageSize, filters);
+      const result = await fetcher(
+        pagination.page,
+        pagination.pageSize,
+        filters,
+      );
       setData(result.list);
       setTotal(result.total);
     } finally {
@@ -178,7 +182,9 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     }
   }, [fetcher, pagination.page, pagination.pageSize, filters]);
 
-  React.useEffect(() => { fetchData(); }, [fetchData]);
+  React.useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   // setFilters: shallow-merge patch and reset to page 1 so the new filter
   // takes effect immediately (don't stay on a now-empty high page).
@@ -215,7 +221,7 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
 
   const updateFormField = React.useCallback(
     <K extends keyof F>(key: K, value: F[K]) => {
-      setForm((prev) => ({ ...prev, [key]: value } as F));
+      setForm((prev) => ({ ...prev, [key]: value }) as F);
     },
     [],
   );
@@ -232,11 +238,19 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     try {
       if (isEdit && editing && onUpdate) {
         await onUpdate(editing[rowKey] as string | number, form);
-        const msg = getSuccessMsg(successMessage, "update", "Updated successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "update",
+          "Updated successfully",
+        );
         if (msg !== false) message.success(msg);
       } else if (onCreate) {
         await onCreate(form);
-        const msg = getSuccessMsg(successMessage, "create", "Created successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "create",
+          "Created successfully",
+        );
         if (msg !== false) message.success(msg);
       }
       setModalOpen(false);
@@ -244,16 +258,33 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
     } catch {
       message.error("Operation failed");
     }
-  }, [editing, form, isEdit, onCreate, onUpdate, onValidate, rowKey, fetchData, message, successMessage]);
+  }, [
+    editing,
+    form,
+    isEdit,
+    onCreate,
+    onUpdate,
+    onValidate,
+    rowKey,
+    fetchData,
+    message,
+    successMessage,
+  ]);
 
   const handleDelete = React.useCallback(
     async (record: T) => {
       if (!onDelete) return;
-      const confirmed = globalThis.confirm?.(deleteConfirmTitle ?? "Are you sure you want to delete this item?");
+      const confirmed = globalThis.confirm?.(
+        deleteConfirmTitle ?? "Are you sure you want to delete this item?",
+      );
       if (!confirmed) return;
       try {
         await onDelete(record[rowKey] as string | number);
-        const msg = getSuccessMsg(successMessage, "delete", "Deleted successfully");
+        const msg = getSuccessMsg(
+          successMessage,
+          "delete",
+          "Deleted successfully",
+        );
         if (msg !== false) message.success(msg);
         await fetchData();
       } catch {
@@ -264,12 +295,34 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   );
 
   return {
-    data, total, loading, filters, setFilters, resetFilters, pagination,
-    modalOpen, setModalOpen, editing, form, setForm, updateFormField,
-    handleAdd, handleEdit, handleSubmit, handleDelete,
-    refresh: fetchData, isEdit,
+    data,
+    total,
+    loading,
+    filters,
+    setFilters,
+    resetFilters,
+    pagination,
+    modalOpen,
+    setModalOpen,
+    editing,
+    form,
+    setForm,
+    updateFormField,
+    handleAdd,
+    handleEdit,
+    handleSubmit,
+    handleDelete,
+    refresh: fetchData,
+    isEdit,
   };
 }
 
 export { useCrud };
-export type { UseCrudConfig, UseCrudReturn, SuccessMessage, SuccessMessageMap, FilterField, Filters };
+export type {
+  UseCrudConfig,
+  UseCrudReturn,
+  SuccessMessage,
+  SuccessMessageMap,
+  FilterField,
+  Filters,
+};

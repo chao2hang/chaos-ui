@@ -1,5 +1,5 @@
-import { LoadingPage, FullPageLoader } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LoadingPage, FullPageLoader } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LoadingPage
 
@@ -10,7 +10,6 @@ LoadingPage — a business component for ERP / enterprise scenarios.
 ## When to Use
 
 Use when you need a loading page.
-
 
 ## Examples
 
@@ -27,22 +26,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LoadingPage
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `title` | `string` | `加载中...` | Title |
-| `description` | `string` | — | Description text |
-| `icon` | `React.ReactNode` | — | Icon element |
-| `variant` | `"spinner" \| "dots" \| "pulse"` | `spinner` | Style variant |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop          | Type                             | Default     | Description                     |
+| ------------- | -------------------------------- | ----------- | ------------------------------- |
+| `className`   | `string`                         | —           | Custom CSS class                |
+| `title`       | `string`                         | `加载中...` | Title                           |
+| `description` | `string`                         | —           | Description text                |
+| `icon`        | `React.ReactNode`                | —           | Icon element                    |
+| `variant`     | `"spinner" \| "dots" \| "pulse"` | `spinner`   | Style variant                   |
+| ...rest       | `React.ComponentProps<"div">`    | —           | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

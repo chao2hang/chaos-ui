@@ -22,7 +22,10 @@ import {
   Collapsible,
   CollapsibleContent,
 } from "@chaos_team/chaos-ui/ui";
-import { ChevronDownIcon, GripVerticalIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  ChevronDownIcon,
+  GripVerticalIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 type KanbanItem = {
   id: string;
@@ -152,7 +155,7 @@ function KanbanColumn({
   const [collapsed, setCollapsed] = React.useState(false);
 
   return (
-    <div className="flex w-72 shrink-0 flex-col rounded-lg border bg-muted/30">
+    <div className="bg-muted/30 flex w-72 shrink-0 flex-col rounded-lg border">
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-semibold">{column.title}</h3>
@@ -179,7 +182,7 @@ function KanbanColumn({
             items={column.items.map((i) => i.id)}
             strategy={verticalListSortingStrategy}
           >
-            <div className="flex flex-col gap-2 p-2 pt-0 min-h-[40px]">
+            <div className="flex min-h-[40px] flex-col gap-2 p-2 pt-0">
               {column.items.map((item) => (
                 <KanbanCard
                   key={item.id}
@@ -228,7 +231,7 @@ function KanbanCard({
       ref={setNodeRef}
       style={style}
       className={cn(
-        "rounded-md border bg-background p-3 text-sm shadow-xs",
+        "bg-background rounded-md border p-3 text-sm shadow-xs",
         isDragging && "shadow-md",
       )}
     >
@@ -236,20 +239,20 @@ function KanbanCard({
         <Button
           variant="ghost"
           size="icon-xs"
-          className="mt-0.5 size-auto cursor-grab p-0 text-muted-foreground hover:bg-transparent hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground mt-0.5 size-auto cursor-grab p-0 hover:bg-transparent"
           {...attributes}
           {...listeners}
         >
           <GripVerticalIcon className="size-3.5" />
         </Button>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           {renderCard ? (
             renderCard(item)
           ) : (
             <>
-              <p className="font-medium truncate">{item.title}</p>
+              <p className="truncate font-medium">{item.title}</p>
               {item.description && (
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="text-muted-foreground mt-0.5 text-xs">
                   {item.description}
                 </p>
               )}

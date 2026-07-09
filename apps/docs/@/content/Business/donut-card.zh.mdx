@@ -1,16 +1,18 @@
-import { DonutCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DonutCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DonutCard Donut Card
 
 > 业务组件
 
-<DonutCard data={[{label:"A",value:60,color:"#3b82f6"}]} centerLabel="总计" />
+<DonutCard
+  data={[{ label: "A", value: 60, color: "#3b82f6" }]}
+  centerLabel="总计"
+/>
 
 ## 何时使用
 
 适用于Donut Card相关场景。
-
 
 ## 代码示例
 
@@ -22,21 +24,19 @@ export function Basic() {
   return <DonutCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DonutCard
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `data` | `Array<T>` | — | 数据源 |
-| `centerLabel` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop          | Type                   | Default | 说明              |
+| ------------- | ---------------------- | ------- | ----------------- |
+| `className`   | `string`               | —       | 自定义样式类名    |
+| `data`        | `Array<T>`             | —       | 数据源            |
+| `centerLabel` | `string`               | —       |                   |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-donutcard--docs)。
-

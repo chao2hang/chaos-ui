@@ -2,7 +2,15 @@
 
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Button, Input, Label, Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import {
+  Button,
+  Input,
+  Label,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
 import { PlusIcon, Trash2Icon, CopyIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 /**
@@ -45,10 +53,16 @@ function preview(rule: SerialNumberRule): string {
     datePart = datePart.replaceAll(k, v);
   }
   const seq = String(1).padStart(Math.max(0, rule.zeroFill), "0");
-  return [rule.prefix, datePart, seq].filter(Boolean).join(rule.separator || "-");
+  return [rule.prefix, datePart, seq]
+    .filter(Boolean)
+    .join(rule.separator || "-");
 }
 
-function SerialNumberManager({ rules = [], onChange, className }: SerialNumberManagerProps) {
+function SerialNumberManager({
+  rules = [],
+  onChange,
+  className,
+}: SerialNumberManagerProps) {
   const [local, setLocal] = React.useState<SerialNumberRule[]>(rules);
 
   React.useEffect(() => {
@@ -66,7 +80,10 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
   };
 
   const add = () => {
-    emit([...local, { prefix: "NO", dateFormat: "yyyyMMdd", zeroFill: 4, separator: "-" }]);
+    emit([
+      ...local,
+      { prefix: "NO", dateFormat: "yyyyMMdd", zeroFill: 4, separator: "-" },
+    ]);
   };
 
   const remove = (idx: number) => {
@@ -92,7 +109,7 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
         {local.length === 0 ? (
-          <p className="py-6 text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground py-6 text-center text-sm">
             暂无编号规则，点击“新增规则”创建。
           </p>
         ) : (
@@ -100,7 +117,7 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
             {local.map((rule, idx) => (
               <li
                 key={idx}
-                className="flex flex-col gap-3 rounded-lg border bg-muted/30 p-3"
+                className="bg-muted/30 flex flex-col gap-3 rounded-lg border p-3"
               >
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   <div className="flex flex-col gap-1">
@@ -117,7 +134,9 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
                     <Input
                       id={`date-${idx}`}
                       value={rule.dateFormat}
-                      onChange={(e) => update(idx, { dateFormat: e.target.value })}
+                      onChange={(e) =>
+                        update(idx, { dateFormat: e.target.value })
+                      }
                       placeholder="yyyyMMdd"
                     />
                   </div>
@@ -129,7 +148,9 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
                       min={0}
                       value={rule.zeroFill}
                       onChange={(e) =>
-                        update(idx, { zeroFill: Math.max(0, Number(e.target.value) || 0) })
+                        update(idx, {
+                          zeroFill: Math.max(0, Number(e.target.value) || 0),
+                        })
                       }
                     />
                   </div>
@@ -138,14 +159,16 @@ function SerialNumberManager({ rules = [], onChange, className }: SerialNumberMa
                     <Input
                       id={`sep-${idx}`}
                       value={rule.separator}
-                      onChange={(e) => update(idx, { separator: e.target.value })}
+                      onChange={(e) =>
+                        update(idx, { separator: e.target.value })
+                      }
                       placeholder="-"
                     />
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs text-muted-foreground">示例：</span>
-                  <code className="flex-1 truncate rounded bg-card px-2 py-1 text-xs font-mono">
+                  <span className="text-muted-foreground text-xs">示例：</span>
+                  <code className="bg-card flex-1 truncate rounded px-2 py-1 font-mono text-xs">
                     {preview(rule)}
                   </code>
                   <Button

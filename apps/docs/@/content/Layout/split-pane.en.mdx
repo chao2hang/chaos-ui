@@ -1,5 +1,5 @@
-import { SplitPane } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { SplitPane } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # SplitPane
 
@@ -11,7 +11,6 @@ Multi-pane layout container with a draggable divider.
 
 Use when you need a split pane.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,26 +21,23 @@ export function Basic() {
   return <SplitPane />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SplitPane
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `direction` | `"horizontal" \| "vertical"` | `horizontal` | Direction |
-| `defaultSize` | `number` | `50` |  |
-| `minSize` | `number` | `20` |  |
-| `maxSize` | `number` | `80` |  |
-| `onResize` | `() => void` | — |  |
-| `first` | `React.ReactNode` | — |  |
-| `second` | `React.ReactNode` | — |  |
-| `resizer` | `boolean` | `true` |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                         | Default      | Description                       |
+| ------------- | ---------------------------- | ------------ | --------------------------------- |
+| `className`   | `string`                     | —            | Custom CSS class                  |
+| `direction`   | `"horizontal" \| "vertical"` | `horizontal` | Direction                         |
+| `defaultSize` | `number`                     | `50`         |                                   |
+| `minSize`     | `number`                     | `20`         |                                   |
+| `maxSize`     | `number`                     | `80`         |                                   |
+| `onResize`    | `() => void`                 | —            |                                   |
+| `first`       | `React.ReactNode`            | —            |                                   |
+| `second`      | `React.ReactNode`            | —            |                                   |
+| `resizer`     | `boolean`                    | `true`       |                                   |
+| ...rest       | `React.HTMLAttributes`       | —            | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

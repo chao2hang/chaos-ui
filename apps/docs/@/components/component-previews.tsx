@@ -17,10 +17,7 @@ import { KPIPanel } from "@chaos_team/chaos-ui/ui";
 import { Menu } from "@chaos_team/chaos-ui/ui";
 import { Menubar } from "@chaos_team/chaos-ui/ui";
 import { Popconfirm } from "@chaos_team/chaos-ui/ui";
-import {
-  MessageProvider,
-  MessageContext,
-} from "@chaos_team/chaos-ui/ui";
+import { MessageProvider, MessageContext } from "@chaos_team/chaos-ui/ui";
 import { ModalProvider, ModalContext } from "@chaos_team/chaos-ui/ui";
 import { KeyboardShortcutDialog } from "@chaos_team/chaos-ui/ui";
 import {
@@ -51,7 +48,12 @@ import {
   PopoverHeader,
   PopoverTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@chaos_team/chaos-ui/ui";
 import {
   Accordion,
   AccordionItem,
@@ -668,25 +670,27 @@ function MenuDemo() {
       <Menu
         mode="inline"
         selectedKeys={["dashboard"]}
-        items={[
-          { key: "dashboard", label: "Dashboard", shortcut: "⌘D" },
-          {
-            key: "analytics",
-            label: "Analytics",
-            children: [
-              { key: "overview", label: "Overview", shortcut: "⌘1" },
-              { key: "reports", label: "Reports", shortcut: "⌘2" },
-            ],
-          },
-          { key: "settings", label: "Settings" },
-          {
-            key: "danger",
-            label: "Delete workspace",
-            danger: true,
-            shortcut: "⌘⌫",
-          },
-          { key: "disabled", label: "Archived", disabled: true },
-        ] as any}
+        items={
+          [
+            { key: "dashboard", label: "Dashboard", shortcut: "⌘D" },
+            {
+              key: "analytics",
+              label: "Analytics",
+              children: [
+                { key: "overview", label: "Overview", shortcut: "⌘1" },
+                { key: "reports", label: "Reports", shortcut: "⌘2" },
+              ],
+            },
+            { key: "settings", label: "Settings" },
+            {
+              key: "danger",
+              label: "Delete workspace",
+              danger: true,
+              shortcut: "⌘⌫",
+            },
+            { key: "disabled", label: "Archived", disabled: true },
+          ] as any
+        }
       />
     </div>
   );
@@ -786,9 +790,7 @@ function CampaignCardDemo() {
         budget={42000}
         channels={[]}
         spent={21000}
-        metrics={[
-          { label: "触达", value: 124000 },
-        ]}
+        metrics={[{ label: "触达", value: 124000 }]}
       />
     </div>
   );
@@ -879,7 +881,15 @@ function BannerDemo() {
 function AnnouncementBannerDemo() {
   return (
     <div className="w-full max-w-xl">
-      <AnnouncementBanner announcements={[{ id: "1", title: "Chaos UI v1.0 已发布,欢迎升级体验。", priority: "info" }]} />
+      <AnnouncementBanner
+        announcements={[
+          {
+            id: "1",
+            title: "Chaos UI v1.0 已发布,欢迎升级体验。",
+            priority: "info",
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -929,9 +939,24 @@ function RatingDemo() {
 function BillStatusBarDemo() {
   return (
     <div className="flex flex-col items-center gap-3">
-      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "current" }]} />
-      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "completed" }]} />
-      <BillStatusBar steps={[{ label: "提交", status: "completed" }, { label: "审批", status: "rejected" }]} />
+      <BillStatusBar
+        steps={[
+          { label: "提交", status: "completed" },
+          { label: "审批", status: "current" },
+        ]}
+      />
+      <BillStatusBar
+        steps={[
+          { label: "提交", status: "completed" },
+          { label: "审批", status: "completed" },
+        ]}
+      />
+      <BillStatusBar
+        steps={[
+          { label: "提交", status: "completed" },
+          { label: "审批", status: "rejected" },
+        ]}
+      />
     </div>
   );
 }

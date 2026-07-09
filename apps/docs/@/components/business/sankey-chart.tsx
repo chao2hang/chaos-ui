@@ -23,12 +23,13 @@ export interface SankeyChartProps {
   className?: string;
 }
 
-const DEFAULT_SANKEY: Array<{ source: string; target: string; value: number }> = [
-  { source: "搜索", target: "下单", value: 40 },
-  { source: "广告", target: "下单", value: 25 },
-  { source: "广告", target: "流失", value: 15 },
-  { source: "直接", target: "下单", value: 20 },
-];
+const DEFAULT_SANKEY: Array<{ source: string; target: string; value: number }> =
+  [
+    { source: "搜索", target: "下单", value: 40 },
+    { source: "广告", target: "下单", value: 25 },
+    { source: "广告", target: "流失", value: 15 },
+    { source: "直接", target: "下单", value: 20 },
+  ];
 
 const SOURCE_COLORS: Record<string, string> = {
   搜索: "#3b82f6",
@@ -40,10 +41,7 @@ const TARGET_COLORS: Record<string, string> = {
   流失: "#ef4444",
 };
 
-function SankeyChart({
-  flows = DEFAULT_SANKEY,
-  className,
-}: SankeyChartProps) {
+function SankeyChart({ flows = DEFAULT_SANKEY, className }: SankeyChartProps) {
   const sources = React.useMemo(() => {
     const seen: string[] = [];
     for (const f of flows) if (!seen.includes(f.source)) seen.push(f.source);
@@ -75,22 +73,49 @@ function SankeyChart({
   const sourceBars = sources.map((s, i) => {
     const prevH = sources
       .slice(0, i)
-      .reduce((acc, p) => acc + ((sourceTotals.get(p) ?? 0) / totalMax) * (height - gap * (sources.length - 1)), 0);
-    const h = ((sourceTotals.get(s) ?? 0) / totalMax) * (height - gap * (sources.length - 1));
-    return { label: s, y: prevH + i * gap, h, color: SOURCE_COLORS[s] ?? "#3b82f6" };
+      .reduce(
+        (acc, p) =>
+          acc +
+          ((sourceTotals.get(p) ?? 0) / totalMax) *
+            (height - gap * (sources.length - 1)),
+        0,
+      );
+    const h =
+      ((sourceTotals.get(s) ?? 0) / totalMax) *
+      (height - gap * (sources.length - 1));
+    return {
+      label: s,
+      y: prevH + i * gap,
+      h,
+      color: SOURCE_COLORS[s] ?? "#3b82f6",
+    };
   });
   const targetBars = targets.map((t, i) => {
     const prevH = targets
       .slice(0, i)
-      .reduce((acc, p) => acc + ((targetTotals.get(p) ?? 0) / totalMax) * (height - gap * (targets.length - 1)), 0);
-    const h = ((targetTotals.get(t) ?? 0) / totalMax) * (height - gap * (targets.length - 1));
-    return { label: t, y: prevH + i * gap, h, color: TARGET_COLORS[t] ?? "#10b981" };
+      .reduce(
+        (acc, p) =>
+          acc +
+          ((targetTotals.get(p) ?? 0) / totalMax) *
+            (height - gap * (targets.length - 1)),
+        0,
+      );
+    const h =
+      ((targetTotals.get(t) ?? 0) / totalMax) *
+      (height - gap * (targets.length - 1));
+    return {
+      label: t,
+      y: prevH + i * gap,
+      h,
+      color: TARGET_COLORS[t] ?? "#10b981",
+    };
   });
 
   const x1 = 90;
   const x2 = 230;
   const bandH = (f: { source: string; target: string; value: number }) =>
-    (f.value / totalMax) * (height - gap * (Math.max(sources.length, targets.length) - 1));
+    (f.value / totalMax) *
+    (height - gap * (Math.max(sources.length, targets.length) - 1));
 
   // running offsets per side for band stacking
   const srcOffset = new Map<string, number>();
@@ -119,12 +144,7 @@ function SankeyChart({
           const midX = (x1 + x2) / 2;
           const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2} L ${x2} ${y2 + bh} C ${midX} ${y2 + bh}, ${midX} ${y1 + bh}, ${x1} ${y1 + bh} Z`;
           return (
-            <path
-              key={i}
-              d={d}
-              fill={sb.color}
-              fillOpacity={0.25}
-            >
+            <path key={i} d={d} fill={sb.color} fillOpacity={0.25}>
               <title>
                 {f.source} → {f.target}: {formatNumber(f.value)}
               </title>
@@ -134,7 +154,13 @@ function SankeyChart({
         {sourceBars.map((b) => (
           <g key={`s-${b.label}`}>
             <rect x={x1 - 8} y={b.y} width={8} height={b.h} fill={b.color} />
-            <text x={x1 - 12} y={b.y + b.h / 2} textAnchor="end" dominantBaseline="middle" className="fill-muted-foreground text-[9px]">
+            <text
+              x={x1 - 12}
+              y={b.y + b.h / 2}
+              textAnchor="end"
+              dominantBaseline="middle"
+              className="fill-muted-foreground text-[9px]"
+            >
               {b.label}
             </text>
           </g>
@@ -142,7 +168,13 @@ function SankeyChart({
         {targetBars.map((b) => (
           <g key={`t-${b.label}`}>
             <rect x={x2} y={b.y} width={8} height={b.h} fill={b.color} />
-            <text x={x2 + 12} y={b.y + b.h / 2} textAnchor="start" dominantBaseline="middle" className="fill-muted-foreground text-[9px]">
+            <text
+              x={x2 + 12}
+              y={b.y + b.h / 2}
+              textAnchor="start"
+              dominantBaseline="middle"
+              className="fill-muted-foreground text-[9px]"
+            >
               {b.label}
             </text>
           </g>

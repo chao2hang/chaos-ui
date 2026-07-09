@@ -1,7 +1,12 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { Avatar, AvatarFallback, AvatarImage, Button } from "@chaos_team/chaos-ui/ui";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
+} from "@chaos_team/chaos-ui/ui";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { initials } from "@chaos_team/chaos-ui/lib";
 

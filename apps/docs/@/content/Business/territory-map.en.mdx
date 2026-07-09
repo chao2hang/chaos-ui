@@ -1,5 +1,5 @@
-import { TerritoryMap } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TerritoryMap } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TerritoryMap Territory Map
 
@@ -11,7 +11,6 @@ TerritoryMap — a business component for ERP / enterprise scenarios.
 
 Use when you need a territory map.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <TerritoryMap />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TerritoryMap
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `regions` | `TerritoryRegion[]` | — | Territory regions. |
-| `title` | `string` | `Sales Territory Map` | Map title. |
-| `currencySymbol` | `string` | `¥` | Currency symbol. |
-| `gridCols` | `number` | `4` | Grid columns for layout. |
-| `onRegionClick` | `() => void` | — | Region click handler. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop             | Type                   | Default               | Description                       |
+| ---------------- | ---------------------- | --------------------- | --------------------------------- |
+| `className`      | `string`               | —                     | Custom CSS class                  |
+| `regions`        | `TerritoryRegion[]`    | —                     | Territory regions.                |
+| `title`          | `string`               | `Sales Territory Map` | Map title.                        |
+| `currencySymbol` | `string`               | `¥`                   | Currency symbol.                  |
+| `gridCols`       | `number`               | `4`                   | Grid columns for layout.          |
+| `onRegionClick`  | `() => void`           | —                     | Region click handler.             |
+| ...rest          | `React.HTMLAttributes` | —                     | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

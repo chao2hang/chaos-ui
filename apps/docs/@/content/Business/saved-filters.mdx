@@ -1,5 +1,5 @@
-import { SavedFilters } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SavedFilters } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SavedFilters 已保存筛选
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <SavedFilters />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SavedFilters
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `filters` | `SavedFilter[]` | — |  |
-| `activeId` | `string` | — |  |
-| `onApply` | `() => void` | — |  |
-| `onSave` | `() => void` | — |  |
-| `onDelete` | `() => void` | — |  |
-| `onPin` | `() => void` | — |  |
-| `label` | `string` | `已保存的筛选` | 标签文本 <br/> Label text |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default        | 说明 / Description                                        |
+| ----------- | ---------------------- | -------------- | --------------------------------------------------------- |
+| `className` | `string`               | —              | 自定义样式类名 <br/> Custom CSS class                     |
+| `filters`   | `SavedFilter[]`        | —              |                                                           |
+| `activeId`  | `string`               | —              |                                                           |
+| `onApply`   | `() => void`           | —              |                                                           |
+| `onSave`    | `() => void`           | —              |                                                           |
+| `onDelete`  | `() => void`           | —              |                                                           |
+| `onPin`     | `() => void`           | —              |                                                           |
+| `label`     | `string`               | `已保存的筛选` | 标签文本 <br/> Label text                                 |
+| ...rest     | `React.HTMLAttributes` | —              | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

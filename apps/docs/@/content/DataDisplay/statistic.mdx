@@ -1,5 +1,5 @@
-import { Statistic } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Statistic } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Statistic 统计数值
 
@@ -26,38 +26,40 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Statistic size="sm">Sm</Statistic>
   <Statistic size="default">Default</Statistic>
   <Statistic size="lg">Lg</Statistic>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 ## API / Props
 
 ### Statistic
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `React.ReactNode` | — | The value to display |
-| `title` | `React.ReactNode` | — | Label / title |
-| `prefix` | `React.ReactNode` | — | Prefix before value |
-| `suffix` | `React.ReactNode` | — | Suffix after value |
-| `precision` | `number` | — | Precision for number formatting |
-| `loading` | `boolean` | `false` | Loading state shows skeleton |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `value`     | `React.ReactNode`             | —       | The value to display                                        |
+| `title`     | `React.ReactNode`             | —       | Label / title                                               |
+| `prefix`    | `React.ReactNode`             | —       | Prefix before value                                         |
+| `suffix`    | `React.ReactNode`             | —       | Suffix after value                                          |
+| `precision` | `number`                      | —       | Precision for number formatting                             |
+| `loading`   | `boolean`                     | `false` | Loading state shows skeleton                                |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

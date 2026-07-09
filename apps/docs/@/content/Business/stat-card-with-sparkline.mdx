@@ -1,11 +1,16 @@
-import { StatCardWithSparkline } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { StatCardWithSparkline } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # StatCardWithSparkline Stat Card With Sparkline
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<StatCardWithSparkline label="日活" value="12,480" trend={8} sparklineData={[5,8,6,10]} />
+<StatCardWithSparkline
+  label="日活"
+  value="12,480"
+  trend={8}
+  sparklineData={[5, 8, 6, 10]}
+/>
 StatCardWithSparkline — stat card with sparkline component.
 
 ## 何时使用 / When to Use
@@ -24,19 +29,18 @@ export function Basic() {
   return <StatCardWithSparkline />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### StatCardWithSparkline
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `label` | `string` | — | 标签文本 <br/> Label text |
-| `value` | `string \| number` | — | 当前值(受控) <br/> Current value (controlled) |
-| `trend` | `number` | — |  |
-| `sparklineData` | `number[]` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop            | Type                   | Default | 说明 / Description                                        |
+| --------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`     | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `label`         | `string`               | —       | 标签文本 <br/> Label text                                 |
+| `value`         | `string \| number`     | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `trend`         | `number`               | —       |                                                           |
+| `sparklineData` | `number[]`             | —       |                                                           |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

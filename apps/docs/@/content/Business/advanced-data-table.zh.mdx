@@ -1,5 +1,5 @@
-import { AdvancedDataTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AdvancedDataTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AdvancedDataTable 高级数据表格
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要高级数据表格功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,26 +21,24 @@ export function Basic() {
   return <AdvancedDataTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AdvancedDataTable
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `columns` | `ColumnDef[]` | — | 列配置 |
-| `data` | `Record<string, unknown>[]` | — | 数据源 |
-| `searchable` | `boolean` | `true` |  |
-| `searchPlaceholder` | `string` | `Search...` |  |
-| `pageSize` | `number` | — |  |
-| `onRowClick` | `() => void` | — |  |
-| `emptyVariant` | `"default" \| "search" \| "error" \| "...` | `default` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop                | Type                                       | Default     | 说明              |
+| ------------------- | ------------------------------------------ | ----------- | ----------------- |
+| `className`         | `string`                                   | —           | 自定义样式类名    |
+| `columns`           | `ColumnDef[]`                              | —           | 列配置            |
+| `data`              | `Record<string, unknown>[]`                | —           | 数据源            |
+| `searchable`        | `boolean`                                  | `true`      |                   |
+| `searchPlaceholder` | `string`                                   | `Search...` |                   |
+| `pageSize`          | `number`                                   | —           |                   |
+| `onRowClick`        | `() => void`                               | —           |                   |
+| `emptyVariant`      | `"default" \| "search" \| "error" \| "...` | `default`   |                   |
+| ...rest             | `React.HTMLAttributes`                     | —           | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-advanceddatatable--docs)。
-

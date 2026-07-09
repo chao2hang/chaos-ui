@@ -29,14 +29,18 @@ function DonutCard({ data, centerLabel, className }: DonutCardProps) {
     <div
       data-slot="donut-card"
       className={cn(
-        "flex flex-col items-center gap-4 rounded-lg border bg-card p-4 sm:flex-row",
+        "bg-card flex flex-col items-center gap-4 rounded-lg border p-4 sm:flex-row",
         className,
       )}
       role="img"
       aria-label={`环形图，共 ${data.length} 段，总计 ${total}`}
     >
       <div className="relative size-32 shrink-0">
-        <svg viewBox="0 0 100 100" className="size-32 -rotate-90" role="presentation">
+        <svg
+          viewBox="0 0 100 100"
+          className="size-32 -rotate-90"
+          role="presentation"
+        >
           {data.map((d) => {
             const frac = d.value / total;
             const seg = (
@@ -75,7 +79,9 @@ function DonutCard({ data, centerLabel, className }: DonutCardProps) {
               aria-hidden="true"
             />
             <span className="text-muted-foreground">{d.label}</span>
-            <span className="ml-auto tabular-nums">{formatNumber(d.value)}</span>
+            <span className="ml-auto tabular-nums">
+              {formatNumber(d.value)}
+            </span>
           </li>
         ))}
       </ul>

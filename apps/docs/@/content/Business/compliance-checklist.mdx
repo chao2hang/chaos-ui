@@ -1,5 +1,5 @@
-import { ComplianceChecklist } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ComplianceChecklist } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ComplianceChecklist Compliance Checklist
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <ComplianceChecklist />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ComplianceChecklist
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `ComplianceItem[]` | — | Compliance items. |
-| `title` | `string` | `Compliance Checklist` | Checklist title. |
-| `onItemClick` | `() => void` | — | Item click handler. |
-| `onStatusChange` | `() => void` | — | Status change handler. |
-| `readOnly` | `boolean` | `false` | Read-only mode. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop             | Type                   | Default                | 说明 / Description                                        |
+| ---------------- | ---------------------- | ---------------------- | --------------------------------------------------------- |
+| `className`      | `string`               | —                      | 自定义样式类名 <br/> Custom CSS class                     |
+| `items`          | `ComplianceItem[]`     | —                      | Compliance items.                                         |
+| `title`          | `string`               | `Compliance Checklist` | Checklist title.                                          |
+| `onItemClick`    | `() => void`           | —                      | Item click handler.                                       |
+| `onStatusChange` | `() => void`           | —                      | Status change handler.                                    |
+| `readOnly`       | `boolean`              | `false`                | Read-only mode.                                           |
+| ...rest          | `React.HTMLAttributes` | —                      | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

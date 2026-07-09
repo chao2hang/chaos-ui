@@ -2,7 +2,12 @@
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
-import { BellIcon, InfoIcon, AlertTriangleIcon, CheckCircle2Icon } from "@chaos_team/chaos-ui/ui";
+import {
+  BellIcon,
+  InfoIcon,
+  AlertTriangleIcon,
+  CheckCircle2Icon,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component MessageList
@@ -36,7 +41,10 @@ interface MessageListProps {
   className?: string;
 }
 
-const TYPE_META: Record<NonNullable<MessageListProps["messages"]>[number]["type"] & string, { icon: React.ComponentType<{ className?: string }>; tone: string }> = {
+const TYPE_META: Record<
+  NonNullable<MessageListProps["messages"]>[number]["type"] & string,
+  { icon: React.ComponentType<{ className?: string }>; tone: string }
+> = {
   info: { icon: InfoIcon, tone: "text-blue-500" },
   warning: { icon: AlertTriangleIcon, tone: "text-yellow-500" },
   success: { icon: CheckCircle2Icon, tone: "text-emerald-500" },
@@ -61,7 +69,10 @@ function MessageList({
   return (
     <div
       data-slot="message-list"
-      className={cn("flex flex-col gap-2 rounded-lg border bg-card p-3", className)}
+      className={cn(
+        "bg-card flex flex-col gap-2 rounded-lg border p-3",
+        className,
+      )}
       role="region"
       aria-label="站内消息列表"
     >
@@ -69,7 +80,7 @@ function MessageList({
         <span className="flex items-center gap-2 text-sm font-medium">
           消息通知
           {unread > 0 && (
-            <span className="rounded-full bg-destructive px-1.5 py-0.5 text-xs text-destructive-foreground">
+            <span className="bg-destructive text-destructive-foreground rounded-full px-1.5 py-0.5 text-xs">
               {unread} 条未读
             </span>
           )}
@@ -78,7 +89,7 @@ function MessageList({
           <button
             type="button"
             onClick={onMarkAllRead}
-            className="text-xs text-primary hover:underline"
+            className="text-primary text-xs hover:underline"
           >
             全部已读
           </button>
@@ -97,7 +108,7 @@ function MessageList({
                 onClick={() => onSelect?.(m.id)}
                 onKeyDown={(e) => handleKeyDown(e, m.id)}
                 className={cn(
-                  "flex cursor-pointer items-start gap-2.5 rounded-md px-2 py-2.5 transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "hover:bg-muted/50 focus-visible:ring-ring flex cursor-pointer items-start gap-2.5 rounded-md px-2 py-2.5 transition-colors focus-visible:ring-2 focus-visible:outline-none",
                   !m.read && "bg-primary/5",
                 )}
                 aria-label={`消息 ${m.title}${m.read ? "" : " 未读"}`}
@@ -105,16 +116,30 @@ function MessageList({
                 <Icon className={cn("mt-0.5 size-4 shrink-0", meta.tone)} />
                 <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                   <div className="flex items-center gap-2">
-                    {!m.read && <span className="size-1.5 shrink-0 rounded-full bg-destructive" aria-hidden="true" />}
-                    <span className={cn("truncate text-sm", !m.read && "font-medium")}>{m.title}</span>
+                    {!m.read && (
+                      <span
+                        className="bg-destructive size-1.5 shrink-0 rounded-full"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span
+                      className={cn(
+                        "truncate text-sm",
+                        !m.read && "font-medium",
+                      )}
+                    >
+                      {m.title}
+                    </span>
                     {m.time && (
-                      <span className="ml-auto shrink-0 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-auto shrink-0 text-xs">
                         {formatRelativeTime(m.time)}
                       </span>
                     )}
                   </div>
                   {m.content && (
-                    <span className="truncate text-xs text-muted-foreground">{m.content}</span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {m.content}
+                    </span>
                   )}
                 </div>
               </div>
@@ -123,7 +148,9 @@ function MessageList({
         })}
       </ul>
       {messages.length === 0 && (
-        <p className="py-6 text-center text-sm text-muted-foreground">暂无消息</p>
+        <p className="text-muted-foreground py-6 text-center text-sm">
+          暂无消息
+        </p>
       )}
     </div>
   );

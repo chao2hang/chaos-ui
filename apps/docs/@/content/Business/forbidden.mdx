@@ -1,5 +1,5 @@
-import { Forbidden } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { Forbidden } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # Forbidden 403 禁止访问
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <Forbidden />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Forbidden
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `string` | `403 无权限` | 标题 <br/> Title |
-| `description` | `string` | `您没有访问此页面的权限，请联系管理员。` | 描述文本 <br/> Description text |
-| `action` | `React.ReactNode` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default                                  | 说明 / Description                                          |
+| ------------- | ----------------------------- | ---------------------------------------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —                                        | 自定义样式类名 <br/> Custom CSS class                       |
+| `title`       | `string`                      | `403 无权限`                             | 标题 <br/> Title                                            |
+| `description` | `string`                      | `您没有访问此页面的权限，请联系管理员。` | 描述文本 <br/> Description text                             |
+| `action`      | `React.ReactNode`             | —                                        |                                                             |
+| ...rest       | `React.ComponentProps<"div">` | —                                        | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

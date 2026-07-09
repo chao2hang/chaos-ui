@@ -38,7 +38,13 @@ function polar(cx: number, cy: number, r: number, angleDeg: number) {
   return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
 }
 
-function arcPath(cx: number, cy: number, r: number, start: number, end: number) {
+function arcPath(
+  cx: number,
+  cy: number,
+  r: number,
+  start: number,
+  end: number,
+) {
   const s = polar(cx, cy, r, start);
   const e = polar(cx, cy, r, end);
   const large = end - start > 180 ? 1 : 0;
@@ -95,7 +101,7 @@ function GaugeChart({
         </text>
       </svg>
       {label ? (
-        <span className="mt-1 text-xs text-muted-foreground">{label}</span>
+        <span className="text-muted-foreground mt-1 text-xs">{label}</span>
       ) : null}
     </div>
   );

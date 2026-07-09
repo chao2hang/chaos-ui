@@ -1,16 +1,24 @@
-import { TaskHistory } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TaskHistory } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TaskHistory Task History
 
 > 业务组件
 
-<TaskHistory tasks={[{ id:"1", type:"导出", status:"完成", startTime:"2026-01-01T09:00:00Z" }]} />
+<TaskHistory
+  tasks={[
+    {
+      id: "1",
+      type: "导出",
+      status: "完成",
+      startTime: "2026-01-01T09:00:00Z",
+    },
+  ]}
+/>
 
 ## 何时使用
 
 适用于Task History相关场景。
-
 
 ## 代码示例
 
@@ -22,25 +30,23 @@ export function Basic() {
   return <TaskHistory />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TaskHistory
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `tasks` | `Array<{` | — |  |
-| `id` | `string` | — | DOM 元素 id |
-| `type` | `string` | — | 类型 |
-| `status` | `string` | — | 状态 |
-| `startTime` | `string` | — |  |
-| `endTime` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `tasks`     | `Array<{`              | —       |                   |
+| `id`        | `string`               | —       | DOM 元素 id       |
+| `type`      | `string`               | —       | 类型              |
+| `status`    | `string`               | —       | 状态              |
+| `startTime` | `string`               | —       |                   |
+| `endTime`   | `string`               | —       |                   |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-taskhistory--docs)。
-

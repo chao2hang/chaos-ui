@@ -1,5 +1,5 @@
-import { MarkdownEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MarkdownEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MarkdownEditor Markdown Editor
 
@@ -11,7 +11,6 @@ MarkdownEditor — a business component for ERP / enterprise scenarios.
 
 Use when you need a markdown editor.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,24 +21,21 @@ export function Basic() {
   return <MarkdownEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MarkdownEditor
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | `` | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `placeholder` | `string` | `请输入 Markdown...` | Placeholder text |
-| `mode` | `MarkdownMode` | — |  |
-| `toolbar` | `boolean` | `true` |  |
-| `height` | `number \| string` | `300` | Component height |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default              | Description                       |
+| ------------- | ---------------------- | -------------------- | --------------------------------- |
+| `className`   | `string`               | —                    | Custom CSS class                  |
+| `value`       | `string`               | ``                   | Current value (controlled)        |
+| `onChange`    | `() => void`           | —                    | Callback when value changes       |
+| `placeholder` | `string`               | `请输入 Markdown...` | Placeholder text                  |
+| `mode`        | `MarkdownMode`         | —                    |                                   |
+| `toolbar`     | `boolean`              | `true`               |                                   |
+| `height`      | `number \| string`     | `300`                | Component height                  |
+| ...rest       | `React.HTMLAttributes` | —                    | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

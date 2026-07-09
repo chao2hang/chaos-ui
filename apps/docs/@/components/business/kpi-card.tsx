@@ -2,8 +2,17 @@
 import * as React from "react";
 import { ResponsiveContainer, AreaChart, Area } from "recharts";
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
-import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
+import {
+  ArrowUpIcon,
+  ArrowDownIcon,
+  MinusIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component KPICard
@@ -52,17 +61,17 @@ function KPICard({
   return (
     <Card data-slot="kpi-card" className={cn(className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-muted-foreground text-sm font-medium">
           {title}
         </CardTitle>
-        {Icon && <Icon className="size-4 text-muted-foreground" />}
+        {Icon && <Icon className="text-muted-foreground size-4" />}
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
         {change !== undefined && (
           <div
             className={cn(
-              "flex items-center gap-1 mt-1 text-xs",
+              "mt-1 flex items-center gap-1 text-xs",
               trendColors[changeType],
             )}
           >
@@ -74,7 +83,7 @@ function KPICard({
           </div>
         )}
         {sparkline && sparkline.length > 0 && (
-          <div className="h-10 mt-3">
+          <div className="mt-3 h-10">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={sparkline}>
                 <defs>
@@ -105,15 +114,15 @@ function KPICard({
         )}
         {target !== undefined && (
           <div className="mt-3">
-            <div className="flex justify-between text-xs mb-1">
+            <div className="mb-1 flex justify-between text-xs">
               <span className="text-muted-foreground">
                 {targetLabel ?? "Progress"}
               </span>
               <span className="font-medium">{target}%</span>
             </div>
-            <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+            <div className="bg-muted h-1.5 overflow-hidden rounded-full">
               <div
-                className="h-full bg-primary rounded-full transition-all"
+                className="bg-primary h-full rounded-full transition-all"
                 style={{ width: target + "%" }}
               />
             </div>

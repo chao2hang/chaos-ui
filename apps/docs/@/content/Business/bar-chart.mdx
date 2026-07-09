@@ -1,11 +1,11 @@
-import { BarChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BarChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BarChart Bar Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 柱状图(分组/堆叠/横向)
+柱状图(分组/堆叠/横向)
 BarChart — bar chart component.
 
 ## 何时使用 / When to Use
@@ -24,18 +24,17 @@ export function Basic() {
   return <BarChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BarChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `Array<T>` | — | Bars to render. |
-| `orientation` | `"vertical" \| "horizontal"` | `vertical` | Bar orientation. |
-| `height` | `number` | `200` | Chart height in px. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                         | Default    | 说明 / Description                                        |
+| ------------- | ---------------------------- | ---------- | --------------------------------------------------------- |
+| `className`   | `string`                     | —          | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`        | `Array<T>`                   | —          | Bars to render.                                           |
+| `orientation` | `"vertical" \| "horizontal"` | `vertical` | Bar orientation.                                          |
+| `height`      | `number`                     | `200`      | Chart height in px.                                       |
+| ...rest       | `React.HTMLAttributes`       | —          | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

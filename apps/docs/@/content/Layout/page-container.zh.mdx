@@ -1,5 +1,9 @@
-import { PageContainer, PageHeader, PageContent } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  PageContainer,
+  PageHeader,
+  PageContent,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # PageContainer 页面容器
 
@@ -10,7 +14,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要页面容器功能时使用本组件。
-
 
 ## 代码示例
 
@@ -28,50 +31,52 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <PageContainer size="sm">Sm</PageContainer>
   <PageContainer size="default">Default</PageContainer>
   <PageContainer size="lg">Lg</PageContainer>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **尺寸**
 
-| Size | 说明 | 默认 |
-|---|---|---|
-| `sm` | 小号 |  |
-| `default` | 默认尺寸 | ✓ |
-| `lg` | 大号 |  |
-| `full` |  |  |
-| `none` |  |  |
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `sm`      | 小号     |      |
+| `default` | 默认尺寸 | ✓    |
+| `lg`      | 大号     |      |
+| `full`    |          |      |
+| `none`    |          |      |
 
 **padding**
 
-| padding | 说明 | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
+| padding   | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `none`    |      |      |
+| `sm`      |      |      |
+| `default` |      | ✓    |
+| `lg`      |      |      |
 
 **center**
 
-| center | 说明 | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| center  | 说明 | 默认 |
+| ------- | ---- | ---- |
+| `true`  |      | ✓    |
+| `false` |      |      |
 
 ## API / Props
 
 ### PageContainer
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -79,4 +84,3 @@ export function Basic() {
 - **复合组件**: 包含 2 个子组件(PageHeader, PageContent),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-pagecontainer--docs)。
-

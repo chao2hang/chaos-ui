@@ -46,13 +46,18 @@ function InventorySnapshot({ items, className }: InventorySnapshotProps) {
   return (
     <div
       data-slot="inventory-snapshot"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
       role="region"
       aria-label="库存快照"
     >
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium">库存快照</span>
-        <span className="text-xs text-muted-foreground">共 {items.length} 项</span>
+        <span className="text-muted-foreground text-xs">
+          共 {items.length} 项
+        </span>
       </div>
       <div className="grid grid-cols-3 gap-2 text-center text-xs">
         <div className="rounded-md bg-emerald-50 py-1.5">
@@ -65,7 +70,7 @@ function InventorySnapshot({ items, className }: InventorySnapshotProps) {
         </div>
         <div className="rounded-md bg-red-50 py-1.5">
           <div className="text-muted-foreground">缺货</div>
-          <div className="font-semibold text-destructive">{outCount}</div>
+          <div className="text-destructive font-semibold">{outCount}</div>
         </div>
       </div>
       <ul className="flex flex-col divide-y" role="list">
@@ -76,11 +81,13 @@ function InventorySnapshot({ items, className }: InventorySnapshotProps) {
             <li key={it.id} className="flex items-center gap-3 py-2 text-sm">
               <Icon className={cn("size-4 shrink-0", meta.tone)} />
               <span className="flex-1 truncate">{it.name}</span>
-              <span className={cn("flex items-center gap-1 text-xs", meta.tone)}>
+              <span
+                className={cn("flex items-center gap-1 text-xs", meta.tone)}
+              >
                 <span className={cn("size-1.5 rounded-full", meta.dot)} />
                 {meta.label}
               </span>
-              <span className="w-16 text-right tabular-nums text-muted-foreground">
+              <span className="text-muted-foreground w-16 text-right tabular-nums">
                 {it.status === "out" ? "-" : formatNumber(it.qty)}
               </span>
             </li>
@@ -88,7 +95,9 @@ function InventorySnapshot({ items, className }: InventorySnapshotProps) {
         })}
       </ul>
       {items.length === 0 && (
-        <p className="py-4 text-center text-sm text-muted-foreground">暂无库存数据</p>
+        <p className="text-muted-foreground py-4 text-center text-sm">
+          暂无库存数据
+        </p>
       )}
     </div>
   );

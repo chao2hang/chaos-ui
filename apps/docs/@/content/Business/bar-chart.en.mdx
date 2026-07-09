@@ -1,5 +1,5 @@
-import { BarChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BarChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BarChart Bar Chart
 
@@ -11,7 +11,6 @@ BarChart — bar chart component.
 
 Use when you need a bar chart.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <BarChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BarChart
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `data` | `Array<T>` | — | Bars to render. |
-| `orientation` | `"vertical" \| "horizontal"` | `vertical` | Bar orientation. |
-| `height` | `number` | `200` | Chart height in px. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                         | Default    | Description                       |
+| ------------- | ---------------------------- | ---------- | --------------------------------- |
+| `className`   | `string`                     | —          | Custom CSS class                  |
+| `data`        | `Array<T>`                   | —          | Bars to render.                   |
+| `orientation` | `"vertical" \| "horizontal"` | `vertical` | Bar orientation.                  |
+| `height`      | `number`                     | `200`      | Chart height in px.               |
+| ...rest       | `React.HTMLAttributes`       | —          | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

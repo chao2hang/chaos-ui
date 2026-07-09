@@ -1,5 +1,5 @@
-import { TreeView } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { TreeView } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # TreeView 树形视图
 
@@ -24,25 +24,24 @@ export function Basic() {
   return <TreeView />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TreeView
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `TreeNode[]` | — | 数据源 <br/> Data source |
-| `selectedIds` | `string[]` | — |  |
-| `defaultSelectedIds` | `string[]` | — |  |
-| `expandedIds` | `string[]` | — |  |
-| `defaultExpandedIds` | `string[]` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| `onExpand` | `() => void` | — |  |
-| `showCheckbox` | `boolean` | `false` |  |
-| `showIcon` | `boolean` | `true` |  |
-| `disabled` | `boolean` | `false` | 是否禁用 <br/> Whether disabled |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                 | Type                   | Default | 说明 / Description                                        |
+| -------------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`          | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`               | `TreeNode[]`           | —       | 数据源 <br/> Data source                                  |
+| `selectedIds`        | `string[]`             | —       |                                                           |
+| `defaultSelectedIds` | `string[]`             | —       |                                                           |
+| `expandedIds`        | `string[]`             | —       |                                                           |
+| `defaultExpandedIds` | `string[]`             | —       |                                                           |
+| `onSelect`           | `() => void`           | —       | 选中回调 <br/> Selection handler                          |
+| `onExpand`           | `() => void`           | —       |                                                           |
+| `showCheckbox`       | `boolean`              | `false` |                                                           |
+| `showIcon`           | `boolean`              | `true`  |                                                           |
+| `disabled`           | `boolean`              | `false` | 是否禁用 <br/> Whether disabled                           |
+| ...rest              | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

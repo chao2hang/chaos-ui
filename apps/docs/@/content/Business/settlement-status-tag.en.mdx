@@ -1,5 +1,5 @@
-import { SettlementStatusTag } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SettlementStatusTag } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SettlementStatusTag Settlement Status Tag
 
@@ -11,7 +11,6 @@ SettlementStatusTag — a business component for ERP / enterprise scenarios.
 
 Use when you need a settlement status tag.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,19 +21,16 @@ export function Basic() {
   return <SettlementStatusTag />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SettlementStatusTag
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `status` | `"unsettled" \| "partial" \| "settled"...` | — | Status |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                                       | Default | Description                       |
+| ----------- | ------------------------------------------ | ------- | --------------------------------- |
+| `className` | `string`                                   | —       | Custom CSS class                  |
+| `status`    | `"unsettled" \| "partial" \| "settled"...` | —       | Status                            |
+| ...rest     | `React.HTMLAttributes`                     | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **无障碍**: 组件遵循 WAI-ARIA 最佳实践。
-
-

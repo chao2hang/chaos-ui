@@ -174,7 +174,7 @@ export function HeatmapCalendar({
     >
       <div className="flex" style={{ gap }}>
         <div
-          className="flex flex-col text-[0.6rem] text-muted-foreground"
+          className="text-muted-foreground flex flex-col text-[0.6rem]"
           style={{ gap, paddingTop: cellSize + gap + 4 }}
         >
           {dayLabels.map((d, i) => (
@@ -187,7 +187,7 @@ export function HeatmapCalendar({
           ))}
         </div>
         <div className="flex-1">
-          <div className="relative mb-1 h-4 text-[0.6rem] text-muted-foreground">
+          <div className="text-muted-foreground relative mb-1 h-4 text-[0.6rem]">
             {monthLabels.map((m, i) => (
               <span key={i} className="absolute" style={{ left: m.x }}>
                 {m.label}
@@ -221,7 +221,7 @@ export function HeatmapCalendar({
         </div>
       </div>
       {showLegend && (
-        <div className="mt-2 flex items-center justify-end gap-1 text-[0.6rem] text-muted-foreground">
+        <div className="text-muted-foreground mt-2 flex items-center justify-end gap-1 text-[0.6rem]">
           <span>{t("heatmapCalendar.less")}</span>
           {Array.from({ length: levels }).map((_, i) => (
             <span

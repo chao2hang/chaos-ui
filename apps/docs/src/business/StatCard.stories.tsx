@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { StatCard } from "@chaos_team/chaos-ui/business"
-import { TrendingUpIcon, TrendingDownIcon, UsersIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { StatCard } from "@chaos_team/chaos-ui/business";
+import { TrendingUpIcon, TrendingDownIcon, UsersIcon } from "lucide-react";
 
 const meta: Meta<typeof StatCard> = {
   title: "Business/StatCard",
   component: StatCard,
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -18,7 +18,7 @@ export const Default: Story = {
     changeType: "positive",
     change: "+12.5%",
   },
-}
+};
 
 export const DownTrend: Story = {
   args: {
@@ -28,7 +28,7 @@ export const DownTrend: Story = {
     changeType: "negative",
     change: "-5.2%",
   },
-}
+};
 
 export const NoIcon: Story = {
   args: {
@@ -37,4 +37,4 @@ export const NoIcon: Story = {
     icon: UsersIcon,
     changeType: "neutral",
   },
-}
+};

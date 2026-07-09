@@ -1,5 +1,5 @@
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Button 按钮
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 点击触发操作,如提交表单、打开弹窗、确认/取消操作。
-
 
 ## 代码示例
 
@@ -24,60 +23,65 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button variant="default">Default</Button>
   <Button variant="outline">Outline</Button>
   <Button variant="secondary">Secondary</Button>
   <Button variant="ghost">Ghost</Button>
   <Button variant="destructive">Destructive</Button>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### 尺寸
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button size="xs">Xs</Button>
   <Button size="sm">Sm</Button>
   <Button size="default">Default</Button>
   <Button size="lg">Lg</Button>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **变体**
 
-| Variant | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认样式 | ✓ |
-| `outline` | 描边样式 |  |
-| `secondary` | 次要样式 |  |
-| `ghost` | 幽灵(无背景)样式 |  |
-| `destructive` | 危险/删除样式 |  |
-| `link` | 链接样式 |  |
+| Variant       | 说明             | 默认 |
+| ------------- | ---------------- | ---- |
+| `default`     | 默认样式         | ✓    |
+| `outline`     | 描边样式         |      |
+| `secondary`   | 次要样式         |      |
+| `ghost`       | 幽灵(无背景)样式 |      |
+| `destructive` | 危险/删除样式    |      |
+| `link`        | 链接样式         |      |
 
 **尺寸**
 
-| Size | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 | ✓ |
-| `xs` | 超小 |  |
-| `sm` | 小号 |  |
-| `lg` | 大号 |  |
-| `icon` | 图标正方形 |  |
-| `icon-xs` | 超小图标 |  |
-| `icon-sm` | 小图标 |  |
-| `icon-lg` | 大图标 |  |
+| Size      | 说明       | 默认 |
+| --------- | ---------- | ---- |
+| `default` | 默认尺寸   | ✓    |
+| `xs`      | 超小       |      |
+| `sm`      | 小号       |      |
+| `lg`      | 大号       |      |
+| `icon`    | 图标正方形 |      |
+| `icon-xs` | 超小图标   |      |
+| `icon-sm` | 小图标     |      |
+| `icon-lg` | 大图标     |      |
 
 ## API / Props
 
 ### Button
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -85,4 +89,3 @@ export function Basic() {
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-button--docs)。
-

@@ -1,5 +1,5 @@
-import { Grid } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Grid } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Grid 栅格
 
@@ -24,59 +24,58 @@ export function Basic() {
   return <Grid>Default</Grid>
 }`} lang="tsx" />
 
-
 ## 样式变体 / Style Variants
 
 **columns / columns**
 
 | columns | 说明 / Description | 默认 |
-|---|---|---|
-| `1` |  | ✓ |
-| `2` |  |  |
-| `3` |  |  |
-| `4` |  |  |
-| `5` |  |  |
-| `6` |  |  |
-| `12` |  |  |
+| ------- | ------------------ | ---- |
+| `1`     |                    | ✓    |
+| `2`     |                    |      |
+| `3`     |                    |      |
+| `4`     |                    |      |
+| `5`     |                    |      |
+| `6`     |                    |      |
+| `12`    |                    |      |
 
 **gap / gap**
 
-| gap | 说明 / Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `xs` |  |  |
-| `sm` |  |  |
-| `md` |  | ✓ |
-| `lg` |  |  |
-| `xl` |  |  |
+| gap    | 说明 / Description | 默认 |
+| ------ | ------------------ | ---- |
+| `none` |                    |      |
+| `xs`   |                    |      |
+| `sm`   |                    |      |
+| `md`   |                    | ✓    |
+| `lg`   |                    |      |
+| `xl`   |                    |      |
 
 **对齐 / align**
 
-| align | 说明 / Description | 默认 |
-|---|---|---|
-| `start` |  |  |
-| `center` |  |  |
-| `end` |  |  |
-| `stretch` |  | ✓ |
+| align     | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `start`   |                    |      |
+| `center`  |                    |      |
+| `end`     |                    |      |
+| `stretch` |                    | ✓    |
 
 **主轴对齐 / justify**
 
-| justify | 说明 / Description | 默认 |
-|---|---|---|
-| `start` |  | ✓ |
-| `center` |  |  |
-| `end` |  |  |
-| `between` |  |  |
-| `around` |  |  |
+| justify   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `start`   |                    | ✓    |
+| `center`  |                    |      |
+| `end`     |                    |      |
+| `between` |                    |      |
+| `around`  |                    |      |
 
 ## API / Props
 
 ### Grid
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

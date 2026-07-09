@@ -45,7 +45,7 @@ function FunnelChart({ data, height = 44, className }: FunnelChartProps) {
               className="flex items-center gap-2 py-0.5"
               style={{ minHeight: height }}
             >
-              <span className="w-20 shrink-0 truncate text-sm text-muted-foreground">
+              <span className="text-muted-foreground w-20 shrink-0 truncate text-sm">
                 {d.label}
               </span>
               <div className="flex flex-1 items-center justify-center">
@@ -54,7 +54,8 @@ function FunnelChart({ data, height = 44, className }: FunnelChartProps) {
                   style={{
                     width: `${widthPct}%`,
                     height: height - 8,
-                    backgroundColor: d.color ?? FUNNEL_PALETTE[i % FUNNEL_PALETTE.length],
+                    backgroundColor:
+                      d.color ?? FUNNEL_PALETTE[i % FUNNEL_PALETTE.length],
                   }}
                 >
                   <span className="truncate px-2 tabular-nums">
@@ -62,7 +63,7 @@ function FunnelChart({ data, height = 44, className }: FunnelChartProps) {
                   </span>
                 </div>
               </div>
-              <span className="w-14 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+              <span className="text-muted-foreground w-14 shrink-0 text-right text-xs tabular-nums">
                 {formatPercent(conv)}
               </span>
             </li>

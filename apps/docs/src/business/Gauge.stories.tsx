@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Gauge, RadialProgress } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Gauge, RadialProgress } from "@chaos_team/chaos-ui/business";
 
 const meta = {
   title: "Business/Gauge",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -19,7 +19,7 @@ export const Default: Story = {
       <Gauge value={95} label="危险" variant="destructive" />
     </div>
   ),
-}
+};
 
 export const CustomFormat: Story = {
   render: () => (
@@ -31,7 +31,7 @@ export const CustomFormat: Story = {
       formatValue={(v) => `${v.toFixed(0)} KB/s`}
     />
   ),
-}
+};
 
 export const NoLabel: Story = {
   render: () => (
@@ -40,7 +40,7 @@ export const NoLabel: Story = {
       <Gauge value={75} showValue={false} />
     </div>
   ),
-}
+};
 
 export const RadialExample: Story = {
   render: () => (
@@ -51,9 +51,9 @@ export const RadialExample: Story = {
       <RadialProgress value={90} variant="destructive" />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

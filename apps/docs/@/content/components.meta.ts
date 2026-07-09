@@ -1694,7 +1694,8 @@ export const components: ComponentMeta[] = [
     nameZh: "高级数据表格",
     category: "Business",
     desc: "AdvancedDataTable — a business component for ERP / enterprise scenarios.",
-    descZh: "高级数据表格 — 业务组件，核心属性：columns, data, searchable, searchPlaceholder, pageSize。",
+    descZh:
+      "高级数据表格 — 业务组件，核心属性：columns, data, searchable, searchPlaceholder, pageSize。",
     sourcePath:
       "packages/chaos-design-ui/components/business/advanced-data-table.tsx",
     storybookId: "business-advanceddatatable--docs",
@@ -1705,7 +1706,8 @@ export const components: ComponentMeta[] = [
     nameZh: "高级搜索",
     category: "Business",
     desc: "AdvancedSearch — a business component for ERP / enterprise scenarios.",
-    descZh: "高级搜索 — 业务组件，核心属性：fields, onSearch, onReset, loading, compact。",
+    descZh:
+      "高级搜索 — 业务组件，核心属性：fields, onSearch, onReset, loading, compact。",
     sourcePath:
       "packages/chaos-design-ui/components/business/advanced-search.tsx",
     storybookId: "business-advancedsearch--docs",
@@ -1716,7 +1718,8 @@ export const components: ComponentMeta[] = [
     nameZh: "公告横幅",
     category: "Business",
     desc: "AnnouncementBanner — a business component for ERP / enterprise scenarios.",
-    descZh: "公告横幅 — 业务组件，核心属性：message, action, dismissible, onDismiss, icon。",
+    descZh:
+      "公告横幅 — 业务组件，核心属性：message, action, dismissible, onDismiss, icon。",
     sourcePath:
       "packages/chaos-design-ui/components/business/announcement-banner.tsx",
     storybookId: "business-announcementbanner--docs",
@@ -1760,7 +1763,8 @@ export const components: ComponentMeta[] = [
     nameZh: "审批流程",
     category: "Business",
     desc: "ApprovalFlow — a business component for ERP / enterprise scenarios.",
-    descZh: "审批流程 — 业务组件，核心属性：steps, currentStep, onApprove, onReject。",
+    descZh:
+      "审批流程 — 业务组件，核心属性：steps, currentStep, onApprove, onReject。",
     sourcePath:
       "packages/chaos-design-ui/components/business/approval-flow.tsx",
     storybookId: "business-approvalflow--docs",
@@ -1890,7 +1894,8 @@ export const components: ComponentMeta[] = [
     nameZh: "审计侧栏",
     category: "Business",
     desc: "AuditSidebar — a business component for ERP / enterprise scenarios.",
-    descZh: "审计侧栏 — 业务组件，核心属性：entries, open, onOpenChange, title。",
+    descZh:
+      "审计侧栏 — 业务组件，核心属性：entries, open, onOpenChange, title。",
     sourcePath:
       "packages/chaos-design-ui/components/business/audit-sidebar.tsx",
     storybookId: "business-auditsidebar--docs",
@@ -1912,7 +1917,8 @@ export const components: ComponentMeta[] = [
     nameZh: "认证守卫",
     category: "Business",
     desc: "AuthGuard — a business component for ERP / enterprise scenarios.",
-    descZh: "认证守卫 — 业务组件，核心属性：permission, permissions, mode, fallback。",
+    descZh:
+      "认证守卫 — 业务组件，核心属性：permission, permissions, mode, fallback。",
     sourcePath: "packages/chaos-design-ui/components/business/auth-guard.tsx",
     storybookId: "business-authguard--docs",
   },
@@ -1995,7 +2001,8 @@ export const components: ComponentMeta[] = [
     nameZh: "批量选择器",
     category: "Business",
     desc: "BatchSelector — a business component for ERP / enterprise scenarios.",
-    descZh: "批量选择器 — 业务组件，核心属性：selectedIds, total, onSelectAll, onDeselectAll, actions。",
+    descZh:
+      "批量选择器 — 业务组件，核心属性：selectedIds, total, onSelectAll, onDeselectAll, actions。",
     sourcePath:
       "packages/chaos-design-ui/components/business/batch-selector.tsx",
     storybookId: "business-batchselector--docs",
@@ -2006,7 +2013,8 @@ export const components: ComponentMeta[] = [
     nameZh: "账单底部",
     category: "Business",
     desc: "BillFooter — a business component for ERP / enterprise scenarios.",
-    descZh: "账单底部 — 业务组件，核心属性：subtotal, tax, taxRate, total, notes。",
+    descZh:
+      "账单底部 — 业务组件，核心属性：subtotal, tax, taxRate, total, notes。",
     sourcePath: "packages/chaos-design-ui/components/business/bill-footer.tsx",
     storybookId: "business-billfooter--docs",
   },
@@ -2016,7 +2024,8 @@ export const components: ComponentMeta[] = [
     nameZh: "账单头部",
     category: "Business",
     desc: "BillHeader — a business component for ERP / enterprise scenarios.",
-    descZh: "账单头部 — 业务组件，核心属性：companyName, companyAddress, companyPhone, invoiceNumber, invoiceDate。",
+    descZh:
+      "账单头部 — 业务组件，核心属性：companyName, companyAddress, companyPhone, invoiceNumber, invoiceDate。",
     sourcePath: "packages/chaos-design-ui/components/business/bill-header.tsx",
     storybookId: "business-billheader--docs",
   },
@@ -2026,7 +2035,8 @@ export const components: ComponentMeta[] = [
     nameZh: "账单页",
     category: "Business",
     desc: "BillPage — a business component for ERP / enterprise scenarios.",
-    descZh: "账单页 — 业务组件，核心属性：headerProps, footerProps, lineItems。",
+    descZh:
+      "账单页 — 业务组件，核心属性：headerProps, footerProps, lineItems。",
     sourcePath: "packages/chaos-design-ui/components/business/bill-page.tsx",
     storybookId: "business-billpage--docs",
   },
@@ -2136,7 +2146,8 @@ export const components: ComponentMeta[] = [
     nameZh: "预算节奏卡片",
     category: "Business",
     desc: "BudgetPacingCard — a business component for ERP / enterprise scenarios.",
-    descZh: "预算节奏卡片 — 业务组件，核心属性：budget, spent, period, label, currency。",
+    descZh:
+      "预算节奏卡片 — 业务组件，核心属性：budget, spent, period, label, currency。",
     sourcePath:
       "packages/chaos-design-ui/components/business/budget-pacing-card.tsx",
     storybookId: "business-budgetpacingcard--docs",
@@ -2147,7 +2158,8 @@ export const components: ComponentMeta[] = [
     nameZh: "批量操作工具栏",
     category: "Business",
     desc: "BulkActionsToolbar — a business component for ERP / enterprise scenarios.",
-    descZh: "批量操作工具栏 — 业务组件，核心属性：count, selectedCount, onClear, actions, label。",
+    descZh:
+      "批量操作工具栏 — 业务组件，核心属性：count, selectedCount, onClear, actions, label。",
     sourcePath:
       "packages/chaos-design-ui/components/business/bulk-actions-toolbar.tsx",
     storybookId: "business-bulkactionstoolbar--docs",
@@ -2191,7 +2203,8 @@ export const components: ComponentMeta[] = [
     nameZh: "活动日历",
     category: "Business",
     desc: "CampaignCalendar — a business component for ERP / enterprise scenarios.",
-    descZh: "活动日历 — 业务组件，核心属性：events, year, month, onMonthChange。",
+    descZh:
+      "活动日历 — 业务组件，核心属性：events, year, month, onMonthChange。",
     sourcePath:
       "packages/chaos-design-ui/components/business/campaign-calendar.tsx",
     storybookId: "business-campaigncalendar--docs",
@@ -2202,7 +2215,8 @@ export const components: ComponentMeta[] = [
     nameZh: "活动卡片",
     category: "Business",
     desc: "CampaignCard — a business component for ERP / enterprise scenarios.",
-    descZh: "活动卡片 — 业务组件，核心属性：name, status, startDate, endDate, budget。",
+    descZh:
+      "活动卡片 — 业务组件，核心属性：name, status, startDate, endDate, budget。",
     sourcePath:
       "packages/chaos-design-ui/components/business/campaign-card.tsx",
     storybookId: "business-campaigncard--docs",
@@ -2256,7 +2270,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Chart Suite",
     category: "Business",
     desc: "ChartSuite — a business component for ERP / enterprise scenarios.",
-    descZh: "Chart Suite — 业务组件，核心属性：type, data, xField, yField, series。",
+    descZh:
+      "Chart Suite — 业务组件，核心属性：type, data, xField, yField, series。",
     sourcePath: "components/business/chart-suite.tsx",
     storybookId: "business-chartsuite--docs",
   },
@@ -2385,7 +2400,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Chat Header",
     category: "Business",
     desc: "ChatHeader — a business component for ERP / enterprise scenarios.",
-    descZh: "Chat Header — 业务组件，核心属性：title, subtitle, status, actions。",
+    descZh:
+      "Chat Header — 业务组件，核心属性：title, subtitle, status, actions。",
     sourcePath: "components/business/chat-header.tsx",
     storybookId: "business-chatheader--docs",
   },
@@ -2515,7 +2531,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Chat Sidebar",
     category: "Business",
     desc: "ChatSidebar — a business component for ERP / enterprise scenarios.",
-    descZh: "Chat Sidebar — 业务组件，核心属性：conversations, id, title, unread, lastMessage。",
+    descZh:
+      "Chat Sidebar — 业务组件，核心属性：conversations, id, title, unread, lastMessage。",
     sourcePath: "components/business/chat-sidebar.tsx",
     storybookId: "business-chatsidebar--docs",
   },
@@ -2580,7 +2597,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Checkout Bar",
     category: "Business",
     desc: "CheckoutBar — a business component for ERP / enterprise scenarios.",
-    descZh: "Checkout Bar — 业务组件，核心属性：total, currency, payLabel, isLoading, onPay。",
+    descZh:
+      "Checkout Bar — 业务组件，核心属性：total, currency, payLabel, isLoading, onPay。",
     sourcePath: "components/business/checkout-bar.tsx",
     storybookId: "business-checkoutbar--docs",
   },
@@ -2590,7 +2608,8 @@ export const components: ComponentMeta[] = [
     nameZh: "标签片",
     category: "Business",
     desc: "Chip — a business component for ERP / enterprise scenarios.",
-    descZh: "标签片 — 业务组件，核心属性：variant, size, removable, onRemove, icon。",
+    descZh:
+      "标签片 — 业务组件，核心属性：variant, size, removable, onRemove, icon。",
     sourcePath: "packages/chaos-design-ui/components/business/chip.tsx",
     storybookId: "business-chip--docs",
   },
@@ -2600,7 +2619,8 @@ export const components: ComponentMeta[] = [
     nameZh: "City Browse",
     category: "Business",
     desc: "CityBrowse — a business component for ERP / enterprise scenarios.",
-    descZh: "City Browse — 业务组件，核心属性：open, onOpenChange, onSelect, items, title。",
+    descZh:
+      "City Browse — 业务组件，核心属性：open, onOpenChange, onSelect, items, title。",
     sourcePath: "components/business/city-browse.tsx",
     storybookId: "business-citybrowse--docs",
   },
@@ -2610,7 +2630,8 @@ export const components: ComponentMeta[] = [
     nameZh: "代码块",
     category: "Business",
     desc: "CodeBlock — a business component for ERP / enterprise scenarios.",
-    descZh: "代码块 — 业务组件，核心属性：code, language, filename, showLineNumbers, showCopy。",
+    descZh:
+      "代码块 — 业务组件，核心属性：code, language, filename, showLineNumbers, showCopy。",
     sourcePath: "packages/chaos-design-ui/components/business/code-block.tsx",
     storybookId: "business-codeblock--docs",
   },
@@ -2620,7 +2641,8 @@ export const components: ComponentMeta[] = [
     nameZh: "代码编辑器",
     category: "Business",
     desc: "CodeEditor — a business component for ERP / enterprise scenarios.",
-    descZh: "代码编辑器 — 业务组件，核心属性：value, onChange, language, readonly, showLineNumbers。",
+    descZh:
+      "代码编辑器 — 业务组件，核心属性：value, onChange, language, readonly, showLineNumbers。",
     sourcePath: "packages/chaos-design-ui/components/business/code-editor.tsx",
     storybookId: "business-codeeditor--docs",
   },
@@ -2630,7 +2652,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Color Board",
     category: "Business",
     desc: "ColorBoard — a business component for ERP / enterprise scenarios.",
-    descZh: "Color Board — 业务组件，核心属性：value, onChange, format, presets, history。",
+    descZh:
+      "Color Board — 业务组件，核心属性：value, onChange, format, presets, history。",
     sourcePath: "components/business/color-board.tsx",
     storybookId: "business-colorboard--docs",
   },
@@ -2650,7 +2673,8 @@ export const components: ComponentMeta[] = [
     nameZh: "命令面板",
     category: "Business",
     desc: "CommandPalette — a business component for ERP / enterprise scenarios.",
-    descZh: "命令面板 — 业务组件，核心属性：open, onOpenChange, groups, placeholder, emptyText。",
+    descZh:
+      "命令面板 — 业务组件，核心属性：open, onOpenChange, groups, placeholder, emptyText。",
     sourcePath:
       "packages/chaos-design-ui/components/business/command-palette.tsx",
     storybookId: "business-commandpalette--docs",
@@ -2705,7 +2729,8 @@ export const components: ComponentMeta[] = [
     nameZh: "确认对话框",
     category: "Business",
     desc: "ConfirmDialog — a business component for ERP / enterprise scenarios.",
-    descZh: "确认对话框 — 业务组件，核心属性：open, onOpenChange, title, description, confirmText。",
+    descZh:
+      "确认对话框 — 业务组件，核心属性：open, onOpenChange, title, description, confirmText。",
     sourcePath:
       "packages/chaos-design-ui/components/business/confirm-dialog.tsx",
     storybookId: "business-confirmdialog--docs",
@@ -2716,7 +2741,8 @@ export const components: ComponentMeta[] = [
     nameZh: "合同模板",
     category: "Business",
     desc: "ContractTemplate — a business component for ERP / enterprise scenarios.",
-    descZh: "合同模板 — 业务组件，核心属性：title, fields, onChange, onPreview, onDownload。",
+    descZh:
+      "合同模板 — 业务组件，核心属性：title, fields, onChange, onPreview, onDownload。",
     sourcePath:
       "packages/chaos-design-ui/components/business/contract-template.tsx",
     storybookId: "business-contracttemplate--docs",
@@ -2727,7 +2753,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Cookie 横幅",
     category: "Business",
     desc: "CookieBanner — a business component for ERP / enterprise scenarios.",
-    descZh: "Cookie 横幅 — 业务组件，核心属性：open, onAccept, onReject, onDismiss, title。",
+    descZh:
+      "Cookie 横幅 — 业务组件，核心属性：open, onAccept, onReject, onDismiss, title。",
     sourcePath:
       "packages/chaos-design-ui/components/business/cookie-banner.tsx",
     storybookId: "business-cookiebanner--docs",
@@ -2750,7 +2777,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Coupon Card",
     category: "Business",
     desc: "CouponCard — a business component for ERP / enterprise scenarios.",
-    descZh: "Coupon Card — 业务组件，核心属性：value, description, expiresAt, used, onUse。",
+    descZh:
+      "Coupon Card — 业务组件，核心属性：value, description, expiresAt, used, onUse。",
     sourcePath: "components/business/coupon-card.tsx",
     storybookId: "business-couponcard--docs",
   },
@@ -2760,7 +2788,8 @@ export const components: ComponentMeta[] = [
     nameZh: "创意预览",
     category: "Business",
     desc: "CreativePreview — a business component for ERP / enterprise scenarios.",
-    descZh: "创意预览 — 业务组件，核心属性：title, type, src, description, size。",
+    descZh:
+      "创意预览 — 业务组件，核心属性：title, type, src, description, size。",
     sourcePath:
       "packages/chaos-design-ui/components/business/creative-preview.tsx",
     storybookId: "business-creativepreview--docs",
@@ -2771,7 +2800,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Cron Editor",
     category: "Business",
     desc: "CronEditor — a business component for ERP / enterprise scenarios.",
-    descZh: "Cron Editor — 业务组件，核心属性：value, onChange, showDescription, readOnly。",
+    descZh:
+      "Cron Editor — 业务组件，核心属性：value, onChange, showDescription, readOnly。",
     sourcePath: "components/business/cron-editor.tsx",
     storybookId: "business-croneditor--docs",
   },
@@ -2781,7 +2811,8 @@ export const components: ComponentMeta[] = [
     nameZh: "增删改查页面",
     category: "Business",
     desc: "CrudPage — a business component for ERP / enterprise scenarios.",
-    descZh: "增删改查页面 — 业务组件，核心属性：title, toolbar, columns, key, header。",
+    descZh:
+      "增删改查页面 — 业务组件，核心属性：title, toolbar, columns, key, header。",
     sourcePath: "packages/chaos-design-ui/components/business/crud-page.tsx",
     storybookId: "business-crudpage--docs",
   },
@@ -2791,7 +2822,8 @@ export const components: ComponentMeta[] = [
     nameZh: "增删改查工具栏",
     category: "Business",
     desc: "CrudToolbar — a business component for ERP / enterprise scenarios.",
-    descZh: "增删改查工具栏 — 业务组件，核心属性：onAdd, onDelete, onExport, onImport, onRefresh。",
+    descZh:
+      "增删改查工具栏 — 业务组件，核心属性：onAdd, onDelete, onExport, onImport, onRefresh。",
     sourcePath: "packages/chaos-design-ui/components/business/crud-toolbar.tsx",
     storybookId: "business-crudtoolbar--docs",
   },
@@ -2878,7 +2910,8 @@ export const components: ComponentMeta[] = [
     nameZh: "日期范围选择器",
     category: "Business",
     desc: "DateRangePicker — a business component for ERP / enterprise scenarios.",
-    descZh: "日期范围选择器 — 业务组件，核心属性：value, onChange, placeholder, numberOfMonths, disabled。",
+    descZh:
+      "日期范围选择器 — 业务组件，核心属性：value, onChange, placeholder, numberOfMonths, disabled。",
     sourcePath:
       "packages/chaos-design-ui/components/business/date-range-picker.tsx",
     storybookId: "business-daterangepicker--docs",
@@ -2912,7 +2945,8 @@ export const components: ComponentMeta[] = [
     nameZh: "字典选择",
     category: "Business",
     desc: "DictSelect — a business component for ERP / enterprise scenarios.",
-    descZh: "字典选择 — 业务组件，核心属性：dictCode, options, value, onValueChange, placeholder。",
+    descZh:
+      "字典选择 — 业务组件，核心属性：dictCode, options, value, onValueChange, placeholder。",
     sourcePath: "packages/chaos-design-ui/components/business/dict-select.tsx",
     storybookId: "business-dictselect--docs",
   },
@@ -2922,7 +2956,8 @@ export const components: ComponentMeta[] = [
     nameZh: "差异表格查看器",
     category: "Business",
     desc: "DiffViewerTable — a business component for ERP / enterprise scenarios.",
-    descZh: "差异表格查看器 — 业务组件，核心属性：rows, leftTitle, rightTitle。",
+    descZh:
+      "差异表格查看器 — 业务组件，核心属性：rows, leftTitle, rightTitle。",
     sourcePath:
       "packages/chaos-design-ui/components/business/diff-viewer-table.tsx",
     storybookId: "business-diffviewertable--docs",
@@ -2933,7 +2968,8 @@ export const components: ComponentMeta[] = [
     nameZh: "差异查看器",
     category: "Business",
     desc: "DiffViewer — a business component for ERP / enterprise scenarios.",
-    descZh: "差异查看器 — 业务组件，核心属性：left, right, leftTitle, rightTitle。",
+    descZh:
+      "差异查看器 — 业务组件，核心属性：left, right, leftTitle, rightTitle。",
     sourcePath: "packages/chaos-design-ui/components/business/diff-viewer.tsx",
     storybookId: "business-diffviewer--docs",
   },
@@ -2999,7 +3035,8 @@ export const components: ComponentMeta[] = [
     nameZh: "编辑工具栏",
     category: "Business",
     desc: "EditToolbar — a business component for ERP / enterprise scenarios.",
-    descZh: "编辑工具栏 — 业务组件，核心属性：editing, onEdit, onSave, onCancel, loading。",
+    descZh:
+      "编辑工具栏 — 业务组件，核心属性：editing, onEdit, onSave, onCancel, loading。",
     sourcePath: "packages/chaos-design-ui/components/business/edit-toolbar.tsx",
     storybookId: "business-edittoolbar--docs",
   },
@@ -3032,7 +3069,8 @@ export const components: ComponentMeta[] = [
     nameZh: "设备卡片",
     category: "Business",
     desc: "EquipmentCard — a business component for ERP / enterprise scenarios.",
-    descZh: "设备卡片 — 业务组件，核心属性：name, model, serialNumber, status, location。",
+    descZh:
+      "设备卡片 — 业务组件，核心属性：name, model, serialNumber, status, location。",
     sourcePath:
       "packages/chaos-design-ui/components/business/equipment-card.tsx",
     storybookId: "business-equipmentcard--docs",
@@ -3054,7 +3092,8 @@ export const components: ComponentMeta[] = [
     nameZh: "错误页",
     category: "Business",
     desc: "ErrorPage — a business component for ERP / enterprise scenarios.",
-    descZh: "错误页 — 业务组件，核心属性：status, title, description, homeHref, showHome。",
+    descZh:
+      "错误页 — 业务组件，核心属性：status, title, description, homeHref, showHome。",
     sourcePath: "packages/chaos-design-ui/components/business/error-page.tsx",
     storybookId: "business-errorpage--docs",
   },
@@ -3075,7 +3114,8 @@ export const components: ComponentMeta[] = [
     nameZh: "实验摘要",
     category: "Business",
     desc: "ExperimentSummary — a business component for ERP / enterprise scenarios.",
-    descZh: "实验摘要 — 业务组件，核心属性：name, controlRate, variantRate, metric, confidence。",
+    descZh:
+      "实验摘要 — 业务组件，核心属性：name, controlRate, variantRate, metric, confidence。",
     sourcePath:
       "packages/chaos-design-ui/components/business/experiment-summary.tsx",
     storybookId: "business-experimentsummary--docs",
@@ -3119,7 +3159,8 @@ export const components: ComponentMeta[] = [
     nameZh: "字段掩码",
     category: "Business",
     desc: "FieldMask — a business component for ERP / enterprise scenarios.",
-    descZh: "字段掩码 — 业务组件，核心属性：mask, customPattern, value, onChange。",
+    descZh:
+      "字段掩码 — 业务组件，核心属性：mask, customPattern, value, onChange。",
     sourcePath: "packages/chaos-design-ui/components/business/field-mask.tsx",
     storybookId: "business-fieldmask--docs",
   },
@@ -3139,7 +3180,8 @@ export const components: ComponentMeta[] = [
     nameZh: "文件上传管理器",
     category: "Business",
     desc: "FileUploadManager — a business component for ERP / enterprise scenarios.",
-    descZh: "文件上传管理器 — 业务组件，核心属性：files, onFilesChange, accept, maxFiles, maxSize。",
+    descZh:
+      "文件上传管理器 — 业务组件，核心属性：files, onFilesChange, accept, maxFiles, maxSize。",
     sourcePath:
       "packages/chaos-design-ui/components/business/file-upload-manager.tsx",
     storybookId: "business-fileuploadmanager--docs",
@@ -3160,7 +3202,8 @@ export const components: ComponentMeta[] = [
     nameZh: "筛选构建器",
     category: "Business",
     desc: "FilterBuilder — a business component for ERP / enterprise scenarios.",
-    descZh: "筛选构建器 — 业务组件，核心属性：fields, initialFilters, onChange。",
+    descZh:
+      "筛选构建器 — 业务组件，核心属性：fields, initialFilters, onChange。",
     sourcePath:
       "packages/chaos-design-ui/components/business/filter-builder.tsx",
     storybookId: "business-filterbuilder--docs",
@@ -3344,7 +3387,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Im Message",
     category: "Business",
     desc: "ImMessage — a business component for ERP / enterprise scenarios.",
-    descZh: "Im Message — 业务组件，核心属性：direction, author, content, timestamp, attachments。",
+    descZh:
+      "Im Message — 业务组件，核心属性：direction, author, content, timestamp, attachments。",
     sourcePath: "components/business/im-message.tsx",
     storybookId: "business-immessage--docs",
   },
@@ -3365,7 +3409,8 @@ export const components: ComponentMeta[] = [
     nameZh: "导入对话框",
     category: "Business",
     desc: "ImportDialog — a business component for ERP / enterprise scenarios.",
-    descZh: "导入对话框 — 业务组件，核心属性：open, onOpenChange, onImport, title, description。",
+    descZh:
+      "导入对话框 — 业务组件，核心属性：open, onOpenChange, onImport, title, description。",
     sourcePath:
       "packages/chaos-design-ui/components/business/import-dialog.tsx",
     storybookId: "business-importdialog--docs",
@@ -3398,7 +3443,8 @@ export const components: ComponentMeta[] = [
     nameZh: "内联编辑",
     category: "Business",
     desc: "InlineEdit — a business component for ERP / enterprise scenarios.",
-    descZh: "内联编辑 — 业务组件，核心属性：value, onChange, onSave, as, placeholder。",
+    descZh:
+      "内联编辑 — 业务组件，核心属性：value, onChange, onSave, as, placeholder。",
     sourcePath: "packages/chaos-design-ui/components/business/inline-edit.tsx",
     storybookId: "business-inlineedit--docs",
   },
@@ -3485,7 +3531,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Json Editor",
     category: "Business",
     desc: "JsonEditor — a business component for ERP / enterprise scenarios.",
-    descZh: "Try to pretty-print a JSON string. Returns the original string on failure.",
+    descZh:
+      "Try to pretty-print a JSON string. Returns the original string on failure.",
     sourcePath: "components/business/json-editor.tsx",
     storybookId: "business-jsoneditor--docs",
   },
@@ -3495,7 +3542,8 @@ export const components: ComponentMeta[] = [
     nameZh: "JSON 查看器",
     category: "Business",
     desc: "JsonViewer — a business component for ERP / enterprise scenarios.",
-    descZh: "JSON 查看器 — 业务组件，核心属性：data, defaultCollapsedDepth, rootClassName, showCopy, indentSize。",
+    descZh:
+      "JSON 查看器 — 业务组件，核心属性：data, defaultCollapsedDepth, rootClassName, showCopy, indentSize。",
     sourcePath: "packages/chaos-design-ui/components/business/json-viewer.tsx",
     storybookId: "business-jsonviewer--docs",
   },
@@ -3600,7 +3648,8 @@ export const components: ComponentMeta[] = [
     nameZh: "加载页",
     category: "Business",
     desc: "LoadingPage — a business component for ERP / enterprise scenarios.",
-    descZh: "加载页 — 业务组件，核心属性：title, description, icon, variant, show。",
+    descZh:
+      "加载页 — 业务组件，核心属性：title, description, icon, variant, show。",
     sourcePath: "packages/chaos-design-ui/components/business/loading-page.tsx",
     storybookId: "business-loadingpage--docs",
   },
@@ -3642,7 +3691,8 @@ export const components: ComponentMeta[] = [
     nameZh: "地图轨迹",
     category: "Business",
     desc: "MapTrack — a business component for ERP / enterprise scenarios.",
-    descZh: "地图轨迹 — 业务组件，核心属性：map, points, playing, speed, color。",
+    descZh:
+      "地图轨迹 — 业务组件，核心属性：map, points, playing, speed, color。",
     sourcePath: "components/business/map-track.tsx",
     storybookId: "business-maptrack--docs",
   },
@@ -3652,7 +3702,8 @@ export const components: ComponentMeta[] = [
     nameZh: "地图视图",
     category: "Business",
     desc: "MapView — a business component for ERP / enterprise scenarios.",
-    descZh: "地图视图 — 业务组件，核心属性：center, zoom, markers, height, apiKey。",
+    descZh:
+      "地图视图 — 业务组件，核心属性：center, zoom, markers, height, apiKey。",
     sourcePath: "packages/chaos-design-ui/components/business/map-view.tsx",
     storybookId: "business-mapview--docs",
   },
@@ -3730,7 +3781,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Message List",
     category: "Business",
     desc: "MessageList — a business component for ERP / enterprise scenarios.",
-    descZh: "Message List — 业务组件，核心属性：messages, id, title, content, type。",
+    descZh:
+      "Message List — 业务组件，核心属性：messages, id, title, content, type。",
     sourcePath: "components/business/message-list.tsx",
     storybookId: "business-messagelist--docs",
   },
@@ -3740,7 +3792,8 @@ export const components: ComponentMeta[] = [
     nameZh: "指标趋势",
     category: "Business",
     desc: "MetricTrend — a business component for ERP / enterprise scenarios.",
-    descZh: "指标趋势 — 业务组件，核心属性：data, width, height, strokeWidth, color。",
+    descZh:
+      "指标趋势 — 业务组件，核心属性：data, width, height, strokeWidth, color。",
     sourcePath: "packages/chaos-design-ui/components/business/metric-trend.tsx",
     storybookId: "business-metrictrend--docs",
   },
@@ -3885,7 +3938,8 @@ export const components: ComponentMeta[] = [
     nameZh: "通知中心",
     category: "Business",
     desc: "NotificationCenter — a business component for ERP / enterprise scenarios.",
-    descZh: "通知中心 — 业务组件，核心属性：notifications, onMarkRead, onMarkAllRead, onClear, onItemClick。",
+    descZh:
+      "通知中心 — 业务组件，核心属性：notifications, onMarkRead, onMarkAllRead, onClear, onItemClick。",
     sourcePath:
       "packages/chaos-design-ui/components/business/notification-center.tsx",
     storybookId: "business-notificationcenter--docs",
@@ -4059,7 +4113,8 @@ export const components: ComponentMeta[] = [
     nameZh: "权限矩阵",
     category: "Business",
     desc: "PermissionMatrix — a business component for ERP / enterprise scenarios.",
-    descZh: "权限矩阵 — 业务组件，核心属性：permissions, roles, value, onChange。",
+    descZh:
+      "权限矩阵 — 业务组件，核心属性：permissions, roles, value, onChange。",
     sourcePath:
       "packages/chaos-design-ui/components/business/permission-matrix.tsx",
     storybookId: "business-permissionmatrix--docs",
@@ -4070,7 +4125,8 @@ export const components: ComponentMeta[] = [
     nameZh: "权限包装器",
     category: "Business",
     desc: "PermissionWrapper — a business component for ERP / enterprise scenarios.",
-    descZh: "权限包装器 — 业务组件，核心属性：permission, permissions, mode, fallback, userPermissions。",
+    descZh:
+      "权限包装器 — 业务组件，核心属性：permission, permissions, mode, fallback, userPermissions。",
     sourcePath:
       "packages/chaos-design-ui/components/business/permission-wrapper.tsx",
     storybookId: "business-permissionwrapper--docs",
@@ -4233,7 +4289,8 @@ export const components: ComponentMeta[] = [
     nameZh: "提示对话框",
     category: "Business",
     desc: "PromptDialog — a business component for ERP / enterprise scenarios.",
-    descZh: "提示对话框 — 业务组件，核心属性：open, onOpenChange, title, description, label。",
+    descZh:
+      "提示对话框 — 业务组件，核心属性：open, onOpenChange, title, description, label。",
     sourcePath:
       "packages/chaos-design-ui/components/business/prompt-dialog.tsx",
     storybookId: "business-promptdialog--docs",
@@ -4343,7 +4400,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Red Packet",
     category: "Business",
     desc: "RedPacket — a business component for ERP / enterprise scenarios.",
-    descZh: "Red Packet — 业务组件，核心属性：label, subtitle, opened, onOpen。",
+    descZh:
+      "Red Packet — 业务组件，核心属性：label, subtitle, opened, onOpen。",
     sourcePath: "components/business/red-packet.tsx",
     storybookId: "business-redpacket--docs",
   },
@@ -4364,7 +4422,8 @@ export const components: ComponentMeta[] = [
     nameZh: "远程选择器",
     category: "Business",
     desc: "RemoteSelect — a business component for ERP / enterprise scenarios.",
-    descZh: "远程选择器 — 业务组件，核心属性：value, onChange, onSearch, placeholder, debounceMs。",
+    descZh:
+      "远程选择器 — 业务组件，核心属性：value, onChange, onSearch, placeholder, debounceMs。",
     sourcePath:
       "packages/chaos-design-ui/components/business/remote-select.tsx",
     storybookId: "business-remoteselect--docs",
@@ -4375,7 +4434,8 @@ export const components: ComponentMeta[] = [
     nameZh: "报表构建器",
     category: "Business",
     desc: "ReportBuilder — a business component for ERP / enterprise scenarios.",
-    descZh: "报表构建器 — 业务组件，核心属性：fields, filters, onFieldsChange, onFiltersChange, onPreview。",
+    descZh:
+      "报表构建器 — 业务组件，核心属性：fields, filters, onFieldsChange, onFiltersChange, onPreview。",
     sourcePath:
       "packages/chaos-design-ui/components/business/report-builder.tsx",
     storybookId: "business-reportbuilder--docs",
@@ -4409,7 +4469,8 @@ export const components: ComponentMeta[] = [
     nameZh: "富文本编辑器",
     category: "Business",
     desc: "RichTextEditor — a business component for ERP / enterprise scenarios.",
-    descZh: "富文本编辑器 — 业务组件，核心属性：value, onChange, placeholder, editable, showToolbar。",
+    descZh:
+      "富文本编辑器 — 业务组件，核心属性：value, onChange, placeholder, editable, showToolbar。",
     sourcePath:
       "packages/chaos-design-ui/components/business/rich-text-editor.tsx",
     storybookId: "business-richtexteditor--docs",
@@ -4475,7 +4536,8 @@ export const components: ComponentMeta[] = [
     nameZh: "已保存筛选",
     category: "Business",
     desc: "SavedFilters — a business component for ERP / enterprise scenarios.",
-    descZh: "已保存筛选 — 业务组件，核心属性：filters, activeId, onApply, onSave, onDelete。",
+    descZh:
+      "已保存筛选 — 业务组件，核心属性：filters, activeId, onApply, onSave, onDelete。",
     sourcePath:
       "packages/chaos-design-ui/components/business/saved-filters.tsx",
     storybookId: "business-savedfilters--docs",
@@ -4508,7 +4570,8 @@ export const components: ComponentMeta[] = [
     nameZh: "搜索表格",
     category: "Business",
     desc: "SearchTable — a business component for ERP / enterprise scenarios.",
-    descZh: "搜索表格 — 业务组件，核心属性：columns, data, searchKeys, searchPlaceholder。",
+    descZh:
+      "搜索表格 — 业务组件，核心属性：columns, data, searchKeys, searchPlaceholder。",
     sourcePath: "packages/chaos-design-ui/components/business/search-table.tsx",
     storybookId: "business-searchtable--docs",
   },
@@ -4540,7 +4603,8 @@ export const components: ComponentMeta[] = [
     nameZh: "班次日历",
     category: "Business",
     desc: "ShiftCalendar — a business component for ERP / enterprise scenarios.",
-    descZh: "班次日历 — 业务组件，核心属性：shifts, year, month, onMonthChange。",
+    descZh:
+      "班次日历 — 业务组件，核心属性：shifts, year, month, onMonthChange。",
     sourcePath:
       "packages/chaos-design-ui/components/business/shift-calendar.tsx",
     storybookId: "business-shiftcalendar--docs",
@@ -4615,7 +4679,8 @@ export const components: ComponentMeta[] = [
     nameZh: "Sql Editor",
     category: "Business",
     desc: "SqlEditor — a business component for ERP / enterprise scenarios.",
-    descZh: "Sql Editor — 业务组件，核心属性：value, onChange, dialect, placeholder, readOnly。",
+    descZh:
+      "Sql Editor — 业务组件，核心属性：value, onChange, dialect, placeholder, readOnly。",
     sourcePath: "components/business/sql-editor.tsx",
     storybookId: "business-sqleditor--docs",
   },
@@ -4877,7 +4942,8 @@ export const components: ComponentMeta[] = [
     nameZh: "树形表格",
     category: "Business",
     desc: "TreeTable — a business component for ERP / enterprise scenarios.",
-    descZh: "树形表格 — 业务组件，核心属性：data, columns, key, header, render。",
+    descZh:
+      "树形表格 — 业务组件，核心属性：data, columns, key, header, render。",
     sourcePath: "packages/chaos-design-ui/components/business/tree-table.tsx",
     storybookId: "business-treetable--docs",
   },
@@ -4909,7 +4975,8 @@ export const components: ComponentMeta[] = [
     nameZh: "用户菜单",
     category: "Business",
     desc: "UserMenu — a business component for ERP / enterprise scenarios.",
-    descZh: "用户菜单 — 业务组件，核心属性：user, actions, showProfile, showSettings, onProfile。",
+    descZh:
+      "用户菜单 — 业务组件，核心属性：user, actions, showProfile, showSettings, onProfile。",
     sourcePath: "packages/chaos-design-ui/components/business/user-menu.tsx",
     storybookId: "business-usermenu--docs",
   },
@@ -5118,7 +5185,8 @@ export const components: ComponentMeta[] = [
     nameZh: "移动端对话框",
     category: "Business",
     desc: "MobileDialog — a business component for ERP / enterprise scenarios.",
-    descZh: "移动端对话框 — 业务组件，核心属性：title, description, trigger, actions, open。",
+    descZh:
+      "移动端对话框 — 业务组件，核心属性：title, description, trigger, actions, open。",
     sourcePath: "components/mobile/mobile-dialog.tsx",
     storybookId: "business-mobiledialog--docs",
   },
@@ -5192,7 +5260,8 @@ export const components: ComponentMeta[] = [
     nameZh: "移动端看板",
     category: "Business",
     desc: "MobileKanban — a business component for ERP / enterprise scenarios.",
-    descZh: "移动端看板 — 业务组件，核心属性：columns, onColumnsChange, renderCard。",
+    descZh:
+      "移动端看板 — 业务组件，核心属性：columns, onColumnsChange, renderCard。",
     sourcePath: "components/mobile/mobile-kanban.tsx",
     storybookId: "business-mobilekanban--docs",
   },
@@ -5246,7 +5315,8 @@ export const components: ComponentMeta[] = [
     nameZh: "移动端选择器",
     category: "Business",
     desc: "MobileSelect — a business component for ERP / enterprise scenarios.",
-    descZh: "移动端选择器 — 业务组件，核心属性：options, value, onValueChange, placeholder, disabled。",
+    descZh:
+      "移动端选择器 — 业务组件，核心属性：options, value, onValueChange, placeholder, disabled。",
     sourcePath: "components/mobile/mobile-select.tsx",
     storybookId: "business-mobileselect--docs",
   },
@@ -5267,7 +5337,8 @@ export const components: ComponentMeta[] = [
     nameZh: "移动端面板",
     category: "Business",
     desc: "MobileSheet — a business component for ERP / enterprise scenarios.",
-    descZh: "移动端面板 — 业务组件，核心属性：title, description, trigger, actions, side。",
+    descZh:
+      "移动端面板 — 业务组件，核心属性：title, description, trigger, actions, side。",
     sourcePath: "components/mobile/mobile-sheet.tsx",
     storybookId: "business-mobilesheet--docs",
   },

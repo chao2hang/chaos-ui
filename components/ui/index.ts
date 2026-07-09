@@ -725,4 +725,8 @@ export type {
 
 // Theme provider (re-exports next-themes with typed context)
 export { ThemeProvider, useTheme } from "./theme-provider";
-export type { Theme, ThemeContextValue, ThemeProviderProps } from "./theme-provider";
+export type {
+  Theme,
+  ThemeContextValue,
+  ThemeProviderProps,
+} from "./theme-provider";

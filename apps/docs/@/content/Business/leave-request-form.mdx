@@ -1,5 +1,5 @@
-import { LeaveRequestForm } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LeaveRequestForm } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LeaveRequestForm Leave Request Form
 
@@ -24,27 +24,26 @@ export function Basic() {
   return <LeaveRequestForm />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LeaveRequestForm
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `leaveType` | `LeaveType` | `annual` | Current leave type |
-| `onLeaveTypeChange` | `() => void` | — | Leave type change callback |
-| `startDate` | `string` | `` | Start date |
-| `endDate` | `string` | `` | End date |
-| `onDateChange` | `() => void` | — | Date change callback |
-| `balances` | `LeaveBalance[]` | — | Available leave balances |
-| `approvers` | `Approver[]` | — | Approver chain |
-| `reason` | `string` | `` | Reason text |
-| `onReasonChange` | `() => void` | — | Reason change callback |
-| `onSubmit` | `() => void` | — | Submit handler |
-| `onCancel` | `() => void` | — | Cancel handler |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                   | Default  | 说明 / Description                                        |
+| ------------------- | ---------------------- | -------- | --------------------------------------------------------- |
+| `className`         | `string`               | —        | 自定义样式类名 <br/> Custom CSS class                     |
+| `leaveType`         | `LeaveType`            | `annual` | Current leave type                                        |
+| `onLeaveTypeChange` | `() => void`           | —        | Leave type change callback                                |
+| `startDate`         | `string`               | ``       | Start date                                                |
+| `endDate`           | `string`               | ``       | End date                                                  |
+| `onDateChange`      | `() => void`           | —        | Date change callback                                      |
+| `balances`          | `LeaveBalance[]`       | —        | Available leave balances                                  |
+| `approvers`         | `Approver[]`           | —        | Approver chain                                            |
+| `reason`            | `string`               | ``       | Reason text                                               |
+| `onReasonChange`    | `() => void`           | —        | Reason change callback                                    |
+| `onSubmit`          | `() => void`           | —        | Submit handler                                            |
+| `onCancel`          | `() => void`           | —        | Cancel handler                                            |
+| `readOnly`          | `boolean`              | `false`  | Read-only mode                                            |
+| ...rest             | `React.HTMLAttributes` | —        | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

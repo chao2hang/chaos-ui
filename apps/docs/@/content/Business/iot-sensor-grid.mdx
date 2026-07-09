@@ -1,5 +1,5 @@
-import { IotSensorGrid } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { IotSensorGrid } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # IotSensorGrid Iot Sensor Grid
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <IotSensorGrid />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### IotSensorGrid
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `sensors` | `Sensor[]` | — | Sensors to display. |
-| `title` | `string` | `IoT Sensor Grid` | Dashboard title. |
-| `refreshInterval` | `number` | `0` | Auto-refresh interval in ms (0 = disabled). |
-| `onSensorClick` | `() => void` | — | Sensor click handler. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop              | Type                   | Default           | 说明 / Description                                        |
+| ----------------- | ---------------------- | ----------------- | --------------------------------------------------------- |
+| `className`       | `string`               | —                 | 自定义样式类名 <br/> Custom CSS class                     |
+| `sensors`         | `Sensor[]`             | —                 | Sensors to display.                                       |
+| `title`           | `string`               | `IoT Sensor Grid` | Dashboard title.                                          |
+| `refreshInterval` | `number`               | `0`               | Auto-refresh interval in ms (0 = disabled).               |
+| `onSensorClick`   | `() => void`           | —                 | Sensor click handler.                                     |
+| ...rest           | `React.HTMLAttributes` | —                 | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

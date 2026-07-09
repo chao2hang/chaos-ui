@@ -36,13 +36,13 @@ export function Basic() {
 
 ### MobilePullRefresh
 
-| Prop | Type | Default | 说明 |
+| Prop         | Type                          | Default | 说明                                    |
 | ------------ | ----------------------------- | ------- | --------------------------------------- |
 | `onRefresh`  | `() => Promise<void> \| void` | —       | Refresh callback / 刷新回调             |
 | `refreshing` | `boolean`                     | `false` | Refreshing state / 刷新状态             |
 | `children`   | `React.ReactNode`             | —       | Content / 子内容                        |
 | `threshold`  | `number`                      | `60`    | Pull threshold in px / 触发阈值（像素） |
-| `className` | `string` | — | 自定义样式类名 |
+| `className`  | `string`                      | —       | 自定义样式类名                          |
 
 ## 注意事项
 
@@ -50,4 +50,3 @@ export function Basic() {
 - **移动端专用**: 基于触摸事件，适用于移动端场景。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobilepullrefresh--docs)。
-

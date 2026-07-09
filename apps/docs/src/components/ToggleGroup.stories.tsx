@@ -28,7 +28,9 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <ToggleGroup {...({ type: "multiple", defaultValue: ["bold", "italic"] } as any)}>
+    <ToggleGroup
+      {...({ type: "multiple", defaultValue: ["bold", "italic"] } as any)}
+    >
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="size-4" />
       </ToggleGroupItem>

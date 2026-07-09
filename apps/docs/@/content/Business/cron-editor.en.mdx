@@ -1,5 +1,5 @@
-import { CronEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CronEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CronEditor Cron Editor
 
@@ -11,7 +11,6 @@ CronEditor — a business component for ERP / enterprise scenarios.
 
 Use when you need a cron editor.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,22 +21,19 @@ export function Basic() {
   return <CronEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CronEditor
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | `* * * * *` | 5 段 Cron 表达式 |
-| `onChange` | `() => void` | — | 表达式变化回调 |
-| `showDescription` | `boolean` | `true` | 是否显示人类可读描述 |
-| `readOnly` | `boolean` | `false` | 只读模式 |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop              | Type                   | Default     | Description                       |
+| ----------------- | ---------------------- | ----------- | --------------------------------- |
+| `className`       | `string`               | —           | Custom CSS class                  |
+| `value`           | `string`               | `* * * * *` | 5 段 Cron 表达式                  |
+| `onChange`        | `() => void`           | —           | 表达式变化回调                    |
+| `showDescription` | `boolean`              | `true`      | 是否显示人类可读描述              |
+| `readOnly`        | `boolean`              | `false`     | 只读模式                          |
+| ...rest           | `React.HTMLAttributes` | —           | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

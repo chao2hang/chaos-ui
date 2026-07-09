@@ -26,7 +26,11 @@ interface QuickEntryGridProps {
 
 function QuickEntryGrid({ entries = [], className }: QuickEntryGridProps) {
   return (
-    <nav data-slot="quick-entry-grid" className={cn("w-full", className)} aria-label="快捷入口">
+    <nav
+      data-slot="quick-entry-grid"
+      className={cn("w-full", className)}
+      aria-label="快捷入口"
+    >
       <ul
         role="list"
         className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
@@ -36,13 +40,15 @@ function QuickEntryGrid({ entries = [], className }: QuickEntryGridProps) {
             <button
               type="button"
               onClick={entry.onClick}
-              className="group flex w-full flex-col items-center gap-2 rounded-lg border border-border bg-card p-4 text-center transition-colors hover:border-primary hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none"
+              className="group border-border bg-card hover:border-primary hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 flex w-full flex-col items-center gap-2 rounded-lg border p-4 text-center transition-colors outline-none focus-visible:ring-3"
               aria-label={entry.label}
             >
-              <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground">
+              <span className="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground flex size-10 items-center justify-center rounded-full">
                 {entry.icon ?? <GridIcon className="size-5" />}
               </span>
-              <span className="text-sm font-medium text-foreground">{entry.label}</span>
+              <span className="text-foreground text-sm font-medium">
+                {entry.label}
+              </span>
             </button>
           </li>
         ))}

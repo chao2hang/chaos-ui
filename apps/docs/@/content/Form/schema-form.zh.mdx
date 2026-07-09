@@ -1,5 +1,5 @@
-import { SchemaForm } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { SchemaForm } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # SchemaForm Schema 表单
 
@@ -10,7 +10,6 @@ Schema 表单 — Chaos UI 的表单控件。
 ## 何时使用
 
 适用于Schema 表单相关场景。
-
 
 ## 代码示例
 
@@ -26,15 +25,14 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SchemaForm
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -42,4 +40,3 @@ export function Basic() {
 - **表单校验**: 集成 `zod` + `react-hook-form`,支持类型安全的表单校验与提交。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-schemaform--docs)。
-

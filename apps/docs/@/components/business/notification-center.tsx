@@ -4,7 +4,11 @@ import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Badge } from "@chaos_team/chaos-ui/ui";
 import { ScrollArea } from "@chaos_team/chaos-ui/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chaos_team/chaos-ui/ui";
 import { useTranslation } from "react-i18next";
 import { EmptyState } from "@chaos_team/chaos-ui/ui";
 import { formatRelativeTime } from "@chaos_team/chaos-ui/lib";
@@ -141,7 +145,7 @@ export function NotificationCenter({
                 <li
                   key={n.id}
                   className={cn(
-                    "group flex cursor-pointer gap-2 border-b px-3 py-2.5 transition-colors last:border-0 hover:bg-muted/50",
+                    "group hover:bg-muted/50 flex cursor-pointer gap-2 border-b px-3 py-2.5 transition-colors last:border-0",
                     !n.read && "bg-muted/30",
                   )}
                   onClick={() => {
@@ -157,7 +161,7 @@ export function NotificationCenter({
                   />
                   <div className="flex-1 space-y-0.5">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-medium leading-tight">
+                      <p className="text-sm leading-tight font-medium">
                         {n.title}
                       </p>
                       {!n.read && (
@@ -170,17 +174,17 @@ export function NotificationCenter({
                           }}
                           className="opacity-0 group-hover:opacity-100"
                         >
-                          <CheckIcon className="size-3.5 text-muted-foreground hover:text-foreground" />
+                          <CheckIcon className="text-muted-foreground hover:text-foreground size-3.5" />
                         </span>
                       )}
                     </div>
                     {n.description && (
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         {n.description}
                       </p>
                     )}
                     <div className="flex items-center justify-between pt-0.5">
-                      <span className="text-[0.65rem] text-muted-foreground">
+                      <span className="text-muted-foreground text-[0.65rem]">
                         {formatRelativeTime(n.timestamp)}
                       </span>
                       {n.action && (
@@ -190,7 +194,7 @@ export function NotificationCenter({
                             e.stopPropagation();
                             n.action?.onClick();
                           }}
-                          className="text-[0.65rem] text-primary hover:underline"
+                          className="text-primary text-[0.65rem] hover:underline"
                         >
                           {n.action.label}
                         </button>

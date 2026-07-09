@@ -1,16 +1,28 @@
-import { SalesTargetEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SalesTargetEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SalesTargetEditor Sales Target Editor
 
 > 业务组件
 
-<SalesTargetEditor rows={[{ id: "1", year: 2026, region: "华东", q1: 100, q2: 120, q3: 130, q4: 150, annual: 500 }]} />
+<SalesTargetEditor
+  rows={[
+    {
+      id: "1",
+      year: 2026,
+      region: "华东",
+      q1: 100,
+      q2: 120,
+      q3: 130,
+      q4: 150,
+      annual: 500,
+    },
+  ]}
+/>
 
 ## 何时使用
 
 适用于Sales Target Editor相关场景。
-
 
 ## 代码示例
 
@@ -22,21 +34,19 @@ export function Basic() {
   return <SalesTargetEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SalesTargetEditor
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `rows` | `SalesTargetRow[]` | — | 行数据 |
-| `onChange` | `() => void` | — | 值变化回调 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `rows`      | `SalesTargetRow[]`     | —       | 行数据            |
+| `onChange`  | `() => void`           | —       | 值变化回调        |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-salestargeteditor--docs)。
-

@@ -26,11 +26,7 @@ import {
 
 /** Supported maintenance types. */
 export type MaintenanceType =
-  | "preventive"
-  | "corrective"
-  | "emergency"
-  | "inspection"
-  | "calibration";
+  "preventive" | "corrective" | "emergency" | "inspection" | "calibration";
 
 /** Status of a maintenance entry. */
 export type MaintenanceStatus = "completed" | "in-progress" | "scheduled";
@@ -117,14 +113,15 @@ const statusLabels: Record<MaintenanceStatus, string> = {
   scheduled: "Scheduled",
 };
 
-const filterOptions: Array<{ value: MaintenanceType | "all"; label: string }> = [
-  { value: "all", label: "All" },
-  { value: "preventive", label: "Preventive" },
-  { value: "corrective", label: "Corrective" },
-  { value: "emergency", label: "Emergency" },
-  { value: "inspection", label: "Inspection" },
-  { value: "calibration", label: "Calibration" },
-];
+const filterOptions: Array<{ value: MaintenanceType | "all"; label: string }> =
+  [
+    { value: "all", label: "All" },
+    { value: "preventive", label: "Preventive" },
+    { value: "corrective", label: "Corrective" },
+    { value: "emergency", label: "Emergency" },
+    { value: "inspection", label: "Inspection" },
+    { value: "calibration", label: "Calibration" },
+  ];
 
 /* -------------------------------------------------------------------------- */
 /*  Component                                                                 */
@@ -167,9 +164,7 @@ function MaintenanceLog({
       className={cn("flex flex-col gap-4", className)}
     >
       {/* Title */}
-      {title && (
-        <h3 className="text-base font-semibold">{title}</h3>
-      )}
+      {title && <h3 className="text-base font-semibold">{title}</h3>}
 
       {/* Filter tabs */}
       {showFilter && (
@@ -207,7 +202,15 @@ function MaintenanceLog({
                     <time className="text-muted-foreground text-xs">
                       {entry.date}
                     </time>
-                    <Badge variant={config.variant === "destructive" ? "destructive" : config.variant === "default" ? "default" : "secondary"}>
+                    <Badge
+                      variant={
+                        config.variant === "destructive"
+                          ? "destructive"
+                          : config.variant === "default"
+                            ? "default"
+                            : "secondary"
+                      }
+                    >
                       {config.label}
                     </Badge>
                     <Badge

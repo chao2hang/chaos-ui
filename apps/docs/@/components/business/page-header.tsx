@@ -46,14 +46,14 @@ function PageHeader({
   className,
 }: PageHeaderProps) {
   // Compose actions from primaryAction/secondaryActions if no explicit actions
-  const resolvedActions = actions ?? (
-    primaryAction || secondaryActions?.length ? (
+  const resolvedActions =
+    actions ??
+    (primaryAction || secondaryActions?.length ? (
       <div className="flex items-center gap-2">
         {secondaryActions}
         {primaryAction}
       </div>
-    ) : undefined
-  );
+    ) : undefined);
 
   return (
     <div data-slot="page-header" className={cn("space-y-2", className)}>
@@ -87,7 +87,9 @@ function PageHeader({
             <p className="text-muted-foreground">{description}</p>
           )}
         </div>
-        {resolvedActions && <div className="flex items-center gap-2">{resolvedActions}</div>}
+        {resolvedActions && (
+          <div className="flex items-center gap-2">{resolvedActions}</div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import { UtmBuilder } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { UtmBuilder } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # UtmBuilder UTM
 
@@ -11,7 +11,6 @@ UtmBuilder — a business component for ERP / enterprise scenarios.
 
 Use when you need an utm builder.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,20 +21,17 @@ export function Basic() {
   return <UtmBuilder />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### UtmBuilder
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `baseUrl` | `string` | `` |  |
-| `onChange` | `() => void` | — | Callback when value changes |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `baseUrl`   | `string`                      | ``      |                                 |
+| `onChange`  | `() => void`                  | —       | Callback when value changes     |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

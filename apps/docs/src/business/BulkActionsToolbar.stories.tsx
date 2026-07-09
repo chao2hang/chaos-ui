@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { BulkActionsToolbar } from "@chaos_team/chaos-ui/business"
-import { TrashIcon, DownloadIcon, TagIcon, ArchiveIcon } from "lucide-react"
+import type { Meta, StoryObj } from "@storybook/react";
+import { BulkActionsToolbar } from "@chaos_team/chaos-ui/business";
+import { TrashIcon, DownloadIcon, TagIcon, ArchiveIcon } from "lucide-react";
 
 const meta: Meta<typeof BulkActionsToolbar> = {
   title: "Business/BulkActionsToolbar",
@@ -8,32 +8,49 @@ const meta: Meta<typeof BulkActionsToolbar> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
     <div className="space-y-3">
-      <p className="text-xs text-muted-foreground">已选择 3 / 10 项</p>
+      <p className="text-muted-foreground text-xs">已选择 3 / 10 项</p>
       <BulkActionsToolbar
         count={10}
         selectedCount={3}
         onClear={() => console.info("clear")}
         actions={[
-          { label: "删除", icon: <TrashIcon />, onClick: () => console.info("delete"), variant: "destructive" },
-          { label: "导出", icon: <DownloadIcon />, onClick: () => console.info("export") },
-          { label: "打标签", icon: <TagIcon />, onClick: () => console.info("tag") },
-          { label: "归档", icon: <ArchiveIcon />, onClick: () => console.info("archive") },
+          {
+            label: "删除",
+            icon: <TrashIcon />,
+            onClick: () => console.info("delete"),
+            variant: "destructive",
+          },
+          {
+            label: "导出",
+            icon: <DownloadIcon />,
+            onClick: () => console.info("export"),
+          },
+          {
+            label: "打标签",
+            icon: <TagIcon />,
+            onClick: () => console.info("tag"),
+          },
+          {
+            label: "归档",
+            icon: <ArchiveIcon />,
+            onClick: () => console.info("archive"),
+          },
         ]}
       />
     </div>
   ),
-}
+};
 
 export const HiddenWhenEmpty: Story = {
   render: () => (
     <div className="space-y-3">
-      <p className="text-xs text-muted-foreground">无选择时不渲染工具栏</p>
+      <p className="text-muted-foreground text-xs">无选择时不渲染工具栏</p>
       <BulkActionsToolbar
         count={10}
         selectedCount={0}
@@ -42,7 +59,7 @@ export const HiddenWhenEmpty: Story = {
       />
     </div>
   ),
-}
+};
 
 export const DisabledActions: Story = {
   render: () => (
@@ -56,9 +73,9 @@ export const DisabledActions: Story = {
       ]}
     />
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

@@ -1,7 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { ChevronDownIcon, ChevronRightIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 
 import { Avatar, AvatarFallback } from "@chaos_team/chaos-ui/ui";

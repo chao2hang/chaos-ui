@@ -1,5 +1,5 @@
-import { Grid } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Grid } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Grid
 
@@ -11,7 +11,6 @@ Grid — a layout primitives for structuring pages. for structuring page regions
 
 Use when you need a grid.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,61 +21,57 @@ export function Basic() {
   return <Grid>Default</Grid>
 }`} lang="tsx" />
 
-
 ## Style Variants
 
 **columns**
 
 | columns | Description | 默认 |
-|---|---|---|
-| `1` |  | ✓ |
-| `2` |  |  |
-| `3` |  |  |
-| `4` |  |  |
-| `5` |  |  |
-| `6` |  |  |
-| `12` |  |  |
+| ------- | ----------- | ---- |
+| `1`     |             | ✓    |
+| `2`     |             |      |
+| `3`     |             |      |
+| `4`     |             |      |
+| `5`     |             |      |
+| `6`     |             |      |
+| `12`    |             |      |
 
 **gap**
 
-| gap | Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `xs` |  |  |
-| `sm` |  |  |
-| `md` |  | ✓ |
-| `lg` |  |  |
-| `xl` |  |  |
+| gap    | Description | 默认 |
+| ------ | ----------- | ---- |
+| `none` |             |      |
+| `xs`   |             |      |
+| `sm`   |             |      |
+| `md`   |             | ✓    |
+| `lg`   |             |      |
+| `xl`   |             |      |
 
 **align**
 
-| align | Description | 默认 |
-|---|---|---|
-| `start` |  |  |
-| `center` |  |  |
-| `end` |  |  |
-| `stretch` |  | ✓ |
+| align     | Description | 默认 |
+| --------- | ----------- | ---- |
+| `start`   |             |      |
+| `center`  |             |      |
+| `end`     |             |      |
+| `stretch` |             | ✓    |
 
 **justify**
 
-| justify | Description | 默认 |
-|---|---|---|
-| `start` |  | ✓ |
-| `center` |  |  |
-| `end` |  |  |
-| `between` |  |  |
-| `around` |  |  |
+| justify   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `start`   |             | ✓    |
+| `center`  |             |      |
+| `end`     |             |      |
+| `between` |             |      |
+| `around`  |             |      |
 
 ## API / Props
 
 ### Grid
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
-
-
-

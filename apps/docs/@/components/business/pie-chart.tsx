@@ -24,7 +24,14 @@ export interface PieChartProps {
   className?: string;
 }
 
-const PIE_PALETTE = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"];
+const PIE_PALETTE = [
+  "#3b82f6",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#06b6d4",
+];
 
 function polar(cx: number, cy: number, r: number, angleDeg: number) {
   const a = (angleDeg * Math.PI) / 180;
@@ -59,7 +66,11 @@ function PieChart({
         ? `M ${cx} ${cy - r} A ${r} ${r} 0 1 1 ${cx - 0.01} ${cy - r} Z`
         : `M ${cx} ${cy} L ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y} Z`;
     angle = end;
-    return { ...d, path, color: d.color ?? PIE_PALETTE[i % PIE_PALETTE.length] };
+    return {
+      ...d,
+      path,
+      color: d.color ?? PIE_PALETTE[i % PIE_PALETTE.length],
+    };
   });
 
   return (
@@ -87,7 +98,9 @@ function PieChart({
               aria-hidden="true"
             />
             <span className="text-muted-foreground">{sl.label}</span>
-            <span className="ml-auto tabular-nums">{formatNumber(sl.value)}</span>
+            <span className="ml-auto tabular-nums">
+              {formatNumber(sl.value)}
+            </span>
           </li>
         ))}
       </ul>

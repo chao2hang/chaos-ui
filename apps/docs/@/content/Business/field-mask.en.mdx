@@ -1,5 +1,5 @@
-import { FieldMask } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { FieldMask } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # FieldMask
 
@@ -11,7 +11,6 @@ FieldMask — a business component for ERP / enterprise scenarios.
 
 Use when you need a field mask.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,22 +21,19 @@ export function Basic() {
   return <FieldMask />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### FieldMask
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `mask` | `MaskType` | `phone` |  |
-| `customPattern` | `string` | — |  |
-| `value` | `string` | — | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| ...rest | `React.ComponentProps<"input">` | — | Inherits all `<input>` attributes |
+| Prop            | Type                            | Default | Description                       |
+| --------------- | ------------------------------- | ------- | --------------------------------- |
+| `className`     | `string`                        | —       | Custom CSS class                  |
+| `mask`          | `MaskType`                      | `phone` |                                   |
+| `customPattern` | `string`                        | —       |                                   |
+| `value`         | `string`                        | —       | Current value (controlled)        |
+| `onChange`      | `() => void`                    | —       | Callback when value changes       |
+| ...rest         | `React.ComponentProps<"input">` | —       | Inherits all `<input>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

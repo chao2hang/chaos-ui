@@ -58,19 +58,29 @@ function GanttChart({ tasks, className }: GanttChartProps) {
   return (
     <div
       data-slot="gantt-chart"
-      className={cn("w-full overflow-x-auto rounded-lg border bg-card p-2 text-sm", className)}
+      className={cn(
+        "bg-card w-full overflow-x-auto rounded-lg border p-2 text-sm",
+        className,
+      )}
       role="table"
       aria-label={`甘特图，共 ${tasks.length} 个任务`}
     >
-      <div role="row" className="flex border-b pb-1" style={{ minWidth: 96 + dates.span * colWidth }}>
-        <span role="cell" className="w-24 shrink-0 text-xs text-muted-foreground">
+      <div
+        role="row"
+        className="flex border-b pb-1"
+        style={{ minWidth: 96 + dates.span * colWidth }}
+      >
+        <span
+          role="cell"
+          className="text-muted-foreground w-24 shrink-0 text-xs"
+        >
           任务
         </span>
         {headerDays.map((d) => (
           <span
             key={d.idx}
             role="columnheader"
-            className="shrink-0 text-center text-[10px] text-muted-foreground"
+            className="text-muted-foreground shrink-0 text-center text-[10px]"
             style={{ width: colWidth }}
           >
             {d.label}
@@ -78,13 +88,16 @@ function GanttChart({ tasks, className }: GanttChartProps) {
         ))}
       </div>
       {tasks.length === 0 ? (
-        <p className="py-4 text-center text-xs text-muted-foreground">无任务</p>
+        <p className="text-muted-foreground py-4 text-center text-xs">无任务</p>
       ) : (
         tasks.map((t) => {
           const s = new Date(t.start);
           s.setHours(0, 0, 0, 0);
           const offset = Math.max(0, daysBetween(dates.start, s));
-          const dur = Math.max(1, daysBetween(new Date(t.start), new Date(t.end)) + 1);
+          const dur = Math.max(
+            1,
+            daysBetween(new Date(t.start), new Date(t.end)) + 1,
+          );
           const progress = Math.min(100, Math.max(0, t.progress ?? 0));
           return (
             <div
@@ -102,7 +115,7 @@ function GanttChart({ tasks, className }: GanttChartProps) {
               <div className="relative flex-1" style={{ height: 18 }}>
                 <div
                   role="cell"
-                  className="absolute top-1/2 -translate-y-1/2 overflow-hidden rounded bg-primary/15 ring-1 ring-primary/40"
+                  className="bg-primary/15 ring-primary/40 absolute top-1/2 -translate-y-1/2 overflow-hidden rounded ring-1"
                   style={{
                     left: offset * colWidth,
                     width: dur * colWidth,
@@ -110,7 +123,7 @@ function GanttChart({ tasks, className }: GanttChartProps) {
                   title={`${formatDate(t.start)} → ${formatDate(t.end)}`}
                 >
                   <div
-                    className="h-full bg-primary"
+                    className="bg-primary h-full"
                     style={{ width: `${progress}%` }}
                   />
                 </div>

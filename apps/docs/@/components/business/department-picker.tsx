@@ -6,7 +6,11 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Input } from "@chaos_team/chaos-ui/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@chaos_team/chaos-ui/ui";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chaos_team/chaos-ui/ui";
 import {
   Building2Icon,
   CheckIcon,
@@ -51,9 +55,9 @@ interface DepartmentPickerProps {
 }
 
 /** Flatten options into depth-ordered rows (roots first, children nested). */
-function flatten(options: DepartmentPickerOption[]): Array<
-  DepartmentPickerOption & { depth: number }
-> {
+function flatten(
+  options: DepartmentPickerOption[],
+): Array<DepartmentPickerOption & { depth: number }> {
   const childrenOf = (parent?: string) =>
     options.filter((o) => (o.parent ?? "") === (parent ?? ""));
   const rows: Array<DepartmentPickerOption & { depth: number }> = [];
@@ -83,9 +87,11 @@ function DepartmentPicker({
   const [query, setQuery] = React.useState("");
 
   const resolvedPlaceholder =
-    placeholder ?? t("departmentPicker.placeholder", { defaultValue: "请选择部门" });
+    placeholder ??
+    t("departmentPicker.placeholder", { defaultValue: "请选择部门" });
   const resolvedSearch =
-    searchPlaceholder ?? t("departmentPicker.search", { defaultValue: "搜索部门" });
+    searchPlaceholder ??
+    t("departmentPicker.search", { defaultValue: "搜索部门" });
   const resolvedEmpty =
     emptyText ?? t("departmentPicker.empty", { defaultValue: "无匹配部门" });
 
@@ -133,7 +139,9 @@ function DepartmentPicker({
         }
       >
         <Building2Icon className="size-4 shrink-0 opacity-50" />
-        <span className="flex-1 truncate">{selected?.label ?? resolvedPlaceholder}</span>
+        <span className="flex-1 truncate">
+          {selected?.label ?? resolvedPlaceholder}
+        </span>
         <span className="flex items-center gap-1">
           {clearable && selected && (
             <span
@@ -151,7 +159,7 @@ function DepartmentPicker({
                   onChange?.(undefined);
                 }
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -173,7 +181,7 @@ function DepartmentPicker({
           </div>
           <ul role="tree" className="max-h-64 overflow-y-auto p-1">
             {rows.length === 0 && (
-              <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+              <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
@@ -185,7 +193,9 @@ function DepartmentPicker({
                     variant="ghost"
                     size="sm"
                     type="button"
-                    {...(o.disabled !== undefined ? { disabled: o.disabled } : {})}
+                    {...(o.disabled !== undefined
+                      ? { disabled: o.disabled }
+                      : {})}
                     onClick={() => {
                       onChange?.(o.value);
                       setOpen(false);

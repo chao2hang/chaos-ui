@@ -18,11 +18,23 @@ import { useMemo } from "react";
 import { message, type MessageOptions } from "@chaos_team/chaos-ui/lib";
 
 export interface MessageInstance {
-  success: (content: React.ReactNode, options?: MessageOptions) => string | number;
-  error: (content: React.ReactNode, options?: MessageOptions) => string | number;
-  warning: (content: React.ReactNode, options?: MessageOptions) => string | number;
+  success: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
+  error: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
+  warning: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
   info: (content: React.ReactNode, options?: MessageOptions) => string | number;
-  loading: (content: React.ReactNode, options?: MessageOptions) => string | number;
+  loading: (
+    content: React.ReactNode,
+    options?: MessageOptions,
+  ) => string | number;
   promise: <T>(
     promise: Promise<T>,
     options: {

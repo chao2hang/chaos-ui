@@ -3,7 +3,12 @@ import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { CopyIcon, EditIcon, RefreshCwIcon, Trash2Icon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CopyIcon,
+  EditIcon,
+  RefreshCwIcon,
+  Trash2Icon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatMessageActions
@@ -23,17 +28,35 @@ interface ChatMessageActionsProps {
   className?: string;
 }
 
-function ChatMessageActions({ onReply, onCopy, onDelete, onRegenerate, className }: ChatMessageActionsProps) {
+function ChatMessageActions({
+  onReply,
+  onCopy,
+  onDelete,
+  onRegenerate,
+  className,
+}: ChatMessageActionsProps) {
   const actions = [
     onReply && { label: "Reply", Icon: EditIcon, handler: onReply },
     onCopy && { label: "Copy", Icon: CopyIcon, handler: onCopy },
-    onRegenerate && { label: "Regenerate", Icon: RefreshCwIcon, handler: onRegenerate },
+    onRegenerate && {
+      label: "Regenerate",
+      Icon: RefreshCwIcon,
+      handler: onRegenerate,
+    },
     onDelete && { label: "Delete", Icon: Trash2Icon, handler: onDelete },
-  ].filter(Boolean) as { label: string; Icon: React.ComponentType<{ className?: string }>; handler: () => void }[];
+  ].filter(Boolean) as {
+    label: string;
+    Icon: React.ComponentType<{ className?: string }>;
+    handler: () => void;
+  }[];
 
   if (actions.length === 0) {
     return (
-      <div data-slot="chat-message-actions" className={cn("hidden", className)} aria-hidden />
+      <div
+        data-slot="chat-message-actions"
+        className={cn("hidden", className)}
+        aria-hidden
+      />
     );
   }
 

@@ -35,7 +35,11 @@ export const Warning: Story = {
 };
 
 export const Error: Story = {
-  args: { type: "error", title: "Error", description: "Something went wrong." } as any,
+  args: {
+    type: "error",
+    title: "Error",
+    description: "Something went wrong.",
+  } as any,
 };
 
 export const Closable: Story = {

@@ -1,5 +1,9 @@
-import { PageContainer, PageHeader, PageContent } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  PageContainer,
+  PageHeader,
+  PageContent,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # PageContainer
 
@@ -10,7 +14,6 @@ PageContainer — a layout primitives for structuring pages. for structuring pag
 ## When to Use
 
 Use when you need a page container.
-
 
 ## Examples
 
@@ -28,53 +31,53 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <PageContainer size="sm">Sm</PageContainer>
   <PageContainer size="default">Default</PageContainer>
   <PageContainer size="lg">Lg</PageContainer>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `sm` | Small |  |
-| `default` | Default size | ✓ |
-| `lg` | Large |  |
-| `full` |  |  |
-| `none` |  |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `sm`      | Small        |      |
+| `default` | Default size | ✓    |
+| `lg`      | Large        |      |
+| `full`    |              |      |
+| `none`    |              |      |
 
 **padding**
 
-| padding | Description | 默认 |
-|---|---|---|
-| `none` |  |  |
-| `sm` |  |  |
-| `default` |  | ✓ |
-| `lg` |  |  |
+| padding   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `none`    |             |      |
+| `sm`      |             |      |
+| `default` |             | ✓    |
+| `lg`      |             |      |
 
 **center**
 
-| center | Description | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| center  | Description | 默认 |
+| ------- | ----------- | ---- |
+| `true`  |             | ✓    |
+| `false` |             |      |
 
 ## API / Props
 
 ### PageContainer
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 2 个子组件(PageHeader, PageContent),使用组合模式按需导入。
-
-

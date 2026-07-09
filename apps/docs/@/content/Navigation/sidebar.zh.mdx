@@ -1,5 +1,5 @@
-import { Sidebar } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Sidebar } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Sidebar 侧边栏
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要侧边栏功能时使用本组件。
-
 
 ## 代码示例
 
@@ -28,47 +27,52 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Sidebar variant="default">Default</Sidebar>
   <Sidebar variant="outline">Outline</Sidebar>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### 尺寸
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Sidebar size="sm">Sm</Sidebar>
   <Sidebar size="default">Default</Sidebar>
   <Sidebar size="lg">Lg</Sidebar>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **变体**
 
-| Variant | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认样式 | ✓ |
-| `outline` | 描边样式 |  |
+| Variant   | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认样式 | ✓    |
+| `outline` | 描边样式 |      |
 
 **尺寸**
 
-| Size | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 | ✓ |
-| `sm` | 小号 |  |
-| `lg` | 大号 |  |
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
 
 ## API / Props
 
 ### Sidebar
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -78,4 +82,3 @@ export function Basic() {
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sidebar--docs)。
-

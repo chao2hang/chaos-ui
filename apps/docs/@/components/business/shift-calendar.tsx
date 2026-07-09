@@ -207,7 +207,7 @@ function ShiftCalendar({
   const assignmentMap = React.useMemo(() => {
     const map: Record<string, Record<string, ShiftAssignment[]>> = {};
     for (const a of assignments) {
-      (map[a.date] ??= {});
+      map[a.date] ??= {};
       (map[a.date]![a.employeeId] ??= []).push(a);
     }
     return map;
@@ -296,7 +296,7 @@ function ShiftCalendar({
         <table className="w-full border-collapse text-xs">
           <thead>
             <tr>
-              <th className="text-muted-foreground sticky left-0 z-10 bg-background min-w-[100px] border border-border p-1.5 text-left text-[0.65rem] font-medium">
+              <th className="text-muted-foreground bg-background border-border sticky left-0 z-10 min-w-[100px] border p-1.5 text-left text-[0.65rem] font-medium">
                 Employee
               </th>
               {days.map((day) => {
@@ -307,7 +307,7 @@ function ShiftCalendar({
                   <th
                     key={key}
                     className={cn(
-                      "border border-border p-1 text-center text-[0.65rem] font-medium",
+                      "border-border border p-1 text-center text-[0.65rem] font-medium",
                       we && "bg-muted/40",
                       !inMonth && "text-muted-foreground/40",
                     )}
@@ -324,14 +324,13 @@ function ShiftCalendar({
           <tbody>
             {visibleEmployees.map((emp) => (
               <tr key={emp.id}>
-                <td className="text-foreground sticky left-0 z-10 bg-background border border-border p-1.5 text-[0.7rem] font-medium">
+                <td className="text-foreground bg-background border-border sticky left-0 z-10 border p-1.5 text-[0.7rem] font-medium">
                   {emp.name}
                 </td>
                 {days.map((day) => {
                   const dateKey = formatDateKey(day);
                   const we = isWeekend(day);
-                  const inMonth =
-                    day.getMonth() === currentMonth.getMonth();
+                  const inMonth = day.getMonth() === currentMonth.getMonth();
                   const cellAssignments =
                     assignmentMap[dateKey]?.[emp.id] ?? [];
 
@@ -339,7 +338,7 @@ function ShiftCalendar({
                     <td
                       key={dateKey}
                       className={cn(
-                        "border border-border p-0.5 align-top",
+                        "border-border border p-0.5 align-top",
                         we && "bg-muted/20",
                         !inMonth && "opacity-30",
                       )}
@@ -351,10 +350,7 @@ function ShiftCalendar({
                             if (!st) return null;
                             return (
                               <span
-                                key={
-                                  a.id ??
-                                  `${dateKey}-${emp.id}-${idx}`
-                                }
+                                key={a.id ?? `${dateKey}-${emp.id}-${idx}`}
                                 className={cn(
                                   "inline-block rounded px-1 py-px text-[0.6rem] leading-tight",
                                   st.color,
@@ -369,20 +365,16 @@ function ShiftCalendar({
                       ) : (
                         <Popover>
                           <PopoverTrigger
-                            className="flex min-h-[28px] w-full cursor-pointer flex-wrap gap-0.5 rounded p-0.5 transition-colors hover:bg-muted/50"
+                            className="hover:bg-muted/50 flex min-h-[28px] w-full cursor-pointer flex-wrap gap-0.5 rounded p-0.5 transition-colors"
                             type="button"
                             aria-label={`Assign shift for ${emp.name} on ${dateKey}`}
                           >
                             {cellAssignments.map((a, idx) => {
-                              const st =
-                                shiftTypeMap[a.shiftTypeId];
+                              const st = shiftTypeMap[a.shiftTypeId];
                               if (!st) return null;
                               return (
                                 <span
-                                  key={
-                                    a.id ??
-                                    `${dateKey}-${emp.id}-${idx}`
-                                  }
+                                  key={a.id ?? `${dateKey}-${emp.id}-${idx}`}
                                   className={cn(
                                     "inline-block rounded px-1 py-px text-[0.6rem] leading-tight",
                                     st.color,
@@ -393,9 +385,7 @@ function ShiftCalendar({
                                     e.stopPropagation();
                                     handleRemove(dateKey, emp.id);
                                   }}
-                                  onClick={(e) =>
-                                    e.stopPropagation()
-                                  }
+                                  onClick={(e) => e.stopPropagation()}
                                   title="Right-click to remove"
                                 >
                                   {st.label}
@@ -416,11 +406,7 @@ function ShiftCalendar({
                                   size="xs"
                                   className="justify-start gap-2"
                                   onClick={() =>
-                                    handleAssign(
-                                      dateKey,
-                                      emp.id,
-                                      st.id,
-                                    )
+                                    handleAssign(dateKey, emp.id, st.id)
                                   }
                                 >
                                   <span
@@ -450,7 +436,7 @@ function ShiftCalendar({
             {/* Summary row */}
             {showSummary && (
               <tr>
-                <td className="text-muted-foreground sticky left-0 z-10 bg-background border border-border p-1.5 text-[0.65rem] font-semibold">
+                <td className="text-muted-foreground bg-background border-border sticky left-0 z-10 border p-1.5 text-[0.65rem] font-semibold">
                   Total hours
                 </td>
                 {days.map((day) => {
@@ -460,18 +446,16 @@ function ShiftCalendar({
                     <td
                       key={dateKey}
                       className={cn(
-                        "border border-border p-0.5 text-center text-[0.6rem]",
+                        "border-border border p-0.5 text-center text-[0.6rem]",
                         we && "bg-muted/20",
                       )}
                     >
                       {(() => {
                         let dayTotal = 0;
                         for (const emp of visibleEmployees) {
-                          for (const a of assignmentMap[dateKey]?.[
-                            emp.id
-                          ] ?? []) {
-                            const st =
-                              shiftTypeMap[a.shiftTypeId];
+                          for (const a of assignmentMap[dateKey]?.[emp.id] ??
+                            []) {
+                            const st = shiftTypeMap[a.shiftTypeId];
                             if (st?.hours) dayTotal += st.hours;
                           }
                         }
@@ -490,9 +474,7 @@ function ShiftCalendar({
       <div className="flex flex-wrap items-center gap-3">
         {shiftTypes.map((st) => (
           <div key={st.id} className="flex items-center gap-1.5">
-            <span
-              className={cn("inline-block size-3 rounded-sm", st.color)}
-            />
+            <span className={cn("inline-block size-3 rounded-sm", st.color)} />
             <span className="text-muted-foreground text-[0.7rem]">
               {st.label}
               {st.hours ? ` (${st.hours}h)` : ""}

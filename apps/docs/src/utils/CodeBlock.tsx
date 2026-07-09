@@ -1,29 +1,36 @@
-import * as React from "react"
-import { cn } from "@chaos_team/chaos-ui/lib"
+import * as React from "react";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface CodeBlockProps {
-  code: string
-  language?: string
-  title?: string
-  className?: string
+  code: string;
+  language?: string;
+  title?: string;
+  className?: string;
 }
 
-function CodeBlock({ code, language = "tsx", title, className }: CodeBlockProps) {
+function CodeBlock({
+  code,
+  language = "tsx",
+  title,
+  className,
+}: CodeBlockProps) {
   return (
-    <div className={cn("rounded-lg border bg-muted/50 overflow-hidden", className)}>
+    <div
+      className={cn("bg-muted/50 overflow-hidden rounded-lg border", className)}
+    >
       {title && (
-        <div className="border-b bg-muted px-4 py-2 text-xs font-medium text-muted-foreground">
+        <div className="bg-muted text-muted-foreground border-b px-4 py-2 text-xs font-medium">
           {title}
         </div>
       )}
-      <div className="p-4 overflow-x-auto">
-        <pre className="text-sm font-mono">
+      <div className="overflow-x-auto p-4">
+        <pre className="font-mono text-sm">
           <code className={`language-${language}`}>{code}</code>
         </pre>
       </div>
     </div>
-  )
+  );
 }
 
-export { CodeBlock }
-export type { CodeBlockProps }
+export { CodeBlock };
+export type { CodeBlockProps };

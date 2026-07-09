@@ -1,5 +1,5 @@
-import { QRCodeDisplay } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { QRCodeDisplay } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # QrcodeDisplay 二维码展示
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要二维码展示功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,21 +21,20 @@ export function Basic() {
   return <QRCodeDisplay />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### QRCodeDisplay
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `value` | `string` | — | Text to encode in QR code |
-| `size` | `number` | `200` | Size in pixels |
-| `fgColor` | `string` | `#000000` | Foreground color |
-| `bgColor` | `string` | `#ffffff` | Background color |
-| `level` | `"L" \| "M" \| "Q" \| "H"` | `M` | Error correction level |
-| `includeMargin` | `boolean` | `true` | Include margin/padding |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop            | Type                          | Default   | 说明                      |
+| --------------- | ----------------------------- | --------- | ------------------------- |
+| `className`     | `string`                      | —         | 自定义样式类名            |
+| `value`         | `string`                      | —         | Text to encode in QR code |
+| `size`          | `number`                      | `200`     | Size in pixels            |
+| `fgColor`       | `string`                      | `#000000` | Foreground color          |
+| `bgColor`       | `string`                      | `#ffffff` | Background color          |
+| `level`         | `"L" \| "M" \| "Q" \| "H"`    | `M`       | Error correction level    |
+| `includeMargin` | `boolean`                     | `true`    | Include margin/padding    |
+| ...rest         | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性     |
 
 ## 注意事项
 
@@ -44,4 +42,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-qrcodedisplay--docs)。
-

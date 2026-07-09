@@ -160,8 +160,8 @@ export function PivotTable<T extends Record<string, unknown>>({
         <ScrollArea>
           <Table className="w-full text-sm">
             <TableHeader>
-              <TableRow className="border-b bg-muted/30">
-                <TableHead className="sticky left-0 z-10 bg-muted/30 px-3 py-2 text-left font-medium">
+              <TableRow className="bg-muted/30 border-b">
+                <TableHead className="bg-muted/30 sticky left-0 z-10 px-3 py-2 text-left font-medium">
                   {String(rowField)} \ {String(columnField)}
                 </TableHead>
                 {matrix.cols.map((c) => (
@@ -184,7 +184,7 @@ export function PivotTable<T extends Record<string, unknown>>({
                 <TableRow>
                   <TableCell
                     colSpan={matrix.cols.length + (showColumnTotal ? 2 : 1)}
-                    className="px-3 py-6 text-center text-muted-foreground"
+                    className="text-muted-foreground px-3 py-6 text-center"
                   >
                     {t("pivotTable.noData")}
                   </TableCell>
@@ -193,9 +193,9 @@ export function PivotTable<T extends Record<string, unknown>>({
                 matrix.rows.map((r, ri) => (
                   <TableRow
                     key={r}
-                    className="border-b last:border-0 hover:bg-muted/20"
+                    className="hover:bg-muted/20 border-b last:border-0"
                   >
-                    <TableCell className="sticky left-0 z-10 bg-background px-3 py-2 font-medium">
+                    <TableCell className="bg-background sticky left-0 z-10 px-3 py-2 font-medium">
                       {r}
                     </TableCell>
                     {matrix.cols.map((c) => (
@@ -218,7 +218,7 @@ export function PivotTable<T extends Record<string, unknown>>({
             {showRowTotal && matrix.rows.length > 0 && (
               <TableFooter>
                 <TableRow className="bg-muted/30 font-semibold">
-                  <TableCell className="sticky left-0 z-10 bg-muted/30 px-3 py-2">
+                  <TableCell className="bg-muted/30 sticky left-0 z-10 px-3 py-2">
                     {t("pivotTable.total")}
                   </TableCell>
                   {colTotals.map((t, i) => (

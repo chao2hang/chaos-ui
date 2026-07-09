@@ -1,5 +1,5 @@
-import { BillPage } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BillPage } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BillPage 账单页
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <BillPage />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BillPage
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `headerProps` | `React.ComponentProps<typeof BillHeader>` | — |  |
-| `footerProps` | `React.ComponentProps<typeof BillFooter>` | — |  |
-| `lineItems` | `BillLineItem[]` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                                      | Default | 说明 / Description                                          |
+| ------------- | ----------------------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                                  | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `headerProps` | `React.ComponentProps<typeof BillHeader>` | —       |                                                             |
+| `footerProps` | `React.ComponentProps<typeof BillFooter>` | —       |                                                             |
+| `lineItems`   | `BillLineItem[]`                          | —       |                                                             |
+| ...rest       | `React.ComponentProps<"div">`             | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

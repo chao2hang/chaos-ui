@@ -1,5 +1,5 @@
-import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # BarcodeDisplay
 
@@ -11,7 +11,6 @@ BarcodeDisplay — a components for presenting data and content. from Chaos UI.
 
 Use when you need a barcode display.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <BarcodeDisplay />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BarcodeDisplay
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | Text value to encode |
-| `width` | `number` | `200` | Barcode width in pixels |
-| `height` | `number` | `80` | Barcode height in pixels |
-| `background` | `string` | `#ffffff` | Background color |
-| `color` | `string` | `#000000` | Bar color |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop         | Type                          | Default   | Description                     |
+| ------------ | ----------------------------- | --------- | ------------------------------- |
+| `className`  | `string`                      | —         | Custom CSS class                |
+| `value`      | `string`                      | —         | Text value to encode            |
+| `width`      | `number`                      | `200`     | Barcode width in pixels         |
+| `height`     | `number`                      | `80`      | Barcode height in pixels        |
+| `background` | `string`                      | `#ffffff` | Background color                |
+| `color`      | `string`                      | `#000000` | Bar color                       |
+| ...rest      | `React.ComponentProps<"div">` | —         | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

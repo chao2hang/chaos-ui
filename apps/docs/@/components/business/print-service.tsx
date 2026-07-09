@@ -50,7 +50,11 @@ interface PrintServiceProps {
 
 const statusMeta: Record<
   PrintServiceJob["status"],
-  { label: string; variant: "default" | "secondary" | "outline" | "destructive"; icon: React.ReactNode }
+  {
+    label: string;
+    variant: "default" | "secondary" | "outline" | "destructive";
+    icon: React.ReactNode;
+  }
 > = {
   pending: { label: "待打印", variant: "secondary", icon: <ClockIcon /> },
   printing: { label: "打印中", variant: "default", icon: <PrinterIcon /> },
@@ -58,17 +62,27 @@ const statusMeta: Record<
   error: { label: "失败", variant: "destructive", icon: <AlertTriangleIcon /> },
 };
 
-function PrintService({ jobs = [], onPrint, onRefresh, className }: PrintServiceProps) {
-  const pendingCount = jobs.filter((j) => j.status === "pending" || j.status === "printing").length;
+function PrintService({
+  jobs = [],
+  onPrint,
+  onRefresh,
+  className,
+}: PrintServiceProps) {
+  const pendingCount = jobs.filter(
+    (j) => j.status === "pending" || j.status === "printing",
+  ).length;
 
   return (
     <div
       data-slot="print-service"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4 text-card-foreground", className)}
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
     >
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <PrinterIcon className="size-5 text-muted-foreground" />
+          <PrinterIcon className="text-muted-foreground size-5" />
           <h3 className="text-sm font-semibold">打印服务</h3>
           {pendingCount > 0 && (
             <Badge variant="default">{pendingCount} 项待处理</Badge>
@@ -86,11 +100,11 @@ function PrintService({ jobs = [], onPrint, onRefresh, className }: PrintService
       </div>
 
       {jobs.length === 0 ? (
-        <p className="rounded-md border border-dashed bg-muted/40 px-3 py-6 text-center text-sm text-muted-foreground">
+        <p className="bg-muted/40 text-muted-foreground rounded-md border border-dashed px-3 py-6 text-center text-sm">
           打印队列为空
         </p>
       ) : (
-        <ul role="list" className="flex flex-col divide-y divide-border">
+        <ul role="list" className="divide-border flex flex-col divide-y">
           {jobs.map((job) => {
             const meta = statusMeta[job.status];
             return (
@@ -99,11 +113,13 @@ function PrintService({ jobs = [], onPrint, onRefresh, className }: PrintService
                 data-slot="print-service-job"
                 className="flex items-center gap-3 py-2.5"
               >
-                <FileTextIcon className="size-4 shrink-0 text-muted-foreground" />
+                <FileTextIcon className="text-muted-foreground size-4 shrink-0" />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium">{job.title}</p>
                   {job.pages != null && (
-                    <p className="text-xs text-muted-foreground">{job.pages} 页</p>
+                    <p className="text-muted-foreground text-xs">
+                      {job.pages} 页
+                    </p>
                   )}
                 </div>
                 <Badge variant={meta.variant}>

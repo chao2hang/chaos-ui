@@ -1,5 +1,5 @@
-import { TreeSelect } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { TreeSelect } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # TreeSelect 树选择
 
@@ -26,26 +26,28 @@ export function Basic() {
 
 ### 状态 / States
 
-<CodeBlock code={`<TreeSelect>Normal</TreeSelect>
-<TreeSelect disabled>Disabled</TreeSelect>`} lang="tsx" />
-
+<CodeBlock
+  code={`<TreeSelect>Normal</TreeSelect>
+<TreeSelect disabled>Disabled</TreeSelect>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### TreeSelect
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string \| string[]` | — | 当前值(受控) <br/> Current value (controlled) |
-| `defaultValue` | `string \| string[]` | — | 默认值(非受控) <br/> Default value (uncontrolled) |
-| `placeholder` | `string` | `Select...` | 占位文本 <br/> Placeholder text |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `multiple` | `boolean` | `false` | 是否多选 <br/> Multiple selection |
-| `maxCount` | `number` | — |  |
-| `data` | `TreeNode[]` | — | 数据源 <br/> Data source |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                   | Default     | 说明 / Description                                        |
+| -------------- | ---------------------- | ----------- | --------------------------------------------------------- |
+| `className`    | `string`               | —           | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`        | `string \| string[]`   | —           | 当前值(受控) <br/> Current value (controlled)             |
+| `defaultValue` | `string \| string[]`   | —           | 默认值(非受控) <br/> Default value (uncontrolled)         |
+| `placeholder`  | `string`               | `Select...` | 占位文本 <br/> Placeholder text                           |
+| `disabled`     | `boolean`              | —           | 是否禁用 <br/> Whether disabled                           |
+| `multiple`     | `boolean`              | `false`     | 是否多选 <br/> Multiple selection                         |
+| `maxCount`     | `number`               | —           |                                                           |
+| `data`         | `TreeNode[]`           | —           | 数据源 <br/> Data source                                  |
+| `onChange`     | `() => void`           | —           | 值变化回调 <br/> Callback when value changes              |
+| ...rest        | `React.HTMLAttributes` | —           | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

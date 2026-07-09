@@ -1,5 +1,5 @@
-import { FileUploadManager } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { FileUploadManager } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # FileUploadManager
 
@@ -11,7 +11,6 @@ FileUploadManager — a business component for ERP / enterprise scenarios.
 
 Use when you need a file upload manager.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <FileUploadManager />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### FileUploadManager
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `files` | `FileInfo[]` | — |  |
-| `onFilesChange` | `() => void` | — |  |
-| `accept` | `Record<string, string[]>` | — |  |
-| `maxFiles` | `number` | `10` |  |
-| `maxSize` | `number` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop            | Type                       | Default | Description                       |
+| --------------- | -------------------------- | ------- | --------------------------------- |
+| `className`     | `string`                   | —       | Custom CSS class                  |
+| `files`         | `FileInfo[]`               | —       |                                   |
+| `onFilesChange` | `() => void`               | —       |                                   |
+| `accept`        | `Record<string, string[]>` | —       |                                   |
+| `maxFiles`      | `number`                   | `10`    |                                   |
+| `maxSize`       | `number`                   | —       |                                   |
+| ...rest         | `React.HTMLAttributes`     | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

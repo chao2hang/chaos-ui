@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Component Guidelines" />
 
@@ -35,14 +35,14 @@ components/
 
 ## Naming Conventions
 
-| Type | Convention | Example |
-|------|-----------|---------|
-| Files | `kebab-case.tsx` | `status-tag.tsx` |
-| Components | `PascalCase` | `StatusTag` |
-| Props Types | `ComponentNameProps` | `StatusTagProps` |
-| CSS Variables | `--kebab-case` | `--brand-500` |
-| Hooks | `use` prefix | `use-mobile.ts` |
-| Constants | `UPPER_SNAKE_CASE` | `ORDER_STATUSES` |
+| Type          | Convention           | Example          |
+| ------------- | -------------------- | ---------------- |
+| Files         | `kebab-case.tsx`     | `status-tag.tsx` |
+| Components    | `PascalCase`         | `StatusTag`      |
+| Props Types   | `ComponentNameProps` | `StatusTagProps` |
+| CSS Variables | `--kebab-case`       | `--brand-500`    |
+| Hooks         | `use` prefix         | `use-mobile.ts`  |
+| Constants     | `UPPER_SNAKE_CASE`   | `ORDER_STATUSES` |
 
 ## Component Structure
 
@@ -97,9 +97,9 @@ Always use semantic tokens, never hardcoded colors:
 
 ```tsx
 // For badges and tags
-className="bg-success/15 text-success"
-className="bg-warning/15 text-warning"
-className="bg-destructive/10 text-destructive"
+className = "bg-success/15 text-success";
+className = "bg-warning/15 text-warning";
+className = "bg-destructive/10 text-destructive";
 ```
 
 ## State Management
@@ -107,19 +107,19 @@ className="bg-destructive/10 text-destructive"
 ### Focus States
 
 ```tsx
-"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 ```
 
 ### Disabled States
 
 ```tsx
-"disabled:pointer-events-none disabled:opacity-50"
+"disabled:pointer-events-none disabled:opacity-50";
 ```
 
 ### Validation States
 
 ```tsx
-"aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
+"aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20";
 ```
 
 ## Dark Mode
@@ -128,14 +128,14 @@ All components must support dark mode:
 
 ```tsx
 // Background colors
-"dark:bg-input/30"  // Default
-"dark:bg-input/50"  // Hover
+"dark:bg-input/30"; // Default
+"dark:bg-input/50"; // Hover
 
 // Border colors
-"dark:border-input"
+"dark:border-input";
 
 // Invalid states
-"dark:aria-invalid:border-destructive/50"
+"dark:aria-invalid:border-destructive/50";
 ```
 
 ## Data Attributes

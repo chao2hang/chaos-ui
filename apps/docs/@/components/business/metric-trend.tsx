@@ -1,6 +1,10 @@
 "use client";
 import * as React from "react";
-import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  MinusIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { useTranslation } from "react-i18next";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Card, CardContent } from "@chaos_team/chaos-ui/ui";
@@ -143,7 +147,7 @@ export function MetricTrend({
       {...props}
     >
       <CardContent className="flex flex-col gap-2 p-4">
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-between text-xs">
           <span className="flex items-center gap-1.5">
             {icon}
             {label}
@@ -168,14 +172,14 @@ export function MetricTrend({
         <div className="flex items-end justify-between gap-2">
           <div className="flex items-baseline gap-1">
             {loading ? (
-              <div className="h-7 w-20 animate-pulse rounded bg-muted" />
+              <div className="bg-muted h-7 w-20 animate-pulse rounded" />
             ) : (
               <>
-                <span className="text-2xl font-semibold tabular-nums tracking-tight">
+                <span className="text-2xl font-semibold tracking-tight tabular-nums">
                   {formatted}
                 </span>
                 {unit && (
-                  <span className="text-xs text-muted-foreground">{unit}</span>
+                  <span className="text-muted-foreground text-xs">{unit}</span>
                 )}
               </>
             )}
@@ -193,7 +197,7 @@ export function MetricTrend({
           )}
         </div>
         {change !== undefined && (
-          <p className="text-[0.65rem] text-muted-foreground">
+          <p className="text-muted-foreground text-[0.65rem]">
             <Dot
               variant={
                 variant === "destructive"

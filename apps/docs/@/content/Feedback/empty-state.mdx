@@ -1,5 +1,5 @@
-import { EmptyState } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { EmptyState } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # EmptyState 空状态
 
@@ -26,36 +26,38 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <EmptyState size="sm">Sm</EmptyState>
   <EmptyState size="default">Default</EmptyState>
   <EmptyState size="lg">Lg</EmptyState>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 ## API / Props
 
 ### EmptyState
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `icon` | `React.ReactNode` | — | Icon element |
-| `title` | `React.ReactNode` | — | Title text |
-| `description` | `React.ReactNode` | — | Description text |
-| `action` | `React.ReactNode` | — | Action element (button, link, etc.) |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | 说明 / Description                                          |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `icon`        | `React.ReactNode`             | —       | Icon element                                                |
+| `title`       | `React.ReactNode`             | —       | Title text                                                  |
+| `description` | `React.ReactNode`             | —       | Description text                                            |
+| `action`      | `React.ReactNode`             | —       | Action element (button, link, etc.)                         |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

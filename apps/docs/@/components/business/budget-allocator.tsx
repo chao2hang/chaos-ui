@@ -38,7 +38,14 @@ interface BudgetAllocatorProps {
   /** 货币代码 */
   currency?: string;
   /** 分配变更回调 */
-  onChange?: (categories: Array<{ id: string; name: string; amount: number; cap?: number }>) => void;
+  onChange?: (
+    categories: Array<{
+      id: string;
+      name: string;
+      amount: number;
+      cap?: number;
+    }>,
+  ) => void;
   className?: string;
 }
 
@@ -63,7 +70,12 @@ function BudgetAllocator({
     const clamped = Math.max(0, next);
     setItems((prev) => {
       const updated = prev.map((c) =>
-        c.id === id ? { ...c, amount: c.cap !== undefined ? Math.min(clamped, c.cap) : clamped } : c,
+        c.id === id
+          ? {
+              ...c,
+              amount: c.cap !== undefined ? Math.min(clamped, c.cap) : clamped,
+            }
+          : c,
       );
       onChange?.(updated);
       return updated;
@@ -73,29 +85,42 @@ function BudgetAllocator({
   return (
     <div
       data-slot="budget-allocator"
-      className={cn("flex flex-col gap-4 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-4 rounded-lg border p-4",
+        className,
+      )}
     >
       <div className="flex items-baseline justify-between">
         <span className="text-sm font-medium">预算分配</span>
-        <span className="text-xs text-muted-foreground">已分配 {allocatedPct}%</span>
+        <span className="text-muted-foreground text-xs">
+          已分配 {allocatedPct}%
+        </span>
       </div>
-      <div className="h-2 overflow-hidden rounded bg-muted">
+      <div className="bg-muted h-2 overflow-hidden rounded">
         <div
           className={cn(
             "h-full rounded transition-all",
-            allocatedPct > 100 ? "bg-red-500" : allocatedPct > 90 ? "bg-yellow-500" : "bg-emerald-500",
+            allocatedPct > 100
+              ? "bg-red-500"
+              : allocatedPct > 90
+                ? "bg-yellow-500"
+                : "bg-emerald-500",
           )}
           style={{ width: `${Math.min(100, allocatedPct)}%` }}
         />
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm">
         <div>
-          <div className="text-xs text-muted-foreground">总额</div>
-          <div className="font-medium tabular-nums">{formatCurrency(total, currency)}</div>
+          <div className="text-muted-foreground text-xs">总额</div>
+          <div className="font-medium tabular-nums">
+            {formatCurrency(total, currency)}
+          </div>
         </div>
         <div>
-          <div className="text-xs text-muted-foreground">剩余</div>
-          <div className="font-medium tabular-nums">{formatCurrency(remaining, currency)}</div>
+          <div className="text-muted-foreground text-xs">剩余</div>
+          <div className="font-medium tabular-nums">
+            {formatCurrency(remaining, currency)}
+          </div>
         </div>
       </div>
       <ul className="flex flex-col gap-3">
@@ -105,8 +130,10 @@ function BudgetAllocator({
           return (
             <li key={c.id} className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between text-sm">
-                <span className="truncate text-muted-foreground">{c.name}</span>
-                <span className={cn("tabular-nums", overCap && "text-destructive")}>
+                <span className="text-muted-foreground truncate">{c.name}</span>
+                <span
+                  className={cn("tabular-nums", overCap && "text-destructive")}
+                >
                   {formatCurrency(c.amount, currency)}
                 </span>
               </div>
@@ -128,7 +155,7 @@ function BudgetAllocator({
                   value={c.amount}
                   onChange={(e) => update(c.id, Number(e.target.value))}
                   aria-label={`${c.name} 预算滑块`}
-                  className="h-1.5 flex-1 cursor-pointer accent-primary"
+                  className="accent-primary h-1.5 flex-1 cursor-pointer"
                 />
                 <Button
                   type="button"
@@ -140,15 +167,20 @@ function BudgetAllocator({
                   <PlusIcon />
                 </Button>
               </div>
-              <div className="h-1 overflow-hidden rounded bg-muted">
-                <div className="h-full rounded bg-primary" style={{ width: `${Math.min(100, pct)}%` }} />
+              <div className="bg-muted h-1 overflow-hidden rounded">
+                <div
+                  className="bg-primary h-full rounded"
+                  style={{ width: `${Math.min(100, pct)}%` }}
+                />
               </div>
             </li>
           );
         })}
       </ul>
       {items.length === 0 && (
-        <p className="text-center text-sm text-muted-foreground">暂无分配类别</p>
+        <p className="text-muted-foreground text-center text-sm">
+          暂无分配类别
+        </p>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AuditLog } from "@chaos_team/chaos-ui/business";
 
-  const entries: any[] = [
+const entries: any[] = [
   {
     id: "1",
     actor: { name: "Alice" },

@@ -1,5 +1,5 @@
-import { BrowseDialog } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BrowseDialog } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BrowseDialog Browse Dialog
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <BrowseDialog />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BrowseDialog
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `node` | `BrowseTreeNode` | — |  |
-| `depth` | `number` | — |  |
-| `expandedKeys` | `Set<string \| number>` | — |  |
-| `activeCategoryId` | `string \| number \| undefined` | — |  |
-| `onToggleExpand` | `() => void` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop               | Type                            | Default | 说明 / Description                                        |
+| ------------------ | ------------------------------- | ------- | --------------------------------------------------------- |
+| `className`        | `string`                        | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `node`             | `BrowseTreeNode`                | —       |                                                           |
+| `depth`            | `number`                        | —       |                                                           |
+| `expandedKeys`     | `Set<string \| number>`         | —       |                                                           |
+| `activeCategoryId` | `string \| number \| undefined` | —       |                                                           |
+| `onToggleExpand`   | `() => void`                    | —       |                                                           |
+| `onSelect`         | `() => void`                    | —       | 选中回调 <br/> Selection handler                          |
+| ...rest            | `React.HTMLAttributes`          | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

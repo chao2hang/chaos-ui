@@ -1,5 +1,5 @@
-import { BillTimeline } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BillTimeline } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BillTimeline Bill Timeline
 
@@ -11,7 +11,6 @@ BillTimeline — a business component for ERP / enterprise scenarios.
 
 Use when you need a bill timeline.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,24 +21,21 @@ export function Basic() {
   return <BillTimeline />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BillTimeline
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `events` | `Array<{` | — |  |
-| `id` | `string` | — | DOM element id |
-| `title` | `string` | — | Title |
-| `description` | `string` | — | Description text |
-| `timestamp` | `string` | — |  |
-| `status` | `string` | — | Status |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `events`      | `Array<{`              | —       |                                   |
+| `id`          | `string`               | —       | DOM element id                    |
+| `title`       | `string`               | —       | Title                             |
+| `description` | `string`               | —       | Description text                  |
+| `timestamp`   | `string`               | —       |                                   |
+| `status`      | `string`               | —       | Status                            |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

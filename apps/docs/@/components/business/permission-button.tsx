@@ -38,7 +38,8 @@ interface PermissionButtonProps {
   /** 点击回调 */
   onClick?: () => void;
   /** 按钮样式 */
-  variant?: "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
+  variant?:
+    "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
   /** 禁用状态（外部控制，与权限叠加） */
   disabled?: boolean;
   className?: string;
@@ -82,7 +83,7 @@ function PermissionButton({
         {children}
       </Button>
       {!hasPermission && mode === "disable" && (
-        <span className="text-xs text-muted-foreground">无权限</span>
+        <span className="text-muted-foreground text-xs">无权限</span>
       )}
     </div>
   );

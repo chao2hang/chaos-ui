@@ -82,9 +82,12 @@ interface BatchSelectorProps {
 /* ------------------------------------------------------------------ */
 
 const STATUS_COLORS: Record<string, string> = {
-  pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-  "in-progress": "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-  completed: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  pending:
+    "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  "in-progress":
+    "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  completed:
+    "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
   expired: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
 };
 
@@ -122,13 +125,12 @@ function filterTree(nodes: BatchNode[], query: string): BatchNode[] {
   if (!query) return nodes;
   const result: BatchNode[] = [];
   for (const node of nodes) {
-    const childrenMatch = node.children
-      ? filterTree(node.children, query)
-      : [];
+    const childrenMatch = node.children ? filterTree(node.children, query) : [];
     if (matchesSearch(node, query) || childrenMatch.length > 0) {
       result.push({
         ...node,
-        children: childrenMatch.length > 0 ? childrenMatch : (node.children ?? []),
+        children:
+          childrenMatch.length > 0 ? childrenMatch : (node.children ?? []),
       });
     }
   }
@@ -184,7 +186,7 @@ function BatchTreeNode({
     <div>
       <div
         className={cn(
-          "flex items-center gap-1.5 rounded px-2 py-1 text-sm hover:bg-accent",
+          "hover:bg-accent flex items-center gap-1.5 rounded px-2 py-1 text-sm",
           isSelected && "bg-accent",
         )}
         style={{ paddingLeft: depth * 16 + 8 }}
@@ -219,14 +221,14 @@ function BatchTreeNode({
           <button
             type="button"
             className={cn(
-              "flex size-4 shrink-0 items-center justify-center rounded-full border border-input",
+              "border-input flex size-4 shrink-0 items-center justify-center rounded-full border",
               isSelected && "border-primary bg-primary",
             )}
             onClick={() => onToggleSelect(node)}
             aria-label={"Select " + node.batchNo}
           >
             {isSelected && (
-              <span className="size-2 rounded-full bg-primary-foreground" />
+              <span className="bg-primary-foreground size-2 rounded-full" />
             )}
           </button>
         )}
@@ -234,7 +236,7 @@ function BatchTreeNode({
         {/* Batch info */}
         <span className="truncate font-medium">{node.batchNo}</span>
         {showMetadata && node.productName && (
-          <span className="truncate text-xs text-muted-foreground">
+          <span className="text-muted-foreground truncate text-xs">
             {node.productName}
           </span>
         )}
@@ -244,18 +246,12 @@ function BatchTreeNode({
       {/* Metadata line (optional, shown inline below the main row) */}
       {showMetadata && isSelected && (
         <div
-          className="flex flex-wrap gap-x-4 gap-y-0.5 py-1 pl-2 text-xs text-muted-foreground"
+          className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-0.5 py-1 pl-2 text-xs"
           style={{ paddingLeft: depth * 16 + 48 }}
         >
-          {node.quantity != null && (
-            <span>Qty: {node.quantity}</span>
-          )}
-          {node.productionDate && (
-            <span>Prod: {node.productionDate}</span>
-          )}
-          {node.expiryDate && (
-            <span>Exp: {node.expiryDate}</span>
-          )}
+          {node.quantity != null && <span>Qty: {node.quantity}</span>}
+          {node.productionDate && <span>Prod: {node.productionDate}</span>}
+          {node.expiryDate && <span>Exp: {node.expiryDate}</span>}
         </div>
       )}
 
@@ -387,7 +383,10 @@ function BatchSelector({
   const defaultTrigger = (
     <Button variant="outline" disabled={disabled} icon={<PackageIcon />}>
       {selectedCount > 0
-        ? selectedCount + " batch" + (selectedCount > 1 ? "es" : "") + " selected"
+        ? selectedCount +
+          " batch" +
+          (selectedCount > 1 ? "es" : "") +
+          " selected"
         : "Select Batch"}
     </Button>
   );
@@ -406,56 +405,56 @@ function BatchSelector({
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         {isOpen && (
-        <DialogContent
-          className={cn("sm:max-w-lg", className)}
-          showCloseButton={false}
-        >
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-          </DialogHeader>
-          <DialogBody className="p-0">
-            <div className="flex flex-col min-h-[320px]">
-              {/* Search */}
-              <div className="relative px-3 pb-2">
-                <SearchIcon className="pointer-events-none absolute top-1/2 left-5 size-3.5 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  className="h-8 pl-8 text-sm"
-                  placeholder="Search batch or product..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-              {/* Tree */}
-              <div className="max-h-72 overflow-y-auto px-1">
-                {filteredData.length === 0 && (
-                  <div className="px-3 py-6 text-center text-sm text-muted-foreground">
-                    No batches found
-                  </div>
-                )}
-                {filteredData.map((node) => (
-                  <BatchTreeNode
-                    key={node.id}
-                    node={node}
-                    depth={0}
-                    selectedIds={selectedIds}
-                    expandedIds={expandedIds}
-                    mode={mode}
-                    showStatus={showStatus}
-                    showMetadata={showMetadata}
-                    onToggleExpand={handleToggleExpand}
-                    onToggleSelect={handleToggleSelect}
+          <DialogContent
+            className={cn("sm:max-w-lg", className)}
+            showCloseButton={false}
+          >
+            <DialogHeader>
+              <DialogTitle>{title}</DialogTitle>
+            </DialogHeader>
+            <DialogBody className="p-0">
+              <div className="flex min-h-[320px] flex-col">
+                {/* Search */}
+                <div className="relative px-3 pb-2">
+                  <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-5 size-3.5 -translate-y-1/2" />
+                  <Input
+                    className="h-8 pl-8 text-sm"
+                    placeholder="Search batch or product..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                   />
-                ))}
+                </div>
+                {/* Tree */}
+                <div className="max-h-72 overflow-y-auto px-1">
+                  {filteredData.length === 0 && (
+                    <div className="text-muted-foreground px-3 py-6 text-center text-sm">
+                      No batches found
+                    </div>
+                  )}
+                  {filteredData.map((node) => (
+                    <BatchTreeNode
+                      key={node.id}
+                      node={node}
+                      depth={0}
+                      selectedIds={selectedIds}
+                      expandedIds={expandedIds}
+                      mode={mode}
+                      showStatus={showStatus}
+                      showMetadata={showMetadata}
+                      onToggleExpand={handleToggleExpand}
+                      onToggleSelect={handleToggleSelect}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          </DialogBody>
-          <DialogFooter>
-            <Button variant="outline" onClick={handleCancel}>
-              Cancel
-            </Button>
-            <Button onClick={handleConfirm}>OK</Button>
-          </DialogFooter>
-        </DialogContent>
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="outline" onClick={handleCancel}>
+                Cancel
+              </Button>
+              <Button onClick={handleConfirm}>OK</Button>
+            </DialogFooter>
+          </DialogContent>
         )}
       </Dialog>
     </>

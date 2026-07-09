@@ -1,5 +1,5 @@
-import { BudgetPacingCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BudgetPacingCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BudgetPacingCard 预算节奏卡片
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <BudgetPacingCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BudgetPacingCard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `budget` | `number` | — |  |
-| `spent` | `number` | — |  |
-| `period` | `string` | `本月` |  |
-| `label` | `string` | `预算消耗` | 标签文本 <br/> Label text |
-| `currency` | `string` | `¥` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default    | 说明 / Description                                        |
+| ----------- | ---------------------- | ---------- | --------------------------------------------------------- |
+| `className` | `string`               | —          | 自定义样式类名 <br/> Custom CSS class                     |
+| `budget`    | `number`               | —          |                                                           |
+| `spent`     | `number`               | —          |                                                           |
+| `period`    | `string`               | `本月`     |                                                           |
+| `label`     | `string`               | `预算消耗` | 标签文本 <br/> Label text                                 |
+| `currency`  | `string`               | `¥`        |                                                           |
+| ...rest     | `React.HTMLAttributes` | —          | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

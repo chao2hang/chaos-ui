@@ -31,7 +31,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Anchor: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Anchor })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Anchor })),
     { ssr: false },
   ),
   AspectRatio: dynamic(
@@ -56,7 +57,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Avatar: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Avatar })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Avatar })),
     { ssr: false },
   ),
   BackTop: dynamic(
@@ -90,7 +92,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Button: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Button })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Button })),
     { ssr: false },
   ),
   Calendar: dynamic(
@@ -198,7 +201,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Dialog: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Dialog })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Dialog })),
     { ssr: false },
   ),
   Direction: dynamic(
@@ -218,7 +222,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Drawer: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Drawer })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Drawer })),
     { ssr: false },
   ),
   DropdownMenu: dynamic(
@@ -513,7 +518,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Qrcode: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.QRCode })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.QRCode })),
     { ssr: false },
   ),
   RadioGroup: dynamic(
@@ -524,7 +530,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Rating: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Rating })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Rating })),
     { ssr: false },
   ),
   Resizable: dynamic(
@@ -535,7 +542,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Result: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Result })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Result })),
     { ssr: false },
   ),
   SchemaForm: dynamic(
@@ -560,7 +568,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Select: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Select })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Select })),
     { ssr: false },
   ),
   Separator: dynamic(
@@ -606,7 +615,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Slider: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Slider })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Slider })),
     { ssr: false },
   ),
   Sonner: dynamic(
@@ -654,7 +664,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Switch: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Switch })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Switch })),
     { ssr: false },
   ),
   Table: dynamic(
@@ -701,7 +712,8 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
     { ssr: false },
   ),
   Toggle: dynamic(
-    () => import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Toggle })),
+    () =>
+      import("@chaos_team/chaos-ui/ui").then((m) => ({ default: m.Toggle })),
     { ssr: false },
   ),
   Tooltip: dynamic(
@@ -1560,7 +1572,9 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   ),
   Chip: dynamic(
     () =>
-      import("@chaos_team/chaos-ui/business").then((m) => ({ default: m.Chip })),
+      import("@chaos_team/chaos-ui/business").then((m) => ({
+        default: m.Chip,
+      })),
     { ssr: false },
   ),
   CityBrowse: dynamic(
@@ -2013,7 +2027,9 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
   ),
   Gauge: dynamic(
     () =>
-      import("@chaos_team/chaos-ui/business").then((m) => ({ default: m.Gauge })),
+      import("@chaos_team/chaos-ui/business").then((m) => ({
+        default: m.Gauge,
+      })),
     { ssr: false },
   ),
   GlobalLoading: dynamic(

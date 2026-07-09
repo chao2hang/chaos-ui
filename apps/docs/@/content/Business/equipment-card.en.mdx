@@ -1,5 +1,5 @@
-import { EquipmentCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { EquipmentCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # EquipmentCard
 
@@ -11,7 +11,6 @@ EquipmentCard — a business component for ERP / enterprise scenarios.
 
 Use when you need an equipment card.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,24 +21,21 @@ export function Basic() {
   return <EquipmentCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### EquipmentCard
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `name` | `string` | — | Form field name |
-| `model` | `string` | — |  |
-| `serialNumber` | `string` | — |  |
-| `status` | `"normal" \| "maintenance" \| "fault" ...` | `normal` | Status |
-| `location` | `string` | — |  |
-| `lastMaintenance` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop              | Type                                       | Default  | Description                       |
+| ----------------- | ------------------------------------------ | -------- | --------------------------------- |
+| `className`       | `string`                                   | —        | Custom CSS class                  |
+| `name`            | `string`                                   | —        | Form field name                   |
+| `model`           | `string`                                   | —        |                                   |
+| `serialNumber`    | `string`                                   | —        |                                   |
+| `status`          | `"normal" \| "maintenance" \| "fault" ...` | `normal` | Status                            |
+| `location`        | `string`                                   | —        |                                   |
+| `lastMaintenance` | `string`                                   | —        |                                   |
+| ...rest           | `React.HTMLAttributes`                     | —        | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

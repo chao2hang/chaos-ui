@@ -1,5 +1,5 @@
-import { CookieBanner } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CookieBanner } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CookieBanner Cookie 横幅
 
@@ -11,7 +11,6 @@ Cookie 横幅 — 面向 ERP/企业场景的业务组件。
 
 适用于Cookie 横幅相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,31 +21,29 @@ export function Basic() {
   return <CookieBanner />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CookieBanner
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `open` | `boolean` | — | 是否打开(受控) |
-| `onAccept` | `() => void` | — |  |
-| `onReject` | `() => void` | — |  |
-| `onDismiss` | `() => void` | — |  |
-| `title` | `string` | `Cookie 使用提示` | 标题 |
-| `description` | `React.ReactNode` | `我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。` | 描述文本 |
-| `acceptText` | `string` | `接受全部` |  |
-| `rejectText` | `string` | `仅必要` |  |
-| `policyUrl` | `string` | — |  |
-| `policyText` | `string` | `隐私政策` |  |
-| `storageKey` | `string` | `cookie-consent` |  |
-| `position` | `"bottom" \| "top" \| "bottom-right" \...` | `bottom` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop          | Type                                       | Default                                                                        | 说明              |
+| ------------- | ------------------------------------------ | ------------------------------------------------------------------------------ | ----------------- |
+| `className`   | `string`                                   | —                                                                              | 自定义样式类名    |
+| `open`        | `boolean`                                  | —                                                                              | 是否打开(受控)    |
+| `onAccept`    | `() => void`                               | —                                                                              |                   |
+| `onReject`    | `() => void`                               | —                                                                              |                   |
+| `onDismiss`   | `() => void`                               | —                                                                              |                   |
+| `title`       | `string`                                   | `Cookie 使用提示`                                                              | 标题              |
+| `description` | `React.ReactNode`                          | `我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。` | 描述文本          |
+| `acceptText`  | `string`                                   | `接受全部`                                                                     |                   |
+| `rejectText`  | `string`                                   | `仅必要`                                                                       |                   |
+| `policyUrl`   | `string`                                   | —                                                                              |                   |
+| `policyText`  | `string`                                   | `隐私政策`                                                                     |                   |
+| `storageKey`  | `string`                                   | `cookie-consent`                                                               |                   |
+| `position`    | `"bottom" \| "top" \| "bottom-right" \...` | `bottom`                                                                       |                   |
+| ...rest       | `React.HTMLAttributes`                     | —                                                                              | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-cookiebanner--docs)。
-

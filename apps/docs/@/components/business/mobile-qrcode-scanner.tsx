@@ -25,7 +25,9 @@ type ScanStatus = "idle" | "starting" | "scanning" | "denied" | "unsupported";
 declare global {
   interface Window {
     BarcodeDetector?: new (options?: { formats?: string[] }) => {
-      detect: (source: CanvasImageSource) => Promise<Array<{ rawValue?: string }>>;
+      detect: (
+        source: CanvasImageSource,
+      ) => Promise<Array<{ rawValue?: string }>>;
     };
   }
 }
@@ -113,7 +115,10 @@ function MobileQrCodeScanner({ onScan, className }: MobileQrCodeScannerProps) {
   return (
     <div
       data-slot="mobile-qrcode-scanner"
-      className={cn("relative flex flex-col overflow-hidden rounded-lg bg-black", className)}
+      className={cn(
+        "relative flex flex-col overflow-hidden rounded-lg bg-black",
+        className,
+      )}
     >
       <div className="relative aspect-square w-full bg-black">
         <video

@@ -12,7 +12,11 @@ import {
   TableRow,
   TableCell,
 } from "@chaos_team/chaos-ui/ui";
-import { PlusIcon, Trash2Icon, ArrowRightIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  PlusIcon,
+  Trash2Icon,
+  ArrowRightIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component StockTransferDialog

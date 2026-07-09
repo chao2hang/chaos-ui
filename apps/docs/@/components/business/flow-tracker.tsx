@@ -30,7 +30,11 @@ interface FlowTrackerProps {
   className?: string;
 }
 
-function StatusDot({ status }: { status: FlowTrackerProps["steps"][number]["status"] }) {
+function StatusDot({
+  status,
+}: {
+  status: FlowTrackerProps["steps"][number]["status"];
+}) {
   switch (status) {
     case "done":
       return (
@@ -40,19 +44,19 @@ function StatusDot({ status }: { status: FlowTrackerProps["steps"][number]["stat
       );
     case "active":
       return (
-        <span className="flex size-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <span className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-full">
           <Loader2Icon className="size-3.5 animate-spin" />
         </span>
       );
     case "rejected":
       return (
-        <span className="flex size-6 items-center justify-center rounded-full bg-destructive text-white">
+        <span className="bg-destructive flex size-6 items-center justify-center rounded-full text-white">
           <XIcon className="size-3.5" />
         </span>
       );
     default:
       return (
-        <span className="flex size-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground">
+        <span className="border-border bg-background text-muted-foreground flex size-6 items-center justify-center rounded-full border">
           <ClockIcon className="size-3.5" />
         </span>
       );
@@ -87,13 +91,13 @@ function FlowTracker({ steps, className }: FlowTrackerProps) {
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm font-medium">{step.name}</span>
                 {step.time ? (
-                  <time className="text-xs text-muted-foreground tabular-nums">
+                  <time className="text-muted-foreground text-xs tabular-nums">
                     {step.time}
                   </time>
                 ) : null}
               </div>
               {step.operator ? (
-                <p className="mt-0.5 text-xs text-muted-foreground">
+                <p className="text-muted-foreground mt-0.5 text-xs">
                   操作人：{step.operator}
                 </p>
               ) : null}

@@ -1,5 +1,5 @@
-import { SubformTabs } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SubformTabs } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SubformTabs Subform Tabs
 
@@ -11,7 +11,6 @@ SubformTabs — subform tabs component.
 
 Use when you need a subform tabs.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <SubformTabs />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SubformTabs
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `tabs` | `SubformTab[]` | — | Tab sections to render. Defaults to a basic info / contact layout. |
-| `value` | `Record<string, unknown>` | — | Field values keyed by name. |
-| `onChange` | `() => void` | — | Called with the merged values whenever a field changes. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                      | Default | Description                                                        |
+| ----------- | ------------------------- | ------- | ------------------------------------------------------------------ |
+| `className` | `string`                  | —       | Custom CSS class                                                   |
+| `tabs`      | `SubformTab[]`            | —       | Tab sections to render. Defaults to a basic info / contact layout. |
+| `value`     | `Record<string, unknown>` | —       | Field values keyed by name.                                        |
+| `onChange`  | `() => void`              | —       | Called with the merged values whenever a field changes.            |
+| ...rest     | `React.HTMLAttributes`    | —       | Inherits standard HTML attributes                                  |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

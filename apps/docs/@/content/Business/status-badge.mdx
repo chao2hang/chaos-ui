@@ -1,5 +1,5 @@
-import { StatusBadge } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { StatusBadge } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # StatusBadge 状态徽章
 
@@ -24,30 +24,29 @@ export function Basic() {
   return <StatusBadge />
 }`} lang="tsx" />
 
-
 ## 样式变体 / Style Variants
 
 **状态 / status**
 
-| status | 说明 / Description | 默认 |
-|---|---|---|
-| `default` |  | ✓ |
-| `success` |  |  |
-| `warning` |  |  |
-| `error` |  |  |
-| `info` |  |  |
-| `processing` |  |  |
+| status       | 说明 / Description | 默认 |
+| ------------ | ------------------ | ---- |
+| `default`    |                    | ✓    |
+| `success`    |                    |      |
+| `warning`    |                    |      |
+| `error`      |                    |      |
+| `info`       |                    |      |
+| `processing` |                    |      |
 
 ## API / Props
 
 ### StatusBadge
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `label` | `string` | — | 标签文本 <br/> Label text |
-| `dot` | `boolean` | `true` |  |
-| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop        | Type                           | Default | 说明 / Description                                            |
+| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
+| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
+| `label`     | `string`                       | —       | 标签文本 <br/> Label text                                     |
+| `dot`       | `boolean`                      | `true`  |                                                               |
+| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

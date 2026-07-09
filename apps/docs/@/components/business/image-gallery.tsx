@@ -61,7 +61,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
       <div
         data-slot="image-gallery"
         className={cn(
-          "flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-muted/40 p-8 text-sm text-muted-foreground",
+          "bg-muted/40 text-muted-foreground flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-sm",
           className,
         )}
       >
@@ -78,7 +78,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
     >
       <div
         className={cn(
-          "group relative flex items-center justify-center overflow-hidden rounded-lg border bg-muted",
+          "group bg-muted relative flex items-center justify-center overflow-hidden rounded-lg border",
           expanded ? "h-[32rem]" : "h-64",
         )}
       >
@@ -92,7 +92,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
           type="button"
           variant="secondary"
           size="icon-sm"
-          className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+          className="absolute top-1/2 left-2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
           aria-label="上一张"
           onClick={prev}
           disabled={count <= 1}
@@ -103,7 +103,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
           type="button"
           variant="secondary"
           size="icon-sm"
-          className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+          className="absolute top-1/2 right-2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
           aria-label="下一张"
           onClick={next}
           disabled={count <= 1}
@@ -115,7 +115,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
           type="button"
           variant="secondary"
           size="icon-sm"
-          className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+          className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
           aria-label={expanded ? "缩小" : "放大"}
           aria-pressed={expanded}
           onClick={() => setExpanded((v) => !v)}
@@ -123,7 +123,7 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
           <MaximizeIcon />
         </Button>
 
-        <span className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-background/80 px-2 py-0.5 text-xs tabular-nums text-muted-foreground">
+        <span className="bg-background/80 text-muted-foreground absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-xs tabular-nums">
           {safeIndex + 1} / {count}
         </span>
       </div>
@@ -142,10 +142,10 @@ function ImageGallery({ images, className }: ImageGalleryProps) {
                   onClick={() => setActive(index)}
                   onKeyDown={(event) => handleThumbKey(event, index)}
                   className={cn(
-                    "size-16 overflow-hidden rounded-md border-2 bg-muted transition-colors",
+                    "bg-muted size-16 overflow-hidden rounded-md border-2 transition-colors",
                     isActive
                       ? "border-primary"
-                      : "border-transparent hover:border-border",
+                      : "hover:border-border border-transparent",
                   )}
                 >
                   <img

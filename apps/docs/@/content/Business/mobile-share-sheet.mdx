@@ -1,5 +1,5 @@
-import { MobileShareSheet } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileShareSheet } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileShareSheet Mobile Share Sheet
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <MobileShareSheet />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileShareSheet
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | — | Whether the sheet is open. |
-| `onClose` | `() => void` | — | Called when the sheet is dismissed. |
-| `title` | `string` | — | Share title. |
-| `platforms` | `() => void` | — | Share platforms to show. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `open`      | `boolean`              | —       | Whether the sheet is open.                                |
+| `onClose`   | `() => void`           | —       | Called when the sheet is dismissed.                       |
+| `title`     | `string`               | —       | Share title.                                              |
+| `platforms` | `() => void`           | —       | Share platforms to show.                                  |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

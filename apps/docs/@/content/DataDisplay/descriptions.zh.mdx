@@ -1,5 +1,5 @@
-import { Descriptions } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Descriptions } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Descriptions 描述列表
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要描述列表功能时使用本组件。
-
 
 ## 代码示例
 
@@ -24,49 +23,51 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Descriptions size="sm">Sm</Descriptions>
   <Descriptions size="default">Default</Descriptions>
   <Descriptions size="lg">Lg</Descriptions>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **layout**
 
-| layout | 说明 | 默认 |
-|---|---|---|
-| `horizontal` |  | ✓ |
-| `vertical` |  |  |
+| layout       | 说明 | 默认 |
+| ------------ | ---- | ---- |
+| `horizontal` |      | ✓    |
+| `vertical`   |      |      |
 
 **尺寸**
 
-| Size | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 | ✓ |
-| `sm` | 小号 |  |
-| `lg` | 大号 |  |
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
 
 **bordered**
 
 | bordered | 说明 | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| -------- | ---- | ---- |
+| `true`   |      | ✓    |
+| `false`  |      |      |
 
 ## API / Props
 
 ### Descriptions
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `items` | `DescriptionItem[]` | — | 选项/数据项列表 |
-| `column` | `number` | `3` | Column count |
-| `labelWidth` | `string \| number` | — | Label width |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop         | Type                          | Default | 说明                  |
+| ------------ | ----------------------------- | ------- | --------------------- |
+| `className`  | `string`                      | —       | 自定义样式类名        |
+| `items`      | `DescriptionItem[]`           | —       | 选项/数据项列表       |
+| `column`     | `number`                      | `3`     | Column count          |
+| `labelWidth` | `string \| number`            | —       | Label width           |
+| ...rest      | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -74,4 +75,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-descriptions--docs)。
-

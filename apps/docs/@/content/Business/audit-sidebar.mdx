@@ -1,5 +1,5 @@
-import { AuditSidebar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AuditSidebar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AuditSidebar 审计侧栏
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <AuditSidebar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AuditSidebar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `entries` | `AuditSidebarEntry[]` | — |  |
-| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
-| `onOpenChange` | `() => void` | — | 打开状态变化回调 <br/> Callback when open state changes |
-| `title` | `string` | `操作记录` | 标题 <br/> Title |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop           | Type                          | Default    | 说明 / Description                                          |
+| -------------- | ----------------------------- | ---------- | ----------------------------------------------------------- |
+| `className`    | `string`                      | —          | 自定义样式类名 <br/> Custom CSS class                       |
+| `entries`      | `AuditSidebarEntry[]`         | —          |                                                             |
+| `open`         | `boolean`                     | —          | 是否打开(受控) <br/> Open state (controlled)                |
+| `onOpenChange` | `() => void`                  | —          | 打开状态变化回调 <br/> Callback when open state changes     |
+| `title`        | `string`                      | `操作记录` | 标题 <br/> Title                                            |
+| ...rest        | `React.ComponentProps<"div">` | —          | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

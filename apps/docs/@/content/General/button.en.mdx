@@ -1,5 +1,5 @@
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Button
 
@@ -10,7 +10,6 @@ Buttons trigger actions or events such as submitting forms, opening dialogs, or 
 ## When to Use
 
 Clicking triggers an action such as form submission, opening a dialog, or confirming/cancelling.
-
 
 ## Examples
 
@@ -24,63 +23,66 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button variant="default">Default</Button>
   <Button variant="outline">Outline</Button>
   <Button variant="secondary">Secondary</Button>
   <Button variant="ghost">Ghost</Button>
   <Button variant="destructive">Destructive</Button>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Button size="xs">Xs</Button>
   <Button size="sm">Sm</Button>
   <Button size="default">Default</Button>
   <Button size="lg">Lg</Button>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Variant**
 
-| Variant | Description | 默认 |
-|---|---|---|
-| `default` | Default style | ✓ |
-| `outline` | Outlined style |  |
-| `secondary` | Secondary action style |  |
-| `ghost` | Ghost (no background) style |  |
-| `destructive` | Destructive/danger style |  |
-| `link` | Link style |  |
+| Variant       | Description                 | 默认 |
+| ------------- | --------------------------- | ---- |
+| `default`     | Default style               | ✓    |
+| `outline`     | Outlined style              |      |
+| `secondary`   | Secondary action style      |      |
+| `ghost`       | Ghost (no background) style |      |
+| `destructive` | Destructive/danger style    |      |
+| `link`        | Link style                  |      |
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `default` | Default size | ✓ |
-| `xs` | Extra small |  |
-| `sm` | Small |  |
-| `lg` | Large |  |
-| `icon` | Icon-only square |  |
-| `icon-xs` | Extra small icon |  |
-| `icon-sm` | Small icon |  |
-| `icon-lg` | Large icon |  |
+| Size      | Description      | 默认 |
+| --------- | ---------------- | ---- |
+| `default` | Default size     | ✓    |
+| `xs`      | Extra small      |      |
+| `sm`      | Small            |      |
+| `lg`      | Large            |      |
+| `icon`    | Icon-only square |      |
+| `icon-xs` | Extra small icon |      |
+| `icon-sm` | Small icon       |      |
+| `icon-lg` | Large icon       |      |
 
 ## API / Props
 
 ### Button
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

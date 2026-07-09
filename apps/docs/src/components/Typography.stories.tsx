@@ -18,7 +18,11 @@ export const Subtitle: Story = {
 };
 
 export const Body: Story = {
-  render: () => <Paragraph>This is a paragraph of body text used for regular content.</Paragraph>,
+  render: () => (
+    <Paragraph>
+      This is a paragraph of body text used for regular content.
+    </Paragraph>
+  ),
 };
 
 export const MutedText: Story = {

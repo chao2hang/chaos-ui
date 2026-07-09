@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import {
-  ConfigProvider,
-  type ThemeConfig,
-} from "@chaos_team/chaos-ui/ui";
+import { ConfigProvider, type ThemeConfig } from "@chaos_team/chaos-ui/ui";
 import { Button } from "@chaos_team/chaos-ui/ui";
 
 // ============================================================

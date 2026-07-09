@@ -35,11 +35,7 @@ import {
 
 /** Supported field types in a quality inspection template. */
 export type InspectionFieldType =
-  | "measurement"
-  | "passfail"
-  | "select"
-  | "text"
-  | "photo";
+  "measurement" | "passfail" | "select" | "text" | "photo";
 
 /** A single field definition inside an inspection template. */
 export interface InspectionField {
@@ -279,7 +275,7 @@ function QualityInspectionForm({
           <div>
             <h3 className="text-base font-semibold">{template.name}</h3>
             {template.description && (
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 {template.description}
               </p>
             )}
@@ -298,7 +294,7 @@ function QualityInspectionForm({
         </div>
 
         {inspector && (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Inspector: <span className="font-medium">{inspector}</span>
           </p>
         )}
@@ -313,12 +309,13 @@ function QualityInspectionForm({
             )}
             <dl className="space-y-3">
               {group.fields.map((field) => {
-                const val =
-                  (preFilledValues?.[field.id] ?? watchedValues[field.id]) as string | number | boolean | null | undefined;
+                const val = (preFilledValues?.[field.id] ??
+                  watchedValues[field.id]) as
+                  string | number | boolean | null | undefined;
                 const oos = isOutOfSpec(field, val);
                 return (
                   <div key={field.id} className="flex flex-col gap-0.5">
-                    <dt className="text-sm font-medium text-muted-foreground">
+                    <dt className="text-muted-foreground text-sm font-medium">
                       {field.label}
                       {field.unit && (
                         <span className="ml-1 text-xs">({field.unit})</span>
@@ -353,13 +350,16 @@ function QualityInspectionForm({
                       ) : val != null && val !== "" ? (
                         <span
                           className={cn(
-                            oos && "font-semibold text-red-600 dark:text-red-400",
+                            oos &&
+                              "font-semibold text-red-600 dark:text-red-400",
                           )}
                         >
                           {String(val)}
                         </span>
                       ) : (
-                        <span className="text-muted-foreground">{"\u2014"}</span>
+                        <span className="text-muted-foreground">
+                          {"\u2014"}
+                        </span>
                       )}
                     </dd>
                   </div>
@@ -384,7 +384,7 @@ function QualityInspectionForm({
           <div>
             <h3 className="text-base font-semibold">{template.name}</h3>
             {template.description && (
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 {template.description}
               </p>
             )}
@@ -403,7 +403,7 @@ function QualityInspectionForm({
         </div>
 
         {inspector && (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Inspector: <span className="font-medium">{inspector}</span>
           </p>
         )}
@@ -427,7 +427,9 @@ function QualityInspectionForm({
                 control={form.control}
                 name={field.id}
                 rules={{
-                  ...(field.required ? { required: `${field.label} is required` } : {}),
+                  ...(field.required
+                    ? { required: `${field.label} is required` }
+                    : {}),
                   ...(field.type === "measurement"
                     ? {
                         validate: (v: unknown) => {
@@ -439,7 +441,7 @@ function QualityInspectionForm({
                           if (field.specMax != null && num > field.specMax)
                             return `Must be <= ${field.specMax}`;
                           return true;
-                        }
+                        },
                       }
                     : {}),
                 }}
@@ -453,7 +455,7 @@ function QualityInspectionForm({
                       <FormLabel required={!!field.required}>
                         {field.label}
                         {field.unit && (
-                          <span className="ml-1 text-xs font-normal text-muted-foreground">
+                          <span className="text-muted-foreground ml-1 text-xs font-normal">
                             ({field.unit})
                           </span>
                         )}
@@ -465,7 +467,7 @@ function QualityInspectionForm({
 
                       {field.type === "measurement" &&
                         (field.specMin != null || field.specMax != null) && (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-muted-foreground text-xs">
                             Spec:{" "}
                             {field.specMin != null ? field.specMin : "\u2014"}{" "}
                             &ndash;{" "}
@@ -514,15 +516,15 @@ function renderFieldInput(
         <div className="flex items-center gap-2">
           <InputNumber
             value={
-              rhf.value != null && rhf.value !== ""
-                ? Number(rhf.value)
-                : null
+              rhf.value != null && rhf.value !== "" ? Number(rhf.value) : null
             }
             onChange={(v) => rhf.onChange(v != null ? v : "")}
             onBlur={rhf.onBlur}
             step={0.01}
             controls={false}
-            placeholder={field.placeholder ?? `Enter ${field.label.toLowerCase()}`}
+            placeholder={
+              field.placeholder ?? `Enter ${field.label.toLowerCase()}`
+            }
             className={cn(
               "flex-1",
               outOfSpec &&
@@ -531,7 +533,7 @@ function renderFieldInput(
             data-testid={`measurement-${field.id}`}
           />
           {field.unit && (
-            <span className="text-sm text-muted-foreground">{field.unit}</span>
+            <span className="text-muted-foreground text-sm">{field.unit}</span>
           )}
         </div>
       );
@@ -563,9 +565,7 @@ function renderFieldInput(
           onValueChange={(v) => rhf.onChange(v ?? "")}
         >
           <SelectTrigger className="w-full">
-            <SelectValue
-              placeholder={field.placeholder ?? "Select..."}
-            />
+            <SelectValue placeholder={field.placeholder ?? "Select..."} />
           </SelectTrigger>
           <SelectContent>
             {(field.options ?? []).map((opt) => (
@@ -580,7 +580,9 @@ function renderFieldInput(
     case "text":
       return (
         <Textarea
-          placeholder={field.placeholder ?? `Enter ${field.label.toLowerCase()}`}
+          placeholder={
+            field.placeholder ?? `Enter ${field.label.toLowerCase()}`
+          }
           value={String(rhf.value ?? "")}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             rhf.onChange(e.target.value)
@@ -594,7 +596,7 @@ function renderFieldInput(
         <button
           type="button"
           data-testid="photo-upload-placeholder"
-          className="flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50"
+          className="border-muted-foreground/25 text-muted-foreground hover:border-muted-foreground/50 flex h-24 w-full items-center justify-center rounded-lg border-2 border-dashed transition-colors"
         >
           <div className="flex flex-col items-center gap-1 text-sm">
             <CameraIcon className="size-5" />

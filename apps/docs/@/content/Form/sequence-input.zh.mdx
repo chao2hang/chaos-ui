@@ -1,5 +1,5 @@
-import { SequenceInput } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { SequenceInput } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # SequenceInput 序列输入
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要序列输入功能时使用本组件。
-
 
 ## 代码示例
 
@@ -24,40 +23,42 @@ export function Basic() {
 
 ### 尺寸
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <SequenceInput size="sm">Sm</SequenceInput>
   <SequenceInput size="default">Default</SequenceInput>
   <SequenceInput size="lg">Lg</SequenceInput>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **尺寸**
 
-| Size | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 | ✓ |
-| `sm` | 小号 |  |
-| `lg` | 大号 |  |
+| Size      | 说明     | 默认 |
+| --------- | -------- | ---- |
+| `default` | 默认尺寸 | ✓    |
+| `sm`      | 小号     |      |
+| `lg`      | 大号     |      |
 
 ## API / Props
 
 ### SequenceInput
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `length` | `number` | `6` | Number of input slots |
-| `value` | `string` | `` | Current value (string of digits) |
-| `onChange` | `() => void` | — | Called when value changes |
-| `onComplete` | `() => void` | — | Called when all slots are filled |
-| `pattern` | `string` | `[a-zA-Z0-9]` | Allowed characters regex |
-| `type` | `"text" \| "number" \| "alphanumeric"` | `text` | Input type |
-| `autoFocus` | `boolean` | `false` | Auto-focus first input |
-| `disabled` | `boolean` | — | 是否禁用 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop         | Type                                   | Default       | 说明                             |
+| ------------ | -------------------------------------- | ------------- | -------------------------------- |
+| `className`  | `string`                               | —             | 自定义样式类名                   |
+| `length`     | `number`                               | `6`           | Number of input slots            |
+| `value`      | `string`                               | ``            | Current value (string of digits) |
+| `onChange`   | `() => void`                           | —             | Called when value changes        |
+| `onComplete` | `() => void`                           | —             | Called when all slots are filled |
+| `pattern`    | `string`                               | `[a-zA-Z0-9]` | Allowed characters regex         |
+| `type`       | `"text" \| "number" \| "alphanumeric"` | `text`        | Input type                       |
+| `autoFocus`  | `boolean`                              | `false`       | Auto-focus first input           |
+| `disabled`   | `boolean`                              | —             | 是否禁用                         |
+| ...rest      | `React.HTMLAttributes`                 | —             | 透传原生 DOM 属性                |
 
 ## 注意事项
 
@@ -65,4 +66,3 @@ export function Basic() {
 - **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-sequenceinput--docs)。
-

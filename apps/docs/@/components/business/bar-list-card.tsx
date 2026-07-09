@@ -1,7 +1,12 @@
 "use client";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { formatNumber } from "@chaos_team/chaos-ui/lib";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component BarListCard
@@ -25,7 +30,11 @@ export interface BarListCardProps {
   className?: string;
 }
 
-const DEFAULT_BARLIST_DATA: Array<{ label: string; value: number; color?: string }> = [
+const DEFAULT_BARLIST_DATA: Array<{
+  label: string;
+  value: number;
+  color?: string;
+}> = [
   { label: "华北", value: 86 },
   { label: "华东", value: 72 },
   { label: "华南", value: 54 },
@@ -40,10 +49,7 @@ function BarListCard({
   const max = Math.max(1, ...data.map((d) => d.value));
 
   return (
-    <Card
-      data-slot="bar-list-card"
-      className={cn("w-full", className)}
-    >
+    <Card data-slot="bar-list-card" className={cn("w-full", className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
@@ -51,18 +57,18 @@ function BarListCard({
         <ol className="flex flex-col gap-2" role="list">
           {data.map((d, i) => (
             <li key={d.label} className="flex items-center gap-2 text-sm">
-              <span className="w-5 shrink-0 text-muted-foreground tabular-nums">
+              <span className="text-muted-foreground w-5 shrink-0 tabular-nums">
                 {i + 1}
               </span>
-              <span className="w-20 shrink-0 truncate text-muted-foreground">
+              <span className="text-muted-foreground w-20 shrink-0 truncate">
                 {d.label}
               </span>
               <div
-                className="h-4 flex-1 overflow-hidden rounded bg-muted"
+                className="bg-muted h-4 flex-1 overflow-hidden rounded"
                 role="presentation"
               >
                 <div
-                  className="h-full rounded bg-primary"
+                  className="bg-primary h-full rounded"
                   style={{
                     width: `${(d.value / max) * 100}%`,
                     ...(d.color ? { backgroundColor: d.color } : {}),

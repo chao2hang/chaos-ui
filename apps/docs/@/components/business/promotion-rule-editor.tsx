@@ -50,7 +50,14 @@ interface PromotionRuleEditorProps {
 }
 
 const DEFAULT_RULES: PromotionRule[] = [
-  { id: "rule-1", name: "满99减10", threshold: 99, operator: "gte", action: "discount", amount: 10 },
+  {
+    id: "rule-1",
+    name: "满99减10",
+    threshold: 99,
+    operator: "gte",
+    action: "discount",
+    amount: 10,
+  },
 ];
 
 function PromotionRuleEditor({
@@ -81,7 +88,14 @@ function PromotionRuleEditor({
     const id = `rule-${Date.now()}`;
     commit([
       ...localRules,
-      { id, name: "", threshold: 0, operator: "gte", action: "discount", amount: 0 },
+      {
+        id,
+        name: "",
+        threshold: 0,
+        operator: "gte",
+        action: "discount",
+        amount: 0,
+      },
     ]);
   };
 
@@ -101,7 +115,7 @@ function PromotionRuleEditor({
       className={cn("flex flex-col gap-4", className)}
     >
       <div className="flex items-center gap-2">
-        <TagIcon className="size-5 text-muted-foreground" aria-hidden />
+        <TagIcon className="text-muted-foreground size-5" aria-hidden />
         <h3 className="text-base font-medium">促销规则</h3>
       </div>
 
@@ -153,7 +167,11 @@ function PromotionRuleEditor({
                 <Select
                   value={rule.operator}
                   onValueChange={(v) =>
-                    updateRule(rule.id, "operator", (v ?? "gte") as PromotionRule["operator"])
+                    updateRule(
+                      rule.id,
+                      "operator",
+                      (v ?? "gte") as PromotionRule["operator"],
+                    )
                   }
                 >
                   <SelectTrigger id={`pre-operator-${rule.id}`}>
@@ -171,7 +189,11 @@ function PromotionRuleEditor({
                 <Select
                   value={rule.action}
                   onValueChange={(v) =>
-                    updateRule(rule.id, "action", (v ?? "discount") as PromotionRule["action"])
+                    updateRule(
+                      rule.id,
+                      "action",
+                      (v ?? "discount") as PromotionRule["action"],
+                    )
                   }
                 >
                   <SelectTrigger id={`pre-action-${rule.id}`}>

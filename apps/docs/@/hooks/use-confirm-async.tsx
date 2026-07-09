@@ -62,7 +62,7 @@ function confirmAsync(options: ConfirmOptions): Promise<boolean> {
   }
   throw new Error(
     "confirmAsync() called outside <ConfirmProvider>. " +
-    "Either wrap your app with <ConfirmProvider> or use useConfirmAsync() hook.",
+      "Either wrap your app with <ConfirmProvider> or use useConfirmAsync() hook.",
   );
 }
 
@@ -96,7 +96,9 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
   // Register module-level ref
   React.useEffect(() => {
     moduleLevelConfirm = confirm;
-    return () => { moduleLevelConfirm = null; };
+    return () => {
+      moduleLevelConfirm = null;
+    };
   }, [confirm]);
 
   const handleOk = React.useCallback(() => {
@@ -112,16 +114,24 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
   return (
     <ConfirmContext.Provider value={confirm}>
       {children}
-      <Dialog open={state.open} onOpenChange={(open) => { if (!open) handleCancel(); }}>
+      <Dialog
+        open={state.open}
+        onOpenChange={(open) => {
+          if (!open) handleCancel();
+        }}
+      >
         <DialogContent showCloseButton={false} className="sm:max-w-sm">
           <DialogHeader>
             <div className="flex items-start gap-3">
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted">
+              <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
                 {state.options.icon ?? <AlertCircleIcon className="size-4" />}
               </div>
               <div className="flex flex-col gap-1.5">
                 <DialogTitle>{state.options.title ?? "Confirm"}</DialogTitle>
-                <DialogDescription>{state.options.content ?? "This action cannot be undone. Continue?"}</DialogDescription>
+                <DialogDescription>
+                  {state.options.content ??
+                    "This action cannot be undone. Continue?"}
+                </DialogDescription>
               </div>
             </div>
           </DialogHeader>
@@ -130,7 +140,11 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
               {state.options.cancelText ?? "Cancel"}
             </Button>
             <Button
-              variant={state.options.okVariant === "destructive" ? "destructive" : "default"}
+              variant={
+                state.options.okVariant === "destructive"
+                  ? "destructive"
+                  : "default"
+              }
               onClick={handleOk}
             >
               {state.options.okText ?? "Confirm"}
@@ -173,16 +187,24 @@ function useConfirmAsync(): [
   }, [state.resolve]);
 
   const ConfirmDialog = () => (
-    <Dialog open={state.open} onOpenChange={(open) => { if (!open) handleCancel(); }}>
+    <Dialog
+      open={state.open}
+      onOpenChange={(open) => {
+        if (!open) handleCancel();
+      }}
+    >
       <DialogContent showCloseButton={false} className="sm:max-w-sm">
         <DialogHeader>
           <div className="flex items-start gap-3">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted">
+            <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
               {state.options.icon ?? <AlertCircleIcon className="size-4" />}
             </div>
             <div className="flex flex-col gap-1.5">
               <DialogTitle>{state.options.title ?? "Confirm"}</DialogTitle>
-              <DialogDescription>{state.options.content ?? "This action cannot be undone. Continue?"}</DialogDescription>
+              <DialogDescription>
+                {state.options.content ??
+                  "This action cannot be undone. Continue?"}
+              </DialogDescription>
             </div>
           </div>
         </DialogHeader>
@@ -191,7 +213,11 @@ function useConfirmAsync(): [
             {state.options.cancelText ?? "Cancel"}
           </Button>
           <Button
-            variant={state.options.okVariant === "destructive" ? "destructive" : "default"}
+            variant={
+              state.options.okVariant === "destructive"
+                ? "destructive"
+                : "default"
+            }
             onClick={handleOk}
           >
             {state.options.okText ?? "Confirm"}

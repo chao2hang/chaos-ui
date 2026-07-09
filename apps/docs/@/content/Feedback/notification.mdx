@@ -1,5 +1,5 @@
-import { Notification } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Notification } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Notification 通知提醒
 
@@ -26,42 +26,44 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Notification variant="default">Default</Notification>
   <Notification variant="info">Info</Notification>
   <Notification variant="success">Success</Notification>
   <Notification variant="warning">Warning</Notification>
   <Notification variant="destructive">Destructive</Notification>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认样式 / Default style | ✓ |
-| `info` | 信息提示 / Informational style |  |
-| `success` | 成功状态 / Success style |  |
-| `warning` | 警告状态 / Warning style |  |
-| `destructive` | 危险/删除样式 / Destructive/danger style |  |
+| Variant       | 说明 / Description                       | 默认 |
+| ------------- | ---------------------------------------- | ---- |
+| `default`     | 默认样式 / Default style                 | ✓    |
+| `info`        | 信息提示 / Informational style           |      |
+| `success`     | 成功状态 / Success style                 |      |
+| `warning`     | 警告状态 / Warning style                 |      |
+| `destructive` | 危险/删除样式 / Destructive/danger style |      |
 
 ## API / Props
 
 ### Notification
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `React.ReactNode` | — | Title |
-| `description` | `React.ReactNode` | — | Description content |
-| `open` | `boolean` | `true` | Whether the notification is visible |
-| `onClose` | `() => void` | — | Called when close button is clicked |
-| `duration` | `number` | `4500` | Auto-close duration in ms (0 to disable) |
-| `icon` | `React.ReactNode` | — | Icon to show |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | 说明 / Description                                          |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`   | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `title`       | `React.ReactNode`             | —       | Title                                                       |
+| `description` | `React.ReactNode`             | —       | Description content                                         |
+| `open`        | `boolean`                     | `true`  | Whether the notification is visible                         |
+| `onClose`     | `() => void`                  | —       | Called when close button is clicked                         |
+| `duration`    | `number`                      | `4500`  | Auto-close duration in ms (0 to disable)                    |
+| `icon`        | `React.ReactNode`             | —       | Icon to show                                                |
+| ...rest       | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

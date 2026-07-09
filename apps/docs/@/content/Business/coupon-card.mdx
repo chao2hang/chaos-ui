@@ -1,5 +1,5 @@
-import { CouponCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CouponCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CouponCard Coupon Card
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <CouponCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CouponCard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | Coupon value display (e.g. "¥50" or "20% OFF"). |
-| `description` | `string` | — | Coupon description or conditions. |
-| `expiresAt` | `string` | — | Expiration date string. |
-| `used` | `boolean` | — | Whether the coupon has been used. |
-| `onUse` | `() => void` | — | Called when user clicks "Use" / "Claim". |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`       | `string`               | —       | Coupon value display (e.g. "¥50" or "20% OFF").           |
+| `description` | `string`               | —       | Coupon description or conditions.                         |
+| `expiresAt`   | `string`               | —       | Expiration date string.                                   |
+| `used`        | `boolean`              | —       | Whether the coupon has been used.                         |
+| `onUse`       | `() => void`           | —       | Called when user clicks "Use" / "Claim".                  |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

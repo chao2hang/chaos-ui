@@ -1,5 +1,5 @@
-import { ArApAgingTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ArApAgingTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ArApAgingTable Ar Ap Aging Table
 
@@ -11,7 +11,6 @@ Ar Ap Aging Table — 面向 ERP/企业场景的业务组件。
 
 适用于Ar Ap Aging Table相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,25 +21,23 @@ export function Basic() {
   return <ArApAgingTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ArApAgingTable
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `entries` | `AgingEntry[]` | — | Entries to display. |
-| `asOfDate` | `string` | — | Reference date for aging calculation. Defaults to today. |
-| `type` | `"ar" \| "ap"` | `ar` | "ar" for receivable, "ap" for payable. |
-| `buckets` | `AgingBucket[]` | — | Custom bucket definitions. |
-| `currencySymbol` | `string` | `¥` | Currency symbol for display. |
-| `onRowClick` | `() => void` | — | Row click handler. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop             | Type                   | Default | 说明                                                     |
+| ---------------- | ---------------------- | ------- | -------------------------------------------------------- |
+| `className`      | `string`               | —       | 自定义样式类名                                           |
+| `entries`        | `AgingEntry[]`         | —       | Entries to display.                                      |
+| `asOfDate`       | `string`               | —       | Reference date for aging calculation. Defaults to today. |
+| `type`           | `"ar" \| "ap"`         | `ar`    | "ar" for receivable, "ap" for payable.                   |
+| `buckets`        | `AgingBucket[]`        | —       | Custom bucket definitions.                               |
+| `currencySymbol` | `string`               | `¥`     | Currency symbol for display.                             |
+| `onRowClick`     | `() => void`           | —       | Row click handler.                                       |
+| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                                        |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-arapagingtable--docs)。
-

@@ -1,5 +1,5 @@
-import { Timeline } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Timeline } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Timeline
 
@@ -10,7 +10,6 @@ Vertical display of a chronological sequence such as logs or processes.
 ## When to Use
 
 Use when you need a timeline.
-
 
 ## Examples
 
@@ -28,39 +27,39 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Timeline variant="default">Default</Timeline>
   <Timeline variant="success">Success</Timeline>
   <Timeline variant="warning">Warning</Timeline>
   <Timeline variant="destructive">Destructive</Timeline>
   <Timeline variant="info">Info</Timeline>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Variant**
 
-| Variant | Description | 默认 |
-|---|---|---|
-| `default` | Default style | ✓ |
-| `success` | Success style |  |
-| `warning` | Warning style |  |
-| `destructive` | Destructive/danger style |  |
-| `info` | Informational style |  |
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `success`     | Success style            |      |
+| `warning`     | Warning style            |      |
+| `destructive` | Destructive/danger style |      |
+| `info`        | Informational style      |      |
 
 ## API / Props
 
 ### Timeline
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 7 个子组件(TimelineItem, TimelineDot, TimelineConnector, TimelineContent, TimelineTitle…),使用组合模式按需导入。
-
-

@@ -75,7 +75,10 @@ function ChatVoiceMessage({ duration, src, className }: ChatVoiceMessageProps) {
   return (
     <div
       data-slot="chat-voice-message"
-      className={cn("inline-flex items-center gap-2 rounded-2xl bg-muted px-3 py-2", className)}
+      className={cn(
+        "bg-muted inline-flex items-center gap-2 rounded-2xl px-3 py-2",
+        className,
+      )}
     >
       <Button
         type="button"
@@ -84,9 +87,13 @@ function ChatVoiceMessage({ duration, src, className }: ChatVoiceMessageProps) {
         onClick={toggle}
         aria-label={playing ? "Pause voice message" : "Play voice message"}
       >
-        {playing ? <PauseIcon className="size-4" aria-hidden /> : <PlayIcon className="size-4" aria-hidden />}
+        {playing ? (
+          <PauseIcon className="size-4" aria-hidden />
+        ) : (
+          <PlayIcon className="size-4" aria-hidden />
+        )}
       </Button>
-      <MicIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+      <MicIcon className="text-muted-foreground size-4 shrink-0" aria-hidden />
       <div
         className="flex h-6 items-center gap-0.5"
         role="progressbar"
@@ -107,7 +114,7 @@ function ChatVoiceMessage({ duration, src, className }: ChatVoiceMessageProps) {
           />
         ))}
       </div>
-      <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+      <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
         {formatSeconds(duration)}
       </span>
       {src ? <audio ref={audioRef} src={src} preload="none" /> : null}

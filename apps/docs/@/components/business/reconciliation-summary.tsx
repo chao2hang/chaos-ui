@@ -1,9 +1,18 @@
 "use client";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
 import { formatCurrency } from "@chaos_team/chaos-ui/lib";
-import { CheckCircle2Icon, AlertTriangleIcon, BanknoteIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckCircle2Icon,
+  AlertTriangleIcon,
+  BanknoteIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ReconciliationSummary
@@ -40,16 +49,19 @@ function ReconciliationSummary({
   const totalCount = matchedCount + unmatchedCount;
 
   return (
-    <Card data-slot="reconciliation-summary" className={cn("w-full", className)}>
+    <Card
+      data-slot="reconciliation-summary"
+      className={cn("w-full", className)}
+    >
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <BanknoteIcon className="size-4 text-primary" />
+          <BanknoteIcon className="text-primary size-4" />
           对账汇总
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <div className="rounded-lg border bg-muted/30 p-4">
-          <p className="text-xs text-muted-foreground">对账总额</p>
+        <div className="bg-muted/30 rounded-lg border p-4">
+          <p className="text-muted-foreground text-xs">对账总额</p>
           <p className="text-2xl font-semibold tabular-nums">
             {formatCurrency(totalAmount)}
           </p>
@@ -59,11 +71,11 @@ function ReconciliationSummary({
           <div className="flex items-start gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-3 dark:border-emerald-900/50 dark:bg-emerald-950/30">
             <CheckCircle2Icon className="mt-0.5 size-4 text-emerald-600" />
             <div className="min-w-0">
-              <p className="text-xs text-muted-foreground">已匹配</p>
+              <p className="text-muted-foreground text-xs">已匹配</p>
               <p className="text-sm font-semibold tabular-nums">
                 {formatCurrency(matchedAmount)}
               </p>
-              <p className="text-xs text-muted-foreground tabular-nums">
+              <p className="text-muted-foreground text-xs tabular-nums">
                 {matchedCount} 笔
               </p>
             </div>
@@ -71,11 +83,11 @@ function ReconciliationSummary({
           <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-900/50 dark:bg-amber-950/30">
             <AlertTriangleIcon className="mt-0.5 size-4 text-amber-600" />
             <div className="min-w-0">
-              <p className="text-xs text-muted-foreground">未匹配</p>
+              <p className="text-muted-foreground text-xs">未匹配</p>
               <p className="text-sm font-semibold tabular-nums">
                 {formatCurrency(unmatchedAmount)}
               </p>
-              <p className="text-xs text-muted-foreground tabular-nums">
+              <p className="text-muted-foreground text-xs tabular-nums">
                 {unmatchedCount} 笔
               </p>
             </div>
@@ -90,7 +102,7 @@ function ReconciliationSummary({
             </span>
           </div>
           <div
-            className="h-2 w-full overflow-hidden rounded-full bg-muted"
+            className="bg-muted h-2 w-full overflow-hidden rounded-full"
             role="progressbar"
             aria-valuenow={Math.round(matchRate * 100)}
             aria-valuemin={0}
@@ -98,11 +110,11 @@ function ReconciliationSummary({
             aria-label="对账匹配率"
           >
             <div
-              className="h-full rounded-full bg-primary transition-all"
+              className="bg-primary h-full rounded-full transition-all"
               style={{ width: `${Math.min(100, matchRate * 100)}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground tabular-nums">
+          <p className="text-muted-foreground text-xs tabular-nums">
             共 {totalCount} 笔 · 已匹配 {matchedCount} · 未匹配 {unmatchedCount}
           </p>
         </div>

@@ -1,5 +1,5 @@
-import { OaBridge } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { OaBridge } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # OaBridge Oa Bridge
 
@@ -12,7 +12,6 @@ OaBridge — oa bridge component.
 
 Use when you need an oa bridge.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,21 +22,18 @@ export function Basic() {
   return <OaBridge />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### OaBridge
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `billId` | `string` | — |  |
-| `billType` | `string` | — |  |
-| `onSubmit` | `() => void` | — | Submit handler |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `billId`    | `string`               | —       |                                   |
+| `billType`  | `string`               | —       |                                   |
+| `onSubmit`  | `() => void`           | —       | Submit handler                    |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

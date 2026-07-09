@@ -1,5 +1,5 @@
-import { Fab } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Fab } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Fab
 
@@ -10,7 +10,6 @@ Circular floating action button (bottom-right) for the primary create/add action
 ## When to Use
 
 Use when you need a fab.
-
 
 ## Examples
 
@@ -24,66 +23,69 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Fab variant="default">Default</Fab>
   <Fab variant="secondary">Secondary</Fab>
   <Fab variant="destructive">Destructive</Fab>
   <Fab variant="outline">Outline</Fab>
   <Fab variant="ghost">Ghost</Fab>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Fab size="sm">Sm</Fab>
   <Fab size="default">Default</Fab>
   <Fab size="lg">Lg</Fab>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Variant**
 
-| Variant | Description | 默认 |
-|---|---|---|
-| `default` | Default style | ✓ |
-| `secondary` | Secondary action style |  |
-| `destructive` | Destructive/danger style |  |
-| `outline` | Outlined style |  |
-| `ghost` | Ghost (no background) style |  |
+| Variant       | Description                 | 默认 |
+| ------------- | --------------------------- | ---- |
+| `default`     | Default style               | ✓    |
+| `secondary`   | Secondary action style      |      |
+| `destructive` | Destructive/danger style    |      |
+| `outline`     | Outlined style              |      |
+| `ghost`       | Ghost (no background) style |      |
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `default` | Default size | ✓ |
-| `sm` | Small |  |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
 
 **position**
 
-| position | Description | 默认 |
-|---|---|---|
-| `bottom-right` |  | ✓ |
-| `bottom-left` |  |  |
-| `top-right` |  |  |
-| `top-left` |  |  |
-| `none` |  |  |
+| position       | Description | 默认 |
+| -------------- | ----------- | ---- |
+| `bottom-right` |             | ✓    |
+| `bottom-left`  |             |      |
+| `top-right`    |             |      |
+| `top-left`     |             |      |
+| `none`         |             |      |
 
 ## API / Props
 
 ### Fab
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.ComponentProps<"button">` | — | Inherits all `<button>` attributes |
+| Prop        | Type                             | Default | Description                        |
+| ----------- | -------------------------------- | ------- | ---------------------------------- |
+| `className` | `string`                         | —       | Custom CSS class                   |
+| ...rest     | `React.ComponentProps<"button">` | —       | Inherits all `<button>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

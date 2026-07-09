@@ -38,7 +38,7 @@ function TabPin({ id, label, pinned = false, onPin, className }: TabPinProps) {
     <div
       data-slot="tab-pin"
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md border bg-card px-2 py-1 text-sm",
+        "bg-card inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-sm",
         pinned && "border-primary bg-primary/5 text-primary",
         className,
       )}
@@ -53,7 +53,7 @@ function TabPin({ id, label, pinned = false, onPin, className }: TabPinProps) {
         aria-pressed={pinned}
         aria-label={pinned ? `取消固定 ${label}` : `固定 ${label}`}
         className={cn(
-          "inline-flex size-5 items-center justify-center rounded outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50",
+          "focus-visible:ring-ring/50 inline-flex size-5 items-center justify-center rounded transition-colors outline-none focus-visible:ring-3",
           pinned
             ? "text-primary hover:bg-primary/10"
             : "text-muted-foreground hover:bg-muted hover:text-foreground",

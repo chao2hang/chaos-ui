@@ -1,5 +1,5 @@
-import { Slider } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Slider } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Slider
 
@@ -10,7 +10,6 @@ Drag to select a numeric value within a range; more visual than an input.
 ## When to Use
 
 Select a value from a continuous or discrete range via dragging.
-
 
 ## Examples
 
@@ -28,23 +27,23 @@ export function Basic() {
 
 ### States
 
-<CodeBlock code={`<Slider>Normal</Slider>
-<Slider disabled>Disabled</Slider>`} lang="tsx" />
-
+<CodeBlock
+  code={`<Slider>Normal</Slider>
+<Slider disabled>Disabled</Slider>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### Slider
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 4 个子组件(SliderControl, SliderTrack, SliderIndicator, SliderThumb),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

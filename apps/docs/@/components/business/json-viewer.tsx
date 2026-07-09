@@ -96,7 +96,7 @@ function JsonNode({
           variant="ghost"
           size="sm"
           onClick={() => setOpen((v) => !v)}
-          className="h-auto px-1 py-0 font-mono text-xs text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground h-auto px-1 py-0 font-mono text-xs"
         >
           {open ? "▼" : "▶"} [{value.length}]
         </Button>
@@ -138,7 +138,7 @@ function JsonNode({
           variant="ghost"
           size="sm"
           onClick={() => setOpen((v) => !v)}
-          className="h-auto px-1 py-0 font-mono text-xs text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground h-auto px-1 py-0 font-mono text-xs"
         >
           {open ? "▼" : "▶"} &#123;{keys.length}&#125;
         </Button>
@@ -210,7 +210,7 @@ export function JsonViewer({
       <div
         data-slot="json-viewer"
         className={cn(
-          "overflow-auto rounded-md border bg-muted/30 p-3 text-xs font-mono leading-relaxed",
+          "bg-muted/30 overflow-auto rounded-md border p-3 font-mono text-xs leading-relaxed",
           className,
         )}
       >

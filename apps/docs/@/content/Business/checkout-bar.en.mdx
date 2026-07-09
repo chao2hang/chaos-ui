@@ -1,5 +1,5 @@
-import { CheckoutBar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CheckoutBar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CheckoutBar Checkout Bar
 
@@ -11,7 +11,6 @@ CheckoutBar — a business component for ERP / enterprise scenarios.
 
 Use when you need a checkout bar.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <CheckoutBar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CheckoutBar
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `total` | `string \| number` | — | Total amount to display. |
-| `currency` | `string` | `¥` | Currency symbol or code. |
-| `payLabel` | `string` | `Pay Now` | Checkout button label. Default "Pay Now". |
-| `isLoading` | `boolean` | — | Whether the checkout is in a loading/processing state. |
-| `onPay` | `() => void` | — | Called when the user clicks the pay button. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default   | Description                                            |
+| ----------- | ---------------------- | --------- | ------------------------------------------------------ |
+| `className` | `string`               | —         | Custom CSS class                                       |
+| `total`     | `string \| number`     | —         | Total amount to display.                               |
+| `currency`  | `string`               | `¥`       | Currency symbol or code.                               |
+| `payLabel`  | `string`               | `Pay Now` | Checkout button label. Default "Pay Now".              |
+| `isLoading` | `boolean`              | —         | Whether the checkout is in a loading/processing state. |
+| `onPay`     | `() => void`           | —         | Called when the user clicks the pay button.            |
+| ...rest     | `React.HTMLAttributes` | —         | Inherits standard HTML attributes                      |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

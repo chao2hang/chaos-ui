@@ -27,7 +27,11 @@ export interface BarChartProps {
   className?: string;
 }
 
-const DEFAULT_BAR_DATA: Array<{ label: string; value: number; color?: string }> = [
+const DEFAULT_BAR_DATA: Array<{
+  label: string;
+  value: number;
+  color?: string;
+}> = [
   { label: "一月", value: 38 },
   { label: "二月", value: 52 },
   { label: "三月", value: 41 },
@@ -62,11 +66,11 @@ function BarChart({
       >
         {data.map((d, i) => (
           <div key={d.label} className="flex items-center gap-2">
-            <span className="w-16 shrink-0 truncate text-muted-foreground">
+            <span className="text-muted-foreground w-16 shrink-0 truncate">
               {d.label}
             </span>
             <div
-              className="h-5 flex-1 overflow-hidden rounded bg-muted"
+              className="bg-muted h-5 flex-1 overflow-hidden rounded"
               role="presentation"
             >
               <div
@@ -95,7 +99,7 @@ function BarChart({
   return (
     <div
       data-slot="bar-chart"
-      className={cn("w-full text-primary", className)}
+      className={cn("text-primary w-full", className)}
       role="img"
       aria-label={`柱状图，共 ${data.length} 项，最大值 ${max}`}
     >

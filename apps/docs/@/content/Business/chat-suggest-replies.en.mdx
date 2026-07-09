@@ -1,5 +1,5 @@
-import { ChatSuggestReplies } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ChatSuggestReplies } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ChatSuggestReplies Chat Suggest Replies
 
@@ -11,7 +11,6 @@ ChatSuggestReplies — a business component for ERP / enterprise scenarios.
 
 Use when you need a chat suggest replies.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,20 +21,17 @@ export function Basic() {
   return <ChatSuggestReplies />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChatSuggestReplies
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `suggestions` | `string[]` | — |  |
-| `onSelect` | `() => void` | — | Selection handler |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `suggestions` | `string[]`             | —       |                                   |
+| `onSelect`    | `() => void`           | —       | Selection handler                 |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

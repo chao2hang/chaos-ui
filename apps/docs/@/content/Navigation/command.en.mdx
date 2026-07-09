@@ -1,5 +1,5 @@
-import { Command } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Command } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Command
 
@@ -10,7 +10,6 @@ VS Code-style Ctrl+K command palette driven by keyboard search.
 ## When to Use
 
 A command palette for quick search and navigation via keyboard input.
-
 
 ## Examples
 
@@ -26,19 +25,16 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Command
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 8 个子组件(CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup…),使用组合模式按需导入。
-
-

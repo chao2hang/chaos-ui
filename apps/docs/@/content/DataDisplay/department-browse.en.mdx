@@ -1,5 +1,5 @@
-import { DepartmentBrowse } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { DepartmentBrowse } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # DepartmentBrowse
 
@@ -11,7 +11,6 @@ Browse org structure to select departments/people; supports tree expand, search,
 
 Use when you need a department browse.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,26 +21,23 @@ export function Basic() {
   return <DepartmentBrowse />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DepartmentBrowse
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `Department \| Department[]` | — | Current value (controlled) |
-| `defaultValue` | `Department \| Department[]` | — | Default value (uncontrolled) |
-| `placeholder` | `string` | `Select department...` | Placeholder text |
-| `disabled` | `boolean` | — | Whether disabled |
-| `multiple` | `boolean` | `false` | Multiple selection |
-| `maxCount` | `number` | — |  |
-| `departments` | `Department[]` | — |  |
-| `onChange` | `() => void` | — | Callback when value changes |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop           | Type                         | Default                | Description                       |
+| -------------- | ---------------------------- | ---------------------- | --------------------------------- |
+| `className`    | `string`                     | —                      | Custom CSS class                  |
+| `value`        | `Department \| Department[]` | —                      | Current value (controlled)        |
+| `defaultValue` | `Department \| Department[]` | —                      | Default value (uncontrolled)      |
+| `placeholder`  | `string`                     | `Select department...` | Placeholder text                  |
+| `disabled`     | `boolean`                    | —                      | Whether disabled                  |
+| `multiple`     | `boolean`                    | `false`                | Multiple selection                |
+| `maxCount`     | `number`                     | —                      |                                   |
+| `departments`  | `Department[]`               | —                      |                                   |
+| `onChange`     | `() => void`                 | —                      | Callback when value changes       |
+| ...rest        | `React.HTMLAttributes`       | —                      | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

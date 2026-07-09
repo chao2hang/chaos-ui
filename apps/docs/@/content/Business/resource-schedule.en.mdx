@@ -1,5 +1,5 @@
-import { ResourceSchedule } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ResourceSchedule } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ResourceSchedule Resource Schedule
 
@@ -12,7 +12,6 @@ ResourceSchedule — resource schedule component.
 
 Use when you need a resource schedule.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,24 +22,21 @@ export function Basic() {
   return <ResourceSchedule />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ResourceSchedule
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `resources` | `Array<T>` | — |  |
-| `bookings` | `Array<{` | — |  |
-| `resourceId` | `string` | — |  |
-| `start` | `string` | — |  |
-| `end` | `string` | — |  |
-| `title` | `string` | — | Title |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop         | Type                   | Default | Description                       |
+| ------------ | ---------------------- | ------- | --------------------------------- |
+| `className`  | `string`               | —       | Custom CSS class                  |
+| `resources`  | `Array<T>`             | —       |                                   |
+| `bookings`   | `Array<{`              | —       |                                   |
+| `resourceId` | `string`               | —       |                                   |
+| `start`      | `string`               | —       |                                   |
+| `end`        | `string`               | —       |                                   |
+| `title`      | `string`               | —       | Title                             |
+| ...rest      | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

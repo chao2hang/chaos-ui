@@ -1,5 +1,5 @@
-import { LeaveRequestForm } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LeaveRequestForm } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LeaveRequestForm Leave Request Form
 
@@ -11,7 +11,6 @@ LeaveRequestForm — a business component for ERP / enterprise scenarios.
 
 Use when you need a leave request form.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,30 +21,27 @@ export function Basic() {
   return <LeaveRequestForm />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LeaveRequestForm
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `leaveType` | `LeaveType` | `annual` | Current leave type |
-| `onLeaveTypeChange` | `() => void` | — | Leave type change callback |
-| `startDate` | `string` | `` | Start date |
-| `endDate` | `string` | `` | End date |
-| `onDateChange` | `() => void` | — | Date change callback |
-| `balances` | `LeaveBalance[]` | — | Available leave balances |
-| `approvers` | `Approver[]` | — | Approver chain |
-| `reason` | `string` | `` | Reason text |
-| `onReasonChange` | `() => void` | — | Reason change callback |
-| `onSubmit` | `() => void` | — | Submit handler |
-| `onCancel` | `() => void` | — | Cancel handler |
-| `readOnly` | `boolean` | `false` | Read-only mode |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop                | Type                   | Default  | Description                       |
+| ------------------- | ---------------------- | -------- | --------------------------------- |
+| `className`         | `string`               | —        | Custom CSS class                  |
+| `leaveType`         | `LeaveType`            | `annual` | Current leave type                |
+| `onLeaveTypeChange` | `() => void`           | —        | Leave type change callback        |
+| `startDate`         | `string`               | ``       | Start date                        |
+| `endDate`           | `string`               | ``       | End date                          |
+| `onDateChange`      | `() => void`           | —        | Date change callback              |
+| `balances`          | `LeaveBalance[]`       | —        | Available leave balances          |
+| `approvers`         | `Approver[]`           | —        | Approver chain                    |
+| `reason`            | `string`               | ``       | Reason text                       |
+| `onReasonChange`    | `() => void`           | —        | Reason change callback            |
+| `onSubmit`          | `() => void`           | —        | Submit handler                    |
+| `onCancel`          | `() => void`           | —        | Cancel handler                    |
+| `readOnly`          | `boolean`              | `false`  | Read-only mode                    |
+| ...rest             | `React.HTMLAttributes` | —        | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,5 +1,5 @@
-import { Kbd, KbdGroup } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Kbd, KbdGroup } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Kbd
 
@@ -10,7 +10,6 @@ Renders a keyboard-key style, used for shortcut hints.
 ## When to Use
 
 Use when you need a kbd.
-
 
 ## Examples
 
@@ -28,35 +27,35 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Kbd size="sm">Sm</Kbd>
   <Kbd size="default">Default</Kbd>
   <Kbd size="lg">Lg</Kbd>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `sm` | Small |  |
-| `default` | Default size | ✓ |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `sm`      | Small        |      |
+| `default` | Default size | ✓    |
+| `lg`      | Large        |      |
 
 ## API / Props
 
 ### Kbd
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **复合组件**: 包含 1 个子组件(KbdGroup),使用组合模式按需导入。
-
-

@@ -1,5 +1,5 @@
-import { SupplierScorecard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SupplierScorecard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SupplierScorecard Supplier Scorecard
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <SupplierScorecard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SupplierScorecard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `supplier` | `Supplier` | — | Supplier data |
-| `showWeightedTotal` | `boolean` | `true` | Show weighted total (default: true) |
-| `showTrends` | `boolean` | `true` | Show trend indicators (default: true) |
-| `showBars` | `boolean` | `true` | Show bar visualization (default: true) |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                   | Default | 说明 / Description                                        |
+| ------------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`         | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `supplier`          | `Supplier`             | —       | Supplier data                                             |
+| `showWeightedTotal` | `boolean`              | `true`  | Show weighted total (default: true)                       |
+| `showTrends`        | `boolean`              | `true`  | Show trend indicators (default: true)                     |
+| `showBars`          | `boolean`              | `true`  | Show bar visualization (default: true)                    |
+| ...rest             | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

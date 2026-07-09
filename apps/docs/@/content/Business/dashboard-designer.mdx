@@ -1,5 +1,5 @@
-import { DashboardDesigner } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DashboardDesigner } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DashboardDesigner 仪表盘设计器
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <DashboardDesigner />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DashboardDesigner
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `widgets` | `DashboardWidget[]` | — |  |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `cols` | `number` | `12` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `widgets`   | `DashboardWidget[]`           | —       |                                                             |
+| `onChange`  | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
+| `cols`      | `number`                      | `12`    |                                                             |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

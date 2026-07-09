@@ -55,7 +55,7 @@ function AreaChart({
   return (
     <div
       data-slot="area-chart"
-      className={cn("w-full text-primary", className)}
+      className={cn("text-primary w-full", className)}
       role="img"
       aria-label={`面积图，共 ${data.length} 个数据点，最大值 ${max}`}
     >
@@ -76,13 +76,7 @@ function AreaChart({
           strokeLinecap="round"
         />
         {data.map((v, i) => (
-          <circle
-            key={i}
-            cx={pad + i * stepX}
-            cy={yAt(v)}
-            r={2.5}
-            fill={color}
-          >
+          <circle key={i} cx={pad + i * stepX} cy={yAt(v)} r={2.5} fill={color}>
             <title>
               {labels[i] ?? i}: {formatNumber(v)}
             </title>
@@ -90,7 +84,7 @@ function AreaChart({
         ))}
       </svg>
       <ul
-        className="mt-1 flex justify-between text-[10px] text-muted-foreground"
+        className="text-muted-foreground mt-1 flex justify-between text-[10px]"
         role="list"
       >
         {labels.slice(0, data.length).map((l, i) => (

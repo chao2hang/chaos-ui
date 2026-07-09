@@ -1,5 +1,5 @@
-import { Carousel } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Carousel } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Carousel 轮播
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 需要轮播功能时使用本组件。
-
 
 ## 代码示例
 
@@ -26,20 +25,19 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Carousel
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `defaultIndex` | `number` | `0` |  |
-| `loop` | `boolean` | `true` |  |
-| `autoplay` | `boolean` | `false` |  |
-| `interval` | `number` | `5000` |  |
-| `onIndexChange` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop            | Type                          | Default | 说明                  |
+| --------------- | ----------------------------- | ------- | --------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名        |
+| `defaultIndex`  | `number`                      | `0`     |                       |
+| `loop`          | `boolean`                     | `true`  |                       |
+| `autoplay`      | `boolean`                     | `false` |                       |
+| `interval`      | `number`                      | `5000`  |                       |
+| `onIndexChange` | `() => void`                  | —       |                       |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -48,4 +46,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-carousel--docs)。
-

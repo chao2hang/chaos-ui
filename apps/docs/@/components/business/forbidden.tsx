@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { cn } from "@chaos_team/chaos-ui/lib"
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { LockIcon } from "@chaos_team/chaos-ui/ui-icons"
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { LockIcon } from "@chaos_team/chaos-ui/ui-icons";
 
 interface ForbiddenProps {
   /** 自定义标题 */
-  title?: string
+  title?: string;
   /** 自定义描述 */
-  description?: string
+  description?: string;
   /** 申请权限回调 */
-  onRequestAccess?: () => void
+  onRequestAccess?: () => void;
   /** 自定义权限码 */
-  code?: string
-  className?: string
+  code?: string;
+  className?: string;
 }
 
 /**
@@ -36,23 +36,22 @@ function Forbidden({
       data-slot="forbidden"
       className={cn(
         "flex flex-col items-center justify-center",
-        "rounded-lg border border-dashed border-border",
+        "border-border rounded-lg border border-dashed",
         "bg-muted/30 p-12 text-center",
         className,
       )}
     >
-      <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-muted">
-        <LockIcon className="size-8 text-muted-foreground" />
+      <div className="bg-muted mb-4 flex size-16 items-center justify-center rounded-full">
+        <LockIcon className="text-muted-foreground size-8" />
       </div>
-      <h3 className="mb-2 text-lg font-semibold text-foreground">
-        {title}
-      </h3>
-      <p className="mb-6 max-w-sm text-sm text-muted-foreground">
+      <h3 className="text-foreground mb-2 text-lg font-semibold">{title}</h3>
+      <p className="text-muted-foreground mb-6 max-w-sm text-sm">
         {description}
       </p>
       {code && (
-        <p className="mb-4 text-xs text-muted-foreground">
-          权限码: <code className="rounded bg-muted px-1 py-0.5 font-mono">{code}</code>
+        <p className="text-muted-foreground mb-4 text-xs">
+          权限码:{" "}
+          <code className="bg-muted rounded px-1 py-0.5 font-mono">{code}</code>
         </p>
       )}
       {onRequestAccess && (
@@ -61,8 +60,8 @@ function Forbidden({
         </Button>
       )}
     </div>
-  )
+  );
 }
 
-export { Forbidden }
-export type { ForbiddenProps }
+export { Forbidden };
+export type { ForbiddenProps };

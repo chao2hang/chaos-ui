@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@chaos_team/chaos-ui/lib"
-import { Button } from "@chaos_team/chaos-ui/ui"
+import * as React from "react";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import {
   Table,
   TableBody,
@@ -10,43 +10,49 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chaos_team/chaos-ui/ui"
-import { Skeleton } from "@chaos_team/chaos-ui/ui"
+} from "@chaos_team/chaos-ui/ui";
+import { Skeleton } from "@chaos_team/chaos-ui/ui";
 
 interface ColumnDef<T = Record<string, unknown>> {
-  key: string
-  title: string
-  dataIndex?: keyof T & string
-  width?: number | string
+  key: string;
+  title: string;
+  dataIndex?: keyof T & string;
+  width?: number | string;
   /**
    * Cell renderer. `value` is typed as `T[keyof T]` (the union of field values)
    * so consumers don't need `as` casts for the common case.
    * / 单元格渲染，value 类型为 T 的字段值联合，减少 as 断言
    */
-  render?: (value: T[keyof T], record: T, index: number) => React.ReactNode
-  ellipsis?: boolean
-  align?: "left" | "center" | "right"
-  fixed?: "left" | "right"
+  render?: (value: T[keyof T], record: T, index: number) => React.ReactNode;
+  ellipsis?: boolean;
+  align?: "left" | "center" | "right";
+  fixed?: "left" | "right";
 }
 
 interface SearchTableProps<T = Record<string, unknown>> {
-  columns: ColumnDef<T>[]
-  dataSource: T[]
-  rowKey?: keyof T & string
-  loading?: boolean
-  pagination?: false | {
-    current: number
-    pageSize: number
-    total: number
-    onChange: (page: number, pageSize: number) => void
-  } | undefined
-  emptyText?: string
+  columns: ColumnDef<T>[];
+  dataSource: T[];
+  rowKey?: keyof T & string;
+  loading?: boolean;
+  pagination?:
+    | false
+    | {
+        current: number;
+        pageSize: number;
+        total: number;
+        onChange: (page: number, pageSize: number) => void;
+      }
+    | undefined;
+  emptyText?: string;
   /** Callback when a row is clicked */
-  onRow?: (record: T, index: number) => {
-    onClick?: () => void
-    [key: string]: unknown
-  }
-  className?: string
+  onRow?: (
+    record: T,
+    index: number,
+  ) => {
+    onClick?: () => void;
+    [key: string]: unknown;
+  };
+  className?: string;
 }
 
 /**
@@ -66,7 +72,9 @@ interface SearchTableProps<T = Record<string, unknown>> {
  * @category business/crud
  * @since 0.2.0
  */
-function SearchTable<T extends Record<string, unknown> = Record<string, unknown>>({
+function SearchTable<
+  T extends Record<string, unknown> = Record<string, unknown>,
+>({
   columns,
   dataSource,
   rowKey = "id",
@@ -80,12 +88,12 @@ function SearchTable<T extends Record<string, unknown> = Record<string, unknown>
     left: "text-left",
     center: "text-center",
     right: "text-right",
-  }
+  };
 
   const getValue = (record: T, col: ColumnDef<T>) => {
-    const key = (col.dataIndex || col.key) as keyof T
-    return record[key]
-  }
+    const key = (col.dataIndex || col.key) as keyof T;
+    return record[key];
+  };
 
   return (
     <div data-slot="search-table" className={cn("space-y-2", className)}>
@@ -119,42 +127,44 @@ function SearchTable<T extends Record<string, unknown> = Record<string, unknown>
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="py-12 text-center text-muted-foreground"
+                  className="text-muted-foreground py-12 text-center"
                 >
                   {emptyText}
                 </TableCell>
               </TableRow>
             ) : (
               dataSource.map((record, rowIndex) => {
-                const rowProps = onRow?.(record, rowIndex)
+                const rowProps = onRow?.(record, rowIndex);
                 return (
                   <TableRow
                     key={String(record[rowKey] || rowIndex)}
-                    className={cn(rowProps?.onClick && "cursor-pointer hover:bg-muted/50")}
+                    className={cn(
+                      rowProps?.onClick && "hover:bg-muted/50 cursor-pointer",
+                    )}
                     onClick={rowProps?.onClick}
                   >
                     {columns.map((col) => {
-                      const value = getValue(record, col)
+                      const value = getValue(record, col);
                       const content = col.render
                         ? col.render(value, record, rowIndex)
                         : value != null
                           ? String(value)
-                          : "-"
+                          : "-";
 
                       return (
                         <TableCell
                           key={col.key}
                           className={cn(
                             alignClass[col.align || "left"],
-                            col.ellipsis && "truncate max-w-0",
+                            col.ellipsis && "max-w-0 truncate",
                           )}
                         >
                           {content}
                         </TableCell>
-                      )
+                      );
                     })}
                   </TableRow>
-                )
+                );
               })
             )}
           </TableBody>
@@ -163,10 +173,8 @@ function SearchTable<T extends Record<string, unknown> = Record<string, unknown>
 
       {/* Pagination */}
       {pagination && (
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <span>
-            共 {pagination.total} 条
-          </span>
+        <div className="text-muted-foreground flex items-center justify-between text-sm">
+          <span>共 {pagination.total} 条</span>
           <div className="flex items-center gap-1">
             <Button
               variant="outline"
@@ -216,8 +224,8 @@ function SearchTable<T extends Record<string, unknown> = Record<string, unknown>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { SearchTable }
-export type { SearchTableProps, ColumnDef }
+export { SearchTable };
+export type { SearchTableProps, ColumnDef };

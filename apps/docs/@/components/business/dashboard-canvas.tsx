@@ -34,7 +34,11 @@ interface DashboardCanvasProps {
   className?: string;
 }
 
-function DashboardCanvas({ widgets, onChange, className }: DashboardCanvasProps) {
+function DashboardCanvas({
+  widgets,
+  onChange,
+  className,
+}: DashboardCanvasProps) {
   const [items, setItems] = React.useState<DashboardWidget[]>(widgets);
 
   React.useEffect(() => {
@@ -65,7 +69,7 @@ function DashboardCanvas({ widgets, onChange, className }: DashboardCanvasProps)
   return (
     <div
       data-slot="dashboard-canvas"
-      className={cn("relative rounded-lg border bg-muted/30 p-2", className)}
+      className={cn("bg-muted/30 relative rounded-lg border p-2", className)}
       style={{ minHeight: height + 16 }}
       role="region"
       aria-label="仪表盘画布"
@@ -79,14 +83,14 @@ function DashboardCanvas({ widgets, onChange, className }: DashboardCanvasProps)
         aria-hidden="true"
       >
         {Array.from({ length: COLS * rows }).map((_, i) => (
-          <div key={i} className="rounded-sm bg-background/40" />
+          <div key={i} className="bg-background/40 rounded-sm" />
         ))}
       </div>
       {items.map((w) => (
         <div
           key={w.id}
           data-widget-id={w.id}
-          className="absolute rounded-lg border bg-card p-3 shadow-sm"
+          className="bg-card absolute rounded-lg border p-3 shadow-sm"
           style={{
             left: `calc(${(w.x / COLS) * 100}% + 0.5rem)`,
             top: `${w.y * ROW_HEIGHT + 8}px`,
@@ -126,13 +130,13 @@ function DashboardCanvas({ widgets, onChange, className }: DashboardCanvasProps)
               </Button>
             </div>
           </div>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="text-muted-foreground mt-1 text-xs">
             位置 {w.x},{w.y} · 尺寸 {w.w}×{w.h}
           </p>
         </div>
       ))}
       {items.length === 0 && (
-        <p className="flex items-center justify-center py-8 text-sm text-muted-foreground">
+        <p className="text-muted-foreground flex items-center justify-center py-8 text-sm">
           画布为空，请添加 widget
         </p>
       )}

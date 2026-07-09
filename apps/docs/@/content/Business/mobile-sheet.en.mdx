@@ -1,5 +1,5 @@
-import { MobileSheet } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileSheet } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileSheet
 
@@ -11,7 +11,6 @@ MobileSheet — a business component for ERP / enterprise scenarios.
 
 Use when you need a mobile sheet.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,25 +21,22 @@ export function Basic() {
   return <MobileSheet />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileSheet
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `title` | `string` | — | Title |
-| `description` | `string` | — | Description text |
-| `trigger` | `React.ReactElement` | — |  |
-| `actions` | `React.ReactNode` | — |  |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |  |
-| `open` | `boolean` | — | Open state (controlled) |
-| `onOpenChange` | `() => void` | — | Callback when open state changes |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop           | Type                                     | Default  | Description                       |
+| -------------- | ---------------------------------------- | -------- | --------------------------------- |
+| `className`    | `string`                                 | —        | Custom CSS class                  |
+| `title`        | `string`                                 | —        | Title                             |
+| `description`  | `string`                                 | —        | Description text                  |
+| `trigger`      | `React.ReactElement`                     | —        |                                   |
+| `actions`      | `React.ReactNode`                        | —        |                                   |
+| `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                                   |
+| `open`         | `boolean`                                | —        | Open state (controlled)           |
+| `onOpenChange` | `() => void`                             | —        | Callback when open state changes  |
+| ...rest        | `React.HTMLAttributes`                   | —        | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

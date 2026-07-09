@@ -22,7 +22,12 @@ interface ChatFeedbackProps {
   className?: string;
 }
 
-function ChatFeedback({ onLike, onDislike, onComment, className }: ChatFeedbackProps) {
+function ChatFeedback({
+  onLike,
+  onDislike,
+  onComment,
+  className,
+}: ChatFeedbackProps) {
   const [voted, setVoted] = React.useState<"up" | "down" | null>(null);
   const [commenting, setCommenting] = React.useState(false);
   const [text, setText] = React.useState("");
@@ -59,7 +64,10 @@ function ChatFeedback({ onLike, onDislike, onComment, className }: ChatFeedbackP
   );
 
   return (
-    <div data-slot="chat-feedback" className={cn("flex flex-col gap-1", className)}>
+    <div
+      data-slot="chat-feedback"
+      className={cn("flex flex-col gap-1", className)}
+    >
       <div className="flex items-center gap-1">
         <Button
           type="button"
@@ -69,7 +77,10 @@ function ChatFeedback({ onLike, onDislike, onComment, className }: ChatFeedbackP
           aria-label="Good response"
           aria-pressed={voted === "up"}
         >
-          <ThumbsUpIcon className={cn("size-4", voted === "up" && "text-green-600")} aria-hidden />
+          <ThumbsUpIcon
+            className={cn("size-4", voted === "up" && "text-green-600")}
+            aria-hidden
+          />
         </Button>
         <Button
           type="button"
@@ -79,7 +90,10 @@ function ChatFeedback({ onLike, onDislike, onComment, className }: ChatFeedbackP
           aria-label="Bad response"
           aria-pressed={voted === "down"}
         >
-          <ThumbsDownIcon className={cn("size-4", voted === "down" && "text-red-600")} aria-hidden />
+          <ThumbsDownIcon
+            className={cn("size-4", voted === "down" && "text-red-600")}
+            aria-hidden
+          />
         </Button>
         {onComment ? (
           <Button
@@ -103,13 +117,23 @@ function ChatFeedback({ onLike, onDislike, onComment, className }: ChatFeedbackP
             placeholder="Add a comment (Cmd/Ctrl+Enter to submit)"
             aria-label="Comment text"
             rows={2}
-            className="resize-none rounded-md border border-border bg-background p-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+            className="border-border bg-background focus-visible:ring-ring/40 resize-none rounded-md border p-2 text-sm outline-none focus-visible:ring-2"
           />
           <div className="flex justify-end gap-1">
-            <Button type="button" variant="ghost" size="sm" onClick={() => setCommenting(false)}>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setCommenting(false)}
+            >
               Cancel
             </Button>
-            <Button type="button" size="sm" onClick={submitComment} disabled={text.trim().length === 0}>
+            <Button
+              type="button"
+              size="sm"
+              onClick={submitComment}
+              disabled={text.trim().length === 0}
+            >
               Submit
             </Button>
           </div>

@@ -1,5 +1,5 @@
-import { RadarChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RadarChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RadarChart Radar Chart
 
@@ -11,7 +11,6 @@ RadarChart — radar chart component.
 
 Use when you need a radar chart.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <RadarChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RadarChart
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `axes` | `string[]` | — | Dimension labels (vertices). |
-| `series` | `Array<T>` | — | Named series; each `values` array aligns 1:1 with `axes`. |
-| `max` | `number` | — | Scale ceiling. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                                               |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                                          |
+| `axes`      | `string[]`             | —       | Dimension labels (vertices).                              |
+| `series`    | `Array<T>`             | —       | Named series; each `values` array aligns 1:1 with `axes`. |
+| `max`       | `number`               | —       | Scale ceiling.                                            |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                         |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

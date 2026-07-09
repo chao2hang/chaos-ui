@@ -1,5 +1,5 @@
-import { RoleAssignment } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RoleAssignment } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RoleAssignment 角色分配
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <RoleAssignment />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RoleAssignment
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `roles` | `Role[]` | — |  |
-| `assigned` | `string[]` | — |  |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `roles`     | `Role[]`                      | —       |                                                             |
+| `assigned`  | `string[]`                    | —       |                                                             |
+| `onChange`  | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

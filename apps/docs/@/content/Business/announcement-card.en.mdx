@@ -1,5 +1,5 @@
-import { AnnouncementCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AnnouncementCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AnnouncementCard Announcement Card
 
@@ -11,7 +11,6 @@ AnnouncementCard — a business component for ERP / enterprise scenarios.
 
 Use when you need an announcement card.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,22 +21,19 @@ export function Basic() {
   return <AnnouncementCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AnnouncementCard
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `title` | `string` | — | Title |
-| `content` | `string` | — | Content |
-| `date` | `string` | — |  |
-| `pinned` | `boolean` | — |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `title`     | `string`               | —       | Title                             |
+| `content`   | `string`               | —       | Content                           |
+| `date`      | `string`               | —       |                                   |
+| `pinned`    | `boolean`              | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

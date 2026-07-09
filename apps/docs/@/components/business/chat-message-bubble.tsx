@@ -36,7 +36,8 @@ function ChatMessageBubble({
 }: ChatMessageBubbleProps) {
   const isUser = role === "user";
   const isSystem = role === "system";
-  const displayName = name ?? (isUser ? "You" : isSystem ? "System" : "Assistant");
+  const displayName =
+    name ?? (isUser ? "You" : isSystem ? "System" : "Assistant");
 
   if (isSystem) {
     return (
@@ -44,13 +45,15 @@ function ChatMessageBubble({
         data-slot="chat-message-bubble"
         role="status"
         className={cn(
-          "mx-auto w-fit max-w-full rounded-md bg-muted px-3 py-1.5 text-center text-xs text-muted-foreground",
+          "bg-muted text-muted-foreground mx-auto w-fit max-w-full rounded-md px-3 py-1.5 text-center text-xs",
           className,
         )}
       >
         <span className="sr-only">System message</span>
         {content}
-        {time ? <span className="ml-2 tabular-nums opacity-70">{time}</span> : null}
+        {time ? (
+          <span className="ml-2 tabular-nums opacity-70">{time}</span>
+        ) : null}
       </div>
     );
   }
@@ -78,17 +81,19 @@ function ChatMessageBubble({
           isUser ? "items-end" : "items-start",
         )}
       >
-        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">{displayName}</span>
+        <div className="text-muted-foreground flex items-center gap-1.5 text-xs">
+          <span className="text-foreground font-medium">{displayName}</span>
           {time ? <span className="tabular-nums">{time}</span> : null}
-          {status ? <span aria-label={`Status: ${status}`}>{status}</span> : null}
+          {status ? (
+            <span aria-label={`Status: ${status}`}>{status}</span>
+          ) : null}
         </div>
         <div
           className={cn(
-            "whitespace-pre-wrap break-words rounded-2xl px-3 py-2 text-sm",
+            "rounded-2xl px-3 py-2 text-sm break-words whitespace-pre-wrap",
             isUser
-              ? "rounded-tr-sm bg-primary text-primary-foreground"
-              : "rounded-tl-sm bg-muted text-foreground",
+              ? "bg-primary text-primary-foreground rounded-tr-sm"
+              : "bg-muted text-foreground rounded-tl-sm",
           )}
         >
           {content}

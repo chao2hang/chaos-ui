@@ -1,5 +1,5 @@
-import { Alert, AlertTitle, AlertDescription } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Alert, AlertTitle, AlertDescription } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Alert 警告提示
 
@@ -10,7 +10,6 @@ import { CodeBlock } from "@/components/code-block"
 ## 何时使用
 
 向用户显示重要提示、警告、错误或成功反馈信息。
-
 
 ## 代码示例
 
@@ -29,38 +28,40 @@ export function Basic() {
 
 ### 变体
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Alert variant="default">Default</Alert>
   <Alert variant="info">Info</Alert>
   <Alert variant="success">Success</Alert>
   <Alert variant="warning">Warning</Alert>
   <Alert variant="destructive">Destructive</Alert>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体
 
 **变体**
 
-| Variant | 说明 | 默认 |
-|---|---|---|
-| `default` | 默认样式 | ✓ |
-| `info` | 信息提示 |  |
-| `success` | 成功状态 |  |
-| `warning` | 警告状态 |  |
-| `destructive` | 危险/删除样式 |  |
+| Variant       | 说明          | 默认 |
+| ------------- | ------------- | ---- |
+| `default`     | 默认样式      | ✓    |
+| `info`        | 信息提示      |      |
+| `success`     | 成功状态      |      |
+| `warning`     | 警告状态      |      |
+| `destructive` | 危险/删除样式 |      |
 
 ## API / Props
 
 ### Alert
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `variant` | `AlertVariant` | — | 样式变体 |
-| `icon` | `React.ReactNode` | — | 图标元素 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `variant`   | `AlertVariant`         | —       | 样式变体          |
+| `icon`      | `React.ReactNode`      | —       | 图标元素          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
@@ -68,4 +69,3 @@ export function Basic() {
 - **复合组件**: 包含 2 个子组件(AlertTitle, AlertDescription),使用组合模式按需导入。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-alert--docs)。
-

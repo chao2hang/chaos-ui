@@ -1,5 +1,5 @@
-import { IotSensorGrid } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { IotSensorGrid } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # IotSensorGrid Iot Sensor Grid
 
@@ -11,7 +11,6 @@ IotSensorGrid — a business component for ERP / enterprise scenarios.
 
 Use when you need an iot sensor grid.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,22 +21,19 @@ export function Basic() {
   return <IotSensorGrid />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### IotSensorGrid
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `sensors` | `Sensor[]` | — | Sensors to display. |
-| `title` | `string` | `IoT Sensor Grid` | Dashboard title. |
-| `refreshInterval` | `number` | `0` | Auto-refresh interval in ms (0 = disabled). |
-| `onSensorClick` | `() => void` | — | Sensor click handler. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop              | Type                   | Default           | Description                                 |
+| ----------------- | ---------------------- | ----------------- | ------------------------------------------- |
+| `className`       | `string`               | —                 | Custom CSS class                            |
+| `sensors`         | `Sensor[]`             | —                 | Sensors to display.                         |
+| `title`           | `string`               | `IoT Sensor Grid` | Dashboard title.                            |
+| `refreshInterval` | `number`               | `0`               | Auto-refresh interval in ms (0 = disabled). |
+| `onSensorClick`   | `() => void`           | —                 | Sensor click handler.                       |
+| ...rest           | `React.HTMLAttributes` | —                 | Inherits standard HTML attributes           |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -33,6 +33,7 @@ setLoading(false)
 }, [items.length])
 
 return (
+
 <InfiniteScroll onLoadMore={loadMore} hasMore={hasMore} loading={loading}>
 {items.map(i => <div key={i}>Item {i}</div>)}
 </InfiniteScroll>
@@ -43,7 +44,7 @@ return (
 
 ### InfiniteScroll
 
-| Prop | Type | Default | 说明 |
+| Prop              | Type                  | Default          | 说明                                        |
 | ----------------- | --------------------- | ---------------- | ------------------------------------------- |
 | `onLoadMore`      | `() => void`          | —                | Load more callback / 加载更多回调           |
 | `hasMore`         | `boolean`             | `true`           | Whether more data exists / 是否还有更多数据 |
@@ -60,4 +61,3 @@ return (
 - **IntersectionObserver**: 使用原生 IntersectionObserver API，需浏览器支持。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-infinitescroll--docs)。
-

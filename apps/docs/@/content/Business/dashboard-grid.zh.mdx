@@ -1,5 +1,5 @@
-import { DashboardGrid } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DashboardGrid } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DashboardGrid Dashboard Grid
 
@@ -11,7 +11,6 @@ Dashboard Grid — 面向 ERP/企业场景的业务组件。
 
 适用于Dashboard Grid相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,26 +21,24 @@ export function Basic() {
   return <DashboardGrid />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DashboardGrid
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `title` | `string` | `仪表盘` | 仪表盘标题 |
-| `stats` | `Array<{` | — | KPI 指标数组 |
-| `label` | `string` | — | 标签文本 |
-| `value` | `number` | — | 当前值(受控) |
-| `delta` | `number` | — | 环比变化，正数增长负数下降 |
-| `trend` | `"up" \| "down"` | — | 显式趋势方向，省略时按 delta 推断 |
-| `columns` | `1 \| 2 \| 3 \| 4 \| 6` | `4` | 网格列数 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                    | Default  | 说明                              |
+| ----------- | ----------------------- | -------- | --------------------------------- |
+| `className` | `string`                | —        | 自定义样式类名                    |
+| `title`     | `string`                | `仪表盘` | 仪表盘标题                        |
+| `stats`     | `Array<{`               | —        | KPI 指标数组                      |
+| `label`     | `string`                | —        | 标签文本                          |
+| `value`     | `number`                | —        | 当前值(受控)                      |
+| `delta`     | `number`                | —        | 环比变化，正数增长负数下降        |
+| `trend`     | `"up" \| "down"`        | —        | 显式趋势方向，省略时按 delta 推断 |
+| `columns`   | `1 \| 2 \| 3 \| 4 \| 6` | `4`      | 网格列数                          |
+| ...rest     | `React.HTMLAttributes`  | —        | 透传原生 DOM 属性                 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-dashboardgrid--docs)。
-

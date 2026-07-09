@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Chip } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Chip } from "@chaos_team/chaos-ui/business";
 
 const meta: Meta<typeof Chip> = {
   title: "Business/Chip",
@@ -7,12 +7,12 @@ const meta: Meta<typeof Chip> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => <Chip>默认</Chip>,
-}
+};
 
 export const Variants: Story = {
   render: () => (
@@ -26,7 +26,7 @@ export const Variants: Story = {
       <Chip variant="outline">Outline</Chip>
     </div>
   ),
-}
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -36,17 +36,31 @@ export const Sizes: Story = {
       <Chip size="lg">大</Chip>
     </div>
   ),
-}
+};
 
 export const Removable: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
-      <Chip removable onRemove={() => console.info("remove")}>可移除</Chip>
-      <Chip variant="primary" removable onRemove={() => console.info("remove p")}>Primary 可移除</Chip>
-      <Chip variant="success" removable onRemove={() => console.info("remove s")}>Success 可移除</Chip>
+      <Chip removable onRemove={() => console.info("remove")}>
+        可移除
+      </Chip>
+      <Chip
+        variant="primary"
+        removable
+        onRemove={() => console.info("remove p")}
+      >
+        Primary 可移除
+      </Chip>
+      <Chip
+        variant="success"
+        removable
+        onRemove={() => console.info("remove s")}
+      >
+        Success 可移除
+      </Chip>
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   render: () => (
@@ -59,4 +73,4 @@ export const Dark: Story = {
     </div>
   ),
   parameters: { backgrounds: { default: "dark" } },
-}
+};

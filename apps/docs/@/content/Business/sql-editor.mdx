@@ -1,5 +1,5 @@
-import { SqlEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SqlEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SqlEditor Sql Editor
 
@@ -24,24 +24,23 @@ export function Basic() {
   return <SqlEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SqlEditor
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | SQL content (controlled). |
-| `onChange` | `() => void` | — | Called on every change. |
-| `dialect` | `SQLDialect` | `standard` | SQL dialect. Defaults to `"standard"`. |
-| `placeholder` | `string` | — | Placeholder text. |
-| `readOnly` | `boolean` | — | Whether the editor is read-only. |
-| `minHeight` | `number` | `200` | Minimum height. |
-| `maxHeight` | `number` | — | Maximum height. |
-| `onFocus` | `() => void` | — | Called when the editor receives focus. |
-| `onBlur` | `() => void` | — | Called when the editor loses focus. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default    | 说明 / Description                                        |
+| ------------- | ---------------------- | ---------- | --------------------------------------------------------- |
+| `className`   | `string`               | —          | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`       | `string`               | —          | SQL content (controlled).                                 |
+| `onChange`    | `() => void`           | —          | Called on every change.                                   |
+| `dialect`     | `SQLDialect`           | `standard` | SQL dialect. Defaults to `"standard"`.                    |
+| `placeholder` | `string`               | —          | Placeholder text.                                         |
+| `readOnly`    | `boolean`              | —          | Whether the editor is read-only.                          |
+| `minHeight`   | `number`               | `200`      | Minimum height.                                           |
+| `maxHeight`   | `number`               | —          | Maximum height.                                           |
+| `onFocus`     | `() => void`           | —          | Called when the editor receives focus.                    |
+| `onBlur`      | `() => void`           | —          | Called when the editor loses focus.                       |
+| ...rest       | `React.HTMLAttributes` | —          | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,11 +1,14 @@
-import { MobilePageShell } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MobilePageShell } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MobilePageShell Mobile Page Shell
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<MobilePageShell title="订单详情" onBack={() => history.back()}> <p>内容</p> </MobilePageShell>
+<MobilePageShell title="订单详情" onBack={() => history.back()}>
+  {" "}
+  <p>内容</p>{" "}
+</MobilePageShell>
 MobilePageShell — mobile page shell component.
 
 ## 何时使用 / When to Use
@@ -24,17 +27,16 @@ export function Basic() {
   return <MobilePageShell />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobilePageShell
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `string` | — | 标题 <br/> Title |
-| `onBack` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`     | `string`               | —       | 标题 <br/> Title                                          |
+| `onBack`    | `() => void`           | —       |                                                           |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

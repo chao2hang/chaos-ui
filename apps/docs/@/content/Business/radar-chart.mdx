@@ -1,11 +1,11 @@
-import { RadarChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RadarChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RadarChart Radar Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 雷达图(多维评估)
+雷达图(多维评估)
 RadarChart — radar chart component.
 
 ## 何时使用 / When to Use
@@ -24,18 +24,17 @@ export function Basic() {
   return <RadarChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RadarChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `axes` | `string[]` | — | Dimension labels (vertices). |
-| `series` | `Array<T>` | — | Named series; each `values` array aligns 1:1 with `axes`. |
-| `max` | `number` | — | Scale ceiling. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `axes`      | `string[]`             | —       | Dimension labels (vertices).                              |
+| `series`    | `Array<T>`             | —       | Named series; each `values` array aligns 1:1 with `axes`. |
+| `max`       | `number`               | —       | Scale ceiling.                                            |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

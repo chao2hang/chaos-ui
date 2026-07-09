@@ -1,5 +1,5 @@
-import { AuditLog } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AuditLog } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AuditLog 审计日志
 
@@ -24,16 +24,15 @@ export function Basic() {
   return <AuditLog />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AuditLog
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `entries` | `AuditEntry[]` | — |  |
-| ...rest | `React.ComponentProps<"ol">` | — | 透传 `<ol>` 原生属性 <br/> Inherits all `<ol>` attributes |
+| Prop        | Type                         | Default | 说明 / Description                                        |
+| ----------- | ---------------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`                     | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `entries`   | `AuditEntry[]`               | —       |                                                           |
+| ...rest     | `React.ComponentProps<"ol">` | —       | 透传 `<ol>` 原生属性 <br/> Inherits all `<ol>` attributes |
 
 ## 注意事项 / Notes
 

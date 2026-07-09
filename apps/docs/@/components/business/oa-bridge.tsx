@@ -3,7 +3,12 @@
 import * as React from "react";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { ArrowRightIcon, Building2Icon, CheckCircle2Icon, SendIcon } from "@chaos_team/chaos-ui/ui";
+import {
+  ArrowRightIcon,
+  Building2Icon,
+  CheckCircle2Icon,
+  SendIcon,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component OaBridge
@@ -25,7 +30,9 @@ interface OaBridgeProps {
 }
 
 function OaBridge({ billId, billType, onSubmit, className }: OaBridgeProps) {
-  const [status, setStatus] = React.useState<"idle" | "submitting" | "done" | "error">("idle");
+  const [status, setStatus] = React.useState<
+    "idle" | "submitting" | "done" | "error"
+  >("idle");
   const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async () => {
@@ -43,32 +50,41 @@ function OaBridge({ billId, billType, onSubmit, className }: OaBridgeProps) {
   return (
     <div
       data-slot="oa-bridge"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
       role="region"
       aria-label="OA 系统桥接"
     >
       <div className="flex items-center gap-3">
-        <span className="flex size-9 items-center justify-center rounded-lg bg-muted">
-          <Building2Icon className="size-5 text-muted-foreground" />
+        <span className="bg-muted flex size-9 items-center justify-center rounded-lg">
+          <Building2Icon className="text-muted-foreground size-5" />
         </span>
         <div className="flex flex-col">
           <span className="text-sm font-medium">提交至 OA 系统</span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {billType} · {billId}
           </span>
         </div>
-        <ArrowRightIcon className="ml-auto size-4 text-muted-foreground" />
+        <ArrowRightIcon className="text-muted-foreground ml-auto size-4" />
       </div>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         将该{billType}推送至 OA 系统发起审批流程，提交后可在 OA 端追踪审批进度。
       </p>
       {status === "done" ? (
-        <div className="flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-700" role="status">
+        <div
+          className="flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-700"
+          role="status"
+        >
           <CheckCircle2Icon className="size-4" />
           已提交至 OA 系统，单据 {billId} 进入审批流程
         </div>
       ) : status === "error" ? (
-        <div className="flex items-center gap-2 rounded-md bg-red-50 px-3 py-2 text-sm text-destructive" role="alert">
+        <div
+          className="text-destructive flex items-center gap-2 rounded-md bg-red-50 px-3 py-2 text-sm"
+          role="alert"
+        >
           提交失败：{error}
         </div>
       ) : null}
@@ -80,7 +96,11 @@ function OaBridge({ billId, billType, onSubmit, className }: OaBridgeProps) {
           icon={<SendIcon />}
           aria-busy={status === "submitting"}
         >
-          {status === "submitting" ? "提交中" : status === "done" ? "已提交" : "提交至 OA"}
+          {status === "submitting"
+            ? "提交中"
+            : status === "done"
+              ? "已提交"
+              : "提交至 OA"}
         </Button>
       </div>
     </div>

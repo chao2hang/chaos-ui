@@ -43,14 +43,14 @@ export function LoadingPage({
     >
       {icon ??
         (variant === "spinner" ? (
-          <Loader2Icon className="size-8 animate-spin text-muted-foreground" />
+          <Loader2Icon className="text-muted-foreground size-8 animate-spin" />
         ) : null)}
       {variant === "dots" && <DotsSpinner />}
       {variant === "pulse" && <PulseLoader />}
       <div className="space-y-1">
         <p className="text-sm font-medium">{resolvedTitle}</p>
         {description && (
-          <p className="text-xs text-muted-foreground">{description}</p>
+          <p className="text-muted-foreground text-xs">{description}</p>
         )}
       </div>
     </div>
@@ -63,7 +63,7 @@ function DotsSpinner() {
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="size-2 animate-bounce rounded-full bg-muted-foreground"
+          className="bg-muted-foreground size-2 animate-bounce rounded-full"
           style={{ animationDelay: `${i * 0.16}s` }}
         />
       ))}
@@ -74,8 +74,8 @@ function DotsSpinner() {
 function PulseLoader() {
   return (
     <div className="relative size-10">
-      <span className="absolute inset-0 animate-ping rounded-full bg-primary/30" />
-      <span className="absolute inset-2 rounded-full bg-primary" />
+      <span className="bg-primary/30 absolute inset-0 animate-ping rounded-full" />
+      <span className="bg-primary absolute inset-2 rounded-full" />
     </div>
   );
 }
@@ -103,8 +103,8 @@ export function FullPageLoader({ show = true, children }: FullPageLoaderProps) {
       {children && (
         <div className="pointer-events-none opacity-50">{children}</div>
       )}
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-        <Loader2Icon className="size-8 animate-spin text-primary" />
+      <div className="bg-background/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
+        <Loader2Icon className="text-primary size-8 animate-spin" />
       </div>
     </div>
   );

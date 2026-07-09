@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeAll } from "vitest"
-import { render } from "@testing-library/react"
+import { describe, it, expect, beforeAll } from "vitest";
+import { render } from "@testing-library/react";
 import {
   ContextMenu,
   ContextMenuTrigger,
@@ -11,7 +11,7 @@ import {
   ContextMenuCheckboxItem,
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
-} from "@chaos_team/chaos-ui/ui"
+} from "@chaos_team/chaos-ui/ui";
 
 describe("ContextMenu", () => {
   beforeAll(() => {
@@ -19,8 +19,8 @@ describe("ContextMenu", () => {
       observe() {}
       unobserve() {}
       disconnect() {}
-    }
-  })
+    };
+  });
 
   it("renders the trigger slot with a clickable surface", () => {
     render(
@@ -30,11 +30,13 @@ describe("ContextMenu", () => {
           <ContextMenuItem>Action</ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>,
-    )
-    const trigger = document.querySelector('[data-slot="context-menu-trigger"]')
-    expect(trigger).toBeTruthy()
-    expect(trigger?.textContent).toContain("Right-click me")
-  })
+    );
+    const trigger = document.querySelector(
+      '[data-slot="context-menu-trigger"]',
+    );
+    expect(trigger).toBeTruthy();
+    expect(trigger?.textContent).toContain("Right-click me");
+  });
 
   it("renders label, items, and separator slots when open", () => {
     render(
@@ -49,11 +51,17 @@ describe("ContextMenu", () => {
           </ContextMenuGroup>
         </ContextMenuContent>
       </ContextMenu>,
-    )
-    expect(document.querySelector('[data-slot="context-menu-label"]')).toBeTruthy()
-    expect(document.querySelector('[data-slot="context-menu-separator"]')).toBeTruthy()
-    expect(document.querySelectorAll('[data-slot="context-menu-item"]')).toHaveLength(2)
-  })
+    );
+    expect(
+      document.querySelector('[data-slot="context-menu-label"]'),
+    ).toBeTruthy();
+    expect(
+      document.querySelector('[data-slot="context-menu-separator"]'),
+    ).toBeTruthy();
+    expect(
+      document.querySelectorAll('[data-slot="context-menu-item"]'),
+    ).toHaveLength(2);
+  });
 
   it("supports checkbox and radio items when open", () => {
     render(
@@ -67,10 +75,14 @@ describe("ContextMenu", () => {
           </ContextMenuRadioGroup>
         </ContextMenuContent>
       </ContextMenu>,
-    )
-    expect(document.querySelector('[data-slot="context-menu-checkbox-item"]')).toBeTruthy()
-    expect(document.querySelectorAll('[data-slot="context-menu-radio-item"]')).toHaveLength(2)
-  })
+    );
+    expect(
+      document.querySelector('[data-slot="context-menu-checkbox-item"]'),
+    ).toBeTruthy();
+    expect(
+      document.querySelectorAll('[data-slot="context-menu-radio-item"]'),
+    ).toHaveLength(2);
+  });
 
   it("applies the destructive variant as a data attribute when open", () => {
     render(
@@ -80,9 +92,9 @@ describe("ContextMenu", () => {
           <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>,
-    )
-    const item = document.querySelector('[data-slot="context-menu-item"]')
-    expect(item).toBeTruthy()
-    expect(item?.getAttribute("data-variant")).toBe("destructive")
-  })
-})
+    );
+    const item = document.querySelector('[data-slot="context-menu-item"]');
+    expect(item).toBeTruthy();
+    expect(item?.getAttribute("data-variant")).toBe("destructive");
+  });
+});

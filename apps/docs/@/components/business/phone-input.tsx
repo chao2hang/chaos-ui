@@ -1,20 +1,20 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 import PhoneInputBase, {
   type Value,
   type Country,
-} from "react-phone-number-input"
-import "react-phone-number-input/style.css"
-import zhLocale from "react-phone-number-input/locale/zh"
-import { cn } from "@chaos_team/chaos-ui/lib"
+} from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import zhLocale from "react-phone-number-input/locale/zh";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface PhoneInputProps {
-  value: string
-  onChange: (value: string) => void
-  defaultCountry?: Country
-  placeholder?: string
-  disabled?: boolean
-  className?: string
+  value: string;
+  onChange: (value: string) => void;
+  defaultCountry?: Country;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
 function PhoneInput({
@@ -46,10 +46,10 @@ function PhoneInput({
         ),
       }}
     />
-  )
+  );
 }
 
-PhoneInput.displayName = "PhoneInput"
+PhoneInput.displayName = "PhoneInput";
 
-export { PhoneInput }
-export type { PhoneInputProps }
+export { PhoneInput };
+export type { PhoneInputProps };

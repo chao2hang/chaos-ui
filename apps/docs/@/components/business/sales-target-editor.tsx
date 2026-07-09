@@ -7,7 +7,11 @@ import { Input } from "@chaos_team/chaos-ui/ui";
 import { Label } from "@chaos_team/chaos-ui/ui";
 import { Button } from "@chaos_team/chaos-ui/ui";
 import { Progress, ProgressIndicator } from "@chaos_team/chaos-ui/ui";
-import { PlusIcon, Trash2Icon, TargetIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  PlusIcon,
+  Trash2Icon,
+  TargetIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component SalesTargetEditor

@@ -1,5 +1,5 @@
-import { DialogFormBody } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { DialogFormBody } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # DialogFormBody 弹窗表单主体
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要弹窗表单主体功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,20 +21,18 @@ export function Basic() {
   return <DialogFormBody />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DialogFormBody
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `scrolling` | `boolean` | `true` |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop        | Type                          | Default | 说明                  |
+| ----------- | ----------------------------- | ------- | --------------------- |
+| `className` | `string`                      | —       | 自定义样式类名        |
+| `scrolling` | `boolean`                     | `true`  |                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-dialogformbody--docs)。
-

@@ -1,5 +1,5 @@
-import { Stepper, Step } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Stepper, Step } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Stepper 步骤条
 
@@ -24,17 +24,16 @@ export function Basic() {
   return <Stepper>Default</Stepper>
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Stepper
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `activeStep` | `number` | `0` |  |
-| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Orientation |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                         | Default      | 说明 / Description                                        |
+| ------------- | ---------------------------- | ------------ | --------------------------------------------------------- |
+| `className`   | `string`                     | —            | 自定义样式类名 <br/> Custom CSS class                     |
+| `activeStep`  | `number`                     | `0`          |                                                           |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Orientation                                |
+| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

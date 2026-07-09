@@ -41,7 +41,10 @@ function SignActionButton({
   };
 
   return (
-    <span data-slot="sign-action-button" className={cn("inline-flex", className)}>
+    <span
+      data-slot="sign-action-button"
+      className={cn("inline-flex", className)}
+    >
       <Button
         type="button"
         variant={signed ? "secondary" : "default"}

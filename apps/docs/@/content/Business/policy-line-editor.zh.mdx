@@ -1,16 +1,27 @@
-import { PolicyLineEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PolicyLineEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PolicyLineEditor Policy Line Editor
 
 > 业务组件
 
-<PolicyLineEditor rows={[{ id: "1", name: "满100减20", type: "discount", condition: "≥100", reward: "-20", quota: 1000, used: 120 }]} />
+<PolicyLineEditor
+  rows={[
+    {
+      id: "1",
+      name: "满100减20",
+      type: "discount",
+      condition: "≥100",
+      reward: "-20",
+      quota: 1000,
+      used: 120,
+    },
+  ]}
+/>
 
 ## 何时使用
 
 适用于Policy Line Editor相关场景。
-
 
 ## 代码示例
 
@@ -22,21 +33,19 @@ export function Basic() {
   return <PolicyLineEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PolicyLineEditor
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `rows` | `PolicyLine[]` | — | 行数据 |
-| `onChange` | `() => void` | — | 值变化回调 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `rows`      | `PolicyLine[]`         | —       | 行数据            |
+| `onChange`  | `() => void`           | —       | 值变化回调        |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-policylineeditor--docs)。
-

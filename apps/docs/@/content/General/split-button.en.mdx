@@ -48,7 +48,7 @@ export function WithActions() {
 
 ### SplitButton
 
-| Prop | Type | Default | Description |
+| Prop       | Type                                                                | Default   | Description                                |
 | ---------- | ------------------------------------------------------------------- | --------- | ------------------------------------------ |
 | `children` | `React.ReactNode`                                                   | —         | Main button label / 主按钮文本 (required)  |
 | `onClick`  | `() => void`                                                        | —         | Main button click handler / 主按钮点击回调 |
@@ -61,7 +61,7 @@ export function WithActions() {
 
 ### SplitButtonAction
 
-| Prop | Type | Description |
+| Prop          | Type              | Description                        |
 | ------------- | ----------------- | ---------------------------------- |
 | `label`       | `string`          | Action label / 操作文本 (required) |
 | `icon`        | `React.ReactNode` | Leading icon / 前置图标            |
@@ -74,5 +74,3 @@ export function WithActions() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **基于 Button**: 主按钮和下拉触发器复用 Button 组件的 variant/size 系统。
-
-

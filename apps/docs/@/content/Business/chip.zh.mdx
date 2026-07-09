@@ -1,5 +1,5 @@
-import { Chip } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { Chip } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # Chip 标签片
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要标签片功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,20 +21,19 @@ export function Basic() {
   return <Chip />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### Chip
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `variant` | `ChipVariant` | `default` | 样式变体 |
-| `size` | `ChipSize` | `default` | 组件尺寸 |
-| `removable` | `boolean` | — |  |
-| `onRemove` | `() => void` | — |  |
-| `icon` | `React.ReactNode` | — | 图标元素 |
-| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 |
+| Prop        | Type                           | Default   | 说明                   |
+| ----------- | ------------------------------ | --------- | ---------------------- |
+| `className` | `string`                       | —         | 自定义样式类名         |
+| `variant`   | `ChipVariant`                  | `default` | 样式变体               |
+| `size`      | `ChipSize`                     | `default` | 组件尺寸               |
+| `removable` | `boolean`                      | —         |                        |
+| `onRemove`  | `() => void`                   | —         |                        |
+| `icon`      | `React.ReactNode`              | —         | 图标元素               |
+| ...rest     | `React.ComponentProps<"span">` | —         | 透传 `<span>` 原生属性 |
 
 ## 注意事项
 
@@ -43,4 +41,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<span>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-chip--docs)。
-

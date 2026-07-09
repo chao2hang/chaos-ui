@@ -1,5 +1,5 @@
-import { ReportBuilder } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ReportBuilder } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ReportBuilder 报表构建器
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <ReportBuilder />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ReportBuilder
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `fields` | `ReportField[]` | — |  |
-| `filters` | `ReportFilter[]` | — |  |
-| `onFieldsChange` | `() => void` | — |  |
-| `onFiltersChange` | `() => void` | — |  |
-| `onPreview` | `() => void` | — |  |
-| `onExport` | `() => void` | — |  |
-| `availableFields` | `string[]` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop              | Type                          | Default | 说明 / Description                                          |
+| ----------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`       | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `fields`          | `ReportField[]`               | —       |                                                             |
+| `filters`         | `ReportFilter[]`              | —       |                                                             |
+| `onFieldsChange`  | `() => void`                  | —       |                                                             |
+| `onFiltersChange` | `() => void`                  | —       |                                                             |
+| `onPreview`       | `() => void`                  | —       |                                                             |
+| `onExport`        | `() => void`                  | —       |                                                             |
+| `availableFields` | `string[]`                    | —       |                                                             |
+| ...rest           | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

@@ -1,11 +1,11 @@
-import { ScatterChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ScatterChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ScatterChart Scatter Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 散点图
+散点图
 ScatterChart — scatter chart component.
 
 ## 何时使用 / When to Use
@@ -24,19 +24,18 @@ export function Basic() {
   return <ScatterChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ScatterChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `Array<T>` | — | Points to plot. |
-| `xLabel` | `string` | — | X-axis caption. |
-| `yLabel` | `string` | — | Y-axis caption. |
-| `height` | `number` | — | SVG height in px. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `data`      | `Array<T>`             | —       | Points to plot.                                           |
+| `xLabel`    | `string`               | —       | X-axis caption.                                           |
+| `yLabel`    | `string`               | —       | Y-axis caption.                                           |
+| `height`    | `number`               | —       | SVG height in px.                                         |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

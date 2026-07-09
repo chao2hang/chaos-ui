@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Anchor } from "@chaos_team/chaos-ui/ui"
+import type { Meta, StoryObj } from "@storybook/react";
+import { Anchor } from "@chaos_team/chaos-ui/ui";
 
 const meta: Meta<typeof Anchor> = {
   title: "Business/Anchor",
@@ -7,8 +7,8 @@ const meta: Meta<typeof Anchor> = {
   parameters: { layout: "padded" },
   tags: ["autodocs"],
 };
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -25,15 +25,30 @@ export const Default: Story = {
         />
       </div>
       <div className="space-y-12">
-        <section id="intro"><h2 className="text-xl font-bold">引言</h2><p className="mt-2 text-sm text-muted-foreground">这是介绍章节...</p></section>
-        <section id="install" className="pt-8"><h2 className="text-xl font-bold">安装</h2><p className="mt-2 text-sm text-muted-foreground">安装步骤...</p></section>
-        <section id="usage" className="pt-8"><h2 className="text-xl font-bold">使用方法</h2><p className="mt-2 text-sm text-muted-foreground">使用说明...</p></section>
-        <section id="advanced" className="pt-8"><h2 className="text-xl font-bold">进阶</h2><p className="mt-2 text-sm text-muted-foreground">高级用法...</p></section>
-        <section id="faq" className="pt-8"><h2 className="text-xl font-bold">常见问题</h2><p className="mt-2 text-sm text-muted-foreground">FAQ...</p></section>
+        <section id="intro">
+          <h2 className="text-xl font-bold">引言</h2>
+          <p className="text-muted-foreground mt-2 text-sm">这是介绍章节...</p>
+        </section>
+        <section id="install" className="pt-8">
+          <h2 className="text-xl font-bold">安装</h2>
+          <p className="text-muted-foreground mt-2 text-sm">安装步骤...</p>
+        </section>
+        <section id="usage" className="pt-8">
+          <h2 className="text-xl font-bold">使用方法</h2>
+          <p className="text-muted-foreground mt-2 text-sm">使用说明...</p>
+        </section>
+        <section id="advanced" className="pt-8">
+          <h2 className="text-xl font-bold">进阶</h2>
+          <p className="text-muted-foreground mt-2 text-sm">高级用法...</p>
+        </section>
+        <section id="faq" className="pt-8">
+          <h2 className="text-xl font-bold">常见问题</h2>
+          <p className="text-muted-foreground mt-2 text-sm">FAQ...</p>
+        </section>
       </div>
     </div>
   ),
-}
+};
 
 export const NestedLevels: Story = {
   render: () => (
@@ -52,9 +67,9 @@ export const NestedLevels: Story = {
       />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...Default,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

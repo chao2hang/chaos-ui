@@ -15,7 +15,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, ReceiptIcon, SearchIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckIcon,
+  ReceiptIcon,
+  SearchIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component PriceAdjustBrowse
@@ -71,9 +75,11 @@ function PriceAdjustBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
-  const resolvedTitle = title ?? t("priceAdjustBrowse.title", { defaultValue: "选择调价单" });
+  const resolvedTitle =
+    title ?? t("priceAdjustBrowse.title", { defaultValue: "选择调价单" });
   const resolvedSearch =
-    searchPlaceholder ?? t("priceAdjustBrowse.search", { defaultValue: "搜索调价单" });
+    searchPlaceholder ??
+    t("priceAdjustBrowse.search", { defaultValue: "搜索调价单" });
   const resolvedEmpty =
     emptyText ?? t("priceAdjustBrowse.empty", { defaultValue: "无匹配调价单" });
 
@@ -106,11 +112,16 @@ function PriceAdjustBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="price-adjust-browse" className={cn("sm:max-w-md", className)}>
+      <DialogContent
+        data-slot="price-adjust-browse"
+        className={cn("sm:max-w-md", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {t("priceAdjustBrowse.description", { defaultValue: "从列表中选择一个调价单" })}
+            {t("priceAdjustBrowse.description", {
+              defaultValue: "从列表中选择一个调价单",
+            })}
           </DialogDescription>
         </DialogHeader>
 
@@ -127,7 +138,7 @@ function PriceAdjustBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -141,8 +152,8 @@ function PriceAdjustBrowse({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedId(p.id)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     p.disabled && "pointer-events-none opacity-50",
                   )}
@@ -151,18 +162,18 @@ function PriceAdjustBrowse({
                   <span className="flex-1 truncate">
                     {p.no ?? p.id}
                     {p.product && (
-                      <span className="ml-1 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-1 text-xs">
                         · {p.product}
                       </span>
                     )}
                   </span>
                   {p.date && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {formatDate(p.date)}
                     </span>
                   )}
                   {p.status && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {p.status}
                     </span>
                   )}
@@ -174,10 +185,18 @@ function PriceAdjustBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
-          <Button type="button" disabled={selectedId == null} onClick={handleConfirm}>
+          <Button
+            type="button"
+            disabled={selectedId == null}
+            onClick={handleConfirm}
+          >
             {t("priceAdjustBrowse.confirm", { defaultValue: "确定" })}
           </Button>
         </DialogFooter>

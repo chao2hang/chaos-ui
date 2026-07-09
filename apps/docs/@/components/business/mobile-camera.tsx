@@ -33,7 +33,10 @@ function MobileCamera({ onCapture, className }: MobileCameraProps) {
   }, []);
 
   const start = React.useCallback(async () => {
-    if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+    if (
+      typeof navigator === "undefined" ||
+      !navigator.mediaDevices?.getUserMedia
+    ) {
       setStatus("unsupported");
       return;
     }
@@ -68,15 +71,22 @@ function MobileCamera({ onCapture, className }: MobileCameraProps) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    canvas.toBlob((blob) => {
-      if (blob) onCapture?.(blob);
-    }, "image/jpeg", 0.9);
+    canvas.toBlob(
+      (blob) => {
+        if (blob) onCapture?.(blob);
+      },
+      "image/jpeg",
+      0.9,
+    );
   };
 
   return (
     <div
       data-slot="mobile-camera"
-      className={cn("relative flex flex-col overflow-hidden rounded-lg bg-black", className)}
+      className={cn(
+        "relative flex flex-col overflow-hidden rounded-lg bg-black",
+        className,
+      )}
     >
       <div className="relative aspect-[3/4] w-full bg-black">
         <video

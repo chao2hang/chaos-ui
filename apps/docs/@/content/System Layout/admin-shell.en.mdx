@@ -1,5 +1,5 @@
-import { AdminShell } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { AdminShell } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # AdminShell Admin Shell
 
@@ -11,7 +11,6 @@ AdminShell — a system-level layout shell for admin/dashboard/auth pages.
 
 Use when you need an admin shell.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,33 +21,30 @@ export function Basic() {
   return <AdminShell />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AdminShell
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `menuItems` | `MenuItem[]` | — | Menu items for the sidebar / 侧栏菜单项 |
-| `selectedMenuKey` | `string` | — | Selected menu key / 选中菜单 key |
-| `onMenuItemClick` | `() => void` | — | Menu item click callback / 菜单项点击回调 |
-| `logo` | `React.ReactNode` | — | Logo displayed in header and sider / 头部和侧栏的 Logo |
-| `siderFooter` | `React.ReactNode` | — | Footer content in sidebar / 侧栏底部内容 |
-| `sidebarCollapsible` | `boolean` | `true` | Whether sidebar is collapsible / 侧栏是否可折叠 |
-| `defaultCollapsed` | `boolean` | `false` | Default collapsed state / 默认折叠状态 |
-| `sidebarWidth` | `number` | `240` | Sidebar expanded width / 展开宽度 |
-| `collapsedWidth` | `number` | `64` | Sidebar collapsed width / 折叠宽度 |
-| `breadcrumb` | `AdminHeaderProps["breadcrumb"]` | — | Breadcrumb items / 面包屑项 |
-| `showSearch` | `boolean` | `true` | Whether to show search in header / 是否在头部显示搜索 |
-| `searchPlaceholder` | `string` | `Search...` | Search placeholder / 搜索占位文本 |
-| `onSearch` | `() => void` | — | Search callback / 搜索回调 |
-| `headerActions` | `React.ReactNode` | — | Extra actions in header / 头部额外操作 |
-| `user` | `UserMenuUser` | — | Current user info / 当前用户信息 |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop                 | Type                             | Default     | Description                                            |
+| -------------------- | -------------------------------- | ----------- | ------------------------------------------------------ |
+| `className`          | `string`                         | —           | Custom CSS class                                       |
+| `menuItems`          | `MenuItem[]`                     | —           | Menu items for the sidebar / 侧栏菜单项                |
+| `selectedMenuKey`    | `string`                         | —           | Selected menu key / 选中菜单 key                       |
+| `onMenuItemClick`    | `() => void`                     | —           | Menu item click callback / 菜单项点击回调              |
+| `logo`               | `React.ReactNode`                | —           | Logo displayed in header and sider / 头部和侧栏的 Logo |
+| `siderFooter`        | `React.ReactNode`                | —           | Footer content in sidebar / 侧栏底部内容               |
+| `sidebarCollapsible` | `boolean`                        | `true`      | Whether sidebar is collapsible / 侧栏是否可折叠        |
+| `defaultCollapsed`   | `boolean`                        | `false`     | Default collapsed state / 默认折叠状态                 |
+| `sidebarWidth`       | `number`                         | `240`       | Sidebar expanded width / 展开宽度                      |
+| `collapsedWidth`     | `number`                         | `64`        | Sidebar collapsed width / 折叠宽度                     |
+| `breadcrumb`         | `AdminHeaderProps["breadcrumb"]` | —           | Breadcrumb items / 面包屑项                            |
+| `showSearch`         | `boolean`                        | `true`      | Whether to show search in header / 是否在头部显示搜索  |
+| `searchPlaceholder`  | `string`                         | `Search...` | Search placeholder / 搜索占位文本                      |
+| `onSearch`           | `() => void`                     | —           | Search callback / 搜索回调                             |
+| `headerActions`      | `React.ReactNode`                | —           | Extra actions in header / 头部额外操作                 |
+| `user`               | `UserMenuUser`                   | —           | Current user info / 当前用户信息                       |
+| ...rest              | `React.HTMLAttributes`           | —           | Inherits standard HTML attributes                      |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

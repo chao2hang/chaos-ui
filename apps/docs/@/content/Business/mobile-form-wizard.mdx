@@ -1,5 +1,5 @@
-import { MobileFormWizard } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileFormWizard } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileFormWizard 移动端表单向导
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <MobileFormWizard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileFormWizard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `steps` | `{` | — |  |
-| `title` | `string` | — | 标题 <br/> Title |
-| `description` | `string` | — | 描述文本 <br/> Description text |
-| `validate` | `(...args) => unknown` | — |  |
-| `onComplete` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                   | Default | 说明 / Description                                        |
+| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`   | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `steps`       | `{`                    | —       |                                                           |
+| `title`       | `string`               | —       | 标题 <br/> Title                                          |
+| `description` | `string`               | —       | 描述文本 <br/> Description text                           |
+| `validate`    | `(...args) => unknown` | —       |                                                           |
+| `onComplete`  | `() => void`           | —       |                                                           |
+| ...rest       | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

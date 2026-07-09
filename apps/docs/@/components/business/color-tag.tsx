@@ -35,7 +35,10 @@ type ColorTagColor =
   | "green"
   | "processing";
 
-const colorConfig: Record<ColorTagColor, { bg: string; text: string; border: string }> = {
+const colorConfig: Record<
+  ColorTagColor,
+  { bg: string; text: string; border: string }
+> = {
   default: {
     bg: "bg-muted",
     text: "text-muted-foreground",
@@ -117,7 +120,9 @@ interface ColorTagProps extends React.ComponentProps<"span"> {
   /** Whether to show a dot indicator / 是否显示圆点 */
   dot?: boolean;
   /** Custom color config overrides / 自定义颜色配置覆盖 */
-  colorConfig?: Partial<Record<string, { bg: string; text: string; border: string }>>;
+  colorConfig?: Partial<
+    Record<string, { bg: string; text: string; border: string }>
+  >;
 }
 
 const sizeConfig: Record<string, string> = {
@@ -136,7 +141,13 @@ function ColorTag({
   ...props
 }: ColorTagProps) {
   const mergedConfig = { ...colorConfig, ...customConfig };
-  const config = (mergedConfig as Record<string, { bg: string; text: string; border: string }>)[color] ?? colorConfig.default;
+  const config =
+    (
+      mergedConfig as Record<
+        string,
+        { bg: string; text: string; border: string }
+      >
+    )[color] ?? colorConfig.default;
 
   return (
     <span

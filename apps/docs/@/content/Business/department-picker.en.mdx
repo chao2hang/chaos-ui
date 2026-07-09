@@ -1,5 +1,5 @@
-import { DepartmentPicker } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { DepartmentPicker } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # DepartmentPicker Department Picker
 
@@ -12,7 +12,6 @@ DepartmentPicker — department picker component.
 
 Use when you need a department picker.
 
-
 ## Examples
 
 ### Basic Usage
@@ -23,26 +22,23 @@ export function Basic() {
   return <DepartmentPicker />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DepartmentPicker
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `options` | `DepartmentPickerOption[]` | — | Available options |
-| `placeholder` | `string` | — | Placeholder text |
-| `searchPlaceholder` | `string` | — |  |
-| `emptyText` | `string` | — |  |
-| `disabled` | `boolean` | `false` | Whether disabled |
-| `clearable` | `boolean` | `true` |  |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop                | Type                       | Default | Description                       |
+| ------------------- | -------------------------- | ------- | --------------------------------- |
+| `className`         | `string`                   | —       | Custom CSS class                  |
+| `value`             | `string`                   | —       | Current value (controlled)        |
+| `onChange`          | `() => void`               | —       | Callback when value changes       |
+| `options`           | `DepartmentPickerOption[]` | —       | Available options                 |
+| `placeholder`       | `string`                   | —       | Placeholder text                  |
+| `searchPlaceholder` | `string`                   | —       |                                   |
+| `emptyText`         | `string`                   | —       |                                   |
+| `disabled`          | `boolean`                  | `false` | Whether disabled                  |
+| `clearable`         | `boolean`                  | `true`  |                                   |
+| ...rest             | `React.HTMLAttributes`     | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

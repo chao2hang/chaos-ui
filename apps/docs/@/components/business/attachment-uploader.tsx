@@ -9,12 +9,17 @@ import { UploadIcon } from "@chaos_team/chaos-ui/ui";
  * @description 附件上传器
  */
 interface AttachmentUploaderProps {
-accept?: string;
+  accept?: string;
   maxSize?: number;
   onUpload?: (files: File[]) => void;
   className?: string;
 }
-function AttachmentUploader({ accept, maxSize, onUpload, className }: AttachmentUploaderProps) {
+function AttachmentUploader({
+  accept,
+  maxSize,
+  onUpload,
+  className,
+}: AttachmentUploaderProps) {
   const ref = React.useRef<HTMLInputElement>(null);
   const [over, setOver] = React.useState(false);
   const handle = (files: FileList | null) => {
@@ -26,18 +31,41 @@ function AttachmentUploader({ accept, maxSize, onUpload, className }: Attachment
   return (
     <div
       data-slot="attachment-uploader"
-      className={cn("flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 text-sm text-muted-foreground transition-colors", over && "border-primary bg-primary/5", className)}
-      onDragOver={(e) => { e.preventDefault(); setOver(true); }}
+      className={cn(
+        "text-muted-foreground flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 text-sm transition-colors",
+        over && "border-primary bg-primary/5",
+        className,
+      )}
+      onDragOver={(e) => {
+        e.preventDefault();
+        setOver(true);
+      }}
       onDragLeave={() => setOver(false)}
-      onDrop={(e) => { e.preventDefault(); setOver(false); handle(e.dataTransfer.files); }}
+      onDrop={(e) => {
+        e.preventDefault();
+        setOver(false);
+        handle(e.dataTransfer.files);
+      }}
       role="button"
       tabIndex={0}
       onClick={() => ref.current?.click()}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") ref.current?.click(); }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") ref.current?.click();
+      }}
     >
       <UploadIcon className="size-6" />
-      <span>点击或拖拽文件到此处上传{maxSize ? `（最大 ${(maxSize / 1024 / 1024).toFixed(0)} MB）` : ""}</span>
-      <input ref={ref} type="file" accept={accept} multiple className="hidden" onChange={(e) => handle(e.target.files)} />
+      <span>
+        点击或拖拽文件到此处上传
+        {maxSize ? `（最大 ${(maxSize / 1024 / 1024).toFixed(0)} MB）` : ""}
+      </span>
+      <input
+        ref={ref}
+        type="file"
+        accept={accept}
+        multiple
+        className="hidden"
+        onChange={(e) => handle(e.target.files)}
+      />
     </div>
   );
 }

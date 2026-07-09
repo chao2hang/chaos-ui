@@ -1,5 +1,5 @@
-import { ImageViewer } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { ImageViewer } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # ImageViewer 图片查看器
 
@@ -24,30 +24,29 @@ export function Basic() {
   return <ImageViewer />
 }`} lang="tsx" />
 
-
 ## 样式变体 / Style Variants
 
 **open / open**
 
-| open | 说明 / Description | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| open    | 说明 / Description | 默认 |
+| ------- | ------------------ | ---- |
+| `true`  |                    | ✓    |
+| `false` |                    |      |
 
 ## API / Props
 
 ### ImageViewer
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | — | Whether the viewer is open |
-| `onClose` | `() => void` | — | Called when the viewer should close |
-| `src` | `string` | — | Image source URL |
-| `alt` | `string` | `` | Image alt text |
-| `images` | `{ src: string; alt?: string }[]` | — | List of images for gallery mode |
-| `initialIndex` | `number` | `0` | Initial index for gallery mode |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop           | Type                              | Default | 说明 / Description                                          |
+| -------------- | --------------------------------- | ------- | ----------------------------------------------------------- |
+| `className`    | `string`                          | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `open`         | `boolean`                         | —       | Whether the viewer is open                                  |
+| `onClose`      | `() => void`                      | —       | Called when the viewer should close                         |
+| `src`          | `string`                          | —       | Image source URL                                            |
+| `alt`          | `string`                          | ``      | Image alt text                                              |
+| `images`       | `{ src: string; alt?: string }[]` | —       | List of images for gallery mode                             |
+| `initialIndex` | `number`                          | `0`     | Initial index for gallery mode                              |
+| ...rest        | `React.ComponentProps<"div">`     | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

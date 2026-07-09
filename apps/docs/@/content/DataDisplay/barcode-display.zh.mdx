@@ -1,5 +1,5 @@
-import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # BarcodeDisplay 条形码展示
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要条形码展示功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,20 +21,19 @@ export function Basic() {
   return <BarcodeDisplay />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### BarcodeDisplay
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `value` | `string` | — | Text value to encode |
-| `width` | `number` | `200` | Barcode width in pixels |
-| `height` | `number` | `80` | Barcode height in pixels |
-| `background` | `string` | `#ffffff` | Background color |
-| `color` | `string` | `#000000` | Bar color |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop         | Type                          | Default   | 说明                     |
+| ------------ | ----------------------------- | --------- | ------------------------ |
+| `className`  | `string`                      | —         | 自定义样式类名           |
+| `value`      | `string`                      | —         | Text value to encode     |
+| `width`      | `number`                      | `200`     | Barcode width in pixels  |
+| `height`     | `number`                      | `80`      | Barcode height in pixels |
+| `background` | `string`                      | `#ffffff` | Background color         |
+| `color`      | `string`                      | `#000000` | Bar color                |
+| ...rest      | `React.ComponentProps<"div">` | —         | 透传 `<div>` 原生属性    |
 
 ## 注意事项
 
@@ -43,4 +41,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-barcodedisplay--docs)。
-

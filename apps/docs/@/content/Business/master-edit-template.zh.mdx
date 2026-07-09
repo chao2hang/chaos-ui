@@ -1,16 +1,18 @@
-import { MasterEditTemplate } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MasterEditTemplate } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MasterEditTemplate Master Edit Template
 
 > 业务组件
 
-<MasterEditTemplate title="编辑供应商" onSave={() => {}} onCancel={() => {}}> <input /> </MasterEditTemplate>
+<MasterEditTemplate title="编辑供应商" onSave={() => {}} onCancel={() => {}}>
+  {" "}
+  <input />{" "}
+</MasterEditTemplate>
 
 ## 何时使用
 
 适用于Master Edit Template相关场景。
-
 
 ## 代码示例
 
@@ -22,24 +24,22 @@ export function Basic() {
   return <MasterEditTemplate />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MasterEditTemplate
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `title` | `string` | `编辑` | 标题 |
-| `onBack` | `() => void` | — |  |
-| `onSave` | `() => void` | — |  |
-| `onCancel` | `() => void` | — |  |
-| `loading` | `boolean` | `false` | 是否加载中 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `title`     | `string`               | `编辑`  | 标题              |
+| `onBack`    | `() => void`           | —       |                   |
+| `onSave`    | `() => void`           | —       |                   |
+| `onCancel`  | `() => void`           | —       |                   |
+| `loading`   | `boolean`              | `false` | 是否加载中        |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-masteredittemplate--docs)。
-

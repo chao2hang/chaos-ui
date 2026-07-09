@@ -1,5 +1,5 @@
-import { CookieBanner } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CookieBanner } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CookieBanner Cookie 横幅
 
@@ -24,27 +24,26 @@ export function Basic() {
   return <CookieBanner />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CookieBanner
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
-| `onAccept` | `() => void` | — |  |
-| `onReject` | `() => void` | — |  |
-| `onDismiss` | `() => void` | — |  |
-| `title` | `string` | `Cookie 使用提示` | 标题 <br/> Title |
-| `description` | `React.ReactNode` | `我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。` | 描述文本 <br/> Description text |
-| `acceptText` | `string` | `接受全部` |  |
-| `rejectText` | `string` | `仅必要` |  |
-| `policyUrl` | `string` | — |  |
-| `policyText` | `string` | `隐私政策` |  |
-| `storageKey` | `string` | `cookie-consent` |  |
-| `position` | `"bottom" \| "top" \| "bottom-right" \...` | `bottom` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                                       | Default                                                                        | 说明 / Description                                        |
+| ------------- | ------------------------------------------ | ------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `className`   | `string`                                   | —                                                                              | 自定义样式类名 <br/> Custom CSS class                     |
+| `open`        | `boolean`                                  | —                                                                              | 是否打开(受控) <br/> Open state (controlled)              |
+| `onAccept`    | `() => void`                               | —                                                                              |                                                           |
+| `onReject`    | `() => void`                               | —                                                                              |                                                           |
+| `onDismiss`   | `() => void`                               | —                                                                              |                                                           |
+| `title`       | `string`                                   | `Cookie 使用提示`                                                              | 标题 <br/> Title                                          |
+| `description` | `React.ReactNode`                          | `我们使用 Cookie 提升您的体验。点击「接受」以启用全部功能，或在设置中自定义。` | 描述文本 <br/> Description text                           |
+| `acceptText`  | `string`                                   | `接受全部`                                                                     |                                                           |
+| `rejectText`  | `string`                                   | `仅必要`                                                                       |                                                           |
+| `policyUrl`   | `string`                                   | —                                                                              |                                                           |
+| `policyText`  | `string`                                   | `隐私政策`                                                                     |                                                           |
+| `storageKey`  | `string`                                   | `cookie-consent`                                                               |                                                           |
+| `position`    | `"bottom" \| "top" \| "bottom-right" \...` | `bottom`                                                                       |                                                           |
+| ...rest       | `React.HTMLAttributes`                     | —                                                                              | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

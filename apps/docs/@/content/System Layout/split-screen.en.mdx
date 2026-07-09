@@ -1,5 +1,5 @@
-import { SplitScreen } from "@chaos_team/chaos-ui/layout"
-import { CodeBlock } from "@/components/code-block"
+import { SplitScreen } from "@chaos_team/chaos-ui/layout";
+import { CodeBlock } from "@/components/code-block";
 
 # SplitScreen Split Screen
 
@@ -11,7 +11,6 @@ SplitScreen — a system-level layout shell for admin/dashboard/auth pages.
 
 Use when you need a split screen.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,21 +21,18 @@ export function Basic() {
   return <SplitScreen />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SplitScreen
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `left` | `React.ReactNode` | — | Left (or top) pane content. |
-| `right` | `React.ReactNode` | — | Right (or bottom) pane content. |
+| Prop        | Type                         | Default      | Description                                 |
+| ----------- | ---------------------------- | ------------ | ------------------------------------------- |
+| `className` | `string`                     | —            | Custom CSS class                            |
+| `left`      | `React.ReactNode`            | —            | Left (or top) pane content.                 |
+| `right`     | `React.ReactNode`            | —            | Right (or bottom) pane content.             |
 | `direction` | `"horizontal" \| "vertical"` | `horizontal` | Layout direction. Defaults to `horizontal`. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| ...rest     | `React.HTMLAttributes`       | —            | Inherits standard HTML attributes           |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

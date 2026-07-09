@@ -1,5 +1,5 @@
-import { KPIPanel, KPICard } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { KPIPanel, KPICard } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # KpiPanel KPI
 
@@ -10,7 +10,6 @@ KPI panel showing key business metrics and trends.
 ## When to Use
 
 Use when you need a kpi panel.
-
 
 ## Examples
 
@@ -24,36 +23,35 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <KPIPanel size="sm">Sm</KPIPanel>
   <KPIPanel size="default">Default</KPIPanel>
   <KPIPanel size="lg">Lg</KPIPanel>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `sm` | Small |  |
-| `default` | Default size | ✓ |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `sm`      | Small        |      |
+| `default` | Default size | ✓    |
+| `lg`      | Large        |      |
 
 ## API / Props
 
 ### KPIPanel
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `items` | `KPIItem[]` | — | Items / data list |
-| `columns` | `1 \| 2 \| 3 \| 4` | `4` | Column configuration |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `items`     | `KPIItem[]`            | —       | Items / data list                 |
+| `columns`   | `1 \| 2 \| 3 \| 4`     | `4`     | Column configuration              |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
-
-
-

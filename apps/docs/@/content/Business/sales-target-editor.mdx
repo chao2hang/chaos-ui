@@ -1,11 +1,24 @@
-import { SalesTargetEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SalesTargetEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SalesTargetEditor Sales Target Editor
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<SalesTargetEditor rows={[{ id: "1", year: 2026, region: "华东", q1: 100, q2: 120, q3: 130, q4: 150, annual: 500 }]} />
+<SalesTargetEditor
+  rows={[
+    {
+      id: "1",
+      year: 2026,
+      region: "华东",
+      q1: 100,
+      q2: 120,
+      q3: 130,
+      q4: 150,
+      annual: 500,
+    },
+  ]}
+/>
 SalesTargetEditor — sales target editor component.
 
 ## 何时使用 / When to Use
@@ -24,17 +37,16 @@ export function Basic() {
   return <SalesTargetEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SalesTargetEditor
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `rows` | `SalesTargetRow[]` | — | 行数据 <br/> Row data |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `rows`      | `SalesTargetRow[]`     | —       | 行数据 <br/> Row data                                     |
+| `onChange`  | `() => void`           | —       | 值变化回调 <br/> Callback when value changes              |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

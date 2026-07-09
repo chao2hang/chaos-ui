@@ -1,5 +1,5 @@
-import { ChatMessage } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { ChatMessage } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # ChatMessage Chat Message
 
@@ -11,7 +11,6 @@ ChatMessage — a feedback and status communication to the user. from Chaos UI.
 
 Use when you need a chat message.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <ChatMessage />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChatMessage
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `role` | `"user" \| "assistant" \| "system"` | `assistant` | message role |
-| `content` | `string` | — | message content |
-| `avatar` | `React.ReactNode` | — | avatar node |
-| `name` | `string` | — | sender name |
-| `time` | `string` | — | timestamp |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                                | Default     | Description                       |
+| ----------- | ----------------------------------- | ----------- | --------------------------------- |
+| `className` | `string`                            | —           | Custom CSS class                  |
+| `role`      | `"user" \| "assistant" \| "system"` | `assistant` | message role                      |
+| `content`   | `string`                            | —           | message content                   |
+| `avatar`    | `React.ReactNode`                   | —           | avatar node                       |
+| `name`      | `string`                            | —           | sender name                       |
+| `time`      | `string`                            | —           | timestamp                         |
+| ...rest     | `React.HTMLAttributes`              | —           | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

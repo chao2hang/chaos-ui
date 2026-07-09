@@ -1,5 +1,5 @@
-import { TerritoryMap } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TerritoryMap } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TerritoryMap Territory Map
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <TerritoryMap />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TerritoryMap
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `regions` | `TerritoryRegion[]` | — | Territory regions. |
-| `title` | `string` | `Sales Territory Map` | Map title. |
-| `currencySymbol` | `string` | `¥` | Currency symbol. |
-| `gridCols` | `number` | `4` | Grid columns for layout. |
-| `onRegionClick` | `() => void` | — | Region click handler. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop             | Type                   | Default               | 说明 / Description                                        |
+| ---------------- | ---------------------- | --------------------- | --------------------------------------------------------- |
+| `className`      | `string`               | —                     | 自定义样式类名 <br/> Custom CSS class                     |
+| `regions`        | `TerritoryRegion[]`    | —                     | Territory regions.                                        |
+| `title`          | `string`               | `Sales Territory Map` | Map title.                                                |
+| `currencySymbol` | `string`               | `¥`                   | Currency symbol.                                          |
+| `gridCols`       | `number`               | `4`                   | Grid columns for layout.                                  |
+| `onRegionClick`  | `() => void`           | —                     | Region click handler.                                     |
+| ...rest          | `React.HTMLAttributes` | —                     | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

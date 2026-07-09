@@ -1,5 +1,5 @@
-import { DepartmentBrowse } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { DepartmentBrowse } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # DepartmentBrowse 部门浏览
 
@@ -24,23 +24,22 @@ export function Basic() {
   return <DepartmentBrowse />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### DepartmentBrowse
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `Department \| Department[]` | — | 当前值(受控) <br/> Current value (controlled) |
-| `defaultValue` | `Department \| Department[]` | — | 默认值(非受控) <br/> Default value (uncontrolled) |
-| `placeholder` | `string` | `Select department...` | 占位文本 <br/> Placeholder text |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `multiple` | `boolean` | `false` | 是否多选 <br/> Multiple selection |
-| `maxCount` | `number` | — |  |
-| `departments` | `Department[]` | — |  |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                         | Default                | 说明 / Description                                        |
+| -------------- | ---------------------------- | ---------------------- | --------------------------------------------------------- |
+| `className`    | `string`                     | —                      | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`        | `Department \| Department[]` | —                      | 当前值(受控) <br/> Current value (controlled)             |
+| `defaultValue` | `Department \| Department[]` | —                      | 默认值(非受控) <br/> Default value (uncontrolled)         |
+| `placeholder`  | `string`                     | `Select department...` | 占位文本 <br/> Placeholder text                           |
+| `disabled`     | `boolean`                    | —                      | 是否禁用 <br/> Whether disabled                           |
+| `multiple`     | `boolean`                    | `false`                | 是否多选 <br/> Multiple selection                         |
+| `maxCount`     | `number`                     | —                      |                                                           |
+| `departments`  | `Department[]`               | —                      |                                                           |
+| `onChange`     | `() => void`                 | —                      | 值变化回调 <br/> Callback when value changes              |
+| ...rest        | `React.HTMLAttributes`       | —                      | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { QRCode } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { QRCode } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Qrcode
 
@@ -11,7 +11,6 @@ Qrcode — a components for presenting data and content. from Chaos UI.
 
 Use when you need a qrcode.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,26 +21,23 @@ export function Basic() {
   return <QRCode />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### QRCode
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | URL or text to encode |
-| `size` | `number` | `200` | Size in pixels |
-| `fgColor` | `string` | `#000000` | Foreground color |
-| `bgColor` | `string` | `#ffffff` | Background color |
-| `downloadable` | `boolean` | `false` | Include download button |
-| `downloadFileName` | `string` | `qrcode.png` | Filename for download |
-| `loading` | `boolean` | `false` | Loading state |
-| `error` | `boolean` | `false` | Error state |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop               | Type                          | Default      | Description                     |
+| ------------------ | ----------------------------- | ------------ | ------------------------------- |
+| `className`        | `string`                      | —            | Custom CSS class                |
+| `value`            | `string`                      | —            | URL or text to encode           |
+| `size`             | `number`                      | `200`        | Size in pixels                  |
+| `fgColor`          | `string`                      | `#000000`    | Foreground color                |
+| `bgColor`          | `string`                      | `#ffffff`    | Background color                |
+| `downloadable`     | `boolean`                     | `false`      | Include download button         |
+| `downloadFileName` | `string`                      | `qrcode.png` | Filename for download           |
+| `loading`          | `boolean`                     | `false`      | Loading state                   |
+| `error`            | `boolean`                     | `false`      | Error state                     |
+| ...rest            | `React.ComponentProps<"div">` | —            | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

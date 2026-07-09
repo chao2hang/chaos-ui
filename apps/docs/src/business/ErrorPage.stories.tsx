@@ -1,14 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ErrorPage, NotFound, InternalError, Unauthorized } from "@chaos_team/chaos-ui/business"
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  ErrorPage,
+  NotFound,
+  InternalError,
+  Unauthorized,
+} from "@chaos_team/chaos-ui/business";
 
 const meta = {
   title: "Business/ErrorPage",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const NotFoundExample: Story = {
   render: () => (
@@ -16,7 +21,7 @@ export const NotFoundExample: Story = {
       <ErrorPage status={404} />
     </div>
   ),
-}
+};
 
 export const InternalErrorExample: Story = {
   render: () => (
@@ -24,7 +29,7 @@ export const InternalErrorExample: Story = {
       <ErrorPage status={500} />
     </div>
   ),
-}
+};
 
 export const UnauthorizedExample: Story = {
   render: () => (
@@ -32,7 +37,7 @@ export const UnauthorizedExample: Story = {
       <ErrorPage status={403} />
     </div>
   ),
-}
+};
 
 export const ServiceUnavailable: Story = {
   render: () => (
@@ -40,7 +45,7 @@ export const ServiceUnavailable: Story = {
       <ErrorPage status={503} />
     </div>
   ),
-}
+};
 
 export const CustomContent: Story = {
   render: () => (
@@ -51,7 +56,7 @@ export const CustomContent: Story = {
       onBack={() => console.info("back")}
     />
   ),
-}
+};
 
 export const PreBuilt: Story = {
   render: () => (
@@ -61,9 +66,9 @@ export const PreBuilt: Story = {
       <Unauthorized />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...NotFoundExample,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

@@ -1,7 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AppShell } from "@chaos_team/chaos-ui/layout";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { Card, CardContent, CardHeader, CardTitle } from "@chaos_team/chaos-ui/ui";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@chaos_team/chaos-ui/ui";
 import { HomeIcon, FolderIcon, SettingsIcon, BarChartIcon } from "lucide-react";
 
 const meta: Meta<typeof AppShell> = {

@@ -1,5 +1,5 @@
-import { FormSection } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { FormSection } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # FormSection 表单分区
 
@@ -26,38 +26,40 @@ export function Basic() {
 
 ### 变体 / Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <FormSection variant="default">Default</FormSection>
   <FormSection variant="elevated">Elevated</FormSection>
   <FormSection variant="flat">Flat</FormSection>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **变体 / Variant**
 
-| Variant | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认样式 / Default style | ✓ |
-| `elevated` |  |  |
-| `flat` |  |  |
+| Variant    | 说明 / Description       | 默认 |
+| ---------- | ------------------------ | ---- |
+| `default`  | 默认样式 / Default style | ✓    |
+| `elevated` |                          |      |
+| `flat`     |                          |      |
 
 ## API / Props
 
 ### FormSection
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `string` | — | 标题 <br/> Title |
-| `description` | `string` | — | 描述文本 <br/> Description text |
-| `collapsible` | `boolean` | `false` |  |
-| `defaultCollapsed` | `boolean` | `false` |  |
-| `required` | `boolean` | — | 是否必填 <br/> Whether required |
-| `extra` | `React.ReactNode` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop               | Type                   | Default | 说明 / Description                                        |
+| ------------------ | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`        | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`            | `string`               | —       | 标题 <br/> Title                                          |
+| `description`      | `string`               | —       | 描述文本 <br/> Description text                           |
+| `collapsible`      | `boolean`              | `false` |                                                           |
+| `defaultCollapsed` | `boolean`              | `false` |                                                           |
+| `required`         | `boolean`              | —       | 是否必填 <br/> Whether required                           |
+| `extra`            | `React.ReactNode`      | —       |                                                           |
+| ...rest            | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { MobileSheet } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileSheet } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileSheet 移动端面板
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <MobileSheet />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileSheet
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `title` | `string` | — | 标题 <br/> Title |
-| `description` | `string` | — | 描述文本 <br/> Description text |
-| `trigger` | `React.ReactElement` | — |  |
-| `actions` | `React.ReactNode` | — |  |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |  |
-| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
-| `onOpenChange` | `() => void` | — | 打开状态变化回调 <br/> Callback when open state changes |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                                     | Default  | 说明 / Description                                        |
+| -------------- | ---------------------------------------- | -------- | --------------------------------------------------------- |
+| `className`    | `string`                                 | —        | 自定义样式类名 <br/> Custom CSS class                     |
+| `title`        | `string`                                 | —        | 标题 <br/> Title                                          |
+| `description`  | `string`                                 | —        | 描述文本 <br/> Description text                           |
+| `trigger`      | `React.ReactElement`                     | —        |                                                           |
+| `actions`      | `React.ReactNode`                        | —        |                                                           |
+| `side`         | `"top" \| "right" \| "bottom" \| "left"` | `bottom` |                                                           |
+| `open`         | `boolean`                                | —        | 是否打开(受控) <br/> Open state (controlled)              |
+| `onOpenChange` | `() => void`                             | —        | 打开状态变化回调 <br/> Callback when open state changes   |
+| ...rest        | `React.HTMLAttributes`                   | —        | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

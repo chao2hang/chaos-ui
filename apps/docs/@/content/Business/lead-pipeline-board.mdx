@@ -1,5 +1,5 @@
-import { LeadPipelineBoard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LeadPipelineBoard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LeadPipelineBoard Lead Pipeline Board
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <LeadPipelineBoard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LeadPipelineBoard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `stages` | `PipelineStage[]` | — | Stage definitions in funnel order. |
-| `deals` | `Deal[]` | — | All deals. |
-| `onDealMove` | `() => void` | — | Callback when a deal moves to a different stage. |
-| `onDealClick` | `() => void` | — | Deal click handler. |
-| `currencySymbol` | `string` | `¥` | Currency symbol for display. |
-| `readOnly` | `boolean` | `false` | Read-only mode disables drag. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop             | Type                   | Default | 说明 / Description                                        |
+| ---------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`      | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `stages`         | `PipelineStage[]`      | —       | Stage definitions in funnel order.                        |
+| `deals`          | `Deal[]`               | —       | All deals.                                                |
+| `onDealMove`     | `() => void`           | —       | Callback when a deal moves to a different stage.          |
+| `onDealClick`    | `() => void`           | —       | Deal click handler.                                       |
+| `currencySymbol` | `string`               | `¥`     | Currency symbol for display.                              |
+| `readOnly`       | `boolean`              | `false` | Read-only mode disables drag.                             |
+| ...rest          | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -1,5 +1,5 @@
-import { EditableTreeTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { EditableTreeTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # EditableTreeTable 可编辑树形表格
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <EditableTreeTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### EditableTreeTable
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `data` | `TreeNode[]` | — | 数据源 <br/> Data source |
-| `columns` | `Array<T>` | — | 列配置 <br/> Column configuration |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `data`      | `TreeNode[]`                  | —       | 数据源 <br/> Data source                                    |
+| `columns`   | `Array<T>`                    | —       | 列配置 <br/> Column configuration                           |
+| `onChange`  | `() => void`                  | —       | 值变化回调 <br/> Callback when value changes                |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

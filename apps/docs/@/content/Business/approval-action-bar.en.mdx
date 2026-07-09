@@ -1,5 +1,5 @@
-import { ApprovalActionBar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ApprovalActionBar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ApprovalActionBar Approval Action Bar
 
@@ -11,7 +11,6 @@ ApprovalActionBar — a business component for ERP / enterprise scenarios.
 
 Use when you need an approval action bar.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,23 +21,20 @@ export function Basic() {
   return <ApprovalActionBar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ApprovalActionBar
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `onApprove` | `() => void` | — |  |
-| `onReject` | `() => void` | — |  |
-| `onTransfer` | `() => void` | — |  |
-| `status` | `string` | — | Status |
-| `loading` | `boolean` | — | Loading state |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop         | Type                   | Default | Description                       |
+| ------------ | ---------------------- | ------- | --------------------------------- |
+| `className`  | `string`               | —       | Custom CSS class                  |
+| `onApprove`  | `() => void`           | —       |                                   |
+| `onReject`   | `() => void`           | —       |                                   |
+| `onTransfer` | `() => void`           | —       |                                   |
+| `status`     | `string`               | —       | Status                            |
+| `loading`    | `boolean`              | —       | Loading state                     |
+| ...rest      | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

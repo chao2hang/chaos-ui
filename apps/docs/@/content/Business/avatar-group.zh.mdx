@@ -1,5 +1,5 @@
-import { AvatarGroup } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AvatarGroup } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AvatarGroup 头像组
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要头像组功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,20 +21,19 @@ export function Basic() {
   return <AvatarGroup />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AvatarGroup
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `users` | `AvatarUser[]` | — |  |
-| `max` | `number` | `4` | 最大值 |
-| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `default` | 组件尺寸 |
-| `showOverflow` | `boolean` | `true` |  |
-| `onOverflowClick` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop              | Type                                | Default   | 说明                  |
+| ----------------- | ----------------------------------- | --------- | --------------------- |
+| `className`       | `string`                            | —         | 自定义样式类名        |
+| `users`           | `AvatarUser[]`                      | —         |                       |
+| `max`             | `number`                            | `4`       | 最大值                |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"` | `default` | 组件尺寸              |
+| `showOverflow`    | `boolean`                           | `true`    |                       |
+| `onOverflowClick` | `() => void`                        | —         |                       |
+| ...rest           | `React.ComponentProps<"div">`       | —         | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -43,4 +41,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-avatargroup--docs)。
-

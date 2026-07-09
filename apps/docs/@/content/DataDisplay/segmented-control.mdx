@@ -1,5 +1,5 @@
-import { SegmentedControl } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { SegmentedControl } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # SegmentedControl 分段控制器
 
@@ -26,48 +26,53 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <SegmentedControl size="sm">Sm</SegmentedControl>
   <SegmentedControl size="default">Default</SegmentedControl>
   <SegmentedControl size="lg">Lg</SegmentedControl>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### 状态 / States
 
-<CodeBlock code={`<SegmentedControl>Normal</SegmentedControl>
-<SegmentedControl disabled>Disabled</SegmentedControl>`} lang="tsx" />
-
+<CodeBlock
+  code={`<SegmentedControl>Normal</SegmentedControl>
+<SegmentedControl disabled>Disabled</SegmentedControl>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 **全宽 / fullWidth**
 
 | fullWidth | 说明 / Description | 默认 |
-|---|---|---|
-| `true` |  | ✓ |
-| `false` |  |  |
+| --------- | ------------------ | ---- |
+| `true`    |                    | ✓    |
+| `false`   |                    |      |
 
 ## API / Props
 
 ### SegmentedControl
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `options` | `SegmentedControlOption[]` | — | 可选项列表 <br/> Available options |
-| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `defaultValue` | `string` | — | 默认值(非受控) <br/> Default value (uncontrolled) |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                       | Default | 说明 / Description                                        |
+| -------------- | -------------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `options`      | `SegmentedControlOption[]` | —       | 可选项列表 <br/> Available options                        |
+| `value`        | `string`                   | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`     | `() => void`               | —       | 值变化回调 <br/> Callback when value changes              |
+| `defaultValue` | `string`                   | —       | 默认值(非受控) <br/> Default value (uncontrolled)         |
+| ...rest        | `React.HTMLAttributes`     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

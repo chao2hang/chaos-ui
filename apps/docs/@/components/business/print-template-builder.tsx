@@ -56,7 +56,10 @@ function PrintTemplateBuilder({
   className,
 }: PrintTemplateBuilderProps) {
   const value: PrintTemplateModel = React.useMemo(
-    () => (template && template.title !== undefined && Array.isArray(template.fields) ? template : defaultTemplate),
+    () =>
+      template && template.title !== undefined && Array.isArray(template.fields)
+        ? template
+        : defaultTemplate,
     [template],
   );
 
@@ -72,7 +75,9 @@ function PrintTemplateBuilder({
   };
 
   const handleFieldLabel = (index: number, label: string) => {
-    const fields = value.fields.map((f, i) => (i === index ? { ...f, label } : f));
+    const fields = value.fields.map((f, i) =>
+      i === index ? { ...f, label } : f,
+    );
     update({ ...value, fields });
   };
 
@@ -94,15 +99,21 @@ function PrintTemplateBuilder({
   return (
     <div
       data-slot="print-template-builder"
-      className={cn("flex flex-col gap-4 rounded-lg border bg-card p-4 text-card-foreground", className)}
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-4 rounded-lg border p-4",
+        className,
+      )}
     >
       <div className="flex items-center gap-2">
-        <FileTextIcon className="size-5 text-muted-foreground" />
+        <FileTextIcon className="text-muted-foreground size-5" />
         <h3 className="text-sm font-semibold">打印模板构建器</h3>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="print-template-title" className="text-xs font-medium text-muted-foreground">
+        <label
+          htmlFor="print-template-title"
+          className="text-muted-foreground text-xs font-medium"
+        >
           模板标题
         </label>
         <Input
@@ -116,7 +127,9 @@ function PrintTemplateBuilder({
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground">字段列表</span>
+          <span className="text-muted-foreground text-xs font-medium">
+            字段列表
+          </span>
           <Button
             type="button"
             variant="outline"
@@ -129,7 +142,7 @@ function PrintTemplateBuilder({
         </div>
 
         {value.fields.length === 0 ? (
-          <p className="rounded-md border border-dashed bg-muted/40 px-3 py-4 text-center text-sm text-muted-foreground">
+          <p className="bg-muted/40 text-muted-foreground rounded-md border border-dashed px-3 py-4 text-center text-sm">
             暂无字段，点击“添加字段”开始构建模板
           </p>
         ) : (
@@ -138,10 +151,13 @@ function PrintTemplateBuilder({
               <li
                 key={index}
                 data-slot="print-template-field"
-                className="flex items-center gap-2 rounded-md border bg-background p-2"
+                className="bg-background flex items-center gap-2 rounded-md border p-2"
               >
-                <GripVerticalIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-                <span className="w-5 shrink-0 text-center text-xs tabular-nums text-muted-foreground">
+                <GripVerticalIcon
+                  className="text-muted-foreground size-4 shrink-0"
+                  aria-hidden
+                />
+                <span className="text-muted-foreground w-5 shrink-0 text-center text-xs tabular-nums">
                   {index + 1}
                 </span>
                 <Input

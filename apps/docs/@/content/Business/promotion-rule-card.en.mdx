@@ -1,5 +1,5 @@
-import { PromotionRuleCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { PromotionRuleCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # PromotionRuleCard Promotion Rule Card
 
@@ -11,7 +11,6 @@ PromotionRuleCard — promotion rule card component.
 
 Use when you need a promotion rule card.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,28 +21,25 @@ export function Basic() {
   return <PromotionRuleCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PromotionRuleCard
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `name` | `string` | `未命名促销` | 促销规则名称 |
-| `type` | `"满减" \| "折扣" \| "买赠" \| "直降"` | `折扣` | 折扣 / 买赠 |
-| `discount` | `number` | `0` | 折扣力度：满减/直降为减免金额，折扣为 0~1 的比例 |
-| `threshold` | `number` | — | 满减门槛金额 |
-| `startDate` | `string` | — | 生效开始日期（ISO 字符串） |
-| `endDate` | `string` | — | 生效结束日期（ISO 字符串） |
-| `scope` | `string` | `全部商品` | 适用范围描述 |
-| `active` | `boolean` | `false` | 是否生效中 |
-| `onEdit` | `() => void` | — | 点击编辑回调 |
-| `onDuplicate` | `() => void` | — | 复制规则回调 |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                                   | Default      | Description                                      |
+| ------------- | -------------------------------------- | ------------ | ------------------------------------------------ |
+| `className`   | `string`                               | —            | Custom CSS class                                 |
+| `name`        | `string`                               | `未命名促销` | 促销规则名称                                     |
+| `type`        | `"满减" \| "折扣" \| "买赠" \| "直降"` | `折扣`       | 折扣 / 买赠                                      |
+| `discount`    | `number`                               | `0`          | 折扣力度：满减/直降为减免金额，折扣为 0~1 的比例 |
+| `threshold`   | `number`                               | —            | 满减门槛金额                                     |
+| `startDate`   | `string`                               | —            | 生效开始日期（ISO 字符串）                       |
+| `endDate`     | `string`                               | —            | 生效结束日期（ISO 字符串）                       |
+| `scope`       | `string`                               | `全部商品`   | 适用范围描述                                     |
+| `active`      | `boolean`                              | `false`      | 是否生效中                                       |
+| `onEdit`      | `() => void`                           | —            | 点击编辑回调                                     |
+| `onDuplicate` | `() => void`                           | —            | 复制规则回调                                     |
+| ...rest       | `React.HTMLAttributes`                 | —            | Inherits standard HTML attributes                |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -51,11 +51,11 @@ function OrgChartNodeComponent({ data }: NodeProps) {
   const d = data as OrgChartNodeData;
   const { name, title, avatarUrl, department } = d.orgNode;
   return (
-    <div className="min-w-40 rounded-lg border bg-card p-3 text-center shadow-sm transition-shadow hover:shadow-md">
+    <div className="bg-card min-w-40 rounded-lg border p-3 text-center shadow-sm transition-shadow hover:shadow-md">
       <Handle
         type="target"
         position={Position.Top}
-        className="size-2! bg-primary!"
+        className="bg-primary! size-2!"
       />
       {avatarUrl ? (
         <img
@@ -64,19 +64,21 @@ function OrgChartNodeComponent({ data }: NodeProps) {
           className="mx-auto mb-1.5 size-10 rounded-full object-cover"
         />
       ) : (
-        <div className="mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">
+        <div className="bg-muted text-muted-foreground mx-auto mb-1.5 flex size-10 items-center justify-center rounded-full text-sm font-medium">
           {name.charAt(0)}
         </div>
       )}
       <div className="text-sm font-medium">{name}</div>
-      <div className="text-xs text-muted-foreground">{title}</div>
+      <div className="text-muted-foreground text-xs">{title}</div>
       {department && (
-        <div className="mt-1 text-xs text-muted-foreground/70">{department}</div>
+        <div className="text-muted-foreground/70 mt-1 text-xs">
+          {department}
+        </div>
       )}
       <Handle
         type="source"
         position={Position.Bottom}
-        className="size-2! bg-primary!"
+        className="bg-primary! size-2!"
       />
     </div>
   );

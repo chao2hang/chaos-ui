@@ -4,20 +4,21 @@ import { Badge } from "@chaos_team/chaos-ui/ui";
 import { cn } from "@chaos_team/chaos-ui/lib";
 
 type Status =
-  | "draft"
-  | "pending"
-  | "approved"
-  | "rejected"
-  | "completed"
-  | "cancelled";
+  "draft" | "pending" | "approved" | "rejected" | "completed" | "cancelled";
 
 const statusConfig: Record<Status, { label: string; className: string }> = {
   draft: { label: "Draft", className: "bg-muted text-muted-foreground" },
   pending: { label: "Pending", className: "bg-warning/15 text-warning" },
   approved: { label: "Approved", className: "bg-info/15 text-info" },
-  rejected: { label: "Rejected", className: "bg-destructive/10 text-destructive" },
+  rejected: {
+    label: "Rejected",
+    className: "bg-destructive/10 text-destructive",
+  },
   completed: { label: "Completed", className: "bg-success/15 text-success" },
-  cancelled: { label: "Cancelled", className: "bg-muted text-muted-foreground line-through" },
+  cancelled: {
+    label: "Cancelled",
+    className: "bg-muted text-muted-foreground line-through",
+  },
 };
 
 interface StatusTagProps {

@@ -96,9 +96,9 @@ function PDFViewer({
       {...props}
     >
       {/* Toolbar */}
-      <div className="flex items-center justify-between border-b bg-muted/30 px-3 py-1.5">
+      <div className="bg-muted/30 flex items-center justify-between border-b px-3 py-1.5">
         <div className="flex items-center gap-2 truncate text-sm font-medium">
-          <FileTextIcon className="size-4 shrink-0 text-muted-foreground" />
+          <FileTextIcon className="text-muted-foreground size-4 shrink-0" />
           <span className="truncate">{title ?? "文档"}</span>
         </div>
         <div className="flex items-center gap-0.5">
@@ -123,7 +123,7 @@ function PDFViewer({
           >
             <ChevronRightIcon />
           </Button>
-          <span className="mx-1 h-4 w-px bg-muted-foreground/20" />
+          <span className="bg-muted-foreground/20 mx-1 h-4 w-px" />
           <Button
             variant="ghost"
             size="icon-xs"
@@ -143,7 +143,7 @@ function PDFViewer({
           >
             <ZoomInIcon />
           </Button>
-          <span className="mx-1 h-4 w-px bg-muted-foreground/20" />
+          <span className="bg-muted-foreground/20 mx-1 h-4 w-px" />
           <Button
             variant="ghost"
             size="icon-xs"
@@ -166,14 +166,14 @@ function PDFViewer({
       {/* Document area */}
       <div
         ref={containerRef}
-        className="flex-1 overflow-auto bg-muted/30 p-4"
+        className="bg-muted/30 flex-1 overflow-auto p-4"
         role="document"
         aria-label={title ?? "PDF 文档"}
       >
         {error ? (
-          <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-muted-foreground">
-            <AlertTriangleIcon className="size-8 text-destructive" />
-            <div className="text-sm font-medium text-foreground">
+          <div className="text-muted-foreground flex h-full flex-col items-center justify-center gap-2 text-center">
+            <AlertTriangleIcon className="text-destructive size-8" />
+            <div className="text-foreground text-sm font-medium">
               PDF 加载失败
             </div>
             <div className="text-xs">{error}</div>
@@ -185,7 +185,7 @@ function PDFViewer({
             onLoadError={handleLoadError}
             loading={
               <div className="flex h-full items-center justify-center">
-                <div className="mx-auto aspect-[1/1.414] w-full max-w-3xl animate-pulse rounded bg-muted" />
+                <div className="bg-muted mx-auto aspect-[1/1.414] w-full max-w-3xl animate-pulse rounded" />
               </div>
             }
             className="flex justify-center"
@@ -195,7 +195,7 @@ function PDFViewer({
               scale={scale / 100}
               className="shadow-md"
               loading={
-                <div className="mx-auto aspect-[1/1.414] w-full max-w-3xl animate-pulse rounded bg-muted" />
+                <div className="bg-muted mx-auto aspect-[1/1.414] w-full max-w-3xl animate-pulse rounded" />
               }
             />
           </Document>

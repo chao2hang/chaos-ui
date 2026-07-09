@@ -3,7 +3,12 @@ import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import { CheckIcon, CopyIcon, DownloadIcon, FileTextIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  CheckIcon,
+  CopyIcon,
+  DownloadIcon,
+  FileTextIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { ChatMarkdownRenderer } from "./chat-markdown-renderer";
 
 /**
@@ -23,7 +28,12 @@ interface ChatArtifactPanelProps {
   className?: string;
 }
 
-function ChatArtifactPanel({ title, type, content, className }: ChatArtifactPanelProps) {
+function ChatArtifactPanel({
+  title,
+  type,
+  content,
+  className,
+}: ChatArtifactPanelProps) {
   const [copied, setCopied] = React.useState(false);
   const text = content ?? "";
 
@@ -39,7 +49,8 @@ function ChatArtifactPanel({ title, type, content, className }: ChatArtifactPane
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = (title ?? "artifact").replace(/\s+/g, "-").toLowerCase() + ".md";
+    a.download =
+      (title ?? "artifact").replace(/\s+/g, "-").toLowerCase() + ".md";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -52,21 +63,48 @@ function ChatArtifactPanel({ title, type, content, className }: ChatArtifactPane
     <section
       data-slot="chat-artifact-panel"
       aria-label={`Artifact: ${title ?? "Untitled"}`}
-      className={cn("flex h-full flex-col overflow-hidden border border-border bg-background", className)}
+      className={cn(
+        "border-border bg-background flex h-full flex-col overflow-hidden border",
+        className,
+      )}
     >
-      <header className="flex items-center gap-2 border-b border-border px-3 py-2">
-        <FileTextIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+      <header className="border-border flex items-center gap-2 border-b px-3 py-2">
+        <FileTextIcon
+          className="text-muted-foreground size-4 shrink-0"
+          aria-hidden
+        />
         <div className="flex min-w-0 flex-1 flex-col">
-          <h3 className="truncate text-sm font-semibold" title={title ?? "Untitled"}>
+          <h3
+            className="truncate text-sm font-semibold"
+            title={title ?? "Untitled"}
+          >
             {title ?? "Untitled artifact"}
           </h3>
-          <span className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">{typeLabel}</span>
+          <span className="text-muted-foreground text-[0.65rem] tracking-wide uppercase">
+            {typeLabel}
+          </span>
         </div>
         <div className="flex shrink-0 items-center gap-1">
-          <Button type="button" variant="ghost" size="icon-sm" onClick={handleCopy} aria-label="Copy artifact">
-            {copied ? <CheckIcon className="size-4 text-green-600" aria-hidden /> : <CopyIcon className="size-4" aria-hidden />}
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
+            onClick={handleCopy}
+            aria-label="Copy artifact"
+          >
+            {copied ? (
+              <CheckIcon className="size-4 text-green-600" aria-hidden />
+            ) : (
+              <CopyIcon className="size-4" aria-hidden />
+            )}
           </Button>
-          <Button type="button" variant="ghost" size="icon-sm" onClick={handleDownload} aria-label="Download artifact">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
+            onClick={handleDownload}
+            aria-label="Download artifact"
+          >
             <DownloadIcon className="size-4" aria-hidden />
           </Button>
         </div>
@@ -75,7 +113,9 @@ function ChatArtifactPanel({ title, type, content, className }: ChatArtifactPane
         {text ? (
           <ChatMarkdownRenderer content={text} />
         ) : (
-          <p className="text-sm text-muted-foreground">No content generated yet.</p>
+          <p className="text-muted-foreground text-sm">
+            No content generated yet.
+          </p>
         )}
       </div>
     </section>

@@ -70,13 +70,18 @@ function DynamicFormBuilder({
     [onChange],
   );
 
-  const coerceOptions = (raw: unknown[] | undefined): DynamicFormBuilderFieldOption[] => {
+  const coerceOptions = (
+    raw: unknown[] | undefined,
+  ): DynamicFormBuilderFieldOption[] => {
     if (!raw || raw.length === 0) return [];
     return raw.map((o) => {
       if (typeof o === "string") return { value: o, label: o };
       if (o && typeof o === "object" && "value" in o) {
         const obj = o as { value: string; label?: string };
-        return { value: String(obj.value), label: obj.label ?? String(obj.value) };
+        return {
+          value: String(obj.value),
+          label: obj.label ?? String(obj.value),
+        };
       }
       return { value: String(o), label: String(o) };
     });
@@ -89,7 +94,7 @@ function DynamicFormBuilder({
       onSubmit={(e) => e.preventDefault()}
     >
       {schema.length === 0 ? (
-        <p className="text-sm text-muted-foreground">暂无字段</p>
+        <p className="text-muted-foreground text-sm">暂无字段</p>
       ) : (
         schema.map((field) => {
           const id = `dfb-${field.name}`;
@@ -97,7 +102,9 @@ function DynamicFormBuilder({
           const labelNode = (
             <Label htmlFor={id}>
               {field.label}
-              {field.required ? <span className="ml-0.5 text-destructive">*</span> : null}
+              {field.required ? (
+                <span className="text-destructive ml-0.5">*</span>
+              ) : null}
             </Label>
           );
 
@@ -153,7 +160,10 @@ function DynamicFormBuilder({
 
           if (field.type === "switch") {
             return (
-              <div key={field.name} className="flex items-center justify-between gap-2">
+              <div
+                key={field.name}
+                className="flex items-center justify-between gap-2"
+              >
                 {labelNode}
                 <Switch
                   checked={current === true}
@@ -164,7 +174,9 @@ function DynamicFormBuilder({
           }
 
           const inputType =
-            field.type === "number" || field.type === "date" ? field.type : "text";
+            field.type === "number" || field.type === "date"
+              ? field.type
+              : "text";
           return (
             <div key={field.name} className="flex flex-col gap-1.5">
               {labelNode}
@@ -179,7 +191,9 @@ function DynamicFormBuilder({
                 onChange={(e) =>
                   update(
                     field.name,
-                    field.type === "number" ? e.target.valueAsNumber : e.target.value,
+                    field.type === "number"
+                      ? e.target.valueAsNumber
+                      : e.target.value,
                   )
                 }
               />

@@ -6,11 +6,7 @@ import { cn } from "@chaos_team/chaos-ui/lib";
 import { InputNumber } from "@chaos_team/chaos-ui/ui";
 import { Label } from "@chaos_team/chaos-ui/ui";
 import { Button } from "@chaos_team/chaos-ui/ui";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@chaos_team/chaos-ui/ui";
+import { Tabs, TabsList, TabsTrigger } from "@chaos_team/chaos-ui/ui";
 import {
   Select,
   SelectTrigger,
@@ -77,40 +73,142 @@ export const builtInCategories: UnitCategory[] = [
     id: "length",
     name: "Length",
     units: [
-      { id: "mm", name: "Millimeter", abbr: "mm", toBase: 0.001, fromBase: 1000 },
+      {
+        id: "mm",
+        name: "Millimeter",
+        abbr: "mm",
+        toBase: 0.001,
+        fromBase: 1000,
+      },
       { id: "cm", name: "Centimeter", abbr: "cm", toBase: 0.01, fromBase: 100 },
       { id: "m", name: "Meter", abbr: "m", toBase: 1, fromBase: 1 },
-      { id: "km", name: "Kilometer", abbr: "km", toBase: 1000, fromBase: 0.001 },
-      { id: "inch", name: "Inch", abbr: "in", toBase: 0.0254, fromBase: 1 / 0.0254 },
-      { id: "foot", name: "Foot", abbr: "ft", toBase: 0.3048, fromBase: 1 / 0.3048 },
-      { id: "yard", name: "Yard", abbr: "yd", toBase: 0.9144, fromBase: 1 / 0.9144 },
-      { id: "mile", name: "Mile", abbr: "mi", toBase: 1609.344, fromBase: 1 / 1609.344 },
+      {
+        id: "km",
+        name: "Kilometer",
+        abbr: "km",
+        toBase: 1000,
+        fromBase: 0.001,
+      },
+      {
+        id: "inch",
+        name: "Inch",
+        abbr: "in",
+        toBase: 0.0254,
+        fromBase: 1 / 0.0254,
+      },
+      {
+        id: "foot",
+        name: "Foot",
+        abbr: "ft",
+        toBase: 0.3048,
+        fromBase: 1 / 0.3048,
+      },
+      {
+        id: "yard",
+        name: "Yard",
+        abbr: "yd",
+        toBase: 0.9144,
+        fromBase: 1 / 0.9144,
+      },
+      {
+        id: "mile",
+        name: "Mile",
+        abbr: "mi",
+        toBase: 1609.344,
+        fromBase: 1 / 1609.344,
+      },
     ],
   },
   {
     id: "weight",
     name: "Weight",
     units: [
-      { id: "mg", name: "Milligram", abbr: "mg", toBase: 0.000001, fromBase: 1000000 },
+      {
+        id: "mg",
+        name: "Milligram",
+        abbr: "mg",
+        toBase: 0.000001,
+        fromBase: 1000000,
+      },
       { id: "g", name: "Gram", abbr: "g", toBase: 0.001, fromBase: 1000 },
       { id: "kg", name: "Kilogram", abbr: "kg", toBase: 1, fromBase: 1 },
-      { id: "ton", name: "Metric Ton", abbr: "t", toBase: 1000, fromBase: 0.001 },
-      { id: "oz", name: "Ounce", abbr: "oz", toBase: 0.0283495, fromBase: 1 / 0.0283495 },
-      { id: "lb", name: "Pound", abbr: "lb", toBase: 0.453592, fromBase: 1 / 0.453592 },
+      {
+        id: "ton",
+        name: "Metric Ton",
+        abbr: "t",
+        toBase: 1000,
+        fromBase: 0.001,
+      },
+      {
+        id: "oz",
+        name: "Ounce",
+        abbr: "oz",
+        toBase: 0.0283495,
+        fromBase: 1 / 0.0283495,
+      },
+      {
+        id: "lb",
+        name: "Pound",
+        abbr: "lb",
+        toBase: 0.453592,
+        fromBase: 1 / 0.453592,
+      },
     ],
   },
   {
     id: "volume",
     name: "Volume",
     units: [
-      { id: "ml", name: "Milliliter", abbr: "mL", toBase: 0.001, fromBase: 1000 },
+      {
+        id: "ml",
+        name: "Milliliter",
+        abbr: "mL",
+        toBase: 0.001,
+        fromBase: 1000,
+      },
       { id: "l", name: "Liter", abbr: "L", toBase: 1, fromBase: 1 },
-      { id: "m3", name: "Cubic Meter", abbr: "m\u00B3", toBase: 1000, fromBase: 0.001 },
-      { id: "gal_us", name: "Gallon (US)", abbr: "gal", toBase: 3.78541, fromBase: 1 / 3.78541 },
-      { id: "qt", name: "Quart (US)", abbr: "qt", toBase: 0.946353, fromBase: 1 / 0.946353 },
-      { id: "pt", name: "Pint (US)", abbr: "pt", toBase: 0.473176, fromBase: 1 / 0.473176 },
-      { id: "cup", name: "Cup (US)", abbr: "cup", toBase: 0.236588, fromBase: 1 / 0.236588 },
-      { id: "fl_oz", name: "Fluid Ounce", abbr: "fl oz", toBase: 0.0295735, fromBase: 1 / 0.0295735 },
+      {
+        id: "m3",
+        name: "Cubic Meter",
+        abbr: "m\u00B3",
+        toBase: 1000,
+        fromBase: 0.001,
+      },
+      {
+        id: "gal_us",
+        name: "Gallon (US)",
+        abbr: "gal",
+        toBase: 3.78541,
+        fromBase: 1 / 3.78541,
+      },
+      {
+        id: "qt",
+        name: "Quart (US)",
+        abbr: "qt",
+        toBase: 0.946353,
+        fromBase: 1 / 0.946353,
+      },
+      {
+        id: "pt",
+        name: "Pint (US)",
+        abbr: "pt",
+        toBase: 0.473176,
+        fromBase: 1 / 0.473176,
+      },
+      {
+        id: "cup",
+        name: "Cup (US)",
+        abbr: "cup",
+        toBase: 0.236588,
+        fromBase: 1 / 0.236588,
+      },
+      {
+        id: "fl_oz",
+        name: "Fluid Ounce",
+        abbr: "fl oz",
+        toBase: 0.0295735,
+        fromBase: 1 / 0.0295735,
+      },
     ],
   },
   {
@@ -165,14 +263,62 @@ export const builtInCategories: UnitCategory[] = [
     id: "area",
     name: "Area",
     units: [
-      { id: "mm2", name: "Square Millimeter", abbr: "mm\u00B2", toBase: 1e-6, fromBase: 1 / 1e-6 },
-      { id: "cm2", name: "Square Centimeter", abbr: "cm\u00B2", toBase: 1e-4, fromBase: 1 / 1e-4 },
-      { id: "m2", name: "Square Meter", abbr: "m\u00B2", toBase: 1, fromBase: 1 },
-      { id: "km2", name: "Square Kilometer", abbr: "km\u00B2", toBase: 1e6, fromBase: 1 / 1e6 },
-      { id: "in2", name: "Square Inch", abbr: "in\u00B2", toBase: 0.00064516, fromBase: 1 / 0.00064516 },
-      { id: "ft2", name: "Square Foot", abbr: "ft\u00B2", toBase: 0.092903, fromBase: 1 / 0.092903 },
-      { id: "acre", name: "Acre", abbr: "ac", toBase: 4046.86, fromBase: 1 / 4046.86 },
-      { id: "hectare", name: "Hectare", abbr: "ha", toBase: 10000, fromBase: 1 / 10000 },
+      {
+        id: "mm2",
+        name: "Square Millimeter",
+        abbr: "mm\u00B2",
+        toBase: 1e-6,
+        fromBase: 1 / 1e-6,
+      },
+      {
+        id: "cm2",
+        name: "Square Centimeter",
+        abbr: "cm\u00B2",
+        toBase: 1e-4,
+        fromBase: 1 / 1e-4,
+      },
+      {
+        id: "m2",
+        name: "Square Meter",
+        abbr: "m\u00B2",
+        toBase: 1,
+        fromBase: 1,
+      },
+      {
+        id: "km2",
+        name: "Square Kilometer",
+        abbr: "km\u00B2",
+        toBase: 1e6,
+        fromBase: 1 / 1e6,
+      },
+      {
+        id: "in2",
+        name: "Square Inch",
+        abbr: "in\u00B2",
+        toBase: 0.00064516,
+        fromBase: 1 / 0.00064516,
+      },
+      {
+        id: "ft2",
+        name: "Square Foot",
+        abbr: "ft\u00B2",
+        toBase: 0.092903,
+        fromBase: 1 / 0.092903,
+      },
+      {
+        id: "acre",
+        name: "Acre",
+        abbr: "ac",
+        toBase: 4046.86,
+        fromBase: 1 / 4046.86,
+      },
+      {
+        id: "hectare",
+        name: "Hectare",
+        abbr: "ha",
+        toBase: 10000,
+        fromBase: 1 / 10000,
+      },
     ],
   },
   {
@@ -180,11 +326,41 @@ export const builtInCategories: UnitCategory[] = [
     name: "Pressure",
     units: [
       { id: "pa", name: "Pascal", abbr: "Pa", toBase: 1, fromBase: 1 },
-      { id: "kpa", name: "Kilopascal", abbr: "kPa", toBase: 1000, fromBase: 0.001 },
-      { id: "mpa", name: "Megapascal", abbr: "MPa", toBase: 1e6, fromBase: 1 / 1e6 },
-      { id: "bar", name: "Bar", abbr: "bar", toBase: 100000, fromBase: 1 / 100000 },
-      { id: "psi", name: "PSI", abbr: "psi", toBase: 6894.76, fromBase: 1 / 6894.76 },
-      { id: "atm", name: "Atmosphere", abbr: "atm", toBase: 101325, fromBase: 1 / 101325 },
+      {
+        id: "kpa",
+        name: "Kilopascal",
+        abbr: "kPa",
+        toBase: 1000,
+        fromBase: 0.001,
+      },
+      {
+        id: "mpa",
+        name: "Megapascal",
+        abbr: "MPa",
+        toBase: 1e6,
+        fromBase: 1 / 1e6,
+      },
+      {
+        id: "bar",
+        name: "Bar",
+        abbr: "bar",
+        toBase: 100000,
+        fromBase: 1 / 100000,
+      },
+      {
+        id: "psi",
+        name: "PSI",
+        abbr: "psi",
+        toBase: 6894.76,
+        fromBase: 1 / 6894.76,
+      },
+      {
+        id: "atm",
+        name: "Atmosphere",
+        abbr: "atm",
+        toBase: 101325,
+        fromBase: 1 / 101325,
+      },
     ],
   },
 ];
@@ -244,9 +420,8 @@ export function UnitConverter({
   compact = false,
   className,
 }: UnitConverterProps) {
-  const allCategories = categories && categories.length > 0
-    ? categories
-    : builtInCategories;
+  const allCategories =
+    categories && categories.length > 0 ? categories : builtInCategories;
 
   const [activeCatId, setActiveCatId] = React.useState(
     defaultCategory ?? allCategories[0]?.id ?? "",
@@ -298,7 +473,7 @@ export function UnitConverter({
     <div
       data-slot="unit-converter"
       className={cn(
-        "space-y-4 rounded-lg border bg-card p-4",
+        "bg-card space-y-4 rounded-lg border p-4",
         compact && "space-y-3 p-3",
         className,
       )}
@@ -306,8 +481,11 @@ export function UnitConverter({
       {/* Category selector */}
       {compact ? (
         <div className="flex flex-col gap-1.5">
-          <Label className="text-xs text-muted-foreground">Category</Label>
-          <Select value={activeCatId} onValueChange={(v) => setActiveCatId(v ?? "")}>
+          <Label className="text-muted-foreground text-xs">Category</Label>
+          <Select
+            value={activeCatId}
+            onValueChange={(v) => setActiveCatId(v ?? "")}
+          >
             <SelectTrigger className="w-full" data-testid="category-select">
               <SelectValue />
             </SelectTrigger>
@@ -328,7 +506,11 @@ export function UnitConverter({
         >
           <TabsList data-testid="category-tabs">
             {allCategories.map((cat) => (
-              <TabsTrigger key={cat.id} value={cat.id} data-testid={`tab-${cat.id}`}>
+              <TabsTrigger
+                key={cat.id}
+                value={cat.id}
+                data-testid={`tab-${cat.id}`}
+              >
                 {cat.name}
               </TabsTrigger>
             ))}
@@ -345,8 +527,11 @@ export function UnitConverter({
       >
         {/* From */}
         <div className="flex-1 space-y-1.5">
-          <Label className="text-xs text-muted-foreground">From</Label>
-          <Select value={fromUnitId} onValueChange={(v) => setFromUnitId(v ?? "")}>
+          <Label className="text-muted-foreground text-xs">From</Label>
+          <Select
+            value={fromUnitId}
+            onValueChange={(v) => setFromUnitId(v ?? "")}
+          >
             <SelectTrigger className="w-full" data-testid="from-unit-select">
               <SelectValue />
             </SelectTrigger>
@@ -383,7 +568,7 @@ export function UnitConverter({
 
         {/* To */}
         <div className="flex-1 space-y-1.5">
-          <Label className="text-xs text-muted-foreground">To</Label>
+          <Label className="text-muted-foreground text-xs">To</Label>
           <Select value={toUnitId} onValueChange={(v) => setToUnitId(v ?? "")}>
             <SelectTrigger className="w-full" data-testid="to-unit-select">
               <SelectValue />
@@ -398,7 +583,7 @@ export function UnitConverter({
           </Select>
           <div
             data-testid="result-display"
-            className="flex h-8 items-center rounded-lg border border-input bg-muted/30 px-2.5 font-mono text-sm"
+            className="border-input bg-muted/30 flex h-8 items-center rounded-lg border px-2.5 font-mono text-sm"
           >
             {isNaN(resultValue) ? "\u2014" : formatResult(resultValue)}
           </div>

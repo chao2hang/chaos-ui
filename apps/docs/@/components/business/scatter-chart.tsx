@@ -56,7 +56,8 @@ function ScatterChart({
   const xRange = xMax - xMin || 1;
   const yRange = yMax - yMin || 1;
   const px = (v: number) => pad + ((v - xMin) / xRange) * (width - pad * 2);
-  const py = (v: number) => height - pad - ((v - yMin) / yRange) * (height - pad * 2);
+  const py = (v: number) =>
+    height - pad - ((v - yMin) / yRange) * (height - pad * 2);
 
   return (
     <div
@@ -65,9 +66,28 @@ function ScatterChart({
       role="img"
       aria-label={`散点图，共 ${data.length} 个点`}
     >
-      <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="presentation">
-        <line x1={pad} y1={height - pad} x2={width - pad} y2={height - pad} className="stroke-muted-foreground/30" strokeWidth={0.5} />
-        <line x1={pad} y1={pad} x2={pad} y2={height - pad} className="stroke-muted-foreground/30" strokeWidth={0.5} />
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        width="100%"
+        height={height}
+        role="presentation"
+      >
+        <line
+          x1={pad}
+          y1={height - pad}
+          x2={width - pad}
+          y2={height - pad}
+          className="stroke-muted-foreground/30"
+          strokeWidth={0.5}
+        />
+        <line
+          x1={pad}
+          y1={pad}
+          x2={pad}
+          y2={height - pad}
+          className="stroke-muted-foreground/30"
+          strokeWidth={0.5}
+        />
         {data.map((d, i) => (
           <circle
             key={i}
@@ -77,15 +97,26 @@ function ScatterChart({
             fill={d.color ?? SCATTER_PALETTE[i % SCATTER_PALETTE.length]}
           >
             <title>
-              {d.label ? `${d.label}: ` : ""}
-              ({formatNumber(d.x)}, {formatNumber(d.y)})
+              {d.label ? `${d.label}: ` : ""}({formatNumber(d.x)},{" "}
+              {formatNumber(d.y)})
             </title>
           </circle>
         ))}
-        <text x={width - pad} y={height - pad + 16} textAnchor="end" className="fill-muted-foreground text-[9px]">
+        <text
+          x={width - pad}
+          y={height - pad + 16}
+          textAnchor="end"
+          className="fill-muted-foreground text-[9px]"
+        >
           {xLabel}
         </text>
-        <text x={pad - 4} y={pad} textAnchor="end" dominantBaseline="hanging" className="fill-muted-foreground text-[9px]">
+        <text
+          x={pad - 4}
+          y={pad}
+          textAnchor="end"
+          dominantBaseline="hanging"
+          className="fill-muted-foreground text-[9px]"
+        >
           {yLabel}
         </text>
       </svg>

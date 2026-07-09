@@ -1,5 +1,8 @@
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { TrendingUpIcon, TrendingDownIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  TrendingUpIcon,
+  TrendingDownIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { formatNumber, formatPercent } from "@chaos_team/chaos-ui/lib";
 
 /**
@@ -21,7 +24,12 @@ interface TrackingProps {
   className?: string;
 }
 
-function Tracking({ target, actual, label = "追踪项", className }: TrackingProps) {
+function Tracking({
+  target,
+  actual,
+  label = "追踪项",
+  className,
+}: TrackingProps) {
   const rate = target > 0 ? actual / target : 0;
   const displayRate = Math.min(1, rate);
   const isOver = actual >= target && target > 0;
@@ -38,8 +46,20 @@ function Tracking({ target, actual, label = "追踪项", className }: TrackingPr
       role="group"
       aria-label={`${label} 追踪`}
     >
-      <svg viewBox="0 0 80 80" className="size-16 -rotate-90" aria-hidden="true">
-        <circle cx="40" cy="40" r={r} fill="none" stroke="currentColor" strokeWidth="8" className="text-muted" />
+      <svg
+        viewBox="0 0 80 80"
+        className="size-16 -rotate-90"
+        aria-hidden="true"
+      >
+        <circle
+          cx="40"
+          cy="40"
+          r={r}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="8"
+          className="text-muted"
+        />
         <circle
           cx="40"
           cy="40"
@@ -53,10 +73,10 @@ function Tracking({ target, actual, label = "追踪项", className }: TrackingPr
         />
       </svg>
       <div className="flex flex-col">
-        <span className="text-xs text-muted-foreground">{label}</span>
+        <span className="text-muted-foreground text-xs">{label}</span>
         <span className="text-lg font-semibold tabular-nums">
           {formatNumber(actual)}
-          <span className="ml-1 text-xs font-normal text-muted-foreground">
+          <span className="text-muted-foreground ml-1 text-xs font-normal">
             / {formatNumber(target)}
           </span>
         </span>

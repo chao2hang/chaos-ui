@@ -1,7 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { ImageIcon, CheckIcon, RotateCcwIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  ImageIcon,
+  CheckIcon,
+  RotateCcwIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";

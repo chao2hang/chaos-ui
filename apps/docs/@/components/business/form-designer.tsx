@@ -66,11 +66,7 @@ interface FormDesignerProps {
   className?: string;
 }
 
-function FormDesigner({
-  fields = [],
-  onChange,
-  className,
-}: FormDesignerProps) {
+function FormDesigner({ fields = [], onChange, className }: FormDesignerProps) {
   const [items, setItems] = React.useState<FormDesignerField[]>(fields);
   const [labelDraft, setLabelDraft] = React.useState("");
 
@@ -154,7 +150,7 @@ function FormDesigner({
 
           {/* 字段列表 */}
           {items.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground py-6 text-center text-sm">
               暂无字段，请在上方添加。
             </p>
           ) : (
@@ -169,7 +165,7 @@ function FormDesigner({
                     className="flex items-center gap-2 rounded-md border p-2"
                   >
                     <GripVerticalIcon
-                      className="size-4 shrink-0 text-muted-foreground"
+                      className="text-muted-foreground size-4 shrink-0"
                       aria-hidden
                     />
                     <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center">
@@ -257,7 +253,7 @@ function FormDesigner({
             </ul>
           )}
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             共 {items.length} 个字段。
           </p>
         </CardContent>

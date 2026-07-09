@@ -1,5 +1,5 @@
-import { List } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { List } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # List 列表
 
@@ -26,49 +26,51 @@ export function Basic() {
 
 ### 尺寸 / Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <List size="sm">Sm</List>
   <List size="default">Default</List>
   <List size="lg">Lg</List>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## 样式变体 / Style Variants
 
 **类型 / type**
 
-| type | 说明 / Description | 默认 |
-|---|---|---|
-| `unordered` |  | ✓ |
-| `ordered` |  |  |
-| `none` |  |  |
+| type        | 说明 / Description | 默认 |
+| ----------- | ------------------ | ---- |
+| `unordered` |                    | ✓    |
+| `ordered`   |                    |      |
+| `none`      |                    |      |
 
 **尺寸 / Size**
 
-| Size | 说明 / Description | 默认 |
-|---|---|---|
-| `default` | 默认尺寸 / Default size | ✓ |
-| `sm` | 小号 / Small |  |
-| `lg` | 大号 / Large |  |
+| Size      | 说明 / Description      | 默认 |
+| --------- | ----------------------- | ---- |
+| `default` | 默认尺寸 / Default size | ✓    |
+| `sm`      | 小号 / Small            |      |
+| `lg`      | 大号 / Large            |      |
 
 **spacing / spacing**
 
-| spacing | 说明 / Description | 默认 |
-|---|---|---|
-| `default` |  | ✓ |
-| `sm` |  |  |
-| `lg` |  |  |
+| spacing   | 说明 / Description | 默认 |
+| --------- | ------------------ | ---- |
+| `default` |                    | ✓    |
+| `sm`      |                    |      |
+| `lg`      |                    |      |
 
 ## API / Props
 
 ### List
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `items` | `React.ReactNode[]` | — | 选项/数据项列表 <br/> Items / data list |
-| ...rest | `React.ComponentProps<"ul">` | — | 透传 `<ul>` 原生属性 <br/> Inherits all `<ul>` attributes |
+| Prop        | Type                         | Default | 说明 / Description                                        |
+| ----------- | ---------------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`                     | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `items`     | `React.ReactNode[]`          | —       | 选项/数据项列表 <br/> Items / data list                   |
+| ...rest     | `React.ComponentProps<"ul">` | —       | 透传 `<ul>` 原生属性 <br/> Inherits all `<ul>` attributes |
 
 ## 注意事项 / Notes
 

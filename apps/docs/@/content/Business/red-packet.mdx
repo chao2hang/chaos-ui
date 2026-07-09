@@ -1,5 +1,5 @@
-import { RedPacket } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RedPacket } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RedPacket Red Packet
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <RedPacket />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RedPacket
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `label` | `string` | — | Amount or greeting text. |
-| `subtitle` | `string` | — | Subtitle. |
-| `opened` | `boolean` | — | Whether the red packet has been opened. |
-| `onOpen` | `() => void` | — | Called when user clicks to open. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `label`     | `string`               | —       | Amount or greeting text.                                  |
+| `subtitle`  | `string`               | —       | Subtitle.                                                 |
+| `opened`    | `boolean`              | —       | Whether the red packet has been opened.                   |
+| `onOpen`    | `() => void`           | —       | Called when user clicks to open.                          |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

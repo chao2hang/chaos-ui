@@ -1,11 +1,13 @@
-import { TaskListTable } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { TaskListTable } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # TaskListTable Task List Table
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<TaskListTable tasks={[{ id:"1", title:"对账", status:"进行中", priority:"高" }]} />
+<TaskListTable
+  tasks={[{ id: "1", title: "对账", status: "进行中", priority: "高" }]}
+/>
 TaskListTable — task list table component.
 
 ## 何时使用 / When to Use
@@ -24,22 +26,21 @@ export function Basic() {
   return <TaskListTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### TaskListTable
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `tasks` | `Array<{` | — |  |
-| `id` | `string` | — | DOM 元素 id <br/> DOM element id |
-| `title` | `string` | — | 标题 <br/> Title |
-| `status` | `string` | — | 状态 <br/> Status |
-| `priority` | `string` | — |  |
-| `assignee` | `string` | — |  |
-| `deadline` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `tasks`     | `Array<{`              | —       |                                                           |
+| `id`        | `string`               | —       | DOM 元素 id <br/> DOM element id                          |
+| `title`     | `string`               | —       | 标题 <br/> Title                                          |
+| `status`    | `string`               | —       | 状态 <br/> Status                                         |
+| `priority`  | `string`               | —       |                                                           |
+| `assignee`  | `string`               | —       |                                                           |
+| `deadline`  | `string`               | —       |                                                           |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -40,7 +40,7 @@ export function Basic() {
 
 ### Mentions
 
-| Prop | Type | Default | Description |
+| Prop          | Type                                             | Default                  | Description                           |
 | ------------- | ------------------------------------------------ | ------------------------ | ------------------------------------- |
 | `value`       | `string`                                         | —                        | Controlled value / 受控值             |
 | `onChange`    | `(value: string) => void`                        | —                        | Change callback / 变化回调            |
@@ -54,7 +54,7 @@ export function Basic() {
 
 ### MentionOption
 
-| Prop | Type | Description |
+| Prop       | Type      | Description                      |
 | ---------- | --------- | -------------------------------- |
 | `value`    | `string`  | Unique value / 唯一值 (required) |
 | `label`    | `string`  | Display label / 显示标签         |
@@ -65,5 +65,3 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **基于 Textarea + Popover**: 内部使用 Textarea 和 Popover 组合实现。
-
-

@@ -11,7 +11,6 @@ Combines input with a dropdown list; supports custom input and option matching.
 
 Use when you need a combobox.
 
-
 ## Examples
 
 ### Basic Usage
@@ -34,24 +33,22 @@ export function Basic() {
 
 ### Combobox
 
-| Prop | Type | Default | Description |
-| ------------------- | ------------------------------ | ------------ | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `options` | `ComboboxOption[]` | — | Available options |
-| `value` | `string` | — | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `placeholder` | `string` | `选择...` | Placeholder text |
-| `searchPlaceholder` | `string`                       | `搜索...`    |                                                           |
-| `emptyText`         | `string`                       | `未找到结果` |                                                           |
-| `disabled` | `boolean` | — | Whether disabled |
-| `align` | `"start" \| "center" \| "end"` | `start` | Alignment |
-| `clearable`         | `boolean`                      | `true`       |                                                           |
-| `searchable`        | `boolean`                      | `true`       |                                                           |
-| `renderOption`      | `(...args) => unknown`         | —            |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop                | Type                           | Default      | Description                       |
+| ------------------- | ------------------------------ | ------------ | --------------------------------- |
+| `className`         | `string`                       | —            | Custom CSS class                  |
+| `options`           | `ComboboxOption[]`             | —            | Available options                 |
+| `value`             | `string`                       | —            | Current value (controlled)        |
+| `onChange`          | `() => void`                   | —            | Callback when value changes       |
+| `placeholder`       | `string`                       | `选择...`    | Placeholder text                  |
+| `searchPlaceholder` | `string`                       | `搜索...`    |                                   |
+| `emptyText`         | `string`                       | `未找到结果` |                                   |
+| `disabled`          | `boolean`                      | —            | Whether disabled                  |
+| `align`             | `"start" \| "center" \| "end"` | `start`      | Alignment                         |
+| `clearable`         | `boolean`                      | `true`       |                                   |
+| `searchable`        | `boolean`                      | `true`       |                                   |
+| `renderOption`      | `(...args) => unknown`         | —            |                                   |
+| ...rest             | `React.HTMLAttributes`         | —            | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

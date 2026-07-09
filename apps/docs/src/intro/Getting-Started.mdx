@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Getting Started" />
 
@@ -36,14 +36,14 @@ pnpm lint
 Import a component and use it in your code:
 
 ```tsx
-import { Button } from '@chaos_team/chaos-ui/ui'
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 export default function Page() {
   return (
     <div>
       <Button variant="default">Click me</Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -52,23 +52,23 @@ export default function Page() {
 Every Chaos UI component follows a consistent pattern:
 
 ```tsx
-import { cn } from '@chaos_team/chaos-ui/lib'
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 // 1. Import the component
-import { Button } from '@chaos_team/chaos-ui/ui'
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 // 2. Use it with TypeScript props
 function MyComponent() {
   return (
     <Button
-      variant="default"      // Variant prop
-      size="md"              // Size prop
-      disabled={false}       // State prop
-      onClick={() => {}}     // Event handler
+      variant="default" // Variant prop
+      size="md" // Size prop
+      disabled={false} // State prop
+      onClick={() => {}} // Event handler
     >
       Button Text
     </Button>
-  )
+  );
 }
 ```
 
@@ -77,9 +77,7 @@ function MyComponent() {
 Chaos UI uses Tailwind CSS 4 with CSS custom properties. All components accept a `className` prop for custom styling:
 
 ```tsx
-<Button className="mt-4 w-full">
-  Full Width Button
-</Button>
+<Button className="mt-4 w-full">Full Width Button</Button>
 ```
 
 Use the `cn()` utility to merge class names:
@@ -114,7 +112,7 @@ Override CSS variables in your `globals.css`:
 All components are fully typed. Import types directly:
 
 ```tsx
-import { Button, type ButtonProps } from '@chaos_team/chaos-ui/ui'
+import { Button, type ButtonProps } from "@chaos_team/chaos-ui/ui";
 ```
 
 ## Next Steps

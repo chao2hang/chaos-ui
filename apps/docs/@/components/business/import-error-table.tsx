@@ -35,7 +35,11 @@ interface ImportErrorTableProps {
   className?: string;
 }
 
-function ImportErrorTable({ errors, onExport, className }: ImportErrorTableProps) {
+function ImportErrorTable({
+  errors,
+  onExport,
+  className,
+}: ImportErrorTableProps) {
   const count = errors.length;
 
   return (
@@ -49,10 +53,13 @@ function ImportErrorTable({ errors, onExport, className }: ImportErrorTableProps
           id="import-error-table-title"
           className="flex items-center gap-1.5 text-sm font-medium"
         >
-          <AlertTriangleIcon className="size-4 text-destructive" aria-hidden="true" />
+          <AlertTriangleIcon
+            className="text-destructive size-4"
+            aria-hidden="true"
+          />
           <span>导入错误</span>
           <span
-            className="rounded-full bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive"
+            className="bg-destructive/10 text-destructive rounded-full px-2 py-0.5 text-xs font-semibold"
             aria-label={`共 ${count} 条错误`}
           >
             {count}
@@ -62,7 +69,7 @@ function ImportErrorTable({ errors, onExport, className }: ImportErrorTableProps
           <button
             type="button"
             onClick={onExport}
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs hover:bg-muted"
+            className="hover:bg-muted inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs"
           >
             <DownloadIcon className="size-3.5" aria-hidden="true" />
             <span>导出错误</span>
@@ -71,7 +78,7 @@ function ImportErrorTable({ errors, onExport, className }: ImportErrorTableProps
       </div>
 
       {count === 0 ? (
-        <p className="rounded-md border border-dashed p-4 text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground rounded-md border border-dashed p-4 text-center text-sm">
           没有导入错误
         </p>
       ) : (
@@ -80,24 +87,33 @@ function ImportErrorTable({ errors, onExport, className }: ImportErrorTableProps
             <caption className="sr-only">导入错误明细，共 {count} 条</caption>
             <thead className="bg-muted/50">
               <tr>
-                <th scope="col" className="px-3 py-2 text-left font-medium">行号</th>
-                <th scope="col" className="px-3 py-2 text-left font-medium">字段</th>
-                <th scope="col" className="px-3 py-2 text-left font-medium">错误值</th>
-                <th scope="col" className="px-3 py-2 text-left font-medium">错误原因</th>
+                <th scope="col" className="px-3 py-2 text-left font-medium">
+                  行号
+                </th>
+                <th scope="col" className="px-3 py-2 text-left font-medium">
+                  字段
+                </th>
+                <th scope="col" className="px-3 py-2 text-left font-medium">
+                  错误值
+                </th>
+                <th scope="col" className="px-3 py-2 text-left font-medium">
+                  错误原因
+                </th>
               </tr>
             </thead>
             <tbody>
               {errors.map((err, idx) => (
-                <tr
-                  key={`${err.row}-${idx}`}
-                  className="border-t"
-                >
-                  <td className="px-3 py-2 tabular-nums text-muted-foreground">{err.row}</td>
-                  <td className="px-3 py-2 text-muted-foreground">{err.field ?? "—"}</td>
+                <tr key={`${err.row}-${idx}`} className="border-t">
+                  <td className="text-muted-foreground px-3 py-2 tabular-nums">
+                    {err.row}
+                  </td>
+                  <td className="text-muted-foreground px-3 py-2">
+                    {err.field ?? "—"}
+                  </td>
                   <td className="max-w-[12rem] truncate px-3 py-2 font-mono text-xs">
                     {err.value ?? "—"}
                   </td>
-                  <td className="px-3 py-2 text-destructive">{err.message}</td>
+                  <td className="text-destructive px-3 py-2">{err.message}</td>
                 </tr>
               ))}
             </tbody>

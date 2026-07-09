@@ -1,5 +1,5 @@
-import { AttachmentUploader } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { AttachmentUploader } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # AttachmentUploader Attachment Uploader
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <AttachmentUploader />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### AttachmentUploader
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `accept` | `string` | — |  |
-| `maxSize` | `number` | — |  |
-| `onUpload` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `accept`    | `string`               | —       |                                                           |
+| `maxSize`   | `number`               | —       |                                                           |
+| `onUpload`  | `() => void`           | —       |                                                           |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

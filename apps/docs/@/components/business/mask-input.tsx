@@ -1,15 +1,15 @@
-"use client"
-import * as React from "react"
-import { InputMask } from "@react-input/mask"
-import { cn } from "@chaos_team/chaos-ui/lib"
+"use client";
+import * as React from "react";
+import { InputMask } from "@react-input/mask";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 interface MaskInputProps {
-  mask: string
-  value: string
-  onChange: (value: string) => void
-  placeholder?: string
-  disabled?: boolean
-  className?: string
+  mask: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
 function MaskInput({
@@ -21,8 +21,8 @@ function MaskInput({
   className,
 }: MaskInputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value)
-  }
+    onChange(e.target.value);
+  };
 
   return (
     <InputMask
@@ -34,14 +34,14 @@ function MaskInput({
       disabled={disabled}
       data-slot="mask-input"
       className={cn(
-        "h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base font-mono transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-8 w-full min-w-0 rounded-lg border bg-transparent px-2.5 py-1 font-mono text-base transition-colors outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         className,
       )}
     />
-  )
+  );
 }
 
-MaskInput.displayName = "MaskInput"
+MaskInput.displayName = "MaskInput";
 
-export { MaskInput }
-export type { MaskInputProps }
+export { MaskInput };
+export type { MaskInputProps };

@@ -1,5 +1,5 @@
-import { FieldMask } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { FieldMask } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # FieldMask 字段掩码
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <FieldMask />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### FieldMask
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `mask` | `MaskType` | `phone` |  |
-| `customPattern` | `string` | — |  |
-| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| ...rest | `React.ComponentProps<"input">` | — | 透传 `<input>` 原生属性 <br/> Inherits all `<input>` attributes |
+| Prop            | Type                            | Default | 说明 / Description                                              |
+| --------------- | ------------------------------- | ------- | --------------------------------------------------------------- |
+| `className`     | `string`                        | —       | 自定义样式类名 <br/> Custom CSS class                           |
+| `mask`          | `MaskType`                      | `phone` |                                                                 |
+| `customPattern` | `string`                        | —       |                                                                 |
+| `value`         | `string`                        | —       | 当前值(受控) <br/> Current value (controlled)                   |
+| `onChange`      | `() => void`                    | —       | 值变化回调 <br/> Callback when value changes                    |
+| ...rest         | `React.ComponentProps<"input">` | —       | 透传 `<input>` 原生属性 <br/> Inherits all `<input>` attributes |
 
 ## 注意事项 / Notes
 

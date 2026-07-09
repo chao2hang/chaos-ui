@@ -1,5 +1,5 @@
-import { QuotationLineEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { QuotationLineEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # QuotationLineEditor Quotation Line Editor
 
@@ -11,7 +11,6 @@ QuotationLineEditor — a business component for ERP / enterprise scenarios.
 
 Use when you need a quotation line editor.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,25 +21,22 @@ export function Basic() {
   return <QuotationLineEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### QuotationLineEditor
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `quoteNo` | `string` | — | Quote number. |
-| `lines` | `QuotationLine[]` | — | Line items. |
-| `onLinesChange` | `() => void` | — | Lines change callback. |
-| `currencySymbol` | `string` | `¥` | Currency symbol. |
-| `onSubmit` | `() => void` | — | Submit handler. |
-| `onCancel` | `() => void` | — | Cancel handler. |
-| `readOnly` | `boolean` | `false` | Read-only mode. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop             | Type                   | Default | Description                       |
+| ---------------- | ---------------------- | ------- | --------------------------------- |
+| `className`      | `string`               | —       | Custom CSS class                  |
+| `quoteNo`        | `string`               | —       | Quote number.                     |
+| `lines`          | `QuotationLine[]`      | —       | Line items.                       |
+| `onLinesChange`  | `() => void`           | —       | Lines change callback.            |
+| `currencySymbol` | `string`               | `¥`     | Currency symbol.                  |
+| `onSubmit`       | `() => void`           | —       | Submit handler.                   |
+| `onCancel`       | `() => void`           | —       | Cancel handler.                   |
+| `readOnly`       | `boolean`              | `false` | Read-only mode.                   |
+| ...rest          | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

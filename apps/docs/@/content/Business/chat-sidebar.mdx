@@ -1,5 +1,5 @@
-import { ChatSidebar } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { ChatSidebar } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # ChatSidebar Chat Sidebar
 
@@ -24,23 +24,22 @@ export function Basic() {
   return <ChatSidebar />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ChatSidebar
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `conversations` | `Array<{` | — |  |
-| `id` | `string` | — | DOM 元素 id <br/> DOM element id |
-| `title` | `string` | — | 标题 <br/> Title |
-| `unread` | `number` | — |  |
-| `lastMessage` | `string` | — |  |
-| `time` | `string` | — |  |
-| `activeId` | `string` | — |  |
-| `onSelect` | `() => void` | — | 选中回调 <br/> Selection handler |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop            | Type                   | Default | 说明 / Description                                        |
+| --------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`     | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `conversations` | `Array<{`              | —       |                                                           |
+| `id`            | `string`               | —       | DOM 元素 id <br/> DOM element id                          |
+| `title`         | `string`               | —       | 标题 <br/> Title                                          |
+| `unread`        | `number`               | —       |                                                           |
+| `lastMessage`   | `string`               | —       |                                                           |
+| `time`          | `string`               | —       |                                                           |
+| `activeId`      | `string`               | —       |                                                           |
+| `onSelect`      | `() => void`           | —       | 选中回调 <br/> Selection handler                          |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

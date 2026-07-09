@@ -2,7 +2,10 @@
 import * as React from "react";
 
 import { cn } from "@chaos_team/chaos-ui/lib";
-import { ChevronLeftIcon, ChevronRightIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 
 /**
  * @component ChatBranch

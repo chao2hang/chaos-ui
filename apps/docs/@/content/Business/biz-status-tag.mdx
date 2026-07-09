@@ -1,5 +1,5 @@
-import { BizStatusTag, Labels } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { BizStatusTag, Labels } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # BizStatusTag 业务状态标签
 
@@ -29,31 +29,30 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## 样式变体 / Style Variants
 
 **状态 / status**
 
-| status | 说明 / Description | 默认 |
-|---|---|---|
-| `active` |  |  |
-| `inactive` |  |  |
-| `pending` |  | ✓ |
-| `processing` |  |  |
-| `error` |  |  |
-| `completed` |  |  |
-| `cancelled` |  |  |
-| `warning` |  |  |
+| status       | 说明 / Description | 默认 |
+| ------------ | ------------------ | ---- |
+| `active`     |                    |      |
+| `inactive`   |                    |      |
+| `pending`    |                    | ✓    |
+| `processing` |                    |      |
+| `error`      |                    |      |
+| `completed`  |                    |      |
+| `cancelled`  |                    |      |
+| `warning`    |                    |      |
 
 ## API / Props
 
 ### BizStatusTag
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `label` | `string` | — | 标签文本 <br/> Label text |
-| ...rest | `React.ComponentProps<"span">` | — | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
+| Prop        | Type                           | Default | 说明 / Description                                            |
+| ----------- | ------------------------------ | ------- | ------------------------------------------------------------- |
+| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                         |
+| `label`     | `string`                       | —       | 标签文本 <br/> Label text                                     |
+| ...rest     | `React.ComponentProps<"span">` | —       | 透传 `<span>` 原生属性 <br/> Inherits all `<span>` attributes |
 
 ## 注意事项 / Notes
 

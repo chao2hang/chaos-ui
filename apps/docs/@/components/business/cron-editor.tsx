@@ -7,7 +7,12 @@ import { cn } from "@chaos_team/chaos-ui/lib";
 import { Input } from "@chaos_team/chaos-ui/ui";
 import { Label } from "@chaos_team/chaos-ui/ui";
 import { SegmentedControl } from "@chaos_team/chaos-ui/ui";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@chaos_team/chaos-ui/ui";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component CronEditor

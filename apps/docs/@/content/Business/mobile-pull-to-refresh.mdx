@@ -1,5 +1,5 @@
-import { PullToRefresh } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { PullToRefresh } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobilePullToRefresh 移动端下拉刷新
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <PullToRefresh />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### PullToRefresh
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `onRefresh` | `() => void` | — |  |
-| `threshold` | `number` | `60` |  |
-| `disabled` | `boolean` | — | 是否禁用 <br/> Whether disabled |
-| `refreshingText` | `string` | — |  |
-| `pullText` | `string` | — |  |
-| `releaseText` | `string` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop             | Type                          | Default | 说明 / Description                                          |
+| ---------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`      | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `onRefresh`      | `() => void`                  | —       |                                                             |
+| `threshold`      | `number`                      | `60`    |                                                             |
+| `disabled`       | `boolean`                     | —       | 是否禁用 <br/> Whether disabled                             |
+| `refreshingText` | `string`                      | —       |                                                             |
+| `pullText`       | `string`                      | —       |                                                             |
+| `releaseText`    | `string`                      | —       |                                                             |
+| ...rest          | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

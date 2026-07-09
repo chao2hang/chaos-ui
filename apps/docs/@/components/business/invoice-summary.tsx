@@ -2,7 +2,11 @@
 
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { formatCurrency, formatNumber } from "@chaos_team/chaos-ui/lib";
-import { CheckCircle2Icon, ClockIcon, ReceiptIcon } from "@chaos_team/chaos-ui/ui";
+import {
+  CheckCircle2Icon,
+  ClockIcon,
+  ReceiptIcon,
+} from "@chaos_team/chaos-ui/ui";
 
 /**
  * @component InvoiceSummary

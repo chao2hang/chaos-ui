@@ -1,5 +1,9 @@
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Resizable 可调整大小
 
@@ -30,23 +34,22 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### ResizablePanelGroup
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `defaultSize` | `number` | — |  |
-| `minSize` | `number` | — |  |
-| `maxSize` | `number` | — |  |
-| `collapsible` | `boolean` | — |  |
-| `collapsedSize` | `number` | — |  |
-| `onCollapse` | `() => void` | — |  |
-| `onExpand` | `() => void` | — |  |
-| `onResize` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop            | Type                          | Default | 说明 / Description                                          |
+| --------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className`     | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `defaultSize`   | `number`                      | —       |                                                             |
+| `minSize`       | `number`                      | —       |                                                             |
+| `maxSize`       | `number`                      | —       |                                                             |
+| `collapsible`   | `boolean`                     | —       |                                                             |
+| `collapsedSize` | `number`                      | —       |                                                             |
+| `onCollapse`    | `() => void`                  | —       |                                                             |
+| `onExpand`      | `() => void`                  | —       |                                                             |
+| `onResize`      | `() => void`                  | —       |                                                             |
+| ...rest         | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

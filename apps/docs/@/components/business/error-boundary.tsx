@@ -1,13 +1,15 @@
 "use client";
 import * as React from "react";
-import { AlertTriangleIcon, RefreshCwIcon } from "@chaos_team/chaos-ui/ui-icons";
+import {
+  AlertTriangleIcon,
+  RefreshCwIcon,
+} from "@chaos_team/chaos-ui/ui-icons";
 import { cn } from "@chaos_team/chaos-ui/lib";
 import { Button } from "@chaos_team/chaos-ui/ui";
 
 interface ErrorBoundaryProps {
   fallback?:
-    | React.ReactNode
-    | ((error: Error, reset: () => void) => React.ReactNode);
+    React.ReactNode | ((error: Error, reset: () => void) => React.ReactNode);
   onError?: (error: Error, info: React.ErrorInfo) => void;
   children: React.ReactNode;
   className?: string;
@@ -58,14 +60,14 @@ export class ErrorBoundary extends React.Component<
         <div
           data-slot="error-boundary"
           className={cn(
-            "flex flex-col items-center justify-center gap-3 rounded-md border border-destructive/30 bg-destructive/5 p-8 text-center",
+            "border-destructive/30 bg-destructive/5 flex flex-col items-center justify-center gap-3 rounded-md border p-8 text-center",
             className,
           )}
         >
-          <AlertTriangleIcon className="size-8 text-destructive" />
+          <AlertTriangleIcon className="text-destructive size-8" />
           <div className="space-y-1">
             <h3 className="text-sm font-semibold">组件出错了</h3>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {this.state.error?.message ?? "发生未知错误"}
             </p>
           </div>

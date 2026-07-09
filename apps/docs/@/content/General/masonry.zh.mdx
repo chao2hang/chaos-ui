@@ -47,12 +47,12 @@ export function Responsive() {
 
 ### Masonry
 
-| Prop | Type | Default | 说明 |
-| ----------- | -------------------------------------------- | ------- | ----------------------------------------------------------- |
-| `columns`   | `number \| { default?, sm?, md?, lg?, xl? }` | `3`     | Column count or responsive config / 列数或响应式配置        |
-| `gap`       | `number`                                     | `16`    | Gap between items in pixels / 项目间距（像素）              |
-| `className` | `string` | — | 自定义样式类名 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop        | Type                                         | Default | 说明                                                 |
+| ----------- | -------------------------------------------- | ------- | ---------------------------------------------------- |
+| `columns`   | `number \| { default?, sm?, md?, lg?, xl? }` | `3`     | Column count or responsive config / 列数或响应式配置 |
+| `gap`       | `number`                                     | `16`    | Gap between items in pixels / 项目间距（像素）       |
+| `className` | `string`                                     | —       | 自定义样式类名                                       |
+| ...rest     | `React.ComponentProps<"div">`                | —       | 透传 `<div>` 原生属性                                |
 
 ## 注意事项
 
@@ -60,4 +60,3 @@ export function Responsive() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-masonry--docs)。
-

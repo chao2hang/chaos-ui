@@ -1,5 +1,5 @@
-import { VersionHistory } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { VersionHistory } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # VersionHistory 版本历史
 
@@ -24,18 +24,17 @@ export function Basic() {
   return <VersionHistory />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### VersionHistory
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `entries` | `VersionEntry[]` | — |  |
-| `onRestore` | `() => void` | — |  |
-| `onView` | `() => void` | — |  |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | 说明 / Description                                          |
+| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
+| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `entries`   | `VersionEntry[]`              | —       |                                                             |
+| `onRestore` | `() => void`                  | —       |                                                             |
+| `onView`    | `() => void`                  | —       |                                                             |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
 ## 注意事项 / Notes
 

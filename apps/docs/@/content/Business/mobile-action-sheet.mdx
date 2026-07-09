@@ -1,11 +1,18 @@
-import { MobileActionSheet } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MobileActionSheet } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileActionSheet Mobile Action Sheet
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<MobileActionSheet open={open} onOpenChange={setOpen} actions={[{label:"编辑",onClick:edit},{label:"删除",onClick:del,danger:true}]} />
+<MobileActionSheet
+  open={open}
+  onOpenChange={setOpen}
+  actions={[
+    { label: "编辑", onClick: edit },
+    { label: "删除", onClick: del, danger: true },
+  ]}
+/>
 MobileActionSheet — mobile action sheet component.
 
 ## 何时使用 / When to Use
@@ -24,18 +31,17 @@ export function Basic() {
   return <MobileActionSheet />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileActionSheet
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | — | 是否打开(受控) <br/> Open state (controlled) |
-| `onOpenChange` | `() => void` | — | 打开状态变化回调 <br/> Callback when open state changes |
-| `actions` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop           | Type                   | Default | 说明 / Description                                        |
+| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className`    | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `open`         | `boolean`              | —       | 是否打开(受控) <br/> Open state (controlled)              |
+| `onOpenChange` | `() => void`           | —       | 打开状态变化回调 <br/> Callback when open state changes   |
+| `actions`      | `() => void`           | —       |                                                           |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

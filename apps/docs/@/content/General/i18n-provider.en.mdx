@@ -1,5 +1,5 @@
-import { I18nProvider } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { I18nProvider } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # I18nProvider
 
@@ -11,7 +11,6 @@ I18nProvider — Global i18n provider with locale switching and message bundling
 
 Use when you need a i18nprovider.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,18 +21,15 @@ export function Basic() {
   return <I18nProvider />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### I18nProvider
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

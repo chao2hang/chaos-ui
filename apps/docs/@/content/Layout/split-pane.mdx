@@ -1,5 +1,5 @@
-import { SplitPane } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { SplitPane } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # SplitPane 分割面板
 
@@ -24,23 +24,22 @@ export function Basic() {
   return <SplitPane />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SplitPane
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `direction` | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Direction |
-| `defaultSize` | `number` | `50` |  |
-| `minSize` | `number` | `20` |  |
-| `maxSize` | `number` | `80` |  |
-| `onResize` | `() => void` | — |  |
-| `first` | `React.ReactNode` | — |  |
-| `second` | `React.ReactNode` | — |  |
-| `resizer` | `boolean` | `true` |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop          | Type                         | Default      | 说明 / Description                                        |
+| ------------- | ---------------------------- | ------------ | --------------------------------------------------------- |
+| `className`   | `string`                     | —            | 自定义样式类名 <br/> Custom CSS class                     |
+| `direction`   | `"horizontal" \| "vertical"` | `horizontal` | 排列方向 <br/> Direction                                  |
+| `defaultSize` | `number`                     | `50`         |                                                           |
+| `minSize`     | `number`                     | `20`         |                                                           |
+| `maxSize`     | `number`                     | `80`         |                                                           |
+| `onResize`    | `() => void`                 | —            |                                                           |
+| `first`       | `React.ReactNode`            | —            |                                                           |
+| `second`      | `React.ReactNode`            | —            |                                                           |
+| `resizer`     | `boolean`                    | `true`       |                                                           |
+| ...rest       | `React.HTMLAttributes`       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

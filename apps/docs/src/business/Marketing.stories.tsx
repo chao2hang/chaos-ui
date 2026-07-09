@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   PricingCard,
   PricingTable,
   TestimonialCard,
   FAQSection,
-} from "@/components/business/marketing"
-import { Button } from "@chaos_team/chaos-ui/ui"
+} from "@/components/business/marketing";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta = {
   title: "Business/Marketing",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const tiers = [
   {
@@ -55,27 +55,32 @@ const tiers = [
       { label: "API 访问", included: true },
     ],
   },
-]
+];
 
 const testimonials = [
-  { quote: "Chaos UI 让我们的设计系统迭代速度提升了 3 倍。", author: { name: "张明", role: "前端架构师", company: "Acme Corp" }, rating: 5 },
-  { quote: "暗色模式的色彩对比度是行业最佳实践。", author: { name: "李华", role: "设计师", company: "Design Studio" }, rating: 5 },
-]
+  {
+    quote: "Chaos UI 让我们的设计系统迭代速度提升了 3 倍。",
+    author: { name: "张明", role: "前端架构师", company: "Acme Corp" },
+    rating: 5,
+  },
+  {
+    quote: "暗色模式的色彩对比度是行业最佳实践。",
+    author: { name: "李华", role: "设计师", company: "Design Studio" },
+    rating: 5,
+  },
+];
 
 const faqItems = [
   { q: "如何开始？", a: "运行 pnpm install 即可。" },
   { q: "支持哪些框架？", a: "React 19+、Next.js 15+。" },
   { q: "是否提供 TypeScript 类型？", a: "是，所有组件都有完整类型。" },
-]
+];
 
 export const Default: Story = {
   render: () => (
-    <PricingCard
-      tier={tiers[1]}
-      onCta={(id) => console.info("cta", id)}
-    />
+    <PricingCard tier={tiers[1]} onCta={(id) => console.info("cta", id)} />
   ),
-}
+};
 
 export const PricingTableExample: Story = {
   render: () => (
@@ -83,7 +88,7 @@ export const PricingTableExample: Story = {
       <PricingTable tiers={tiers} onCta={(id) => console.info("cta", id)} />
     </div>
   ),
-}
+};
 
 export const TestimonialsExample: Story = {
   render: () => (
@@ -93,7 +98,7 @@ export const TestimonialsExample: Story = {
       ))}
     </div>
   ),
-}
+};
 
 export const FAQExample: Story = {
   render: () => (
@@ -101,9 +106,9 @@ export const FAQExample: Story = {
       <FAQSection items={faqItems} searchable />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...PricingTableExample,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

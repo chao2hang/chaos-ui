@@ -45,29 +45,27 @@ export function Readonly() {
 
 ## Size Reference
 
-| Size | Description | 默认 |
-| --------- | ------------------ | ---- |
-| `sm` | Small |  |
-| `default` | Default | ✓ |
-| `lg` | Large |  |
+| Size      | Description | 默认 |
+| --------- | ----------- | ---- |
+| `sm`      | Small       |      |
+| `default` | Default     | ✓    |
+| `lg`      | Large       |      |
 
 ## API / Props
 
 ### Rating
 
-| Prop | Type | Default | Description |
-| -------------- | --------------------------- | --------- | ------------------------------------- |
-| `value`        | `number`                    | —         | Controlled value / 受控值             |
-| `defaultValue` | `number`                    | `0`       | Default value / 默认值                |
-| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调            |
-| `max`          | `number`                    | `5`       | Max stars / 最大星数                  |
-| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小                  |
-| `readonly`     | `boolean`                   | `false`   | Read-only / 只读                      |
-| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星           |
-| `className` | `string` | — | Custom CSS class |
+| Prop           | Type                        | Default   | Description                 |
+| -------------- | --------------------------- | --------- | --------------------------- |
+| `value`        | `number`                    | —         | Controlled value / 受控值   |
+| `defaultValue` | `number`                    | `0`       | Default value / 默认值      |
+| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调  |
+| `max`          | `number`                    | `5`       | Max stars / 最大星数        |
+| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小        |
+| `readonly`     | `boolean`                   | `false`   | Read-only / 只读            |
+| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星 |
+| `className`    | `string`                    | —         | Custom CSS class            |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

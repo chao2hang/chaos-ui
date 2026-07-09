@@ -1,11 +1,11 @@
-import { LineChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LineChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LineChart Line Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
- 折线图(多线+标注)
+折线图(多线+标注)
 LineChart — line chart component.
 
 ## 何时使用 / When to Use
@@ -24,18 +24,17 @@ export function Basic() {
   return <LineChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LineChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `series` | `Array<T>` | — | One or more named series. |
-| `labels` | `string[]` | — | X-axis labels aligned 1:1 with each series values. |
-| `height` | `number` | — | SVG height in px. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `series`    | `Array<T>`             | —       | One or more named series.                                 |
+| `labels`    | `string[]`             | —       | X-axis labels aligned 1:1 with each series values.        |
+| `height`    | `number`               | —       | SVG height in px.                                         |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

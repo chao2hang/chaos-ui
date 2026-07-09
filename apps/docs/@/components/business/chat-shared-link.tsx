@@ -21,7 +21,12 @@ interface ChatSharedLinkProps {
   className?: string;
 }
 
-function ChatSharedLink({ url, title, description, className }: ChatSharedLinkProps) {
+function ChatSharedLink({
+  url,
+  title,
+  description,
+  className,
+}: ChatSharedLinkProps) {
   let host = url;
   try {
     host = new URL(url).hostname.replace(/^www\./, "");
@@ -36,23 +41,36 @@ function ChatSharedLink({ url, title, description, className }: ChatSharedLinkPr
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "flex max-w-sm items-center gap-3 rounded-lg border border-border bg-background p-3 transition-colors hover:border-primary/40 hover:bg-muted/40",
+        "border-border bg-background hover:border-primary/40 hover:bg-muted/40 flex max-w-sm items-center gap-3 rounded-lg border p-3 transition-colors",
         className,
       )}
     >
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted" aria-hidden>
-        <Link2Icon className="size-4 text-muted-foreground" />
+      <span
+        className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-md"
+        aria-hidden
+      >
+        <Link2Icon className="text-muted-foreground size-4" />
       </span>
       <span className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate text-sm font-medium text-foreground" title={title ?? url}>
+        <span
+          className="text-foreground truncate text-sm font-medium"
+          title={title ?? url}
+        >
           {title ?? truncate(url, 48)}
         </span>
         {description ? (
-          <span className="line-clamp-2 text-xs text-muted-foreground">{description}</span>
+          <span className="text-muted-foreground line-clamp-2 text-xs">
+            {description}
+          </span>
         ) : null}
-        <span className="truncate text-[0.65rem] text-muted-foreground/80">{host}</span>
+        <span className="text-muted-foreground/80 truncate text-[0.65rem]">
+          {host}
+        </span>
       </span>
-      <ExternalLinkIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+      <ExternalLinkIcon
+        className="text-muted-foreground size-4 shrink-0"
+        aria-hidden
+      />
     </a>
   );
 }

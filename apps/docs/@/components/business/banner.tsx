@@ -1,8 +1,14 @@
-"use client"
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { XIcon, InfoIcon, CheckCircleIcon, AlertTriangleIcon, XCircleIcon } from "lucide-react"
-import { cn } from "@chaos_team/chaos-ui/lib"
+"use client";
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import {
+  XIcon,
+  InfoIcon,
+  CheckCircleIcon,
+  AlertTriangleIcon,
+  XCircleIcon,
+} from "lucide-react";
+import { cn } from "@chaos_team/chaos-ui/lib";
 
 const bannerVariants = cva(
   "relative flex w-full items-start gap-3 border-b px-4 py-3 text-sm",
@@ -17,25 +23,27 @@ const bannerVariants = cva(
     },
     defaultVariants: { variant: "info" },
   },
-)
+);
 
 const variantIcons = {
   info: InfoIcon,
   success: CheckCircleIcon,
   warning: AlertTriangleIcon,
   error: XCircleIcon,
-} as const
+} as const;
 
-type BannerVariant = NonNullable<VariantProps<typeof bannerVariants>["variant"]>
+type BannerVariant = NonNullable<
+  VariantProps<typeof bannerVariants>["variant"]
+>;
 
 interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: BannerVariant
-  title?: string
-  description?: string
-  action?: React.ReactNode
-  closable?: boolean
-  onClose?: () => void
-  className?: string
+  variant?: BannerVariant;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
+  closable?: boolean;
+  onClose?: () => void;
+  className?: string;
 }
 
 function Banner({
@@ -48,16 +56,16 @@ function Banner({
   className,
   ...props
 }: BannerProps) {
-  const [visible, setVisible] = React.useState(true)
+  const [visible, setVisible] = React.useState(true);
 
   const handleClose = () => {
-    setVisible(false)
-    onClose?.()
-  }
+    setVisible(false);
+    onClose?.();
+  };
 
-  if (!visible) return null
+  if (!visible) return null;
 
-  const Icon = variantIcons[variant]
+  const Icon = variantIcons[variant];
 
   return (
     <div
@@ -69,11 +77,11 @@ function Banner({
     >
       <Icon className="mt-0.5 size-5 shrink-0" />
       <div className="min-w-0 flex-1">
-        {title && (
-          <p className="font-medium leading-5">{title}</p>
-        )}
+        {title && <p className="leading-5 font-medium">{title}</p>}
         {description && (
-          <p className="mt-0.5 text-sm leading-relaxed opacity-80">{description}</p>
+          <p className="mt-0.5 text-sm leading-relaxed opacity-80">
+            {description}
+          </p>
         )}
         {action && <div className="mt-2">{action}</div>}
       </div>
@@ -88,10 +96,10 @@ function Banner({
         </button>
       )}
     </div>
-  )
+  );
 }
 
-Banner.displayName = "Banner"
+Banner.displayName = "Banner";
 
-export { Banner, bannerVariants }
-export type { BannerProps, BannerVariant }
+export { Banner, bannerVariants };
+export type { BannerProps, BannerVariant };

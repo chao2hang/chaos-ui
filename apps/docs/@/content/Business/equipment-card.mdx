@@ -1,5 +1,5 @@
-import { EquipmentCard } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { EquipmentCard } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # EquipmentCard 设备卡片
 
@@ -24,21 +24,20 @@ export function Basic() {
   return <EquipmentCard />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### EquipmentCard
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `name` | `string` | — | 表单字段名 <br/> Form field name |
-| `model` | `string` | — |  |
-| `serialNumber` | `string` | — |  |
-| `status` | `"normal" \| "maintenance" \| "fault" ...` | `normal` | 状态 <br/> Status |
-| `location` | `string` | — |  |
-| `lastMaintenance` | `string` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop              | Type                                       | Default  | 说明 / Description                                        |
+| ----------------- | ------------------------------------------ | -------- | --------------------------------------------------------- |
+| `className`       | `string`                                   | —        | 自定义样式类名 <br/> Custom CSS class                     |
+| `name`            | `string`                                   | —        | 表单字段名 <br/> Form field name                          |
+| `model`           | `string`                                   | —        |                                                           |
+| `serialNumber`    | `string`                                   | —        |                                                           |
+| `status`          | `"normal" \| "maintenance" \| "fault" ...` | `normal` | 状态 <br/> Status                                         |
+| `location`        | `string`                                   | —        |                                                           |
+| `lastMaintenance` | `string`                                   | —        |                                                           |
+| ...rest           | `React.HTMLAttributes`                     | —        | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

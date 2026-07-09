@@ -1,5 +1,5 @@
-import { RichTextEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { RichTextEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # RichTextEditor 富文本编辑器
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 提供带格式的富文本编辑能力(加粗、列表、链接等)。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,26 +21,24 @@ export function Basic() {
   return <RichTextEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### RichTextEditor
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `value` | `string` | `` | 当前值(受控) |
-| `onChange` | `() => void` | — | 值变化回调 |
-| `placeholder` | `string` | `开始输入...` | 占位文本 |
-| `editable` | `boolean` | `true` |  |
-| `showToolbar` | `boolean` | `true` |  |
-| `minHeight` | `number` | `200` |  |
-| `onUpload` | `(...args) => unknown` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop          | Type                   | Default       | 说明              |
+| ------------- | ---------------------- | ------------- | ----------------- |
+| `className`   | `string`               | —             | 自定义样式类名    |
+| `value`       | `string`               | ``            | 当前值(受控)      |
+| `onChange`    | `() => void`           | —             | 值变化回调        |
+| `placeholder` | `string`               | `开始输入...` | 占位文本          |
+| `editable`    | `boolean`              | `true`        |                   |
+| `showToolbar` | `boolean`              | `true`        |                   |
+| `minHeight`   | `number`               | `200`         |                   |
+| `onUpload`    | `(...args) => unknown` | —             |                   |
+| ...rest       | `React.HTMLAttributes` | —             | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-richtexteditor--docs)。
-

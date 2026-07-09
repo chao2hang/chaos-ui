@@ -106,9 +106,13 @@ function MapTrack({
         position: [points[0]!.lng, points[0]!.lat],
         icon: new AMap.Icon({
           size: new AMap.Size(26, 26),
-          image: "data:image/svg+xml," + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="' + color + '"><circle cx="12" cy="12" r="10" fill-opacity="0.3"/><circle cx="12" cy="12" r="5"/></svg>'
-          ),
+          image:
+            "data:image/svg+xml," +
+            encodeURIComponent(
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="' +
+                color +
+                '"><circle cx="12" cy="12" r="10" fill-opacity="0.3"/><circle cx="12" cy="12" r="5"/></svg>',
+            ),
           imageSize: new AMap.Size(26, 26),
         }),
         zIndex: 100,

@@ -1,5 +1,5 @@
-import { LanguageSwitcher } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { LanguageSwitcher } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # LanguageSwitcher 语言切换
 
@@ -24,19 +24,18 @@ export function Basic() {
   return <LanguageSwitcher />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### LanguageSwitcher
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `value` | `string` | — | 当前值(受控) <br/> Current value (controlled) |
-| `onChange` | `() => void` | — | 值变化回调 <br/> Callback when value changes |
-| `options` | `LanguageOption[]` | — | 可选项列表 <br/> Available options |
-| `align` | `"start" \| "center" \| "end"` | `end` | 对齐方式 <br/> Alignment |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                           | Default | 说明 / Description                                        |
+| ----------- | ------------------------------ | ------- | --------------------------------------------------------- |
+| `className` | `string`                       | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `value`     | `string`                       | —       | 当前值(受控) <br/> Current value (controlled)             |
+| `onChange`  | `() => void`                   | —       | 值变化回调 <br/> Callback when value changes              |
+| `options`   | `LanguageOption[]`             | —       | 可选项列表 <br/> Available options                        |
+| `align`     | `"start" \| "center" \| "end"` | `end`   | 对齐方式 <br/> Alignment                                  |
+| ...rest     | `React.HTMLAttributes`         | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

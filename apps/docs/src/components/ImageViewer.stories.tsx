@@ -12,9 +12,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     open: true,
-    images: [
-      { src: "https://picsum.photos/800/600", alt: "Sample image" },
-    ],
+    images: [{ src: "https://picsum.photos/800/600", alt: "Sample image" }],
   } as any,
 };
 

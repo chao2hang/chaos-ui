@@ -1,5 +1,5 @@
-import { Select } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Select } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Select
 
@@ -10,7 +10,6 @@ Dropdown option selector supporting single-select, search, and custom option ren
 ## When to Use
 
 Pick a single value from a predefined list; use search when options are many.
-
 
 ## Examples
 
@@ -32,23 +31,23 @@ export function Basic() {
 
 ### States
 
-<CodeBlock code={`<Select>Normal</Select>
-<Select disabled>Disabled</Select>`} lang="tsx" />
-
+<CodeBlock
+  code={`<Select>Normal</Select>
+<Select disabled>Disabled</Select>`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### Select
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 9 个子组件(SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton…),使用组合模式按需导入。
 - **Base UI**: 基于 `@base-ui/react` 无头(headless)原语构建,无障碍(a11y)开箱即用。
-
-

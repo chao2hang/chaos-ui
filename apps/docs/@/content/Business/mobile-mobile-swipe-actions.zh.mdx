@@ -11,7 +11,6 @@ Mobile Mobile Swipe Actions — 面向 ERP/企业场景的业务组件。
 
 适用于Mobile Mobile Swipe Actions相关场景。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -26,22 +25,22 @@ export function Basic() {
 
 ### SwipeActions
 
-| Prop | Type | Default | 说明 |
-| -------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `onSwipeLeft`  | `() => void`                  | —       |                                                             |
-| `onSwipeRight` | `() => void`                  | —       |                                                             |
-| `onSwipeUp`    | `() => void`                  | —       |                                                             |
-| `onSwipeDown`  | `() => void`                  | —       |                                                             |
-| `threshold`    | `number`                      | `80`    |                                                             |
-| `disabled` | `boolean` | — | 是否禁用 |
-| `leftAction`   | `{`                           | —       |                                                             |
-| `label` | `string` | — | 标签文本 |
-| `color` | `string` | — | 颜色主题 |
-| `onClick` | `() => void` | — | 点击回调 |
-| `icon` | `React.ReactNode` | — | 图标元素 |
-| `rightAction`  | `{`                           | —       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop           | Type                          | Default | 说明                  |
+| -------------- | ----------------------------- | ------- | --------------------- |
+| `className`    | `string`                      | —       | 自定义样式类名        |
+| `onSwipeLeft`  | `() => void`                  | —       |                       |
+| `onSwipeRight` | `() => void`                  | —       |                       |
+| `onSwipeUp`    | `() => void`                  | —       |                       |
+| `onSwipeDown`  | `() => void`                  | —       |                       |
+| `threshold`    | `number`                      | `80`    |                       |
+| `disabled`     | `boolean`                     | —       | 是否禁用              |
+| `leftAction`   | `{`                           | —       |                       |
+| `label`        | `string`                      | —       | 标签文本              |
+| `color`        | `string`                      | —       | 颜色主题              |
+| `onClick`      | `() => void`                  | —       | 点击回调              |
+| `icon`         | `React.ReactNode`             | —       | 图标元素              |
+| `rightAction`  | `{`                           | —       |                       |
+| ...rest        | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -49,4 +48,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mobile-mobile-swipe-actions--docs)。
-

@@ -1,5 +1,8 @@
-import { MediaRecorderComponent, MediaRecorder } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import {
+  MediaRecorderComponent,
+  MediaRecorder,
+} from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MediaRecorder Media Recorder
 
@@ -10,7 +13,6 @@ MediaRecorder — a business component for ERP / enterprise scenarios.
 ## When to Use
 
 Use when you need a media recorder.
-
 
 ## Examples
 
@@ -26,24 +28,21 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MediaRecorder
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `onStop` | `() => void` | — | Called with the recorded Blob when recording stops. |
-| `onStart` | `() => void` | — | Called when recording starts. |
-| `mimeType` | `string` | — | MIME type for the recording. Default audio/webm. |
-| `screen` | `boolean` | — | Whether to record video (screen) instead of audio. Default false. |
-| `maxDuration` | `number` | — | Maximum recording duration in seconds. 0 = unlimited. |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default | Description                                                       |
+| ------------- | ---------------------- | ------- | ----------------------------------------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                                                  |
+| `onStop`      | `() => void`           | —       | Called with the recorded Blob when recording stops.               |
+| `onStart`     | `() => void`           | —       | Called when recording starts.                                     |
+| `mimeType`    | `string`               | —       | MIME type for the recording. Default audio/webm.                  |
+| `screen`      | `boolean`              | —       | Whether to record video (screen) instead of audio. Default false. |
+| `maxDuration` | `number`               | —       | Maximum recording duration in seconds. 0 = unlimited.             |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes                                 |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 1 个子组件(MediaRecorderComponent),使用组合模式按需导入。
-
-

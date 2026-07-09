@@ -397,9 +397,7 @@ function ContractTemplate({
       const selected = currentTemplate.slice(start, end);
       const wrapped = `${marker}${selected}${marker}`;
       const newValue =
-        currentTemplate.slice(0, start) +
-        wrapped +
-        currentTemplate.slice(end);
+        currentTemplate.slice(0, start) + wrapped + currentTemplate.slice(end);
       handleTemplateChange(newValue);
 
       requestAnimationFrame(() => {
@@ -428,7 +426,7 @@ function ContractTemplate({
     <div
       data-slot="contract-template"
       className={cn(
-        "flex flex-col gap-4 rounded-lg border bg-card p-4",
+        "bg-card flex flex-col gap-4 rounded-lg border p-4",
         className,
       )}
       role="region"
@@ -508,7 +506,7 @@ function ContractTemplate({
             <div className="flex min-w-0 flex-1 flex-col gap-2">
               {/* Toolbar */}
               <div
-                className="flex items-center gap-1 rounded-md border bg-muted/50 px-2 py-1"
+                className="bg-muted/50 flex items-center gap-1 rounded-md border px-2 py-1"
                 role="toolbar"
                 aria-label="Text formatting"
               >
@@ -564,9 +562,7 @@ function ContractTemplate({
                 variant="ghost"
                 size="icon-xs"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                aria-label={
-                  sidebarOpen ? "Collapse sidebar" : "Expand sidebar"
-                }
+                aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
                 className="self-end"
                 type="button"
               >
@@ -585,10 +581,7 @@ function ContractTemplate({
                     </span>
                     {Array.from(groupedFields.entries()).map(
                       ([category, categoryFields]) => (
-                        <div
-                          key={category}
-                          className="flex flex-col gap-1.5"
-                        >
+                        <div key={category} className="flex flex-col gap-1.5">
                           <span className="text-muted-foreground/80 text-xs font-medium">
                             {CATEGORY_LABELS[category] ?? category}
                           </span>
@@ -600,10 +593,9 @@ function ContractTemplate({
                                 onClick={() => insertField(field.name)}
                                 className={cn(
                                   "inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-0.5 text-xs",
-                                  "bg-background transition-colors hover:bg-muted",
+                                  "bg-background hover:bg-muted transition-colors",
                                   "text-foreground/80 hover:text-foreground",
-                                  readOnly &&
-                                    "pointer-events-none opacity-50",
+                                  readOnly && "pointer-events-none opacity-50",
                                 )}
                                 title={field.description ?? field.label}
                                 aria-label={`Insert ${field.label} field`}
@@ -660,7 +652,7 @@ function ContractTemplate({
             <CardContent className="pt-4">
               {currentTemplate ? (
                 <div
-                  className="whitespace-pre-wrap text-sm leading-relaxed"
+                  className="text-sm leading-relaxed whitespace-pre-wrap"
                   data-slot="contract-template-preview-content"
                 >
                   {renderPreview(currentTemplate, sampleValues, fields)}
@@ -831,7 +823,9 @@ function ContractTemplate({
                 value={currentMetadata.amount ?? ""}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleMetadataChange({
-                    ...(e.target.value ? { amount: Number(e.target.value) } : {}),
+                    ...(e.target.value
+                      ? { amount: Number(e.target.value) }
+                      : {}),
                   })
                 }
                 placeholder="0.00"
@@ -853,7 +847,9 @@ function ContractTemplate({
                   value={currentMetadata.status ?? ""}
                   onValueChange={(value) => {
                     if (value) {
-                      handleMetadataChange({ status: value } as Partial<ContractMetadata>);
+                      handleMetadataChange({
+                        status: value,
+                      } as Partial<ContractMetadata>);
                     }
                   }}
                   disabled={readOnly}

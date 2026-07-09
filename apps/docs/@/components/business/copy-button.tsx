@@ -1,16 +1,16 @@
-"use client"
-import * as React from "react"
-import { CopyIcon, CheckIcon } from "lucide-react"
-import { cn } from "@chaos_team/chaos-ui/lib"
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks"
+"use client";
+import * as React from "react";
+import { CopyIcon, CheckIcon } from "lucide-react";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { useCopyToClipboard } from "@chaos_team/chaos-ui/hooks";
 
 interface CopyButtonProps {
-  text: string
-  label?: string
-  copiedLabel?: string
-  variant?: "default" | "ghost" | "outline"
-  className?: string
+  text: string;
+  label?: string;
+  copiedLabel?: string;
+  variant?: "default" | "ghost" | "outline";
+  className?: string;
 }
 
 function CopyButton({
@@ -20,11 +20,11 @@ function CopyButton({
   variant = "ghost",
   className,
 }: CopyButtonProps) {
-  const [copied, copy] = useCopyToClipboard()
+  const [copied, copy] = useCopyToClipboard();
 
   const handleClick = () => {
-    copy(text)
-  }
+    copy(text);
+  };
 
   return (
     <Button
@@ -37,10 +37,10 @@ function CopyButton({
       {copied ? <CheckIcon className="text-success" /> : <CopyIcon />}
       {copied ? copiedLabel : label}
     </Button>
-  )
+  );
 }
 
-CopyButton.displayName = "CopyButton"
+CopyButton.displayName = "CopyButton";
 
-export { CopyButton }
-export type { CopyButtonProps }
+export { CopyButton };
+export type { CopyButtonProps };

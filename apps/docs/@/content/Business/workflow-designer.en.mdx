@@ -1,17 +1,19 @@
-import { WorkflowDesigner } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { WorkflowDesigner } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # WorkflowDesigner Workflow Designer
 
 > Domain-specific business components for ERP scenarios.
 
-<WorkflowDesigner nodes={[{ id: "n1", type: "start", name: "开始" }]} edges={[{ from: "n1", to: "n2" }]} />
+<WorkflowDesigner
+  nodes={[{ id: "n1", type: "start", name: "开始" }]}
+  edges={[{ from: "n1", to: "n2" }]}
+/>
 WorkflowDesigner — workflow designer component.
 
 ## When to Use
 
 Use when you need a workflow designer.
-
 
 ## Examples
 
@@ -23,21 +25,18 @@ export function Basic() {
   return <WorkflowDesigner />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### WorkflowDesigner
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `nodes` | `Array<WorkflowNode>` | — |  |
-| `edges` | `Array<WorkflowEdge>` | — |  |
-| `onChange` | `() => void` | — | Callback when value changes |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `nodes`     | `Array<WorkflowNode>`  | —       |                                   |
+| `edges`     | `Array<WorkflowEdge>`  | —       |                                   |
+| `onChange`  | `() => void`           | —       | Callback when value changes       |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

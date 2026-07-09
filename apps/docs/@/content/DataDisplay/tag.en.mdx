@@ -1,5 +1,5 @@
-import { Tag } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Tag } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Tag
 
@@ -10,7 +10,6 @@ Small colored label for categorization and tagging.
 ## When to Use
 
 Use when you need a tag.
-
 
 ## Examples
 
@@ -24,69 +23,72 @@ export function Basic() {
 
 ### Variants
 
-<CodeBlock code={`{/* 展示 variant 变体 */}
+<CodeBlock
+  code={`{/* 展示 variant 变体 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag variant="default">Default</Tag>
   <Tag variant="secondary">Secondary</Tag>
   <Tag variant="destructive">Destructive</Tag>
   <Tag variant="outline">Outline</Tag>
   <Tag variant="success">Success</Tag>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <Tag size="sm">Sm</Tag>
   <Tag size="default">Default</Tag>
   <Tag size="lg">Lg</Tag>
-</div>`} lang="tsx" />
-
+</div>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Variant**
 
-| Variant | Description | 默认 |
-|---|---|---|
-| `default` | Default style | ✓ |
-| `secondary` | Secondary action style |  |
-| `destructive` | Destructive/danger style |  |
-| `outline` | Outlined style |  |
-| `success` | Success style |  |
-| `warning` | Warning style |  |
-| `info` | Informational style |  |
+| Variant       | Description              | 默认 |
+| ------------- | ------------------------ | ---- |
+| `default`     | Default style            | ✓    |
+| `secondary`   | Secondary action style   |      |
+| `destructive` | Destructive/danger style |      |
+| `outline`     | Outlined style           |      |
+| `success`     | Success style            |      |
+| `warning`     | Warning style            |      |
+| `info`        | Informational style      |      |
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `default` | Default size | ✓ |
-| `sm` | Small |  |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
 
 **rounded**
 
-| rounded | Description | 默认 |
-|---|---|---|
-| `default` |  | ✓ |
-| `full` |  |  |
-| `none` |  |  |
+| rounded   | Description | 默认 |
+| --------- | ----------- | ---- |
+| `default` |             | ✓    |
+| `full`    |             |      |
+| `none`    |             |      |
 
 ## API / Props
 
 ### Tag
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `closable` | `boolean` | `false` | Whether the tag can be closed/removed |
-| `onClose` | `() => void` | — | Called when close button is clicked |
-| `icon` | `React.ReactNode` | — | Icon element |
-| ...rest | `React.ComponentProps<"span">` | — | Inherits all `<span>` attributes |
+| Prop        | Type                           | Default | Description                           |
+| ----------- | ------------------------------ | ------- | ------------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                      |
+| `closable`  | `boolean`                      | `false` | Whether the tag can be closed/removed |
+| `onClose`   | `() => void`                   | —       | Called when close button is clicked   |
+| `icon`      | `React.ReactNode`              | —       | Icon element                          |
+| ...rest     | `React.ComponentProps<"span">` | —       | Inherits all `<span>` attributes      |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

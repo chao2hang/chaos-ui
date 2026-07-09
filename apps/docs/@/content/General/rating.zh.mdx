@@ -45,26 +45,26 @@ export function Readonly() {
 
 ## 尺寸说明
 
-| Size | 说明 | 默认 |
-| --------- | ------------------ | ---- |
-| `sm` | 小号 |  |
-| `default` | 默认 | ✓ |
-| `lg` | 大号 |  |
+| Size      | 说明 | 默认 |
+| --------- | ---- | ---- |
+| `sm`      | 小号 |      |
+| `default` | 默认 | ✓    |
+| `lg`      | 大号 |      |
 
 ## API / Props
 
 ### Rating
 
-| Prop | Type | Default | 说明 |
-| -------------- | --------------------------- | --------- | ------------------------------------- |
-| `value`        | `number`                    | —         | Controlled value / 受控值             |
-| `defaultValue` | `number`                    | `0`       | Default value / 默认值                |
-| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调            |
-| `max`          | `number`                    | `5`       | Max stars / 最大星数                  |
-| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小                  |
-| `readonly`     | `boolean`                   | `false`   | Read-only / 只读                      |
-| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星           |
-| `className` | `string` | — | 自定义样式类名 |
+| Prop           | Type                        | Default   | 说明                        |
+| -------------- | --------------------------- | --------- | --------------------------- |
+| `value`        | `number`                    | —         | Controlled value / 受控值   |
+| `defaultValue` | `number`                    | `0`       | Default value / 默认值      |
+| `onChange`     | `(value: number) => void`   | —         | Change callback / 变化回调  |
+| `max`          | `number`                    | `5`       | Max stars / 最大星数        |
+| `size`         | `"sm" \| "default" \| "lg"` | `default` | Star size / 星星大小        |
+| `readonly`     | `boolean`                   | `false`   | Read-only / 只读            |
+| `allowHalf`    | `boolean`                   | `false`   | Allow half stars / 允许半星 |
+| `className`    | `string`                    | —         | 自定义样式类名              |
 
 ## 注意事项
 
@@ -72,4 +72,3 @@ export function Readonly() {
 - **无障碍**: 使用 `role="radiogroup"` 和 `role="radio"` 支持 ARIA。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-rating--docs)。
-

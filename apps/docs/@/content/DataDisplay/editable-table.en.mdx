@@ -1,5 +1,5 @@
-import { EditableTable } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { EditableTable } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # EditableTable
 
@@ -11,7 +11,6 @@ EditableTable — Inline editable table with row add, edit, delete and batch ope
 
 Use when you need a editabletable.
 
-
 ## Examples
 
 ### Basic Usage
@@ -22,18 +21,15 @@ export function Basic() {
   return <EditableTable />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### EditableTable
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

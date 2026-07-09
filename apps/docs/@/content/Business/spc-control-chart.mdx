@@ -1,5 +1,5 @@
-import { SPCControlChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SPCControlChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SpcControlChart Spc Control Chart
 
@@ -24,25 +24,24 @@ export function Basic() {
   return <SPCControlChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SPCControlChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `samples` | `SPCSample[]` | — | Sample data. |
-| `title` | `string` | `SPC Control Chart` | Chart title. |
-| `centerLine` | `number` | — | Pre-calculated center line (mean). If omitted, computed from data. |
-| `ucl` | `number` | — | Pre-calculated UCL. If omitted, computed as mean + 3σ. |
-| `lcl` | `number` | — | Pre-calculated LCL. If omitted, computed as mean - 3σ. |
-| `sigma` | `number` | — | Pre-calculated σ (sigma). If omitted, computed from data. |
-| `showWarningLimits` | `boolean` | `true` | Show warning limits at ±2σ. |
-| `yLabel` | `string` | — | Y-axis label. |
-| `unit` | `string` | — | Unit suffix for values. |
-| `height` | `number` | `320` | Chart height in px. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                   | Default             | 说明 / Description                                                 |
+| ------------------- | ---------------------- | ------------------- | ------------------------------------------------------------------ |
+| `className`         | `string`               | —                   | 自定义样式类名 <br/> Custom CSS class                              |
+| `samples`           | `SPCSample[]`          | —                   | Sample data.                                                       |
+| `title`             | `string`               | `SPC Control Chart` | Chart title.                                                       |
+| `centerLine`        | `number`               | —                   | Pre-calculated center line (mean). If omitted, computed from data. |
+| `ucl`               | `number`               | —                   | Pre-calculated UCL. If omitted, computed as mean + 3σ.             |
+| `lcl`               | `number`               | —                   | Pre-calculated LCL. If omitted, computed as mean - 3σ.             |
+| `sigma`             | `number`               | —                   | Pre-calculated σ (sigma). If omitted, computed from data.          |
+| `showWarningLimits` | `boolean`              | `true`              | Show warning limits at ±2σ.                                        |
+| `yLabel`            | `string`               | —                   | Y-axis label.                                                      |
+| `unit`              | `string`               | —                   | Unit suffix for values.                                            |
+| `height`            | `number`               | `320`               | Chart height in px.                                                |
+| ...rest             | `React.HTMLAttributes` | —                   | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes          |
 
 ## 注意事项 / Notes
 

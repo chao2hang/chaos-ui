@@ -1,16 +1,22 @@
-import { MobileActionSheet } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { MobileActionSheet } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileActionSheet Mobile Action Sheet
 
 > 业务组件
 
-<MobileActionSheet open={open} onOpenChange={setOpen} actions={[{label:"编辑",onClick:edit},{label:"删除",onClick:del,danger:true}]} />
+<MobileActionSheet
+  open={open}
+  onOpenChange={setOpen}
+  actions={[
+    { label: "编辑", onClick: edit },
+    { label: "删除", onClick: del, danger: true },
+  ]}
+/>
 
 ## 何时使用
 
 适用于Mobile Action Sheet相关场景。
-
 
 ## 代码示例
 
@@ -22,22 +28,20 @@ export function Basic() {
   return <MobileActionSheet />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileActionSheet
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `open` | `boolean` | — | 是否打开(受控) |
-| `onOpenChange` | `() => void` | — | 打开状态变化回调 |
-| `actions` | `() => void` | — |  |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop           | Type                   | Default | 说明              |
+| -------------- | ---------------------- | ------- | ----------------- |
+| `className`    | `string`               | —       | 自定义样式类名    |
+| `open`         | `boolean`              | —       | 是否打开(受控)    |
+| `onOpenChange` | `() => void`           | —       | 打开状态变化回调  |
+| `actions`      | `() => void`           | —       |                   |
+| ...rest        | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobileactionsheet--docs)。
-

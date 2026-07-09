@@ -1,5 +1,5 @@
-import { MobileSelect } from "@chaos_team/chaos-ui/mobile"
-import { CodeBlock } from "@/components/code-block"
+import { MobileSelect } from "@chaos_team/chaos-ui/mobile";
+import { CodeBlock } from "@/components/code-block";
 
 # MobileSelect 移动端选择器
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要移动端选择器功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,24 +21,22 @@ export function Basic() {
   return <MobileSelect />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### MobileSelect
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `options` | `MobileSelectOption[]` | — | 可选项列表 |
-| `value` | `string` | — | 当前值(受控) |
-| `onValueChange` | `() => void` | — |  |
-| `placeholder` | `string` | — | 占位文本 |
-| `disabled` | `boolean` | — | 是否禁用 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop            | Type                   | Default | 说明              |
+| --------------- | ---------------------- | ------- | ----------------- |
+| `className`     | `string`               | —       | 自定义样式类名    |
+| `options`       | `MobileSelectOption[]` | —       | 可选项列表        |
+| `value`         | `string`               | —       | 当前值(受控)      |
+| `onValueChange` | `() => void`           | —       |                   |
+| `placeholder`   | `string`               | —       | 占位文本          |
+| `disabled`      | `boolean`              | —       | 是否禁用          |
+| ...rest         | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-mobileselect--docs)。
-

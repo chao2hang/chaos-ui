@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ProfileHeader, ProfileForm } from "@/components/business/profile"
-import { Button } from "@chaos_team/chaos-ui/ui"
+import type { Meta, StoryObj } from "@storybook/react";
+import { ProfileHeader, ProfileForm } from "@/components/business/profile";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
 const meta = {
   title: "Business/Profile",
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const HeaderDefault: Story = {
   render: () => (
@@ -34,7 +34,7 @@ export const HeaderDefault: Story = {
       />
     </div>
   ),
-}
+};
 
 export const HeaderMinimal: Story = {
   render: () => (
@@ -42,25 +42,30 @@ export const HeaderMinimal: Story = {
       <ProfileHeader user={{ name: "韩梅梅" }} />
     </div>
   ),
-}
+};
 
 export const FormExample: Story = {
   render: () => (
-    <div className="max-w-md rounded-md border bg-card p-6">
+    <div className="bg-card max-w-md rounded-md border p-6">
       <h3 className="mb-4 text-base font-semibold">编辑资料</h3>
       <ProfileForm
         fields={[
           { name: "name", label: "姓名", defaultValue: "李雷" },
-          { name: "email", label: "邮箱", defaultValue: "li.lei@chaos.com", type: "email" },
+          {
+            name: "email",
+            label: "邮箱",
+            defaultValue: "li.lei@chaos.com",
+            type: "email",
+          },
           { name: "bio", label: "简介", defaultValue: "设计系统构建者" },
         ]}
         onSubmit={(v) => console.info("submit", v)}
       />
     </div>
   ),
-}
+};
 
 export const Dark: Story = {
   ...HeaderDefault,
   parameters: { backgrounds: { default: "dark" } },
-}
+};

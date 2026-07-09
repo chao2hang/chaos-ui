@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react";
 import { FormAutosaveIndicator } from "@/components/business/form/form-autosave-indicator";
 import { FormDirtyWarning } from "@/components/business/form/form-dirty-warning";
 import { FormErrorSummary } from "@/components/business/form/form-error-summary";
@@ -6,24 +6,24 @@ import { FormStepSummary } from "@/components/business/form/form-step-summary";
 import { FormRepeater } from "@/components/business/form/form-repeater";
 import { FormFieldGroup } from "@/components/business/form/form-field-group";
 import { FormProgress } from "@/components/business/form/form-progress";
-import { Button } from "@chaos_team/chaos-ui/ui"
-import { Input } from "@chaos_team/chaos-ui/ui"
-import { useState } from "react"
+import { Button } from "@chaos_team/chaos-ui/ui";
+import { Input } from "@chaos_team/chaos-ui/ui";
+import { useState } from "react";
 
 const FormMeta = {
   title: "Business/Form",
   parameters: { layout: "padded" },
-} satisfies Meta
+} satisfies Meta;
 
-export default FormMeta
-type Story = StoryObj<typeof FormMeta>
+export default FormMeta;
+type Story = StoryObj<typeof FormMeta>;
 
 const sections = [
   { id: "name", title: "名称", description: "组织或个人名称" },
   { id: "email", title: "邮箱", description: "通知邮箱" },
   { id: "address", title: "地址", description: "物理地址", optional: true },
   { id: "tags", title: "标签", description: "用于分类" },
-]
+];
 
 export const AutosaveStates: Story = {
   render: () => (
@@ -35,11 +35,11 @@ export const AutosaveStates: Story = {
       <FormAutosaveIndicator status="error" error={new Error("网络错误")} />
     </div>
   ),
-}
+};
 
 export const DirtyWarningDemo: Story = {
   render: () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     return (
       <div className="space-y-3">
         <Button onClick={() => setOpen(true)}>显示离开确认</Button>
@@ -47,12 +47,15 @@ export const DirtyWarningDemo: Story = {
           open={open}
           onOpenChange={setOpen}
           onDiscard={() => setOpen(false)}
-          onSave={async () => { await new Promise((r) => setTimeout(r, 800)); setOpen(false) }}
+          onSave={async () => {
+            await new Promise((r) => setTimeout(r, 800));
+            setOpen(false);
+          }}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const ErrorSummaryDemo: Story = {
   render: () => (
@@ -69,7 +72,7 @@ export const ErrorSummaryDemo: Story = {
       <FormErrorSummary errors={[{ message: "服务器错误，请稍后重试" }]} />
     </div>
   ),
-}
+};
 
 export const StepSummaryDemo: Story = {
   render: () => (
@@ -77,19 +80,24 @@ export const StepSummaryDemo: Story = {
       <div className="text-sm font-medium">StepSummary 步骤汇总</div>
       <FormStepSummary
         steps={sections}
-        values={{ name: "Chaos Design", email: "hi@chaos.com", address: "", tags: ["design-system", "ui"] }}
+        values={{
+          name: "Chaos Design",
+          email: "hi@chaos.com",
+          address: "",
+          tags: ["design-system", "ui"],
+        }}
         onJumpTo={(id) => console.info("jump to", id)}
       />
     </div>
   ),
-}
+};
 
 export const RepeaterDemo: Story = {
   render: () => {
     const [items, setItems] = useState<Array<{ name: string; email: string }>>([
       { name: "Alice", email: "alice@example.com" },
       { name: "Bob", email: "bob@example.com" },
-    ])
+    ]);
     return (
       <div className="max-w-2xl space-y-3">
         <div className="text-sm font-medium">Repeater 字段数组</div>
@@ -129,15 +137,20 @@ export const RepeaterDemo: Story = {
           )}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const FieldGroupDemo: Story = {
   render: () => (
     <div className="max-w-2xl space-y-3">
       <div className="text-sm font-medium">FieldGroup 字段分组</div>
-      <FormFieldGroup legend="基本信息" description="公开显示的信息" required columns={2}>
+      <FormFieldGroup
+        legend="基本信息"
+        description="公开显示的信息"
+        required
+        columns={2}
+      >
         <Input placeholder="名称" />
         <Input placeholder="邮箱" />
       </FormFieldGroup>
@@ -148,18 +161,23 @@ export const FieldGroupDemo: Story = {
       </FormFieldGroup>
     </div>
   ),
-}
+};
 
 export const ProgressDemo: Story = {
   render: () => (
     <div className="max-w-md space-y-6">
       <div className="text-sm font-medium">Progress 进度条变体</div>
-      <FormProgress current={2} total={4} variant="bar" labels={["开始", "信息", "偏好", "完成"]} />
+      <FormProgress
+        current={2}
+        total={4}
+        variant="bar"
+        labels={["开始", "信息", "偏好", "完成"]}
+      />
       <FormProgress current={3} total={5} variant="steps" />
       <FormProgress current={2} total={5} variant="dots" />
     </div>
   ),
-}
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -199,4 +217,4 @@ export const AllVariants: Story = {
       </section>
     </div>
   ),
-}
+};

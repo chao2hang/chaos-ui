@@ -67,27 +67,40 @@ function ImMessage({
       <div
         className={cn(
           "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-medium",
-          isSent ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
+          isSent
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted text-muted-foreground",
         )}
         aria-hidden="true"
       >
         {avatarUrl ? (
-          <img src={avatarUrl} alt="" className="size-8 rounded-full object-cover" />
+          <img
+            src={avatarUrl}
+            alt=""
+            className="size-8 rounded-full object-cover"
+          />
         ) : (
           initial
         )}
       </div>
-      <div className={cn("flex max-w-[75%] flex-col gap-1", isSent ? "items-end" : "items-start")}>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          {author && <span className="font-medium text-foreground">{author}</span>}
+      <div
+        className={cn(
+          "flex max-w-[75%] flex-col gap-1",
+          isSent ? "items-end" : "items-start",
+        )}
+      >
+        <div className="text-muted-foreground flex items-center gap-2 text-xs">
+          {author && (
+            <span className="text-foreground font-medium">{author}</span>
+          )}
           {time && <span>{time}</span>}
         </div>
         <div
           className={cn(
             "rounded-2xl px-3 py-2 text-sm",
             isSent
-              ? "rounded-br-sm bg-primary text-primary-foreground"
-              : "rounded-bl-sm bg-muted",
+              ? "bg-primary text-primary-foreground rounded-br-sm"
+              : "bg-muted rounded-bl-sm",
           )}
         >
           {content || <span className="text-muted-foreground">（空消息）</span>}
@@ -99,7 +112,9 @@ function ImMessage({
                 key={a.id}
                 className={cn(
                   "flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs",
-                  isSent ? "border-primary/30 bg-primary/10" : "border-border bg-background",
+                  isSent
+                    ? "border-primary/30 bg-primary/10"
+                    : "border-border bg-background",
                 )}
               >
                 <PaperclipIcon className="size-3" />

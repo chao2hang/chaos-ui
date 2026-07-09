@@ -1,11 +1,11 @@
-import { SankeyChart } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { SankeyChart } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # SankeyChart Sankey Chart
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-with weighted connecting bands (pure SVG, no deps).  桑基图(流量流转)
+with weighted connecting bands (pure SVG, no deps). 桑基图(流量流转)
 SankeyChart — sankey chart component.
 
 ## 何时使用 / When to Use
@@ -24,16 +24,15 @@ export function Basic() {
   return <SankeyChart />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### SankeyChart
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `flows` | `Array<T>` | — | Source → target flows. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                   | Default | 说明 / Description                                        |
+| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `flows`     | `Array<T>`             | —       | Source → target flows.                                    |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -61,13 +61,13 @@ function FileCard({
     <div
       data-slot="file-card"
       className={cn(
-        "flex items-center gap-3 rounded-lg border bg-card p-3 text-sm",
+        "bg-card flex items-center gap-3 rounded-lg border p-3 text-sm",
         className,
       )}
     >
       <span
         aria-hidden="true"
-        className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground"
+        className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md"
       >
         {pickIcon(type)}
       </span>
@@ -76,7 +76,7 @@ function FileCard({
         <span className="truncate font-medium" title={name}>
           {name}
         </span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           {formatFileSize(size)}
         </span>
       </div>

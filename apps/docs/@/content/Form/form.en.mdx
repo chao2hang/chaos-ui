@@ -1,5 +1,5 @@
-import { Form, FormItem, FormField } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { Form, FormItem, FormField } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # Form
 
@@ -10,7 +10,6 @@ Form container enabling data collection, validation, and submission with FormFie
 ## When to Use
 
 Collect, validate, and submit structured user input.
-
 
 ## Examples
 
@@ -26,31 +25,28 @@ export function Basic() {
   )
 }`} lang="tsx" />
 
-
 ## Style Variants
 
 **layout**
 
-| layout | Description | 默认 |
-|---|---|---|
-| `vertical` |  | ✓ |
-| `horizontal` |  |  |
-| `inline` |  |  |
+| layout       | Description | 默认 |
+| ------------ | ----------- | ---- |
+| `vertical`   |             | ✓    |
+| `horizontal` |             |      |
+| `inline`     |             |      |
 
 ## API / Props
 
 ### Form
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `onSubmit` | `() => void` | — | Called on submit with form data |
-| `errors` | `Record<string, string>` | — | Validation errors map (field name -> error message) |
-| ...rest | `React.ComponentProps<"form">` | — | Inherits all `<form>` attributes |
+| Prop        | Type                           | Default | Description                                         |
+| ----------- | ------------------------------ | ------- | --------------------------------------------------- |
+| `className` | `string`                       | —       | Custom CSS class                                    |
+| `onSubmit`  | `() => void`                   | —       | Called on submit with form data                     |
+| `errors`    | `Record<string, string>`       | —       | Validation errors map (field name -> error message) |
+| ...rest     | `React.ComponentProps<"form">` | —       | Inherits all `<form>` attributes                    |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 2 个子组件(FormItem, FormField),使用组合模式按需导入。
-
-

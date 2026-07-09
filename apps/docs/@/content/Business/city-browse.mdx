@@ -1,5 +1,5 @@
-import { CityBrowse } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { CityBrowse } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # CityBrowse City Browse
 
@@ -24,22 +24,21 @@ export function Basic() {
   return <CityBrowse />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### CityBrowse
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `open` | `boolean` | — | Whether the dialog is open. / 是否打开 |
-| `onOpenChange` | `() => void` | — | Open state change handler. / 开关回调 |
-| `onSelect` | `() => void` | — | Called with the selected city item. / 选中回调 |
-| `items` | `CityBrowseItem[]` | — | City list to browse (defaults to an empty list). / 候选城市 |
-| `title` | `string` | — | Dialog title (defaults to localized "选择城市"). / 弹窗标题 |
-| `searchPlaceholder` | `string` | — | Search placeholder. / 搜索占位 |
-| `emptyText` | `string` | — | Empty-state text. / 空状态文案 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop                | Type                   | Default | 说明 / Description                                          |
+| ------------------- | ---------------------- | ------- | ----------------------------------------------------------- |
+| `className`         | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                       |
+| `open`              | `boolean`              | —       | Whether the dialog is open. / 是否打开                      |
+| `onOpenChange`      | `() => void`           | —       | Open state change handler. / 开关回调                       |
+| `onSelect`          | `() => void`           | —       | Called with the selected city item. / 选中回调              |
+| `items`             | `CityBrowseItem[]`     | —       | City list to browse (defaults to an empty list). / 候选城市 |
+| `title`             | `string`               | —       | Dialog title (defaults to localized "选择城市"). / 弹窗标题 |
+| `searchPlaceholder` | `string`               | —       | Search placeholder. / 搜索占位                              |
+| `emptyText`         | `string`               | —       | Empty-state text. / 空状态文案                              |
+| ...rest             | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes   |
 
 ## 注意事项 / Notes
 

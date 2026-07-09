@@ -49,7 +49,10 @@ function ChatMessageInput({
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const next = maxLength !== undefined ? e.target.value.slice(0, maxLength) : e.target.value;
+      const next =
+        maxLength !== undefined
+          ? e.target.value.slice(0, maxLength)
+          : e.target.value;
       if (!controlled) setInternal(next);
       onChange?.(next);
     },
@@ -73,13 +76,14 @@ function ChatMessageInput({
     [handleSend],
   );
 
-  const remaining = maxLength !== undefined ? maxLength - current.length : undefined;
+  const remaining =
+    maxLength !== undefined ? maxLength - current.length : undefined;
 
   return (
     <div
       data-slot="chat-message-input"
       className={cn(
-        "flex items-end gap-2 rounded-xl border border-border bg-background p-2 focus-within:ring-2 focus-within:ring-ring/40",
+        "border-border bg-background focus-within:ring-ring/40 flex items-end gap-2 rounded-xl border p-2 focus-within:ring-2",
         disabled && "opacity-60",
         className,
       )}
@@ -94,11 +98,17 @@ function ChatMessageInput({
         disabled={disabled}
         maxLength={maxLength}
         aria-label="Message"
-        className="max-h-[200px] min-h-[1.5rem] flex-1 resize-none bg-transparent px-1 py-1 text-sm outline-none placeholder:text-muted-foreground"
+        className="placeholder:text-muted-foreground max-h-[200px] min-h-[1.5rem] flex-1 resize-none bg-transparent px-1 py-1 text-sm outline-none"
       />
       <div className="flex shrink-0 flex-col items-end gap-0.5">
         {remaining !== undefined ? (
-          <span className={cn("text-[0.65rem] tabular-nums", remaining < 10 && "text-destructive")} aria-live="polite">
+          <span
+            className={cn(
+              "text-[0.65rem] tabular-nums",
+              remaining < 10 && "text-destructive",
+            )}
+            aria-live="polite"
+          >
             {remaining}
           </span>
         ) : null}

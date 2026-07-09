@@ -1,18 +1,33 @@
-"use client"
-import * as React from "react"
-import { PlusIcon, XIcon, GripVerticalIcon } from "lucide-react"
-import { cn } from "@chaos_team/chaos-ui/lib"
-import { Button } from "@chaos_team/chaos-ui/ui"
+"use client";
+import * as React from "react";
+import { PlusIcon, XIcon, GripVerticalIcon } from "lucide-react";
+import { cn } from "@chaos_team/chaos-ui/lib";
+import { Button } from "@chaos_team/chaos-ui/ui";
 
-interface FormRepeaterProps<T> extends Omit<React.ComponentProps<"div">, "onChange"> {
-  value: T[]
-  onChange?: (value: T[]) => void
-  defaultItem: () => T
-  min?: number
-  max?: number
-  addLabel?: string
-  renderItem: (item: T, index: number, meta: { onChange: (item: T) => void; onRemove: () => void; canRemove: boolean; canMoveUp: boolean; canMoveDown: boolean; onMoveUp: () => void; onMoveDown: () => void }) => React.ReactNode
-  className?: string
+interface FormRepeaterProps<T> extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
+  value: T[];
+  onChange?: (value: T[]) => void;
+  defaultItem: () => T;
+  min?: number;
+  max?: number;
+  addLabel?: string;
+  renderItem: (
+    item: T,
+    index: number,
+    meta: {
+      onChange: (item: T) => void;
+      onRemove: () => void;
+      canRemove: boolean;
+      canMoveUp: boolean;
+      canMoveDown: boolean;
+      onMoveUp: () => void;
+      onMoveDown: () => void;
+    },
+  ) => React.ReactNode;
+  className?: string;
 }
 
 export function FormRepeater<T>({
@@ -27,28 +42,32 @@ export function FormRepeater<T>({
   ...props
 }: FormRepeaterProps<T>) {
   const setAt = (i: number, next: T) => {
-    const arr = value.slice()
-    arr[i] = next
-    onChange?.(arr)
-  }
+    const arr = value.slice();
+    arr[i] = next;
+    onChange?.(arr);
+  };
   const removeAt = (i: number) => {
-    if (value.length <= min) return
-    onChange?.(value.filter((_, idx) => idx !== i))
-  }
+    if (value.length <= min) return;
+    onChange?.(value.filter((_, idx) => idx !== i));
+  };
   const add = () => {
-    if (value.length >= max) return
-    onChange?.([...value, defaultItem()])
-  }
+    if (value.length >= max) return;
+    onChange?.([...value, defaultItem()]);
+  };
   const move = (from: number, to: number) => {
-    if (to < 0 || to >= value.length) return
-    const arr = value.slice()
-    const [moved] = arr.splice(from, 1)
-    arr.splice(to, 0, moved)
-    onChange?.(arr)
-  }
+    if (to < 0 || to >= value.length) return;
+    const arr = value.slice();
+    const [moved] = arr.splice(from, 1);
+    arr.splice(to, 0, moved);
+    onChange?.(arr);
+  };
 
   return (
-    <div data-slot="form-repeater" className={cn("space-y-2", className)} {...props}>
+    <div
+      data-slot="form-repeater"
+      className={cn("space-y-2", className)}
+      {...props}
+    >
       {value.map((item, i) => {
         const meta = {
           onChange: (next: T) => setAt(i, next),
@@ -58,14 +77,17 @@ export function FormRepeater<T>({
           canMoveDown: i < value.length - 1,
           onMoveUp: () => move(i, i - 1),
           onMoveDown: () => move(i, i + 1),
-        }
+        };
         return (
-          <div key={i} className="flex items-start gap-2 rounded-md border bg-card p-2">
-            <div className="mt-2 flex flex-col items-center gap-1 text-muted-foreground">
+          <div
+            key={i}
+            className="bg-card flex items-start gap-2 rounded-md border p-2"
+          >
+            <div className="text-muted-foreground mt-2 flex flex-col items-center gap-1">
               <GripVerticalIcon className="size-4 cursor-grab" />
               <span className="text-xs tabular-nums">{i + 1}</span>
             </div>
-            <div className="flex-1 min-w-0">{renderItem(item, i, meta)}</div>
+            <div className="min-w-0 flex-1">{renderItem(item, i, meta)}</div>
             <Button
               type="button"
               variant="ghost"
@@ -77,7 +99,7 @@ export function FormRepeater<T>({
               <XIcon />
             </Button>
           </div>
-        )
+        );
       })}
       <Button
         type="button"
@@ -89,8 +111,12 @@ export function FormRepeater<T>({
       >
         <PlusIcon />
         {addLabel}
-        {max < Infinity && <span className="text-xs text-muted-foreground">({value.length}/{max})</span>}
+        {max < Infinity && (
+          <span className="text-muted-foreground text-xs">
+            ({value.length}/{max})
+          </span>
+        )}
       </Button>
     </div>
-  )
+  );
 }

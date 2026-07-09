@@ -1,5 +1,5 @@
-import { InputSearch } from "@chaos_team/chaos-ui/ui"
-import { CodeBlock } from "@/components/code-block"
+import { InputSearch } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
 
 # InputSearch
 
@@ -10,7 +10,6 @@ InputSearch — a form controls for user input and data submission. from Chaos U
 ## When to Use
 
 Use when you need an input search.
-
 
 ## Examples
 
@@ -24,44 +23,47 @@ export function Basic() {
 
 ### Sizes
 
-<CodeBlock code={`{/* 尺寸对照 */}
+<CodeBlock
+  code={`{/* 尺寸对照 */}
 <div className="flex flex-wrap items-center gap-3">
   <InputSearch size="sm">Sm</InputSearch>
   <InputSearch size="default">Default</InputSearch>
   <InputSearch size="lg">Lg</InputSearch>
-</div>`} lang="tsx" />
+</div>`}
+  lang="tsx"
+/>
 
 ### States
 
-<CodeBlock code={`<InputSearch>Normal</InputSearch>
-<InputSearch disabled>Disabled</InputSearch>`} lang="tsx" />
-
+<CodeBlock
+  code={`<InputSearch>Normal</InputSearch>
+<InputSearch disabled>Disabled</InputSearch>`}
+  lang="tsx"
+/>
 
 ## Style Variants
 
 **Size**
 
-| Size | Description | 默认 |
-|---|---|---|
-| `default` | Default size | ✓ |
-| `sm` | Small |  |
-| `lg` | Large |  |
+| Size      | Description  | 默认 |
+| --------- | ------------ | ---- |
+| `default` | Default size | ✓    |
+| `sm`      | Small        |      |
+| `lg`      | Large        |      |
 
 ## API / Props
 
 ### InputSearch
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | Controlled value |
-| `onValueChange` | `() => void` | — | Change handler |
-| `onSearch` | `() => void` | — | Called when search is submitted |
-| `loading` | `boolean` | `false` | Whether to show loading spinner |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop            | Type                   | Default | Description                       |
+| --------------- | ---------------------- | ------- | --------------------------------- |
+| `className`     | `string`               | —       | Custom CSS class                  |
+| `value`         | `string`               | —       | Controlled value                  |
+| `onValueChange` | `() => void`           | —       | Change handler                    |
+| `onSearch`      | `() => void`           | —       | Called when search is submitted   |
+| `loading`       | `boolean`              | `false` | Whether to show loading spinner   |
+| ...rest         | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

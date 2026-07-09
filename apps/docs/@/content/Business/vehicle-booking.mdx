@@ -1,5 +1,5 @@
-import { VehicleBooking } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { VehicleBooking } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # VehicleBooking Vehicle Booking
 
@@ -24,20 +24,19 @@ export function Basic() {
   return <VehicleBooking />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### VehicleBooking
 
-| Prop | Type | Default | 说明 / Description |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 <br/> Custom CSS class |
-| `vehicles` | `Vehicle[]` | — | Available vehicles. |
-| `bookings` | `VehicleBookingEntry[]` | — | Existing bookings for conflict detection. |
-| `onSubmit` | `() => void` | — | Submit handler. |
-| `onCancel` | `() => void` | — | Cancel handler. |
-| `readOnly` | `boolean` | `false` | Read-only mode. |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                    | Default | 说明 / Description                                        |
+| ----------- | ----------------------- | ------- | --------------------------------------------------------- |
+| `className` | `string`                | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `vehicles`  | `Vehicle[]`             | —       | Available vehicles.                                       |
+| `bookings`  | `VehicleBookingEntry[]` | —       | Existing bookings for conflict detection.                 |
+| `onSubmit`  | `() => void`            | —       | Submit handler.                                           |
+| `onCancel`  | `() => void`            | —       | Cancel handler.                                           |
+| `readOnly`  | `boolean`               | `false` | Read-only mode.                                           |
+| ...rest     | `React.HTMLAttributes`  | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
 
 ## 注意事项 / Notes
 

@@ -7,7 +7,6 @@ const meta: Meta<typeof AdminHeader> = {
   component: AdminHeader,
   tags: ["autodocs"],
   parameters: { layout: "fullscreen" },
-
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

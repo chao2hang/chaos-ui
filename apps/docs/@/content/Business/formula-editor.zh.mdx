@@ -1,5 +1,5 @@
-import { FormulaEditor } from "@chaos_team/chaos-ui/business"
-import { CodeBlock } from "@/components/code-block"
+import { FormulaEditor } from "@chaos_team/chaos-ui/business";
+import { CodeBlock } from "@/components/code-block";
 
 # FormulaEditor 公式编辑器
 
@@ -11,7 +11,6 @@ import { CodeBlock } from "@/components/code-block"
 
 需要公式编辑器功能时使用本组件。
 
-
 ## 代码示例
 
 ### 基础用法
@@ -22,18 +21,17 @@ export function Basic() {
   return <FormulaEditor />
 }`} lang="tsx" />
 
-
 ## API / Props
 
 ### FormulaEditor
 
-| Prop | Type | Default | 说明 |
-|---|---|---|---|
-| `className` | `string` | — | 自定义样式类名 |
-| `value` | `string` | `` | 当前值(受控) |
-| `onChange` | `() => void` | — | 值变化回调 |
-| `placeholder` | `string` | `输入公式...` | 占位文本 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop          | Type                          | Default       | 说明                  |
+| ------------- | ----------------------------- | ------------- | --------------------- |
+| `className`   | `string`                      | —             | 自定义样式类名        |
+| `value`       | `string`                      | ``            | 当前值(受控)          |
+| `onChange`    | `() => void`                  | —             | 值变化回调            |
+| `placeholder` | `string`                      | `输入公式...` | 占位文本              |
+| ...rest       | `React.ComponentProps<"div">` | —             | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
@@ -41,4 +39,3 @@ export function Basic() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-formulaeditor--docs)。
-
