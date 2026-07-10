@@ -51,8 +51,17 @@ RUN pnpm run build-storybook && \
 
 # 构建 Next.js 展示站
 # 使用 NODE_OPTIONS 增加内存，避免 551 页面静态生成时 OOM
-RUN --mount=type=cache,target=/app/apps/docs/.next/cache \
-    cd apps/docs && NODE_OPTIONS=--max-old-space-size=4096 pnpm run build 2>&1 && \
+# 移除 cache mount 以排除缓存损坏问题，添加详细错误输出
+RUN cd apps/docs && NODE_OPTIONS=--max-old-space-size=4096 pnpm run build; \
+    EXIT_CODE=$?; \
+    if [ $EXIT_CODE -ne 0 ]; then \
+      echo "=== Next.js build FAILED with exit code $EXIT_CODE ==="; \
+      echo "=== .next directory contents ==="; \
+      ls -la .next/ 2>/dev/null || echo "(no .next directory)"; \
+      echo "=== Checking for error logs ==="; \
+      find .next -name "*.log" -exec cat {} \; 2>/dev/null || true; \
+      exit $EXIT_CODE; \
+    fi; \
     echo "=== Next.js build complete ==="
 
 # ─── Runtime Stage ───
