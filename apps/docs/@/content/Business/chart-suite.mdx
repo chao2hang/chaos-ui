@@ -24,20 +24,54 @@ export function Basic() {
   return <ChartSuite />
 }`} lang="tsx" />
 
+### 多系列面积图（渐变填充）/ Multi-Series Area with Gradient
+
+`type="area"` 支持多系列叠加渲染，每个系列使用独立的 SVG 渐变填充：
+
+<CodeBlock code={`import { ChartSuite } from "@chaos_team/chaos-ui/business"
+
+const data = [
+{ x: "Q1", y: 120, group: "营收" },
+{ x: "Q2", y: 180, group: "营收" },
+{ x: "Q3", y: 150, group: "营收" },
+{ x: "Q4", y: 210, group: "营收" },
+{ x: "Q1", y: 80, group: "支出" },
+{ x: "Q2", y: 110, group: "支出" },
+{ x: "Q3", y: 95, group: "支出" },
+{ x: "Q4", y: 130, group: "支出" },
+]
+
+export function MultiSeriesArea() {
+  return (
+    <ChartSuite
+      type="area"
+      data={data}
+      series="group"
+      height={220}
+    />
+  )
+}`} lang="tsx" />
+
 ## API / Props
 
 ### ChartSuite
 
-| Prop        | Type                                       | Default | 说明 / Description                                        |
-| ----------- | ------------------------------------------ | ------- | --------------------------------------------------------- |
-| `className` | `string`                                   | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| `type`      | `"line" \| "bar" \| "pie" \| "radar" \...` | —       | 类型 <br/> Type                                           |
-| `data`      | `unknown[]`                                | —       | 数据源 <br/> Data source                                  |
-| `xField`    | `string`                                   | `x`     |                                                           |
-| `yField`    | `string`                                   | `y`     |                                                           |
-| `series`    | `string`                                   | —       |                                                           |
-| `height`    | `number`                                   | `200`   | 组件高度 <br/> Component height                           |
-| ...rest     | `React.HTMLAttributes`                     | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                                                         | Default | 说明 / Description                                        |
+| ----------- | ------------------------------------------------------------ | ------- | --------------------------------------------------------- |
+| `className` | `string`                                                     | —       | 自定义样式类名 <br/> Custom CSS class                     |
+| `type`      | `"line" \| "bar" \| "pie" \| "radar" \| "scatter" \| "area"` | —       | 图表类型 <br/> Chart type                                 |
+| `data`      | `unknown[]`                                                  | —       | 数据源 <br/> Data source                                  |
+| `xField`    | `string`                                                     | `x`     | X 轴字段名 <br/> X field name                             |
+| `yField`    | `string`                                                     | `y`     | Y 轴字段名 <br/> Y field name                             |
+| `series`    | `string`                                                     | —       | 系列分组字段名 <br/> Series group field name              |
+| `height`    | `number`                                                     | `200`   | 组件高度 <br/> Component height                           |
+| ...rest     | `React.HTMLAttributes`                                       | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+### type="area" 多系列说明 / Multi-Series Area
+
+- 设置 `series` 字段名后，`type="area"` 会将所有分组渲染为叠加的半透明面积区域
+- 每个系列使用独立的 SVG `linearGradient` 渐变填充（从 35% 不透明度渐变到 2%）
+- 不设置 `series` 时，所有数据作为单系列渲染
 
 ## 注意事项 / Notes
 

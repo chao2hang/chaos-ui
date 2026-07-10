@@ -723,6 +723,10 @@ export type {
   PolicyRule,
 } from "./password-policy-validator";
 
+// Brand components (AppLogo, BrandBadge)
+export { AppLogo, BrandBadge } from "./brand";
+export type { AppLogoProps, BrandBadgeProps } from "./brand";
+
 // Theme provider (re-exports next-themes with typed context)
 export { ThemeProvider, useTheme } from "./theme-provider";
 export type {

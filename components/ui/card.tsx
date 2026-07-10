@@ -18,19 +18,37 @@ function Card({
   className,
   size = "default",
   flush,
+  shadow = "default",
   ...props
 }: React.ComponentProps<"div"> & {
   size?: "default" | "sm";
   /** Remove padding on CardContent for edge-to-edge tables / 内容通栏 */
   flush?: boolean;
+  /**
+   * Shadow variant / 阴影变体
+   * @since 1.2.0
+   */
+  shadow?: "none" | "default" | "sm" | "md" | "lg" | "xl" | "2xl" | "brand";
 }) {
+  const shadowClass = {
+    none: "shadow-none",
+    default: "shadow-sm",
+    sm: "shadow-sm",
+    md: "shadow-md",
+    lg: "shadow-lg",
+    xl: "shadow-xl",
+    "2xl": "shadow-2xl shadow-primary/5",
+    brand: "shadow-xl shadow-primary/10",
+  }[shadow];
   return (
     <div
       data-slot="card"
       data-size={size}
+      data-shadow={shadow}
       {...(flush ? { "data-flush": "" } : {})}
       className={cn(
-        "group/card bg-card text-card-foreground border-border flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border py-(--card-spacing) text-sm shadow-sm [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        "group/card bg-card text-card-foreground border-border flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border py-(--card-spacing) text-sm [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        shadowClass,
         className,
       )}
       {...props}

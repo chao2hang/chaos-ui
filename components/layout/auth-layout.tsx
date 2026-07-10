@@ -24,6 +24,17 @@ interface AuthLayoutProps extends React.ComponentProps<"div"> {
   brand?: React.ReactNode;
   /** Brand panel background class (used when brand is a string or empty) / 品牌区背景样式 */
   brandClassName?: string;
+  /**
+   * Background style for the entire layout root.
+   * Accepts preset keywords or a raw CSS background value (gradient, color, etc.).
+   * / 整体布局背景样式，支持预设关键字或自定义 CSS background 值。
+   * @since 1.2.0
+   * @example
+   * <AuthLayout background="slate" />
+   * <AuthLayout background="linear-gradient(to bottom, #f0f9ff, #e0f2fe)" />
+   */
+  background?:
+    "default" | "slate" | "slate-soft" | "primary-soft" | "dark" | string;
   /** Brand panel width ratio (default: 1/2) / 品牌区宽度比例 */
   brandWidth?: "1/3" | "1/2" | "2/3";
   /** Brand panel vertical alignment / 品牌区垂直对齐 */
@@ -74,10 +85,20 @@ const hideBelowMap = {
   lg: "hidden lg:flex",
 };
 
+const backgroundPresetMap: Record<string, string> = {
+  default: "bg-background",
+  slate: "bg-slate-50 dark:bg-slate-950",
+  "slate-soft": "bg-slate-50/50 dark:bg-slate-950/50",
+  "primary-soft":
+    "from-primary/10 via-background to-secondary/10 bg-gradient-to-br",
+  dark: "bg-slate-900 dark:bg-black",
+};
+
 function AuthLayout({
   variant = "centered",
   brand,
   brandClassName,
+  background = "default",
   brandWidth = "1/2",
   brandAlign = "center",
   brandJustify = "center",
@@ -92,13 +113,17 @@ function AuthLayout({
   children,
   ...props
 }: AuthLayoutProps) {
+  const bgClass = backgroundPresetMap[background] ?? "";
+  const bgStyle = bgClass ? undefined : { background };
+  const rootClassName = bgClass || "bg-background";
   if (variant === "split" || brand) {
     const hideBelowClasses = hideBelowMap[brandHideBelow] ?? hideBelowMap.lg;
     return (
       <div
         data-slot="auth-layout"
         data-variant="split"
-        className={cn("bg-background flex min-h-svh", className)}
+        className={cn("flex min-h-svh", rootClassName, className)}
+        style={bgStyle}
         {...props}
       >
         {/* Brand panel — configurable visibility breakpoint, width, alignment */}
@@ -157,9 +182,11 @@ function AuthLayout({
       data-slot="auth-layout"
       data-variant="centered"
       className={cn(
-        "from-primary/10 via-background to-secondary/10 flex min-h-svh flex-col items-center justify-center bg-gradient-to-br p-4",
+        "flex min-h-svh flex-col items-center justify-center p-4",
+        rootClassName,
         className,
       )}
+      style={bgStyle}
       {...props}
     >
       <div className="w-full" style={{ maxWidth: formMaxWidth }}>

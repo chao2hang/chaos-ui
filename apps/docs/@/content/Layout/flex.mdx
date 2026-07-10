@@ -79,10 +79,34 @@ export function Basic() {
 
 ### Flex
 
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
+| Prop        | Type                                                                | Default | 说明 / Description                                                          |
+| ----------- | ------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------- |
+| `className` | `string`                                                            | —       | 自定义样式类名 <br/> Custom CSS class                                       |
+| `direction` | `"row" \| "col" \| "row-reverse" \| "col-reverse"`                  | `"row"` | 主轴方向 <br/> Flex direction                                               |
+| `justify`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"` | —       | 主轴对齐 <br/> Justify content                                              |
+| `align`     | `"start" \| "center" \| "end" \| "baseline" \| "stretch"`           | —       | 交叉轴对齐 <br/> Align items                                                |
+| `gap`       | `"none" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| number`          | `"md"`  | 间距 <br/> Gap                                                              |
+| `wrap`      | `boolean`                                                           | `false` | 是否换行 <br/> Whether to wrap                                              |
+| `grow`      | `number`                                                            | —       | flex-grow 值 <br/> Flex grow value                                          |
+| `shrink`    | `number`                                                            | —       | flex-shrink 值 <br/> Flex shrink value                                      |
+| `basis`     | `string \| number`                                                  | —       | flex-basis <br/> Flex basis                                                 |
+| `flex`      | `number`                                                            | —       | 数字比例简写，设置 `flex: <n>`（1.2.0+） <br/> Flex shorthand numeric ratio |
+| ...rest     | `React.ComponentProps<"div">`                                       | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes                 |
+
+### flex 数字比例 / Flex Numeric Ratio
+
+`flex` prop 支持数字比例布局，适用于任意比例的空间分配（如 17:7 Dashboard 布局）：
+
+<CodeBlock code={`import { Flex } from "@chaos_team/chaos-ui/ui"
+
+export function RatioLayout() {
+  return (
+    <Flex className="w-full gap-2">
+      <Flex flex={17} className="bg-blue-100 rounded p-4">Wide (flex=17)</Flex>
+      <Flex flex={7} className="bg-blue-200 rounded p-4">Narrow (flex=7)</Flex>
+    </Flex>
+  )
+}`} lang="tsx" />
 
 ## 注意事项 / Notes
 

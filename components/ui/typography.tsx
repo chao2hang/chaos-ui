@@ -58,8 +58,27 @@ interface TextProps extends React.ComponentProps<"span"> {
   size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl";
   /** Text weight / 文本粗细 */
   weight?: "normal" | "medium" | "semibold" | "bold";
-  /** Text color variant / 文本颜色 */
-  variant?: "default" | "muted" | "primary" | "secondary" | "destructive" | "success" | "warning";
+  /**
+   * Text color variant / 文本颜色
+   *
+   * Includes sidebar semantic variants for layout contexts:
+   * - `sidebar-foreground`: full-opacity sidebar text (same as foreground)
+   * - `sidebar-muted`: 60% opacity sidebar text
+   * - `sidebar-accent`: accent-colored sidebar text
+   *
+   * @since 1.2.0 sidebar semantic variants added
+   */
+  variant?:
+    | "default"
+    | "muted"
+    | "primary"
+    | "secondary"
+    | "destructive"
+    | "success"
+    | "warning"
+    | "sidebar-foreground"
+    | "sidebar-muted"
+    | "sidebar-accent";
   /** Whether text is italic / 是否斜体 */
   italic?: boolean;
   /** Whether text is underlined / 是否下划线 */
@@ -94,6 +113,9 @@ const textVariantMap: Record<string, string> = {
   destructive: "text-destructive",
   success: "text-emerald-600 dark:text-emerald-400",
   warning: "text-amber-600 dark:text-amber-400",
+  "sidebar-foreground": "text-sidebar-foreground",
+  "sidebar-muted": "text-sidebar-foreground/60",
+  "sidebar-accent": "text-sidebar-accent-foreground",
 };
 
 function Text({
@@ -147,7 +169,7 @@ function Paragraph({
       className={cn(
         "text-base leading-relaxed",
         muted && "text-muted-foreground",
-        lead && "text-lg text-muted-foreground",
+        lead && "text-muted-foreground text-lg",
         truncate && "truncate",
         className,
       )}
@@ -164,7 +186,7 @@ function Blockquote({
     <blockquote
       data-slot="blockquote"
       className={cn(
-        "border-l-4 border-primary pl-4 italic text-muted-foreground",
+        "border-primary text-muted-foreground border-l-4 pl-4 italic",
         className,
       )}
       {...props}
@@ -177,7 +199,7 @@ function InlineCode({ className, ...props }: React.ComponentProps<"code">) {
     <code
       data-slot="code"
       className={cn(
-        "rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground",
+        "bg-muted text-foreground rounded px-1.5 py-0.5 font-mono text-sm",
         className,
       )}
       {...props}
@@ -189,10 +211,7 @@ function Lead({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="lead"
-      className={cn(
-        "text-xl text-muted-foreground leading-relaxed",
-        className,
-      )}
+      className={cn("text-muted-foreground text-xl leading-relaxed", className)}
       {...props}
     />
   );
@@ -212,7 +231,7 @@ function Small({ className, ...props }: React.ComponentProps<"small">) {
   return (
     <small
       data-slot="small"
-      className={cn("text-sm font-medium leading-none", className)}
+      className={cn("text-sm leading-none font-medium", className)}
       {...props}
     />
   );
@@ -222,7 +241,7 @@ function Muted({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="muted"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
   );

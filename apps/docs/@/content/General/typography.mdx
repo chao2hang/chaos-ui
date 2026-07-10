@@ -53,6 +53,28 @@ export function TextVariants() {
   )
 }`} lang="tsx" />
 
+### 侧栏语义变体 / Sidebar Semantic Variants
+
+`Text` 支持侧栏（Sidebar）语义颜色变体，适用于侧栏菜单、面包屑等布局场景：
+
+<CodeBlock code={`import { Text } from "@chaos_team/chaos-ui/ui"
+
+export function SidebarText() {
+  return (
+    <div className="bg-sidebar rounded-lg p-4 flex flex-col gap-2">
+      <Text variant="sidebar-foreground" size="sm" weight="medium">
+        Menu Item (active)
+      </Text>
+      <Text variant="sidebar-muted" size="sm">
+        Menu Item (inactive, 60% opacity)
+      </Text>
+      <Text variant="sidebar-accent" size="sm" weight="medium">
+        Accent text
+      </Text>
+    </div>
+  )
+}`} lang="tsx" />
+
 ### 段落与引用 / Paragraph & Blockquote
 
 <CodeBlock code={`import { Paragraph, Blockquote, InlineCode } from "@chaos_team/chaos-ui/ui"
@@ -72,15 +94,15 @@ export function Misc() {
 
 ### Text
 
-| Prop        | Type                                                                                          | Default   | 说明 / Description            |
-| ----------- | --------------------------------------------------------------------------------------------- | --------- | ----------------------------- |
-| `size`      | `"xs" \| "sm" \| "base" \| "lg" \| "xl" \| "2xl"`                                             | `base`    | Text size / 文本大小          |
-| `weight`    | `"normal" \| "medium" \| "semibold" \| "bold"`                                                | `normal`  | Text weight / 文本粗细        |
-| `variant`   | `"default" \| "muted" \| "primary" \| "secondary" \| "destructive" \| "success" \| "warning"` | `default` | Text color variant / 文本颜色 |
-| `italic`    | `boolean`                                                                                     | `false`   | Italic / 斜体                 |
-| `underline` | `boolean`                                                                                     | `false`   | Underline / 下划线            |
-| `strike`    | `boolean`                                                                                     | `false`   | Strikethrough / 删除线        |
-| `truncate`  | `boolean`                                                                                     | `false`   | Truncate / 截断               |
+| Prop        | Type                                                                                                                                                         | Default   | 说明 / Description            |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------------------------- |
+| `size`      | `"xs" \| "sm" \| "base" \| "lg" \| "xl" \| "2xl"`                                                                                                            | `base`    | Text size / 文本大小          |
+| `weight`    | `"normal" \| "medium" \| "semibold" \| "bold"`                                                                                                               | `normal`  | Text weight / 文本粗细        |
+| `variant`   | `"default" \| "muted" \| "primary" \| "secondary" \| "destructive" \| "success" \| "warning" \| "sidebar-foreground" \| "sidebar-muted" \| "sidebar-accent"` | `default` | Text color variant / 文本颜色 |
+| `italic`    | `boolean`                                                                                                                                                    | `false`   | Italic / 斜体                 |
+| `underline` | `boolean`                                                                                                                                                    | `false`   | Underline / 下划线            |
+| `strike`    | `boolean`                                                                                                                                                    | `false`   | Strikethrough / 删除线        |
+| `truncate`  | `boolean`                                                                                                                                                    | `false`   | Truncate / 截断               |
 
 ### Typography 命名空间 / Typography Namespace
 

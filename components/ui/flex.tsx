@@ -67,6 +67,17 @@ interface FlexProps extends React.ComponentProps<"div"> {
   shrink?: number;
   /** Flex basis / flex-basis */
   basis?: string | number;
+  /**
+   * Flex shorthand numeric ratio (e.g. `17` → `flex: 17`, `7` → `flex: 7`).
+   * When set, applies `flex: <n>` so siblings can divide space in
+   * arbitrary proportions (e.g. 17:7 layout).
+   * / 数字比例简写，设置 `flex: <n>`，用于子项按比例分配空间。
+   * @since 1.2.0
+   * @example
+   * <Flex flex={17}>Wide</Flex>
+   * <Flex flex={7}>Narrow</Flex>
+   */
+  flex?: number;
 }
 
 function Flex({
@@ -79,14 +90,16 @@ function Flex({
   grow,
   shrink,
   basis,
+  flex,
   style,
   ...props
 }: FlexProps) {
   const gapClass =
-    typeof gap === "number" ? undefined : gapMap[gap] ?? gapMap.md;
+    typeof gap === "number" ? undefined : (gapMap[gap] ?? gapMap.md);
   const computedStyle: React.CSSProperties = {
     ...style,
     ...(typeof gap === "number" ? { gap: `${gap}px` } : {}),
+    ...(flex !== undefined ? { flex: String(flex) } : {}),
     ...(grow !== undefined ? { flexGrow: grow } : {}),
     ...(shrink !== undefined ? { flexShrink: shrink } : {}),
     ...(basis !== undefined

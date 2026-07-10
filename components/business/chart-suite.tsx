@@ -113,16 +113,14 @@ function ChartSuite({
     }));
     body = <LineChart series={lineSeries} labels={labels} height={height} />;
   } else if (type === "area") {
-    // AreaChart takes a single series; if multiple series exist we render
-    // the first one (or stack them if you prefer — current impl: first).
-    const firstSeries = grouped[0]?.[1] ?? [];
-    const areaData = firstSeries.map((r) => num(r[yField]));
+    // Multi-series area chart with gradient fill — renders ALL grouped
+    // series as overlapping areas, each with its own SVG gradient.
+    const areaSeries = grouped.map(([name, recs]) => ({
+      name,
+      values: recs.map((r) => num(r[yField])),
+    }));
     body = (
-      <AreaChart
-        data={areaData}
-        labels={firstSeries.map((r) => str(r[xField]))}
-        height={height}
-      />
+      <AreaChart series={areaSeries} labels={labels} height={height} gradient />
     );
   } else {
     // bar

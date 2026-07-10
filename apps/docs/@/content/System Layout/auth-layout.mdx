@@ -28,10 +28,41 @@ export function Basic() {
 
 ### AuthLayout
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop              | Type                                                                         | Default      | 说明 / Description                                                      |
+| ----------------- | ---------------------------------------------------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `className`       | `string`                                                                     | —            | 自定义样式类名 <br/> Custom CSS class                                   |
+| `variant`         | `"centered" \| "split"`                                                      | `"centered"` | 布局模式 <br/> Layout variant                                           |
+| `brand`           | `ReactNode`                                                                  | —            | 品牌展示区 <br/> Brand panel content                                    |
+| `brandClassName`  | `string`                                                                     | —            | 品牌区背景样式 <br/> Brand panel background class                       |
+| `background`      | `"default" \| "slate" \| "slate-soft" \| "primary-soft" \| "dark" \| string` | `"default"`  | 整体布局背景样式，支持预设或自定义 CSS（1.2.0+） <br/> Background style |
+| `brandWidth`      | `"1/3" \| "1/2" \| "2/3"`                                                    | `"1/2"`      | 品牌区宽度比例 <br/> Brand panel width ratio                            |
+| `brandAlign`      | `"start" \| "center" \| "end"`                                               | `"center"`   | 品牌区垂直对齐 <br/> Brand vertical alignment                           |
+| `brandJustify`    | `"start" \| "center" \| "end"`                                               | `"center"`   | 品牌区水平对齐 <br/> Brand horizontal alignment                         |
+| `formMaxWidth`    | `string`                                                                     | `"420px"`    | 表单区最大宽度 <br/> Form panel max width                               |
+| `formAlign`       | `"start" \| "center" \| "end"`                                               | `"center"`   | 表单区垂直对齐 <br/> Form vertical alignment                            |
+| `brandHideBelow`  | `"sm" \| "md" \| "lg"`                                                       | `"lg"`       | 品牌区隐藏断点 <br/> Brand hide breakpoint                              |
+| `footer`          | `ReactNode`                                                                  | —            | 底部内容 <br/> Footer content                                           |
+| `footerClassName` | `string`                                                                     | —            | 底部样式 <br/> Footer class name                                        |
+| ...rest           | `React.HTMLAttributes`                                                       | —            | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes               |
+
+### background 背景定制 / Background Customization
+
+`background` prop 支持预设关键字和自定义 CSS 值：
+
+<CodeBlock code={`import { AuthLayout } from "@chaos_team/chaos-ui/layout"
+
+// 预设背景
+
+<AuthLayout background="slate" />
+
+// 自定义 CSS 渐变
+
+<AuthLayout background="linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" />
+
+// 半透明浅灰
+
+<AuthLayout background="slate-soft" />
+`} lang="tsx" />
 
 ## 注意事项 / Notes
 

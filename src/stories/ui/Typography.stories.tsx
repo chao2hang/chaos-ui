@@ -63,6 +63,23 @@ export const TextVariants: Story = {
   ),
 };
 
+/** Sidebar semantic variants for layout contexts (1.2.0+). */
+export const SidebarVariants: Story = {
+  render: () => (
+    <div className="bg-sidebar flex flex-col gap-2 rounded-lg p-4">
+      <Text variant="sidebar-foreground" size="sm" weight="medium">
+        sidebar-foreground (full opacity)
+      </Text>
+      <Text variant="sidebar-muted" size="sm">
+        sidebar-muted (60% opacity)
+      </Text>
+      <Text variant="sidebar-accent" size="sm" weight="medium">
+        sidebar-accent (accent foreground)
+      </Text>
+    </div>
+  ),
+};
+
 /** Text weight scale. */
 export const TextWeights: Story = {
   render: () => (

@@ -35,10 +35,30 @@ export function Basic() {
 
 ### Card
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop        | Type                                                                      | Default     | 说明 / Description                                        |
+| ----------- | ------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
+| `className` | `string`                                                                  | —           | 自定义样式类名 <br/> Custom CSS class                     |
+| `size`      | `"default" \| "sm"`                                                       | `"default"` | 卡片尺寸 <br/> Card size                                  |
+| `flush`     | `boolean`                                                                 | `false`     | 内容通栏 <br/> Edge-to-edge content                       |
+| `shadow`    | `"none" \| "default" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "brand"` | `"default"` | 阴影变体（1.2.0+） <br/> Shadow variant                   |
+| ...rest     | `React.HTMLAttributes`                                                    | —           | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+
+### shadow 阴影变体 / Shadow Variants
+
+`shadow` prop 控制卡片的阴影深度，`brand` 变体使用品牌色阴影，适用于登录页等需要强调的场景：
+
+<CodeBlock code={`import { Card, CardHeader, CardTitle, CardContent } from "@chaos_team/chaos-ui/ui"
+
+export function ShadowDemo() {
+  return (
+    <Card shadow="brand">
+      <CardHeader>
+        <CardTitle>Brand Shadow Card</CardTitle>
+      </CardHeader>
+      <CardContent>登录页卡片，使用品牌色阴影。</CardContent>
+    </Card>
+  )
+}`} lang="tsx" />
 
 ## 注意事项 / Notes
 

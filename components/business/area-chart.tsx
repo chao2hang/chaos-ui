@@ -1,4 +1,5 @@
 "use client";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import { formatNumber } from "@/lib/format";
 
@@ -6,11 +7,14 @@ import { formatNumber } from "@/lib/format";
  * @component AreaChart
  * @category Business
  * @since 1.0.0-beta.0
- * @description 面积图(趋势+填充) — pure SVG, zero runtime deps.
- * @param data Series points to plot. Defaults to a small demo series.
+ * @description 面积图(趋势+填充) — pure SVG, zero runtime deps. Supports
+ * multi-series overlay with gradient fills and per-series colors.
+ * @param data Single-series values (legacy) or use `series` for multi-series.
+ * @param series One or more named series with optional colors.
  * @param labels X-axis labels aligned to data points.
  * @param height SVG viewport height in px.
- * @param color Fill/stroke color of the area.
+ * @param color Default fill/stroke color for single-series mode.
+ * @param gradient Whether to use SVG gradient fill (default true).
  * @param className Extra classes on the root.
  * @example
  * ```tsx
@@ -18,46 +22,72 @@ import { formatNumber } from "@/lib/format";
  * ```
  * 面积图(趋势+填充)
  */
+export interface AreaChartSeries {
+  /** Series name for legend. */
+  name: string;
+  /** Numeric values, left-to-right. */
+  values: number[];
+  /** Stroke + fill color (defaults to palette). */
+  color?: string;
+}
+
 export interface AreaChartProps {
-  /** Numeric series values, left-to-right. */
+  /** Numeric series values (single-series mode). */
   data?: number[];
+  /** Multi-series mode — overrides `data` when provided. */
+  series?: AreaChartSeries[];
   /** X-axis labels aligned 1:1 with `data`. */
   labels?: string[];
   /** SVG height in px. */
   height?: number;
-  /** Stroke + fill color. */
+  /** Stroke + fill color (single-series mode only). */
   color?: string;
+  /** Whether to use SVG gradient fill for areas. / 是否使用渐变填充 */
+  gradient?: boolean;
   className?: string;
 }
 
 const DEFAULT_AREA_DATA = [12, 28, 18, 45, 32, 60, 48];
 const DEFAULT_AREA_LABELS = ["一", "二", "三", "四", "五", "六", "日"];
 
+const AREA_PALETTE = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+
 function AreaChart({
   data = DEFAULT_AREA_DATA,
+  series,
   labels = DEFAULT_AREA_LABELS,
   height = 180,
   color = "currentColor",
+  gradient = true,
   className,
 }: AreaChartProps) {
   const width = 320;
   const pad = 8;
-  const max = Math.max(1, ...data);
-  const min = Math.min(0, ...data);
+  const baseId = React.useId();
+
+  // Normalize to multi-series
+  const multiSeries: AreaChartSeries[] =
+    series && series.length > 0
+      ? series
+      : [{ name: "默认", values: data, color }];
+
+  const allValues = multiSeries.flatMap((s) => s.values);
+  const max = Math.max(1, ...allValues);
+  const min = Math.min(0, ...allValues);
   const range = max - min || 1;
-  const stepX = (width - pad * 2) / Math.max(1, data.length - 1);
+  const len = Math.max(1, ...multiSeries.map((s) => s.values.length));
+  const stepX = (width - pad * 2) / Math.max(1, len - 1);
   const yAt = (v: number) => pad + (1 - (v - min) / range) * (height - pad * 2);
 
-  const points = data.map((v, i) => `${pad + i * stepX},${yAt(v)}`);
-  const linePath = `M ${points.join(" L ")}`;
-  const areaPath = `${linePath} L ${pad + (data.length - 1) * stepX},${height - pad} L ${pad},${height - pad} Z`;
+  // Generate stable gradient IDs from useId
+  const gradientIds = multiSeries.map((_, i) => `${baseId}-grad-${i}`);
 
   return (
     <div
       data-slot="area-chart"
-      className={cn("w-full text-primary", className)}
+      className={cn("w-full", className)}
       role="img"
-      aria-label={`面积图，共 ${data.length} 个数据点，最大值 ${max}`}
+      aria-label={`面积图，${multiSeries.length} 条线，${len} 个数据点，最大值 ${max}`}
     >
       <svg
         viewBox={`0 0 ${width} ${height}`}
@@ -66,36 +96,84 @@ function AreaChart({
         preserveAspectRatio="none"
         role="presentation"
       >
-        <path d={areaPath} fill={color} fillOpacity={0.18} stroke="none" />
-        <path
-          d={linePath}
-          fill="none"
-          stroke={color}
-          strokeWidth={2}
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-        {data.map((v, i) => (
-          <circle
-            key={i}
-            cx={pad + i * stepX}
-            cy={yAt(v)}
-            r={2.5}
-            fill={color}
-          >
-            <title>
-              {labels[i] ?? i}: {formatNumber(v)}
-            </title>
-          </circle>
-        ))}
+        <defs>
+          {multiSeries.map((s, si) => {
+            const c = s.color ?? AREA_PALETTE[si % AREA_PALETTE.length];
+            const gid = gradientIds[si];
+            return gradient ? (
+              <linearGradient key={gid} id={gid} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={c} stopOpacity={0.35} />
+                <stop offset="100%" stopColor={c} stopOpacity={0.02} />
+              </linearGradient>
+            ) : null;
+          })}
+        </defs>
+        {multiSeries.map((s, si) => {
+          const c = s.color ?? AREA_PALETTE[si % AREA_PALETTE.length];
+          const gid = gradientIds[si];
+          const pts = s.values.map((v, i) => `${pad + i * stepX},${yAt(v)}`);
+          const linePath = `M ${pts.join(" L ")}`;
+          const areaPath = `${linePath} L ${pad + (s.values.length - 1) * stepX},${height - pad} L ${pad},${height - pad} Z`;
+          return (
+            <g key={s.name}>
+              <path
+                d={areaPath}
+                fill={gradient ? `url(#${gid})` : c}
+                fillOpacity={gradient ? 1 : 0.18}
+                stroke="none"
+              />
+              <path
+                d={linePath}
+                fill="none"
+                stroke={c}
+                strokeWidth={2}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+              {s.values.map((v, i) => (
+                <circle
+                  key={i}
+                  cx={pad + i * stepX}
+                  cy={yAt(v)}
+                  r={2.5}
+                  fill={c}
+                >
+                  <title>
+                    {s.name} {labels[i] ?? i}: {formatNumber(v)}
+                  </title>
+                </circle>
+              ))}
+            </g>
+          );
+        })}
       </svg>
-      <ul
-        className="mt-1 flex justify-between text-[10px] text-muted-foreground"
-        role="list"
-      >
-        {labels.slice(0, data.length).map((l, i) => (
-          <li key={i}>{l}</li>
-        ))}
+      <ul className="mt-1 flex flex-wrap items-center justify-between gap-2 text-[10px]">
+        {multiSeries.length > 1 && (
+          <li className="flex gap-3" role="list">
+            {multiSeries.map((s, si) => (
+              <span key={s.name} className="flex items-center gap-1">
+                <span
+                  className="inline-block size-2 rounded-sm"
+                  style={{
+                    backgroundColor:
+                      s.color ?? AREA_PALETTE[si % AREA_PALETTE.length],
+                  }}
+                  aria-hidden="true"
+                />
+                {s.name}
+              </span>
+            ))}
+          </li>
+        )}
+        <li
+          className="text-muted-foreground flex justify-between"
+          role="list"
+          style={{ flex: 1 }}
+        >
+          {labels.slice(0, len).map((l, i) => (
+            <span key={i}>{l}</span>
+          ))}
+        </li>
       </ul>
     </div>
   );

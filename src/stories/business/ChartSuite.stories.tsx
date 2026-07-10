@@ -106,6 +106,27 @@ export const MultiSeriesLine: Story = {
   },
 };
 
+/** Area chart (single series) via the dispatcher. */
+export const Area: Story = {
+  args: {
+    type: "area",
+    data: simpleData,
+    height: 200,
+  },
+};
+
+/** Multi-series area chart with gradient fill — renders all grouped series
+ * as overlapping translucent areas, each with its own SVG gradient. */
+export const MultiSeriesArea: Story = {
+  name: "Area — Multi-Series Gradient",
+  args: {
+    type: "area",
+    data: seriesData,
+    series: "group",
+    height: 220,
+  },
+};
+
 /** Empty data renders the placeholder. */
 export const Empty: Story = {
   args: {

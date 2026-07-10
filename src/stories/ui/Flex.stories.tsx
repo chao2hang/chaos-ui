@@ -76,3 +76,23 @@ export const BaselineAlign: Story = {
     ),
   },
 };
+
+export const FlexRatio: Story = {
+  name: "Flex Ratio (17:7)",
+  render: () => (
+    <Flex className="w-full gap-2">
+      <Flex
+        flex={17}
+        className="bg-primary/10 rounded px-3 py-4 text-center text-sm"
+      >
+        flex=17 (wide)
+      </Flex>
+      <Flex
+        flex={7}
+        className="bg-primary/20 rounded px-3 py-4 text-center text-sm"
+      >
+        flex=7 (narrow)
+      </Flex>
+    </Flex>
+  ),
+};

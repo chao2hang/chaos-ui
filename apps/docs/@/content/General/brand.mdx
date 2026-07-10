@@ -1,0 +1,89 @@
+import { AppLogo, BrandBadge, Flex } from "@chaos_team/chaos-ui/ui";
+import { CodeBlock } from "@/components/code-block";
+
+# Brand 品牌组件
+
+> UI 组件 / Branding primitives.
+
+品牌 Logo 和徽章组件 — 支持渐变背景、多种尺寸和形状，适用于导航栏、侧栏、登录页等场景。
+Brand logo and badge components with gradient background support.
+
+## 何时使用 / When to Use
+
+- 需要展示应用 Logo 时使用 `AppLogo`
+- 需要紧凑品牌标识时使用 `BrandBadge`
+- 登录页、侧栏、导航栏品牌展示
+
+## 代码示例 / Examples
+
+### AppLogo 基础用法 / Basic Usage
+
+<CodeBlock code={`import { AppLogo } from "@chaos_team/chaos-ui/ui"
+
+export function Basic() {
+  return <AppLogo text="C" gradient="teal" label="Chaos UI" />
+}`} lang="tsx" />
+
+### AppLogo 渐变预设 / Gradient Presets
+
+支持 8 种渐变预设：`brand`、`teal`、`blue`、`purple`、`sunset`、`forest`、`ocean`、`mono`。
+
+也支持自定义 CSS 渐变字符串：
+
+<CodeBlock code={`import { AppLogo } from "@chaos_team/chaos-ui/ui"
+
+export function CustomGradient() {
+  return (
+    <AppLogo
+      text="✦"
+      gradient="linear-gradient(135deg, #0ea5e9, #6366f1)"
+      size={56}
+      label="Custom"
+    />
+  )
+}`} lang="tsx" />
+
+### BrandBadge 紧凑徽章 / Compact Badge
+
+<CodeBlock code={`import { BrandBadge } from "@chaos_team/chaos-ui/ui"
+
+export function Basic() {
+  return <BrandBadge text="C" gradient="teal" label="Chaos" />
+}`} lang="tsx" />
+
+## API / Props
+
+### AppLogo
+
+| Prop            | Type                                               | Default   | 说明 / Description                                       |
+| --------------- | -------------------------------------------------- | --------- | -------------------------------------------------------- |
+| `text`          | `string`                                           | —         | 短文字 Logo 内容 <br/> Short text content                |
+| `icon`          | `ReactNode`                                        | —         | 图标 Logo 内容 <br/> Icon content                        |
+| `children`      | `ReactNode`                                        | —         | 自定义内容（优先级最高） <br/> Custom content            |
+| `size`          | `number`                                           | `48`      | 尺寸（px） <br/> Size in pixels                          |
+| `gradient`      | `"brand" \| "teal" \| "blue" \| ... \| string`     | `"brand"` | 渐变预设或自定义 CSS <br/> Gradient preset or custom CSS |
+| `rounded`       | `"none" \| "sm" \| "md" \| "lg" \| "xl" \| "full"` | `"xl"`    | 圆角 <br/> Corner radius                                 |
+| `label`         | `ReactNode`                                        | —         | 附加文字标签 <br/> Text label                            |
+| `labelPosition` | `"right" \| "bottom"`                              | `"right"` | 标签位置 <br/> Label position                            |
+| `className`     | `string`                                           | —         | 自定义样式类名 <br/> Custom CSS class                    |
+
+### BrandBadge
+
+| Prop        | Type                                           | Default    | 说明 / Description                                       |
+| ----------- | ---------------------------------------------- | ---------- | -------------------------------------------------------- |
+| `text`      | `string`                                       | —          | 短文字 <br/> Short text                                  |
+| `icon`      | `ReactNode`                                    | —          | 图标 <br/> Icon                                          |
+| `children`  | `ReactNode`                                    | —          | 自定义内容 <br/> Custom content                          |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg"`                 | `"md"`     | 徽章大小 <br/> Badge size                                |
+| `gradient`  | `"brand" \| "teal" \| "blue" \| ... \| string` | `"brand"`  | 渐变预设或自定义 CSS <br/> Gradient preset or custom CSS |
+| `variant`   | `"square" \| "pill" \| "circle"`               | `"square"` | 徽章形状 <br/> Badge shape                               |
+| `label`     | `ReactNode`                                    | —          | 附加文字标签 <br/> Text label                            |
+| `className` | `string`                                       | —          | 自定义样式类名 <br/> Custom CSS class                    |
+
+## 注意事项 / Notes
+
+- **渐变支持**: 预设渐变使用 Tailwind `bg-gradient-to-br` + `from-* to-*` 类；自定义 CSS 渐变通过 `style.backgroundImage` 内联应用。
+- **AppLogo vs BrandBadge**: `AppLogo` 面向登录页和大尺寸品牌展示；`BrandBadge` 面向导航栏、侧栏等紧凑场景。
+- **@since 1.2.0**: 新增组件。
+
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-brand--docs)。
