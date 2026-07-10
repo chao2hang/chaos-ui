@@ -15,6 +15,9 @@ RUN pnpm install --frozen-lockfile
 # 源码
 COPY . .
 
+# 构建组件包（文档站通过 link:../.. 依赖 dist/ 产物）
+RUN pnpm run build:pkg
+
 # 诊断信息
 RUN echo "Node: $(node --version), pnpm: $(pnpm --version)" && \
     ls -la apps/docs/@/components/component-*.tsx apps/docs/@/components/story-*.tsx 2>&1
