@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ChevronUpIcon } from "@/components/ui/icons";

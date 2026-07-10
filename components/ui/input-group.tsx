@@ -156,17 +156,18 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
  * @component InputGroupInput
  * @category ui/data-entry
  * @since 0.2.0
- * @description An Input variant that strips borders and shadows for seamless use inside InputGroup / 去除边框和阴影的 Input 变体，用于在 InputGroup 内无缝使用
- * @keywords input, group, borderless, seamless
+ * @description An Input variant that strips borders and shadows for seamless use inside InputGroup. Uses forwardRef to support ref forwarding for react-hook-form field registration. / 去除边框和阴影的 Input 变体，用于在 InputGroup 内无缝使用，支持 forwardRef 以兼容 react-hook-form。
+ * @keywords input, group, borderless, seamless, forwardRef, ref
  * @example
- * <InputGroupInput placeholder="Search..." />
+ * <InputGroupInput ref={ref} placeholder="Search..." />
  */
-function InputGroupInput({
-  className,
-  ...props
-}: React.ComponentProps<"input">) {
+const InputGroupInput = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentProps<"input">
+>(({ className, ...props }, ref) => {
   return (
     <Input
+      ref={ref}
       data-slot="input-group-control"
       className={cn(
         "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
@@ -175,23 +176,25 @@ function InputGroupInput({
       {...props}
     />
   );
-}
+});
+InputGroupInput.displayName = "InputGroupInput";
 
 /**
  * @component InputGroupTextarea
  * @category ui/data-entry
  * @since 0.2.0
- * @description A Textarea variant that strips borders and shadows for seamless use inside InputGroup / 去除边框和阴影的 Textarea 变体，用于在 InputGroup 内无缝使用
- * @keywords input, group, textarea, borderless, seamless
+ * @description A Textarea variant that strips borders and shadows for seamless use inside InputGroup. Uses forwardRef to support ref forwarding for react-hook-form field registration. / 去除边框和阴影的 Textarea 变体，用于在 InputGroup 内无缝使用，支持 forwardRef 以兼容 react-hook-form。
+ * @keywords input, group, textarea, borderless, seamless, forwardRef, ref
  * @example
- * <InputGroupTextarea placeholder="Enter description..." />
+ * <InputGroupTextarea ref={ref} placeholder="Enter description..." />
  */
-function InputGroupTextarea({
-  className,
-  ...props
-}: React.ComponentProps<"textarea">) {
+const InputGroupTextarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(({ className, ...props }, ref) => {
   return (
     <Textarea
+      ref={ref}
       data-slot="input-group-control"
       className={cn(
         "flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
@@ -200,7 +203,8 @@ function InputGroupTextarea({
       {...props}
     />
   );
-}
+});
+InputGroupTextarea.displayName = "InputGroupTextarea";
 
 export {
   InputGroup,

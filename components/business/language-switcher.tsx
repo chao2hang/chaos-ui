@@ -1,7 +1,7 @@
 "use client";
 import { useMemo } from "react";
 import { LanguagesIcon, CheckIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { useLocale } from "@/hooks/use-locale";
 import { Button } from "@/components/ui";
 import {
@@ -102,7 +102,7 @@ export function LanguageSwitcher({
             <div className="flex flex-col gap-0.5">
               <span className="text-sm">{opt.nativeLabel ?? opt.label}</span>
               {opt.nativeLabel && opt.nativeLabel !== opt.label && (
-                <span className="text-xs text-muted-foreground">
+                <span className="text-muted-foreground text-xs">
                   {opt.label}
                 </span>
               )}

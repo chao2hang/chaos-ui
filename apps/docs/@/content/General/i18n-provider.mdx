@@ -24,17 +24,67 @@ export function Basic() {
   return <I18nProvider />
 }`} lang="tsx" />
 
+## 优雅降级 / Graceful Degradation
+
+### useI18n
+
+当组件树没有包裹 `I18nProvider` 时，`useI18n` 不再抛出错误，而是返回一个静默 fallback：
+
+When no `I18nProvider` wraps the component tree, `useI18n` returns a no-op fallback instead of throwing:
+
+```tsx
+const { t, locale, setLocale } = useI18n();
+// Without provider: t(key) => key, locale = "zh-CN", setLocale = noop
+```
+
+### useSafeTranslation
+
+`useSafeTranslation` 是 react-i18next `useTranslation` 的安全包装。当没有 i18next 实例时，返回静默 fallback 而不是发出 warning：
+
+`useSafeTranslation` is a safe wrapper around react-i18next's `useTranslation`. When no i18next instance is initialized, it returns a silent fallback instead of logging warnings:
+
+```tsx
+import { useSafeTranslation } from "@chaos_team/chaos-ui/ui";
+
+const { t, i18n, ready } = useSafeTranslation("ui");
+// Without i18next instance: t(key) => key, no warnings
+```
+
+所有 chaos-ui 内部组件均使用 `useSafeTranslation` 而非直接导入 react-i18next 的 `useTranslation`，确保在没有 i18next Provider 的环境中也能正常渲染。
+
+All chaos-ui internal components use `useSafeTranslation` instead of importing `useTranslation` directly from react-i18next, ensuring they render correctly even without an i18next Provider.
+
 ## API / Props
 
 ### I18nProvider
 
-| Prop        | Type                   | Default | 说明 / Description                                        |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                     |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes |
+| Prop            | Type                                     | Default   | 说明 / Description                                                       |
+| --------------- | ---------------------------------------- | --------- | ------------------------------------------------------------------------ |
+| `locale`        | `string`                                 | `"zh-CN"` | 当前语言 <br/> Current locale                                            |
+| `defaultLocale` | `string`                                 | `"zh-CN"` | 默认语言回退 <br/> Default locale fallback                               |
+| `messages`      | `Record<string, Record<string, string>>` | `{}`      | 消息字典：键 → 语言 → 文本 <br/> Message dictionary: key → locale → text |
+| `onChange`      | `(locale: string) => void`               | —         | 语言切换回调 <br/> Locale change callback                                |
+| `children`      | `React.ReactNode`                        | —         | 子节点 <br/> Children                                                    |
+
+### useI18n
+
+返回 `I18nContextValue`，无 Provider 时返回 fallback。
+
+Returns `I18nContextValue`, returns a fallback when no Provider is present.
+
+### useSafeTranslation
+
+| 参数        | Type                 | 说明 / Description                       |
+| ----------- | -------------------- | ---------------------------------------- |
+| `namespace` | `string \| string[]` | i18next 命名空间 <br/> i18next namespace |
+
+返回 `{ t, i18n, ready }`，无 i18next 实例时返回静默 fallback。
+
+Returns `{ t, i18n, ready }`, returns a silent fallback when no i18next instance is initialized.
 
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **优雅降级**: `useI18n` 和 `useSafeTranslation` 均支持无 Provider 降级,不会抛出错误或 warning。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-i18nprovider--docs)。

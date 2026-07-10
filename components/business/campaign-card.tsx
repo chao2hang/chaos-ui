@@ -4,7 +4,7 @@ import {
   RadioTowerIcon,
 } from "@/components/ui/icons";
 import type { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import {
   Card,
   CardAction,

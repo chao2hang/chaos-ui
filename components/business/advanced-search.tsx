@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { SearchIcon, StarIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { Badge } from "@/components/ui";
 import { Button } from "@/components/ui";

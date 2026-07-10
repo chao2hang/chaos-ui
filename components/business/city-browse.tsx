@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -74,7 +74,8 @@ function CityBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedCode, setSelectedCode] = React.useState<string | null>(null);
 
-  const resolvedTitle = title ?? t("cityBrowse.title", { defaultValue: "选择城市" });
+  const resolvedTitle =
+    title ?? t("cityBrowse.title", { defaultValue: "选择城市" });
   const resolvedSearch =
     searchPlaceholder ?? t("cityBrowse.search", { defaultValue: "搜索城市" });
   const resolvedEmpty =
@@ -118,7 +119,9 @@ function CityBrowse({
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {t("cityBrowse.description", { defaultValue: "从列表中选择一个城市" })}
+            {t("cityBrowse.description", {
+              defaultValue: "从列表中选择一个城市",
+            })}
           </DialogDescription>
         </DialogHeader>
 
@@ -135,7 +138,7 @@ function CityBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -149,8 +152,8 @@ function CityBrowse({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedCode(c.code)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     c.disabled && "pointer-events-none opacity-50",
                   )}
@@ -158,7 +161,7 @@ function CityBrowse({
                   <MapPinIcon className="size-4 shrink-0 opacity-50" />
                   <span className="flex-1 truncate">{c.name}</span>
                   {c.province && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {c.province}
                     </span>
                   )}

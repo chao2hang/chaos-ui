@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -68,9 +68,11 @@ function FeeTypeBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
-  const resolvedTitle = title ?? t("feeTypeBrowse.title", { defaultValue: "选择费用类型" });
+  const resolvedTitle =
+    title ?? t("feeTypeBrowse.title", { defaultValue: "选择费用类型" });
   const resolvedSearch =
-    searchPlaceholder ?? t("feeTypeBrowse.search", { defaultValue: "搜索费用类型" });
+    searchPlaceholder ??
+    t("feeTypeBrowse.search", { defaultValue: "搜索费用类型" });
   const resolvedEmpty =
     emptyText ?? t("feeTypeBrowse.empty", { defaultValue: "无匹配费用类型" });
 
@@ -103,11 +105,16 @@ function FeeTypeBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="fee-type-browse" className={cn("sm:max-w-md", className)}>
+      <DialogContent
+        data-slot="fee-type-browse"
+        className={cn("sm:max-w-md", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {t("feeTypeBrowse.description", { defaultValue: "从列表中选择一个费用类型" })}
+            {t("feeTypeBrowse.description", {
+              defaultValue: "从列表中选择一个费用类型",
+            })}
           </DialogDescription>
         </DialogHeader>
 
@@ -124,7 +131,7 @@ function FeeTypeBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -138,8 +145,8 @@ function FeeTypeBrowse({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedId(f.id)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     f.disabled && "pointer-events-none opacity-50",
                   )}
@@ -147,7 +154,7 @@ function FeeTypeBrowse({
                   <ReceiptIcon className="size-4 shrink-0 opacity-50" />
                   <span className="flex-1 truncate">{f.name}</span>
                   {f.direction && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {f.direction === "expense" ? "支出" : "收入"}
                     </span>
                   )}
@@ -159,10 +166,18 @@ function FeeTypeBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
-          <Button type="button" disabled={selectedId == null} onClick={handleConfirm}>
+          <Button
+            type="button"
+            disabled={selectedId == null}
+            onClick={handleConfirm}
+          >
             {t("feeTypeBrowse.confirm", { defaultValue: "确定" })}
           </Button>
         </DialogFooter>

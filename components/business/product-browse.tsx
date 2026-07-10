@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
@@ -78,9 +78,11 @@ function ProductBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
-  const resolvedTitle = title ?? t("productBrowse.title", { defaultValue: "选择商品" });
+  const resolvedTitle =
+    title ?? t("productBrowse.title", { defaultValue: "选择商品" });
   const resolvedSearch =
-    searchPlaceholder ?? t("productBrowse.search", { defaultValue: "搜索商品" });
+    searchPlaceholder ??
+    t("productBrowse.search", { defaultValue: "搜索商品" });
   const resolvedEmpty =
     emptyText ?? t("productBrowse.empty", { defaultValue: "无匹配商品" });
 
@@ -118,7 +120,10 @@ function ProductBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="product-browse" className={cn("sm:max-w-lg", className)}>
+      <DialogContent
+        data-slot="product-browse"
+        className={cn("sm:max-w-lg", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
@@ -141,7 +146,7 @@ function ProductBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -155,8 +160,8 @@ function ProductBrowse({
                   aria-pressed={isSelected}
                   onClick={() => toggle(p)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     p.disabled && "pointer-events-none opacity-50",
                   )}
@@ -165,18 +170,18 @@ function ProductBrowse({
                   <span className="flex-1 truncate">
                     {p.name}
                     {p.spec && (
-                      <span className="ml-1 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-1 text-xs">
                         · {p.spec}
                       </span>
                     )}
                   </span>
                   {p.unit && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {p.unit}
                     </span>
                   )}
                   {p.price != null && (
-                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
                       {formatCurrency(p.price)}
                     </span>
                   )}
@@ -188,7 +193,11 @@ function ProductBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
           <Button

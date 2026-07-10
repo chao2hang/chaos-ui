@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { Checkbox } from "@/components/ui";
 import {
@@ -101,7 +101,7 @@ export function PermissionMatrix({
                 <div>
                   <p className="text-sm font-medium">{resource.label}</p>
                   {resource.description && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       {resource.description}
                     </p>
                   )}

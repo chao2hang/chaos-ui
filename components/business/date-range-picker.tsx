@@ -2,7 +2,7 @@
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import { CalendarIcon, ChevronDownIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { Button, Calendar } from "@/components/ui";

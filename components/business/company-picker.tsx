@@ -1,12 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Building2Icon,
   CheckIcon,
@@ -73,9 +77,11 @@ function CompanyPicker({
   const [query, setQuery] = React.useState("");
 
   const resolvedPlaceholder =
-    placeholder ?? t("companyPicker.placeholder", { defaultValue: "请选择公司" });
+    placeholder ??
+    t("companyPicker.placeholder", { defaultValue: "请选择公司" });
   const resolvedSearch =
-    searchPlaceholder ?? t("companyPicker.search", { defaultValue: "搜索公司" });
+    searchPlaceholder ??
+    t("companyPicker.search", { defaultValue: "搜索公司" });
   const resolvedEmpty =
     emptyText ?? t("companyPicker.empty", { defaultValue: "无匹配公司" });
 
@@ -117,7 +123,9 @@ function CompanyPicker({
         }
       >
         <Building2Icon className="size-4 shrink-0 opacity-50" />
-        <span className="flex-1 truncate">{selected?.label ?? resolvedPlaceholder}</span>
+        <span className="flex-1 truncate">
+          {selected?.label ?? resolvedPlaceholder}
+        </span>
         <span className="flex items-center gap-1">
           {clearable && selected && (
             <span
@@ -132,7 +140,7 @@ function CompanyPicker({
                   onChange?.(undefined);
                 }
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -154,7 +162,7 @@ function CompanyPicker({
           </div>
           <ul role="listbox" className="max-h-64 overflow-y-auto p-1">
             {filtered.length === 0 && (
-              <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+              <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
@@ -166,7 +174,9 @@ function CompanyPicker({
                     variant="ghost"
                     size="sm"
                     type="button"
-                    {...(o.disabled !== undefined ? { disabled: o.disabled } : {})}
+                    {...(o.disabled !== undefined
+                      ? { disabled: o.disabled }
+                      : {})}
                     onClick={() => {
                       onChange?.(o.value);
                       setOpen(false);

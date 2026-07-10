@@ -9,7 +9,7 @@ import {
   RadioTowerIcon,
   SmartphoneIcon,
 } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 

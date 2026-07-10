@@ -474,6 +474,9 @@ export { BackTop } from "./back-top";
 export type { BackTopProps } from "./back-top";
 export { ConfigProvider, useConfig, ConfigContext } from "./config-provider";
 export type { ConfigContextValue, ThemeConfig } from "./config-provider";
+// i18n safe translation hook (graceful degradation without provider)
+export { useSafeTranslation } from "./i18n-provider";
+export type { SafeTranslationResult } from "./i18n-provider";
 // Retained in main barrel — note that it depends on sonner/next-themes (optional peer).
 export { ModalProvider } from "./modal-provider";
 export {

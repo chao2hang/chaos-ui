@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { cn } from "@/lib/utils";
 
 interface ResponsivePreviewProps {
@@ -45,15 +45,18 @@ function ResponsivePreview({
   const size = deviceSizes[device];
 
   return (
-    <div data-slot="responsive-preview" className={cn("flex flex-col items-center gap-2", className)}>
+    <div
+      data-slot="responsive-preview"
+      className={cn("flex flex-col items-center gap-2", className)}
+    >
       {showLabel && (
-        <div className="text-xs text-muted-foreground font-medium">
+        <div className="text-muted-foreground text-xs font-medium">
           {size.label} ({size.width} × {size.height})
         </div>
       )}
       <div
         className={cn(
-          "border rounded-lg overflow-hidden bg-background",
+          "bg-background overflow-hidden rounded-lg border",
           showFrame && "shadow-lg",
         )}
         style={{
@@ -61,7 +64,7 @@ function ResponsivePreview({
           height: showFrame ? Math.min(size.height, 600) : "auto",
         }}
       >
-        <div className="w-full h-full overflow-auto">{children}</div>
+        <div className="h-full w-full overflow-auto">{children}</div>
       </div>
     </div>
   );

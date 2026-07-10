@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { AlertTriangleIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import {
   Dialog,
   DialogContent,

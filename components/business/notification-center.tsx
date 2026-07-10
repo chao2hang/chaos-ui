@@ -5,7 +5,7 @@ import { Button } from "@/components/ui";
 import { Badge } from "@/components/ui";
 import { ScrollArea } from "@/components/ui";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { EmptyState } from "@/components/ui/empty-state";
 import { formatRelativeTime } from "@/lib/format";
 
@@ -141,7 +141,7 @@ export function NotificationCenter({
                 <li
                   key={n.id}
                   className={cn(
-                    "group flex cursor-pointer gap-2 border-b px-3 py-2.5 transition-colors last:border-0 hover:bg-muted/50",
+                    "group hover:bg-muted/50 flex cursor-pointer gap-2 border-b px-3 py-2.5 transition-colors last:border-0",
                     !n.read && "bg-muted/30",
                   )}
                   onClick={() => {
@@ -157,7 +157,7 @@ export function NotificationCenter({
                   />
                   <div className="flex-1 space-y-0.5">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-medium leading-tight">
+                      <p className="text-sm leading-tight font-medium">
                         {n.title}
                       </p>
                       {!n.read && (
@@ -170,17 +170,17 @@ export function NotificationCenter({
                           }}
                           className="opacity-0 group-hover:opacity-100"
                         >
-                          <CheckIcon className="size-3.5 text-muted-foreground hover:text-foreground" />
+                          <CheckIcon className="text-muted-foreground hover:text-foreground size-3.5" />
                         </span>
                       )}
                     </div>
                     {n.description && (
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         {n.description}
                       </p>
                     )}
                     <div className="flex items-center justify-between pt-0.5">
-                      <span className="text-[0.65rem] text-muted-foreground">
+                      <span className="text-muted-foreground text-[0.65rem]">
                         {formatRelativeTime(n.timestamp)}
                       </span>
                       {n.action && (
@@ -190,7 +190,7 @@ export function NotificationCenter({
                             e.stopPropagation();
                             n.action?.onClick();
                           }}
-                          className="text-[0.65rem] text-primary hover:underline"
+                          className="text-primary text-[0.65rem] hover:underline"
                         >
                           {n.action.label}
                         </button>

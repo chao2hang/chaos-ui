@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ export function MobileBottomNav({
       data-slot="mobile-bottom-nav"
       aria-label={t("mobileBottomNav.ariaLabel")}
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 md:hidden",
+        "bg-background/95 supports-[backdrop-filter]:bg-background/80 fixed right-0 bottom-0 left-0 z-40 border-t backdrop-blur md:hidden",
         variant === "floating" && "mx-3 mb-3 rounded-2xl border shadow-lg",
         className,
       )}
@@ -55,7 +55,7 @@ export function MobileBottomNav({
               <span className="relative">
                 {item.icon}
                 {item.badge !== undefined && item.badge !== 0 && (
-                  <span className="absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[0.6rem] font-medium text-destructive-foreground">
+                  <span className="bg-destructive text-destructive-foreground absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[0.6rem] font-medium">
                     {item.badge}
                   </span>
                 )}

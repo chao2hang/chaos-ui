@@ -209,14 +209,22 @@ function OrgTreeSelect({
         </span>
         <span className="flex shrink-0 items-center gap-1">
           {selectedKeys.length > 0 && (
-            <button
-              type="button"
-              className="hover:bg-accent rounded-full p-0.5"
+            <span
+              role="button"
+              tabIndex={0}
+              className="hover:bg-accent flex cursor-pointer rounded-full p-0.5"
               onClick={handleClear}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleClear(e as unknown as React.MouseEvent);
+                }
+              }}
               aria-label="清除选择"
             >
               <XIcon className="size-3.5" />
-            </button>
+            </span>
           )}
           <ChevronDownIcon className="size-4 opacity-50" />
         </span>

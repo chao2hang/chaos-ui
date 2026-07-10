@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { Badge } from "@/components/ui";
 import { Checkbox } from "@/components/ui";
@@ -72,7 +72,7 @@ export function RoleAssignment({
             <div>
               <p className="text-sm font-medium">{principal.name}</p>
               {principal.description && (
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   {principal.description}
                 </p>
               )}
@@ -97,7 +97,7 @@ export function RoleAssignment({
                     {role.label}
                   </span>
                   {role.description && (
-                    <span className="block text-xs text-muted-foreground">
+                    <span className="text-muted-foreground block text-xs">
                       {role.description}
                     </span>
                   )}

@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo ""
+echo "=================================================================="
+echo "  🚀 [Husky] Running pre-push checks...                           "
+echo "  Verification: pnpm run check && pnpm run build:pkg              "
+echo "=================================================================="
+echo ""
+
+pnpm run check && pnpm run build:pkg
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ [Error] Pre-push checks failed. Please fix the errors before pushing!"
+  echo ""
+  exit 1
+fi
+
+echo ""
+echo "✅ [Success] All checks passed. Proceeding with push."
+echo ""

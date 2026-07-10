@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { MenuIcon, XIcon, ChevronDownIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import { Button } from "@/components/ui";

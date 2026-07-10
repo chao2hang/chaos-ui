@@ -30,8 +30,16 @@ interface PasswordInputProps
   value?: string;
   /** Default value / 默认值 */
   defaultValue?: string;
-  /** Change callback / 变更回调 */
-  onChange?: (value: string) => void;
+  /**
+   * Change callback. Accepts both a simplified `(value: string) => void`
+   * signature and a standard `React.ChangeEventHandler<HTMLInputElement>`.
+   * This dual-signature allows seamless spreading of react-hook-form field
+   * props via `{...field}` (which passes name, ref, onBlur, and a standard
+   * onChange) as well as the original simplified API.
+   * / 变更回调，同时支持简化签名和标准 ChangeEvent 签名，兼容 react-hook-form。
+   */
+  onChange?:
+    ((value: string) => void) | React.ChangeEventHandler<HTMLInputElement>;
   /** Placeholder text / 占位文本 */
   placeholder?: string;
   /** Whether input is disabled / 是否禁用 */
@@ -79,7 +87,17 @@ function PasswordInput({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     if (!isControlled) setInternalValue(newValue);
-    onChange?.(newValue);
+    if (onChange) {
+      // Normalize: support both simplified `(value: string) => void`
+      // and standard `React.ChangeEventHandler<HTMLInputElement>`.
+      // If the callback expects exactly 1 param (simplified), pass the raw
+      // string value. Otherwise, pass the full event (react-hook-form compat).
+      if (onChange.length <= 1) {
+        (onChange as (v: string) => void)(newValue);
+      } else {
+        (onChange as React.ChangeEventHandler<HTMLInputElement>)(e);
+      }
+    }
   };
 
   return (

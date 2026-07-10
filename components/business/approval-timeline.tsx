@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { CheckIcon, ClockIcon, XIcon } from "@/components/ui/icons";
 import { Timeline, TimelineItem } from "@/components/ui";
 import { Badge } from "@/components/ui";

@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import {
   Dialog,
   DialogContent,
@@ -148,7 +148,7 @@ function PromptDialogBody({
             }
           }}
         />
-        {error && <p className="text-xs text-destructive">{error}</p>}
+        {error && <p className="text-destructive text-xs">{error}</p>}
       </div>
       <DialogFooter>
         <Button variant="outline" onClick={onClose} disabled={pending}>

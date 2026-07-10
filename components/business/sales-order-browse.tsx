@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { formatCurrency, formatDate } from "@/lib/format";
@@ -71,9 +71,11 @@ function SalesOrderBrowse({
   const [query, setQuery] = React.useState("");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
-  const resolvedTitle = title ?? t("salesOrderBrowse.title", { defaultValue: "选择销售订单" });
+  const resolvedTitle =
+    title ?? t("salesOrderBrowse.title", { defaultValue: "选择销售订单" });
   const resolvedSearch =
-    searchPlaceholder ?? t("salesOrderBrowse.search", { defaultValue: "搜索订单号/客户" });
+    searchPlaceholder ??
+    t("salesOrderBrowse.search", { defaultValue: "搜索订单号/客户" });
   const resolvedEmpty =
     emptyText ?? t("salesOrderBrowse.empty", { defaultValue: "无匹配订单" });
 
@@ -106,11 +108,16 @@ function SalesOrderBrowse({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent data-slot="sales-order-browse" className={cn("sm:max-w-lg", className)}>
+      <DialogContent
+        data-slot="sales-order-browse"
+        className={cn("sm:max-w-lg", className)}
+      >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {t("salesOrderBrowse.description", { defaultValue: "从列表中选择销售订单" })}
+            {t("salesOrderBrowse.description", {
+              defaultValue: "从列表中选择销售订单",
+            })}
           </DialogDescription>
         </DialogHeader>
 
@@ -127,7 +134,7 @@ function SalesOrderBrowse({
 
         <ul role="list" className="max-h-72 overflow-y-auto py-1">
           {filtered.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
               {resolvedEmpty}
             </li>
           )}
@@ -141,8 +148,8 @@ function SalesOrderBrowse({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedId(o.id)}
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm outline-none transition-colors",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50",
+                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
+                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
                     isSelected && "bg-accent/50",
                     o.disabled && "pointer-events-none opacity-50",
                   )}
@@ -151,18 +158,18 @@ function SalesOrderBrowse({
                   <span className="flex-1 truncate">
                     {o.no ?? o.id}
                     {o.customer && (
-                      <span className="ml-1 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-1 text-xs">
                         · {o.customer}
                       </span>
                     )}
                   </span>
                   {o.date && (
-                    <span className="shrink-0 text-xs text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs">
                       {formatDate(o.date)}
                     </span>
                   )}
                   {o.amount != null && (
-                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                    <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
                       {formatCurrency(o.amount)}
                     </span>
                   )}
@@ -174,10 +181,18 @@ function SalesOrderBrowse({
         </ul>
 
         <DialogFooter>
-          <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => onOpenChange(false)}
+          >
             {t("dialog.closeButton", { defaultValue: "取消" })}
           </Button>
-          <Button type="button" disabled={selectedId == null} onClick={handleConfirm}>
+          <Button
+            type="button"
+            disabled={selectedId == null}
+            onClick={handleConfirm}
+          >
             {t("salesOrderBrowse.confirm", { defaultValue: "确定" })}
           </Button>
         </DialogFooter>

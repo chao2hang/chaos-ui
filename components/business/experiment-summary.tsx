@@ -1,5 +1,5 @@
 import { TrophyIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import {
   Card,
   CardContent,
@@ -60,12 +60,12 @@ export function ExperimentSummary({
         {hypothesis && <CardDescription>{hypothesis}</CardDescription>}
       </CardHeader>
       <CardContent className="space-y-3">
-        <div className="text-xs font-medium text-muted-foreground">
+        <div className="text-muted-foreground text-xs font-medium">
           {resolvedMetric}
         </div>
         <div className="overflow-hidden rounded-lg border">
           <table className="w-full text-sm">
-            <thead className="bg-muted/30 text-xs text-muted-foreground">
+            <thead className="bg-muted/30 text-muted-foreground text-xs">
               <tr>
                 <th className="px-3 py-2 text-left font-medium">
                   {t("experimentSummary.variant")}

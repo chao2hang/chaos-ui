@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import * as React from "react";
 import {
   InputGroup,
   InputGroupInput,
@@ -50,4 +51,32 @@ export const Email: Story = {
       </InputGroupAddon>
     </InputGroup>
   ),
+};
+
+/**
+ * InputGroupInput supports forwardRef, allowing react-hook-form's
+ * field.ref to be forwarded to the underlying DOM input element.
+ * This enables proper focus management and field registration.
+ */
+export const WithForwardRef: Story = {
+  render: () => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    return (
+      <div className="flex w-80 flex-col gap-2">
+        <InputGroup>
+          <InputGroupAddon>
+            <SearchIcon />
+          </InputGroupAddon>
+          <InputGroupInput ref={inputRef} placeholder="Click button to focus" />
+        </InputGroup>
+        <button
+          type="button"
+          onClick={() => inputRef.current?.focus()}
+          className="text-primary w-fit text-sm hover:underline"
+        >
+          Focus the input via ref
+        </button>
+      </div>
+    );
+  },
 };

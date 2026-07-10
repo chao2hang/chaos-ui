@@ -93,13 +93,106 @@ function I18nProvider({
  * const { t, locale, setLocale } = useI18n();
  * t("common.save");
  */
+/**
+ * No-op fallback returned when no I18nProvider is present.
+ * This prevents crashes in consumer apps that haven't wrapped their
+ * tree in <I18nProvider>.
+ */
+const I18N_FALLBACK: I18nContextValue = {
+  locale: "zh-CN",
+  setLocale: () => {},
+  messages: {},
+  t: (key: string) => key,
+};
+
 function useI18n(): I18nContextValue {
   const ctx = React.useContext(I18nContext);
-  if (!ctx) {
-    throw new Error("useI18n must be used within an I18nProvider");
-  }
-  return ctx;
+  // Graceful degradation: return a no-op fallback instead of throwing.
+  // This allows components to render even without an I18nProvider wrapper.
+  return ctx ?? I18N_FALLBACK;
 }
 
-export { I18nProvider, I18nContext, useI18n };
-export type { I18nProviderProps, I18nContextValue };
+/**
+ * @component useSafeTranslation
+ * @category ui/utilities
+ * @since 1.2.1
+ * @description Safe wrapper around react-i18next's useTranslation that
+ * gracefully degrades when no i18next instance is initialized. Returns a
+ * key-as-value fallback `{ t, i18n, ready }` instead of throwing or logging
+ * warnings. All chaos-ui internal components should use this instead of
+ * importing useTranslation directly from react-i18next.
+ * / react-i18next useTranslation 的安全包装，无 i18next 实例时优雅降级。
+ * @keywords i18n, translation, safe, fallback, hook
+ * @example
+ * const { t } = useSafeTranslation("ui");
+ * t("common.save");
+ */
+import { useTranslation as useTranslationOrig } from "react-i18next";
+import i18next from "i18next";
+
+const noop = () => {};
+
+/**
+ * A permissive t-function type that accepts both string defaults and
+ * i18next interpolation options (e.g. `{ count: 5 }`, `{ defaultValue: "x" }`).
+ * This keeps chaos-ui components type-checking even when the fallback is used.
+ */
+
+type SafeTFunction = ((
+  key: string,
+  defaultValueOrOptions?: string | Record<string, unknown>,
+) => string) & {
+  [key: string]: unknown;
+};
+
+interface SafeTranslationResult {
+  t: SafeTFunction;
+  i18n: {
+    language: string;
+    changeLanguage: typeof noop;
+    isInitialized: boolean;
+  };
+  ready: boolean;
+}
+
+function useSafeTranslation(
+  namespace?: string | string[],
+): SafeTranslationResult {
+  // Always call the original hook to satisfy React's rules of hooks.
+  const result = useTranslationOrig(namespace);
+
+  // If i18next hasn't been initialized, return a silent fallback.
+  // This prevents the "You will need to pass in an i18next instance" warning
+  // from escalating to an error in strict environments.
+  if (!i18next.isInitialized) {
+    return {
+      t: ((
+        key: string,
+        defaultValueOrOptions?: string | Record<string, unknown>,
+      ) => {
+        if (typeof defaultValueOrOptions === "string")
+          return defaultValueOrOptions;
+        if (
+          defaultValueOrOptions &&
+          typeof defaultValueOrOptions === "object" &&
+          "defaultValue" in defaultValueOrOptions
+        ) {
+          return (defaultValueOrOptions as { defaultValue: string })
+            .defaultValue;
+        }
+        return key;
+      }) as SafeTFunction,
+      i18n: {
+        language: "zh-CN",
+        changeLanguage: noop,
+        isInitialized: false,
+      },
+      ready: true,
+    };
+  }
+
+  return result as unknown as SafeTranslationResult;
+}
+
+export { I18nProvider, I18nContext, useI18n, useSafeTranslation };
+export type { I18nProviderProps, I18nContextValue, SafeTranslationResult };

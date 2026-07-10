@@ -1,13 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -75,7 +79,8 @@ function SkuPicker({
   const resolvedPlaceholder =
     placeholder ?? t("skuPicker.placeholder", { defaultValue: "请选择商品" });
   const resolvedSearch =
-    searchPlaceholder ?? t("skuPicker.search", { defaultValue: "搜索商品/SKU" });
+    searchPlaceholder ??
+    t("skuPicker.search", { defaultValue: "搜索商品/SKU" });
   const resolvedEmpty =
     emptyText ?? t("skuPicker.empty", { defaultValue: "无匹配商品" });
 
@@ -113,7 +118,9 @@ function SkuPicker({
         }
       >
         <PackageIcon className="size-4 shrink-0 opacity-50" />
-        <span className="flex-1 truncate">{selected?.label ?? resolvedPlaceholder}</span>
+        <span className="flex-1 truncate">
+          {selected?.label ?? resolvedPlaceholder}
+        </span>
         <span className="flex items-center gap-1">
           {clearable && selected && (
             <span
@@ -131,7 +138,7 @@ function SkuPicker({
                   onChange?.(undefined);
                 }
               }}
-              className="rounded p-0.5 hover:bg-muted"
+              className="hover:bg-muted rounded p-0.5"
             >
               <XIcon className="size-3.5 opacity-60 hover:opacity-100" />
             </span>
@@ -153,7 +160,7 @@ function SkuPicker({
           </div>
           <ul role="listbox" className="max-h-64 overflow-y-auto p-1">
             {filtered.length === 0 && (
-              <li className="px-2 py-6 text-center text-sm text-muted-foreground">
+              <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
@@ -165,7 +172,9 @@ function SkuPicker({
                     variant="ghost"
                     size="sm"
                     type="button"
-                    {...(o.disabled !== undefined ? { disabled: o.disabled } : {})}
+                    {...(o.disabled !== undefined
+                      ? { disabled: o.disabled }
+                      : {})}
                     onClick={() => {
                       onChange?.(o.value);
                       setOpen(false);
@@ -180,18 +189,18 @@ function SkuPicker({
                     <span className="flex-1 truncate">
                       {o.label}
                       {o.spec && (
-                        <span className="ml-1 text-xs text-muted-foreground">
+                        <span className="text-muted-foreground ml-1 text-xs">
                           · {o.spec}
                         </span>
                       )}
                     </span>
                     {o.unit && (
-                      <span className="shrink-0 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground shrink-0 text-xs">
                         {o.unit}
                       </span>
                     )}
                     {o.price != null && (
-                      <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                      <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
                         {formatCurrency(o.price)}
                       </span>
                     )}

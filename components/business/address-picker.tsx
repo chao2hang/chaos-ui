@@ -220,7 +220,7 @@ function AddressColumn({
     <div className="flex min-w-[160px] flex-col border-r last:border-r-0">
       <div className="border-b px-2 py-1.5">
         <div className="relative">
-          <SearchIcon className="pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+          <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2" />
           <Input
             className="h-7 pl-7 text-xs"
             placeholder={"\u641c\u7d22" + levelLabel}
@@ -232,7 +232,7 @@ function AddressColumn({
       </div>
       <div className="max-h-64 overflow-y-auto">
         {filtered.length === 0 && (
-          <div className="px-3 py-4 text-center text-xs text-muted-foreground">
+          <div className="text-muted-foreground px-3 py-4 text-center text-xs">
             {"\u65e0\u6570\u636e"}
           </div>
         )}
@@ -243,14 +243,14 @@ function AddressColumn({
               key={node.code}
               type="button"
               className={cn(
-                "flex w-full items-center justify-between px-3 py-1.5 text-left text-sm hover:bg-accent",
+                "hover:bg-accent flex w-full items-center justify-between px-3 py-1.5 text-left text-sm",
                 isSelected && "bg-accent font-medium",
               )}
               onClick={() => onSelect(node)}
             >
               <span className="truncate">{node.name}</span>
               {isSelected && (
-                <CheckIcon className="size-3.5 shrink-0 text-primary" />
+                <CheckIcon className="text-primary size-3.5 shrink-0" />
               )}
             </button>
           );
@@ -264,7 +264,12 @@ function AddressColumn({
 /*  AddressPanel - the multi-column cascade UI                        */
 /* ------------------------------------------------------------------ */
 
-const LEVEL_LABELS = ["\u7701/\u5e02", "\u5e02/\u533a", "\u533a/\u53bf", "\u8857\u9053"];
+const LEVEL_LABELS = [
+  "\u7701/\u5e02",
+  "\u5e02/\u533a",
+  "\u533a/\u53bf",
+  "\u8857\u9053",
+];
 
 interface AddressPanelProps {
   tree: AddressOption[];
@@ -332,7 +337,7 @@ function AddressPanel({
           key={idx}
           nodes={col}
           selectedCode={codes[idx] ?? ""}
-          levelLabel={LEVEL_LABELS[idx] ?? ("\u7b2c" + (idx + 1) + "\u7ea7")}
+          levelLabel={LEVEL_LABELS[idx] ?? "\u7b2c" + (idx + 1) + "\u7ea7"}
           onSelect={(node) => onSelect(idx, node)}
         />
       ))}
@@ -345,7 +350,7 @@ function AddressPanel({
         />
       )}
       {level === 4 && districtCode && loadingCode === districtCode && (
-        <div className="flex min-w-[160px] items-center justify-center border-r px-3 py-4 text-xs text-muted-foreground last:border-r-0">
+        <div className="text-muted-foreground flex min-w-[160px] items-center justify-center border-r px-3 py-4 text-xs last:border-r-0">
           {"\u52a0\u8f7d\u4e2d\u2026"}
         </div>
       )}
@@ -412,8 +417,7 @@ function AddressPicker({
     const isLeaf = !hasChildren || nextCodes.length >= maxDepth;
 
     // For lazy-load (level=4), district without embedded children is intermediate
-    const isLazyIntermediate =
-      level === 4 && colIndex === 2 && !hasChildren;
+    const isLazyIntermediate = level === 4 && colIndex === 2 && !hasChildren;
 
     setInternalCodes(nextCodes);
 
@@ -444,8 +448,10 @@ function AddressPicker({
   // Trigger element shared between input and button modes
   const triggerContent = (
     <div className="flex items-center gap-1.5 truncate">
-      <MapPinIcon className="size-3.5 shrink-0 text-muted-foreground" />
-      <span className={cn("truncate", !hasSelection && "text-muted-foreground")}>
+      <MapPinIcon className="text-muted-foreground size-3.5 shrink-0" />
+      <span
+        className={cn("truncate", !hasSelection && "text-muted-foreground")}
+      >
         {displayText}
       </span>
     </div>
@@ -453,14 +459,22 @@ function AddressPicker({
 
   const clearButton =
     clearable && hasSelection && !disabled ? (
-      <button
-        type="button"
-        className="flex shrink-0 items-center justify-center rounded-full p-0.5 hover:bg-accent"
+      <span
+        role="button"
+        tabIndex={0}
+        className="hover:bg-accent flex shrink-0 cursor-pointer items-center justify-center rounded-full p-0.5"
         onClick={handleClear}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.stopPropagation();
+            handleClear(e as unknown as React.MouseEvent);
+          }
+        }}
         aria-label={"\u6e05\u9664\u9009\u62e9"}
       >
-        <XIcon className="size-3.5 text-muted-foreground" />
-      </button>
+        <XIcon className="text-muted-foreground size-3.5" />
+      </span>
     ) : null;
 
   // Input trigger mode
@@ -474,7 +488,7 @@ function AddressPicker({
               disabled={disabled}
               data-slot="address-picker"
               className={cn(
-                "flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-sm ring-offset-background",
+                "border-input bg-background ring-offset-background flex h-9 w-full items-center justify-between gap-2 rounded-md border px-3 text-sm",
                 "placeholder:text-muted-foreground",
                 "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
                 disabled && "cursor-not-allowed opacity-50",
@@ -506,7 +520,7 @@ function AddressPicker({
             disabled={disabled}
             data-slot="address-picker"
             className={cn(
-              "inline-flex h-9 items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-sm",
+              "border-input bg-background inline-flex h-9 items-center justify-between gap-2 rounded-md border px-3 text-sm",
               "hover:bg-accent hover:text-accent-foreground",
               "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               disabled && "cursor-not-allowed opacity-50",

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { ArrowDownIcon } from "@/components/ui/icons";
-import { useTranslation } from "react-i18next";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { cn } from "@/lib/utils";
 
 interface PullToRefreshProps extends React.ComponentProps<"div"> {
@@ -110,7 +110,7 @@ export function PullToRefresh({
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-center gap-2 text-xs text-muted-foreground transition-opacity",
+          "text-muted-foreground pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-center gap-2 text-xs transition-opacity",
           state === "idle" ? "opacity-0" : "opacity-100",
         )}
         style={{ height: distance }}
