@@ -190,5 +190,4 @@ function MobileQrCodeScanner({ onScan, className }: MobileQrCodeScannerProps) {
 }
 
 export { MobileQrCodeScanner };
-export { MobileQrCodeScanner as MobileQrCodeScanner };
 export type { MobileQrCodeScannerProps };
