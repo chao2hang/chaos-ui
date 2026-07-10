@@ -10,12 +10,15 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps/docs/package.json apps/docs/package.json
 COPY packages/chaos-design-ui/package.json packages/chaos-design-ui/package.json
 COPY eslint-plugin-chaos/package.json eslint-plugin-chaos/package.json
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 # 源码
 COPY . .
 
 # 构建组件包（文档站通过 link:../.. 依赖 dist/ 产物）
+# 增加 Node.js 内存限制，防止构建 OOM
+ENV NODE_OPTIONS=--max-old-space-size=4096
+
 RUN pnpm run build:pkg && \
     echo "=== dist/ contents ===" && \
     ls -la dist/ | head -20 && \
@@ -47,7 +50,9 @@ RUN pnpm run build-storybook && \
     ls storybook-static/ | head -5
 
 # 构建 Next.js 展示站
-RUN cd apps/docs && pnpm run build && \
+# 使用 NODE_OPTIONS 增加内存，避免 551 页面静态生成时 OOM
+RUN --mount=type=cache,target=/app/apps/docs/.next/cache \
+    cd apps/docs && NODE_OPTIONS=--max-old-space-size=4096 pnpm run build 2>&1 && \
     echo "=== Next.js build complete ==="
 
 # ─── Runtime Stage ───
