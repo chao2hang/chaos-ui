@@ -47,9 +47,9 @@ vitest.shims.d.ts
 eslint.config.*
 .prettierrc*
 prettier.config.*
-postcss.config.*
 tailwind.config.*
 components.json
+# postcss.config.* is needed by Next.js and Storybook for CSS processing — DO NOT exclude
 # tsconfig.json is needed by Next.js for path resolution (@/ alias)
 !apps/docs/tsconfig.json
 
