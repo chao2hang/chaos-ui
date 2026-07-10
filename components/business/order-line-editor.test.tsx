@@ -7,9 +7,13 @@ import type {
   SkuOption,
 } from "./order-line-editor";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const skuOptions: SkuOption[] = [
   { label: "SKU-A", value: "a", price: 10.5 },
@@ -119,9 +123,7 @@ describe("OrderLineEditor", () => {
   });
 
   it("renders readOnly view without add button", () => {
-    render(
-      <OrderLineEditor data={lines} skuOptions={skuOptions} readOnly />,
-    );
+    render(<OrderLineEditor data={lines} skuOptions={skuOptions} readOnly />);
     expect(screen.queryByText("添加行")).toBeNull();
     // operation column header hidden in readOnly
     expect(screen.queryByText(/操作/)).toBeNull();
@@ -130,22 +132,18 @@ describe("OrderLineEditor", () => {
   });
 
   it("renders the footer total even in readOnly mode", () => {
-    render(
-      <OrderLineEditor data={lines} skuOptions={skuOptions} readOnly />,
-    );
+    render(<OrderLineEditor data={lines} skuOptions={skuOptions} readOnly />);
     expect(screen.getByText(/¥33\.00/)).toBeDefined();
   });
 
   it("respects minRows / maxRows passthrough", () => {
     render(
-      <OrderLineEditor
-        data={lines}
-        skuOptions={skuOptions}
-        maxRows={2}
-      />,
+      <OrderLineEditor data={lines} skuOptions={skuOptions} maxRows={2} />,
     );
     // At maxRows, the add button is disabled
-    const addBtn = screen.getByText("添加行").closest("button") as HTMLButtonElement;
+    const addBtn = screen
+      .getByText("添加行")
+      .closest("button") as HTMLButtonElement;
     expect(addBtn.disabled).toBe(true);
   });
 

@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { JsonViewer } from "./json-viewer";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("JsonViewer", () => {
   it("renders primitive values: string, number, boolean, null", () => {
@@ -32,9 +36,7 @@ describe("JsonViewer", () => {
   });
 
   it("expands a collapsed node on toggle click", () => {
-    render(
-      <JsonViewer data={{ obj: { a: 1 } }} defaultCollapsedDepth={1} />,
-    );
+    render(<JsonViewer data={{ obj: { a: 1 } }} defaultCollapsedDepth={1} />);
     // Root (depth 0) is open, "obj" (depth 1) is collapsed: inner key "a"
     // is not rendered yet (KeyName renders `"a": `, value span renders `1`).
     expect(screen.queryByText((c) => c.includes('"a"'))).toBeNull();

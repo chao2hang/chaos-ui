@@ -13,7 +13,9 @@ const meta: Meta<typeof QRCode> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <QRCode value={"示例内容"} />,
+};
 
 export const CustomSize: Story = {
   args: {

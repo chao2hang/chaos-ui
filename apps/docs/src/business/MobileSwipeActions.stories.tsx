@@ -9,4 +9,16 @@ const meta: Meta<typeof SwipeActions> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <SwipeActions
+      onSwipeLeft={() => {}}
+      onSwipeRight={() => {}}
+      onSwipeUp={() => {}}
+      onSwipeDown={() => {}}
+      disabled={false}
+      leftAction={{}}
+      children={"内容"}
+    />
+  ),
+};

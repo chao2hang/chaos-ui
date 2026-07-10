@@ -2,12 +2,21 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { ExperimentSummary } from "@/components/business/experiment-summary";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const variants = [
-  { id: "a", name: "A", sampleSize: undefined as unknown as number, conversionRate: undefined as unknown as number },
+  {
+    id: "a",
+    name: "A",
+    sampleSize: undefined as unknown as number,
+    conversionRate: undefined as unknown as number,
+  },
   { id: "b", name: "B", sampleSize: 100, conversionRate: 5.5, lift: 10 },
 ];
 
@@ -22,7 +31,9 @@ describe("ExperimentSummary", () => {
     const { getByText } = render(
       <ExperimentSummary
         name="Test A/B"
-        variants={[{ id: "a", name: "VariantA", sampleSize: 100, conversionRate: 5.5 }]}
+        variants={[
+          { id: "a", name: "VariantA", sampleSize: 100, conversionRate: 5.5 },
+        ]}
       />,
     );
     expect(getByText("VariantA")).toBeTruthy();
@@ -30,10 +41,16 @@ describe("ExperimentSummary", () => {
 
   it("renders experiment name and status badge", () => {
     render(
-      <ExperimentSummary name="Checkout Test" status="completed" variants={[]} />,
+      <ExperimentSummary
+        name="Checkout Test"
+        status="completed"
+        variants={[]}
+      />,
     );
     expect(screen.getByText("Checkout Test")).toBeDefined();
-    expect(screen.getByText("experimentSummary.status.completed")).toBeDefined();
+    expect(
+      screen.getByText("experimentSummary.status.completed"),
+    ).toBeDefined();
   });
 
   it("renders default status running when omitted", () => {
@@ -54,7 +71,9 @@ describe("ExperimentSummary", () => {
 
   it("omits hypothesis when not provided", () => {
     const { container } = render(<ExperimentSummary name="X" variants={[]} />);
-    expect(container.querySelector('[data-slot="card-description"]')).toBeNull();
+    expect(
+      container.querySelector('[data-slot="card-description"]'),
+    ).toBeNull();
   });
 
   it("uses provided primaryMetric, falls back to i18n key", () => {

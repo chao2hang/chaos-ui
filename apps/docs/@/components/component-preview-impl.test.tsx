@@ -1,143 +1,79 @@
-import { act, render, screen } from "@testing-library/react"
-import { useEffect, useState, type ComponentType } from "react"
-import { afterEach, describe, expect, it, vi } from "vitest"
+import { render, screen } from "@testing-library/react";
+import type { ComponentType } from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { ComponentPreviewImpl } from "./component-preview-impl"
+import { ComponentPreviewImpl } from "./component-preview-impl";
 
 const mocks = vi.hoisted(() => ({
   previews: {} as Record<string, ComponentType>,
   storyPreviews: {} as Record<string, ComponentType>,
-  loaders: {} as Record<string, ComponentType<unknown>>,
-  businessNames: new Set<string>(),
-}))
+}));
 
 vi.mock("@/components/component-previews", () => ({
   componentPreviews: mocks.previews,
-}))
+}));
 
 vi.mock("@/components/component-story-previews", () => ({
   componentStoryPreviews: mocks.storyPreviews,
-}))
-
-vi.mock("@/components/component-loader", () => ({
-  componentLoaders: mocks.loaders,
-  businessComponentNames: mocks.businessNames,
-}))
+}));
 
 function resetMocks() {
-  for (const key of Object.keys(mocks.previews)) delete mocks.previews[key]
-  for (const key of Object.keys(mocks.storyPreviews)) delete mocks.storyPreviews[key]
-  for (const key of Object.keys(mocks.loaders)) delete mocks.loaders[key]
-  mocks.businessNames.clear()
+  for (const key of Object.keys(mocks.previews)) delete mocks.previews[key];
+  for (const key of Object.keys(mocks.storyPreviews))
+    delete mocks.storyPreviews[key];
 }
 
 function assertPreviewFallback(name: string) {
-  expect(screen.getByText(/No live preview available for/i)).toBeInTheDocument()
-  expect(screen.getByText(name)).toBeInTheDocument()
-}
-
-function assertMissingPreview() {
-  expect(screen.getByText("请前往 Storybook 查看完整示例。")).toBeInTheDocument()
+  expect(
+    screen.getByText(/No live preview available for/i),
+  ).toBeInTheDocument();
+  expect(screen.getByText(name)).toBeInTheDocument();
 }
 
 describe("ComponentPreviewImpl", () => {
   afterEach(() => {
-    resetMocks()
-    vi.clearAllMocks()
-    vi.useRealTimers()
-  })
+    resetMocks();
+    vi.clearAllMocks();
+  });
 
-  it("renders the no-live-preview fallback when no loader exists", () => {
-    render(<ComponentPreviewImpl name="Ghost" />)
+  it("renders the no-live-preview fallback when no demo or story exists", () => {
+    render(<ComponentPreviewImpl name="Ghost" />);
 
-    assertPreviewFallback("Ghost")
-  })
+    assertPreviewFallback("Ghost");
+  });
 
-  it("renders the business-component fallback when bare instantiation is unsafe", () => {
-    const Preview: ComponentType<unknown> = () => <div>Alert preview</div>
-    mocks.loaders.Alert = Preview
-    mocks.businessNames.add("Alert")
+  it("prefers hand-authored previews over story previews", () => {
+    mocks.previews.Button = () => <div>Hand preview</div>;
+    mocks.storyPreviews.Button = () => <div>Story preview</div>;
 
-    render(<ComponentPreviewImpl name="Alert" />)
+    render(<ComponentPreviewImpl name="Button" />);
 
-    assertPreviewFallback("Alert")
-  })
+    expect(screen.getByText("Hand preview")).toBeInTheDocument();
+    expect(screen.queryByText("Story preview")).not.toBeInTheDocument();
+  });
 
-  it("prefers hand-authored previews over story previews and bare loaders", () => {
-    mocks.previews.Button = () => <div>Hand preview</div>
-    mocks.storyPreviews.Button = () => <div>Story preview</div>
-    mocks.loaders.Button = () => <div>Bare loader</div>
+  it("uses story previews when no hand-authored demo exists", () => {
+    mocks.storyPreviews.Alert = () => <div>Story alert</div>;
 
-    render(<ComponentPreviewImpl name="Button" />)
+    render(<ComponentPreviewImpl name="Alert" />);
 
-    expect(screen.getByText("Hand preview")).toBeInTheDocument()
-    expect(screen.queryByText("Story preview")).not.toBeInTheDocument()
-    expect(screen.queryByText("Bare loader")).not.toBeInTheDocument()
-  })
+    expect(screen.getByText("Story alert")).toBeInTheDocument();
+  });
 
-  it("uses story previews before bare loaders", () => {
-    mocks.storyPreviews.Alert = () => <div>Story alert</div>
-    mocks.loaders.Alert = () => <div>Bare alert</div>
+  it("uses story previews for business components", () => {
+    mocks.storyPreviews.DataTable = () => <div>Rows preview</div>;
 
-    render(<ComponentPreviewImpl name="Alert" />)
+    render(<ComponentPreviewImpl name="DataTable" />);
 
-    expect(screen.getByText("Story alert")).toBeInTheDocument()
-    expect(screen.queryByText("Bare alert")).not.toBeInTheDocument()
-  })
+    expect(screen.getByText("Rows preview")).toBeInTheDocument();
+    expect(
+      screen.queryByText(/No live preview available for/i),
+    ).not.toBeInTheDocument();
+  });
 
-  it("uses story previews for business components instead of skipping them", () => {
-    mocks.storyPreviews.DataTable = () => <div>Rows preview</div>
-    mocks.loaders.DataTable = () => <div>Bare table</div>
-    mocks.businessNames.add("DataTable")
+  it("shows the fallback when no demo or story is registered", () => {
+    render(<ComponentPreviewImpl name="UnknownComponent" />);
 
-    render(<ComponentPreviewImpl name="DataTable" />)
-
-    expect(screen.getByText("Rows preview")).toBeInTheDocument()
-    expect(screen.queryByText(/No live preview available for/i)).not.toBeInTheDocument()
-  })
-
-  it("waits for delayed bare-loader content before showing the empty fallback", async () => {
-    vi.useFakeTimers()
-
-    const DelayedPreview: ComponentType<unknown> = () => {
-      const [ready, setReady] = useState(false)
-
-      useEffect(() => {
-        const id = window.setTimeout(() => setReady(true), 50)
-        return () => window.clearTimeout(id)
-      }, [])
-
-      return ready ? <div>Loaded preview</div> : null
-    }
-
-    mocks.loaders.Result = DelayedPreview
-
-    render(<ComponentPreviewImpl name="Result" />)
-
-    expect(screen.getByText("Loading preview…")).toBeInTheDocument()
-    expect(screen.queryByText("请前往 Storybook 查看完整示例。")).not.toBeInTheDocument()
-
-    await act(async () => {
-      vi.advanceTimersByTime(50)
-    })
-
-    expect(screen.getByText("Loaded preview")).toBeInTheDocument()
-    expect(screen.queryByText("请前往 Storybook 查看完整示例。")).not.toBeInTheDocument()
-  })
-
-  it("shows the empty fallback when a bare loader never renders content", async () => {
-    vi.useFakeTimers()
-
-    mocks.loaders.EmptyShell = () => null
-
-    render(<ComponentPreviewImpl name="EmptyShell" />)
-
-    expect(screen.getByText("Loading preview…")).toBeInTheDocument()
-
-    await act(async () => {
-      vi.advanceTimersByTime(900)
-    })
-
-    assertMissingPreview()
-  })
-})
+    assertPreviewFallback("UnknownComponent");
+  });
+});

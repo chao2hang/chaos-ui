@@ -9,4 +9,8 @@ const meta: Meta<typeof BudgetPacingCard> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <BudgetPacingCard title={"示例"} budget={10000} spent={42} forecast={42} />
+  ),
+};

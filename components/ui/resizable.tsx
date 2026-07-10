@@ -4,17 +4,31 @@ import { cn } from "@/lib/utils";
 
 type Direction = "horizontal" | "vertical";
 
-interface ResizablePanelGroupContext {
-  direction: Direction;
-  registerPanel: (id: string, size: number) => void;
-  panels: { id: string; size: number }[];
+interface PanelResizeData {
+  size: number;
+  setSize: (n: number) => void;
+  minSize: number;
+  maxSize: number;
+  collapsible: boolean;
+  collapsed: boolean;
+  collapsedSize: number;
+  handleCollapse: () => void;
+  handleExpand: () => void;
 }
 
-const ResizableContext = React.createContext<ResizablePanelGroupContext | null>(
+interface ResizableGroupContextValue {
+  direction: Direction;
+  registerPanel: (id: string, data: PanelResizeData) => void;
+  unregisterPanel: (id: string) => void;
+  panelDataMap: React.MutableRefObject<Map<string, PanelResizeData>>;
+  groupRef: React.RefObject<HTMLDivElement | null>;
+}
+
+const ResizableContext = React.createContext<ResizableGroupContextValue | null>(
   null,
 );
 
-function useResizable() {
+function useResizableGroup() {
   const ctx = React.useContext(ResizableContext);
   if (!ctx)
     throw new Error(
@@ -43,22 +57,32 @@ function ResizablePanelGroup({
   children,
   ...props
 }: React.ComponentProps<"div"> & { direction?: Direction }) {
-  const [panels, setPanels] = React.useState<{ id: string; size: number }[]>(
+  const groupRef = React.useRef<HTMLDivElement>(null);
+  const panelDataMap = React.useRef(new Map<string, PanelResizeData>());
+
+  const registerPanel = React.useCallback(
+    (id: string, data: PanelResizeData) => {
+      panelDataMap.current.set(id, data);
+    },
     [],
   );
 
-  const registerPanel = React.useCallback((id: string, size: number) => {
-    setPanels((prev) => {
-      // Deduplicate by id (not size) so panels with the same defaultSize
-      // are all registered.
-      if (prev.some((p) => p.id === id)) return prev;
-      return [...prev, { id, size }];
-    });
+  const unregisterPanel = React.useCallback((id: string) => {
+    panelDataMap.current.delete(id);
   }, []);
 
   return (
-    <ResizableContext.Provider value={{ direction, panels, registerPanel }}>
+    <ResizableContext.Provider
+      value={{
+        direction,
+        registerPanel,
+        unregisterPanel,
+        panelDataMap,
+        groupRef,
+      }}
+    >
       <div
+        ref={groupRef}
         data-slot="resizable-panel-group"
         data-direction={direction}
         className={cn(
@@ -104,21 +128,15 @@ function ResizablePanel({
   collapsedSize = 0,
   className,
   children,
+  onResize,
+  onCollapse,
+  onExpand,
   ...props
 }: ResizablePanelProps) {
-  const ctx = useResizable();
+  const ctx = useResizableGroup();
   const [size, setSize] = React.useState(defaultSize);
   const [collapsed, setCollapsed] = React.useState(false);
   const panelId = React.useId();
-
-  React.useEffect(() => {
-    ctx.registerPanel(panelId, defaultSize);
-  }, [ctx, panelId, defaultSize]);
-
-  const { onResize, onCollapse, onExpand } = props;
-  React.useEffect(() => {
-    onResize?.(collapsed ? collapsedSize : size);
-  }, [size, collapsed, collapsedSize, onResize]);
 
   const handleCollapse = React.useCallback(() => {
     setCollapsed(true);
@@ -130,78 +148,83 @@ function ResizablePanel({
     onExpand?.();
   }, [onExpand]);
 
+  // Register / update panel resize data so handles between panels can find us
+  React.useEffect(() => {
+    ctx.registerPanel(panelId, {
+      size,
+      setSize,
+      minSize,
+      maxSize,
+      collapsible,
+      collapsed,
+      collapsedSize,
+      handleCollapse,
+      handleExpand,
+    });
+    return () => ctx.unregisterPanel(panelId);
+  }, [
+    ctx,
+    panelId,
+    size,
+    minSize,
+    maxSize,
+    collapsible,
+    collapsed,
+    collapsedSize,
+    handleCollapse,
+    handleExpand,
+  ]);
+
+  React.useEffect(() => {
+    onResize?.(collapsed ? collapsedSize : size);
+  }, [size, collapsed, collapsedSize, onResize]);
+
   return (
-    <ResizablePanelHandleProvider
-      value={{
-        size,
-        setSize,
-        minSize,
-        maxSize,
-        collapsed,
-        collapsedSize,
-        collapsible,
-        handleCollapse,
-        handleExpand,
-        direction: ctx.direction,
+    <div
+      data-slot="resizable-panel"
+      data-panel-id={panelId}
+      data-collapsed={collapsed}
+      style={{
+        [ctx.direction === "horizontal" ? "width" : "height"]: `${
+          collapsed ? collapsedSize : size
+        }%`,
       }}
+      className={cn("relative overflow-hidden", className)}
+      {...props}
     >
-      <div
-        data-slot="resizable-panel"
-        data-collapsed={collapsed}
-        style={{
-          [ctx.direction === "horizontal" ? "width" : "height"]: `${
-            collapsed ? collapsedSize : size
-          }%`,
-        }}
-        className={cn("relative overflow-hidden", className)}
-        {...props}
-      >
-        {children}
-      </div>
-    </ResizablePanelHandleProvider>
-  );
-}
-
-interface HandleContext {
-  size: number;
-  setSize: (n: number) => void;
-  minSize: number;
-  maxSize: number;
-  collapsed: boolean;
-  collapsedSize: number;
-  collapsible: boolean;
-  handleCollapse: () => void;
-  handleExpand: () => void;
-  direction: Direction;
-}
-
-const ResizableHandleContext = React.createContext<HandleContext | null>(null);
-
-function ResizablePanelHandleProvider({
-  value,
-  children,
-}: {
-  value: HandleContext;
-  children: React.ReactNode;
-}) {
-  return (
-    <ResizableHandleContext.Provider value={value}>
       {children}
-    </ResizableHandleContext.Provider>
+    </div>
   );
 }
 
-function useResizableHandle() {
-  const ctx = React.useContext(ResizableHandleContext);
-  if (!ctx) throw new Error("Handle must be used within ResizablePanel");
-  return ctx;
+/**
+ * Find the panel element associated with a handle.
+ *
+ * 1. If the handle is *inside* a panel, the parent element will have
+ *    `data-panel-id`.
+ * 2. If the handle is *between* panels (a sibling), walk backwards through
+ *    previous siblings until we find an element with `data-panel-id`.
+ */
+function findPanelElement(handle: HTMLElement | null): HTMLElement | null {
+  if (!handle) return null;
+
+  // Case 1: handle is inside a panel
+  const parent = handle.parentElement;
+  if (parent?.hasAttribute("data-panel-id")) return parent;
+
+  // Case 2: handle is between panels — find previous sibling panel
+  let prev = handle.previousElementSibling as HTMLElement | null;
+  while (prev && !prev.hasAttribute("data-panel-id")) {
+    prev = prev.previousElementSibling as HTMLElement | null;
+  }
+  return prev;
 }
 
 /**
  * @component ResizableHandle
  * @category ui/layout
  * @since 0.2.0
- * @description Draggable handle separating resizable panels with double-click collapse/expand support / 可拖拽的分隔手柄，支持双击折叠/展开面板
+ * @description Draggable handle separating resizable panels with double-click collapse/expand support. Can be placed between panels or inside a panel. / 可拖拽的分隔手柄，支持双击折叠/展开面板。可放在面板之间或面板内部。
  * @keywords resizable, handle, drag, divider, splitter, collapse
  * @example
  * <ResizableHandle withHandle />
@@ -211,41 +234,41 @@ function ResizableHandle({
   className,
   ...props
 }: React.ComponentProps<"div"> & { withHandle?: boolean }) {
-  const {
-    size,
-    setSize,
-    minSize,
-    maxSize,
-    collapsed,
-    collapsible,
-    handleCollapse,
-    handleExpand,
-    direction,
-  } = useResizableHandle();
-  const startPos = React.useRef(0);
-  const startSize = React.useRef(size);
+  const ctx = useResizableGroup();
   const ref = React.useRef<HTMLDivElement>(null);
+
+  // Resolve the panel data for the panel this handle controls
+  const resolvePanelData = React.useCallback((): PanelResizeData | null => {
+    const panelEl = findPanelElement(ref.current);
+    if (!panelEl) return null;
+    const id = panelEl.getAttribute("data-panel-id");
+    if (!id) return null;
+    return ctx.panelDataMap.current.get(id) ?? null;
+  }, [ctx]);
 
   const onPointerDown = React.useCallback(
     (e: React.PointerEvent) => {
       e.preventDefault();
-      startPos.current = direction === "horizontal" ? e.clientX : e.clientY;
-      startSize.current = size;
+      const panelData = resolvePanelData();
+      if (!panelData) return;
+
+      const direction = ctx.direction;
+      const startPos = direction === "horizontal" ? e.clientX : e.clientY;
+      const startSize = panelData.size;
 
       const onMove = (ev: PointerEvent) => {
-        const container = ref.current?.parentElement?.parentElement;
+        const container = ctx.groupRef.current;
         if (!container) return;
         const rect = container.getBoundingClientRect();
         const total = direction === "horizontal" ? rect.width : rect.height;
         const delta =
-          ((direction === "horizontal" ? ev.clientX : ev.clientY) -
-            startPos.current) /
+          ((direction === "horizontal" ? ev.clientX : ev.clientY) - startPos) /
           total;
         const next = Math.min(
-          Math.max(startSize.current + delta * 100, minSize),
-          maxSize,
+          Math.max(startSize + delta * 100, panelData.minSize),
+          panelData.maxSize,
         );
-        setSize(next);
+        panelData.setSize(next);
       };
 
       const onUp = () => {
@@ -256,14 +279,17 @@ function ResizableHandle({
       document.addEventListener("pointermove", onMove);
       document.addEventListener("pointerup", onUp);
     },
-    [direction, minSize, maxSize, setSize, size],
+    [ctx, resolvePanelData],
   );
 
-  const onDoubleClick = () => {
-    if (!collapsible) return;
-    if (collapsed) handleExpand();
-    else handleCollapse();
-  };
+  const onDoubleClick = React.useCallback(() => {
+    const panelData = resolvePanelData();
+    if (!panelData || !panelData.collapsible) return;
+    if (panelData.collapsed) panelData.handleExpand();
+    else panelData.handleCollapse();
+  }, [resolvePanelData]);
+
+  const direction = ctx.direction;
 
   return (
     <div

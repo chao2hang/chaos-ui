@@ -9,4 +9,12 @@ const meta: Meta<typeof CalendarMonth> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <CalendarMonth
+      onDateChange={() => {}}
+      onEventClick={() => {}}
+      onDayClick={() => {}}
+    />
+  ),
+};

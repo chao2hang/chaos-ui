@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { PromptDialog } from "./prompt-dialog";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("PromptDialog", () => {
   it("exports PromptDialog", () => {
@@ -46,9 +50,7 @@ describe("PromptDialog", () => {
   });
 
   it("renders custom confirm/cancel text", () => {
-    render(
-      <PromptDialog open={true} confirmText="OK" cancelText="Dismiss" />,
-    );
+    render(<PromptDialog open={true} confirmText="OK" cancelText="Dismiss" />);
     expect(screen.getByText("OK")).toBeDefined();
     expect(screen.getByText("Dismiss")).toBeDefined();
   });
@@ -72,7 +74,11 @@ describe("PromptDialog", () => {
     const onConfirm = vi.fn().mockResolvedValue(undefined);
     const onOpenChange = vi.fn();
     render(
-      <PromptDialog open={true} onConfirm={onConfirm} onOpenChange={onOpenChange} />,
+      <PromptDialog
+        open={true}
+        onConfirm={onConfirm}
+        onOpenChange={onOpenChange}
+      />,
     );
     const input = screen.getByRole("textbox");
     fireEvent.change(input, { target: { value: "my value" } });
@@ -93,14 +99,17 @@ describe("PromptDialog", () => {
   it("disables buttons while async onConfirm is pending", async () => {
     let resolve: () => void = () => {};
     const onConfirm = vi.fn(
-      () => new Promise<void>((r) => {
-        resolve = r;
-      }),
+      () =>
+        new Promise<void>((r) => {
+          resolve = r;
+        }),
     );
     render(<PromptDialog open={true} onConfirm={onConfirm} />);
     const input = screen.getByRole("textbox");
     fireEvent.change(input, { target: { value: "x" } });
-    const confirmBtn = screen.getByText("promptDialog.confirm").closest("button")!;
+    const confirmBtn = screen
+      .getByText("promptDialog.confirm")
+      .closest("button")!;
     fireEvent.click(confirmBtn);
     expect(confirmBtn.hasAttribute("disabled")).toBe(true);
     resolve();
@@ -148,7 +157,9 @@ describe("PromptDialog", () => {
 
   it("closes when onConfirm is not provided", () => {
     const onOpenChange = vi.fn();
-    render(<PromptDialog open={true} onOpenChange={onOpenChange} required={false} />);
+    render(
+      <PromptDialog open={true} onOpenChange={onOpenChange} required={false} />,
+    );
     fireEvent.click(screen.getByText("promptDialog.confirm"));
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });

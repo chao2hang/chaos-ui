@@ -3,9 +3,13 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { EditableTreeTable } from "./editable-tree-table";
 import type { EditableTreeTableColumn } from "./editable-tree-table";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 vi.mock("@/components/ui/icons", () => ({
   ChevronRightIcon: (props: Record<string, unknown>) => (
@@ -124,9 +128,7 @@ describe("EditableTreeTable", () => {
 
     // Find editable display cells - click on a qty cell
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     expect(qtyCell).toBeTruthy();
     if (qtyCell) {
       fireEvent.click(qtyCell);
@@ -148,9 +150,7 @@ describe("EditableTreeTable", () => {
 
     // Click on qty=10 to edit
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");
@@ -176,9 +176,7 @@ describe("EditableTreeTable", () => {
     );
 
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");
@@ -217,9 +215,7 @@ describe("EditableTreeTable", () => {
     );
 
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");
@@ -228,9 +224,7 @@ describe("EditableTreeTable", () => {
 
     // Error should be shown
     await waitFor(() => {
-      expect(
-        screen.getByText("Must be a non-negative number"),
-      ).toBeTruthy();
+      expect(screen.getByText("Must be a non-negative number")).toBeTruthy();
     });
 
     // Input should still be visible (edit not committed)
@@ -252,9 +246,7 @@ describe("EditableTreeTable", () => {
 
     // Edit a cell
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");
@@ -280,9 +272,7 @@ describe("EditableTreeTable", () => {
 
     // Edit qty of row 1 from 10 to 25
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");
@@ -316,9 +306,7 @@ describe("EditableTreeTable", () => {
 
     // Edit a cell
     const editableCells = screen.getAllByRole("button");
-    const qtyCell = editableCells.find((el) =>
-      el.textContent?.includes("10"),
-    );
+    const qtyCell = editableCells.find((el) => el.textContent?.includes("10"));
     if (qtyCell) fireEvent.click(qtyCell);
 
     const input = screen.getByDisplayValue("10");

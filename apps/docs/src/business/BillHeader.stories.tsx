@@ -9,4 +9,6 @@ const meta: Meta<typeof BillHeader> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <BillHeader fields={[]} extra={null} />,
+};

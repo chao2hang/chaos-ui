@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ExportButton } from "./export-button";
 import type { ExportFormat } from "./export-button";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 // Stub the download mechanism so clicks don't touch the real DOM/network.
 const clickMock = vi.fn();
@@ -14,7 +18,9 @@ beforeEach(() => {
   vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:url");
   vi.spyOn(URL, "revokeObjectURL").mockReturnValue(undefined);
   // document.createElement already returns real elements; intercept click.
-  vi.spyOn(HTMLElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+  vi.spyOn(HTMLElement.prototype, "click").mockImplementation(function (
+    this: HTMLAnchorElement,
+  ) {
     clickMock(this.download);
   });
 });
@@ -123,13 +129,7 @@ describe("export-button", () => {
   });
 
   it("renders dropdown trigger for multi-format", () => {
-    render(
-      <ExportButton
-        data={data}
-        formats={["csv", "json"]}
-        label="导出"
-      />,
-    );
+    render(<ExportButton data={data} formats={["csv", "json"]} label="导出" />);
     expect(screen.getByText("导出")).toBeDefined();
   });
 

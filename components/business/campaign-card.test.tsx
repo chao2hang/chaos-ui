@@ -3,9 +3,13 @@ import { render, screen } from "@testing-library/react";
 import { CampaignCard } from "./campaign-card";
 import type { CampaignMetric, CampaignCardProps } from "./campaign-card";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("CampaignCard", () => {
   it("exports CampaignCard", () => {

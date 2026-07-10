@@ -9,4 +9,12 @@ const meta: Meta<typeof BulkImportWizard> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <BulkImportWizard
+      filename={"示例名称"}
+      onUpload={() => {}}
+      onContinue={() => {}}
+    />
+  ),
+};

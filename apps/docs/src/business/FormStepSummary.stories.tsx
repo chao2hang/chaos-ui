@@ -9,4 +9,8 @@ const meta: Meta<typeof FormStepSummary> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <FormStepSummary steps={[]} values={"示例"} onJumpTo={() => {}} />
+  ),
+};

@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 // DialogContent calls useTranslation("ui"); mock it so the portal renders in jsdom.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 import { DepartmentBrowse } from "./department-browse";
 import type { Department, DepartmentBrowseProps } from "./department-browse";
@@ -122,12 +126,8 @@ describe("department-browse", () => {
         disabled
       />,
     );
-    expect(
-      screen.queryByRole("button", { name: /clear all/i }),
-    ).toBeNull();
-    expect(
-      screen.queryByRole("button", { name: /^remove$/i }),
-    ).toBeNull();
+    expect(screen.queryByRole("button", { name: /clear all/i })).toBeNull();
+    expect(screen.queryByRole("button", { name: /^remove$/i })).toBeNull();
   });
 
   it("opens the dialog and shows the title and tree", () => {
@@ -159,10 +159,7 @@ describe("department-browse", () => {
   it("selects a department in single mode and closes the dialog", () => {
     const onChange = vi.fn();
     render(
-      <DepartmentBrowse
-        departments={customDepartments}
-        onChange={onChange}
-      />,
+      <DepartmentBrowse departments={customDepartments} onChange={onChange} />,
     );
     fireEvent.click(screen.getByText("Select department..."));
     fireEvent.click(screen.getByText("Child One"));

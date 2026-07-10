@@ -9,9 +9,13 @@ import type {
 } from "./permission-matrix";
 
 // permission-matrix uses useTranslation("transfer"); mock so it renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const roles: PermissionMatrixRole[] = [
   { id: "admin", label: "Admin" },
@@ -49,13 +53,7 @@ describe("PermissionMatrix", () => {
   });
 
   it("renders role headers and resource labels", () => {
-    render(
-      <PermissionMatrix
-        roles={roles}
-        resources={resources}
-        value={{}}
-      />,
-    );
+    render(<PermissionMatrix roles={roles} resources={resources} value={{}} />);
     expect(screen.getByText("Admin")).toBeDefined();
     expect(screen.getByText("Viewer")).toBeDefined();
     expect(screen.getByText("Orders")).toBeDefined();
@@ -64,9 +62,7 @@ describe("PermissionMatrix", () => {
   });
 
   it("renders a checkbox for each permission per role", () => {
-    render(
-      <PermissionMatrix roles={roles} resources={resources} value={{}} />,
-    );
+    render(<PermissionMatrix roles={roles} resources={resources} value={{}} />);
     // 2 resources x roles: orders(2 perms x 2 roles = 4) + users(1 perm x 2 roles = 2) = 6
     const checkboxes = screen.getAllByRole("checkbox");
     expect(checkboxes.length).toBe(6);

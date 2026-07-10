@@ -9,4 +9,8 @@ const meta: Meta<typeof FormProgress> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <FormProgress current={42} total={10} labels={["Q1", "Q2", "Q3", "Q4"]} />
+  ),
+};

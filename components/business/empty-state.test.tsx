@@ -2,9 +2,16 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { EmptyState, variantConfig } from "@/components/ui/empty-state";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string, fallback?: string) => fallback ?? k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (k: string, fallback?: string) => fallback ?? k,
+      i18n: { language: "en" },
+    }),
+  };
+});
 
 describe("empty-state", () => {
   it("exports EmptyState and variantConfig", () => {
@@ -19,9 +26,7 @@ describe("empty-state", () => {
   it("renders default variant fallback texts", () => {
     render(<EmptyState />);
     expect(screen.getByText("No data")).toBeDefined();
-    expect(
-      screen.getByText("There are no items to display."),
-    ).toBeDefined();
+    expect(screen.getByText("There are no items to display.")).toBeDefined();
   });
 
   it("renders search variant fallback texts", () => {
@@ -43,17 +48,13 @@ describe("empty-state", () => {
   });
 
   it("renders custom title and description overriding fallback", () => {
-    render(
-      <EmptyState title="自定义标题" description="自定义描述" />,
-    );
+    render(<EmptyState title="自定义标题" description="自定义描述" />);
     expect(screen.getByText("自定义标题")).toBeDefined();
     expect(screen.getByText("自定义描述")).toBeDefined();
   });
 
   it("renders texts prop overriding i18n (skips useTranslation)", () => {
-    render(
-      <EmptyState texts={{ title: "T1", description: "D1" }} />,
-    );
+    render(<EmptyState texts={{ title: "T1", description: "D1" }} />);
     expect(screen.getByText("T1")).toBeDefined();
     expect(screen.getByText("D1")).toBeDefined();
   });
@@ -61,7 +62,11 @@ describe("empty-state", () => {
   it("renders action node when provided", () => {
     render(
       <EmptyState
-        action={<button type="button" data-testid="act">刷新</button>}
+        action={
+          <button type="button" data-testid="act">
+            刷新
+          </button>
+        }
       />,
     );
     expect(screen.getByTestId("act")).toBeDefined();

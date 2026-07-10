@@ -9,4 +9,15 @@ const meta: Meta<typeof CrudToolbar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <CrudToolbar
+      primaryActions={[]}
+      searchValue={"示例"}
+      onSearch={() => {}}
+      onSearchChange={() => {}}
+      moreActions={[]}
+      bulkActionLabel={"示例"}
+    />
+  ),
+};

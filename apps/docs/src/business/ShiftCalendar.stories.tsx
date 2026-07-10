@@ -9,4 +9,16 @@ const meta: Meta<typeof ShiftCalendar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ShiftCalendar
+      shiftTypes={[]}
+      employees={[]}
+      assignments={[]}
+      onAssign={() => {}}
+      onRemove={() => {}}
+      onMonthChange={() => {}}
+      filterEmployeeIds={[]}
+    />
+  ),
+};

@@ -3,9 +3,13 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { TreeTable } from "./tree-table";
 import type { TreeTableColumn } from "./tree-table";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 // Provide minimal SVG stubs for lucide-react icons used in the component
 vi.mock("@/components/ui/icons", () => ({
@@ -153,9 +157,7 @@ describe("TreeTable", () => {
       { id: "lazy-2", name: "Lazy Child 2" },
     ]);
 
-    const leafData: Row[] = [
-      { id: "root", name: "Root Node" },
-    ];
+    const leafData: Row[] = [{ id: "root", name: "Root Node" }];
 
     render(
       <TreeTable
@@ -263,12 +265,7 @@ describe("TreeTable", () => {
 
   it("loading state shows skeletons", () => {
     const { container } = render(
-      <TreeTable
-        columns={columns}
-        data={nestedData}
-        rowKey="id"
-        loading
-      />,
+      <TreeTable columns={columns} data={nestedData} rowKey="id" loading />,
     );
     const skeletons = container.querySelectorAll('[data-slot="skeleton"]');
     expect(skeletons.length).toBeGreaterThan(0);

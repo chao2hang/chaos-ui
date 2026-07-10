@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Fab, FabSpeedDial, BackTop } from "@/components/ui/fab";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("fab", () => {
   it("exports Fab, FabSpeedDial, BackTop", () => {
@@ -49,9 +53,7 @@ describe("fab", () => {
     render(
       <FabSpeedDial
         icon={<span>t</span>}
-        actions={[
-          { icon: <span>a</span>, label: "A", onClick: vi.fn() },
-        ]}
+        actions={[{ icon: <span>a</span>, label: "A", onClick: vi.fn() }]}
       />,
     );
     const trigger = screen.getByRole("button", { name: /fab/i });

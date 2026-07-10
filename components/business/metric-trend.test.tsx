@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Sparkline, MetricTrend } from "./metric-trend";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("Sparkline", () => {
   it("renders null for empty data", () => {
@@ -52,7 +56,9 @@ describe("MetricTrend", () => {
     const { container } = render(
       <MetricTrend label="L" value={1} change={5} trendDirection="up-good" />,
     );
-    expect(container.querySelector('[data-slot="metric-trend"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="metric-trend"]'),
+    ).not.toBeNull();
     // ArrowUpIcon svg present in the badge
     expect(container.querySelectorAll("svg").length).toBeGreaterThan(0);
     // change label (translation key) is rendered
@@ -82,7 +88,9 @@ describe("MetricTrend", () => {
         trendDirection="down-good"
       />,
     );
-    expect(container.querySelector('[data-slot="metric-trend"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="metric-trend"]'),
+    ).not.toBeNull();
   });
 
   it("renders the change label text even for flat change", () => {

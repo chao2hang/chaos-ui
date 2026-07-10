@@ -9,4 +9,17 @@ const meta: Meta<typeof LineEditor> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <LineEditor
+      columns={[
+        { key: "name", header: "名称" },
+        { key: "value", header: "值" },
+      ]}
+      data={["选项A", "选项B", "选项C"]}
+      onChange={() => {}}
+      footer={null}
+      summaryKeys={[]}
+    />
+  ),
+};

@@ -3,13 +3,21 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { LanguageSwitcher } from "./language-switcher";
 import type { LanguageOption } from "./language-switcher";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const setLocale = vi.fn();
 vi.mock("@/hooks/use-locale", () => ({
-  useLocale: () => ({ locale: "zh-CN", setLocale, supportedLocales: ["zh-CN", "en-US"] }),
+  useLocale: () => ({
+    locale: "zh-CN",
+    setLocale,
+    supportedLocales: ["zh-CN", "en-US"],
+  }),
 }));
 
 const options: LanguageOption[] = [
@@ -20,9 +28,7 @@ const options: LanguageOption[] = [
 
 describe("LanguageSwitcher", () => {
   it("renders the current language native label on the trigger", () => {
-    render(
-      <LanguageSwitcher options={options} value="zh-CN" />,
-    );
+    render(<LanguageSwitcher options={options} value="zh-CN" />);
     expect(screen.getByText("中文")).toBeDefined();
   });
 
@@ -79,7 +85,11 @@ describe("LanguageSwitcher", () => {
 
   it("uses custom className on the trigger button", () => {
     const { container } = render(
-      <LanguageSwitcher options={options} value="zh-CN" className="my-switch" />,
+      <LanguageSwitcher
+        options={options}
+        value="zh-CN"
+        className="my-switch"
+      />,
     );
     expect(container.querySelector(".my-switch")).not.toBeNull();
   });

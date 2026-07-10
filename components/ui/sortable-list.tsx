@@ -36,7 +36,7 @@ export interface SortableListProps<T> extends React.ComponentProps<"div"> {
  * />
  */
 function SortableList<T>({
-  items,
+  items = [],
   onReorder,
   renderItem,
   keyField,

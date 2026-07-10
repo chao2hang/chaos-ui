@@ -9,4 +9,17 @@ const meta: Meta<typeof OrderLineEditor> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <OrderLineEditor
+      data={[
+        { id: "1", name: "示例1" },
+        { id: "2", name: "示例2" },
+        { id: "3", name: "示例3" },
+      ]}
+      onChange={() => {}}
+      onSkuSearch={() => {}}
+      maxRows={100}
+    />
+  ),
+};

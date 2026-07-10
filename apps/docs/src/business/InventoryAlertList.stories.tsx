@@ -9,4 +9,13 @@ const meta: Meta<typeof InventoryAlertList> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <InventoryAlertList
+      items={[]}
+      onTabChange={() => {}}
+      onItemClick={() => {}}
+      onReorder={() => {}}
+    />
+  ),
+};

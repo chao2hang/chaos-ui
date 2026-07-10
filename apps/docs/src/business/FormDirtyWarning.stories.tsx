@@ -9,4 +9,14 @@ const meta: Meta<typeof FormDirtyWarning> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <FormDirtyWarning
+      open={false}
+      onOpenChange={() => {}}
+      onDiscard={() => {}}
+      onSave={() => {}}
+      saving={false}
+    />
+  ),
+};

@@ -4,9 +4,13 @@ import { Transfer } from "@/components/ui/transfer";
 import type { TransferItem } from "@/components/ui/transfer";
 
 // Transfer uses useTranslation("transfer"); mock so it renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const data: TransferItem[] = [
   { key: "a", label: "A" },
@@ -39,7 +43,13 @@ describe("Transfer", () => {
 
   it("renders source and target panels", () => {
     const { container } = render(
-      <Transfer dataSource={[{ key: "a", label: "A" }, { key: "b", label: "B" }]} targetKeys={[]} />,
+      <Transfer
+        dataSource={[
+          { key: "a", label: "A" },
+          { key: "b", label: "B" },
+        ]}
+        targetKeys={[]}
+      />,
     );
     expect(container.querySelector('[data-slot="transfer"]')).not.toBeNull();
     expect(screen.getByText("A")).toBeDefined();
@@ -48,11 +58,7 @@ describe("Transfer", () => {
 
   it("renders custom titles", () => {
     render(
-      <Transfer
-        dataSource={data}
-        targetKeys={[]}
-        titles={["左边", "右边"]}
-      />,
+      <Transfer dataSource={data} targetKeys={[]} titles={["左边", "右边"]} />,
     );
     expect(screen.getByText("左边")).toBeDefined();
     expect(screen.getByText("右边")).toBeDefined();
@@ -60,10 +66,7 @@ describe("Transfer", () => {
 
   it("renders noData placeholder when source is empty", () => {
     render(
-      <Transfer
-        dataSource={[{ key: "a", label: "A" }]}
-        targetKeys={["a"]}
-      />,
+      <Transfer dataSource={[{ key: "a", label: "A" }]} targetKeys={["a"]} />,
     );
     // The "transfer.noData" appears for the empty source panel.
     const noDataEls = screen.getAllByText("transfer.noData");
@@ -95,7 +98,10 @@ describe("Transfer", () => {
     const onChange = vi.fn();
     const { container } = render(
       <Transfer
-        dataSource={[{ key: "a", label: "A" }, { key: "b", label: "B" }]}
+        dataSource={[
+          { key: "a", label: "A" },
+          { key: "b", label: "B" },
+        ]}
         targetKeys={[]}
         onChange={onChange}
       />,
@@ -119,7 +125,10 @@ describe("Transfer", () => {
     const onChange = vi.fn();
     const { container } = render(
       <Transfer
-        dataSource={[{ key: "a", label: "A" }, { key: "b", label: "B" }]}
+        dataSource={[
+          { key: "a", label: "A" },
+          { key: "b", label: "B" },
+        ]}
         targetKeys={[]}
         onChange={onChange}
       />,
@@ -185,9 +194,7 @@ describe("Transfer", () => {
   });
 
   it("hides search inputs when searchable is false", () => {
-    render(
-      <Transfer dataSource={data} targetKeys={[]} searchable={false} />,
-    );
+    render(<Transfer dataSource={data} targetKeys={[]} searchable={false} />);
     // The search placeholder text should not be rendered.
     expect(screen.queryByPlaceholderText("transfer.search")).toBeNull();
   });

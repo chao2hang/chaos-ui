@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { FilterBuilder } from "./filter-builder";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const fields = [
   { key: "name", label: "Name" },
@@ -73,7 +77,9 @@ describe("filter-builder", () => {
   it("renders default logic select (AND) without crashing", () => {
     const { container } = render(<FilterBuilder fields={fields} />);
     // SelectTrigger renders; assert the structure exists.
-    expect(container.querySelector('[data-slot="select-trigger"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="select-trigger"]'),
+    ).not.toBeNull();
   });
 
   it("module is importable", async () => {

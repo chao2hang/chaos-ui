@@ -9,4 +9,6 @@ const meta: Meta<typeof Fab> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <Fab icon={null} label={"示例"} />,
+};

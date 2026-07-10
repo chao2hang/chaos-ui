@@ -183,16 +183,25 @@ function UserBrowse({
                     </Avatar>
                     <span>{user.name}</span>
                     {!disabled && (
-                      <button
+                      <span
+                        role="button"
+                        tabIndex={0}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleRemove(user.id);
                         }}
-                        className="hover:bg-muted ml-0.5 rounded-full"
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleRemove(user.id);
+                          }
+                        }}
+                        className="hover:bg-muted ml-0.5 flex cursor-pointer items-center rounded-full"
                       >
                         <XIcon className="size-3" />
                         <span className="sr-only">Remove</span>
-                      </button>
+                      </span>
                     )}
                   </Badge>
                 ))}

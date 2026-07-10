@@ -2,13 +2,17 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { HeatmapCalendar } from "./heatmap-calendar";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (k: string, opts?: Record<string, unknown>) =>
-      opts && "count" in opts ? `${k}:${String(opts.count)}` : k,
-    i18n: { language: "en" },
-  }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (k: string, opts?: Record<string, unknown>) =>
+        opts && "count" in opts ? `${k}:${String(opts.count)}` : k,
+      i18n: { language: "en" },
+    }),
+  };
+});
 
 describe("HeatmapCalendar", () => {
   it("renders day labels and legend by default", () => {
@@ -21,7 +25,9 @@ describe("HeatmapCalendar", () => {
         endDate={end}
       />,
     );
-    expect(container.querySelector('[data-slot="heatmap-calendar"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="heatmap-calendar"]'),
+    ).not.toBeNull();
     expect(screen.getByText("heatmapCalendar.less")).toBeDefined();
     expect(screen.getByText("heatmapCalendar.more")).toBeDefined();
   });
@@ -95,7 +101,9 @@ describe("HeatmapCalendar", () => {
     const { container } = render(
       <HeatmapCalendar data={[{ date: new Date(), value: 2 }]} />,
     );
-    expect(container.querySelector('[data-slot="heatmap-calendar"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="heatmap-calendar"]'),
+    ).not.toBeNull();
   });
 
   it("exports HeatmapCalendar", () => {

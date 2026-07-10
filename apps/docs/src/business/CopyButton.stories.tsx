@@ -13,7 +13,9 @@ const meta: Meta<typeof CopyButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <CopyButton text={"示例内容"} />,
+};
 
 export const Outline: Story = {
   args: {

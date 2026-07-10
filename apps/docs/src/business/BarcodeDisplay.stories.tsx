@@ -13,7 +13,9 @@ const meta: Meta<typeof BarcodeDisplay> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <BarcodeDisplay value={"示例内容"} />,
+};
 
 export const EAN13: Story = {
   args: {

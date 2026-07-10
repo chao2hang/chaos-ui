@@ -4,9 +4,13 @@ import { AdminShell } from "./admin-shell";
 
 // Mock react-i18next since AppShell uses useTranslation.
 import { vi } from "vitest";
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("AdminShell", () => {
   it("exports AdminShell", () => {

@@ -9,4 +9,24 @@ const meta: Meta<typeof CrudPage> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <CrudPage
+      title={"示例"}
+      filterFields={[]}
+      columns={[
+        { key: "name", header: "名称" },
+        { key: "value", header: "值" },
+      ]}
+      dataSource={[]}
+      pagination={"false"}
+      onDialogOpenChange={() => {}}
+      onRefresh={() => {}}
+      onAdd={() => {}}
+      onEdit={() => {}}
+      onSearch={() => {}}
+      onDelete={() => {}}
+      onSubmit={() => {}}
+    />
+  ),
+};

@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { PivotTable } from "./pivot-table";
 import type { Aggregation } from "./pivot-table";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 type Row = { region: string; product: string; amount: number };
 
@@ -232,9 +236,7 @@ describe("PivotTable", () => {
 
   it("coerces non-numeric values to numbers", () => {
     type Str = { region: string; product: string; amount: string };
-    const strData: Str[] = [
-      { region: "East", product: "A", amount: "12" },
-    ];
+    const strData: Str[] = [{ region: "East", product: "A", amount: "12" }];
     render(
       <PivotTable
         data={strData}

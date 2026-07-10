@@ -9,4 +9,18 @@ const meta: Meta<typeof BillFooter> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <BillFooter
+      onSaveDraft={() => {}}
+      onSubmit={() => {}}
+      onCancel={() => {}}
+      onApprove={() => {}}
+      onReject={() => {}}
+      onRecall={() => {}}
+      onPrint={() => {}}
+      onVoid={() => {}}
+      extra={null}
+    />
+  ),
+};

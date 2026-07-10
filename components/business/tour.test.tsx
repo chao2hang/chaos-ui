@@ -3,9 +3,13 @@ import { render } from "@testing-library/react";
 import { Tour } from "@/components/ui/tour";
 import type { TourStep } from "@/components/ui/tour";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 // jsdom polyfill: scrollIntoView is not implemented
 HTMLElement.prototype.scrollIntoView = vi.fn();

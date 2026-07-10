@@ -3,9 +3,13 @@ import { render, fireEvent } from "@testing-library/react";
 import { BrowseInput, browseInputVariants } from "./browse-input";
 import type { BrowseInputProps } from "./browse-input";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("browse-input", () => {
   it("exports BrowseInput", () => {
@@ -30,9 +34,9 @@ describe("browse-input", () => {
 
   it("uses i18n placeholder by default", () => {
     const { container } = render(<BrowseInput />);
-    expect((container.querySelector("input") as HTMLInputElement).placeholder).toBe(
-      "browseInput.placeholder",
-    );
+    expect(
+      (container.querySelector("input") as HTMLInputElement).placeholder,
+    ).toBe("browseInput.placeholder");
   });
 
   it("renders browse button by default", () => {
@@ -100,7 +104,9 @@ describe("browse-input", () => {
     fireEvent.click(clearBtn);
     expect(onClear).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith("");
-    expect((container.querySelector("input") as HTMLInputElement).value).toBe("");
+    expect((container.querySelector("input") as HTMLInputElement).value).toBe(
+      "",
+    );
   });
 
   it("clicking browse fires onBrowse", () => {
@@ -115,13 +121,17 @@ describe("browse-input", () => {
 
   it("applies aria-invalid attribute", () => {
     const { container } = render(<BrowseInput aria-invalid={true} />);
-    const root = container.querySelector('[data-slot="browse-input"]') as HTMLElement;
+    const root = container.querySelector(
+      '[data-slot="browse-input"]',
+    ) as HTMLElement;
     expect(root.getAttribute("aria-invalid")).toBe("true");
   });
 
   it("applies size variant to root (data-size)", () => {
     const { container } = render(<BrowseInput size="lg" />);
-    const root = container.querySelector('[data-slot="browse-input"]') as HTMLElement;
+    const root = container.querySelector(
+      '[data-slot="browse-input"]',
+    ) as HTMLElement;
     expect(root.getAttribute("data-size")).toBe("lg");
     expect(root.className).toContain("h-9");
   });

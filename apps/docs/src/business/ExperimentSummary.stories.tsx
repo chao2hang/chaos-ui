@@ -9,4 +9,13 @@ const meta: Meta<typeof ExperimentSummary> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ExperimentSummary
+      name={"示例名称"}
+      hypothesis={"示例"}
+      variants={[]}
+      primaryMetric={"示例"}
+    />
+  ),
+};

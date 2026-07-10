@@ -14,7 +14,16 @@ const meta: Meta<typeof Banner> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <Banner
+      title={"示例"}
+      description={"这是一个示例描述"}
+      action={null}
+      onClose={() => {}}
+    />
+  ),
+};
 
 export const Variants: Story = {
   render: () => (

@@ -9,4 +9,6 @@ const meta: Meta<typeof ColorTag> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <ColorTag color={"#3b82f6"} children={"内容"} />,
+};

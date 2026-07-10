@@ -9,4 +9,6 @@ const meta: Meta<typeof MaintenanceLog> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <MaintenanceLog entries={[]} title={"示例"} />,
+};

@@ -3,9 +3,13 @@ import { render, screen } from "@testing-library/react";
 import { DashboardLayout } from "./dashboard-layout";
 
 // Breadcrumb primitives use react-i18next; mock so it renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("dashboard-layout", () => {
   it("exports DashboardLayout", () => {

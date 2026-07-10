@@ -4,9 +4,13 @@ import { AdminHeader } from "./admin-header";
 import type { AdminHeaderProps, AdminBreadcrumbItem } from "./admin-header";
 
 // Breadcrumb primitives use react-i18next.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("admin-header", () => {
   it("exports AdminHeader", () => {
@@ -27,7 +31,9 @@ describe("admin-header", () => {
 
   it("renders header with data-slot", () => {
     const { container } = render(<AdminHeader />);
-    expect(container.querySelector('[data-slot="admin-header"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="admin-header"]'),
+    ).not.toBeNull();
   });
 
   it("renders logo content", () => {
@@ -38,10 +44,7 @@ describe("admin-header", () => {
   it("renders breadcrumb items with last item as page", () => {
     render(
       <AdminHeader
-        breadcrumb={[
-          { label: "Home", href: "/" },
-          { label: "Dashboard" },
-        ]}
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Dashboard" }]}
       />,
     );
     expect(screen.getByText("Home")).toBeDefined();
@@ -85,7 +88,11 @@ describe("admin-header", () => {
   it("renders search input with placeholder and fires onSearch on Enter", () => {
     const onSearch = vi.fn();
     render(
-      <AdminHeader showSearch searchPlaceholder="Find..." onSearch={onSearch} />,
+      <AdminHeader
+        showSearch
+        searchPlaceholder="Find..."
+        onSearch={onSearch}
+      />,
     );
     const input = screen.getByPlaceholderText("Find...");
     fireEvent.change(input, { target: { value: "query" } });
@@ -126,17 +133,23 @@ describe("admin-header", () => {
   });
 
   it("renders notification count badge for values <= 99", () => {
-    render(<AdminHeader onNotificationClick={() => {}} notificationCount={5} />);
+    render(
+      <AdminHeader onNotificationClick={() => {}} notificationCount={5} />,
+    );
     expect(screen.getByText("5")).toBeDefined();
   });
 
   it("renders 99+ badge when notificationCount > 99", () => {
-    render(<AdminHeader onNotificationClick={() => {}} notificationCount={120} />);
+    render(
+      <AdminHeader onNotificationClick={() => {}} notificationCount={120} />,
+    );
     expect(screen.getByText("99+")).toBeDefined();
   });
 
   it("does not render badge when notificationCount is 0", () => {
-    render(<AdminHeader onNotificationClick={() => {}} notificationCount={0} />);
+    render(
+      <AdminHeader onNotificationClick={() => {}} notificationCount={0} />,
+    );
     expect(screen.queryByText("99+")).toBeNull();
   });
 

@@ -6,11 +6,15 @@ import {
 } from "@/components/mobile/mobile-empty-state";
 
 // Mock react-i18next since EmptyState uses useTranslation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (_key: string, fallback: string) => fallback,
-  }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (_key: string, fallback: string) => fallback,
+    }),
+  };
+});
 
 describe("MobileEmptyState", () => {
   it("is exported and type is importable", () => {

@@ -3,9 +3,13 @@ import { render, screen } from "@testing-library/react";
 import { ResponsivePreview } from "./responsive-preview";
 import type { ResponsivePreviewProps } from "./responsive-preview";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("ResponsivePreview", () => {
   it("exports ResponsivePreview", () => {
@@ -33,9 +37,7 @@ describe("ResponsivePreview", () => {
       </ResponsivePreview>,
     );
     // label format: "<label> (<width> × <height>)"
-    expect(
-      screen.getByText(/1024 × 768/),
-    ).toBeDefined();
+    expect(screen.getByText(/1024 × 768/)).toBeDefined();
   });
 
   it("renders mobile device label and dims", () => {

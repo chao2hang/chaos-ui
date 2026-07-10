@@ -9,4 +9,13 @@ const meta: Meta<typeof MobileFormStepper> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <MobileFormStepper
+      current={42}
+      total={10}
+      labels={["Q1", "Q2", "Q3", "Q4"]}
+      onStepClick={() => {}}
+    />
+  ),
+};

@@ -9,4 +9,6 @@ const meta: Meta<typeof ExpenseLineEditor> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <ExpenseLineEditor onChange={() => {}} maxRows={100} />,
+};

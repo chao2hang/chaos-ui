@@ -9,4 +9,14 @@ const meta: Meta<typeof MobileSelect> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <MobileSelect
+      options={[]}
+      value={"示例内容"}
+      onValueChange={() => {}}
+      placeholder={"请输入"}
+      disabled={false}
+    />
+  ),
+};

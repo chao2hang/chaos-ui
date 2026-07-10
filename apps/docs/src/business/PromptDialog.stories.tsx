@@ -9,4 +9,15 @@ const meta: Meta<typeof PromptDialog> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <PromptDialog
+      open={false}
+      onOpenChange={() => {}}
+      description={null}
+      label={"示例"}
+      placeholder={"请输入"}
+      onConfirm={() => {}}
+    />
+  ),
+};

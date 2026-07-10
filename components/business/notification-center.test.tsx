@@ -3,9 +3,13 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { NotificationCenter } from "./notification-center";
 import type { NotificationItem } from "./notification-center";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const now = Date.now();
 const notifications: NotificationItem[] = [
@@ -38,7 +42,9 @@ async function openList(): Promise<void> {
 describe("NotificationCenter", () => {
   it("renders the bell trigger button", () => {
     render(<NotificationCenter notifications={[]} />);
-    expect(screen.getByLabelText(/notificationCenter\.ariaLabel/)).toBeDefined();
+    expect(
+      screen.getByLabelText(/notificationCenter\.ariaLabel/),
+    ).toBeDefined();
   });
 
   it("shows unread badge count on the trigger", () => {
@@ -46,7 +52,8 @@ describe("NotificationCenter", () => {
       <NotificationCenter notifications={notifications} />,
     );
     // 1 unread -> badge "1"
-    const badge = container.querySelector('[data-slot="badge"]') ?? screen.getByText("1");
+    const badge =
+      container.querySelector('[data-slot="badge"]') ?? screen.getByText("1");
     expect(badge).not.toBeNull();
   });
 
@@ -108,9 +115,7 @@ describe("NotificationCenter", () => {
     // All read -> no mark-all button
     render(
       <NotificationCenter
-        notifications={[
-          { id: "1", title: "A", timestamp: now, read: true },
-        ]}
+        notifications={[{ id: "1", title: "A", timestamp: now, read: true }]}
         onMarkAllRead={vi.fn()}
       />,
     );

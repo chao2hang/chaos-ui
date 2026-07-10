@@ -9,4 +9,13 @@ const meta: Meta<typeof FormFieldGroup> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <FormFieldGroup
+      legend={"示例"}
+      description={"这是一个示例描述"}
+      required={false}
+      children={null}
+    />
+  ),
+};

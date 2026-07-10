@@ -9,4 +9,15 @@ const meta: Meta<typeof AsyncTaskCenter> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <AsyncTaskCenter
+      open={false}
+      onOpenChange={() => {}}
+      tasks={[]}
+      onCancelTask={() => {}}
+      onRetryTask={() => {}}
+      onDownloadResult={() => {}}
+    />
+  ),
+};

@@ -9,4 +9,8 @@ const meta: Meta<typeof ReportBuilder> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ReportBuilder onChange={() => {}} onSave={() => {}} onPreview={() => {}} />
+  ),
+};

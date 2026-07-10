@@ -9,4 +9,6 @@ const meta: Meta<typeof MobileForm> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <MobileForm children={null} onSubmit={() => {}} />,
+};

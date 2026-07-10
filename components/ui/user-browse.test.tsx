@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 // DialogContent calls useTranslation("ui"); mock it so the portal renders in jsdom.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 import { UserBrowse } from "./user-browse";
 import type { User, UserBrowseProps } from "./user-browse";
@@ -173,15 +177,11 @@ describe("user-browse", () => {
 
   it("toggles selection in multiple mode without closing", () => {
     const onChange = vi.fn();
-    render(
-      <UserBrowse multiple users={customUsers} onChange={onChange} />,
-    );
+    render(<UserBrowse multiple users={customUsers} onChange={onChange} />);
     fireEvent.click(screen.getByText("Select user..."));
     // Click Bob in the dialog list (the second occurrence).
     const bobElements = screen.getAllByText("Bob");
-    const bobInDialog = bobElements.find(
-      (el) => el.tagName === "P",
-    )!;
+    const bobInDialog = bobElements.find((el) => el.tagName === "P")!;
     fireEvent.click(bobInDialog);
     expect(onChange).toHaveBeenCalledWith(
       expect.arrayContaining([expect.objectContaining({ id: "2" })]),

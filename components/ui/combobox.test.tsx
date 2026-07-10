@@ -2,12 +2,16 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 // Mock react-i18next so Combobox renders without a provider
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (k: string) => k,
-    i18n: { language: "en" },
-  }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (k: string) => k,
+      i18n: { language: "en" },
+    }),
+  };
+});
 
 import { Combobox } from "@/components/ui/combobox";
 import type { ComboboxOption } from "@/components/ui/combobox";

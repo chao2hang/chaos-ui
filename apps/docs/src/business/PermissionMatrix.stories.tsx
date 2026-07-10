@@ -9,4 +9,13 @@ const meta: Meta<typeof PermissionMatrix> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <PermissionMatrix
+      roles={[]}
+      resources={[]}
+      onChange={() => {}}
+      readOnly={false}
+    />
+  ),
+};

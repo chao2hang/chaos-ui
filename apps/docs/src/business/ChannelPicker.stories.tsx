@@ -9,4 +9,8 @@ const meta: Meta<typeof ChannelPicker> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ChannelPicker value={[]} onChange={() => {}} disabled={false} />
+  ),
+};

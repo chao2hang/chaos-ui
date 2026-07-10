@@ -9,4 +9,6 @@ const meta: Meta<typeof ApprovalTimeline> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <ApprovalTimeline steps={[]} />,
+};

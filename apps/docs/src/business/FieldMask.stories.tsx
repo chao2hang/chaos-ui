@@ -9,4 +9,6 @@ const meta: Meta<typeof FieldMask> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <FieldMask value={"示例内容"} />,
+};

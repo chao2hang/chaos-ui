@@ -4,9 +4,13 @@ import { TopBar, MegaMenu } from "./top-bar";
 import type { TopBarItem } from "./top-bar";
 
 // TopBar uses react-i18next; mock it so the t() keys pass through verbatim.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("top-bar", () => {
   it("exports TopBar", () => {
@@ -53,7 +57,9 @@ describe("top-bar", () => {
         ]}
       />,
     );
-    expect(screen.getByText("Dashboard").getAttribute("href")).toBe("/dashboard");
+    expect(screen.getByText("Dashboard").getAttribute("href")).toBe(
+      "/dashboard",
+    );
     expect(screen.getByText("Reports").getAttribute("href")).toBe("/reports");
   });
 
@@ -71,22 +77,40 @@ describe("top-bar", () => {
 
   it("renders without sticky when sticky=false", () => {
     const { container } = render(<TopBar sticky={false} />);
-    expect(container.querySelector('[data-slot="top-bar"]')?.classList.contains("sticky")).toBe(false);
+    expect(
+      container
+        .querySelector('[data-slot="top-bar"]')
+        ?.classList.contains("sticky"),
+    ).toBe(false);
   });
 
   it("applies variant classes for transparent and bordered", () => {
     const { container: c1 } = render(<TopBar variant="transparent" />);
-    expect(c1.querySelector('[data-slot="top-bar"]')?.getAttribute("data-variant")).toBe("transparent");
-    expect(c1.querySelector('[data-slot="top-bar"]')?.classList.contains("bg-transparent")).toBe(true);
+    expect(
+      c1.querySelector('[data-slot="top-bar"]')?.getAttribute("data-variant"),
+    ).toBe("transparent");
+    expect(
+      c1
+        .querySelector('[data-slot="top-bar"]')
+        ?.classList.contains("bg-transparent"),
+    ).toBe(true);
 
     const { container: c2 } = render(<TopBar variant="bordered" />);
-    expect(c2.querySelector('[data-slot="top-bar"]')?.getAttribute("data-variant")).toBe("bordered");
-    expect(c2.querySelector('[data-slot="top-bar"]')?.classList.contains("border-b")).toBe(true);
+    expect(
+      c2.querySelector('[data-slot="top-bar"]')?.getAttribute("data-variant"),
+    ).toBe("bordered");
+    expect(
+      c2.querySelector('[data-slot="top-bar"]')?.classList.contains("border-b"),
+    ).toBe(true);
   });
 
   it("applies a custom className on the header", () => {
     const { container } = render(<TopBar className="custom-top" />);
-    expect(container.querySelector('[data-slot="top-bar"]')?.classList.contains("custom-top")).toBe(true);
+    expect(
+      container
+        .querySelector('[data-slot="top-bar"]')
+        ?.classList.contains("custom-top"),
+    ).toBe(true);
   });
 
   it("renders a link to logoHref on the logo", () => {
@@ -121,7 +145,9 @@ describe("TopBar mobile menu", () => {
     fireEvent.click(screen.getByLabelText("topBar.toggleMenu"));
     expect(container.querySelector(".fixed.inset-x-0.top-14")).not.toBeNull();
     // Click the mobile nav link (the one inside the .fixed panel)
-    const panel = container.querySelector(".fixed.inset-x-0.top-14") as HTMLElement;
+    const panel = container.querySelector(
+      ".fixed.inset-x-0.top-14",
+    ) as HTMLElement;
     const mobileLink = panel.querySelector("a") as HTMLElement;
     fireEvent.click(mobileLink);
     expect(container.querySelector(".fixed.inset-x-0.top-14")).toBeNull();
@@ -157,8 +183,12 @@ describe("TopBar mobile menu", () => {
     // Hover opens it
     fireEvent.mouseEnter(parentBtn.closest("div") as HTMLElement);
     expect(container.querySelector(".absolute.left-0.top-full")).not.toBeNull();
-    expect(screen.getByText("Shoes").getAttribute("href")).toBe("/products/shoes");
-    expect(screen.getByText("Bags").getAttribute("href")).toBe("/products/bags");
+    expect(screen.getByText("Shoes").getAttribute("href")).toBe(
+      "/products/shoes",
+    );
+    expect(screen.getByText("Bags").getAttribute("href")).toBe(
+      "/products/bags",
+    );
     // Hover closes it
     fireEvent.mouseLeave(parentBtn.closest("div") as HTMLElement);
     expect(container.querySelector(".absolute.left-0.top-full")).toBeNull();
@@ -199,8 +229,12 @@ describe("MegaMenu", () => {
     expect(screen.getByText("Shoes")).toBeDefined();
     expect(screen.getByText("Footwear")).toBeDefined();
     // Item labels live inside nested divs; assert hrefs via the rendered <a> elements.
-    const bagLink = container.querySelector('a[href="/bags"]') as HTMLElement | null;
-    const docsLink = container.querySelector('a[href="/docs"]') as HTMLElement | null;
+    const bagLink = container.querySelector(
+      'a[href="/bags"]',
+    ) as HTMLElement | null;
+    const docsLink = container.querySelector(
+      'a[href="/docs"]',
+    ) as HTMLElement | null;
     expect(bagLink).not.toBeNull();
     expect(docsLink).not.toBeNull();
     fireEvent.mouseLeave(wrapper);
@@ -261,9 +295,7 @@ describe("MegaMenu", () => {
   // ---- Deeper interaction tests ----
 
   it("toggles the mobile menu open via keyboard (Enter on toggle button)", () => {
-    render(
-      <TopBar nav={[{ label: "Dashboard", href: "/dashboard" }]} />,
-    );
+    render(<TopBar nav={[{ label: "Dashboard", href: "/dashboard" }]} />);
     const toggle = screen.getByLabelText("topBar.toggleMenu");
     toggle.focus();
     fireEvent.keyDown(toggle, { key: "Enter" });
@@ -389,7 +421,9 @@ describe("MegaMenu", () => {
         groups={[
           {
             label: "G",
-            items: [{ label: "Item", href: "/i", description: "Detailed desc" }],
+            items: [
+              { label: "Item", href: "/i", description: "Detailed desc" },
+            ],
           },
         ]}
       />,

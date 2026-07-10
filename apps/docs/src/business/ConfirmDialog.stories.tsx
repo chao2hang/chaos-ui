@@ -9,4 +9,14 @@ const meta: Meta<typeof ConfirmDialog> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ConfirmDialog
+      open={false}
+      onOpenChange={() => {}}
+      onConfirm={() => {}}
+      loading={false}
+      icon={null}
+    />
+  ),
+};

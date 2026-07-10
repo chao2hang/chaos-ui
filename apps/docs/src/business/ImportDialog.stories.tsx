@@ -9,4 +9,13 @@ const meta: Meta<typeof ImportDialog> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ImportDialog
+      open={false}
+      onOpenChange={() => {}}
+      onImport={() => {}}
+      templateUrl={"https://placehold.co/400x300/e2e8f0/64748b?text=Image"}
+    />
+  ),
+};

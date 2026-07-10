@@ -10,9 +10,13 @@ import {
   BreadcrumbEllipsis,
 } from "./breadcrumb";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("breadcrumb", () => {
   it("exports Breadcrumb", () => {
@@ -45,7 +49,9 @@ describe("breadcrumb", () => {
         </BreadcrumbList>
       </Breadcrumb>,
     );
-    const nav = container.querySelector('[data-slot="breadcrumb"]') as HTMLElement;
+    const nav = container.querySelector(
+      '[data-slot="breadcrumb"]',
+    ) as HTMLElement;
     expect(nav).not.toBeNull();
     expect(nav.tagName).toBe("NAV");
     expect(nav.getAttribute("aria-label")).toBe("breadcrumb.navLabel");
@@ -66,20 +72,28 @@ describe("breadcrumb", () => {
       <BreadcrumbItem>Home</BreadcrumbItem>,
     );
     expect(getByText("Home")).toBeDefined();
-    expect(container.querySelector('[data-slot="breadcrumb-item"]')?.tagName).toBe("LI");
+    expect(
+      container.querySelector('[data-slot="breadcrumb-item"]')?.tagName,
+    ).toBe("LI");
   });
 
   it("BreadcrumbLink renders an anchor with href", () => {
-    const { container } = render(<BreadcrumbLink href="/home">Home</BreadcrumbLink>);
+    const { container } = render(
+      <BreadcrumbLink href="/home">Home</BreadcrumbLink>,
+    );
     const a = container.querySelector("a");
     expect(a).not.toBeNull();
     expect(a?.getAttribute("href")).toBe("/home");
   });
 
   it("BreadcrumbPage renders a span with aria-current=page", () => {
-    const { container, getByText } = render(<BreadcrumbPage>Current</BreadcrumbPage>);
+    const { container, getByText } = render(
+      <BreadcrumbPage>Current</BreadcrumbPage>,
+    );
     expect(getByText("Current")).toBeDefined();
-    const span = container.querySelector('[data-slot="breadcrumb-page"]') as HTMLElement;
+    const span = container.querySelector(
+      '[data-slot="breadcrumb-page"]',
+    ) as HTMLElement;
     expect(span.tagName).toBe("SPAN");
     expect(span.getAttribute("aria-current")).toBe("page");
     expect(span.getAttribute("aria-disabled")).toBe("true");
@@ -93,15 +107,15 @@ describe("breadcrumb", () => {
   });
 
   it("BreadcrumbSeparator renders custom children when provided", () => {
-    const { getByText } = render(
-      <BreadcrumbSeparator>/</BreadcrumbSeparator>,
-    );
+    const { getByText } = render(<BreadcrumbSeparator>/</BreadcrumbSeparator>);
     expect(getByText("/")).toBeDefined();
   });
 
   it("BreadcrumbEllipsis renders an ellipsis icon with sr-only label", () => {
     const { container, getByText } = render(<BreadcrumbEllipsis />);
-    expect(container.querySelector('[data-slot="breadcrumb-ellipsis"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="breadcrumb-ellipsis"]'),
+    ).not.toBeNull();
     expect(getByText("breadcrumb.more")).toBeDefined();
   });
 

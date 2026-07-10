@@ -7,9 +7,13 @@ import type {
 } from "./version-history";
 
 // useTranslation("data") — mock so the component renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("VersionHistory", () => {
   it("exports VersionHistory", () => {
@@ -169,7 +173,9 @@ describe("VersionHistory", () => {
     expect(
       container.querySelector('[data-slot="version-history"]'),
     ).not.toBeNull();
-    expect(container.querySelector('[data-slot="version-history"]')!.children.length).toBe(0);
+    expect(
+      container.querySelector('[data-slot="version-history"]')!.children.length,
+    ).toBe(0);
   });
 
   it("module is importable", async () => {

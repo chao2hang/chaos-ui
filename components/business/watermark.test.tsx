@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { Watermark } from "@/components/ui/watermark";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("Watermark", () => {
   it("exports Watermark", () => {
@@ -12,9 +16,7 @@ describe("Watermark", () => {
   });
 
   it("renders the text in non-fullPage mode", () => {
-    const { container } = render(
-      <Watermark text="机密" fullPage={false} />,
-    );
+    const { container } = render(<Watermark text="机密" fullPage={false} />);
     expect(container.querySelector('[data-slot="watermark"]')).not.toBeNull();
     expect(container.textContent).toContain("机密");
   });

@@ -9,4 +9,13 @@ const meta: Meta<typeof ContractTemplate> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <ContractTemplate
+      onTemplateChange={() => {}}
+      onMetadataChange={() => {}}
+      onSave={() => {}}
+      onTabChange={() => {}}
+    />
+  ),
+};

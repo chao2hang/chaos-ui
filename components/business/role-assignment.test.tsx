@@ -8,9 +8,13 @@ import type {
   RoleAssignmentProps,
 } from "./role-assignment";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const principals: RoleAssignmentPrincipal[] = [
   { id: "u1", name: "Alice", description: "Manager" },
@@ -39,9 +43,7 @@ describe("RoleAssignment", () => {
   });
 
   it("renders principal names, descriptions, and role labels", () => {
-    render(
-      <RoleAssignment principals={principals} roles={roles} value={{}} />,
-    );
+    render(<RoleAssignment principals={principals} roles={roles} value={{}} />);
     expect(screen.getByText("Alice")).toBeDefined();
     expect(screen.getByText("Manager")).toBeDefined();
     expect(screen.getByText("Bob")).toBeDefined();
@@ -50,9 +52,7 @@ describe("RoleAssignment", () => {
   });
 
   it("renders a checkbox per principal x role", () => {
-    render(
-      <RoleAssignment principals={principals} roles={roles} value={{}} />,
-    );
+    render(<RoleAssignment principals={principals} roles={roles} value={{}} />);
     // 2 principals x 2 roles = 4 checkboxes
     expect(screen.getAllByRole("checkbox").length).toBe(4);
   });

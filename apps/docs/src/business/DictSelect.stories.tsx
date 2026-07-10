@@ -9,4 +9,8 @@ const meta: Meta<typeof DictSelect> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <DictSelect categoryCode={"示例"} value={"示例内容"} onChange={() => {}} />
+  ),
+};

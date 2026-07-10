@@ -4,9 +4,13 @@ import { Transfer } from "./transfer";
 import type { TransferItem } from "./transfer";
 
 // Transfer uses useTranslation("transfer"); mock so it renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const data: TransferItem[] = [
   { key: "a", label: "A" },

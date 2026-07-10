@@ -2573,7 +2573,7 @@ export const componentStoryPreviews: Record<string, React.ComponentType> = {
   ),
   PdfViewer: dynamic(
     () =>
-      import("../../src/business/PDFViewer.stories").then((m) => ({
+      import("../../src/business/PdfViewer.stories").then((m) => ({
         default: createStoryPreview(m),
       })),
     { ssr: false },

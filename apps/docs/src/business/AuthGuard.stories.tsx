@@ -9,4 +9,8 @@ const meta: Meta<typeof AuthGuard> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <AuthGuard permission={"示例"} check={() => {}} children={null} />
+  ),
+};

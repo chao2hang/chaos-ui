@@ -4,9 +4,13 @@ import { AdminBreadcrumb } from "./admin-breadcrumb";
 import type { AdminBreadcrumbProps } from "./admin-breadcrumb";
 
 // Breadcrumb primitives use react-i18next; mock it so the nav label renders.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("admin-breadcrumb", () => {
   it("exports AdminBreadcrumb", () => {

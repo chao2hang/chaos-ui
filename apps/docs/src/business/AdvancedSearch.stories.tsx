@@ -9,4 +9,8 @@ const meta: Meta<typeof AdvancedSearch> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <AdvancedSearch fields={[]} onSearch={() => {}} onSaveSearch={() => {}} />
+  ),
+};

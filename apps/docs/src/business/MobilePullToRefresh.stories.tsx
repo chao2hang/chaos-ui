@@ -9,4 +9,15 @@ const meta: Meta<typeof PullToRefresh> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <PullToRefresh
+      onRefresh={() => {}}
+      disabled={false}
+      refreshingText={"示例"}
+      pullText={"示例"}
+      releaseText={"示例"}
+      children={"内容"}
+    />
+  ),
+};

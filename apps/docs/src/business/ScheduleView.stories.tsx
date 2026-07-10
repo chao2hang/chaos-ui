@@ -43,7 +43,9 @@ const meta: Meta<typeof ScheduleView> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <ScheduleView events={[]} onEventClick={() => {}} />,
+};
 
 export const Empty: Story = {
   args: {

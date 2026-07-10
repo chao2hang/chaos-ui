@@ -9,4 +9,13 @@ const meta: Meta<typeof EditToolbar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <EditToolbar
+      onSave={() => {}}
+      onCancel={() => {}}
+      onDelete={() => {}}
+      extraActions={null}
+    />
+  ),
+};

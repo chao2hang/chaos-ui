@@ -9,4 +9,8 @@ const meta: Meta<typeof QualityInspectionForm> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <QualityInspectionForm inspector={"示例"} onSubmit={() => {}} />
+  ),
+};

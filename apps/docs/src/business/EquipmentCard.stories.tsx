@@ -9,4 +9,16 @@ const meta: Meta<typeof EquipmentCard> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <EquipmentCard
+      name={"示例名称"}
+      model={"示例"}
+      metrics={[]}
+      nextMaintenance={"示例"}
+      location={"示例"}
+      actions={[]}
+      onClick={() => {}}
+    />
+  ),
+};

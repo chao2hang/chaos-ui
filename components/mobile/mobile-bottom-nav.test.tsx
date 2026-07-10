@@ -6,11 +6,15 @@ import {
 } from "@/components/mobile/mobile-bottom-nav";
 
 // Mock react-i18next
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (key: string) => key,
+    }),
+  };
+});
 
 // Mock next/link
 vi.mock("next/link", () => ({

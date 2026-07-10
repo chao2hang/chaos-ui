@@ -5,9 +5,13 @@ import type { DetailTab } from "./detail-layout";
 
 // Breadcrumb primitives are not used here, but DetailLayout imports Tabs (Base UI)
 // which is fine in jsdom. Mock i18n defensively in case Button imports it.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("detail-layout", () => {
   it("exports DetailLayout", () => {

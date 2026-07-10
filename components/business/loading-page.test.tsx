@@ -2,15 +2,21 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { LoadingPage, FullPageLoader } from "./loading-page";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("LoadingPage", () => {
   it("renders the default title (translation key) and spinner variant", () => {
     const { container } = render(<LoadingPage />);
     expect(screen.getByText("loadingPage.title")).toBeDefined();
-    expect(container.querySelector('[data-slot="loading-page"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="loading-page"]'),
+    ).not.toBeNull();
     expect(container.querySelector('[role="status"]')).not.toBeNull();
   });
 
@@ -22,7 +28,10 @@ describe("LoadingPage", () => {
 
   it("renders a custom icon when provided", () => {
     const { container } = render(
-      <LoadingPage title="X" icon={<span data-testid="custom-icon">IC</span>} />,
+      <LoadingPage
+        title="X"
+        icon={<span data-testid="custom-icon">IC</span>}
+      />,
     );
     expect(screen.getByTestId("custom-icon")).toBeDefined();
     // No default Loader2 svg rendered when icon is provided

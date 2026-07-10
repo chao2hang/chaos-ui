@@ -9,4 +9,13 @@ const meta: Meta<typeof RoleAssignment> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <RoleAssignment
+      principals={[]}
+      roles={[]}
+      onChange={() => {}}
+      readOnly={false}
+    />
+  ),
+};

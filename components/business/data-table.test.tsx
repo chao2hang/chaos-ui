@@ -1,9 +1,13 @@
 import { describe, it, expect, vi } from "vitest";
 import type { Column } from "./data-table";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("DataTable", () => {
   it("module is importable with expected exports", async () => {

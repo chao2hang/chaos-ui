@@ -2,9 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 // DialogContent calls useTranslation("ui"); mock it so the portal renders in jsdom.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 import {
   AlertDialog,
@@ -50,7 +54,9 @@ describe("alert-dialog", () => {
   it("renders the trigger button label", () => {
     render(
       <AlertDialog>
-        <AlertDialogTrigger render={<button type="button">Open dialog</button>} />
+        <AlertDialogTrigger
+          render={<button type="button">Open dialog</button>}
+        />
       </AlertDialog>,
     );
     expect(screen.getByText("Open dialog")).toBeDefined();
@@ -62,7 +68,9 @@ describe("alert-dialog", () => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-            <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>
+            <AlertDialogDescription>
+              This cannot be undone.
+            </AlertDialogDescription>
           </AlertDialogHeader>
         </AlertDialogContent>
       </AlertDialog>,

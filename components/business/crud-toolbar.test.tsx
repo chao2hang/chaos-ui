@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { CrudToolbar } from "./crud-toolbar";
 import type { CrudToolbarProps, CrudToolbarAction } from "./crud-toolbar";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("CrudToolbar", () => {
   it("exports CrudToolbar", () => {

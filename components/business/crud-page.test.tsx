@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { CrudPage } from "./crud-page";
 import type { CrudPageProps, FormField } from "./crud-page";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const filterFields = [{ key: "name", label: "名称", type: "input" as const }];
 

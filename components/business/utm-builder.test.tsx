@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { UTMBuilder } from "./utm-builder";
 import type { UTMBuilderValue, UTMBuilderProps } from "./utm-builder";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("UTMBuilder", () => {
   it("exports UTMBuilder", () => {
@@ -29,12 +33,8 @@ describe("UTMBuilder", () => {
 
   it("renders the built result URL from defaults", () => {
     render(<UTMBuilder />);
-    expect(
-      screen.getByText(/utm_source=newsletter/),
-    ).toBeDefined();
-    expect(
-      screen.getByText(/utm_medium=email/),
-    ).toBeDefined();
+    expect(screen.getByText(/utm_source=newsletter/)).toBeDefined();
+    expect(screen.getByText(/utm_medium=email/)).toBeDefined();
   });
 
   it("shows invalid-url state when url is not parseable", () => {

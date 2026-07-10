@@ -4,9 +4,13 @@ import { SavedFilters } from "./saved-filters";
 import type { SavedFilter } from "./saved-filters";
 
 // SavedFilters uses useTranslation("data"); mock so it renders without a provider.
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const filters: SavedFilter[] = [
   { id: "f1", name: "Active Orders", filters: {} },
@@ -120,11 +124,7 @@ describe("SavedFilters", () => {
 
   it("renders pin and delete buttons per filter when handlers provided", () => {
     render(
-      <SavedFilters
-        filters={filters}
-        onPin={vi.fn()}
-        onDelete={vi.fn()}
-      />,
+      <SavedFilters filters={filters} onPin={vi.fn()} onDelete={vi.fn()} />,
     );
     fireEvent.click(screen.getByText("savedFilters.label"));
     expect(screen.getAllByLabelText("savedFilters.pin").length).toBe(3);
@@ -134,9 +134,7 @@ describe("SavedFilters", () => {
   it("calls onPin with the filter id when the pin button is clicked", () => {
     const onPin = vi.fn();
     const onApply = vi.fn(); // ensure clicking pin does not also apply
-    render(
-      <SavedFilters filters={filters} onPin={onPin} onApply={onApply} />,
-    );
+    render(<SavedFilters filters={filters} onPin={onPin} onApply={onApply} />);
     fireEvent.click(screen.getByText("savedFilters.label"));
     const pinButtons = screen.getAllByLabelText("savedFilters.pin");
     fireEvent.click(pinButtons[1]!); // f2

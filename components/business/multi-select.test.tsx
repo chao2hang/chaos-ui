@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MultiSelect } from "./multi-select";
 import type { MultiSelectOption } from "./multi-select";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 const options: MultiSelectOption[] = [
   { value: "a", label: "Apple", description: "red fruit" },
@@ -28,11 +32,7 @@ describe("MultiSelect", () => {
 
   it("shows overflow count when value exceeds maxCount", () => {
     render(
-      <MultiSelect
-        options={options}
-        value={["a", "b", "c"]}
-        maxCount={2}
-      />,
+      <MultiSelect options={options} value={["a", "b", "c"]} maxCount={2} />,
     );
     expect(screen.getByText("+1")).toBeDefined();
   });
@@ -40,11 +40,7 @@ describe("MultiSelect", () => {
   it("removes a selected value via the badge remove button", () => {
     const onChange = vi.fn();
     render(
-      <MultiSelect
-        options={options}
-        value={["a", "b"]}
-        onChange={onChange}
-      />,
+      <MultiSelect options={options} value={["a", "b"]} onChange={onChange} />,
     );
     // Two selected badges -> two remove buttons with the same aria-label.
     const removeBtns = screen.getAllByLabelText("multiSelect.remove");
@@ -68,15 +64,15 @@ describe("MultiSelect", () => {
   });
 
   it("does not show clear-all when clearable=false", () => {
-    render(
-      <MultiSelect options={options} value={["a"]} clearable={false} />,
-    );
+    render(<MultiSelect options={options} value={["a"]} clearable={false} />);
     expect(screen.queryByLabelText("multiSelect.clearAll")).toBeNull();
   });
 
   it("opens the panel on trigger click and lists options", () => {
     render(<MultiSelect options={options} />);
-    fireEvent.click(screen.getByText("multiSelect.placeholder").closest("button")!);
+    fireEvent.click(
+      screen.getByText("multiSelect.placeholder").closest("button")!,
+    );
     expect(screen.getByText("berries")).toBeDefined();
     expect(screen.getByText("Cherry")).toBeDefined();
   });
@@ -84,7 +80,9 @@ describe("MultiSelect", () => {
   it("toggles a value when clicking an option in the panel", () => {
     const onChange = vi.fn();
     render(<MultiSelect options={options} onChange={onChange} />);
-    fireEvent.click(screen.getByText("multiSelect.placeholder").closest("button")!);
+    fireEvent.click(
+      screen.getByText("multiSelect.placeholder").closest("button")!,
+    );
     fireEvent.click(screen.getByText("Apple"));
     expect(onChange).toHaveBeenCalledWith(["a"]);
   });
@@ -108,13 +106,17 @@ describe("MultiSelect", () => {
 
   it("renders a disabled trigger when disabled", () => {
     render(<MultiSelect options={options} disabled />);
-    const trigger = screen.getByText("multiSelect.placeholder").closest("button") as HTMLButtonElement;
+    const trigger = screen
+      .getByText("multiSelect.placeholder")
+      .closest("button") as HTMLButtonElement;
     expect(trigger.disabled).toBe(true);
   });
 
   it("filters options by search query in the panel", () => {
     render(<MultiSelect options={options} />);
-    fireEvent.click(screen.getByText("multiSelect.placeholder").closest("button")!);
+    fireEvent.click(
+      screen.getByText("multiSelect.placeholder").closest("button")!,
+    );
     const search = screen.getByPlaceholderText("multiSelect.searchPlaceholder");
     fireEvent.change(search, { target: { value: "ban" } });
     expect(screen.getByText("Banana")).toBeDefined();
@@ -123,8 +125,12 @@ describe("MultiSelect", () => {
 
   it("renders disabled option as non-interactive", () => {
     render(<MultiSelect options={options} />);
-    fireEvent.click(screen.getByText("multiSelect.placeholder").closest("button")!);
-    const durianBtn = screen.getByText("Durian").closest("button") as HTMLButtonElement;
+    fireEvent.click(
+      screen.getByText("multiSelect.placeholder").closest("button")!,
+    );
+    const durianBtn = screen
+      .getByText("Durian")
+      .closest("button") as HTMLButtonElement;
     expect(durianBtn.disabled).toBe(true);
   });
 

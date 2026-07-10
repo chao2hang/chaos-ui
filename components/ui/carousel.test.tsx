@@ -9,12 +9,16 @@ import {
   CarouselDots,
 } from "./carousel";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (k: string, _opts?: unknown) => k,
-    i18n: { language: "en" },
-  }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({
+      t: (k: string, _opts?: unknown) => k,
+      i18n: { language: "en" },
+    }),
+  };
+});
 
 describe("Carousel", () => {
   it("does not crash with zero items (no NaN transform)", () => {

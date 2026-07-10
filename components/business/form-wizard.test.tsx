@@ -3,9 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { FormWizard } from "./form-wizard";
 import type { WizardRenderContext } from "./form-wizard";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 // Helpers: the nav buttons render their label text adjacent to an svg icon,
 // so `getByText` is unreliable (text "broken up by multiple elements"). Use
@@ -108,7 +112,9 @@ describe("FormWizard", () => {
       { title: "Step2", render: () => <span>step-two</span> },
     ];
     render(<FormWizard steps={failing} />);
-    fireEvent.change(screen.getByLabelText("name"), { target: { value: "ok" } });
+    fireEvent.change(screen.getByLabelText("name"), {
+      target: { value: "ok" },
+    });
     fireEvent.click(nextButton());
     expect(screen.getByText("step-two")).toBeDefined();
   });
@@ -153,7 +159,9 @@ describe("FormWizard", () => {
 
   it("shows submit button label only on the last step", () => {
     render(<FormWizard steps={steps} />);
-    expect(screen.queryByRole("button", { name: /formWizard\.submit/ })).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: /formWizard\.submit/ }),
+    ).toBeNull();
     expect(nextButton()).toBeDefined();
     fireEvent.click(nextButton());
     expect(submitButton()).toBeDefined();

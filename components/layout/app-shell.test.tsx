@@ -3,9 +3,13 @@ import { render } from "@testing-library/react";
 import { AppShell } from "@/components/layout/app-shell";
 import type { AppShellProps } from "@/components/layout/app-shell";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 describe("AppShell", () => {
   it("AppShellProps type is importable", () => {
@@ -24,7 +28,9 @@ describe("AppShell", () => {
         <div>main</div>
       </AppShell>,
     );
-    expect(container.querySelector('[data-slot="app-shell"]') ?? true).toBeTruthy();
+    expect(
+      container.querySelector('[data-slot="app-shell"]') ?? true,
+    ).toBeTruthy();
     expect(getByText("main")).toBeTruthy();
   });
 

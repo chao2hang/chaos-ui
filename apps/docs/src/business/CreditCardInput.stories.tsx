@@ -14,7 +14,11 @@ const meta: Meta<typeof CreditCardInput> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <CreditCardInput value={"示例内容"} onChange={() => {}} disabled={false} />
+  ),
+};
 
 export const WithValue: Story = {
   args: {

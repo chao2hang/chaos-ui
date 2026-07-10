@@ -3,9 +3,13 @@ import { render, screen } from "@testing-library/react";
 import { DiffViewerTable } from "./diff-viewer-table";
 import type { DiffColumn } from "./diff-viewer-table";
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 type Row = Record<string, unknown> & {
   id: string;
@@ -116,7 +120,9 @@ describe("DiffViewerTable", () => {
         columns={columns}
       />,
     );
-    const unchangedRows = container.querySelectorAll('[data-status="unchanged"]');
+    const unchangedRows = container.querySelectorAll(
+      '[data-status="unchanged"]',
+    );
     expect(unchangedRows.length).toBe(1);
     // Unchanged rows should NOT have background classes
     expect(unchangedRows[0]!.className).not.toContain("bg-green");
@@ -181,12 +187,7 @@ describe("DiffViewerTable", () => {
 
   it("empty before/after handled", () => {
     render(
-      <DiffViewerTable
-        before={[]}
-        after={[]}
-        rowKey="id"
-        columns={columns}
-      />,
+      <DiffViewerTable before={[]} after={[]} rowKey="id" columns={columns} />,
     );
     expect(screen.getByText("No differences found")).toBeTruthy();
   });
@@ -234,9 +235,8 @@ describe("DiffViewerTable", () => {
     const removedRows = container.querySelectorAll('[data-status="removed"]');
     expect(removedRows.length).toBe(1);
     expect(removedRows[0]!.className).toContain("bg-red");
-    const strikethroughElements = removedRows[0]!.querySelectorAll(
-      ".line-through",
-    );
+    const strikethroughElements =
+      removedRows[0]!.querySelectorAll(".line-through");
     expect(strikethroughElements.length).toBeGreaterThan(0);
   });
 

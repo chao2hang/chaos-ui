@@ -15,7 +15,9 @@ const meta: Meta<typeof PhoneInput> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <PhoneInput onChange={() => {}} />,
+};
 
 export const WithUSCountry: Story = {
   args: {

@@ -9,4 +9,15 @@ const meta: Meta<typeof InlineEdit> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => (
+    <InlineEdit
+      value={"示例内容"}
+      multiline={false}
+      disabled={false}
+      validate={() => {}}
+      onSave={() => {}}
+      renderValue={() => {}}
+    />
+  ),
+};

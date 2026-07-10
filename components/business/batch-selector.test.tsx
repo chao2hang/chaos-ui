@@ -7,22 +7,40 @@ import type { BatchSelectorProps, BatchNode } from "./batch-selector";
 vi.mock("@/components/ui/dialog", () => ({
   Dialog: ({ children }: any) => <div data-slot="dialog">{children}</div>,
   DialogContent: ({ children, className }: any) => (
-    <div data-slot="dialog-content" className={className}>{children}</div>
+    <div data-slot="dialog-content" className={className}>
+      {children}
+    </div>
   ),
-  DialogHeader: ({ children }: any) => <div data-slot="dialog-header">{children}</div>,
-  DialogTitle: ({ children }: any) => <h2 data-slot="dialog-title">{children}</h2>,
-  DialogBody: ({ children, className }: any) => <div data-slot="dialog-body" className={className}>{children}</div>,
-  DialogFooter: ({ children }: any) => <div data-slot="dialog-footer">{children}</div>,
-  DialogDescription: ({ children }: any) => <p data-slot="dialog-description">{children}</p>,
+  DialogHeader: ({ children }: any) => (
+    <div data-slot="dialog-header">{children}</div>
+  ),
+  DialogTitle: ({ children }: any) => (
+    <h2 data-slot="dialog-title">{children}</h2>
+  ),
+  DialogBody: ({ children, className }: any) => (
+    <div data-slot="dialog-body" className={className}>
+      {children}
+    </div>
+  ),
+  DialogFooter: ({ children }: any) => (
+    <div data-slot="dialog-footer">{children}</div>
+  ),
+  DialogDescription: ({ children }: any) => (
+    <p data-slot="dialog-description">{children}</p>
+  ),
   DialogTrigger: ({ children }: any) => <div>{children}</div>,
   DialogClose: ({ children }: any) => <button>{children}</button>,
   DialogPortal: ({ children }: any) => <>{children}</>,
   DialogOverlay: () => <div data-slot="dialog-overlay" />,
 }));
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
-}));
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+  };
+});
 
 // Mock Checkbox to avoid base-ui focus/pointer-event issues in jsdom
 vi.mock("@/components/ui/checkbox", () => ({
@@ -39,16 +57,33 @@ vi.mock("@/components/ui/checkbox", () => ({
 // Mock Badge to avoid useRender issues
 vi.mock("@/components/ui/badge", () => ({
   Badge: ({ children, className, variant, ...props }: any) => (
-    <span className={className} {...props}>{children}</span>
+    <span className={className} {...props}>
+      {children}
+    </span>
   ),
   badgeVariants: () => "",
 }));
 
 // Mock Button to avoid @base-ui/react ButtonPrimitive issues in jsdom
 vi.mock("@/components/ui/button", () => ({
-  Button: ({ children, className, variant, disabled, icon, onClick, ...props }: any) => (
-    <button type="button" className={className} disabled={disabled} onClick={onClick} {...props}>
-      {icon}{children}
+  Button: ({
+    children,
+    className,
+    variant,
+    disabled,
+    icon,
+    onClick,
+    ...props
+  }: any) => (
+    <button
+      type="button"
+      className={className}
+      disabled={disabled}
+      onClick={onClick}
+      {...props}
+    >
+      {icon}
+      {children}
     </button>
   ),
 }));
@@ -56,14 +91,23 @@ vi.mock("@/components/ui/button", () => ({
 // Mock Input to avoid base-ui input rendering issues in jsdom
 vi.mock("@/components/ui/input", () => ({
   Input: ({ className, value, onChange, placeholder }: any) => (
-    <input className={className} value={value ?? ""} onChange={onChange} placeholder={placeholder} />
+    <input
+      className={className}
+      value={value ?? ""}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
   ),
 }));
 
 // Mock icons to avoid lucide SVG rendering overhead in jsdom
 vi.mock("@/components/ui/icons", () => ({
-  ChevronDownIcon: (props: any) => <span data-testid="chevron-down" {...props} />,
-  ChevronRightIcon: (props: any) => <span data-testid="chevron-right" {...props} />,
+  ChevronDownIcon: (props: any) => (
+    <span data-testid="chevron-down" {...props} />
+  ),
+  ChevronRightIcon: (props: any) => (
+    <span data-testid="chevron-right" {...props} />
+  ),
   PackageIcon: (props: any) => <span data-testid="package" {...props} />,
   SearchIcon: (props: any) => <span data-testid="search" {...props} />,
 }));
@@ -195,7 +239,9 @@ describe("BatchSelector", () => {
 
   it("search filters by batch number", () => {
     renderOpen();
-    const searchInput = screen.getByPlaceholderText("Search batch or product...");
+    const searchInput = screen.getByPlaceholderText(
+      "Search batch or product...",
+    );
     fireEvent.change(searchInput, { target: { value: "002" } });
     expect(screen.getByText("B-2024-002")).toBeDefined();
     expect(screen.queryByText("B-2024-003")).toBeNull();
@@ -203,7 +249,9 @@ describe("BatchSelector", () => {
 
   it("search filters by product name", () => {
     renderOpen();
-    const searchInput = screen.getByPlaceholderText("Search batch or product...");
+    const searchInput = screen.getByPlaceholderText(
+      "Search batch or product...",
+    );
     fireEvent.change(searchInput, { target: { value: "Widget C" } });
     expect(screen.getByText("B-2024-003")).toBeDefined();
     expect(screen.queryByText("B-2024-001")).toBeNull();
@@ -257,7 +305,9 @@ describe("BatchSelector", () => {
 
   it("disabled state prevents opening dialog", () => {
     render(<BatchSelector data={BATCH_DATA} disabled />);
-    const triggerWrapper = screen.getByText("Select Batch").closest("[data-slot=\"batch-selector\"]");
+    const triggerWrapper = screen
+      .getByText("Select Batch")
+      .closest('[data-slot="batch-selector"]');
     expect(triggerWrapper?.className).toContain("pointer-events-none");
   });
 
