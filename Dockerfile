@@ -16,8 +16,8 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
 
 # 构建组件包（文档站通过 link:../.. 依赖 dist/ 产物）
-# 增加 Node.js 内存限制，防止构建 OOM
-ENV NODE_OPTIONS=--max-old-space-size=4096
+# 增加 Node.js 内存限制，防止构建 OOM（GitHub Actions runner 有 7GB RAM）
+ENV NODE_OPTIONS=--max-old-space-size=6144
 
 RUN pnpm run build:pkg && \
     echo "=== dist/ contents ===" && \
@@ -51,17 +51,18 @@ RUN pnpm run build-storybook && \
 
 # 构建 Next.js 展示站
 # 使用 NODE_OPTIONS 增加内存，避免 551 页面静态生成时 OOM
-# 移除 cache mount 以排除缓存损坏问题，添加详细错误输出
-RUN cd apps/docs && NODE_OPTIONS=--max-old-space-size=4096 pnpm run build; \
-    EXIT_CODE=$?; \
-    if [ $EXIT_CODE -ne 0 ]; then \
-      echo "=== Next.js build FAILED with exit code $EXIT_CODE ==="; \
-      echo "=== .next directory contents ==="; \
-      ls -la .next/ 2>/dev/null || echo "(no .next directory)"; \
-      echo "=== Checking for error logs ==="; \
-      find .next -name "*.log" -exec cat {} \; 2>/dev/null || true; \
-      exit $EXIT_CODE; \
-    fi; \
+# 添加 NEXT_PRIVATE_DEBUG 获取更多构建信息
+RUN cd apps/docs && \
+    NODE_OPTIONS=--max-old-space-size=6144 \
+    NEXT_PRIVATE_DEBUG=1 \
+    pnpm run build 2>&1 || ( \
+      echo "=== Next.js build FAILED ===" && \
+      echo "=== .next directory ===" && \
+      ls -la .next/ 2>/dev/null || echo "(no .next)" && \
+      echo "=== Error trace files ===" && \
+      find .next -name "*.log" -exec cat {} \; 2>/dev/null || true && \
+      exit 1 \
+    ) && \
     echo "=== Next.js build complete ==="
 
 # ─── Runtime Stage ───
