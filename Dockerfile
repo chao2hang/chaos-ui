@@ -16,7 +16,11 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # 构建组件包（文档站通过 link:../.. 依赖 dist/ 产物）
-RUN pnpm run build:pkg
+RUN pnpm run build:pkg && \
+    echo "=== dist/ contents ===" && \
+    ls -la dist/ | head -20 && \
+    echo "=== dist/ file count ===" && \
+    find dist/ -type f | wc -l
 
 # 诊断信息
 RUN echo "Node: $(node --version), pnpm: $(pnpm --version)" && \
@@ -38,10 +42,13 @@ RUN echo "=== Generated file line counts ===" && \
       (echo "ERROR: component-loader.ts is empty — meta regex may be broken" && exit 1)
 
 # 构建 Storybook 静态站点
-RUN pnpm run build-storybook
+RUN pnpm run build-storybook && \
+    echo "=== storybook-static built ===" && \
+    ls storybook-static/ | head -5
 
 # 构建 Next.js 展示站
-RUN cd apps/docs && pnpm run build 2>&1
+RUN cd apps/docs && pnpm run build && \
+    echo "=== Next.js build complete ==="
 
 # ─── Runtime Stage ───
 FROM node:22-alpine
