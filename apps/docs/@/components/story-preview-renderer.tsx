@@ -121,13 +121,21 @@ function pickBestStory(mod: StoryModule): StoryLike | null {
     if (!isEmptyArgs(story.args ?? {})) return story;
   }
 
-  // 5. No safe story found.
-  //
-  //    Previously this step returned stories with empty args, relying on the
-  //    error boundary to catch crashes.  But most components require props
-  //    (items, columns, src, value, …) and crash instantly, producing ugly
-  //    error cards on every docs page.  Returning null here lets the caller
-  //    fall through to the friendly “No live preview” fallback.
+  // 5. LAST RESORT: Preferred names with empty args (component must be on meta).
+  //    Many simple components (Spinner, Badge, Tag, PasswordInput) render fine
+  //    without props. The StoryErrorBoundary catches any that don't.
+  if (mod.default?.component) {
+    for (const key of storyPreference) {
+      const story = mod[key];
+      if (isStory(story)) return story;
+    }
+    // Or any story at all
+    for (const [key, story] of Object.entries(mod)) {
+      if (key === "default" || key.startsWith("__")) continue;
+      if (isStory(story)) return story;
+    }
+  }
+
   return null;
 }
 
@@ -153,15 +161,7 @@ export function createStoryPreview(mod: unknown): React.ComponentType {
     const meta = storyModule.default;
     const story = pickBestStory(storyModule);
 
-    if (!story) {
-      return (
-        <div className="text-muted-foreground py-8 text-center text-sm">
-          No live preview available for this component.
-          <br />
-          <span className="text-xs">Open Storybook for interactive demos.</span>
-        </div>
-      );
-    }
+    if (!story) return null;
 
     const args = {
       ...(meta?.args ?? {}),
@@ -186,15 +186,7 @@ export function createStoryPreview(mod: unknown): React.ComponentType {
       return null;
     }
 
-    if (!node) {
-      return (
-        <div className="text-muted-foreground py-8 text-center text-sm">
-          No live preview available for this component.
-          <br />
-          <span className="text-xs">Open Storybook for interactive demos.</span>
-        </div>
-      );
-    }
+    if (!node) return null;
 
     return (
       <StoryErrorBoundary

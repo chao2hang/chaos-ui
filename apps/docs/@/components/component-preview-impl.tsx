@@ -3,6 +3,7 @@
 import { Component, type ReactNode } from "react";
 import { componentPreviews } from "@/components/component-previews";
 import { componentStoryPreviews } from "@/components/component-story-previews";
+import { componentLoaders } from "@/components/component-loader";
 
 /* -------------------------------------------------------------------------- */
 /*  Preview chrome                                                            */
@@ -127,12 +128,21 @@ export function ComponentPreviewImpl({
     );
   }
 
-  // 3. No safe preview available — show a friendly fallback.
-  //
-  //    Previously this step tried to render the bare component via
-  //    componentLoaders, but most components require props (items, columns,
-  //    src, value, etc.) and crash instantly.  Rather than showing an ugly
-  //    error message for every prop-less component, we show a clean
-  //    “open Storybook” prompt.
+  // 3. Last resort: try the bare component from the auto-generated loader map.
+  //    Many UI components (PasswordInput, Spinner, Badge, etc.) render fine
+  //    without props. The PreviewErrorBoundary catches any crash from missing
+  //    required props and shows a graceful error message instead of a 500.
+  const Loader = componentLoaders[name];
+  if (Loader) {
+    return (
+      <PreviewErrorBoundary name={name}>
+        <PreviewCard name={name} nameZh={nameZh}>
+          <Loader />
+        </PreviewCard>
+      </PreviewErrorBoundary>
+    );
+  }
+
+  // 4. Truly no preview available — show a friendly fallback.
   return <PreviewFallback name={name} />;
 }
