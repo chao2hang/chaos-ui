@@ -79,17 +79,19 @@ interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function colSpanClass(prefix: string, span?: ColSpan): string {
   if (span == null) return "";
-  return `${prefix}:col-span-${span}`;
+  return prefix ? `${prefix}:col-span-${span}` : `col-span-${span}`;
 }
 
 function colOffsetClass(prefix: string, offset?: number): string {
   if (offset == null) return "";
-  return `${prefix}:col-start-[${offset + 1}]`;
+  return prefix
+    ? `${prefix}:col-start-[${offset + 1}]`
+    : `col-start-[${offset + 1}]`;
 }
 
 function colOrderClass(prefix: string, order?: number): string {
   if (order == null) return "";
-  return `${prefix}:order-${order}`;
+  return prefix ? `${prefix}:order-${order}` : `order-${order}`;
 }
 
 // ─── Row ─────────────────────────────────────────────────

@@ -68,6 +68,8 @@ describe("grid", () => {
     const { container } = render(<Col span={6}>Content</Col>);
     const col = container.firstChild as HTMLElement;
     expect(col?.className).toContain("col-span-6");
+    // base breakpoint must NOT have a leading colon (was a bug in ≤1.2.1)
+    expect(col?.className).not.toMatch(/(^|\s):col-span/);
   });
 
   it("Col applies offset class", () => {
@@ -78,6 +80,7 @@ describe("grid", () => {
     );
     const col = container.firstChild as HTMLElement;
     expect(col?.className).toContain("col-start-[4]");
+    expect(col?.className).not.toMatch(/(^|\s):col-start/);
   });
 
   it("Col applies order class", () => {
@@ -88,6 +91,7 @@ describe("grid", () => {
     );
     const col = container.firstChild as HTMLElement;
     expect(col?.className).toContain("order-2");
+    expect(col?.className).not.toMatch(/(^|\s):order/);
   });
 
   it("Col applies responsive xs classes", () => {
@@ -265,5 +269,12 @@ describe("grid", () => {
     const { container } = render(<Col>Content</Col>);
     const col = container.firstChild as HTMLElement;
     expect(col?.className).not.toContain("col-span-");
+  });
+
+  it("Col span=17 generates valid class without leading colon (regression for ≤1.2.1 bug)", () => {
+    const { container } = render(<Col span={17}>Content</Col>);
+    const col = container.firstChild as HTMLElement;
+    expect(col?.className).toContain("col-span-17");
+    expect(col?.className).not.toMatch(/(^|\s):col-span/);
   });
 });
