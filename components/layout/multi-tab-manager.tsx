@@ -1,36 +1,24 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import {
-  XIcon,
-  RotateCwIcon,
-  CopyIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@/components/ui/icons";
-import {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-} from "@/components/ui/context-menu";
+  NavigationTabsBar,
+  type NavigationTabsBarTabItem,
+} from "./navigation-tabs-bar";
 
-interface TabInfo {
-  /** Unique tab key / 唯一标识 */
-  key: string;
-  /** Tab label / 标签标题 */
-  label: React.ReactNode;
-  /** Whether the tab is closable (default: true) / 是否可关闭（默认 true） */
-  closable?: boolean;
-  /** Optional icon / 可选图标 */
-  icon?: React.ReactNode;
-}
+/**
+ * @deprecated Use {@link NavigationTabsBar} instead. `MultiTabManager` is kept
+ * as a thin adapter that forwards to `NavigationTabsBar` for backward
+ * compatibility. The `tabs` prop replaces `items`; the `onTab*` callbacks map
+ * 1:1 to `NavigationTabsBar`'s `onChange` / `onClose` / `onCloseOthers` /
+ * `onCloseToRight` / `onRefresh` / `onCloseAll`.
+ */
+export type TabInfo = NavigationTabsBarTabItem;
 
-interface MultiTabManagerProps extends Omit<
+/** @deprecated Use {@link NavigationTabsBar} props instead. */
+export interface MultiTabManagerProps extends Omit<
   React.ComponentProps<"div">,
-  "onContextMenu"
+  "onContextMenu" | "onChange"
 > {
   /** Tab list / 标签列表 */
   tabs?: TabInfo[];
@@ -54,8 +42,13 @@ interface MultiTabManagerProps extends Omit<
  * @component MultiTabManager
  * @category layout/navigation
  * @since 0.2.0
- * @description Enhanced tab manager with right-click context menu, middle-click close, scroll buttons for overflow, and cache integration / 增强的标签管理器，支持右键菜单、中键关闭、溢出滚动按钮和缓存集成
- * @keywords tabs, multi-tab, context-menu, navigation, scroll
+ * @deprecated Use `NavigationTabsBar` (or `AdminShell.tabs`) instead. This
+ *   component is now a thin adapter over `NavigationTabsBar` and will be
+ *   removed in a future major release.
+ * @description Backward-compatible adapter forwarding to NavigationTabsBar
+ *   with the legacy `tabs` / `onTab*` API surface / 兼容层：将旧的
+ *   `tabs` / `onTab*` API 转发到 `NavigationTabsBar`。
+ * @keywords tabs, multi-tab, context-menu, navigation, scroll, deprecated
  * @example
  * <MultiTabManager
  *   tabs={[{ key: "home", label: "Home" }]}
@@ -64,8 +57,7 @@ interface MultiTabManagerProps extends Omit<
  * />
  */
 function MultiTabManager({
-  className,
-  tabs = [],
+  tabs,
   activeKey,
   onTabClick,
   onTabClose,
@@ -73,127 +65,23 @@ function MultiTabManager({
   onTabCloseRight,
   onTabRefresh,
   onTabCloseAll,
-  ...props
+  ...rest
 }: MultiTabManagerProps) {
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(false);
-
-  const updateScrollButtons = React.useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
-  }, []);
-
-  React.useEffect(() => {
-    updateScrollButtons();
-  }, [tabs, updateScrollButtons]);
-
-  const scrollBy = (dir: 1 | -1) => {
-    scrollRef.current?.scrollBy({ left: dir * 200, behavior: "smooth" });
-  };
-
-  const handleClose = (key: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    onTabClose?.(key);
-  };
-
-  return (
-    <div
-      data-slot="multi-tab-manager"
-      className={cn(
-        "border-border bg-background flex items-center gap-1 border-b px-2",
-        className,
-      )}
-      {...props}
-    >
-      {canScrollLeft && (
-        <button
-          type="button"
-          onClick={() => scrollBy(-1)}
-          className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
-          aria-label="Scroll left"
-        >
-          <ChevronLeftIcon className="size-4" />
-        </button>
-      )}
-      <div
-        ref={scrollRef}
-        onScroll={updateScrollButtons}
-        className="flex flex-1 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {tabs.map((tab) => {
-          const isActive = activeKey === tab.key;
-          const closable = tab.closable !== false;
-          return (
-            <ContextMenu key={tab.key}>
-              <ContextMenuTrigger>
-                <div
-                  onClick={() => onTabClick?.(tab.key)}
-                  onAuxClick={(e) => {
-                    if (e.button === 1 && closable) {
-                      e.stopPropagation();
-                      onTabClose?.(tab.key);
-                    }
-                  }}
-                  className={cn(
-                    "group flex cursor-pointer items-center gap-1.5 border-b-2 px-3 py-2 text-sm transition-colors",
-                    isActive
-                      ? "border-primary text-primary"
-                      : "text-muted-foreground hover:text-foreground border-transparent",
-                  )}
-                >
-                  {tab.icon && <span className="shrink-0">{tab.icon}</span>}
-                  <span className="whitespace-nowrap">{tab.label}</span>
-                  {closable && (
-                    <button
-                      type="button"
-                      onClick={(e) => handleClose(tab.key, e)}
-                      className="hover:bg-muted ml-1 shrink-0 rounded p-0.5 opacity-0 transition-opacity group-hover:opacity-100"
-                      aria-label="Close tab"
-                    >
-                      <XIcon className="size-3" />
-                    </button>
-                  )}
-                </div>
-              </ContextMenuTrigger>
-              <ContextMenuContent>
-                <ContextMenuItem onClick={() => onTabRefresh?.(tab.key)}>
-                  <RotateCwIcon className="size-3.5" /> Refresh
-                </ContextMenuItem>
-                <ContextMenuSeparator />
-                <ContextMenuItem onClick={() => onTabClose?.(tab.key)}>
-                  <XIcon className="size-3.5" /> Close
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => onTabCloseOthers?.(tab.key)}>
-                  <CopyIcon className="size-3.5" /> Close Others
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => onTabCloseRight?.(tab.key)}>
-                  Close to Right
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => onTabCloseAll?.()}>
-                  Close All
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
-          );
-        })}
-      </div>
-      {canScrollRight && (
-        <button
-          type="button"
-          onClick={() => scrollBy(1)}
-          className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
-          aria-label="Scroll right"
-        >
-          <ChevronRightIcon className="size-4" />
-        </button>
-      )}
-    </div>
-  );
+  // Forward the legacy `tabs` / `onTab*` API to the unified
+  // `NavigationTabsBar` surface. Props are assigned conditionally to avoid
+  // passing `undefined` (forbidden under `exactOptionalPropertyTypes`).
+  type NTBProps = React.ComponentProps<typeof NavigationTabsBar>;
+  const forwarded: Partial<NTBProps> = { ...rest };
+  if (tabs !== undefined) forwarded.items = tabs;
+  if (activeKey !== undefined) forwarded.activeKey = activeKey;
+  if (onTabClick !== undefined) forwarded.onChange = onTabClick;
+  if (onTabClose !== undefined) forwarded.onClose = onTabClose;
+  if (onTabCloseOthers !== undefined)
+    forwarded.onCloseOthers = onTabCloseOthers;
+  if (onTabCloseRight !== undefined) forwarded.onCloseToRight = onTabCloseRight;
+  if (onTabRefresh !== undefined) forwarded.onRefresh = onTabRefresh;
+  if (onTabCloseAll !== undefined) forwarded.onCloseAll = onTabCloseAll;
+  return <NavigationTabsBar {...(forwarded as NTBProps)} />;
 }
 
 export { MultiTabManager };
-export type { TabInfo, MultiTabManagerProps };

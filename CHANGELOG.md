@@ -5,6 +5,17 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] — 2026-07-11
+
+### Changed
+
+- **layout**: 合并 `MultiTabManager` 与 `NavigationTabsBar` 为单一实现。`NavigationTabsBar` 现在是唯一的标签栏真身实现，`MultiTabManager` 改为转发到它的薄 adapter（保留 `tabs` / `onTab*` 旧 API，已标注 `@deprecated`）。
+  - `NavigationTabsBar` 新增溢出滚动按钮（tab 过多时左右箭头自动出现）。
+  - `NavigationTabsBar` ContextMenu 图标增强（Close Others 增加 `CopyIcon`）。
+  - `MultiTabManager` 的 `MultiTabManagerProps` 现在从 HTML div props 中额外 Omit 了 `onChange`（与 `onTabClick` 职责重叠）。
+  - 消费方使用 `AdminShell.tabs` 时实际走的是 `NavigationTabsBar` API（`items` / `onChange` / `onClose` 等），`MultiTabManager` 的 `tabs` / `onTabClick` 仅为兼容别名。
+  - 无 breaking change：两套 API 均保留可用。
+
 ## [1.2.2] — 2026-07-11
 
 ### Bug Fixes

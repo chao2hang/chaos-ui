@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { XIcon, RefreshCwIcon } from "@/components/ui/icons";
+import {
+  XIcon,
+  RefreshCwIcon,
+  CopyIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@/components/ui/icons";
 import {
   ContextMenu,
   ContextMenuTrigger,
@@ -61,6 +67,25 @@ function NavigationTabsBar({
   );
   const current = controlledActiveKey ?? internalActive;
 
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
+  const [canScrollRight, setCanScrollRight] = React.useState(false);
+
+  const updateScrollButtons = React.useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+  }, []);
+
+  React.useEffect(() => {
+    updateScrollButtons();
+  }, [items, updateScrollButtons]);
+
+  const scrollBy = (dir: 1 | -1) => {
+    scrollRef.current?.scrollBy({ left: dir * 200, behavior: "smooth" });
+  };
+
   const handleChange = (key: string) => {
     if (controlledActiveKey === undefined) setInternalActive(key);
     onChange?.(key);
@@ -80,7 +105,21 @@ function NavigationTabsBar({
       )}
       {...props}
     >
-      <div className="flex flex-1 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      {canScrollLeft && (
+        <button
+          type="button"
+          onClick={() => scrollBy(-1)}
+          className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
+          aria-label="Scroll left"
+        >
+          <ChevronLeftIcon className="size-4" />
+        </button>
+      )}
+      <div
+        ref={scrollRef}
+        onScroll={updateScrollButtons}
+        className="flex flex-1 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
         {items.map((tab) => {
           const isActive = current === tab.key;
           const closable = tab.closable !== false;
@@ -125,7 +164,7 @@ function NavigationTabsBar({
                   <XIcon className="size-3.5" /> Close
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => onCloseOthers?.(tab.key)}>
-                  Close Others
+                  <CopyIcon className="size-3.5" /> Close Others
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => onCloseToRight?.(tab.key)}>
                   Close to Right
@@ -138,6 +177,16 @@ function NavigationTabsBar({
           );
         })}
       </div>
+      {canScrollRight && (
+        <button
+          type="button"
+          onClick={() => scrollBy(1)}
+          className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
+          aria-label="Scroll right"
+        >
+          <ChevronRightIcon className="size-4" />
+        </button>
+      )}
     </div>
   );
 }
