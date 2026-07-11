@@ -6,8 +6,9 @@
 
 
 @source "../mdx-components.tsx";
-@source "../../../packages/chaos-design-ui/components/ui/*.tsx";
-@source "../../../packages/chaos-design-ui/components/layout/*.tsx";
+@source "../../../components/ui/*.tsx";
+@source "../../../components/layout/*.tsx";
+@source "../../../components/business/*.tsx";
 @source "../app/**/*.tsx";
 @source "../@/components/**/*.tsx";
 

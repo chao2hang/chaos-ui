@@ -36,11 +36,6 @@ function findComponentFile(sourcePath, name) {
     // Try in components/ directly
     const altPath = `components/${relativePath}`;
     if (fileExists(altPath)) return altPath;
-
-    // Try in packages/chaos-design-ui/components/ (already checked via sourcePath)
-    // Try without the ui/ or business/ prefix
-    const altPath2 = `packages/chaos-design-ui/components/${relativePath}`;
-    if (fileExists(altPath2)) return altPath2;
   }
 
   // Try to find by component name

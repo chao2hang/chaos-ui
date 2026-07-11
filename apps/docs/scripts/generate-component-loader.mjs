@@ -88,7 +88,7 @@ function generate() {
 
   for (const entry of entries) {
     const relPath = entry.sourcePath
-      .replace(/^packages\/chaos-design-ui\/components\//, "")
+      .replace(/^components\//, "")
       .replace(/\.tsx?$/, "");
 
     const fullPath = resolve(COMPONENTS_DIR, relPath + ".tsx");

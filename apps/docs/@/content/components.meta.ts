@@ -23,7 +23,7 @@ export interface ComponentMeta {
   desc: string;
   /** one-sentence Chinese description */
   descZh: string;
-  /** relative path to source file under packages/chaos-design-ui/ */
+  /** relative path to source file under the repo root (typically `components/`) */
   sourcePath: string;
   /** Storybook autodocs id, e.g. `components-button--docs`. */
   storybookId?: string;
@@ -72,7 +72,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Vertically stacked collapsible panels; can expand one or more at a time.",
     descZh: "可折叠/展开的内容面板,垂直堆叠,每次可展开一个或多个。",
-    sourcePath: "packages/chaos-design-ui/components/ui/accordion.tsx",
+    sourcePath: "components/ui/accordion.tsx",
     storybookId: "components-accordion--docs",
   },
   {
@@ -82,7 +82,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Pins an element to a viewport position so it stays visible on scroll.",
     descZh: "将页面元素固定在可视范围某位置,滚动时保持可见。",
-    sourcePath: "packages/chaos-design-ui/components/ui/affix.tsx",
+    sourcePath: "components/ui/affix.tsx",
     storybookId: "components-affix--docs",
   },
   {
@@ -92,7 +92,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Blocking confirmation dialog for destructive actions, styled for emphasis.",
     descZh: "需要用户确认的危险操作对话框,阻断式,含警告样式。",
-    sourcePath: "packages/chaos-design-ui/components/ui/alert-dialog.tsx",
+    sourcePath: "components/ui/alert-dialog.tsx",
     storybookId: "components-alertdialog--docs",
   },
   {
@@ -103,7 +103,7 @@ export const components: ComponentMeta[] = [
     desc: "Static (non-overlay) message for noteworthy information. Supports default/info/success/warning/destructive variants.",
     descZh:
       "静态展示需要关注的信息,非浮层。支持 default/info/success/warning/destructive 变体。",
-    sourcePath: "packages/chaos-design-ui/components/ui/alert.tsx",
+    sourcePath: "components/ui/alert.tsx",
     storybookId: "components-alert--docs",
   },
   {
@@ -113,7 +113,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Jumps to specified positions on a page; commonly used for table of contents.",
     descZh: "跳转到页面指定位置的锚点导航,常用于目录。",
-    sourcePath: "packages/chaos-design-ui/components/ui/anchor.tsx",
+    sourcePath: "components/ui/anchor.tsx",
     storybookId: "business-anchor--docs",
   },
   {
@@ -123,7 +123,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Container that enforces an aspect ratio; useful for image/video placeholders.",
     descZh: "锁定内容宽高比的容器组件,常用于图片/视频占位。",
-    sourcePath: "packages/chaos-design-ui/components/ui/aspect-ratio.tsx",
+    sourcePath: "components/ui/aspect-ratio.tsx",
     storybookId: "components-aspectratio--docs",
   },
   {
@@ -143,7 +143,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Input with real-time suggestion dropdown as user types.",
     descZh: "输入框联想下拉,输入时实时建议匹配项。",
-    sourcePath: "packages/chaos-design-ui/components/ui/autocomplete.tsx",
+    sourcePath: "components/ui/autocomplete.tsx",
     storybookId: "components-autocomplete--docs",
   },
   {
@@ -153,7 +153,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Represents a user or entity; supports image, icon, and text fallbacks.",
     descZh: "展示用户/实体头像,支持图片、图标、文字三种形式。",
-    sourcePath: "packages/chaos-design-ui/components/ui/avatar.tsx",
+    sourcePath: "components/ui/avatar.tsx",
     storybookId: "components-avatar--docs",
   },
   {
@@ -163,7 +163,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Button pinned to bottom-right that scrolls to the top.",
     descZh: "页面右下角按钮,一键返回页面顶部。",
-    sourcePath: "packages/chaos-design-ui/components/ui/back-top.tsx",
+    sourcePath: "components/ui/back-top.tsx",
     storybookId: "components-backtop--docs",
   },
   {
@@ -173,7 +173,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Small status/number indicator pinned to a corner, often used on notification icons, avatars, or list items.",
     descZh: "在右上角展示小数量或状态标记,常用于通知图标、头像、列表项。",
-    sourcePath: "packages/chaos-design-ui/components/ui/badge.tsx",
+    sourcePath: "components/ui/badge.tsx",
     storybookId: "components-badge--docs",
   },
   {
@@ -183,7 +183,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "BarcodeDisplay — a components for presenting data and content. from Chaos UI.",
     descZh: "条形码展示 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/barcode-display.tsx",
+    sourcePath: "components/ui/barcode-display.tsx",
     storybookId: "business-barcodedisplay--docs",
   },
   {
@@ -193,7 +193,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Displays current location in a hierarchy and provides navigation back up.",
     descZh: "显示当前页面在层级结构中的位置,并能向上返回。",
-    sourcePath: "packages/chaos-design-ui/components/ui/breadcrumb.tsx",
+    sourcePath: "components/ui/breadcrumb.tsx",
     storybookId: "components-breadcrumb--docs",
   },
   {
@@ -203,7 +203,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Input with a browse button on the right; used for selecting files/directories/business objects.",
     descZh: "输入框右侧带浏览按钮,常用于选择文件/目录/业务对象。",
-    sourcePath: "packages/chaos-design-ui/components/ui/browse-input.tsx",
+    sourcePath: "components/ui/browse-input.tsx",
     storybookId: "components-browseinput--docs",
   },
   {
@@ -213,7 +213,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Buttons trigger actions or events such as submitting forms, opening dialogs, or cancelling operations.",
     descZh: "触发操作或事件,如提交表单、打开对话框、取消操作等。",
-    sourcePath: "packages/chaos-design-ui/components/ui/button.tsx",
+    sourcePath: "components/ui/button.tsx",
     storybookId: "components-button--docs",
   },
   {
@@ -223,7 +223,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Calendar-view container for date selection or schedule display.",
     descZh: "按照日历形式展示数据的容器,可用于日期选择或日程展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/calendar.tsx",
+    sourcePath: "components/ui/calendar.tsx",
     storybookId: "components-calendar--docs",
   },
   {
@@ -233,7 +233,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Groups content in a container; the most common content-grouping primitive.",
     descZh: "将信息聚合在卡片容器中展示,最通用的内容分组容器。",
-    sourcePath: "packages/chaos-design-ui/components/ui/card.tsx",
+    sourcePath: "components/ui/card.tsx",
     storybookId: "components-card--docs",
   },
   {
@@ -243,7 +243,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Rotating flat content set; supports autoplay, dots, and arrows.",
     descZh: "一组内容平级轮播展示,支持自动播放、指示点、箭头。",
-    sourcePath: "packages/chaos-design-ui/components/ui/carousel.tsx",
+    sourcePath: "components/ui/carousel.tsx",
     storybookId: "components-carousel--docs",
   },
   {
@@ -253,7 +253,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Select from hierarchical linked data such as Province/City/District.",
     descZh: "从多级层级关联数据中进行选择,如省/市/区。",
-    sourcePath: "packages/chaos-design-ui/components/ui/cascader.tsx",
+    sourcePath: "components/ui/cascader.tsx",
     storybookId: "components-cascader--docs",
   },
   {
@@ -283,7 +283,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Multi-select from a group, or standalone toggle for binary state.",
     descZh: "在一组选项中进行多选,或单独表示两种状态切换。",
-    sourcePath: "packages/chaos-design-ui/components/ui/checkbox.tsx",
+    sourcePath: "components/ui/checkbox.tsx",
     storybookId: "components-checkbox--docs",
   },
   {
@@ -293,7 +293,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Root container for a collapsible/expandable section, built on Base UI.",
     descZh: "可折叠/展开区域的根容器，基于 Base UI 构建。",
-    sourcePath: "packages/chaos-design-ui/components/ui/collapsible.tsx",
+    sourcePath: "components/ui/collapsible.tsx",
     storybookId: "components-collapsible--docs",
   },
   {
@@ -303,7 +303,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Color selection panel supporting swatches, hex input, and opacity.",
     descZh: "选择颜色的面板控件,支持色板、输入色值、透明度。",
-    sourcePath: "packages/chaos-design-ui/components/ui/color-picker.tsx",
+    sourcePath: "components/ui/color-picker.tsx",
     storybookId: "components-colorpicker--docs",
   },
   {
@@ -313,7 +313,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Combines input with a dropdown list; supports custom input and option matching.",
     descZh: "结合输入框和下拉列表的组合选择控件,支持自定义输入和选项匹配。",
-    sourcePath: "packages/chaos-design-ui/components/ui/combobox.tsx",
+    sourcePath: "components/ui/combobox.tsx",
     storybookId: "business-combobox--docs",
   },
   {
@@ -323,7 +323,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "VS Code-style Ctrl+K command palette driven by keyboard search.",
     descZh: "类似 VS Code Ctrl+K 的命令面板,键盘驱动搜索/执行。",
-    sourcePath: "packages/chaos-design-ui/components/ui/command.tsx",
+    sourcePath: "components/ui/command.tsx",
     storybookId: "components-command--docs",
   },
   {
@@ -333,7 +333,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Provides global configuration (theme, size, i18n, prefix) to the component tree.",
     descZh: "为组件树提供全局配置(主题、尺寸、国际化、前缀)。",
-    sourcePath: "packages/chaos-design-ui/components/ui/config-provider.tsx",
+    sourcePath: "components/ui/config-provider.tsx",
     storybookId: "components-configprovider--docs",
   },
   {
@@ -343,7 +343,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Right-click triggered context action menu.",
     descZh: "右键触发的上下文操作菜单。",
-    sourcePath: "packages/chaos-design-ui/components/ui/context-menu.tsx",
+    sourcePath: "components/ui/context-menu.tsx",
     storybookId: "components-contextmenu--docs",
   },
   {
@@ -353,7 +353,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Countdown display; commonly used for SMS verification cooldowns or event timers.",
     descZh: "展示倒计数字,常用于短信验证码等待、活动倒计时。",
-    sourcePath: "packages/chaos-design-ui/components/ui/countdown.tsx",
+    sourcePath: "components/ui/countdown.tsx",
     storybookId: "components-countdown--docs",
   },
   {
@@ -363,7 +363,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Select single date, date ranges, or multiple dates.",
     descZh: "选择单个日期、日期范围或多个日期。",
-    sourcePath: "packages/chaos-design-ui/components/ui/date-picker.tsx",
+    sourcePath: "components/ui/date-picker.tsx",
     storybookId: "components-datepicker--docs",
   },
   {
@@ -373,7 +373,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Browse org structure to select departments/people; supports tree expand, search, multi-select.",
     descZh: "从组织架构中选择部门/人员,支持树状展开、搜索、多选。",
-    sourcePath: "packages/chaos-design-ui/components/ui/department-browse.tsx",
+    sourcePath: "components/ui/department-browse.tsx",
     storybookId: "components-departmentbrowse--docs",
   },
   {
@@ -383,7 +383,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Key-value list of read-only fields; common on detail pages.",
     descZh: "以键值对形式展示多个字段的只读详情,常见于详情页。",
-    sourcePath: "packages/chaos-design-ui/components/ui/descriptions.tsx",
+    sourcePath: "components/ui/descriptions.tsx",
     storybookId: "components-descriptions--docs",
   },
   {
@@ -393,7 +393,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Modal popup for critical user interactions; does not support stacking.",
     descZh: "模态弹出框,用于需要用户处理事务的重要场景,不支持多框叠加。",
-    sourcePath: "packages/chaos-design-ui/components/ui/dialog.tsx",
+    sourcePath: "components/ui/dialog.tsx",
     storybookId: "components-dialog--docs",
   },
   {
@@ -414,7 +414,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Content separator; supports horizontal/vertical and labels.",
     descZh: "区隔内容的分割线,支持水平/垂直、含文字。",
-    sourcePath: "packages/chaos-design-ui/components/ui/divider.tsx",
+    sourcePath: "components/ui/divider.tsx",
     storybookId: "components-divider--docs",
   },
   {
@@ -424,7 +424,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Small dot status indicator used for online status, notification dots, or list items.",
     descZh: "小圆点状态指示器,常用于在线状态、消息提醒、列表项前。",
-    sourcePath: "packages/chaos-design-ui/components/ui/dot.tsx",
+    sourcePath: "components/ui/dot.tsx",
     storybookId: "components-dot--docs",
   },
   {
@@ -434,7 +434,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Panel that slides out from an edge, used for secondary content like details or forms.",
     descZh: "从屏幕边缘滑出的浮层面板,用于承载详情/表单等次要内容。",
-    sourcePath: "packages/chaos-design-ui/components/ui/drawer.tsx",
+    sourcePath: "components/ui/drawer.tsx",
     storybookId: "components-drawer--docs",
   },
   {
@@ -444,7 +444,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Menu list that pops downward, holding actions or navigation options.",
     descZh: "向下弹出的菜单列表,承载操作或导航选项。",
-    sourcePath: "packages/chaos-design-ui/components/ui/dropdown-menu.tsx",
+    sourcePath: "components/ui/dropdown-menu.tsx",
     storybookId: "components-dropdownmenu--docs",
   },
   {
@@ -454,7 +454,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Placeholder for empty data states, optionally with a call-to-action.",
     descZh: "当前没有数据时的占位展示,可搭配引导操作。",
-    sourcePath: "packages/chaos-design-ui/components/ui/empty-state.tsx",
+    sourcePath: "components/ui/empty-state.tsx",
     storybookId: "business-emptystate--docs",
   },
   {
@@ -464,7 +464,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Circular floating action button (bottom-right) for the primary create/add action.",
     descZh: "悬浮在页面右下角的圆形操作按钮,用于最主要的创建/新增操作。",
-    sourcePath: "packages/chaos-design-ui/components/ui/fab.tsx",
+    sourcePath: "components/ui/fab.tsx",
     storybookId: "business-fab--docs",
   },
   {
@@ -474,7 +474,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Click/drag-to-upload supporting multi-select, type restrictions, and preview.",
     descZh: "通过点击或拖拽上传文件,支持多选、类型限制、预览。",
-    sourcePath: "packages/chaos-design-ui/components/ui/file-upload.tsx",
+    sourcePath: "components/ui/file-upload.tsx",
     storybookId: "components-fileupload--docs",
   },
   {
@@ -484,7 +484,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Flex — a layout primitives for structuring pages. for structuring page regions.",
     descZh: "弹性布局 — Chaos UI 的布局组件,用于组织页面区域结构。",
-    sourcePath: "packages/chaos-design-ui/components/ui/flex.tsx",
+    sourcePath: "components/ui/flex.tsx",
     storybookId: "components-flex--docs",
   },
   {
@@ -494,7 +494,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "FormGrid — a form controls for user input and data submission. from Chaos UI.",
     descZh: "表单栅格 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/form-grid.tsx",
+    sourcePath: "components/ui/form-grid.tsx",
     storybookId: "components-formgrid--docs",
   },
   {
@@ -504,7 +504,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "FormList — a form controls for user input and data submission. from Chaos UI.",
     descZh: "表单列表 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/form-list.tsx",
+    sourcePath: "components/ui/form-list.tsx",
     storybookId: "components-formlist--docs",
   },
   {
@@ -514,7 +514,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "FormSection — a form controls for user input and data submission. from Chaos UI.",
     descZh: "表单分区 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/form-section.tsx",
+    sourcePath: "components/ui/form-section.tsx",
     storybookId: "components-formsection--docs",
   },
   {
@@ -524,7 +524,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Form container enabling data collection, validation, and submission with FormField.",
     descZh: "表单容器,配合 FormField 实现数据收集、校验、提交。",
-    sourcePath: "packages/chaos-design-ui/components/ui/form.tsx",
+    sourcePath: "components/ui/form.tsx",
     storybookId: "business-form--docs",
   },
   {
@@ -534,7 +534,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "FullscreenToggle — a form controls for user input and data submission. from Chaos UI.",
     descZh: "全屏切换 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/fullscreen-toggle.tsx",
+    sourcePath: "components/ui/fullscreen-toggle.tsx",
     storybookId: "components-fullscreentoggle--docs",
   },
   {
@@ -544,7 +544,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "GridLayout — a layout primitives for structuring pages. for structuring page regions.",
     descZh: "栅格布局 — Chaos UI 的布局组件,用于组织页面区域结构。",
-    sourcePath: "packages/chaos-design-ui/components/ui/grid-layout.tsx",
+    sourcePath: "components/ui/grid-layout.tsx",
     storybookId: "components-gridlayout--docs",
   },
   {
@@ -554,7 +554,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Grid — a layout primitives for structuring pages. for structuring page regions.",
     descZh: "栅格 — Chaos UI 的布局组件,用于组织页面区域结构。",
-    sourcePath: "packages/chaos-design-ui/components/ui/grid.tsx",
+    sourcePath: "components/ui/grid.tsx",
     storybookId: "components-grid--docs",
   },
   {
@@ -564,7 +564,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Card that appears on hover; holds more content than Tooltip.",
     descZh: "鼠标悬停时出现的卡片浮层,比 Tooltip 承载更多内容。",
-    sourcePath: "packages/chaos-design-ui/components/ui/hover-card.tsx",
+    sourcePath: "components/ui/hover-card.tsx",
     storybookId: "components-hovercard--docs",
   },
   {
@@ -574,7 +574,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "IconPicker — a form controls for user input and data submission. from Chaos UI.",
     descZh: "图标选择器 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/icon-picker.tsx",
+    sourcePath: "components/ui/icon-picker.tsx",
     storybookId: "components-iconpicker--docs",
   },
   {
@@ -595,7 +595,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "ImageViewer — a components for presenting data and content. from Chaos UI.",
     descZh: "图片查看器 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/image-viewer.tsx",
+    sourcePath: "components/ui/image-viewer.tsx",
     storybookId: "components-imageviewer--docs",
   },
   {
@@ -605,7 +605,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Enhanced image with preview, error fallback, and lazy loading.",
     descZh: "增强的图片组件,支持预览、加载失败占位、懒加载。",
-    sourcePath: "packages/chaos-design-ui/components/ui/image.tsx",
+    sourcePath: "components/ui/image.tsx",
     storybookId: "components-image--docs",
   },
   {
@@ -626,7 +626,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "InputGroup — a form controls for user input and data submission. from Chaos UI.",
     descZh: "输入组 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/input-group.tsx",
+    sourcePath: "components/ui/input-group.tsx",
     storybookId: "components-inputgroup--docs",
   },
   {
@@ -636,7 +636,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Numeric input with increment/decrement buttons, precision, and range limits.",
     descZh: "专门输入数字的输入框,支持增减按钮、精度、范围限制。",
-    sourcePath: "packages/chaos-design-ui/components/ui/input-number.tsx",
+    sourcePath: "components/ui/input-number.tsx",
     storybookId: "components-inputnumber--docs",
   },
   {
@@ -646,7 +646,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "InputSearch — a form controls for user input and data submission. from Chaos UI.",
     descZh: "搜索输入 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/input-search.tsx",
+    sourcePath: "components/ui/input-search.tsx",
     storybookId: "components-inputsearch--docs",
   },
   {
@@ -657,7 +657,7 @@ export const components: ComponentMeta[] = [
     desc: "Basic text input via keyboard. Supports prefix/suffix, sizes, and states.",
     descZh:
       "通过键盘输入内容,是最基础的表单字段组件。支持前缀/后缀、尺寸、状态。",
-    sourcePath: "packages/chaos-design-ui/components/ui/input.tsx",
+    sourcePath: "components/ui/input.tsx",
     storybookId: "components-input--docs",
   },
   {
@@ -667,7 +667,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Renders a keyboard-key style, used for shortcut hints.",
     descZh: "展示键盘按键样式的组件,用于快捷键提示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/kbd.tsx",
+    sourcePath: "components/ui/kbd.tsx",
     storybookId: "components-kbd--docs",
   },
   {
@@ -677,8 +677,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "KeyboardShortcutDialog — a feedback and status communication to the user. from Chaos UI.",
     descZh: "键盘快捷键对话框 — Chaos UI 的反馈组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/ui/keyboard-shortcut-dialog.tsx",
+    sourcePath: "components/ui/keyboard-shortcut-dialog.tsx",
     storybookId: "components-keyboardshortcutdialog--docs",
   },
   {
@@ -688,7 +687,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Keyboard shortcut display — renders formatted key combination hints with optional description.",
     descZh: "键盘快捷键展示组件，渲染格式化的快捷键提示，可附带描述文本。",
-    sourcePath: "packages/chaos-design-ui/components/ui/keyboard-shortcut.tsx",
+    sourcePath: "components/ui/keyboard-shortcut.tsx",
     storybookId: "components-keyboardshortcut--docs",
   },
   {
@@ -698,7 +697,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "KPI panel showing key business metrics and trends.",
     descZh: "关键绩效指标面板,展示核心业务数值和趋势。",
-    sourcePath: "packages/chaos-design-ui/components/ui/kpi-panel.tsx",
+    sourcePath: "components/ui/kpi-panel.tsx",
     storybookId: "components-kpipanel--docs",
   },
   {
@@ -708,7 +707,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Form field label supporting required asterisk, sizes, and alignment.",
     descZh: "表单字段标签,支持 required 星号、字号、对齐。",
-    sourcePath: "packages/chaos-design-ui/components/ui/label.tsx",
+    sourcePath: "components/ui/label.tsx",
     storybookId: "components-label--docs",
   },
   {
@@ -718,7 +717,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "List — a components for presenting data and content. from Chaos UI.",
     descZh: "列表 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/list.tsx",
+    sourcePath: "components/ui/list.tsx",
     storybookId: "components-list--docs",
   },
   {
@@ -738,7 +737,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "@mention input — triggers a dropdown candidate list when typing the trigger character.",
     descZh: "@提及输入框，输入触发字符时弹出候选列表。",
-    sourcePath: "packages/chaos-design-ui/components/ui/mentions.tsx",
+    sourcePath: "components/ui/mentions.tsx",
     storybookId: "components-mentions--docs",
   },
   {
@@ -748,7 +747,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Hierarchical navigation menu supporting horizontal/vertical orientations, submenus, and icons.",
     descZh: "页面层级导航菜单,支持横向/纵向、子菜单、图标。",
-    sourcePath: "packages/chaos-design-ui/components/ui/menu.tsx",
+    sourcePath: "components/ui/menu.tsx",
     storybookId: "components-menu--docs",
   },
   {
@@ -758,7 +757,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Horizontal menu bar providing grouped dropdown menus.",
     descZh: "水平菜单栏,通常提供多组下拉菜单。",
-    sourcePath: "packages/chaos-design-ui/components/ui/menubar.tsx",
+    sourcePath: "components/ui/menubar.tsx",
     storybookId: "components-menubar--docs",
   },
   {
@@ -768,7 +767,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "MessageProvider — a feedback and status communication to the user. from Chaos UI.",
     descZh: "消息提供者 — Chaos UI 的反馈组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/message-provider.tsx",
+    sourcePath: "components/ui/message-provider.tsx",
     storybookId: "components-messageprovider--docs",
   },
   {
@@ -788,8 +787,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Pull-to-refresh container for mobile; triggers onRefresh when touch pull exceeds threshold.",
     descZh: "移动端下拉刷新容器，触摸下拉超过阈值时触发 onRefresh。",
-    sourcePath:
-      "packages/chaos-design-ui/components/ui/mobile-pull-refresh.tsx",
+    sourcePath: "components/ui/mobile-pull-refresh.tsx",
     storybookId: "components-mobilepullrefresh--docs",
   },
   {
@@ -799,8 +797,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Swipe action row for mobile; reveals left/right action buttons on drag.",
     descZh: "移动端滑动操作行，左右拖拽时揭示操作按钮。",
-    sourcePath:
-      "packages/chaos-design-ui/components/ui/mobile-swipe-action.tsx",
+    sourcePath: "components/ui/mobile-swipe-action.tsx",
     storybookId: "components-mobileswipeaction--docs",
   },
   {
@@ -810,7 +807,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "ModalProvider — a feedback and status communication to the user. from Chaos UI.",
     descZh: "模态提供者 — Chaos UI 的反馈组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/modal-provider.tsx",
+    sourcePath: "components/ui/modal-provider.tsx",
     storybookId: "components-modalprovider--docs",
   },
   {
@@ -830,7 +827,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "NavigationMenu — a navigation components for moving through the app. from Chaos UI.",
     descZh: "导航菜单 — Chaos UI 的导航组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/navigation-menu.tsx",
+    sourcePath: "components/ui/navigation-menu.tsx",
     storybookId: "components-navigationmenu--docs",
   },
   {
@@ -840,7 +837,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Top-right notification card with richer content and longer duration than toast.",
     descZh: "右上角弹出的通知卡片,比 Toast 内容更丰富、驻留更久。",
-    sourcePath: "packages/chaos-design-ui/components/ui/notification.tsx",
+    sourcePath: "components/ui/notification.tsx",
     storybookId: "components-notification--docs",
   },
   {
@@ -850,7 +847,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Animated number counter for KPI/statistic displays with easing and prefix/suffix support.",
     descZh: "用于 KPI/统计展示的动画数字计数器，支持缓动函数和前缀/后缀。",
-    sourcePath: "packages/chaos-design-ui/components/ui/number-ticker.tsx",
+    sourcePath: "components/ui/number-ticker.tsx",
     storybookId: "components-numberticker--docs",
   },
   {
@@ -860,7 +857,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "One-time password input with individual cells for each character; auto-focuses next cell.",
     descZh: "一次性验证码输入框,多格子分别输入数字/字母,自动聚焦下一格。",
-    sourcePath: "packages/chaos-design-ui/components/ui/otp-field.tsx",
+    sourcePath: "components/ui/otp-field.tsx",
     storybookId: "components-otpfield--docs",
   },
   {
@@ -870,7 +867,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "PageContainer — a layout primitives for structuring pages. for structuring page regions.",
     descZh: "页面容器 — Chaos UI 的布局组件,用于组织页面区域结构。",
-    sourcePath: "packages/chaos-design-ui/components/ui/page-container.tsx",
+    sourcePath: "components/ui/page-container.tsx",
     storybookId: "components-pagecontainer--docs",
   },
   {
@@ -880,7 +877,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Splits long data sets across pages when rendering all at once would be too heavy.",
     descZh: "数据量过多时,用分页分隔展示,每页加载部分数据。",
-    sourcePath: "packages/chaos-design-ui/components/ui/pagination.tsx",
+    sourcePath: "components/ui/pagination.tsx",
     storybookId: "components-pagination--docs",
   },
   {
@@ -890,7 +887,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Popconfirm — a feedback and status communication to the user. from Chaos UI.",
     descZh: "气泡确认框 — Chaos UI 的反馈组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/popconfirm.tsx",
+    sourcePath: "components/ui/popconfirm.tsx",
     storybookId: "components-popconfirm--docs",
   },
   {
@@ -901,7 +898,7 @@ export const components: ComponentMeta[] = [
     desc: "Click/hover-triggered floating card that can hold rich content (forms, lists, charts); richer than Tooltip.",
     descZh:
       "点击/悬停触发的浮层卡片,可承载富内容(表单、列表、图表),比 Tooltip 更丰富。",
-    sourcePath: "packages/chaos-design-ui/components/ui/popover.tsx",
+    sourcePath: "components/ui/popover.tsx",
     storybookId: "components-popover--docs",
   },
   {
@@ -911,7 +908,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Shows current progress of an operation.",
     descZh: "展示操作的当前进度,告知用户当前状态与剩余时长/进度。",
-    sourcePath: "packages/chaos-design-ui/components/ui/progress.tsx",
+    sourcePath: "components/ui/progress.tsx",
     storybookId: "components-progress--docs",
   },
   {
@@ -921,7 +918,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "QrcodeDisplay — a components for presenting data and content. from Chaos UI.",
     descZh: "二维码展示 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/qrcode-display.tsx",
+    sourcePath: "components/ui/qrcode-display.tsx",
     storybookId: "components-qrcodedisplay--docs",
   },
   {
@@ -931,7 +928,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Qrcode — a components for presenting data and content. from Chaos UI.",
     descZh: "二维码 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/qrcode.tsx",
+    sourcePath: "components/ui/qrcode.tsx",
     storybookId: "components-qrcode--docs",
   },
   {
@@ -941,7 +938,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "RadioGroup — a form controls for user input and data submission. from Chaos UI.",
     descZh: "单选组 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/radio-group.tsx",
+    sourcePath: "components/ui/radio-group.tsx",
     storybookId: "components-radiogroup--docs",
   },
   {
@@ -951,7 +948,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Star rating component with half-star and read-only support.",
     descZh: "星级评分组件，支持半星和只读模式。",
-    sourcePath: "packages/chaos-design-ui/components/ui/rating.tsx",
+    sourcePath: "components/ui/rating.tsx",
     storybookId: "business-rating--docs",
   },
   {
@@ -961,7 +958,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Layout container whose panels can be resized by dragging.",
     descZh: "可拖拽调整子面板尺寸的布局容器。",
-    sourcePath: "packages/chaos-design-ui/components/ui/resizable.tsx",
+    sourcePath: "components/ui/resizable.tsx",
     storybookId: "components-resizable--docs",
   },
   {
@@ -971,7 +968,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Feedback for an operation result (success/fail/warning/404/403), typically full-page.",
     descZh: "向用户反馈操作结果(成功/失败/警告/404/403),常为整页。",
-    sourcePath: "packages/chaos-design-ui/components/ui/result.tsx",
+    sourcePath: "components/ui/result.tsx",
     storybookId: "components-result--docs",
   },
   {
@@ -991,7 +988,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Custom-styled scroll area supporting horizontal/vertical scrollbars.",
     descZh: "自定义样式的滚动区域,支持横/纵向滚动条。",
-    sourcePath: "packages/chaos-design-ui/components/ui/scroll-area.tsx",
+    sourcePath: "components/ui/scroll-area.tsx",
     storybookId: "components-scrollarea--docs",
   },
   {
@@ -1001,7 +998,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "SegmentedControl — a components for presenting data and content. from Chaos UI.",
     descZh: "分段控制器 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/segmented-control.tsx",
+    sourcePath: "components/ui/segmented-control.tsx",
     storybookId: "business-segmentedcontrol--docs",
   },
   {
@@ -1011,7 +1008,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Dropdown option selector supporting single-select, search, and custom option rendering.",
     descZh: "下拉选项选择器,支持单选/搜索/自定义选项渲染。",
-    sourcePath: "packages/chaos-design-ui/components/ui/select.tsx",
+    sourcePath: "components/ui/select.tsx",
     storybookId: "components-select--docs",
   },
   {
@@ -1021,7 +1018,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Visual separator between content areas, typically a thin line.",
     descZh: "对内容区进行视觉分隔,通常为细线。",
-    sourcePath: "packages/chaos-design-ui/components/ui/separator.tsx",
+    sourcePath: "components/ui/separator.tsx",
     storybookId: "components-separator--docs",
   },
   {
@@ -1031,7 +1028,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "SequenceInput — a form controls for user input and data submission. from Chaos UI.",
     descZh: "序列输入 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/sequence-input.tsx",
+    sourcePath: "components/ui/sequence-input.tsx",
     storybookId: "components-sequenceinput--docs",
   },
   {
@@ -1041,7 +1038,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Sequence preview — displays a generated sequence example with prefix, date, and zero-filled number.",
     descZh: "编号预览组件，展示编号规则生成的示例，含前缀、日期和补零序号。",
-    sourcePath: "packages/chaos-design-ui/components/ui/sequence-preview.tsx",
+    sourcePath: "components/ui/sequence-preview.tsx",
     storybookId: "components-sequencepreview--docs",
   },
   {
@@ -1051,7 +1048,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Bottom/side panel (common on mobile).",
     descZh: "抽屉式底部/侧边面板,移动端常用。",
-    sourcePath: "packages/chaos-design-ui/components/ui/sheet.tsx",
+    sourcePath: "components/ui/sheet.tsx",
     storybookId: "components-sheet--docs",
   },
   {
@@ -1061,7 +1058,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Sidebar — a navigation components for moving through the app. from Chaos UI.",
     descZh: "侧边栏 — Chaos UI 的导航组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/sidebar.tsx",
+    sourcePath: "components/ui/sidebar.tsx",
     storybookId: "components-sidebar--docs",
   },
   {
@@ -1071,7 +1068,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Canvas-based signature pad with undo, clear, and export to data URL/Blob.",
     descZh: "基于画布的签名板，支持撤销、清除和导出为 data URL/Blob。",
-    sourcePath: "packages/chaos-design-ui/components/ui/signature-pad.tsx",
+    sourcePath: "components/ui/signature-pad.tsx",
     storybookId: "business-signaturepad--docs",
   },
   {
@@ -1081,7 +1078,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Placeholder shown while data loads; reduces perceived wait time.",
     descZh: "在数据加载完成前提供占位,降低等待焦虑感。",
-    sourcePath: "packages/chaos-design-ui/components/ui/skeleton.tsx",
+    sourcePath: "components/ui/skeleton.tsx",
     storybookId: "components-skeleton--docs",
   },
   {
@@ -1091,7 +1088,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Drag to select a numeric value within a range; more visual than an input.",
     descZh: "在区间内拖动选择数值,比输入框更直观。",
-    sourcePath: "packages/chaos-design-ui/components/ui/slider.tsx",
+    sourcePath: "components/ui/slider.tsx",
     storybookId: "components-slider--docs",
   },
   {
@@ -1101,7 +1098,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Opinionated notification component (wraps sonner) stacked in a corner.",
     descZh: "基于 sonner 的 opinionated 通知组件,堆叠展示在角落。",
-    sourcePath: "packages/chaos-design-ui/components/ui/sonner.tsx",
+    sourcePath: "components/ui/sonner.tsx",
     storybookId: "components-sonner--docs",
   },
   {
@@ -1111,7 +1108,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Space — a layout primitives for structuring pages. for structuring page regions.",
     descZh: "间距 — Chaos UI 的布局组件,用于组织页面区域结构。",
-    sourcePath: "packages/chaos-design-ui/components/ui/space.tsx",
+    sourcePath: "components/ui/space.tsx",
     storybookId: "components-space--docs",
   },
   {
@@ -1122,7 +1119,7 @@ export const components: ComponentMeta[] = [
     desc: "Spin wrapper for partial loading; overlays a spinner on children with optional delay and tip.",
     descZh:
       "局部加载包裹组件，在子内容上叠加加载指示器，支持延迟显示和提示文本。",
-    sourcePath: "packages/chaos-design-ui/components/ui/spin.tsx",
+    sourcePath: "components/ui/spin.tsx",
     storybookId: "components-spin--docs",
   },
   {
@@ -1132,7 +1129,7 @@ export const components: ComponentMeta[] = [
     category: "Feedback",
     desc: "Local loading spinner indicating content is being fetched.",
     descZh: "局部加载状态指示器,表示内容正在加载中。",
-    sourcePath: "packages/chaos-design-ui/components/ui/spinner.tsx",
+    sourcePath: "components/ui/spinner.tsx",
     storybookId: "components-spinner--docs",
   },
   {
@@ -1142,7 +1139,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Button with a main action area and a dropdown trigger for secondary actions.",
     descZh: "带主操作区域和下拉菜单触发器的分割按钮。",
-    sourcePath: "packages/chaos-design-ui/components/ui/split-button.tsx",
+    sourcePath: "components/ui/split-button.tsx",
     storybookId: "components-splitbutton--docs",
   },
   {
@@ -1152,7 +1149,7 @@ export const components: ComponentMeta[] = [
     category: "Layout",
     desc: "Multi-pane layout container with a draggable divider.",
     descZh: "可拖拽分割线的双栏/多栏布局容器。",
-    sourcePath: "packages/chaos-design-ui/components/ui/split-pane.tsx",
+    sourcePath: "components/ui/split-pane.tsx",
     storybookId: "components-splitpane--docs",
   },
   {
@@ -1162,7 +1159,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Prominently displays a statistic with thousands separators, prefix/suffix, and animation.",
     descZh: "突出展示某个统计数字,支持千分位、前缀/后缀、动画。",
-    sourcePath: "packages/chaos-design-ui/components/ui/statistic.tsx",
+    sourcePath: "components/ui/statistic.tsx",
     storybookId: "components-statistic--docs",
   },
   {
@@ -1172,7 +1169,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Horizontal stepper guiding users through a multi-step workflow.",
     descZh: "水平步骤条,引导用户完成多步骤流程。",
-    sourcePath: "packages/chaos-design-ui/components/ui/stepper.tsx",
+    sourcePath: "components/ui/stepper.tsx",
     storybookId: "components-stepper--docs",
   },
   {
@@ -1182,7 +1179,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Toggle switch representing binary state — more visually intuitive than a checkbox.",
     descZh: "开关选择器,代表两种状态之间的切换,比 Checkbox 更直观的开关形态。",
-    sourcePath: "packages/chaos-design-ui/components/ui/switch.tsx",
+    sourcePath: "components/ui/switch.tsx",
     storybookId: "components-switch--docs",
   },
   {
@@ -1192,7 +1189,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Displays row/column data; the fundamental data display component.",
     descZh: "展示行列数据,最基础的数据展示组件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/table.tsx",
+    sourcePath: "components/ui/table.tsx",
     storybookId: "components-table--docs",
   },
   {
@@ -1202,7 +1199,7 @@ export const components: ComponentMeta[] = [
     category: "Navigation",
     desc: "Switch between sibling content views on the same page.",
     descZh: "在同一页面切换不同内容区域的平级视图。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tabs.tsx",
+    sourcePath: "components/ui/tabs.tsx",
     storybookId: "components-tabs--docs",
   },
   {
@@ -1212,7 +1209,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Small colored label for categorization and tagging.",
     descZh: "用于标记和分类,小型彩色色块。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tag.tsx",
+    sourcePath: "components/ui/tag.tsx",
     storybookId: "components-tag--docs",
   },
   {
@@ -1222,7 +1219,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "TagsInput — a form controls for user input and data submission. from Chaos UI.",
     descZh: "标签输入框 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tags-input.tsx",
+    sourcePath: "components/ui/tags-input.tsx",
     storybookId: "components-tagsinput--docs",
   },
   {
@@ -1232,7 +1229,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Multi-line plain text editor for comments, feedback, descriptions, etc.",
     descZh: "多行纯文本编辑控件,适用于评论、反馈、描述等较长内容输入。",
-    sourcePath: "packages/chaos-design-ui/components/ui/textarea.tsx",
+    sourcePath: "components/ui/textarea.tsx",
     storybookId: "components-textarea--docs",
   },
   {
@@ -1252,7 +1249,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Vertical display of a chronological sequence such as logs or processes.",
     descZh: "垂直展示时间流信息,如操作日志、进程跟踪。",
-    sourcePath: "packages/chaos-design-ui/components/ui/timeline.tsx",
+    sourcePath: "components/ui/timeline.tsx",
     storybookId: "components-timeline--docs",
   },
   {
@@ -1262,7 +1259,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "ToggleGroup — a form controls for user input and data submission. from Chaos UI.",
     descZh: "开关组 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/toggle-group.tsx",
+    sourcePath: "components/ui/toggle-group.tsx",
     storybookId: "components-togglegroup--docs",
   },
   {
@@ -1272,7 +1269,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Toggle — a form controls for user input and data submission. from Chaos UI.",
     descZh: "开关 — Chaos UI 的表单控件。",
-    sourcePath: "packages/chaos-design-ui/components/ui/toggle.tsx",
+    sourcePath: "components/ui/toggle.tsx",
     storybookId: "components-toggle--docs",
   },
   {
@@ -1282,7 +1279,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Simple text bubble appearing on hover; used to explain button/icon meanings.",
     descZh: "鼠标悬停时出现的简单文本提示,用于解释按钮/图标含义。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tooltip.tsx",
+    sourcePath: "components/ui/tooltip.tsx",
     storybookId: "components-tooltip--docs",
   },
   {
@@ -1293,7 +1290,7 @@ export const components: ComponentMeta[] = [
     desc: "Step-by-step guided product tour overlay with spotlight, navigation, and localStorage persistence.",
     descZh:
       "逐步引导式产品导览覆盖层，带有聚焦高亮、导航和 localStorage 持久化。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tour.tsx",
+    sourcePath: "components/ui/tour.tsx",
     storybookId: "business-tour--docs",
   },
   {
@@ -1314,7 +1311,7 @@ export const components: ComponentMeta[] = [
     category: "Form",
     desc: "Select from tree-structured data; supports single/multi-select and search.",
     descZh: "从树形结构数据中选择,支持单选/多选/搜索。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tree-select.tsx",
+    sourcePath: "components/ui/tree-select.tsx",
     storybookId: "components-treeselect--docs",
   },
   {
@@ -1324,7 +1321,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "TreeView — a components for presenting data and content. from Chaos UI.",
     descZh: "树形视图 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/tree-view.tsx",
+    sourcePath: "components/ui/tree-view.tsx",
     storybookId: "components-treeview--docs",
   },
   {
@@ -1334,7 +1331,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "Typography component suite: H1–H6, Text, Paragraph, Blockquote, InlineCode, and more.",
     descZh: "排版组件族：H1–H6、Text、Paragraph、Blockquote、InlineCode 等。",
-    sourcePath: "packages/chaos-design-ui/components/ui/typography.tsx",
+    sourcePath: "components/ui/typography.tsx",
     storybookId: "components-typography--docs",
   },
   {
@@ -1344,7 +1341,7 @@ export const components: ComponentMeta[] = [
     category: "General",
     desc: "User picker dialog with search, avatar display, and multi-select support.",
     descZh: "用户选择对话框，支持搜索、头像展示和多选。",
-    sourcePath: "packages/chaos-design-ui/components/ui/user-browse.tsx",
+    sourcePath: "components/ui/user-browse.tsx",
     storybookId: "components-userbrowse--docs",
   },
   {
@@ -1364,7 +1361,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "VirtualList — a components for presenting data and content. from Chaos UI.",
     descZh: "虚拟列表 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/virtual-list.tsx",
+    sourcePath: "components/ui/virtual-list.tsx",
     storybookId: "components-virtuallist--docs",
   },
   {
@@ -1374,7 +1371,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "VirtualTable — a components for presenting data and content. from Chaos UI.",
     descZh: "虚拟表格 — Chaos UI 的数据展示。",
-    sourcePath: "packages/chaos-design-ui/components/ui/virtual-table.tsx",
+    sourcePath: "components/ui/virtual-table.tsx",
     storybookId: "components-virtualtable--docs",
   },
   {
@@ -1384,7 +1381,7 @@ export const components: ComponentMeta[] = [
     category: "DataDisplay",
     desc: "Overlays specified text/image watermark on content for copyright.",
     descZh: "在内容上叠加指定文字/图片水印,用于版权标识。",
-    sourcePath: "packages/chaos-design-ui/components/ui/watermark.tsx",
+    sourcePath: "components/ui/watermark.tsx",
     storybookId: "business-watermark--docs",
   },
   {
@@ -1404,8 +1401,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AdminBreadcrumb — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "管理后台面包屑 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/admin-breadcrumb.tsx",
+    sourcePath: "components/layout/admin-breadcrumb.tsx",
     storybookId: "layouts-adminbreadcrumb--docs",
   },
   {
@@ -1415,7 +1411,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AdminHeader — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "管理后台头部 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/admin-header.tsx",
+    sourcePath: "components/layout/admin-header.tsx",
     storybookId: "layouts-adminheader--docs",
   },
   {
@@ -1435,7 +1431,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AdminSider — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "管理后台侧边栏 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/admin-sider.tsx",
+    sourcePath: "components/layout/admin-sider.tsx",
     storybookId: "layouts-adminsider--docs",
   },
   {
@@ -1445,7 +1441,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AdminTabs — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "管理后台标签页 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/admin-tabs.tsx",
+    sourcePath: "components/layout/admin-tabs.tsx",
     storybookId: "layouts-admintabs--docs",
   },
   {
@@ -1455,7 +1451,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AppShell — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "应用外壳 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/app-shell.tsx",
+    sourcePath: "components/layout/app-shell.tsx",
     storybookId: "layouts-appshell--docs",
   },
   {
@@ -1475,7 +1471,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "AuthLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "认证布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/auth-layout.tsx",
+    sourcePath: "components/layout/auth-layout.tsx",
     storybookId: "layouts-authlayout--docs",
   },
   {
@@ -1485,7 +1481,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "BlankLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "空白布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/blank-layout.tsx",
+    sourcePath: "components/layout/blank-layout.tsx",
     storybookId: "layouts-blanklayout--docs",
   },
   {
@@ -1505,8 +1501,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "DashboardLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "仪表盘布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/dashboard-layout.tsx",
+    sourcePath: "components/layout/dashboard-layout.tsx",
     storybookId: "layouts-dashboardlayout--docs",
   },
   {
@@ -1516,7 +1511,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "DetailLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "详情布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/detail-layout.tsx",
+    sourcePath: "components/layout/detail-layout.tsx",
     storybookId: "layouts-detaillayout--docs",
   },
   {
@@ -1526,8 +1521,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "DialogFormBody — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "弹窗表单主体 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/dialog-form-body.tsx",
+    sourcePath: "components/layout/dialog-form-body.tsx",
     storybookId: "layouts-dialogformbody--docs",
   },
   {
@@ -1547,7 +1541,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "ErrorLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "错误布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/error-layout.tsx",
+    sourcePath: "components/layout/error-layout.tsx",
     storybookId: "layouts-errorlayout--docs",
   },
   {
@@ -1557,8 +1551,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "MasterDetailLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "主次布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/master-detail-layout.tsx",
+    sourcePath: "components/layout/master-detail-layout.tsx",
     storybookId: "layouts-masterdetaillayout--docs",
   },
   {
@@ -1568,8 +1561,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "MasterDetailTabs — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "主次标签布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/master-detail-tabs.tsx",
+    sourcePath: "components/layout/master-detail-tabs.tsx",
     storybookId: "layouts-masterdetailtabs--docs",
   },
   {
@@ -1579,8 +1571,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "NavigationTabsBar — navigation tabs bar component.",
     descZh: "Tab items / Tab 项列表",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/navigation-tabs-bar.tsx",
+    sourcePath: "components/layout/navigation-tabs-bar.tsx",
     storybookId: "layouts-navigationtabsbar--docs",
   },
   {
@@ -1590,7 +1581,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "PrintLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "打印布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/print-layout.tsx",
+    sourcePath: "components/layout/print-layout.tsx",
     storybookId: "layouts-printlayout--docs",
   },
   {
@@ -1601,8 +1592,7 @@ export const components: ComponentMeta[] = [
     desc: "PrintTemplateLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh:
       "Print Template Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath:
-      "packages/chaos-design-ui/components/layout/print-template-layout.tsx",
+    sourcePath: "components/layout/print-template-layout.tsx",
     storybookId: "layouts-printtemplatelayout--docs",
   },
   {
@@ -1612,7 +1602,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "PublicLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "公共布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/public-layout.tsx",
+    sourcePath: "components/layout/public-layout.tsx",
     storybookId: "layouts-publiclayout--docs",
   },
   {
@@ -1622,7 +1612,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "RegionLayout — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "区域布局 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/region-layout.tsx",
+    sourcePath: "components/layout/region-layout.tsx",
     storybookId: "layouts-regionlayout--docs",
   },
   {
@@ -1642,7 +1632,7 @@ export const components: ComponentMeta[] = [
     category: "System Layout",
     desc: "TopBar — a system-level layout shell for admin/dashboard/auth pages.",
     descZh: "顶部栏 — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。",
-    sourcePath: "packages/chaos-design-ui/components/layout/top-bar.tsx",
+    sourcePath: "components/layout/top-bar.tsx",
     storybookId: "layouts-topbar--docs",
   },
   {
@@ -1662,8 +1652,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AccountBalance — a business component for ERP / enterprise scenarios.",
     descZh: "Account Balance — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/account-balance.tsx",
+    sourcePath: "components/business/account-balance.tsx",
     storybookId: "business-accountbalance--docs",
   },
   {
@@ -1673,8 +1662,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ActivityFeed — a business component for ERP / enterprise scenarios.",
     descZh: "动态信息流 — 业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/activity-feed.tsx",
+    sourcePath: "components/business/activity-feed.tsx",
     storybookId: "business-activityfeed--docs",
   },
   {
@@ -1684,8 +1672,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AddressPicker — a business component for ERP / enterprise scenarios.",
     descZh: "地址选择器 — 业务组件，核心属性：value, onChange, placeholder。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/address-picker.tsx",
+    sourcePath: "components/business/address-picker.tsx",
     storybookId: "business-addresspicker--docs",
   },
   {
@@ -1696,8 +1683,7 @@ export const components: ComponentMeta[] = [
     desc: "AdvancedDataTable — a business component for ERP / enterprise scenarios.",
     descZh:
       "高级数据表格 — 业务组件，核心属性：columns, data, searchable, searchPlaceholder, pageSize。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/advanced-data-table.tsx",
+    sourcePath: "components/business/advanced-data-table.tsx",
     storybookId: "business-advanceddatatable--docs",
   },
   {
@@ -1708,8 +1694,7 @@ export const components: ComponentMeta[] = [
     desc: "AdvancedSearch — a business component for ERP / enterprise scenarios.",
     descZh:
       "高级搜索 — 业务组件，核心属性：fields, onSearch, onReset, loading, compact。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/advanced-search.tsx",
+    sourcePath: "components/business/advanced-search.tsx",
     storybookId: "business-advancedsearch--docs",
   },
   {
@@ -1720,8 +1705,7 @@ export const components: ComponentMeta[] = [
     desc: "AnnouncementBanner — a business component for ERP / enterprise scenarios.",
     descZh:
       "公告横幅 — 业务组件，核心属性：message, action, dismissible, onDismiss, icon。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/announcement-banner.tsx",
+    sourcePath: "components/business/announcement-banner.tsx",
     storybookId: "business-announcementbanner--docs",
   },
   {
@@ -1731,8 +1715,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AnnouncementCard — a business component for ERP / enterprise scenarios.",
     descZh: "Announcement Card — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/announcement-card.tsx",
+    sourcePath: "components/business/announcement-card.tsx",
     storybookId: "business-announcementcard--docs",
   },
   {
@@ -1742,8 +1725,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ApplicationForm — a business component for ERP / enterprise scenarios.",
     descZh: "Application Form — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/application-form.tsx",
+    sourcePath: "components/business/application-form.tsx",
     storybookId: "business-applicationform--docs",
   },
   {
@@ -1753,8 +1735,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ApprovalActionBar — a business component for ERP / enterprise scenarios.",
     descZh: "Approval Action Bar — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/approval-action-bar.tsx",
+    sourcePath: "components/business/approval-action-bar.tsx",
     storybookId: "business-approvalactionbar--docs",
   },
   {
@@ -1765,8 +1746,7 @@ export const components: ComponentMeta[] = [
     desc: "ApprovalFlow — a business component for ERP / enterprise scenarios.",
     descZh:
       "审批流程 — 业务组件，核心属性：steps, currentStep, onApprove, onReject。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/approval-flow.tsx",
+    sourcePath: "components/business/approval-flow.tsx",
     storybookId: "business-approvalflow--docs",
   },
   {
@@ -1776,8 +1756,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ApprovalTimeline — a business component for ERP / enterprise scenarios.",
     descZh: "审批时间线 — 业务组件，核心属性：steps。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/approval-timeline.tsx",
+    sourcePath: "components/business/approval-timeline.tsx",
     storybookId: "business-approvaltimeline--docs",
   },
   {
@@ -1787,8 +1766,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ArApAgingTable — a business component for ERP / enterprise scenarios.",
     descZh: "Ar Ap Aging Table — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/ar-ap-aging-table.tsx",
+    sourcePath: "components/business/ar-ap-aging-table.tsx",
     storybookId: "business-arapagingtable--docs",
   },
   {
@@ -1808,8 +1786,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AsyncTaskCenter — a business component for ERP / enterprise scenarios.",
     descZh: "异步任务中心 — 业务组件，核心属性：tasks, onRetry, onDelete。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/async-task-center.tsx",
+    sourcePath: "components/business/async-task-center.tsx",
     storybookId: "business-asynctaskcenter--docs",
   },
   {
@@ -1819,8 +1796,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AsyncTaskTrigger — a business component for ERP / enterprise scenarios.",
     descZh: "Async Task Trigger — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/async-task-trigger.tsx",
+    sourcePath: "components/business/async-task-trigger.tsx",
     storybookId: "business-asynctasktrigger--docs",
   },
   {
@@ -1830,8 +1806,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AttachmentList — a business component for ERP / enterprise scenarios.",
     descZh: "Attachment List — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/attachment-list.tsx",
+    sourcePath: "components/business/attachment-list.tsx",
     storybookId: "business-attachmentlist--docs",
   },
   {
@@ -1841,8 +1816,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AttachmentPreview — a business component for ERP / enterprise scenarios.",
     descZh: "Attachment Preview — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/attachment-preview.tsx",
+    sourcePath: "components/business/attachment-preview.tsx",
     storybookId: "business-attachmentpreview--docs",
   },
   {
@@ -1852,8 +1826,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AttachmentUploader — a business component for ERP / enterprise scenarios.",
     descZh: "Attachment Uploader — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/attachment-uploader.tsx",
+    sourcePath: "components/business/attachment-uploader.tsx",
     storybookId: "business-attachmentuploader--docs",
   },
   {
@@ -1863,8 +1836,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AttendanceCalendar — a business component for ERP / enterprise scenarios.",
     descZh: "Attendance Calendar — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/attendance-calendar.tsx",
+    sourcePath: "components/business/attendance-calendar.tsx",
     storybookId: "business-attendancecalendar--docs",
   },
   {
@@ -1874,8 +1846,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AudienceSegmentBuilder — a business component for ERP / enterprise scenarios.",
     descZh: "人群分群构建器 — 业务组件，核心属性：rules, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/audience-segment-builder.tsx",
+    sourcePath: "components/business/audience-segment-builder.tsx",
     storybookId: "business-audiencesegmentbuilder--docs",
   },
   {
@@ -1885,7 +1856,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AuditLog — a business component for ERP / enterprise scenarios.",
     descZh: "审计日志 — 业务组件，核心属性：entries。",
-    sourcePath: "packages/chaos-design-ui/components/business/audit-log.tsx",
+    sourcePath: "components/business/audit-log.tsx",
     storybookId: "business-auditlog--docs",
   },
   {
@@ -1896,8 +1867,7 @@ export const components: ComponentMeta[] = [
     desc: "AuditSidebar — a business component for ERP / enterprise scenarios.",
     descZh:
       "审计侧栏 — 业务组件，核心属性：entries, open, onOpenChange, title。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/audit-sidebar.tsx",
+    sourcePath: "components/business/audit-sidebar.tsx",
     storybookId: "business-auditsidebar--docs",
   },
   {
@@ -1907,8 +1877,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "AuditTrailDiff — a business component for ERP / enterprise scenarios.",
     descZh: "Audit Trail Diff — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/audit-trail-diff.tsx",
+    sourcePath: "components/business/audit-trail-diff.tsx",
     storybookId: "business-audittraildiff--docs",
   },
   {
@@ -1919,7 +1888,7 @@ export const components: ComponentMeta[] = [
     desc: "AuthGuard — a business component for ERP / enterprise scenarios.",
     descZh:
       "认证守卫 — 业务组件，核心属性：permission, permissions, mode, fallback。",
-    sourcePath: "packages/chaos-design-ui/components/business/auth-guard.tsx",
+    sourcePath: "components/business/auth-guard.tsx",
     storybookId: "business-authguard--docs",
   },
   {
@@ -1929,7 +1898,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Stacked group of avatars with a +N overflow indicator.",
     descZh: "多个头像堆叠展示,显示剩余数量 +N。",
-    sourcePath: "packages/chaos-design-ui/components/business/avatar-group.tsx",
+    sourcePath: "components/business/avatar-group.tsx",
     storybookId: "business-avatargroup--docs",
   },
   {
@@ -1959,8 +1928,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BarListCard — bar list card component.",
     descZh: " 排名列表卡",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bar-list-card.tsx",
+    sourcePath: "components/business/bar-list-card.tsx",
     storybookId: "business-barlistcard--docs",
   },
   {
@@ -1980,8 +1948,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BatchGenealogyTree — a business component for ERP / enterprise scenarios.",
     descZh: "Batch Genealogy Tree — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/batch-genealogy-tree.tsx",
+    sourcePath: "components/business/batch-genealogy-tree.tsx",
     storybookId: "business-batchgenealogytree--docs",
   },
   {
@@ -1991,8 +1958,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BatchPrintDialog — a business component for ERP / enterprise scenarios.",
     descZh: "Batch Print Dialog — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/batch-print-dialog.tsx",
+    sourcePath: "components/business/batch-print-dialog.tsx",
     storybookId: "business-batchprintdialog--docs",
   },
   {
@@ -2003,8 +1969,7 @@ export const components: ComponentMeta[] = [
     desc: "BatchSelector — a business component for ERP / enterprise scenarios.",
     descZh:
       "批量选择器 — 业务组件，核心属性：selectedIds, total, onSelectAll, onDeselectAll, actions。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/batch-selector.tsx",
+    sourcePath: "components/business/batch-selector.tsx",
     storybookId: "business-batchselector--docs",
   },
   {
@@ -2015,7 +1980,7 @@ export const components: ComponentMeta[] = [
     desc: "BillFooter — a business component for ERP / enterprise scenarios.",
     descZh:
       "账单底部 — 业务组件，核心属性：subtotal, tax, taxRate, total, notes。",
-    sourcePath: "packages/chaos-design-ui/components/business/bill-footer.tsx",
+    sourcePath: "components/business/bill-footer.tsx",
     storybookId: "business-billfooter--docs",
   },
   {
@@ -2026,7 +1991,7 @@ export const components: ComponentMeta[] = [
     desc: "BillHeader — a business component for ERP / enterprise scenarios.",
     descZh:
       "账单头部 — 业务组件，核心属性：companyName, companyAddress, companyPhone, invoiceNumber, invoiceDate。",
-    sourcePath: "packages/chaos-design-ui/components/business/bill-header.tsx",
+    sourcePath: "components/business/bill-header.tsx",
     storybookId: "business-billheader--docs",
   },
   {
@@ -2037,7 +2002,7 @@ export const components: ComponentMeta[] = [
     desc: "BillPage — a business component for ERP / enterprise scenarios.",
     descZh:
       "账单页 — 业务组件，核心属性：headerProps, footerProps, lineItems。",
-    sourcePath: "packages/chaos-design-ui/components/business/bill-page.tsx",
+    sourcePath: "components/business/bill-page.tsx",
     storybookId: "business-billpage--docs",
   },
   {
@@ -2047,8 +2012,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BillPrintTemplate — a business component for ERP / enterprise scenarios.",
     descZh: "Bill Print Template — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bill-print-template.tsx",
+    sourcePath: "components/business/bill-print-template.tsx",
     storybookId: "business-billprinttemplate--docs",
   },
   {
@@ -2058,8 +2022,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BillStatusBar — a business component for ERP / enterprise scenarios.",
     descZh: "账单状态栏 — 业务组件，核心属性：currentStatus。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bill-status-bar.tsx",
+    sourcePath: "components/business/bill-status-bar.tsx",
     storybookId: "business-billstatusbar--docs",
   },
   {
@@ -2069,8 +2032,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BillTimeline — a business component for ERP / enterprise scenarios.",
     descZh: "Bill Timeline — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bill-timeline.tsx",
+    sourcePath: "components/business/bill-timeline.tsx",
     storybookId: "business-billtimeline--docs",
   },
   {
@@ -2080,8 +2042,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BillTodoList — a business component for ERP / enterprise scenarios.",
     descZh: "Bill Todo List — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bill-todo-list.tsx",
+    sourcePath: "components/business/bill-todo-list.tsx",
     storybookId: "business-billtodolist--docs",
   },
   {
@@ -2091,8 +2052,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BizStatusTag — a business component for ERP / enterprise scenarios.",
     descZh: "业务状态标签 — 业务组件，核心属性：label。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/biz-status-tag.tsx",
+    sourcePath: "components/business/biz-status-tag.tsx",
     storybookId: "business-bizstatustag--docs",
   },
   {
@@ -2102,8 +2062,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BomTreeEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Bom Tree Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bom-tree-editor.tsx",
+    sourcePath: "components/business/bom-tree-editor.tsx",
     storybookId: "business-bomtreeeditor--docs",
   },
   {
@@ -2113,8 +2072,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BrowseDialog — a business component for ERP / enterprise scenarios.",
     descZh: "Browse Dialog — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/browse-dialog.tsx",
+    sourcePath: "components/business/browse-dialog.tsx",
     storybookId: "business-browsedialog--docs",
   },
   {
@@ -2125,8 +2083,7 @@ export const components: ComponentMeta[] = [
     desc: "BudgetAllocator — budget allocator component.",
     descZh:
       '```tsx <BudgetAllocator total={100000} categories={[ { id: "mkt", name: "市场", amount: 30000, cap: 60000 }, { id: "rnd", name: "研发", amount: 50000, cap: 80000 },',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/budget-allocator.tsx",
+    sourcePath: "components/business/budget-allocator.tsx",
     storybookId: "business-budgetallocator--docs",
   },
   {
@@ -2136,8 +2093,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BudgetOverview — a business component for ERP / enterprise scenarios.",
     descZh: "Budget Overview — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/budget-overview.tsx",
+    sourcePath: "components/business/budget-overview.tsx",
     storybookId: "business-budgetoverview--docs",
   },
   {
@@ -2148,8 +2104,7 @@ export const components: ComponentMeta[] = [
     desc: "BudgetPacingCard — a business component for ERP / enterprise scenarios.",
     descZh:
       "预算节奏卡片 — 业务组件，核心属性：budget, spent, period, label, currency。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/budget-pacing-card.tsx",
+    sourcePath: "components/business/budget-pacing-card.tsx",
     storybookId: "business-budgetpacingcard--docs",
   },
   {
@@ -2160,8 +2115,7 @@ export const components: ComponentMeta[] = [
     desc: "BulkActionsToolbar — a business component for ERP / enterprise scenarios.",
     descZh:
       "批量操作工具栏 — 业务组件，核心属性：count, selectedCount, onClear, actions, label。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bulk-actions-toolbar.tsx",
+    sourcePath: "components/business/bulk-actions-toolbar.tsx",
     storybookId: "business-bulkactionstoolbar--docs",
   },
   {
@@ -2171,8 +2125,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "BulkImportWizard — a business component for ERP / enterprise scenarios.",
     descZh: "批量导入向导 — 业务组件，核心属性：onImport, onCancel。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/bulk-import-wizard.tsx",
+    sourcePath: "components/business/bulk-import-wizard.tsx",
     storybookId: "business-bulkimportwizard--docs",
   },
   {
@@ -2183,8 +2136,7 @@ export const components: ComponentMeta[] = [
     desc: "CalendarView — calendar view component.",
     descZh:
       '<CalendarView events={[{id:"1",date:"2026-06-15",title:"盘点"}]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/calendar-view.tsx",
+    sourcePath: "components/business/calendar-view.tsx",
     storybookId: "business-calendarview--docs",
   },
   {
@@ -2205,8 +2157,7 @@ export const components: ComponentMeta[] = [
     desc: "CampaignCalendar — a business component for ERP / enterprise scenarios.",
     descZh:
       "活动日历 — 业务组件，核心属性：events, year, month, onMonthChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/campaign-calendar.tsx",
+    sourcePath: "components/business/campaign-calendar.tsx",
     storybookId: "business-campaigncalendar--docs",
   },
   {
@@ -2217,8 +2168,7 @@ export const components: ComponentMeta[] = [
     desc: "CampaignCard — a business component for ERP / enterprise scenarios.",
     descZh:
       "活动卡片 — 业务组件，核心属性：name, status, startDate, endDate, budget。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/campaign-card.tsx",
+    sourcePath: "components/business/campaign-card.tsx",
     storybookId: "business-campaigncard--docs",
   },
   {
@@ -2228,8 +2178,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CampaignStatusTag — a business component for ERP / enterprise scenarios.",
     descZh: "活动状态标签 — 业务组件，核心属性：status, label。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/campaign-status-tag.tsx",
+    sourcePath: "components/business/campaign-status-tag.tsx",
     storybookId: "business-campaignstatustag--docs",
   },
   {
@@ -2249,8 +2198,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChannelPicker — a business component for ERP / enterprise scenarios.",
     descZh: "渠道选择器 — 业务组件，核心属性：value, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/channel-picker.tsx",
+    sourcePath: "components/business/channel-picker.tsx",
     storybookId: "business-channelpicker--docs",
   },
   {
@@ -2282,7 +2230,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Chart — a business component for ERP / enterprise scenarios.",
     descZh: "图表 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/chart.tsx",
+    sourcePath: "components/business/chart.tsx",
     storybookId: "business-chart--docs",
   },
   {
@@ -2292,8 +2240,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatAgentStatus — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Agent Status — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-agent-status.tsx",
+    sourcePath: "components/business/chat-agent-status.tsx",
     storybookId: "business-chatagentstatus--docs",
   },
   {
@@ -2303,8 +2250,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatArtifactPanel — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Artifact Panel — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-artifact-panel.tsx",
+    sourcePath: "components/business/chat-artifact-panel.tsx",
     storybookId: "business-chatartifactpanel--docs",
   },
   {
@@ -2324,8 +2270,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatCardMessage — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Card Message — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-card-message.tsx",
+    sourcePath: "components/business/chat-card-message.tsx",
     storybookId: "business-chatcardmessage--docs",
   },
   {
@@ -2335,8 +2280,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatCodeBlock — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Code Block — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-code-block.tsx",
+    sourcePath: "components/business/chat-code-block.tsx",
     storybookId: "business-chatcodeblock--docs",
   },
   {
@@ -2346,8 +2290,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatCommandMenu — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Command Menu — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-command-menu.tsx",
+    sourcePath: "components/business/chat-command-menu.tsx",
     storybookId: "business-chatcommandmenu--docs",
   },
   {
@@ -2357,8 +2300,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatContextPanel — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Context Panel — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-context-panel.tsx",
+    sourcePath: "components/business/chat-context-panel.tsx",
     storybookId: "business-chatcontextpanel--docs",
   },
   {
@@ -2368,8 +2310,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatConversationSearch — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Conversation Search — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-conversation-search.tsx",
+    sourcePath: "components/business/chat-conversation-search.tsx",
     storybookId: "business-chatconversationsearch--docs",
   },
   {
@@ -2379,8 +2320,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatConversation — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Conversation — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-conversation.tsx",
+    sourcePath: "components/business/chat-conversation.tsx",
     storybookId: "business-chatconversation--docs",
   },
   {
@@ -2390,8 +2330,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatFeedback — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Feedback — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-feedback.tsx",
+    sourcePath: "components/business/chat-feedback.tsx",
     storybookId: "business-chatfeedback--docs",
   },
   {
@@ -2412,8 +2351,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatImageGallery — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Image Gallery — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-image-gallery.tsx",
+    sourcePath: "components/business/chat-image-gallery.tsx",
     storybookId: "business-chatimagegallery--docs",
   },
   {
@@ -2423,8 +2361,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatInputToolbar — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Input Toolbar — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-input-toolbar.tsx",
+    sourcePath: "components/business/chat-input-toolbar.tsx",
     storybookId: "business-chatinputtoolbar--docs",
   },
   {
@@ -2434,8 +2371,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMarkdownRenderer — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Markdown Renderer — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-markdown-renderer.tsx",
+    sourcePath: "components/business/chat-markdown-renderer.tsx",
     storybookId: "business-chatmarkdownrenderer--docs",
   },
   {
@@ -2445,8 +2381,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMentionPicker — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Mention Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-mention-picker.tsx",
+    sourcePath: "components/business/chat-mention-picker.tsx",
     storybookId: "business-chatmentionpicker--docs",
   },
   {
@@ -2456,8 +2391,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMessageActions — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Message Actions — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-message-actions.tsx",
+    sourcePath: "components/business/chat-message-actions.tsx",
     storybookId: "business-chatmessageactions--docs",
   },
   {
@@ -2467,8 +2401,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMessageBubble — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Message Bubble — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-message-bubble.tsx",
+    sourcePath: "components/business/chat-message-bubble.tsx",
     storybookId: "business-chatmessagebubble--docs",
   },
   {
@@ -2478,8 +2411,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMessageGroup — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Message Group — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-message-group.tsx",
+    sourcePath: "components/business/chat-message-group.tsx",
     storybookId: "business-chatmessagegroup--docs",
   },
   {
@@ -2489,8 +2421,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatMessageInput — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Message Input — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-message-input.tsx",
+    sourcePath: "components/business/chat-message-input.tsx",
     storybookId: "business-chatmessageinput--docs",
   },
   {
@@ -2500,8 +2431,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatModelSwitcher — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Model Switcher — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-model-switcher.tsx",
+    sourcePath: "components/business/chat-model-switcher.tsx",
     storybookId: "business-chatmodelswitcher--docs",
   },
   {
@@ -2511,8 +2441,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatSharedLink — a business component for ERP / enterprise scenarios.",
     descZh: "共享链接卡片 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-shared-link.tsx",
+    sourcePath: "components/business/chat-shared-link.tsx",
     storybookId: "business-chatsharedlink--docs",
   },
   {
@@ -2543,8 +2472,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatStreamingText — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Streaming Text — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-streaming-text.tsx",
+    sourcePath: "components/business/chat-streaming-text.tsx",
     storybookId: "business-chatstreamingtext--docs",
   },
   {
@@ -2554,8 +2482,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatSuggestReplies — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Suggest Replies — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-suggest-replies.tsx",
+    sourcePath: "components/business/chat-suggest-replies.tsx",
     storybookId: "business-chatsuggestreplies--docs",
   },
   {
@@ -2565,8 +2492,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatThinkingBlock — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Thinking Block — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-thinking-block.tsx",
+    sourcePath: "components/business/chat-thinking-block.tsx",
     storybookId: "business-chatthinkingblock--docs",
   },
   {
@@ -2576,8 +2502,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatToolCallBlock — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Tool Call Block — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-tool-call-block.tsx",
+    sourcePath: "components/business/chat-tool-call-block.tsx",
     storybookId: "business-chattoolcallblock--docs",
   },
   {
@@ -2587,8 +2512,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ChatVoiceMessage — a business component for ERP / enterprise scenarios.",
     descZh: "Chat Voice Message — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/chat-voice-message.tsx",
+    sourcePath: "components/business/chat-voice-message.tsx",
     storybookId: "business-chatvoicemessage--docs",
   },
   {
@@ -2610,7 +2534,7 @@ export const components: ComponentMeta[] = [
     desc: "Chip — a business component for ERP / enterprise scenarios.",
     descZh:
       "标签片 — 业务组件，核心属性：variant, size, removable, onRemove, icon。",
-    sourcePath: "packages/chaos-design-ui/components/business/chip.tsx",
+    sourcePath: "components/business/chip.tsx",
     storybookId: "business-chip--docs",
   },
   {
@@ -2632,7 +2556,7 @@ export const components: ComponentMeta[] = [
     desc: "CodeBlock — a business component for ERP / enterprise scenarios.",
     descZh:
       "代码块 — 业务组件，核心属性：code, language, filename, showLineNumbers, showCopy。",
-    sourcePath: "packages/chaos-design-ui/components/business/code-block.tsx",
+    sourcePath: "components/business/code-block.tsx",
     storybookId: "business-codeblock--docs",
   },
   {
@@ -2643,7 +2567,7 @@ export const components: ComponentMeta[] = [
     desc: "CodeEditor — a business component for ERP / enterprise scenarios.",
     descZh:
       "代码编辑器 — 业务组件，核心属性：value, onChange, language, readonly, showLineNumbers。",
-    sourcePath: "packages/chaos-design-ui/components/business/code-editor.tsx",
+    sourcePath: "components/business/code-editor.tsx",
     storybookId: "business-codeeditor--docs",
   },
   {
@@ -2664,7 +2588,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ColorTag — a business component for ERP / enterprise scenarios.",
     descZh: "颜色标签 — 业务组件，核心属性：label, dot。",
-    sourcePath: "packages/chaos-design-ui/components/business/color-tag.tsx",
+    sourcePath: "components/business/color-tag.tsx",
     storybookId: "business-colortag--docs",
   },
   {
@@ -2675,8 +2599,7 @@ export const components: ComponentMeta[] = [
     desc: "CommandPalette — a business component for ERP / enterprise scenarios.",
     descZh:
       "命令面板 — 业务组件，核心属性：open, onOpenChange, groups, placeholder, emptyText。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/command-palette.tsx",
+    sourcePath: "components/business/command-palette.tsx",
     storybookId: "business-commandpalette--docs",
   },
   {
@@ -2686,8 +2609,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CommissionCalculator — a business component for ERP / enterprise scenarios.",
     descZh: "Commission Calculator — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/commission-calculator.tsx",
+    sourcePath: "components/business/commission-calculator.tsx",
     storybookId: "business-commissioncalculator--docs",
   },
   {
@@ -2697,8 +2619,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CompanyBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Company Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/company-browse.tsx",
+    sourcePath: "components/business/company-browse.tsx",
     storybookId: "business-companybrowse--docs",
   },
   {
@@ -2708,8 +2629,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CompanyPicker — a business component for ERP / enterprise scenarios.",
     descZh: "Company Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/company-picker.tsx",
+    sourcePath: "components/business/company-picker.tsx",
     storybookId: "business-companypicker--docs",
   },
   {
@@ -2719,8 +2639,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ComplianceChecklist — a business component for ERP / enterprise scenarios.",
     descZh: "Compliance Checklist — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/compliance-checklist.tsx",
+    sourcePath: "components/business/compliance-checklist.tsx",
     storybookId: "business-compliancechecklist--docs",
   },
   {
@@ -2731,8 +2650,7 @@ export const components: ComponentMeta[] = [
     desc: "ConfirmDialog — a business component for ERP / enterprise scenarios.",
     descZh:
       "确认对话框 — 业务组件，核心属性：open, onOpenChange, title, description, confirmText。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/confirm-dialog.tsx",
+    sourcePath: "components/business/confirm-dialog.tsx",
     storybookId: "business-confirmdialog--docs",
   },
   {
@@ -2743,8 +2661,7 @@ export const components: ComponentMeta[] = [
     desc: "ContractTemplate — a business component for ERP / enterprise scenarios.",
     descZh:
       "合同模板 — 业务组件，核心属性：title, fields, onChange, onPreview, onDownload。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/contract-template.tsx",
+    sourcePath: "components/business/contract-template.tsx",
     storybookId: "business-contracttemplate--docs",
   },
   {
@@ -2755,8 +2672,7 @@ export const components: ComponentMeta[] = [
     desc: "CookieBanner — a business component for ERP / enterprise scenarios.",
     descZh:
       "Cookie 横幅 — 业务组件，核心属性：open, onAccept, onReject, onDismiss, title。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/cookie-banner.tsx",
+    sourcePath: "components/business/cookie-banner.tsx",
     storybookId: "business-cookiebanner--docs",
   },
   {
@@ -2767,8 +2683,7 @@ export const components: ComponentMeta[] = [
     desc: "CostCenterPicker — cost center picker component.",
     descZh:
       '/ Cost center picker — combobox trigger with a filterable popover. ```tsx <CostCenterPicker value="CC1" onChange={setId} options={[{ value: "CC1", label: "华东成本中',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/cost-center-picker.tsx",
+    sourcePath: "components/business/cost-center-picker.tsx",
     storybookId: "business-costcenterpicker--docs",
   },
   {
@@ -2790,8 +2705,7 @@ export const components: ComponentMeta[] = [
     desc: "CreativePreview — a business component for ERP / enterprise scenarios.",
     descZh:
       "创意预览 — 业务组件，核心属性：title, type, src, description, size。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/creative-preview.tsx",
+    sourcePath: "components/business/creative-preview.tsx",
     storybookId: "business-creativepreview--docs",
   },
   {
@@ -2813,7 +2727,7 @@ export const components: ComponentMeta[] = [
     desc: "CrudPage — a business component for ERP / enterprise scenarios.",
     descZh:
       "增删改查页面 — 业务组件，核心属性：title, toolbar, columns, key, header。",
-    sourcePath: "packages/chaos-design-ui/components/business/crud-page.tsx",
+    sourcePath: "components/business/crud-page.tsx",
     storybookId: "business-crudpage--docs",
   },
   {
@@ -2824,7 +2738,7 @@ export const components: ComponentMeta[] = [
     desc: "CrudToolbar — a business component for ERP / enterprise scenarios.",
     descZh:
       "增删改查工具栏 — 业务组件，核心属性：onAdd, onDelete, onExport, onImport, onRefresh。",
-    sourcePath: "packages/chaos-design-ui/components/business/crud-toolbar.tsx",
+    sourcePath: "components/business/crud-toolbar.tsx",
     storybookId: "business-crudtoolbar--docs",
   },
   {
@@ -2834,8 +2748,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Customer360Card — a business component for ERP / enterprise scenarios.",
     descZh: "Customer 360 Card — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/customer-360-card.tsx",
+    sourcePath: "components/business/customer-360-card.tsx",
     storybookId: "business-customer360card--docs",
   },
   {
@@ -2845,8 +2758,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CustomerBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Customer Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/customer-browse.tsx",
+    sourcePath: "components/business/customer-browse.tsx",
     storybookId: "business-customerbrowse--docs",
   },
   {
@@ -2856,8 +2768,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "CustomerPicker — a business component for ERP / enterprise scenarios.",
     descZh: "Customer Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/customer-picker.tsx",
+    sourcePath: "components/business/customer-picker.tsx",
     storybookId: "business-customerpicker--docs",
   },
   {
@@ -2868,8 +2779,7 @@ export const components: ComponentMeta[] = [
     desc: "DashboardCanvas — dashboard canvas component.",
     descZh:
       '<DashboardCanvas widgets={[{ id: "w1", title: "销售额", x: 0, y: 0, w: 6, h: 2 }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/dashboard-canvas.tsx",
+    sourcePath: "components/business/dashboard-canvas.tsx",
     storybookId: "business-dashboardcanvas--docs",
   },
   {
@@ -2879,8 +2789,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "DashboardDesigner — a business component for ERP / enterprise scenarios.",
     descZh: "仪表盘设计器 — 业务组件，核心属性：widgets, onChange, cols。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/dashboard-designer.tsx",
+    sourcePath: "components/business/dashboard-designer.tsx",
     storybookId: "business-dashboarddesigner--docs",
   },
   {
@@ -2890,8 +2799,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "DashboardGrid — a business component for ERP / enterprise scenarios.",
     descZh: "Dashboard Grid — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/dashboard-grid.tsx",
+    sourcePath: "components/business/dashboard-grid.tsx",
     storybookId: "business-dashboardgrid--docs",
   },
   {
@@ -2901,7 +2809,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "DataTable — a business component for ERP / enterprise scenarios.",
     descZh: "数据表格 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/data-table.tsx",
+    sourcePath: "components/business/data-table.tsx",
     storybookId: "business-datatable--docs",
   },
   {
@@ -2912,8 +2820,7 @@ export const components: ComponentMeta[] = [
     desc: "DateRangePicker — a business component for ERP / enterprise scenarios.",
     descZh:
       "日期范围选择器 — 业务组件，核心属性：value, onChange, placeholder, numberOfMonths, disabled。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/date-range-picker.tsx",
+    sourcePath: "components/business/date-range-picker.tsx",
     storybookId: "business-daterangepicker--docs",
   },
   {
@@ -2935,8 +2842,7 @@ export const components: ComponentMeta[] = [
     desc: "DepartmentPicker — department picker component.",
     descZh:
       '/ Department picker — combobox trigger with a filterable tree popover. ```tsx <DepartmentPicker value="D2" onChange={setId} options={[{ value: "D1", label: "总部"',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/department-picker.tsx",
+    sourcePath: "components/business/department-picker.tsx",
     storybookId: "business-departmentpicker--docs",
   },
   {
@@ -2947,7 +2853,7 @@ export const components: ComponentMeta[] = [
     desc: "DictSelect — a business component for ERP / enterprise scenarios.",
     descZh:
       "字典选择 — 业务组件，核心属性：dictCode, options, value, onValueChange, placeholder。",
-    sourcePath: "packages/chaos-design-ui/components/business/dict-select.tsx",
+    sourcePath: "components/business/dict-select.tsx",
     storybookId: "business-dictselect--docs",
   },
   {
@@ -2958,8 +2864,7 @@ export const components: ComponentMeta[] = [
     desc: "DiffViewerTable — a business component for ERP / enterprise scenarios.",
     descZh:
       "差异表格查看器 — 业务组件，核心属性：rows, leftTitle, rightTitle。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/diff-viewer-table.tsx",
+    sourcePath: "components/business/diff-viewer-table.tsx",
     storybookId: "business-diffviewertable--docs",
   },
   {
@@ -2970,7 +2875,7 @@ export const components: ComponentMeta[] = [
     desc: "DiffViewer — a business component for ERP / enterprise scenarios.",
     descZh:
       "差异查看器 — 业务组件，核心属性：left, right, leftTitle, rightTitle。",
-    sourcePath: "packages/chaos-design-ui/components/business/diff-viewer.tsx",
+    sourcePath: "components/business/diff-viewer.tsx",
     storybookId: "business-diffviewer--docs",
   },
   {
@@ -2981,8 +2886,7 @@ export const components: ComponentMeta[] = [
     desc: "DistributorPicker — distributor picker component.",
     descZh:
       '/ Distributor picker — combobox trigger with a filterable popover. ```tsx <DistributorPicker value="D1" onChange={setId} options={[{ value: "D1", label: "华东经销A"',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/distributor-picker.tsx",
+    sourcePath: "components/business/distributor-picker.tsx",
     storybookId: "business-distributorpicker--docs",
   },
   {
@@ -3025,8 +2929,7 @@ export const components: ComponentMeta[] = [
     desc: "DynamicFormBuilder — dynamic form builder component.",
     descZh:
       '<DynamicFormBuilder schema={[{ name: "title", label: "标题", type: "text", required: true }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/dynamic-form-builder.tsx",
+    sourcePath: "components/business/dynamic-form-builder.tsx",
     storybookId: "business-dynamicformbuilder--docs",
   },
   {
@@ -3037,7 +2940,7 @@ export const components: ComponentMeta[] = [
     desc: "EditToolbar — a business component for ERP / enterprise scenarios.",
     descZh:
       "编辑工具栏 — 业务组件，核心属性：editing, onEdit, onSave, onCancel, loading。",
-    sourcePath: "packages/chaos-design-ui/components/business/edit-toolbar.tsx",
+    sourcePath: "components/business/edit-toolbar.tsx",
     storybookId: "business-edittoolbar--docs",
   },
   {
@@ -3047,8 +2950,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "EditableTreeTable — a business component for ERP / enterprise scenarios.",
     descZh: "可编辑树形表格 — 业务组件，核心属性：data, columns。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/editable-tree-table.tsx",
+    sourcePath: "components/business/editable-tree-table.tsx",
     storybookId: "business-editabletreetable--docs",
   },
   {
@@ -3059,8 +2961,7 @@ export const components: ComponentMeta[] = [
     desc: "EmployeePicker — employee picker component.",
     descZh:
       '/ Employee picker — combobox trigger with a filterable popover. ```tsx <EmployeePicker value="E1" onChange={setId} options={[{ value: "E1", label: "张三", departm',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/employee-picker.tsx",
+    sourcePath: "components/business/employee-picker.tsx",
     storybookId: "business-employeepicker--docs",
   },
   {
@@ -3071,8 +2972,7 @@ export const components: ComponentMeta[] = [
     desc: "EquipmentCard — a business component for ERP / enterprise scenarios.",
     descZh:
       "设备卡片 — 业务组件，核心属性：name, model, serialNumber, status, location。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/equipment-card.tsx",
+    sourcePath: "components/business/equipment-card.tsx",
     storybookId: "business-equipmentcard--docs",
   },
   {
@@ -3082,8 +2982,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ErrorBoundary — a business component for ERP / enterprise scenarios.",
     descZh: "错误边界 — 业务组件，核心属性：fallback, onError。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/error-boundary.tsx",
+    sourcePath: "components/business/error-boundary.tsx",
     storybookId: "business-errorboundary--docs",
   },
   {
@@ -3094,7 +2993,7 @@ export const components: ComponentMeta[] = [
     desc: "ErrorPage — a business component for ERP / enterprise scenarios.",
     descZh:
       "错误页 — 业务组件，核心属性：status, title, description, homeHref, showHome。",
-    sourcePath: "packages/chaos-design-ui/components/business/error-page.tsx",
+    sourcePath: "components/business/error-page.tsx",
     storybookId: "business-errorpage--docs",
   },
   {
@@ -3104,8 +3003,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ExpenseLineEditor — a business component for ERP / enterprise scenarios.",
     descZh: "费用行编辑器 — 业务组件，核心属性：lines, onChange, categories。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/expense-line-editor.tsx",
+    sourcePath: "components/business/expense-line-editor.tsx",
     storybookId: "business-expenselineeditor--docs",
   },
   {
@@ -3116,8 +3014,7 @@ export const components: ComponentMeta[] = [
     desc: "ExperimentSummary — a business component for ERP / enterprise scenarios.",
     descZh:
       "实验摘要 — 业务组件，核心属性：name, controlRate, variantRate, metric, confidence。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/experiment-summary.tsx",
+    sourcePath: "components/business/experiment-summary.tsx",
     storybookId: "business-experimentsummary--docs",
   },
   {
@@ -3127,8 +3024,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ExportButton — a business component for ERP / enterprise scenarios.",
     descZh: "导出按钮 — 业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/export-button.tsx",
+    sourcePath: "components/business/export-button.tsx",
     storybookId: "business-exportbutton--docs",
   },
   {
@@ -3149,8 +3045,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "FeeTypeBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Fee Type Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/fee-type-browse.tsx",
+    sourcePath: "components/business/fee-type-browse.tsx",
     storybookId: "business-feetypebrowse--docs",
   },
   {
@@ -3161,7 +3056,7 @@ export const components: ComponentMeta[] = [
     desc: "FieldMask — a business component for ERP / enterprise scenarios.",
     descZh:
       "字段掩码 — 业务组件，核心属性：mask, customPattern, value, onChange。",
-    sourcePath: "packages/chaos-design-ui/components/business/field-mask.tsx",
+    sourcePath: "components/business/field-mask.tsx",
     storybookId: "business-fieldmask--docs",
   },
   {
@@ -3182,8 +3077,7 @@ export const components: ComponentMeta[] = [
     desc: "FileUploadManager — a business component for ERP / enterprise scenarios.",
     descZh:
       "文件上传管理器 — 业务组件，核心属性：files, onFilesChange, accept, maxFiles, maxSize。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/file-upload-manager.tsx",
+    sourcePath: "components/business/file-upload-manager.tsx",
     storybookId: "business-fileuploadmanager--docs",
   },
   {
@@ -3193,7 +3087,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "FilterBar — a business component for ERP / enterprise scenarios.",
     descZh: "筛选栏 — 业务组件，核心属性：fields, onFilter, onReset。",
-    sourcePath: "packages/chaos-design-ui/components/business/filter-bar.tsx",
+    sourcePath: "components/business/filter-bar.tsx",
     storybookId: "business-filterbar--docs",
   },
   {
@@ -3204,8 +3098,7 @@ export const components: ComponentMeta[] = [
     desc: "FilterBuilder — a business component for ERP / enterprise scenarios.",
     descZh:
       "筛选构建器 — 业务组件，核心属性：fields, initialFilters, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/filter-builder.tsx",
+    sourcePath: "components/business/filter-builder.tsx",
     storybookId: "business-filterbuilder--docs",
   },
   {
@@ -3226,7 +3119,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Forbidden — a business component for ERP / enterprise scenarios.",
     descZh: "403 禁止访问 — 业务组件，核心属性：title, description, action。",
-    sourcePath: "packages/chaos-design-ui/components/business/forbidden.tsx",
+    sourcePath: "components/business/forbidden.tsx",
     storybookId: "business-forbidden--docs",
   },
   {
@@ -3237,8 +3130,7 @@ export const components: ComponentMeta[] = [
     desc: "FormDesignerRuntime — form designer runtime component.",
     descZh:
       '<FormDesignerRuntime schema={[{ id: "name", type: "text", label: "姓名", required: true }]} value={{ name: "张三" }} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/form-designer-runtime.tsx",
+    sourcePath: "components/business/form-designer-runtime.tsx",
     storybookId: "business-formdesignerruntime--docs",
   },
   {
@@ -3249,8 +3141,7 @@ export const components: ComponentMeta[] = [
     desc: "FormDesigner — form designer component.",
     descZh:
       '<FormDesigner fields={[{ id: "1", type: "text", label: "客户名称", required: true }]} onChange={(f) => console.log(f)} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/form-designer.tsx",
+    sourcePath: "components/business/form-designer.tsx",
     storybookId: "business-formdesigner--docs",
   },
   {
@@ -3260,7 +3151,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "FormField — a business component for ERP / enterprise scenarios.",
     descZh: "表单字段 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/form-field.tsx",
+    sourcePath: "components/business/form-field.tsx",
     storybookId: "business-formfield--docs",
   },
   {
@@ -3270,7 +3161,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "FormWizard — a business component for ERP / enterprise scenarios.",
     descZh: "表单向导 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/form-wizard.tsx",
+    sourcePath: "components/business/form-wizard.tsx",
     storybookId: "business-formwizard--docs",
   },
   {
@@ -3280,8 +3171,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "FormulaEditor — a business component for ERP / enterprise scenarios.",
     descZh: "公式编辑器 — 业务组件，核心属性：value, onChange, placeholder。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/formula-editor.tsx",
+    sourcePath: "components/business/formula-editor.tsx",
     storybookId: "business-formulaeditor--docs",
   },
   {
@@ -3302,8 +3192,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "GanttChartPro — a business component for ERP / enterprise scenarios.",
     descZh: "Gantt Chart Pro — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/gantt-chart-pro.tsx",
+    sourcePath: "components/business/gantt-chart-pro.tsx",
     storybookId: "business-ganttchartpro--docs",
   },
   {
@@ -3334,7 +3223,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Gauge — a business component for ERP / enterprise scenarios.",
     descZh: "仪表盘 — 业务组件，核心属性：value, min, max, size, strokeWidth。",
-    sourcePath: "packages/chaos-design-ui/components/business/gauge.tsx",
+    sourcePath: "components/business/gauge.tsx",
     storybookId: "business-gauge--docs",
   },
   {
@@ -3344,8 +3233,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "GlobalLoading — a business component for ERP / enterprise scenarios.",
     descZh: "全局加载 — 业务组件，核心属性：loading, text, fullscreen。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/global-loading.tsx",
+    sourcePath: "components/business/global-loading.tsx",
     storybookId: "business-globalloading--docs",
   },
   {
@@ -3355,8 +3243,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "HeatmapCalendar — a business component for ERP / enterprise scenarios.",
     descZh: "热力日历 — 业务组件，核心属性：data。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/heatmap-calendar.tsx",
+    sourcePath: "components/business/heatmap-calendar.tsx",
     storybookId: "business-heatmapcalendar--docs",
   },
   {
@@ -3366,8 +3253,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "HeatmapChart — heatmap chart component.",
     descZh: '<HeatmapChart data={[{x:"周一",y:"上午",value:8}]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/heatmap-chart.tsx",
+    sourcePath: "components/business/heatmap-chart.tsx",
     storybookId: "business-heatmapchart--docs",
   },
   {
@@ -3377,8 +3263,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "I18nFormField — a business component for ERP / enterprise scenarios.",
     descZh: "I18N Form Field — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/i18n-form-field.tsx",
+    sourcePath: "components/business/i18n-form-field.tsx",
     storybookId: "business-i18nformfield--docs",
   },
   {
@@ -3399,8 +3284,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ImageGallery — a business component for ERP / enterprise scenarios.",
     descZh: "图片画廊 — 业务组件，核心属性：images, columns, enableLightbox。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/image-gallery.tsx",
+    sourcePath: "components/business/image-gallery.tsx",
     storybookId: "business-imagegallery--docs",
   },
   {
@@ -3411,8 +3295,7 @@ export const components: ComponentMeta[] = [
     desc: "ImportDialog — a business component for ERP / enterprise scenarios.",
     descZh:
       "导入对话框 — 业务组件，核心属性：open, onOpenChange, onImport, title, description。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/import-dialog.tsx",
+    sourcePath: "components/business/import-dialog.tsx",
     storybookId: "business-importdialog--docs",
   },
   {
@@ -3422,8 +3305,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ImportErrorTable — a business component for ERP / enterprise scenarios.",
     descZh: "Import Error Table — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/import-error-table.tsx",
+    sourcePath: "components/business/import-error-table.tsx",
     storybookId: "business-importerrortable--docs",
   },
   {
@@ -3433,8 +3315,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ImportMappingWizard — a business component for ERP / enterprise scenarios.",
     descZh: "Import Mapping Wizard — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/import-mapping-wizard.tsx",
+    sourcePath: "components/business/import-mapping-wizard.tsx",
     storybookId: "business-importmappingwizard--docs",
   },
   {
@@ -3445,7 +3326,7 @@ export const components: ComponentMeta[] = [
     desc: "InlineEdit — a business component for ERP / enterprise scenarios.",
     descZh:
       "内联编辑 — 业务组件，核心属性：value, onChange, onSave, as, placeholder。",
-    sourcePath: "packages/chaos-design-ui/components/business/inline-edit.tsx",
+    sourcePath: "components/business/inline-edit.tsx",
     storybookId: "business-inlineedit--docs",
   },
   {
@@ -3455,8 +3336,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "InventoryAlertList — a business component for ERP / enterprise scenarios.",
     descZh: "库存预警列表 — 业务组件，核心属性：alerts。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/inventory-alert-list.tsx",
+    sourcePath: "components/business/inventory-alert-list.tsx",
     storybookId: "business-inventoryalertlist--docs",
   },
   {
@@ -3467,8 +3347,7 @@ export const components: ComponentMeta[] = [
     desc: "InventorySnapshot — inventory snapshot component.",
     descZh:
       '<InventorySnapshot items={[ { id: "s1", name: "原料A", qty: 120, status: "normal" }, { id: "s2", name: "原料B", qty: 5, status: "low" }, ]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/inventory-snapshot.tsx",
+    sourcePath: "components/business/inventory-snapshot.tsx",
     storybookId: "business-inventorysnapshot--docs",
   },
   {
@@ -3488,8 +3367,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "InvoiceManager — a business component for ERP / enterprise scenarios.",
     descZh: "Invoice Manager — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/invoice-manager.tsx",
+    sourcePath: "components/business/invoice-manager.tsx",
     storybookId: "business-invoicemanager--docs",
   },
   {
@@ -3499,8 +3377,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "InvoiceSummary — a business component for ERP / enterprise scenarios.",
     descZh: "Invoice Summary — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/invoice-summary.tsx",
+    sourcePath: "components/business/invoice-summary.tsx",
     storybookId: "business-invoicesummary--docs",
   },
   {
@@ -3510,8 +3387,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "IotSensorGrid — a business component for ERP / enterprise scenarios.",
     descZh: "Iot Sensor Grid — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/iot-sensor-grid.tsx",
+    sourcePath: "components/business/iot-sensor-grid.tsx",
     storybookId: "business-iotsensorgrid--docs",
   },
   {
@@ -3521,8 +3397,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "JournalEntryEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Journal Entry Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/journal-entry-editor.tsx",
+    sourcePath: "components/business/journal-entry-editor.tsx",
     storybookId: "business-journalentryeditor--docs",
   },
   {
@@ -3544,7 +3419,7 @@ export const components: ComponentMeta[] = [
     desc: "JsonViewer — a business component for ERP / enterprise scenarios.",
     descZh:
       "JSON 查看器 — 业务组件，核心属性：data, defaultCollapsedDepth, rootClassName, showCopy, indentSize。",
-    sourcePath: "packages/chaos-design-ui/components/business/json-viewer.tsx",
+    sourcePath: "components/business/json-viewer.tsx",
     storybookId: "business-jsonviewer--docs",
   },
   {
@@ -3554,7 +3429,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "KanbanBoard — a business component for ERP / enterprise scenarios.",
     descZh: "看板 — 业务组件，核心属性：columns, onColumnsChange, renderCard。",
-    sourcePath: "packages/chaos-design-ui/components/business/kanban-board.tsx",
+    sourcePath: "components/business/kanban-board.tsx",
     storybookId: "business-kanbanboard--docs",
   },
   {
@@ -3564,8 +3439,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "KanbanColumn — a business component for ERP / enterprise scenarios.",
     descZh: "Kanban Column — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/kanban-column.tsx",
+    sourcePath: "components/business/kanban-column.tsx",
     storybookId: "business-kanbancolumn--docs",
   },
   {
@@ -3575,7 +3449,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "KpiCard — a business component for ERP / enterprise scenarios.",
     descZh: "KPI 卡片 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/kpi-card.tsx",
+    sourcePath: "components/business/kpi-card.tsx",
     storybookId: "business-kpicard--docs",
   },
   {
@@ -3585,8 +3459,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "LabelDesigner — a business component for ERP / enterprise scenarios.",
     descZh: "Label Designer — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/label-designer.tsx",
+    sourcePath: "components/business/label-designer.tsx",
     storybookId: "business-labeldesigner--docs",
   },
   {
@@ -3596,8 +3469,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "LanguageSwitcher — a business component for ERP / enterprise scenarios.",
     descZh: "语言切换 — 业务组件，核心属性：value, onChange, options, align。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/language-switcher.tsx",
+    sourcePath: "components/business/language-switcher.tsx",
     storybookId: "business-languageswitcher--docs",
   },
   {
@@ -3607,8 +3479,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "LeadPipelineBoard — a business component for ERP / enterprise scenarios.",
     descZh: "Lead Pipeline Board — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/lead-pipeline-board.tsx",
+    sourcePath: "components/business/lead-pipeline-board.tsx",
     storybookId: "business-leadpipelineboard--docs",
   },
   {
@@ -3618,8 +3489,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "LeaveRequestForm — a business component for ERP / enterprise scenarios.",
     descZh: "Leave Request Form — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/leave-request-form.tsx",
+    sourcePath: "components/business/leave-request-form.tsx",
     storybookId: "business-leaverequestform--docs",
   },
   {
@@ -3639,7 +3509,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "LineEditor — a business component for ERP / enterprise scenarios.",
     descZh: "行编辑器 — 业务组件，核心属性：lines, columns。",
-    sourcePath: "packages/chaos-design-ui/components/business/line-editor.tsx",
+    sourcePath: "components/business/line-editor.tsx",
     storybookId: "business-lineeditor--docs",
   },
   {
@@ -3650,7 +3520,7 @@ export const components: ComponentMeta[] = [
     desc: "LoadingPage — a business component for ERP / enterprise scenarios.",
     descZh:
       "加载页 — 业务组件，核心属性：title, description, icon, variant, show。",
-    sourcePath: "packages/chaos-design-ui/components/business/loading-page.tsx",
+    sourcePath: "components/business/loading-page.tsx",
     storybookId: "business-loadingpage--docs",
   },
   {
@@ -3660,8 +3530,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MaintenanceLog — a business component for ERP / enterprise scenarios.",
     descZh: "维护日志 — 业务组件，核心属性：records。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/maintenance-log.tsx",
+    sourcePath: "components/business/maintenance-log.tsx",
     storybookId: "business-maintenancelog--docs",
   },
   {
@@ -3704,7 +3573,7 @@ export const components: ComponentMeta[] = [
     desc: "MapView — a business component for ERP / enterprise scenarios.",
     descZh:
       "地图视图 — 业务组件，核心属性：center, zoom, markers, height, apiKey。",
-    sourcePath: "packages/chaos-design-ui/components/business/map-view.tsx",
+    sourcePath: "components/business/map-view.tsx",
     storybookId: "business-mapview--docs",
   },
   {
@@ -3714,8 +3583,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MarkdownEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Markdown Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/markdown-editor.tsx",
+    sourcePath: "components/business/markdown-editor.tsx",
     storybookId: "business-markdowneditor--docs",
   },
   {
@@ -3725,8 +3593,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MarketingActivityForm — a business component for ERP / enterprise scenarios.",
     descZh: "Marketing Activity Form — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/marketing-activity-form.tsx",
+    sourcePath: "components/business/marketing-activity-form.tsx",
     storybookId: "business-marketingactivityform--docs",
   },
   {
@@ -3737,8 +3604,7 @@ export const components: ComponentMeta[] = [
     desc: "MasterEditTemplate — master edit template component.",
     descZh:
       '<MasterEditTemplate title="编辑供应商" onSave={() => {}} onCancel={() => {}}> <input /> </MasterEditTemplate>',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/master-edit-template.tsx",
+    sourcePath: "components/business/master-edit-template.tsx",
     storybookId: "business-masteredittemplate--docs",
   },
   {
@@ -3749,8 +3615,7 @@ export const components: ComponentMeta[] = [
     desc: "MasterListTemplate — master list template component.",
     descZh:
       '<MasterListTemplate title="供应商列表" onCreate={() => {}}> <table /> </MasterListTemplate>',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/master-list-template.tsx",
+    sourcePath: "components/business/master-list-template.tsx",
     storybookId: "business-masterlisttemplate--docs",
   },
   {
@@ -3760,8 +3625,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MediaRecorder — a business component for ERP / enterprise scenarios.",
     descZh: "Media Recorder — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/media-recorder.tsx",
+    sourcePath: "components/business/media-recorder.tsx",
     storybookId: "business-mediarecorder--docs",
   },
   {
@@ -3771,8 +3635,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MeetingRoomBooking — a business component for ERP / enterprise scenarios.",
     descZh: "Meeting Room Booking — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/meeting-room-booking.tsx",
+    sourcePath: "components/business/meeting-room-booking.tsx",
     storybookId: "business-meetingroombooking--docs",
   },
   {
@@ -3794,7 +3657,7 @@ export const components: ComponentMeta[] = [
     desc: "MetricTrend — a business component for ERP / enterprise scenarios.",
     descZh:
       "指标趋势 — 业务组件，核心属性：data, width, height, strokeWidth, color。",
-    sourcePath: "packages/chaos-design-ui/components/business/metric-trend.tsx",
+    sourcePath: "components/business/metric-trend.tsx",
     storybookId: "business-metrictrend--docs",
   },
   {
@@ -3805,8 +3668,7 @@ export const components: ComponentMeta[] = [
     desc: "MobileActionSheet — mobile action sheet component.",
     descZh:
       '<MobileActionSheet open={open} onOpenChange={setOpen} actions={[{label:"编辑",onClick:edit},{label:"删除",onClick:del,danger:true}]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-action-sheet.tsx",
+    sourcePath: "components/business/mobile-action-sheet.tsx",
     storybookId: "business-mobileactionsheet--docs",
   },
   {
@@ -3816,8 +3678,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileCamera — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Camera — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-camera.tsx",
+    sourcePath: "components/business/mobile-camera.tsx",
     storybookId: "business-mobilecamera--docs",
   },
   {
@@ -3827,8 +3688,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileGeolocation — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Geolocation — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-geolocation.tsx",
+    sourcePath: "components/business/mobile-geolocation.tsx",
     storybookId: "business-mobilegeolocation--docs",
   },
   {
@@ -3838,8 +3698,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileInfiniteScroll — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Infinite Scroll — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-infinite-scroll.tsx",
+    sourcePath: "components/business/mobile-infinite-scroll.tsx",
     storybookId: "business-mobileinfinitescroll--docs",
   },
   {
@@ -3850,8 +3709,7 @@ export const components: ComponentMeta[] = [
     desc: "MobileListItem — mobile list item component.",
     descZh:
       '<MobileListItem title="张三" subtitle="销售部" onClick={() => open(id)} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-list-item.tsx",
+    sourcePath: "components/business/mobile-list-item.tsx",
     storybookId: "business-mobilelistitem--docs",
   },
   {
@@ -3862,8 +3720,7 @@ export const components: ComponentMeta[] = [
     desc: "MobilePageShell — mobile page shell component.",
     descZh:
       '<MobilePageShell title="订单详情" onBack={() => history.back()}> <p>内容</p> </MobilePageShell>',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-page-shell.tsx",
+    sourcePath: "components/business/mobile-page-shell.tsx",
     storybookId: "business-mobilepageshell--docs",
   },
   {
@@ -3873,8 +3730,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobilePicker — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-picker.tsx",
+    sourcePath: "components/business/mobile-picker.tsx",
     storybookId: "business-mobilepicker--docs",
   },
   {
@@ -3884,8 +3740,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileQrCodeScanner — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Qrcode Scanner — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-qrcode-scanner.tsx",
+    sourcePath: "components/business/mobile-qrcode-scanner.tsx",
     storybookId: "business-mobileqrcodescanner--docs",
   },
   {
@@ -3895,8 +3750,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileSignature — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Signature — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-signature.tsx",
+    sourcePath: "components/business/mobile-signature.tsx",
     storybookId: "business-mobilesignature--docs",
   },
   {
@@ -3907,8 +3761,7 @@ export const components: ComponentMeta[] = [
     desc: "MobileTabBar — mobile tab bar component.",
     descZh:
       '<MobileTabBar tabs={[{id:"home",label:"首页"},{id:"me",label:"我的"}]} activeId="home" onSelect={setTab} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/mobile-tab-bar.tsx",
+    sourcePath: "components/business/mobile-tab-bar.tsx",
     storybookId: "business-mobiletabbar--docs",
   },
   {
@@ -3918,8 +3771,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MultiCurrencyInput — a business component for ERP / enterprise scenarios.",
     descZh: "Multi Currency Input — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/multi-currency-input.tsx",
+    sourcePath: "components/business/multi-currency-input.tsx",
     storybookId: "business-multicurrencyinput--docs",
   },
   {
@@ -3929,7 +3781,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "Select multiple options from a panel; selections shown as tags.",
     descZh: "在弹出面板中选择多个选项,支持标签形式展示已选项。",
-    sourcePath: "packages/chaos-design-ui/components/business/multi-select.tsx",
+    sourcePath: "components/business/multi-select.tsx",
     storybookId: "business-multiselect--docs",
   },
   {
@@ -3940,8 +3792,7 @@ export const components: ComponentMeta[] = [
     desc: "NotificationCenter — a business component for ERP / enterprise scenarios.",
     descZh:
       "通知中心 — 业务组件，核心属性：notifications, onMarkRead, onMarkAllRead, onClear, onItemClick。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/notification-center.tsx",
+    sourcePath: "components/business/notification-center.tsx",
     storybookId: "business-notificationcenter--docs",
   },
   {
@@ -3951,8 +3802,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "NotificationRuleBuilder — a business component for ERP / enterprise scenarios.",
     descZh: "Notification Rule Builder — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/notification-rule-builder.tsx",
+    sourcePath: "components/business/notification-rule-builder.tsx",
     storybookId: "business-notificationrulebuilder--docs",
   },
   {
@@ -3973,8 +3823,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "OeeDashboard — a business component for ERP / enterprise scenarios.",
     descZh: "Oee Dashboard — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/oee-dashboard.tsx",
+    sourcePath: "components/business/oee-dashboard.tsx",
     storybookId: "business-oeedashboard--docs",
   },
   {
@@ -3985,8 +3834,7 @@ export const components: ComponentMeta[] = [
     desc: "OperationLog — operation log component.",
     descZh:
       '<OperationLog logs={[{ id:"1", action:"审批通过", operator:"李四", timestamp:"2026-01-01T09:00:00Z" }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/operation-log.tsx",
+    sourcePath: "components/business/operation-log.tsx",
     storybookId: "business-operationlog--docs",
   },
   {
@@ -3996,8 +3844,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "OrderLineEditor — a business component for ERP / enterprise scenarios.",
     descZh: "订单行编辑器 — 业务组件，核心属性：lines, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/order-line-editor.tsx",
+    sourcePath: "components/business/order-line-editor.tsx",
     storybookId: "business-orderlineeditor--docs",
   },
   {
@@ -4007,7 +3854,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "OrgChart — a business component for ERP / enterprise scenarios.",
     descZh: "组织架构图 — 业务组件，核心属性：nodes, edges, onNodeClick。",
-    sourcePath: "packages/chaos-design-ui/components/business/org-chart.tsx",
+    sourcePath: "components/business/org-chart.tsx",
     storybookId: "business-orgchart--docs",
   },
   {
@@ -4017,8 +3864,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "OverviewPage — a business component for ERP / enterprise scenarios.",
     descZh: "Overview Page — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/overview-page.tsx",
+    sourcePath: "components/business/overview-page.tsx",
     storybookId: "business-overviewpage--docs",
   },
   {
@@ -4028,7 +3874,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PageHeader — a business component for ERP / enterprise scenarios.",
     descZh: "页面头部 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/page-header.tsx",
+    sourcePath: "components/business/page-header.tsx",
     storybookId: "business-pageheader--docs",
   },
   {
@@ -4048,8 +3894,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PaymentMethodSelector — a business component for ERP / enterprise scenarios.",
     descZh: "Payment Method Selector — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/payment-method-selector.tsx",
+    sourcePath: "components/business/payment-method-selector.tsx",
     storybookId: "business-paymentmethodselector--docs",
   },
   {
@@ -4059,8 +3904,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PaymentResult — a business component for ERP / enterprise scenarios.",
     descZh: "Payment Result — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/payment-result.tsx",
+    sourcePath: "components/business/payment-result.tsx",
     storybookId: "business-paymentresult--docs",
   },
   {
@@ -4070,8 +3914,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PaymentSchedule — a business component for ERP / enterprise scenarios.",
     descZh: "Payment Schedule — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/payment-schedule.tsx",
+    sourcePath: "components/business/payment-schedule.tsx",
     storybookId: "business-paymentschedule--docs",
   },
   {
@@ -4081,7 +3924,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PdfViewer — a business component for ERP / enterprise scenarios.",
     descZh: "PDF 查看器 — 业务组件，核心属性：src, title。",
-    sourcePath: "packages/chaos-design-ui/components/business/pdf-viewer.tsx",
+    sourcePath: "components/business/pdf-viewer.tsx",
     storybookId: "business-pdfviewer--docs",
   },
   {
@@ -4092,8 +3935,7 @@ export const components: ComponentMeta[] = [
     desc: "PerformanceRankTable — performance rank table component.",
     descZh:
       '<PerformanceRankTable rows={[ { id: "r1", rank: 1, name: "张三", amount: 980000, growth: 0.15 }, { id: "r2", rank: 2, name: "李四", amount: 760000, growth: -0.03 },',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/performance-rank-table.tsx",
+    sourcePath: "components/business/performance-rank-table.tsx",
     storybookId: "business-performanceranktable--docs",
   },
   {
@@ -4103,8 +3945,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PermissionButton — a business component for ERP / enterprise scenarios.",
     descZh: "Permission Button — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/permission-button.tsx",
+    sourcePath: "components/business/permission-button.tsx",
     storybookId: "business-permissionbutton--docs",
   },
   {
@@ -4115,8 +3956,7 @@ export const components: ComponentMeta[] = [
     desc: "PermissionMatrix — a business component for ERP / enterprise scenarios.",
     descZh:
       "权限矩阵 — 业务组件，核心属性：permissions, roles, value, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/permission-matrix.tsx",
+    sourcePath: "components/business/permission-matrix.tsx",
     storybookId: "business-permissionmatrix--docs",
   },
   {
@@ -4127,8 +3967,7 @@ export const components: ComponentMeta[] = [
     desc: "PermissionWrapper — a business component for ERP / enterprise scenarios.",
     descZh:
       "权限包装器 — 业务组件，核心属性：permission, permissions, mode, fallback, userPermissions。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/permission-wrapper.tsx",
+    sourcePath: "components/business/permission-wrapper.tsx",
     storybookId: "business-permissionwrapper--docs",
   },
   {
@@ -4158,7 +3997,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PivotTable — a business component for ERP / enterprise scenarios.",
     descZh: "数据透视表 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/pivot-table.tsx",
+    sourcePath: "components/business/pivot-table.tsx",
     storybookId: "business-pivottable--docs",
   },
   {
@@ -4169,8 +4008,7 @@ export const components: ComponentMeta[] = [
     desc: "PolicyLineEditor — policy line editor component.",
     descZh:
       '<PolicyLineEditor rows={[{ id: "1", name: "满100减20", type: "discount", condition: "≥100", reward: "-20", quota: 1000, used: 120 }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/policy-line-editor.tsx",
+    sourcePath: "components/business/policy-line-editor.tsx",
     storybookId: "business-policylineeditor--docs",
   },
   {
@@ -4181,8 +4019,7 @@ export const components: ComponentMeta[] = [
     desc: "PoolTrackerTable — pool tracker table component.",
     descZh:
       'each fund pool and renders a usage bar so finance teams can spot pools that are running low. ```tsx <PoolTrackerTable pools={[{ id: "p1", name: "运营池", total: 10',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/pool-tracker-table.tsx",
+    sourcePath: "components/business/pool-tracker-table.tsx",
     storybookId: "business-pooltrackertable--docs",
   },
   {
@@ -4192,8 +4029,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PreferencePanel — a business component for ERP / enterprise scenarios.",
     descZh: "Preference Panel — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/preference-panel.tsx",
+    sourcePath: "components/business/preference-panel.tsx",
     storybookId: "business-preferencepanel--docs",
   },
   {
@@ -4203,8 +4039,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PriceAdjustBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Price Adjust Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/price-adjust-browse.tsx",
+    sourcePath: "components/business/price-adjust-browse.tsx",
     storybookId: "business-priceadjustbrowse--docs",
   },
   {
@@ -4214,7 +4049,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PrintButton — a business component for ERP / enterprise scenarios.",
     descZh: "打印按钮 — 业务组件，核心属性：onClick, label。",
-    sourcePath: "packages/chaos-design-ui/components/business/print-button.tsx",
+    sourcePath: "components/business/print-button.tsx",
     storybookId: "business-printbutton--docs",
   },
   {
@@ -4224,8 +4059,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PrintService — a business component for ERP / enterprise scenarios.",
     descZh: "Print Service — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/print-service.tsx",
+    sourcePath: "components/business/print-service.tsx",
     storybookId: "business-printservice--docs",
   },
   {
@@ -4235,8 +4069,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PrintTemplateBuilder — a business component for ERP / enterprise scenarios.",
     descZh: "Print Template Builder — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/print-template-builder.tsx",
+    sourcePath: "components/business/print-template-builder.tsx",
     storybookId: "business-printtemplatebuilder--docs",
   },
   {
@@ -4246,8 +4079,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ProductBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Product Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/product-browse.tsx",
+    sourcePath: "components/business/product-browse.tsx",
     storybookId: "business-productbrowse--docs",
   },
   {
@@ -4257,8 +4089,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ProductCategoryPicker — a business component for ERP / enterprise scenarios.",
     descZh: "Product Category Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/product-category-picker.tsx",
+    sourcePath: "components/business/product-category-picker.tsx",
     storybookId: "business-productcategorypicker--docs",
   },
   {
@@ -4268,8 +4099,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PromotionRuleCard — promotion rule card component.",
     descZh: " 促销规则展示卡",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/promotion-rule-card.tsx",
+    sourcePath: "components/business/promotion-rule-card.tsx",
     storybookId: "business-promotionrulecard--docs",
   },
   {
@@ -4279,8 +4109,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PromotionRuleEditor — promotion rule editor component.",
     descZh: " 促销规则编辑器",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/promotion-rule-editor.tsx",
+    sourcePath: "components/business/promotion-rule-editor.tsx",
     storybookId: "business-promotionruleeditor--docs",
   },
   {
@@ -4291,8 +4120,7 @@ export const components: ComponentMeta[] = [
     desc: "PromptDialog — a business component for ERP / enterprise scenarios.",
     descZh:
       "提示对话框 — 业务组件，核心属性：open, onOpenChange, title, description, label。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/prompt-dialog.tsx",
+    sourcePath: "components/business/prompt-dialog.tsx",
     storybookId: "business-promptdialog--docs",
   },
   {
@@ -4302,8 +4130,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "PurchaseOrderEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Purchase Order Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/purchase-order-editor.tsx",
+    sourcePath: "components/business/purchase-order-editor.tsx",
     storybookId: "business-purchaseordereditor--docs",
   },
   {
@@ -4313,8 +4140,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "QualityInspectionForm — a business component for ERP / enterprise scenarios.",
     descZh: "质检表单 — 业务组件，核心属性：items, onChange, onSubmit。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/quality-inspection-form.tsx",
+    sourcePath: "components/business/quality-inspection-form.tsx",
     storybookId: "business-qualityinspectionform--docs",
   },
   {
@@ -4325,8 +4151,7 @@ export const components: ComponentMeta[] = [
     desc: "QuickEntryGrid — quick entry grid component.",
     descZh:
       '<QuickEntryGrid entries={[{ id: "bill", label: "新建账单", onClick: () => {} }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/quick-entry-grid.tsx",
+    sourcePath: "components/business/quick-entry-grid.tsx",
     storybookId: "business-quickentrygrid--docs",
   },
   {
@@ -4336,8 +4161,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "QuotationLineEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Quotation Line Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/quotation-line-editor.tsx",
+    sourcePath: "components/business/quotation-line-editor.tsx",
     storybookId: "business-quotationlineeditor--docs",
   },
   {
@@ -4368,8 +4192,7 @@ export const components: ComponentMeta[] = [
     desc: "RebutNodeSelect — rebut node select component.",
     descZh:
       '<RebutNodeSelect nodes={[{ id: "n1", name: "部门审批" }]} onSelect={console.log} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/rebut-node-select.tsx",
+    sourcePath: "components/business/rebut-node-select.tsx",
     storybookId: "business-rebutnodeselect--docs",
   },
   {
@@ -4379,8 +4202,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ReconciliationLineEditor — a business component for ERP / enterprise scenarios.",
     descZh: "Reconciliation Line Editor — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/reconciliation-line-editor.tsx",
+    sourcePath: "components/business/reconciliation-line-editor.tsx",
     storybookId: "business-reconciliationlineeditor--docs",
   },
   {
@@ -4390,8 +4212,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ReconciliationSummary — a business component for ERP / enterprise scenarios.",
     descZh: "Reconciliation Summary — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/reconciliation-summary.tsx",
+    sourcePath: "components/business/reconciliation-summary.tsx",
     storybookId: "business-reconciliationsummary--docs",
   },
   {
@@ -4412,8 +4233,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "RegionPicker — a business component for ERP / enterprise scenarios.",
     descZh: "Region Picker — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/region-picker.tsx",
+    sourcePath: "components/business/region-picker.tsx",
     storybookId: "business-regionpicker--docs",
   },
   {
@@ -4424,8 +4244,7 @@ export const components: ComponentMeta[] = [
     desc: "RemoteSelect — a business component for ERP / enterprise scenarios.",
     descZh:
       "远程选择器 — 业务组件，核心属性：value, onChange, onSearch, placeholder, debounceMs。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/remote-select.tsx",
+    sourcePath: "components/business/remote-select.tsx",
     storybookId: "business-remoteselect--docs",
   },
   {
@@ -4436,8 +4255,7 @@ export const components: ComponentMeta[] = [
     desc: "ReportBuilder — a business component for ERP / enterprise scenarios.",
     descZh:
       "报表构建器 — 业务组件，核心属性：fields, filters, onFieldsChange, onFiltersChange, onPreview。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/report-builder.tsx",
+    sourcePath: "components/business/report-builder.tsx",
     storybookId: "business-reportbuilder--docs",
   },
   {
@@ -4448,8 +4266,7 @@ export const components: ComponentMeta[] = [
     desc: "ResourceSchedule — resource schedule component.",
     descZh:
       '<ResourceSchedule resources={[{ id: "r1", name: "会议室 A" }]} bookings={[{ resourceId: "r1", start: "2026-06-30T09:00", end: "2026-06-30T10:00", title: "周会" }]} /',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/resource-schedule.tsx",
+    sourcePath: "components/business/resource-schedule.tsx",
     storybookId: "business-resourceschedule--docs",
   },
   {
@@ -4459,8 +4276,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ResponsivePreview — a business component for ERP / enterprise scenarios.",
     descZh: "响应式预览 — 业务组件，核心属性：device, showFrame, showLabel。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/responsive-preview.tsx",
+    sourcePath: "components/business/responsive-preview.tsx",
     storybookId: "business-responsivepreview--docs",
   },
   {
@@ -4471,8 +4287,7 @@ export const components: ComponentMeta[] = [
     desc: "RichTextEditor — a business component for ERP / enterprise scenarios.",
     descZh:
       "富文本编辑器 — 业务组件，核心属性：value, onChange, placeholder, editable, showToolbar。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/rich-text-editor.tsx",
+    sourcePath: "components/business/rich-text-editor.tsx",
     storybookId: "business-richtexteditor--docs",
   },
   {
@@ -4482,8 +4297,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "RoleAssignment — a business component for ERP / enterprise scenarios.",
     descZh: "角色分配 — 业务组件，核心属性：roles, assigned, onChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/role-assignment.tsx",
+    sourcePath: "components/business/role-assignment.tsx",
     storybookId: "business-roleassignment--docs",
   },
   {
@@ -4503,8 +4317,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SalesOrderBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Sales Order Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/sales-order-browse.tsx",
+    sourcePath: "components/business/sales-order-browse.tsx",
     storybookId: "business-salesorderbrowse--docs",
   },
   {
@@ -4515,8 +4328,7 @@ export const components: ComponentMeta[] = [
     desc: "SalesTargetEditor — sales target editor component.",
     descZh:
       '<SalesTargetEditor rows={[{ id: "1", year: 2026, region: "华东", q1: 100, q2: 120, q3: 130, q4: 150, annual: 500 }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/sales-target-editor.tsx",
+    sourcePath: "components/business/sales-target-editor.tsx",
     storybookId: "business-salestargeteditor--docs",
   },
   {
@@ -4538,8 +4350,7 @@ export const components: ComponentMeta[] = [
     desc: "SavedFilters — a business component for ERP / enterprise scenarios.",
     descZh:
       "已保存筛选 — 业务组件，核心属性：filters, activeId, onApply, onSave, onDelete。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/saved-filters.tsx",
+    sourcePath: "components/business/saved-filters.tsx",
     storybookId: "business-savedfilters--docs",
   },
   {
@@ -4549,8 +4360,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ScatterChart — scatter chart component.",
     descZh: " 散点图",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/scatter-chart.tsx",
+    sourcePath: "components/business/scatter-chart.tsx",
     storybookId: "business-scatterchart--docs",
   },
   {
@@ -4560,8 +4370,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SealStampRegistry — a business component for ERP / enterprise scenarios.",
     descZh: "Seal Stamp Registry — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/seal-stamp-registry.tsx",
+    sourcePath: "components/business/seal-stamp-registry.tsx",
     storybookId: "business-sealstampregistry--docs",
   },
   {
@@ -4572,7 +4381,7 @@ export const components: ComponentMeta[] = [
     desc: "SearchTable — a business component for ERP / enterprise scenarios.",
     descZh:
       "搜索表格 — 业务组件，核心属性：columns, data, searchKeys, searchPlaceholder。",
-    sourcePath: "packages/chaos-design-ui/components/business/search-table.tsx",
+    sourcePath: "components/business/search-table.tsx",
     storybookId: "business-searchtable--docs",
   },
   {
@@ -4582,8 +4391,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SerialNumberManager — a business component for ERP / enterprise scenarios.",
     descZh: "Serial Number Manager — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/serial-number-manager.tsx",
+    sourcePath: "components/business/serial-number-manager.tsx",
     storybookId: "business-serialnumbermanager--docs",
   },
   {
@@ -4593,8 +4401,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SettlementStatusTag — a business component for ERP / enterprise scenarios.",
     descZh: "Settlement Status Tag — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/settlement-status-tag.tsx",
+    sourcePath: "components/business/settlement-status-tag.tsx",
     storybookId: "business-settlementstatustag--docs",
   },
   {
@@ -4605,8 +4412,7 @@ export const components: ComponentMeta[] = [
     desc: "ShiftCalendar — a business component for ERP / enterprise scenarios.",
     descZh:
       "班次日历 — 业务组件，核心属性：shifts, year, month, onMonthChange。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/shift-calendar.tsx",
+    sourcePath: "components/business/shift-calendar.tsx",
     storybookId: "business-shiftcalendar--docs",
   },
   {
@@ -4616,8 +4422,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ShippingWayBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Shipping Way Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/shipping-way-browse.tsx",
+    sourcePath: "components/business/shipping-way-browse.tsx",
     storybookId: "business-shippingwaybrowse--docs",
   },
   {
@@ -4627,8 +4432,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SignActionButton — a business component for ERP / enterprise scenarios.",
     descZh: "Sign Action Button — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/sign-action-button.tsx",
+    sourcePath: "components/business/sign-action-button.tsx",
     storybookId: "business-signactionbutton--docs",
   },
   {
@@ -4669,8 +4473,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SpcControlChart — a business component for ERP / enterprise scenarios.",
     descZh: "Spc Control Chart — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/spc-control-chart.tsx",
+    sourcePath: "components/business/spc-control-chart.tsx",
     storybookId: "business-spccontrolchart--docs",
   },
   {
@@ -4691,8 +4494,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StatCardRow — a business component for ERP / enterprise scenarios.",
     descZh: "统计卡片行 — 业务组件，核心属性：cards。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/stat-card-row.tsx",
+    sourcePath: "components/business/stat-card-row.tsx",
     storybookId: "business-statcardrow--docs",
   },
   {
@@ -4702,8 +4504,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StatCardWithDelta — stat card with delta component.",
     descZh: " 统计卡 + 增减标签",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/stat-card-with-delta.tsx",
+    sourcePath: "components/business/stat-card-with-delta.tsx",
     storybookId: "business-statcardwithdelta--docs",
   },
   {
@@ -4714,8 +4515,7 @@ export const components: ComponentMeta[] = [
     desc: "StatCardWithSparkline — stat card with sparkline component.",
     descZh:
       '<StatCardWithSparkline label="日活" value="12,480" trend={8} sparklineData={[5,8,6,10]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/stat-card-with-sparkline.tsx",
+    sourcePath: "components/business/stat-card-with-sparkline.tsx",
     storybookId: "business-statcardwithsparkline--docs",
   },
   {
@@ -4725,7 +4525,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StatCard — a business component for ERP / enterprise scenarios.",
     descZh: "统计卡片 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/stat-card.tsx",
+    sourcePath: "components/business/stat-card.tsx",
     storybookId: "business-statcard--docs",
   },
   {
@@ -4735,7 +4535,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StatusBadge — a business component for ERP / enterprise scenarios.",
     descZh: "状态徽章 — 业务组件，核心属性：label, dot。",
-    sourcePath: "packages/chaos-design-ui/components/business/status-badge.tsx",
+    sourcePath: "components/business/status-badge.tsx",
     storybookId: "business-statusbadge--docs",
   },
   {
@@ -4745,7 +4545,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StatusTag — a business component for ERP / enterprise scenarios.",
     descZh: "状态标签 — 业务组件。",
-    sourcePath: "packages/chaos-design-ui/components/business/status-tag.tsx",
+    sourcePath: "components/business/status-tag.tsx",
     storybookId: "business-statustag--docs",
   },
   {
@@ -4755,8 +4555,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "StockTransferDialog — a business component for ERP / enterprise scenarios.",
     descZh: "Stock Transfer Dialog — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/stock-transfer-dialog.tsx",
+    sourcePath: "components/business/stock-transfer-dialog.tsx",
     storybookId: "business-stocktransferdialog--docs",
   },
   {
@@ -4776,8 +4575,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "SupplierScorecard — a business component for ERP / enterprise scenarios.",
     descZh: "Supplier Scorecard — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/supplier-scorecard.tsx",
+    sourcePath: "components/business/supplier-scorecard.tsx",
     storybookId: "business-supplierscorecard--docs",
   },
   {
@@ -4788,8 +4586,7 @@ export const components: ComponentMeta[] = [
     desc: "TabCrudPage — tab crud page component.",
     descZh:
       '```tsx <TabCrudPage tabs={[{ id: "all", label: "全部" }, { id: "draft", label: "草稿" }]} defaultActive="all" > <TabsContent value="all">列表内容</TabsContent> </TabCru',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/tab-crud-page.tsx",
+    sourcePath: "components/business/tab-crud-page.tsx",
     storybookId: "business-tabcrudpage--docs",
   },
   {
@@ -4810,8 +4607,7 @@ export const components: ComponentMeta[] = [
     desc: "TargetProgress — target progress component.",
     descZh:
       '<TargetProgress target={100000} actual={78000} period="2026 年 6 月" />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/target-progress.tsx",
+    sourcePath: "components/business/target-progress.tsx",
     storybookId: "business-targetprogress--docs",
   },
   {
@@ -4833,8 +4629,7 @@ export const components: ComponentMeta[] = [
     desc: "TaskListTable — task list table component.",
     descZh:
       '<TaskListTable tasks={[{ id:"1", title:"对账", status:"进行中", priority:"高" }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/task-list-table.tsx",
+    sourcePath: "components/business/task-list-table.tsx",
     storybookId: "business-tasklisttable--docs",
   },
   {
@@ -4845,8 +4640,7 @@ export const components: ComponentMeta[] = [
     desc: "TaskProgress — task progress component.",
     descZh:
       '<TaskProgress percent={75} status="running" message="正在生成报表…" />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/task-progress.tsx",
+    sourcePath: "components/business/task-progress.tsx",
     storybookId: "business-taskprogress--docs",
   },
   {
@@ -4856,8 +4650,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TaxDetailTable — a business component for ERP / enterprise scenarios.",
     descZh: "Tax Detail Table — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/tax-detail-table.tsx",
+    sourcePath: "components/business/tax-detail-table.tsx",
     storybookId: "business-taxdetailtable--docs",
   },
   {
@@ -4867,8 +4660,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TemplateDownload — a business component for ERP / enterprise scenarios.",
     descZh: "Template Download — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/template-download.tsx",
+    sourcePath: "components/business/template-download.tsx",
     storybookId: "business-templatedownload--docs",
   },
   {
@@ -4878,8 +4670,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TerritoryMap — a business component for ERP / enterprise scenarios.",
     descZh: "Territory Map — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/territory-map.tsx",
+    sourcePath: "components/business/territory-map.tsx",
     storybookId: "business-territorymap--docs",
   },
   {
@@ -4889,7 +4680,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "ThemeToggle — a business component for ERP / enterprise scenarios.",
     descZh: "主题切换 — 业务组件，核心属性：showSystem, align。",
-    sourcePath: "packages/chaos-design-ui/components/business/theme-toggle.tsx",
+    sourcePath: "components/business/theme-toggle.tsx",
     storybookId: "business-themetoggle--docs",
   },
   {
@@ -4900,8 +4691,7 @@ export const components: ComponentMeta[] = [
     desc: "TimelineView — timeline view component.",
     descZh:
       '<TimelineView events={[{ id: "e1", date: "2026-06-30", title: "创建账单" }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/timeline-view.tsx",
+    sourcePath: "components/business/timeline-view.tsx",
     storybookId: "business-timelineview--docs",
   },
   {
@@ -4911,8 +4701,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TodoListTable — a business component for ERP / enterprise scenarios.",
     descZh: "Todo List Table — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/todo-list-table.tsx",
+    sourcePath: "components/business/todo-list-table.tsx",
     storybookId: "business-todolisttable--docs",
   },
   {
@@ -4932,8 +4721,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TreeCrudPage — tree crud page component.",
     descZh: " 左树右表 CRUD",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/tree-crud-page.tsx",
+    sourcePath: "components/business/tree-crud-page.tsx",
     storybookId: "business-treecrudpage--docs",
   },
   {
@@ -4944,7 +4732,7 @@ export const components: ComponentMeta[] = [
     desc: "TreeTable — a business component for ERP / enterprise scenarios.",
     descZh:
       "树形表格 — 业务组件，核心属性：data, columns, key, header, render。",
-    sourcePath: "packages/chaos-design-ui/components/business/tree-table.tsx",
+    sourcePath: "components/business/tree-table.tsx",
     storybookId: "business-treetable--docs",
   },
   {
@@ -4954,8 +4742,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "TreemapChart — treemap chart component.",
     descZh: " 树图(层级占比)",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/treemap-chart.tsx",
+    sourcePath: "components/business/treemap-chart.tsx",
     storybookId: "business-treemapchart--docs",
   },
   {
@@ -4965,8 +4752,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "UnitConverter — a business component for ERP / enterprise scenarios.",
     descZh: "单位换算 — 业务组件，核心属性：units。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/unit-converter.tsx",
+    sourcePath: "components/business/unit-converter.tsx",
     storybookId: "business-unitconverter--docs",
   },
   {
@@ -4977,7 +4763,7 @@ export const components: ComponentMeta[] = [
     desc: "UserMenu — a business component for ERP / enterprise scenarios.",
     descZh:
       "用户菜单 — 业务组件，核心属性：user, actions, showProfile, showSettings, onProfile。",
-    sourcePath: "packages/chaos-design-ui/components/business/user-menu.tsx",
+    sourcePath: "components/business/user-menu.tsx",
     storybookId: "business-usermenu--docs",
   },
   {
@@ -4987,7 +4773,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "UtmBuilder — a business component for ERP / enterprise scenarios.",
     descZh: "UTM 构建器 — 业务组件，核心属性：baseUrl, onChange。",
-    sourcePath: "packages/chaos-design-ui/components/business/utm-builder.tsx",
+    sourcePath: "components/business/utm-builder.tsx",
     storybookId: "business-utmbuilder--docs",
   },
   {
@@ -4997,8 +4783,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "VehicleBooking — a business component for ERP / enterprise scenarios.",
     descZh: "Vehicle Booking — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/vehicle-booking.tsx",
+    sourcePath: "components/business/vehicle-booking.tsx",
     storybookId: "business-vehiclebooking--docs",
   },
   {
@@ -5008,8 +4793,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "VersionHistory — a business component for ERP / enterprise scenarios.",
     descZh: "版本历史 — 业务组件，核心属性：entries, onRestore, onView。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/version-history.tsx",
+    sourcePath: "components/business/version-history.tsx",
     storybookId: "business-versionhistory--docs",
   },
   {
@@ -5019,8 +4803,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "WarehouseBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Warehouse Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/warehouse-browse.tsx",
+    sourcePath: "components/business/warehouse-browse.tsx",
     storybookId: "business-warehousebrowse--docs",
   },
   {
@@ -5031,8 +4814,7 @@ export const components: ComponentMeta[] = [
     desc: "WarehousePicker — warehouse picker component.",
     descZh:
       '/ Warehouse picker — combobox trigger with a filterable popover. ```tsx <WarehousePicker value="W1" onChange={setId} options={[{ value: "W1", label: "中央仓", code',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/warehouse-picker.tsx",
+    sourcePath: "components/business/warehouse-picker.tsx",
     storybookId: "business-warehousepicker--docs",
   },
   {
@@ -5042,8 +4824,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "WaterfallChart — waterfall chart component.",
     descZh: "absolute totals when `absolute` is true.  瀑布图(财务分析)",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/waterfall-chart.tsx",
+    sourcePath: "components/business/waterfall-chart.tsx",
     storybookId: "business-waterfallchart--docs",
   },
   {
@@ -5053,8 +4834,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "WorkOrderCard — a business component for ERP / enterprise scenarios.",
     descZh: "Work Order Card — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/work-order-card.tsx",
+    sourcePath: "components/business/work-order-card.tsx",
     storybookId: "business-workordercard--docs",
   },
   {
@@ -5065,8 +4845,7 @@ export const components: ComponentMeta[] = [
     desc: "WorkflowDesigner — workflow designer component.",
     descZh:
       '<WorkflowDesigner nodes={[{ id: "n1", type: "start", name: "开始" }]} edges={[{ from: "n1", to: "n2" }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/workflow-designer.tsx",
+    sourcePath: "components/business/workflow-designer.tsx",
     storybookId: "business-workflowdesigner--docs",
   },
   {
@@ -5077,8 +4856,7 @@ export const components: ComponentMeta[] = [
     desc: "WorkflowPreview — workflow preview component.",
     descZh:
       '<WorkflowPreview nodes={[ { id: "n1", name: "提交申请", status: "done" }, { id: "n2", name: "主管审批", status: "active" }, ]} edges={[{ from: "n1", to: "n2" }]} />',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/workflow-preview.tsx",
+    sourcePath: "components/business/workflow-preview.tsx",
     storybookId: "business-workflowpreview--docs",
   },
   {
@@ -5088,8 +4866,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "WriteoffBrowse — a business component for ERP / enterprise scenarios.",
     descZh: "Writeoff Browse — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/business/writeoff-browse.tsx",
+    sourcePath: "components/business/writeoff-browse.tsx",
     storybookId: "business-writeoffbrowse--docs",
   },
   {
@@ -5100,8 +4877,7 @@ export const components: ComponentMeta[] = [
     desc: "WriteoffFlow — writeoff flow component.",
     descZh:
       'status 取值：done | doing | pending | rejected <WriteoffFlow steps={[ { id: "s1", name: "申请核销", status: "done", amount: 1200 }, { id: "s2", name: "财务复核", status: "',
-    sourcePath:
-      "packages/chaos-design-ui/components/business/writeoff-flow.tsx",
+    sourcePath: "components/business/writeoff-flow.tsx",
     storybookId: "business-writeoffflow--docs",
   },
   {
@@ -5111,8 +4887,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileAuthLayout — a business component for ERP / enterprise scenarios.",
     descZh: "移动端认证布局 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-auth-layout.tsx",
+    sourcePath: "components/mobile/mobile-auth-layout.tsx",
     storybookId: "business-mobileauthlayout--docs",
   },
   {
@@ -5122,8 +4897,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileBottomNav — a business component for ERP / enterprise scenarios.",
     descZh: "移动端底部导航 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-bottom-nav.tsx",
+    sourcePath: "components/mobile/mobile-bottom-nav.tsx",
     storybookId: "business-mobilebottomnav--docs",
   },
   {
@@ -5153,8 +4927,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileCheckout — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Checkout — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-checkout.tsx",
+    sourcePath: "components/mobile/mobile-checkout.tsx",
     storybookId: "mobile-mobilecheckout--docs",
   },
   {
@@ -5164,8 +4937,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileDashboardLayout — a business component for ERP / enterprise scenarios.",
     descZh: "移动端仪表盘布局 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-dashboard-layout.tsx",
+    sourcePath: "components/mobile/mobile-dashboard-layout.tsx",
     storybookId: "business-mobiledashboardlayout--docs",
   },
   {
@@ -5175,8 +4947,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileDataTable — a business component for ERP / enterprise scenarios.",
     descZh: "移动端数据表格 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-data-table.tsx",
+    sourcePath: "components/mobile/mobile-data-table.tsx",
     storybookId: "business-mobiledatatable--docs",
   },
   {
@@ -5197,8 +4968,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileEmptyState — a business component for ERP / enterprise scenarios.",
     descZh: "移动端空状态 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-empty-state.tsx",
+    sourcePath: "components/mobile/mobile-empty-state.tsx",
     storybookId: "business-mobileemptystate--docs",
   },
   {
@@ -5208,8 +4978,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileFilterBuilder — a business component for ERP / enterprise scenarios.",
     descZh: "移动端筛选构建器 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-filter-builder.tsx",
+    sourcePath: "components/mobile/mobile-filter-builder.tsx",
     storybookId: "business-mobilefilterbuilder--docs",
   },
   {
@@ -5219,8 +4988,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileFormField — a business component for ERP / enterprise scenarios.",
     descZh: "移动端表单字段 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-form-field.tsx",
+    sourcePath: "components/mobile/mobile-form-field.tsx",
     storybookId: "business-mobileformfield--docs",
   },
   {
@@ -5230,8 +4998,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileFormWizard — a business component for ERP / enterprise scenarios.",
     descZh: "移动端表单向导 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-form-wizard.tsx",
+    sourcePath: "components/mobile/mobile-form-wizard.tsx",
     storybookId: "business-mobileformwizard--docs",
   },
   {
@@ -5272,8 +5039,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileKpiCard — a business component for ERP / enterprise scenarios.",
     descZh: "移动端 KPI 卡片 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-kpi-card.tsx",
+    sourcePath: "components/mobile/mobile-kpi-card.tsx",
     storybookId: "business-mobilekpicard--docs",
   },
   {
@@ -5283,8 +5049,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileNavigation — a business component for ERP / enterprise scenarios.",
     descZh: "移动端导航 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-navigation.tsx",
+    sourcePath: "components/mobile/mobile-navigation.tsx",
     storybookId: "business-mobilenavigation--docs",
   },
   {
@@ -5294,8 +5059,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobilePageHeader — a business component for ERP / enterprise scenarios.",
     descZh: "移动端页面头部 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-page-header.tsx",
+    sourcePath: "components/mobile/mobile-page-header.tsx",
     storybookId: "business-mobilepageheader--docs",
   },
   {
@@ -5305,8 +5069,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobilePullToRefresh — a business component for ERP / enterprise scenarios.",
     descZh: "移动端下拉刷新 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-pull-to-refresh.tsx",
+    sourcePath: "components/mobile/mobile-pull-to-refresh.tsx",
     storybookId: "business-mobilepulltorefresh--docs",
   },
   {
@@ -5327,8 +5090,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileShareSheet — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Share Sheet — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-share-sheet.tsx",
+    sourcePath: "components/mobile/mobile-share-sheet.tsx",
     storybookId: "mobile-mobilesharesheet--docs",
   },
   {
@@ -5349,8 +5111,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileSkeleton — a business component for ERP / enterprise scenarios.",
     descZh: "移动端骨架屏 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-skeleton.tsx",
+    sourcePath: "components/mobile/mobile-skeleton.tsx",
     storybookId: "business-mobileskeleton--docs",
   },
   {
@@ -5360,8 +5121,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileSwipeActions — a business component for ERP / enterprise scenarios.",
     descZh: "移动端滑动操作 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-swipe-actions.tsx",
+    sourcePath: "components/mobile/mobile-swipe-actions.tsx",
     storybookId: "business-mobileswipeactions--docs",
   },
   {
@@ -5371,8 +5131,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileSwipeCard — a business component for ERP / enterprise scenarios.",
     descZh: "Mobile Swipe Card — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-swipe-card.tsx",
+    sourcePath: "components/mobile/mobile-swipe-card.tsx",
     storybookId: "mobile-mobileswipecard--docs",
   },
   {
@@ -5392,8 +5151,7 @@ export const components: ComponentMeta[] = [
     category: "Business",
     desc: "MobileTextarea — a business component for ERP / enterprise scenarios.",
     descZh: "移动端文本域 — 面向 ERP/企业场景的业务组件。",
-    sourcePath:
-      "packages/chaos-design-ui/components/mobile/mobile-textarea.tsx",
+    sourcePath: "components/mobile/mobile-textarea.tsx",
     storybookId: "business-mobiletextarea--docs",
   },
   // ─── Enterprise UI 底座补齐 — 50 个新组件 ────────────────────────

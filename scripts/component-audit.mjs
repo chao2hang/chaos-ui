@@ -115,7 +115,7 @@ function checkMdxSections(mdxContent) {
 
 // Parse source file for Props interface
 function extractPropsFromSource(sourcePath) {
-  const fullPath = join(ROOT, sourcePath.replace(/^packages\/chaos-design-ui\//, "packages/chaos-design-ui/"));
+  const fullPath = join(ROOT, sourcePath);
   const text = readText(fullPath);
   if (!text) return { exists: false, props: [], isClient: false };
 
@@ -228,7 +228,7 @@ function main() {
     // Dim 2: Style (20) - partial: check for dark mode classes in source
     let styleScore = 10; // baseline — needs manual verification
     if (sourceInfo.exists) {
-      const srcText = readText(join(ROOT, comp.sourcePath.replace(/^packages\/chaos-design-ui\//, "packages/chaos-design-ui/")));
+      const srcText = readText(join(ROOT, comp.sourcePath));
       if (srcText) {
         if (/dark:|bg-card|border-border|text-foreground|bg-background/.test(srcText)) styleScore += 5;
         if (/sm:|md:|lg:|xl:/.test(srcText)) styleScore += 3;
@@ -239,7 +239,7 @@ function main() {
     // Dim 3: Interaction (25) - needs manual verification, baseline
     let interactionScore = 15; // baseline
     if (sourceInfo.exists) {
-      const srcText = readText(join(ROOT, comp.sourcePath.replace(/^packages\/chaos-design-ui\//, "packages/chaos-design-ui/")));
+      const srcText = readText(join(ROOT, comp.sourcePath));
       if (srcText) {
         if (/role=|aria-|aria-label|aria-expanded/.test(srcText)) interactionScore += 5;
         if (/onKeyDown|onKeyUp|onKeyPress|useKeyboard|focus/.test(srcText)) interactionScore += 3;

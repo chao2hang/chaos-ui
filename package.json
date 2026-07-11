@@ -1,6 +1,6 @@
 {
   "name": "@chaos_team/chaos-ui",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "type": "module",
   "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
   "license": "MIT",

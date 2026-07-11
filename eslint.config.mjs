@@ -69,7 +69,6 @@ const eslintConfig = defineConfig([
     "apps/docs/scripts/**",
     "apps/docs/src/**",
     "apps/docs/app/**",
-    "packages/chaos-design-ui/**",
   ]),
   storybookPluginEntry,
   // Chaos UI 自定义规则

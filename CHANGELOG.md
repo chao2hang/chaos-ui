@@ -5,6 +5,23 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] — 2026-07-11
+
+### Changed
+
+- **repo**: 移除 `packages/chaos-design-ui/` 影子副本包。所有源码统一收敛到根 `components/`（+ `hooks/`、`lib/`）作为唯一发布真身；`@chaos_team/chaos-ui` 为唯一入口包。
+  - `theme-provider` 完整实现从 `packages/chaos-design-ui/components/ui/theme-provider.tsx` 内联回 `components/ui/theme-provider.tsx`（原 re-export 垫片替换为真身）。
+  - 删除 `packages/chaos-design-ui/` 目录（组件/hooks/lib/styles/tsup 配置等 300+ 个漂移的重复文件）。
+  - 移除 `apps/docs/package.json` 中的 `"chaos-design-ui": "file:..."` 本地依赖。
+  - `apps/docs/@/content/components.meta.ts` 中 173 处 `sourcePath` 前缀 `packages/chaos-design-ui/components/` → `components/`。
+  - `apps/docs/app/globals.css` `@source` 扫描路径从 `packages/chaos-design-ui/components/{ui,layout}/*.tsx` 更新为根 `components/{ui,layout,business}/*.tsx`。
+  - `apps/docs/scripts/generate-component-map.mjs` / `generate-component-loader.mjs` 中 `sourcePath` 前缀正则相应调整。
+  - `scripts/{fix-component-docs,fix-source-paths,component-audit}.mjs` 中的 `packages/chaos-design-ui/` 兼容分支删除。
+  - `tsconfig.json` `exclude` 去掉 `packages/chaos-design-ui`；`eslint.config.mjs` `ignores` 去掉 `packages/chaos-design-ui/**`；`vitest.config.ts` 去掉相关注释。
+  - `hooks/use-form-schema.ts`（含 docs 副本）注释中 `packages/chaos-design-ui` → `@chaos_team/chaos-ui`。
+  - **消费方影响**：外部消费者未直接依赖 `chaos-design-ui` 包（npm 上仅存 `0.1.3` 陈旧发布，实际引用为空），全部继续使用 `@chaos_team/chaos-ui`，无 breaking。仓库贡献者需重新 `pnpm install`。
+  - 验证：typecheck / build:pkg / 5407 单元测试全绿。
+
 ## [1.3.0] — 2026-07-11
 
 ### Changed

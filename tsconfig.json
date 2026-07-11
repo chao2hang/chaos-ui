@@ -40,10 +40,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": [
-    "node_modules",
-    "package/__deprecated__",
-    "packages/chaos-design-ui",
-    "apps"
-  ]
+  "exclude": ["node_modules", "package/__deprecated__", "apps"]
 }

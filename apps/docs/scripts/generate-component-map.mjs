@@ -111,8 +111,8 @@ function generate() {
 
   for (const entry of entries) {
     // Convert sourcePath to local docs path
-    // packages/chaos-design-ui/components/ui/button.tsx → ui/button
-    const relPath = entry.sourcePath.replace(/^packages\/chaos-design-ui\/components\//, "").replace(/\.tsx?$/, "");
+    // components/ui/button.tsx -> ui/button
+    const relPath = entry.sourcePath.replace(/^components\//, "").replace(/\.tsx?$/, "");
 
     const fullPath = join(COMPONENTS_DIR, relPath + ".tsx");
     const { primary, all } = findExports(fullPath);

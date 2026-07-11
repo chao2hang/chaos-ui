@@ -78,7 +78,7 @@ export function useFormSchema<
 }
 
 /**
- * Convenience adapter mirroring `packages/chaos-design-ui` usage so consumers
+ * Convenience adapter mirroring `@chaos_team/chaos-ui` usage so consumers
  * can write `const resolver = zodResolverAdapter(loginSchema)` without
  * importing `@hookform/resolvers/zod` themselves.
  */

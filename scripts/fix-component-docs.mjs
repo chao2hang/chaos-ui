@@ -178,7 +178,7 @@ function getImportPath(name, sourcePath) {
   if (match) {
     return `${match[1]}/${match[2]}`;
   }
-  return sourcePath.replace(/\.tsx$/, "").replace(/^packages\/chaos-design-ui\//, "");
+  return sourcePath.replace(/\.tsx$/, "").replace(/^components\//, "");
 }
 
 function getExampleValue(prop) {
