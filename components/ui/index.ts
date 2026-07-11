@@ -211,9 +211,9 @@ export type { KeyboardShortcutProps } from "./keyboard-shortcut";
 export { Kbd, KbdGroup, kbdVariants } from "./kbd";
 import { KPIPanel as _KPIPanel, KPICard as _KPICard } from "./kpi-panel";
 export { KPIPanel, KPICard } from "./kpi-panel";
-/** @deprecated Use KPIPanel */
+/** @deprecated Use `KPIPanel` (proper acronym casing). Will be removed in 2.0. */
 export const KpiPanel = _KPIPanel;
-/** @deprecated Use KPICard */
+/** @deprecated Use `KPICard` (proper acronym casing). Will be removed in 2.0. */
 export const KpiCard = _KPICard;
 export type { KPIItem, KPIPanelProps } from "./kpi-panel";
 export { Label } from "./label";
@@ -235,7 +235,7 @@ export { OfficeDocPreview, detectDocType } from "./office-doc-preview";
 export type { OfficeDocPreviewProps, DocType } from "./office-doc-preview";
 export { OrgTree } from "./org-tree";
 export type { OrgTreeProps, OrgTreeNode } from "./org-tree";
-/** @deprecated Use OTPField */
+/** @deprecated Use `OTPField` (proper acronym casing). Will be removed in 2.0. */
 export const OtpField = _OTPField;
 export {
   PageContainer,
@@ -276,7 +276,7 @@ import { QrCodeDisplay as _QrCodeDisplay } from "./qrcode-display";
 export { QrCodeDisplay } from "./qrcode-display";
 /** Alias for QrCodeDisplay (capital R variant for consumer compatibility) */
 export { QrCodeDisplay as QRCodeDisplay } from "./qrcode-display";
-/** @deprecated Use QrCodeDisplay */
+/** @deprecated Use `QrCodeDisplay` (proper casing). Note: `QrCodeDisplay` itself is also deprecated — prefer `QRCode` for real, scannable QR codes. Will be removed in 2.0. */
 export const QrcodeDisplay = _QrCodeDisplay;
 export type { QrCodeDisplayProps } from "./qrcode-display";
 export { RadioGroup, RadioGroupItem } from "./radio-group";
@@ -286,7 +286,7 @@ export {
   ResizablePanel,
   ResizableHandle,
 } from "./resizable";
-/** @deprecated Use ResizablePanelGroup / ResizablePanel / ResizableHandle */
+/** @deprecated Use `ResizablePanelGroup`, `ResizablePanel`, and `ResizableHandle` individually. Will be removed in 2.0. */
 export const Resizable = _Resizable;
 export { ScrollArea, ScrollBar } from "./scroll-area";
 export {
@@ -508,12 +508,12 @@ export { Statistic } from "./statistic";
 export type { StatisticProps } from "./statistic";
 import { QRCode as _QRCode } from "./qrcode";
 export { QRCode } from "./qrcode";
-/** @deprecated Use QRCode */
+/** @deprecated Use `QRCode` (proper acronym casing). Will be removed in 2.0. */
 export const Qrcode = _QRCode;
 export type { QRCodeProps } from "./qrcode";
 import { AutoComplete as _AutoComplete } from "./autocomplete";
 export { AutoComplete } from "./autocomplete";
-/** @deprecated Use AutoComplete */
+/** @deprecated Use `AutoComplete` (proper camelCase). Will be removed in 2.0. */
 export const Autocomplete = _AutoComplete;
 export type { AutoCompleteProps, AutoCompleteOption } from "./autocomplete";
 export { Mentions } from "./mentions";
@@ -549,7 +549,7 @@ export type {
 // Sonner toast (Toaster)
 import { Toaster as _Toaster } from "./sonner";
 export { Toaster } from "./sonner";
-/** @deprecated Use Toaster */
+/** @deprecated Use `Toaster` (semantic name — `Sonner` is the underlying library). Will be removed in 2.0. */
 export const Sonner = _Toaster;
 
 // Grid system

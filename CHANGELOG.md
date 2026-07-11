@@ -5,6 +5,24 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] — 2026-07-11
+
+### Changed
+
+- **ui/qr-code-display**: `QrCodeDisplay` 从"CSS 伪 QR 矩阵"（不可扫描）重写为**转发到 `QRCode`**（使用 `qrcode` 库生成真实可扫描 QR 码），`size` / `showText` / `text` / `label` / `className` 兼容 props 全部保留。dev 环境下会 `console.warn` 提示迁移到 `QRCode`。
+  - JSDoc 标注 `@deprecated Use QRCode instead — QrCodeDisplay is now a thin wrapper that forwards to QRCode.`
+  - `ui/index.ts` 中 `QrcodeDisplay` 别名同步标注双重 deprecated（casing + component-level）。
+- **ui/global-loading**: 内部加载指示器从硬编码 `Loader2Icon` 替换为复用 `Spinner size="lg"` 组件，风格与其它加载器统一（无视觉差异）。
+- **ui/index.ts**: 9 个历史 deprecated 别名的 JSDoc 全部补齐 `@deprecated Use XXX (reason). Will be removed in 2.0.` 完整格式：`KpiPanel` / `KpiCard` / `OtpField` / `QrcodeDisplay` / `Resizable` / `Qrcode` / `Autocomplete` / `Sonner`。
+- **business/index.ts**: 6 个 casing 别名（`BomTreeEditor` / `KpiCard` / `MapMarker` / `SpcControlChart` / `UtmBuilder` / `AdvancedDataTable`）JSDoc 注释一致化。
+- **layout/admin-shell**: 重构 `AdminShell` 移除 `AppShell` 依赖，直接组合 `AdminHeader` / `AdminSider` / `AdminTabs` / `NotificationCenter` / `UserMenu`，消除 `<header>`/`<aside>` 双重嵌套，修复 `display: contents` 破坏 flex 布局的问题。
+  - **Breaking (locally scoped)**：移除 `variant` / `notificationCount` / `onNotificationClick` / `sidebarCollapsible` 等 AppShell 相关 props（NotificationCenter 现直接渲染在 header actions 区域）；其余 props 保持兼容。
+
+### Notes
+
+- 除 AdminShell 三个 props 外无 breaking change：所有旧别名 / 旧组件仍可 import。
+- 验证：typecheck / build:pkg / 5421 单元测试（600 files）全绿。
+
 ## [1.4.0] — 2026-07-11
 
 ### Changed

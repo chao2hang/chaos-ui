@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { AppShell, type AppShellProps } from "@/components/layout/app-shell";
 import {
   AdminHeader,
   type AdminHeaderProps,
@@ -22,7 +21,7 @@ import {
  * @component AdminShell
  * @category layout/admin
  * @since 0.8.0
- * @description Pre-wired admin layout composing AppShell, AdminHeader, AdminSider, AdminTabs, UserMenu, and NotificationCenter into a single config-driven shell. Eliminates repetitive boilerplate wiring across ERP apps. / 预集成的后台布局，将 AppShell、AdminHeader、AdminSider、AdminTabs、UserMenu、NotificationCenter 组合为单次配置驱动的外壳，消除重复的样板代码。
+ * @description Pre-wired admin layout composing AdminHeader, AdminSider, AdminTabs, UserMenu, and NotificationCenter into a single config-driven shell. Eliminates repetitive boilerplate wiring across ERP apps. / 预集成的后台布局，将 AdminHeader、AdminSider、AdminTabs、UserMenu、NotificationCenter 组合为单次配置驱动的外壳，消除重复的样板代码。
  * @keywords admin, shell, layout, sidebar, header, tabs, notification, user-menu, composition
  * @example
  * <AdminShell
@@ -51,8 +50,6 @@ interface AdminShellProps extends Omit<
   logo?: React.ReactNode;
   /** Footer content in sidebar / 侧栏底部内容 */
   siderFooter?: React.ReactNode;
-  /** Whether sidebar is collapsible / 侧栏是否可折叠 */
-  sidebarCollapsible?: boolean;
   /** Default collapsed state / 默认折叠状态 */
   defaultCollapsed?: boolean;
   /** Sidebar expanded width / 展开宽度 */
@@ -85,12 +82,8 @@ interface AdminShellProps extends Omit<
   onSignOut?: () => void;
 
   // ── Notifications ──
-  /** Notification badge count / 通知徽标数 */
-  notificationCount?: number;
-  /** Notification items / 通知列表 */
+  /** Notification items for NotificationCenter / 通知列表 */
   notifications?: NotificationItem[];
-  /** Notification bell click callback (opens NotificationCenter popover) / 通知铃铛点击回调 */
-  onNotificationClick?: () => void;
   /** Mark notification as read / 标记通知已读 */
   onNotificationMarkRead?: (id: string) => void;
   /** Mark all notifications as read / 全部标为已读 */
@@ -99,6 +92,8 @@ interface AdminShellProps extends Omit<
   onNotificationClear?: () => void;
   /** Notification item click callback / 通知项点击回调 */
   onNotificationItemClick?: (item: NotificationItem) => void;
+  /** NotificationCenter alignment / 通知中心对齐方式 */
+  notificationAlign?: "start" | "center" | "end";
 
   // ── Tabs ──
   /** Tab items / Tab 项 */
@@ -119,8 +114,6 @@ interface AdminShellProps extends Omit<
   onTabRefresh?: (key: string) => void;
 
   // ── Shell ──
-  /** Layout variant / 布局变体 */
-  variant?: AppShellProps["variant"];
   /** Aside content (detail panel) / 右侧面板内容 */
   aside?: React.ReactNode;
   /** Aside panel width / 右侧面板宽度 */
@@ -141,7 +134,6 @@ export function AdminShell({
   onMenuItemClick,
   logo,
   siderFooter,
-  sidebarCollapsible = true,
   defaultCollapsed = false,
   sidebarWidth = 240,
   collapsedWidth = 64,
@@ -161,13 +153,12 @@ export function AdminShell({
   onSignOut,
 
   // Notifications
-  notificationCount = 0,
   notifications = [],
-  onNotificationClick,
   onNotificationMarkRead,
   onNotificationMarkAllRead,
   onNotificationClear,
   onNotificationItemClick,
+  notificationAlign = "end",
 
   // Tabs
   tabs = [],
@@ -180,7 +171,6 @@ export function AdminShell({
   onTabRefresh,
 
   // Shell
-  variant = "sticky",
   aside,
   asideWidth = 280,
   footer,
@@ -190,111 +180,137 @@ export function AdminShell({
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  // Build user menu element
+  const userMenuElement = user ? (
+    <UserMenu
+      user={user}
+      {...(userMenuActions !== undefined ? { actions: userMenuActions } : {})}
+      {...(onProfile !== undefined ? { onProfile } : {})}
+      {...(onSettings !== undefined ? { onSettings } : {})}
+      {...(onSignOut !== undefined ? { onSignOut } : {})}
+    />
+  ) : undefined;
+
+  // Build notification center element (shown in header area)
+  const notificationCenterElement =
+    notifications.length > 0 ? (
+      <NotificationCenter
+        notifications={notifications}
+        {...(onNotificationMarkRead !== undefined
+          ? { onMarkRead: onNotificationMarkRead }
+          : {})}
+        {...(onNotificationMarkAllRead !== undefined
+          ? { onMarkAllRead: onNotificationMarkAllRead }
+          : {})}
+        {...(onNotificationClear !== undefined
+          ? { onClear: onNotificationClear }
+          : {})}
+        {...(onNotificationItemClick !== undefined
+          ? { onItemClick: onNotificationItemClick }
+          : {})}
+        align={notificationAlign}
+      />
+    ) : undefined;
+
   return (
-    <div data-slot="admin-shell" className={cn("contents", className)}>
-      <AppShell
-        variant={variant}
-        sidebarWidth={sidebarWidth}
+    <div
+      data-slot="admin-shell"
+      className={cn("bg-background flex min-h-screen", className)}
+    >
+      {/* Sidebar */}
+      <AdminSider
+        collapsed={collapsed}
+        onCollapse={setCollapsed}
+        menuItems={menuItems}
+        {...(selectedMenuKey !== undefined
+          ? { selectedKey: selectedMenuKey }
+          : {})}
+        {...(onMenuItemClick !== undefined
+          ? { onItemClick: onMenuItemClick }
+          : {})}
+        logo={logo}
+        {...(siderFooter !== undefined ? { footer: siderFooter } : {})}
+        width={sidebarWidth}
         collapsedWidth={collapsedWidth}
-        asideWidth={asideWidth}
-        sidebarCollapsible={sidebarCollapsible}
-        defaultCollapsed={defaultCollapsed}
-        header={
-          <AdminHeader
-            {...(breadcrumb !== undefined ? { breadcrumb } : {})}
-            logo={logo}
-            showSearch={showSearch}
-            searchPlaceholder={searchPlaceholder}
-            {...(onSearch !== undefined ? { onSearch } : {})}
-            onMenuClick={() => setMobileOpen((v) => !v)}
-            {...(headerActions !== undefined ? { actions: headerActions } : {})}
-            {...(user
-              ? {
-                  userMenu: (
-                    <UserMenu
-                      user={user}
-                      {...(userMenuActions !== undefined
-                        ? { actions: userMenuActions }
-                        : {})}
-                      {...(onProfile !== undefined ? { onProfile } : {})}
-                      {...(onSettings !== undefined ? { onSettings } : {})}
-                      {...(onSignOut !== undefined ? { onSignOut } : {})}
-                    />
-                  ),
-                }
-              : {})}
-            notificationCount={notificationCount}
-            {...(onNotificationClick !== undefined
-              ? { onNotificationClick }
-              : {})}
-          />
-        }
-        sidebar={
-          <AdminSider
-            collapsed={collapsed}
-            onCollapse={setCollapsed}
-            menuItems={menuItems}
-            {...(selectedMenuKey !== undefined
-              ? { selectedKey: selectedMenuKey }
-              : {})}
-            {...(onMenuItemClick !== undefined
-              ? { onItemClick: onMenuItemClick }
-              : {})}
-            logo={logo}
-            {...(siderFooter !== undefined ? { footer: siderFooter } : {})}
-            width={sidebarWidth}
-            collapsedWidth={collapsedWidth}
-            mobileOpen={mobileOpen}
-            onMobileOpenChange={setMobileOpen}
-          />
-        }
-        aside={aside}
-        footer={footer}
-      >
+        mobileOpen={mobileOpen}
+        onMobileOpenChange={setMobileOpen}
+      />
+
+      {/* Main content area */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Header */}
+        <AdminHeader
+          {...(breadcrumb !== undefined ? { breadcrumb } : {})}
+          logo={logo}
+          showSearch={showSearch}
+          searchPlaceholder={searchPlaceholder}
+          {...(onSearch !== undefined ? { onSearch } : {})}
+          onMenuClick={() => setMobileOpen((v) => !v)}
+          {...(headerActions !== undefined ? { actions: headerActions } : {})}
+          {...(userMenuElement !== undefined
+            ? { userMenu: userMenuElement }
+            : {})}
+          {...(notificationCenterElement !== undefined
+            ? {
+                actions: (
+                  <>
+                    {notificationCenterElement}
+                    {headerActions}
+                  </>
+                ),
+              }
+            : {})}
+        />
+
         {/* Tabs bar */}
         {tabs.length > 0 && (
-          <AdminTabs
-            items={tabs}
-            {...(activeTabKey !== undefined ? { activeKey: activeTabKey } : {})}
-            {...(onTabChange !== undefined ? { onChange: onTabChange } : {})}
-            {...(onTabClose !== undefined ? { onClose: onTabClose } : {})}
-            {...(onTabCloseAll !== undefined
-              ? { onCloseAll: onTabCloseAll }
-              : {})}
-            {...(onTabCloseOthers !== undefined
-              ? { onCloseOthers: onTabCloseOthers }
-              : {})}
-            {...(onTabCloseToRight !== undefined
-              ? { onCloseToRight: onTabCloseToRight }
-              : {})}
-            {...(onTabRefresh !== undefined ? { onRefresh: onTabRefresh } : {})}
-          />
-        )}
-
-        {/* Notification center — hidden, consumer wires via onNotificationClick */}
-        {notifications.length > 0 && (
-          <div className="hidden">
-            <NotificationCenter
-              notifications={notifications}
-              {...(onNotificationMarkRead !== undefined
-                ? { onMarkRead: onNotificationMarkRead }
+          <div className="border-border bg-background border-b">
+            <AdminTabs
+              items={tabs}
+              {...(activeTabKey !== undefined
+                ? { activeKey: activeTabKey }
                 : {})}
-              {...(onNotificationMarkAllRead !== undefined
-                ? { onMarkAllRead: onNotificationMarkAllRead }
+              {...(onTabChange !== undefined ? { onChange: onTabChange } : {})}
+              {...(onTabClose !== undefined ? { onClose: onTabClose } : {})}
+              {...(onTabCloseAll !== undefined
+                ? { onCloseAll: onTabCloseAll }
                 : {})}
-              {...(onNotificationClear !== undefined
-                ? { onClear: onNotificationClear }
+              {...(onTabCloseOthers !== undefined
+                ? { onCloseOthers: onTabCloseOthers }
                 : {})}
-              {...(onNotificationItemClick !== undefined
-                ? { onItemClick: onNotificationItemClick }
+              {...(onTabCloseToRight !== undefined
+                ? { onCloseToRight: onTabCloseToRight }
+                : {})}
+              {...(onTabRefresh !== undefined
+                ? { onRefresh: onTabRefresh }
                 : {})}
             />
           </div>
         )}
 
-        {/* Page content */}
-        <div className="flex-1">{children}</div>
-      </AppShell>
+        {/* Content area with optional aside */}
+        <div className="flex flex-1 overflow-hidden">
+          {/* Main content */}
+          <main className="flex-1 overflow-y-auto p-4">{children}</main>
+
+          {/* Aside panel */}
+          {aside && (
+            <aside
+              className="border-border hidden shrink-0 overflow-y-auto border-l lg:block"
+              style={{ width: asideWidth }}
+            >
+              {aside}
+            </aside>
+          )}
+        </div>
+
+        {/* Footer */}
+        {footer && (
+          <footer className="border-border bg-background text-muted-foreground border-t px-4 py-3 text-xs">
+            {footer}
+          </footer>
+        )}
+      </div>
     </div>
   );
 }

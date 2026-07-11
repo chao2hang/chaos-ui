@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { DatePicker } from "@/components/ui/date-picker";
+import { DatePicker, formatDate, parseDate } from "@/components/ui/date-picker";
 import type { DatePickerProps } from "@/components/ui/date-picker";
 
 describe("date-picker", () => {
@@ -59,5 +59,36 @@ describe("date-picker", () => {
     const monday = new Date("2024-01-08"); // a Monday
     expect(disabledDate(sunday)).toBe(true);
     expect(disabledDate(monday)).toBe(false);
+  });
+
+  it("supports valueAsString props shape", () => {
+    const onChange = vi.fn();
+    const props: DatePickerProps = {
+      valueAsString: true,
+      value: "2026-07-11",
+      onChange,
+    };
+    expect(props.valueAsString).toBe(true);
+    expect(props.value).toBe("2026-07-11");
+  });
+});
+
+describe("formatDate / parseDate", () => {
+  it("formatDate uses yyyy-MM-dd by default", () => {
+    const d = new Date(2026, 6, 11);
+    expect(formatDate(d)).toBe("2026-07-11");
+  });
+
+  it("parseDate round-trips yyyy-MM-dd", () => {
+    const d = parseDate("2026-07-11");
+    expect(d).not.toBeNull();
+    expect(d!.getFullYear()).toBe(2026);
+    expect(d!.getMonth()).toBe(6);
+    expect(d!.getDate()).toBe(11);
+  });
+
+  it("parseDate returns null for empty", () => {
+    expect(parseDate(null)).toBeNull();
+    expect(parseDate("")).toBeNull();
   });
 });

@@ -105,3 +105,17 @@ export { useTrack } from "./use-track";
 export type { UseTrackOptions } from "./use-track";
 export { useUndo } from "./use-undo";
 export { useWebsocket } from "./use-websocket";
+
+// List page glue (consumer hand-written pattern adoption)
+export { usePageList } from "./use-page-list";
+export type {
+  PageListParams,
+  PageListResult,
+  UsePageListOptions,
+  UsePageListResult,
+} from "./use-page-list";
+export { toSearchTablePagination } from "./to-search-table-pagination";
+export type {
+  SearchTablePagination,
+  SearchTablePaginationSource,
+} from "./to-search-table-pagination";

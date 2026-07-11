@@ -3,28 +3,13 @@
 import * as React from "react";
 import { Button } from "@/components/ui";
 import { PageContainer, PageHeader } from "@/components/ui";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui";
 import { FilterBar, type FilterField } from "./filter-bar";
 import { SearchTable, type ColumnDef } from "./search-table";
+import { FormDialog, type FormDialogField } from "./form-dialog";
+import { RefreshButton } from "./refresh-button";
 
-interface FormField {
-  key: string;
-  label: string;
-  type?: "input" | "select" | "number" | "date" | "textarea" | "custom";
-  required?: boolean;
-  placeholder?: string;
-  options?: { label: string; value: string }[];
-  render?: (
-    value: unknown,
-    onChange: (val: unknown) => void,
-  ) => React.ReactNode;
-  defaultValue?: unknown;
-}
+/** @deprecated Prefer FormDialogField from form-dialog. Kept for CrudPage API. */
+type FormField = FormDialogField;
 
 interface CrudPageProps {
   title: string;
@@ -50,6 +35,8 @@ interface CrudPageProps {
   actions?: React.ReactNode;
   /** Built-in refresh button (shown when onRefresh provided). / 内置刷新按钮 */
   onRefresh?: () => void;
+  /** When true, spins/disables the built-in refresh button. / 刷新中 */
+  refreshing?: boolean;
   /** Built-in add button (shown when onAdd provided). / 内置新增按钮 */
   onAdd?: () => void;
   /** Edit a record (sets editingRecord + opens dialog). / 编辑记录 */
@@ -62,128 +49,6 @@ interface CrudPageProps {
     onChange: (keys: string[]) => void;
   };
   className?: string;
-}
-
-/** Internal form dialog that remounts via key, avoiding useEffect setState */
-function FormDialog({
-  open,
-  onOpenChange,
-  title,
-  fields,
-  record,
-  onSubmit,
-}: {
-  open?: boolean | undefined;
-  onOpenChange?: ((open: boolean) => void) | undefined;
-  title: string;
-  fields: FormField[];
-  record?: Record<string, unknown> | null | undefined;
-  onSubmit?: ((values: Record<string, unknown>) => void) | undefined;
-}) {
-  const initial = React.useMemo(() => {
-    if (record) return { ...record };
-    const init: Record<string, unknown> = {};
-    fields.forEach((f) => {
-      if (f.defaultValue !== undefined) init[f.key] = f.defaultValue;
-    });
-    return init;
-  }, [record, fields]);
-
-  const [values, setValues] = React.useState(initial);
-
-  const handleChange = (key: string, value: unknown) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const renderField = (field: FormField) => {
-    if (field.render) {
-      return field.render(values[field.key], (val) =>
-        handleChange(field.key, val),
-      );
-    }
-
-    const value = values[field.key];
-
-    if (field.type === "select" && field.options) {
-      return (
-        <select
-          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
-          value={String(value ?? "")}
-          onChange={(e) => handleChange(field.key, e.target.value || undefined)}
-        >
-          <option value="">
-            {field.placeholder || `请选择${field.label}`}
-          </option>
-          {field.options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      );
-    }
-
-    if (field.type === "textarea") {
-      return (
-        <textarea
-          className="bg-background min-h-[80px] w-full rounded-md border px-3 py-2 text-sm"
-          placeholder={field.placeholder}
-          value={String(value ?? "")}
-          onChange={(e) => handleChange(field.key, e.target.value)}
-        />
-      );
-    }
-
-    if (field.type === "number") {
-      return (
-        <input
-          type="number"
-          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
-          placeholder={field.placeholder}
-          value={value != null ? String(value) : ""}
-          onChange={(e) =>
-            handleChange(field.key, e.target.valueAsNumber || undefined)
-          }
-        />
-      );
-    }
-
-    return (
-      <input
-        className="bg-background h-9 w-full rounded-md border px-3 text-sm"
-        placeholder={field.placeholder}
-        value={String(value ?? "")}
-        onChange={(e) => handleChange(field.key, e.target.value)}
-      />
-    );
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[560px]">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-        </DialogHeader>
-        <div className="grid gap-4 py-2">
-          {fields.map((field) => (
-            <div key={field.key} className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium">
-                {field.label}
-                {field.required && <span className="ml-1 text-red-500">*</span>}
-              </label>
-              {renderField(field)}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={() => onOpenChange?.(false)}>
-            取消
-          </Button>
-          <Button onClick={() => onSubmit?.(values)}>确定</Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 }
 
 /**
@@ -208,6 +73,7 @@ function CrudPage({
   editingRecord,
   actions,
   onRefresh,
+  refreshing = false,
   onAdd,
   onEdit,
   onSearch,
@@ -260,11 +126,7 @@ function CrudPage({
   // the same icon/size/variant. Custom `actions` render alongside.
   const builtinActions = (
     <>
-      {onRefresh && (
-        <Button variant="outline" size="sm" onClick={onRefresh}>
-          刷新
-        </Button>
-      )}
+      {onRefresh && <RefreshButton onClick={onRefresh} loading={refreshing} />}
       {onAdd && (
         <Button size="sm" onClick={onAdd}>
           新增
@@ -303,12 +165,12 @@ function CrudPage({
               ? `edit-${String(editingRecord[rowKey] ?? "")}`
               : `new-${dialogOpen ? "1" : "0"}`
           }
-          open={dialogOpen}
-          onOpenChange={onDialogOpenChange}
           title={formTitle}
           fields={formFields}
           record={editingRecord}
           onSubmit={onSubmit}
+          open={dialogOpen ?? false}
+          onOpenChange={onDialogOpenChange}
         />
       )}
     </PageContainer>

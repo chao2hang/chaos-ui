@@ -69,7 +69,11 @@ export * from "./filter-bar";
 export * from "./filter-builder";
 export * from "./forbidden";
 export * from "./form-field";
+export * from "./form-dialog";
 export * from "./form-wizard";
+export * from "./refresh-button";
+export * from "./record-count";
+export * from "./list-page-shell";
 export * from "./gauge";
 export * from "./heatmap-calendar";
 export * from "./inline-edit";
@@ -446,11 +450,17 @@ export * from "./compliance-checklist";
 export * from "./i18n-form-field";
 
 // ─── Alias exports for consumer compatibility ──────────────────────
+/** @deprecated Use `BOMTreeEditor` (proper acronym casing). Will be removed in 2.0. */
 export { BOMTreeEditor as BomTreeEditor } from "./bom-tree-editor";
+/** @deprecated Use `KPICard` (proper acronym casing). Will be removed in 2.0. */
 export { KPICard as KpiCard } from "./kpi-card";
+/** @deprecated Use `MapMarkerCluster` (semantic name). Will be removed in 2.0. */
 export { MapMarkerCluster as MapMarker } from "./map-marker";
+/** @deprecated Use `SPCControlChart` (proper acronym casing). Will be removed in 2.0. */
 export { SPCControlChart as SpcControlChart } from "./spc-control-chart";
+/** @deprecated Use `UTMBuilder` (proper acronym casing). Will be removed in 2.0. */
 export { UTMBuilder as UtmBuilder } from "./utm-builder";
+/** @deprecated Use `SearchTable` or `DataTable` (powered by @tanstack/react-table). Will be removed in 2.0. */
 export { AdvancedDataTable } from "./advanced-data-table";
 
 // ─── Enterprise UI 底座补齐 — 业务组件 ────────────────────────────

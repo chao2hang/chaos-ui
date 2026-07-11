@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Loader2Icon } from "@/components/ui/icons";
+import { Spinner } from "./spinner";
 
 /**
  * @component GlobalLoading
@@ -47,7 +47,7 @@ function GlobalLoading({
       )}
       {...props}
     >
-      {spinner && <Loader2Icon className="text-primary size-8 animate-spin" />}
+      {spinner && <Spinner size="lg" color="primary" label={text} />}
       {text && (
         <span
           data-slot="global-loading-text"

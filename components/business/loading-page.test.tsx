@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { LoadingPage, FullPageLoader } from "./loading-page";
+import { LoadingPage, FullPageLoader, PageLoading } from "./loading-page";
 
 vi.mock("react-i18next", async (importOriginal) => {
   const actual = await importOriginal();
@@ -52,6 +52,16 @@ describe("LoadingPage", () => {
     const { container } = render(<LoadingPage title="X" variant="spinner" />);
     expect(container.querySelector(".animate-bounce")).toBeNull();
     expect(container.querySelector(".animate-ping")).toBeNull();
+  });
+});
+
+describe("PageLoading", () => {
+  it("applies min-h-dvh for viewport-centered fallbacks", () => {
+    const { container } = render(<PageLoading title="加载中" />);
+    const el = container.querySelector('[data-slot="loading-page"]');
+    expect(el).not.toBeNull();
+    expect(el?.className).toContain("min-h-dvh");
+    expect(screen.getByText("加载中")).toBeDefined();
   });
 });
 

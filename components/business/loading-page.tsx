@@ -57,6 +57,20 @@ export function LoadingPage({
   );
 }
 
+/**
+ * @component PageLoading
+ * @category business/ux
+ * @since 1.5.0
+ * @description Viewport-centered loading for route Suspense fallbacks.
+ * Prefer this over hand-writing `flex h-dvh items-center justify-center` + Spin.
+ * / 视口居中加载，适合路由 Suspense fallback，替代手写 h-dvh + Spin。
+ * @example
+ * <Suspense fallback={<PageLoading title="正在加载登录页…" />}>...</Suspense>
+ */
+export function PageLoading({ className, ...props }: LoadingPageProps) {
+  return <LoadingPage {...props} className={cn("min-h-dvh", className)} />;
+}
+
 function DotsSpinner() {
   return (
     <div className="flex items-center gap-1.5">

@@ -59,7 +59,6 @@ export const FullAdminShell: Story = {
       email: "admin@chaos-ui.dev",
       role: "Administrator",
     },
-    notificationCount: 5,
     notifications: [
       {
         id: "1",
