@@ -5,6 +5,12 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] — 2026-07-11
+
+### Bug Fixes
+
+- **grid**: 修复 `colSpanClass` / `colOffsetClass` / `colOrderClass` 在 `prefix` 为空字符串时生成非法 leading-colon class（如 `:col-span-6`）导致 Tailwind 无法匹配的问题；仅在存在 breakpoint 前缀时才拼接 `:` 分隔符。
+
 ## [1.1.0] — 2026-07-09
 
 ### 组件深度检测与修正
