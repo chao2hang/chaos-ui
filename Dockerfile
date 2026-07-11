@@ -17,7 +17,9 @@ COPY . .
 
 # 构建组件包（文档站通过 link:../.. 依赖 dist/ 产物）
 # 增加 Node.js 内存限制，防止构建 OOM（GitHub Actions runner 有 7GB RAM）
+# CI=true 让 pnpm 跳过交互式确认（Docker 中无 TTY）
 ENV NODE_OPTIONS=--max-old-space-size=6144
+ENV CI=true
 
 RUN pnpm run build:pkg && \
     echo "=== dist/ contents ===" && \
