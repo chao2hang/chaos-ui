@@ -14,14 +14,18 @@ import { type Locale } from "@/lib/i18n/locale";
 
 export interface DictShape {
   header: {
-    navInstall: string;
-    navFeatures: string;
+    navDocs: string;
     navComponents: string;
     toggleToEn: string;
     toggleToZh: string;
     langLabelEn: string;
     langLabelZh: string;
     themeToggle: string;
+  };
+  docs: {
+    navLabel: string;
+    browseComponents: string;
+    indexTitle: string;
   };
   home: {
     heroBadge: string;
@@ -66,6 +70,15 @@ export interface DictShape {
     noMatchTitleEn: string;
     clearSearch: string;
     sectionCount: string;
+    viewList: string;
+    viewGrid: string;
+    filterAll: string;
+    filterFavorites: string;
+    filterRecent: string;
+    filterNew: string;
+    allCategories: string;
+    showAll: string;
+    showFewer: string;
   };
   detail: {
     breadcrumbRoot: string;
@@ -97,14 +110,18 @@ export interface DictShape {
 
 const zh: DictShape = {
   header: {
-    navInstall: "安装",
-    navFeatures: "特性",
+    navDocs: "文档",
     navComponents: "组件",
     toggleToEn: "Switch to English",
     toggleToZh: "切换到中文",
     langLabelEn: "EN",
     langLabelZh: "中文",
     themeToggle: "切换主题",
+  },
+  docs: {
+    navLabel: "指南",
+    browseComponents: "浏览全部组件",
+    indexTitle: "文档",
   },
   home: {
     heroBadge: "企业级 React 组件库",
@@ -113,9 +130,9 @@ const zh: DictShape = {
     heroSubtitleEn:
       "A production-grade React component library for modern enterprise applications.",
     heroParagraph:
-      "面向 ERP & 业务系统的企业级 React 19 组件库。148+ 组件、19 Hooks、5 工具模块，基于 Tailwind CSS 4 和 shadcn/ui 构建。",
+      "面向 ERP & 业务系统的企业级 React 19 组件库。完整组件目录、Hooks 与工具库，基于 Tailwind CSS 4 与 @base-ui/react 构建。",
     heroParagraphEn:
-      "Enterprise React 19 component library for ERP and business systems. 148+ components, 19 hooks, 5 utility modules — built on Tailwind CSS 4 and shadcn/ui.",
+      "Enterprise React 19 component library for ERP and business systems — full component catalog, hooks, and utilities on Tailwind CSS 4 and @base-ui/react.",
     ctaQuickStart: "快速开始",
     ctaBrowse: "浏览组件",
     statsHeading: "三步上手",
@@ -152,13 +169,22 @@ const zh: DictShape = {
     pageDescEn:
       "Enterprise React components from Chaos UI — covering general, layout, form, data display, feedback and business scenarios.",
     searchLabel: "搜索组件",
-    searchPlaceholder: "搜索 name / nameZh / 描述 / 标签",
+    searchPlaceholder: "搜索名称 / 中文 / slug，多词空格分隔",
     resultHit: "命中",
     resultHitEn: "of",
     noMatchTitle: "未找到匹配的组件",
     noMatchTitleEn: "No matching components",
     clearSearch: "清空搜索",
     sectionCount: "个组件",
+    viewList: "列表",
+    viewGrid: "卡片",
+    filterAll: "全部",
+    filterFavorites: "收藏",
+    filterRecent: "最近",
+    filterNew: "新增",
+    allCategories: "全部分类",
+    showAll: "展开全部",
+    showFewer: "收起",
   },
   detail: {
     breadcrumbRoot: "组件总览",
@@ -178,7 +204,7 @@ const zh: DictShape = {
     toggleLabel: "切换侧边栏",
   },
   palette: {
-    searchPlaceholder: "搜索组件…",
+    searchPlaceholder: "搜索组件或文档…",
     noResults: "无匹配结果",
     hint: "↑↓ 导航  ↵ 跳转  Esc 关闭",
   },
@@ -190,14 +216,18 @@ const zh: DictShape = {
 
 const en: DictShape = {
   header: {
-    navInstall: "Install",
-    navFeatures: "Features",
+    navDocs: "Docs",
     navComponents: "Components",
     toggleToEn: "Switch to English",
     toggleToZh: "Switch to Chinese",
     langLabelEn: "EN",
     langLabelZh: "中文",
     themeToggle: "Toggle theme",
+  },
+  docs: {
+    navLabel: "Guides",
+    browseComponents: "Browse all components",
+    indexTitle: "Documentation",
   },
   home: {
     heroBadge: "Enterprise React Component Library",
@@ -246,13 +276,22 @@ const en: DictShape = {
     pageDescEn:
       "Enterprise React components from Chaos UI — covering general, layout, form, data display, feedback and business scenarios.",
     searchLabel: "Search components",
-    searchPlaceholder: "Search name / nameZh / description / tags",
+    searchPlaceholder: "Search name / Chinese / slug (space = AND)",
     resultHit: "of",
     resultHitEn: "of",
     noMatchTitle: "No matching components",
     noMatchTitleEn: "No matching components",
     clearSearch: "Clear",
     sectionCount: "components",
+    viewList: "List",
+    viewGrid: "Grid",
+    filterAll: "All",
+    filterFavorites: "Favorites",
+    filterRecent: "Recent",
+    filterNew: "New",
+    allCategories: "All categories",
+    showAll: "Show all",
+    showFewer: "Show fewer",
   },
   detail: {
     breadcrumbRoot: "Components Overview",
@@ -273,7 +312,7 @@ const en: DictShape = {
     toggleLabel: "Toggle sidebar",
   },
   palette: {
-    searchPlaceholder: "Search components…",
+    searchPlaceholder: "Search components or docs…",
     noResults: "No results",
     hint: "↑↓ navigate  ↵ open  Esc close",
   },

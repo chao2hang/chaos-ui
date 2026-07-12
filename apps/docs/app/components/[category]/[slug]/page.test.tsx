@@ -172,7 +172,7 @@ describe("ComponentDetailPage fallbacks", () => {
     const storybookLink = screen.getByRole("link", { name: "Storybook Docs" });
     expect(storybookLink).toHaveAttribute(
       "href",
-      "http://localhost:3002/?path=/docs/components-notice--docs",
+      "http://localhost:6006/?path=/docs/components-notice--docs",
     );
     expect(storybookLink).toHaveAttribute("target", "_blank");
     expect(storybookLink).toHaveAttribute(

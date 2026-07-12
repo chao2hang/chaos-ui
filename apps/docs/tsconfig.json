@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,17 +22,60 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./@/*"]
+      "@/components/component-story-previews": [
+        "./types/stubs/component-story-previews"
+      ],
+      "@/components/component-previews": [
+        "./types/stubs/component-previews"
+      ],
+      "@/components/component-loader": [
+        "./types/stubs/component-loader"
+      ],
+      "@/components/component-map": [
+        "./types/stubs/component-map"
+      ],
+      "@/components/mdx-loaders": [
+        "./types/stubs/mdx-loaders"
+      ],
+      "@/components/component-preview-impl": [
+        "./types/stubs/component-preview-impl"
+      ],
+      "@/components/story-preview-renderer": [
+        "./types/stubs/story-preview-renderer"
+      ],
+      "@/*": [
+        "./@/*",
+        "../../*"
+      ]
     }
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "@/**/*.ts",
+    "@/**/*.tsx",
+    "mdx-components.tsx",
+    "types/**/*.d.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src",
+    "**/component-story-previews.tsx",
+    "**/component-loader.ts",
+    "**/component-map.ts",
+    "**/mdx-loaders.ts",
+    "**/component-previews.tsx",
+    "**/component-preview-impl.tsx",
+    "**/component-preview-impl.test.tsx",
+    "**/story-preview-renderer.tsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

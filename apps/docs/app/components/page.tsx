@@ -11,8 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
       ? "Components Overview · Chaos UI"
       : "组件总览 · Components · Chaos UI",
     description: isEn
-      ? "Chaos UI components overview — searchable catalog of all 8 categories: General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout."
-      : "Chaos UI 组件总览页 — 可搜索的 8 大分区组件目录:General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout。",
+      ? "Chaos UI components overview — searchable catalog: General / Layout / Navigation / Form / DataDisplay / Feedback / Business / System Layout / Mobile."
+      : "Chaos UI 组件总览页 — 可搜索分区目录：通用 / 布局 / 导航 / 表单 / 数据展示 / 反馈 / 业务 / 系统布局 / 移动端。",
   };
 }
 

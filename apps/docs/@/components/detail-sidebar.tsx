@@ -9,6 +9,7 @@ import {
   CATEGORIES,
   categoryLabelsEn,
   categoryLabelsZh,
+  categoryToPathSegment,
 } from "@/content/components.meta";
 import { sectionIdForCategory } from "@/components/component-card";
 import { useLocale } from "@/components/locale-provider";
@@ -192,7 +193,7 @@ export function DetailSidebar({ components }: DetailSidebarProps) {
                 <div className="border-border/20 ml-4 max-h-96 overflow-y-auto border-l pl-2">
                   {data.components.map((comp) => {
                     const isActive = currentSlug === comp.slug;
-                    const href = `/components/${encodeURIComponent(comp.category)}/${encodeURIComponent(comp.slug)}`;
+                    const href = `/components/${categoryToPathSegment(comp.category)}/${encodeURIComponent(comp.slug)}`;
                     return (
                       <Link
                         key={`${comp.category}-${comp.slug}`}

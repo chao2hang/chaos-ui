@@ -9,6 +9,10 @@
 @source "../../../components/ui/*.tsx";
 @source "../../../components/layout/*.tsx";
 @source "../../../components/business/*.tsx";
+/* Mobile kit — required for /components#mobile live previews (was missing; Tailwind never emitted mobile-only utilities). */
+@source "../../../components/mobile/*.tsx";
+/* Storybook stories power docs ComponentPreview; scan so story-only layout classes exist. */
+@source "../../../src/stories/**/*.{tsx,ts}";
 @source "../app/**/*.tsx";
 @source "../@/components/**/*.tsx";
 
@@ -139,6 +143,8 @@
 }
 
 :root {
+  /* Align with package styles.css (color-scheme + tokens) */
+  color-scheme: light;
   /* Core palette (shadcn neutral base) */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -249,6 +255,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -265,7 +272,8 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 25%);
+  /* Match package styles.css dark border (was 25% — too heavy vs chaos-ui) */
+  --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.7 0.2 250);
@@ -286,7 +294,7 @@
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 25%);
+  --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
   /* Brand palette (dark mode - lighter) */
@@ -396,4 +404,60 @@
 
 .top-loader-indicator {
   animation: top-loader-slide 1.2s ease-in-out infinite;
+}
+
+/* 24-column grid for Row/Col (mirrored from package styles.css) */
+@layer utilities {
+  .grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+  .col-span-1 { grid-column: span 1 / span 1; }
+  .col-span-2 { grid-column: span 2 / span 2; }
+  .col-span-3 { grid-column: span 3 / span 3; }
+  .col-span-4 { grid-column: span 4 / span 4; }
+  .col-span-5 { grid-column: span 5 / span 5; }
+  .col-span-6 { grid-column: span 6 / span 6; }
+  .col-span-7 { grid-column: span 7 / span 7; }
+  .col-span-8 { grid-column: span 8 / span 8; }
+  .col-span-9 { grid-column: span 9 / span 9; }
+  .col-span-10 { grid-column: span 10 / span 10; }
+  .col-span-11 { grid-column: span 11 / span 11; }
+  .col-span-12 { grid-column: span 12 / span 12; }
+  .col-span-13 { grid-column: span 13 / span 13; }
+  .col-span-14 { grid-column: span 14 / span 14; }
+  .col-span-15 { grid-column: span 15 / span 15; }
+  .col-span-16 { grid-column: span 16 / span 16; }
+  .col-span-17 { grid-column: span 17 / span 17; }
+  .col-span-18 { grid-column: span 18 / span 18; }
+  .col-span-19 { grid-column: span 19 / span 19; }
+  .col-span-20 { grid-column: span 20 / span 20; }
+  .col-span-21 { grid-column: span 21 / span 21; }
+  .col-span-22 { grid-column: span 22 / span 22; }
+  .col-span-23 { grid-column: span 23 / span 23; }
+  .col-span-24 { grid-column: span 24 / span 24; }
+  .col-start-1 { grid-column-start: 1; }
+  .col-start-2 { grid-column-start: 2; }
+  .col-start-3 { grid-column-start: 3; }
+  .col-start-4 { grid-column-start: 4; }
+  .col-start-5 { grid-column-start: 5; }
+  .col-start-6 { grid-column-start: 6; }
+  .col-start-7 { grid-column-start: 7; }
+  .col-start-8 { grid-column-start: 8; }
+  .col-start-9 { grid-column-start: 9; }
+  .col-start-10 { grid-column-start: 10; }
+  .col-start-11 { grid-column-start: 11; }
+  .col-start-12 { grid-column-start: 12; }
+  .col-start-13 { grid-column-start: 13; }
+  .col-start-14 { grid-column-start: 14; }
+  .col-start-15 { grid-column-start: 15; }
+  .col-start-16 { grid-column-start: 16; }
+  .col-start-17 { grid-column-start: 17; }
+  .col-start-18 { grid-column-start: 18; }
+  .col-start-19 { grid-column-start: 19; }
+  .col-start-20 { grid-column-start: 20; }
+  .col-start-21 { grid-column-start: 21; }
+  .col-start-22 { grid-column-start: 22; }
+  .col-start-23 { grid-column-start: 23; }
+  .col-start-24 { grid-column-start: 24; }
+  .col-start-25 { grid-column-start: 25; }
 }

@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type KeyboardEvent,
@@ -13,17 +14,32 @@ import { useComponentSearch } from "@/components/use-component-search";
 import { useLocale } from "@/components/locale-provider";
 import { useDict } from "@/hooks/use-dict";
 import type { ComponentMeta } from "@/content/components.meta";
-import { CATEGORIES, components } from "@/content/components.meta";
+import {
+  components,
+  categoryToPathSegment,
+} from "@/content/components.meta";
+import { GUIDES } from "@/lib/docs-nav";
+import {
+  getFavoriteComponents,
+  getRecentComponents,
+} from "@/lib/component-recents";
+
+type PaletteItem =
+  | { kind: "guide"; href: string; title: string; subtitle: string }
+  | {
+      kind: "component";
+      href: string;
+      title: string;
+      subtitle: string;
+      category: string;
+      meta: ComponentMeta;
+    };
+
+const EMPTY_QUERY_COMPONENT_LIMIT = 12;
 
 /**
- * Cmd+K / Ctrl+K 命令面板（Linear 风格）。
- *
- * - 全局快捷键：Meta+k / Ctrl+k 打开
- * - 半透明遮罩 + 居中浮层
- * - 实时搜索过滤，键盘 ↑↓ 导航
- * - Enter 跳转到组件详情页，Escape 关闭
- *
- * 直接导入 components 元数据（497 个条目仅约 40KB），挂载在根 layout 中。
+ * Cmd+K / Ctrl+K command palette.
+ * Searches guide pages + component meta registry (ranked).
  */
 export function CommandPalette() {
   const { locale } = useLocale();
@@ -37,17 +53,71 @@ export function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
-  const { grouped } = useComponentSearch(components, query);
+  const { results, tokens } = useComponentSearch(components, query);
 
-  // 展开所有匹配结果为扁平列表
-  const results = useRef<ComponentMeta[]>([]);
-  results.current = [];
-  for (const cat of CATEGORIES) {
-    results.current.push(...(grouped.get(cat) ?? []));
-  }
-  const flatResults = results.current;
+  const items = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const out: PaletteItem[] = [];
 
-  // 打开/关闭快捷键
+    for (const guide of GUIDES) {
+      const title = isEn ? guide.titleEn : guide.titleZh;
+      const subtitle = isEn ? guide.descriptionEn : guide.descriptionZh;
+      const hay =
+        `${guide.slug} ${guide.titleEn} ${guide.titleZh} ${guide.descriptionEn} ${guide.descriptionZh}`.toLowerCase();
+      if (!q || hay.includes(q)) {
+        out.push({
+          kind: "guide",
+          href: `/docs/${guide.slug}`,
+          title,
+          subtitle,
+        });
+      }
+    }
+
+    const bySlug = new Map(components.map((c) => [c.slug, c]));
+    const pushComp = (comp: ComponentMeta) => {
+      out.push({
+        kind: "component",
+        href: `/components/${categoryToPathSegment(comp.category)}/${encodeURIComponent(comp.slug)}`,
+        title: isEn ? comp.name : comp.nameZh || comp.name,
+        subtitle: isEn
+          ? `${comp.category} · ${comp.slug}`
+          : `${comp.name} · ${comp.slug}`,
+        category: comp.category,
+        meta: comp,
+      });
+    };
+
+    if (tokens.length === 0) {
+      const seen = new Set<string>();
+      for (const slug of [
+        ...getRecentComponents(),
+        ...getFavoriteComponents(),
+      ]) {
+        if (seen.has(slug)) continue;
+        const comp = bySlug.get(slug);
+        if (!comp) continue;
+        seen.add(slug);
+        pushComp(comp);
+        if (seen.size >= EMPTY_QUERY_COMPONENT_LIMIT) break;
+      }
+      // fill with a few isNew if still empty
+      if (seen.size === 0) {
+        for (const comp of components) {
+          if (!comp.isNew) continue;
+          pushComp(comp);
+          seen.add(comp.slug);
+          if (seen.size >= EMPTY_QUERY_COMPONENT_LIMIT) break;
+        }
+      }
+    } else {
+      for (const { comp } of results.slice(0, 40)) {
+        pushComp(comp);
+      }
+    }
+    return out;
+  }, [results, tokens, isEn, query]);
+
   useEffect(() => {
     const handler = (e: globalThis.KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -61,34 +131,28 @@ export function CommandPalette() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  // 打开时自动聚焦输入框
   useEffect(() => {
     if (open) {
-      // 延迟聚焦，确保 DOM 已渲染
       const timer = setTimeout(() => inputRef.current?.focus(), 50);
       return () => clearTimeout(timer);
     }
   }, [open]);
 
-  // 重置选中索引当结果变化
   useEffect(() => {
     setSelectedIdx(0);
   }, [query]);
 
-  // 滚动选中项到可视区
   useEffect(() => {
     if (!listRef.current) return;
-    const item = listRef.current.children[selectedIdx] as
-      HTMLElement | undefined;
+    const item = listRef.current.children[selectedIdx] as HTMLElement | undefined;
     item?.scrollIntoView({ block: "nearest" });
   }, [selectedIdx]);
 
   const navigate = useCallback(
-    (comp: ComponentMeta) => {
-      const href = `/components/${encodeURIComponent(comp.category)}/${encodeURIComponent(comp.slug)}`;
+    (item: PaletteItem) => {
       setOpen(false);
       setQuery("");
-      router.push(href);
+      router.push(item.href);
     },
     [router],
   );
@@ -98,7 +162,7 @@ export function CommandPalette() {
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
-          setSelectedIdx((i) => Math.min(i + 1, flatResults.length - 1));
+          setSelectedIdx((i) => Math.min(i + 1, Math.max(items.length - 1, 0)));
           break;
         case "ArrowUp":
           e.preventDefault();
@@ -106,16 +170,14 @@ export function CommandPalette() {
           break;
         case "Enter":
           e.preventDefault();
-          if (flatResults[selectedIdx]) {
-            navigate(flatResults[selectedIdx]);
-          }
+          if (items[selectedIdx]) navigate(items[selectedIdx]);
           break;
         case "Escape":
           setOpen(false);
           break;
       }
     },
-    [flatResults, selectedIdx, navigate],
+    [items, selectedIdx, navigate],
   );
 
   if (!open) return null;
@@ -125,17 +187,14 @@ export function CommandPalette() {
       className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]"
       role="dialog"
       aria-modal="true"
-      aria-label={isEn ? "Search components" : "搜索组件"}
+      aria-label={isEn ? "Search docs and components" : "搜索文档与组件"}
     >
-      {/* 遮罩 */}
       <div
         className="bg-background/70 dark:bg-background/80 absolute inset-0 backdrop-blur-sm"
         onClick={() => setOpen(false)}
       />
 
-      {/* 面板 */}
       <div className="bg-card border-border/60 relative z-10 w-full max-w-xl overflow-hidden rounded-xl border shadow-2xl dark:shadow-black/50">
-        {/* 搜索框 */}
         <div className="border-border/40 flex items-center gap-3 border-b px-4 py-3">
           <svg
             viewBox="0 0 24 24"
@@ -165,8 +224,7 @@ export function CommandPalette() {
           </kbd>
         </div>
 
-        {/* 结果列表 */}
-        {flatResults.length === 0 ? (
+        {items.length === 0 ? (
           <div className="text-muted-foreground px-4 py-12 text-center text-sm">
             {dict.palette.noResults}
           </div>
@@ -177,16 +235,14 @@ export function CommandPalette() {
               className="max-h-80 overflow-auto py-2"
               role="listbox"
             >
-              {flatResults.map((comp, idx) => {
+              {items.map((item, idx) => {
                 const isSelected = idx === selectedIdx;
-                const displayName = isEn ? comp.name : comp.nameZh || comp.name;
-                const subName = isEn && comp.nameZh ? comp.nameZh : undefined;
                 return (
                   <li
-                    key={`${comp.category}-${comp.slug}`}
+                    key={`${item.kind}-${item.href}`}
                     role="option"
                     aria-selected={isSelected}
-                    onClick={() => navigate(comp)}
+                    onClick={() => navigate(item)}
                     onMouseEnter={() => setSelectedIdx(idx)}
                     className={
                       "flex cursor-pointer items-center gap-3 px-4 py-2 text-sm transition-colors " +
@@ -195,25 +251,33 @@ export function CommandPalette() {
                         : "text-foreground hover:bg-muted")
                     }
                   >
-                    <span className="shrink-0 font-mono text-xs font-semibold">
-                      {displayName}
+                    <span className="text-muted-foreground w-10 shrink-0 text-[10px] font-medium uppercase">
+                      {item.kind === "guide"
+                        ? isEn
+                          ? "Docs"
+                          : "文档"
+                        : isEn
+                          ? "UI"
+                          : "组件"}
                     </span>
-                    {subName && (
-                      <span className="text-muted-foreground text-xs">
-                        {subName}
+                    <span className="shrink-0 font-mono text-xs font-semibold">
+                      {item.title}
+                    </span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {item.subtitle}
+                    </span>
+                    {item.kind === "component" && (
+                      <span className="text-muted-foreground ml-auto shrink-0 text-[10px]">
+                        {item.category}
                       </span>
                     )}
-                    <span className="text-muted-foreground ml-auto shrink-0 text-[10px]">
-                      {(comp as ComponentMeta & { category: string }).category}
-                    </span>
                   </li>
                 );
               })}
             </ul>
-            {/* 底部提示 */}
             <div className="border-border/40 text-muted-foreground flex items-center justify-between border-t px-4 py-2 text-[10px]">
               <span>
-                {flatResults.length} {isEn ? "components" : "个组件"}
+                {items.length} {isEn ? "results" : "条结果"}
               </span>
               <span className="hidden sm:inline">{dict.palette.hint}</span>
             </div>

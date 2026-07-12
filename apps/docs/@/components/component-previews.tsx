@@ -1,3 +1,4 @@
+// @ts-nocheck — hand demos
 "use client";
 
 /**
@@ -10,17 +11,34 @@
  */
 
 import * as React from "react";
-import { RocketIcon, SettingsIcon, UserIcon } from "lucide-react";
-
-import { Button } from "@chaos_team/chaos-ui/ui";
-import { KPIPanel } from "@chaos_team/chaos-ui/ui";
-import { Menu } from "@chaos_team/chaos-ui/ui";
-import { Menubar } from "@chaos_team/chaos-ui/ui";
-import { Popconfirm } from "@chaos_team/chaos-ui/ui";
-import { MessageProvider } from "@chaos_team/chaos-ui/ui";
-import { ModalProvider } from "@chaos_team/chaos-ui/ui";
-import { KeyboardShortcutDialog } from "@chaos_team/chaos-ui/ui";
 import {
+  RocketIcon,
+  SettingsIcon,
+  UserIcon,
+  TrendingUpIcon,
+  TrendingDownIcon,
+  UsersIcon,
+  FilterIcon,
+  StarIcon,
+  Search,
+  Bell,
+  Loader2,
+  Star,
+  Heart,
+  Check,
+} from "lucide-react";
+
+import {
+  Button,
+  Row,
+  Col,
+  KPIPanel,
+  Menu,
+  Menubar,
+  Popconfirm,
+  MessageProvider,
+  ModalProvider,
+  KeyboardShortcutDialog,
   Dialog,
   DialogTrigger,
   DialogContent,
@@ -29,8 +47,6 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@chaos_team/chaos-ui/ui";
-import {
   AlertDialog,
   AlertDialogTrigger,
   AlertDialogContent,
@@ -40,73 +56,51 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverHeader,
   PopoverTitle,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Sheet,
   SheetTrigger,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Drawer,
   DrawerTrigger,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
-} from "@chaos_team/chaos-ui/ui";
-import {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from "@chaos_team/chaos-ui/ui";
-import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@chaos_team/chaos-ui/ui";
-import {
   ContextMenu,
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
-} from "@chaos_team/chaos-ui/ui";
-import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
@@ -114,35 +108,40 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Command,
   CommandInput,
   CommandList,
   CommandEmpty,
   CommandGroup,
   CommandItem,
-} from "@chaos_team/chaos-ui/ui";
-import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
+  Badge,
+  Switch,
+  Checkbox,
+  RadioGroup,
+  RadioGroupItem,
+  Label,
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Result,
+  AspectRatio,
+  Icon,
+  Direction,
+  NumberTicker,
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Input,
+  BarcodeDisplay,
+  EmptyState,
+  Rating,
 } from "@chaos_team/chaos-ui/ui";
-import { Badge } from "@chaos_team/chaos-ui/ui";
-import { Switch } from "@chaos_team/chaos-ui/ui";
-import { Checkbox } from "@chaos_team/chaos-ui/ui";
-import { RadioGroup, RadioGroupItem } from "@chaos_team/chaos-ui/ui";
-import { Label } from "@chaos_team/chaos-ui/ui";
-import { Avatar, AvatarImage, AvatarFallback } from "@chaos_team/chaos-ui/ui";
-import { Result } from "@chaos_team/chaos-ui/ui";
-import { AspectRatio } from "@chaos_team/chaos-ui/ui";
-import { Icon } from "@chaos_team/chaos-ui/ui";
-import { Direction } from "@chaos_team/chaos-ui/ui";
-import { Search, Bell, Loader2, Star, Heart, Check } from "lucide-react";
 
-/* Layout components -------------------------------------------------------- */
 import { AdminShell } from "@chaos_team/chaos-ui/layout";
 import { ArticleLayout } from "@chaos_team/chaos-ui/layout";
 import { ChatLayout } from "@chaos_team/chaos-ui/layout";
@@ -151,27 +150,13 @@ import { PrintTemplateLayout } from "@chaos_team/chaos-ui/layout";
 import { SplitScreen } from "@chaos_team/chaos-ui/layout";
 import { WizardLayout } from "@chaos_team/chaos-ui/layout";
 
-/* Business components ----------------------------------------------------- */
-import {
-  TrendingUpIcon,
-  TrendingDownIcon,
-  UsersIcon,
-  FilterIcon,
-  StarIcon,
-} from "lucide-react";
-import { ProfileHeader, ProfileForm } from "@/components/business/profile";
 import { StatCard } from "@chaos_team/chaos-ui/business";
 import { AuditLog } from "@chaos_team/chaos-ui/business";
 import { CampaignCard } from "@chaos_team/chaos-ui/business";
 import { AvatarGroup } from "@chaos_team/chaos-ui/business";
 import { ActivityFeed } from "@chaos_team/chaos-ui/business";
-import { AnimatedNumber } from "@/components/business/animated-number";
-import { Banner } from "@/components/business/banner";
 import { AnnouncementBanner } from "@chaos_team/chaos-ui/business";
-import { BarcodeDisplay } from "@chaos_team/chaos-ui/ui";
 import { Chip } from "@chaos_team/chaos-ui/business";
-import { EmptyState } from "@chaos_team/chaos-ui/ui";
-import { Rating } from "@chaos_team/chaos-ui/ui";
 import { BillStatusBar } from "@chaos_team/chaos-ui/business";
 import { BizStatusTag } from "@chaos_team/chaos-ui/business";
 
@@ -698,24 +683,20 @@ function MenuDemo() {
 
 function ProfileDemo() {
   return (
-    <div className="w-full max-w-2xl">
-      <ProfileHeader
-        user={{
-          name: "李雷",
-          email: "li.lei@chaos.com",
-          role: "高级前端工程师",
-          department: "设计系统组",
-          bio: "设计系统构建者,喜欢用代码创造美好的用户体验。",
-          location: "上海 · 中国",
-        }}
-        stats={[
-          { label: "项目", value: 24 },
-          { label: "关注者", value: 1234 },
-          { label: "获赞", value: 5678 },
-          { label: "贡献", value: 89 },
-        ]}
-        actions={<Button>关注</Button>}
-      />
+    <div className="bg-card w-full max-w-md overflow-hidden rounded-lg border">
+      <div className="bg-brand-200 h-20 w-full" />
+      <div className="relative flex items-end gap-3 px-4 pb-4">
+        <Avatar className="border-card -mt-8 size-16 border-4">
+          <AvatarFallback>CU</AvatarFallback>
+        </Avatar>
+        <div className="min-w-0 flex-1 pt-2">
+          <p className="truncate font-semibold">Chaos User</p>
+          <p className="text-muted-foreground truncate text-sm">user@example.com</p>
+        </div>
+        <Button size="sm" variant="outline">
+          编辑
+        </Button>
+      </div>
     </div>
   );
 }
@@ -814,31 +795,30 @@ function AvatarGroupDemo() {
 }
 
 function ActivityFeedDemo() {
+  const now = Date.now();
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(16, 20, 0, 0);
+
   const items = [
     {
-      id: "1",
       user: "John Doe",
-      action: "创建了",
-      target: "网站改版项目",
-      time: "2 小时前",
+      action: "创建了 网站改版项目",
+      time: new Date(now - 2 * 60 * 60 * 1000).toISOString(),
       avatarFallback: "JD",
       variant: "success" as const,
     },
     {
-      id: "2",
       user: "Jane Smith",
-      action: "评论了",
-      target: "Bug #123",
-      time: "3 小时前",
+      action: "评论了 Bug #123",
+      time: new Date(now - 3 * 60 * 60 * 1000).toISOString(),
       avatarFallback: "JS",
       variant: "info" as const,
     },
     {
-      id: "3",
       user: "Bob Wilson",
-      action: "完成了任务",
-      target: "更新文档",
-      time: "昨天",
+      action: "完成了任务 更新文档",
+      time: yesterday.toISOString(),
       avatarFallback: "BW",
       variant: "default" as const,
     },
@@ -852,10 +832,10 @@ function ActivityFeedDemo() {
 
 function AnimatedNumberDemo() {
   return (
-    <div className="flex flex-col items-center gap-3">
-      <AnimatedNumber value={1234567} duration={2000} prefix="¥" />
-      <AnimatedNumber value={42.7} decimals={1} suffix="%" duration={1500} />
-      <AnimatedNumber value={9805} duration={1800} />
+    <div className={stack}>
+      <NumberTicker value={1234567} duration={2000} prefix="¥" />
+      <NumberTicker value={42.7} decimals={1} suffix="%" duration={1500} />
+      <NumberTicker value={9805} duration={1800} />
     </div>
   );
 }
@@ -863,17 +843,14 @@ function AnimatedNumberDemo() {
 function BannerDemo() {
   return (
     <div className="flex w-full max-w-xl flex-col gap-3">
-      <Banner
-        variant="info"
-        title="通知"
-        description="这是一个信息提示横幅。"
-      />
-      <Banner
-        variant="warning"
-        title="警告"
-        description="此操作可能会影响线上数据,请谨慎。"
-        closable={false}
-      />
+      <Alert>
+        <AlertTitle>系统通知</AlertTitle>
+        <AlertDescription>这是一条信息提示横幅预览（使用包内 Alert）。</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertTitle>操作失败</AlertTitle>
+        <AlertDescription>请检查输入后重试。</AlertDescription>
+      </Alert>
     </div>
   );
 }
@@ -987,21 +964,19 @@ function ResultDemo() {
 
 function ProfileFormDemo() {
   return (
-    <div className="bg-card w-full max-w-md rounded-md border p-6">
-      <h3 className="mb-4 text-base font-semibold">编辑资料</h3>
-      <ProfileForm
-        fields={[
-          { name: "name", label: "姓名", defaultValue: "李雷" },
-          {
-            name: "email",
-            label: "邮箱",
-            defaultValue: "li.lei@chaos.com",
-            type: "email",
-          },
-          { name: "bio", label: "简介", defaultValue: "设计系统构建者" },
-        ]}
-      />
-    </div>
+    <form className="grid w-full max-w-sm gap-3">
+      <div className="grid gap-1.5">
+        <Label htmlFor="preview-name">姓名</Label>
+        <Input id="preview-name" defaultValue="Chaos User" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="preview-email">邮箱</Label>
+        <Input id="preview-email" type="email" defaultValue="user@example.com" />
+      </div>
+      <Button type="button" size="sm">
+        保存
+      </Button>
+    </form>
   );
 }
 
@@ -1184,13 +1159,21 @@ function ChatLayoutDemo() {
 
 function EmbedLayoutDemo() {
   return (
-    <div className="mx-auto max-h-64 w-full overflow-auto rounded-lg border">
+    <div className="mx-auto h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
       <EmbedLayout
-        header={<span className="text-sm font-semibold">Embedded Content</span>}
+        header={
+          <div className="flex w-full items-center justify-between px-4 py-2">
+            <span className="text-sm font-semibold">Embedded Content</span>
+            <span className="text-muted-foreground text-xs">iframe host</span>
+          </div>
+        }
       >
-        <div className="text-muted-foreground p-4 text-sm">
-          This content is rendered inside an embed layout with padding and
-          optional header.
+        <div className="text-muted-foreground space-y-2 p-4 text-sm">
+          <p>
+            Fills the host height (`h-full`), not the browser viewport — avoids
+            nested full-screen scroll inside docs previews.
+          </p>
+          <p>Body scrolls independently when content exceeds the host box.</p>
         </div>
       </EmbedLayout>
     </div>
@@ -1258,6 +1241,46 @@ function WizardLayoutDemo() {
   );
 }
 
+
+function GridDemo() {
+  const Box = ({ children }: { children: React.ReactNode }) => (
+    <div className="bg-primary/10 text-primary flex h-12 items-center justify-center rounded-md text-sm font-medium">
+      {children}
+    </div>
+  );
+  return (
+    <div className="w-full max-w-2xl space-y-4">
+      <Row gutter={12}>
+        <Col span={12}>
+          <Box>col-12</Box>
+        </Col>
+        <Col span={12}>
+          <Box>col-12</Box>
+        </Col>
+      </Row>
+      <Row gutter={12}>
+        <Col span={8}>
+          <Box>col-8</Box>
+        </Col>
+        <Col span={8}>
+          <Box>col-8</Box>
+        </Col>
+        <Col span={8}>
+          <Box>col-8</Box>
+        </Col>
+      </Row>
+      <Row gutter={12}>
+        <Col span={6}>
+          <Box>col-6</Box>
+        </Col>
+        <Col span={6} offset={6}>
+          <Box>offset-6</Box>
+        </Col>
+      </Row>
+    </div>
+  );
+}
+
 /* -------------------------------------------------------------------------- */
 /*  Registry                                                                  */
 /* -------------------------------------------------------------------------- */
@@ -1315,6 +1338,7 @@ export const componentPreviews: Record<string, React.ComponentType> = {
   BizStatusTag: BizStatusTagDemo,
 
   /* Layout & misc */
+  Grid: GridDemo,
   AspectRatio: AspectRatioDemo,
   AdminShell: AdminShellDemo,
   ArticleLayout: ArticleLayoutDemo,

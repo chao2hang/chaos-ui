@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Button } from "@chaos_team/chaos-ui/ui";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import {
   components,
   categoryLabelsZh,
   categoryLabelsEn,
+  categoryToPathSegment,
+  resolveCategoryParam,
 } from "@/content/components.meta";
 import type { ComponentMeta } from "@/content/components.meta";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
@@ -12,10 +15,11 @@ import { dict } from "@/lib/i18n/dict";
 import { type Locale } from "@/lib/i18n/locale";
 import { ComponentPreview } from "@/components/component-preview";
 import { DetailSidebar } from "@/components/detail-sidebar";
+import { TrackComponentRecent } from "@/components/track-component-recent";
 import { mdxLoaders } from "@/components/mdx-loaders";
 
 /* -------------------------------------------------------------------------- */
-/*  All 300 components — static generation for every MDX detail page          */
+/*  Static params for every registered component in components.meta.ts          */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
@@ -23,31 +27,40 @@ import { mdxLoaders } from "@/components/mdx-loaders";
 /* -------------------------------------------------------------------------- */
 
 function findMeta(category: string, slug: string): ComponentMeta | undefined {
-  // Next.js may or may not URL-decode route params; try both forms
-  return (
-    components.find((c) => c.category === category && c.slug === slug) ??
-    components.find(
-      (c) => c.category === decodeURIComponent(category) && c.slug === slug,
-    )
+  const resolved = resolveCategoryParam(category);
+  if (!resolved) return undefined;
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    /* keep slug */
+  }
+  return components.find(
+    (c) => c.category === resolved && (c.slug === slug || c.slug === decodedSlug),
   );
 }
 
 const storybookBase =
-  process.env.STORYBOOK_BASE_URL ?? "http://localhost:3002/?path=/docs/";
+  (process.env.STORYBOOK_BASE_URL ??
+    process.env.NEXT_PUBLIC_STORYBOOK_URL ??
+    "http://localhost:6006").replace(/\/$/, "") + "/?path=/docs/";
 
 /* -------------------------------------------------------------------------- */
 /*  Shared link classes                                                       */
 /* -------------------------------------------------------------------------- */
 
-const outlineLinkClass =
-  "inline-flex items-center gap-1.5 rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground";
 
 /* -------------------------------------------------------------------------- */
 /*  generateStaticParams                                                      */
 /* -------------------------------------------------------------------------- */
 
 export function generateStaticParams(): { category: string; slug: string }[] {
-  return components.map((c) => ({ category: c.category, slug: c.slug }));
+  // Prefer kebab path segments (`system-layout`); resolveCategoryParam still accepts
+  // encoded spaces / canonical names for bookmarks.
+  return components.map((c) => ({
+    category: categoryToPathSegment(c.category),
+    slug: c.slug,
+  }));
 }
 
 /* -------------------------------------------------------------------------- */
@@ -97,7 +110,7 @@ function NotFoundFallback({ locale }: { locale: Locale }) {
         {d.detail.notFoundDesc}
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <Link href="/components" className={outlineLinkClass}>
+        <Link href="/components" className="border-border bg-background hover:bg-muted inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm font-medium transition-colors">
           <ArrowLeft className="size-3.5" />
           {d.detail.breadcrumbRoot}
         </Link>
@@ -127,7 +140,7 @@ function MdxNotFoundFallback({
         {d.detail.mdxNotFoundDesc}
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <Link href="/components" className={outlineLinkClass}>
+        <Link href="/components" className="border-border bg-background hover:bg-muted inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm font-medium transition-colors">
           <ArrowLeft className="size-3.5" />
           {d.detail.breadcrumbRoot}
         </Link>
@@ -136,7 +149,7 @@ function MdxNotFoundFallback({
             href={`${storybookBase}${meta.storybookId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={outlineLinkClass}
+            className="border-border bg-background hover:bg-muted inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm font-medium transition-colors"
           >
             {d.detail.storybookLink}
             <ExternalLink className="size-3.5" />
@@ -151,32 +164,73 @@ function MdxNotFoundFallback({
 /*  MDX loader — locale-aware with fallback                                   */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Load MDX docs for a component.
+ * mdx-loaders keys use **canonical** category folder names (`General`, `DataDisplay`,
+ * `System Layout`), while URLs use kebab segments (`general`, `data-display`,
+ * `system-layout`). Always resolve before lookup.
+ */
 async function loadMdx(
   category: string,
   slug: string,
   locale: Locale,
 ): Promise<React.ComponentType | null> {
-  const cat = decodeURIComponent(category);
-  const locales: Locale[] = [locale, locale === "en" ? "zh" : "en"];
-  for (const loc of locales) {
-    const loader = mdxLoaders[`${cat}/${slug}.${loc}`];
-    if (loader) {
+  const resolvedCat =
+    resolveCategoryParam(category) ??
+    (() => {
       try {
-        const mod = await loader();
-        if (mod.default) return mod.default;
+        return resolveCategoryParam(decodeURIComponent(category));
       } catch {
-        // locale-specific file doesn't exist, try next
+        return undefined;
       }
-    }
+    })();
+
+  // Candidates: canonical meta category first, then raw/decoded route params
+  const catKeys = Array.from(
+    new Set(
+      [resolvedCat, category, (() => {
+        try {
+          return decodeURIComponent(category);
+        } catch {
+          return category;
+        }
+      })()].filter(Boolean) as string[],
+    ),
+  );
+
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    /* keep slug */
   }
-  // Fallback: no-locale file (e.g. audio-player.mdx) — bootstrap-generated
-  const fallback = mdxLoaders[`${cat}/${slug}`];
-  if (fallback) {
-    try {
-      const mod = await fallback();
-      if (mod.default) return mod.default;
-    } catch {
-      // no-locale file doesn't exist either
+  const slugKeys = Array.from(new Set([slug, decodedSlug]));
+
+  const locales: Locale[] = [locale, locale === "en" ? "zh" : "en"];
+
+  for (const cat of catKeys) {
+    for (const s of slugKeys) {
+      for (const loc of locales) {
+        const loader = mdxLoaders[`${cat}/${s}.${loc}`];
+        if (loader) {
+          try {
+            const mod = await loader();
+            if (mod.default) return mod.default;
+          } catch {
+            // locale-specific file missing — try next
+          }
+        }
+      }
+      // bare file (no .zh/.en suffix)
+      const fallback = mdxLoaders[`${cat}/${s}`];
+      if (fallback) {
+        try {
+          const mod = await fallback();
+          if (mod.default) return mod.default;
+        } catch {
+          // continue
+        }
+      }
     }
   }
   return null;
@@ -200,7 +254,8 @@ export default async function ComponentDetailPage({
     return <NotFoundFallback locale={locale} />;
   }
 
-  const MDXContent = await loadMdx(category, slug, locale);
+  // Prefer meta.category (canonical) so kebab URLs still hit MDX loaders
+  const MDXContent = await loadMdx(meta.category, meta.slug, locale);
 
   if (!MDXContent) {
     return <MdxNotFoundFallback meta={meta} locale={locale} />;
@@ -213,6 +268,7 @@ export default async function ComponentDetailPage({
 
   return (
     <div className="flex h-[calc(100vh-3.5rem)] overflow-hidden">
+      <TrackComponentRecent slug={meta.slug} />
       {/* antd-style left sidebar: component list with search */}
       <DetailSidebar components={components} />
 
@@ -230,7 +286,7 @@ export default async function ComponentDetailPage({
               </Link>
               <span aria-hidden>/</span>
               <Link
-                href={`/components#${category.replace(/\s+/g, "-").toLowerCase()}`}
+                href={`/components?cat=${categoryToPathSegment(meta.category)}`}
                 className="hover:text-foreground transition-colors"
               >
                 {categoryLabel}
@@ -244,10 +300,11 @@ export default async function ComponentDetailPage({
                 href={`${storybookBase}${meta.storybookId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={outlineLinkClass}
               >
-                {d.detail.storybookLink}
-                <ExternalLink className="size-3.5" />
+                <Button variant="outline" size="sm" className="gap-1.5">
+                  {d.detail.storybookLink}
+                  <ExternalLink className="size-3.5" />
+                </Button>
               </a>
             )}
           </div>
