@@ -122,7 +122,7 @@ function AuthLayout({
       <div
         data-slot="auth-layout"
         data-variant="split"
-        className={cn("flex min-h-svh", rootClassName, className)}
+        className={cn("flex h-full min-h-0", rootClassName, className)}
         style={bgStyle}
         {...props}
       >
@@ -182,7 +182,7 @@ function AuthLayout({
       data-slot="auth-layout"
       data-variant="centered"
       className={cn(
-        "flex min-h-svh flex-col items-center justify-center p-4",
+        "flex h-full min-h-0 flex-col items-center justify-center p-4",
         rootClassName,
         className,
       )}

@@ -20,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 /** Full chat layout — sidebar, messages, and input. */
 export const FullChat: Story = {
   render: () => (
+    // Host sets height; ChatLayout defaults to h-full (use className="h-svh" for viewport).
     <ChatLayout
       className="h-[480px]"
       sidebar={

@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
-import { Loader2Icon } from "@/components/ui/icons";
+import { Spinner } from "@/components/ui/spinner";
+import { GlobalLoading } from "@/components/ui/global-loading";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +44,7 @@ export function LoadingPage({
     >
       {icon ??
         (variant === "spinner" ? (
-          <Loader2Icon className="text-muted-foreground size-8 animate-spin" />
+          <Spinner size="xl" color="muted" label="Loading" aria-hidden />
         ) : null)}
       {variant === "dots" && <DotsSpinner />}
       {variant === "pulse" && <PulseLoader />}
@@ -103,7 +104,8 @@ interface FullPageLoaderProps {
  * @component FullPageLoader
  * @category business/ux
  * @since 0.2.0
- * @description Full-screen overlay loader with backdrop blur, useful for route transitions or data fetching / 全屏叠加加载器，带背景模糊效果，适用于路由切换或数据加载场景
+ * @description Full-screen overlay loader with backdrop blur — composes UI GlobalLoading.
+ * / 全屏叠加加载器（组合 UI GlobalLoading），适用于路由切换或数据加载场景
  * @keywords loading, fullscreen, overlay, spinner, backdrop
  * @example
  * <FullPageLoader show={isLoading}>
@@ -113,13 +115,11 @@ interface FullPageLoaderProps {
 export function FullPageLoader({ show = true, children }: FullPageLoaderProps) {
   if (!show) return <>{children}</>;
   return (
-    <div className="relative min-h-screen">
+    <div className="relative h-full min-h-0">
       {children && (
         <div className="pointer-events-none opacity-50">{children}</div>
       )}
-      <div className="bg-background/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
-        <Loader2Icon className="text-primary size-8 animate-spin" />
-      </div>
+      <GlobalLoading loading fullscreen />
     </div>
   );
 }

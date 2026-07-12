@@ -54,7 +54,7 @@ export function AppShell({
       data-slot="app-shell"
       data-variant={variant}
       data-sidebar-collapsed={collapsed}
-      className={cn("bg-background flex min-h-screen flex-col", className)}
+      className={cn("bg-background flex h-full min-h-0 flex-col", className)}
       {...props}
     >
       {header && (

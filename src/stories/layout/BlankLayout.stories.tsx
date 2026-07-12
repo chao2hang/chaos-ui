@@ -9,6 +9,13 @@ const meta = {
   title: "Layouts/BlankLayout",
   component: BlankLayout,
   tags: ["autodocs", "a11y"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof BlankLayout>;
 
 export default meta;

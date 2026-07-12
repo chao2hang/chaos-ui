@@ -63,7 +63,8 @@ describe("blank-layout", () => {
     const { container } = render(<BlankLayout className="my-blank" />);
     const root = container.querySelector('[data-slot="blank-layout"]');
     expect(root?.classList.contains("my-blank")).toBe(true);
-    expect(root?.classList.contains("min-h-screen")).toBe(true);
+    expect(root?.classList.contains("h-full")).toBe(true);
+    expect(root?.classList.contains("min-h-screen")).toBe(false);
   });
 
   it("forwards extra div props to root", () => {

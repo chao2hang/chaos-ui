@@ -163,7 +163,8 @@ function SidebarProvider({
           } as React.CSSProperties
         }
         className={cn(
-          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar relative flex h-dvh w-full overflow-hidden",
+          // Fill host height; app roots should set h-svh on this wrapper or an ancestor.
+          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar relative flex h-full min-h-0 w-full overflow-hidden",
           className,
         )}
         {...props}

@@ -44,3 +44,11 @@ export { MultiTabManager } from "./multi-tab-manager";
 export type { MultiTabManagerProps, TabInfo } from "./multi-tab-manager";
 export { ImmersiveLayout } from "./immersive-layout";
 export type { ImmersiveLayoutProps } from "./immersive-layout";
+
+// ─── SettingsLayout (Wave 5) ──────────────────────────────────────
+export { SettingsLayout } from "./settings-layout";
+export type { SettingsLayoutProps, SettingsNavItem } from "./settings-layout";
+
+// ─── KeepAliveTabs (Wave 5) ───────────────────────────────────────
+export { KeepAliveTabs } from "./keep-alive-tabs";
+export type { KeepAliveTabsProps, KeepAliveTabsPane } from "./keep-alive-tabs";

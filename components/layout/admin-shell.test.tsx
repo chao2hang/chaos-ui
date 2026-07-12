@@ -103,4 +103,19 @@ describe("AdminShell", () => {
     const mod = await import("./admin-shell");
     expect(mod.AdminShell).toBeDefined();
   });
+
+  it("shows mobile aside toggle when aside is provided", () => {
+    render(
+      <AdminShell aside={<div>Aside panel</div>} asideToggleLabel="详情">
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(screen.getByText("详情")).toBeDefined();
+    expect(screen.getByText("Aside panel")).toBeDefined();
+  });
+
+  it("exports shell height constant", async () => {
+    const mod = await import("./admin-shell");
+    expect(mod.ADMIN_SHELL_HEADER_HEIGHT_CLASS).toBe("h-16");
+  });
 });

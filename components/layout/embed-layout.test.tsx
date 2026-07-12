@@ -18,4 +18,15 @@ describe("EmbedLayout", () => {
     expect(screen.getByText("Standalone content")).toBeDefined();
     expect(screen.queryByText("Embed Header")).toBeNull();
   });
+
+  it("fills the host (h-full) instead of the viewport (h-screen)", () => {
+    const { container } = render(
+      <div style={{ height: 240 }}>
+        <EmbedLayout>body</EmbedLayout>
+      </div>,
+    );
+    const root = container.querySelector('[data-slot="embed-layout"]');
+    expect(root?.classList.contains("h-full")).toBe(true);
+    expect(root?.classList.contains("h-screen")).toBe(false);
+  });
 });

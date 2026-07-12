@@ -28,7 +28,7 @@ export function BlankLayout({
     <div
       data-slot="blank-layout"
       className={cn(
-        "bg-background min-h-screen",
+        "bg-background h-full min-h-0",
         padded && "p-4",
         centered && "flex items-center justify-center",
         className,

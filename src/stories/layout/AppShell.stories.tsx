@@ -16,6 +16,13 @@ const meta = {
   title: "Layouts/AppShell",
   component: AppShell,
   tags: ["autodocs", "a11y"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof AppShell>;
 
 export default meta;

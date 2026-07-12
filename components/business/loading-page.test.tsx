@@ -69,7 +69,10 @@ describe("FullPageLoader", () => {
   it("renders the overlay when show=true (default)", () => {
     const { container } = render(<FullPageLoader />);
     expect(container.querySelector(".fixed.inset-0")).not.toBeNull();
-    expect(container.querySelector("svg")).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="global-loading"]'),
+    ).not.toBeNull();
+    expect(container.querySelector('[data-slot="spinner"]')).not.toBeNull();
   });
 
   it("renders children behind the overlay", () => {

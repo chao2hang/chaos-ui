@@ -16,6 +16,8 @@ import {
   NotificationCenter,
   type NotificationItem,
 } from "@/components/business/notification-center";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 /**
  * @component AdminShell
@@ -118,6 +120,17 @@ interface AdminShellProps extends Omit<
   aside?: React.ReactNode;
   /** Aside panel width / 右侧面板宽度 */
   asideWidth?: number;
+  /**
+   * Controlled open state for the **content** aside Sheet on viewports &lt; lg.
+   * Sider mobile uses AdminSider `mobileOpen` separately.
+   */
+  asideOpen?: boolean;
+  /** Uncontrolled default for content aside Sheet */
+  defaultAsideOpen?: boolean;
+  /** Content aside Sheet open change */
+  onAsideOpenChange?: (open: boolean) => void;
+  /** Label for mobile aside toggle */
+  asideToggleLabel?: string;
   /** Footer content / 底部内容 */
   footer?: React.ReactNode;
 
@@ -173,12 +186,20 @@ export function AdminShell({
   // Shell
   aside,
   asideWidth = 280,
+  asideOpen: asideOpenProp,
+  defaultAsideOpen = false,
+  onAsideOpenChange,
+  asideToggleLabel = "Details",
   footer,
   children,
   className,
 }: AdminShellProps) {
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [asideOpenUncontrolled, setAsideOpenUncontrolled] =
+    React.useState(defaultAsideOpen);
+  const asideOpen = asideOpenProp ?? asideOpenUncontrolled;
+  const setAsideOpen = onAsideOpenChange ?? setAsideOpenUncontrolled;
 
   // Build user menu element
   const userMenuElement = user ? (
@@ -191,7 +212,8 @@ export function AdminShell({
     />
   ) : undefined;
 
-  // Build notification center element (shown in header area)
+  // Build notification center element (shown in header area).
+  // Prefer NotificationCenter over AdminHeader.notificationCount for full UX.
   const notificationCenterElement =
     notifications.length > 0 ? (
       <NotificationCenter
@@ -215,7 +237,8 @@ export function AdminShell({
   return (
     <div
       data-slot="admin-shell"
-      className={cn("bg-background flex min-h-screen", className)}
+      // Fill host (h-full); app roots should set min-h-svh / h-svh on html/body or via className.
+      className={cn("bg-background flex h-full min-h-0", className)}
     >
       {/* Sidebar */}
       <AdminSider
@@ -290,18 +313,46 @@ export function AdminShell({
 
         {/* Content area with optional aside */}
         <div className="flex flex-1 overflow-hidden">
-          {/* Main content */}
-          <main className="flex-1 overflow-y-auto p-4">{children}</main>
+          <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+            {aside ? (
+              <div className="border-border flex items-center justify-end border-b px-4 py-2 lg:hidden">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setAsideOpen(true)}
+                >
+                  {asideToggleLabel}
+                </Button>
+              </div>
+            ) : null}
+            <main className="flex-1 overflow-y-auto p-4">{children}</main>
+          </div>
 
-          {/* Aside panel */}
-          {aside && (
+          {/* Desktop content aside */}
+          {aside ? (
             <aside
+              data-slot="admin-shell-aside"
               className="border-border hidden shrink-0 overflow-y-auto border-l lg:block"
               style={{ width: asideWidth }}
             >
               {aside}
             </aside>
-          )}
+          ) : null}
+
+          {/* Mobile content aside → Sheet (independent of Sider mobileOpen) */}
+          {aside ? (
+            <Sheet open={asideOpen} onOpenChange={setAsideOpen}>
+              <SheetContent
+                side="right"
+                className="w-full sm:max-w-sm lg:hidden"
+                style={{ maxWidth: asideWidth }}
+              >
+                <SheetTitle className="sr-only">{asideToggleLabel}</SheetTitle>
+                <div className="h-full overflow-y-auto pt-2">{aside}</div>
+              </SheetContent>
+            </Sheet>
+          ) : null}
         </div>
 
         {/* Footer */}
@@ -316,3 +367,6 @@ export function AdminShell({
 }
 
 export type { AdminShellProps };
+
+/** Shared shell chrome height token note: AdminHeader / AdminSider logo row use h-16 */
+export const ADMIN_SHELL_HEADER_HEIGHT_CLASS = "h-16" as const;

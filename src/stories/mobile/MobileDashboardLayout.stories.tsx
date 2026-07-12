@@ -8,6 +8,13 @@ const meta = {
   title: "Mobile/MobileDashboardLayout",
   component: MobileDashboardLayout,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: { layout: "fullscreen" },
 } satisfies Meta<typeof MobileDashboardLayout>;
 
@@ -46,7 +53,7 @@ export const WithBack: Story = {
     title: "Reports",
     description: "Q3 highlights",
     onBack: noop,
-    children: <p className="p-4 text-sm text-muted-foreground">Report body</p>,
+    children: <p className="text-muted-foreground p-4 text-sm">Report body</p>,
   },
 };
 
@@ -56,6 +63,6 @@ export const WithActions: Story = {
     description: "3 members",
     onMenu: noop,
     actions: <MobileButton size="sm">Invite</MobileButton>,
-    children: <p className="p-4 text-sm text-muted-foreground">Team list</p>,
+    children: <p className="text-muted-foreground p-4 text-sm">Team list</p>,
   },
 };

@@ -24,7 +24,7 @@ function MobileDashboardLayout({
   className,
 }: MobileDashboardLayoutProps) {
   return (
-    <div className={cn("min-h-screen bg-background", className)}>
+    <div className={cn("bg-background h-full min-h-0", className)}>
       {title && (
         <MobilePageHeader
           title={title}
