@@ -1,5 +1,6 @@
 "use client";
 
+// native-select-exception: help desk status control density
 import * as React from "react";
 import {
   TicketIcon,
@@ -315,7 +316,6 @@ function HelpDesk({
                     <span>{selectedTicket.createdAt}</span>
                   </div>
                 </div>
-                {/* Status selector — native-select-exception: help desk filter embedded control */}
                 <select
                   value={selectedTicket.status}
                   onChange={(e) =>
