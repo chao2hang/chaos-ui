@@ -16,6 +16,7 @@ export interface DictShape {
   header: {
     navDocs: string;
     navComponents: string;
+    navExamples: string;
     toggleToEn: string;
     toggleToZh: string;
     langLabelEn: string;
@@ -26,6 +27,40 @@ export interface DictShape {
     navLabel: string;
     browseComponents: string;
     indexTitle: string;
+  };
+  examples: {
+    navLabel: string;
+    overviewTitle: string;
+    overviewDesc: string;
+    adminCardTitle: string;
+    adminCardDesc: string;
+    publicCardTitle: string;
+    publicCardDesc: string;
+    enterTemplate: string;
+    relatedComponents: string;
+    keyCode: string;
+    fullscreen: string;
+    exitFullscreen: string;
+    reset: string;
+    breadcrumbRoot: string;
+    adminTitle: string;
+    adminDesc: string;
+    publicTitle: string;
+    publicDesc: string;
+    sceneLogin: string;
+    sceneDashboard: string;
+    sceneList: string;
+    sceneDetail: string;
+    sceneHome: string;
+    sceneArticle: string;
+    sceneAuth: string;
+    sceneLoginDesc: string;
+    sceneDashboardDesc: string;
+    sceneListDesc: string;
+    sceneDetailDesc: string;
+    sceneHomeDesc: string;
+    sceneArticleDesc: string;
+    sceneAuthDesc: string;
   };
   home: {
     heroBadge: string;
@@ -112,6 +147,7 @@ const zh: DictShape = {
   header: {
     navDocs: "文档",
     navComponents: "组件",
+    navExamples: "示例",
     toggleToEn: "Switch to English",
     toggleToZh: "切换到中文",
     langLabelEn: "EN",
@@ -122,6 +158,41 @@ const zh: DictShape = {
     navLabel: "指南",
     browseComponents: "浏览全部组件",
     indexTitle: "文档",
+  },
+  examples: {
+    navLabel: "示例",
+    overviewTitle: "示例模板",
+    overviewDesc:
+      "可运行的页面模板，展示 Chaos UI 在后台与前台场景中的组合用法。",
+    adminCardTitle: "后台管理",
+    adminCardDesc: "登录、仪表盘、列表与详情等后台常见页面模板。",
+    publicCardTitle: "公开站点",
+    publicCardDesc: "首页、文章与认证等面向访客的页面模板。",
+    enterTemplate: "进入模板",
+    relatedComponents: "相关组件",
+    keyCode: "关键代码",
+    fullscreen: "全屏",
+    exitFullscreen: "退出全屏",
+    reset: "重置",
+    breadcrumbRoot: "示例",
+    adminTitle: "后台管理模板",
+    adminDesc: "企业后台常见场景：登录、仪表盘、数据列表与详情。",
+    publicTitle: "公开站点模板",
+    publicDesc: "面向访客的站点场景：首页、文章阅读与认证。",
+    sceneLogin: "登录",
+    sceneDashboard: "仪表盘",
+    sceneList: "列表",
+    sceneDetail: "详情",
+    sceneHome: "首页",
+    sceneArticle: "文章",
+    sceneAuth: "认证",
+    sceneLoginDesc: "账号密码登录表单与品牌区布局。",
+    sceneDashboardDesc: "统计卡片、图表占位与快捷操作。",
+    sceneListDesc: "筛选、表格与分页的列表页。",
+    sceneDetailDesc: "详情信息区与操作栏。",
+    sceneHomeDesc: "营销首页：英雄区、特性与页脚。",
+    sceneArticleDesc: "文章阅读页：标题、正文与目录。",
+    sceneAuthDesc: "注册 / 登录切换的认证页面。",
   },
   home: {
     heroBadge: "企业级 React 组件库",
@@ -218,6 +289,7 @@ const en: DictShape = {
   header: {
     navDocs: "Docs",
     navComponents: "Components",
+    navExamples: "Examples",
     toggleToEn: "Switch to English",
     toggleToZh: "Switch to Chinese",
     langLabelEn: "EN",
@@ -228,6 +300,44 @@ const en: DictShape = {
     navLabel: "Guides",
     browseComponents: "Browse all components",
     indexTitle: "Documentation",
+  },
+  examples: {
+    navLabel: "Examples",
+    overviewTitle: "Example templates",
+    overviewDesc:
+      "Runnable page templates showing how Chaos UI composes for admin and public surfaces.",
+    adminCardTitle: "Admin",
+    adminCardDesc:
+      "Common back-office templates: login, dashboard, list, and detail.",
+    publicCardTitle: "Public site",
+    publicCardDesc:
+      "Visitor-facing templates: home, article, and authentication.",
+    enterTemplate: "Open template",
+    relatedComponents: "Related components",
+    keyCode: "Key code",
+    fullscreen: "Fullscreen",
+    exitFullscreen: "Exit fullscreen",
+    reset: "Reset",
+    breadcrumbRoot: "Examples",
+    adminTitle: "Admin templates",
+    adminDesc:
+      "Enterprise back-office scenes: login, dashboard, data list, and detail.",
+    publicTitle: "Public site templates",
+    publicDesc: "Visitor-facing scenes: home, article reading, and auth.",
+    sceneLogin: "Login",
+    sceneDashboard: "Dashboard",
+    sceneList: "List",
+    sceneDetail: "Detail",
+    sceneHome: "Home",
+    sceneArticle: "Article",
+    sceneAuth: "Auth",
+    sceneLoginDesc: "Email/password login form with brand panel layout.",
+    sceneDashboardDesc: "Stat cards, chart placeholders, and quick actions.",
+    sceneListDesc: "Filterable table list with pagination.",
+    sceneDetailDesc: "Detail info panel with action bar.",
+    sceneHomeDesc: "Marketing home: hero, features, and footer.",
+    sceneArticleDesc: "Article reading page with title, body, and TOC.",
+    sceneAuthDesc: "Auth page with sign-in / sign-up toggle.",
   },
   home: {
     heroBadge: "Enterprise React Component Library",

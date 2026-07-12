@@ -66,6 +66,11 @@ export function SiteHeader() {
       label: dict.header.navComponents,
       match: "/components",
     },
+    {
+      href: "/examples",
+      label: dict.header.navExamples,
+      match: "/examples",
+    },
   ];
 
   return (
