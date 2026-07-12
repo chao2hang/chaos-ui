@@ -37,8 +37,13 @@ export function PreviewChrome({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setFullscreen(false);
     };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [fullscreen]);
 
   return (
@@ -46,7 +51,7 @@ export function PreviewChrome({
       className={cn(
         "flex flex-col overflow-hidden rounded-xl border",
         fullscreen
-          ? "bg-background fixed inset-0 z-50 rounded-none"
+          ? "bg-background fixed inset-0 z-[60] rounded-none"
           : "bg-background",
         className,
       )}
