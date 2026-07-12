@@ -208,6 +208,38 @@ const eslintConfig = defineConfig([
       "import/no-anonymous-default-export": "off",
     },
   },
+  // Form control details (R1): bare <select> → NativeSelect/Select (warn; allowlist below)
+  {
+    files: ["components/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "warn",
+        {
+          selector: "JSXOpeningElement[name.name='select']",
+          message:
+            "Avoid bare <select>. Use NativeSelect or Select (component-spec §8.0 R1). Dense/special cases: add // native-select-exception: <reason> and allowlist in eslint.config.mjs.",
+        },
+      ],
+    },
+  },
+  {
+    // R1 allowlist: primitive + files with // native-select-exception (see check:form-details)
+    files: [
+      "components/ui/native-select.tsx",
+      "components/business/dashboard-designer.tsx",
+      "components/business/editable-tree-table.tsx",
+      "components/business/report-builder.tsx",
+      "components/ui/audio-player.tsx",
+      "components/ui/editable-descriptions.tsx",
+      "components/ui/editable-table.tsx",
+      "components/ui/help-desk.tsx",
+      "components/ui/phone-input.tsx",
+      "components/ui/spreadsheet-editor.tsx",
+    ],
+    rules: {
+      "no-restricted-syntax": "off",
+    },
+  },
   // 全局规则
   {
     rules: {

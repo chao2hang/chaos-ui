@@ -7,6 +7,7 @@ import { LineEditor } from "@/components/business/line-editor";
 import type { LineEditorColumn } from "@/components/business/line-editor";
 import { InputNumber } from "@/components/ui/input-number";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 
 /**
  * @component OrderLineEditor
@@ -39,7 +40,10 @@ interface OrderLine {
   [key: string]: unknown;
 }
 
-interface OrderLineEditorProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+interface OrderLineEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   /** Line data / 明细数据 */
   data: OrderLine[];
   /** Data change callback / 数据变更回调 */
@@ -79,26 +83,31 @@ function OrderLineEditor({
         width: 200,
         editable: !readOnly,
         renderEditor: (value, _row, _index, onCellChange) => (
-          <select
+          <NativeSelect
+            size="sm"
+            className="w-full"
             value={String(value ?? "")}
             onChange={(e) => {
-              const selected = skuOptions.find((o) => o.value === e.target.value);
+              const selected = skuOptions.find(
+                (o) => o.value === e.target.value,
+              );
               onCellChange(e.target.value);
               // Auto-fill price when SKU is selected
               if (selected?.price !== undefined) {
                 // This will be handled by the parent onChange
               }
             }}
-            className="h-8 w-full rounded border border-input bg-background px-2 text-sm"
-          >
-            <option value="">Select SKU</option>
-            {skuOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-                {opt.price !== undefined ? ` (${currency}${opt.price})` : ""}
-              </option>
-            ))}
-          </select>
+            options={[
+              { value: "", label: "Select SKU" },
+              ...skuOptions.map((opt) => ({
+                value: opt.value,
+                label:
+                  opt.price !== undefined
+                    ? `${opt.label} (${currency}${opt.price})`
+                    : opt.label,
+              })),
+            ]}
+          />
         ),
         render: (value, row) => row.skuLabel ?? value ?? "—",
       },
@@ -117,7 +126,8 @@ function OrderLineEditor({
             className="w-full"
           />
         ),
-        render: (value) => (value != null ? `${currency}${Number(value).toFixed(2)}` : "—"),
+        render: (value) =>
+          value != null ? `${currency}${Number(value).toFixed(2)}` : "—",
       },
       {
         key: "qty",
@@ -190,7 +200,7 @@ function OrderLineEditor({
 
   const footer = (
     <td colSpan={columns.length + 1} className="px-3 py-2 text-right">
-      <span className="mr-6 text-muted-foreground">
+      <span className="text-muted-foreground mr-6">
         {data.length} lines · {totalQty} items
       </span>
       <span className="text-base font-semibold">
@@ -201,7 +211,11 @@ function OrderLineEditor({
   );
 
   return (
-    <div data-slot="order-line-editor" className={cn("w-full", className)} {...props}>
+    <div
+      data-slot="order-line-editor"
+      className={cn("w-full", className)}
+      {...props}
+    >
       <LineEditor
         columns={columns}
         data={data}

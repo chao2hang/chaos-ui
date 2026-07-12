@@ -129,6 +129,7 @@
     "typecheck": "tsc --noEmit",
     "check": "pnpm run typecheck && pnpm run lint && pnpm run lint:css && pnpm run lint:deps && pnpm run check:no-bom",
     "check:no-bom": "node scripts/check-no-bom.mjs",
+    "check:form-details": "node scripts/check-form-primitives.mjs",
     "smoke": "node scripts/smoke-test.mjs",
     "size": "size-limit",
     "pack:dry": "pnpm pack --dry-run",

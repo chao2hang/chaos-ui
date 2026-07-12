@@ -189,6 +189,7 @@ function AudioPlayer({
         </div>
       )}
 
+      {/* native-select-exception: media rate selector compact chrome */}
       {showSpeed && (
         <select
           value={speed}

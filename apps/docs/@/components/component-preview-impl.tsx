@@ -33,8 +33,8 @@ function PreviewCard({
         </span>
       </div>
       {/* Preview area */}
-      <div className="flex min-h-[120px] items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--muted)_10px,var(--muted)_12px)] [background-size:20px_20px] p-8">
-        {children}
+      <div className="flex min-h-[120px] w-full items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--muted)_10px,var(--muted)_12px)] [background-size:20px_20px] p-8">
+        <div className="w-full max-w-3xl min-w-0">{children}</div>
       </div>
     </div>
   );

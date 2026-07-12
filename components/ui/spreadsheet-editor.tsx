@@ -1,5 +1,6 @@
 "use client";
 
+// native-select-exception: spreadsheet cell native select cost
 import * as React from "react";
 import { PlusIcon, Trash2Icon } from "lucide-react";
 
@@ -95,13 +96,11 @@ function SpreadsheetEditor({
   rowHeight = 36,
   className,
 }: SpreadsheetEditorProps) {
-  const [internalData, setInternalData] = React.useState<RowData[]>(
-    () => {
-      if (defaultData.length > 0) return defaultData;
-      // Generate one empty row by default if no data
-      return [{ id: generateId() }];
-    },
-  );
+  const [internalData, setInternalData] = React.useState<RowData[]>(() => {
+    if (defaultData.length > 0) return defaultData;
+    // Generate one empty row by default if no data
+    return [{ id: generateId() }];
+  });
 
   const rows = controlledData ?? internalData;
 
@@ -125,7 +124,9 @@ function SpreadsheetEditor({
   );
 
   // Selection state
-  const [selectedCell, setSelectedCell] = React.useState<CellCoords | null>(null);
+  const [selectedCell, setSelectedCell] = React.useState<CellCoords | null>(
+    null,
+  );
   const [editingCell, setEditingCell] = React.useState<CellCoords | null>(null);
   const [editValue, setEditValue] = React.useState("");
   const [pasteStatus, setPasteStatus] = React.useState("");
@@ -205,7 +206,7 @@ function SpreadsheetEditor({
           newRows[rowIdx] = {
             ...newRows[rowIdx]!,
             [col.key]: cells[j],
-          } as typeof newRows[number];
+          } as (typeof newRows)[number];
           pasteCount++;
         }
       }
@@ -232,7 +233,10 @@ function SpreadsheetEditor({
       undo();
       return;
     }
-    if ((e.ctrlKey || e.metaKey) && (e.key === "y" || (e.key === "z" && e.shiftKey))) {
+    if (
+      (e.ctrlKey || e.metaKey) &&
+      (e.key === "y" || (e.key === "z" && e.shiftKey))
+    ) {
       e.preventDefault();
       redo();
       return;
@@ -340,7 +344,8 @@ function SpreadsheetEditor({
     e.preventDefault();
     e.stopPropagation();
     const startX = e.clientX;
-    const startWidth = colWidths[colKey] ?? columns.find((c) => c.key === colKey)?.width ?? 120;
+    const startWidth =
+      colWidths[colKey] ?? columns.find((c) => c.key === colKey)?.width ?? 120;
     setResizing(colKey);
 
     const onMouseMove = (me: MouseEvent) => {
@@ -370,7 +375,7 @@ function SpreadsheetEditor({
     >
       {/* Toolbar */}
       {showRowControls && (
-        <div className="flex items-center gap-1 border-b bg-muted/30 px-2 py-1">
+        <div className="bg-muted/30 flex items-center gap-1 border-b px-2 py-1">
           {allowAddRow && (
             <button
               type="button"
@@ -378,7 +383,7 @@ function SpreadsheetEditor({
               disabled={rows.length >= maxRows}
               className={cn(
                 "inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs",
-                "border border-input bg-background hover:bg-muted",
+                "border-input bg-background hover:bg-muted border",
                 "disabled:cursor-not-allowed disabled:opacity-50",
               )}
               title="添加行"
@@ -387,10 +392,10 @@ function SpreadsheetEditor({
               添加行
             </button>
           )}
-          <span className="ml-1 text-xs text-muted-foreground">
+          <span className="text-muted-foreground ml-1 text-xs">
             {rows.length} / {maxRows} 行
           </span>
-          <span className="ml-auto text-xs text-muted-foreground">
+          <span className="text-muted-foreground ml-auto text-xs">
             {columns.length} 列 · Tab/方向键导航 · F2 编辑 · Ctrl+V 粘贴
           </span>
           {pasteStatus && (
@@ -416,7 +421,7 @@ function SpreadsheetEditor({
               <tr className="bg-muted/50">
                 {showRowNumbers && (
                   <th
-                    className="sticky left-0 z-10 border-b border-r bg-muted/50 px-2 py-1 text-center text-xs font-medium text-muted-foreground"
+                    className="bg-muted/50 text-muted-foreground sticky left-0 z-10 border-r border-b px-2 py-1 text-center text-xs font-medium"
                     style={{ width: 48, minWidth: 48 }}
                   >
                     #
@@ -425,14 +430,17 @@ function SpreadsheetEditor({
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="relative border-b border-r px-2 py-1 text-left text-xs font-medium text-muted-foreground select-none"
-                    style={{ width: getColWidth(col), minWidth: col.minWidth ?? 60 }}
+                    className="text-muted-foreground relative border-r border-b px-2 py-1 text-left text-xs font-medium select-none"
+                    style={{
+                      width: getColWidth(col),
+                      minWidth: col.minWidth ?? 60,
+                    }}
                   >
                     <span className="truncate">{col.title}</span>
                     {/* Resize handle */}
                     <div
                       className={cn(
-                        "absolute right-0 top-0 h-full w-1 cursor-col-resize",
+                        "absolute top-0 right-0 h-full w-1 cursor-col-resize",
                         "hover:bg-primary/30",
                         resizing === col.key && "bg-primary/50",
                       )}
@@ -460,7 +468,7 @@ function SpreadsheetEditor({
                   {showRowNumbers && (
                     <td
                       className={cn(
-                        "sticky left-0 z-10 border-b border-r bg-background px-2 py-1 text-center text-xs text-muted-foreground select-none",
+                        "bg-background text-muted-foreground sticky left-0 z-10 border-r border-b px-2 py-1 text-center text-xs select-none",
                         isSelected && "bg-accent/30",
                       )}
                       style={{ width: 48, height: rowHeight }}
@@ -472,9 +480,11 @@ function SpreadsheetEditor({
                   {/* Cells */}
                   {columns.map((col, colIdx) => {
                     const isEditing =
-                      editingCell?.row === rowIdx && editingCell?.col === colIdx;
+                      editingCell?.row === rowIdx &&
+                      editingCell?.col === colIdx;
                     const isCellSelected =
-                      selectedCell?.row === rowIdx && selectedCell?.col === colIdx;
+                      selectedCell?.row === rowIdx &&
+                      selectedCell?.col === colIdx;
                     const cellValue = row[col.key];
                     const editable = col.editable !== false;
                     const validationError = col.validator
@@ -485,8 +495,10 @@ function SpreadsheetEditor({
                       <td
                         key={col.key}
                         className={cn(
-                          "relative border-b border-r px-2 py-0 transition-colors",
-                          isCellSelected && !isEditing && "ring-2 ring-primary ring-inset",
+                          "relative border-r border-b px-2 py-0 transition-colors",
+                          isCellSelected &&
+                            !isEditing &&
+                            "ring-primary ring-2 ring-inset",
                           validationError && "bg-red-50 dark:bg-red-950/20",
                         )}
                         style={{
@@ -497,13 +509,17 @@ function SpreadsheetEditor({
                           setSelectedCell({ row: rowIdx, col: colIdx });
                           if (editable && col.type !== "select") {
                             setEditingCell({ row: rowIdx, col: colIdx });
-                            setEditValue(cellValue != null ? String(cellValue) : "");
+                            setEditValue(
+                              cellValue != null ? String(cellValue) : "",
+                            );
                           }
                         }}
                         onDoubleClick={() => {
                           if (editable && col.type !== "select") {
                             setEditingCell({ row: rowIdx, col: colIdx });
-                            setEditValue(cellValue != null ? String(cellValue) : "");
+                            setEditValue(
+                              cellValue != null ? String(cellValue) : "",
+                            );
                           }
                         }}
                       >
@@ -546,8 +562,14 @@ function SpreadsheetEditor({
                                 } else if (e.key === "Enter") {
                                   commitEdit();
                                   if (rowIdx < rows.length - 1) {
-                                    setSelectedCell({ row: rowIdx + 1, col: colIdx });
-                                    setEditingCell({ row: rowIdx + 1, col: colIdx });
+                                    setSelectedCell({
+                                      row: rowIdx + 1,
+                                      col: colIdx,
+                                    });
+                                    setEditingCell({
+                                      row: rowIdx + 1,
+                                      col: colIdx,
+                                    });
                                     const nextVal =
                                       rows[rowIdx + 1]?.[columns[colIdx]!.key];
                                     setEditValue(
@@ -555,7 +577,10 @@ function SpreadsheetEditor({
                                     );
                                   } else {
                                     setEditingCell(null);
-                                    setSelectedCell({ row: rowIdx, col: colIdx });
+                                    setSelectedCell({
+                                      row: rowIdx,
+                                      col: colIdx,
+                                    });
                                   }
                                 } else if (e.key === "Tab") {
                                   e.preventDefault();
@@ -563,9 +588,13 @@ function SpreadsheetEditor({
                                   const nextCol = e.shiftKey
                                     ? Math.max(0, colIdx - 1)
                                     : Math.min(columns.length - 1, colIdx + 1);
-                                  setSelectedCell({ row: rowIdx, col: nextCol });
+                                  setSelectedCell({
+                                    row: rowIdx,
+                                    col: nextCol,
+                                  });
                                   setEditingCell({ row: rowIdx, col: nextCol });
-                                  const nextVal = rows[rowIdx]?.[columns[nextCol]!.key];
+                                  const nextVal =
+                                    rows[rowIdx]?.[columns[nextCol]!.key];
                                   setEditValue(
                                     nextVal != null ? String(nextVal) : "",
                                   );
@@ -582,19 +611,21 @@ function SpreadsheetEditor({
                             )}
                           >
                             {col.type === "select" && col.options
-                              ? col.options.find((o) => o.value === cellValue)
+                              ? (col.options.find((o) => o.value === cellValue)
                                   ?.label ?? (
                                   <span className="text-muted-foreground/40">
                                     {cellValue ?? "—"}
                                   </span>
-                                )
-                              : cellValue ?? (
-                                  <span className="text-muted-foreground/40">—</span>
-                                )}
+                                ))
+                              : (cellValue ?? (
+                                  <span className="text-muted-foreground/40">
+                                    —
+                                  </span>
+                                ))}
                           </div>
                         )}
                         {validationError && (
-                          <div className="absolute left-0 top-full z-20 whitespace-nowrap rounded bg-red-500 px-1.5 py-0.5 text-xs text-white">
+                          <div className="absolute top-full left-0 z-20 rounded bg-red-500 px-1.5 py-0.5 text-xs whitespace-nowrap text-white">
                             {validationError}
                           </div>
                         )}
@@ -613,7 +644,7 @@ function SpreadsheetEditor({
                         }}
                         disabled={rows.length <= minRows}
                         className={cn(
-                          "rounded p-0.5 text-muted-foreground/40 hover:text-red-500",
+                          "text-muted-foreground/40 rounded p-0.5 hover:text-red-500",
                           "disabled:cursor-not-allowed disabled:opacity-30",
                         )}
                         title="删除行"
@@ -633,4 +664,9 @@ function SpreadsheetEditor({
 }
 
 export { SpreadsheetEditor };
-export type { SpreadsheetEditorProps, ColumnDef as SpreadsheetColumnDef, RowData, CellCoords };
+export type {
+  SpreadsheetEditorProps,
+  ColumnDef as SpreadsheetColumnDef,
+  RowData,
+  CellCoords,
+};

@@ -3,7 +3,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MultiCurrencyInput } from "./multi-currency-input";
 
 vi.mock("@/components/ui/icons", () => ({
-  ArrowRightIcon: (p: Record<string, unknown>) => <svg data-testid="arrow-right" {...p} />,
+  ArrowRightIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="arrow-right" {...p} />
+  ),
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
 }));
 
 const rates = {
@@ -16,12 +21,23 @@ const rates = {
 
 describe("MultiCurrencyInput", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<MultiCurrencyInput value={100} currency="USD" rates={rates} />);
-    expect(container.querySelector('[data-slot="multi-currency-input"]')).toBeTruthy();
+    const { container } = render(
+      <MultiCurrencyInput value={100} currency="USD" rates={rates} />,
+    );
+    expect(
+      container.querySelector('[data-slot="multi-currency-input"]'),
+    ).toBeTruthy();
   });
 
   it("shows conversion from USD to CNY", () => {
-    render(<MultiCurrencyInput value={100} currency="USD" baseCurrency="CNY" rates={rates} />);
+    render(
+      <MultiCurrencyInput
+        value={100}
+        currency="USD"
+        baseCurrency="CNY"
+        rates={rates}
+      />,
+    );
     const conversion = screen.getByTestId("arrow-right").parentElement;
     // 100 USD * 7.25 = 725 CNY
     expect(conversion?.textContent).toContain("725.00");
@@ -30,7 +46,14 @@ describe("MultiCurrencyInput", () => {
 
   it("calls onChange when amount is changed", () => {
     const onChange = vi.fn();
-    render(<MultiCurrencyInput value={100} currency="USD" rates={rates} onChange={onChange} />);
+    render(
+      <MultiCurrencyInput
+        value={100}
+        currency="USD"
+        rates={rates}
+        onChange={onChange}
+      />,
+    );
     const amountInput = screen.getByLabelText("Amount");
     fireEvent.change(amountInput, { target: { value: "200" } });
     expect(onChange).toHaveBeenCalledWith(200, 1450, "USD", 7.25);
@@ -62,7 +85,12 @@ describe("MultiCurrencyInput", () => {
 
   it("hides exchange rate input when allowRateOverride is false", () => {
     render(
-      <MultiCurrencyInput value={100} currency="USD" rates={rates} allowRateOverride={false} />,
+      <MultiCurrencyInput
+        value={100}
+        currency="USD"
+        rates={rates}
+        allowRateOverride={false}
+      />,
     );
     expect(screen.queryByLabelText("Exchange rate")).toBeNull();
   });
@@ -87,14 +115,22 @@ describe("MultiCurrencyInput", () => {
   });
 
   it("shows same currency note when source equals base", () => {
-    render(<MultiCurrencyInput value={100} currency="CNY" baseCurrency="CNY" />);
+    render(
+      <MultiCurrencyInput value={100} currency="CNY" baseCurrency="CNY" />,
+    );
     expect(screen.getByText("Same currency")).toBeTruthy();
     expect(screen.getByText("No conversion needed")).toBeTruthy();
   });
 
   it("uses manual rate when provided", () => {
     render(
-      <MultiCurrencyInput value={100} currency="USD" baseCurrency="CNY" rate={7.1} rates={rates} />,
+      <MultiCurrencyInput
+        value={100}
+        currency="USD"
+        baseCurrency="CNY"
+        rate={7.1}
+        rates={rates}
+      />,
     );
     const conversion = screen.getByTestId("arrow-right").parentElement;
     // 100 * 7.1 = 710
@@ -102,16 +138,25 @@ describe("MultiCurrencyInput", () => {
   });
 
   it("disables inputs in read-only mode", () => {
-    render(<MultiCurrencyInput value={100} currency="USD" rates={rates} readOnly />);
+    render(
+      <MultiCurrencyInput value={100} currency="USD" rates={rates} readOnly />,
+    );
     expect(screen.getByLabelText("Amount")).toBeDisabled();
     expect(screen.getByLabelText("Currency")).toBeDisabled();
   });
 
   it("applies custom className", () => {
     const { container } = render(
-      <MultiCurrencyInput value={100} currency="USD" rates={rates} className="custom-currency" />,
+      <MultiCurrencyInput
+        value={100}
+        currency="USD"
+        rates={rates}
+        className="custom-currency"
+      />,
     );
-    const el = container.querySelector('[data-slot="multi-currency-input"]') as HTMLElement;
+    const el = container.querySelector(
+      '[data-slot="multi-currency-input"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-currency");
   });
 });

@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 import { PlusIcon, TrashIcon } from "lucide-react";
 import { formatCurrency } from "@/lib/format";
 
@@ -148,18 +149,14 @@ function PriceLadderEditor({
               }
               className={cn("w-20", errors[index] && "border-destructive")}
             />
-            <select
-              value={tier.unit ?? defaultUnit}
-              disabled={disabled}
-              onChange={(e) => updateTier(index, { unit: e.target.value })}
-              className="border-input bg-background h-9 rounded-md border px-2 text-sm"
-            >
-              {unitOptions.map((u) => (
-                <option key={u} value={u}>
-                  {u}
-                </option>
-              ))}
-            </select>
+            <div className="w-24 shrink-0">
+              <NativeSelect
+                value={tier.unit ?? defaultUnit}
+                disabled={disabled}
+                onChange={(e) => updateTier(index, { unit: e.target.value })}
+                options={unitOptions.map((u) => ({ value: u, label: u }))}
+              />
+            </div>
             <span className="text-muted-foreground shrink-0 text-xs">单价</span>
             <Input
               type="number"

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { NativeSelect } from "@/components/ui/native-select";
 import {
   PlusIcon,
   Trash2Icon,
@@ -97,7 +98,11 @@ interface NotificationRuleBuilderProps {
   /** Available fields for conditions */
   fields?: FieldOption[];
   /** Available recipients */
-  recipientOptions?: { type: RuleRecipient["type"]; label: string; value: string }[];
+  recipientOptions?: {
+    type: RuleRecipient["type"];
+    label: string;
+    value: string;
+  }[];
   /** Available templates */
   templates?: { id: string; name: string }[];
   /** Read-only mode */
@@ -123,7 +128,11 @@ const operatorLabels: Record<Operator, string> = {
 
 const channelConfig: Record<
   ChannelType,
-  { label: string; icon: React.ComponentType<{ className?: string }>; color: string }
+  {
+    label: string;
+    icon: React.ComponentType<{ className?: string }>;
+    color: string;
+  }
 > = {
   email: { label: "Email", icon: MailIcon, color: "text-blue-600" },
   sms: { label: "SMS", icon: MessageSquareIcon, color: "text-green-600" },
@@ -178,7 +187,12 @@ function NotificationRuleBuilder({
     update({
       conditions: [
         ...rule.conditions,
-        { id: generateId(), field: fields[0]?.value ?? "", operator: "eq", value: "" },
+        {
+          id: generateId(),
+          field: fields[0]?.value ?? "",
+          operator: "eq",
+          value: "",
+        },
       ],
     });
   };
@@ -187,7 +201,11 @@ function NotificationRuleBuilder({
     update({ conditions: rule.conditions.filter((c) => c.id !== id) });
   };
 
-  const updateCondition = (id: string, field: keyof RuleCondition, value: string) => {
+  const updateCondition = (
+    id: string,
+    field: keyof RuleCondition,
+    value: string,
+  ) => {
     update({
       conditions: rule.conditions.map((c) =>
         c.id === id ? { ...c, [field]: value } : c,
@@ -210,7 +228,11 @@ function NotificationRuleBuilder({
     update({ recipients: rule.recipients.filter((r) => r.id !== id) });
   };
 
-  const updateRecipient = (id: string, field: keyof RuleRecipient, value: string) => {
+  const updateRecipient = (
+    id: string,
+    field: keyof RuleRecipient,
+    value: string,
+  ) => {
     update({
       recipients: rule.recipients.map((r) =>
         r.id === id ? { ...r, [field]: value } : r,
@@ -230,13 +252,18 @@ function NotificationRuleBuilder({
   return (
     <div
       data-slot="notification-rule-builder"
-      className={cn("space-y-5 rounded-lg border border-border bg-card p-5", className)}
+      className={cn(
+        "border-border bg-card space-y-5 rounded-lg border p-5",
+        className,
+      )}
     >
       {/* Header: name + enabled toggle */}
-      <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+      <div className="border-border flex items-center justify-between gap-4 border-b pb-4">
         <div className="flex-1">
           {readOnly ? (
-            <span className="text-lg font-semibold text-foreground">{rule.name}</span>
+            <span className="text-foreground text-lg font-semibold">
+              {rule.name}
+            </span>
           ) : (
             <Input
               className="h-9 text-lg font-semibold"
@@ -248,7 +275,7 @@ function NotificationRuleBuilder({
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Enabled</span>
+          <span className="text-muted-foreground text-sm">Enabled</span>
           <Switch
             checked={rule.enabled}
             onCheckedChange={(checked) => update({ enabled: checked })}
@@ -260,28 +287,25 @@ function NotificationRuleBuilder({
 
       {/* Event trigger */}
       <div data-slot="rule-event-section">
-        <label className="mb-1.5 block text-sm font-medium text-foreground">
+        <label className="text-foreground mb-1.5 block text-sm font-medium">
           When event fires:
         </label>
-        <select
-          className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
+        <NativeSelect
+          aria-label="Event trigger"
           value={rule.event}
           onChange={(e) => update({ event: e.target.value })}
           disabled={readOnly}
-          aria-label="Event trigger"
-        >
-          {events.map((ev) => (
-            <option key={ev.value} value={ev.value}>
-              {ev.group ? `${ev.group}: ` : ""}{ev.label}
-            </option>
-          ))}
-        </select>
+          options={events.map((ev) => ({
+            value: ev.value,
+            label: `${ev.group ? `${ev.group}: ` : ""}${ev.label}`,
+          }))}
+        />
       </div>
 
       {/* Conditions */}
       <div data-slot="rule-conditions-section">
         <div className="mb-2 flex items-center justify-between">
-          <label className="text-sm font-medium text-foreground">
+          <label className="text-foreground text-sm font-medium">
             Conditions (all must match):
           </label>
           {!readOnly && (
@@ -293,7 +317,7 @@ function NotificationRuleBuilder({
         </div>
         <div className="space-y-2">
           {rule.conditions.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               No conditions — notify on every event occurrence.
             </p>
           ) : (
@@ -303,32 +327,44 @@ function NotificationRuleBuilder({
                 data-slot="rule-condition"
                 className="flex items-center gap-2"
               >
-                <select
-                  className="h-8 flex-1 rounded border border-input bg-background px-2 text-sm"
-                  value={cond.field}
-                  onChange={(e) => updateCondition(cond.id, "field", e.target.value)}
-                  disabled={readOnly}
-                  aria-label="Condition field"
-                >
-                  {fields.map((f) => (
-                    <option key={f.value} value={f.value}>{f.label}</option>
-                  ))}
-                </select>
-                <select
-                  className="h-8 w-32 rounded border border-input bg-background px-2 text-sm"
-                  value={cond.operator}
-                  onChange={(e) => updateCondition(cond.id, "operator", e.target.value)}
-                  disabled={readOnly}
-                  aria-label="Condition operator"
-                >
-                  {Object.entries(operatorLabels).map(([val, label]) => (
-                    <option key={val} value={val}>{label}</option>
-                  ))}
-                </select>
+                <div className="min-w-0 flex-1">
+                  <NativeSelect
+                    size="sm"
+                    aria-label="Condition field"
+                    value={cond.field}
+                    onChange={(e) =>
+                      updateCondition(cond.id, "field", e.target.value)
+                    }
+                    disabled={readOnly}
+                    options={fields.map((f) => ({
+                      value: f.value,
+                      label: f.label,
+                    }))}
+                  />
+                </div>
+                <div className="w-32 shrink-0">
+                  <NativeSelect
+                    size="sm"
+                    aria-label="Condition operator"
+                    value={cond.operator}
+                    onChange={(e) =>
+                      updateCondition(cond.id, "operator", e.target.value)
+                    }
+                    disabled={readOnly}
+                    options={Object.entries(operatorLabels).map(
+                      ([val, label]) => ({
+                        value: val,
+                        label,
+                      }),
+                    )}
+                  />
+                </div>
                 <Input
                   className="h-8 flex-1 text-sm"
                   value={cond.value}
-                  onChange={(e) => updateCondition(cond.id, "value", e.target.value)}
+                  onChange={(e) =>
+                    updateCondition(cond.id, "value", e.target.value)
+                  }
                   placeholder="Value"
                   disabled={readOnly}
                   aria-label="Condition value"
@@ -353,7 +389,7 @@ function NotificationRuleBuilder({
       {/* Recipients */}
       <div data-slot="rule-recipients-section">
         <div className="mb-2 flex items-center justify-between">
-          <label className="text-sm font-medium text-foreground">
+          <label className="text-foreground text-sm font-medium">
             Notify who:
           </label>
           {!readOnly && recipientOptions.length > 0 && (
@@ -365,7 +401,7 @@ function NotificationRuleBuilder({
         </div>
         <div className="space-y-2">
           {rule.recipients.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               No recipients configured.
             </p>
           ) : (
@@ -375,31 +411,37 @@ function NotificationRuleBuilder({
                 data-slot="rule-recipient"
                 className="flex items-center gap-2"
               >
-                <select
-                  className="h-8 w-24 rounded border border-input bg-background px-2 text-sm"
-                  value={rec.type}
-                  onChange={(e) => updateRecipient(rec.id, "type", e.target.value)}
-                  disabled={readOnly}
-                  aria-label="Recipient type"
-                >
-                  <option value="user">User</option>
-                  <option value="role">Role</option>
-                  <option value="group">Group</option>
-                  <option value="field">Field</option>
-                </select>
-                <select
-                  className="h-8 flex-1 rounded border border-input bg-background px-2 text-sm"
-                  value={rec.target}
-                  onChange={(e) => updateRecipient(rec.id, "target", e.target.value)}
-                  disabled={readOnly}
-                  aria-label="Recipient target"
-                >
-                  {recipientOptions
-                    .filter((o) => o.type === rec.type)
-                    .map((o) => (
-                      <option key={o.value} value={o.value}>{o.label}</option>
-                    ))}
-                </select>
+                <div className="w-24 shrink-0">
+                  <NativeSelect
+                    size="sm"
+                    aria-label="Recipient type"
+                    value={rec.type}
+                    onChange={(e) =>
+                      updateRecipient(rec.id, "type", e.target.value)
+                    }
+                    disabled={readOnly}
+                    options={[
+                      { value: "user", label: "User" },
+                      { value: "role", label: "Role" },
+                      { value: "group", label: "Group" },
+                      { value: "field", label: "Field" },
+                    ]}
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <NativeSelect
+                    size="sm"
+                    aria-label="Recipient target"
+                    value={rec.target}
+                    onChange={(e) =>
+                      updateRecipient(rec.id, "target", e.target.value)
+                    }
+                    disabled={readOnly}
+                    options={recipientOptions
+                      .filter((o) => o.type === rec.type)
+                      .map((o) => ({ value: o.value, label: o.label }))}
+                  />
+                </div>
                 {!readOnly && (
                   <Button
                     variant="ghost"
@@ -419,7 +461,7 @@ function NotificationRuleBuilder({
 
       {/* Channels */}
       <div data-slot="rule-channels-section">
-        <label className="mb-2 block text-sm font-medium text-foreground">
+        <label className="text-foreground mb-2 block text-sm font-medium">
           Delivery channels:
         </label>
         <div className="flex flex-wrap gap-2">
@@ -456,43 +498,48 @@ function NotificationRuleBuilder({
         <div className="flex flex-wrap gap-4">
           {templates.length > 0 && (
             <div className="flex-1">
-              <label className="mb-1.5 block text-sm font-medium text-foreground">
+              <label className="text-foreground mb-1.5 block text-sm font-medium">
                 Template:
               </label>
-              <select
-                className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
+              <NativeSelect
+                aria-label="Message template"
                 value={rule.templateId ?? ""}
                 onChange={(e) => update({ templateId: e.target.value })}
                 disabled={readOnly}
-                aria-label="Message template"
-              >
-                <option value="">Default template</option>
-                {templates.map((t) => (
-                  <option key={t.id} value={t.id}>{t.name}</option>
-                ))}
-              </select>
+                options={[
+                  { value: "", label: "Default template" },
+                  ...templates.map((tpl) => ({
+                    value: tpl.id,
+                    label: tpl.name,
+                  })),
+                ]}
+              />
             </div>
           )}
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-foreground">
+            <label className="text-foreground mb-1.5 block text-sm font-medium">
               Priority:
             </label>
-            <select
-              className="h-9 w-32 rounded-md border border-input bg-background px-3 text-sm"
-              value={rule.priority ?? "normal"}
-              onChange={(e) => {
-                if (e.target.value) {
-                  update({ priority: e.target.value } as Partial<NotificationRule>);
-                }
-              }}
-              disabled={readOnly}
-              aria-label="Priority"
-            >
-              <option value="low">Low</option>
-              <option value="normal">Normal</option>
-              <option value="high">High</option>
-              <option value="urgent">Urgent</option>
-            </select>
+            <div className="w-32">
+              <NativeSelect
+                aria-label="Priority"
+                value={rule.priority ?? "normal"}
+                onChange={(e) => {
+                  if (e.target.value) {
+                    update({
+                      priority: e.target.value,
+                    } as Partial<NotificationRule>);
+                  }
+                }}
+                disabled={readOnly}
+                options={[
+                  { value: "low", label: "Low" },
+                  { value: "normal", label: "Normal" },
+                  { value: "high", label: "High" },
+                  { value: "urgent", label: "Urgent" },
+                ]}
+              />
+            </div>
           </div>
         </div>
       )}

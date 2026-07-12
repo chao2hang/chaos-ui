@@ -1,38 +1,42 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui"
-import { Input } from "@/components/ui"
-import { Card, CardContent } from "@/components/ui"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { NativeSelect } from "@/components/ui/native-select";
+import { Card, CardContent } from "@/components/ui";
 
 interface FilterField {
-  key: string
-  label: string
-  type?: "input" | "select" | "date-picker" | "date-range-picker" | "custom"
-  placeholder?: string
+  key: string;
+  label: string;
+  type?: "input" | "select" | "date-picker" | "date-range-picker" | "custom";
+  placeholder?: string;
   /** For select type: options */
-  options?: { label: string; value: string }[]
+  options?: { label: string; value: string }[];
   /** For custom type */
-  render?: (value: unknown, onChange: (key: string, val: unknown) => void) => React.ReactNode
+  render?: (
+    value: unknown,
+    onChange: (key: string, val: unknown) => void,
+  ) => React.ReactNode;
   /** Default value */
-  defaultValue?: unknown
+  defaultValue?: unknown;
 }
 
 interface FilterBarProps {
   /** Filter fields definition */
-  fields: FilterField[]
+  fields: FilterField[];
   /** Search callback with current filter values */
-  onSearch: (values: Record<string, unknown>) => void
+  onSearch: (values: Record<string, unknown>) => void;
   /** Reset callback */
-  onReset?: () => void
+  onReset?: () => void;
   /** Layout: inline (horizontal) or card */
-  layout?: "inline" | "card"
+  layout?: "inline" | "card";
   /** Show collapse/expand for long filter bars (> 4 fields) */
-  collapsible?: boolean
+  collapsible?: boolean;
   /** Loading state */
-  loading?: boolean
-  className?: string
+  loading?: boolean;
+  className?: string;
 }
 
 /**
@@ -52,52 +56,52 @@ function FilterBar({
   className,
 }: FilterBarProps) {
   const [values, setValues] = React.useState<Record<string, unknown>>(() => {
-    const initial: Record<string, unknown> = {}
+    const initial: Record<string, unknown> = {};
     for (const f of fields) {
-      if (f.defaultValue !== undefined) initial[f.key] = f.defaultValue
+      if (f.defaultValue !== undefined) initial[f.key] = f.defaultValue;
     }
-    return initial
-  })
-  const [expanded, setExpanded] = React.useState(false)
+    return initial;
+  });
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (key: string, value: unknown) => {
-    setValues((prev) => ({ ...prev, [key]: value }))
-  }
+    setValues((prev) => ({ ...prev, [key]: value }));
+  };
 
-  const handleSearch = () => onSearch(values)
+  const handleSearch = () => onSearch(values);
   const handleReset = () => {
-    setValues({})
-    onReset?.()
-  }
+    setValues({});
+    onReset?.();
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") handleSearch()
-  }
+    if (e.key === "Enter") handleSearch();
+  };
 
   // Show first 3 fields when collapsed, all when expanded
-  const visibleFields = collapsible && !expanded ? fields.slice(0, 3) : fields
-  const hiddenCount = fields.length - 3
+  const visibleFields = collapsible && !expanded ? fields.slice(0, 3) : fields;
+  const hiddenCount = fields.length - 3;
 
   const renderField = (field: FilterField) => {
     if (field.render) {
-      return field.render(values[field.key], handleChange)
+      return field.render(values[field.key], handleChange);
     }
 
     if (field.type === "select" && field.options) {
       return (
-        <select
-          className="h-9 rounded-md border bg-background px-3 text-sm"
+        <NativeSelect
+          className="min-w-44"
           value={String(values[field.key] ?? "")}
           onChange={(e) => handleChange(field.key, e.target.value || undefined)}
-        >
-          <option value="">{field.placeholder || field.label}</option>
-          {field.options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      )
+          options={[
+            { value: "", label: field.placeholder || field.label },
+            ...field.options.map((opt) => ({
+              value: opt.value,
+              label: opt.label,
+            })),
+          ]}
+        />
+      );
     }
 
     // Default: input
@@ -109,14 +113,18 @@ function FilterBar({
         onKeyDown={handleKeyDown}
         className="w-44"
       />
-    )
-  }
+    );
+  };
 
   const content = (
-    <div data-slot="filter-bar" className={cn("flex flex-wrap items-end gap-3", className)} onKeyDown={handleKeyDown}>
+    <div
+      data-slot="filter-bar"
+      className={cn("flex flex-wrap items-end gap-3", className)}
+      onKeyDown={handleKeyDown}
+    >
       {visibleFields.map((field) => (
         <div key={field.key} className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-muted-foreground">
+          <label className="text-muted-foreground text-xs font-medium">
             {field.label}
           </label>
           {renderField(field)}
@@ -127,7 +135,12 @@ function FilterBar({
         <Button size="sm" onClick={handleSearch} disabled={loading}>
           查询
         </Button>
-        <Button size="sm" variant="outline" onClick={handleReset} disabled={loading}>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={handleReset}
+          disabled={loading}
+        >
           重置
         </Button>
 
@@ -142,18 +155,18 @@ function FilterBar({
         )}
       </div>
     </div>
-  )
+  );
 
   if (layout === "card") {
     return (
       <Card data-slot="filter-bar">
         <CardContent className="pt-4">{content}</CardContent>
       </Card>
-    )
+    );
   }
 
-  return content
+  return content;
 }
 
-export { FilterBar }
-export type { FilterBarProps, FilterField }
+export { FilterBar };
+export type { FilterBarProps, FilterField };

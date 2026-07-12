@@ -9,6 +9,9 @@ vi.mock("@/components/ui/icons", () => ({
   ),
   UsersIcon: (p: Record<string, unknown>) => <svg data-testid="users" {...p} />,
   ClockIcon: (p: Record<string, unknown>) => <svg data-testid="clock" {...p} />,
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
 }));
 
 const rooms: MeetingRoom[] = [

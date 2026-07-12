@@ -5,19 +5,46 @@ import type { TransferLine } from "./stock-transfer-dialog";
 
 vi.mock("@/components/ui/icons", () => ({
   PlusIcon: (p: Record<string, unknown>) => <svg data-testid="plus" {...p} />,
-  Trash2Icon: (p: Record<string, unknown>) => <svg data-testid="trash" {...p} />,
-  ArrowRightIcon: (p: Record<string, unknown>) => <svg data-testid="arrow" {...p} />,
+  Trash2Icon: (p: Record<string, unknown>) => (
+    <svg data-testid="trash" {...p} />
+  ),
+  ArrowRightIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="arrow" {...p} />
+  ),
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
 }));
 
 const lines: TransferLine[] = [
-  { id: "1", productCode: "P-001", productName: "Widget A", quantity: 50, unit: "pcs", batchNo: "B2026-001", availableQty: 100 },
-  { id: "2", productCode: "P-002", productName: "Widget B", quantity: 30, unit: "box", batchNo: "B2026-002", availableQty: 45 },
+  {
+    id: "1",
+    productCode: "P-001",
+    productName: "Widget A",
+    quantity: 50,
+    unit: "pcs",
+    batchNo: "B2026-001",
+    availableQty: 100,
+  },
+  {
+    id: "2",
+    productCode: "P-002",
+    productName: "Widget B",
+    quantity: 30,
+    unit: "box",
+    batchNo: "B2026-002",
+    availableQty: 45,
+  },
 ];
 
 describe("StockTransferDialog", () => {
   it("renders with data-slot", () => {
-    const { container } = render(<StockTransferDialog lines={lines} warehouses={["WH-A", "WH-B"]} />);
-    expect(container.querySelector('[data-slot="stock-transfer-dialog"]')).toBeTruthy();
+    const { container } = render(
+      <StockTransferDialog lines={lines} warehouses={["WH-A", "WH-B"]} />,
+    );
+    expect(
+      container.querySelector('[data-slot="stock-transfer-dialog"]'),
+    ).toBeTruthy();
   });
 
   it("renders transfer number", () => {
@@ -26,14 +53,30 @@ describe("StockTransferDialog", () => {
   });
 
   it("renders warehouse dropdowns", () => {
-    render(<StockTransferDialog lines={lines} warehouses={["WH-A", "WH-B"]} fromWarehouse="WH-A" toWarehouse="WH-B" />);
+    render(
+      <StockTransferDialog
+        lines={lines}
+        warehouses={["WH-A", "WH-B"]}
+        fromWarehouse="WH-A"
+        toWarehouse="WH-B"
+      />,
+    );
     expect(screen.getByDisplayValue("WH-A")).toBeTruthy();
     expect(screen.getByDisplayValue("WH-B")).toBeTruthy();
   });
 
   it("shows same warehouse warning", () => {
-    render(<StockTransferDialog lines={lines} warehouses={["WH-A"]} fromWarehouse="WH-A" toWarehouse="WH-A" />);
-    expect(screen.getByText(/Source and destination cannot be the same/)).toBeTruthy();
+    render(
+      <StockTransferDialog
+        lines={lines}
+        warehouses={["WH-A"]}
+        fromWarehouse="WH-A"
+        toWarehouse="WH-A"
+      />,
+    );
+    expect(
+      screen.getByText(/Source and destination cannot be the same/),
+    ).toBeTruthy();
   });
 
   it("shows total quantity", () => {
@@ -58,14 +101,27 @@ describe("StockTransferDialog", () => {
 
   it("renders transfer type buttons", () => {
     const onTypeChange = vi.fn();
-    render(<StockTransferDialog lines={lines} transferType="regular" onTransferTypeChange={onTypeChange} />);
+    render(
+      <StockTransferDialog
+        lines={lines}
+        transferType="regular"
+        onTransferTypeChange={onTypeChange}
+      />,
+    );
     fireEvent.click(screen.getByText("Urgent"));
     expect(onTypeChange).toHaveBeenCalledWith("urgent");
   });
 
   it("disables submit when same warehouse", () => {
     const onSubmit = vi.fn();
-    render(<StockTransferDialog lines={lines} fromWarehouse="WH-A" toWarehouse="WH-A" onSubmit={onSubmit} />);
+    render(
+      <StockTransferDialog
+        lines={lines}
+        fromWarehouse="WH-A"
+        toWarehouse="WH-A"
+        onSubmit={onSubmit}
+      />,
+    );
     expect(screen.getByText("Submit Transfer")).toBeDisabled();
   });
 
@@ -76,8 +132,12 @@ describe("StockTransferDialog", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<StockTransferDialog lines={lines} className="custom-st" />);
-    const el = container.querySelector('[data-slot="stock-transfer-dialog"]') as HTMLElement;
+    const { container } = render(
+      <StockTransferDialog lines={lines} className="custom-st" />,
+    );
+    const el = container.querySelector(
+      '[data-slot="stock-transfer-dialog"]',
+    ) as HTMLElement;
     expect(el.className).toContain("custom-st");
   });
 });

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPinIcon, PinIcon } from "@/components/ui/icons";
 
@@ -37,7 +38,12 @@ interface AddressInputProps {
   value?: AddressValue;
   /** Change callback / 变更回调 */
   onChange?: (value: AddressValue) => void;
-  /** Show map placeholder (default: false) / 是否显示地图占位 */
+  /**
+   * Show **placeholder** map panel only (default: false).
+   * Not a real map / geocoding integration in 1.x — use `showGeolocation` for lat/lng fields
+   * or embed your own map widget as a sibling.
+   * / 仅显示**地图占位**（1.x 无真实地图/地理编码）。经纬度请用 showGeolocation 或自行嵌入地图。
+   */
   showMap?: boolean;
   /** Show geolocation inputs (default: false) / 是否显示经纬度输入 */
   showGeolocation?: boolean;
@@ -125,8 +131,8 @@ const DISTRICTS: Record<string, { code: string; name: string }[]> = {
  * @since 0.2.0
  * @description Structured address input with province/city/district
  *   cascading selects, street input, detail textarea, and optional
- *   geolocation fields. / 结构化地址输入，包含省/市/区级联选择、街道输入、
- *   详细地址文本域，以及可选的经纬度字段。
+ *   geolocation fields. `showMap` is a **non-functional placeholder** in 1.x
+ *   (no tiles / geocoding). / 结构化地址输入。`showMap` 在 1.x 仅为占位，无瓦片/地理编码。
  * @keywords address, input, province, city, district, geolocation, cascading
  * @example
  * ```tsx
@@ -176,56 +182,48 @@ function AddressInput({
         <MapPinIcon className="size-4 shrink-0" />
         <span>行政区划</span>
       </div>
-      <div className="grid grid-cols-3 gap-2">
-        <select
-          className="border-input focus-visible:border-ring focus-visible:ring-ring/50 h-9 rounded-lg border bg-transparent px-2 text-sm transition-colors outline-none focus-visible:ring-3"
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+        <NativeSelect
+          aria-label="省份"
           value={internalValue.province ?? ""}
           onChange={(e) => handleProvinceChange(e.target.value)}
-          aria-label="省份"
-        >
-          <option value="">请选择省份</option>
-          {PROVINCES.map((p) => (
-            <option key={p.code} value={p.name}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-        <select
-          className="border-input focus-visible:border-ring focus-visible:ring-ring/50 h-9 rounded-lg border bg-transparent px-2 text-sm transition-colors outline-none focus-visible:ring-3"
+          options={[
+            { value: "", label: "请选择省份" },
+            ...PROVINCES.map((p) => ({ value: p.name, label: p.name })),
+          ]}
+        />
+        <NativeSelect
+          aria-label="城市"
           value={internalValue.city ?? ""}
           onChange={(e) => handleCityChange(e.target.value)}
           disabled={!provinceCode}
-          aria-label="城市"
-        >
-          <option value="">请选择城市</option>
-          {provinceCode &&
-            (CITIES[provinceCode] ?? []).map((c) => (
-              <option key={c.code} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-        </select>
-        <select
-          className="border-input focus-visible:border-ring focus-visible:ring-ring/50 h-9 rounded-lg border bg-transparent px-2 text-sm transition-colors outline-none focus-visible:ring-3"
+          options={[
+            { value: "", label: "请选择城市" },
+            ...(provinceCode
+              ? (CITIES[provinceCode] ?? []).map((c) => ({
+                  value: c.name,
+                  label: c.name,
+                }))
+              : []),
+          ]}
+        />
+        <NativeSelect
+          aria-label="区县"
           value={internalValue.district ?? ""}
           onChange={(e) => update({ district: e.target.value })}
           disabled={!cityCode}
-          aria-label="区县"
-        >
-          <option value="">请选择区县</option>
-          {districts.map((d) => (
-            <option key={d.code} value={d.name}>
-              {d.name}
-            </option>
-          ))}
-        </select>
+          options={[
+            { value: "", label: "请选择区县" },
+            ...districts.map((d) => ({ value: d.name, label: d.name })),
+          ]}
+        />
       </div>
 
       {/* Map placeholder */}
       {showMap && (
         <div className="bg-muted/50 text-muted-foreground flex h-32 items-center justify-center rounded-lg border border-dashed text-sm">
           <MapPinIcon className="mr-1.5 size-4" />
-          地图占位区域
+          地图占位（非真实地图 / 无地理编码）
         </div>
       )}
 

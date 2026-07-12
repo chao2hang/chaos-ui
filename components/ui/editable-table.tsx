@@ -131,6 +131,7 @@ function EditableTable<
     };
     switch (col.type) {
       case "select":
+        // native-select-exception: editable table cell editor density
         return (
           <select
             {...commonProps}
