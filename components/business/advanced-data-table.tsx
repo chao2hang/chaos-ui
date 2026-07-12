@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * @deprecated Use SearchTable or DataTable instead — they are now powered by @tanstack/react-table
- * and support sorting, filtering, sticky columns, expandable rows, and column visibility.
- * AdvancedDataTable is kept for backward compatibility and will be removed in a future version.
+ * @deprecated Prefer `SearchTable`, `DataTable`, or `ProTable` for new work.
+ * AdvancedDataTable remains on the public business barrel until **2.0**
+ * (see `docs/api-boundaries.md` table ladder). Do not use in new code.
  */
 
 import * as React from "react";

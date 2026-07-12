@@ -4,20 +4,21 @@ import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 type Status =
-  | "draft"
-  | "pending"
-  | "approved"
-  | "rejected"
-  | "completed"
-  | "cancelled";
+  "draft" | "pending" | "approved" | "rejected" | "completed" | "cancelled";
 
 const statusConfig: Record<Status, { label: string; className: string }> = {
   draft: { label: "Draft", className: "bg-muted text-muted-foreground" },
   pending: { label: "Pending", className: "bg-warning/15 text-warning" },
   approved: { label: "Approved", className: "bg-info/15 text-info" },
-  rejected: { label: "Rejected", className: "bg-destructive/10 text-destructive" },
+  rejected: {
+    label: "Rejected",
+    className: "bg-destructive/10 text-destructive",
+  },
   completed: { label: "Completed", className: "bg-success/15 text-success" },
-  cancelled: { label: "Cancelled", className: "bg-muted text-muted-foreground line-through" },
+  cancelled: {
+    label: "Cancelled",
+    className: "bg-muted text-muted-foreground line-through",
+  },
 };
 
 interface StatusTagProps {
@@ -35,6 +36,7 @@ interface StatusTagProps {
  * @keywords status, tag, badge, workflow, state
  * @example
  * <StatusTag status="approved" />
+ * @see Prefer StatusBadge / ColorTag for configurable maps; keep StatusTag for fixed workflow vocabulary.
  */
 function StatusTag({ status, size = "default", label }: StatusTagProps) {
   const key = status.toLowerCase() as Status;

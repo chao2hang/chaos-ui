@@ -58,9 +58,11 @@ function SortableList<T>({
       }
       dragIndexRef.current = index;
       setDraggingIndex(index);
-      e.dataTransfer.effectAllowed = "move";
-      // Required for Firefox to initiate drag
-      e.dataTransfer.setData("text/plain", String(index));
+      if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = "move";
+        // Required for Firefox to initiate drag
+        e.dataTransfer.setData("text/plain", String(index));
+      }
     },
     [disabled],
   );
@@ -69,7 +71,9 @@ function SortableList<T>({
     (index: number) => (e: React.DragEvent) => {
       if (disabled) return;
       e.preventDefault();
-      e.dataTransfer.dropEffect = "move";
+      if (e.dataTransfer) {
+        e.dataTransfer.dropEffect = "move";
+      }
       if (overIndex !== index) {
         setOverIndex(index);
       }

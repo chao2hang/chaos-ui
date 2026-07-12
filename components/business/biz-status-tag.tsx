@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { ColorTag, type ColorTagColor } from "@/components/business/color-tag";
 
 type BizStatus =
   "draft" | "pending" | "approved" | "rejected" | "rejected_mid" | string;
@@ -10,66 +11,71 @@ interface BizStatusTagProps {
   status: BizStatus;
   /** Custom status label (auto-detected by default) */
   label?: React.ReactNode;
-  /** Custom status color map */
+  /** Custom status color map — merged over defaults */
   statusMap?: Record<
     string,
-    { color: string; label: string; className?: string }
+    { color: string; label: string; className?: string; tone?: ColorTagColor }
   >;
   className?: string;
 }
 
+/** @deprecated Prefer ColorTag tones via StatusBadge / ColorTag for new maps. Kept for className overrides. */
 const defaultStatusMap: Record<
   string,
-  { color: string; label: string; className: string }
+  { color: string; label: string; className: string; tone: ColorTagColor }
 > = {
   draft: {
     color: "#6b7280",
     label: "草稿",
-    className: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+    className: "",
+    tone: "default",
   },
   pending: {
     color: "#3b82f6",
     label: "审批中",
-    className:
-      "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+    className: "",
+    tone: "info",
   },
   approved: {
     color: "#22c55e",
     label: "已通过",
-    className:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+    className: "",
+    tone: "success",
   },
   rejected: {
     color: "#ef4444",
     label: "已驳回",
-    className: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+    className: "",
+    tone: "error",
   },
   rejected_mid: {
     color: "#f97316",
     label: "驳回中",
-    className:
-      "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+    className: "",
+    tone: "orange",
   },
   inactive: {
     color: "#6b7280",
     label: "已停用",
-    className: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+    className: "",
+    tone: "default",
   },
   active: {
     color: "#22c55e",
     label: "已启用",
-    className:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+    className: "",
+    tone: "success",
   },
 };
 
 /**
- * 业务状态标签 —— 自动颜色映射 + 标准化文案。
- * 对标 qxy-mop 所有页面的 `<Tag color={statusMap[v].color}>`。
+ * 业务状态标签 —— 基于 ColorTag 的语义色 + 标准化文案。
+ * 新代码优先 `StatusBadge preset="biz"`；本组件保留兼容 API。
  *
  * @component BizStatusTag
  * @category business/status
  * @since 0.2.0
+ * @see StatusBadge, ColorTag, docs/api-boundaries.md
  */
 function BizStatusTag({
   status,
@@ -82,29 +88,29 @@ function BizStatusTag({
 
   if (!config) {
     return (
-      <span
+      <ColorTag
         data-slot="biz-status-tag"
-        className={cn(
-          "bg-muted text-muted-foreground inline-flex rounded-md px-2 py-0.5 text-xs font-medium",
-          className,
-        )}
+        color="muted"
+        size="sm"
+        className={className}
       >
         {label || status}
-      </span>
+      </ColorTag>
     );
   }
 
+  const tone =
+    (config as { tone?: ColorTagColor }).tone ?? ("default" as ColorTagColor);
+
   return (
-    <span
+    <ColorTag
       data-slot="biz-status-tag"
-      className={cn(
-        "inline-flex rounded-md px-2 py-0.5 text-xs font-medium",
-        config.className,
-        className,
-      )}
+      color={tone}
+      size="sm"
+      className={cn(config.className, className)}
     >
       {label || config.label}
-    </span>
+    </ColorTag>
   );
 }
 

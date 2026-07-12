@@ -2,14 +2,14 @@
 
 import * as React from "react";
 
-import { Spinner } from "@/components/ui/spinner";
+import { GlobalLoading } from "@/components/ui/global-loading";
 
 /**
- * @component GlobalLoading
+ * @component GlobalLoadingProvider
  * @category business/feedback
  * @since 0.7.0
- * @description 全局加载层 — 通过 context + hook 控制，无需在每处手动渲染。
- * / Global loading overlay — controlled via context + hook, no manual rendering needed.
+ * @description 全局加载层 — 通过 context + hook 控制；内部组合 UI `GlobalLoading`，不重复实现 overlay。
+ * / Global loading overlay via context + hook. Renders UI `GlobalLoading` (no second overlay stack).
  * @keywords loading, global, overlay, spinner, feedback
  * @example
  * // In root layout:
@@ -19,8 +19,8 @@ import { Spinner } from "@/components/ui/spinner";
  *
  * // In any component:
  * const { show, hide } = useGlobalLoading();
- * show(); // show overlay
- * hide(); // hide overlay
+ * show("Saving…");
+ * hide();
  */
 
 interface GlobalLoadingContextValue {
@@ -42,14 +42,18 @@ interface GlobalLoadingProviderProps {
   children: React.ReactNode;
   /** Default tip text / 默认提示文本 */
   defaultTip?: string;
-  /** z-index of the overlay / 遮罩层 z-index */
+  /**
+   * Optional z-index override for the overlay.
+   * Default relies on UI GlobalLoading → `--z-index-overlay`.
+   * / 可选覆盖层 z-index；默认走 UI token
+   */
   zIndex?: number;
 }
 
 function GlobalLoadingProvider({
   children,
   defaultTip,
-  zIndex = 9999,
+  zIndex,
 }: GlobalLoadingProviderProps) {
   const [visible, setVisible] = React.useState(false);
   const [tip, setTip] = React.useState<string | undefined>(defaultTip);
@@ -74,20 +78,12 @@ function GlobalLoadingProvider({
   return (
     <GlobalLoadingContext.Provider value={value}>
       {children}
-      {visible && (
-        <div
-          data-slot="global-loading"
-          className="bg-background/80 fixed inset-0 flex items-center justify-center backdrop-blur-sm"
-          style={{ zIndex }}
-          role="status"
-          aria-live="polite"
-        >
-          <div className="flex flex-col items-center gap-3">
-            <Spinner size="xl" />
-            {tip && <p className="text-muted-foreground text-sm">{tip}</p>}
-          </div>
-        </div>
-      )}
+      <GlobalLoading
+        loading={visible}
+        fullscreen
+        {...(tip !== undefined ? { text: tip } : {})}
+        {...(zIndex !== undefined ? { style: { zIndex } } : {})}
+      />
     </GlobalLoadingContext.Provider>
   );
 }

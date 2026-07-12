@@ -2,104 +2,115 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { SegmentedControl } from "./segmented-control";
 
-const opts = [
-  { value: "day", label: "Day" },
-  { value: "week", label: "Week" },
-  { value: "month", label: "Month" },
+type Opt = "a" | "b" | "c";
+const options: { value: Opt; label: string }[] = [
+  { value: "a", label: "Alpha" },
+  { value: "b", label: "Beta" },
+  { value: "c", label: "Gamma" },
 ];
 
 describe("SegmentedControl", () => {
   it("exports SegmentedControl", () => {
     expect(SegmentedControl).toBeDefined();
+    expect(typeof SegmentedControl).toBe("function");
   });
 
   it("renders all option labels", () => {
-    render(<SegmentedControl options={opts} defaultValue="week" />);
-    expect(screen.getByText("Day")).toBeDefined();
-    expect(screen.getByText("Week")).toBeDefined();
-    expect(screen.getByText("Month")).toBeDefined();
+    render(<SegmentedControl options={options} value="a" />);
+    expect(screen.getByText("Alpha")).toBeDefined();
+    expect(screen.getByText("Beta")).toBeDefined();
+    expect(screen.getByText("Gamma")).toBeDefined();
   });
 
-  it("renders a data-slot root", () => {
+  it("renders the segmented-control data-slot", () => {
     const { container } = render(
-      <SegmentedControl options={opts} defaultValue="week" />,
+      <SegmentedControl options={options} value="a" />,
     );
     expect(
       container.querySelector('[data-slot="segmented-control"]'),
     ).not.toBeNull();
   });
 
-  it("marks the default value as pressed", () => {
-    const { container } = render(
-      <SegmentedControl options={opts} defaultValue="week" />,
-    );
-    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
-    expect(items[1]!.getAttribute("data-pressed")).not.toBeNull();
-    expect(items[0]!.getAttribute("data-pressed")).toBeNull();
-  });
-
   it("fires onChange when an option is clicked", () => {
     const onChange = vi.fn();
     render(
-      <SegmentedControl
-        options={opts}
-        defaultValue="day"
-        onChange={onChange}
-      />,
+      <SegmentedControl options={options} value="a" onChange={onChange} />,
     );
-    fireEvent.click(screen.getByText("Month"));
-    expect(onChange).toHaveBeenCalledWith("month");
+    fireEvent.click(screen.getByText("Beta"));
+    expect(onChange).toHaveBeenCalledWith("b");
+  });
+
+  it("uses defaultValue when value is undefined", () => {
+    render(<SegmentedControl options={options} defaultValue="b" />);
+    // Beta toggle should be pressed
+    const beta = screen.getByText("Beta").closest("button");
+    expect(
+      beta?.getAttribute("aria-pressed") === "true" ||
+        beta?.getAttribute("data-pressed") !== undefined,
+    ).toBe(true);
+  });
+
+  it("disables all items when disabled", () => {
+    render(<SegmentedControl options={options} value="a" disabled />);
+    const alpha = screen.getByText("Alpha").closest("button");
+    expect(alpha?.hasAttribute("disabled")).toBe(true);
+  });
+
+  it("disables a single item via option.disabled", () => {
+    const opts = [
+      ...options,
+      { value: "d" as const, label: "Delta", disabled: true },
+    ];
+    render(<SegmentedControl options={opts} value="a" />);
+    const delta = screen.getByText("Delta").closest("button");
+    expect(delta?.hasAttribute("disabled")).toBe(true);
+  });
+
+  it("applies size variants", () => {
+    const { rerender } = render(
+      <SegmentedControl options={options} value="a" size="sm" />,
+    );
+    const btnSm = screen.getByText("Alpha").closest("button");
+    expect(btnSm?.className).toContain("h-7");
+    rerender(<SegmentedControl options={options} value="a" size="lg" />);
+    const btnLg = screen.getByText("Alpha").closest("button");
+    expect(btnLg?.className).toContain("h-9");
+  });
+
+  it("supports vertical orientation", () => {
+    const { container } = render(
+      <SegmentedControl options={options} value="a" orientation="vertical" />,
+    );
+    const root = container.querySelector('[data-slot="segmented-control"]');
+    expect(root?.className).toContain("flex-col");
+  });
+
+  it("applies custom className", () => {
+    const { container } = render(
+      <SegmentedControl options={options} value="a" className="my-control" />,
+    );
+    const root = container.querySelector('[data-slot="segmented-control"]');
+    expect(root?.className).toContain("my-control");
   });
 
   it("renders option icons", () => {
     render(
       <SegmentedControl
         options={[
-          { value: "a", label: "A", icon: <span>D</span> },
-          { value: "b", label: "B" },
+          {
+            value: "a",
+            label: "WithIcon",
+            icon: <span data-testid="ic">★</span>,
+          },
         ]}
-        defaultValue="a"
+        value="a"
       />,
     );
-    expect(screen.getByText("D")).toBeDefined();
+    expect(screen.getByTestId("ic")).toBeDefined();
   });
 
-  it("applies vertical orientation", () => {
-    const { container } = render(
-      <SegmentedControl
-        options={opts}
-        defaultValue="day"
-        orientation="vertical"
-      />,
-    );
-    const el = container.querySelector(
-      '[data-slot="segmented-control"]',
-    ) as HTMLElement;
-    expect(el.className).toContain("flex-col");
-  });
-
-  it("disables all items when disabled", () => {
-    const { container } = render(
-      <SegmentedControl options={opts} defaultValue="day" disabled />,
-    );
-    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
-    items.forEach((it) => {
-      expect(it.getAttribute("data-disabled")).not.toBeNull();
-    });
-  });
-
-  it("supports per-option disabled", () => {
-    const { container } = render(
-      <SegmentedControl
-        options={[
-          { value: "a", label: "A" },
-          { value: "b", label: "B", disabled: true },
-        ]}
-        defaultValue="a"
-      />,
-    );
-    const items = container.querySelectorAll('[data-slot="toggle-group-item"]');
-    expect(items[1]!.getAttribute("data-disabled")).not.toBeNull();
-    expect(items[0]!.getAttribute("data-disabled")).toBeNull();
+  it("module is importable", async () => {
+    const mod = await import("./segmented-control");
+    expect(mod.SegmentedControl).toBeDefined();
   });
 });

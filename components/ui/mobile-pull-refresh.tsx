@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * @component MobilePullRefresh
+ * @deprecated Prefer `@chaos_team/chaos-ui/mobile` `MobilePullToRefresh` / `PullToRefresh` for new mobile work. This UI-layer dual stack remains for 1.x compatibility.
  * @category UI
  * @since 1.0.0-beta.0
  * @description 下拉刷新容器，触摸下拉超过阈值触发 onRefresh
@@ -69,7 +70,7 @@ function MobilePullRefresh({
   return (
     <div
       data-slot="mobile-pull-refresh"
-      className={cn("relative overflow-hidden touch-none", className)}
+      className={cn("relative touch-none overflow-hidden", className)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -77,11 +78,17 @@ function MobilePullRefresh({
       <div
         data-slot="mobile-pull-refresh-indicator"
         aria-hidden={showIndicator ? "false" : "true"}
-        className="flex items-center justify-center text-xs text-muted-foreground transition-opacity"
-        style={{ height: `${indicatorOffset}px`, opacity: showIndicator ? 1 : 0 }}
+        className="text-muted-foreground flex items-center justify-center text-xs transition-opacity"
+        style={{
+          height: `${indicatorOffset}px`,
+          opacity: showIndicator ? 1 : 0,
+        }}
       >
         {refreshing ? (
-          <span data-slot="mobile-pull-refresh-spinner" className="animate-spin">
+          <span
+            data-slot="mobile-pull-refresh-spinner"
+            className="animate-spin"
+          >
             ⟳
           </span>
         ) : (

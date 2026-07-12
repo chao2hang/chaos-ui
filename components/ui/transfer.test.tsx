@@ -68,6 +68,7 @@ describe("Transfer", () => {
     render(
       <Transfer dataSource={[{ key: "a", label: "A" }]} targetKeys={["a"]} />,
     );
+    // The "transfer.noData" appears for the empty source panel.
     const noDataEls = screen.getAllByText("transfer.noData");
     expect(noDataEls.length).toBeGreaterThan(0);
   });
@@ -132,6 +133,7 @@ describe("Transfer", () => {
         onChange={onChange}
       />,
     );
+    // Click the checkbox for item A (first source-panel checkbox).
     const checkboxA = container.querySelector(
       '[data-slot="checkbox"]',
     ) as HTMLElement;
@@ -150,6 +152,7 @@ describe("Transfer", () => {
         onChange={onChange}
       />,
     );
+    // Target panel is the second panel; its checkbox is the last one.
     const checkboxes = container.querySelectorAll('[data-slot="checkbox"]');
     const checkboxTarget = checkboxes[checkboxes.length - 1] as HTMLElement;
     fireEvent.click(checkboxTarget);
@@ -184,6 +187,7 @@ describe("Transfer", () => {
       />,
     );
     const inputs = container.querySelectorAll("input");
+    // First input is the source search box.
     fireEvent.change(inputs[0]!, { target: { value: "app" } });
     expect(screen.getByText("Apple")).toBeDefined();
     expect(screen.queryByText("Banana")).toBeNull();
@@ -191,6 +195,7 @@ describe("Transfer", () => {
 
   it("hides search inputs when searchable is false", () => {
     render(<Transfer dataSource={data} targetKeys={[]} searchable={false} />);
+    // The search placeholder text should not be rendered.
     expect(screen.queryByPlaceholderText("transfer.search")).toBeNull();
   });
 
@@ -202,6 +207,7 @@ describe("Transfer", () => {
         filterOption={() => false}
       />,
     );
+    // Both source panel renders noData (target panel also empty).
     expect(screen.getAllByText("transfer.noData").length).toBeGreaterThan(0);
     expect(screen.queryByText("A")).toBeNull();
   });

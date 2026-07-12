@@ -58,7 +58,9 @@ const MIN_SIZE = 20;
  * @component ImageCropper
  * @category business/media
  * @since 0.2.0
- * @description Canvas-based image cropping dialog with draggable and resizable crop region, supporting circle and rect shapes / 基于 canvas 的图片裁剪对话框，裁剪区域可拖拽和缩放，支持圆形和矩形
+ * @description Canvas-based image cropping dialog with draggable and resizable crop region, supporting circle and rect shapes.
+ * **Rotate is not implemented in 1.x** (button disabled; no-op). Prefer pre-rotate before open or wait for 2.0.
+ * / 基于 canvas 的图片裁剪对话框。**1.x 不支持旋转**（按钮禁用、空操作）。请先外部旋转或等 2.0。
  * @keywords image, crop, avatar, photo, upload, canvas, dialog
  * @example
  * <ImageCropper
@@ -347,9 +349,13 @@ function ImageCropper({
     );
   }, [crop, displaySize, imgNaturalSize, shape, onCrop, onOpenChange]);
 
+  /** @deprecated No-op in 1.x — full rotate needs canvas re-render. Disabled in UI. */
   const handleRotate = React.useCallback(() => {
-    // Rotate is a placeholder for future enhancement
-    // Full rotation requires canvas re-render of the image
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        "[ImageCropper] rotate is not implemented in 1.x (button is disabled).",
+      );
+    }
   }, []);
 
   const handles = [
@@ -491,6 +497,9 @@ function ImageCropper({
               size="sm"
               onClick={handleRotate}
               icon={<RotateCwIcon />}
+              disabled
+              title="Rotate is not available in 1.x"
+              aria-disabled="true"
             >
               Rotate
             </Button>

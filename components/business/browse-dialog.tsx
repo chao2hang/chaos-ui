@@ -87,13 +87,29 @@ export interface BrowseDialogProps<
   /* --- Core data loading --- */
 
   /** Async fetcher that receives search/pagination params and returns rows + total.
+   *  Prefer this for remote OA-style browse.
+   *  Optional when `items` is provided (local static list).
    *  @example
    *  loadData={async (params) => {
    *    const res = await api.search(params);
    *    return { rows: res.list, total: res.total };
    *  }}
    */
-  loadData: (params: BrowseLoadParams) => Promise<BrowseLoadResult<T>>;
+  loadData?: (params: BrowseLoadParams) => Promise<BrowseLoadResult<T>>;
+
+  /** Local static rows. When set, enables client-side filter + pagination
+   *  (no remote fetcher required). Domain `*-browse` adapters use this.
+   */
+  items?: T[];
+
+  /** Keys used to filter local `items` by keyword (default: name, code, id). */
+  filterKeys?: (keyof T & string)[];
+
+  /** single = radio / max 1; multiple = checkbox (default). */
+  selectionMode?: "single" | "multiple";
+
+  /** data-slot on DialogContent (domain adapters set e.g. company-browse). */
+  dataSlot?: string;
 
   /* --- Columns --- */
 
@@ -124,6 +140,8 @@ export interface BrowseDialogProps<
 
   /** Dialog title (default: "选择"). */
   title?: string;
+  /** Dialog description (overrides default multi-select copy). */
+  description?: string;
   /** Search input placeholder (default: "搜索..."). */
   searchPlaceholder?: string;
   /** Empty-state text (default: "暂无数据"). */
@@ -146,8 +164,9 @@ export interface BrowseDialogProps<
 }
 
 /**
- * Generic OA-style browse dialog with remote pagination, multi-select,
- * selected-chips display, and optional left-side category tree.
+ * Generic OA-style browse dialog with remote pagination or local `items`,
+ * multi/single select, selected-chips display, and optional left-side category tree.
+ * Domain `*-browse` components should be thin adapters over this shell.
  *
  * @component BrowseDialog
  * @category business/picker
@@ -177,7 +196,11 @@ function BrowseDialog<
 >({
   open,
   onOpenChange,
-  loadData,
+  loadData: loadDataProp,
+  items: localItems,
+  filterKeys,
+  selectionMode = "multiple",
+  dataSlot = "browse-dialog",
   columns,
   value,
   defaultValue: _defaultValue = [],
@@ -185,16 +208,49 @@ function BrowseDialog<
   rowKey: rowKeyProp = "id" as keyof T & string,
   tree,
   title,
+  description,
   searchPlaceholder,
   emptyText,
   className,
   pageSize: pageSizeProp = 10,
   searchDebounceMs = 300,
-  maxSelect,
+  maxSelect: maxSelectProp,
   minSelect,
 }: BrowseDialogProps<T>) {
   const { t } = useTranslation("ui");
   const rowKey = rowKeyProp;
+  const isSingle = selectionMode === "single";
+  const maxSelect = isSingle ? 1 : maxSelectProp;
+
+  const defaultFilterKeys = React.useMemo(
+    () =>
+      filterKeys ??
+      (["name", "code", "id", "sku", "no", "contact", "phone"] as (keyof T &
+        string)[]),
+    [filterKeys],
+  );
+
+  const loadData = React.useCallback(
+    async (params: BrowseLoadParams): Promise<BrowseLoadResult<T>> => {
+      if (loadDataProp) return loadDataProp(params);
+      const source = localItems ?? [];
+      const q = params.keyword.trim().toLowerCase();
+      const filtered = !q
+        ? source
+        : source.filter((row) =>
+            defaultFilterKeys.some((k) => {
+              const v = row[k];
+              return v != null && String(v).toLowerCase().includes(q);
+            }),
+          );
+      const start = (params.page - 1) * params.pageSize;
+      return {
+        rows: filtered.slice(start, start + params.pageSize),
+        total: filtered.length,
+      };
+    },
+    [loadDataProp, localItems, defaultFilterKeys],
+  );
 
   const resolvedTitle =
     title ?? t("browseDialog.title", { defaultValue: "选择" });
@@ -240,11 +296,41 @@ function BrowseDialog<
     }
   }, [isControlled, value, rowKey]);
 
-  /* ---- data fetching (debounced) ---- */
+  /* ---- data: local items sync OR remote loadData debounced ---- */
+  const isLocalMode = loadDataProp == null;
+
   const fetchIdRef = React.useRef(0);
 
+  // Local static list: filter + paginate synchronously (no race with open-reset).
   React.useEffect(() => {
-    if (!open) return;
+    if (!open || !isLocalMode) return;
+    const source = localItems ?? [];
+    const q = keyword.trim().toLowerCase();
+    const filtered = !q
+      ? source
+      : source.filter((row) =>
+          defaultFilterKeys.some((k) => {
+            const v = row[k];
+            return v != null && String(v).toLowerCase().includes(q);
+          }),
+        );
+    const start = (page - 1) * pageSize;
+    setRows(filtered.slice(start, start + pageSize));
+    setTotal(filtered.length);
+    setLoading(false);
+  }, [
+    open,
+    isLocalMode,
+    localItems,
+    keyword,
+    page,
+    pageSize,
+    defaultFilterKeys,
+  ]);
+
+  // Remote fetcher path
+  React.useEffect(() => {
+    if (!open || isLocalMode) return;
 
     fetchIdRef.current += 1;
     const currentFetchId = fetchIdRef.current;
@@ -278,6 +364,7 @@ function BrowseDialog<
     return () => clearTimeout(timer);
   }, [
     open,
+    isLocalMode,
     keyword,
     page,
     pageSize,
@@ -313,6 +400,16 @@ function BrowseDialog<
   const toggleRow = (row: T) => {
     const key = String(row[rowKey]);
     const map = selectedMapRef.current;
+    if (isSingle) {
+      if (map.has(key) && map.size === 1) {
+        map.clear();
+      } else {
+        map.clear();
+        map.set(key, row);
+      }
+      rerender();
+      return;
+    }
     if (map.has(key)) {
       map.delete(key);
     } else {
@@ -393,21 +490,29 @@ function BrowseDialog<
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        data-slot="browse-dialog"
-        className={cn("sm:max-w-3xl", className)}
+        data-slot={dataSlot}
+        className={cn(
+          localItems != null ? "sm:max-w-md" : "sm:max-w-3xl",
+          className,
+        )}
         showCloseButton
       >
         <DialogHeader>
           <DialogTitle>{resolvedTitle}</DialogTitle>
           <DialogDescription>
-            {maxSelect != null
-              ? t("browseDialog.descriptionMax", {
-                  defaultValue: `最多可选 ${maxSelect} 项`,
-                  max: maxSelect,
-                })
-              : t("browseDialog.description", {
-                  defaultValue: "从列表中选择",
-                })}
+            {description ??
+              (maxSelect != null && !isSingle
+                ? t("browseDialog.descriptionMax", {
+                    defaultValue: `最多可选 ${maxSelect} 项`,
+                    max: maxSelect,
+                  })
+                : isSingle
+                  ? t("browseDialog.descriptionSingle", {
+                      defaultValue: "从列表中选择一项",
+                    })
+                  : t("browseDialog.description", {
+                      defaultValue: "从列表中选择",
+                    }))}
           </DialogDescription>
         </DialogHeader>
 
@@ -515,21 +620,23 @@ function BrowseDialog<
                   <TableRow>
                     {/* Selection column */}
                     <TableHead className="w-10">
-                      <input
-                        type="checkbox"
-                        checked={allCurrentPageSelected}
-                        ref={(el) => {
-                          if (el)
-                            el.indeterminate =
-                              someCurrentPageSelected &&
-                              !allCurrentPageSelected;
-                        }}
-                        onChange={toggleAllCurrentPage}
-                        className="border-input size-4 cursor-pointer rounded-[4px]"
-                        aria-label={t("browseDialog.selectAll", {
-                          defaultValue: "全选当前页",
-                        })}
-                      />
+                      {isSingle ? null : (
+                        <input
+                          type="checkbox"
+                          checked={allCurrentPageSelected}
+                          ref={(el) => {
+                            if (el)
+                              el.indeterminate =
+                                someCurrentPageSelected &&
+                                !allCurrentPageSelected;
+                          }}
+                          onChange={toggleAllCurrentPage}
+                          className="border-input size-4 cursor-pointer rounded-[4px]"
+                          aria-label={t("browseDialog.selectAll", {
+                            defaultValue: "全选当前页",
+                          })}
+                        />
+                      )}
                     </TableHead>
                     {columns.map((col) => (
                       <TableHead
@@ -580,7 +687,10 @@ function BrowseDialog<
                         >
                           <TableCell onClick={(e) => e.stopPropagation()}>
                             <input
-                              type="checkbox"
+                              type={isSingle ? "radio" : "checkbox"}
+                              name={
+                                isSingle ? "browse-dialog-single" : undefined
+                              }
                               checked={isSelected}
                               onChange={() => toggleRow(record)}
                               className="border-input size-4 cursor-pointer rounded-[4px]"

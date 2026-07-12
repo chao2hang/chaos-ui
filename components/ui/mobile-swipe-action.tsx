@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * @component MobileSwipeAction
+ * @deprecated Prefer `@chaos_team/chaos-ui/mobile` `MobileSwipeActions` / `SwipeActions` for new mobile work. This UI-layer dual stack remains for 1.x compatibility.
  * @category UI
  * @since 1.0.0-beta.0
  * @description 滑动操作行，左右拖拽揭示操作按钮
@@ -53,7 +54,8 @@ function MobileSwipeAction({
   const rightWidth = rightActions.length * actionWidth;
 
   const colorClass = (color?: SwipeActionDef["color"]) => {
-    if (color === "destructive") return "bg-destructive/80 text-destructive-foreground";
+    if (color === "destructive")
+      return "bg-destructive/80 text-destructive-foreground";
     if (color === "primary") return "bg-primary text-primary-foreground";
     return "bg-muted text-foreground";
   };
@@ -96,7 +98,10 @@ function MobileSwipeAction({
   return (
     <div
       data-slot="mobile-swipe-action"
-      className={cn("relative overflow-hidden touch-none select-none", className)}
+      className={cn(
+        "relative touch-none overflow-hidden select-none",
+        className,
+      )}
     >
       {/* left actions */}
       {leftActions.length > 0 ? (
@@ -150,7 +155,7 @@ function MobileSwipeAction({
 
       <div
         data-slot="mobile-swipe-action-content"
-        className="relative bg-background transition-transform"
+        className="bg-background relative transition-transform"
         style={{ transform: `translateX(${offset}px)` }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

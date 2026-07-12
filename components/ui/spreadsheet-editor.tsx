@@ -76,6 +76,25 @@ interface SpreadsheetEditorProps {
 // Component
 // ---------------------------------------------------------------------------
 
+/**
+ * @component SpreadsheetEditor
+ * @category ui/data-entry
+ * @since 0.2.0
+ * @description **Official Excel-like grid** for form-embedded multi-cell editing
+ * (keyboard nav, paste, add/delete rows, undo/redo). Prefer this over inventing a
+ * new EditableGrid product. Thin form tables: use `EditableTable`. List pages: ProTable.
+ * / **官方 Excel 风格网格**（键盘导航、粘贴、增删行、撤销重做）。表单内多单元格编辑首选；
+ * 简单行表用 EditableTable；列表页用 ProTable。Also exported as **EditableGrid**.
+ * @keywords spreadsheet, grid, excel, editable, paste, cells
+ * @example
+ * <SpreadsheetEditor
+ *   columns={[{ key: "name", title: "名称", editable: true }]}
+ *   data={[{ id: "1", name: "A" }]}
+ *   onChange={setRows}
+ * />
+ * // Alias:
+ * <EditableGrid columns={...} data={...} />
+ */
 function generateId(): string {
   return `row_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -663,9 +682,10 @@ function SpreadsheetEditor({
   );
 }
 
-export { SpreadsheetEditor };
+export { SpreadsheetEditor, SpreadsheetEditor as EditableGrid };
 export type {
   SpreadsheetEditorProps,
+  SpreadsheetEditorProps as EditableGridProps,
   ColumnDef as SpreadsheetColumnDef,
   RowData,
   CellCoords,

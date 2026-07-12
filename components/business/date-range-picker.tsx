@@ -1,13 +1,20 @@
 "use client";
+
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { CalendarIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { Button, Calendar } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import {
+  DateRangePicker as UiDateRangePicker,
+  type DateRangePickerProps as UiDateRangePickerProps,
+} from "@/components/ui/date-range-picker";
 
+/**
+ * Business / ERP date-range value shape (react-day-picker DateRange).
+ * Distinct from UI tuple `[Date | null, Date | null]` — see docs/api-boundaries.md.
+ */
 interface DateRangePickerProps {
   value?: DateRange;
   onChange?: (range: DateRange | undefined) => void;
@@ -16,7 +23,9 @@ interface DateRangePickerProps {
   disabled?: boolean;
   align?: "start" | "center" | "end";
   className?: string;
+  /** Show preset shortcuts (default true) / 显示预设快捷项 */
   presets?: boolean;
+  size?: UiDateRangePickerProps["size"];
 }
 
 function getPresets(
@@ -83,16 +92,33 @@ function getPresets(
   ];
 }
 
+function toTuple(range: DateRange | undefined): [Date | null, Date | null] {
+  if (!range) return [null, null];
+  return [range.from ?? null, range.to ?? null];
+}
+
+function fromTuple(tuple: [Date | null, Date | null]): DateRange | undefined {
+  const [from, to] = tuple;
+  if (!from && !to) return undefined;
+  // DateRange requires `from`; use epoch-less empty via earliest of the two.
+  const start = from ?? to!;
+  return { from: start, ...(to ? { to } : {}) };
+}
+
 /**
  * @component DateRangePicker
  * @category business/picker
  * @since 0.2.0
- * @description Calendar-based date range picker with preset ranges and multi-month view / 基于日历的日期范围选择器，支持预设范围和多月视图
+ * @description ERP date range picker with `{ from, to }` value + presets.
+ * Wraps UI `DateRangePicker` (`presentation="range"`) — does **not** change the
+ * public value shape. Also exported as `PresetDateRangePicker`.
+ * / ERP 日期范围选择器（DateRange + 预设），内部包装 UI 范围日历，1.x 不改 value 形状。
  * @keywords date, range, picker, calendar, preset
  * @example
  * <DateRangePicker value={range} onChange={setRange} />
+ * @see docs/api-boundaries.md
  */
-export function DateRangePicker({
+function DateRangePicker({
   value,
   onChange,
   placeholder,
@@ -101,11 +127,10 @@ export function DateRangePicker({
   align = "start",
   className,
   presets = true,
+  size = "default",
 }: DateRangePickerProps) {
   const { t } = useTranslation("transfer");
-  const [open, setOpen] = React.useState(false);
   const resolvedPlaceholder = placeholder ?? t("dateRangePicker.placeholder");
-
   const DEFAULT_PRESETS = React.useMemo(() => getPresets(t), [t]);
 
   const label = React.useMemo(() => {
@@ -117,55 +142,47 @@ export function DateRangePicker({
     return `${formatDate(value.from, { dateStyle: "medium" })} - ${formatDate(value.to, { dateStyle: "medium" })}`;
   }, [value, resolvedPlaceholder]);
 
+  const sidebar = presets ? (
+    <div className="flex w-[140px] flex-col gap-1 border-r p-3">
+      {DEFAULT_PRESETS.map((preset) => (
+        <Button
+          key={preset.label}
+          variant="ghost"
+          size="sm"
+          className="justify-start"
+          type="button"
+          onClick={() => {
+            onChange?.(preset.getRange());
+          }}
+        >
+          {preset.label}
+        </Button>
+      ))}
+    </div>
+  ) : null;
+
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        render={
-          <Button
-            variant="outline"
-            disabled={disabled}
-            className={cn(
-              "w-[300px] justify-start text-left font-normal",
-              !value?.from && "text-muted-foreground",
-              className,
-            )}
-          />
-        }
-      >
-        <CalendarIcon />
-        <span className="truncate">{label}</span>
-        <ChevronDownIcon className="ml-auto size-4 opacity-50" />
-      </PopoverTrigger>
-      <PopoverContent align={align} className="w-auto p-0">
-        <div className="flex">
-          {presets && (
-            <div className="flex w-[140px] flex-col gap-1 border-r p-3">
-              {DEFAULT_PRESETS.map((preset) => (
-                <Button
-                  key={preset.label}
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start"
-                  onClick={() => {
-                    onChange?.(preset.getRange());
-                    setOpen(false);
-                  }}
-                >
-                  {preset.label}
-                </Button>
-              ))}
-            </div>
-          )}
-          <Calendar
-            mode="range"
-            selected={value}
-            {...(onChange ? { onSelect: onChange } : { onSelect: () => {} })}
-            numberOfMonths={numberOfMonths}
-            autoFocus
-            required={false}
-          />
-        </div>
-      </PopoverContent>
-    </Popover>
+    <UiDateRangePicker
+      presentation="range"
+      value={toTuple(value)}
+      onChange={(tuple) => onChange?.(fromTuple(tuple))}
+      rangePlaceholder={resolvedPlaceholder}
+      rangeLabel={label}
+      numberOfMonths={numberOfMonths}
+      align={align}
+      size={size}
+      className={cn("w-[300px] [&>button]:w-full", className)}
+      {...(disabled !== undefined ? { disabled } : {})}
+      {...(sidebar ? { sidebar } : {})}
+    />
   );
 }
+
+/**
+ * Preferred discoverability alias for the business preset range picker.
+ * Same component as `DateRangePicker` (business).
+ */
+const PresetDateRangePicker = DateRangePicker;
+
+export { DateRangePicker, PresetDateRangePicker, toTuple, fromTuple };
+export type { DateRangePickerProps };

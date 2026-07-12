@@ -38,6 +38,13 @@ describe("GlobalLoading", () => {
     expect(textEl?.textContent).toBe("Fetching...");
   });
 
+  it("does not duplicate visible loading text when only spinner label is used", () => {
+    const { container } = render(<GlobalLoading loading={true} />);
+    expect(
+      container.querySelector('[data-slot="global-loading-text"]'),
+    ).toBeNull();
+  });
+
   it("does not render spinner when spinner=false", () => {
     const { container } = render(
       <GlobalLoading loading={true} spinner={false} />,

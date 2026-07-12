@@ -5,7 +5,6 @@ import {
   AvatarFallback,
   Button,
   Timeline,
-  TimelineItem,
   TimelineDot,
   TimelineConnector,
   TimelineContent,
@@ -17,6 +16,15 @@ interface ActivityItem {
   time: string;
   avatarFallback?: string;
   variant?: "default" | "success" | "warning" | "destructive" | "info";
+}
+
+function formatActivityTime(time: string): string {
+  const date = new Date(time);
+  if (Number.isNaN(date.getTime())) return time;
+  return date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 /**
@@ -53,6 +61,10 @@ function ActivityFeed({
     };
     items.forEach((item) => {
       const d = new Date(item.time);
+      if (Number.isNaN(d.getTime())) {
+        (grouped.earlier ?? []).push(item);
+        return;
+      }
       if (d.toDateString() === todayStr) (grouped.today ?? []).push(item);
       else if (d.toDateString() === yesterdayStr)
         (grouped.yesterday ?? []).push(item);
@@ -70,30 +82,31 @@ function ActivityFeed({
         </h4>
         <Timeline>
           {groupItems.map((item, i) => (
-            <TimelineItem key={i}>
-              <TimelineDot variant={item.variant ?? "default"}>
-                {item.avatarFallback ? (
-                  <Avatar className="size-6">
-                    <AvatarFallback className="text-[0.6rem]">
-                      {item.avatarFallback}
-                    </AvatarFallback>
-                  </Avatar>
-                ) : null}
-              </TimelineDot>
-              <TimelineConnector />
-              <TimelineContent>
+            // Compose primitives directly — TimelineItem already renders its own
+            // dot/connector and would nest children incorrectly here.
+            <div key={i} className="relative flex gap-4">
+              <div className="flex flex-col items-center self-stretch">
+                <TimelineDot variant={item.variant ?? "default"}>
+                  {item.avatarFallback ? (
+                    <Avatar className="size-6">
+                      <AvatarFallback className="text-[0.6rem]">
+                        {item.avatarFallback}
+                      </AvatarFallback>
+                    </Avatar>
+                  ) : null}
+                </TimelineDot>
+                <TimelineConnector />
+              </div>
+              <TimelineContent className="pb-8">
                 <p className="text-sm">
                   <span className="font-medium">{item.user}</span>{" "}
                   <span className="text-muted-foreground">{item.action}</span>
                 </p>
                 <time className="text-muted-foreground text-xs">
-                  {new Date(item.time).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {formatActivityTime(item.time)}
                 </time>
               </TimelineContent>
-            </TimelineItem>
+            </div>
           ))}
         </Timeline>
       </div>

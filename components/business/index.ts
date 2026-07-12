@@ -54,11 +54,18 @@ export * from "./date-range-picker";
 export * from "./diff-viewer";
 export * from "./dict-select";
 export {
+  DictManageDialog,
+  type DictManageDialogProps,
+  type DictManageItem,
+  type DictManageFetcher,
+} from "./dict-manage-dialog";
+export {
   RemoteSelect,
   type RemoteSelectProps,
   type RemoteOption,
   type RemoteFetcher,
 } from "./remote-select";
+
 export * from "./error-boundary";
 export * from "./expense-line-editor";
 export * from "./experiment-summary";
@@ -464,13 +471,20 @@ export { UTMBuilder as UtmBuilder } from "./utm-builder";
 export { AdvancedDataTable } from "./advanced-data-table";
 
 // ─── Enterprise UI 底座补齐 — 业务组件 ────────────────────────────
-export { ProTable } from "./pro-table";
+export { ProTable, ColumnSettings } from "./pro-table";
 export type {
   ProTableProps,
   ProColumn,
   SavedView as ProSavedView,
+  ExpandableConfig,
+  ProTableExportPayload,
+  ColumnSettingsProps,
+  RowSelection as ProRowSelection,
+  Pagination as ProPagination,
+  Density as ProDensity,
 } from "./pro-table";
 export { LogViewer } from "./log-viewer";
+
 export type { LogViewerProps, LogEntry } from "./log-viewer";
 export { BarcodeScanner } from "./barcode-scanner";
 export type { BarcodeScannerProps } from "./barcode-scanner";

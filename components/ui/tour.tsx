@@ -116,7 +116,10 @@ export function Tour({
   const popoverWidth = Math.min(320, window.innerWidth - 16);
 
   const popoverStyle: React.CSSProperties = (() => {
-    const style: React.CSSProperties = { position: "fixed", zIndex: 9999 };
+    const style: React.CSSProperties = {
+      position: "fixed",
+      zIndex: "var(--z-index-modal)",
+    };
     if (placement === "bottom") {
       style.top = rect.bottom + offset;
       style.left = rect.left + rect.width / 2 - popoverWidth / 2;
@@ -145,12 +148,12 @@ export function Tour({
     <>
       <div
         aria-hidden
-        className="fixed inset-0 z-[9998] bg-black/40 transition-opacity"
+        className="fixed inset-0 z-[var(--z-index-overlay)] bg-black/40 transition-opacity"
         onClick={() => finish(true)}
       />
       <div
         aria-hidden
-        className="ring-primary/60 fixed z-[9999] rounded-md ring-4 transition-all"
+        className="ring-primary/60 fixed z-[var(--z-index-modal)] rounded-md ring-4 transition-all"
         style={{
           top: rect.top - 4,
           left: rect.left - 4,
