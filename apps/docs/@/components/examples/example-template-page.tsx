@@ -2,7 +2,6 @@
 
 import type * as React from "react";
 import Link from "next/link";
-import { CodeBlock } from "@/components/code-block";
 import { PreviewChrome } from "./preview-chrome";
 
 export type RelatedComponent = { name: string; href: string };
@@ -106,8 +105,15 @@ export function ExampleTemplatePage(props: ExampleTemplatePageProps) {
 
       <div className="mt-6">
         <h2 className="mb-2 text-lg font-semibold">{props.codeTitle}</h2>
-        {/* CodeBlock is an async server component; props match apps/docs/@/components/code-block.tsx */}
-        <CodeBlock code={props.code} lang="tsx" />
+        {/* Client-safe plain code frame (docs CodeBlock is an async RSC). */}
+        <div className="bg-muted/50 group relative my-4 overflow-hidden rounded-lg border">
+          <span className="text-muted-foreground absolute top-2 right-3 z-10 text-[10px] uppercase">
+            tsx
+          </span>
+          <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed">
+            <code>{props.code}</code>
+          </pre>
+        </div>
         {props.storybookUrl ? (
           <p className="mt-3 text-sm">
             <a

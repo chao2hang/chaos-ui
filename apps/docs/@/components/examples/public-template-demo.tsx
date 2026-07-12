@@ -263,7 +263,7 @@ function AuthScene({ onHome }: { onHome: () => void }) {
 export function PublicTemplateDemo({
   scene,
   onSceneChange,
-}: PublicTemplateDemoProps): JSX.Element {
+}: PublicTemplateDemoProps) {
   return (
     <div className="h-full min-h-0 overflow-auto">
       {scene === "home" ? (
