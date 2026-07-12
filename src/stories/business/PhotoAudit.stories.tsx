@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { PhotoAudit } from "@/components/business/photo-audit";
 
-const meta = { title: "Business/Files/PhotoAudit", component: PhotoAudit, tags: ["autodocs"], parameters: { layout: "padded" }, args: { photos: [] } } satisfies Meta<typeof PhotoAudit>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { photos: [{ src: "https://picsum.photos/seed/audit1/300/200" }, { src: "https://picsum.photos/seed/audit2/300/200" }] } };
-export const WithCallbacks: Story = { args: { photos: [{ src: "https://picsum.photos/seed/audit3/300/200" }], onApprove: (i) => { void i; }, onReject: (i, r) => { void i; void r; } } };
+const meta = {
+  title: "Business/PhotoAudit",
+  component: PhotoAudit,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { photos: [] },
+} satisfies Meta<typeof PhotoAudit>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">PhotoAudit</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <PhotoAudit {...args} />
+      </div>
+    </div>
+  ),
+};

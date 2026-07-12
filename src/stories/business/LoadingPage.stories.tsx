@@ -9,6 +9,13 @@ const meta = {
   title: "Business/LoadingPage",
   component: LoadingPage,
   tags: ["autodocs", "a11y"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     layout: "fullscreen",
   },
@@ -44,9 +51,9 @@ export const Overlay: Story = {
     <FullPageLoader>
       <div className="p-8">
         <div className="max-w-md rounded-lg border p-6">
-          <RefreshCwIcon className="mb-3 size-5 text-muted-foreground" />
+          <RefreshCwIcon className="text-muted-foreground mb-3 size-5" />
           <p className="text-sm font-medium">Report preview</p>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="text-muted-foreground mt-1 text-xs">
             The background content is dimmed while a full page operation
             completes.
           </p>

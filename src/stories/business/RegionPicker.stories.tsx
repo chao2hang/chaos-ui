@@ -1,7 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { RegionPicker } from "@/components/business/region-picker";
 
-const meta = { title: "Business/Pickers/RegionPicker", component: RegionPicker, tags: ["autodocs"], parameters: { layout: "padded" } } satisfies Meta<typeof RegionPicker>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { options: [{ value: "cn", label: "China" }, { value: "us", label: "United States" }, { value: "eu", label: "Europe" }], placeholder: "Select region" } };
-export const WithValue: Story = { args: { options: [{ value: "cn", label: "China" }], value: "cn" } };
+const demoOptions = [
+  { value: "r1", label: "华东" },
+  { value: "r2", label: "上海", parent: "r1" },
+];
+
+const meta = {
+  title: "Business/RegionPicker",
+  component: RegionPicker,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: {
+    options: demoOptions,
+    placeholder: "请选择",
+  },
+} satisfies Meta<typeof RegionPicker>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => {
+    const [value, setValue] = useState(demoOptions[0]!.value);
+    return (
+      <div className="max-w-sm space-y-2">
+        <p className="text-sm font-semibold">RegionPicker</p>
+        <RegionPicker
+          value={value}
+          onChange={(v) => setValue(v ?? "")}
+          options={demoOptions}
+          placeholder="请选择"
+        />
+        <p className="text-muted-foreground text-xs">当前：{value || "空"}</p>
+      </div>
+    );
+  },
+};

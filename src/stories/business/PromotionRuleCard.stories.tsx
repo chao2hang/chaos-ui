@@ -1,8 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { PromotionRuleCard } from "@/components/business/promotion-rule-card";
 
-const meta = { title: "Business/Orders/PromotionRuleCard", component: PromotionRuleCard, tags: ["autodocs"], parameters: { layout: "padded" } } satisfies Meta<typeof PromotionRuleCard>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { name: "满200减30", type: "满减", discount: 30, threshold: 200, startDate: "2024-07-01", endDate: "2024-07-31" } };
-export const Discount: Story = { args: { name: "8折特惠", type: "折扣", discount: 0.8, startDate: "2024-07-01" } };
-export const Expired: Story = { args: { name: "春节促销", type: "直降", discount: 50, endDate: "2024-02-10" } };
+const meta = {
+  title: "Business/PromotionRuleCard",
+  component: PromotionRuleCard,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: {},
+} satisfies Meta<typeof PromotionRuleCard>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">PromotionRuleCard</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <PromotionRuleCard {...args} />
+      </div>
+    </div>
+  ),
+};

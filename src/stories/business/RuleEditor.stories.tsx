@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { RuleEditor } from "@/components/business/rule-editor";
 
-const meta = { title: "Business/Forms/RuleEditor", component: RuleEditor, tags: ["autodocs"], parameters: { layout: "padded" }, args: { rules: [] } } satisfies Meta<typeof RuleEditor>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { rules: [{ id: "1", field: "amount", operator: "gt", value: 100, action: "apply 10% off" }, { id: "2", field: "qty", operator: "gte", value: 3, action: "free shipping" }] } };
-export const SingleRule: Story = { args: { rules: [{ id: "1", field: "first_order", operator: "eq", value: true, action: "give 50 credits" }] } };
+const meta = {
+  title: "Business/RuleEditor",
+  component: RuleEditor,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { rules: [] },
+} satisfies Meta<typeof RuleEditor>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">RuleEditor</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <RuleEditor {...args} />
+      </div>
+    </div>
+  ),
+};

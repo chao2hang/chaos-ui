@@ -1,8 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AsyncTaskTrigger } from "@/components/business/async-task-trigger";
 
-const meta = { title: "Business/Forms/AsyncTaskTrigger", component: AsyncTaskTrigger, tags: ["autodocs"], parameters: { layout: "padded" }, args: { taskType: "export" } } satisfies Meta<typeof AsyncTaskTrigger>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = {};
-export const WithParams: Story = { args: { taskType: "import", params: { format: "csv" }, children: "Import contacts" } };
-export const WithCallback: Story = { args: { taskType: "report", onComplete: (result) => { void result; }, children: "Generate report" } };
+const meta = {
+  title: "Business/AsyncTaskTrigger",
+  component: AsyncTaskTrigger,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { taskType: "export" },
+} satisfies Meta<typeof AsyncTaskTrigger>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">AsyncTaskTrigger</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <AsyncTaskTrigger {...args} />
+      </div>
+    </div>
+  ),
+};

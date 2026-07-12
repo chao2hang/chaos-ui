@@ -1,8 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MapView } from "@/components/business/map-view";
 
-const meta = { title: "Business/Map/MapView", component: MapView, tags: ["autodocs"], parameters: { layout: "fullscreen" } } satisfies Meta<typeof MapView>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = {};
-export const CustomCenter: Story = { args: { center: [121.473701, 31.230416], zoom: 14, height: 500 } };
-export const WithCallbacks: Story = { args: { onReady: (map) => { void map; }, onClick: (lnglat) => { void lnglat; } } };
+const meta = {
+  title: "Business/MapView",
+  component: MapView,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: {},
+} satisfies Meta<typeof MapView>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">MapView</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <MapView {...args} />
+      </div>
+    </div>
+  ),
+};

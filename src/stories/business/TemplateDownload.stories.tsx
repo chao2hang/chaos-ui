@@ -1,13 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TemplateDownload } from "@/components/business/template-download";
 
-const templates = [
-  { id: "1", name: "Employee import template", url: "/templates/employees.csv", type: "csv" as const },
-  { id: "2", name: "Product import template", url: "/templates/products.xlsx", type: "xlsx" as const },
-];
+const meta = {
+  title: "Business/TemplateDownload",
+  component: TemplateDownload,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { templates: [] },
+} satisfies Meta<typeof TemplateDownload>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const meta = { title: "Business/Forms/TemplateDownload", component: TemplateDownload, tags: ["autodocs"], parameters: { layout: "padded" }, args: { templates: [] } } satisfies Meta<typeof TemplateDownload>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { templates } };
-export const Single: Story = { args: { templates: templates.slice(0, 1) } };
-export const WithCallback: Story = { args: { templates, onDownload: (t) => { void t; } } };
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">TemplateDownload</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <TemplateDownload {...args} />
+      </div>
+    </div>
+  ),
+};

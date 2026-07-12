@@ -1,8 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { BadgeDelta } from "@/components/business/badge-delta";
 
-const meta = { title: "Business/Status/BadgeDelta", component: BadgeDelta, tags: ["autodocs"], parameters: { layout: "padded" }, args: { value: 0 } } satisfies Meta<typeof BadgeDelta>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Positive: Story = { args: { value: 12.5 } };
-export const Negative: Story = { args: { value: -3.2 } };
-export const WithPrefix: Story = { args: { value: 8.1, prefix: "+", suffix: "%" } };
+const meta = {
+  title: "Business/BadgeDelta",
+  component: BadgeDelta,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { value: 0 },
+} satisfies Meta<typeof BadgeDelta>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">BadgeDelta</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <BadgeDelta {...args} />
+      </div>
+    </div>
+  ),
+};

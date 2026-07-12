@@ -1,9 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ColorTag } from "@/components/business/color-tag";
 
-const meta = { title: "Business/Pickers/ColorTag", component: ColorTag, tags: ["autodocs"], parameters: { layout: "padded" }, args: { color: "blue" } } satisfies Meta<typeof ColorTag>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = {};
-export const Small: Story = { args: { size: "sm", children: "Small" } };
-export const Large: Story = { args: { size: "lg", children: "Large" } };
-export const WithDot: Story = { args: { dot: true, color: "green" } };
+const meta = {
+  title: "Business/ColorTag",
+  component: ColorTag,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { color: "blue" },
+} satisfies Meta<typeof ColorTag>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">ColorTag</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <ColorTag {...args} />
+      </div>
+    </div>
+  ),
+};

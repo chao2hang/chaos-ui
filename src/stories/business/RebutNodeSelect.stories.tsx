@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { RebutNodeSelect } from "@/components/business/rebut-node-select";
 
-const meta = { title: "Business/Files/RebutNodeSelect", component: RebutNodeSelect, tags: ["autodocs"], parameters: { layout: "padded" }, args: { nodes: [] } } satisfies Meta<typeof RebutNodeSelect>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { nodes: [{ id: "1", name: "Reject reason A" }, { id: "2", name: "Reject reason B" }, { id: "3", name: "Reject reason C" }] } };
-export const WithCallback: Story = { args: { nodes: [{ id: "1", name: "Reason A" }], onSelect: (id) => { void id; } } };
+const meta = {
+  title: "Business/RebutNodeSelect",
+  component: RebutNodeSelect,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { nodes: [] },
+} satisfies Meta<typeof RebutNodeSelect>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">RebutNodeSelect</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <RebutNodeSelect {...args} />
+      </div>
+    </div>
+  ),
+};

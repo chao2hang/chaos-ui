@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TargetProgress } from "@/components/business/target-progress";
 
-const meta = { title: "Business/Misc/TargetProgress", component: TargetProgress, tags: ["autodocs"], parameters: { layout: "padded" }, args: { target: 0, actual: 0 } } satisfies Meta<typeof TargetProgress>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { target: 100000, actual: 75000, period: "Q3 2024" } };
-export const Exceeded: Story = { args: { target: 50000, actual: 62000 } };
+const meta = {
+  title: "Business/TargetProgress",
+  component: TargetProgress,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { target: 0, actual: 0 },
+} satisfies Meta<typeof TargetProgress>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">TargetProgress</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <TargetProgress {...args} />
+      </div>
+    </div>
+  ),
+};
