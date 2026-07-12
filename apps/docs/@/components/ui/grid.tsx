@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@chaos_team/chaos-ui/lib";
+import { cn } from "@/lib/utils";
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -260,11 +260,15 @@ function Grid({
   cols?: number;
   gap?: string | number;
 }) {
+  const gapValue = typeof gap === "number" ? `${gap * 0.25}rem` : gap;
   return (
     <div
       data-slot="grid"
       className={cn("grid", className)}
-      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap }}
+      style={{
+        gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+        gap: gapValue,
+      }}
       {...rest}
     >
       {children}
