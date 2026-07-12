@@ -1,4 +1,4 @@
-import { WaterfallChart } from "@/components/business/charts/waterfall-chart";
+import { WaterfallChart } from "@chaos_team/chaos-ui/business";
 import { CodeBlock } from "@/components/code-block";
 
 # WaterfallChart 瀑布图
@@ -10,15 +10,15 @@ WaterfallChart — a business component for ERP / enterprise scenarios.
 
 ## 何时使用 / When to Use
 
-需要瀑布图功能时使用本组件。
+需要charts-waterfall-chart时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
-Use when you need a waterfall chart.
+Use ChartsWaterfallChart when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## 代码示例 / Examples
 
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { WaterfallChart } from "@/components/business/charts/waterfall-chart"
+<CodeBlock code={`import { WaterfallChart } from "@chaos_team/chaos-ui/business"
 
 export function Basic() {
   return <WaterfallChart />
@@ -37,4 +37,4 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-charts-waterfall-chart--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-charts-waterfall-chart--docs)。

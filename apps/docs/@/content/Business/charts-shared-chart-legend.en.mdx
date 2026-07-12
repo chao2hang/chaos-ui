@@ -1,4 +1,3 @@
-import { ChartLegend } from "@/components/business/charts/shared/chart-legend";
 import { CodeBlock } from "@/components/code-block";
 
 # ChartLegend
@@ -9,31 +8,29 @@ ChartLegend — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a chart legend.
-
+Use ChartsSharedChartLegend when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { ChartLegend } from "@/components/business/charts/shared/chart-legend"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <ChartLegend />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### ChartLegend
 
-| Prop | Type | Default | Description |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `payload`   | `LegendPayloadEntry[]` | —       |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `payload`   | `LegendPayloadEntry[]` | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

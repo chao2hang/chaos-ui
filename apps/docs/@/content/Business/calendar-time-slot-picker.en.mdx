@@ -1,4 +1,3 @@
-import { TimeSlotPicker } from "@/components/business/calendar/time-slot-picker";
 import { CodeBlock } from "@/components/code-block";
 
 # TimeSlotPicker
@@ -9,18 +8,18 @@ TimeSlotPicker — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a time slot picker.
-
+Use CalendarTimeSlotPicker when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { TimeSlotPicker } from "@/components/business/calendar/time-slot-picker"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <TimeSlotPicker />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ### States
 
@@ -34,21 +33,19 @@ export function Basic() {
 
 ### TimeSlotPicker
 
-| Prop | Type | Default | Description |
-| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `date`        | `Date`                 | —       |                                                           |
-| `slots`       | `TimeSlot[]`           | —       |                                                           |
-| `selected`    | `Date`                 | —       |                                                           |
-| `onSelect` | `() => void` | — | Selection handler |
-| `startHour`   | `number`               | `9`     |                                                           |
-| `endHour`     | `number`               | `18`    |                                                           |
-| `stepMinutes` | `number`               | `30`    |                                                           |
-| `locale`      | `string`               | `zh-CN` |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `date`        | `Date`                 | —       |                                   |
+| `slots`       | `TimeSlot[]`           | —       |                                   |
+| `selected`    | `Date`                 | —       |                                   |
+| `onSelect`    | `() => void`           | —       | Selection handler                 |
+| `startHour`   | `number`               | `9`     |                                   |
+| `endHour`     | `number`               | `18`    |                                   |
+| `stepMinutes` | `number`               | `30`    |                                   |
+| `locale`      | `string`               | `zh-CN` |                                   |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

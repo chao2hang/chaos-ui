@@ -1,8 +1,3 @@
-import {
-  SignInForm,
-  SignUpForm,
-  ForgotPasswordForm,
-} from "@/components/business/auth-forms";
 import { CodeBlock } from "@/components/code-block";
 
 # AuthForms
@@ -15,38 +10,41 @@ AuthForms — a business component for ERP / enterprise scenarios.
 
 Authentication forms for sign-in, sign-up, and password recovery.
 
-
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { SignInForm, SignUpForm, ForgotPasswordForm } from "@/components/business/auth-forms"
+<CodeBlock code={`import { Button, Input, Label } from "@chaos_team/chaos-ui/ui";
 
 export function Basic() {
   return (
-    <div className="space-y-4">
-  <SignInForm />
-  <SignUpForm />
-  <ForgotPasswordForm />
-    </div>
-  )
+    <form className="grid w-full max-w-sm gap-3 rounded-lg border p-4">
+      <div className="grid gap-1.5">
+        <Label htmlFor="email">邮箱</Label>
+        <Input id="email" type="email" placeholder="you@example.com" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="password">密码</Label>
+        <Input id="password" type="password" placeholder="••••••••" />
+      </div>
+      <Button type="button">登录</Button>
+    </form>
+  );
 }`} lang="tsx" />
 
 ## API / Props
 
 ### SignInForm
 
-| Prop | Type | Default | Description |
-| -------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `onSubmit` | `() => void` | — | Submit handler |
-| `ssoProviders` | `Array<T>`             | —       |                                                           |
-| `signupHref`   | `string`               | —       |                                                           |
-| `forgotHref`   | `string`               | —       |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop           | Type                   | Default | Description                       |
+| -------------- | ---------------------- | ------- | --------------------------------- |
+| `className`    | `string`               | —       | Custom CSS class                  |
+| `onSubmit`     | `() => void`           | —       | Submit handler                    |
+| `ssoProviders` | `Array<T>`             | —       |                                   |
+| `signupHref`   | `string`               | —       |                                   |
+| `forgotHref`   | `string`               | —       |                                   |
+| ...rest        | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

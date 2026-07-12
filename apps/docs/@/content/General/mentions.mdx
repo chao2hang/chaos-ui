@@ -10,8 +10,9 @@ import { CodeBlock } from "@/components/code-block";
 
 ## 何时使用 / When to Use
 
-需要在文本输入中提及用户或标签时使用，如评论框、消息编辑器。
-Use when you need to mention users or tags in text input, such as comment boxes or message editors.
+当你需要「提及输入」相关能力时使用：@提及输入框，输入触发字符时弹出候选列表。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use Mentions when you need: @mention input — triggers a dropdown candidate list when typing the trigger character. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -68,4 +69,4 @@ export function Basic() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **基于 Textarea + Popover**: 内部使用 Textarea 和 Popover 组合实现。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-mentions--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-mentions--docs)。

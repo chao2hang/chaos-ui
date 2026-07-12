@@ -1,8 +1,3 @@
-import {
-  SignInForm,
-  SignUpForm,
-  ForgotPasswordForm,
-} from "@/components/business/auth-forms";
 import { CodeBlock } from "@/components/code-block";
 
 # AuthForms 认证表单
@@ -20,18 +15,26 @@ Authentication forms for sign-in, sign-up, and password recovery.
 
 ## 代码示例 / Examples
 
+> 示例已改为包内 **Sign-in form pattern**（原 docs-only 演示组件已下线）。完整交互请看 Storybook。
+
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { SignInForm, SignUpForm, ForgotPasswordForm } from "@/components/business/auth-forms"
+<CodeBlock code={`import { Button, Input, Label } from "@chaos_team/chaos-ui/ui";
 
 export function Basic() {
   return (
-    <div className="space-y-4">
-  <SignInForm />
-  <SignUpForm />
-  <ForgotPasswordForm />
-    </div>
-  )
+    <form className="grid w-full max-w-sm gap-3 rounded-lg border p-4">
+      <div className="grid gap-1.5">
+        <Label htmlFor="email">邮箱</Label>
+        <Input id="email" type="email" placeholder="you@example.com" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="password">密码</Label>
+        <Input id="password" type="password" placeholder="••••••••" />
+      </div>
+      <Button type="button">登录</Button>
+    </form>
+  );
 }`} lang="tsx" />
 
 ## API / Props
@@ -51,4 +54,4 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-auth-forms--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-auth-forms--docs)。

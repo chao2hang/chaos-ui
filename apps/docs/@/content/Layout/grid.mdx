@@ -1,85 +1,58 @@
-import { Grid } from "@chaos_team/chaos-ui/ui";
+import { Row, Col } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
-# Grid 栅格
+# Grid 栅格（Row / Col）
 
-> 布局组件 / Layout primitives for structuring pages.
+> Layout · 24 列栅格系统
 
-栅格 — Chaos UI 的布局组件,用于组织页面区域结构。
-Grid — a layout primitives for structuring pages. for structuring page regions.
+包导出的是 **`Row` + `Col`**（没有单独的 `<Grid />` 组件）。`sourcePath` 为 `components/ui/grid.tsx`。
 
-## 何时使用 / When to Use
+## 何时使用
 
-需要栅格功能时使用本组件。
+需要按 24 列划分页面区域、控制 gutter / 对齐 / 响应式跨度时使用。
 
-Use when you need a grid.
+## 基础用法
 
-## 代码示例 / Examples
-
-### 基础用法 / Basic Usage
-
-<CodeBlock code={`import { Grid } from "@chaos_team/chaos-ui/ui"
+<CodeBlock code={`import { Row, Col } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
-  return <Grid>Default</Grid>
+  return (
+    <Row gutter={16}>
+      <Col span={12}>左半</Col>
+      <Col span={12}>右半</Col>
+    </Row>
+  )
 }`} lang="tsx" />
 
-## 样式变体 / Style Variants
+## 响应式
 
-**columns / columns**
+`Col` 支持 `xs` / `sm` / `md` / `lg` / `xl` / `xxl` 断点对象：
 
-| columns | 说明 / Description | 默认 |
-| ------- | ------------------ | ---- |
-| `1`     |                    | ✓    |
-| `2`     |                    |      |
-| `3`     |                    |      |
-| `4`     |                    |      |
-| `5`     |                    |      |
-| `6`     |                    |      |
-| `12`    |                    |      |
+```tsx
+<Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} />
+```
 
-**gap / gap**
+## API
 
-| gap    | 说明 / Description | 默认 |
-| ------ | ------------------ | ---- |
-| `none` |                    |      |
-| `xs`   |                    |      |
-| `sm`   |                    |      |
-| `md`   |                    | ✓    |
-| `lg`   |                    |      |
-| `xl`   |                    |      |
+### Row
 
-**对齐 / align**
+| Prop      | Type                                                                      | Default | 说明                        |
+| --------- | ------------------------------------------------------------------------- | ------- | --------------------------- |
+| `gutter`  | `number \| [number, number]`                                              | `0`     | 水平（或 [水平, 垂直]）间距 |
+| `align`   | `top \| middle \| bottom \| stretch`                                      | `top`   | 垂直对齐                    |
+| `justify` | `start \| end \| center \| space-around \| space-between \| space-evenly` | `start` | 水平对齐                    |
+| `wrap`    | `boolean`                                                                 | `true`  | 是否换行                    |
 
-| align     | 说明 / Description | 默认 |
-| --------- | ------------------ | ---- |
-| `start`   |                    |      |
-| `center`  |                    |      |
-| `end`     |                    |      |
-| `stretch` |                    | ✓    |
+### Col
 
-**主轴对齐 / justify**
+| Prop       | Type                         | Default | 说明         |
+| ---------- | ---------------------------- | ------- | ------------ |
+| `span`     | `1–24`                       | —       | 占据列数     |
+| `offset`   | `number`                     | —       | 左侧偏移列数 |
+| `order`    | `number`                     | —       | 排序         |
+| `xs`…`xxl` | `{ span?, offset?, order? }` | —       | 响应式       |
 
-| justify   | 说明 / Description | 默认 |
-| --------- | ------------------ | ---- |
-| `start`   |                    | ✓    |
-| `center`  |                    |      |
-| `end`     |                    |      |
-| `between` |                    |      |
-| `around`  |                    |      |
+## 注意
 
-## API / Props
-
-### Grid
-
-| Prop        | Type                          | Default | 说明 / Description                                          |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string`                      | —       | 自定义样式类名 <br/> Custom CSS class                       |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
-
-## 注意事项 / Notes
-
-- **CVA 变体**: 通过 `class-variance-authority` 管理样式变体,类型安全。变体对象可导出复用。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
-
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-grid--docs)。
+- 文档站需加载 `grid-cols-24` / `col-span-*` 工具类（已在 docs `globals.css` 镜像）。
+- Storybook 标题：`Components/Grid`。

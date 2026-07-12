@@ -1,4 +1,4 @@
-import { CopyButton } from "@/components/business/copy-button";
+import { CopyButton } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # CopyButton
@@ -9,14 +9,13 @@ CopyButton — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a copy button.
-
+Use CopyButton when you need: One-click copy button with success feedback. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { CopyButton } from "@/components/business/copy-button"
+<CodeBlock code={`import { CopyButton } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
   return <CopyButton />
@@ -26,17 +25,15 @@ export function Basic() {
 
 ### CopyButton
 
-| Prop | Type | Default | Description |
-| ------------- | ----------------------------------- | -------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `text`        | `string`                            | —        |                                                           |
-| `label` | `string` | `复制` | Label text |
-| `copiedLabel` | `string`                            | `已复制` |                                                           |
-| `variant` | `"default" \| "ghost" \| "outline"` | `ghost` | Style variant |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                                | Default  | Description                       |
+| ------------- | ----------------------------------- | -------- | --------------------------------- |
+| `className`   | `string`                            | —        | Custom CSS class                  |
+| `text`        | `string`                            | —        |                                   |
+| `label`       | `string`                            | `复制`   | Label text                        |
+| `copiedLabel` | `string`                            | `已复制` |                                   |
+| `variant`     | `"default" \| "ghost" \| "outline"` | `ghost`  | Style variant                     |
+| ...rest       | `React.HTMLAttributes`              | —        | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

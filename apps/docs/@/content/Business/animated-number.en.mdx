@@ -1,4 +1,4 @@
-import { AnimatedNumber } from "@/components/business/animated-number";
+import { NumberTicker as AnimatedNumber } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # AnimatedNumber
@@ -9,14 +9,13 @@ AnimatedNumber — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need an animated number.
-
+Use AnimatedNumber when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { AnimatedNumber } from "@/components/business/animated-number"
+<CodeBlock code={`import { NumberTicker as AnimatedNumber } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
   return <AnimatedNumber />
@@ -26,19 +25,17 @@ export function Basic() {
 
 ### AnimatedNumber
 
-| Prop | Type | Default | Description |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `value` | `number` | — | Current value (controlled) |
-| `duration` | `number` | `1000` | Duration in milliseconds |
-| `decimals`  | `number`               | `0`     |                                                           |
-| `prefix` | `string` | `` | Prefix content |
-| `suffix` | `string` | `` | Suffix content |
-| `format`    | `(...args) => unknown` | —       |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| `value`     | `number`               | —       | Current value (controlled)        |
+| `duration`  | `number`               | `1000`  | Duration in milliseconds          |
+| `decimals`  | `number`               | `0`     |                                   |
+| `prefix`    | `string`               | ``      | Prefix content                    |
+| `suffix`    | `string`               | ``      | Suffix content                    |
+| `format`    | `(...args) => unknown` | —       |                                   |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,4 +1,3 @@
-import { ChartExportButton } from "@/components/business/charts/shared/chart-export";
 import { CodeBlock } from "@/components/code-block";
 
 # ChartExport
@@ -9,33 +8,31 @@ ChartExport — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a chart export.
-
+Use ChartsSharedChartExport when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { ChartExportButton } from "@/components/business/charts/shared/chart-export"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <ChartExportButton />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### ChartExportButton
 
-| Prop | Type | Default | Description |
-| ----------- | -------------------------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `target` | `React.RefObject<HTMLElement \| null>` | — | Link target |
-| `filename`  | `string`                               | `chart` |                                                           |
-| `format`    | `"png" \| "svg"`                       | `png`   |                                                           |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                                   | Default | Description                       |
+| ----------- | -------------------------------------- | ------- | --------------------------------- |
+| `className` | `string`                               | —       | Custom CSS class                  |
+| `target`    | `React.RefObject<HTMLElement \| null>` | —       | Link target                       |
+| `filename`  | `string`                               | `chart` |                                   |
+| `format`    | `"png" \| "svg"`                       | `png`   |                                   |
+| ...rest     | `React.HTMLAttributes`                 | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

@@ -1,23 +1,14 @@
-import { MobileActionSheet } from "@chaos_team/chaos-ui/business";
 import { CodeBlock } from "@/components/code-block";
 
 # MobileActionSheet Mobile Action Sheet
 
 > Domain-specific business components for ERP scenarios.
 
-<MobileActionSheet
-  open={open}
-  onOpenChange={setOpen}
-  actions={[
-    { label: "编辑", onClick: edit },
-    { label: "删除", onClick: del, danger: true },
-  ]}
-/>
 MobileActionSheet — mobile action sheet component.
 
 ## When to Use
 
-Use when you need a mobile action sheet.
+Use MobileActionSheet when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 

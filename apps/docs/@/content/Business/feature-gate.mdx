@@ -1,9 +1,3 @@
-import {
-  FeatureGate,
-  FeatureEnabled,
-  FeatureFlag,
-  FeatureFlags,
-} from "@/components/business/feature-gate";
 import { CodeBlock } from "@/components/code-block";
 
 # FeatureGate 功能开关
@@ -15,24 +9,21 @@ FeatureGate — a business component for ERP / enterprise scenarios.
 
 ## 何时使用 / When to Use
 
-需要功能开关功能时使用本组件。
+需要feature-gate时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
-Use when you need a feature gate.
+Use FeatureGate when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## 代码示例 / Examples
 
+> 示例已改为包内 **PermissionButton**（原 docs-only 演示组件已下线）。完整交互请看 Storybook。
+
 ### 基础用法 / Basic Usage
 
-<CodeBlock code={`import { FeatureGate, FeatureEnabled, FeatureFlag } from "@/components/business/feature-gate"
+<CodeBlock code={`import { PermissionButton } from "@chaos_team/chaos-ui/business";
 
 export function Basic() {
-  return (
-    <div className="space-y-4">
-  <FeatureGate />
-  <FeatureEnabled />
-  <FeatureFlag />
-    </div>
-  )
+  // docs-only FeatureGate was removed; PermissionButton illustrates gated UI
+  return <PermissionButton permission="order:create">创建订单</PermissionButton>;
 }`} lang="tsx" />
 
 ## API / Props
@@ -48,4 +39,4 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-feature-gate--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-feature-gate--docs)。

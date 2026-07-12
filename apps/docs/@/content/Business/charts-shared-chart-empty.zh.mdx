@@ -1,4 +1,3 @@
-import { ChartEmpty } from "@/components/business/charts/shared/chart-empty";
 import { CodeBlock } from "@/components/code-block";
 
 # ChartEmpty 图表空状态
@@ -9,33 +8,32 @@ import { CodeBlock } from "@/components/code-block";
 
 ## 何时使用
 
-需要图表空状态功能时使用本组件。
-
+需要charts-shared-chart-empty时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { ChartEmpty } from "@/components/business/charts/shared/chart-empty"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <ChartEmpty />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### ChartEmpty
 
-| Prop | Type | Default | 说明 |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `height` | `number` | `320` | 组件高度 |
-| `message` | `string` | — | 提示消息内容 |
-| ...rest | `React.HTMLAttributes` | — | 透传原生 DOM 属性 |
+| Prop        | Type                   | Default | 说明              |
+| ----------- | ---------------------- | ------- | ----------------- |
+| `className` | `string`               | —       | 自定义样式类名    |
+| `height`    | `number`               | `320`   | 组件高度          |
+| `message`   | `string`               | —       | 提示消息内容      |
+| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-charts-shared-chart-empty--docs)。
-
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-charts-shared-chart-empty--docs)。

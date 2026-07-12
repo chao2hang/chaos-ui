@@ -10,8 +10,9 @@ Canvas-based signature pad with undo, clear, and export to data URL/Blob.
 
 ## 何时使用 / When to Use
 
-需要用户手写签名时使用，如合同签署、审批确认、电子表单。
-Use when you need users to handwrite signatures, such as contract signing, approval confirmation, or electronic forms.
+当你需要「签名板」相关能力时使用：基于画布的签名板，支持撤销、清除和导出为 data URL/Blob。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use SignaturePad when you need: Canvas-based signature pad with undo, clear, and export to data URL/Blob. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -56,4 +57,4 @@ export function Basic() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **Canvas API**: 基于 HTML5 Canvas 实现，需浏览器支持。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-signaturepad--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-signaturepad--docs)。

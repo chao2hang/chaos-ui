@@ -10,8 +10,9 @@ Sets text direction (LTR/RTL) for internationalization. Wraps children with `dir
 
 ## 何时使用 / When to Use
 
-需要支持阿拉伯语、希伯来语等 RTL（从右到左）语言时使用，确保文本和布局正确镜像。
-Use when you need to support RTL (right-to-left) languages such as Arabic or Hebrew, ensuring text and layout are correctly mirrored.
+当你需要「Direction」相关能力时使用：设置文本方向（LTR/RTL）以支持国际化，包装子元素并应用 RTL 感知的 CSS 逻辑属性。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use Direction when you need: Sets text direction (LTR/RTL) for internationalization. Wraps children with `dir` attribute and RTL-aware CSS logical properties. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -60,4 +61,4 @@ export function Comparison() {
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 - **RTL 样式**: 当 `dir="rtl"` 时自动应用 `[direction:rtl]` CSS 规则。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-direction--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-direction--docs)。

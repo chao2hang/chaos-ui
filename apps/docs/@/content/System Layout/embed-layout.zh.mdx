@@ -5,11 +5,11 @@ import { CodeBlock } from "@/components/code-block";
 
 > 系统布局
 
-Embed Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
+嵌入第三方宿主（iframe / 卡片 / 抽屉）的全高框架：默认 **填满父级高度**（`h-full`），可选顶栏 + 可滚动主体。
 
 ## 何时使用
 
-适用于Embed Layout相关场景。
+需要把业务视图嵌进固定高度的宿主容器，且顶栏固定、正文独立滚动时使用。
 
 ## 代码示例
 
@@ -18,21 +18,29 @@ Embed Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布
 <CodeBlock code={`import { EmbedLayout } from "@chaos_team/chaos-ui/layout"
 
 export function Basic() {
-  return <EmbedLayout />
+  return (
+    <div className="h-[480px] rounded-lg border">
+      <EmbedLayout header={<div className="px-4 py-2 text-sm font-semibold">订单详情</div>}>
+        <div className="p-4 text-sm">主体内容…</div>
+      </EmbedLayout>
+    </div>
+  )
 }`} lang="tsx" />
 
 ## API / Props
 
 ### EmbedLayout
 
-| Prop        | Type                   | Default | 说明                                                           |
-| ----------- | ---------------------- | ------- | -------------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名                                                 |
-| `header`    | `React.ReactNode`      | —       | Optional top bar (title/actions) rendered inside a `<header>`. |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性                                              |
+| Prop        | Type              | Default | 说明                                            |
+| ----------- | ----------------- | ------- | ----------------------------------------------- |
+| `className` | `string`          | —       | 根节点类名；可覆盖高度（如 `h-svh` 做视口全高） |
+| `header`    | `React.ReactNode` | —       | 可选顶栏（渲染在 `<header>` 内）                |
+| `children`  | `React.ReactNode` | —       | 主体（`flex-1` + `overflow-auto`）              |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **高度由宿主决定**：根节点默认 `h-full`，不是 `h-screen`。宿主（或 `className`）必须给出明确高度，否则会塌缩。
+- 需要浏览器视口全高时：`className="h-svh"` 或 `h-screen`。
+- **Client Component**: 使用 `"use client"`。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-embedlayout--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/layouts-embedlayout--docs)。

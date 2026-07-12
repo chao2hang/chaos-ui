@@ -1,4 +1,3 @@
-import { InvoicePreview } from "@/components/business/invoice-preview";
 import { CodeBlock } from "@/components/code-block";
 
 # InvoicePreview 发票预览
@@ -9,33 +8,32 @@ import { CodeBlock } from "@/components/code-block";
 
 ## 何时使用
 
-需要发票预览功能时使用本组件。
-
+需要invoice-preview时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { InvoicePreview } from "@/components/business/invoice-preview"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <InvoicePreview />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### InvoicePreview
 
-| Prop | Type | Default | 说明 |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `invoice`   | `InvoiceData`                 | —       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop        | Type                          | Default | 说明                  |
+| ----------- | ----------------------------- | ------- | --------------------- |
+| `className` | `string`                      | —       | 自定义样式类名        |
+| `invoice`   | `InvoiceData`                 | —       |                       |
+| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-invoice-preview--docs)。
-
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-invoice-preview--docs)。

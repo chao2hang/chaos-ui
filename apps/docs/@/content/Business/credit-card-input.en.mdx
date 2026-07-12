@@ -1,7 +1,3 @@
-import {
-  CreditCardInput,
-  CreditCard,
-} from "@/components/business/credit-card-input";
 import { CodeBlock } from "@/components/code-block";
 
 # CreditCardInput
@@ -12,39 +8,32 @@ CreditCardInput — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a credit card input.
-
+Use CreditCardInput when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { CreditCardInput, CreditCard } from "@/components/business/credit-card-input"
+<CodeBlock code={`import { AmountInput } from "@chaos_team/chaos-ui/ui";
 
 export function Basic() {
-  return (
-    <div className="space-y-4">
-  <CreditCardInput />
-  <CreditCard />
-    </div>
-  )
+  // docs-only CreditCardInput was removed; use package AmountInput as payment-field demo
+  return <AmountInput placeholder="支付金额" />;
 }`} lang="tsx" />
 
 ## API / Props
 
 ### CreditCardInput
 
-| Prop | Type | Default | Description |
-| ------------- | ---------------------- | --------------------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `placeholder` | `string` | `0000 0000 0000 0000` | Placeholder text |
-| `disabled` | `boolean` | — | Whether disabled |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default               | Description                       |
+| ------------- | ---------------------- | --------------------- | --------------------------------- |
+| `className`   | `string`               | —                     | Custom CSS class                  |
+| `value`       | `string`               | —                     | Current value (controlled)        |
+| `onChange`    | `() => void`           | —                     | Callback when value changes       |
+| `placeholder` | `string`               | `0000 0000 0000 0000` | Placeholder text                  |
+| `disabled`    | `boolean`              | —                     | Whether disabled                  |
+| ...rest       | `React.HTMLAttributes` | —                     | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-
