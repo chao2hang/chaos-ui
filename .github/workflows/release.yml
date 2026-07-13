@@ -37,9 +37,27 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Build release notes from CHANGELOG.md
+        id: notes
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          OUT="${RUNNER_TEMP}/release-notes.md"
+          node scripts/extract-changelog-section.mjs "$VERSION" > "$OUT"
+          {
+            echo "path=$OUT"
+            echo "version=$VERSION"
+          } >> "$GITHUB_OUTPUT"
+          echo "---- release notes preview ----"
+          head -n 80 "$OUT"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          # Prefer CHANGELOG Fixed/Added/Notes so consumers see what shipped.
+          # Still append auto-generated commit list below when available.
+          body_path: ${{ steps.notes.outputs.path }}
+          generate_release_notes: false
           draft: false
           prerelease: ${{ contains(github.ref, '-rc') || contains(github.ref, '-beta') }}
