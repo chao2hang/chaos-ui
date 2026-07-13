@@ -46,7 +46,7 @@ describe("Resizable", () => {
     expect(handle.className).toContain("cursor-row-resize");
   });
 
-  it("applies the panel's default size as inline width", () => {
+  it("applies the panel's default size as a flex weight", () => {
     const { container } = render(
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={40}>One</ResizablePanel>
@@ -57,7 +57,8 @@ describe("Resizable", () => {
     const panel = container.querySelectorAll(
       '[data-slot="resizable-panel"]',
     )[0] as HTMLElement;
-    expect(panel.style.width).toBe("40%");
+    expect(panel.style.flexGrow).toBe("40");
+    expect(panel.style.flexBasis).toBe("0px");
   });
 
   it("renders the visible handle affordance when withHandle is true", () => {

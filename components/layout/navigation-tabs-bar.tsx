@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import {
   XIcon,
   RefreshCwIcon,
@@ -62,6 +63,7 @@ function NavigationTabsBar({
   onRefresh,
   ...props
 }: NavigationTabsBarProps) {
+  const { t } = useTranslation("navigation");
   const [internalActive, setInternalActive] = React.useState(
     defaultActiveKey ?? items[0]?.key ?? "",
   );
@@ -110,7 +112,7 @@ function NavigationTabsBar({
           type="button"
           onClick={() => scrollBy(-1)}
           className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
-          aria-label="Scroll left"
+          aria-label={t("tabs.scrollLeft", "Scroll left")}
         >
           <ChevronLeftIcon className="size-4" />
         </button>
@@ -137,7 +139,7 @@ function NavigationTabsBar({
                   className={cn(
                     "group flex cursor-pointer items-center gap-1.5 border-b-2 px-3 py-2 text-sm transition-colors",
                     isActive
-                      ? "border-primary text-primary"
+                      ? "border-primary bg-primary/5 text-primary"
                       : "text-muted-foreground hover:text-foreground border-transparent",
                   )}
                 >
@@ -148,7 +150,7 @@ function NavigationTabsBar({
                       type="button"
                       onClick={(e) => handleClose(tab.key, e)}
                       className="hover:bg-muted ml-1 shrink-0 rounded p-0.5 opacity-0 transition-opacity group-hover:opacity-100"
-                      aria-label="Close tab"
+                      aria-label={t("tabs.close", "Close tab")}
                     >
                       <XIcon className="size-3" />
                     </button>
@@ -157,20 +159,22 @@ function NavigationTabsBar({
               </ContextMenuTrigger>
               <ContextMenuContent>
                 <ContextMenuItem onClick={() => onRefresh?.(tab.key)}>
-                  <RefreshCwIcon className="size-3.5" /> Refresh
+                  <RefreshCwIcon className="size-3.5" />{" "}
+                  {t("tabs.refresh", "Refresh")}
                 </ContextMenuItem>
                 <ContextMenuSeparator />
                 <ContextMenuItem onClick={() => onClose?.(tab.key)}>
-                  <XIcon className="size-3.5" /> Close
+                  <XIcon className="size-3.5" /> {t("tabs.close", "Close")}
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => onCloseOthers?.(tab.key)}>
-                  <CopyIcon className="size-3.5" /> Close Others
+                  <CopyIcon className="size-3.5" />{" "}
+                  {t("tabs.closeOthers", "Close Others")}
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => onCloseToRight?.(tab.key)}>
-                  Close to Right
+                  {t("tabs.closeToRight", "Close to Right")}
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => onCloseAll?.()}>
-                  Close All
+                  {t("tabs.closeAll", "Close All")}
                 </ContextMenuItem>
               </ContextMenuContent>
             </ContextMenu>
@@ -182,7 +186,7 @@ function NavigationTabsBar({
           type="button"
           onClick={() => scrollBy(1)}
           className="hover:bg-muted text-muted-foreground shrink-0 rounded p-1"
-          aria-label="Scroll right"
+          aria-label={t("tabs.scrollRight", "Scroll right")}
         >
           <ChevronRightIcon className="size-4" />
         </button>

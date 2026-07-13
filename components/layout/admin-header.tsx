@@ -6,7 +6,14 @@ import { Bell, Menu, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 
 /**
  * @component AdminHeader
@@ -25,11 +32,22 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
 interface AdminBreadcrumbItem {
   label: React.ReactNode;
   href?: string;
+  /**
+   * Custom render for this crumb's BreadcrumbLink (e.g. Next.js Link).
+   * Uses Base UI `useRender` prop on BreadcrumbLink (CUI-NAV-03).
+   * / 自定义面包屑链接渲染（如 Next.js Link）
+   */
+  render?: React.ComponentProps<typeof BreadcrumbLink>["render"];
 }
 
 interface AdminHeaderProps extends React.ComponentProps<"header"> {
   /** Breadcrumb items / 面包屑项 */
   breadcrumb?: AdminBreadcrumbItem[];
+  /**
+   * Default render for all breadcrumb links with href (overridden per-item by item.render).
+   * / 默认面包屑链接渲染，可被单项 render 覆盖
+   */
+  breadcrumbLinkRender?: React.ComponentProps<typeof BreadcrumbLink>["render"];
   /** Logo content / Logo 内容 */
   logo?: React.ReactNode;
   /** Whether to show search / 是否显示搜索 */
@@ -55,6 +73,7 @@ interface AdminHeaderProps extends React.ComponentProps<"header"> {
 function AdminHeader({
   className,
   breadcrumb,
+  breadcrumbLinkRender,
   logo,
   showSearch = true,
   searchPlaceholder = "Search...",
@@ -73,7 +92,7 @@ function AdminHeader({
     <header
       data-slot="admin-header"
       className={cn(
-        "z-30 flex h-16 items-center gap-4 border-b border-border bg-background px-4",
+        "border-border bg-background z-30 flex h-16 items-center gap-4 border-b px-4",
         sticky && "sticky top-0",
         className,
       )}
@@ -104,7 +123,16 @@ function AdminHeader({
                 {index > 0 && <BreadcrumbSeparator />}
                 <BreadcrumbItem>
                   {item.href && index < breadcrumb.length - 1 ? (
-                    <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+                    <BreadcrumbLink
+                      href={item.href}
+                      {...(item.render !== undefined
+                        ? { render: item.render }
+                        : breadcrumbLinkRender !== undefined
+                          ? { render: breadcrumbLinkRender }
+                          : {})}
+                    >
+                      {item.label}
+                    </BreadcrumbLink>
                   ) : (
                     <BreadcrumbPage>{item.label}</BreadcrumbPage>
                   )}
@@ -115,10 +143,11 @@ function AdminHeader({
         </Breadcrumb>
       )}
 
-      {/* Search */}
+      {/* Search — flex-1 fills the middle; do not use ml-auto here so the
+          trailing actions cluster remains the single right-edge pin. */}
       {showSearch && (
-        <div className="relative ml-auto hidden max-w-sm flex-1 md:block">
-          <Search className="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative mx-4 hidden max-w-sm min-w-0 flex-1 md:block">
+          <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2" />
           <Input
             placeholder={searchPlaceholder}
             value={searchValue}
@@ -131,8 +160,14 @@ function AdminHeader({
         </div>
       )}
 
-      {/* Right actions */}
-      <div className="ml-auto flex items-center gap-2 md:ml-0">
+      {/* Right actions — always pin to the trailing edge (CUI-LAYOUT-01).
+          Do not use md:ml-0: when search is hidden there is no other spacer,
+          and cancelling ml-auto on desktop leaves the user menu stuck next
+          to the breadcrumb. */}
+      <div
+        data-slot="admin-header-actions"
+        className="ml-auto flex shrink-0 items-center gap-2"
+      >
         {actions}
 
         {/* Notifications */}
@@ -146,7 +181,7 @@ function AdminHeader({
           >
             <Bell className="size-5" />
             {notificationCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-xs font-bold text-destructive-foreground">
+              <span className="bg-destructive text-destructive-foreground absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-xs font-bold">
                 {notificationCount > 99 ? "99+" : notificationCount}
               </span>
             )}

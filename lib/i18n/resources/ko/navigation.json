@@ -25,5 +25,12 @@
   "promptDialog.title": "Please enter",
   "promptDialog.confirm": "Confirm",
   "promptDialog.cancel": "Cancel",
-  "promptDialog.required": "This field is required"
+  "promptDialog.required": "This field is required",
+  "tabs.refresh": "Refresh",
+  "tabs.close": "Close",
+  "tabs.closeOthers": "Close Others",
+  "tabs.closeToRight": "Close to Right",
+  "tabs.closeAll": "Close All",
+  "tabs.scrollLeft": "Scroll left",
+  "tabs.scrollRight": "Scroll right"
 }

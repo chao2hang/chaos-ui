@@ -114,6 +114,35 @@ describe("admin-header", () => {
     expect(screen.queryByPlaceholderText("Search...")).toBeNull();
   });
 
+  it("keeps the right actions cluster pinned with ml-auto when search is hidden (CUI-LAYOUT-01)", () => {
+    // Without search, only the actions cluster can absorb free space on the right.
+    // md:ml-0 incorrectly cancelled that on desktop and left the user menu next to breadcrumbs.
+    const { container } = render(
+      <AdminHeader
+        showSearch={false}
+        breadcrumb={[{ label: "首页" }]}
+        userMenu={<div>User Chip</div>}
+      />,
+    );
+    const actions = container.querySelector(
+      '[data-slot="admin-header-actions"]',
+    );
+    expect(actions).not.toBeNull();
+    expect(actions?.className.split(/\s+/)).toContain("ml-auto");
+    expect(actions?.className.split(/\s+/)).not.toContain("md:ml-0");
+  });
+
+  it("keeps the right actions cluster pinned with ml-auto when search is shown", () => {
+    const { container } = render(
+      <AdminHeader showSearch userMenu={<div>User Chip</div>} />,
+    );
+    const actions = container.querySelector(
+      '[data-slot="admin-header-actions"]',
+    );
+    expect(actions?.className.split(/\s+/)).toContain("ml-auto");
+    expect(actions?.className.split(/\s+/)).not.toContain("md:ml-0");
+  });
+
   it("renders right-side actions", () => {
     render(<AdminHeader actions={<button type="button">Settings</button>} />);
     expect(screen.getByText("Settings")).toBeDefined();

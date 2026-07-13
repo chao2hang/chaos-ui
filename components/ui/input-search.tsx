@@ -15,7 +15,10 @@ import { Search, X } from "lucide-react";
  * <InputSearch onSearch={(value) => console.log(value)} allowClear enterButton />
  */
 
-interface InputSearchProps extends Omit<React.ComponentProps<"input">, "onChange" | "size"> {
+interface InputSearchProps extends Omit<
+  React.ComponentProps<"input">,
+  "onChange" | "size"
+> {
   /** Placeholder text / 占位文本 */
   placeholder?: string;
   /** Whether to show clear button / 是否显示清除按钮 */
@@ -25,7 +28,10 @@ interface InputSearchProps extends Omit<React.ComponentProps<"input">, "onChange
   /** Search callback / 搜索回调 */
   onSearch?: (value: string, event?: React.SyntheticEvent) => void;
   /** Change callback / 变更回调 */
-  onChange?: (value: string, event?: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    value: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
   /** Input size / 输入框大小 */
   size?: "sm" | "default" | "lg";
   /** Whether input is loading / 是否加载中 */
@@ -45,9 +51,7 @@ function InputSearch({
   value: controlledValue,
   ...props
 }: InputSearchProps) {
-  const [internalValue, setInternalValue] = React.useState(
-    defaultValue ?? "",
-  );
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
   const isControlled = controlledValue !== undefined;
   const value = isControlled ? controlledValue : internalValue;
 
@@ -74,14 +78,13 @@ function InputSearch({
     onSearch?.("");
   };
 
-  const sizeClass =
-    size === "sm" ? "h-7" : size === "lg" ? "h-9" : "h-8";
+  const sizeClass = size === "sm" ? "h-7" : size === "lg" ? "h-9" : "h-8";
 
   if (enterButton) {
     return (
       <div
         data-slot="input-search"
-        className={cn("flex w-full items-stretch", className)}
+        className={cn("relative flex w-full items-stretch", className)}
       >
         <Input
           type="search"
@@ -89,14 +92,18 @@ function InputSearch({
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          className={cn(sizeClass, "rounded-r-none", allowClear && value && "pr-7")}
+          className={cn(
+            sizeClass,
+            "rounded-r-none",
+            allowClear && value && "pr-7",
+          )}
           {...props}
         />
         {allowClear && value && !loading && (
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-12 -translate-y-1/2"
             aria-label="Clear"
           >
             <X className="size-3.5" />
@@ -121,11 +128,8 @@ function InputSearch({
   }
 
   return (
-    <div
-      data-slot="input-search"
-      className={cn("relative w-full", className)}
-    >
-      <Search className="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+    <div data-slot="input-search" className={cn("relative w-full", className)}>
+      <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2" />
       <Input
         type="search"
         placeholder={placeholder}
@@ -139,14 +143,14 @@ function InputSearch({
         <button
           type="button"
           onClick={handleClear}
-          className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
           aria-label="Clear"
         >
           <X className="size-3.5" />
         </button>
       )}
       {loading && (
-        <span className="absolute right-2 top-1/2 -translate-y-1/2 animate-spin">
+        <span className="absolute top-1/2 right-2 -translate-y-1/2 animate-spin">
           ⏳
         </span>
       )}

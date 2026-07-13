@@ -22,6 +22,7 @@ interface ResizableGroupContextValue {
   unregisterPanel: (id: string) => void;
   panelDataMap: React.MutableRefObject<Map<string, PanelResizeData>>;
   groupRef: React.RefObject<HTMLDivElement | null>;
+  setDragging: (dragging: boolean) => void;
 }
 
 const ResizableContext = React.createContext<ResizableGroupContextValue | null>(
@@ -35,6 +36,10 @@ function useResizableGroup() {
       "Resizable components must be used within ResizablePanelGroup",
     );
   return ctx;
+}
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(Math.max(n, min), max);
 }
 
 /**
@@ -59,6 +64,7 @@ function ResizablePanelGroup({
 }: React.ComponentProps<"div"> & { direction?: Direction }) {
   const groupRef = React.useRef<HTMLDivElement>(null);
   const panelDataMap = React.useRef(new Map<string, PanelResizeData>());
+  const [dragging, setDragging] = React.useState(false);
 
   const registerPanel = React.useCallback(
     (id: string, data: PanelResizeData) => {
@@ -79,15 +85,18 @@ function ResizablePanelGroup({
         unregisterPanel,
         panelDataMap,
         groupRef,
+        setDragging,
       }}
     >
       <div
         ref={groupRef}
         data-slot="resizable-panel-group"
         data-direction={direction}
+        data-dragging={dragging ? "true" : "false"}
         className={cn(
           "flex h-full w-full",
           direction === "vertical" ? "flex-col" : "flex-row",
+          dragging && "select-none",
           className,
         )}
         {...props}
@@ -179,17 +188,19 @@ function ResizablePanel({
     onResize?.(collapsed ? collapsedSize : size);
   }, [size, collapsed, collapsedSize, onResize]);
 
+  const flexSize = collapsed ? collapsedSize : size;
+
   return (
     <div
       data-slot="resizable-panel"
       data-panel-id={panelId}
       data-collapsed={collapsed}
       style={{
-        [ctx.direction === "horizontal" ? "width" : "height"]: `${
-          collapsed ? collapsedSize : size
-        }%`,
+        flexGrow: flexSize,
+        flexShrink: 1,
+        flexBasis: 0,
       }}
-      className={cn("relative overflow-hidden", className)}
+      className={cn("relative min-h-0 min-w-0 overflow-hidden", className)}
       {...props}
     >
       {children}
@@ -221,6 +232,35 @@ function findPanelElement(handle: HTMLElement | null): HTMLElement | null {
 }
 
 /**
+ * Find the secondary panel that shares space with the primary panel.
+ * - Handle between panels: next sibling with data-panel-id after the handle.
+ * - Handle inside primary: walk next siblings of the primary panel.
+ */
+function findSecondaryPanelElement(
+  handle: HTMLElement | null,
+  primary: HTMLElement | null,
+): HTMLElement | null {
+  if (!handle || !primary) return null;
+
+  const parent = handle.parentElement;
+  const handleInsidePrimary = parent === primary;
+
+  if (handleInsidePrimary) {
+    let next = primary.nextElementSibling as HTMLElement | null;
+    while (next && !next.hasAttribute("data-panel-id")) {
+      next = next.nextElementSibling as HTMLElement | null;
+    }
+    return next;
+  }
+
+  let next = handle.nextElementSibling as HTMLElement | null;
+  while (next && !next.hasAttribute("data-panel-id")) {
+    next = next.nextElementSibling as HTMLElement | null;
+  }
+  return next;
+}
+
+/**
  * @component ResizableHandle
  * @category ui/layout
  * @since 0.2.0
@@ -237,41 +277,91 @@ function ResizableHandle({
   const ctx = useResizableGroup();
   const ref = React.useRef<HTMLDivElement>(null);
 
-  // Resolve the panel data for the panel this handle controls
-  const resolvePanelData = React.useCallback((): PanelResizeData | null => {
-    const panelEl = findPanelElement(ref.current);
-    if (!panelEl) return null;
-    const id = panelEl.getAttribute("data-panel-id");
-    if (!id) return null;
-    return ctx.panelDataMap.current.get(id) ?? null;
+  const resolvePair = React.useCallback((): {
+    primary: PanelResizeData;
+    secondary: PanelResizeData | null;
+  } | null => {
+    const primaryEl = findPanelElement(ref.current);
+    if (!primaryEl) return null;
+    const primaryId = primaryEl.getAttribute("data-panel-id");
+    if (!primaryId) return null;
+    const primary = ctx.panelDataMap.current.get(primaryId);
+    if (!primary) return null;
+
+    const secondaryEl = findSecondaryPanelElement(ref.current, primaryEl);
+    const secondaryId = secondaryEl?.getAttribute("data-panel-id");
+    const secondary =
+      secondaryId != null
+        ? (ctx.panelDataMap.current.get(secondaryId) ?? null)
+        : null;
+
+    return { primary, secondary };
   }, [ctx]);
 
   const onPointerDown = React.useCallback(
     (e: React.PointerEvent) => {
       e.preventDefault();
-      const panelData = resolvePanelData();
-      if (!panelData) return;
+      const pair = resolvePair();
+      if (!pair) return;
 
       const direction = ctx.direction;
       const startPos = direction === "horizontal" ? e.clientX : e.clientY;
-      const startSize = panelData.size;
+      const startPrimary = pair.primary.size;
+      const startSecondary = pair.secondary?.size ?? null;
+      const pairTotal =
+        startSecondary != null ? startPrimary + startSecondary : null;
+
+      ctx.setDragging(true);
+
+      const target = e.currentTarget as HTMLElement;
+      try {
+        target.setPointerCapture(e.pointerId);
+      } catch {
+        // ignore if capture unsupported
+      }
 
       const onMove = (ev: PointerEvent) => {
         const container = ctx.groupRef.current;
         if (!container) return;
         const rect = container.getBoundingClientRect();
         const total = direction === "horizontal" ? rect.width : rect.height;
+        if (total <= 0) return;
+
         const delta =
           ((direction === "horizontal" ? ev.clientX : ev.clientY) - startPos) /
           total;
-        const next = Math.min(
-          Math.max(startSize + delta * 100, panelData.minSize),
-          panelData.maxSize,
+        let nextPrimary = startPrimary + delta * 100;
+
+        nextPrimary = clamp(
+          nextPrimary,
+          pair.primary.minSize,
+          pair.primary.maxSize,
         );
-        panelData.setSize(next);
+
+        if (pair.secondary && pairTotal != null) {
+          // Keep secondary within its min/max while preserving pair total
+          const minPrimary = pairTotal - pair.secondary.maxSize;
+          const maxPrimary = pairTotal - pair.secondary.minSize;
+          nextPrimary = clamp(
+            nextPrimary,
+            Math.max(pair.primary.minSize, minPrimary),
+            Math.min(pair.primary.maxSize, maxPrimary),
+          );
+          const nextSecondary = pairTotal - nextPrimary;
+          pair.primary.setSize(nextPrimary);
+          pair.secondary.setSize(nextSecondary);
+        } else {
+          pair.primary.setSize(nextPrimary);
+        }
       };
 
-      const onUp = () => {
+      const onUp = (ev: PointerEvent) => {
+        ctx.setDragging(false);
+        try {
+          target.releasePointerCapture(ev.pointerId);
+        } catch {
+          // ignore
+        }
         document.removeEventListener("pointermove", onMove);
         document.removeEventListener("pointerup", onUp);
       };
@@ -279,15 +369,15 @@ function ResizableHandle({
       document.addEventListener("pointermove", onMove);
       document.addEventListener("pointerup", onUp);
     },
-    [ctx, resolvePanelData],
+    [ctx, resolvePair],
   );
 
   const onDoubleClick = React.useCallback(() => {
-    const panelData = resolvePanelData();
-    if (!panelData || !panelData.collapsible) return;
-    if (panelData.collapsed) panelData.handleExpand();
-    else panelData.handleCollapse();
-  }, [resolvePanelData]);
+    const pair = resolvePair();
+    if (!pair || !pair.primary.collapsible) return;
+    if (pair.primary.collapsed) pair.primary.handleExpand();
+    else pair.primary.handleCollapse();
+  }, [resolvePair]);
 
   const direction = ctx.direction;
 
@@ -301,8 +391,8 @@ function ResizableHandle({
       className={cn(
         "bg-border hover:bg-primary/50 active:bg-primary relative flex shrink-0 items-center justify-center transition-colors",
         direction === "horizontal"
-          ? "h-full w-px cursor-col-resize"
-          : "h-px w-full cursor-row-resize",
+          ? "h-full w-px cursor-col-resize after:absolute after:inset-y-0 after:left-1/2 after:w-3 after:-translate-x-1/2"
+          : "h-px w-full cursor-row-resize after:absolute after:inset-x-0 after:top-1/2 after:h-3 after:-translate-y-1/2",
         className,
       )}
       {...props}

@@ -124,4 +124,29 @@ describe("QuickEntryGrid", () => {
     const _tc: QuickEntryGridProps | undefined = undefined;
     expect(_tc).toBeUndefined();
   });
+
+  it("uses auto-fill grid by default instead of fixed 6 columns (CUI-DASH-03)", () => {
+    const { container } = render(
+      <QuickEntryGrid
+        entries={[
+          { id: "a", label: "代客下单", onClick: () => {} },
+          { id: "b", label: "审批", onClick: () => {} },
+        ]}
+      />,
+    );
+    const list = container.querySelector("ul") as HTMLElement;
+    expect(list.style.gridTemplateColumns).toContain("auto-fill");
+    expect(list.className).not.toContain("lg:grid-cols-6");
+  });
+
+  it("supports fixed columns prop", () => {
+    const { container } = render(
+      <QuickEntryGrid
+        columns={3}
+        entries={[{ id: "a", label: "入口", onClick: () => {} }]}
+      />,
+    );
+    const list = container.querySelector("ul") as HTMLElement;
+    expect(list.style.gridTemplateColumns).toContain("repeat(3");
+  });
 });

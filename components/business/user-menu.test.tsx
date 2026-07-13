@@ -12,6 +12,14 @@ describe("UserMenu", () => {
     expect(UserMenu).toBeDefined();
   });
 
+  it("exposes a stable data-slot on the root (CUI-A11Y-01)", () => {
+    const { container } = render(<UserMenu user={{ name: "Alice Wong" }} />);
+    expect(container.querySelector('[data-slot="user-menu"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="user-menu-trigger"]'),
+    ).not.toBeNull();
+  });
+
   it("exports types", () => {
     const _tc1: UserMenuUser | undefined = undefined;
     expect(_tc1).toBeUndefined();
@@ -32,11 +40,7 @@ describe("UserMenu", () => {
   });
 
   it("renders the avatar image when avatar URL provided", () => {
-    render(
-      <UserMenu
-        user={{ name: "Bob Smith", avatar: "/avatar.png" }}
-      />,
-    );
+    render(<UserMenu user={{ name: "Bob Smith", avatar: "/avatar.png" }} />);
     expect(
       screen.getByRole("button", { name: "Open menu for Bob Smith" }),
     ).toBeDefined();
@@ -56,7 +60,9 @@ describe("UserMenu", () => {
         onSignOut={() => {}}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
+    );
     expect(screen.getByText("Alice")).toBeDefined();
     expect(screen.getByText("alice@example.com")).toBeDefined();
     expect(screen.getByText("Admin")).toBeDefined();
@@ -64,25 +70,33 @@ describe("UserMenu", () => {
 
   it("shows the profile and settings items by default when open", () => {
     render(
-      <UserMenu user={{ name: "Alice" }} onProfile={() => {}} onSettings={() => {}} />,
+      <UserMenu
+        user={{ name: "Alice" }}
+        onProfile={() => {}}
+        onSettings={() => {}}
+      />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
+    );
     expect(screen.getByText("个人资料")).toBeDefined();
     expect(screen.getByText("账户设置")).toBeDefined();
   });
 
   it("omits profile group when showProfile is false", () => {
     render(<UserMenu user={{ name: "Alice" }} showProfile={false} />);
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
+    );
     expect(screen.queryByText("个人资料")).toBeNull();
     expect(screen.queryByText("账户设置")).toBeNull();
   });
 
   it("omits settings item when showSettings is false", () => {
-    render(
-      <UserMenu user={{ name: "Alice" }} showSettings={false} />,
+    render(<UserMenu user={{ name: "Alice" }} showSettings={false} />);
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
     );
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
     expect(screen.getByText("个人资料")).toBeDefined();
     expect(screen.queryByText("账户设置")).toBeNull();
   });
@@ -95,13 +109,17 @@ describe("UserMenu", () => {
         actions={[{ label: "我的订阅", onClick: onAction }]}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
+    );
     expect(screen.getByText("我的订阅")).toBeDefined();
   });
 
   it("renders sign-out item when onSignOut provided", () => {
     render(<UserMenu user={{ name: "Alice" }} onSignOut={() => {}} />);
-    fireEvent.click(screen.getByRole("button", { name: /Open menu for Alice/ }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Open menu for Alice/ }),
+    );
     expect(screen.getByText("退出登录")).toBeDefined();
   });
 

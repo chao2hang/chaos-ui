@@ -63,82 +63,85 @@ export function UserMenu({
   className,
 }: UserMenuProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn("rounded-full", className)}
-            aria-label={`Open menu for ${user.name}`}
-          />
-        }
-      >
-        <Avatar className="size-8">
-          {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-          <AvatarFallback className="text-xs">
-            {initials(user.name)}
-          </AvatarFallback>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align={align} className="w-56">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel className="font-normal">
-            <div className="flex flex-col gap-0.5">
-              <p className="text-sm leading-none font-medium">{user.name}</p>
-              {user.email && (
-                <p className="text-muted-foreground text-xs leading-none">
-                  {user.email}
-                </p>
-              )}
-              {user.role && (
-                <p className="text-muted-foreground mt-1 text-xs leading-none">
-                  {user.role}
-                </p>
-              )}
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-        </DropdownMenuGroup>
-        {showProfile && (
+    <div data-slot="user-menu" className="inline-flex">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn("rounded-full", className)}
+              aria-label={`Open menu for ${user.name}`}
+              data-slot="user-menu-trigger"
+            />
+          }
+        >
+          <Avatar className="size-8">
+            {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
+            <AvatarFallback className="text-xs">
+              {initials(user.name)}
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align={align} className="w-56">
           <DropdownMenuGroup>
-            <DropdownMenuItem onClick={onProfile}>
-              <span>个人资料</span>
-            </DropdownMenuItem>
-            {showSettings && (
-              <DropdownMenuItem onClick={onSettings}>
-                <span>账户设置</span>
-              </DropdownMenuItem>
-            )}
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm leading-none font-medium">{user.name}</p>
+                {user.email && (
+                  <p className="text-muted-foreground text-xs leading-none">
+                    {user.email}
+                  </p>
+                )}
+                {user.role && (
+                  <p className="text-muted-foreground mt-1 text-xs leading-none">
+                    {user.role}
+                  </p>
+                )}
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
           </DropdownMenuGroup>
-        )}
-        {actions.length > 0 && (
-          <>
-            <DropdownMenuSeparator />
+          {showProfile && (
             <DropdownMenuGroup>
-              {actions.map((action, i) => (
-                <DropdownMenuItem
-                  key={`${action.label}-${i}`}
-                  onClick={action.onClick}
-                  disabled={action.disabled}
-                  variant={action.destructive ? "destructive" : "default"}
-                >
-                  {action.icon}
-                  <span>{action.label}</span>
+              <DropdownMenuItem onClick={onProfile}>
+                <span>个人资料</span>
+              </DropdownMenuItem>
+              {showSettings && (
+                <DropdownMenuItem onClick={onSettings}>
+                  <span>账户设置</span>
                 </DropdownMenuItem>
-              ))}
+              )}
             </DropdownMenuGroup>
-          </>
-        )}
-        {onSignOut && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onSignOut} variant="destructive">
-              <span>退出登录</span>
-            </DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          )}
+          {actions.length > 0 && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                {actions.map((action, i) => (
+                  <DropdownMenuItem
+                    key={`${action.label}-${i}`}
+                    onClick={action.onClick}
+                    disabled={action.disabled}
+                    variant={action.destructive ? "destructive" : "default"}
+                  >
+                    {action.icon}
+                    <span>{action.label}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+            </>
+          )}
+          {onSignOut && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={onSignOut} variant="destructive">
+                <span>退出登录</span>
+              </DropdownMenuItem>
+            </>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }

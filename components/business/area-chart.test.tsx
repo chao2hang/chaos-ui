@@ -20,4 +20,31 @@ describe("AreaChart", () => {
     const _t: AreaChartProps | undefined = undefined;
     expect(_t).toBeUndefined();
   });
+
+  it("maps CSS var token colors to concrete SVG strokes (CUI-DASH-01)", () => {
+    const { container } = render(
+      <AreaChart
+        data={[10, 20, 30]}
+        labels={["a", "b", "c"]}
+        color="var(--color-primary)"
+        gradient={false}
+      />,
+    );
+    const strokePath = container.querySelector(
+      'path[stroke]:not([stroke="none"])',
+    ) as SVGPathElement | null;
+    expect(strokePath).not.toBeNull();
+    expect(strokePath?.getAttribute("stroke")).toBe("#3b82f6");
+    expect(strokePath?.getAttribute("stroke") ?? "").not.toContain("var(");
+  });
+
+  it("defaults to palette color instead of currentColor", () => {
+    const { container } = render(
+      <AreaChart data={[1, 2, 3]} labels={["a", "b", "c"]} gradient={false} />,
+    );
+    const strokePath = container.querySelector(
+      'path[stroke]:not([stroke="none"])',
+    ) as SVGPathElement | null;
+    expect(strokePath?.getAttribute("stroke")).toBe("#3b82f6");
+  });
 });

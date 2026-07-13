@@ -52,12 +52,44 @@ const DEFAULT_AREA_LABELS = ["一", "二", "三", "四", "五", "六", "日"];
 
 const AREA_PALETTE = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 
+/** Token / CSS-var names → concrete SVG-safe colors (CUI-DASH-01). */
+const AREA_COLOR_TOKENS: Record<string, string> = {
+  primary: "#3b82f6",
+  "chart-1": "#3b82f6",
+  "chart-2": "#10b981",
+  "chart-3": "#f59e0b",
+  "chart-4": "#ef4444",
+  "chart-5": "#8b5cf6",
+  blue: "#3b82f6",
+  green: "#10b981",
+  amber: "#f59e0b",
+  red: "#ef4444",
+  purple: "#8b5cf6",
+};
+
+/**
+ * Resolve series colors for SVG presentation attributes.
+ * CSS variables like `var(--color-primary)` often fail as SVG attributes;
+ * map known tokens / var() wrappers to hex. Unknown values pass through.
+ */
+function resolveAreaColor(input: string | undefined, fallback: string): string {
+  if (!input || input === "currentColor") return fallback;
+  const trimmed = input.trim();
+  const varMatch = /^var\(\s*--(?:color-)?([a-z0-9-]+)\s*\)$/i.exec(trimmed);
+  const token = varMatch?.[1]?.toLowerCase() ?? trimmed.toLowerCase();
+  if (AREA_COLOR_TOKENS[token]) return AREA_COLOR_TOKENS[token]!;
+  // Strip leading --color- / color- prefixes if passed as token names
+  const bare = token.replace(/^(?:--)?color-/, "");
+  if (AREA_COLOR_TOKENS[bare]) return AREA_COLOR_TOKENS[bare]!;
+  return trimmed;
+}
+
 function AreaChart({
   data = DEFAULT_AREA_DATA,
   series,
   labels = DEFAULT_AREA_LABELS,
   height = 180,
-  color = "currentColor",
+  color,
   gradient = true,
   className,
 }: AreaChartProps) {
@@ -65,11 +97,17 @@ function AreaChart({
   const pad = 8;
   const baseId = React.useId();
 
-  // Normalize to multi-series
+  // Normalize to multi-series (default color from palette, not currentColor)
   const multiSeries: AreaChartSeries[] =
     series && series.length > 0
       ? series
-      : [{ name: "默认", values: data, color }];
+      : [
+          {
+            name: "默认",
+            values: data,
+            color: color ?? AREA_PALETTE[0] ?? "#3b82f6",
+          },
+        ];
 
   const allValues = multiSeries.flatMap((s) => s.values);
   const max = Math.max(1, ...allValues);
@@ -93,23 +131,29 @@ function AreaChart({
         viewBox={`0 0 ${width} ${height}`}
         width="100%"
         height={height}
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid meet"
         role="presentation"
       >
         <defs>
           {multiSeries.map((s, si) => {
-            const c = s.color ?? AREA_PALETTE[si % AREA_PALETTE.length];
+            const c = resolveAreaColor(
+              s.color,
+              AREA_PALETTE[si % AREA_PALETTE.length]!,
+            );
             const gid = gradientIds[si];
             return gradient ? (
               <linearGradient key={gid} id={gid} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={c} stopOpacity={0.35} />
-                <stop offset="100%" stopColor={c} stopOpacity={0.02} />
+                <stop offset="0%" stopColor={c} stopOpacity={0.4} />
+                <stop offset="100%" stopColor={c} stopOpacity={0.06} />
               </linearGradient>
             ) : null;
           })}
         </defs>
         {multiSeries.map((s, si) => {
-          const c = s.color ?? AREA_PALETTE[si % AREA_PALETTE.length];
+          const c = resolveAreaColor(
+            s.color,
+            AREA_PALETTE[si % AREA_PALETTE.length]!,
+          );
           const gid = gradientIds[si];
           const pts = s.values.map((v, i) => `${pad + i * stepX},${yAt(v)}`);
           const linePath = `M ${pts.join(" L ")}`;
@@ -126,7 +170,7 @@ function AreaChart({
                 d={linePath}
                 fill="none"
                 stroke={c}
-                strokeWidth={2}
+                strokeWidth={2.25}
                 strokeLinejoin="round"
                 strokeLinecap="round"
               />
@@ -155,8 +199,10 @@ function AreaChart({
                 <span
                   className="inline-block size-2 rounded-sm"
                   style={{
-                    backgroundColor:
-                      s.color ?? AREA_PALETTE[si % AREA_PALETTE.length],
+                    backgroundColor: resolveAreaColor(
+                      s.color,
+                      AREA_PALETTE[si % AREA_PALETTE.length]!,
+                    ),
                   }}
                   aria-hidden="true"
                 />

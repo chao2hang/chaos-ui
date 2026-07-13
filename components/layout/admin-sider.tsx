@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
  *   collapsed={collapsed}
  *   onCollapse={setCollapsed}
  *   menuItems={[{ key: 'home', label: 'Home', icon: <HomeIcon />, href: '/' }]}
+ *   linkComponent={Link}
  * />
  */
 
@@ -29,6 +30,22 @@ interface MenuItem {
   badge?: React.ReactNode;
   disabled?: boolean;
 }
+
+/**
+ * Router-agnostic link renderer for Next.js / React Router adapters.
+ * Receives href + className + children; default is a native <a>.
+ */
+type AdminSiderLinkComponent = React.ComponentType<{
+  href: string;
+  className?: string;
+  children?: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  "aria-current"?: "page" | undefined;
+  "data-slot"?: string;
+  "data-menu-key"?: string;
+  "data-active-branch"?: string;
+  style?: React.CSSProperties;
+}>;
 
 interface AdminSiderProps extends React.ComponentProps<"aside"> {
   /** Whether sidebar is collapsed / 是否折叠 */
@@ -53,6 +70,42 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
   mobileOpen?: boolean;
   /** Mobile open change callback / 移动端打开变更回调 */
   onMobileOpenChange?: (open: boolean) => void;
+  /**
+   * Custom link component (e.g. next/link). When provided, items with `href`
+   * render through this component instead of a native <a>.
+   * / 自定义链接组件（如 Next.js Link），有 href 的菜单项走此组件
+   */
+  linkComponent?: AdminSiderLinkComponent;
+}
+
+function collectAncestorKeys(
+  items: MenuItem[],
+  targetKey: string,
+  trail: string[] = [],
+): string[] | null {
+  for (const item of items) {
+    if (item.key === targetKey) return trail;
+    if (item.children?.length) {
+      const found = collectAncestorKeys(item.children, targetKey, [
+        ...trail,
+        item.key,
+      ]);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function isDescendantSelected(
+  item: MenuItem,
+  selectedKey: string | undefined,
+): boolean {
+  if (!selectedKey) return false;
+  if (item.key === selectedKey) return true;
+  return (
+    item.children?.some((child) => isDescendantSelected(child, selectedKey)) ??
+    false
+  );
 }
 
 function AdminSider({
@@ -68,11 +121,32 @@ function AdminSider({
   collapsedWidth = 64,
   mobileOpen = false,
   onMobileOpenChange,
+  linkComponent: LinkComponent,
   ...props
 }: AdminSiderProps) {
   const [internalSelected, setInternalSelected] = React.useState(selectedKey);
-  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(new Set());
+  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(
+    () => new Set(),
+  );
   const current = selectedKey ?? internalSelected;
+
+  // Auto-expand ancestors when selectedKey points at a nested item (CUI-NAV-02)
+  React.useEffect(() => {
+    if (!current) return;
+    const ancestors = collectAncestorKeys(menuItems, current);
+    if (!ancestors?.length) return;
+    setExpandedKeys((prev) => {
+      let changed = false;
+      const next = new Set(prev);
+      for (const key of ancestors) {
+        if (!next.has(key)) {
+          next.add(key);
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, [current, menuItems]);
 
   const handleItemClick = (item: MenuItem) => {
     if (item.disabled) return;
@@ -82,6 +156,8 @@ function AdminSider({
 
   const renderMenuItem = (item: MenuItem, level = 0) => {
     const isSelected = current === item.key;
+    const isBranchActive =
+      !isSelected && isDescendantSelected(item, current ?? undefined);
     const hasChildren = item.children && item.children.length > 0;
     const expanded = expandedKeys.has(item.key);
     const toggleExpanded = () => {
@@ -93,44 +169,85 @@ function AdminSider({
       });
     };
 
+    const itemClassName = cn(
+      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+      collapsed && "justify-center px-2",
+      isSelected
+        ? "bg-primary text-primary-foreground"
+        : isBranchActive
+          ? "bg-muted/70 text-foreground"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+      item.disabled && "pointer-events-none opacity-50",
+    );
+
+    const itemStyle: React.CSSProperties | undefined = collapsed
+      ? undefined
+      : { paddingLeft: `${12 + level * 16}px` };
+
+    const onClick = (e: React.MouseEvent<HTMLElement>) => {
+      // No href (SPA key-only items): never navigate.
+      // With href + custom linkComponent: let the router link handle navigation.
+      // With href + native <a> and onItemClick: prevent full reload so consumers can route.
+      if (!item.href) {
+        e.preventDefault();
+      } else if (!LinkComponent && onItemClick) {
+        e.preventDefault();
+      }
+      if (hasChildren && collapsed === false) {
+        toggleExpanded();
+      }
+      handleItemClick(item);
+    };
+
+    const content = (
+      <>
+        {item.icon && <span className="shrink-0">{item.icon}</span>}
+        {!collapsed && (
+          <>
+            <span className="flex-1 truncate">{item.label}</span>
+            {item.badge && <span className="shrink-0">{item.badge}</span>}
+            {hasChildren && (
+              <ChevronRight
+                className={cn(
+                  "size-4 shrink-0 transition-transform",
+                  expanded && "rotate-90",
+                )}
+              />
+            )}
+          </>
+        )}
+      </>
+    );
+
+    const sharedProps: {
+      className: string;
+      style?: React.CSSProperties;
+      onClick: (e: React.MouseEvent<HTMLElement>) => void;
+      "aria-current"?: "page";
+      "data-slot": string;
+      "data-menu-key": string;
+      "data-active-branch"?: string;
+    } = {
+      className: itemClassName,
+      onClick,
+      "data-slot": "admin-sider-item",
+      "data-menu-key": item.key,
+    };
+    if (itemStyle) sharedProps.style = itemStyle;
+    if (isSelected) sharedProps["aria-current"] = "page";
+    if (isBranchActive) sharedProps["data-active-branch"] = "true";
+
     return (
       <React.Fragment key={item.key}>
-        <a
-          href={item.href}
-          onClick={(e) => {
-            if (!item.href) e.preventDefault();
-            if (hasChildren && collapsed === false) {
-              toggleExpanded();
-            }
-            handleItemClick(item);
-          }}
-          className={cn(
-            "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-            collapsed && "justify-center px-2",
-            isSelected
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            item.disabled && "pointer-events-none opacity-50",
-          )}
-          style={{ paddingLeft: collapsed ? undefined : `${12 + level * 16}px` }}
-          aria-current={isSelected ? "page" : undefined}
-        >
-          {item.icon && <span className="shrink-0">{item.icon}</span>}
-          {!collapsed && (
-            <>
-              <span className="flex-1 truncate">{item.label}</span>
-              {item.badge && <span className="shrink-0">{item.badge}</span>}
-              {hasChildren && (
-                <ChevronRight
-                  className={cn(
-                    "size-4 shrink-0 transition-transform",
-                    expanded && "rotate-90",
-                  )}
-                />
-              )}
-            </>
-          )}
-        </a>
+        {item.href && LinkComponent ? (
+          <LinkComponent href={item.href} {...sharedProps}>
+            {content}
+          </LinkComponent>
+        ) : (
+          <a href={item.href} {...sharedProps}>
+            {content}
+          </a>
+        )}
         {hasChildren && expanded && !collapsed && (
           <div className="mt-0.5 space-y-0.5">
             {item.children!.map((child) => renderMenuItem(child, level + 1))}
@@ -152,8 +269,12 @@ function AdminSider({
       <aside
         data-slot="admin-sider"
         className={cn(
-          "flex flex-col border-r border-border bg-background transition-all duration-300",
-          mobileOpen ? "fixed inset-y-0 left-0 z-50 lg:static" : "hidden lg:flex",
+          // relative is required for the collapse control (absolute -right-3).
+          // Never use lg:static here — it cancels relative and reintroduces CUI-LAYOUT-02.
+          "border-border bg-background relative flex flex-col overflow-visible border-r transition-all duration-300",
+          mobileOpen
+            ? "fixed inset-y-0 left-0 z-50 lg:relative lg:inset-auto lg:z-auto"
+            : "hidden lg:flex",
           className,
         )}
         style={{ width: collapsed ? collapsedWidth : width }}
@@ -163,12 +284,14 @@ function AdminSider({
         {logo && (
           <div
             className={cn(
-              "flex h-16 items-center border-b border-border px-4",
+              "border-border flex h-16 items-center border-b px-4",
               collapsed && "justify-center px-2",
             )}
           >
             {collapsed ? (
-              <span className="text-lg font-bold">{typeof logo === "string" ? logo.charAt(0) : logo}</span>
+              <span className="text-lg font-bold">
+                {typeof logo === "string" ? logo.charAt(0) : logo}
+              </span>
             ) : (
               logo
             )}
@@ -184,7 +307,7 @@ function AdminSider({
         {footer && (
           <div
             className={cn(
-              "border-t border-border p-2",
+              "border-border border-t p-2",
               collapsed && "flex justify-center",
             )}
           >
@@ -197,11 +320,15 @@ function AdminSider({
           <Button
             variant="ghost"
             size="icon-sm"
-            className="absolute -right-3 top-20 z-10 hidden border border-border bg-background lg:flex"
+            className="border-border bg-background absolute top-20 -right-3 z-10 hidden border lg:flex"
             onClick={() => onCollapse(!collapsed)}
             aria-label={collapsed ? "Expand" : "Collapse"}
           >
-            {collapsed ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
+            {collapsed ? (
+              <ChevronRight className="size-4" />
+            ) : (
+              <ChevronLeft className="size-4" />
+            )}
           </Button>
         )}
       </aside>
@@ -210,4 +337,4 @@ function AdminSider({
 }
 
 export { AdminSider };
-export type { AdminSiderProps, MenuItem };
+export type { AdminSiderProps, MenuItem, AdminSiderLinkComponent };

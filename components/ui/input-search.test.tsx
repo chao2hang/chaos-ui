@@ -75,6 +75,18 @@ describe("InputSearch", () => {
     expect(buttons.length).toBeGreaterThan(0);
   });
 
+  it("keeps the clear control positioned relative to the enterButton root", () => {
+    // enterButton branch used absolute clear without relative on the root.
+    const { container } = render(
+      <InputSearch enterButton allowClear defaultValue="q" />,
+    );
+    const root = container.querySelector(
+      '[data-slot="input-search"]',
+    ) as HTMLElement;
+    expect(root.className.split(/\s+/)).toContain("relative");
+    expect(root.contains(screen.getByLabelText("Clear"))).toBe(true);
+  });
+
   it("renders with enterButton as custom ReactNode", () => {
     render(<InputSearch enterButton={<span>Search</span>} />);
     expect(screen.getByText("Search")).toBeDefined();

@@ -5,6 +5,38 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] — 2026-07-13
+
+### Fixed
+
+- **layout/AdminHeader (CUI-LAYOUT-01)**: pin `actions` + `userMenu` with stable `ml-auto`; remove incorrect `md:ml-0` so the cluster stays trailing when `showSearch={false}`.
+- **layout/AdminSider (CUI-LAYOUT-02)**: `aside` is a positioning containing block (`relative`); never use `lg:static` (breaks collapse handle offset). Collapse control stays on the sider edge.
+- **layout/AdminShell (CUI-LAYOUT-03)**: single content `<main data-slot="admin-shell-content">` with optional `contentPadding` / `contentClassName` so consumers can own FE-10 gutters without double `<main>` / double padding.
+- **layout/AuthLayout (CUI-LAYOUT-05)**: default `fill="viewport"` uses `min-h-svh` so login pages cover the screen without an html/body height chain; `fill="parent"` restores host-relative height.
+- **layout/AdminSider (CUI-NAV-01/02)**: `linkComponent` for Next/router adapters; when `onItemClick` is provided with `href`, prevent full-page reload; auto-expand ancestors and mark active branch for nested `selectedKey`.
+- **layout/AdminHeader (CUI-NAV-03)**: `breadcrumbLinkRender` + per-item `render` for SPA-safe breadcrumb links.
+- **layout/NavigationTabsBar (CUI-I18N-01, CUI-TAB-01)**: context-menu labels via i18n (with English defaultValue fallback); active tab uses `bg-primary/5`.
+- **business/UserMenu (CUI-A11Y-01)**: stable `data-slot="user-menu"` / `user-menu-trigger`.
+- **business/AreaChart (CUI-DASH-01)**: resolve CSS-var / token colors to SVG-safe hex; default palette color instead of `currentColor`; preserve aspect ratio.
+- **business/StatCardRow (CUI-DASH-02)**: `suffix` slot; semantic color presets (`green` / `orange` / …) for icon chips (no invalid `green15`).
+- **business/QuickEntryGrid (CUI-DASH-03)**: auto-fill `minmax` grid by default; optional fixed `columns`.
+- **business/BarChart (CUI-DASH-04)**: `xLabelRotate` / `maxLabelLength`; auto-rotate dense long labels.
+- **ui/Resizable**: flex-weight panels + pair rebalance on drag so left/right (and vertical) panes resize together without overflow.
+- **ui/InputSearch**: `enterButton` branch roots with `relative` so clear control positions correctly.
+
+### Added
+
+- `AdminShell`: `contentPadding`, `contentClassName`, `linkComponent`, `breadcrumbLinkRender`.
+- `AdminSider`: `linkComponent`; `AdminSiderLinkComponent` type.
+- `AdminHeader`: `breadcrumbLinkRender`; breadcrumb item `render`.
+- `AuthLayout`: `fill?: "viewport" | "parent"`.
+- i18n keys: `tabs.refresh` / `close` / `closeOthers` / `closeToRight` / `closeAll` / scroll labels (en/zh + other locales).
+
+### Notes
+
+- No intentional public API breaking changes for 1.5.2 (new optional props only).
+- Consumers (e.g. qxy-mop): upgrade from 1.5.1; use `contentPadding={false}` + non-`<main>` gutter wrapper when the app owns FE-10 padding; pass `linkComponent={Link}` for Next client routing.
+
 ## [1.5.1] — 2026-07-13
 
 ### Fixed

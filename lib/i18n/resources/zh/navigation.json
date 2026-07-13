@@ -28,5 +28,12 @@
   "promptDialog.required": "此项必填",
   "formWizard.back": "Back",
   "formWizard.next": "Next",
-  "formWizard.submit": "Submit"
+  "formWizard.submit": "Submit",
+  "tabs.refresh": "刷新",
+  "tabs.close": "关闭",
+  "tabs.closeOthers": "关闭其他",
+  "tabs.closeToRight": "关闭右侧",
+  "tabs.closeAll": "关闭全部",
+  "tabs.scrollLeft": "向左滚动",
+  "tabs.scrollRight": "向右滚动"
 }

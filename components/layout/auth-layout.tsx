@@ -59,6 +59,13 @@ interface AuthLayoutProps extends React.ComponentProps<"div"> {
   footer?: React.ReactNode;
   /** Footer class name / 底部样式 */
   footerClassName?: string;
+  /**
+   * Height strategy (CUI-LAYOUT-05).
+   * - `"viewport"` (default): `min-h-svh` so auth pages fill the screen without host height chain
+   * - `"parent"`: `h-full min-h-0` for embedding inside a sized host
+   * / 高度策略：默认铺满视口；parent 则依赖宿主高度链
+   */
+  fill?: "viewport" | "parent";
 }
 
 const brandWidthMap = {
@@ -109,6 +116,7 @@ function AuthLayout({
   brandHideBelow = "lg",
   footer,
   footerClassName,
+  fill = "viewport",
   className,
   children,
   ...props
@@ -116,13 +124,17 @@ function AuthLayout({
   const bgClass = backgroundPresetMap[background] ?? "";
   const bgStyle = bgClass ? undefined : { background };
   const rootClassName = bgClass || "bg-background";
+  // CUI-LAYOUT-05: default min-h-svh so login fills the viewport without
+  // requiring html/body height chain. Use fill="parent" to opt into h-full.
+  const heightClass = fill === "parent" ? "h-full min-h-0" : "min-h-svh h-full";
   if (variant === "split" || brand) {
     const hideBelowClasses = hideBelowMap[brandHideBelow] ?? hideBelowMap.lg;
     return (
       <div
         data-slot="auth-layout"
         data-variant="split"
-        className={cn("flex h-full min-h-0", rootClassName, className)}
+        data-fill={fill}
+        className={cn("flex", heightClass, rootClassName, className)}
         style={bgStyle}
         {...props}
       >
@@ -181,8 +193,10 @@ function AuthLayout({
     <div
       data-slot="auth-layout"
       data-variant="centered"
+      data-fill={fill}
       className={cn(
-        "flex h-full min-h-0 flex-col items-center justify-center p-4",
+        "flex flex-col items-center justify-center p-4",
+        heightClass,
         rootClassName,
         className,
       )}

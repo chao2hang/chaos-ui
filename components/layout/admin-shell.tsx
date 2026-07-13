@@ -5,7 +5,11 @@ import {
   AdminHeader,
   type AdminHeaderProps,
 } from "@/components/layout/admin-header";
-import { AdminSider, type MenuItem } from "@/components/layout/admin-sider";
+import {
+  AdminSider,
+  type AdminSiderLinkComponent,
+  type MenuItem,
+} from "@/components/layout/admin-sider";
 import { AdminTabs, type TabItem } from "@/components/layout/admin-tabs";
 import {
   UserMenu,
@@ -134,6 +138,30 @@ interface AdminShellProps extends Omit<
   /** Footer content / 底部内容 */
   footer?: React.ReactNode;
 
+  /**
+   * Content area padding (CUI-LAYOUT-03).
+   * - `true` (default): `p-4` for backward compatibility
+   * - `false`: no padding — app layout owns gutter (preferred when nesting FE-10 `p-4 lg:p-6`)
+   * - string: custom Tailwind classes, e.g. `"p-4 lg:p-6"`
+   * / 内容区内边距。应用自管 gutter 时请传 false，且不要再包一层 main。
+   */
+  contentPadding?: boolean | string;
+  /** Extra class names on the content main / 内容 main 额外类名 */
+  contentClassName?: string;
+  /**
+   * Router link component for sider menu items (CUI-NAV-01).
+   * Pass Next.js `Link` (or similar) to avoid full-page reloads.
+   * / 侧栏菜单自定义链接组件
+   */
+  linkComponent?: AdminSiderLinkComponent;
+  /**
+   * Default render for AdminHeader breadcrumb links (CUI-NAV-03).
+   * / 顶栏面包屑默认自定义链接渲染
+   */
+  breadcrumbLinkRender?: React.ComponentProps<
+    typeof import("@/components/ui/breadcrumb").BreadcrumbLink
+  >["render"];
+
   /** Page content / 页面内容 */
   children?: React.ReactNode;
   /** Additional class names / 额外样式类 */
@@ -191,6 +219,10 @@ export function AdminShell({
   onAsideOpenChange,
   asideToggleLabel = "Details",
   footer,
+  contentPadding = true,
+  contentClassName,
+  linkComponent,
+  breadcrumbLinkRender,
   children,
   className,
 }: AdminShellProps) {
@@ -257,6 +289,7 @@ export function AdminShell({
         collapsedWidth={collapsedWidth}
         mobileOpen={mobileOpen}
         onMobileOpenChange={setMobileOpen}
+        {...(linkComponent !== undefined ? { linkComponent } : {})}
       />
 
       {/* Main content area */}
@@ -264,6 +297,9 @@ export function AdminShell({
         {/* Header */}
         <AdminHeader
           {...(breadcrumb !== undefined ? { breadcrumb } : {})}
+          {...(breadcrumbLinkRender !== undefined
+            ? { breadcrumbLinkRender }
+            : {})}
           logo={logo}
           showSearch={showSearch}
           searchPlaceholder={searchPlaceholder}
@@ -326,7 +362,27 @@ export function AdminShell({
                 </Button>
               </div>
             ) : null}
-            <main className="flex-1 overflow-y-auto p-4">{children}</main>
+            {/*
+              Single document <main> landmark (CUI-LAYOUT-03).
+              Do not nest another <main> in children. If the app owns gutter
+              (e.g. FE-10 p-4 lg:p-6), pass contentPadding={false}.
+              Height chain (CUI-LAYOUT-04): shell is h-full; host should set
+              min-h-svh / h-svh on html/body or a full-height ancestor.
+            */}
+            <main
+              data-slot="admin-shell-content"
+              className={cn(
+                "flex-1 overflow-y-auto",
+                contentPadding === false
+                  ? undefined
+                  : contentPadding === true
+                    ? "p-4"
+                    : contentPadding,
+                contentClassName,
+              )}
+            >
+              {children}
+            </main>
           </div>
 
           {/* Desktop content aside */}

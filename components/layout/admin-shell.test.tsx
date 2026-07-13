@@ -118,4 +118,44 @@ describe("AdminShell", () => {
     const mod = await import("./admin-shell");
     expect(mod.ADMIN_SHELL_HEADER_HEIGHT_CLASS).toBe("h-16");
   });
+
+  it("applies default content padding and exposes content slot (CUI-LAYOUT-03)", () => {
+    const { container } = render(
+      <AdminShell>
+        <p>Page</p>
+      </AdminShell>,
+    );
+    const main = container.querySelector(
+      '[data-slot="admin-shell-content"]',
+    ) as HTMLElement;
+    expect(main).not.toBeNull();
+    expect(main.tagName).toBe("MAIN");
+    expect(main.className.split(/\s+/)).toContain("p-4");
+  });
+
+  it("disables content padding when contentPadding is false", () => {
+    const { container } = render(
+      <AdminShell contentPadding={false}>
+        <p>Page</p>
+      </AdminShell>,
+    );
+    const main = container.querySelector(
+      '[data-slot="admin-shell-content"]',
+    ) as HTMLElement;
+    expect(main.className.split(/\s+/)).not.toContain("p-4");
+  });
+
+  it("accepts custom contentPadding class string", () => {
+    const { container } = render(
+      <AdminShell contentPadding="p-4 lg:p-6" contentClassName="bg-muted">
+        <p>Page</p>
+      </AdminShell>,
+    );
+    const main = container.querySelector(
+      '[data-slot="admin-shell-content"]',
+    ) as HTMLElement;
+    expect(main.className).toContain("p-4");
+    expect(main.className).toContain("lg:p-6");
+    expect(main.className).toContain("bg-muted");
+  });
 });

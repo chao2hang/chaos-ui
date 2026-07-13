@@ -31,7 +31,9 @@ describe("StatCardRow", () => {
   it("renders descriptions when provided", () => {
     render(
       <StatCardRow
-        cards={[{ title: "Revenue", value: "$1k", description: "vs last month" }]}
+        cards={[
+          { title: "Revenue", value: "$1k", description: "vs last month" },
+        ]}
       />,
     );
     expect(screen.getByText("vs last month")).toBeDefined();
@@ -73,11 +75,7 @@ describe("StatCardRow", () => {
 
   it("renders trend with no direction as muted", () => {
     render(
-      <StatCardRow
-        cards={[
-          { title: "X", value: 1, trend: { value: 0 } },
-        ]}
-      />,
+      <StatCardRow cards={[{ title: "X", value: 1, trend: { value: 0 } }]} />,
     );
     const trend = screen.getByText(/0\.0%/);
     expect(trend.className).toContain("text-muted-foreground");
@@ -185,5 +183,36 @@ describe("StatCardRow", () => {
   it("module is importable", async () => {
     const mod = await import("@/components/business/stat-card-row");
     expect(mod.StatCardRow).toBeDefined();
+  });
+
+  it("renders suffix next to the value (CUI-DASH-02)", () => {
+    render(
+      <StatCardRow cards={[{ title: "今日订单", value: 12, suffix: "单" }]} />,
+    );
+    expect(screen.getByText("12")).toBeDefined();
+    expect(screen.getByText("单")).toBeDefined();
+    expect(
+      screen.getByText("单").closest('[data-slot="stat-card-suffix"]'),
+    ).not.toBeNull();
+  });
+
+  it("maps preset color names to valid icon chip backgrounds", () => {
+    render(
+      <StatCardRow
+        cards={[
+          {
+            title: "Orders",
+            value: 1,
+            color: "green",
+            icon: <span data-testid="icon">i</span>,
+          },
+        ]}
+      />,
+    );
+    const chip = screen
+      .getByTestId("icon")
+      .closest('[data-slot="stat-card-icon"]') as HTMLElement;
+    expect(chip.style.backgroundColor).not.toBe("");
+    expect(chip.getAttribute("style") ?? "").not.toContain("green15");
   });
 });

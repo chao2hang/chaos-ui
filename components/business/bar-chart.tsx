@@ -24,10 +24,24 @@ export interface BarChartProps {
   orientation?: "vertical" | "horizontal";
   /** Chart height in px. */
   height?: number;
+  /**
+   * X-axis label rotation in degrees for vertical charts (CUI-DASH-04).
+   * Use e.g. -35 for dense long labels. Default 0.
+   */
+  xLabelRotate?: number;
+  /**
+   * Max characters before truncating vertical labels with ellipsis.
+   * Set 0/undefined to disable.
+   */
+  maxLabelLength?: number;
   className?: string;
 }
 
-const DEFAULT_BAR_DATA: Array<{ label: string; value: number; color?: string }> = [
+const DEFAULT_BAR_DATA: Array<{
+  label: string;
+  value: number;
+  color?: string;
+}> = [
   { label: "一月", value: 38 },
   { label: "二月", value: 52 },
   { label: "三月", value: 41 },
@@ -44,10 +58,17 @@ const PALETTE = [
   "#06b6d4",
 ];
 
+function truncateLabel(label: string, max?: number) {
+  if (!max || max <= 0 || label.length <= max) return label;
+  return `${label.slice(0, Math.max(1, max - 1))}…`;
+}
+
 function BarChart({
   data = DEFAULT_BAR_DATA,
   orientation = "vertical",
   height = 200,
+  xLabelRotate = 0,
+  maxLabelLength,
   className,
 }: BarChartProps) {
   const max = Math.max(1, ...data.map((d) => d.value));
@@ -62,11 +83,11 @@ function BarChart({
       >
         {data.map((d, i) => (
           <div key={d.label} className="flex items-center gap-2">
-            <span className="w-16 shrink-0 truncate text-muted-foreground">
+            <span className="text-muted-foreground w-16 shrink-0 truncate">
               {d.label}
             </span>
             <div
-              className="h-5 flex-1 overflow-hidden rounded bg-muted"
+              className="bg-muted h-5 flex-1 overflow-hidden rounded"
               role="presentation"
             >
               <div
@@ -90,30 +111,43 @@ function BarChart({
 
   const barW = 36;
   const gap = 16;
+  const rotate = xLabelRotate ?? 0;
+  const labelPad = Math.abs(rotate) > 0 ? 36 : 16;
+  const chartHeight = height;
   const width = data.length * (barW + gap) + gap;
+  // Auto-rotate dense long labels when consumer didn't set rotation
+  const autoRotate =
+    rotate === 0 && data.some((d) => d.label.length >= 6) && data.length >= 4
+      ? -35
+      : rotate;
+  const effectiveRotate = autoRotate;
+  const bottomPad = Math.abs(effectiveRotate) > 0 ? 40 : labelPad;
 
   return (
     <div
       data-slot="bar-chart"
-      className={cn("w-full text-primary", className)}
+      className={cn("text-primary w-full", className)}
       role="img"
       aria-label={`柱状图，共 ${data.length} 项，最大值 ${max}`}
     >
       <svg
-        viewBox={`0 0 ${width} ${height}`}
+        viewBox={`0 0 ${width} ${chartHeight + Math.max(0, bottomPad - 16)}`}
         width="100%"
-        height={height}
+        height={chartHeight}
         preserveAspectRatio="xMidYMid meet"
         role="presentation"
       >
         {data.map((d, i) => {
-          const h = (d.value / max) * (height - 24);
+          const h = (d.value / max) * (chartHeight - 24);
           const x = gap + i * (barW + gap);
+          const label = truncateLabel(d.label, maxLabelLength);
+          const tx = x + barW / 2;
+          const ty = chartHeight - 4;
           return (
-            <g key={d.label}>
+            <g key={`${d.label}-${i}`}>
               <rect
                 x={x}
-                y={height - 16 - h}
+                y={chartHeight - 16 - h}
                 width={barW}
                 height={h}
                 rx={4}
@@ -124,12 +158,17 @@ function BarChart({
                 </title>
               </rect>
               <text
-                x={x + barW / 2}
-                y={height - 4}
-                textAnchor="middle"
+                x={tx}
+                y={ty}
+                textAnchor={Math.abs(effectiveRotate) > 0 ? "end" : "middle"}
+                transform={
+                  Math.abs(effectiveRotate) > 0
+                    ? `rotate(${effectiveRotate} ${tx} ${ty})`
+                    : undefined
+                }
                 className="fill-muted-foreground text-[10px]"
               >
-                {d.label}
+                {label}
               </text>
             </g>
           );

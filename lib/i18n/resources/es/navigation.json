@@ -3,5 +3,12 @@
   "settings": "Configuración",
   "profile": "Perfil",
   "logout": "Cerrar sesión",
-  "menu": "Menú"
+  "menu": "Menú",
+  "tabs.refresh": "Refresh",
+  "tabs.close": "Close",
+  "tabs.closeOthers": "Close Others",
+  "tabs.closeToRight": "Close to Right",
+  "tabs.closeAll": "Close All",
+  "tabs.scrollLeft": "Scroll left",
+  "tabs.scrollRight": "Scroll right"
 }
