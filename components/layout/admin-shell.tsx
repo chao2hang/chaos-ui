@@ -50,6 +50,11 @@ interface AdminShellProps extends Omit<
   menuItems?: MenuItem[];
   /** Selected menu key / 选中菜单 key */
   selectedMenuKey?: string;
+  /**
+   * How selectedMenuKey matches AdminSider items (CUI-NAV-02).
+   * Default `"prefix"` so deep routes still expand/highlight the menu item.
+   */
+  selectedMatch?: "exact" | "prefix";
   /** Menu item click callback / 菜单项点击回调 */
   onMenuItemClick?: (item: MenuItem) => void;
   /** Logo displayed in header and sider / 头部和侧栏的 Logo */
@@ -172,6 +177,7 @@ export function AdminShell({
   // Sidebar
   menuItems = [],
   selectedMenuKey,
+  selectedMatch,
   onMenuItemClick,
   logo,
   siderFooter,
@@ -280,6 +286,7 @@ export function AdminShell({
         {...(selectedMenuKey !== undefined
           ? { selectedKey: selectedMenuKey }
           : {})}
+        {...(selectedMatch !== undefined ? { selectedMatch } : {})}
         {...(onMenuItemClick !== undefined
           ? { onItemClick: onMenuItemClick }
           : {})}

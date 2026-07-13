@@ -5,6 +5,20 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.3] — 2026-07-13
+
+### Fixed
+
+- **layout/AdminSider (CUI-NAV-02 / #9)**: complete deep-link accordion expand.
+  - Seed `expandedKeys` from ancestors on first paint (not only post-mount effect).
+  - Default `selectedMatch="prefix"`: exact key first, else longest path-prefix on `key`/`href` (e.g. `/policy/list/42` → `/policy/list`).
+  - `selectedMatch="exact"` opt-out for plain id keys.
+- **layout/AdminShell**: pass-through `selectedMatch` to `AdminSider`.
+
+### Notes
+
+- 1.5.2 already auto-expanded on **exact** nested keys only; deep routes / pathname-as-selectedKey still failed for consumers. 1.5.3 closes that gap.
+
 ## [1.5.2] — 2026-07-13
 
 ### Fixed

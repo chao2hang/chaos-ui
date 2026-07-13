@@ -56,6 +56,13 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
   menuItems?: MenuItem[];
   /** Selected menu key / 选中的菜单 key */
   selectedKey?: string;
+  /**
+   * How `selectedKey` matches menu item keys (CUI-NAV-02).
+   * - `"exact"`: only identical keys
+   * - `"prefix"` (default): exact first, else longest path-prefix match on `key`/`href`
+   *   so deep routes like `/policy/list/123` still open the `/policy/list` item.
+   */
+  selectedMatch?: "exact" | "prefix";
   /** Menu click callback / 菜单点击回调 */
   onItemClick?: (item: MenuItem) => void;
   /** Logo content / Logo 内容 */
@@ -78,15 +85,34 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
   linkComponent?: AdminSiderLinkComponent;
 }
 
+function normalizePathKey(key: string): string {
+  if (!key) return key;
+  // Strip query/hash; collapse trailing slashes (keep root "/")
+  const bare = key.split(/[?#]/, 1)[0] ?? key;
+  if (bare.length > 1 && bare.endsWith("/")) return bare.replace(/\/+$/, "");
+  return bare;
+}
+
+function isPathPrefix(candidate: string, active: string): boolean {
+  const c = normalizePathKey(candidate);
+  const a = normalizePathKey(active);
+  if (!c || !a) return false;
+  if (c === a) return true;
+  // Path-style only: avoid treating plain ids like "sys" as prefix of "system"
+  if (!c.startsWith("/") && !a.startsWith("/")) return false;
+  return a.startsWith(c.endsWith("/") ? c : `${c}/`);
+}
+
 function collectAncestorKeys(
   items: MenuItem[],
   targetKey: string,
   trail: string[] = [],
 ): string[] | null {
+  const target = normalizePathKey(targetKey);
   for (const item of items) {
-    if (item.key === targetKey) return trail;
+    if (normalizePathKey(item.key) === target) return trail;
     if (item.children?.length) {
-      const found = collectAncestorKeys(item.children, targetKey, [
+      const found = collectAncestorKeys(item.children, target, [
         ...trail,
         item.key,
       ]);
@@ -96,15 +122,59 @@ function collectAncestorKeys(
   return null;
 }
 
+/**
+ * Resolve which menu item key is "active" for a given selectedKey.
+ * Prefer exact key match; with prefix mode fall back to longest key/href prefix.
+ */
+function resolveActiveMenuKey(
+  items: MenuItem[],
+  selectedKey: string | undefined,
+  match: "exact" | "prefix",
+): string | undefined {
+  if (!selectedKey) return undefined;
+  const active = normalizePathKey(selectedKey);
+
+  let exact: string | undefined;
+  let bestPrefix: { key: string; len: number } | undefined;
+
+  const walk = (nodes: MenuItem[]) => {
+    for (const node of nodes) {
+      const k = normalizePathKey(node.key);
+      if (k === active) exact = node.key;
+      if (match === "prefix") {
+        if (isPathPrefix(node.key, active)) {
+          const len = k.length;
+          if (!bestPrefix || len > bestPrefix.len) {
+            bestPrefix = { key: node.key, len };
+          }
+        }
+        if (node.href && isPathPrefix(node.href, active)) {
+          const h = normalizePathKey(node.href);
+          const len = h.length;
+          // Bind selection to the menu item key when href prefixes the route
+          if (!bestPrefix || len > bestPrefix.len) {
+            bestPrefix = { key: node.key, len };
+          }
+        }
+      }
+      if (node.children?.length) walk(node.children);
+    }
+  };
+  walk(items);
+
+  return exact ?? bestPrefix?.key;
+}
+
 function isDescendantSelected(
   item: MenuItem,
-  selectedKey: string | undefined,
+  activeMenuKey: string | undefined,
 ): boolean {
-  if (!selectedKey) return false;
-  if (item.key === selectedKey) return true;
+  if (!activeMenuKey) return false;
+  if (item.key === activeMenuKey) return true;
   return (
-    item.children?.some((child) => isDescendantSelected(child, selectedKey)) ??
-    false
+    item.children?.some((child) =>
+      isDescendantSelected(child, activeMenuKey),
+    ) ?? false
   );
 }
 
@@ -114,6 +184,7 @@ function AdminSider({
   onCollapse,
   menuItems = [],
   selectedKey,
+  selectedMatch = "prefix",
   onItemClick,
   logo,
   footer,
@@ -125,15 +196,28 @@ function AdminSider({
   ...props
 }: AdminSiderProps) {
   const [internalSelected, setInternalSelected] = React.useState(selectedKey);
-  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(
-    () => new Set(),
+  const rawCurrent = selectedKey ?? internalSelected;
+  const activeMenuKey = React.useMemo(
+    () => resolveActiveMenuKey(menuItems, rawCurrent, selectedMatch),
+    [menuItems, rawCurrent, selectedMatch],
   );
-  const current = selectedKey ?? internalSelected;
 
-  // Auto-expand ancestors when selectedKey points at a nested item (CUI-NAV-02)
+  // Seed expanded ancestors on first paint so deep-link / refresh does not
+  // wait for a post-mount effect (CUI-NAV-02).
+  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(() => {
+    if (!rawCurrent) return new Set();
+    const resolved =
+      resolveActiveMenuKey(menuItems, rawCurrent, selectedMatch) ?? rawCurrent;
+    const ancestors = collectAncestorKeys(menuItems, resolved);
+    return new Set(ancestors ?? []);
+  });
+
+  // Keep ancestors expanded when selectedKey / menu tree changes
   React.useEffect(() => {
-    if (!current) return;
-    const ancestors = collectAncestorKeys(menuItems, current);
+    if (!activeMenuKey && !rawCurrent) return;
+    const target = activeMenuKey ?? rawCurrent;
+    if (!target) return;
+    const ancestors = collectAncestorKeys(menuItems, target);
     if (!ancestors?.length) return;
     setExpandedKeys((prev) => {
       let changed = false;
@@ -146,7 +230,7 @@ function AdminSider({
       }
       return changed ? next : prev;
     });
-  }, [current, menuItems]);
+  }, [activeMenuKey, rawCurrent, menuItems]);
 
   const handleItemClick = (item: MenuItem) => {
     if (item.disabled) return;
@@ -155,9 +239,9 @@ function AdminSider({
   };
 
   const renderMenuItem = (item: MenuItem, level = 0) => {
-    const isSelected = current === item.key;
+    const isSelected = activeMenuKey === item.key;
     const isBranchActive =
-      !isSelected && isDescendantSelected(item, current ?? undefined);
+      !isSelected && isDescendantSelected(item, activeMenuKey);
     const hasChildren = item.children && item.children.length > 0;
     const expanded = expandedKeys.has(item.key);
     const toggleExpanded = () => {

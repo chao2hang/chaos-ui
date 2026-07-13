@@ -93,6 +93,84 @@ describe("admin-sider", () => {
     expect(child.getAttribute("aria-current")).toBe("page");
   });
 
+  it("auto-expands path-style keys on deep-link selectedKey (issue #9)", () => {
+    const policyMenu = [
+      {
+        key: "/policy",
+        label: "政策管理",
+        children: [
+          { key: "/policy/price-list", label: "价格表" },
+          { key: "/policy/list", label: "政策列表" },
+        ],
+      },
+    ];
+    const { container } = render(
+      <AdminSider
+        collapsed={false}
+        selectedKey="/policy/list"
+        menuItems={policyMenu}
+      />,
+    );
+    expect(screen.getByText("政策列表")).toBeDefined();
+    expect(screen.getByText("价格表")).toBeDefined();
+    const parent = container.querySelector(
+      '[data-menu-key="/policy"]',
+    ) as HTMLElement;
+    const child = container.querySelector(
+      '[data-menu-key="/policy/list"]',
+    ) as HTMLElement;
+    expect(parent.getAttribute("data-active-branch")).toBe("true");
+    expect(child.getAttribute("aria-current")).toBe("page");
+  });
+
+  it("prefix-matches deeper routes onto the longest menu key", () => {
+    const policyMenu = [
+      {
+        key: "/policy",
+        label: "政策管理",
+        children: [{ key: "/policy/list", label: "政策列表" }],
+      },
+    ];
+    const { container } = render(
+      <AdminSider
+        collapsed={false}
+        selectedKey="/policy/list/42?tab=detail"
+        selectedMatch="prefix"
+        menuItems={policyMenu}
+      />,
+    );
+    expect(screen.getByText("政策列表")).toBeDefined();
+    const child = container.querySelector(
+      '[data-menu-key="/policy/list"]',
+    ) as HTMLElement;
+    expect(child.getAttribute("aria-current")).toBe("page");
+  });
+
+  it("exact match does not prefix-select deeper routes", () => {
+    const policyMenu = [
+      {
+        key: "/policy",
+        label: "政策管理",
+        children: [{ key: "/policy/list", label: "政策列表" }],
+      },
+    ];
+    const { container } = render(
+      <AdminSider
+        collapsed={false}
+        selectedKey="/policy/list/42"
+        selectedMatch="exact"
+        menuItems={policyMenu}
+      />,
+    );
+    // Parent not auto-expanded when no exact menu key matches
+    expect(screen.queryByText("政策列表")).toBeNull();
+    const parent = container.querySelector(
+      '[data-menu-key="/policy"]',
+    ) as HTMLElement;
+    expect(parent.getAttribute("aria-current")).toBeNull();
+    expect(parent.getAttribute("data-active-branch")).toBeNull();
+  });
+
   it("renders href items through linkComponent (CUI-NAV-01)", () => {
     function FakeLink({
       href,
