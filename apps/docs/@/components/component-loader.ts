@@ -4021,7 +4021,9 @@ export const componentLoaders: Record<string, React.ComponentType<any>> = {
 };
 
 /**
- * Business components that typically need concrete data props to render.
+ * Names of business components that require concrete data props to render.
+ * The preview host uses this set to skip bare instantiation for names that
+ * are NOT covered by a hand-authored fixture in `component-previews.tsx`.
  */
 export const businessComponentNames: ReadonlySet<string> = new Set([
   "AddressInput",
