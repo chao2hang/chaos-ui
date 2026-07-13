@@ -5,6 +5,27 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] — 2026-07-13
+
+### Fixed
+
+- **forms / NativeSelect**: align bare `<select>` and default control heights with `Input` / `NativeSelect` (`h-8` ladder); P0/P1 business editors migrate to `NativeSelect`; P2 dense editors keep documented `native-select-exception` allowlist.
+- **layout shells**: nested shells fill host height instead of forcing viewport height (`fix(layout): nest shells fill host height`).
+- **docs previews**: regenerate story/MDX/loader maps from package SoT after dual `apps/docs/src` stories removal — stop broken `import()` paths (e.g. missing `AudioRecorder.stories`); generators resolve monorepo `components/**` + `src/stories/**` only when files exist.
+- **docs CSS gate**: stylelint empty-line rules in `apps/docs/app/globals.css` so pre-push `lint:css` stays green.
+
+### Changed
+
+- **form audit**: add `pnpm run check:form-details` (`scripts/check-form-primitives.mjs`), CONVENTIONS / component-spec R1–R6 notes, optional ESLint bare-`<select>` warn allowlist.
+- **docs examples**: wire Examples routes, Admin/Public template demos, PreviewChrome, and related site IA (docs-only surface).
+- **stories**: align business Storybook stories with current component APIs; Storybook SoT remains `src/stories/**`.
+- **components exports**: consolidate UI primitives / business barrel exports for consistent package entry points.
+
+### Notes
+
+- No intentional public API breaking changes for 1.5.1.
+- Verification: typecheck / lint:css / form-details gate / build:pkg green; docs detail pages (incl. AudioRecorder) HTTP 200.
+
 ## [1.5.0] — 2026-07-11
 
 ### Changed
