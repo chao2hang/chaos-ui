@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 import {
   SearchIcon,
   UserIcon,
@@ -88,7 +89,10 @@ interface AuditTrailDiffProps {
 
 const actionConfig: Record<
   AuditAction,
-  { label: string; variant: "default" | "secondary" | "destructive" | "outline" }
+  {
+    label: string;
+    variant: "default" | "secondary" | "destructive" | "outline";
+  }
 > = {
   create: { label: "Created", variant: "default" },
   update: { label: "Updated", variant: "secondary" },
@@ -158,15 +162,12 @@ function AuditTrailDiff({
   }, [entries]);
 
   return (
-    <div
-      data-slot="audit-trail-diff"
-      className={cn("space-y-3", className)}
-    >
+    <div data-slot="audit-trail-diff" className={cn("space-y-3", className)}>
       {/* Filter bar */}
       {showFilter && (
         <div className="flex flex-wrap items-center gap-2">
-          <div className="relative flex-1 min-w-[200px]">
-            <SearchIcon className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="relative min-w-[200px] flex-1">
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               className="h-8 pl-8 text-sm"
               placeholder="Search fields, entities, users..."
@@ -175,35 +176,46 @@ function AuditTrailDiff({
               aria-label="Search audit trail"
             />
           </div>
-          <select
-            className="h-8 rounded-md border border-input bg-background px-2 text-sm"
-            value={actionFilter}
-            onChange={(e) => setActionFilter(e.target.value)}
-            aria-label="Filter by action"
-          >
-            <option value="all">All actions</option>
-            <option value="create">Created ({stats.create})</option>
-            <option value="update">Updated ({stats.update})</option>
-            <option value="delete">Deleted ({stats.delete})</option>
-            <option value="restore">Restored ({stats.restore})</option>
-          </select>
+          <div className="w-44">
+            <NativeSelect
+              size="sm"
+              value={actionFilter}
+              onChange={(e) => setActionFilter(e.target.value)}
+              aria-label="Filter by action"
+              options={[
+                { value: "all", label: "All actions" },
+                { value: "create", label: `Created (${stats.create})` },
+                { value: "update", label: `Updated (${stats.update})` },
+                { value: "delete", label: `Deleted (${stats.delete})` },
+                { value: "restore", label: `Restored (${stats.restore})` },
+              ]}
+            />
+          </div>
         </div>
       )}
 
       {/* Diff table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="border-border overflow-x-auto rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/30">
               <TableHead className="w-20">Action</TableHead>
-              {showEntity && <TableHead className="min-w-[140px]">Entity</TableHead>}
+              {showEntity && (
+                <TableHead className="min-w-[140px]">Entity</TableHead>
+              )}
               <TableHead className="min-w-[120px]">Field</TableHead>
               <TableHead className="min-w-[140px]">Old Value</TableHead>
               <TableHead className="w-8 text-center">→</TableHead>
               <TableHead className="min-w-[140px]">New Value</TableHead>
-              {showUser && <TableHead className="min-w-[100px]">User</TableHead>}
-              {showTimestamp && <TableHead className="min-w-[140px]">Time</TableHead>}
-              {showReason && <TableHead className="min-w-[120px]">Reason</TableHead>}
+              {showUser && (
+                <TableHead className="min-w-[100px]">User</TableHead>
+              )}
+              {showTimestamp && (
+                <TableHead className="min-w-[140px]">Time</TableHead>
+              )}
+              {showReason && (
+                <TableHead className="min-w-[120px]">Reason</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -211,7 +223,7 @@ function AuditTrailDiff({
               <TableRow>
                 <TableCell
                   colSpan={8 + (showReason ? 1 : 0)}
-                  className="py-8 text-center text-muted-foreground"
+                  className="text-muted-foreground py-8 text-center"
                 >
                   No audit entries found
                 </TableCell>
@@ -224,12 +236,16 @@ function AuditTrailDiff({
                   data-action={entry.action}
                   className={cn(
                     entry.action === "delete" && "bg-red-50 dark:bg-red-950/10",
-                    entry.action === "create" && "bg-green-50 dark:bg-green-950/10",
+                    entry.action === "create" &&
+                      "bg-green-50 dark:bg-green-950/10",
                   )}
                 >
                   {/* Action */}
                   <TableCell>
-                    <Badge variant={actionConfig[entry.action].variant} className="text-[10px]">
+                    <Badge
+                      variant={actionConfig[entry.action].variant}
+                      className="text-[10px]"
+                    >
                       {actionConfig[entry.action].label}
                     </Badge>
                   </TableCell>
@@ -238,21 +254,23 @@ function AuditTrailDiff({
                   {showEntity && (
                     <TableCell>
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium text-foreground">
+                        <span className="text-foreground text-sm font-medium">
                           {entry.entityType}
                         </span>
-                        <span className="text-xs text-muted-foreground">{entry.entityId}</span>
+                        <span className="text-muted-foreground text-xs">
+                          {entry.entityId}
+                        </span>
                       </div>
                     </TableCell>
                   )}
 
                   {/* Field */}
                   <TableCell>
-                    <span className="text-sm text-foreground">
+                    <span className="text-foreground text-sm">
                       {entry.fieldLabel ?? entry.field}
                     </span>
                     {entry.section && (
-                      <span className="ml-1 text-xs text-muted-foreground">
+                      <span className="text-muted-foreground ml-1 text-xs">
                         ({entry.section})
                       </span>
                     )}
@@ -261,13 +279,13 @@ function AuditTrailDiff({
                   {/* Old value */}
                   <TableCell>
                     {entry.action === "create" ? (
-                      <span className="text-xs text-muted-foreground">—</span>
+                      <span className="text-muted-foreground text-xs">—</span>
                     ) : (
                       <span
                         className={cn(
                           "text-sm tabular-nums",
                           entry.action === "delete"
-                            ? "line-through text-muted-foreground"
+                            ? "text-muted-foreground line-through"
                             : "text-muted-foreground line-through decoration-red-500/50",
                         )}
                       >
@@ -278,17 +296,17 @@ function AuditTrailDiff({
 
                   {/* Arrow */}
                   <TableCell className="text-center">
-                    <ArrowRightIcon className="mx-auto size-3.5 text-muted-foreground" />
+                    <ArrowRightIcon className="text-muted-foreground mx-auto size-3.5" />
                   </TableCell>
 
                   {/* New value */}
                   <TableCell>
                     {entry.action === "delete" ? (
-                      <span className="text-xs text-muted-foreground">—</span>
+                      <span className="text-muted-foreground text-xs">—</span>
                     ) : (
                       <span
                         className={cn(
-                          "text-sm font-medium tabular-nums text-foreground",
+                          "text-foreground text-sm font-medium tabular-nums",
                           entry.action === "create" && "text-green-600",
                         )}
                       >
@@ -301,8 +319,10 @@ function AuditTrailDiff({
                   {showUser && (
                     <TableCell>
                       <div className="flex items-center gap-1">
-                        <UserIcon className="size-3 text-muted-foreground" />
-                        <span className="text-sm text-foreground">{entry.user}</span>
+                        <UserIcon className="text-muted-foreground size-3" />
+                        <span className="text-foreground text-sm">
+                          {entry.user}
+                        </span>
                       </div>
                     </TableCell>
                   )}
@@ -311,8 +331,8 @@ function AuditTrailDiff({
                   {showTimestamp && (
                     <TableCell>
                       <div className="flex items-center gap-1">
-                        <ClockIcon className="size-3 text-muted-foreground" />
-                        <span className="text-xs text-muted-foreground">
+                        <ClockIcon className="text-muted-foreground size-3" />
+                        <span className="text-muted-foreground text-xs">
                           {formatTimestamp(entry.timestamp)}
                         </span>
                       </div>
@@ -322,7 +342,7 @@ function AuditTrailDiff({
                   {/* Reason */}
                   {showReason && (
                     <TableCell>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-muted-foreground text-xs">
                         {entry.reason || "—"}
                       </span>
                     </TableCell>
@@ -335,7 +355,7 @@ function AuditTrailDiff({
       </div>
 
       {/* Entry count */}
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         Showing {filtered.length} of {entries.length} entries
       </div>
     </div>

@@ -1,11 +1,19 @@
 "use client";
 
-import { useMemo, useState, useEffect, useCallback, useRef } from "react";
-
 import {
-  ComponentCard,
-  sectionIdForCategory,
-} from "@/components/component-card";
+  useMemo,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  Suspense,
+  useTransition,
+} from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import { ComponentCard } from "@/components/component-card";
+import { ComponentListRow } from "@/components/component-list-row";
+import { useComponentSearch } from "@/components/use-component-search";
 import { useLocale } from "@/components/locale-provider";
 import { useDict } from "@/hooks/use-dict";
 import type { Category, ComponentMeta } from "@/content/components.meta";
@@ -13,119 +21,174 @@ import {
   CATEGORIES,
   categoryLabelsEn,
   categoryLabelsZh,
+  categoryToPathSegment,
+  resolveCategoryParam,
 } from "@/content/components.meta";
 import {
   BUSINESS_SUB_CATEGORIES,
+  type BusinessSubCategory,
   businessSubLabelsEn,
   businessSubLabelsZh,
+  getBusinessSubCategory,
   groupByBusinessSub,
 } from "@/lib/business-subcategories";
+import {
+  getFavoriteComponents,
+  getRecentComponents,
+  toggleFavoriteComponent,
+} from "@/lib/component-recents";
 
-/* ================================================================
- * Shared types
- * ================================================================ */
+type ViewMode = "list" | "grid";
+type QuickFilter = "all" | "fav" | "recent" | "new";
+
+const PAGE_SIZE = 60;
 
 interface ComponentExplorerProps {
   components: ComponentMeta[];
 }
 
-/* ================================================================
- * <ComponentExplorer> — unified sidebar + content, single state
- * ================================================================ */
+function parseQuick(raw: string | null): QuickFilter {
+  if (raw === "fav" || raw === "recent" || raw === "new") return raw;
+  return "all";
+}
 
-/**
- * 组件总览页统一探索器。
- *
- * 设计原则：
- * - 单一搜索源：搜索框在侧边栏，同时过滤侧边栏树和主内容卡片
- * - 无 Hero / 无顶部胶囊条：去掉所有冗余筛选入口
- * - 侧边栏只显示分类 + 数量，Business 可展开子分组
- * - 主内容区：分类 section header + 卡片网格，简洁直接
- * - IntersectionObserver 滚动联动高亮
- */
-export function ComponentExplorer({ components }: ComponentExplorerProps) {
+function parseView(raw: string | null): ViewMode {
+  return raw === "grid" ? "grid" : "list";
+}
+
+function parseSub(raw: string | null): BusinessSubCategory | "" {
+  if (!raw) return "";
+  return (BUSINESS_SUB_CATEGORIES as string[]).includes(raw)
+    ? (raw as BusinessSubCategory)
+    : "";
+}
+
+function ComponentExplorerInner({ components }: ComponentExplorerProps) {
   const { locale } = useLocale();
   const dict = useDict();
   const isEn = locale === "en";
-  const [query, setQuery] = useState("");
-  const [activeCat, setActiveCat] = useState<string>("");
-  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
 
-  /* ---------- search filter (shared) ---------- */
-  const normalized = query.trim().toLowerCase();
+  const view = parseView(searchParams.get("view"));
+  const quick = parseQuick(searchParams.get("f"));
+  const catFilter = resolveCategoryParam(searchParams.get("cat") ?? "") ?? "";
+  const subFilter = parseSub(searchParams.get("sub"));
+  const urlQ = searchParams.get("q") ?? "";
 
-  const grouped = useMemo(() => {
-    const map = new Map<Category, ComponentMeta[]>();
-    for (const c of CATEGORIES) map.set(c, []);
+  const [query, setQuery] = useState(urlQ);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const typingRef = useRef(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-    for (const comp of components) {
-      if (!normalized) {
-        map.get(comp.category)!.push(comp);
-        continue;
+  useEffect(() => {
+    if (!typingRef.current) setQuery(urlQ);
+  }, [urlQ]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [urlQ, catFilter, subFilter, quick, view]);
+
+  const replaceParams = useCallback(
+    (patch: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      for (const [k, v] of Object.entries(patch)) {
+        if (v == null || v === "") params.delete(k);
+        else params.set(k, v);
       }
-      const hay = [
-        comp.name,
-        comp.nameZh,
-        comp.desc,
-        comp.descZh,
-        ...((comp as ComponentMeta & { tags?: string[] }).tags ?? []),
-      ]
-        .join(" ")
-        .toLowerCase();
-      if (hay.includes(normalized)) {
-        map.get(comp.category)!.push(comp);
-      }
-    }
-    return map;
-  }, [components, normalized]);
-
-  const totalCount = useMemo(
-    () =>
-      Array.from(grouped.values()).reduce((sum, list) => sum + list.length, 0),
-    [grouped],
+      const qs = params.toString();
+      startTransition(() => {
+        router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      });
+    },
+    [searchParams, router, pathname],
   );
 
-  /* ---------- collapse helpers ---------- */
-  const toggleCollapse = useCallback((key: string) => {
-    setCollapsed((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      typingRef.current = false;
+      const next = query.trim();
+      if (next !== urlQ) replaceParams({ q: next || null });
+    }, 180);
+    return () => window.clearTimeout(t);
+  }, [query, urlQ, replaceParams]);
+
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [recents, setRecents] = useState<string[]>([]);
+  useEffect(() => {
+    setFavorites(getFavoriteComponents());
+    setRecents(getRecentComponents());
   }, []);
 
-  /* ---------- IntersectionObserver ---------- */
-  useEffect(() => {
-    const sectionIds = CATEGORIES.map((c) => sectionIdForCategory(c));
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveCat(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
-    );
-
-    for (const el of elements) observer.observe(el);
-    return () => observer.disconnect();
+  const categoryCounts = useMemo(() => {
+    const m = new Map<Category, number>();
+    for (const c of CATEGORIES) m.set(c, 0);
+    for (const comp of components) {
+      m.set(comp.category, (m.get(comp.category) ?? 0) + 1);
+    }
+    return m;
   }, [components]);
 
-  /* ---------- keyboard shortcut: focus search ---------- */
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const businessSubCounts = useMemo(() => {
+    const biz = components.filter((c) => c.category === "Business");
+    return groupByBusinessSub(biz);
+  }, [components]);
+
+  const pool = useMemo(() => {
+    let list = components;
+    if (catFilter) list = list.filter((c) => c.category === catFilter);
+    if (catFilter === "Business" && subFilter) {
+      list = list.filter((c) => getBusinessSubCategory(c) === subFilter);
+    }
+    if (quick === "new") list = list.filter((c) => c.isNew);
+    if (quick === "fav") {
+      const set = new Set(favorites);
+      list = list.filter((c) => set.has(c.slug));
+    }
+    if (quick === "recent") {
+      const order = new Map(recents.map((s, i) => [s, i]));
+      list = list
+        .filter((c) => order.has(c.slug))
+        .sort((a, b) => (order.get(a.slug) ?? 0) - (order.get(b.slug) ?? 0));
+    }
+    return list;
+  }, [components, catFilter, subFilter, quick, favorites, recents]);
+
+  const { results, totalCount, tokens } = useComponentSearch(pool, query);
+  const searchActive = tokens.length > 0;
+
+  // Flat stream: always one list (ranked when searching; category order otherwise)
+  const stream = useMemo(() => {
+    if (searchActive || quick === "recent") {
+      return results.map((r) => r.comp);
+    }
+    // Stable category → name for browse mode
+    return [...results.map((r) => r.comp)].sort((a, b) => {
+      const ca = CATEGORIES.indexOf(a.category);
+      const cb = CATEGORIES.indexOf(b.category);
+      if (ca !== cb) return ca - cb;
+      return a.name.localeCompare(b.name);
+    });
+  }, [results, searchActive, quick]);
+
+  const scoreMap = useMemo(() => {
+    if (!searchActive) return undefined;
+    return new Map(results.map((r) => [r.comp.slug, r.score]));
+  }, [results, searchActive]);
+
+  const visible = stream.slice(0, visibleCount);
+  const hasMore = stream.length > visibleCount;
+
+  const onToggleFavorite = useCallback((slug: string) => {
+    setFavorites(toggleFavoriteComponent(slug));
+  }, []);
+
   useEffect(() => {
     const handler = (e: globalThis.KeyboardEvent) => {
-      // Don't interfere with Cmd+K (command palette)
       if ((e.metaKey || e.ctrlKey) && e.key === "k") return;
-      // "/" to focus search (GitHub style)
       if (
         e.key === "/" &&
         !(
@@ -141,118 +204,86 @@ export function ComponentExplorer({ components }: ComponentExplorerProps) {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  /* ---------- render ---------- */
+  const setView = (v: ViewMode) =>
+    replaceParams({ view: v === "list" ? null : v });
+  const setQuick = (f: QuickFilter) =>
+    replaceParams({ f: f === "all" ? null : f });
+  const setCat = (cat: Category | "") => {
+    replaceParams({
+      cat: cat ? categoryToPathSegment(cat) : null,
+      sub: null, // clear business sub when category changes
+    });
+  };
+  const setSub = (sub: BusinessSubCategory | "") => {
+    replaceParams({
+      cat: "business",
+      sub: sub || null,
+    });
+  };
+
+  const activeCatLabel = catFilter
+    ? isEn
+      ? categoryLabelsEn[catFilter]
+      : categoryLabelsZh[catFilter]
+    : dict.components.allCategories;
+
+  const activeSubLabel =
+    subFilter &&
+    (isEn ? businessSubLabelsEn[subFilter] : businessSubLabelsZh[subFilter]);
+
   return (
-    <div className="flex h-[calc(100vh-3.5rem)] overflow-hidden">
-      {/* ========================================================== */}
-      {/*  SIDEBAR                                                    */}
-      {/* ========================================================== */}
-      <aside className="border-border/50 bg-muted/30 hidden w-72 shrink-0 flex-col md:flex">
-        {" "}
-        {/* ---- Sidebar header: search ---- */}
-        <div className="border-border/50 sticky top-0 z-10 border-b bg-inherit px-3 pt-4 pb-3">
-          <div className="relative">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
-            <input
-              ref={searchInputRef}
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={dict.sidebar.searchPlaceholder}
-              aria-label={dict.components.searchLabel}
-              className="bg-background/60 border-border/50 text-foreground placeholder:text-muted-foreground focus-visible:border-brand-500/50 focus-visible:ring-brand-500/20 w-full rounded-lg border py-2 pr-2 pl-8 text-xs transition-colors outline-none focus-visible:ring-2"
-            />
-          </div>
-          {/* Result count */}
-          <p className="text-muted-foreground/70 mt-2 text-[11px] tabular-nums">
-            {totalCount === 0
-              ? dict.components.noMatchTitle
-              : isEn
-                ? `${totalCount} / ${components.length} components`
-                : `${totalCount} / ${components.length} 个组件`}
+    <div className="bg-background flex h-[calc(100vh-3.5rem)] overflow-hidden">
+      {/* ── Sidebar ── */}
+      <aside className="border-border bg-muted/20 hidden w-56 shrink-0 flex-col border-r md:flex lg:w-60">
+        <div className="border-border border-b px-3 py-3">
+          <p className="text-foreground text-sm font-semibold tracking-tight">
+            {dict.components.pageTitle}
+          </p>
+          <p className="text-muted-foreground mt-0.5 text-xs tabular-nums">
+            {isEn
+              ? `${components.length} components`
+              : `${components.length} 个组件`}
           </p>
         </div>
-        {/* ---- Category list ---- */}
-        <nav className="flex-1 overflow-y-auto px-2 py-2">
+
+        <nav className="flex-1 space-y-0.5 overflow-y-auto p-2">
+          <SideItem
+            active={!catFilter}
+            label={dict.components.allCategories}
+            count={components.length}
+            onClick={() => setCat("")}
+          />
           {CATEGORIES.map((cat) => {
-            const list = grouped.get(cat) ?? [];
-            if (list.length === 0 && normalized) return null;
-
+            const count = categoryCounts.get(cat) ?? 0;
             const label = isEn ? categoryLabelsEn[cat] : categoryLabelsZh[cat];
-            const sectionId = sectionIdForCategory(cat);
-            const isActive = activeCat === sectionId;
-            const isCollapsed = collapsed.has(cat);
-
+            const active = catFilter === cat;
             return (
-              <div key={cat} className="mb-0.5">
-                {/* Category row */}
-                <div className="flex items-center">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      toggleCollapse(cat);
-                    }}
-                    className="text-muted-foreground hover:text-foreground hover:bg-muted/60 shrink-0 rounded p-1 text-[10px] transition-colors"
-                    aria-label={isCollapsed ? "展开" : "折叠"}
-                  >
-                    {isCollapsed ? "▸" : "▾"}
-                  </button>
-                  <a
-                    href={`#${sectionId}`}
-                    className={
-                      "group flex flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-xs transition-colors " +
-                      (isActive
-                        ? "bg-brand-500/10 text-brand-700 dark:bg-brand-500/20 dark:text-brand-200 font-medium"
-                        : "text-foreground/70 hover:bg-muted/60 hover:text-foreground dark:text-foreground/60")
-                    }
-                  >
-                    <span className="flex-1 truncate">{label}</span>
-                    <span
-                      className={
-                        "shrink-0 text-[10px] tabular-nums " +
-                        (isActive
-                          ? "text-brand-600 dark:text-brand-300"
-                          : "text-muted-foreground/50")
-                      }
-                    >
-                      {list.length}
-                    </span>
-                  </a>
-                </div>
-
-                {/* Expanded: Business sub-categories */}
-                {!isCollapsed && cat === "Business" && (
-                  <div className="border-border/30 ml-5 border-l pl-1.5">
+              <div key={cat}>
+                <SideItem
+                  active={active}
+                  label={label}
+                  count={count}
+                  onClick={() => setCat(active ? "" : cat)}
+                />
+                {cat === "Business" && active && (
+                  <div className="border-border/60 ml-2 mt-0.5 space-y-0.5 border-l pl-2">
                     {BUSINESS_SUB_CATEGORIES.map((sc) => {
-                      const subList = groupByBusinessSub(list).get(sc) ?? [];
-                      if (subList.length === 0) return null;
+                      const items = businessSubCounts.get(sc) ?? [];
+                      if (items.length === 0) return null;
                       const scLabel = isEn
                         ? businessSubLabelsEn[sc]
                         : businessSubLabelsZh[sc];
                       return (
-                        <a
+                        <SideItem
                           key={sc}
-                          href={`#sub-Business-${sc}`}
-                          className="text-muted-foreground/70 hover:text-foreground hover:bg-muted/40 flex items-center gap-2 rounded px-2 py-1 text-[11px] transition-colors"
-                        >
-                          <span className="flex-1 truncate">{scLabel}</span>
-                          <span className="text-muted-foreground/40 text-[10px] tabular-nums">
-                            {subList.length}
-                          </span>
-                        </a>
+                          active={subFilter === sc}
+                          label={scLabel}
+                          count={items.length}
+                          dense
+                          onClick={() =>
+                            setSub(subFilter === sc ? "" : sc)
+                          }
+                        />
                       );
                     })}
                   </div>
@@ -261,107 +292,162 @@ export function ComponentExplorer({ components }: ComponentExplorerProps) {
             );
           })}
         </nav>
-        {/* ---- Sidebar footer ---- */}
-        <div className="border-border/50 text-muted-foreground/50 border-t px-3 py-2 text-[10px]">
-          <kbd className="bg-muted/60 rounded border px-1 py-0.5 font-mono text-[9px]">
-            /
-          </kbd>{" "}
-          {dict.sidebar.searchPlaceholder} ·{" "}
-          <kbd className="bg-muted/60 rounded border px-1 py-0.5 font-mono text-[9px]">
-            ⌘K
-          </kbd>{" "}
-          {isEn ? "Command" : "命令面板"}
+
+        <div className="border-border text-muted-foreground border-t px-3 py-2 text-[11px]">
+          <kbd className="bg-muted rounded px-1 font-mono">/</kbd>{" "}
+          {isEn ? "search" : "搜索"} ·{" "}
+          <kbd className="bg-muted rounded px-1 font-mono">⌘K</kbd>{" "}
+          {isEn ? "command" : "命令"}
         </div>
       </aside>
 
-      {/* ========================================================== */}
-      {/*  MAIN CONTENT                                               */}
-      {/* ========================================================== */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
-          {/* ---- Mobile search (visible on < md) ---- */}
-          <div className="mb-4 md:hidden">
-            <div className="relative">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
+      {/* ── Main ── */}
+      <div className="flex min-w-0 flex-1 flex-col">
+        {/* Sticky toolbar */}
+        <div className="border-border bg-background/95 sticky top-0 z-20 border-b px-3 py-3 backdrop-blur sm:px-4">
+          <div className="flex flex-col gap-2.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="relative min-w-[12rem] flex-1 sm:max-w-lg">
+                <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+                <input
+                  ref={searchInputRef}
+                  type="search"
+                  value={query}
+                  onChange={(e) => {
+                    typingRef.current = true;
+                    setQuery(e.target.value);
+                  }}
+                  placeholder={dict.components.searchPlaceholder}
+                  aria-label={dict.components.searchLabel}
+                  className="border-border bg-muted/40 text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/40 h-10 w-full rounded-xl border pr-3 pl-10 text-sm outline-none focus-visible:ring-2"
+                />
+              </div>
+
+              <div className="border-border ml-auto flex items-center rounded-lg border p-0.5">
+                <ToggleChip
+                  active={view === "list"}
+                  onClick={() => setView("list")}
+                  label={dict.components.viewList}
+                />
+                <ToggleChip
+                  active={view === "grid"}
+                  onClick={() => setView("grid")}
+                  label={dict.components.viewGrid}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5">
+              {(
+                [
+                  ["all", dict.components.filterAll],
+                  ["fav", dict.components.filterFavorites],
+                  ["recent", dict.components.filterRecent],
+                  ["new", dict.components.filterNew],
+                ] as const
+              ).map(([key, label]) => (
+                <FilterChip
+                  key={key}
+                  active={quick === key}
+                  onClick={() => setQuick(key)}
+                  label={
+                    key === "fav" && favorites.length
+                      ? `${label} ${favorites.length}`
+                      : key === "recent" && recents.length
+                        ? `${label} ${recents.length}`
+                        : label
+                  }
+                />
+              ))}
+
+              <span className="text-muted-foreground ml-auto hidden text-xs tabular-nums sm:inline">
+                {activeCatLabel}
+                {activeSubLabel ? ` · ${activeSubLabel}` : ""}
+                {" · "}
+                {isEn
+                  ? `${totalCount} shown`
+                  : `${totalCount} 项`}
+              </span>
+            </div>
+
+            {/* Mobile category select */}
+            <div className="md:hidden">
+              <select
+                className="border-border bg-background h-9 w-full rounded-lg border px-2 text-sm"
+                value={catFilter ? categoryToPathSegment(catFilter) : ""}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (!v) setCat("");
+                  else setCat(resolveCategoryParam(v) ?? "");
+                }}
               >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={dict.components.searchPlaceholder}
-                aria-label={dict.components.searchLabel}
-                className="bg-muted/40 border-border text-foreground placeholder:text-muted-foreground focus-visible:border-brand-500 focus-visible:ring-brand-500/20 h-10 w-full rounded-lg border pr-3 pl-9 text-sm transition-colors outline-none focus-visible:ring-2"
-              />
+                <option value="">{dict.components.allCategories}</option>
+                {CATEGORIES.map((cat) => (
+                  <option key={cat} value={categoryToPathSegment(cat)}>
+                    {isEn ? categoryLabelsEn[cat] : categoryLabelsZh[cat]} (
+                    {categoryCounts.get(cat)})
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
+        </div>
 
-          {/* ---- Sections ---- */}
+        {/* Result stream */}
+        <div className="flex-1 overflow-y-auto px-3 py-3 sm:px-4">
           {totalCount === 0 ? (
-            <NoResults
-              onClear={() => setQuery("")}
+            <EmptyState
+              isEn={isEn}
+              quick={quick}
               title={dict.components.noMatchTitle}
-              subtitle={dict.components.noMatchTitleEn}
               clearLabel={dict.components.clearSearch}
+              onClear={() => {
+                typingRef.current = true;
+                setQuery("");
+                replaceParams({ q: null, f: null, cat: null, sub: null });
+              }}
             />
+          ) : view === "list" ? (
+            <div className="border-border bg-card overflow-hidden rounded-xl border shadow-xs">
+              {/* table header */}
+              <div className="border-border bg-muted/40 text-muted-foreground hidden grid-cols-[1fr_8rem_7rem_2rem] gap-2 border-b px-3 py-2 text-xs font-medium sm:grid">
+                <span>{isEn ? "Component" : "组件"}</span>
+                <span>{isEn ? "Category" : "分类"}</span>
+                <span className="font-mono">slug</span>
+                <span className="sr-only">fav</span>
+              </div>
+              {visible.map((comp) => (
+                <ComponentListRow
+                  key={`${comp.category}-${comp.slug}`}
+                  component={comp}
+                  favorited={favorites.includes(comp.slug)}
+                  onToggleFavorite={onToggleFavorite}
+                  score={scoreMap?.get(comp.slug)}
+                />
+              ))}
+            </div>
           ) : (
-            <div className="flex flex-col gap-8">
-              {CATEGORIES.map((cat) => {
-                const list = grouped.get(cat) ?? [];
-                if (list.length === 0) return null;
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
+              {visible.map((comp) => (
+                <ComponentCard
+                  key={`${comp.category}-${comp.slug}`}
+                  component={comp}
+                />
+              ))}
+            </div>
+          )}
 
-                const label = isEn
-                  ? categoryLabelsEn[cat]
-                  : categoryLabelsZh[cat];
-                const catCollapsed = collapsed.has(cat);
-                const sectionId = sectionIdForCategory(cat);
-
-                if (cat === "Business") {
-                  return (
-                    <BusinessSection
-                      key={cat}
-                      catKey={cat}
-                      sectionId={sectionId}
-                      label={label}
-                      list={list}
-                      collapsed={catCollapsed}
-                      allCollapsed={collapsed}
-                      onToggle={toggleCollapse}
-                      isEn={isEn}
-                    />
-                  );
-                }
-
-                return (
-                  <section key={cat} id={sectionId} className="scroll-mt-6">
-                    <SectionHeader
-                      label={label}
-                      count={list.length}
-                      collapsed={catCollapsed}
-                      onToggle={() => toggleCollapse(cat)}
-                    />
-                    {!catCollapsed && (
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                        {list.map((comp) => (
-                          <ComponentCard
-                            key={`${comp.category}-${comp.slug}`}
-                            component={comp}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </section>
-                );
-              })}
+          {hasMore && (
+            <div className="mt-4 flex justify-center pb-6">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                className="border-border bg-background hover:bg-muted text-foreground rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+              >
+                {isEn
+                  ? `Load more (${stream.length - visibleCount} left)`
+                  : `加载更多（剩余 ${stream.length - visibleCount}）`}
+              </button>
             </div>
           )}
         </div>
@@ -370,157 +456,157 @@ export function ComponentExplorer({ components }: ComponentExplorerProps) {
   );
 }
 
-/* ================================================================
- * Sub-components
- * ================================================================ */
+export function ComponentExplorer({ components }: ComponentExplorerProps) {
+  return (
+    <Suspense
+      fallback={
+        <div className="text-muted-foreground flex h-[calc(100vh-3.5rem)] items-center justify-center text-sm">
+          Loading…
+        </div>
+      }
+    >
+      <ComponentExplorerInner components={components} />
+    </Suspense>
+  );
+}
 
-function SectionHeader({
+/* ── small UI pieces ── */
+
+function SideItem({
+  active,
   label,
   count,
-  collapsed,
-  onToggle,
+  onClick,
+  dense,
 }: {
+  active: boolean;
   label: string;
   count: number;
-  collapsed: boolean;
-  onToggle: () => void;
+  onClick: () => void;
+  dense?: boolean;
 }) {
   return (
-    <header
-      className="group mb-4 flex cursor-pointer items-center gap-2 select-none"
-      onClick={onToggle}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onToggle();
-        }
-      }}
-      aria-expanded={!collapsed}
+    <button
+      type="button"
+      onClick={onClick}
+      className={
+        "flex w-full items-center gap-2 rounded-lg text-left transition-colors " +
+        (dense ? "px-2 py-1 text-[11px] " : "px-2.5 py-1.5 text-sm ") +
+        (active
+          ? "bg-primary text-primary-foreground font-medium shadow-sm"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground")
+      }
     >
-      <span className="text-muted-foreground hover:text-foreground text-xs transition-colors">
-        {collapsed ? "▸" : "▾"}
-      </span>
-      <h2 className="text-foreground text-base font-semibold tracking-tight">
-        {label}
-      </h2>
-      <span className="text-muted-foreground/60 text-xs tabular-nums">
+      <span className="min-w-0 flex-1 truncate">{label}</span>
+      <span
+        className={
+          "tabular-nums " +
+          (active ? "text-primary-foreground/80" : "text-muted-foreground/70")
+        }
+      >
         {count}
       </span>
-      <span className="border-border/40 group-hover:border-border/70 ml-2 h-px flex-1 border-t transition-colors" />
-    </header>
+    </button>
   );
 }
 
-function BusinessSection({
-  catKey,
-  sectionId,
+function FilterChip({
+  active,
   label,
-  list,
-  collapsed,
-  allCollapsed,
-  onToggle,
-  isEn,
+  onClick,
 }: {
-  catKey: string;
-  sectionId: string;
+  active: boolean;
   label: string;
-  list: ComponentMeta[];
-  collapsed: boolean;
-  allCollapsed: Set<string>;
-  onToggle: (key: string) => void;
-  isEn: boolean;
+  onClick: () => void;
 }) {
-  const subGroups = useMemo(() => groupByBusinessSub(list), [list]);
-
   return (
-    <section id={sectionId} className="scroll-mt-6">
-      <SectionHeader
-        label={label}
-        count={list.length}
-        collapsed={collapsed}
-        onToggle={() => onToggle(catKey)}
-      />
-      {!collapsed && (
-        <div className="flex flex-col gap-6">
-          {BUSINESS_SUB_CATEGORIES.map((sc) => {
-            const items = subGroups.get(sc) ?? [];
-            if (items.length === 0) return null;
-            const scKey = `Business::${sc}`;
-            const scCollapsed = allCollapsed.has(scKey);
-            const scLabel = isEn
-              ? businessSubLabelsEn[sc]
-              : businessSubLabelsZh[sc];
-
-            return (
-              <div key={scKey} id={`sub-Business-${sc}`}>
-                <header
-                  className="group mb-3 flex cursor-pointer items-center gap-2 select-none"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onToggle(scKey);
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      onToggle(scKey);
-                    }
-                  }}
-                  aria-expanded={!scCollapsed}
-                >
-                  <span className="text-muted-foreground group-hover:text-foreground text-[11px] transition-transform">
-                    {scCollapsed ? "▸" : "▾"}
-                  </span>
-                  <h3 className="text-muted-foreground text-sm font-medium">
-                    {scLabel}
-                  </h3>
-                  <span className="text-muted-foreground/50 text-[10px] tabular-nums">
-                    {items.length}
-                  </span>
-                  <span className="border-border/30 group-hover:border-border/50 ml-2 h-px flex-1 border-t transition-colors" />
-                </header>
-                {!scCollapsed && (
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                    {items.map((comp) => (
-                      <ComponentCard
-                        key={`${comp.category}-${comp.slug}`}
-                        component={comp}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </section>
+    <button
+      type="button"
+      onClick={onClick}
+      className={
+        "rounded-full px-3 py-1 text-xs font-medium transition-colors " +
+        (active
+          ? "bg-primary text-primary-foreground"
+          : "bg-muted/70 text-muted-foreground hover:bg-muted hover:text-foreground")
+      }
+    >
+      {label}
+    </button>
   );
 }
 
-function NoResults({
-  onClear,
-  title,
-  subtitle,
-  clearLabel,
+function ToggleChip({
+  active,
+  label,
+  onClick,
 }: {
-  onClear: () => void;
-  title: string;
-  subtitle: string;
-  clearLabel: string;
+  active: boolean;
+  label: string;
+  onClick: () => void;
 }) {
   return (
-    <div className="mx-auto max-w-md py-24 text-center">
+    <button
+      type="button"
+      onClick={onClick}
+      className={
+        "rounded-md px-2.5 py-1 text-xs font-medium transition-colors " +
+        (active
+          ? "bg-muted text-foreground"
+          : "text-muted-foreground hover:text-foreground")
+      }
+    >
+      {label}
+    </button>
+  );
+}
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={className}
+      aria-hidden
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+
+function EmptyState({
+  isEn,
+  quick,
+  title,
+  clearLabel,
+  onClear,
+}: {
+  isEn: boolean;
+  quick: QuickFilter;
+  title: string;
+  clearLabel: string;
+  onClear: () => void;
+}) {
+  let hint = isEn ? "Try another keyword or clear filters." : "换个关键词或清空筛选。";
+  if (quick === "fav") {
+    hint = isEn
+      ? "Star components in the list to save them here."
+      : "在列表右侧点星标即可收藏。";
+  } else if (quick === "recent") {
+    hint = isEn
+      ? "Open any component detail page to build history."
+      : "打开任意组件详情后会出现在这里。";
+  }
+  return (
+    <div className="mx-auto max-w-md py-20 text-center">
       <p className="text-foreground text-base font-medium">{title}</p>
-      <p className="text-muted-foreground mt-1.5 text-sm">{subtitle}</p>
+      <p className="text-muted-foreground mt-1.5 text-sm">{hint}</p>
       <button
         type="button"
         onClick={onClear}
-        className="bg-muted hover:bg-muted/80 text-foreground mt-5 rounded-lg px-4 py-1.5 text-xs font-medium transition-colors"
+        className="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 rounded-lg px-3 py-1.5 text-sm font-medium"
       >
         {clearLabel}
       </button>

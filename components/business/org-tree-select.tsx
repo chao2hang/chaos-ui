@@ -190,7 +190,7 @@ function OrgTreeSelect({
             type="button"
             data-slot="org-tree-select"
             className={cn(
-              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex h-9 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm transition-colors outline-none focus-visible:ring-3",
+              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex h-8 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm transition-colors outline-none focus-visible:ring-3",
               className,
             )}
           />

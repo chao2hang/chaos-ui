@@ -1,4 +1,4 @@
-import { ChartTooltip } from "@/components/business/charts/shared/chart-tooltip";
+import { ChartTooltip } from "@chaos_team/chaos-ui/business";
 import { CodeBlock } from "@/components/code-block";
 
 # ChartTooltip
@@ -9,14 +9,13 @@ ChartTooltip — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a chart tooltip.
-
+Use ChartsSharedChartTooltip when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { ChartTooltip } from "@/components/business/charts/shared/chart-tooltip"
+<CodeBlock code={`import { ChartTooltip } from "@chaos_team/chaos-ui/business"
 
 export function Basic() {
   return <ChartTooltip />
@@ -26,16 +25,14 @@ export function Basic() {
 
 ### ChartTooltip
 
-| Prop | Type | Default | Description |
-| ----------- | ----------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `active`    | `boolean`               | —       |                                                           |
-| `payload`   | `TooltipPayloadEntry[]` | —       |                                                           |
-| `label` | `unknown` | — | Label text |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                    | Default | Description                       |
+| ----------- | ----------------------- | ------- | --------------------------------- |
+| `className` | `string`                | —       | Custom CSS class                  |
+| `active`    | `boolean`               | —       |                                   |
+| `payload`   | `TooltipPayloadEntry[]` | —       |                                   |
+| `label`     | `unknown`               | —       | Label text                        |
+| ...rest     | `React.HTMLAttributes`  | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

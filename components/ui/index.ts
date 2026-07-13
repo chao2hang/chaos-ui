@@ -447,9 +447,13 @@ export {
 export type { TextProps, ParagraphProps } from "./typography";
 export { Spinner } from "./spinner";
 export type { SpinnerProps } from "./spinner";
-export { SpreadsheetEditor } from "./spreadsheet-editor";
+export {
+  SpreadsheetEditor,
+  SpreadsheetEditor as EditableGrid,
+} from "./spreadsheet-editor";
 export type {
   SpreadsheetEditorProps,
+  SpreadsheetEditorProps as EditableGridProps,
   SpreadsheetColumnDef,
   RowData,
   CellCoords,
@@ -647,6 +651,8 @@ export { YearPicker } from "./year-picker";
 export type { YearPickerProps } from "./year-picker";
 export { QuarterPicker } from "./quarter-picker";
 export type { QuarterPickerProps, QuarterValue } from "./quarter-picker";
+export { WeekPicker } from "./week-picker";
+export type { WeekPickerProps, WeekValue } from "./week-picker";
 export { RangeSlider } from "./range-slider";
 export type { RangeSliderProps } from "./range-slider";
 export { CountdownButton } from "./countdown-button";

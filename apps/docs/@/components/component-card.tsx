@@ -2,31 +2,28 @@
 
 import Link from "next/link";
 
-import { Badge } from "@chaos_team/chaos-ui/ui";
-import { categoryLabelsZh, categoryLabelsEn } from "@/content/components.meta";
+import {
+  categoryLabelsZh,
+  categoryLabelsEn,
+  categoryToPathSegment,
+} from "@/content/components.meta";
 import type { ComponentMeta } from "@/content/components.meta";
 import { useLocale } from "@/components/locale-provider";
 import { useDict } from "@/hooks/use-dict";
+import { storybookDocsUrl } from "@/lib/docs-nav";
 
 /**
  * Card surface for a single component on the overview grid.
- *
- * Visual: name + secondary name + 2-line description + category tag,
- * hover lift + shadow. All bilingual fields (name/nameZh, desc/descZh,
- * category label) switch based on the active locale.
- *
- * Main entry → /components/[category]/[slug]
- * Side entry → Storybook autodocs (only when storybookId present)
  */
 export function ComponentCard({ component }: { component: ComponentMeta }) {
   const { locale } = useLocale();
   const dict = useDict();
   const isEn = locale === "en";
-  const categorySlug = encodeURIComponent(component.category);
+  const categorySlug = categoryToPathSegment(component.category);
   const slug = encodeURIComponent(component.slug);
   const detailHref = `/components/${categorySlug}/${slug}`;
   const storybookHref = component.storybookId
-    ? `http://localhost:3002/?path=/docs/${component.storybookId}`
+    ? storybookDocsUrl(component.storybookId)
     : null;
 
   const categoryLabel = isEn
@@ -39,72 +36,60 @@ export function ComponentCard({ component }: { component: ComponentMeta }) {
   return (
     <Link
       href={detailHref}
-      className="group border-border/60 bg-card hover:border-brand-500/40 dark:hover:border-brand-400/40 relative flex h-full flex-col rounded-xl border p-4 text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-black/40"
+      className="group border-border bg-card hover:border-primary/40 relative flex h-full flex-col rounded-xl border p-4 text-sm shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
-      {/* New badge — star icon in top-right corner */}
       {component.isNew && (
         <span
-          className="absolute top-2 right-2 z-10 flex items-center justify-center"
+          className="bg-primary/10 text-primary absolute top-2.5 right-2.5 rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
           title={isEn ? "New" : "新组件"}
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="size-3.5 text-amber-400 drop-shadow-sm dark:text-amber-400"
-            aria-label={isEn ? "New" : "新组件"}
-          >
-            <path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.15L2 9.36h7.61z" />
-          </svg>
+          New
         </span>
       )}
 
-      {/* Header: name + category tag */}
-      <div className="flex items-start justify-between gap-2 pr-5">
-        <h3 className="text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 font-mono text-sm font-semibold">
+      <div className="flex items-start justify-between gap-2 pr-10">
+        <h3 className="text-foreground group-hover:text-primary text-sm font-semibold">
           {primaryName}
         </h3>
-        <Badge variant="outline" className="shrink-0 text-[10px] font-normal">
-          {categoryLabel}
-        </Badge>
       </div>
 
-      {/* Subtitle (Chinese name) — hidden in EN */}
-      {secondaryName && (
-        <p className="text-muted-foreground mt-1 text-xs">{secondaryName}</p>
-      )}
+      {secondaryName ? (
+        <p className="text-muted-foreground mt-0.5 text-xs">{secondaryName}</p>
+      ) : null}
 
-      {/* Description (2-line clamp) */}
       <p className="text-muted-foreground mt-2 line-clamp-2 flex-1 text-xs leading-relaxed">
         {description}
       </p>
 
-      {/* Footer: Storybook link (button to avoid <a>-inside-<a>) */}
-      {storybookHref && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            window.open(storybookHref, "_blank", "noopener,noreferrer");
-          }}
-          className="text-muted-foreground hover:text-brand-600 dark:hover:text-brand-400 mt-3 inline-flex cursor-pointer items-center gap-1 text-[11px] transition-colors"
-        >
-          {dict.card.browseStorybook}
-          <span aria-hidden className="text-[10px]">
-            ↗
+      <div className="mt-3 flex items-center justify-between gap-2">
+        <span className="bg-muted text-muted-foreground rounded-md px-1.5 py-0.5 text-[11px]">
+          {categoryLabel}
+        </span>
+        {storybookHref ? (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              window.open(storybookHref, "_blank", "noopener,noreferrer");
+            }}
+            className="text-muted-foreground hover:text-primary text-[11px] transition-colors"
+          >
+            {dict.card.browseStorybook} ↗
+          </button>
+        ) : (
+          <span className="text-muted-foreground/60 font-mono text-[10px]">
+            {component.slug}
           </span>
-        </button>
-      )}
+        )}
+      </div>
     </Link>
   );
 }
 
-/**
- * Anchor id for the section that the search tabs scroll to.
- * Exposed as a helper so the page and search island share the same convention.
- */
+/** Anchor id helper (kept for detail breadcrumb / legacy links). */
 export function sectionIdForCategory(
   category: ComponentMeta["category"],
 ): string {
-  return category.replace(/\s+/g, "-").toLowerCase();
+  return categoryToPathSegment(category);
 }

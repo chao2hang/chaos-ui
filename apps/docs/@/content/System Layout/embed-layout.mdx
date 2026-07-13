@@ -3,16 +3,15 @@ import { CodeBlock } from "@/components/code-block";
 
 # EmbedLayout Embed Layout
 
-> 系统布局 / System-level layout shells for admin pages.
+> 系统布局 / System layout
 
-Embed Layout — 系统级布局外壳,用于后台/仪表盘/认证等整页布局。
-EmbedLayout — a system-level layout shell for admin/dashboard/auth pages.
+嵌入第三方宿主（iframe / 卡片 / 抽屉）的全高框架：默认 **填满父级高度**（`h-full`），可选顶栏 + 可滚动主体。  
+Full-height frame for third-party hosts: fills the **parent** (`h-full`) by default.
 
 ## 何时使用 / When to Use
 
-适用于Embed Layout相关场景。
-
-Use when you need an embed layout.
+需要把业务视图嵌进固定高度的宿主容器，且顶栏固定、正文独立滚动时使用。  
+Use when embedding into a fixed-height host with a sticky header and scrollable body.
 
 ## 代码示例 / Examples
 
@@ -21,21 +20,29 @@ Use when you need an embed layout.
 <CodeBlock code={`import { EmbedLayout } from "@chaos_team/chaos-ui/layout"
 
 export function Basic() {
-  return <EmbedLayout />
+  return (
+    <div className="h-[480px] rounded-lg border">
+      <EmbedLayout header={<div className="px-4 py-2 text-sm font-semibold">订单详情</div>}>
+        <div className="p-4 text-sm">主体内容…</div>
+      </EmbedLayout>
+    </div>
+  )
 }`} lang="tsx" />
 
 ## API / Props
 
 ### EmbedLayout
 
-| Prop        | Type                   | Default | 说明 / Description                                             |
-| ----------- | ---------------------- | ------- | -------------------------------------------------------------- |
-| `className` | `string`               | —       | 自定义样式类名 <br/> Custom CSS class                          |
-| `header`    | `React.ReactNode`      | —       | Optional top bar (title/actions) rendered inside a `<header>`. |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 <br/> Inherits standard HTML attributes      |
+| Prop        | Type              | Default | 说明 / Description                                                 |
+| ----------- | ----------------- | ------- | ------------------------------------------------------------------ |
+| `className` | `string`          | —       | 根节点类名；可覆盖高度（如 `h-svh`） / Root class; override height |
+| `header`    | `React.ReactNode` | —       | 可选顶栏 / Optional top bar                                        |
+| `children`  | `React.ReactNode` | —       | 主体（`flex-1` + `overflow-auto`） / Body                          |
 
 ## 注意事项 / Notes
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **高度由宿主决定 / Host sets height**：默认 `h-full`，不是 `h-screen`。
+- 视口全高 / Viewport full height：`className="h-svh"` 或 `h-screen`。
+- **Client Component**: `"use client"`.
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/layouts-embedlayout--docs)。
+> 📘 Storybook: http://localhost:6006/?path=/docs/layouts-embedlayout--docs

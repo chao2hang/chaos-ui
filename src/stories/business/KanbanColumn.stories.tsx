@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KanbanColumn } from "@/components/business/kanban-column";
 
-const meta = { title: "Business/Kanban/KanbanColumn", component: KanbanColumn, tags: ["autodocs"], parameters: { layout: "padded" } } satisfies Meta<typeof KanbanColumn>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { title: "To Do", accent: "#3b82f6", cards: [{ id: "1", title: "Task A", label: "Bug" }, { id: "2", title: "Task B" }, { id: "3", title: "Task C", label: "Feature", assignee: "Alice" }] } };
-export const Empty: Story = { args: { title: "Done", accent: "#22c55e" } };
+const meta = {
+  title: "Business/KanbanColumn",
+  component: KanbanColumn,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: {},
+} satisfies Meta<typeof KanbanColumn>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">KanbanColumn</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <KanbanColumn {...args} />
+      </div>
+    </div>
+  ),
+};

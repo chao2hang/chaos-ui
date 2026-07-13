@@ -3,32 +3,25 @@
 import * as React from "react";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { CheckIcon, PackageIcon, SearchIcon } from "@/components/ui/icons";
+  BrowseDialog,
+  type BrowseColumn,
+} from "@/components/business/browse-dialog";
 
 /**
  * @component WarehouseBrowse
  * @category business/picker
  * @since 0.7.0
- * @description 仓库选择弹窗。按仓库名/编码筛选并选中。
- * / Warehouse browse dialog — filter by name/code and pick one.
- * @keywords warehouse, browse, picker, dialog
+ * @description Domain browse adapter over `BrowseDialog` (local `items` mode).
+ * Keeps the historical export name and item shape; UI shell is shared.
+ * / 领域浏览适配器：内部组合 BrowseDialog，保留导出名与 item 形状。
+ * @keywords browse, picker, dialog, warehouse-browse
  * @example
  * <WarehouseBrowse
  *   open={open}
  *   onOpenChange={setOpen}
  *   onSelect={(item) => console.log(item)}
- *   items={[{ id: "W1", name: "中央仓", address: "重庆" }]}
+ *   items={[]}
  * />
  */
 
@@ -67,8 +60,6 @@ function WarehouseBrowse({
   className,
 }: WarehouseBrowseProps) {
   const { t } = useTranslation("ui");
-  const [query, setQuery] = React.useState("");
-  const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
   const resolvedTitle =
     title ?? t("warehouseBrowse.title", { defaultValue: "选择仓库" });
@@ -78,120 +69,66 @@ function WarehouseBrowse({
   const resolvedEmpty =
     emptyText ?? t("warehouseBrowse.empty", { defaultValue: "无匹配仓库" });
 
-  const filtered = React.useMemo(() => {
-    if (!query.trim()) return items;
-    const q = query.trim().toLowerCase();
-    return items.filter(
-      (w) =>
-        w.name.toLowerCase().includes(q) ||
-        w.id.toLowerCase().includes(q) ||
-        w.code?.toLowerCase().includes(q) ||
-        w.address?.toLowerCase().includes(q) ||
-        w.manager?.toLowerCase().includes(q),
-    );
-  }, [items, query]);
+  const columns = React.useMemo<
+    BrowseColumn<WarehouseBrowseItem & Record<string, unknown>>[]
+  >(
+    () => [
+      {
+        key: "name",
+        title: t("warehouseBrowse.colName", { defaultValue: "仓库" }),
+        dataIndex: "name",
+      },
+      {
+        key: "code",
+        title: t("warehouseBrowse.colCode", { defaultValue: "编码" }),
+        dataIndex: "code",
+      },
+      {
+        key: "address",
+        title: t("warehouseBrowse.colAddress", { defaultValue: "地址" }),
+        dataIndex: "address",
+      },
+    ],
+    [t],
+  );
 
-  React.useEffect(() => {
-    if (open) {
-      setQuery("");
-      setSelectedId(null);
-    }
-  }, [open]);
-
-  const handleConfirm = () => {
-    if (selectedId == null) return;
-    const chosen = items.find((w) => w.id === selectedId);
-    if (chosen) {
-      onSelect(chosen);
-      onOpenChange(false);
-    }
-  };
+  const handleChange = React.useCallback(
+    (selected: Array<WarehouseBrowseItem & Record<string, unknown>>) => {
+      if (selected.length === 0) return;
+      // Historical contract: single-select emits the chosen row.
+      onSelect(selected[0]! as WarehouseBrowseItem);
+    },
+    [onSelect],
+  );
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        data-slot="warehouse-browse"
-        className={cn("sm:max-w-md", className)}
-      >
-        <DialogHeader>
-          <DialogTitle>{resolvedTitle}</DialogTitle>
-          <DialogDescription>
-            {t("warehouseBrowse.description", {
-              defaultValue: "从列表中选择一个仓库",
-            })}
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="flex items-center gap-2 border-b pb-2">
-          <SearchIcon className="size-4 shrink-0 opacity-50" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={resolvedSearch}
-            aria-label={resolvedSearch}
-            className="h-8 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
-          />
-        </div>
-
-        <ul role="list" className="max-h-72 overflow-y-auto py-1">
-          {filtered.length === 0 && (
-            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
-              {resolvedEmpty}
-            </li>
-          )}
-          {filtered.map((w) => {
-            const isSelected = w.id === selectedId;
-            return (
-              <li key={w.id}>
-                <button
-                  type="button"
-                  disabled={w.disabled}
-                  aria-pressed={isSelected}
-                  onClick={() => setSelectedId(w.id)}
-                  className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
-                    isSelected && "bg-accent/50",
-                    w.disabled && "pointer-events-none opacity-50",
-                  )}
-                >
-                  <PackageIcon className="size-4 shrink-0 opacity-50" />
-                  <span className="flex-1 truncate">{w.name}</span>
-                  {w.code && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {w.code}
-                    </span>
-                  )}
-                  {w.manager && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {w.manager}
-                    </span>
-                  )}
-                  {isSelected && <CheckIcon className="size-4 shrink-0" />}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <DialogFooter>
-          <Button
-            variant="outline"
-            type="button"
-            onClick={() => onOpenChange(false)}
-          >
-            {t("dialog.closeButton", { defaultValue: "取消" })}
-          </Button>
-          <Button
-            type="button"
-            disabled={selectedId == null}
-            onClick={handleConfirm}
-          >
-            {t("warehouseBrowse.confirm", { defaultValue: "确定" })}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <BrowseDialog<WarehouseBrowseItem & Record<string, unknown>>
+      open={open}
+      onOpenChange={onOpenChange}
+      items={items as Array<WarehouseBrowseItem & Record<string, unknown>>}
+      columns={columns}
+      rowKey={
+        "id" as keyof (WarehouseBrowseItem & Record<string, unknown>) & string
+      }
+      filterKeys={
+        [
+          "name",
+          "id",
+          "code",
+          "address",
+          "manager",
+        ] as (keyof (WarehouseBrowseItem & Record<string, unknown>) & string)[]
+      }
+      selectionMode={"single"}
+      dataSlot="warehouse-browse"
+      title={resolvedTitle}
+      searchPlaceholder={resolvedSearch}
+      emptyText={resolvedEmpty}
+      pageSize={Math.max(items.length, 10)}
+      searchDebounceMs={0}
+      onChange={handleChange}
+      {...(className !== undefined ? { className } : {})}
+    />
   );
 }
 

@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormDesigner } from "@/components/business/form-designer";
 
-const meta = { title: "Business/Forms/FormDesigner", component: FormDesigner, tags: ["autodocs"], parameters: { layout: "padded" }, args: { fields: [] } } satisfies Meta<typeof FormDesigner>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { fields: [{ id: "1", label: "Title", type: "text" }, { id: "2", label: "Status", type: "select" }] } };
-export const WithChange: Story = { args: { fields: [{ id: "1", label: "Name", type: "text" }], onChange: (fields) => { void fields; } } };
+const meta = {
+  title: "Business/FormDesigner",
+  component: FormDesigner,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { fields: [] },
+} satisfies Meta<typeof FormDesigner>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">FormDesigner</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <FormDesigner {...args} />
+      </div>
+    </div>
+  ),
+};

@@ -7,6 +7,7 @@ import { LineEditor } from "@/components/business/line-editor";
 import type { LineEditorColumn } from "@/components/business/line-editor";
 import { InputNumber } from "@/components/ui/input-number";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 
 /**
  * @component ExpenseLineEditor
@@ -38,7 +39,10 @@ interface CategoryOption {
   value: string;
 }
 
-interface ExpenseLineEditorProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+interface ExpenseLineEditorProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   /**
    * Line data (controlled). Omit to use uncontrolled mode with `defaultData`.
    * / 明细数据（受控）；不传则走非受控模式（配合 defaultData）
@@ -77,7 +81,8 @@ function ExpenseLineEditor({
   // Uncontrolled mode: manage lines internally so consumers (expense/apply
   // pages) don't need to wire useState themselves.
   const isControlled = controlledData !== undefined;
-  const [internalData, setInternalData] = React.useState<ExpenseLine[]>(defaultData);
+  const [internalData, setInternalData] =
+    React.useState<ExpenseLine[]>(defaultData);
   const data = isControlled ? controlledData : internalData;
   // @ts-expect-error skeleton column types — will be fixed when fully implemented
   const columns: LineEditorColumn[] = React.useMemo(
@@ -89,19 +94,25 @@ function ExpenseLineEditor({
               title: "Category",
               width: 150,
               editable: !readOnly,
-              renderEditor: (value: unknown, _row: Record<string, unknown>, _index: number, onCellChange: (v: unknown) => void) => (
-                <select
+              renderEditor: (
+                value: unknown,
+                _row: Record<string, unknown>,
+                _index: number,
+                onCellChange: (v: unknown) => void,
+              ) => (
+                <NativeSelect
+                  size="sm"
+                  className="w-full"
                   value={String(value ?? "")}
                   onChange={(e) => onCellChange(e.target.value)}
-                  className="h-8 w-full rounded border border-input bg-background px-2 text-sm"
-                >
-                  <option value="">Select category</option>
-                  {categories.map((cat) => (
-                    <option key={cat.value} value={cat.value}>
-                      {cat.label}
-                    </option>
-                  ))}
-                </select>
+                  options={[
+                    { value: "", label: "Select category" },
+                    ...categories.map((cat) => ({
+                      value: cat.value,
+                      label: cat.label,
+                    })),
+                  ]}
+                />
               ),
               render: (value: unknown) => {
                 const cat = categories.find((c) => c.value === value);
@@ -172,9 +183,7 @@ function ExpenseLineEditor({
 
   const footer = (
     <td colSpan={columns.length + 1} className="px-3 py-2 text-right">
-      <span className="mr-6 text-muted-foreground">
-        {data.length} items
-      </span>
+      <span className="text-muted-foreground mr-6">{data.length} items</span>
       <span className="text-base font-semibold">
         Total: {currency}
         {totalAmount.toFixed(2)}
@@ -183,7 +192,11 @@ function ExpenseLineEditor({
   );
 
   return (
-    <div data-slot="expense-line-editor" className={cn("w-full", className)} {...props}>
+    <div
+      data-slot="expense-line-editor"
+      className={cn("w-full", className)}
+      {...props}
+    >
       <LineEditor
         columns={columns}
         data={data}

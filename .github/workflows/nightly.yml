@@ -17,8 +17,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
 
-      - name: Type check
+      - name: Type check (package)
         run: pnpm run typecheck
+
+      - name: Build package declarations
+        run: pnpm run build:pkg
+
+      - name: Type check (docs site)
+        run: pnpm run typecheck:docs
 
       - name: Lint
         run: pnpm run check
@@ -31,6 +37,12 @@ jobs:
 
       - name: Smoke test
         run: pnpm run smoke
+
+      - name: Form control primitives (bare select)
+        run: pnpm run check:form-details -- --fail-on-bare
+
+      - name: Docs MDX live-handler guard
+        run: pnpm run check:docs-mdx-live -- --fail
 
       - name: Build Storybook
         run: pnpm run build-storybook

@@ -13,6 +13,13 @@ const meta: Meta<typeof AdminShell> = {
   title: "Layouts/AdminShell",
   component: AdminShell,
   tags: ["autodocs", "a11y"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

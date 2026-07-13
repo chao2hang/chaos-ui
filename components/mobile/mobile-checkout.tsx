@@ -40,17 +40,27 @@ function MobileCheckout({
   className,
 }: MobileCheckoutProps) {
   return (
-    <div data-slot="mobile-checkout" className={cn("flex flex-col h-full", className)}>
+    <div
+      data-slot="mobile-checkout"
+      className={cn("flex h-full flex-col", className)}
+    >
       {/* Header */}
       <div className="flex items-center gap-3 border-b px-4 py-3">
         {onBack && (
-          <Button variant="ghost" size="icon-sm" onClick={onBack} aria-label="Back">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={onBack}
+            aria-label="Back"
+          >
             <ChevronLeftIcon />
           </Button>
         )}
         <h1 className="text-lg font-semibold">Checkout</h1>
         {itemCount !== undefined && (
-          <span className="text-sm text-muted-foreground">{itemCount} items</span>
+          <span className="text-muted-foreground text-sm">
+            {itemCount} items
+          </span>
         )}
       </div>
 
@@ -58,12 +68,17 @@ function MobileCheckout({
       <div className="flex-1 overflow-auto" />
 
       {/* Fixed bottom bar */}
-      <div className="sticky bottom-0 border-t bg-background px-4 py-3 safe-area-inset-bottom">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-muted-foreground">Total</span>
+      <div className="bg-background sticky bottom-0 border-t px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="mb-3 flex items-center justify-between">
+          <span className="text-muted-foreground text-sm">Total</span>
           <span className="text-xl font-bold">{total}</span>
         </div>
-        <Button className="w-full" size="lg" onClick={onPay} disabled={isLoading}>
+        <Button
+          className="w-full"
+          size="lg"
+          onClick={onPay}
+          disabled={isLoading}
+        >
           {isLoading ? "Processing..." : payLabel}
         </Button>
       </div>

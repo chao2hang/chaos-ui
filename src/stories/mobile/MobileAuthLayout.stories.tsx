@@ -9,6 +9,13 @@ const meta = {
   title: "Mobile/MobileAuthLayout",
   component: MobileAuthLayout,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: { layout: "fullscreen" },
 } satisfies Meta<typeof MobileAuthLayout>;
 
@@ -36,7 +43,10 @@ export const SignIn: Story = {
 export const SignUp: Story = {
   args: {
     children: (
-      <MobileCard title="Create account" description="Join Chaos UI in 30 seconds">
+      <MobileCard
+        title="Create account"
+        description="Join Chaos UI in 30 seconds"
+      >
         <div className="space-y-4">
           <MobileFormField label="Full name" required>
             <MobileInput placeholder="Ada Lovelace" />

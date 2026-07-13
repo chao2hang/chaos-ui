@@ -1,4 +1,3 @@
-import { InvoicePreview } from "@/components/business/invoice-preview";
 import { CodeBlock } from "@/components/code-block";
 
 # InvoicePreview
@@ -9,31 +8,29 @@ InvoicePreview — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need an invoice preview.
-
+Use InvoicePreview when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { InvoicePreview } from "@/components/business/invoice-preview"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <InvoicePreview />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### InvoicePreview
 
-| Prop | Type | Default | Description |
-| ----------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `invoice`   | `InvoiceData`                 | —       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop        | Type                          | Default | Description                     |
+| ----------- | ----------------------------- | ------- | ------------------------------- |
+| `className` | `string`                      | —       | Custom CSS class                |
+| `invoice`   | `InvoiceData`                 | —       |                                 |
+| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

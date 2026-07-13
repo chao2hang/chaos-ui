@@ -25,6 +25,8 @@ import {
   SaveIcon,
   EyeIcon,
   EyeOffIcon,
+  DownloadIcon,
+  ChevronRightIcon,
 } from "@/components/ui/icons";
 
 import { cn } from "@/lib/utils";
@@ -83,6 +85,27 @@ export interface SavedView {
   density: Density;
 }
 
+/** Row expand / 行展开 */
+export interface ExpandableConfig<T = Record<string, unknown>> {
+  /** Expanded row keys (controlled) / 受控展开 keys */
+  expandedKeys?: string[];
+  /** Default expanded keys / 默认展开 */
+  defaultExpandedKeys?: string[];
+  /** Expand change / 展开变更 */
+  onExpand?: (expandedKeys: string[], row: T, expanded: boolean) => void;
+  /** Expanded content renderer / 展开内容 */
+  expandedRowRender: (row: T, index: number) => React.ReactNode;
+  /** Whether a row can expand / 是否可展开 */
+  rowExpandable?: (row: T) => boolean;
+}
+
+/** Export hook payload / 导出钩子载荷 */
+export interface ProTableExportPayload<T = Record<string, unknown>> {
+  columns: ProColumn<T>[];
+  data: T[];
+  selectedKeys?: string[];
+}
+
 export interface ProTableProps<T> extends Omit<
   React.ComponentProps<"div">,
   "onChange"
@@ -101,6 +124,22 @@ export interface ProTableProps<T> extends Omit<
   rowSelection?: RowSelection;
   /** Pagination configuration / 分页配置 */
   pagination?: Pagination;
+  /** Expandable rows / 行展开 */
+  expandable?: ExpandableConfig<T>;
+  /**
+   * Export button + hook (consumer implements file download / API).
+   * / 导出按钮与钩子（消费方实现下载或请求）
+   */
+  onExport?: (payload: ProTableExportPayload<T>) => void;
+  /** Export button label / 导出按钮文案 */
+  exportLabel?: React.ReactNode;
+  /**
+   * Enable row drag-reorder (HTML5 DnD). Calls onRowReorder(oldIndex, newIndex).
+   * / 行拖拽排序
+   */
+  rowDraggable?: boolean;
+  /** Row reorder callback / 行重排回调 */
+  onRowReorder?: (oldIndex: number, newIndex: number) => void;
   /** Callback when table state changes / 表格状态变化时的回调 */
   onChange?: (params: {
     page: number;
@@ -132,14 +171,18 @@ const densityHeaderPadding: Record<Density, string> = {
  * @component ProTable
  * @category business/data
  * @since 0.2.0
- * @description Enterprise-grade data table with column settings (show/hide/reorder), density switcher, column resize, fixed columns, row selection, and saved views / 企业级数据表格，支持列设置（显示/隐藏/排序）、密度切换、列宽调整、固定列、行选择和保存视图
- * @keywords table, pro, enterprise, column-settings, density, resize, fixed, selection, views
+ * @description Enterprise data table: column settings, density, resize, fixed cols,
+ * selection, saved views, **row expand**, **export hook**, **row drag-reorder** (v1.6 Wave 5).
+ * / 企业级表格：列设置/密度/缩放/固定列/选择/视图；v1.6 增加行展开、导出钩子、行拖拽。
+ * @keywords table, pro, enterprise, expand, export, drag, column-settings
  * @example
  * <ProTable
  *   columns={[{ key: "name", title: "Name", dataIndex: "name" }]}
- *   data={[{ name: "Alice" }]}
- *   density="default"
- *   columnSettings
+ *   data={[{ id: "1", name: "Alice" }]}
+ *   expandable={{ expandedRowRender: (r) => <pre>{JSON.stringify(r)}</pre> }}
+ *   onExport={({ data }) => console.log(data)}
+ *   rowDraggable
+ *   onRowReorder={(from, to) => move(from, to)}
  * />
  */
 function ProTable<T extends Record<string, unknown>>({
@@ -150,6 +193,11 @@ function ProTable<T extends Record<string, unknown>>({
   columnSettings = true,
   rowSelection,
   pagination,
+  expandable,
+  onExport,
+  exportLabel = "Export",
+  rowDraggable = false,
+  onRowReorder,
   onChange,
   onSaveView,
   savedViews = [],
@@ -168,8 +216,12 @@ function ProTable<T extends Record<string, unknown>>({
   const [currentDensity, setCurrentDensity] = React.useState<Density>(density);
   const [viewName, setViewName] = React.useState("");
   const [showSaveInput, setShowSaveInput] = React.useState(false);
+  const [internalExpanded, setInternalExpanded] = React.useState<string[]>(
+    () => expandable?.defaultExpandedKeys ?? [],
+  );
+  const rowDragIndexRef = React.useRef<number | null>(null);
+  const [rowDragOver, setRowDragOver] = React.useState<number | null>(null);
 
-  // Sync external columns when prop changes
   React.useEffect(() => {
     setInternalColumns(
       columns.map((col) => ({
@@ -183,6 +235,8 @@ function ProTable<T extends Record<string, unknown>>({
   React.useEffect(() => {
     setCurrentDensity(density);
   }, [density]);
+
+  const expandedKeys = expandable?.expandedKeys ?? internalExpanded;
 
   const visibleColumns = React.useMemo(
     () => internalColumns.filter((col) => col.visible !== false),
@@ -293,6 +347,34 @@ function ProTable<T extends Record<string, unknown>>({
     setShowSaveInput(false);
   }, [onSaveView, viewName, internalColumns, currentDensity]);
 
+  const toggleExpand = React.useCallback(
+    (row: T) => {
+      if (!expandable) return;
+      const key = String(row[rowKey]);
+      if (expandable.rowExpandable && !expandable.rowExpandable(row)) return;
+      const isOpen = expandedKeys.includes(key);
+      const next = isOpen
+        ? expandedKeys.filter((k) => k !== key)
+        : [...expandedKeys, key];
+      if (expandable.expandedKeys === undefined) {
+        setInternalExpanded(next);
+      }
+      expandable.onExpand?.(next, row, !isOpen);
+    },
+    [expandable, expandedKeys, rowKey],
+  );
+
+  const handleExport = () => {
+    const payload: ProTableExportPayload<T> = {
+      columns: visibleColumns,
+      data,
+    };
+    if (rowSelection?.selectedKeys !== undefined) {
+      payload.selectedKeys = rowSelection.selectedKeys;
+    }
+    onExport?.(payload);
+  };
+
   const renderCell = React.useCallback(
     (col: ProColumn<T>, row: T, index: number) => {
       const value = col.dataIndex ? row[col.dataIndex] : undefined;
@@ -309,19 +391,33 @@ function ProTable<T extends Record<string, unknown>>({
   const pageSize = pagination?.pageSize ?? 10;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
+  const leadingCols =
+    (rowSelection?.showCheckbox ? 1 : 0) +
+    (expandable ? 1 : 0) +
+    (rowDraggable ? 1 : 0);
+
   return (
     <div
       data-slot="pro-table"
       className={cn("flex flex-col gap-2", className)}
       {...props}
     >
-      {/* Toolbar */}
       <div className="flex items-center justify-between gap-2">
         <div className="text-muted-foreground text-sm">
           {total} {total === 1 ? "record" : "records"}
         </div>
         <div className="flex items-center gap-1.5">
-          {/* Density switcher */}
+          {onExport ? (
+            <Button
+              variant="outline"
+              size="sm"
+              icon={<DownloadIcon />}
+              onClick={handleExport}
+              type="button"
+            >
+              {exportLabel}
+            </Button>
+          ) : null}
           <div className="bg-muted/50 flex items-center rounded-md p-0.5">
             <Button
               variant={currentDensity === "compact" ? "default" : "ghost"}
@@ -348,10 +444,8 @@ function ProTable<T extends Record<string, unknown>>({
               <MaximizeIcon />
             </Button>
           </div>
-
-          {/* Column settings */}
           {columnSettings && (
-            <ColumnSettingsPopover
+            <ColumnSettings
               columns={internalColumns}
               onToggle={handleColumnVisibility}
               onReorder={handleColumnReorder}
@@ -366,7 +460,6 @@ function ProTable<T extends Record<string, unknown>>({
         </div>
       </div>
 
-      {/* Table */}
       <div className="relative overflow-x-auto rounded-lg border">
         {loading && (
           <div className="bg-primary absolute top-0 right-0 left-0 z-10 h-0.5 animate-pulse" />
@@ -374,6 +467,22 @@ function ProTable<T extends Record<string, unknown>>({
         <Table className="w-full">
           <TableHeader>
             <TableRow>
+              {rowDraggable && (
+                <TableHead
+                  className={cn(
+                    "bg-background w-8",
+                    densityHeaderPadding[currentDensity],
+                  )}
+                />
+              )}
+              {expandable && (
+                <TableHead
+                  className={cn(
+                    "bg-background w-8",
+                    densityHeaderPadding[currentDensity],
+                  )}
+                />
+              )}
               {rowSelection?.showCheckbox && (
                 <TableHead
                   className={cn(
@@ -416,9 +525,7 @@ function ProTable<T extends Record<string, unknown>>({
             {data.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={
-                    visibleColumns.length + (rowSelection?.showCheckbox ? 1 : 0)
-                  }
+                  colSpan={visibleColumns.length + leadingCols}
                   className="text-muted-foreground py-8 text-center"
                 >
                   No data
@@ -429,41 +536,118 @@ function ProTable<T extends Record<string, unknown>>({
                 const key = String(row[rowKey]);
                 const isSelected =
                   rowSelection?.selectedKeys?.includes(key) ?? false;
+                const canExpand =
+                  !!expandable &&
+                  (expandable.rowExpandable
+                    ? expandable.rowExpandable(row)
+                    : true);
+                const isExpanded = expandedKeys.includes(key);
                 return (
-                  <TableRow
-                    key={key}
-                    data-state={isSelected ? "selected" : undefined}
-                  >
-                    {rowSelection?.showCheckbox && (
-                      <TableCell
-                        className={cn(
-                          "bg-background sticky left-0 z-10",
-                          densityPadding[currentDensity],
-                        )}
-                        style={{ width: 36 }}
-                      >
-                        <Checkbox
-                          checked={isSelected}
-                          onCheckedChange={() => handleSelectRow(key)}
-                        />
-                      </TableCell>
-                    )}
-                    {visibleColumns.map((col) => (
-                      <TableCell
-                        key={col.key}
-                        className={cn(
-                          densityPadding[currentDensity],
-                          col.fixed === "left" &&
+                  <React.Fragment key={key}>
+                    <TableRow
+                      data-state={isSelected ? "selected" : undefined}
+                      data-expanded={isExpanded || undefined}
+                      draggable={rowDraggable}
+                      onDragStart={() => {
+                        if (rowDraggable) rowDragIndexRef.current = index;
+                      }}
+                      onDragOver={(e) => {
+                        if (!rowDraggable) return;
+                        e.preventDefault();
+                        setRowDragOver(index);
+                      }}
+                      onDrop={() => {
+                        if (!rowDraggable) return;
+                        const from = rowDragIndexRef.current;
+                        if (from != null && from !== index) {
+                          onRowReorder?.(from, index);
+                        }
+                        rowDragIndexRef.current = null;
+                        setRowDragOver(null);
+                      }}
+                      onDragEnd={() => {
+                        rowDragIndexRef.current = null;
+                        setRowDragOver(null);
+                      }}
+                      className={cn(
+                        rowDragOver === index && "bg-muted/50",
+                        rowDraggable && "cursor-grab active:cursor-grabbing",
+                      )}
+                    >
+                      {rowDraggable && (
+                        <TableCell
+                          className={cn(
+                            densityPadding[currentDensity],
+                            "w-8 text-center",
+                          )}
+                        >
+                          <GripVerticalIcon className="text-muted-foreground mx-auto size-3.5" />
+                        </TableCell>
+                      )}
+                      {expandable && (
+                        <TableCell
+                          className={cn(densityPadding[currentDensity], "w-8")}
+                        >
+                          {canExpand ? (
+                            <button
+                              type="button"
+                              aria-label={
+                                isExpanded ? "Collapse row" : "Expand row"
+                              }
+                              aria-expanded={isExpanded}
+                              className="hover:bg-muted inline-flex size-6 items-center justify-center rounded"
+                              onClick={() => toggleExpand(row)}
+                            >
+                              {isExpanded ? (
+                                <ChevronDownIcon className="size-4" />
+                              ) : (
+                                <ChevronRightIcon className="size-4" />
+                              )}
+                            </button>
+                          ) : null}
+                        </TableCell>
+                      )}
+                      {rowSelection?.showCheckbox && (
+                        <TableCell
+                          className={cn(
                             "bg-background sticky left-0 z-10",
-                          col.fixed === "right" &&
-                            "bg-background sticky right-0 z-10",
-                        )}
-                        style={{ width: col.width }}
-                      >
-                        {renderCell(col, row, index)}
-                      </TableCell>
-                    ))}
-                  </TableRow>
+                            densityPadding[currentDensity],
+                          )}
+                          style={{ width: 36 }}
+                        >
+                          <Checkbox
+                            checked={isSelected}
+                            onCheckedChange={() => handleSelectRow(key)}
+                          />
+                        </TableCell>
+                      )}
+                      {visibleColumns.map((col) => (
+                        <TableCell
+                          key={col.key}
+                          className={cn(
+                            densityPadding[currentDensity],
+                            col.fixed === "left" &&
+                              "bg-background sticky left-0 z-10",
+                            col.fixed === "right" &&
+                              "bg-background sticky right-0 z-10",
+                          )}
+                          style={{ width: col.width }}
+                        >
+                          {renderCell(col, row, index)}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                    {expandable && isExpanded && canExpand ? (
+                      <TableRow data-slot="pro-table-expanded-row">
+                        <TableCell
+                          colSpan={visibleColumns.length + leadingCols}
+                          className="bg-muted/20 p-3"
+                        >
+                          {expandable.expandedRowRender(row, index)}
+                        </TableCell>
+                      </TableRow>
+                    ) : null}
+                  </React.Fragment>
                 );
               })
             )}
@@ -471,7 +655,6 @@ function ProTable<T extends Record<string, unknown>>({
         </Table>
       </div>
 
-      {/* Pagination */}
       {pagination && (
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground text-sm">
@@ -505,30 +688,49 @@ function ProTable<T extends Record<string, unknown>>({
   );
 }
 
-/** Embedded column settings popover */
-function ColumnSettingsPopover<T>({
-  columns,
-  onToggle,
-  onReorder,
-  savedViews,
-  onSaveView,
-  viewName,
-  setViewName,
-  showSaveInput,
-  setShowSaveInput,
-}: {
+/** Standalone / embedded column settings popover (exported for reuse). */
+export interface ColumnSettingsProps<T = Record<string, unknown>> {
   columns: ProColumn<T>[];
   onToggle: (key: string, visible: boolean) => void;
   onReorder: (oldIndex: number, newIndex: number) => void;
-  savedViews: SavedView[];
-  onSaveView: () => void;
-  viewName: string;
-  setViewName: (v: string) => void;
-  showSaveInput: boolean;
-  setShowSaveInput: (v: boolean) => void;
-}) {
+  savedViews?: SavedView[];
+  onSaveView?: () => void;
+  viewName?: string;
+  setViewName?: (v: string) => void;
+  showSaveInput?: boolean;
+  setShowSaveInput?: (v: boolean) => void;
+  /** Trigger label / 触发器文案 */
+  triggerLabel?: React.ReactNode;
+}
+
+/**
+ * @component ColumnSettings
+ * @category business/data
+ * @since 1.6.0
+ * @description Column visibility / reorder panel used by ProTable; exportable standalone.
+ * / 列显示与排序面板，ProTable 内嵌，亦可独立使用。
+ */
+function ColumnSettings<T>({
+  columns,
+  onToggle,
+  onReorder,
+  savedViews = [],
+  onSaveView,
+  viewName = "",
+  setViewName,
+  showSaveInput = false,
+  setShowSaveInput,
+  triggerLabel = "Columns",
+}: ColumnSettingsProps<T>) {
   const dragIndexRef = React.useRef<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = React.useState<number | null>(null);
+  const [internalSaveName, setInternalSaveName] = React.useState("");
+  const [internalShowSave, setInternalShowSave] = React.useState(false);
+
+  const name = setViewName ? viewName : internalSaveName;
+  const setName = setViewName ?? setInternalSaveName;
+  const showSave = setShowSaveInput ? showSaveInput : internalShowSave;
+  const setShowSave = setShowSaveInput ?? setInternalShowSave;
 
   const handleDragStart = (index: number) => {
     dragIndexRef.current = index;
@@ -548,27 +750,29 @@ function ColumnSettingsPopover<T>({
       <PopoverTrigger
         render={<Button variant="outline" size="sm" icon={<Columns3Icon />} />}
       >
-        Columns
+        {triggerLabel}
       </PopoverTrigger>
       <PopoverContent align="end" className="w-64">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Column Settings</span>
-          <Button
-            variant="ghost"
-            size="icon-xs"
-            onClick={() => setShowSaveInput(!showSaveInput)}
-            title="Save view"
-          >
-            <SaveIcon />
-          </Button>
+          {onSaveView ? (
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => setShowSave(!showSave)}
+              title="Save view"
+            >
+              <SaveIcon />
+            </Button>
+          ) : null}
         </div>
 
-        {showSaveInput && (
+        {showSave && onSaveView ? (
           <div className="flex items-center gap-1.5 pt-2">
             <input
               type="text"
-              value={viewName}
-              onChange={(e) => setViewName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="View name..."
               className="border-input h-7 flex-1 rounded border px-2 text-xs outline-none"
               onKeyDown={(e) => {
@@ -579,9 +783,9 @@ function ColumnSettingsPopover<T>({
               Save
             </Button>
           </div>
-        )}
+        ) : null}
 
-        {savedViews.length > 0 && (
+        {savedViews.length > 0 ? (
           <div className="border-t pt-2">
             <span className="text-muted-foreground text-xs">Saved Views</span>
             <div className="mt-1 flex flex-wrap gap-1">
@@ -595,7 +799,7 @@ function ColumnSettingsPopover<T>({
               ))}
             </div>
           </div>
-        )}
+        ) : null}
 
         <div className="mt-2 max-h-64 flex-col gap-0.5 overflow-y-auto">
           {columns.map((col, index) => {
@@ -638,6 +842,4 @@ function ColumnSettingsPopover<T>({
   );
 }
 
-export { ProTable };
-// ProColumn, ProTableProps, SavedView, RowSelection, Pagination, ColumnFixed, Density
-// are exported via their interface/type declarations above
+export { ProTable, ColumnSettings };

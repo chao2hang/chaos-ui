@@ -18,7 +18,7 @@ import { Spinner } from "./spinner";
 interface GlobalLoadingProps extends React.ComponentProps<"div"> {
   /** Whether loading is active / 是否正在加载 */
   loading?: boolean;
-  /** Loading text / 加载文字 */
+  /** Loading text (visible). Spinner uses the same string for a11y when set. / 可见加载文案 */
   text?: string;
   /** Use fullscreen overlay (default: true) / 使用全屏遮罩（默认 true） */
   fullscreen?: boolean;
@@ -28,34 +28,50 @@ interface GlobalLoadingProps extends React.ComponentProps<"div"> {
 
 function GlobalLoading({
   loading,
-  text = "Loading...",
+  text,
   fullscreen = true,
   spinner = true,
   className,
+  style,
   ...props
 }: GlobalLoadingProps) {
   if (!loading) return null;
+
+  const accessibleLabel = text || "Loading";
 
   return (
     <div
       data-slot="global-loading"
       data-fullscreen={fullscreen}
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
       className={cn(
         "bg-background/80 flex flex-col items-center justify-center gap-3 backdrop-blur-sm",
-        fullscreen ? "fixed inset-0 z-[100]" : "min-h-20",
+        // token band — see styles.css --z-index-overlay (1040)
+        fullscreen ? "fixed inset-0 z-[var(--z-index-overlay)]" : "min-h-20",
         className,
       )}
+      style={style}
       {...props}
     >
-      {spinner && <Spinner size="lg" color="primary" label={text} />}
-      {text && (
+      {spinner && (
+        <Spinner
+          size="lg"
+          color="primary"
+          label={accessibleLabel}
+          // Decorative when visible text is present (parent has role=status)
+          {...(text ? { "aria-hidden": true } : {})}
+        />
+      )}
+      {text ? (
         <span
           data-slot="global-loading-text"
           className="text-muted-foreground text-sm"
         >
           {text}
         </span>
-      )}
+      ) : null}
     </div>
   );
 }

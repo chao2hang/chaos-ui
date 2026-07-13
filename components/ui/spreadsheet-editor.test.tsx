@@ -1,6 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent, act } from "@testing-library/react";
-import { SpreadsheetEditor } from "@/components/ui/spreadsheet-editor";
+import {
+  SpreadsheetEditor,
+  EditableGrid,
+} from "@/components/ui/spreadsheet-editor";
 import type { SpreadsheetColumnDef } from "@/components/ui/spreadsheet-editor";
 
 const columns: SpreadsheetColumnDef[] = [
@@ -20,9 +23,7 @@ const columns: SpreadsheetColumnDef[] = [
 
 describe("SpreadsheetEditor", () => {
   it("renders with default empty row", () => {
-    const { container } = render(
-      <SpreadsheetEditor columns={columns} />,
-    );
+    const { container } = render(<SpreadsheetEditor columns={columns} />);
     expect(container.querySelector("table")).not.toBeNull();
     // Should have header row + 1 data row
     const rows = container.querySelectorAll("tbody tr");
@@ -72,11 +73,7 @@ describe("SpreadsheetEditor", () => {
     const onChange = vi.fn();
     const data = [{ id: "1", name: "A" }];
     const { container } = render(
-      <SpreadsheetEditor
-        columns={columns}
-        data={data}
-        onChange={onChange}
-      />,
+      <SpreadsheetEditor columns={columns} data={data} onChange={onChange} />,
     );
 
     const addBtn = container.querySelector("button");
@@ -97,11 +94,7 @@ describe("SpreadsheetEditor", () => {
       { id: "2", name: "B" },
     ];
     const { container } = render(
-      <SpreadsheetEditor
-        columns={columns}
-        data={data}
-        onChange={onChange}
-      />,
+      <SpreadsheetEditor columns={columns} data={data} onChange={onChange} />,
     );
 
     // Find delete buttons (one per row)
@@ -118,9 +111,7 @@ describe("SpreadsheetEditor", () => {
   });
 
   it("renders column headers", () => {
-    const { container } = render(
-      <SpreadsheetEditor columns={columns} />,
-    );
+    const { container } = render(<SpreadsheetEditor columns={columns} />);
     expect(container.textContent).toContain("名称");
     expect(container.textContent).toContain("单价");
     expect(container.textContent).toContain("状态");
@@ -154,5 +145,9 @@ describe("SpreadsheetEditor", () => {
   it("module is importable", async () => {
     const mod = await import("@/components/ui/spreadsheet-editor");
     expect(mod.SpreadsheetEditor).toBeDefined();
+  });
+
+  it("exports EditableGrid as SpreadsheetEditor alias", () => {
+    expect(EditableGrid).toBe(SpreadsheetEditor);
   });
 });

@@ -10,8 +10,9 @@ Styled video player with play/pause, seek bar, volume, and fullscreen toggle.
 
 ## 何时使用 / When to Use
 
-需要播放视频文件时使用，如视频预览、教程播放、监控回放。
-Use when you need to play video files, such as video previews, tutorial playback, or surveillance replay.
+当你需要「视频播放器」相关能力时使用：带播放/暂停、进度条、音量和全屏切换的视频播放器。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use VideoPlayer when you need: Styled video player with play/pause, seek bar, volume, and fullscreen toggle. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -56,4 +57,4 @@ export function WithPoster() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **必填 `src`**: 必须传入视频文件 URL，否则无法播放。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-videoplayer--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-videoplayer--docs)。

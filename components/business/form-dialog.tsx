@@ -9,6 +9,9 @@ import {
   DialogTitle,
 } from "@/components/ui";
 import { DatePicker } from "@/components/ui/date-picker";
+import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
+import { Textarea } from "@/components/ui/textarea";
 
 /**
  * Field schema for FormDialog.
@@ -100,27 +103,28 @@ export function FormDialog({
 
     if (field.type === "select" && field.options) {
       return (
-        <select
-          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
+        <NativeSelect
+          className="w-full"
           value={String(value ?? "")}
           onChange={(e) => handleChange(field.key, e.target.value || undefined)}
-        >
-          <option value="">
-            {field.placeholder || `请选择${field.label}`}
-          </option>
-          {field.options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
+          options={[
+            {
+              value: "",
+              label: field.placeholder || `请选择${field.label}`,
+            },
+            ...field.options.map((opt) => ({
+              value: opt.value,
+              label: opt.label,
+            })),
+          ]}
+        />
       );
     }
 
     if (field.type === "textarea") {
       return (
-        <textarea
-          className="bg-background min-h-[80px] w-full rounded-md border px-3 py-2 text-sm"
+        <Textarea
+          className="min-h-20"
           placeholder={field.placeholder}
           value={String(value ?? "")}
           onChange={(e) => handleChange(field.key, e.target.value)}
@@ -130,9 +134,8 @@ export function FormDialog({
 
     if (field.type === "number") {
       return (
-        <input
+        <Input
           type="number"
-          className="bg-background h-9 w-full rounded-md border px-3 text-sm"
           placeholder={field.placeholder}
           value={value != null ? String(value) : ""}
           onChange={(e) =>
@@ -156,8 +159,7 @@ export function FormDialog({
     }
 
     return (
-      <input
-        className="bg-background h-9 w-full rounded-md border px-3 text-sm"
+      <Input
         placeholder={field.placeholder}
         value={String(value ?? "")}
         onChange={(e) => handleChange(field.key, e.target.value)}

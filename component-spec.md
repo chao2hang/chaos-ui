@@ -7,6 +7,7 @@ Enterprise component design system for the Marketing Platform.
 This document defines the conventions, standards, and patterns used in the component library. All new components MUST follow these guidelines.
 
 **Tech Stack:**
+
 - Next.js 16 (App Router)
 - React 19
 - TypeScript 5.9 (strict mode)
@@ -43,38 +44,40 @@ This document defines the conventions, standards, and patterns used in the compo
 
 ## 3. Naming Conventions
 
-| Type | Convention | Example |
-|------|-----------|---------|
-| File names | kebab-case | `status-tag.tsx` |
-| Component names | PascalCase | `StatusTag` |
-| Props interfaces | `ComponentNameProps` | `StatusTagProps` |
-| CSS variables | kebab-case with prefix | `--brand-500` |
-| Tailwind classes | Utility-first | `bg-brand-500 text-white` |
-| Hooks | `use` prefix | `use-mobile.ts` |
-| Constants | UPPER_SNAKE_CASE | `ORDER_STATUSES` |
+| Type             | Convention             | Example                   |
+| ---------------- | ---------------------- | ------------------------- |
+| File names       | kebab-case             | `status-tag.tsx`          |
+| Component names  | PascalCase             | `StatusTag`               |
+| Props interfaces | `ComponentNameProps`   | `StatusTagProps`          |
+| CSS variables    | kebab-case with prefix | `--brand-500`             |
+| Tailwind classes | Utility-first          | `bg-brand-500 text-white` |
+| Hooks            | `use` prefix           | `use-mobile.ts`           |
+| Constants        | UPPER_SNAKE_CASE       | `ORDER_STATUSES`          |
 
 ## 4. Design Tokens
 
-All colors, spacing, and visual properties use CSS custom properties defined in `app/globals.css`.
+All colors, spacing, and visual properties use CSS custom properties defined in **`styles.css`** (package entry `@chaos_team/chaos-ui/styles.css`). Do **not** treat `app/globals.css` as the library token source.
+
+Tailwind v4 `@theme` bridges semantic tokens to utilities (e.g. `--color-primary: var(--primary)`). Author and override **`--primary`**, not ad-hoc hex in components. See `docs/design-tokens.md`.
 
 ### Color Tokens
 
-| Token | Usage |
-|-------|-------|
-| `--background` / `--foreground` | Page background and text |
-| `--card` / `--card-foreground` | Card surfaces |
-| `--primary` / `--primary-foreground` | Primary actions, brand emphasis |
-| `--secondary` / `--secondary-foreground` | Secondary actions |
-| `--muted` / `--muted-foreground` | Subtle backgrounds, placeholder text |
-| `--accent` / `--accent-foreground` | Hover states, highlights |
-| `--destructive` / `--destructive-foreground` | Destructive actions, errors |
-| `--success` / `--success-foreground` | Success states |
-| `--warning` / `--warning-foreground` | Warning states |
-| `--info` / `--info-foreground` | Informational states |
-| `--brand-50` to `--brand-950` | Brand color scale |
-| `--border` / `--input` / `--ring` | Borders, inputs, focus rings |
-| `--surface` | Elevated surfaces |
-| `--chart-1` to `--chart-5` | Chart colors (blue, green, orange, purple, yellow) |
+| Token                                        | Usage                                              |
+| -------------------------------------------- | -------------------------------------------------- |
+| `--background` / `--foreground`              | Page background and text                           |
+| `--card` / `--card-foreground`               | Card surfaces                                      |
+| `--primary` / `--primary-foreground`         | Primary actions, brand emphasis                    |
+| `--secondary` / `--secondary-foreground`     | Secondary actions                                  |
+| `--muted` / `--muted-foreground`             | Subtle backgrounds, placeholder text               |
+| `--accent` / `--accent-foreground`           | Hover states, highlights                           |
+| `--destructive` / `--destructive-foreground` | Destructive actions, errors                        |
+| `--success` / `--success-foreground`         | Success states                                     |
+| `--warning` / `--warning-foreground`         | Warning states                                     |
+| `--info` / `--info-foreground`               | Informational states                               |
+| `--brand-50` to `--brand-950`                | Brand color scale                                  |
+| `--border` / `--input` / `--ring`            | Borders, inputs, focus rings                       |
+| `--surface`                                  | Elevated surfaces                                  |
+| `--chart-1` to `--chart-5`                   | Chart colors (blue, green, orange, purple, yellow) |
 
 ### Spacing
 
@@ -82,13 +85,13 @@ Use Tailwind spacing scale: `p-1` (4px), `p-2` (8px), `p-3` (12px), `p-4` (16px)
 
 ### Border Radius
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `rounded-sm` | radius × 0.6 | Buttons, small elements |
-| `rounded-md` | radius × 0.8 | Inputs, selects |
-| `rounded-lg` | radius | Cards, dialogs |
-| `rounded-xl` | radius × 1.4 | Modals |
-| `rounded-full` | 9999px | Avatars, pills |
+| Token          | Value        | Use                     |
+| -------------- | ------------ | ----------------------- |
+| `rounded-sm`   | radius × 0.6 | Buttons, small elements |
+| `rounded-md`   | radius × 0.8 | Inputs, selects         |
+| `rounded-lg`   | radius       | Cards, dialogs          |
+| `rounded-xl`   | radius × 1.4 | Modals                  |
+| `rounded-full` | 9999px       | Avatars, pills          |
 
 ### Shadows
 
@@ -111,6 +114,7 @@ Domain-specific components built on top of UI components.
 **Naming pattern:** `<Domain><Element>` — e.g., `StatusTag`, `OrderForm`, `ProductCard`.
 
 **Required exports:**
+
 ```typescript
 export function StatusTag({ status, size }: StatusTagProps) { ... }
 export type StatusTagProps = { status: OrderStatus; size?: "sm" | "default" }
@@ -121,6 +125,7 @@ export type StatusTagProps = { status: OrderStatus; size?: "sm" | "default" }
 Page-level layout shells.
 
 **Required exports:**
+
 ```typescript
 export function DashboardLayout({ children, title }: DashboardLayoutProps) { ... }
 ```
@@ -128,14 +133,20 @@ export function DashboardLayout({ children, title }: DashboardLayoutProps) { ...
 ## 6. Props Design Principles
 
 1. **Use discriminated unions** for variant props:
+
    ```typescript
    type ButtonProps =
-     | { variant: "default" | "destructive" | "outline" | "secondary" | "ghost"; label: string }
+     | {
+         variant: "default" | "destructive" | "outline" | "secondary" | "ghost";
+         label: string;
+       }
      | { variant: "link"; href: string; label: string };
    ```
+
    The `variant` field acts as the **discriminant** — TypeScript narrows the type based on its value.
 
 2. **Extend HTML attributes** when applicable:
+
    ```typescript
    interface StatusTagProps extends React.HTMLAttributes<HTMLSpanElement> {
      status: OrderStatus;
@@ -143,10 +154,11 @@ export function DashboardLayout({ children, title }: DashboardLayoutProps) { ...
    ```
 
 3. **Use `React.ReactNode`** for slot props (not `string`):
+
    ```typescript
    interface PageHeaderProps {
      title: string;
-     actions?: React.ReactNode;  // NOT actions?: string
+     actions?: React.ReactNode; // NOT actions?: string
    }
    ```
 
@@ -159,6 +171,7 @@ export function DashboardLayout({ children, title }: DashboardLayoutProps) { ...
 ## 7. Styling Rules
 
 1. **Always use `cn()` from `@/lib/utils`** for conditional classes:
+
    ```typescript
    import { cn } from "@/lib/utils";
    <span className={cn("base-class", condition && "conditional-class", className)} />
@@ -172,11 +185,28 @@ export function DashboardLayout({ children, title }: DashboardLayoutProps) { ...
    ```typescript
    const badgeVariants = cva("base-classes", {
      variants: { variant: { default: "...", destructive: "..." } },
-     defaultVariants: { variant: "default" }
+     defaultVariants: { variant: "default" },
    });
    ```
 
 ## 8. Form Patterns
+
+### 8.0 Form control details (R1–R6)
+
+Cross-cutting rules for visual consistency (plan: `designs/2026-07-12_组件细节一致性检查与整改_设计计划.md`).
+
+| Rule                | Requirement                                                                                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **R1 Selectors**    | Prefer `Select` (rich) or `NativeSelect` (simple / mobile / dense). Do **not** ship bare `<select>` with ad-hoc classes. Exception: add `// native-select-exception: <reason>` in the file. |
+| **R2 Height**       | Default desktop field height is **`h-8`** (match `Input` / `SelectTrigger` / `NativeSelect`). Use `size="sm"` (`h-7`) in table cells; do not use `h-9` as the default form control height.  |
+| **R3 Tokens**       | `border-input`, focus ring tokens, `rounded-lg` with Input family; avoid one-off `border-gray-*` / mixed radius on the same form row.                                                       |
+| **R4 Layout**       | Form roots and grid children: `w-full min-w-0`. Width/`flex-1` belong on a **wrapper** around `NativeSelect` (its root is full-width).                                                      |
+| **R5 Story data**   | Controlled `value` must exist in options / built-in dictionaries.                                                                                                                           |
+| **R6 Docs preview** | Preview chrome should allow full-width form demos (`w-full min-w-0` + reasonable `max-w-*`).                                                                                                |
+
+Check: `pnpm run check:form-details` (optional `--write docs/audit/form-details-baseline.md`, `--fail-on-bare`). ESLint also warns on bare `<select>` under `components/**` (`no-restricted-syntax`); allowlisted exception files live in `eslint.config.mjs`.
+
+### 8.1 react-hook-form + zod
 
 Use `react-hook-form` + `zod` for all forms:
 
@@ -229,6 +259,7 @@ const columns = [
 All colors use CSS custom properties with `.dark` class variants. Components automatically adapt.
 
 **When creating new components:**
+
 - Use semantic tokens (`bg-primary`, `text-foreground`) — NOT raw colors
 - Test both light and dark modes
 - Use `opacity` for subtle dark mode borders: `border-border/50`
@@ -280,20 +311,20 @@ For mobile-specific components, create wrappers in `components/business/`:
 
 ```tsx
 // components/business/mobile-button.tsx
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function MobileButton({ className, ...props }) {
   return (
     <Button
       className={cn(
-        "h-12 px-6 text-base",  // Mobile: larger touch target
-        "md:h-8 md:px-3 md:text-sm",  // Desktop: standard size
-        className
+        "h-12 px-6 text-base", // Mobile: larger touch target
+        "md:h-8 md:px-3 md:text-sm", // Desktop: standard size
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 ```
 
@@ -302,20 +333,20 @@ export function MobileButton({ className, ...props }) {
 Use `ResponsivePreview` component to test components at different breakpoints:
 
 ```tsx
-import { ResponsivePreview } from "@/components/business/responsive-preview"
+import { ResponsivePreview } from "@/components/business/responsive-preview";
 
 <ResponsivePreview device="mobile">
   <MobileButton>Test</MobileButton>
-</ResponsivePreview>
+</ResponsivePreview>;
 ```
 
 ### Device Breakpoints
 
-| Device | Width | Height |
-|--------|-------|--------|
-| Mobile | 375px | 667px |
-| Tablet | 768px | 1024px |
-| Desktop | 1024px | 768px |
+| Device  | Width  | Height |
+| ------- | ------ | ------ |
+| Mobile  | 375px  | 667px  |
+| Tablet  | 768px  | 1024px |
+| Desktop | 1024px | 768px  |
 
 ### Mobile Component Naming
 
@@ -325,8 +356,9 @@ import { ResponsivePreview } from "@/components/business/responsive-preview"
 
 ## 16. Changelog
 
-| Date | Change | Author |
-|------|--------|--------|
-| 2026-06-10 | Initial spec created | System |
-| 2026-06-11 | Added responsive design guidelines | System |
+| Date       | Change                                                                                                                                                                  | Author |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 2026-06-10 | Initial spec created                                                                                                                                                    | System |
+| 2026-06-11 | Added responsive design guidelines                                                                                                                                      | System |
 | 2026-06-12 | Updated directory structure to reflect Storybook-centric layout; clarified UI component classification; fixed discriminated union example; removed obsolete @apply rule | System |
+| 2026-07-11 | Design tokens source corrected to `styles.css` (not `app/globals.css`)                                                                                                  | ZCode  |

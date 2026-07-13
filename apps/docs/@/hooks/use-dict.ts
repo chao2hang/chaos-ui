@@ -7,7 +7,7 @@ import { dict, type DictShape } from "@/lib/i18n/dict";
  * @hook useDict
  * @category i18n
  * @description Returns the i18n dictionary for the active locale.
- * Usage: `const dict = useDict(); dict.header.navInstall`
+ * Usage: `const dict = useDict(); dict.header.navDocs`
  */
 export function useDict(): DictShape {
   const { locale } = useLocale();

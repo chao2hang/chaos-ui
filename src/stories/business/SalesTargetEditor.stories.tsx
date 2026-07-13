@@ -1,6 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SalesTargetEditor } from "@/components/business/sales-target-editor";
 
-const meta = { title: "Business/Orders/SalesTargetEditor", component: SalesTargetEditor, tags: ["autodocs"], parameters: { layout: "padded" }, args: { rows: [] } } satisfies Meta<typeof SalesTargetEditor>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { rows: [{ id: "1", year: 2024, region: "East", q1: 25000, q2: 30000, q3: 28000, q4: 32000, annual: 115000 }, { id: "2", year: 2024, region: "West", q1: 20000, q2: 22000, q3: 25000, q4: 27000, annual: 94000 }] } };
+const meta = {
+  title: "Business/SalesTargetEditor",
+  component: SalesTargetEditor,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { rows: [] },
+} satisfies Meta<typeof SalesTargetEditor>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">SalesTargetEditor</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <SalesTargetEditor {...args} />
+      </div>
+    </div>
+  ),
+};

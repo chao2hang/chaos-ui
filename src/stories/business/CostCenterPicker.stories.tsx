@@ -1,7 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { CostCenterPicker } from "@/components/business/cost-center-picker";
 
-const meta = { title: "Business/Pickers/CostCenterPicker", component: CostCenterPicker, tags: ["autodocs"], parameters: { layout: "padded" } } satisfies Meta<typeof CostCenterPicker>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { options: [{ value: "CC01", label: "Marketing" }, { value: "CC02", label: "R&D" }, { value: "CC03", label: "Ops" }], placeholder: "Select cost center" } };
-export const WithValue: Story = { args: { options: [{ value: "CC01", label: "Marketing" }], value: "CC01" } };
+const demoOptions = [
+  { value: "cc1", label: "总部" },
+  { value: "cc2", label: "华东" },
+];
+
+const meta = {
+  title: "Business/CostCenterPicker",
+  component: CostCenterPicker,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: {
+    options: demoOptions,
+    placeholder: "请选择",
+  },
+} satisfies Meta<typeof CostCenterPicker>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => {
+    const [value, setValue] = useState(demoOptions[0]!.value);
+    return (
+      <div className="max-w-sm space-y-2">
+        <p className="text-sm font-semibold">CostCenterPicker</p>
+        <CostCenterPicker
+          value={value}
+          onChange={(v) => setValue(v ?? "")}
+          options={demoOptions}
+          placeholder="请选择"
+        />
+        <p className="text-muted-foreground text-xs">当前：{value || "空"}</p>
+      </div>
+    );
+  },
+};

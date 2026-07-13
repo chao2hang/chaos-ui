@@ -1,4 +1,3 @@
-import { RadarChartComp } from "@/components/business/charts/radar-chart";
 import { CodeBlock } from "@/components/code-block";
 
 # RadarChart
@@ -9,30 +8,28 @@ RadarChart — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a radar chart.
-
+Use ChartsRadarChart when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { RadarChartComp } from "@/components/business/charts/radar-chart"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <RadarChartComp />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### RadarChartComp
 
-| Prop | Type | Default | Description |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

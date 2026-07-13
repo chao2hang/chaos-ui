@@ -10,8 +10,9 @@ Styled audio player with play/pause, seek bar, volume, and speed controls.
 
 ## 何时使用 / When to Use
 
-需要播放音频文件时使用，如语音消息、音乐播放、播客收听。
-Use when you need to play audio files, such as voice messages, music playback, or podcast listening.
+当你需要「音频播放器」相关能力时使用：带播放/暂停、进度条、音量、倍速控制的音频播放器。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use AudioPlayer when you need: Styled audio player with play/pause, seek bar, volume, and speed controls. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -57,4 +58,4 @@ export function FullControls() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **必填 `src`**: 必须传入音频文件 URL，否则无法播放。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-audioplayer--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-audioplayer--docs)。

@@ -2,21 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { MobileQrCodeScanner } from "@/components/business/mobile-qrcode-scanner";
 
 const meta = {
-  title: "Business/Mobile/MobileQrCodeScanner",
+  title: "Business/MobileQrCodeScanner",
   component: MobileQrCodeScanner,
   tags: ["autodocs"],
-  parameters: { layout: "pinned" },
+  parameters: { layout: "padded" },
 } satisfies Meta<typeof MobileQrCodeScanner>;
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
-export const WithScanHandler: Story = {
+export const Default: Story = {
   args: {
-    onScan: (result) => {
-      void result;
+    onScan: (result: unknown) => {
+      console.log(result);
     },
-  },
+  } as any,
 };

@@ -1,4 +1,4 @@
-import { GanttChart } from "@/components/business/calendar/gantt-chart";
+import { GanttChart } from "@chaos_team/chaos-ui/business";
 import { CodeBlock } from "@/components/code-block";
 
 # GanttChart
@@ -9,14 +9,13 @@ GanttChart — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a gantt chart.
-
+Use CalendarGanttChart when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { GanttChart } from "@/components/business/calendar/gantt-chart"
+<CodeBlock code={`import { GanttChart } from "@chaos_team/chaos-ui/business"
 
 export function Basic() {
   return <GanttChart />
@@ -34,16 +33,14 @@ export function Basic() {
 
 ### GanttChart
 
-| Prop | Type | Default | Description |
-| ------------- | ----------------------------- | ------- | ----------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `tasks`       | `GanttTask[]`                 | —       |                                                             |
-| `onTaskClick` | `() => void`                  | —       |                                                             |
-| `locale`      | `string`                      | —       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop          | Type                          | Default | Description                     |
+| ------------- | ----------------------------- | ------- | ------------------------------- |
+| `className`   | `string`                      | —       | Custom CSS class                |
+| `tasks`       | `GanttTask[]`                 | —       |                                 |
+| `onTaskClick` | `() => void`                  | —       |                                 |
+| `locale`      | `string`                      | —       |                                 |
+| ...rest       | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

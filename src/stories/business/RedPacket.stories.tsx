@@ -1,8 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { RedPacket } from "@/components/business/red-packet";
 
-const meta = { title: "Business/Status/RedPacket", component: RedPacket, tags: ["autodocs"], parameters: { layout: "padded" }, args: { label: "" } } satisfies Meta<typeof RedPacket>;
-export default meta; type Story = StoryObj<typeof meta>;
-const noop = () => {};
-export const Default: Story = { args: { label: "¥8.88", subtitle: "新年快乐", onOpen: noop } };
-export const Opened: Story = { args: { label: "¥6.66", opened: true } };
+const meta = {
+  title: "Business/RedPacket",
+  component: RedPacket,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { label: "" },
+} satisfies Meta<typeof RedPacket>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">RedPacket</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <RedPacket {...args} />
+      </div>
+    </div>
+  ),
+};

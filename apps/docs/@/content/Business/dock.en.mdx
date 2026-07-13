@@ -1,4 +1,3 @@
-import { Dock } from "@/components/business/dock";
 import { CodeBlock } from "@/components/code-block";
 
 # Dock
@@ -9,33 +8,31 @@ Dock — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a dock.
-
+Use Dock when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { Dock } from "@/components/business/dock"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <Dock />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### Dock
 
-| Prop | Type | Default | Description |
-| --------------- | ----------------------------- | ------------ | ----------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `items` | `DockItem[]` | — | Items / data list |
-| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Orientation |
-| `magnification` | `boolean`                     | `true`       |                                                             |
-| ...rest | `React.ComponentProps<"div">` | — | Inherits all `<div>` attributes |
+| Prop            | Type                          | Default      | Description                     |
+| --------------- | ----------------------------- | ------------ | ------------------------------- |
+| `className`     | `string`                      | —            | Custom CSS class                |
+| `items`         | `DockItem[]`                  | —            | Items / data list               |
+| `orientation`   | `"horizontal" \| "vertical"`  | `horizontal` | Orientation                     |
+| `magnification` | `boolean`                     | `true`       |                                 |
+| ...rest         | `React.ComponentProps<"div">` | —            | Inherits all `<div>` attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

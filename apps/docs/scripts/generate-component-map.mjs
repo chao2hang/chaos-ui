@@ -2,22 +2,23 @@
 /**
  * generate-component-map.mjs
  *
- * Scans `@/content/components.meta.ts` and `@/components/**` to produce
- * `@/components/component-map.ts` — a name→Component lookup table so the
- * docs detail page can render live component previews.
+ * Scans `@/content/components.meta.ts` and monorepo `components/**` to produce
+ * `@/components/component-map.ts` — a name→Component lookup from package
+ * subpaths (`@chaos_team/chaos-ui/{ui,business,layout,mobile}`).
+ *
+ * Source of truth is package source under repo-root `components/`, not docs shims.
  *
  * Usage:  node apps/docs/scripts/generate-component-map.mjs
  */
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
-import { resolve, dirname, basename, join } from "path";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "../../..");
 const DOCS = resolve(ROOT, "apps/docs");
 const META_PATH = resolve(DOCS, "@/content/components.meta.ts");
-const COMPONENTS_DIR = resolve(DOCS, "@/components");
 const OUTPUT_PATH = resolve(DOCS, "@/components/component-map.ts");
 
 /* -------------------------------------------------------------------------- */
@@ -26,15 +27,12 @@ const OUTPUT_PATH = resolve(DOCS, "@/components/component-map.ts");
 
 function parseMeta() {
   const src = readFileSync(META_PATH, "utf-8");
-
-  // Find the array start
   const arrayStart = src.indexOf("components: ComponentMeta[] = [");
   if (arrayStart === -1) throw new Error("Cannot find components array in meta file");
 
   const body = src.slice(arrayStart);
-
-  // Match slug, name, sourcePath — the three fields we need
-  const entryRe = /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
+  const entryRe =
+    /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
 
   const entries = [];
   let m;
@@ -45,39 +43,51 @@ function parseMeta() {
       sourcePath: m[3],
     });
   }
-
   return entries;
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Find actual export names from source file                                 */
+/*  Package subpath + exports                                                 */
 /* -------------------------------------------------------------------------- */
 
-function findExports(filePath) {
-  if (!existsSync(filePath)) return { primary: null, all: [] };
+function packageSubpath(sourcePath) {
+  if (sourcePath.includes("/business/")) return "@chaos_team/chaos-ui/business";
+  if (sourcePath.includes("/layout/")) return "@chaos_team/chaos-ui/layout";
+  if (sourcePath.includes("/mobile/")) return "@chaos_team/chaos-ui/mobile";
+  if (sourcePath.includes("/ui/")) return "@chaos_team/chaos-ui/ui";
+  return null;
+}
 
+function findPrimaryExport(filePath, preferredName) {
+  if (!existsSync(filePath)) return null;
   const content = readFileSync(filePath, "utf-8");
   const names = new Set();
 
-  // export { A, B, C }
   const exportListRe = /export\s*\{\s*([^}]*)\}/g;
   let m;
   while ((m = exportListRe.exec(content)) !== null) {
     for (const part of m[1].split(",")) {
-      const name = part.trim().split(/\s+/)[0]; // "X as Y" → "X"
-      if (name && /^[A-Z]/.test(name)) names.add(name);
+      const trimmed = part.trim();
+      if (!trimmed || trimmed.startsWith("type ")) continue;
+      const asMatch = trimmed.match(/^(\w+)\s+as\s+(\w+)$/);
+      if (asMatch) {
+        names.add(asMatch[2]);
+        names.add(asMatch[1]);
+      } else {
+        const name = trimmed.split(/\s+/)[0];
+        if (name && /^[A-Z]/.test(name)) names.add(name);
+      }
     }
   }
 
-  // export function / export const / export class
   const directRe = /export\s+(?:function|const|class)\s+(\w+)/g;
   while ((m = directRe.exec(content)) !== null) {
     names.add(m[1]);
   }
 
   const all = [...names];
+  if (preferredName && all.includes(preferredName)) return preferredName;
 
-  // Determine the "primary" export: prefer name matching the file basename
   const fileBase = basename(filePath, ".tsx");
   const kebabToPascal = (s) =>
     s
@@ -85,20 +95,28 @@ function findExports(filePath) {
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join("");
 
-  // Try exact match with filename
-  let primary = all.find((n) => n.toLowerCase() === kebabToPascal(fileBase).toLowerCase()) || null;
-
-  // If no match, prefer the first name that looks like the main component
-  // (not *Variants, *Provider, *Context, etc.)
+  let primary =
+    all.find((n) => n.toLowerCase() === kebabToPascal(fileBase).toLowerCase()) ||
+    null;
   if (!primary) {
-    primary = all.find((n) => !/Variants?$|Provider$|Context$|Styles$/.test(n)) || all[0] || null;
+    primary =
+      all.find((n) => !/Variants?$|Provider$|Context$|Styles$/.test(n)) ||
+      all[0] ||
+      null;
   }
+  return primary;
+}
 
-  return { primary, all };
+function resolveSourceFile(sourcePath) {
+  const abs = resolve(ROOT, sourcePath);
+  if (existsSync(abs)) return abs;
+  const tsx = abs.endsWith(".tsx") ? abs : `${abs}.tsx`;
+  if (existsSync(tsx)) return tsx;
+  return abs;
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Generate the import map                                                   */
+/*  Generate                                                                  */
 /* -------------------------------------------------------------------------- */
 
 function generate() {
@@ -108,50 +126,46 @@ function generate() {
   const imports = [];
   const mapEntries = [];
   const skipped = [];
+  const seen = new Set();
 
   for (const entry of entries) {
-    // Convert sourcePath to local docs path
-    // components/ui/button.tsx -> ui/button
-    const relPath = entry.sourcePath.replace(/^components\//, "").replace(/\.tsx?$/, "");
+    if (seen.has(entry.name)) continue;
+    seen.add(entry.name);
 
-    const fullPath = join(COMPONENTS_DIR, relPath + ".tsx");
-    const { primary, all } = findExports(fullPath);
-
-    if (!primary) {
-      skipped.push(`${entry.name} (${relPath}): no exports found`);
+    const pkg = packageSubpath(entry.sourcePath);
+    if (!pkg) {
+      skipped.push(`${entry.name} (${entry.sourcePath}): unknown package`);
       continue;
     }
 
-    // Generate import alias if meta.name differs from actual export
-    const importName = primary;
-    const mapName = entry.name;
+    const fullPath = resolveSourceFile(entry.sourcePath);
+    const primary = findPrimaryExport(fullPath, entry.name);
+
+    if (!primary) {
+      skipped.push(`${entry.name} (${entry.sourcePath}): no exports found`);
+      continue;
+    }
 
     let importStmt;
-    if (importName === mapName) {
-      importStmt = `import { ${importName} } from "@/components/${relPath}";`;
-    } else if (importName.toLowerCase() === mapName.toLowerCase()) {
-      // Case-only difference — alias it
-      importStmt = `import { ${importName} as ${mapName} } from "@/components/${relPath}";`;
+    if (primary === entry.name) {
+      importStmt = `import { ${primary} } from "${pkg}";`;
     } else {
-      // Different name entirely — alias it
-      importStmt = `import { ${importName} as ${mapName} } from "@/components/${relPath}";`;
-      console.log(`  Alias: ${importName} → ${mapName} (${relPath})`);
+      importStmt = `import { ${primary} as ${entry.name} } from "${pkg}";`;
+      console.log(`  Alias: ${primary} → ${entry.name}`);
     }
 
     imports.push(importStmt);
-    mapEntries.push(`  ${mapName},`);
+    mapEntries.push(`  ${entry.name},`);
   }
 
-  // Report skipped
   if (skipped.length > 0) {
-    console.log(`\nSkipped ${skipped.length} components (no exports):`);
+    console.log(`\nSkipped ${skipped.length} components:`);
     for (const s of skipped) console.log(`  - ${s}`);
   }
 
-  // Build the output file
-  const output = `// Auto-generated by scripts/generate-component-map.mjs. Do not edit manually.
-// Maps PascalCase component names to their React component implementations.
-// Used by the component detail page to render live previews.
+  const output = `// @ts-nocheck — generated
+// Auto-generated by scripts/generate-component-map.mjs. Do not edit manually.
+// Maps PascalCase component names to package implementations for live previews.
 
 ${imports.join("\n")}
 
@@ -164,9 +178,5 @@ ${mapEntries.join("\n")}
   console.log(`\nGenerated ${OUTPUT_PATH}`);
   console.log(`  ${imports.length} imports, ${mapEntries.length} map entries`);
 }
-
-/* -------------------------------------------------------------------------- */
-/*  Main                                                                      */
-/* -------------------------------------------------------------------------- */
 
 generate();

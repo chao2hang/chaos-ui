@@ -1,22 +1,16 @@
-import { FeatureTour } from "@chaos_team/chaos-ui/business";
 import { CodeBlock } from "@/components/code-block";
 
 # FeatureTour Feature Tour
 
 > 业务组件 / Domain-specific business components for ERP scenarios.
 
-<FeatureTour
-  open
-  steps={[{ target: "#btn", title: "开始", content: "点击此处开始" }]}
-  onClose={() => {}}
-/>
 FeatureTour — feature tour component.
 
 ## 何时使用 / When to Use
 
-适用于Feature Tour相关场景。
+需要Feature Tour时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
-Use when you need a feature tour.
+Use FeatureTour when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## 代码示例 / Examples
 
@@ -44,4 +38,4 @@ export function Basic() {
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/business-featuretour--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/business-featuretour--docs)。

@@ -2,7 +2,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { Loader2Icon } from "@/components/ui/icons";
+import { Spinner } from "@/components/ui/spinner";
 
 /**
  * @component MobileInfiniteScroll
@@ -65,12 +65,12 @@ function MobileInfiniteScroll({
       {children}
       <div
         ref={sentinelRef}
-        className="flex items-center justify-center gap-2 py-3 text-xs text-muted-foreground"
+        className="text-muted-foreground flex items-center justify-center gap-2 py-3 text-xs"
         aria-live="polite"
       >
         {loading ? (
           <>
-            <Loader2Icon className="size-3.5 animate-spin" aria-hidden="true" />
+            <Spinner size="xs" color="muted" label="加载中" />
             <span>加载中…</span>
           </>
         ) : hasMore ? (

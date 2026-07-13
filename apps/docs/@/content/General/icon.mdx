@@ -10,8 +10,9 @@ A thin wrapper over Lucide icons providing consistent sizing, color tokens, and 
 
 ## 何时使用 / When to Use
 
-需要在界面中展示矢量图标时使用，支持旋转和脉冲动画，适合加载状态或交互提示。
-Use when you need to display vector icons in the UI. Supports spin and pulse animations for loading states or interactive hints.
+当你需要「Icon」相关能力时使用：Lucide 图标的薄包装器，提供统一尺寸、颜色标记和旋转/脉冲动画属性。作为页面中的通用基础能力使用；优先复用而非在业务里再造一套。
+
+Use Icon when you need: Thin wrapper over Lucide icons providing consistent sizing, color tokens, and spin/pulse animation props. Use as a shared primitive across the app; prefer reuse over reinventing in feature code.
 
 ## 代码示例 / Examples
 
@@ -98,4 +99,4 @@ export function Colors() {
 - **必填 `icon` prop**: 必须传入一个 Lucide 图标组件,否则会报错。
 - **图标来源**: 图标来自 `lucide-react`,需先安装并导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-icon--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-icon--docs)。

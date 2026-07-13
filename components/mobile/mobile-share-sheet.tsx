@@ -13,7 +13,12 @@ export interface MobileShareSheetProps {
   /** Share title. */
   title?: string;
   /** Share platforms to show. */
-  platforms?: { id: string; label: string; color?: string; onClick: () => void }[];
+  platforms?: {
+    id: string;
+    label: string;
+    color?: string;
+    onClick: () => void;
+  }[];
   /** Additional class names. */
   className?: string;
 }
@@ -45,28 +50,31 @@ function MobileShareSheet({
   if (!open) return null;
 
   return (
-    <div data-slot="mobile-share-sheet" className={cn("fixed inset-0 z-50", className)}>
+    <div
+      data-slot="mobile-share-sheet"
+      className={cn("fixed inset-0 z-50", className)}
+    >
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/50"
-        onClick={onClose}
-      />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Sheet */}
-      <div className="absolute inset-x-0 bottom-0 rounded-t-2xl bg-background p-4 safe-area-inset-bottom animate-slide-up">
+      <div className="bg-background animate-in fade-in-0 slide-in-from-bottom-4 absolute inset-x-0 bottom-0 rounded-t-2xl p-4 pb-[max(1rem,env(safe-area-inset-bottom))] duration-200">
         {/* Handle */}
-        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-muted" />
+        <div className="bg-muted mx-auto mb-4 h-1 w-10 rounded-full" />
 
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">Share</h2>
-          <Button variant="ghost" size="icon-sm" onClick={onClose} aria-label="Close">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={onClose}
+            aria-label="Close"
+          >
             <XIcon />
           </Button>
         </div>
 
-        {title && (
-          <p className="mb-3 text-sm text-muted-foreground">{title}</p>
-        )}
+        {title && <p className="text-muted-foreground mb-3 text-sm">{title}</p>}
 
         <div className="grid grid-cols-4 gap-3">
           {platforms.map((p) => (
@@ -74,11 +82,13 @@ function MobileShareSheet({
               key={p.id}
               type="button"
               onClick={p.onClick}
-              className="flex flex-col items-center gap-1.5 rounded-lg p-2 text-center text-xs transition-colors hover:bg-muted active:scale-95"
+              className="hover:bg-muted flex flex-col items-center gap-1.5 rounded-lg p-2 text-center text-xs transition-colors active:scale-95"
             >
               <div
                 className="flex size-12 items-center justify-center rounded-full"
-                style={{ backgroundColor: p.color ? `${p.color}20` : undefined }}
+                style={{
+                  backgroundColor: p.color ? `${p.color}20` : undefined,
+                }}
               >
                 <span
                   className="text-base font-bold"
@@ -92,11 +102,7 @@ function MobileShareSheet({
           ))}
         </div>
 
-        <Button
-          variant="ghost"
-          className="mt-4 w-full"
-          onClick={onClose}
-        >
+        <Button variant="ghost" className="mt-4 w-full" onClick={onClose}>
           Cancel
         </Button>
       </div>

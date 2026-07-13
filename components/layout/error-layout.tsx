@@ -21,7 +21,7 @@ export function ErrorLayout({
     <div
       data-slot="error-layout"
       className={cn(
-        "bg-muted/30 flex min-h-screen flex-col items-center justify-center p-4",
+        "bg-muted/30 flex h-full min-h-0 flex-col items-center justify-center p-4",
         className,
       )}
       {...props}

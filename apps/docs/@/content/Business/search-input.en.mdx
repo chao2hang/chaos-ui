@@ -1,4 +1,3 @@
-import { SearchInput } from "@/components/business/search-input";
 import { CodeBlock } from "@/components/code-block";
 
 # SearchInput
@@ -9,37 +8,35 @@ SearchInput — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a search input.
-
+Use SearchInput when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { SearchInput } from "@/components/business/search-input"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <SearchInput />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### SearchInput
 
-| Prop | Type | Default | Description |
-| --------------- | ---------------------- | --------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `value` | `string` | — | Current value (controlled) |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `onSubmit` | `() => void` | — | Submit handler |
-| `results`       | `SearchResult[]`       | —         |                                                           |
-| `onResultClick` | `() => void`           | —         |                                                           |
-| `placeholder` | `string` | `搜索...` | Placeholder text |
-| `loading` | `boolean` | — | Loading state |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop            | Type                   | Default   | Description                       |
+| --------------- | ---------------------- | --------- | --------------------------------- |
+| `className`     | `string`               | —         | Custom CSS class                  |
+| `value`         | `string`               | —         | Current value (controlled)        |
+| `onChange`      | `() => void`           | —         | Callback when value changes       |
+| `onSubmit`      | `() => void`           | —         | Submit handler                    |
+| `results`       | `SearchResult[]`       | —         |                                   |
+| `onResultClick` | `() => void`           | —         |                                   |
+| `placeholder`   | `string`               | `搜索...` | Placeholder text                  |
+| `loading`       | `boolean`              | —         | Loading state                     |
+| ...rest         | `React.HTMLAttributes` | —         | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

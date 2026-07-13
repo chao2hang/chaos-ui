@@ -58,12 +58,12 @@ export function NativeSelect({
   ...props
 }: NativeSelectProps) {
   return (
-    <div data-slot="native-select" className="relative inline-flex">
+    <div data-slot="native-select" className="relative flex w-full min-w-0">
       <select
         data-size={size}
         disabled={disabled}
         className={cn(
-          "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex w-full appearance-none items-center justify-between gap-1.5 rounded-lg border bg-transparent py-2 pr-8 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
+          "border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 flex w-full min-w-0 appearance-none items-center justify-between gap-1.5 rounded-lg border bg-transparent py-1 pr-8 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 disabled:cursor-not-allowed disabled:opacity-50",
           error && "border-destructive ring-destructive/20 ring-3",
           size === "default" && "h-8",
           size === "sm" && "h-7 text-xs",

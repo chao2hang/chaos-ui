@@ -6,13 +6,16 @@
  * component name → Storybook story preview. Story fixtures sit between curated
  * hand-authored previews and bare component instantiation on docs detail pages.
  *
- * Now includes stories from src/stories/ but only when all @/-imports in the
- * story file resolve to existing files in the docs app's @/ tree (or have
- * been covered by generated shims).
+ * Storybook SoT is monorepo `src/stories/{ui,business,layout,mobile}`.
+ * Dual inventory under apps/docs/src (stories) was removed; this generator
+ * must only emit import() paths for story files that actually exist.
+ *
+ * Stories import package source via `@/components/*` etc.; apps/docs/next.config.ts
+ * maps those aliases to the monorepo root so previews load without docs shims.
  */
 
-import { existsSync, readFileSync, writeFileSync, readdirSync } from "fs";
-import { dirname, relative, resolve, sep, join } from "path";
+import { existsSync, readFileSync, writeFileSync } from "fs";
+import { dirname, relative, resolve, sep } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -21,20 +24,22 @@ const DOCS = resolve(ROOT, "apps/docs");
 const META_PATH = resolve(DOCS, "@/content/components.meta.ts");
 const OUTPUT_PATH = resolve(DOCS, "@/components/component-story-previews.tsx");
 const OUTPUT_DIR = dirname(OUTPUT_PATH);
-const DOCS_AT = resolve(DOCS, "@");
 
 const STORY_EXTENSIONS = [".stories.tsx", ".stories.ts", ".stories.jsx", ".stories.js"];
 
+/** Storybook source-of-truth directories (repo root). */
 const STORY_DIR_GROUPS = {
-  ui: [resolve(DOCS, "src/components")],
-  business: [resolve(DOCS, "src/business")],
-  layout: [resolve(DOCS, "src/layout")],
+  ui: [resolve(ROOT, "src/stories/ui")],
+  business: [resolve(ROOT, "src/stories/business")],
+  layout: [resolve(ROOT, "src/stories/layout")],
+  mobile: [resolve(ROOT, "src/stories/mobile")],
 };
 
 const ALL_STORY_DIRS = [
   ...STORY_DIR_GROUPS.ui,
   ...STORY_DIR_GROUPS.business,
   ...STORY_DIR_GROUPS.layout,
+  ...STORY_DIR_GROUPS.mobile,
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -47,7 +52,8 @@ function parseMeta() {
   if (arrayStart === -1) throw new Error("Cannot find components array");
 
   const body = src.slice(arrayStart);
-  const entryRe = /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
+  const entryRe =
+    /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?name:\s*["']([^"']+)["'][\s\S]*?sourcePath:\s*["']([^"']+)["']/g;
   const entries = [];
   let m;
 
@@ -72,6 +78,7 @@ function toPascalFromSlug(slug) {
 function storyDirsFor(entry) {
   if (entry.sourcePath.includes("/business/")) return STORY_DIR_GROUPS.business;
   if (entry.sourcePath.includes("/layout/")) return STORY_DIR_GROUPS.layout;
+  if (entry.sourcePath.includes("/mobile/")) return STORY_DIR_GROUPS.mobile;
   if (entry.sourcePath.includes("/ui/")) return STORY_DIR_GROUPS.ui;
   return ALL_STORY_DIRS;
 }
@@ -79,7 +86,7 @@ function storyDirsFor(entry) {
 function findStory(entry) {
   const candidates = [entry.name, toPascalFromSlug(entry.slug)];
 
-  // Search category-specific dirs first, then fall back to all dirs
+  // Category dirs first, then all SoT dirs (handles misplaced stories).
   const dirs = [...storyDirsFor(entry)];
   for (const allDir of ALL_STORY_DIRS) {
     if (!dirs.includes(allDir)) dirs.push(allDir);
@@ -97,22 +104,17 @@ function findStory(entry) {
   return null;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Import verification — check that all @/ imports resolve in the docs app   */
-/* -------------------------------------------------------------------------- */
-
 /**
- * Resolve a @/ import path to a file in the docs app's @/ tree.
- * Returns the absolute path if resolved, null otherwise.
+ * Resolve package-source imports used by SoT stories (next.config aliases).
+ * Returns absolute path if resolved, null otherwise.
  */
-function resolveInDocs(importPath) {
-  // importPath like "@/components/ui/button" or "@/lib/utils" or "@/hooks/use-foo"
+function resolvePackageImport(importPath) {
   const rel = importPath.replace(/^@\//, "");
   const candidates = [
-    resolve(DOCS_AT, rel + ".tsx"),
-    resolve(DOCS_AT, rel + ".ts"),
-    resolve(DOCS_AT, rel + "/index.tsx"),
-    resolve(DOCS_AT, rel + "/index.ts"),
+    resolve(ROOT, rel + ".tsx"),
+    resolve(ROOT, rel + ".ts"),
+    resolve(ROOT, rel + "/index.tsx"),
+    resolve(ROOT, rel + "/index.ts"),
   ];
   for (const c of candidates) {
     if (existsSync(c)) return c;
@@ -121,8 +123,9 @@ function resolveInDocs(importPath) {
 }
 
 /**
- * Check if a story file's @/ imports are all resolvable in the docs app.
- * Returns true if the story is safe to include.
+ * Soft check: story @/ imports that next.config aliases to package source.
+ * Unknown prefixes (e.g. story-only helpers) are allowed; missing package
+ * modules are skipped so we never emit a broken import().
  */
 function verifyStoryImports(storyPath) {
   const content = readFileSync(storyPath, "utf-8");
@@ -132,8 +135,15 @@ function verifyStoryImports(storyPath) {
 
   while ((m = importRe.exec(content)) !== null) {
     const importPath = m[1];
-    if (!resolveInDocs(importPath)) {
-      unresolved.push(importPath);
+    // Only enforce package paths next.config maps for stories.
+    if (
+      importPath.startsWith("@/components/") ||
+      importPath.startsWith("@/hooks/") ||
+      importPath.startsWith("@/lib/")
+    ) {
+      if (!resolvePackageImport(importPath)) {
+        unresolved.push(importPath);
+      }
     }
   }
 
@@ -142,7 +152,9 @@ function verifyStoryImports(storyPath) {
 
 function importPathFor(filePath) {
   const rel = relative(OUTPUT_DIR, filePath).split(sep).join("/");
-  return rel.startsWith(".") ? rel.replace(/\.(tsx|ts|jsx|js)$/, "") : `./${rel.replace(/\.(tsx|ts|jsx|js)$/, "")}`;
+  return rel.startsWith(".")
+    ? rel.replace(/\.(tsx|ts|jsx|js)$/, "")
+    : `./${rel.replace(/\.(tsx|ts|jsx|js)$/, "")}`;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -153,7 +165,8 @@ function generate() {
   const entries = parseMeta();
   const previewEntries = [];
   const seen = new Set();
-  let skipped = 0;
+  let skippedMissing = 0;
+  let skippedImports = 0;
   let verified = 0;
 
   for (const entry of entries) {
@@ -161,19 +174,20 @@ function generate() {
     seen.add(entry.name);
 
     const storyPath = findStory(entry);
-    if (!storyPath) continue;
-
-    // For stories from apps/docs/src/, always include (known safe)
-    const isDocsStory = storyPath.includes("/apps/docs/src/");
-
-    if (!isDocsStory) {
-      const { valid, unresolved } = verifyStoryImports(storyPath);
-      if (!valid) {
-        skipped++;
-        continue;
-      }
-      verified++;
+    if (!storyPath) {
+      skippedMissing++;
+      continue;
     }
+
+    const { valid, unresolved } = verifyStoryImports(storyPath);
+    if (!valid) {
+      skippedImports++;
+      console.warn(
+        `skip ${entry.name}: unresolved imports: ${unresolved.join(", ")}`,
+      );
+      continue;
+    }
+    verified++;
 
     previewEntries.push({
       name: entry.name,
@@ -181,23 +195,35 @@ function generate() {
     });
   }
 
-  const output = `// Auto-generated by scripts/generate-component-story-previews.mjs. Do not edit manually.
-// Maps PascalCase component names to Storybook-backed preview fixtures.
-// Stories from apps/docs/src/ are always included; stories from src/stories/
-// are included only after verifying all @/ imports resolve in the docs app.
+  // Multi-line dynamic() so Turbopack traces each literal path clearly.
+  const body = previewEntries
+    .map(
+      ({ name, importPath }) =>
+        `  ${name}: dynamic(
+    () =>
+      import("${importPath}").then((m) => ({
+        default: createStoryPreview(m),
+      })),
+    { ssr: false },
+  ),`,
+    )
+    .join("\n");
+
+  const output = `// @ts-nocheck
+// Auto-generated by scripts/generate-component-story-previews.mjs. Do not edit manually.
+// Maps PascalCase names → Storybook story modules (src/stories/** SoT).
+// Only emits import() for files that exist; missing stories fall through to component-loader.
+// Literal import() required by bundler; isolate from typecheck via tsconfig exclude + // @ts-nocheck.
 
 "use client";
 
 import dynamic from "next/dynamic";
 import { createStoryPreview } from "@/components/story-preview-renderer";
 
+// Literal import() paths are required for Next/Turbopack static analysis.
+// Docs typecheck isolates this file via tsconfig exclude + // @ts-nocheck.
 export const componentStoryPreviews: Record<string, React.ComponentType> = {
-${previewEntries
-  .map(
-    ({ name, importPath }) =>
-      `  ${name}: dynamic(() => import("${importPath}").then((m) => ({ default: createStoryPreview(m) })), { ssr: false }),`,
-  )
-  .join("\n")}
+${body}
 };
 `;
 
@@ -205,7 +231,8 @@ ${previewEntries
   console.log(`Generated ${OUTPUT_PATH}`);
   console.log(`  ${previewEntries.length} story preview entries`);
   console.log(`  ${verified} verified from src/stories/`);
-  console.log(`  ${skipped} skipped (unresolvable imports)`);
+  console.log(`  ${skippedMissing} skipped (no story file)`);
+  console.log(`  ${skippedImports} skipped (unresolvable package imports)`);
 }
 
 generate();

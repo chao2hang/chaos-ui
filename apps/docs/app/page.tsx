@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@chaos_team/chaos-ui/ui";
-import { Separator } from "@chaos_team/chaos-ui/ui";
 import {
   ArrowRight,
   Package,
@@ -27,7 +26,7 @@ import {
 } from "lucide-react";
 import { InstallTabs } from "@/components/install-tabs";
 import { getServerLocale } from "@/lib/i18n/get-server-locale";
-import { dict, t as tt } from "@/lib/i18n/dict";
+import { t as tt } from "@/lib/i18n/dict";
 import { components } from "@/content/components.meta";
 
 /* -------------------------------------------------------------------------- */
@@ -36,8 +35,8 @@ import { components } from "@/content/components.meta";
 
 const stats = [
   { value: `${components.length}+`, label: "Components", labelZh: "组件" },
-  { value: "58", label: "Hooks", labelZh: "钩子" },
-  { value: "25", label: "Utility Modules", labelZh: "工具库" },
+  { value: "28+", label: "Hooks", labelZh: "钩子" },
+  { value: "7+", label: "Utility Modules", labelZh: "工具库" },
   { value: "11", label: "Subpath Exports", labelZh: "子路径导出" },
 ];
 
@@ -100,12 +99,16 @@ const features = [
 /*  Component Category Cards
 /* -------------------------------------------------------------------------- */
 
+function countCategory(...names: string[]) {
+  return components.filter((c) => names.includes(c.category)).length;
+}
+
 const categories = [
   {
     icon: Puzzle,
     title: "UI Primitives 基础组件",
     titleEn: "UI Primitives",
-    count: "145",
+    count: String(countCategory("General", "Layout", "Navigation", "Form", "DataDisplay", "Feedback")),
     items: [
       "Button",
       "Dialog",
@@ -127,7 +130,7 @@ const categories = [
     icon: Blocks,
     title: "Business 业务组件",
     titleEn: "Business Components",
-    count: "312",
+    count: String(countCategory("Business")),
     items: [
       "DataTable",
       "CampaignCard",
@@ -149,7 +152,7 @@ const categories = [
     icon: Layers,
     title: "Layout 布局组件",
     titleEn: "Layout Components",
-    count: "25",
+    count: String(countCategory("System Layout", "Layout")),
     items: [
       "AdminShell",
       "AppShell",
@@ -195,7 +198,7 @@ export default async function Home() {
               className="mb-6 gap-1.5 px-3 py-1 text-xs"
             >
               <Sparkles className="size-3" />
-              v1.0.7 — 稳定版
+              Enterprise · React 19
             </Badge>
 
             <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
@@ -212,12 +215,12 @@ export default async function Home() {
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a href="#install">
+              <Link href="/docs/getting-started">
                 <Button size="lg" className="h-12 gap-2 px-8 text-base">
                   {t("home.ctaQuickStart")}
                   <ArrowRight className="size-4" />
                 </Button>
-              </a>
+              </Link>
               <Link href="/components">
                 <Button
                   size="lg"
@@ -395,46 +398,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ================================================================ */}
-      {/*  FOOTER                                                          */}
-      {/* ================================================================ */}
-      <footer className="border-t py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
-          <div className="text-muted-foreground flex items-center gap-2 text-sm">
-            <span className="bg-brand-500 flex size-6 items-center justify-center rounded-md text-[10px] font-bold text-white">
-              C
-            </span>
-            <span>
-              {dict[locale].home.footerBuiltBy}{" "}
-              <a
-                href="https://github.com/qxyfoods"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground font-medium hover:underline"
-              >
-                Chaos
-              </a>
-            </span>
-          </div>
-
-          <div className="text-muted-foreground flex items-center gap-4 text-xs">
-            <span>MIT License</span>
-            <Separator orientation="vertical" className="h-3" />
-            <Link href="#" className="hover:text-foreground">
-              GitHub
-            </Link>
-            <Separator orientation="vertical" className="h-3" />
-            <a
-              href="http://localhost:3002"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground"
-            >
-              Storybook
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

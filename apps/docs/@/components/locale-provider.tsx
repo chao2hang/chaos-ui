@@ -54,19 +54,29 @@ export function LocaleProvider({
 
   const setLocale = useCallback(
     (next: Locale) => {
-      if (!isLocale(next) || next === locale) return;
-      // Persist for ~1 year
+      if (!isLocale(next)) return;
+      // Persist for ~1 year (always rewrite cookie so refresh sees it)
       document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
-      setLocaleState(next);
+      setLocaleState((prev) => {
+        if (prev === next) return prev;
+        return next;
+      });
       // Re-fetch server-rendered tree (cookie is sent automatically)
       router.refresh();
     },
-    [locale, router],
+    [router],
   );
 
   const toggleLocale = useCallback(() => {
-    setLocale(locale === "zh" ? "en" : "zh");
-  }, [locale, setLocale]);
+    const next: Locale = locale === "zh" ? "en" : "zh";
+    document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; SameSite=Lax`;
+    setLocaleState(next);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = next === "en" ? "en" : "zh-CN";
+    }
+    // Soft refresh server components (guides, metadata); client chrome updates immediately
+    router.refresh();
+  }, [locale, router]);
 
   const value = useMemo<LocaleContextValue>(
     () => ({ locale, setLocale, toggleLocale }),

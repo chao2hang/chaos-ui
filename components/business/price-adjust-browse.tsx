@@ -3,33 +3,25 @@
 import * as React from "react";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
-import { cn } from "@/lib/utils";
-import { formatDate } from "@/lib/format";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { CheckIcon, ReceiptIcon, SearchIcon } from "@/components/ui/icons";
+  BrowseDialog,
+  type BrowseColumn,
+} from "@/components/business/browse-dialog";
 
 /**
  * @component PriceAdjustBrowse
  * @category business/picker
  * @since 0.7.0
- * @description 调价单选择弹窗。按单号/商品筛选并选中。
- * / Price-adjustment browse dialog — filter by no/product and pick one.
- * @keywords price, adjust, browse, picker, dialog
+ * @description Domain browse adapter over `BrowseDialog` (local `items` mode).
+ * Keeps the historical export name and item shape; UI shell is shared.
+ * / 领域浏览适配器：内部组合 BrowseDialog，保留导出名与 item 形状。
+ * @keywords browse, picker, dialog, price-adjust-browse
  * @example
  * <PriceAdjustBrowse
  *   open={open}
  *   onOpenChange={setOpen}
  *   onSelect={(item) => console.log(item)}
- *   items={[{ id: "PA1", product: "Soy Sauce", date: "2024-01-01" }]}
+ *   items={[]}
  * />
  */
 
@@ -68,8 +60,6 @@ function PriceAdjustBrowse({
   className,
 }: PriceAdjustBrowseProps) {
   const { t } = useTranslation("ui");
-  const [query, setQuery] = React.useState("");
-  const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
   const resolvedTitle =
     title ?? t("priceAdjustBrowse.title", { defaultValue: "选择调价单" });
@@ -79,125 +69,67 @@ function PriceAdjustBrowse({
   const resolvedEmpty =
     emptyText ?? t("priceAdjustBrowse.empty", { defaultValue: "无匹配调价单" });
 
-  const filtered = React.useMemo(() => {
-    if (!query.trim()) return items;
-    const q = query.trim().toLowerCase();
-    return items.filter(
-      (p) =>
-        p.id.toLowerCase().includes(q) ||
-        p.no?.toLowerCase().includes(q) ||
-        p.product?.toLowerCase().includes(q),
-    );
-  }, [items, query]);
+  const columns = React.useMemo<
+    BrowseColumn<PriceAdjustBrowseItem & Record<string, unknown>>[]
+  >(
+    () => [
+      {
+        key: "no",
+        title: t("priceAdjustBrowse.colNo", { defaultValue: "单号" }),
+        dataIndex: "no",
+      },
+      {
+        key: "product",
+        title: t("priceAdjustBrowse.colProduct", { defaultValue: "商品" }),
+        dataIndex: "product",
+      },
+      {
+        key: "date",
+        title: t("priceAdjustBrowse.colDate", { defaultValue: "日期" }),
+        dataIndex: "date",
+      },
+      {
+        key: "status",
+        title: t("priceAdjustBrowse.colStatus", { defaultValue: "状态" }),
+        dataIndex: "status",
+      },
+    ],
+    [t],
+  );
 
-  React.useEffect(() => {
-    if (open) {
-      setQuery("");
-      setSelectedId(null);
-    }
-  }, [open]);
-
-  const handleConfirm = () => {
-    if (selectedId == null) return;
-    const chosen = items.find((p) => p.id === selectedId);
-    if (chosen) {
-      onSelect(chosen);
-      onOpenChange(false);
-    }
-  };
+  const handleChange = React.useCallback(
+    (selected: Array<PriceAdjustBrowseItem & Record<string, unknown>>) => {
+      if (selected.length === 0) return;
+      // Historical contract: single-select emits the chosen row.
+      onSelect(selected[0]! as PriceAdjustBrowseItem);
+    },
+    [onSelect],
+  );
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        data-slot="price-adjust-browse"
-        className={cn("sm:max-w-md", className)}
-      >
-        <DialogHeader>
-          <DialogTitle>{resolvedTitle}</DialogTitle>
-          <DialogDescription>
-            {t("priceAdjustBrowse.description", {
-              defaultValue: "从列表中选择一个调价单",
-            })}
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="flex items-center gap-2 border-b pb-2">
-          <SearchIcon className="size-4 shrink-0 opacity-50" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={resolvedSearch}
-            aria-label={resolvedSearch}
-            className="h-8 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
-          />
-        </div>
-
-        <ul role="list" className="max-h-72 overflow-y-auto py-1">
-          {filtered.length === 0 && (
-            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
-              {resolvedEmpty}
-            </li>
-          )}
-          {filtered.map((p) => {
-            const isSelected = p.id === selectedId;
-            return (
-              <li key={p.id}>
-                <button
-                  type="button"
-                  disabled={p.disabled}
-                  aria-pressed={isSelected}
-                  onClick={() => setSelectedId(p.id)}
-                  className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
-                    isSelected && "bg-accent/50",
-                    p.disabled && "pointer-events-none opacity-50",
-                  )}
-                >
-                  <ReceiptIcon className="size-4 shrink-0 opacity-50" />
-                  <span className="flex-1 truncate">
-                    {p.no ?? p.id}
-                    {p.product && (
-                      <span className="text-muted-foreground ml-1 text-xs">
-                        · {p.product}
-                      </span>
-                    )}
-                  </span>
-                  {p.date && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {formatDate(p.date)}
-                    </span>
-                  )}
-                  {p.status && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {p.status}
-                    </span>
-                  )}
-                  {isSelected && <CheckIcon className="size-4 shrink-0" />}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <DialogFooter>
-          <Button
-            variant="outline"
-            type="button"
-            onClick={() => onOpenChange(false)}
-          >
-            {t("dialog.closeButton", { defaultValue: "取消" })}
-          </Button>
-          <Button
-            type="button"
-            disabled={selectedId == null}
-            onClick={handleConfirm}
-          >
-            {t("priceAdjustBrowse.confirm", { defaultValue: "确定" })}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <BrowseDialog<PriceAdjustBrowseItem & Record<string, unknown>>
+      open={open}
+      onOpenChange={onOpenChange}
+      items={items as Array<PriceAdjustBrowseItem & Record<string, unknown>>}
+      columns={columns}
+      rowKey={
+        "id" as keyof (PriceAdjustBrowseItem & Record<string, unknown>) & string
+      }
+      filterKeys={
+        ["id", "no", "product", "status"] as (keyof (PriceAdjustBrowseItem &
+          Record<string, unknown>) &
+          string)[]
+      }
+      selectionMode={"single"}
+      dataSlot="price-adjust-browse"
+      title={resolvedTitle}
+      searchPlaceholder={resolvedSearch}
+      emptyText={resolvedEmpty}
+      pageSize={Math.max(items.length, 10)}
+      searchDebounceMs={0}
+      onChange={handleChange}
+      {...(className !== undefined ? { className } : {})}
+    />
   );
 }
 

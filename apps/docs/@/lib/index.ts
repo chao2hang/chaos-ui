@@ -39,7 +39,6 @@ export {
   type Permission,
   type Role,
 } from "./permissions";
-export { ChaosI18nProvider, i18n } from "./i18n";
 
 // P1 lib utilities
 export * from "./validation";
@@ -54,3 +53,6 @@ export * from "./date";
 export * from "./excel";
 export * from "./pdf";
 export * from "./worker";
+
+// Re-export package i18n provider (not docs-local dict)
+export { ChaosI18nProvider, i18n } from "@chaos_team/chaos-ui/lib";

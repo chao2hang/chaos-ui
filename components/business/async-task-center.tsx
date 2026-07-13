@@ -95,10 +95,9 @@ function AsyncTaskCenter({
               <DrawerTitle>任务中心</DrawerTitle>
               <DrawerDescription>{tasks.length} 个任务</DrawerDescription>
             </div>
-            <DrawerClose asChild>
-              <Button variant="ghost" size="icon-sm">
-                <XIcon className="size-4" />
-              </Button>
+            <DrawerClose className="hover:bg-muted inline-flex size-8 items-center justify-center rounded-lg">
+              <XIcon className="size-4" />
+              <span className="sr-only">关闭</span>
             </DrawerClose>
           </div>
         </DrawerHeader>
@@ -109,7 +108,7 @@ function AsyncTaskCenter({
             <p className="text-sm">暂无任务</p>
           </div>
         ) : (
-          <ScrollArea className="h-[calc(100vh-8rem)]">
+          <ScrollArea className="h-full max-h-[min(32rem,calc(100dvh-8rem))]">
             <div className="divide-y">
               {tasks.map((task) => {
                 const cfg = statusConfig[task.status];

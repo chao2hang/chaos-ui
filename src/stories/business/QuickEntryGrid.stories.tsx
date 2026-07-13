@@ -1,15 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { QuickEntryGrid } from "@/components/business/quick-entry-grid";
-import { HomeIcon, SettingsIcon, UsersIcon } from "@/components/ui/icons";
 
-const noop = () => {};
-const entries = [
-  { id: "1", icon: <HomeIcon className="size-5" />, label: "Dashboard", onClick: noop },
-  { id: "2", icon: <UsersIcon className="size-5" />, label: "Team", onClick: noop },
-  { id: "3", icon: <SettingsIcon className="size-5" />, label: "Settings", onClick: noop },
-];
+const meta = {
+  title: "Business/QuickEntryGrid",
+  component: QuickEntryGrid,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { entries: [] },
+} satisfies Meta<typeof QuickEntryGrid>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const meta = { title: "Business/Forms/QuickEntryGrid", component: QuickEntryGrid, tags: ["autodocs"], parameters: { layout: "padded" }, args: { entries: [] } } satisfies Meta<typeof QuickEntryGrid>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { entries } };
-export const Single: Story = { args: { entries: entries.slice(0, 1) } };
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">QuickEntryGrid</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <QuickEntryGrid {...args} />
+      </div>
+    </div>
+  ),
+};

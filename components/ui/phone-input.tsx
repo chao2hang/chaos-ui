@@ -121,6 +121,7 @@ function PhoneInput({
     onChange?.({ countryCode: newCode, phone, full: `${newCode}${phone}` });
   };
 
+  // native-select-exception: composite dial-code control (shared border with field)
   return (
     <div
       data-slot="phone-input"

@@ -1,4 +1,8 @@
-import { Banner } from "@/components/business/banner";
+import {
+  Alert as Banner,
+  AlertTitle,
+  AlertDescription,
+} from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # Banner
@@ -9,14 +13,13 @@ Banner — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a banner.
-
+Use Banner when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { Banner } from "@/components/business/banner"
+<CodeBlock code={`import { Alert as Banner } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
   return <Banner />
@@ -39,30 +42,28 @@ export function Basic() {
 
 **Variant**
 
-| Variant | Description | 默认 |
-| --------- | ------------------------------ | ---- |
-| `info` | Informational style | ✓ |
-| `success` | Success style |  |
-| `warning` | Warning style |  |
-| `error` | Error style |  |
+| Variant   | Description         | 默认 |
+| --------- | ------------------- | ---- |
+| `info`    | Informational style | ✓    |
+| `success` | Success style       |      |
+| `warning` | Warning style       |      |
+| `error`   | Error style         |      |
 
 ## API / Props
 
 ### Banner
 
-| Prop | Type | Default | Description |
-| ------------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `variant` | `BannerVariant` | `info` | Style variant |
-| `title` | `string` | — | Title |
-| `description` | `string` | — | Description text |
-| `action`      | `React.ReactNode`      | —       |                                                           |
-| `closable`    | `boolean`              | `true`  |                                                           |
-| `onClose` | `() => void` | — | Close handler |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop          | Type                   | Default | Description                       |
+| ------------- | ---------------------- | ------- | --------------------------------- |
+| `className`   | `string`               | —       | Custom CSS class                  |
+| `variant`     | `BannerVariant`        | `info`  | Style variant                     |
+| `title`       | `string`               | —       | Title                             |
+| `description` | `string`               | —       | Description text                  |
+| `action`      | `React.ReactNode`      | —       |                                   |
+| `closable`    | `boolean`              | `true`  |                                   |
+| `onClose`     | `() => void`           | —       | Close handler                     |
+| ...rest       | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

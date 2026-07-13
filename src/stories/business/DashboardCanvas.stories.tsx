@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DashboardCanvas } from "@/components/business/dashboard-canvas";
 
-const meta = { title: "Business/Dashboard/DashboardCanvas", component: DashboardCanvas, tags: ["autodocs"], parameters: { layout: "fullscreen" }, args: { widgets: [] } } satisfies Meta<typeof DashboardCanvas>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { widgets: [{ id: "1", title: "Revenue KPI", x: 0, y: 0, w: 2, h: 1 }, { id: "2", title: "Chart", x: 2, y: 0, w: 2, h: 1 }] } };
-export const WithChange: Story = { args: { widgets: [{ id: "1", title: "Users", x: 0, y: 0, w: 2, h: 1 }], onChange: (w) => { void w; } } };
+const meta = {
+  title: "Business/DashboardCanvas",
+  component: DashboardCanvas,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { widgets: [] },
+} satisfies Meta<typeof DashboardCanvas>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">DashboardCanvas</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <DashboardCanvas {...args} />
+      </div>
+    </div>
+  ),
+};

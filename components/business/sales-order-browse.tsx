@@ -2,34 +2,27 @@
 
 import * as React from "react";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
+import { formatCurrency } from "@/lib/format";
 
-import { cn } from "@/lib/utils";
-import { formatCurrency, formatDate } from "@/lib/format";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { CheckIcon, ReceiptIcon, SearchIcon } from "@/components/ui/icons";
+  BrowseDialog,
+  type BrowseColumn,
+} from "@/components/business/browse-dialog";
 
 /**
  * @component SalesOrderBrowse
  * @category business/picker
  * @since 0.7.0
- * @description 销售订单选择弹窗。按订单号/客户筛选并选中。
- * / Sales order browse dialog — filter by order no / customer and pick one.
- * @keywords sales, order, browse, picker, dialog
+ * @description Domain browse adapter over `BrowseDialog` (local `items` mode).
+ * Keeps the historical export name and item shape; UI shell is shared.
+ * / 领域浏览适配器：内部组合 BrowseDialog，保留导出名与 item 形状。
+ * @keywords browse, picker, dialog, sales-order-browse
  * @example
  * <SalesOrderBrowse
  *   open={open}
  *   onOpenChange={setOpen}
  *   onSelect={(item) => console.log(item)}
- *   items={[{ id: "SO20240101", customer: "Acme", amount: 1200, date: "2024-01-01" }]}
+ *   items={[]}
  * />
  */
 
@@ -68,136 +61,77 @@ function SalesOrderBrowse({
   className,
 }: SalesOrderBrowseProps) {
   const { t } = useTranslation("ui");
-  const [query, setQuery] = React.useState("");
-  const [selectedId, setSelectedId] = React.useState<string | null>(null);
 
   const resolvedTitle =
     title ?? t("salesOrderBrowse.title", { defaultValue: "选择销售订单" });
   const resolvedSearch =
     searchPlaceholder ??
-    t("salesOrderBrowse.search", { defaultValue: "搜索订单号/客户" });
+    t("salesOrderBrowse.search", { defaultValue: "搜索销售订单" });
   const resolvedEmpty =
     emptyText ?? t("salesOrderBrowse.empty", { defaultValue: "无匹配订单" });
 
-  const filtered = React.useMemo(() => {
-    if (!query.trim()) return items;
-    const q = query.trim().toLowerCase();
-    return items.filter(
-      (o) =>
-        o.id.toLowerCase().includes(q) ||
-        o.no?.toLowerCase().includes(q) ||
-        o.customer?.toLowerCase().includes(q),
-    );
-  }, [items, query]);
+  const columns = React.useMemo<
+    BrowseColumn<SalesOrderBrowseItem & Record<string, unknown>>[]
+  >(
+    () => [
+      {
+        key: "no",
+        title: t("salesOrderBrowse.colNo", { defaultValue: "单号" }),
+        dataIndex: "no",
+      },
+      {
+        key: "customer",
+        title: t("salesOrderBrowse.colCustomer", { defaultValue: "客户" }),
+        dataIndex: "customer",
+      },
+      {
+        key: "amount",
+        title: t("salesOrderBrowse.colAmount", { defaultValue: "金额" }),
+        dataIndex: "amount",
+        render: (v) => (typeof v === "number" ? formatCurrency(v) : "-"),
+      },
+      {
+        key: "date",
+        title: t("salesOrderBrowse.colDate", { defaultValue: "日期" }),
+        dataIndex: "date",
+      },
+    ],
+    [t],
+  );
 
-  React.useEffect(() => {
-    if (open) {
-      setQuery("");
-      setSelectedId(null);
-    }
-  }, [open]);
-
-  const handleConfirm = () => {
-    if (selectedId == null) return;
-    const chosen = items.find((o) => o.id === selectedId);
-    if (chosen) {
-      onSelect(chosen);
-      onOpenChange(false);
-    }
-  };
+  const handleChange = React.useCallback(
+    (selected: Array<SalesOrderBrowseItem & Record<string, unknown>>) => {
+      if (selected.length === 0) return;
+      // Historical contract: single-select emits the chosen row.
+      onSelect(selected[0]! as SalesOrderBrowseItem);
+    },
+    [onSelect],
+  );
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        data-slot="sales-order-browse"
-        className={cn("sm:max-w-lg", className)}
-      >
-        <DialogHeader>
-          <DialogTitle>{resolvedTitle}</DialogTitle>
-          <DialogDescription>
-            {t("salesOrderBrowse.description", {
-              defaultValue: "从列表中选择销售订单",
-            })}
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="flex items-center gap-2 border-b pb-2">
-          <SearchIcon className="size-4 shrink-0 opacity-50" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={resolvedSearch}
-            aria-label={resolvedSearch}
-            className="h-8 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
-          />
-        </div>
-
-        <ul role="list" className="max-h-72 overflow-y-auto py-1">
-          {filtered.length === 0 && (
-            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
-              {resolvedEmpty}
-            </li>
-          )}
-          {filtered.map((o) => {
-            const isSelected = o.id === selectedId;
-            return (
-              <li key={o.id}>
-                <button
-                  type="button"
-                  disabled={o.disabled}
-                  aria-pressed={isSelected}
-                  onClick={() => setSelectedId(o.id)}
-                  className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
-                    isSelected && "bg-accent/50",
-                    o.disabled && "pointer-events-none opacity-50",
-                  )}
-                >
-                  <ReceiptIcon className="size-4 shrink-0 opacity-50" />
-                  <span className="flex-1 truncate">
-                    {o.no ?? o.id}
-                    {o.customer && (
-                      <span className="text-muted-foreground ml-1 text-xs">
-                        · {o.customer}
-                      </span>
-                    )}
-                  </span>
-                  {o.date && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {formatDate(o.date)}
-                    </span>
-                  )}
-                  {o.amount != null && (
-                    <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
-                      {formatCurrency(o.amount)}
-                    </span>
-                  )}
-                  {isSelected && <CheckIcon className="size-4 shrink-0" />}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <DialogFooter>
-          <Button
-            variant="outline"
-            type="button"
-            onClick={() => onOpenChange(false)}
-          >
-            {t("dialog.closeButton", { defaultValue: "取消" })}
-          </Button>
-          <Button
-            type="button"
-            disabled={selectedId == null}
-            onClick={handleConfirm}
-          >
-            {t("salesOrderBrowse.confirm", { defaultValue: "确定" })}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <BrowseDialog<SalesOrderBrowseItem & Record<string, unknown>>
+      open={open}
+      onOpenChange={onOpenChange}
+      items={items as Array<SalesOrderBrowseItem & Record<string, unknown>>}
+      columns={columns}
+      rowKey={
+        "id" as keyof (SalesOrderBrowseItem & Record<string, unknown>) & string
+      }
+      filterKeys={
+        ["id", "no", "customer"] as (keyof (SalesOrderBrowseItem &
+          Record<string, unknown>) &
+          string)[]
+      }
+      selectionMode={"single"}
+      dataSlot="sales-order-browse"
+      title={resolvedTitle}
+      searchPlaceholder={resolvedSearch}
+      emptyText={resolvedEmpty}
+      pageSize={Math.max(items.length, 10)}
+      searchDebounceMs={0}
+      onChange={handleChange}
+      {...(className !== undefined ? { className } : {})}
+    />
   );
 }
 

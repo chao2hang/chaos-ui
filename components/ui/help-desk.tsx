@@ -1,5 +1,6 @@
 "use client";
 
+// native-select-exception: help desk status control density
 import * as React from "react";
 import {
   TicketIcon,
@@ -72,17 +73,20 @@ const statusConfig: Record<
   open: {
     label: "待处理",
     icon: <AlertCircleIcon className="size-3" />,
-    className: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+    className:
+      "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
   },
   in_progress: {
     label: "处理中",
     icon: <ClockIcon className="size-3" />,
-    className: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+    className:
+      "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
   },
   resolved: {
     label: "已解决",
     icon: <CheckCircle2Icon className="size-3" />,
-    className: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+    className:
+      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
   },
   closed: {
     label: "已关闭",
@@ -128,10 +132,14 @@ function HelpDesk({
   onStatusChange,
   className,
 }: HelpDeskProps) {
-  const [internalTicket, setInternalTicket] = React.useState<string | null>(null);
+  const [internalTicket, setInternalTicket] = React.useState<string | null>(
+    null,
+  );
   const selectedTicketId = controlledTicket ?? internalTicket;
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [statusFilter, setStatusFilter] = React.useState<TicketStatus | "all">("all");
+  const [statusFilter, setStatusFilter] = React.useState<TicketStatus | "all">(
+    "all",
+  );
   const [replyText, setReplyText] = React.useState("");
 
   const selectTicket = (ticket: Ticket) => {
@@ -163,7 +171,7 @@ function HelpDesk({
     <div
       data-slot="help-desk"
       className={cn(
-        "flex h-[500px] overflow-hidden rounded-lg border bg-background",
+        "bg-background flex h-[500px] overflow-hidden rounded-lg border",
         className,
       )}
     >
@@ -176,7 +184,7 @@ function HelpDesk({
             <button
               type="button"
               onClick={onCreateTicket}
-              className="rounded p-1 text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground rounded p-1"
               title="创建工单"
             >
               <PlusIcon className="size-4" />
@@ -187,15 +195,15 @@ function HelpDesk({
         {/* Search + Filter */}
         <div className="border-b p-2">
           <div className="relative mb-2">
-            <SearchIcon className="absolute left-2 top-1/2 size-3 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="text-muted-foreground absolute top-1/2 left-2 size-3 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="搜索工单..."
               className={cn(
-                "h-7 w-full rounded border border-input bg-transparent pl-6 pr-2 text-xs",
-                "outline-none focus-visible:border-ring",
+                "border-input h-7 w-full rounded border bg-transparent pr-2 pl-6 text-xs",
+                "focus-visible:border-ring outline-none",
               )}
             />
           </div>
@@ -214,7 +222,7 @@ function HelpDesk({
               >
                 {s === "all"
                   ? "全部"
-                  : statusConfig[s as TicketStatus]?.label ?? s}
+                  : (statusConfig[s as TicketStatus]?.label ?? s)}
               </button>
             ))}
           </div>
@@ -247,13 +255,20 @@ function HelpDesk({
                     {status.label}
                   </span>
                   {ticket.priority !== "low" && (
-                    <span className={cn("text-[10px]", priorityConfig[ticket.priority].className)}>
+                    <span
+                      className={cn(
+                        "text-[10px]",
+                        priorityConfig[ticket.priority].className,
+                      )}
+                    >
                       {priorityConfig[ticket.priority].label}
                     </span>
                   )}
                 </div>
-                <span className="truncate text-sm font-medium">{ticket.title}</span>
-                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                <span className="truncate text-sm font-medium">
+                  {ticket.title}
+                </span>
+                <div className="text-muted-foreground flex items-center gap-2 text-[10px]">
                   {ticket.assignee && (
                     <span className="flex items-center gap-0.5">
                       <UserIcon className="size-2.5" />
@@ -272,7 +287,7 @@ function HelpDesk({
             );
           })}
           {filteredTickets.length === 0 && (
-            <div className="py-8 text-center text-xs text-muted-foreground">
+            <div className="text-muted-foreground py-8 text-center text-xs">
               暂无工单
             </div>
           )}
@@ -287,8 +302,10 @@ function HelpDesk({
             <div className="shrink-0 border-b px-4 py-3">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
-                  <h2 className="text-lg font-semibold">{selectedTicket.title}</h2>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                  <h2 className="text-lg font-semibold">
+                    {selectedTicket.title}
+                  </h2>
+                  <div className="text-muted-foreground mt-1 flex items-center gap-2 text-xs">
                     <span>{selectedTicket.id}</span>
                     <span>·</span>
                     <span className="flex items-center gap-0.5">
@@ -299,7 +316,6 @@ function HelpDesk({
                     <span>{selectedTicket.createdAt}</span>
                   </div>
                 </div>
-                {/* Status selector */}
                 <select
                   value={selectedTicket.status}
                   onChange={(e) =>
@@ -308,7 +324,7 @@ function HelpDesk({
                       e.target.value as TicketStatus,
                     )
                   }
-                  className="rounded border border-input bg-background px-2 py-1 text-xs"
+                  className="border-input bg-background rounded border px-2 py-1 text-xs"
                 >
                   {Object.keys(statusConfig).map((s) => (
                     <option key={s} value={s}>
@@ -318,7 +334,7 @@ function HelpDesk({
                 </select>
               </div>
               {selectedTicket.description && (
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-2 text-sm">
                   {selectedTicket.description}
                 </p>
               )}
@@ -336,20 +352,25 @@ function HelpDesk({
                         reply.isStaff && "flex-row-reverse",
                       )}
                     >
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium">
+                      <div className="bg-muted flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium">
                         {reply.author[0]}
                       </div>
-                      <div className={cn("max-w-[75%]", reply.isStaff ? "items-end" : "")}>
+                      <div
+                        className={cn(
+                          "max-w-[75%]",
+                          reply.isStaff ? "items-end" : "",
+                        )}
+                      >
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-medium">
                             {reply.author}
                           </span>
                           {reply.isStaff && (
-                            <span className="rounded bg-primary/10 px-1 py-0.5 text-[10px] text-primary">
+                            <span className="bg-primary/10 text-primary rounded px-1 py-0.5 text-[10px]">
                               客服
                             </span>
                           )}
-                          <span className="text-[10px] text-muted-foreground">
+                          <span className="text-muted-foreground text-[10px]">
                             {reply.createdAt}
                           </span>
                         </div>
@@ -368,7 +389,7 @@ function HelpDesk({
                   ))}
                 </div>
               ) : (
-                <div className="flex h-full flex-col items-center justify-center gap-2 text-muted-foreground">
+                <div className="text-muted-foreground flex h-full flex-col items-center justify-center gap-2">
                   <MessageCircleIcon className="size-8" />
                   <p className="text-sm">暂无对话</p>
                 </div>
@@ -384,10 +405,10 @@ function HelpDesk({
                   placeholder="输入回复..."
                   rows={2}
                   className={cn(
-                    "flex-1 rounded-lg border border-input bg-transparent px-3 py-2 text-sm",
-                    "outline-none resize-none",
+                    "border-input flex-1 rounded-lg border bg-transparent px-3 py-2 text-sm",
+                    "resize-none outline-none",
                     "placeholder:text-muted-foreground",
-                    "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                    "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3",
                   )}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
@@ -401,7 +422,7 @@ function HelpDesk({
                   onClick={handleSendReply}
                   disabled={!replyText.trim()}
                   className={cn(
-                    "rounded-lg p-2 text-primary hover:bg-primary/10",
+                    "text-primary hover:bg-primary/10 rounded-lg p-2",
                     "disabled:cursor-not-allowed disabled:opacity-30",
                   )}
                 >
@@ -411,7 +432,7 @@ function HelpDesk({
             </div>
           </>
         ) : (
-          <div className="flex h-full flex-col items-center justify-center gap-2 text-muted-foreground">
+          <div className="text-muted-foreground flex h-full flex-col items-center justify-center gap-2">
             <TicketIcon className="size-12" />
             <p className="text-sm">选择左侧工单查看详情</p>
           </div>
@@ -422,4 +443,10 @@ function HelpDesk({
 }
 
 export { HelpDesk };
-export type { HelpDeskProps, Ticket, TicketStatus, TicketPriority, TicketReply };
+export type {
+  HelpDeskProps,
+  Ticket,
+  TicketStatus,
+  TicketPriority,
+  TicketReply,
+};

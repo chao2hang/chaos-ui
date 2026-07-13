@@ -1,4 +1,10 @@
-import { ProfileHeader, ProfileForm } from "@/components/business/profile";
+import {
+  Avatar,
+  AvatarFallback,
+  Button,
+  Input,
+  Label,
+} from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
 # Profile 个人资料
@@ -9,14 +15,13 @@ import { CodeBlock } from "@/components/code-block";
 
 ## 何时使用
 
-需要个人资料功能时使用本组件。
-
+需要profile时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
 
 ## 代码示例
 
 ### 基础用法
 
-<CodeBlock code={`import { ProfileHeader } from "@/components/business/profile"
+<CodeBlock code={`import { Avatar, AvatarFallback, Button } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
   return <ProfileHeader>Default</ProfileHeader>
@@ -26,19 +31,18 @@ export function Basic() {
 
 ### ProfileHeader
 
-| Prop | Type | Default | 说明 |
-| ---------------- | ----------------------------- | ------------------ | ----------------------------------------------------------- |
-| `className` | `string` | — | 自定义样式类名 |
-| `user`           | `ProfileHeaderUser`           | —                  |                                                             |
-| `stats`          | `Array<T>`                    | —                  |                                                             |
-| `actions`        | `React.ReactNode`             | —                  |                                                             |
-| `onAvatarUpload` | `() => void`                  | —                  |                                                             |
-| `coverColor`     | `string`                      | `var(--brand-200)` | @default "var(--brand-200)"                                 |
-| ...rest | `React.ComponentProps<"div">` | — | 透传 `<div>` 原生属性 |
+| Prop             | Type                          | Default            | 说明                        |
+| ---------------- | ----------------------------- | ------------------ | --------------------------- |
+| `className`      | `string`                      | —                  | 自定义样式类名              |
+| `user`           | `ProfileHeaderUser`           | —                  |                             |
+| `stats`          | `Array<T>`                    | —                  |                             |
+| `actions`        | `React.ReactNode`             | —                  |                             |
+| `onAvatarUpload` | `() => void`                  | —                  |                             |
+| `coverColor`     | `string`                      | `var(--brand-200)` | @default "var(--brand-200)" |
+| ...rest          | `React.ComponentProps<"div">` | —                  | 透传 `<div>` 原生属性       |
 
 ## 注意事项
 
 - **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-profile--docs)。
-
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-profile--docs)。

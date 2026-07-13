@@ -15,6 +15,9 @@ vi.mock("@/components/ui/icons", () => ({
   ArrowRightIcon: (p: Record<string, unknown>) => (
     <svg data-testid="arrow-right" {...p} />
   ),
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
 }));
 
 const entries: AuditChangeEntry[] = [

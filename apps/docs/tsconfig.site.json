@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./@/*"
+      ]
+    }
+  },
+  "files": [
+    "app/layout.tsx",
+    "app/page.tsx",
+    "app/components/page.tsx",
+    "app/docs/page.tsx",
+    "app/docs/[slug]/page.tsx",
+    "mdx-components.tsx",
+    "next-env.d.ts",
+    "@/content/components.meta.ts",
+    "@/lib/docs-nav.ts",
+    "@/lib/guide-content.ts",
+    "@/lib/business-subcategories.ts",
+    "@/lib/utils.ts",
+    "@/lib/i18n/dict.ts",
+    "@/lib/i18n/locale.ts",
+    "@/lib/i18n/get-server-locale.ts",
+    "@/components/site-header.tsx",
+    "@/components/site-footer.tsx",
+    "@/components/docs-theme-provider.tsx",
+    "@/components/docs-sidebar.tsx",
+    "@/components/locale-provider.tsx",
+    "@/components/command-palette.tsx",
+    "@/components/command-palette-host.tsx",
+    "@/components/install-tabs.tsx",
+    "@/components/install-tabs-client.tsx",
+    "@/components/copy-button.tsx",
+    "@/components/code-block.tsx",
+    "@/components/component-explorer.tsx",
+    "@/components/component-card.tsx",
+    "@/components/detail-sidebar.tsx",
+    "@/components/use-component-search.ts",
+    "@/hooks/use-dict.ts",
+    "types/mdx.d.ts"
+  ]
+}

@@ -1,9 +1,3 @@
-import {
-  FeatureGate,
-  FeatureEnabled,
-  FeatureFlag,
-  FeatureFlags,
-} from "@/components/business/feature-gate";
 import { CodeBlock } from "@/components/code-block";
 
 # FeatureGate
@@ -14,36 +8,28 @@ FeatureGate — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a feature gate.
-
+Use FeatureGate when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { FeatureGate, FeatureEnabled, FeatureFlag } from "@/components/business/feature-gate"
+<CodeBlock code={`import { PermissionButton } from "@chaos_team/chaos-ui/business";
 
 export function Basic() {
-  return (
-    <div className="space-y-4">
-  <FeatureGate />
-  <FeatureEnabled />
-  <FeatureFlag />
-    </div>
-  )
+  // docs-only FeatureGate was removed; PermissionButton illustrates gated UI
+  return <PermissionButton permission="order:create">创建订单</PermissionButton>;
 }`} lang="tsx" />
 
 ## API / Props
 
 ### FeatureGate
 
-| Prop | Type | Default | Description |
-| ----------- | ---------------------- | ------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                   | Default | Description                       |
+| ----------- | ---------------------- | ------- | --------------------------------- |
+| `className` | `string`               | —       | Custom CSS class                  |
+| ...rest     | `React.HTMLAttributes` | —       | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

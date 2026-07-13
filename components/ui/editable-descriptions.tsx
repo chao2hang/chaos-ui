@@ -116,6 +116,7 @@ function EditableDescriptions({
 
     switch (item.type) {
       case "select":
+        // native-select-exception: description cell editor density
         return (
           <select
             value={String(value ?? "")}

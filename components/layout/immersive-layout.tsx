@@ -8,12 +8,17 @@ import { MaximizeIcon, MinimizeIcon, XIcon } from "@/components/ui/icons";
  * @component ImmersiveLayout
  * @category layout/fullscreen
  * @since 0.2.0
- * @description Full-screen immersive layout for dashboards/reports, hiding all chrome with optional floating header and exit button / 用于仪表板/报告的全屏沉浸式布局，隐藏所有边框，支持浮动头部和退出按钮
+ * @description Immersive layout for dashboards/reports — fills the **host** (`h-full`),
+ *   not the browser viewport. Floating chrome is `absolute` within the root (not `fixed`),
+ *   so previews and nested hosts stay correct. Pass `className="h-svh"` for true viewport full-screen.
+ *   / 沉浸式布局：默认填满宿主高度；浮动顶栏/退出按钮相对根节点定位，避免文档预览贴到浏览器视口。
  * @keywords immersive, fullscreen, dashboard, report, layout, exit
  * @example
- * <ImmersiveLayout header={<h1>Q3 Report</h1>} onExit={() => navigate("/home")}>
- *   <Report />
- * </ImmersiveLayout>
+ * <div className="h-svh">
+ *   <ImmersiveLayout header={<h1>Q3 Report</h1>} onExit={() => navigate("/home")}>
+ *     <Report />
+ *   </ImmersiveLayout>
+ * </div>
  */
 
 interface ImmersiveLayoutProps extends React.ComponentProps<"div"> {
@@ -79,18 +84,18 @@ function ImmersiveLayout({
       ref={containerRef}
       data-slot="immersive-layout"
       className={cn(
-        "bg-background relative h-dvh w-full overflow-auto",
+        "bg-background relative h-full min-h-0 w-full overflow-auto",
         className,
       )}
       onScroll={handleScroll}
       {...props}
     >
-      {/* Floating header */}
+      {/* Floating header — absolute to host, not viewport-fixed */}
       {header && (
         <div
           data-slot="immersive-layout-header"
           className={cn(
-            "fixed inset-x-0 top-0 z-20 transition-transform duration-300",
+            "absolute inset-x-0 top-0 z-20 transition-transform duration-300",
             headerVisible ? "translate-y-0" : "-translate-y-full",
           )}
         >
@@ -112,12 +117,12 @@ function ImmersiveLayout({
         </div>
       )}
 
-      {/* Exit button */}
+      {/* Exit button — absolute to host */}
       {showExitButton && (
         <button
           type="button"
           onClick={onExit}
-          className="bg-background/80 hover:bg-muted text-foreground fixed top-4 right-4 z-30 rounded-full p-2 shadow-md"
+          className="bg-background/80 hover:bg-muted text-foreground absolute top-4 right-4 z-30 rounded-full p-2 shadow-md"
           aria-label="Exit"
         >
           <XIcon className="size-5" />

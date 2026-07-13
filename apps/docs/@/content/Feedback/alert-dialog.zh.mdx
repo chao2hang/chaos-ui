@@ -9,7 +9,7 @@ import { CodeBlock } from "@/components/code-block";
 
 ## 何时使用
 
-需要警告对话框功能时使用本组件。
+当你需要「警告对话框」相关能力时使用：需要用户确认的危险操作对话框,阻断式,含警告样式。用于过程反馈与结果提示（加载、确认、警告、通知）；避免静默失败。
 
 ## 代码示例
 
@@ -45,4 +45,4 @@ export function Basic() {
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
 - **复合组件**: 包含 8 个子组件(AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription…),使用组合模式按需导入。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](?path=/docs/components-alertdialog--docs)。
+> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-alertdialog--docs)。

@@ -488,9 +488,9 @@ function AddressPicker({
               disabled={disabled}
               data-slot="address-picker"
               className={cn(
-                "border-input bg-background ring-offset-background flex h-9 w-full items-center justify-between gap-2 rounded-md border px-3 text-sm",
+                "border-input dark:bg-input/30 flex h-8 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm",
                 "placeholder:text-muted-foreground",
-                "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:outline-none",
                 disabled && "cursor-not-allowed opacity-50",
                 className,
               )}
@@ -520,9 +520,9 @@ function AddressPicker({
             disabled={disabled}
             data-slot="address-picker"
             className={cn(
-              "border-input bg-background inline-flex h-9 items-center justify-between gap-2 rounded-md border px-3 text-sm",
+              "border-input dark:bg-input/30 inline-flex h-8 items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm",
               "hover:bg-accent hover:text-accent-foreground",
-              "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+              "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:outline-none",
               disabled && "cursor-not-allowed opacity-50",
               className,
             )}

@@ -2,35 +2,27 @@
 
 import * as React from "react";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
-
-import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { CheckIcon, PackageIcon, SearchIcon } from "@/components/ui/icons";
+  BrowseDialog,
+  type BrowseColumn,
+} from "@/components/business/browse-dialog";
 
 /**
  * @component ProductBrowse
  * @category business/picker
  * @since 0.7.0
- * @description 商品选择弹窗。支持单选/多选、关键词与规格筛选。
- * / Product browse dialog with single/multi-select and keyword filter.
- * @keywords product, browse, picker, dialog, multiple
+ * @description Domain browse adapter over `BrowseDialog` (local `items` mode).
+ * Keeps the historical export name and item shape; UI shell is shared.
+ * / 领域浏览适配器：内部组合 BrowseDialog，保留导出名与 item 形状。
+ * @keywords browse, picker, dialog, product-browse
  * @example
  * <ProductBrowse
  *   open={open}
  *   onOpenChange={setOpen}
  *   onSelect={(item) => console.log(item)}
- *   multiple
- *   items={[{ id: "P1", name: "Soy Sauce", spec: "500ml", price: 12.5 }]}
+ *   items={[]}
  * />
  */
 
@@ -52,7 +44,6 @@ interface ProductBrowseItem {
 interface ProductBrowseProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  /** Single-select emits the chosen item; multi-select emits the last toggled item. */
   onSelect: (item: ProductBrowseItem) => void;
   /** Enable multi-select (default false). / 多选 */
   multiple?: boolean;
@@ -75,8 +66,6 @@ function ProductBrowse({
   className,
 }: ProductBrowseProps) {
   const { t } = useTranslation("ui");
-  const [query, setQuery] = React.useState("");
-  const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
   const resolvedTitle =
     title ?? t("productBrowse.title", { defaultValue: "选择商品" });
@@ -86,130 +75,75 @@ function ProductBrowse({
   const resolvedEmpty =
     emptyText ?? t("productBrowse.empty", { defaultValue: "无匹配商品" });
 
-  const filtered = React.useMemo(() => {
-    if (!query.trim()) return items;
-    const q = query.trim().toLowerCase();
-    return items.filter(
-      (p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.id.toLowerCase().includes(q) ||
-        p.sku?.toLowerCase().includes(q) ||
-        p.spec?.toLowerCase().includes(q),
-    );
-  }, [items, query]);
+  const columns = React.useMemo<
+    BrowseColumn<ProductBrowseItem & Record<string, unknown>>[]
+  >(
+    () => [
+      {
+        key: "name",
+        title: t("productBrowse.colName", { defaultValue: "商品" }),
+        dataIndex: "name",
+      },
+      {
+        key: "sku",
+        title: t("productBrowse.colSku", { defaultValue: "SKU" }),
+        dataIndex: "sku",
+      },
+      {
+        key: "spec",
+        title: t("productBrowse.colSpec", { defaultValue: "规格" }),
+        dataIndex: "spec",
+      },
+      {
+        key: "price",
+        title: t("productBrowse.colPrice", { defaultValue: "单价" }),
+        dataIndex: "price",
+        render: (v) => (typeof v === "number" ? formatCurrency(v) : "-"),
+      },
+    ],
+    [t],
+  );
 
-  React.useEffect(() => {
-    if (open) {
-      setQuery("");
-      setSelectedIds([]);
-    }
-  }, [open]);
-
-  const toggle = (item: ProductBrowseItem) => {
-    if (multiple) {
-      setSelectedIds((prev) =>
-        prev.includes(item.id)
-          ? prev.filter((id) => id !== item.id)
-          : [...prev, item.id],
-      );
-    } else {
-      setSelectedIds([item.id]);
-    }
-    onSelect(item);
-  };
+  const handleChange = React.useCallback(
+    (selected: Array<ProductBrowseItem & Record<string, unknown>>) => {
+      if (selected.length === 0) return;
+      // Historical contract: multi emits each selected row; single emits chosen row.
+      if (multiple) {
+        for (const item of selected) onSelect(item as ProductBrowseItem);
+      } else {
+        onSelect(selected[0]! as ProductBrowseItem);
+      }
+    },
+    [onSelect, multiple],
+  );
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        data-slot="product-browse"
-        className={cn("sm:max-w-lg", className)}
-      >
-        <DialogHeader>
-          <DialogTitle>{resolvedTitle}</DialogTitle>
-          <DialogDescription>
-            {t("productBrowse.description", {
-              defaultValue: multiple ? "可多选商品" : "从列表中选择商品",
-            })}
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="flex items-center gap-2 border-b pb-2">
-          <SearchIcon className="size-4 shrink-0 opacity-50" />
-          <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={resolvedSearch}
-            aria-label={resolvedSearch}
-            className="h-8 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
-          />
-        </div>
-
-        <ul role="list" className="max-h-72 overflow-y-auto py-1">
-          {filtered.length === 0 && (
-            <li className="text-muted-foreground px-2 py-6 text-center text-sm">
-              {resolvedEmpty}
-            </li>
-          )}
-          {filtered.map((p) => {
-            const isSelected = selectedIds.includes(p.id);
-            return (
-              <li key={p.id}>
-                <button
-                  type="button"
-                  disabled={p.disabled}
-                  aria-pressed={isSelected}
-                  onClick={() => toggle(p)}
-                  className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-2 py-2 text-left text-sm transition-colors outline-none",
-                    "hover:bg-muted focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
-                    isSelected && "bg-accent/50",
-                    p.disabled && "pointer-events-none opacity-50",
-                  )}
-                >
-                  <PackageIcon className="size-4 shrink-0 opacity-50" />
-                  <span className="flex-1 truncate">
-                    {p.name}
-                    {p.spec && (
-                      <span className="text-muted-foreground ml-1 text-xs">
-                        · {p.spec}
-                      </span>
-                    )}
-                  </span>
-                  {p.unit && (
-                    <span className="text-muted-foreground shrink-0 text-xs">
-                      {p.unit}
-                    </span>
-                  )}
-                  {p.price != null && (
-                    <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
-                      {formatCurrency(p.price)}
-                    </span>
-                  )}
-                  {isSelected && <CheckIcon className="size-4 shrink-0" />}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <DialogFooter>
-          <Button
-            variant="outline"
-            type="button"
-            onClick={() => onOpenChange(false)}
-          >
-            {t("dialog.closeButton", { defaultValue: "取消" })}
-          </Button>
-          <Button
-            type="button"
-            disabled={selectedIds.length === 0}
-            onClick={() => onOpenChange(false)}
-          >
-            {t("productBrowse.confirm", { defaultValue: "确定" })}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <BrowseDialog<ProductBrowseItem & Record<string, unknown>>
+      open={open}
+      onOpenChange={onOpenChange}
+      items={items as Array<ProductBrowseItem & Record<string, unknown>>}
+      columns={columns}
+      rowKey={
+        "id" as keyof (ProductBrowseItem & Record<string, unknown>) & string
+      }
+      filterKeys={
+        ["name", "id", "sku", "spec"] as (keyof (ProductBrowseItem &
+          Record<string, unknown>) &
+          string)[]
+      }
+      selectionMode={multiple ? "multiple" : "single"}
+      dataSlot="product-browse"
+      title={resolvedTitle}
+      description={t("productBrowse.description", {
+        defaultValue: multiple ? "可多选商品" : "从列表中选择商品",
+      })}
+      searchPlaceholder={resolvedSearch}
+      emptyText={resolvedEmpty}
+      pageSize={Math.max(items.length, 10)}
+      searchDebounceMs={0}
+      onChange={handleChange}
+      {...(className !== undefined ? { className } : {})}
+    />
   );
 }
 

@@ -8,6 +8,13 @@ const meta = {
   title: "Layouts/ErrorLayout",
   component: ErrorLayout,
   tags: ["autodocs", "a11y"],
+  decorators: [
+    (Story) => (
+      <div className="h-[70vh] min-h-[420px] overflow-auto">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof ErrorLayout>;
 
 export default meta;

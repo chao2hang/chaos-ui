@@ -99,7 +99,8 @@ export const FullLayout: Story = {
     ),
     children: <ChatConversation messages={messages} />,
     detailPanel: <ChatContextPanel context={context} />,
-    className: "h-screen",
+    // Host height for docs/Storybook; use h-svh at app root for real full-viewport chat.
+    className: "h-[560px]",
   },
 };
 
@@ -109,7 +110,7 @@ export const NoDetailPanel: Story = {
     sidebar: <ChatSidebar conversations={conversations} activeId="2" />,
     header: <ChatHeader title="Merkle tree deep-dive" />,
     children: <ChatConversation messages={messages} />,
-    className: "h-screen",
+    className: "h-[560px]",
   },
 };
 
@@ -118,6 +119,6 @@ export const MainOnly: Story = {
   args: {
     header: <ChatHeader title="New Conversation" />,
     children: <ChatConversation messages={messages} />,
-    className: "h-screen",
+    className: "h-[560px]",
   },
 };

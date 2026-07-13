@@ -1,4 +1,3 @@
-import { DensitySwitcher } from "@/components/business/density-switcher";
 import { CodeBlock } from "@/components/code-block";
 
 # DensitySwitcher
@@ -9,34 +8,32 @@ DensitySwitcher — a business component for ERP / enterprise scenarios.
 
 ## When to Use
 
-Use when you need a density switcher.
-
+Use DensitySwitcher when this capability is required. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
 
 ## Examples
 
 ### Basic Usage
 
-<CodeBlock code={`import { DensitySwitcher } from "@/components/business/density-switcher"
-
-export function Basic() {
+<CodeBlock
+  code={`export function Basic() {
   return <DensitySwitcher />
-}`} lang="tsx" />
+}`}
+  lang="tsx"
+/>
 
 ## API / Props
 
 ### DensitySwitcher
 
-| Prop | Type | Default | Description |
-| ----------- | ----------------------------------------- | --------- | --------------------------------------------------------- |
-| `className` | `string` | — | Custom CSS class |
-| `open` | `boolean` | — | Open state (controlled) |
-| `density`   | `"compact" \| "default" \| "comfortable"` | `default` |                                                           |
-| `onChange` | `() => void` | — | Callback when value changes |
-| `size` | `"sm" \| "default" \| "lg"` | `default` | Component size |
-| ...rest | `React.HTMLAttributes` | — | Inherits standard HTML attributes |
+| Prop        | Type                                      | Default   | Description                       |
+| ----------- | ----------------------------------------- | --------- | --------------------------------- |
+| `className` | `string`                                  | —         | Custom CSS class                  |
+| `open`      | `boolean`                                 | —         | Open state (controlled)           |
+| `density`   | `"compact" \| "default" \| "comfortable"` | `default` |                                   |
+| `onChange`  | `() => void`                              | —         | Callback when value changes       |
+| `size`      | `"sm" \| "default" \| "lg"`               | `default` | Component size                    |
+| ...rest     | `React.HTMLAttributes`                    | —         | Inherits standard HTML attributes |
 
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-
-

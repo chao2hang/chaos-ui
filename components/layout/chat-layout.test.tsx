@@ -18,7 +18,10 @@ describe("ChatLayout", () => {
 
   it("renders messages region role", () => {
     render(
-      <ChatLayout messagesArea={<div>Msg</div>} inputArea={<span>Input</span>} />,
+      <ChatLayout
+        messagesArea={<div>Msg</div>}
+        inputArea={<span>Input</span>}
+      />,
     );
     expect(screen.getByRole("region", { name: "消息输入" })).toBeDefined();
     expect(screen.getByRole("main", { name: "消息区" })).toBeDefined();
@@ -27,5 +30,16 @@ describe("ChatLayout", () => {
   it("renders without sidebar", () => {
     render(<ChatLayout messagesArea={<p>No sidebar body</p>} />);
     expect(screen.getByText("No sidebar body")).toBeDefined();
+  });
+
+  it("fills the host (h-full) instead of the viewport (h-dvh)", () => {
+    const { container } = render(
+      <div style={{ height: 360 }}>
+        <ChatLayout messagesArea={<p>body</p>} />
+      </div>,
+    );
+    const root = container.querySelector('[data-slot="chat-layout"]');
+    expect(root?.classList.contains("h-full")).toBe(true);
+    expect(root?.classList.contains("h-dvh")).toBe(false);
   });
 });

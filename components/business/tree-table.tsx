@@ -27,8 +27,8 @@ import {
   ArrowUpDownIcon,
   ArrowUpIcon,
   ArrowDownIcon,
-  Loader2Icon,
 } from "@/components/ui/icons";
+import { Spinner } from "@/components/ui/spinner";
 
 /**
  * @component TreeTable
@@ -150,7 +150,7 @@ function TreeCheckbox({
       checked={checked}
       onChange={(e) => onChange(e.target.checked)}
       className={cn(
-        "size-4 shrink-0 cursor-pointer rounded border border-input accent-primary",
+        "border-input accent-primary size-4 shrink-0 cursor-pointer rounded border",
         className,
       )}
     />
@@ -176,12 +176,16 @@ function flattenTree<T extends Record<string, unknown>>(
   const result: FlatRow<T>[] = [];
 
   for (const node of tree) {
-    const key = (node as Record<string, unknown>)[rowKeyField] as string | number;
-    const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+    const key = (node as Record<string, unknown>)[rowKeyField] as
+      string | number;
+    const children = (node as Record<string, unknown>)[childrenField] as
+      T[] | undefined;
     const hasChildren = Array.isArray(children) && children.length > 0;
     const isExpanded = expanded.has(key);
     const childKeys = hasChildren
-      ? children.map((c) => (c as Record<string, unknown>)[rowKeyField] as string | number)
+      ? children.map(
+          (c) => (c as Record<string, unknown>)[rowKeyField] as string | number,
+        )
       : [];
 
     result.push({
@@ -197,10 +201,14 @@ function flattenTree<T extends Record<string, unknown>>(
 
     if (hasChildren && isExpanded) {
       result.push(
-        ...flattenTree(children, rowKeyField, childrenField, expanded, depth + 1, [
-          ...ancestors,
-          key,
-        ]),
+        ...flattenTree(
+          children,
+          rowKeyField,
+          childrenField,
+          expanded,
+          depth + 1,
+          [...ancestors, key],
+        ),
       );
     }
   }
@@ -214,12 +222,14 @@ function getAllDescendantKeys<T extends Record<string, unknown>>(
   rowKeyField: string,
   childrenField: string,
 ): (string | number)[] {
-  const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+  const children = (node as Record<string, unknown>)[childrenField] as
+    T[] | undefined;
   if (!Array.isArray(children) || children.length === 0) return [];
 
   const keys: (string | number)[] = [];
   for (const child of children) {
-    const childKey = (child as Record<string, unknown>)[rowKeyField] as string | number;
+    const childKey = (child as Record<string, unknown>)[rowKeyField] as
+      string | number;
     keys.push(childKey);
     keys.push(...getAllDescendantKeys(child, rowKeyField, childrenField));
   }
@@ -233,7 +243,8 @@ function countVisibleDescendants<T extends Record<string, unknown>>(
   childrenField: string,
   expanded: Set<string | number>,
 ): number {
-  const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+  const children = (node as Record<string, unknown>)[childrenField] as
+    T[] | undefined;
   if (!Array.isArray(children) || children.length === 0) return 0;
 
   const key = (node as Record<string, unknown>)[rowKeyField] as string | number;
@@ -241,7 +252,12 @@ function countVisibleDescendants<T extends Record<string, unknown>>(
 
   let count = children.length;
   for (const child of children) {
-    count += countVisibleDescendants(child, rowKeyField, childrenField, expanded);
+    count += countVisibleDescendants(
+      child,
+      rowKeyField,
+      childrenField,
+      expanded,
+    );
   }
   return count;
 }
@@ -254,9 +270,11 @@ function findNodeByKey<T extends Record<string, unknown>>(
   childrenField: string,
 ): T | undefined {
   for (const node of tree) {
-    const nodeKey = (node as Record<string, unknown>)[rowKeyField] as string | number;
+    const nodeKey = (node as Record<string, unknown>)[rowKeyField] as
+      string | number;
     if (nodeKey === key) return node;
-    const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+    const children = (node as Record<string, unknown>)[childrenField] as
+      T[] | undefined;
     if (Array.isArray(children) && children.length > 0) {
       const found = findNodeByKey(children, key, rowKeyField, childrenField);
       if (found) return found;
@@ -274,11 +292,13 @@ function replaceNodeChildren<T extends Record<string, unknown>>(
   childrenField: string,
 ): T[] {
   return tree.map((node) => {
-    const nodeKey = (node as Record<string, unknown>)[rowKeyField] as string | number;
+    const nodeKey = (node as Record<string, unknown>)[rowKeyField] as
+      string | number;
     if (nodeKey === targetKey) {
       return { ...node, [childrenField]: newChildren } as T;
     }
-    const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+    const children = (node as Record<string, unknown>)[childrenField] as
+      T[] | undefined;
     if (Array.isArray(children) && children.length > 0) {
       return {
         ...node,
@@ -318,7 +338,8 @@ function sortTree<T extends Record<string, unknown>>(
   });
 
   return sorted.map((node) => {
-    const children = (node as Record<string, unknown>)[childrenField] as T[] | undefined;
+    const children = (node as Record<string, unknown>)[childrenField] as
+      T[] | undefined;
     if (Array.isArray(children) && children.length > 0) {
       return {
         ...node,
@@ -372,9 +393,9 @@ function TreeTable<T extends Record<string, unknown>>({
   }, [tree]);
 
   /* ---- expanded state ---- */
-  const [internalExpanded, setInternalExpanded] = React.useState<Set<string | number>>(
-    () => new Set(defaultExpandedKeys ?? []),
-  );
+  const [internalExpanded, setInternalExpanded] = React.useState<
+    Set<string | number>
+  >(() => new Set(defaultExpandedKeys ?? []));
   const expandedSet = React.useMemo(() => {
     if (controlledExpandedKeys) return new Set(controlledExpandedKeys);
     return internalExpanded;
@@ -391,7 +412,9 @@ function TreeTable<T extends Record<string, unknown>>({
   );
 
   /* ---- loading keys for lazy-load ---- */
-  const [loadingKeys, setLoadingKeys] = React.useState<Set<string | number>>(new Set());
+  const [loadingKeys, setLoadingKeys] = React.useState<Set<string | number>>(
+    new Set(),
+  );
   const loadedKeysRef = React.useRef<Set<string | number>>(new Set());
 
   /* ---- sort state (manual -- we sort the tree ourselves) ---- */
@@ -421,17 +444,30 @@ function TreeTable<T extends Record<string, unknown>>({
     if (selectable !== "multiple") return null;
     return flatRows.map((fr) => {
       const node = findNodeByKey(sortedTree, fr.key, rowKey, childrenKey);
-      const allDescendants = node ? getAllDescendantKeys(node, rowKey, childrenKey) : [];
+      const allDescendants = node
+        ? getAllDescendantKeys(node, rowKey, childrenKey)
+        : [];
       const visibleCount = node
         ? countVisibleDescendants(node, rowKey, childrenKey, expandedSet)
         : 0;
-      const checkedDescendantCount = allDescendants.filter((k) => selectedSet.has(k)).length;
-      const isAllChecked = visibleCount > 0 && checkedDescendantCount === visibleCount;
+      const checkedDescendantCount = allDescendants.filter((k) =>
+        selectedSet.has(k),
+      ).length;
+      const isAllChecked =
+        visibleCount > 0 && checkedDescendantCount === visibleCount;
       const isIndeterminate =
         checkedDescendantCount > 0 && checkedDescendantCount < visibleCount;
       return { ...fr, allDescendants, isAllChecked, isIndeterminate };
     });
-  }, [flatRows, selectable, selectedSet, sortedTree, rowKey, childrenKey, expandedSet]);
+  }, [
+    flatRows,
+    selectable,
+    selectedSet,
+    sortedTree,
+    rowKey,
+    childrenKey,
+    expandedSet,
+  ]);
 
   /* ---- tanstack table (header rendering + sort UI) ---- */
   const tanstackColumns = React.useMemo<TanstackColumnDef<T, unknown>[]>(
@@ -477,10 +513,10 @@ function TreeTable<T extends Record<string, unknown>>({
     async (key: string | number, rowData: T) => {
       const isLazy = !!onExpandRow;
       const children = (rowData as Record<string, unknown>)[childrenKey] as
-        | T[]
-        | undefined;
+        T[] | undefined;
       const hasNoChildren = !Array.isArray(children) || children.length === 0;
-      const needsLoad = isLazy && hasNoChildren && !loadedKeysRef.current.has(key);
+      const needsLoad =
+        isLazy && hasNoChildren && !loadedKeysRef.current.has(key);
 
       if (needsLoad && onExpandRow) {
         setLoadingKeys((prev) => new Set(prev).add(key));
@@ -526,7 +562,9 @@ function TreeTable<T extends Record<string, unknown>>({
 
       // Multiple selection with parent-child linkage
       const node = findNodeByKey(sortedTree, key, rowKey, childrenKey);
-      const allDescendants = node ? getAllDescendantKeys(node, rowKey, childrenKey) : [];
+      const allDescendants = node
+        ? getAllDescendantKeys(node, rowKey, childrenKey)
+        : [];
       const isCurrentlyChecked = selectedSet.has(key);
 
       if (isCurrentlyChecked) {
@@ -542,34 +580,43 @@ function TreeTable<T extends Record<string, unknown>>({
         onSelectionChange?.(Array.from(next));
       }
     },
-    [selectable, selectedSet, onSelectionChange, sortedTree, rowKey, childrenKey],
+    [
+      selectable,
+      selectedSet,
+      onSelectionChange,
+      sortedTree,
+      rowKey,
+      childrenKey,
+    ],
   );
 
   /* ---- header sort click ---- */
-  const handleHeaderSortClick = React.useCallback(
-    (colKey: string) => {
-      setSorting((prev) => {
-        const current = prev.find((s) => s.id === colKey);
-        if (!current) return [{ id: colKey, desc: false }];
-        if (!current.desc) return [{ id: colKey, desc: true }];
-        return [];
-      });
-    },
-    [],
-  );
+  const handleHeaderSortClick = React.useCallback((colKey: string) => {
+    setSorting((prev) => {
+      const current = prev.find((s) => s.id === colKey);
+      if (!current) return [{ id: colKey, desc: false }];
+      if (!current.desc) return [{ id: colKey, desc: true }];
+      return [];
+    });
+  }, []);
 
   /* ---- render ---- */
   return (
     <div
       data-slot="tree-table"
-      className={cn("overflow-x-auto rounded-lg border border-border", className)}
+      className={cn(
+        "border-border overflow-x-auto rounded-lg border",
+        className,
+      )}
     >
       <Table>
         {caption && <TableCaption>{caption}</TableCaption>}
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className="bg-muted/30">
-              {hasSelection && <TableHead className={cn("w-10", sizePadding)} />}
+              {hasSelection && (
+                <TableHead className={cn("w-10", sizePadding)} />
+              )}
               {headerGroup.headers.map((header) => {
                 const col = columns.find((c) => c.key === header.id);
                 const canSort = header.column.getCanSort();
@@ -588,7 +635,9 @@ function TreeTable<T extends Record<string, unknown>>({
                     )}
                     style={col?.width ? { width: col.width } : undefined}
                     onClick={
-                      canSort ? () => handleHeaderSortClick(header.id) : undefined
+                      canSort
+                        ? () => handleHeaderSortClick(header.id)
+                        : undefined
                     }
                   >
                     <span className="flex items-center gap-1">
@@ -634,7 +683,7 @@ function TreeTable<T extends Record<string, unknown>>({
             <TableRow>
               <TableCell
                 colSpan={totalColumns}
-                className="py-12 text-center text-muted-foreground"
+                className="text-muted-foreground py-12 text-center"
               >
                 {emptyText}
               </TableCell>
@@ -646,14 +695,13 @@ function TreeTable<T extends Record<string, unknown>>({
               const isSelected = selectedSet.has(fr.key);
 
               // Check state for multiple selection
-              const checkInfo =
-                flatRowsWithCheck
-                  ? (flatRowsWithCheck[idx] as FlatRow<T> & {
-                      allDescendants: (string | number)[];
-                      isAllChecked: boolean;
-                      isIndeterminate: boolean;
-                    })
-                  : null;
+              const checkInfo = flatRowsWithCheck
+                ? (flatRowsWithCheck[idx] as FlatRow<T> & {
+                    allDescendants: (string | number)[];
+                    isAllChecked: boolean;
+                    isIndeterminate: boolean;
+                  })
+                : null;
 
               return (
                 <TableRow
@@ -681,7 +729,7 @@ function TreeTable<T extends Record<string, unknown>>({
                           data-slot="tree-table-radio"
                           checked={isSelected}
                           onChange={() => handleSelect(fr.key, fr.row)}
-                          className="size-4 shrink-0 cursor-pointer accent-primary"
+                          className="accent-primary size-4 shrink-0 cursor-pointer"
                         />
                       )}
                     </TableCell>
@@ -691,11 +739,7 @@ function TreeTable<T extends Record<string, unknown>>({
                   {columns.map((col, colIdx) => {
                     const value = (fr.row as Record<string, unknown>)[col.key];
                     const cellContent = col.render
-                      ? col.render(
-                          value as T[keyof T],
-                          fr.row,
-                          idx,
-                        )
+                      ? col.render(value as T[keyof T], fr.row, idx)
                       : ((value as React.ReactNode) ?? "—");
 
                     return (
@@ -720,21 +764,24 @@ function TreeTable<T extends Record<string, unknown>>({
                               className="inline-flex shrink-0"
                             />
                             {(fr.hasChildren ||
-                              (!!onExpandRow &&
-                                !fr.hasChildren)) && (
+                              (!!onExpandRow && !fr.hasChildren)) && (
                               <button
                                 type="button"
                                 data-slot="tree-table-expand"
                                 onClick={() =>
                                   handleToggleExpand(fr.key, fr.row)
                                 }
-                                className="inline-flex size-5 shrink-0 items-center justify-center rounded hover:bg-muted"
+                                className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
                                 aria-label={
                                   fr.isExpanded ? "Collapse" : "Expand"
                                 }
                               >
                                 {isLoading ? (
-                                  <Loader2Icon className="size-4 animate-spin" />
+                                  <Spinner
+                                    size="sm"
+                                    color="muted"
+                                    label="Loading"
+                                  />
                                 ) : fr.isExpanded ? (
                                   <ChevronDownIcon className="size-4" />
                                 ) : (
@@ -742,10 +789,9 @@ function TreeTable<T extends Record<string, unknown>>({
                                 )}
                               </button>
                             )}
-                            {!fr.hasChildren &&
-                              !onExpandRow && (
-                                <span className="inline-flex size-5 shrink-0" />
-                              )}
+                            {!fr.hasChildren && !onExpandRow && (
+                              <span className="inline-flex size-5 shrink-0" />
+                            )}
                             <span className="min-w-0">{cellContent}</span>
                           </span>
                         ) : (

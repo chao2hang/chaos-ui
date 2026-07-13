@@ -8,13 +8,16 @@ import { cn } from "@/lib/utils";
  * @category layout
  * @since 0.7.0
  * @description 对话式布局 — 左侧边栏（窄屏隐藏）、主消息区（可滚动）、底部输入区。
+ *   根节点默认 `h-full`（填满宿主）；全屏页请传 `className="h-svh"` 或给父级定高。
  * @param sidebar 左侧边栏节点（如会话列表）。
  * @param messagesArea 主消息区节点。
  * @param inputArea 底部输入区节点。
- * @param className 根元素附加类名。
+ * @param className 根元素附加类名（可覆盖高度）。
  * @example
  * ```tsx
- * <ChatLayout sidebar={<ConvList />} messagesArea={<Messages />} inputArea={<Composer />} />
+ * <div className="h-[480px]">
+ *   <ChatLayout sidebar={<ConvList />} messagesArea={<Messages />} inputArea={<Composer />} />
+ * </div>
  * ```
  */
 interface ChatLayoutProps {
@@ -35,7 +38,7 @@ function ChatLayout({
   return (
     <div
       data-slot="chat-layout"
-      className={cn("flex h-dvh w-full overflow-hidden", className)}
+      className={cn("flex h-full min-h-0 w-full overflow-hidden", className)}
     >
       {hasSidebar ? (
         <aside
@@ -46,16 +49,17 @@ function ChatLayout({
         </aside>
       ) : null}
       <div className="flex min-w-0 flex-1 flex-col">
-        <main
-          className="min-h-0 flex-1 overflow-y-auto"
-          aria-label="消息区"
-        >
+        <main className="min-h-0 flex-1 overflow-y-auto" aria-label="消息区">
           {messagesArea}
         </main>
         {inputArea !== undefined &&
         inputArea !== null &&
         inputArea !== false ? (
-          <div className="shrink-0 border-t" role="region" aria-label="消息输入">
+          <div
+            className="shrink-0 border-t"
+            role="region"
+            aria-label="消息输入"
+          >
             {inputArea}
           </div>
         ) : null}

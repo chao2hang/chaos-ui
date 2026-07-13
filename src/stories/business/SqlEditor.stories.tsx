@@ -1,7 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SqlEditor } from "@/components/business/sql-editor";
 
-const meta = { title: "Business/Forms/SqlEditor", component: SqlEditor, tags: ["autodocs"], parameters: { layout: "padded" }, args: { value: "" } } satisfies Meta<typeof SqlEditor>;
-export default meta; type Story = StoryObj<typeof meta>;
-export const Default: Story = { args: { value: "SELECT * FROM users WHERE active = 1", placeholder: "Write SQL..." } };
-export const ReadOnly: Story = { args: { value: "SELECT id, name FROM orders", readOnly: true } };
+const meta = {
+  title: "Business/SqlEditor",
+  component: SqlEditor,
+  tags: ["autodocs"],
+  parameters: { layout: "padded" },
+  args: { value: "" },
+} satisfies Meta<typeof SqlEditor>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="bg-card max-w-3xl space-y-3 rounded-xl border p-4 shadow-xs">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">SqlEditor</p>
+          <p className="text-muted-foreground text-xs">业务场景演示</p>
+        </div>
+        <span className="bg-muted text-muted-foreground rounded px-2 py-0.5 text-[11px]">
+          Live
+        </span>
+      </div>
+      <div className="rounded-lg border border-dashed p-3">
+        <SqlEditor {...args} />
+      </div>
+    </div>
+  ),
+};

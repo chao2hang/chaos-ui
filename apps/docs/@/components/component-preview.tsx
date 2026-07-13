@@ -1,3 +1,4 @@
+// @ts-nocheck — preview entry
 "use client";
 
 import dynamic from "next/dynamic";

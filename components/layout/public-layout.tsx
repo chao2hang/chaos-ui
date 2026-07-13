@@ -33,7 +33,7 @@ export function PublicLayout({
   return (
     <div
       data-slot="public-layout"
-      className={cn("bg-background flex min-h-screen flex-col", className)}
+      className={cn("bg-background flex h-full min-h-0 flex-col", className)}
       {...props}
     >
       <header className="bg-background/95 sticky top-0 z-30 border-b backdrop-blur">

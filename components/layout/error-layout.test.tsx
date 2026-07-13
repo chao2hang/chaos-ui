@@ -20,11 +20,17 @@ describe("error-layout", () => {
       </ErrorLayout>,
     );
     expect(screen.getByText("Page Not Found")).toBeDefined();
-    expect(screen.getByText("The page you are looking for does not exist.")).toBeDefined();
+    expect(
+      screen.getByText("The page you are looking for does not exist."),
+    ).toBeDefined();
   });
 
   it("applies data-slot attribute on the root element", () => {
-    const { container } = render(<ErrorLayout><span>boom</span></ErrorLayout>);
+    const { container } = render(
+      <ErrorLayout>
+        <span>boom</span>
+      </ErrorLayout>,
+    );
     const root = container.querySelector('[data-slot="error-layout"]');
     expect(root).not.toBeNull();
     expect(root?.tagName).toBe("DIV");
@@ -62,7 +68,8 @@ describe("error-layout", () => {
   it("applies default layout classes for centering and background", () => {
     const { container } = render(<ErrorLayout />);
     const root = container.querySelector('[data-slot="error-layout"]');
-    expect(root?.classList.contains("min-h-screen")).toBe(true);
+    expect(root?.classList.contains("h-full")).toBe(true);
+    expect(root?.classList.contains("min-h-screen")).toBe(false);
     expect(root?.classList.contains("flex")).toBe(true);
     expect(root?.classList.contains("items-center")).toBe(true);
     expect(root?.classList.contains("justify-center")).toBe(true);

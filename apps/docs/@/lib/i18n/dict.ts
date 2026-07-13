@@ -14,14 +14,53 @@ import { type Locale } from "@/lib/i18n/locale";
 
 export interface DictShape {
   header: {
-    navInstall: string;
-    navFeatures: string;
+    navDocs: string;
     navComponents: string;
+    navExamples: string;
     toggleToEn: string;
     toggleToZh: string;
     langLabelEn: string;
     langLabelZh: string;
     themeToggle: string;
+  };
+  docs: {
+    navLabel: string;
+    browseComponents: string;
+    indexTitle: string;
+  };
+  examples: {
+    navLabel: string;
+    overviewTitle: string;
+    overviewDesc: string;
+    adminCardTitle: string;
+    adminCardDesc: string;
+    publicCardTitle: string;
+    publicCardDesc: string;
+    enterTemplate: string;
+    relatedComponents: string;
+    keyCode: string;
+    fullscreen: string;
+    exitFullscreen: string;
+    reset: string;
+    breadcrumbRoot: string;
+    adminTitle: string;
+    adminDesc: string;
+    publicTitle: string;
+    publicDesc: string;
+    sceneLogin: string;
+    sceneDashboard: string;
+    sceneList: string;
+    sceneDetail: string;
+    sceneHome: string;
+    sceneArticle: string;
+    sceneAuth: string;
+    sceneLoginDesc: string;
+    sceneDashboardDesc: string;
+    sceneListDesc: string;
+    sceneDetailDesc: string;
+    sceneHomeDesc: string;
+    sceneArticleDesc: string;
+    sceneAuthDesc: string;
   };
   home: {
     heroBadge: string;
@@ -66,6 +105,15 @@ export interface DictShape {
     noMatchTitleEn: string;
     clearSearch: string;
     sectionCount: string;
+    viewList: string;
+    viewGrid: string;
+    filterAll: string;
+    filterFavorites: string;
+    filterRecent: string;
+    filterNew: string;
+    allCategories: string;
+    showAll: string;
+    showFewer: string;
   };
   detail: {
     breadcrumbRoot: string;
@@ -97,14 +145,54 @@ export interface DictShape {
 
 const zh: DictShape = {
   header: {
-    navInstall: "安装",
-    navFeatures: "特性",
+    navDocs: "文档",
     navComponents: "组件",
+    navExamples: "示例",
     toggleToEn: "Switch to English",
     toggleToZh: "切换到中文",
     langLabelEn: "EN",
     langLabelZh: "中文",
     themeToggle: "切换主题",
+  },
+  docs: {
+    navLabel: "指南",
+    browseComponents: "浏览全部组件",
+    indexTitle: "文档",
+  },
+  examples: {
+    navLabel: "示例",
+    overviewTitle: "示例模板",
+    overviewDesc:
+      "可运行的页面模板，展示 Chaos UI 在后台与前台场景中的组合用法。",
+    adminCardTitle: "后台管理",
+    adminCardDesc: "登录、仪表盘、列表与详情等后台常见页面模板。",
+    publicCardTitle: "公开站点",
+    publicCardDesc: "首页、文章与认证等面向访客的页面模板。",
+    enterTemplate: "进入模板",
+    relatedComponents: "相关组件",
+    keyCode: "关键代码",
+    fullscreen: "全屏",
+    exitFullscreen: "退出全屏",
+    reset: "重置",
+    breadcrumbRoot: "示例",
+    adminTitle: "后台管理模板",
+    adminDesc: "企业后台常见场景：登录、仪表盘、数据列表与详情。",
+    publicTitle: "公开站点模板",
+    publicDesc: "面向访客的站点场景：首页、文章阅读与认证。",
+    sceneLogin: "登录",
+    sceneDashboard: "仪表盘",
+    sceneList: "列表",
+    sceneDetail: "详情",
+    sceneHome: "首页",
+    sceneArticle: "文章",
+    sceneAuth: "认证",
+    sceneLoginDesc: "账号密码登录表单与品牌区布局。",
+    sceneDashboardDesc: "统计卡片、图表占位与快捷操作。",
+    sceneListDesc: "筛选、工具栏与表格的列表页（内存增删）。",
+    sceneDetailDesc: "详情信息区与操作栏。",
+    sceneHomeDesc: "营销首页：英雄区、特性与页脚。",
+    sceneArticleDesc: "文章阅读页：标题、正文与目录。",
+    sceneAuthDesc: "注册 / 登录切换的认证页面。",
   },
   home: {
     heroBadge: "企业级 React 组件库",
@@ -113,9 +201,9 @@ const zh: DictShape = {
     heroSubtitleEn:
       "A production-grade React component library for modern enterprise applications.",
     heroParagraph:
-      "面向 ERP & 业务系统的企业级 React 19 组件库。148+ 组件、19 Hooks、5 工具模块，基于 Tailwind CSS 4 和 shadcn/ui 构建。",
+      "面向 ERP & 业务系统的企业级 React 19 组件库。完整组件目录、Hooks 与工具库，基于 Tailwind CSS 4 与 @base-ui/react 构建。",
     heroParagraphEn:
-      "Enterprise React 19 component library for ERP and business systems. 148+ components, 19 hooks, 5 utility modules — built on Tailwind CSS 4 and shadcn/ui.",
+      "Enterprise React 19 component library for ERP and business systems — full component catalog, hooks, and utilities on Tailwind CSS 4 and @base-ui/react.",
     ctaQuickStart: "快速开始",
     ctaBrowse: "浏览组件",
     statsHeading: "三步上手",
@@ -152,13 +240,22 @@ const zh: DictShape = {
     pageDescEn:
       "Enterprise React components from Chaos UI — covering general, layout, form, data display, feedback and business scenarios.",
     searchLabel: "搜索组件",
-    searchPlaceholder: "搜索 name / nameZh / 描述 / 标签",
+    searchPlaceholder: "搜索名称 / 中文 / slug，多词空格分隔",
     resultHit: "命中",
     resultHitEn: "of",
     noMatchTitle: "未找到匹配的组件",
     noMatchTitleEn: "No matching components",
     clearSearch: "清空搜索",
     sectionCount: "个组件",
+    viewList: "列表",
+    viewGrid: "卡片",
+    filterAll: "全部",
+    filterFavorites: "收藏",
+    filterRecent: "最近",
+    filterNew: "新增",
+    allCategories: "全部分类",
+    showAll: "展开全部",
+    showFewer: "收起",
   },
   detail: {
     breadcrumbRoot: "组件总览",
@@ -178,7 +275,7 @@ const zh: DictShape = {
     toggleLabel: "切换侧边栏",
   },
   palette: {
-    searchPlaceholder: "搜索组件…",
+    searchPlaceholder: "搜索组件或文档…",
     noResults: "无匹配结果",
     hint: "↑↓ 导航  ↵ 跳转  Esc 关闭",
   },
@@ -190,14 +287,57 @@ const zh: DictShape = {
 
 const en: DictShape = {
   header: {
-    navInstall: "Install",
-    navFeatures: "Features",
+    navDocs: "Docs",
     navComponents: "Components",
+    navExamples: "Examples",
     toggleToEn: "Switch to English",
     toggleToZh: "Switch to Chinese",
     langLabelEn: "EN",
     langLabelZh: "中文",
     themeToggle: "Toggle theme",
+  },
+  docs: {
+    navLabel: "Guides",
+    browseComponents: "Browse all components",
+    indexTitle: "Documentation",
+  },
+  examples: {
+    navLabel: "Examples",
+    overviewTitle: "Example templates",
+    overviewDesc:
+      "Runnable page templates showing how Chaos UI composes for admin and public surfaces.",
+    adminCardTitle: "Admin",
+    adminCardDesc:
+      "Common back-office templates: login, dashboard, list, and detail.",
+    publicCardTitle: "Public site",
+    publicCardDesc:
+      "Visitor-facing templates: home, article, and authentication.",
+    enterTemplate: "Open template",
+    relatedComponents: "Related components",
+    keyCode: "Key code",
+    fullscreen: "Fullscreen",
+    exitFullscreen: "Exit fullscreen",
+    reset: "Reset",
+    breadcrumbRoot: "Examples",
+    adminTitle: "Admin templates",
+    adminDesc:
+      "Enterprise back-office scenes: login, dashboard, data list, and detail.",
+    publicTitle: "Public site templates",
+    publicDesc: "Visitor-facing scenes: home, article reading, and auth.",
+    sceneLogin: "Login",
+    sceneDashboard: "Dashboard",
+    sceneList: "List",
+    sceneDetail: "Detail",
+    sceneHome: "Home",
+    sceneArticle: "Article",
+    sceneAuth: "Auth",
+    sceneLoginDesc: "Email/password login form with brand panel layout.",
+    sceneDashboardDesc: "Stat cards, chart placeholders, and quick actions.",
+    sceneListDesc: "Filterable table list with in-memory create/delete.",
+    sceneDetailDesc: "Detail info panel with action bar.",
+    sceneHomeDesc: "Marketing home: hero, features, and footer.",
+    sceneArticleDesc: "Article reading page with title, body, and TOC.",
+    sceneAuthDesc: "Auth page with sign-in / sign-up toggle.",
   },
   home: {
     heroBadge: "Enterprise React Component Library",
@@ -246,13 +386,22 @@ const en: DictShape = {
     pageDescEn:
       "Enterprise React components from Chaos UI — covering general, layout, form, data display, feedback and business scenarios.",
     searchLabel: "Search components",
-    searchPlaceholder: "Search name / nameZh / description / tags",
+    searchPlaceholder: "Search name / Chinese / slug (space = AND)",
     resultHit: "of",
     resultHitEn: "of",
     noMatchTitle: "No matching components",
     noMatchTitleEn: "No matching components",
     clearSearch: "Clear",
     sectionCount: "components",
+    viewList: "List",
+    viewGrid: "Grid",
+    filterAll: "All",
+    filterFavorites: "Favorites",
+    filterRecent: "Recent",
+    filterNew: "New",
+    allCategories: "All categories",
+    showAll: "Show all",
+    showFewer: "Show fewer",
   },
   detail: {
     breadcrumbRoot: "Components Overview",
@@ -273,7 +422,7 @@ const en: DictShape = {
     toggleLabel: "Toggle sidebar",
   },
   palette: {
-    searchPlaceholder: "Search components…",
+    searchPlaceholder: "Search components or docs…",
     noResults: "No results",
     hint: "↑↓ navigate  ↵ open  Esc close",
   },

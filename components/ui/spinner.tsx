@@ -59,11 +59,15 @@ function Spinner({
   label = "Loading",
   ...props
 }: SpinnerProps) {
+  const isDecorative =
+    props["aria-hidden"] === true || props["aria-hidden"] === "true";
+  const a11yProps = isDecorative
+    ? { "aria-hidden": true as const }
+    : { role: "status" as const, "aria-label": label };
+
   if (variant === "dots") {
     return (
       <span
-        role="status"
-        aria-label={label}
         data-slot="spinner"
         data-variant="dots"
         className={cn(
@@ -71,6 +75,7 @@ function Spinner({
           colorMap[color],
           className,
         )}
+        {...a11yProps}
         {...props}
       >
         {[0, 1, 2].map((i) => (
@@ -83,7 +88,7 @@ function Spinner({
             style={{ animationDelay: `${i * 150}ms`, animationDuration: "1s" }}
           />
         ))}
-        <span className="sr-only">{label}</span>
+        {!isDecorative && <span className="sr-only">{label}</span>}
       </span>
     );
   }
@@ -91,8 +96,6 @@ function Spinner({
   if (variant === "bars") {
     return (
       <span
-        role="status"
-        aria-label={label}
         data-slot="spinner"
         data-variant="bars"
         className={cn(
@@ -100,6 +103,7 @@ function Spinner({
           colorMap[color],
           className,
         )}
+        {...a11yProps}
         {...props}
       >
         {[0, 1, 2, 3].map((i) => (
@@ -114,15 +118,13 @@ function Spinner({
             }}
           />
         ))}
-        <span className="sr-only">{label}</span>
+        {!isDecorative && <span className="sr-only">{label}</span>}
       </span>
     );
   }
 
   return (
     <span
-      role="status"
-      aria-label={label}
       data-slot="spinner"
       data-variant="circle"
       className={cn(
@@ -132,9 +134,10 @@ function Spinner({
         colorMap[color],
         className,
       )}
+      {...a11yProps}
       {...props}
     >
-      <span className="sr-only">{label}</span>
+      {!isDecorative && <span className="sr-only">{label}</span>}
     </span>
   );
 }

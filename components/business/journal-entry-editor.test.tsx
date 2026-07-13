@@ -14,6 +14,9 @@ vi.mock("@/components/ui/icons", () => ({
   AlertCircleIcon: (p: Record<string, unknown>) => (
     <svg data-testid="alert" {...p} />
   ),
+  ChevronDownIcon: (p: Record<string, unknown>) => (
+    <svg data-testid="chevron-down" {...p} />
+  ),
 }));
 
 const accounts: AccountOption[] = [

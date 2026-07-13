@@ -1,77 +1,48 @@
-import { Grid } from "@chaos_team/chaos-ui/ui";
+import { Row, Col } from "@chaos_team/chaos-ui/ui";
 import { CodeBlock } from "@/components/code-block";
 
-# Grid
+# Grid (Row / Col)
 
-> Layout primitives for structuring pages.
+> Layout · 24-column grid system
 
-Grid — a layout primitives for structuring pages. for structuring page regions.
+The package exports **`Row` + `Col`** (there is no standalone `<Grid />`). Source: `components/ui/grid.tsx`.
 
-## When to Use
+## When to use
 
-Use when you need a grid.
+Use the 24-column Row/Col system to structure content with gutters and responsive spans.
 
-## Examples
+## Basic
 
-### Basic Usage
-
-<CodeBlock code={`import { Grid } from "@chaos_team/chaos-ui/ui"
+<CodeBlock code={`import { Row, Col } from "@chaos_team/chaos-ui/ui"
 
 export function Basic() {
-  return <Grid>Default</Grid>
+  return (
+    <Row gutter={16}>
+      <Col span={12}>Left</Col>
+      <Col span={12}>Right</Col>
+    </Row>
+  )
 }`} lang="tsx" />
 
-## Style Variants
+## API
 
-**columns**
+### Row
 
-| columns | Description | 默认 |
-| ------- | ----------- | ---- |
-| `1`     |             | ✓    |
-| `2`     |             |      |
-| `3`     |             |      |
-| `4`     |             |      |
-| `5`     |             |      |
-| `6`     |             |      |
-| `12`    |             |      |
+| Prop      | Type                                 | Default | Description                   |
+| --------- | ------------------------------------ | ------- | ----------------------------- |
+| `gutter`  | `number \| [number, number]`         | `0`     | Horizontal (or [h, v]) gutter |
+| `align`   | `top \| middle \| bottom \| stretch` | `top`   | Vertical align                |
+| `justify` | `start \| end \| center \| space-*`  | `start` | Horizontal align              |
+| `wrap`    | `boolean`                            | `true`  | Wrap columns                  |
 
-**gap**
+### Col
 
-| gap    | Description | 默认 |
-| ------ | ----------- | ---- |
-| `none` |             |      |
-| `xs`   |             |      |
-| `sm`   |             |      |
-| `md`   |             | ✓    |
-| `lg`   |             |      |
-| `xl`   |             |      |
+| Prop       | Type     | Description                  |
+| ---------- | -------- | ---------------------------- |
+| `span`     | `1–24`   | Columns to span              |
+| `offset`   | `number` | Offset columns               |
+| `xs`…`xxl` | object   | Responsive span/offset/order |
 
-**align**
+## Note
 
-| align     | Description | 默认 |
-| --------- | ----------- | ---- |
-| `start`   |             |      |
-| `center`  |             |      |
-| `end`     |             |      |
-| `stretch` |             | ✓    |
-
-**justify**
-
-| justify   | Description | 默认 |
-| --------- | ----------- | ---- |
-| `start`   |             | ✓    |
-| `center`  |             |      |
-| `end`     |             |      |
-| `between` |             |      |
-| `around`  |             |      |
-
-## API / Props
-
-### Grid
-
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
-
-## Notes
+Storybook: `Components/Grid`. Docs site includes `grid-cols-24` utilities for correct layout.
