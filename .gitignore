@@ -105,3 +105,6 @@ extract_tools.py
 mcp_calls.txt
 .codegraph/daemon.pid
 bash_cmds.txt
+
+# local long-running dev pids/logs
+.dev/
