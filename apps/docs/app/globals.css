@@ -9,8 +9,10 @@
 @source "../../../components/ui/*.tsx";
 @source "../../../components/layout/*.tsx";
 @source "../../../components/business/*.tsx";
+
 /* Mobile kit — required for /components#mobile live previews (was missing; Tailwind never emitted mobile-only utilities). */
 @source "../../../components/mobile/*.tsx";
+
 /* Storybook stories power docs ComponentPreview; scan so story-only layout classes exist. */
 @source "../../../src/stories/**/*.{tsx,ts}";
 @source "../app/**/*.tsx";
@@ -145,6 +147,7 @@
 :root {
   /* Align with package styles.css (color-scheme + tokens) */
   color-scheme: light;
+
   /* Core palette (shadcn neutral base) */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -256,6 +259,7 @@
 
 .dark {
   color-scheme: dark;
+
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -272,6 +276,7 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
+
   /* Match package styles.css dark border (was 25% — too heavy vs chaos-ui) */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
