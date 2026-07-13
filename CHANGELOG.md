@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **business/BarChart (CUI-DASH-04)**: `xLabelRotate` / `maxLabelLength`; auto-rotate dense long labels.
 - **ui/Resizable**: flex-weight panels + pair rebalance on drag so left/right (and vertical) panes resize together without overflow.
 - **ui/InputSearch**: `enterButton` branch roots with `relative` so clear control positions correctly.
+- **business/FilterBar + SearchTable (CUI-LIST-01 / #8)**: horizontal inset on inline FilterBar and SearchTable pagination under `CardContent flush`; table body stays full-bleed.
 
 ### Added
 

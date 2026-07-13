@@ -169,4 +169,36 @@ describe("filter-bar", () => {
       container.querySelector('[data-slot="card-content"]'),
     ).not.toBeNull();
   });
+
+  it("applies horizontal inset on inline layout for flush Card combos (CUI-LIST-01)", () => {
+    const { container } = render(
+      <FilterBar fields={baseFields.slice(0, 1)} onSearch={vi.fn()} />,
+    );
+    const bar = container.querySelector(
+      '[data-slot="filter-bar"]',
+    ) as HTMLElement;
+    // Tailwind may emit arbitrary value as px-[var(--card-spacing,1rem)]
+    expect(bar.className).toMatch(/px-\[var\(--card-spacing/);
+  });
+
+  it("does not double-pad the inner bar when layout is card", () => {
+    const { container } = render(
+      <FilterBar
+        fields={baseFields.slice(0, 1)}
+        onSearch={vi.fn()}
+        layout="card"
+      />,
+    );
+    // Outer Card uses data-slot=filter-bar; inner content div also uses filter-bar.
+    // The padded one should only be when inline; under card, CardContent owns pad.
+    const bars = container.querySelectorAll('[data-slot="filter-bar"]');
+    // At least one node is the Card root; ensure no inline-only requirement fails.
+    expect(bars.length).toBeGreaterThanOrEqual(1);
+    const content = container.querySelector(
+      '[data-slot="card-content"] [data-slot="filter-bar"]',
+    ) as HTMLElement | null;
+    if (content) {
+      expect(content.className).not.toMatch(/px-\[var\(--card-spacing/);
+    }
+  });
 });

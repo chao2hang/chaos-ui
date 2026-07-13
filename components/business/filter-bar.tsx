@@ -119,7 +119,14 @@ function FilterBar({
   const content = (
     <div
       data-slot="filter-bar"
-      className={cn("flex flex-wrap items-end gap-3", className)}
+      className={cn(
+        "flex flex-wrap items-end gap-3",
+        // CUI-LIST-01 / #8: keep horizontal inset when used inside CardContent flush.
+        // card layout relies on CardContent padding instead (avoid double pad).
+        // Fall back to 1rem when --card-spacing is not defined (outside Card).
+        layout === "inline" && "px-[var(--card-spacing,1rem)]",
+        className,
+      )}
       onKeyDown={handleKeyDown}
     >
       {visibleFields.map((field) => (

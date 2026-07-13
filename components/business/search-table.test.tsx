@@ -52,7 +52,11 @@ describe("SearchTable", () => {
   it("renders '-' for null values when value is null and no render", () => {
     const cols: ColumnDef<Row>[] = [
       { key: "name", title: "Name", dataIndex: "name" },
-      { key: "missing", title: "Missing", dataIndex: "missing" as keyof Row & string },
+      {
+        key: "missing",
+        title: "Missing",
+        dataIndex: "missing" as keyof Row & string,
+      },
     ];
     const { container } = render(
       <SearchTable columns={cols} dataSource={data} />,
@@ -174,13 +178,34 @@ describe("SearchTable", () => {
 
   it("hides pagination when pagination=false", () => {
     render(
+      <SearchTable columns={columns} dataSource={data} pagination={false} />,
+    );
+    expect(screen.queryByText(/共/)).toBeNull();
+  });
+
+  it("pads the pagination bar horizontally under flush cards (CUI-LIST-01)", () => {
+    const { container } = render(
       <SearchTable
         columns={columns}
         dataSource={data}
-        pagination={false}
+        pagination={{
+          current: 1,
+          pageSize: 2,
+          total: 5,
+          onChange: () => {},
+        }}
       />,
     );
-    expect(screen.queryByText(/共/)).toBeNull();
+    const footer = container.querySelector(
+      '[data-slot="search-table-pagination"]',
+    ) as HTMLElement;
+    expect(footer).not.toBeNull();
+    expect(footer.className).toMatch(/px-\[var\(--card-spacing/);
+    // Table wrapper stays unpadded (full-bleed)
+    const tableWrap = container.querySelector(
+      '[data-slot="search-table"] > .overflow-x-auto',
+    ) as HTMLElement;
+    expect(tableWrap?.className ?? "").not.toMatch(/px-\[var\(--card-spacing/);
   });
 
   it("applies align classes to header and cells", () => {
@@ -195,7 +220,9 @@ describe("SearchTable", () => {
   it("applies ellipsis class when col.ellipsis", () => {
     const { container } = render(
       <SearchTable
-        columns={[{ key: "name", title: "Name", dataIndex: "name", ellipsis: true }]}
+        columns={[
+          { key: "name", title: "Name", dataIndex: "name", ellipsis: true },
+        ]}
         dataSource={data}
       />,
     );
@@ -205,14 +232,12 @@ describe("SearchTable", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <SearchTable
-        columns={columns}
-        dataSource={data}
-        className="my-table"
-      />,
+      <SearchTable columns={columns} dataSource={data} className="my-table" />,
     );
     expect(container.firstChild).toBeDefined();
-    expect((container.firstChild as HTMLElement).className).toContain("my-table");
+    expect((container.firstChild as HTMLElement).className).toContain(
+      "my-table",
+    );
   });
 
   it("module is importable", async () => {
