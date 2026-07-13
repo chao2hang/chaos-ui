@@ -59,6 +59,11 @@ interface AdminShellProps extends Omit<
   onMenuItemClick?: (item: MenuItem) => void;
   /** Logo displayed in header and sider / 头部和侧栏的 Logo */
   logo?: React.ReactNode;
+  /**
+   * Compact sider logo when collapsed (issue #11).
+   * / 折叠侧栏紧凑 Logo
+   */
+  logoCollapsed?: React.ReactNode;
   /** Footer content in sidebar / 侧栏底部内容 */
   siderFooter?: React.ReactNode;
   /** Default collapsed state / 默认折叠状态 */
@@ -73,6 +78,11 @@ interface AdminShellProps extends Omit<
   breadcrumb?: AdminHeaderProps["breadcrumb"];
   /** Whether to show search in header / 是否在头部显示搜索 */
   showSearch?: boolean;
+  /**
+   * Search position relative to breadcrumb (issue #12).
+   * Default `"before-breadcrumb"`.
+   */
+  searchPlacement?: AdminHeaderProps["searchPlacement"];
   /** Search placeholder / 搜索占位文本 */
   searchPlaceholder?: string;
   /** Search callback / 搜索回调 */
@@ -180,6 +190,7 @@ export function AdminShell({
   selectedMatch,
   onMenuItemClick,
   logo,
+  logoCollapsed,
   siderFooter,
   defaultCollapsed = false,
   sidebarWidth = 240,
@@ -188,6 +199,7 @@ export function AdminShell({
   // Header
   breadcrumb,
   showSearch = true,
+  searchPlacement,
   searchPlaceholder = "Search...",
   onSearch,
   headerActions,
@@ -291,6 +303,7 @@ export function AdminShell({
           ? { onItemClick: onMenuItemClick }
           : {})}
         logo={logo}
+        {...(logoCollapsed !== undefined ? { logoCollapsed } : {})}
         {...(siderFooter !== undefined ? { footer: siderFooter } : {})}
         width={sidebarWidth}
         collapsedWidth={collapsedWidth}
@@ -309,6 +322,7 @@ export function AdminShell({
             : {})}
           logo={logo}
           showSearch={showSearch}
+          {...(searchPlacement !== undefined ? { searchPlacement } : {})}
           searchPlaceholder={searchPlaceholder}
           {...(onSearch !== undefined ? { onSearch } : {})}
           onMenuClick={() => setMobileOpen((v) => !v)}

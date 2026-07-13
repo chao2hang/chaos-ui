@@ -218,4 +218,69 @@ describe("admin-sider", () => {
     fireEvent.click(anchor);
     expect(onItemClick).toHaveBeenCalled();
   });
+
+  it("opens a flyout for nested items when collapsed (issue #10)", () => {
+    const onItemClick = vi.fn();
+    render(
+      <AdminSider
+        collapsed
+        onCollapse={() => {}}
+        menuItems={[
+          {
+            key: "system",
+            label: "System",
+            icon: <span data-testid="sys-icon">S</span>,
+            children: [{ key: "system-users", label: "Users" }],
+          },
+        ]}
+        onItemClick={onItemClick}
+      />,
+    );
+    // Children not inline while collapsed
+    expect(screen.queryByText("Users")).toBeNull();
+    fireEvent.click(screen.getByTestId("sys-icon").closest("a") as HTMLElement);
+    expect(screen.getByText("Users")).toBeDefined();
+    fireEvent.click(screen.getByText("Users"));
+    expect(onItemClick).toHaveBeenCalledWith(
+      expect.objectContaining({ key: "system-users" }),
+    );
+  });
+
+  it("prefers logoCollapsed when collapsed (issue #11)", () => {
+    render(
+      <AdminSider
+        collapsed
+        onCollapse={() => {}}
+        logo={
+          <div>
+            <span>Full Brand Title</span>
+          </div>
+        }
+        logoCollapsed={<span data-testid="logo-collapsed">F</span>}
+        menuItems={[]}
+      />,
+    );
+    expect(screen.getByTestId("logo-collapsed")).toBeDefined();
+    expect(screen.queryByText("Full Brand Title")).toBeNull();
+  });
+
+  it("overflow-hides ReactNode logo when collapsed without logoCollapsed (issue #11)", () => {
+    const { container } = render(
+      <AdminSider
+        collapsed
+        onCollapse={() => {}}
+        logo={
+          <div>
+            <span>Full Brand Title</span>
+          </div>
+        }
+        menuItems={[]}
+      />,
+    );
+    const logoSlot = container.querySelector(
+      '[data-slot="admin-sider-logo"]',
+    ) as HTMLElement;
+    expect(logoSlot).not.toBeNull();
+    expect(logoSlot.className.split(/\s+/)).toContain("overflow-hidden");
+  });
 });

@@ -5,6 +5,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 /**
  * @component AdminSider
@@ -67,6 +72,11 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
   onItemClick?: (item: MenuItem) => void;
   /** Logo content / Logo 内容 */
   logo?: React.ReactNode;
+  /**
+   * Compact logo when collapsed (issue #11). Preferred over `logo` in collapsed mode.
+   * / 折叠态紧凑 Logo；折叠时优先于 `logo`
+   */
+  logoCollapsed?: React.ReactNode;
   /** Footer content / 底部内容 */
   footer?: React.ReactNode;
   /** Sidebar width when expanded / 展开宽度 */
@@ -178,6 +188,13 @@ function isDescendantSelected(
   );
 }
 
+function menuLabelText(label: React.ReactNode): string | undefined {
+  if (typeof label === "string" || typeof label === "number") {
+    return String(label);
+  }
+  return undefined;
+}
+
 function AdminSider({
   className,
   collapsed = false,
@@ -187,6 +204,7 @@ function AdminSider({
   selectedMatch = "prefix",
   onItemClick,
   logo,
+  logoCollapsed,
   footer,
   width = 240,
   collapsedWidth = 64,
@@ -212,6 +230,9 @@ function AdminSider({
     return new Set(ancestors ?? []);
   });
 
+  /** Collapsed parent key whose flyout is open (issue #10). */
+  const [flyoutKey, setFlyoutKey] = React.useState<string | null>(null);
+
   // Keep ancestors expanded when selectedKey / menu tree changes
   React.useEffect(() => {
     if (!activeMenuKey && !rawCurrent) return;
@@ -232,18 +253,78 @@ function AdminSider({
     });
   }, [activeMenuKey, rawCurrent, menuItems]);
 
+  React.useEffect(() => {
+    if (!collapsed) setFlyoutKey(null);
+  }, [collapsed]);
+
   const handleItemClick = (item: MenuItem) => {
     if (item.disabled) return;
     if (selectedKey === undefined) setInternalSelected(item.key);
     onItemClick?.(item);
   };
 
+  const renderFlyoutChild = (child: MenuItem) => {
+    const isSelected = activeMenuKey === child.key;
+    const childClassName = cn(
+      "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium transition-colors",
+      isSelected
+        ? "bg-primary text-primary-foreground"
+        : "text-muted-foreground hover:bg-muted hover:text-foreground",
+      child.disabled && "pointer-events-none opacity-50",
+    );
+    const onChildClick = (e: React.MouseEvent<HTMLElement>) => {
+      if (!child.href) {
+        e.preventDefault();
+      } else if (!LinkComponent && onItemClick) {
+        e.preventDefault();
+      }
+      handleItemClick(child);
+      setFlyoutKey(null);
+    };
+    const body = (
+      <>
+        {child.icon && <span className="shrink-0">{child.icon}</span>}
+        <span className="flex-1 truncate">{child.label}</span>
+        {child.badge && <span className="shrink-0">{child.badge}</span>}
+      </>
+    );
+    if (child.href && LinkComponent) {
+      return (
+        <LinkComponent
+          key={child.key}
+          href={child.href}
+          className={childClassName}
+          onClick={onChildClick}
+          data-slot="admin-sider-flyout-item"
+          data-menu-key={child.key}
+          {...(isSelected ? { "aria-current": "page" as const } : {})}
+        >
+          {body}
+        </LinkComponent>
+      );
+    }
+    return (
+      <a
+        key={child.key}
+        href={child.href}
+        className={childClassName}
+        onClick={onChildClick}
+        data-slot="admin-sider-flyout-item"
+        data-menu-key={child.key}
+        {...(isSelected ? { "aria-current": "page" as const } : {})}
+      >
+        {body}
+      </a>
+    );
+  };
+
   const renderMenuItem = (item: MenuItem, level = 0) => {
     const isSelected = activeMenuKey === item.key;
     const isBranchActive =
       !isSelected && isDescendantSelected(item, activeMenuKey);
-    const hasChildren = item.children && item.children.length > 0;
+    const hasChildren = Boolean(item.children && item.children.length > 0);
     const expanded = expandedKeys.has(item.key);
+    const labelText = menuLabelText(item.label);
     const toggleExpanded = () => {
       setExpandedKeys((prev) => {
         const next = new Set(prev);
@@ -277,6 +358,12 @@ function AdminSider({
       } else if (!LinkComponent && onItemClick) {
         e.preventDefault();
       }
+      // Collapsed parents open flyout instead of inline expand (issue #10).
+      if (hasChildren && collapsed) {
+        e.preventDefault();
+        setFlyoutKey((prev) => (prev === item.key ? null : item.key));
+        return;
+      }
       if (hasChildren && collapsed === false) {
         toggleExpanded();
       }
@@ -308,6 +395,8 @@ function AdminSider({
       style?: React.CSSProperties;
       onClick: (e: React.MouseEvent<HTMLElement>) => void;
       "aria-current"?: "page";
+      "aria-label"?: string;
+      "aria-haspopup"?: "menu";
       "data-slot": string;
       "data-menu-key": string;
       "data-active-branch"?: string;
@@ -320,6 +409,50 @@ function AdminSider({
     if (itemStyle) sharedProps.style = itemStyle;
     if (isSelected) sharedProps["aria-current"] = "page";
     if (isBranchActive) sharedProps["data-active-branch"] = "true";
+    if (collapsed && labelText) sharedProps["aria-label"] = labelText;
+    if (collapsed && hasChildren) sharedProps["aria-haspopup"] = "menu";
+
+    // Collapsed parent: Popover flyout for children
+    if (collapsed && hasChildren) {
+      const open = flyoutKey === item.key;
+      return (
+        <Popover
+          key={item.key}
+          open={open}
+          onOpenChange={(next) => setFlyoutKey(next ? item.key : null)}
+        >
+          <PopoverTrigger
+            nativeButton={false}
+            render={
+              <a
+                href={item.href ?? "#"}
+                className={itemClassName}
+                data-slot="admin-sider-item"
+                data-menu-key={item.key}
+                aria-haspopup="menu"
+                {...(labelText ? { "aria-label": labelText } : {})}
+                {...(isSelected ? { "aria-current": "page" as const } : {})}
+                {...(isBranchActive ? { "data-active-branch": "true" } : {})}
+                onClick={onClick}
+              />
+            }
+          >
+            {content}
+          </PopoverTrigger>
+          <PopoverContent
+            side="right"
+            align="start"
+            sideOffset={8}
+            className="w-52 p-1"
+            data-slot="admin-sider-flyout"
+          >
+            <div className="flex flex-col gap-0.5" role="menu">
+              {item.children!.map((child) => renderFlyoutChild(child))}
+            </div>
+          </PopoverContent>
+        </Popover>
+      );
+    }
 
     return (
       <React.Fragment key={item.key}>
@@ -365,17 +498,24 @@ function AdminSider({
         {...props}
       >
         {/* Logo */}
-        {logo && (
+        {(logo || (collapsed && logoCollapsed)) && (
           <div
+            data-slot="admin-sider-logo"
             className={cn(
               "border-border flex h-16 items-center border-b px-4",
-              collapsed && "justify-center px-2",
+              collapsed && "justify-center overflow-hidden px-2",
             )}
           >
             {collapsed ? (
-              <span className="text-lg font-bold">
-                {typeof logo === "string" ? logo.charAt(0) : logo}
-              </span>
+              logoCollapsed ? (
+                logoCollapsed
+              ) : typeof logo === "string" ? (
+                <span className="text-lg font-bold">{logo.charAt(0)}</span>
+              ) : (
+                <div className="flex max-w-full items-center justify-center overflow-hidden">
+                  {logo}
+                </div>
+              )
             ) : (
               logo
             )}

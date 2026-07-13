@@ -143,6 +143,49 @@ describe("admin-header", () => {
     expect(actions?.className.split(/\s+/)).not.toContain("md:ml-0");
   });
 
+  it("places search before breadcrumb by default (issue #12)", () => {
+    const { container } = render(
+      <AdminHeader
+        showSearch
+        searchPlaceholder="Find menu..."
+        breadcrumb={[{ label: "首页" }, { label: "工作台" }]}
+      />,
+    );
+    const search = container.querySelector(
+      '[data-slot="admin-header-search"]',
+    ) as HTMLElement;
+    const crumb = container.querySelector("nav") as HTMLElement;
+    expect(search).not.toBeNull();
+    expect(crumb).not.toBeNull();
+    // search precedes breadcrumb in document order
+    expect(
+      !!(
+        search.compareDocumentPosition(crumb) & Node.DOCUMENT_POSITION_FOLLOWING
+      ),
+    ).toBe(true);
+    expect(search.className.split(/\s+/)).not.toContain("flex-1");
+  });
+
+  it("places search after breadcrumb when searchPlacement is after-breadcrumb", () => {
+    const { container } = render(
+      <AdminHeader
+        showSearch
+        searchPlacement="after-breadcrumb"
+        searchPlaceholder="Find menu..."
+        breadcrumb={[{ label: "首页" }, { label: "工作台" }]}
+      />,
+    );
+    const search = container.querySelector(
+      '[data-slot="admin-header-search"]',
+    ) as HTMLElement;
+    const crumb = container.querySelector("nav") as HTMLElement;
+    expect(
+      !!(
+        crumb.compareDocumentPosition(search) & Node.DOCUMENT_POSITION_FOLLOWING
+      ),
+    ).toBe(true);
+  });
+
   it("renders right-side actions", () => {
     render(<AdminHeader actions={<button type="button">Settings</button>} />);
     expect(screen.getByText("Settings")).toBeDefined();

@@ -5,6 +5,21 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.4] — 2026-07-13
+
+### Fixed
+
+- **layout/AdminSider (#10)**: collapsed multi-level menus open a right-side Popover flyout so children stay reachable in icon-only mode.
+- **layout/AdminSider (#11)**: `logoCollapsed` slot for compact brand marks; collapsed logo container uses `overflow-hidden`.
+- **layout/AdminHeader / AdminShell (#12)**: `searchPlacement` (`before-breadcrumb` default | `after-breadcrumb`); compact search when before crumbs; actions stay `ml-auto` (CUI-LAYOUT-01).
+- **business/AreaChart (#13)**: measure container width via `ResizeObserver` and size `viewBox` to fill wide cards; legend and X-axis labels on separate rows with matching horizontal padding.
+- **business/AreaChart (#14)**: `chart-1` token no longer equals `primary` (`#6366f1` vs `#3b82f6`) so dual-series strokes stay distinct.
+
+### Notes
+
+- Default header search placement is now **before** the breadcrumb (visual change when `showSearch` is enabled). Use `searchPlacement="after-breadcrumb"` for the previous middle flex search.
+- AreaChart `preserveAspectRatio` is `none` with measured width + `vector-effect: non-scaling-stroke` on series paths.
+
 ## [1.5.3] — 2026-07-13
 
 ### Fixed

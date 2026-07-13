@@ -19,7 +19,8 @@ The project includes reusable Codex/ECC workflow assets copied from `C:\Users\Ch
 - `.mcp.json` defines project MCP servers for GitHub, Context7, Exa, Memory, Playwright, and Sequential Thinking.
 - `.codex/config.toml` defines the project-local Codex baseline and multi-agent roles.
 - `.codex/agents/` contains local agent role configs for explorer, reviewer, and docs researcher.
-- `.agents/skills/` contains reusable skills for engineering standards, frontend patterns, TDD, verification, security review, MCP server patterns, research, and related workflows.
+- `.agents/skills/` contains reusable skills for engineering standards, frontend patterns, TDD, verification, security review, MCP server patterns, research, issue/commit/release workflows, and related workflows.
+- `.agents/commands/` defines project slash commands (`/iss`, `/commit`, `/push`, `/pr`, `/release`).
 - `.agents/plugins/marketplace.json` records the local ECC plugin metadata.
 
 Keep environment-specific notes, credentials, production hostnames, and machine-only secrets out of this repository.
@@ -91,6 +92,31 @@ updated: 2026-07-08
 - 逐项完成、逐项标注（`- [x]`），全部完成后才能改状态为待审核
 - 审核不通过 → 在原文档追加修改说明，改状态为未执行
 - 看板总览在 `INDEX.md`，详细流程见 `designs/README.md`
+
+## Slash commands
+
+Project commands live in `.agents/commands/` and mount skills under `.agents/skills/`. A matching copy may also exist under `~/.agents/` for cross-project use (user scope wins when names collide).
+
+| Command                                 | Default behavior                                                                                                      |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement) |
+| `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                     |
+| `/push`                                 | Push current branch; respect pre-push hooks; no force on `main`                                                       |
+| `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                  |
+| `/release [patch\|minor\|major\|x.y.z]` | **Prepare only**: CHANGELOG + version proposal; no tag push / npm publish unless you authorize                        |
+
+Typical delivery flow after an approved plan:
+
+```text
+/iss 9  →  implement (when asked)  →  /commit  →  /push  →  /pr
+```
+
+Release flow (chaos-ui):
+
+```text
+/release  →  apply prep when approved  →  /commit  →  tag vX.Y.Z  →  push tag
+         →  .github/workflows/release.yml publishes npm + GitHub Release from CHANGELOG
+```
 
 ## Git Hygiene
 

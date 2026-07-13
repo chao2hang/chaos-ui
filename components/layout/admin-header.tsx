@@ -52,6 +52,12 @@ interface AdminHeaderProps extends React.ComponentProps<"header"> {
   logo?: React.ReactNode;
   /** Whether to show search / 是否显示搜索 */
   showSearch?: boolean;
+  /**
+   * Search position relative to breadcrumb (issue #12).
+   * - `"before-breadcrumb"` (default): compact search left of crumbs
+   * - `"after-breadcrumb"`: legacy middle flex-1 search after crumbs
+   */
+  searchPlacement?: "before-breadcrumb" | "after-breadcrumb";
   /** Search placeholder / 搜索占位文本 */
   searchPlaceholder?: string;
   /** Search callback / 搜索回调 */
@@ -76,6 +82,7 @@ function AdminHeader({
   breadcrumbLinkRender,
   logo,
   showSearch = true,
+  searchPlacement = "before-breadcrumb",
   searchPlaceholder = "Search...",
   onSearch,
   onMenuClick,
@@ -87,6 +94,64 @@ function AdminHeader({
   ...props
 }: AdminHeaderProps) {
   const [searchValue, setSearchValue] = React.useState("");
+  const searchBefore = searchPlacement === "before-breadcrumb";
+
+  const breadcrumbNode =
+    breadcrumb && breadcrumb.length > 0 ? (
+      <Breadcrumb
+        className={cn(
+          "hidden min-w-0 lg:flex",
+          searchBefore && showSearch && "flex-1",
+        )}
+      >
+        <BreadcrumbList>
+          {breadcrumb.map((item, index) => (
+            <React.Fragment key={index}>
+              {index > 0 && <BreadcrumbSeparator />}
+              <BreadcrumbItem>
+                {item.href && index < breadcrumb.length - 1 ? (
+                  <BreadcrumbLink
+                    href={item.href}
+                    {...(item.render !== undefined
+                      ? { render: item.render }
+                      : breadcrumbLinkRender !== undefined
+                        ? { render: breadcrumbLinkRender }
+                        : {})}
+                  >
+                    {item.label}
+                  </BreadcrumbLink>
+                ) : (
+                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+    ) : null;
+
+  // before: compact width so crumbs are not crushed; after: flex-1 middle fill.
+  // Never put ml-auto on search — trailing actions stay the single right pin (CUI-LAYOUT-01).
+  const searchNode = showSearch ? (
+    <div
+      data-slot="admin-header-search"
+      className={cn(
+        "relative hidden min-w-0 md:block",
+        searchBefore ? "mx-2 w-56 max-w-xs shrink-0" : "mx-4 max-w-sm flex-1",
+      )}
+    >
+      <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2" />
+      <Input
+        placeholder={searchPlaceholder}
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onSearch?.(searchValue);
+        }}
+        className="pl-8"
+      />
+    </div>
+  ) : null;
 
   return (
     <header
@@ -114,50 +179,16 @@ function AdminHeader({
       {/* Logo (mobile) */}
       {logo && <div className="lg:hidden">{logo}</div>}
 
-      {/* Breadcrumb */}
-      {breadcrumb && breadcrumb.length > 0 && (
-        <Breadcrumb className="hidden lg:flex">
-          <BreadcrumbList>
-            {breadcrumb.map((item, index) => (
-              <React.Fragment key={index}>
-                {index > 0 && <BreadcrumbSeparator />}
-                <BreadcrumbItem>
-                  {item.href && index < breadcrumb.length - 1 ? (
-                    <BreadcrumbLink
-                      href={item.href}
-                      {...(item.render !== undefined
-                        ? { render: item.render }
-                        : breadcrumbLinkRender !== undefined
-                          ? { render: breadcrumbLinkRender }
-                          : {})}
-                    >
-                      {item.label}
-                    </BreadcrumbLink>
-                  ) : (
-                    <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                  )}
-                </BreadcrumbItem>
-              </React.Fragment>
-            ))}
-          </BreadcrumbList>
-        </Breadcrumb>
-      )}
-
-      {/* Search — flex-1 fills the middle; do not use ml-auto here so the
-          trailing actions cluster remains the single right-edge pin. */}
-      {showSearch && (
-        <div className="relative mx-4 hidden max-w-sm min-w-0 flex-1 md:block">
-          <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2" />
-          <Input
-            placeholder={searchPlaceholder}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") onSearch?.(searchValue);
-            }}
-            className="pl-8"
-          />
-        </div>
+      {searchBefore ? (
+        <>
+          {searchNode}
+          {breadcrumbNode}
+        </>
+      ) : (
+        <>
+          {breadcrumbNode}
+          {searchNode}
+        </>
       )}
 
       {/* Right actions — always pin to the trailing edge (CUI-LAYOUT-01).
