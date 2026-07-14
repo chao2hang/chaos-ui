@@ -17,7 +17,7 @@ const meta: Meta<typeof AdminShell> = {
     docs: {
       description: {
         component:
-          'AdminShell roots with `h-full min-h-0` (CUI-LAYOUT-04). Story canvas supplies a host box (`h-[70vh]`); real Next apps should set `html`/`body` (or a full-height ancestor) to `h-full` / `min-h-svh`, or pass `className="min-h-svh"` on the shell. Unlike AuthLayout, there is no default viewport fill.',
+          'AdminShell roots with `h-full min-h-0` (CUI-LAYOUT-04). Story canvas supplies a host box (`h-[70vh]`); real Next apps should set `html`/`body` (or a full-height ancestor) to `h-full` / `min-h-svh`, or pass `className="min-h-svh"` on the shell. Unlike AuthLayout, there is no default viewport fill. Desktop sider collapse defaults to the header far-left control (`collapseTrigger="header"`, issue #17); use `collapseTrigger="sider-edge"` for the legacy mid-sider handle.',
       },
     },
   },
@@ -151,6 +151,33 @@ export const Minimal: Story = {
     children: (
       <div className="p-6">
         <h1 className="text-xl font-semibold">Minimal Setup</h1>
+      </div>
+    ),
+  },
+};
+
+/** Legacy mid-sider absolute collapse handle (issue #17). */
+export const CollapseOnSiderEdge: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Opt into the pre-1.5.6 placement: `collapseTrigger="sider-edge"` keeps the absolute handle on the sider edge instead of the header.',
+      },
+    },
+  },
+  args: {
+    logo: <span className="text-lg font-bold">Sider Edge</span>,
+    menuItems,
+    selectedMenuKey: "home",
+    collapseTrigger: "sider-edge",
+    breadcrumb: [{ label: "Home", href: "#" }, { label: "Dashboard" }],
+    children: (
+      <div className="p-6">
+        <h1 className="text-xl font-semibold">Sider-edge collapse</h1>
+        <p className="text-muted-foreground mt-2 text-sm">
+          Collapse control sits on the sider mid-edge (legacy).
+        </p>
       </div>
     ),
   },

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Bell, Menu, Search } from "lucide-react";
+import { Bell, ChevronLeft, ChevronRight, Menu, Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -64,6 +64,14 @@ interface AdminHeaderProps extends React.ComponentProps<"header"> {
   onSearch?: (value: string) => void;
   /** Menu toggle callback (mobile) / 菜单切换回调 */
   onMenuClick?: () => void;
+  /**
+   * Desktop sider collapse toggle (issue #17). Renders at the far left on `lg+`.
+   * Distinct from mobile `onMenuClick` (drawer).
+   * / 桌面侧栏折叠（顶栏最左，lg+）；与移动端汉堡语义分离
+   */
+  onCollapseClick?: () => void;
+  /** Current collapsed state for desktop collapse icon / 当前折叠态（控制顶栏折叠图标） */
+  collapsed?: boolean;
   /** Right-side actions / 右侧操作区 */
   actions?: React.ReactNode;
   /** User menu content / 用户菜单内容 */
@@ -86,6 +94,8 @@ function AdminHeader({
   searchPlaceholder = "Search...",
   onSearch,
   onMenuClick,
+  onCollapseClick,
+  collapsed = false,
   actions,
   userMenu,
   notificationCount = 0,
@@ -163,6 +173,24 @@ function AdminHeader({
       )}
       {...props}
     >
+      {/* Desktop sider collapse (lg+) — issue #17 */}
+      {onCollapseClick && (
+        <Button
+          variant="ghost"
+          size="icon"
+          data-slot="admin-header-collapse"
+          className="hidden shrink-0 lg:inline-flex"
+          onClick={onCollapseClick}
+          aria-label={collapsed ? "Expand" : "Collapse"}
+        >
+          {collapsed ? (
+            <ChevronRight className="size-5" />
+          ) : (
+            <ChevronLeft className="size-5" />
+          )}
+        </Button>
+      )}
+
       {/* Mobile menu button */}
       {onMenuClick && (
         <Button

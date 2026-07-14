@@ -85,6 +85,27 @@ describe("admin-header", () => {
     expect(screen.queryByLabelText("Toggle menu")).toBeNull();
   });
 
+  it("renders desktop collapse control when onCollapseClick provided (issue #17)", () => {
+    const onCollapseClick = vi.fn();
+    render(
+      <AdminHeader
+        onCollapseClick={onCollapseClick}
+        collapsed={false}
+        breadcrumb={[{ label: "Home" }]}
+      />,
+    );
+    const btn = screen.getByLabelText("Collapse");
+    expect(btn.getAttribute("data-slot")).toBe("admin-header-collapse");
+    expect(btn.className.split(/\s+/)).toContain("lg:inline-flex");
+    fireEvent.click(btn);
+    expect(onCollapseClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows Expand label when collapsed is true", () => {
+    render(<AdminHeader onCollapseClick={() => {}} collapsed />);
+    expect(screen.getByLabelText("Expand")).toBeDefined();
+  });
+
   it("renders search input with placeholder and fires onSearch on Enter", () => {
     const onSearch = vi.fn();
     render(

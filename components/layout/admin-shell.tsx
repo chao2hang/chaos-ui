@@ -7,6 +7,7 @@ import {
 } from "@/components/layout/admin-header";
 import {
   AdminSider,
+  type AdminCollapseTrigger,
   type AdminSiderLinkComponent,
   type MenuItem,
 } from "@/components/layout/admin-sider";
@@ -72,6 +73,13 @@ interface AdminShellProps extends Omit<
   sidebarWidth?: number;
   /** Sidebar collapsed width / 折叠宽度 */
   collapsedWidth?: number;
+  /**
+   * Desktop collapse control placement (issue #17).
+   * Default `"header"`: topbar far-left (beside breadcrumb); sider edge handle off.
+   * Use `"sider-edge"` for legacy mid-sider absolute handle.
+   * / 桌面折叠钮位置；默认顶栏最左
+   */
+  collapseTrigger?: AdminCollapseTrigger;
 
   // ── Header ──
   /** Breadcrumb items / 面包屑项 */
@@ -195,6 +203,7 @@ export function AdminShell({
   defaultCollapsed = false,
   sidebarWidth = 240,
   collapsedWidth = 64,
+  collapseTrigger = "header",
 
   // Header
   breadcrumb,
@@ -294,6 +303,7 @@ export function AdminShell({
       <AdminSider
         collapsed={collapsed}
         onCollapse={setCollapsed}
+        collapseTrigger={collapseTrigger}
         menuItems={menuItems}
         {...(selectedMenuKey !== undefined
           ? { selectedKey: selectedMenuKey }
@@ -326,6 +336,12 @@ export function AdminShell({
           searchPlaceholder={searchPlaceholder}
           {...(onSearch !== undefined ? { onSearch } : {})}
           onMenuClick={() => setMobileOpen((v) => !v)}
+          {...(collapseTrigger === "header" || collapseTrigger === "both"
+            ? {
+                onCollapseClick: () => setCollapsed((v) => !v),
+                collapsed,
+              }
+            : {})}
           {...(headerActions !== undefined ? { actions: headerActions } : {})}
           {...(userMenuElement !== undefined
             ? { userMenu: userMenuElement }

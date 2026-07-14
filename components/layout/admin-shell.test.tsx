@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { AdminShell } from "./admin-shell";
 
 // Mock react-i18next since AppShell uses useTranslation.
@@ -117,6 +117,51 @@ describe("AdminShell", () => {
   it("exports shell height constant", async () => {
     const mod = await import("./admin-shell");
     expect(mod.ADMIN_SHELL_HEADER_HEIGHT_CLASS).toBe("h-16");
+  });
+
+  it("defaults collapse control to header, not sider edge (issue #17)", () => {
+    const { container } = render(
+      <AdminShell
+        menuItems={[{ key: "home", label: "Home" }]}
+        breadcrumb={[{ label: "Dashboard" }]}
+      >
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(
+      container.querySelector('[data-slot="admin-header-collapse"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="admin-sider-collapse"]'),
+    ).toBeNull();
+  });
+
+  it("puts collapse on sider edge when collapseTrigger is sider-edge", () => {
+    const { container } = render(
+      <AdminShell
+        collapseTrigger="sider-edge"
+        menuItems={[{ key: "home", label: "Home" }]}
+      >
+        <p>Content</p>
+      </AdminShell>,
+    );
+    expect(
+      container.querySelector('[data-slot="admin-sider-collapse"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="admin-header-collapse"]'),
+    ).toBeNull();
+  });
+
+  it("toggles collapsed via header control", () => {
+    render(
+      <AdminShell menuItems={[{ key: "home", label: "Home" }]}>
+        <p>Content</p>
+      </AdminShell>,
+    );
+    const btn = screen.getByLabelText("Collapse");
+    fireEvent.click(btn);
+    expect(screen.getByLabelText("Expand")).toBeDefined();
   });
 
   it("applies default content padding and exposes content slot (CUI-LAYOUT-03)", () => {

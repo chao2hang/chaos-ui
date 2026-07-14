@@ -52,11 +52,22 @@ type AdminSiderLinkComponent = React.ComponentType<{
   style?: React.CSSProperties;
 }>;
 
+/** Where the desktop collapse control is rendered (issue #17). */
+type AdminCollapseTrigger = "sider-edge" | "header" | "both" | "none";
+
 interface AdminSiderProps extends React.ComponentProps<"aside"> {
   /** Whether sidebar is collapsed / 是否折叠 */
   collapsed?: boolean;
   /** Collapse change callback / 折叠变更回调 */
   onCollapse?: (collapsed: boolean) => void;
+  /**
+   * Desktop collapse control placement (issue #17).
+   * - `"sider-edge"` (default for standalone Sider): absolute handle on sider edge
+   * - `"header"` / `"none"`: no edge handle (header or external owns toggle)
+   * - `"both"`: edge handle + header can also toggle
+   * / 桌面折叠钮位置；单独用 Sider 时默认侧栏边缘
+   */
+  collapseTrigger?: AdminCollapseTrigger;
   /** Menu items / 菜单项 */
   menuItems?: MenuItem[];
   /** Selected menu key / 选中的菜单 key */
@@ -199,6 +210,7 @@ function AdminSider({
   className,
   collapsed = false,
   onCollapse,
+  collapseTrigger = "sider-edge",
   menuItems = [],
   selectedKey,
   selectedMatch = "prefix",
@@ -213,6 +225,9 @@ function AdminSider({
   linkComponent: LinkComponent,
   ...props
 }: AdminSiderProps) {
+  const showSiderEdgeCollapse =
+    !!onCollapse &&
+    (collapseTrigger === "sider-edge" || collapseTrigger === "both");
   const [internalSelected, setInternalSelected] = React.useState(selectedKey);
   const rawCurrent = selectedKey ?? internalSelected;
   const activeMenuKey = React.useMemo(
@@ -335,8 +350,9 @@ function AdminSider({
     };
 
     const itemClassName = cn(
-      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-      collapsed && "justify-center px-2",
+      // #18: animate gap/padding with width; avoid hard layout jump
+      "flex items-center rounded-lg py-2 text-sm font-medium transition-[colors,gap,padding] duration-300 ease-in-out motion-reduce:transition-none",
+      collapsed ? "justify-center gap-0 px-2" : "gap-3 px-3",
       isSelected
         ? "bg-primary text-primary-foreground"
         : isBranchActive
@@ -370,23 +386,37 @@ function AdminSider({
       handleItemClick(item);
     };
 
+    // #18: keep label/badge/chevron mounted; collapse via max-width + opacity
+    // so content eases with the aside width instead of flash-cutting.
+    const labelRevealClass = cn(
+      "min-w-0 overflow-hidden whitespace-nowrap transition-[max-width,opacity,margin] duration-300 ease-in-out motion-reduce:transition-none",
+      collapsed ? "max-w-0 opacity-0" : "max-w-[12rem] flex-1 opacity-100",
+    );
+
     const content = (
       <>
         {item.icon && <span className="shrink-0">{item.icon}</span>}
-        {!collapsed && (
-          <>
-            <span className="flex-1 truncate">{item.label}</span>
-            {item.badge && <span className="shrink-0">{item.badge}</span>}
-            {hasChildren && (
-              <ChevronRight
-                className={cn(
-                  "size-4 shrink-0 transition-transform",
-                  expanded && "rotate-90",
-                )}
-              />
+        <span className={labelRevealClass} aria-hidden={collapsed || undefined}>
+          {item.label}
+        </span>
+        {item.badge ? (
+          <span
+            className={cn(labelRevealClass, "shrink-0")}
+            aria-hidden={collapsed || undefined}
+          >
+            {item.badge}
+          </span>
+        ) : null}
+        {hasChildren ? (
+          <ChevronRight
+            className={cn(
+              "size-4 shrink-0 transition-[transform,opacity,max-width] duration-300 ease-in-out motion-reduce:transition-none",
+              collapsed ? "max-w-0 opacity-0" : "max-w-4 opacity-100",
+              expanded && !collapsed && "rotate-90",
             )}
-          </>
-        )}
+            aria-hidden={collapsed || undefined}
+          />
+        ) : null}
       </>
     );
 
@@ -488,7 +518,8 @@ function AdminSider({
         className={cn(
           // relative is required for the collapse control (absolute -right-3).
           // Never use lg:static here — it cancels relative and reintroduces CUI-LAYOUT-02.
-          "border-border bg-background relative flex flex-col overflow-visible border-r transition-all duration-300",
+          // #18: transition width only (+ ease); overflow-x clips label during animate
+          "border-border bg-background relative flex flex-col overflow-x-hidden overflow-y-visible border-r transition-[width] duration-300 ease-in-out motion-reduce:transition-none",
           mobileOpen
             ? "fixed inset-y-0 left-0 z-50 lg:relative lg:inset-auto lg:z-auto"
             : "hidden lg:flex",
@@ -498,32 +529,51 @@ function AdminSider({
         {...props}
       >
         {/* Logo */}
-        {(logo || (collapsed && logoCollapsed)) && (
+        {(logo || logoCollapsed) && (
           <div
             data-slot="admin-sider-logo"
             className={cn(
-              "border-border flex h-16 items-center border-b px-4",
-              collapsed && "justify-center overflow-hidden px-2",
+              "border-border flex h-16 items-center overflow-hidden border-b transition-[padding] duration-300 ease-in-out motion-reduce:transition-none",
+              collapsed ? "justify-center px-2" : "px-4",
             )}
           >
-            {collapsed ? (
-              logoCollapsed ? (
+            {/* Expanded logo fades out when collapsed */}
+            {logo ? (
+              <div
+                className={cn(
+                  "min-w-0 transition-[max-width,opacity] duration-300 ease-in-out motion-reduce:transition-none",
+                  collapsed
+                    ? "max-w-0 opacity-0"
+                    : "max-w-full flex-1 opacity-100",
+                )}
+                aria-hidden={collapsed || undefined}
+              >
+                {logo}
+              </div>
+            ) : null}
+            {/* Collapsed mark fades in */}
+            <div
+              className={cn(
+                "flex items-center justify-center overflow-hidden transition-[max-width,opacity] duration-300 ease-in-out motion-reduce:transition-none",
+                collapsed ? "max-w-full opacity-100" : "max-w-0 opacity-0",
+              )}
+              aria-hidden={!collapsed || undefined}
+            >
+              {logoCollapsed ? (
                 logoCollapsed
               ) : typeof logo === "string" ? (
                 <span className="text-lg font-bold">{logo.charAt(0)}</span>
-              ) : (
+              ) : logo ? (
                 <div className="flex max-w-full items-center justify-center overflow-hidden">
                   {logo}
                 </div>
-              )
-            ) : (
-              logo
-            )}
+              ) : null}
+            </div>
           </div>
         )}
 
         {/* Menu */}
-        <nav className="flex-1 space-y-0.5 overflow-y-auto p-2">
+        <nav className="flex-1 space-y-0.5 overflow-x-hidden overflow-y-auto p-2">
           {menuItems.map((item) => renderMenuItem(item))}
         </nav>
 
@@ -539,13 +589,14 @@ function AdminSider({
           </div>
         )}
 
-        {/* Collapse toggle (desktop) */}
-        {onCollapse && (
+        {/* Collapse toggle on sider edge (desktop) — gated by collapseTrigger (#17) */}
+        {showSiderEdgeCollapse && (
           <Button
             variant="ghost"
             size="icon-sm"
+            data-slot="admin-sider-collapse"
             className="border-border bg-background absolute top-20 -right-3 z-10 hidden border lg:flex"
-            onClick={() => onCollapse(!collapsed)}
+            onClick={() => onCollapse!(!collapsed)}
             aria-label={collapsed ? "Expand" : "Collapse"}
           >
             {collapsed ? (
@@ -561,4 +612,9 @@ function AdminSider({
 }
 
 export { AdminSider };
-export type { AdminSiderProps, MenuItem, AdminSiderLinkComponent };
+export type {
+  AdminSiderProps,
+  MenuItem,
+  AdminSiderLinkComponent,
+  AdminCollapseTrigger,
+};

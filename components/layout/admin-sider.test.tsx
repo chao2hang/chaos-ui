@@ -37,8 +37,52 @@ describe("admin-sider", () => {
     const collapse = screen.getByLabelText("Collapse");
     expect(aside.contains(collapse)).toBe(true);
     expect(collapse.className.split(/\s+/)).toContain("absolute");
+    expect(collapse.getAttribute("data-slot")).toBe("admin-sider-collapse");
     fireEvent.click(collapse);
     expect(onCollapse).toHaveBeenCalledWith(true);
+  });
+
+  it("hides sider-edge collapse when collapseTrigger is header (issue #17)", () => {
+    render(
+      <AdminSider
+        collapsed={false}
+        onCollapse={() => {}}
+        collapseTrigger="header"
+        menuItems={[{ key: "home", label: "Home" }]}
+      />,
+    );
+    expect(screen.queryByLabelText("Collapse")).toBeNull();
+    expect(
+      document.querySelector('[data-slot="admin-sider-collapse"]'),
+    ).toBeNull();
+  });
+
+  it("keeps menu labels mounted while collapsed for width sync animation (issue #18)", () => {
+    const { container, rerender } = render(
+      <AdminSider
+        collapsed={false}
+        onCollapse={() => {}}
+        menuItems={[{ key: "home", label: "Home" }]}
+      />,
+    );
+    expect(screen.getByText("Home")).toBeDefined();
+    const aside = container.querySelector(
+      '[data-slot="admin-sider"]',
+    ) as HTMLElement;
+    expect(aside.className).toMatch(/transition-\[width\]/);
+
+    rerender(
+      <AdminSider
+        collapsed
+        onCollapse={() => {}}
+        menuItems={[{ key: "home", label: "Home" }]}
+      />,
+    );
+    // Label stays in DOM (opacity/max-width hide) instead of unmount flash-cut
+    expect(screen.getByText("Home")).toBeDefined();
+    const label = screen.getByText("Home");
+    expect(label.className.split(/\s+/)).toContain("opacity-0");
+    expect(label.className.split(/\s+/)).toContain("max-w-0");
   });
 
   it("keeps a positioning containing block when the mobile drawer is open", () => {
@@ -261,7 +305,9 @@ describe("admin-sider", () => {
       />,
     );
     expect(screen.getByTestId("logo-collapsed")).toBeDefined();
-    expect(screen.queryByText("Full Brand Title")).toBeNull();
+    // #18 keeps expanded logo mounted for crossfade; it must be visually/aria hidden
+    const full = screen.getByText("Full Brand Title");
+    expect(full.closest("[aria-hidden='true']")).not.toBeNull();
   });
 
   it("overflow-hides ReactNode logo when collapsed without logoCollapsed (issue #11)", () => {
