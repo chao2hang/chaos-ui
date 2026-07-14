@@ -16,6 +16,7 @@
 
 ## ✅ 完成
 
+- [AdminShell 高度链文档 CUI-LAYOUT-04](./2026-07-14_AdminShell高度链文档_CUI-LAYOUT-04_设计计划.md)
 - [AdminSider 折叠与 Header 搜索](./2026-07-13_AdminSider折叠与Header搜索_设计计划.md)
 - [AdminShell 导航与内容区契约](./2026-07-13_AdminShell导航与内容区契约_设计计划.md)
 - [Admin Layout 同类布局回归审计](./2026-07-13_AdminLayout同类布局回归审计_设计计划.md)

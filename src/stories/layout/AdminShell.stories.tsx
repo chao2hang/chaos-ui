@@ -13,8 +13,17 @@ const meta: Meta<typeof AdminShell> = {
   title: "Layouts/AdminShell",
   component: AdminShell,
   tags: ["autodocs", "a11y"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'AdminShell roots with `h-full min-h-0` (CUI-LAYOUT-04). Story canvas supplies a host box (`h-[70vh]`); real Next apps should set `html`/`body` (or a full-height ancestor) to `h-full` / `min-h-svh`, or pass `className="min-h-svh"` on the shell. Unlike AuthLayout, there is no default viewport fill.',
+      },
+    },
+  },
   decorators: [
     (Story) => (
+      // Host sets height; AdminShell fills with h-full (use className="min-h-svh" for viewport).
       <div className="h-[70vh] min-h-[420px] overflow-auto">
         <Story />
       </div>
@@ -57,6 +66,14 @@ const menuItems = [
 ];
 
 export const FullAdminShell: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Full chrome demo inside the meta host (`h-[70vh]`). App roots should use an html/body height chain or `className="min-h-svh"` — see height-chain notes on the docs site.',
+      },
+    },
+  },
   args: {
     logo: <span className="text-lg font-bold">Chaos Admin</span>,
     menuItems,
@@ -94,6 +111,33 @@ export const FullAdminShell: Story = {
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-muted-foreground mt-2">
           Welcome to the admin panel. Use the sidebar to navigate.
+        </p>
+      </div>
+    ),
+  },
+};
+
+/** Short content + consumer opt-in `min-h-svh` (still inside meta host box). */
+export const WithMinHSvh: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Consumer escape hatch: `className="min-h-svh"` so the shell prefers viewport min-height when content is short. Prefer the Next root height chain for full apps; canvas still uses the meta host box.',
+      },
+    },
+  },
+  args: {
+    logo: <span className="text-lg font-bold">MinHSvh</span>,
+    menuItems: menuItems.slice(0, 3),
+    selectedMenuKey: "home",
+    className: "min-h-svh",
+    showSearch: false,
+    children: (
+      <div className="p-6">
+        <h1 className="text-xl font-semibold">Short page</h1>
+        <p className="text-muted-foreground mt-2 text-sm">
+          Shell uses min-h-svh so sider height does not collapse to content.
         </p>
       </div>
     ),
