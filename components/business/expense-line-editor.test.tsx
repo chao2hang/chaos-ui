@@ -26,14 +26,14 @@ describe("expense-line-editor", () => {
     expect(_tc3).toBeUndefined();
   });
 
-  it("renders column headers including currency", () => {
+  it("renders Chinese column headers by default (issue #19)", () => {
     render(
       <ExpenseLineEditor data={[]} categories={categories} currency="¥" />,
     );
-    expect(screen.getByText("Category")).toBeDefined();
-    expect(screen.getByText("Summary")).toBeDefined();
-    expect(screen.getByText("Amount (¥)")).toBeDefined();
-    expect(screen.getByText("Remark")).toBeDefined();
+    expect(screen.getByText("类别")).toBeDefined();
+    expect(screen.getByText("摘要")).toBeDefined();
+    expect(screen.getByText("金额（¥）")).toBeDefined();
+    expect(screen.getByText("备注")).toBeDefined();
   });
 
   it("renders empty hint and add-row button", () => {
@@ -45,8 +45,20 @@ describe("expense-line-editor", () => {
     render(
       <ExpenseLineEditor
         data={[
-          { id: "1", category: "travel", summary: "机票", amount: 1200.5, remark: "北京" },
-          { id: "2", category: "meal", summary: "午餐", amount: 80, remark: "" },
+          {
+            id: "1",
+            category: "travel",
+            summary: "机票",
+            amount: 1200.5,
+            remark: "北京",
+          },
+          {
+            id: "2",
+            category: "meal",
+            summary: "午餐",
+            amount: 80,
+            remark: "",
+          },
         ]}
         categories={categories}
       />,
@@ -71,8 +83,8 @@ describe("expense-line-editor", () => {
         currency="$"
       />,
     );
-    expect(screen.getByText("Total: $150.50")).toBeDefined();
-    expect(screen.getByText("2 items")).toBeDefined();
+    expect(screen.getByText("合计：$150.50")).toBeDefined();
+    expect(screen.getByText("2 行")).toBeDefined();
   });
 
   it("handles null amounts gracefully in total", () => {
@@ -82,8 +94,8 @@ describe("expense-line-editor", () => {
         categories={categories}
       />,
     );
-    expect(screen.getByText("Total: ¥0.00")).toBeDefined();
-    expect(screen.getByText("1 items")).toBeDefined();
+    expect(screen.getByText("合计：¥0.00")).toBeDefined();
+    expect(screen.getByText("1 行")).toBeDefined();
   });
 
   it("adds a row in uncontrolled mode and notifies onChange", () => {
@@ -115,20 +127,17 @@ describe("expense-line-editor", () => {
   it("renders summary and remark as display values", () => {
     render(
       <ExpenseLineEditor
-        data={[{ id: "1", summary: "初始", amount: 10, remark: "备注" }]}
+        data={[{ id: "1", summary: "初始", amount: 10, remark: "备注说明" }]}
         categories={[]}
       />,
     );
     expect(screen.getByText("初始")).toBeDefined();
-    expect(screen.getByText("备注")).toBeDefined();
+    expect(screen.getByText("备注说明")).toBeDefined();
   });
 
   it("renders dash for missing summary in display", () => {
     render(
-      <ExpenseLineEditor
-        data={[{ id: "1", amount: 10 }]}
-        categories={[]}
-      />,
+      <ExpenseLineEditor data={[{ id: "1", amount: 10 }]} categories={[]} />,
     );
     expect(screen.getByText("—")).toBeDefined();
   });
@@ -143,13 +152,13 @@ describe("expense-line-editor", () => {
     );
     expect(screen.queryByText("添加行")).toBeNull();
     expect(screen.queryByText("操作")).toBeNull();
-    // footer still rendered in readOnly
-    expect(screen.getByText(/Total:/)).toBeDefined();
+    // footer still rendered in readOnly (zh default, issue #19)
+    expect(screen.getByText(/合计：/)).toBeDefined();
   });
 
   it("uses custom currency symbol in amount header", () => {
     render(<ExpenseLineEditor data={[]} currency="€" />);
-    expect(screen.getByText("Amount (€)")).toBeDefined();
+    expect(screen.getByText("金额（€）")).toBeDefined();
   });
 
   it("renders dash for missing amount in read-only display", () => {

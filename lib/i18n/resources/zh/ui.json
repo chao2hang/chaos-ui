@@ -24,5 +24,21 @@
   "schemaForm.submit": "保存",
   "schemaForm.reset": "重置",
   "schemaForm.selectPlaceholder": "请选择",
-  "schemaForm.submitting": "保存中..."
+  "schemaForm.submitting": "保存中...",
+  "datePicker.placeholder": "选择日期",
+  "fileUpload.dropActive": "松开以上传文件…",
+  "fileUpload.hint": "拖拽文件到此处，或点击选择",
+  "fileUpload.maxFiles": "最多 {{count}} 个文件",
+  "fileUpload.singleFile": "单个文件",
+  "fileUpload.maxSize": "（每个最大 {{size}}MB）",
+  "expenseLine.category": "类别",
+  "expenseLine.selectCategory": "选择类别",
+  "expenseLine.summary": "摘要",
+  "expenseLine.summaryPlaceholder": "请输入摘要",
+  "expenseLine.amount": "金额（{{currency}}）",
+  "expenseLine.remark": "备注",
+  "expenseLine.remarkPlaceholder": "选填",
+  "expenseLine.items": "{{count}} 行",
+  "expenseLine.total": "合计：{{currency}}{{amount}}",
+  "expenseLine.empty": "暂无费用明细"
 }

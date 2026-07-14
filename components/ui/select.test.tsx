@@ -50,6 +50,21 @@ describe("Select", () => {
     ).not.toBeNull();
   });
 
+  it("defaults SelectTrigger to w-full for form layouts (issue #19)", () => {
+    render(
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="pick" />
+        </SelectTrigger>
+      </Select>,
+    );
+    const trigger = document.querySelector(
+      '[data-slot="select-trigger"]',
+    ) as HTMLElement;
+    expect(trigger.className.split(/\s+/)).toContain("w-full");
+    expect(trigger.className.split(/\s+/)).not.toContain("w-fit");
+  });
+
   it("applies sm size data attribute", () => {
     render(
       <Select>

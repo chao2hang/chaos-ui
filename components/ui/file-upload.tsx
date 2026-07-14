@@ -9,6 +9,7 @@ import {
   CheckCircleIcon,
   AlertCircleIcon,
 } from "@/components/ui/icons";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * @component FileUpload
@@ -26,6 +27,7 @@ function FileUpload({
   maxSize,
   disabled,
   className,
+  labels,
 }: {
   onDrop?: (files: File[]) => void;
   accept?: Record<string, string[]>;
@@ -33,7 +35,16 @@ function FileUpload({
   maxSize?: number;
   disabled?: boolean;
   className?: string;
+  /** Override i18n copy (issue #19) / 覆盖上传区文案 */
+  labels?: {
+    dropActive?: string;
+    hint?: string;
+    maxFiles?: string;
+    singleFile?: string;
+    maxSize?: string;
+  };
 }) {
+  const { t } = useTranslation("ui");
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     ...(onDrop !== undefined ? { onDrop } : {}),
     ...(accept !== undefined ? { accept } : {}),
@@ -41,6 +52,32 @@ function FileUpload({
     ...(maxSize !== undefined ? { maxSize } : {}),
     ...(disabled !== undefined ? { disabled } : {}),
   });
+
+  const dropActive =
+    labels?.dropActive ??
+    t("fileUpload.dropActive", { defaultValue: "松开以上传文件…" });
+  const hint =
+    labels?.hint ??
+    t("fileUpload.hint", {
+      defaultValue: "拖拽文件到此处，或点击选择",
+    });
+  const maxFilesText =
+    labels?.maxFiles ??
+    t("fileUpload.maxFiles", {
+      count: maxFiles,
+      defaultValue: `最多 ${maxFiles} 个文件`,
+    });
+  const singleFileText =
+    labels?.singleFile ??
+    t("fileUpload.singleFile", { defaultValue: "单个文件" });
+  const maxSizeSuffix =
+    maxSize != null
+      ? (labels?.maxSize ??
+        t("fileUpload.maxSize", {
+          size: Math.round(maxSize / 1024 / 1024),
+          defaultValue: `（每个最大 ${Math.round(maxSize / 1024 / 1024)}MB）`,
+        }))
+      : "";
 
   return (
     <div
@@ -62,15 +99,13 @@ function FileUpload({
         )}
       />
       {isDragActive ? (
-        <p className="text-primary text-sm font-medium">Drop files here...</p>
+        <p className="text-primary text-sm font-medium">{dropActive}</p>
       ) : (
         <div className="space-y-1">
-          <p className="text-sm font-medium">
-            Drag & drop files here, or click to select
-          </p>
+          <p className="text-sm font-medium">{hint}</p>
           <p className="text-muted-foreground text-xs">
-            {maxFiles > 1 ? `Up to ${maxFiles} files` : "Single file"}
-            {maxSize && ` (max ${Math.round(maxSize / 1024 / 1024)}MB each)`}
+            {maxFiles > 1 ? maxFilesText : singleFileText}
+            {maxSizeSuffix}
           </p>
         </div>
       )}

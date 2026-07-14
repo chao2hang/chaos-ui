@@ -24,5 +24,21 @@
   "schemaForm.submit": "저장",
   "schemaForm.reset": "재설정",
   "schemaForm.selectPlaceholder": "선택...",
-  "schemaForm.submitting": "저장 중..."
+  "schemaForm.submitting": "저장 중...",
+  "datePicker.placeholder": "날짜 선택",
+  "fileUpload.dropActive": "파일을 여기에 놓으세요...",
+  "fileUpload.hint": "파일을 드래그 앤 드롭하거나 클릭하여 선택",
+  "fileUpload.maxFiles": "최대 {{count}}개 파일",
+  "fileUpload.singleFile": "단일 파일",
+  "fileUpload.maxSize": "（각 최대 {{size}}MB）",
+  "expenseLine.category": "분류",
+  "expenseLine.selectCategory": "분류 선택",
+  "expenseLine.summary": "적요",
+  "expenseLine.summaryPlaceholder": "적요 입력",
+  "expenseLine.amount": "금액（{{currency}}）",
+  "expenseLine.remark": "비고",
+  "expenseLine.remarkPlaceholder": "선택",
+  "expenseLine.items": "{{count}}행",
+  "expenseLine.total": "합계: {{currency}}{{amount}}",
+  "expenseLine.empty": "비용 항목 없음"
 }

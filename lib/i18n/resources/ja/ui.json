@@ -24,5 +24,21 @@
   "schemaForm.submit": "保存",
   "schemaForm.reset": "リセット",
   "schemaForm.selectPlaceholder": "選択...",
-  "schemaForm.submitting": "保存中..."
+  "schemaForm.submitting": "保存中...",
+  "datePicker.placeholder": "日付を選択",
+  "fileUpload.dropActive": "ここにファイルをドロップ...",
+  "fileUpload.hint": "ファイルをドラッグ＆ドロップ、またはクリックして選択",
+  "fileUpload.maxFiles": "最大 {{count}} ファイル",
+  "fileUpload.singleFile": "単一ファイル",
+  "fileUpload.maxSize": "（各最大 {{size}}MB）",
+  "expenseLine.category": "カテゴリ",
+  "expenseLine.selectCategory": "カテゴリを選択",
+  "expenseLine.summary": "摘要",
+  "expenseLine.summaryPlaceholder": "摘要を入力",
+  "expenseLine.amount": "金額（{{currency}}）",
+  "expenseLine.remark": "備考",
+  "expenseLine.remarkPlaceholder": "任意",
+  "expenseLine.items": "{{count}} 行",
+  "expenseLine.total": "合計：{{currency}}{{amount}}",
+  "expenseLine.empty": "明細がありません"
 }

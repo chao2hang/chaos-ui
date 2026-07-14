@@ -24,5 +24,21 @@
   "schemaForm.submit": "Save",
   "schemaForm.reset": "Reset",
   "schemaForm.selectPlaceholder": "Select...",
-  "schemaForm.submitting": "Saving..."
+  "schemaForm.submitting": "Saving...",
+  "datePicker.placeholder": "Select date",
+  "fileUpload.dropActive": "Drop files here...",
+  "fileUpload.hint": "Drag & drop files here, or click to select",
+  "fileUpload.maxFiles": "Up to {{count}} files",
+  "fileUpload.singleFile": "Single file",
+  "fileUpload.maxSize": " (max {{size}}MB each)",
+  "expenseLine.category": "Category",
+  "expenseLine.selectCategory": "Select category",
+  "expenseLine.summary": "Summary",
+  "expenseLine.summaryPlaceholder": "Enter summary",
+  "expenseLine.amount": "Amount ({{currency}})",
+  "expenseLine.remark": "Remark",
+  "expenseLine.remarkPlaceholder": "Optional",
+  "expenseLine.items": "{{count}} items",
+  "expenseLine.total": "Total: {{currency}}{{amount}}",
+  "expenseLine.empty": "No expense items added"
 }

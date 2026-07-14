@@ -8,6 +8,7 @@ import type { LineEditorColumn } from "@/components/business/line-editor";
 import { InputNumber } from "@/components/ui/input-number";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * @component ExpenseLineEditor
@@ -39,6 +40,19 @@ interface CategoryOption {
   value: string;
 }
 
+interface ExpenseLineLabels {
+  category?: string;
+  selectCategory?: string;
+  summary?: string;
+  summaryPlaceholder?: string;
+  amount?: string;
+  remark?: string;
+  remarkPlaceholder?: string;
+  items?: string;
+  total?: string;
+  empty?: string;
+}
+
 interface ExpenseLineEditorProps extends Omit<
   React.ComponentProps<"div">,
   "onChange"
@@ -64,6 +78,11 @@ interface ExpenseLineEditorProps extends Omit<
   maxRows?: number;
   /** Currency symbol / 货币符号 */
   currency?: string;
+  /**
+   * Override column/footer/empty copy (issue #19). Falls back to i18n / zh defaults.
+   * / 覆盖列头与底栏文案
+   */
+  labels?: ExpenseLineLabels;
 }
 
 function ExpenseLineEditor({
@@ -76,8 +95,40 @@ function ExpenseLineEditor({
   minRows = 1,
   maxRows,
   currency = "¥",
+  labels,
   ...props
 }: ExpenseLineEditorProps) {
+  const { t } = useTranslation("ui");
+
+  const L = React.useMemo(() => {
+    return {
+      category:
+        labels?.category ?? t("expenseLine.category", { defaultValue: "类别" }),
+      selectCategory:
+        labels?.selectCategory ??
+        t("expenseLine.selectCategory", { defaultValue: "选择类别" }),
+      summary:
+        labels?.summary ?? t("expenseLine.summary", { defaultValue: "摘要" }),
+      summaryPlaceholder:
+        labels?.summaryPlaceholder ??
+        t("expenseLine.summaryPlaceholder", { defaultValue: "请输入摘要" }),
+      amount:
+        labels?.amount ??
+        t("expenseLine.amount", {
+          currency,
+          defaultValue: `金额（${currency}）`,
+        }),
+      remark:
+        labels?.remark ?? t("expenseLine.remark", { defaultValue: "备注" }),
+      remarkPlaceholder:
+        labels?.remarkPlaceholder ??
+        t("expenseLine.remarkPlaceholder", { defaultValue: "选填" }),
+      empty:
+        labels?.empty ??
+        t("expenseLine.empty", { defaultValue: "暂无费用明细" }),
+    };
+  }, [labels, t, currency]);
+
   // Uncontrolled mode: manage lines internally so consumers (expense/apply
   // pages) don't need to wire useState themselves.
   const isControlled = controlledData !== undefined;
@@ -91,7 +142,7 @@ function ExpenseLineEditor({
         ? [
             {
               key: "category",
-              title: "Category",
+              title: L.category,
               width: 150,
               editable: !readOnly,
               renderEditor: (
@@ -106,7 +157,7 @@ function ExpenseLineEditor({
                   value={String(value ?? "")}
                   onChange={(e) => onCellChange(e.target.value)}
                   options={[
-                    { value: "", label: "Select category" },
+                    { value: "", label: L.selectCategory },
                     ...categories.map((cat) => ({
                       value: cat.value,
                       label: cat.label,
@@ -123,13 +174,13 @@ function ExpenseLineEditor({
         : []),
       {
         key: "summary",
-        title: "Summary",
+        title: L.summary,
         editable: !readOnly,
         renderEditor: (value, _row, _index, onCellChange) => (
           <Input
             value={String(value ?? "")}
             onChange={(e) => onCellChange(e.target.value)}
-            placeholder="Enter summary"
+            placeholder={L.summaryPlaceholder}
             className="h-8"
           />
         ),
@@ -137,7 +188,7 @@ function ExpenseLineEditor({
       },
       {
         key: "amount",
-        title: `Amount (${currency})`,
+        title: L.amount,
         width: 140,
         editable: !readOnly,
         renderEditor: (value, _row, _index, onCellChange) => (
@@ -155,19 +206,19 @@ function ExpenseLineEditor({
       },
       {
         key: "remark",
-        title: "Remark",
+        title: L.remark,
         editable: !readOnly,
         renderEditor: (value, _row, _index, onCellChange) => (
           <Input
             value={String(value ?? "")}
             onChange={(e) => onCellChange(e.target.value)}
-            placeholder="Optional"
+            placeholder={L.remarkPlaceholder}
             className="h-8"
           />
         ),
       },
     ],
-    [categories, readOnly, currency],
+    [categories, readOnly, currency, L],
   );
 
   const handleChange = (newData: Record<string, unknown>[]) => {
@@ -181,13 +232,24 @@ function ExpenseLineEditor({
     0,
   );
 
+  const itemsText =
+    labels?.items ??
+    t("expenseLine.items", {
+      count: data.length,
+      defaultValue: `${data.length} 行`,
+    });
+  const totalText =
+    labels?.total ??
+    t("expenseLine.total", {
+      currency,
+      amount: totalAmount.toFixed(2),
+      defaultValue: `合计：${currency}${totalAmount.toFixed(2)}`,
+    });
+
   const footer = (
     <td colSpan={columns.length + 1} className="px-3 py-2 text-right">
-      <span className="text-muted-foreground mr-6">{data.length} items</span>
-      <span className="text-base font-semibold">
-        Total: {currency}
-        {totalAmount.toFixed(2)}
-      </span>
+      <span className="text-muted-foreground mr-6">{itemsText}</span>
+      <span className="text-base font-semibold">{totalText}</span>
     </td>
   );
 
@@ -205,11 +267,16 @@ function ExpenseLineEditor({
         minRows={minRows}
         maxRows={maxRows}
         footer={footer}
-        emptyText="No expense items added"
+        emptyText={L.empty}
       />
     </div>
   );
 }
 
 export { ExpenseLineEditor };
-export type { ExpenseLineEditorProps, ExpenseLine, CategoryOption };
+export type {
+  ExpenseLineEditorProps,
+  ExpenseLine,
+  CategoryOption,
+  ExpenseLineLabels,
+};

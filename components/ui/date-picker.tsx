@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { CalendarIcon } from "lucide-react";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { Calendar as CalendarPrimitive } from "./calendar";
 
 import { cn } from "@/lib/utils";
@@ -135,9 +136,10 @@ function escapeRegExp(s: string): string {
 }
 
 function DatePicker(props: DatePickerProps) {
+  const { t } = useTranslation("ui");
   const {
     format,
-    placeholder = "Select date",
+    placeholder = t("datePicker.placeholder", "选择日期"),
     disabled = false,
     readOnly = false,
     allowClear = false,
@@ -191,7 +193,7 @@ function DatePicker(props: DatePickerProps) {
   return (
     <div
       data-slot="date-picker"
-      className={cn("relative inline-block", className)}
+      className={cn("relative block w-full", className)}
     >
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger

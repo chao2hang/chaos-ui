@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { render } from "@testing-library/react";
 import { DatePicker, formatDate, parseDate } from "@/components/ui/date-picker";
 import type { DatePickerProps } from "@/components/ui/date-picker";
 
@@ -6,6 +7,16 @@ describe("date-picker", () => {
   it("exports DatePicker", () => {
     expect(DatePicker).toBeDefined();
     expect(typeof DatePicker).toBe("function");
+  });
+
+  it("defaults root to block w-full and Chinese placeholder (issue #19)", () => {
+    const { container, getByText } = render(<DatePicker />);
+    const root = container.querySelector(
+      '[data-slot="date-picker"]',
+    ) as HTMLElement;
+    expect(root.className.split(/\s+/)).toContain("w-full");
+    expect(root.className.split(/\s+/)).toContain("block");
+    expect(getByText("选择日期")).toBeDefined();
   });
 
   it("DatePickerProps type is importable", () => {
