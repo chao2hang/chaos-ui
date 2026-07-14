@@ -5,6 +5,16 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.5] — 2026-07-14
+
+### Changed
+
+- **docs/layout AdminShell (#15 / CUI-LAYOUT-04)**: document parent-fill height chain (`h-full min-h-0`), Next.js App Router `html`/`body` root sample, and Story host notes (`WithMinHSvh`); no runtime height API change (`fill` remains a future enhancement).
+
+### Notes
+
+- Consumers still own the host height chain (or pass `className="min-h-svh"`). AuthLayout stays viewport-self-contained via `fill` (CUI-LAYOUT-05).
+
 ## [1.5.4] — 2026-07-13
 
 ### Fixed
