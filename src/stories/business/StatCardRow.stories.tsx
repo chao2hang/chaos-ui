@@ -1,12 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { StatCardRow } from "@/components/business/stat-card-row";
-import { DollarSignIcon, UsersIcon, ShoppingCartIcon } from "@/components/ui/icons";
+import {
+  DollarSignIcon,
+  UsersIcon,
+  ShoppingCartIcon,
+} from "@/components/ui/icons";
 
 const meta = {
   title: "Business/DataDisplay/StatCardRow",
   component: StatCardRow,
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: {
+        component:
+          "KPI row cards use a single vertical inset from Card `py-(--card-spacing)` (CUI-DASH-06). CardContent no longer adds `pt-6`, so titles sit near the top edge like StatCard / StatCardWithDelta.",
+      },
+    },
+  },
   args: { cards: [] },
 } satisfies Meta<typeof StatCardRow>;
 
@@ -43,10 +55,12 @@ export const Default: Story = {
 
 export const Single: Story = {
   args: {
-    cards: [{
-      title: "Total",
-      value: "¥ 128,000",
-      description: "Year to date",
-    }],
+    cards: [
+      {
+        title: "Total",
+        value: "¥ 128,000",
+        description: "Year to date",
+      },
+    ],
   },
 };

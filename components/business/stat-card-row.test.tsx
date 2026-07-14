@@ -215,4 +215,19 @@ describe("StatCardRow", () => {
     expect(chip.style.backgroundColor).not.toBe("");
     expect(chip.getAttribute("style") ?? "").not.toContain("green15");
   });
+
+  it("does not stack CardContent pt-6 on Card py (CUI-DASH-06 / #16)", () => {
+    const { container } = render(
+      <StatCardRow cards={[{ title: "今日订单", value: 12 }]} />,
+    );
+    const content = container.querySelector(
+      '[data-slot="card-content"]',
+    ) as HTMLElement;
+    expect(content).not.toBeNull();
+    const classes = content.className.split(/\s+/);
+    expect(classes).not.toContain("pt-6");
+    // Value row uses tighter gap than legacy mt-2
+    const valueRow = screen.getByText("12").parentElement as HTMLElement;
+    expect(valueRow.className.split(/\s+/)).toContain("mt-1.5");
+  });
 });

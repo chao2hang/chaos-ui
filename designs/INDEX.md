@@ -16,6 +16,9 @@
 
 ## ✅ 完成
 
+- [AdminSider 折叠动画 + 表单 i18n #18/#19](./2026-07-14_AdminSider折叠动画_表单i18n_设计计划.md)
+- [AdminShell 折叠钮 Topbar #17](./2026-07-14_AdminShell折叠钮Topbar_设计计划.md)
+- [StatCardRow 顶距 CUI-DASH-06](./2026-07-14_StatCardRow顶距_CUI-DASH-06_设计计划.md)
 - [AdminShell 高度链文档 CUI-LAYOUT-04](./2026-07-14_AdminShell高度链文档_CUI-LAYOUT-04_设计计划.md)
 - [AdminSider 折叠与 Header 搜索](./2026-07-13_AdminSider折叠与Header搜索_设计计划.md)
 - [AdminShell 导航与内容区契约](./2026-07-13_AdminShell导航与内容区契约_设计计划.md)

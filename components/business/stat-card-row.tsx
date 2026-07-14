@@ -98,13 +98,14 @@ function StatCardRow({ cards, columns, className }: StatCardRowProps) {
             )}
             onClick={card.onClick}
           >
-            <CardContent className="pt-6">
+            {/* CUI-DASH-06: rely on Card py-(--card-spacing); do not stack pt-6 */}
+            <CardContent>
               <div className="flex items-start justify-between">
                 <div className="min-w-0 flex-1">
                   <p className="text-muted-foreground truncate text-sm font-medium">
                     {card.title}
                   </p>
-                  <p className="mt-2 flex items-baseline gap-1 tabular-nums">
+                  <p className="mt-1.5 flex items-baseline gap-1 tabular-nums">
                     <span className="text-2xl font-bold">{card.value}</span>
                     {card.suffix != null && card.suffix !== "" && (
                       <span
