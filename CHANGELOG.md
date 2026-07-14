@@ -5,6 +5,26 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.7] — 2026-07-14
+
+### Added
+
+- **business/AreaChart · LineChart · BarChart (#22 / CUI-DASH-07)**: pure-SVG hover **tooltip + crosshair** by x-index (full-plot hit target, not 2.5px dots); multi-series same-x values with legend colors; `showTooltip` default `true`.
+- **business/chart-hover**: shared `indexFromClientX` / `barIndexFromClientX` helpers for lightweight charts.
+- **layout/NavigationTabsBar (#21)**: pointer **drag-to-scroll** when tabs overflow; `ResizeObserver` for reliable scroll arrows; optional vertical-wheel → horizontal pan; suppress click/context-menu after drag.
+- Storybook: `AreaChart` `DashboardSalesTrend` / `TooltipDisabled`; Line/Bar `HoverTooltip`; NavigationTabsBar overflow drag story.
+
+### Fixed
+
+- **ui/CardSection (#20)**: when `title`/`actions` present, title row and body use `gap-(--card-spacing)` so form fields no longer sit flush under section titles.
+- **business/LineChart**: measure container width (like AreaChart) so hover hit geometry matches stretched SVG.
+
+### Notes
+
+- Lightweight KPI trends stay pure SVG with readable defaults; heavy/interactive series still use Recharts wrappers in `chart.tsx`.
+- NavigationTabsBar keeps the scrollbar hidden; drag + arrows remain the primary overflow UX.
+- No breaking API removals — new optional `showTooltip` only; CardSection/TabsBar behavior is visual-only.
+
 ## [1.5.6] — 2026-07-14
 
 ### Fixed

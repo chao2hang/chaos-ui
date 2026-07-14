@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { NavigationTabsBar } from "./navigation-tabs-bar";
 import type {
   NavigationTabsBarProps,
@@ -7,6 +7,15 @@ import type {
 } from "./navigation-tabs-bar";
 
 describe("NavigationTabsBar", () => {
+  beforeEach(() => {
+    if (!Element.prototype.setPointerCapture) {
+      Element.prototype.setPointerCapture = vi.fn();
+    }
+    if (!Element.prototype.releasePointerCapture) {
+      Element.prototype.releasePointerCapture = vi.fn();
+    }
+  });
+
   it("exports NavigationTabsBar", () => {
     expect(NavigationTabsBar).toBeDefined();
   });
@@ -295,5 +304,165 @@ describe("NavigationTabsBar", () => {
     );
     fireEvent.click(screen.getByText("Home"));
     expect(onChange).toHaveBeenCalledWith("home");
+  });
+
+  it("marks scroll strip and tab labels as select-none (issue #21)", () => {
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+      />,
+    );
+    const scroll = container.querySelector(
+      '[data-slot="navigation-tabs-bar-scroll"]',
+    );
+    expect(scroll?.className).toContain("select-none");
+    const label = screen.getByText("Home");
+    expect(label.className).toContain("select-none");
+  });
+
+  it("drag past threshold scrolls horizontally and suppresses tab change (issue #21)", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+          { key: "reports", label: "Reports" },
+        ]}
+        onChange={onChange}
+      />,
+    );
+    const scroll = container.querySelector(
+      '[data-slot="navigation-tabs-bar-scroll"]',
+    ) as HTMLDivElement;
+    expect(scroll).not.toBeNull();
+
+    Object.defineProperty(scroll, "scrollWidth", {
+      configurable: true,
+      value: 800,
+    });
+    Object.defineProperty(scroll, "clientWidth", {
+      configurable: true,
+      value: 200,
+    });
+    let scrollLeft = 0;
+    Object.defineProperty(scroll, "scrollLeft", {
+      configurable: true,
+      get: () => scrollLeft,
+      set: (v: number) => {
+        scrollLeft = v;
+      },
+    });
+
+    fireEvent.pointerDown(scroll, {
+      button: 0,
+      pointerId: 1,
+      clientX: 100,
+    });
+    fireEvent.pointerMove(scroll, {
+      pointerId: 1,
+      clientX: 40,
+    });
+    expect(scrollLeft).toBe(60);
+
+    fireEvent.pointerUp(scroll, { pointerId: 1, clientX: 40 });
+    fireEvent.click(screen.getByText("Settings"));
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("short click without drag still fires onChange (issue #21)", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+        onChange={onChange}
+      />,
+    );
+    const scroll = container.querySelector(
+      '[data-slot="navigation-tabs-bar-scroll"]',
+    ) as HTMLDivElement;
+
+    fireEvent.pointerDown(scroll, {
+      button: 0,
+      pointerId: 1,
+      clientX: 100,
+    });
+    fireEvent.pointerMove(scroll, {
+      pointerId: 1,
+      clientX: 101,
+    });
+    fireEvent.pointerUp(scroll, { pointerId: 1, clientX: 101 });
+    fireEvent.click(screen.getByText("Settings"));
+    expect(onChange).toHaveBeenCalledWith("settings");
+  });
+
+  it("shows scroll-right chevron when ResizeObserver reports overflow (issue #21)", () => {
+    const OriginalRO = globalThis.ResizeObserver;
+    type Cb = ResizeObserverCallback;
+    let lastCb: Cb | null = null;
+    class MockRO {
+      constructor(cb: Cb) {
+        lastCb = cb;
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    }
+    globalThis.ResizeObserver = MockRO as unknown as typeof ResizeObserver;
+
+    try {
+      const { container } = render(
+        <NavigationTabsBar
+          items={[
+            { key: "a", label: "Alpha tab long" },
+            { key: "b", label: "Beta tab long" },
+            { key: "c", label: "Gamma tab long" },
+          ]}
+        />,
+      );
+      const scroll = container.querySelector(
+        '[data-slot="navigation-tabs-bar-scroll"]',
+      ) as HTMLDivElement;
+      // jsdom scroll metrics are often non-writable getters — override with get.
+      Object.defineProperty(scroll, "scrollWidth", {
+        configurable: true,
+        get: () => 600,
+      });
+      Object.defineProperty(scroll, "clientWidth", {
+        configurable: true,
+        get: () => 200,
+      });
+      Object.defineProperty(scroll, "scrollLeft", {
+        configurable: true,
+        get: () => 0,
+        set: () => undefined,
+      });
+
+      expect(lastCb).not.toBeNull();
+      act(() => {
+        lastCb?.(
+          [
+            {
+              target: scroll,
+              contentRect: {} as DOMRectReadOnly,
+              borderBoxSize: [],
+              contentBoxSize: [],
+              devicePixelContentBoxSize: [],
+            } as ResizeObserverEntry,
+          ],
+          {} as ResizeObserver,
+        );
+      });
+
+      expect(screen.getByLabelText("Scroll right")).toBeDefined();
+    } finally {
+      globalThis.ResizeObserver = OriginalRO;
+    }
   });
 });

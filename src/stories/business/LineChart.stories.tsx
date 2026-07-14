@@ -53,6 +53,19 @@ export const MonthlyTrend: Story = {
   },
 };
 
+/**
+ * Hover multi-series tooltip + crosshair (issue #22).
+ * Move the pointer across the plot to compare series at the same x.
+ */
+export const HoverTooltip: Story = {
+  args: {
+    series: multiSeries,
+    labels: quarterLabels,
+    height: 220,
+    showTooltip: true,
+  },
+};
+
 /** Compact line chart suitable for dashboard widgets. */
 export const Compact: Story = {
   args: {

@@ -18,6 +18,9 @@ import {
   ContextMenuSeparator,
 } from "@/components/ui/context-menu";
 
+/** Movement (px) before pointer gesture becomes a horizontal drag-scroll. */
+const DRAG_THRESHOLD_PX = 4;
+
 export interface NavigationTabsBarTabItem {
   key: string;
   label: React.ReactNode;
@@ -50,6 +53,11 @@ export interface NavigationTabsBarProps extends Omit<
   onRefresh?: (key: string) => void;
 }
 
+function isInteractiveTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof Element)) return false;
+  return Boolean(target.closest("button, a, input, textarea, select"));
+}
+
 function NavigationTabsBar({
   className,
   items = [],
@@ -72,6 +80,17 @@ function NavigationTabsBar({
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  const dragRef = React.useRef({
+    active: false,
+    pointerId: -1,
+    startX: 0,
+    startScrollLeft: 0,
+    dragged: false,
+  });
+  /** Suppress tab activation after a completed drag (click fires after pointerup). */
+  const suppressClickRef = React.useRef(false);
 
   const updateScrollButtons = React.useCallback(() => {
     const el = scrollRef.current;
@@ -84,11 +103,29 @@ function NavigationTabsBar({
     updateScrollButtons();
   }, [items, updateScrollButtons]);
 
+  React.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => {
+      updateScrollButtons();
+    });
+    ro.observe(el);
+    // Content width can change without the scroller box resizing.
+    for (const child of Array.from(el.children)) {
+      ro.observe(child);
+    }
+    return () => ro.disconnect();
+  }, [items, updateScrollButtons]);
+
   const scrollBy = (dir: 1 | -1) => {
     scrollRef.current?.scrollBy({ left: dir * 200, behavior: "smooth" });
   };
 
   const handleChange = (key: string) => {
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false;
+      return;
+    }
     if (controlledActiveKey === undefined) setInternalActive(key);
     onChange?.(key);
   };
@@ -96,6 +133,79 @@ function NavigationTabsBar({
   const handleClose = (key: string, e: React.MouseEvent) => {
     e.stopPropagation();
     onClose?.(key);
+  };
+
+  const onScrollPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    if (isInteractiveTarget(e.target)) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    dragRef.current = {
+      active: true,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startScrollLeft: el.scrollLeft,
+      dragged: false,
+    };
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {
+      // jsdom / unsupported
+    }
+  };
+
+  const onScrollPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag.active || drag.pointerId !== e.pointerId) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const dx = e.clientX - drag.startX;
+    if (!drag.dragged && Math.abs(dx) < DRAG_THRESHOLD_PX) return;
+    if (!drag.dragged) {
+      drag.dragged = true;
+      setIsDragging(true);
+    }
+    el.scrollLeft = drag.startScrollLeft - dx;
+    e.preventDefault();
+  };
+
+  const endScrollDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag.active || drag.pointerId !== e.pointerId) return;
+    const el = scrollRef.current;
+    if (el) {
+      try {
+        el.releasePointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    }
+    if (drag.dragged) {
+      suppressClickRef.current = true;
+      // Clear on next macrotask in case no click follows (e.g. pointer left window).
+      window.setTimeout(() => {
+        suppressClickRef.current = false;
+      }, 0);
+    }
+    drag.active = false;
+    drag.pointerId = -1;
+    drag.dragged = false;
+    setIsDragging(false);
+  };
+
+  const onScrollWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) return;
+    // Prefer explicit horizontal delta; otherwise map vertical wheel to horizontal.
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (delta === 0) return;
+    const next = el.scrollLeft + delta;
+    const clamped = Math.max(0, Math.min(maxScroll, next));
+    if (clamped === el.scrollLeft) return;
+    el.scrollLeft = clamped;
+    e.preventDefault();
   };
 
   return (
@@ -119,8 +229,17 @@ function NavigationTabsBar({
       )}
       <div
         ref={scrollRef}
+        data-slot="navigation-tabs-bar-scroll"
         onScroll={updateScrollButtons}
-        className="flex flex-1 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        onPointerDown={onScrollPointerDown}
+        onPointerMove={onScrollPointerMove}
+        onPointerUp={endScrollDrag}
+        onPointerCancel={endScrollDrag}
+        onWheel={onScrollWheel}
+        className={cn(
+          "flex flex-1 items-center gap-1 overflow-x-auto select-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+          isDragging ? "cursor-grabbing" : "cursor-grab",
+        )}
       >
         {items.map((tab) => {
           const isActive = current === tab.key;
@@ -130,6 +249,11 @@ function NavigationTabsBar({
               <ContextMenuTrigger>
                 <div
                   onClick={() => handleChange(tab.key)}
+                  onContextMenu={(e) => {
+                    if (suppressClickRef.current || dragRef.current.dragged) {
+                      e.preventDefault();
+                    }
+                  }}
                   onAuxClick={(e) => {
                     if (e.button === 1 && tab.closable !== false) {
                       e.stopPropagation();
@@ -137,14 +261,16 @@ function NavigationTabsBar({
                     }
                   }}
                   className={cn(
-                    "group flex cursor-pointer items-center gap-1.5 border-b-2 px-3 py-2 text-sm transition-colors",
+                    "group flex cursor-pointer items-center gap-1.5 border-b-2 px-3 py-2 text-sm transition-colors select-none",
                     isActive
                       ? "border-primary bg-primary/5 text-primary"
                       : "text-muted-foreground hover:text-foreground border-transparent",
                   )}
                 >
                   {tab.icon && <span className="shrink-0">{tab.icon}</span>}
-                  <span className="whitespace-nowrap">{tab.label}</span>
+                  <span className="whitespace-nowrap select-none">
+                    {tab.label}
+                  </span>
                   {closable && (
                     <button
                       type="button"

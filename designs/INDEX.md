@@ -16,6 +16,9 @@
 
 ## ✅ 完成
 
+- [AreaChart Tooltip/Crosshair CUI-DASH-07 #22](./2026-07-14_AreaChart_Tooltip_Crosshair_CUI-DASH-07_设计计划.md)
+- [NavigationTabsBar 拖拽横向滚动 #21](./2026-07-14_NavigationTabsBar拖拽横向滚动_设计计划.md)
+- [CardSection 标题内容间距 #20](./2026-07-14_CardSection标题内容间距_设计计划.md)
 - [AdminSider 折叠动画 + 表单 i18n #18/#19](./2026-07-14_AdminSider折叠动画_表单i18n_设计计划.md)
 - [AdminShell 折叠钮 Topbar #17](./2026-07-14_AdminShell折叠钮Topbar_设计计划.md)
 - [StatCardRow 顶距 CUI-DASH-06](./2026-07-14_StatCardRow顶距_CUI-DASH-06_设计计划.md)

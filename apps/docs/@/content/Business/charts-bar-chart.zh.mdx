@@ -25,13 +25,20 @@ import { CodeBlock } from "@/components/code-block";
 
 ### BarChart
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop             | Type                         | Default      | 说明                      |
+| ---------------- | ---------------------------- | ------------ | ------------------------- |
+| `data`           | `{ label; value; color? }[]` | 内置         | 柱数据                    |
+| `orientation`    | `"vertical" \| "horizontal"` | `"vertical"` | 方向                      |
+| `height`         | `number`                     | `200`        | 高度 px                   |
+| `xLabelRotate`   | `number`                     | `0`          | 纵向标签旋转角            |
+| `maxLabelLength` | `number`                     | —            | 标签截断长度              |
+| `showTooltip`    | `boolean`                    | `true`       | 纵向柱悬停 tooltip（#22） |
+| `className`      | `string`                     | —            | 根节点类名                |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Client Component**: 使用 `"use client"`，依赖 React hooks/状态，需在客户端渲染。
+- 纵向柱默认 hover 读数；横向柱已内联显示数值。
+- 重交互/大数据请用 Recharts `chart.tsx` 系列。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-charts-bar-chart--docs)。

@@ -78,3 +78,12 @@ export const Compact: Story = {
     height: 120,
   },
 };
+
+/** Vertical hover tooltip (issue #22). */
+export const HoverTooltip: Story = {
+  args: {
+    data: quarterRevenue,
+    height: 220,
+    showTooltip: true,
+  },
+};

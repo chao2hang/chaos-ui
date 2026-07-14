@@ -7,9 +7,12 @@ import {
   CardContent,
   CardFooter,
   CardAction,
+  CardSection,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const meta = {
   title: "Components/Card",
@@ -113,6 +116,38 @@ export const WithBadge: Story = {
           Project is currently in development phase.
         </p>
       </CardContent>
+    </Card>
+  ),
+};
+
+/** Bill-style section: title must breathe above form fields (issue #20). */
+export const WithSectionForm: Story = {
+  render: () => (
+    <Card className="max-w-lg">
+      <CardSection title="单据信息">
+        <CardContent className="space-y-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="expense-type">费用类型</Label>
+            <Input id="expense-type" placeholder="请选择费用类型" />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="expense-date">申请日期</Label>
+            <Input id="expense-date" placeholder="选择日期" />
+          </div>
+        </CardContent>
+      </CardSection>
+      <CardSection
+        title="附件"
+        actions={
+          <Button variant="outline" size="sm">
+            上传
+          </Button>
+        }
+      >
+        <CardContent>
+          <p className="text-muted-foreground text-sm">暂无附件</p>
+        </CardContent>
+      </CardSection>
     </Card>
   ),
 };

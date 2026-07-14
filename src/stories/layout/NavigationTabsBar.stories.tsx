@@ -223,3 +223,68 @@ export const RightClickMenu: Story = {
     );
   },
 };
+
+/** Many long labels in a narrow strip — drag / wheel / chevrons (issue #21). */
+export const OverflowDragScroll: Story = {
+  render: () => {
+    const [tab, setTab] = React.useState("tab-1");
+    const items: NavigationTabsBarTabItem[] = [
+      {
+        key: "tab-1",
+        label: "采购申请单-2026-Q3-批次A",
+        icon: <HomeIcon className="size-4" />,
+        closable: false,
+      },
+      {
+        key: "tab-2",
+        label: "销售订单明细-华东大区",
+        icon: <SearchIcon className="size-4" />,
+      },
+      {
+        key: "tab-3",
+        label: "库存调拨-跨仓复核",
+        icon: <BellIcon className="size-4" />,
+      },
+      {
+        key: "tab-4",
+        label: "财务对账-应付账龄",
+        icon: <SettingsIcon className="size-4" />,
+      },
+      {
+        key: "tab-5",
+        label: "主数据-物料档案维护",
+        icon: <UserIcon className="size-4" />,
+      },
+      {
+        key: "tab-6",
+        label: "生产工单-装配线-07",
+        icon: <SearchIcon className="size-4" />,
+      },
+      {
+        key: "tab-7",
+        label: "质量管理-来料检验记录",
+        icon: <BellIcon className="size-4" />,
+      },
+      {
+        key: "tab-8",
+        label: "系统设置-组织与权限",
+        icon: <SettingsIcon className="size-4" />,
+      },
+    ];
+
+    return (
+      <div className="max-w-md">
+        <NavigationTabsBar
+          items={items}
+          activeKey={tab}
+          onChange={setTab}
+          onClose={() => undefined}
+        />
+        <p className="text-muted-foreground mt-4 text-sm">
+          Drag the tab strip horizontally, use the mouse wheel, or click the
+          chevrons when overflow. Short click still switches tabs.
+        </p>
+      </div>
+    );
+  },
+};

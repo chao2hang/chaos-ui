@@ -25,13 +25,18 @@ import { CodeBlock } from "@/components/code-block";
 
 ### LineChart
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop          | Type                         | Default | 说明                            |
+| ------------- | ---------------------------- | ------- | ------------------------------- |
+| `series`      | `{ name; values; color? }[]` | 内置    | 多系列                          |
+| `labels`      | `string[]`                   | 内置    | X 轴标签                        |
+| `height`      | `number`                     | `180`   | SVG 高度 px                     |
+| `showTooltip` | `boolean`                    | `true`  | 悬停 tooltip + crosshair（#22） |
+| `className`   | `string`                     | —       | 根节点类名                      |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Client Component**: 使用 `"use client"`，依赖 React hooks/状态，需在客户端渲染。
+- **默认可读数**: 与 pure SVG `AreaChart` 同一交互契约（按 x 索引对齐多系列值）。
+- 重交互/大数据请用 Recharts `chart.tsx` 系列。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-charts-line-chart--docs)。

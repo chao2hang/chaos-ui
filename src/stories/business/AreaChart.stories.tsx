@@ -72,3 +72,45 @@ export const Minimal: Story = {
     height: 120,
   },
 };
+
+/**
+ * Dashboard-style dual series (CUI-DASH-07 / #22).
+ * Hover the plot for x-aligned tooltip + crosshair (订单 + 费用).
+ */
+export const DashboardSalesTrend: Story = {
+  args: {
+    series: [
+      {
+        name: "订单",
+        values: [320000, 280000, 410000, 380000, 450000, 520000],
+        color: "primary",
+      },
+      {
+        name: "费用",
+        values: [45000, 38000, 52000, 41000, 58000, 67000],
+        color: "chart-2",
+      },
+    ],
+    labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
+    height: 260,
+    gradient: true,
+    showTooltip: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "100%", maxWidth: 720 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+/** Static embed without hover chrome. */
+export const TooltipDisabled: Story = {
+  args: {
+    data: weekValues,
+    labels: weekLabels,
+    height: 160,
+    showTooltip: false,
+  },
+};

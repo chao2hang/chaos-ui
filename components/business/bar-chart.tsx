@@ -1,15 +1,19 @@
 "use client";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import { formatNumber } from "@/lib/format";
+import { barIndexFromClientX } from "./chart-hover";
 
 /**
  * @component BarChart
  * @category Business
  * @since 1.0.0-beta.0
  * @description 柱状图(分组/堆叠/横向) — pure SVG.
+ * Vertical orientation supports hover tooltip (issue #22).
  * @param data Bar segments with label, value and optional color.
  * @param orientation `vertical` (default) or `horizontal` bars.
  * @param height SVG height in px (vertical) or width basis (horizontal).
+ * @param showTooltip Whether to show hover tooltip for vertical bars (default true).
  * @param className Extra classes on the root.
  * @example
  * ```tsx
@@ -34,6 +38,11 @@ export interface BarChartProps {
    * Set 0/undefined to disable.
    */
   maxLabelLength?: number;
+  /**
+   * Show hover tooltip for vertical bars (issue #22). Default true.
+   * Horizontal bars already print values inline.
+   */
+  showTooltip?: boolean;
   className?: string;
 }
 
@@ -69,9 +78,12 @@ function BarChart({
   height = 200,
   xLabelRotate = 0,
   maxLabelLength,
+  showTooltip = true,
   className,
 }: BarChartProps) {
   const max = Math.max(1, ...data.map((d) => d.value));
+  const plotRef = React.useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   if (orientation === "horizontal") {
     return (
@@ -122,6 +134,38 @@ function BarChart({
       : rotate;
   const effectiveRotate = autoRotate;
   const bottomPad = Math.abs(effectiveRotate) > 0 ? 40 : labelPad;
+  const viewHeight = chartHeight + Math.max(0, bottomPad - 16);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!showTooltip) return;
+    const plot = plotRef.current;
+    if (!plot) return;
+    const rect = plot.getBoundingClientRect();
+    const next = barIndexFromClientX(
+      e.clientX,
+      rect.left,
+      rect.width,
+      width,
+      data.length,
+      barW,
+      gap,
+    );
+    setActiveIndex((prev) => (prev === next ? prev : next));
+  };
+
+  const handlePointerLeave = () => setActiveIndex(null);
+
+  const active = activeIndex != null ? data[activeIndex] : null;
+  const activeColor =
+    activeIndex != null
+      ? (active?.color ?? PALETTE[activeIndex % PALETTE.length]!)
+      : null;
+  const activeCenterX =
+    activeIndex != null ? gap + activeIndex * (barW + gap) + barW / 2 : null;
+  const tooltipLeftPct =
+    activeCenterX != null
+      ? Math.min(88, Math.max(4, (activeCenterX / width) * 100))
+      : 0;
 
   return (
     <div
@@ -130,50 +174,90 @@ function BarChart({
       role="img"
       aria-label={`柱状图，共 ${data.length} 项，最大值 ${max}`}
     >
-      <svg
-        viewBox={`0 0 ${width} ${chartHeight + Math.max(0, bottomPad - 16)}`}
-        width="100%"
-        height={chartHeight}
-        preserveAspectRatio="xMidYMid meet"
-        role="presentation"
+      <div
+        ref={plotRef}
+        data-slot="bar-chart-plot"
+        className="relative w-full touch-none"
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerMove}
       >
-        {data.map((d, i) => {
-          const h = (d.value / max) * (chartHeight - 24);
-          const x = gap + i * (barW + gap);
-          const label = truncateLabel(d.label, maxLabelLength);
-          const tx = x + barW / 2;
-          const ty = chartHeight - 4;
-          return (
-            <g key={`${d.label}-${i}`}>
-              <rect
-                x={x}
-                y={chartHeight - 16 - h}
-                width={barW}
-                height={h}
-                rx={4}
-                fill={d.color ?? PALETTE[i % PALETTE.length]}
-              >
-                <title>
-                  {d.label}: {formatNumber(d.value)}
-                </title>
-              </rect>
-              <text
-                x={tx}
-                y={ty}
-                textAnchor={Math.abs(effectiveRotate) > 0 ? "end" : "middle"}
-                transform={
-                  Math.abs(effectiveRotate) > 0
-                    ? `rotate(${effectiveRotate} ${tx} ${ty})`
-                    : undefined
-                }
-                className="fill-muted-foreground text-[10px]"
-              >
-                {label}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+        <svg
+          viewBox={`0 0 ${width} ${viewHeight}`}
+          width="100%"
+          height={chartHeight}
+          preserveAspectRatio="xMidYMid meet"
+          role="presentation"
+        >
+          {data.map((d, i) => {
+            const h = (d.value / max) * (chartHeight - 24);
+            const x = gap + i * (barW + gap);
+            const label = truncateLabel(d.label, maxLabelLength);
+            const tx = x + barW / 2;
+            const ty = chartHeight - 4;
+            const isActive = showTooltip && activeIndex === i;
+            const fill = d.color ?? PALETTE[i % PALETTE.length];
+            return (
+              <g key={`${d.label}-${i}`}>
+                <rect
+                  x={x}
+                  y={chartHeight - 16 - h}
+                  width={barW}
+                  height={h}
+                  rx={4}
+                  fill={fill}
+                  opacity={
+                    showTooltip && activeIndex != null && !isActive ? 0.45 : 1
+                  }
+                >
+                  {!showTooltip ? (
+                    <title>
+                      {d.label}: {formatNumber(d.value)}
+                    </title>
+                  ) : null}
+                </rect>
+                <text
+                  x={tx}
+                  y={ty}
+                  textAnchor={Math.abs(effectiveRotate) > 0 ? "end" : "middle"}
+                  transform={
+                    Math.abs(effectiveRotate) > 0
+                      ? `rotate(${effectiveRotate} ${tx} ${ty})`
+                      : undefined
+                  }
+                  className="fill-muted-foreground text-[10px]"
+                >
+                  {label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+        {showTooltip && active && activeColor != null && (
+          <div
+            data-slot="bar-chart-tooltip"
+            className="border-border bg-popover text-popover-foreground pointer-events-none absolute top-2 z-10 min-w-[6.5rem] rounded-md border px-2 py-1.5 text-[11px] shadow-md"
+            style={{
+              left: `${tooltipLeftPct}%`,
+              transform: "translateX(-50%)",
+            }}
+            aria-hidden="true"
+          >
+            <div className="text-muted-foreground mb-1 font-medium">
+              {active.label}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span
+                className="inline-block size-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: activeColor }}
+              />
+              <span className="font-medium tabular-nums">
+                {formatNumber(active.value)}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -60,7 +60,9 @@ describe("card", () => {
       <CardTitle size="sm">Title</CardTitle>,
     );
     expect(getByText("Title")).toBeDefined();
-    const title = container.querySelector('[data-slot="card-title"]') as HTMLElement;
+    const title = container.querySelector(
+      '[data-slot="card-title"]',
+    ) as HTMLElement;
     expect(title.className).toContain("text-sm");
   });
 
@@ -69,7 +71,9 @@ describe("card", () => {
       <CardDescription>A description</CardDescription>,
     );
     expect(getByText("A description")).toBeDefined();
-    const desc = container.querySelector('[data-slot="card-description"]') as HTMLElement;
+    const desc = container.querySelector(
+      '[data-slot="card-description"]',
+    ) as HTMLElement;
     expect(desc.className).toContain("text-muted-foreground");
   });
 
@@ -97,13 +101,17 @@ describe("card", () => {
     const { container, getByText } = render(
       <CardContent>Inner content</CardContent>,
     );
-    expect(container.querySelector('[data-slot="card-content"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="card-content"]'),
+    ).not.toBeNull();
     expect(getByText("Inner content")).toBeDefined();
   });
 
   it("CardContent flush removes padding classes", () => {
     const { container } = render(<CardContent flush>edge</CardContent>);
-    const content = container.querySelector('[data-slot="card-content"]') as HTMLElement;
+    const content = container.querySelector(
+      '[data-slot="card-content"]',
+    ) as HTMLElement;
     // flush → empty string for the px padding class branch (no "px-(--card-spacing)")
     expect(content.className).not.toContain("px-(--card-spacing)");
   });
@@ -112,7 +120,9 @@ describe("card", () => {
     const { container, getByText } = render(
       <CardFooter>Footer text</CardFooter>,
     );
-    const footer = container.querySelector('[data-slot="card-footer"]') as HTMLElement;
+    const footer = container.querySelector(
+      '[data-slot="card-footer"]',
+    ) as HTMLElement;
     expect(footer).not.toBeNull();
     expect(footer.className).toContain("border-t");
     expect(getByText("Footer text")).toBeDefined();
@@ -122,10 +132,14 @@ describe("card", () => {
     const { container, getByText } = render(
       <CardSection>section body</CardSection>,
     );
-    expect(container.querySelector('[data-slot="card-section"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="card-section"]'),
+    ).not.toBeNull();
     expect(getByText("section body")).toBeDefined();
     // no header row
-    expect(container.querySelector('[data-slot="card-section"] .text-sm')).toBeNull();
+    expect(
+      container.querySelector('[data-slot="card-section"] .text-sm'),
+    ).toBeNull();
   });
 
   it("CardSection renders title row when title provided", () => {
@@ -134,8 +148,45 @@ describe("card", () => {
     );
     expect(getByText("My Section")).toBeDefined();
     expect(getByText("body")).toBeDefined();
-    const section = container.querySelector('[data-slot="card-section"]') as HTMLElement;
+    const section = container.querySelector(
+      '[data-slot="card-section"]',
+    ) as HTMLElement;
     expect(section.querySelector(".font-semibold")).not.toBeNull();
+  });
+
+  it("CardSection spaces title from content with card-spacing gap (issue #20)", () => {
+    const { container, getByText } = render(
+      <CardSection title="单据信息">
+        <CardContent>费用类型</CardContent>
+      </CardSection>,
+    );
+    const section = container.querySelector(
+      '[data-slot="card-section"]',
+    ) as HTMLElement;
+    expect(section.className).toContain("gap-(--card-spacing)");
+    const header = container.querySelector(
+      '[data-slot="card-section-header"]',
+    ) as HTMLElement;
+    expect(header).not.toBeNull();
+    expect(header.className.split(/\s+/)).toContain("border-b");
+    expect(header.className).toContain("pb-(--card-spacing)");
+    expect(header.className).toContain("px-(--card-spacing)");
+    expect(
+      container.querySelector('[data-slot="card-section-body"]'),
+    ).not.toBeNull();
+    expect(getByText("单据信息")).toBeDefined();
+    expect(getByText("费用类型")).toBeDefined();
+  });
+
+  it("CardSection without title does not inject header gap layout", () => {
+    const { container } = render(<CardSection>plain body</CardSection>);
+    const section = container.querySelector(
+      '[data-slot="card-section"]',
+    ) as HTMLElement;
+    expect(section.className).not.toContain("gap-(--card-spacing)");
+    expect(
+      container.querySelector('[data-slot="card-section-header"]'),
+    ).toBeNull();
   });
 
   it("CardSection renders actions when provided", () => {
@@ -145,7 +196,9 @@ describe("card", () => {
       </CardSection>,
     );
     expect(getByText("Act")).toBeDefined();
-    expect(container.querySelector('[data-slot="card-section"] button')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="card-section"] button'),
+    ).not.toBeNull();
   });
 
   it("composes a full Card with header/content/footer", () => {

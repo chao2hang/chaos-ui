@@ -239,19 +239,42 @@ function CardSection({
   /** Right-side action area / 右侧操作区 */
   actions?: React.ReactNode;
 }) {
+  // #20: Card gap only separates direct children — title+content inside Section
+  // need their own column gap so form labels are not glued to the section title.
+  const hasHeader = title != null || actions != null;
+
   return (
     <div
       data-slot="card-section"
-      className={cn("border-border border-b last:border-b-0", className)}
+      className={cn(
+        "border-border border-b last:border-b-0",
+        hasHeader && "flex flex-col gap-(--card-spacing)",
+        className,
+      )}
       {...props}
     >
-      {title != null || actions != null ? (
-        <div className="flex items-center justify-between px-3 py-2">
-          <span className="text-sm font-semibold">{title}</span>
-          {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {hasHeader ? (
+        <div
+          data-slot="card-section-header"
+          className="border-border flex items-center justify-between border-b px-(--card-spacing) pb-(--card-spacing)"
+        >
+          {title != null ? (
+            <span className="text-sm font-semibold">{title}</span>
+          ) : (
+            <span />
+          )}
+          {actions ? (
+            <div className="flex items-center gap-2">{actions}</div>
+          ) : null}
         </div>
       ) : null}
-      {children}
+      {hasHeader ? (
+        <div data-slot="card-section-body" className="min-w-0">
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </div>
   );
 }

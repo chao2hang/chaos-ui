@@ -25,13 +25,22 @@ import { CodeBlock } from "@/components/code-block";
 
 ### AreaChart
 
-| Prop        | Type                   | Default | 说明              |
-| ----------- | ---------------------- | ------- | ----------------- |
-| `className` | `string`               | —       | 自定义样式类名    |
-| ...rest     | `React.HTMLAttributes` | —       | 透传原生 DOM 属性 |
+| Prop          | Type                         | Default  | 说明                                 |
+| ------------- | ---------------------------- | -------- | ------------------------------------ |
+| `data`        | `number[]`                   | 内置示例 | 单系列数值（与 `series` 二选一）     |
+| `series`      | `{ name; values; color? }[]` | —        | 多系列；覆盖 `data`                  |
+| `labels`      | `string[]`                   | 内置     | X 轴标签，与点 1:1                   |
+| `height`      | `number`                     | `180`    | SVG 高度 px                          |
+| `color`       | `string`                     | palette  | 单系列描边/填充色（token 或 hex）    |
+| `gradient`    | `boolean`                    | `true`   | 面积渐变填充                         |
+| `showTooltip` | `boolean`                    | `true`   | 悬停 tooltip + 竖线 crosshair（#22） |
+| `className`   | `string`                     | —        | 根节点类名                           |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- **Client Component**: 使用 `"use client"`，依赖 React hooks/状态，需在客户端渲染。
+- **默认可读数**: 悬停按 **x 索引** 对齐展示全部 series 的 `formatNumber` 值；触控可用按下拖动。关闭：`showTooltip={false}`。
+- **与 Recharts 分工**: 轻量 KPI 趋势用 pure SVG `AreaChart`；重交互/大数据请用 `components/business/chart.tsx` 的 Recharts 封装（`ChartTooltip` 等）。
+- 宽容器会测量宽度填充 plot（#13）；多系列 token 色保持可区分（#14）。
 
 > 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/components-charts-area-chart--docs)。
