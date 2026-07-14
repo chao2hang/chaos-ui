@@ -18,9 +18,8 @@ describe("file-upload-manager", () => {
 
   it("renders the dropzone upload area when no files", () => {
     render(<FileUploadManager files={[]} />);
-    expect(
-      screen.getByText("Drag & drop files here, or click to select"),
-    ).toBeDefined();
+    // FileUpload defaults to zh copy when i18n is uninitialized (#19)
+    expect(screen.getByText("拖拽文件到此处，或点击选择")).toBeDefined();
   });
 
   it("renders file list and count + size badge", () => {
@@ -60,7 +59,9 @@ describe("file-upload-manager", () => {
 
   it("switches to grid view on grid button click", () => {
     render(
-      <FileUploadManager files={[makeFile("a.txt"), makeFile("img.png", 1024, "image/png")]} />,
+      <FileUploadManager
+        files={[makeFile("a.txt"), makeFile("img.png", 1024, "image/png")]}
+      />,
     );
     const buttons = screen.getAllByRole("button");
     expect(buttons.length).toBeGreaterThanOrEqual(2);
