@@ -5,6 +5,30 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.6] — 2026-07-14
+
+### Fixed
+
+- **business/StatCardRow (#16 / CUI-DASH-06)**: remove stacked `CardContent pt-6` on Card `py`; title sits on single `--card-spacing` inset; title→value uses `mt-1.5`.
+- **layout/AdminShell · AdminHeader · AdminSider (#17)**: desktop collapse control placement via `collapseTrigger` (`header` default on Shell | `sider-edge` | `both` | `none`); header far-left toggle beside breadcrumb; mobile drawer toggle unchanged.
+- **layout/AdminSider (#18)**: collapse/expand animates width with mounted labels/logo (opacity/max-width) instead of hard-cut unmount; `transition-[width]` + `prefers-reduced-motion`.
+- **ui/Select (#19)**: `SelectTrigger` defaults to `w-full` for form grids (use `className="w-fit"` for compact toolbars).
+- **ui/DatePicker (#19)**: root `block w-full`; default placeholder via i18n (`选择日期` / Select date).
+- **ui/FileUpload (#19)**: Chinese-friendly defaults + optional `labels` / `ui` i18n keys.
+- **business/ExpenseLineEditor (#19)**: Chinese column/footer/empty defaults + optional `labels` / i18n.
+
+### Added
+
+- `AdminCollapseTrigger` type; `AdminShell`/`AdminSider` `collapseTrigger`; `AdminHeader` `onCollapseClick` + `collapsed`.
+- `FileUpload` `labels`; `ExpenseLineEditor` `labels` / `ExpenseLineLabels`.
+- i18n keys under `ui` for datePicker / fileUpload / expenseLine (zh/en/ja/ko).
+
+### Notes
+
+- **Visual**: AdminShell desktop collapse moves from mid-sider edge to header by default — set `collapseTrigger="sider-edge"` for legacy placement.
+- **Visual**: Select triggers fill parent width by default.
+- No intentional breaking TypeScript API removals (new optional props / safer defaults only).
+
 ## [1.5.5] — 2026-07-14
 
 ### Changed
