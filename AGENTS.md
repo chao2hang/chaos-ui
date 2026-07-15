@@ -101,15 +101,24 @@ Project commands live in `.agents/commands/` and mount skills under `.agents/ski
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement) |
 | `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                     |
-| `/push`                                 | Push current branch; respect pre-push hooks; no force on `main`                                                       |
+| `/push`                                 | Push current branch; pre-push fast gate only (`typecheck` + `lint`); no force on `main`                               |
 | `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                  |
 | `/release [patch\|minor\|major\|x.y.z]` | **Prepare only**: CHANGELOG + version proposal; no tag push / npm publish unless you authorize                        |
 
 Typical delivery flow after an approved plan:
 
 ```text
-/iss 9  →  implement (when asked)  →  /commit  →  /push  →  /pr
+/iss 9  →  implement (when asked)  →  /commit  →  /push  →  /pr  →  gh pr checks --watch
 ```
+
+Quality gates (do not run all of these on every push):
+
+| Gate                 | When                             | Command                                                     |
+| -------------------- | -------------------------------- | ----------------------------------------------------------- |
+| Pre-push (husky)     | every `git push`                 | `typecheck` + `lint` (fast)                                 |
+| Before PR (optional) | opening/updating a PR            | `pnpm run check:push` (`check` + `build:pkg`)               |
+| PR / main CI         | after PR or push to main/develop | GitHub Actions `ci.yml` — watch with `gh pr checks --watch` |
+| Release              | before tagging                   | `pnpm run release:check` + main CI green                    |
 
 Release flow (chaos-ui):
 

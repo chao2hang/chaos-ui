@@ -3,12 +3,13 @@
 
 echo ""
 echo "=================================================================="
-echo "  🚀 [Husky] Running pre-push checks...                           "
-echo "  Verification: pnpm run check && pnpm run build:pkg              "
+echo "  🚀 [Husky] Pre-push (fast gate)                                 "
+echo "  Verification: pnpm run typecheck && pnpm run lint               "
+echo "  Before opening a PR, run: pnpm run check:push                   "
 echo "=================================================================="
 echo ""
 
-pnpm run check && pnpm run build:pkg
+pnpm run typecheck && pnpm run lint
 
 if [ $? -ne 0 ]; then
   echo ""
@@ -18,5 +19,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ""
-echo "✅ [Success] All checks passed. Proceeding with push."
+echo "✅ [Success] Fast gate passed. Proceeding with push."
+echo "   Tip: pnpm run check:push  (full local gate before PR)"
+echo "        gh pr checks --watch (after PR is open)"
 echo ""

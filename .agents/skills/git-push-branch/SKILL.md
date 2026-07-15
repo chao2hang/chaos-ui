@@ -26,17 +26,29 @@ git log --oneline @{u}..HEAD 2>/dev/null || git log --oneline -5
 
 ## Hooks (chaos-ui)
 
-This repo’s pre-push runs roughly:
+Pre-push is a **fast gate** only:
 
 ```bash
-pnpm run check && pnpm run build:pkg
+pnpm run typecheck && pnpm run lint
+```
+
+Full local gate (before opening/updating a PR) is optional and separate:
+
+```bash
+pnpm run check:push   # check + build:pkg (old pre-push suite)
+```
+
+After the PR is open, watch CI instead of re-running the full suite locally:
+
+```bash
+gh pr checks --watch
 ```
 
 If the hook fails:
 
 1. Surface the full relevant error output.
 2. Do not bypass with `--no-verify` unless the user explicitly requests it.
-3. Suggest fixes (type/lint/build) rather than force-pushing.
+3. Suggest fixes (type/lint) rather than force-pushing.
 
 ## Force push
 

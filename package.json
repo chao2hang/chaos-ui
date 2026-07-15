@@ -133,6 +133,7 @@
     "typecheck": "tsc --noEmit",
     "typecheck:docs": "pnpm --filter chaos-ui-docs typecheck:site",
     "check": "pnpm run typecheck && pnpm run lint && pnpm run lint:css && pnpm run lint:deps && pnpm run check:no-bom",
+    "check:push": "pnpm run check && pnpm run build:pkg",
     "check:no-bom": "node scripts/check-no-bom.mjs",
     "check:form-details": "node scripts/check-form-primitives.mjs",
     "check:docs-mdx-live": "node scripts/check-docs-mdx-live.mjs",

@@ -18,8 +18,9 @@ gh pr view 2>/dev/null || true
 
 1. Refuse if on `main`/`master` with no feature branch — ask to branch first.
 2. If uncommitted work remains, warn; prefer `/commit` then `/push`.
-3. Ensure branch is pushed (`git push -u origin HEAD` if needed, via push skill rules).
-4. If a PR already exists for this branch, show its URL and stop (or update only if asked).
+3. Optional but recommended before first PR open: `pnpm run check:push` (full local gate; pre-push is only typecheck+lint).
+4. Ensure branch is pushed (`git push -u origin HEAD` if needed, via push skill rules).
+5. If a PR already exists for this branch, show its URL and stop (or update only if asked).
 
 ## Template
 
@@ -61,7 +62,13 @@ Fallback: GitHub MCP `create_pull_request` with `owner`/`repo`/`head`/`base`/`ti
 
 - Print PR URL.
 - Do not merge unless explicitly asked.
-- Optional: mention CI expectations (`typecheck`, `lint`, `test` for chaos-ui).
+- Prefer watching CI instead of re-running the full local suite:
+
+```bash
+gh pr checks --watch
+```
+
+- CI covers tests, package smoke, storybook/docs gates, etc. Local pre-push already covered typecheck+lint.
 
 ## Boundaries
 
