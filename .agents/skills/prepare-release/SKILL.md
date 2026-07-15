@@ -1,123 +1,97 @@
 ---
 name: prepare-release
-description: "Prepare a package release without publishing: propose SemVer, draft CHANGELOG section, version bump plan, commit/tag commands. Use when the user runs /release or asks to cut a version. Default is prepare-only — never push tags or npm publish unless the user explicitly authorizes each step."
+description: "Cut a real package release for chaos-ui: SemVer bump, CHANGELOG, release commit, push main, release:check, tag, push tag → release.yml. Default bump is patch; use minor for large feature sets; major only when breaking. Use when the user runs /release or asks to publish a version."
 ---
 
-# Prepare Release
+# Prepare Release (real cut by default)
 
-Draft everything needed for a release. **Default stop: preparation artifacts and commands only.**
+`/release` **executes** a full release cut for chaos-ui unless the user asks for **plan-only** / **dry-run** / **只提案**.
 
-Do **not** by default:
+## SemVer defaults
 
-- `git push` of tags
-- `pnpm publish` / `npm publish`
-- create GitHub Releases via API
+| Input (`$1` / `$ARGUMENTS`) | Bump                                                                      |
+| --------------------------- | ------------------------------------------------------------------------- |
+| _(empty)_ or `patch`        | **patch** (last segment +1) — default                                     |
+| `minor`                     | **minor** (middle +1, patch → 0) — large feature sets / multi-issue waves |
+| `major`                     | **major** — breaking API/behavior without compat path                     |
+| exact `x.y.z`               | that version                                                              |
 
-## Gather context
+Heuristics when empty:
+
+- **patch**: bugfixes, small non-breaking tweaks, docs that affect consumers
+- **minor**: new components/features, non-breaking API additions, “大型改动” multi-file waves
+- **major**: intentional breaking changes
+
+Include issue refs (`#26`) and internal IDs (`CUI-*`) in CHANGELOG when known.
+
+## Gather context (always first)
 
 ```bash
 node -p "require('./package.json').version" 2>/dev/null || true
 git describe --tags --abbrev=0 2>/dev/null || true
 git log --oneline -20
+git status --short
+git branch --show-current
 ```
 
-Also read:
+Read:
 
-- `CHANGELOG.md` (top section)
+- `CHANGELOG.md` (top)
 - `package.json` name/version
 - `.github/workflows/release.yml` when present
+- commits since last `release: v*` / tag for CHANGELOG bullets
 
-Optional arg from `/release`:
+If version/tag already exists, stop and report. Prefer clean worktree for the release commit (unrelated dirt: leave unstaged).
 
-- `$1` = exact version (`1.5.4`) **or** `patch` | `minor` | `major`
+## Chaos UI pipeline (SoT = hand CHANGELOG + version tag)
 
-## Chaos UI release path (when detected)
+1. Bump `package.json` → `X.Y.Z`
+2. Insert `## [X.Y.Z] — YYYY-MM-DD` in `CHANGELOG.md` (Keep a Changelog; leave `## [Unreleased]` empty)
+3. Commit: `release: vX.Y.Z - <short summary>` (intentional paths only; never `git add .`)
+4. `git push origin main` (or current release branch if policy requires main)
+5. Local full gate: `pnpm run release:check` (typecheck + test + check:no-bom + prepack + smoke)
+6. Wait until **main CI** (`ci.yml`) is **success** for that SHA
+7. `git tag vX.Y.Z` && `git push origin vX.Y.Z`
+8. `release.yml` on tag:
+   - tag commit on `main` + CI success for same SHA
+   - `prepack` once → `pnpm publish --ignore-scripts`
+   - GitHub Release body from CHANGELOG
 
-Primary pipeline (SoT = hand-maintained CHANGELOG + version tag):
+Do **not** treat `prepublishOnly` as the full gate (it is light: `check:no-bom`). Prefer tag → Actions over local `pnpm publish`.
 
-1. Bump `package.json` version
-2. Add `## [X.Y.Z] — YYYY-MM-DD` section to `CHANGELOG.md` (Keep a Changelog)
-3. Commit: `release: vX.Y.Z - <short summary>` and push to `main` (wait for **CI** green)
-4. Local full gate: `pnpm run release:check` (typecheck + test + prepack + smoke)
-5. Tag: `vX.Y.Z` (prerelease: `vX.Y.Z-rc.N` / `-beta` → workflow marks prerelease)
-6. Push tag → `.github/workflows/release.yml`:
-   - Require tag commit on `main` + workflow `CI` success for that SHA
-   - `pnpm run prepack` once, then `pnpm publish --ignore-scripts`
-   - GitHub Release notes from `scripts/extract-changelog-section.mjs`
+Changesets path is **secondary** — only if the user asks.
 
-Do **not** treat heavy `prepublishOnly` as the release gate — it is intentionally light (`check:no-bom`). Full suite is `release:check` + main CI.
+## Default mode: execute
 
-Changesets (`pnpm changeset` / `version` / `release:changeset`) are **secondary**; mention only if the user is on that path.
+When the user runs bare `/release` or `/release patch|minor|major|x.y.z` **without** dry-run language:
 
-## Propose
+1. Resolve next version (default **patch**).
+2. Draft CHANGELOG bullets from commits since last release tag.
+3. **Write** `package.json` + `CHANGELOG.md`.
+4. **Commit** release message.
+5. **Push** `main` (or report if push denied).
+6. Run **`pnpm run release:check`**; on failure, stop and report (do not tag).
+7. Poll / check CI for the release SHA; if red, stop and report.
+8. **Tag** `vX.Y.Z` and **push tag** when gates pass.
+9. Report npm/Actions status if available (`gh run list` / release workflow).
 
-Output:
+Announce each step briefly as it completes. Do not print npm tokens.
 
-```markdown
-## Release proposal
+### Soft confirmation
 
-- Current version: …
-- Suggested next: … (patch/minor/major reason)
-- Package: …
+If the worktree is dirty with unrelated changes, branch is not `main`, or CI is already failing on tip: **surface that and wait** before push/tag. Otherwise proceed without an extra “apply prep?” gate.
 
-## CHANGELOG draft
+## Plan-only mode
 
-## [X.Y.Z] — YYYY-MM-DD
+Only if the user says **plan-only**, **dry-run**, **只提案**, or **不要发布**:
 
-### Fixed | Added | Changed
-
-- …
-
-## Files to edit
-
-- package.json → version X.Y.Z
-- CHANGELOG.md → new section
-
-## Suggested commit
-
-release: vX.Y.Z - <summary>
-
-## Before tag (local)
-
-pnpm run release:check
-
-## Suggested tag commands (not run)
-
-git tag vX.Y.Z
-git push origin vX.Y.Z
-
-## After tag push (CI)
-
-- release.yml requires green main CI for the same SHA
-- prepack once + npm publish --ignore-scripts
-- GitHub Release body from CHANGELOG
-
-## Stop
-
-Waiting for explicit approval before writing files / committing / tagging / pushing.
-```
-
-## If user says “apply prep” / “写进仓库”
-
-Then you may:
-
-1. Edit `package.json` + `CHANGELOG.md`
-2. Use intentional staging + conventional/release commit (`/commit` skill rules)
-3. Create **local** tag only if asked
-
-Still do **not** push tag or publish unless separately authorized.
-
-## Versioning heuristics
-
-- **patch**: fixes, docs-only consumer-facing notes, small non-breaking tweaks
-- **minor**: new features, new components, non-breaking API additions
-- **major**: breaking API / behavior without compat path
-
-Include issue refs (`#9`) and internal IDs (`CUI-*`) in CHANGELOG bullets when known.
+- Output version + CHANGELOG draft + commands
+- **Do not** write version files, commit, push, tag, or publish
 
 ## Boundaries
 
-- Never print or request npm tokens.
-- Never skip `release:check` / main CI by tagging a red or untested commit.
-- Prefer tag → Actions publish over local `pnpm publish`.
-- Report faithfully if version already exists as a tag.
+- Never print or request npm tokens / secrets.
+- Never skip `release:check` or tag a red/untested commit.
+- Never force-push `main` or overwrite an existing release tag.
+- Stage only intentional release files for the release commit.
+- Local `pnpm publish` only if Actions cannot and user explicitly asks.

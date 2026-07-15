@@ -97,13 +97,13 @@ updated: 2026-07-08
 
 Project commands live in `.agents/commands/` and mount skills under `.agents/skills/`. A matching copy may also exist under `~/.agents/` for cross-project use (user scope wins when names collide).
 
-| Command                                 | Default behavior                                                                                                      |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement) |
-| `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                     |
-| `/push`                                 | Push current branch; pre-push fast gate only (`typecheck` + `lint`); no force on `main`                               |
-| `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                  |
-| `/release [patch\|minor\|major\|x.y.z]` | **Prepare only**: CHANGELOG + version proposal; no tag push / npm publish unless you authorize                        |
+| Command                                 | Default behavior                                                                                                                                                                         |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement)                                                                    |
+| `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                                                                                        |
+| `/push`                                 | Push current branch; pre-push fast gate only (`typecheck` + `lint`); no force on `main`                                                                                                  |
+| `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                                                                                     |
+| `/release [patch\|minor\|major\|x.y.z]` | **Real cut by default**: patch bump (empty args); minor for large waves; CHANGELOG + version commit → push main → `release:check` → tag push → `release.yml`. `plan-only` to draft only. |
 
 Typical delivery flow after an approved plan:
 
@@ -118,16 +118,20 @@ Quality gates (do not run all of these on every push):
 | Pre-push (husky)     | every `git push`                 | `typecheck` + `lint` (fast)                                 |
 | Before PR (optional) | opening/updating a PR            | `pnpm run check:push` (`check` + `build:pkg`)               |
 | PR / main CI         | after PR or push to main/develop | GitHub Actions `ci.yml` — watch with `gh pr checks --watch` |
-| Release              | before tagging                   | `pnpm run release:check` + main CI green                    |
+| Release              | `/release` before tag            | `pnpm run release:check` + main CI green on release SHA     |
 
 Release flow (chaos-ui):
 
 ```text
-/release  →  apply prep when approved  →  /commit  →  /push (main CI green)
-         →  pnpm run release:check   # local full gate (typecheck+test+prepack+smoke)
-         →  tag vX.Y.Z  →  push tag
-         →  release.yml: require CI green → prepack once → publish --ignore-scripts
-         →  GitHub Release body from CHANGELOG
+/release            # default patch; /release minor for large feature sets
+  → bump package.json + CHANGELOG
+  → commit: release: vX.Y.Z - …
+  → push main
+  → pnpm run release:check   # local full gate (typecheck+test+prepack+smoke)
+  → wait main CI green for that SHA
+  → tag vX.Y.Z  →  push tag
+  → release.yml: require CI green → prepack once → publish --ignore-scripts
+  → GitHub Release body from CHANGELOG
 ```
 
 - Full quality gate is **local** (`release:check`) + **main CI**, not inside `prepublishOnly`.

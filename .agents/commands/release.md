@@ -1,7 +1,7 @@
 ---
-description: Prepare a release (CHANGELOG + version plan only; no tag push or npm publish)
-argument-hint: "[patch|minor|major|x.y.z]"
-allowed-tools: Bash, Read
+description: Cut a real release (default patch bump; CHANGELOG + version + push + tag → release.yml)
+argument-hint: "[patch|minor|major|x.y.z|plan-only]"
+allowed-tools: Bash, Read, Edit, Write
 skills: prepare-release
 ---
 
@@ -12,8 +12,8 @@ Follow the **prepare-release** skill.
 
 Defaults:
 
-- Propose SemVer, CHANGELOG draft, version bump, commit message, and tag commands.
-- **Do not** push tags or publish to npm unless the user explicitly authorizes each step after the proposal.
-- Primary path for chaos-ui: CHANGELOG + version on main → **`pnpm run release:check`** → `v*` tag → `release.yml` (not Changesets unless asked).
-- Before tagging, remind the user to run `pnpm run release:check` locally and wait for main CI to be green for that commit.
-- Release CI only rebuilds (`prepack`) and publishes with `--ignore-scripts`; it requires the same SHA’s CI workflow to be success.
+- **Execute** a full release cut unless args/user say `plan-only` / `dry-run` / `只提案`.
+- SemVer: empty → **patch** (last segment +1); `minor` for large feature waves; `major` only when breaking; or exact `x.y.z`.
+- Steps: bump `package.json` + CHANGELOG → `release: vX.Y.Z - …` commit → push `main` → **`pnpm run release:check`** → wait for **main CI** green on that SHA → `git tag` + `git push origin vX.Y.Z`.
+- Publish path: tag → `release.yml` (prepack once + `publish --ignore-scripts`); do not local-publish unless Actions cannot and user asks.
+- Never skip `release:check` or tag a red commit; never force-push or overwrite an existing tag.
