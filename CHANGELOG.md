@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.9] — 2026-07-15
+
 ### Added
 
 - **ui/UserBrowse · business/UserPicker · business/EmployeePicker**: optional remote search contracts — `loadUsers({ keyword })` / `fetcher(keyword)` with debounce; raw keyword is passed through; **matching (incl. pinyin) is backend-owned**. Local `users`/`options` still work without remote loaders.
