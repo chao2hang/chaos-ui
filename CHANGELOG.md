@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.3] — 2026-07-15
+
+### Fixed
+
+- **business/ConfirmDialog · hooks/useConfirmAsync (#39)**: increase icon-to-title header gap (`gap-3` → `gap-4`) and mark the icon circle `shrink-0` so large centered chrome has more breathing room with long Chinese titles.
+- **business/AreaChart · LineChart (#40)**: measure container width in `useLayoutEffect` (before paint) so the first frame is not a stretched `viewBox=320` under `preserveAspectRatio="none"` on wide cards; ResizeObserver still handles later resizes.
+
+### Changed
+
+- **business/FilterBar (#41)**: `type: "select"` defaults to design-system compound **Select** (portal popover) with `SelectValue` placeholder instead of a fake first option; opt-in `selectVariant: "native"` on the field or bar keeps browser `<select>` via NativeSelect. SearchTable remains table-only — list pages that pair FilterBar + SearchTable pick this up via FilterBar.
+
+### Docs
+
+- **business/OrderLineEditor (#42)**: documented as a **thin preset** only. Complex orders (gifts, UOM qty/price conversion, policy pricing) should compose `LineEditor` (+ optional `GiftLineEditor`) in the consumer app; no domain-engine expansion in the library.
+
 ## [1.6.2] — 2026-07-15
 
 ### Changed
