@@ -91,17 +91,19 @@ describe("AddressPicker", () => {
   });
 
   it("displays labels joined with / when value is provided", () => {
-    render(
-      <AddressPicker
-        value={["330000", "330100", "330106"]}
-      />,
-    );
-    expect(screen.getByText("\u6d59\u6c5f\u7701 / \u676d\u5dde\u5e02 / \u897f\u6e56\u533a")).toBeDefined();
+    render(<AddressPicker value={["330000", "330100", "330106"]} />);
+    expect(
+      screen.getByText(
+        "\u6d59\u6c5f\u7701 / \u676d\u5dde\u5e02 / \u897f\u6e56\u533a",
+      ),
+    ).toBeDefined();
   });
 
   it("onChange fires with codes and labels on full selection", async () => {
     const onChange = vi.fn();
-    render(<AddressPicker value={EMPTY} options={CUSTOM_DATA} onChange={onChange} />);
+    render(
+      <AddressPicker value={EMPTY} options={CUSTOM_DATA} onChange={onChange} />,
+    );
     fireEvent.click(screen.getByText("\u8bf7\u9009\u62e9\u5730\u5740"));
     await waitFor(() => expect(screen.getByText("TestProvince")).toBeDefined());
     fireEvent.click(screen.getByText("TestProvince"));
@@ -136,9 +138,7 @@ describe("AddressPicker", () => {
   });
 
   it("clearable: clear button is not shown when no selection", () => {
-    render(
-      <AddressPicker value={EMPTY} clearable />,
-    );
+    render(<AddressPicker value={EMPTY} clearable />);
     expect(screen.queryByLabelText("\u6e05\u9664\u9009\u62e9")).toBeNull();
   });
 
@@ -167,7 +167,9 @@ describe("AddressPicker", () => {
     await waitFor(() => expect(screen.getByText("TestProvince")).toBeDefined());
     const searchInputs = screen.getAllByRole("textbox");
     fireEvent.change(searchInputs[0]!, { target: { value: "zzzzz" } });
-    await waitFor(() => expect(screen.getByText("\u65e0\u6570\u636e")).toBeDefined());
+    await waitFor(() =>
+      expect(screen.getByText("\u65e0\u6570\u636e")).toBeDefined(),
+    );
   });
 
   it("button trigger mode renders with inline-flex", () => {
@@ -179,7 +181,7 @@ describe("AddressPicker", () => {
         placeholder="Pick address"
       />,
     );
-    const root = container.querySelector("[data-slot=\"address-picker\"]");
+    const root = container.querySelector('[data-slot="address-picker"]');
     expect(root).toBeDefined();
     expect(screen.getByText("Pick address")).toBeDefined();
   });
@@ -192,7 +194,19 @@ describe("AddressPicker", () => {
         className="custom-class"
       />,
     );
-    const root = container.querySelector("[data-slot=\"address-picker\"]");
+    const root = container.querySelector('[data-slot="address-picker"]');
     expect(root?.className).toContain("custom-class");
+  });
+
+  it("applies size sm h-7 and data-size (issue #30)", () => {
+    const { container, rerender } = render(
+      <AddressPicker value={EMPTY} options={CUSTOM_DATA} />,
+    );
+    rerender(<AddressPicker value={EMPTY} options={CUSTOM_DATA} size="sm" />);
+    const root = container.querySelector(
+      '[data-slot="address-picker"][data-size="sm"]',
+    ) as HTMLElement;
+    expect(root).toBeTruthy();
+    expect(root.className).toMatch(/\bh-7\b/);
   });
 });

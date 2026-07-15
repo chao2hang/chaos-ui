@@ -53,6 +53,8 @@ interface AddressPickerProps {
   /** Allow clearing the selection. */
   clearable?: boolean;
   className?: string;
+  /** Trigger height: default h-8; sm aligns with Button/SelectTrigger h-7 */
+  size?: "sm" | "default";
 }
 
 /* ------------------------------------------------------------------ */
@@ -389,7 +391,9 @@ function AddressPicker({
   inputTrigger = true,
   clearable = false,
   className,
+  size = "default",
 }: AddressPickerProps) {
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [internalCodes, setInternalCodes] = React.useState<string[]>(value);
 
@@ -480,15 +484,19 @@ function AddressPicker({
   // Input trigger mode
   if (inputTrigger) {
     return (
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} data-size={size}>
         <PopoverTrigger
           render={
             <button
               type="button"
               disabled={disabled}
               data-slot="address-picker"
+              data-size={size}
               className={cn(
-                "border-input dark:bg-input/30 flex h-8 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm",
+                "border-input dark:bg-input/30 flex w-full items-center justify-between gap-2 border bg-transparent px-3 text-sm",
+                isSm
+                  ? "h-7 rounded-[min(var(--radius-md),10px)]"
+                  : "h-8 rounded-lg",
                 "placeholder:text-muted-foreground",
                 "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:outline-none",
                 disabled && "cursor-not-allowed opacity-50",
@@ -512,15 +520,19 @@ function AddressPicker({
 
   // Button trigger mode
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} data-size={size}>
       <PopoverTrigger
         render={
           <button
             type="button"
             disabled={disabled}
             data-slot="address-picker"
+            data-size={size}
             className={cn(
-              "border-input dark:bg-input/30 inline-flex h-8 items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm",
+              "border-input dark:bg-input/30 inline-flex items-center justify-between gap-2 border bg-transparent px-3 text-sm",
+              isSm
+                ? "h-7 rounded-[min(var(--radius-md),10px)]"
+                : "h-8 rounded-lg",
               "hover:bg-accent hover:text-accent-foreground",
               "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3 focus-visible:outline-none",
               disabled && "cursor-not-allowed opacity-50",

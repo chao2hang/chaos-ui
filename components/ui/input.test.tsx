@@ -20,11 +20,26 @@ describe("Input", () => {
 
   it("applies disabled", () => {
     render(<Input disabled placeholder="x" />);
-    expect((screen.getByPlaceholderText("x") as HTMLInputElement).disabled).toBe(true);
+    expect(
+      (screen.getByPlaceholderText("x") as HTMLInputElement).disabled,
+    ).toBe(true);
   });
 
   it("InputProps type is importable", () => {
     const _props: InputProps = { type: "email", disabled: true };
     expect(_props.type).toBe("email");
+  });
+
+  it("applies size sm h-7 and data-size (issue #32)", () => {
+    const { rerender } = render(<Input placeholder="x" />);
+    expect(
+      (screen.getByPlaceholderText("x") as HTMLElement).getAttribute(
+        "data-size",
+      ),
+    ).toBe("default");
+    rerender(<Input placeholder="x" size="sm" />);
+    const el = screen.getByPlaceholderText("x") as HTMLElement;
+    expect(el.getAttribute("data-size")).toBe("sm");
+    expect(el.className).toMatch(/\bh-7\b/);
   });
 });

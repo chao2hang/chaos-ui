@@ -299,4 +299,13 @@ describe("Combobox", () => {
     const mod = await import("@/components/ui/combobox");
     expect(mod.Combobox).toBeDefined();
   });
+
+  it("applies size sm via Button and data-size (issue #31)", () => {
+    const options = [{ value: "a", label: "A" }];
+    const { container, rerender } = render(<Combobox options={options} />);
+    rerender(<Combobox options={options} size="sm" />);
+    const sized = container.querySelector('[data-size="sm"]') as HTMLElement;
+    expect(sized).toBeTruthy();
+    expect(sized.className).toMatch(/h-7|size-sm|data-size/);
+  });
 });

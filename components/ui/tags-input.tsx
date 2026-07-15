@@ -20,6 +20,7 @@ function TagsInput({
   max,
   disabled,
   className,
+  size = "default",
 }: {
   value?: string[];
   onChange?: (v: string[]) => void;
@@ -27,7 +28,10 @@ function TagsInput({
   max?: number;
   disabled?: boolean;
   className?: string;
+  /** Field height: default min-h-8; sm min-h-7 (multi-tag wrap allowed) */
+  size?: "sm" | "default";
 }) {
+  const isSm = size === "sm";
   const [input, setInput] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -57,15 +61,26 @@ function TagsInput({
   return (
     <div
       data-slot="tags-input"
+      data-size={size}
       className={cn(
-        "flex min-h-8 flex-wrap items-center gap-1.5 rounded-md border bg-transparent px-2 py-1 text-sm",
+        "flex flex-wrap items-center gap-1.5 border bg-transparent px-2 text-sm",
+        isSm
+          ? "min-h-7 rounded-[min(var(--radius-md),10px)] py-0"
+          : "min-h-8 rounded-md py-1",
         disabled && "cursor-not-allowed opacity-50",
         className,
       )}
       onClick={() => inputRef.current?.focus()}
     >
       {value.map((tag, i) => (
-        <Badge key={i} variant="secondary" className="gap-1">
+        <Badge
+          key={i}
+          variant="secondary"
+          className={cn(
+            "gap-1",
+            isSm && "h-4 px-1.5 py-0 text-[10px] leading-none",
+          )}
+        >
           {tag}
           {!disabled && (
             <button
@@ -76,7 +91,7 @@ function TagsInput({
               }}
               className="hover:bg-muted-foreground/20 ml-0.5 rounded-full"
             >
-              <XIcon className="size-3" />
+              <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
             </button>
           )}
         </Badge>

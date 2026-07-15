@@ -40,6 +40,8 @@ interface CascaderProps {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  /** Trigger height: default h-8; sm aligns with Button/SelectTrigger h-7 */
+  size?: "sm" | "default";
   /** Display mode / 展示模式 */
   displayRender?: (
     labels: string[],
@@ -59,9 +61,11 @@ function Cascader({
   placeholder = "Please select",
   disabled = false,
   className,
+  size = "default",
   displayRender,
   changeOnSelect = false,
 }: CascaderProps) {
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [activeColumns, setActiveColumns] = React.useState<CascaderOption[][]>([
     options,
@@ -145,14 +149,23 @@ function Cascader({
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen} data-slot="cascader">
+    <Popover
+      open={open}
+      onOpenChange={setOpen}
+      data-slot="cascader"
+      data-size={size}
+    >
       <PopoverTrigger
         render={
           <button
             type="button"
             disabled={disabled}
+            data-size={size}
             className={cn(
-              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex h-8 w-full items-center justify-between rounded-lg border bg-transparent px-3 text-sm outline-none focus-visible:ring-3",
+              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex w-full items-center justify-between border bg-transparent px-3 text-sm outline-none focus-visible:ring-3",
+              isSm
+                ? "h-7 rounded-[min(var(--radius-md),10px)]"
+                : "h-8 rounded-lg",
               !selectedLabels.length && "text-muted-foreground",
               disabled && "cursor-not-allowed opacity-50",
               className,

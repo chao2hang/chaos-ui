@@ -33,6 +33,11 @@ interface MultiSelectProps {
   maxCount?: number;
   maxSelected?: number;
   clearable?: boolean;
+  /**
+   * Trigger height. default keeps min-h-9 (existing product choice);
+   * sm uses min-h-7 to align with Button/SelectTrigger toolbar height.
+   */
+  size?: "sm" | "default";
 }
 
 /**
@@ -56,8 +61,10 @@ export function MultiSelect({
   maxCount = 3,
   maxSelected,
   clearable = true,
+  size = "default",
 }: MultiSelectProps) {
   const { t } = useTranslation("ui");
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const resolvedPlaceholder = placeholder ?? t("multiSelect.placeholder");
   const resolvedSearchPlaceholder =
@@ -76,14 +83,21 @@ export function MultiSelect({
   const overflow = value.length - maxCount;
 
   return (
-    <Popover data-slot="multi-select" open={open} onOpenChange={setOpen}>
+    <Popover
+      data-slot="multi-select"
+      data-size={size}
+      open={open}
+      onOpenChange={setOpen}
+    >
       <PopoverTrigger
         render={
           <Button
             variant="outline"
             disabled={disabled}
+            data-size={size}
             className={cn(
-              "h-auto min-h-9 w-full justify-between font-normal",
+              "h-auto w-full justify-between font-normal",
+              isSm ? "min-h-7 py-0.5" : "min-h-9",
               value.length === 0 && "text-muted-foreground",
               className,
             )}

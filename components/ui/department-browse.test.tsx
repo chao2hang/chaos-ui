@@ -214,4 +214,20 @@ describe("department-browse", () => {
     const mod = await import("./department-browse");
     expect(mod.DepartmentBrowse).toBeDefined();
   });
+
+  it("defaults data-size to default and applies sm (issue #29)", () => {
+    const { rerender } = render(<DepartmentBrowse departments={[]} />);
+    expect(
+      document
+        .querySelector('[data-slot="department-browse"]')
+        ?.getAttribute("data-size"),
+    ).toBe("default");
+    rerender(<DepartmentBrowse departments={[]} size="sm" />);
+    const root = document.querySelector(
+      '[data-slot="department-browse"]',
+    ) as HTMLElement;
+    expect(root.getAttribute("data-size")).toBe("sm");
+    expect(root.querySelector(".min-h-7")?.className).toMatch(/min-h-7/);
+    expect(root.querySelector(".h-7")?.className).toMatch(/\bh-7\b/);
+  });
 });

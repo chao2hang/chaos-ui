@@ -35,6 +35,8 @@ interface DepartmentBrowseProps {
   departments?: Department[];
   onChange?: (value: Department | Department[] | undefined) => void;
   className?: string;
+  /** Trigger height: default min-h-8; sm aligns with Button/SelectTrigger h-7 */
+  size?: "sm" | "default";
 }
 
 const defaultDepartments: Department[] = [
@@ -182,7 +184,9 @@ function DepartmentBrowse({
   departments = defaultDepartments,
   onChange,
   className,
+  size = "default",
 }: DepartmentBrowseProps) {
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const [uncontrolledValue, setUncontrolledValue] = React.useState<
@@ -260,16 +264,27 @@ function DepartmentBrowse({
   };
 
   return (
-    <div data-slot="department-browse" className={cn("w-full", className)}>
+    <div
+      data-slot="department-browse"
+      data-size={size}
+      className={cn("w-full", className)}
+    >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
             <div
+              data-size={size}
               className={cn(
-                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "border-input flex w-full items-center gap-1 border bg-transparent px-2.5 text-sm transition-colors",
                 "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
+                isSm
+                  ? cn(
+                      "min-h-7 rounded-[min(var(--radius-md),10px)] py-0",
+                      !multiple && "h-7",
+                    )
+                  : "min-h-8 rounded-lg py-1",
                 disabled && "cursor-not-allowed opacity-50",
               )}
             />
@@ -279,8 +294,15 @@ function DepartmentBrowse({
           {value.length > 0 ? (
             <div className="flex flex-1 flex-wrap gap-1">
               {value.map((dept) => (
-                <Badge key={dept.id} variant="secondary" className="gap-1">
-                  <BuildingIcon className="size-3" />
+                <Badge
+                  key={dept.id}
+                  variant="secondary"
+                  className={cn(
+                    "gap-1",
+                    isSm && "h-4 px-1.5 py-0 text-[10px] leading-none",
+                  )}
+                >
+                  <BuildingIcon className={cn(isSm ? "size-2.5" : "size-3")} />
                   <span>{dept.name}</span>
                   {!disabled && (
                     <button
@@ -290,7 +312,7 @@ function DepartmentBrowse({
                       }}
                       className="hover:bg-muted ml-0.5 rounded-full"
                     >
-                      <XIcon className="size-3" />
+                      <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
                       <span className="sr-only">Remove</span>
                     </button>
                   )}

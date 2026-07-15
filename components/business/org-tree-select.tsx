@@ -51,6 +51,8 @@ interface OrgTreeSelectProps {
   className?: string;
   /** Placeholder text / 占位文本 */
   placeholder?: string;
+  /** Trigger height: default h-8; sm aligns with Button/SelectTrigger h-7 */
+  size?: "sm" | "default";
 }
 
 /* ------------------------------------------------------------------ */
@@ -119,7 +121,9 @@ function OrgTreeSelect({
   showSearch = true,
   className,
   placeholder = "请选择组织",
+  size = "default",
 }: OrgTreeSelectProps) {
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
 
@@ -183,14 +187,18 @@ function OrgTreeSelect({
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} data-size={size}>
       <PopoverTrigger
         render={
           <button
             type="button"
             data-slot="org-tree-select"
+            data-size={size}
             className={cn(
-              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex h-8 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-3 text-sm transition-colors outline-none focus-visible:ring-3",
+              "border-input focus-visible:border-ring focus-visible:ring-ring/50 flex w-full items-center justify-between gap-2 border bg-transparent px-3 text-sm transition-colors outline-none focus-visible:ring-3",
+              isSm
+                ? "h-7 rounded-[min(var(--radius-md),10px)]"
+                : "h-8 rounded-lg",
               className,
             )}
           />
