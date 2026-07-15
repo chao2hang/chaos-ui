@@ -53,6 +53,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
+      # Stories import package subpaths (@chaos_team/chaos-ui/layout, …) which
+      # resolve to dist/*.d.ts — build declarations before tsc on clean CI.
+      - name: Build package declarations
+        run: pnpm run build:pkg
       - run: pnpm run typecheck
 
   typecheck-docs:
@@ -66,6 +70,16 @@ jobs:
       # Docs resolve @chaos_team/chaos-ui types from dist; keep declarations fresh.
       - name: Build package declarations
         run: pnpm run build:pkg
+      # next-env.d.ts is gitignored; local Next may add a .next/dev import that
+      # does not exist on CI. Emit a minimal reference file for tsc.
+      - name: Ensure apps/docs/next-env.d.ts
+        run: |
+          cat > apps/docs/next-env.d.ts <<'EOF'
+          /// <reference types="next" />
+          /// <reference types="next/image-types/global" />
+
+          // NOTE: Generated in CI (file is gitignored). Do not rely on .next/* here.
+          EOF
       - name: Docs site + app typecheck
         run: pnpm run typecheck:docs
 
@@ -122,6 +136,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
+      # Some stories import package subpaths that need dist present.
+      - name: Build package for story imports
+        run: pnpm run build:pkg
       - run: pnpm run build-storybook
       - name: Upload Storybook artifact
         if: always()
