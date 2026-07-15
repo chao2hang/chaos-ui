@@ -76,9 +76,9 @@ export const Loading: Story = {
 
 export const LongZhContent: Story = {
   args: {
-    title: "从 OA 同步人员",
+    title: "从 OA 同步部门",
     description:
-      "将从泛微 e-cology 拉取人员并写入本地员工主数据。已存在的工号会按规则更新姓名、部门与状态，不会删除本地独有账号。同步可能需要数十秒，期间请勿重复操作。是否继续？",
+      "将从泛微 e-cology 拉取部门/组织并写入本地。已存在的编码会按规则更新名称与上下级关系，不会删除本地独有节点。同步可能需要数十秒，期间请勿重复操作。是否继续？",
     confirmText: "开始同步",
     cancelText: "取消",
   },

@@ -98,10 +98,10 @@ function ConfirmAsyncDialog({
         className="sm:max-w-sm"
       >
         <DialogHeader>
-          <div className="flex flex-col items-center gap-3 text-center">
+          <div className="flex flex-col items-center gap-4 text-center">
             <div
               className={cn(
-                "flex size-12 items-center justify-center rounded-full [&_svg]:size-6",
+                "flex size-12 shrink-0 items-center justify-center rounded-full [&_svg]:size-6",
                 isDestructive
                   ? "bg-destructive/10 text-destructive"
                   : "bg-muted",
