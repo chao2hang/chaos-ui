@@ -75,9 +75,11 @@ function LineChart({
     onSeriesVisibilityChange,
   });
 
-  React.useEffect(() => {
+  // Measure before paint so the first frame is not viewBox=320 stretched with
+  // preserveAspectRatio="none" on a wide card (issue #40; same pattern as AreaChart).
+  React.useLayoutEffect(() => {
     const el = rootRef.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
+    if (!el) return;
 
     const apply = (width: number) => {
       const next = Math.max(MIN_CHART_WIDTH, Math.round(width));
@@ -85,6 +87,8 @@ function LineChart({
     };
 
     apply(el.getBoundingClientRect().width || FALLBACK_CHART_WIDTH);
+
+    if (typeof ResizeObserver === "undefined") return;
 
     const ro = new ResizeObserver((entries) => {
       const entry = entries[0];
