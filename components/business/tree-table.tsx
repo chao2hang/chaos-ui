@@ -602,210 +602,217 @@ function TreeTable<T extends Record<string, unknown>>({
 
   /* ---- render ---- */
   return (
-    <div
-      data-slot="tree-table"
-      className={cn(
-        "border-border overflow-x-auto rounded-lg border",
-        className,
-      )}
-    >
-      <Table>
-        {caption && <TableCaption>{caption}</TableCaption>}
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="bg-muted/30">
-              {hasSelection && (
-                <TableHead className={cn("w-10", sizePadding)} />
-              )}
-              {headerGroup.headers.map((header) => {
-                const col = columns.find((c) => c.key === header.id);
-                const canSort = header.column.getCanSort();
-                const sorted = header.column.getIsSorted();
-                return (
-                  <TableHead
-                    key={header.id}
-                    className={cn(
-                      sizePadding,
-                      col?.align === "center" && "text-center",
-                      col?.align === "right" && "text-right",
-                      canSort && "cursor-pointer select-none",
-                      col?.fixed && "sticky z-[2] bg-inherit",
-                      col?.fixed === "left" && "left-0",
-                      col?.fixed === "right" && "right-0",
-                    )}
-                    style={col?.width ? { width: col.width } : undefined}
-                    onClick={
-                      canSort
-                        ? () => handleHeaderSortClick(header.id)
-                        : undefined
-                    }
-                  >
-                    <span className="flex items-center gap-1">
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                      {canSort &&
-                        (sorted === "asc" ? (
-                          <ArrowUpIcon className="size-3" />
-                        ) : sorted === "desc" ? (
-                          <ArrowDownIcon className="size-3" />
-                        ) : (
-                          <ArrowUpDownIcon className="size-3 opacity-40" />
-                        ))}
-                    </span>
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-
-        <TableBody>
-          {loading ? (
-            /* ---- loading skeleton ---- */
-            Array.from({ length: 5 }).map((_, i) => (
-              <TableRow key={`skeleton-${i}`}>
-                {hasSelection && (
-                  <TableCell className={sizePadding}>
-                    <Skeleton className="size-4" />
-                  </TableCell>
-                )}
-                {columns.map((col) => (
-                  <TableCell key={col.key} className={sizePadding}>
-                    <Skeleton className="h-4 w-full" />
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : flatRows.length === 0 ? (
-            /* ---- empty state ---- */
-            <TableRow>
-              <TableCell
-                colSpan={totalColumns}
-                className="text-muted-foreground py-12 text-center"
-              >
-                {emptyText}
-              </TableCell>
-            </TableRow>
-          ) : (
-            /* ---- data rows ---- */
-            (flatRowsWithCheck ?? flatRows).map((fr, idx) => {
-              const isLoading = loadingKeys.has(fr.key);
-              const isSelected = selectedSet.has(fr.key);
-
-              // Check state for multiple selection
-              const checkInfo = flatRowsWithCheck
-                ? (flatRowsWithCheck[idx] as FlatRow<T> & {
-                    allDescendants: (string | number)[];
-                    isAllChecked: boolean;
-                    isIndeterminate: boolean;
-                  })
-                : null;
-
-              return (
-                <TableRow
-                  key={fr.key}
-                  data-depth={fr.depth}
-                  data-selected={isSelected || undefined}
-                  className={cn(
-                    striped && idx % 2 === 1 && "bg-muted/20",
-                    isSelected && "bg-muted",
-                  )}
-                >
-                  {/* Selection checkbox / radio */}
+    <div data-slot="tree-table" className={className}>
+      {/* Table body inset under CardContent flush (CUI-LIST-03 / #27).
+          Inner frame keeps rounded border; outer pad uses --card-spacing. */}
+      <div
+        data-slot="tree-table-body"
+        className="px-[var(--card-spacing,1rem)]"
+      >
+        <div className="border-border overflow-x-auto rounded-lg border">
+          <Table>
+            {caption && <TableCaption>{caption}</TableCaption>}
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id} className="bg-muted/30">
                   {hasSelection && (
-                    <TableCell className={cn(sizePadding, "w-10")}>
-                      {selectable === "multiple" ? (
-                        <TreeCheckbox
-                          checked={isSelected}
-                          indeterminate={checkInfo?.isIndeterminate ?? false}
-                          onChange={() => handleSelect(fr.key, fr.row)}
-                        />
-                      ) : (
-                        <input
-                          type="radio"
-                          name="tree-table-selection"
-                          data-slot="tree-table-radio"
-                          checked={isSelected}
-                          onChange={() => handleSelect(fr.key, fr.row)}
-                          className="accent-primary size-4 shrink-0 cursor-pointer"
-                        />
-                      )}
-                    </TableCell>
+                    <TableHead className={cn("w-10", sizePadding)} />
                   )}
-
-                  {/* Data cells */}
-                  {columns.map((col, colIdx) => {
-                    const value = (fr.row as Record<string, unknown>)[col.key];
-                    const cellContent = col.render
-                      ? col.render(value as T[keyof T], fr.row, idx)
-                      : ((value as React.ReactNode) ?? "—");
-
+                  {headerGroup.headers.map((header) => {
+                    const col = columns.find((c) => c.key === header.id);
+                    const canSort = header.column.getCanSort();
+                    const sorted = header.column.getIsSorted();
                     return (
-                      <TableCell
-                        key={col.key}
+                      <TableHead
+                        key={header.id}
                         className={cn(
                           sizePadding,
-                          col.align === "center" && "text-center",
-                          col.align === "right" && "text-right",
-                          col.fixed && "sticky z-[2] bg-inherit",
-                          col.fixed === "left" && "left-0",
-                          col.fixed === "right" && "right-0",
+                          col?.align === "center" && "text-center",
+                          col?.align === "right" && "text-right",
+                          canSort && "cursor-pointer select-none",
+                          col?.fixed && "sticky z-[2] bg-inherit",
+                          col?.fixed === "left" && "left-0",
+                          col?.fixed === "right" && "right-0",
                         )}
-                        style={col.width ? { width: col.width } : undefined}
+                        style={col?.width ? { width: col.width } : undefined}
+                        onClick={
+                          canSort
+                            ? () => handleHeaderSortClick(header.id)
+                            : undefined
+                        }
                       >
-                        {colIdx === 0 ? (
-                          <span className="flex items-center gap-1">
-                            <span
-                              style={{
-                                paddingLeft: fr.depth * 24,
-                              }}
-                              className="inline-flex shrink-0"
-                            />
-                            {(fr.hasChildren ||
-                              (!!onExpandRow && !fr.hasChildren)) && (
-                              <button
-                                type="button"
-                                data-slot="tree-table-expand"
-                                onClick={() =>
-                                  handleToggleExpand(fr.key, fr.row)
-                                }
-                                className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
-                                aria-label={
-                                  fr.isExpanded ? "Collapse" : "Expand"
-                                }
-                              >
-                                {isLoading ? (
-                                  <Spinner
-                                    size="sm"
-                                    color="muted"
-                                    label="Loading"
-                                  />
-                                ) : fr.isExpanded ? (
-                                  <ChevronDownIcon className="size-4" />
-                                ) : (
-                                  <ChevronRightIcon className="size-4" />
-                                )}
-                              </button>
-                            )}
-                            {!fr.hasChildren && !onExpandRow && (
-                              <span className="inline-flex size-5 shrink-0" />
-                            )}
-                            <span className="min-w-0">{cellContent}</span>
-                          </span>
-                        ) : (
-                          cellContent
-                        )}
-                      </TableCell>
+                        <span className="flex items-center gap-1">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          {canSort &&
+                            (sorted === "asc" ? (
+                              <ArrowUpIcon className="size-3" />
+                            ) : sorted === "desc" ? (
+                              <ArrowDownIcon className="size-3" />
+                            ) : (
+                              <ArrowUpDownIcon className="size-3 opacity-40" />
+                            ))}
+                        </span>
+                      </TableHead>
                     );
                   })}
                 </TableRow>
-              );
-            })
-          )}
-        </TableBody>
-      </Table>
+              ))}
+            </TableHeader>
+
+            <TableBody>
+              {loading ? (
+                /* ---- loading skeleton ---- */
+                Array.from({ length: 5 }).map((_, i) => (
+                  <TableRow key={`skeleton-${i}`}>
+                    {hasSelection && (
+                      <TableCell className={sizePadding}>
+                        <Skeleton className="size-4" />
+                      </TableCell>
+                    )}
+                    {columns.map((col) => (
+                      <TableCell key={col.key} className={sizePadding}>
+                        <Skeleton className="h-4 w-full" />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : flatRows.length === 0 ? (
+                /* ---- empty state ---- */
+                <TableRow>
+                  <TableCell
+                    colSpan={totalColumns}
+                    className="text-muted-foreground py-12 text-center"
+                  >
+                    {emptyText}
+                  </TableCell>
+                </TableRow>
+              ) : (
+                /* ---- data rows ---- */
+                (flatRowsWithCheck ?? flatRows).map((fr, idx) => {
+                  const isLoading = loadingKeys.has(fr.key);
+                  const isSelected = selectedSet.has(fr.key);
+
+                  // Check state for multiple selection
+                  const checkInfo = flatRowsWithCheck
+                    ? (flatRowsWithCheck[idx] as FlatRow<T> & {
+                        allDescendants: (string | number)[];
+                        isAllChecked: boolean;
+                        isIndeterminate: boolean;
+                      })
+                    : null;
+
+                  return (
+                    <TableRow
+                      key={fr.key}
+                      data-depth={fr.depth}
+                      data-selected={isSelected || undefined}
+                      className={cn(
+                        striped && idx % 2 === 1 && "bg-muted/20",
+                        isSelected && "bg-muted",
+                      )}
+                    >
+                      {/* Selection checkbox / radio */}
+                      {hasSelection && (
+                        <TableCell className={cn(sizePadding, "w-10")}>
+                          {selectable === "multiple" ? (
+                            <TreeCheckbox
+                              checked={isSelected}
+                              indeterminate={
+                                checkInfo?.isIndeterminate ?? false
+                              }
+                              onChange={() => handleSelect(fr.key, fr.row)}
+                            />
+                          ) : (
+                            <input
+                              type="radio"
+                              name="tree-table-selection"
+                              data-slot="tree-table-radio"
+                              checked={isSelected}
+                              onChange={() => handleSelect(fr.key, fr.row)}
+                              className="accent-primary size-4 shrink-0 cursor-pointer"
+                            />
+                          )}
+                        </TableCell>
+                      )}
+
+                      {/* Data cells */}
+                      {columns.map((col, colIdx) => {
+                        const value = (fr.row as Record<string, unknown>)[
+                          col.key
+                        ];
+                        const cellContent = col.render
+                          ? col.render(value as T[keyof T], fr.row, idx)
+                          : ((value as React.ReactNode) ?? "—");
+
+                        return (
+                          <TableCell
+                            key={col.key}
+                            className={cn(
+                              sizePadding,
+                              col.align === "center" && "text-center",
+                              col.align === "right" && "text-right",
+                              col.fixed && "sticky z-[2] bg-inherit",
+                              col.fixed === "left" && "left-0",
+                              col.fixed === "right" && "right-0",
+                            )}
+                            style={col.width ? { width: col.width } : undefined}
+                          >
+                            {colIdx === 0 ? (
+                              <span className="flex items-center gap-1">
+                                <span
+                                  style={{
+                                    paddingLeft: fr.depth * 24,
+                                  }}
+                                  className="inline-flex shrink-0"
+                                />
+                                {(fr.hasChildren ||
+                                  (!!onExpandRow && !fr.hasChildren)) && (
+                                  <button
+                                    type="button"
+                                    data-slot="tree-table-expand"
+                                    onClick={() =>
+                                      handleToggleExpand(fr.key, fr.row)
+                                    }
+                                    className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
+                                    aria-label={
+                                      fr.isExpanded ? "Collapse" : "Expand"
+                                    }
+                                  >
+                                    {isLoading ? (
+                                      <Spinner
+                                        size="sm"
+                                        color="muted"
+                                        label="Loading"
+                                      />
+                                    ) : fr.isExpanded ? (
+                                      <ChevronDownIcon className="size-4" />
+                                    ) : (
+                                      <ChevronRightIcon className="size-4" />
+                                    )}
+                                  </button>
+                                )}
+                                {!fr.hasChildren && !onExpandRow && (
+                                  <span className="inline-flex size-5 shrink-0" />
+                                )}
+                                <span className="min-w-0">{cellContent}</span>
+                              </span>
+                            ) : (
+                              cellContent
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

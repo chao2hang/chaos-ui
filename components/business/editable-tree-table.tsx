@@ -664,174 +664,180 @@ function EditableTreeTable<T extends Record<string, unknown>>({
 
   /* ---- render ---- */
   return (
-    <div
-      data-slot="editable-tree-table"
-      className={cn(
-        "border-border overflow-x-auto rounded-lg border",
-        className,
-      )}
-    >
-      {/* Toolbar */}
-      {showToolbar && editMode && (
-        <div
-          data-slot="editable-tree-table-toolbar"
-          className="border-border bg-background sticky bottom-0 z-10 flex items-center justify-between border-t px-3 py-2"
-        >
-          <span className="text-muted-foreground text-sm">
-            {dirtyCount > 0
-              ? `${dirtyCount} unsaved change${dirtyCount > 1 ? "s" : ""}`
-              : "No changes"}
-          </span>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCancel}
-              disabled={dirtyCount === 0}
-              icon={<XIcon className="size-3.5" />}
+    <div data-slot="editable-tree-table" className={className}>
+      {/* Table body inset under CardContent flush (CUI-LIST-03 / #27).
+          Inner frame keeps rounded border; outer pad uses --card-spacing.
+          Toolbar stays inside the border frame so sticky footer behavior is preserved. */}
+      <div
+        data-slot="editable-tree-table-body"
+        className="px-[var(--card-spacing,1rem)]"
+      >
+        <div className="border-border overflow-x-auto rounded-lg border">
+          {/* Toolbar */}
+          {showToolbar && editMode && (
+            <div
+              data-slot="editable-tree-table-toolbar"
+              className="border-border bg-background sticky bottom-0 z-10 flex items-center justify-between border-t px-3 py-2"
             >
-              Cancel
-            </Button>
-            <Button
-              size="sm"
-              onClick={handleSave}
-              disabled={dirtyCount === 0}
-              icon={<CheckIcon className="size-3.5" />}
-            >
-              Save
-            </Button>
-          </div>
-        </div>
-      )}
+              <span className="text-muted-foreground text-sm">
+                {dirtyCount > 0
+                  ? `${dirtyCount} unsaved change${dirtyCount > 1 ? "s" : ""}`
+                  : "No changes"}
+              </span>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCancel}
+                  disabled={dirtyCount === 0}
+                  icon={<XIcon className="size-3.5" />}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={handleSave}
+                  disabled={dirtyCount === 0}
+                  icon={<CheckIcon className="size-3.5" />}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          )}
 
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-muted/30">
-            {columns.map((col) => (
-              <TableHead
-                key={col.key}
-                className={cn(
-                  sizePadding,
-                  col.align === "center" && "text-center",
-                  col.align === "right" && "text-right",
-                  col.fixed && "sticky z-[2] bg-inherit",
-                  col.fixed === "left" && "left-0",
-                  col.fixed === "right" && "right-0",
-                )}
-                style={col.width ? { width: col.width } : undefined}
-              >
-                {col.title}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-
-        <TableBody>
-          {loading ? (
-            Array.from({ length: 5 }).map((_, i) => (
-              <TableRow key={`skeleton-${i}`}>
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/30">
                 {columns.map((col) => (
-                  <TableCell key={col.key} className={sizePadding}>
-                    <Skeleton className="h-4 w-full" />
-                  </TableCell>
+                  <TableHead
+                    key={col.key}
+                    className={cn(
+                      sizePadding,
+                      col.align === "center" && "text-center",
+                      col.align === "right" && "text-right",
+                      col.fixed && "sticky z-[2] bg-inherit",
+                      col.fixed === "left" && "left-0",
+                      col.fixed === "right" && "right-0",
+                    )}
+                    style={col.width ? { width: col.width } : undefined}
+                  >
+                    {col.title}
+                  </TableHead>
                 ))}
               </TableRow>
-            ))
-          ) : flatRows.length === 0 ? (
-            <TableRow>
-              <TableCell
-                colSpan={columns.length}
-                className="text-muted-foreground py-12 text-center"
-              >
-                {emptyText}
-              </TableCell>
-            </TableRow>
-          ) : (
-            flatRows.map((fr, idx) => (
-              <TableRow key={fr.key} data-depth={fr.depth}>
-                {columns.map((col, colIdx) => {
-                  const value = getCellValue(
-                    fr.key,
-                    col.key,
-                    fr.row as unknown as T,
-                  );
-                  const isEditable = isColumnEditable(
-                    col,
-                    fr.row as unknown as T,
-                  );
+            </TableHeader>
 
-                  return (
-                    <TableCell
-                      key={col.key}
-                      className={cn(
-                        sizePadding,
-                        col.align === "center" && "text-center",
-                        col.align === "right" && "text-right",
-                        col.fixed && "sticky z-[2] bg-inherit",
-                        col.fixed === "left" && "left-0",
-                        col.fixed === "right" && "right-0",
-                      )}
-                      style={col.width ? { width: col.width } : undefined}
-                    >
-                      {colIdx === 0 ? (
-                        <span className="flex items-center gap-1">
-                          <span
-                            style={{ paddingLeft: fr.depth * 24 }}
-                            className="inline-flex shrink-0"
-                          />
-                          {fr.hasChildren && (
-                            <button
-                              type="button"
-                              data-slot="editable-tree-table-expand"
-                              onClick={() => handleToggleExpand(fr.key)}
-                              className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
-                              aria-label={fr.isExpanded ? "Collapse" : "Expand"}
-                            >
-                              {fr.isExpanded ? (
-                                <ChevronDownIcon className="size-4" />
-                              ) : (
-                                <ChevronRightIcon className="size-4" />
+            <TableBody>
+              {loading ? (
+                Array.from({ length: 5 }).map((_, i) => (
+                  <TableRow key={`skeleton-${i}`}>
+                    {columns.map((col) => (
+                      <TableCell key={col.key} className={sizePadding}>
+                        <Skeleton className="h-4 w-full" />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : flatRows.length === 0 ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="text-muted-foreground py-12 text-center"
+                  >
+                    {emptyText}
+                  </TableCell>
+                </TableRow>
+              ) : (
+                flatRows.map((fr, idx) => (
+                  <TableRow key={fr.key} data-depth={fr.depth}>
+                    {columns.map((col, colIdx) => {
+                      const value = getCellValue(
+                        fr.key,
+                        col.key,
+                        fr.row as unknown as T,
+                      );
+                      const isEditable = isColumnEditable(
+                        col,
+                        fr.row as unknown as T,
+                      );
+
+                      return (
+                        <TableCell
+                          key={col.key}
+                          className={cn(
+                            sizePadding,
+                            col.align === "center" && "text-center",
+                            col.align === "right" && "text-right",
+                            col.fixed && "sticky z-[2] bg-inherit",
+                            col.fixed === "left" && "left-0",
+                            col.fixed === "right" && "right-0",
+                          )}
+                          style={col.width ? { width: col.width } : undefined}
+                        >
+                          {colIdx === 0 ? (
+                            <span className="flex items-center gap-1">
+                              <span
+                                style={{ paddingLeft: fr.depth * 24 }}
+                                className="inline-flex shrink-0"
+                              />
+                              {fr.hasChildren && (
+                                <button
+                                  type="button"
+                                  data-slot="editable-tree-table-expand"
+                                  onClick={() => handleToggleExpand(fr.key)}
+                                  className="hover:bg-muted inline-flex size-5 shrink-0 items-center justify-center rounded"
+                                  aria-label={
+                                    fr.isExpanded ? "Collapse" : "Expand"
+                                  }
+                                >
+                                  {fr.isExpanded ? (
+                                    <ChevronDownIcon className="size-4" />
+                                  ) : (
+                                    <ChevronRightIcon className="size-4" />
+                                  )}
+                                </button>
                               )}
-                            </button>
+                              {!fr.hasChildren && (
+                                <span className="inline-flex size-5 shrink-0" />
+                              )}
+                              <span className="min-w-0 flex-1">
+                                {isEditable
+                                  ? renderEditor(
+                                      col,
+                                      fr.row as unknown as T,
+                                      fr.key,
+                                    )
+                                  : col.render
+                                    ? col.render(
+                                        value as T[keyof T],
+                                        fr.row as unknown as T,
+                                        idx,
+                                      )
+                                    : ((value as React.ReactNode) ?? "\u2014")}
+                              </span>
+                            </span>
+                          ) : isEditable ? (
+                            renderEditor(col, fr.row as unknown as T, fr.key)
+                          ) : col.render ? (
+                            col.render(
+                              value as T[keyof T],
+                              fr.row as unknown as T,
+                              idx,
+                            )
+                          ) : (
+                            ((value as React.ReactNode) ?? "\u2014")
                           )}
-                          {!fr.hasChildren && (
-                            <span className="inline-flex size-5 shrink-0" />
-                          )}
-                          <span className="min-w-0 flex-1">
-                            {isEditable
-                              ? renderEditor(
-                                  col,
-                                  fr.row as unknown as T,
-                                  fr.key,
-                                )
-                              : col.render
-                                ? col.render(
-                                    value as T[keyof T],
-                                    fr.row as unknown as T,
-                                    idx,
-                                  )
-                                : ((value as React.ReactNode) ?? "\u2014")}
-                          </span>
-                        </span>
-                      ) : isEditable ? (
-                        renderEditor(col, fr.row as unknown as T, fr.key)
-                      ) : col.render ? (
-                        col.render(
-                          value as T[keyof T],
-                          fr.row as unknown as T,
-                          idx,
-                        )
-                      ) : (
-                        ((value as React.ReactNode) ?? "\u2014")
-                      )}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

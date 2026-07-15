@@ -441,4 +441,23 @@ describe("EditableTreeTable", () => {
     const hasQty20Editable = texts.some((t) => t?.includes("20"));
     expect(hasQty20Editable).toBe(true);
   });
+
+  it("pads the table body horizontally under flush cards (CUI-LIST-03 / #27)", () => {
+    const { container } = render(
+      <EditableTreeTable
+        columns={editableColumns}
+        data={sampleData}
+        rowKey="id"
+      />,
+    );
+    const body = container.querySelector(
+      '[data-slot="editable-tree-table-body"]',
+    ) as HTMLElement;
+    expect(body).not.toBeNull();
+    expect(body.className).toMatch(/px-\[var\(--card-spacing/);
+    const tableWrap = body.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(tableWrap).not.toBeNull();
+    expect(tableWrap.className).toMatch(/border/);
+    expect(tableWrap.className).not.toMatch(/px-\[var\(--card-spacing/);
+  });
 });

@@ -12,6 +12,7 @@
 
 ## 👀 待审核
 
+- [TreeTable flush 水平 inset CUI-LIST-03 #27](./2026-07-15_TreeTable_flush水平inset_CUI-LIST-03_设计计划.md)
 - [TreeSelect size 变体 #28](./2026-07-15_TreeSelect_size变体_设计计划.md)
 - [NavigationTabsBar 点击被吞 CUI-TAB-03 #26](./2026-07-15_NavigationTabsBar点击被吞_CUI-TAB-03_设计计划.md)
 - [浏览 / 选人远程检索接口](./2026-07-15_浏览选人远程检索接口_设计计划.md)

@@ -1,5 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
+import { render } from "@testing-library/react";
 import type { Column } from "./data-table";
+import { DataTable } from "./data-table";
 
 vi.mock("react-i18next", async (importOriginal) => {
   const actual = await importOriginal();
@@ -13,6 +15,28 @@ describe("DataTable", () => {
   it("module is importable with expected exports", async () => {
     const mod = await import("@/components/business/data-table");
     expect(mod.DataTable).toBeDefined();
+  });
+
+  it("pads the table body horizontally under flush cards (CUI-LIST-03 / #27)", () => {
+    const columns: Column<Record<string, unknown>>[] = [
+      { key: "name", title: "Name" },
+    ];
+    const { container } = render(
+      <DataTable
+        columns={columns}
+        dataSource={[{ id: "1", name: "A" }]}
+        rowKey="id"
+      />,
+    );
+    const body = container.querySelector(
+      '[data-slot="data-table-body"]',
+    ) as HTMLElement;
+    expect(body).not.toBeNull();
+    expect(body.className).toMatch(/px-\[var\(--card-spacing/);
+    const tableWrap = body.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(tableWrap).not.toBeNull();
+    expect(tableWrap.className).toMatch(/border/);
+    expect(tableWrap.className).not.toMatch(/px-\[var\(--card-spacing/);
   });
 
   it("Column type accepts key/title/sortable", () => {
