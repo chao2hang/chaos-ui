@@ -201,11 +201,31 @@ describe("SearchTable", () => {
     ) as HTMLElement;
     expect(footer).not.toBeNull();
     expect(footer.className).toMatch(/px-\[var\(--card-spacing/);
-    // Table wrapper stays unpadded (full-bleed)
-    const tableWrap = container.querySelector(
-      '[data-slot="search-table"] > .overflow-x-auto',
+  });
+
+  it("pads the table body horizontally under flush cards (CUI-LIST-02 / #24)", () => {
+    const { container } = render(
+      <SearchTable
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          current: 1,
+          pageSize: 2,
+          total: 5,
+          onChange: () => {},
+        }}
+      />,
+    );
+    const body = container.querySelector(
+      '[data-slot="search-table-body"]',
     ) as HTMLElement;
-    expect(tableWrap?.className ?? "").not.toMatch(/px-\[var\(--card-spacing/);
+    expect(body).not.toBeNull();
+    expect(body.className).toMatch(/px-\[var\(--card-spacing/);
+    // Inner frame keeps border; padding lives on outer body slot
+    const tableWrap = body.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(tableWrap).not.toBeNull();
+    expect(tableWrap.className).toMatch(/border/);
+    expect(tableWrap.className).not.toMatch(/px-\[var\(--card-spacing/);
   });
 
   it("applies align classes to header and cells", () => {
