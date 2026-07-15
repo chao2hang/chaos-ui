@@ -402,6 +402,104 @@ describe("NavigationTabsBar", () => {
     expect(onChange).toHaveBeenCalledWith("settings");
   });
 
+  it("does not arm drag when tabs do not overflow (CUI-TAB-03)", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+        ]}
+        onChange={onChange}
+      />,
+    );
+    const scroll = container.querySelector(
+      '[data-slot="navigation-tabs-bar-scroll"]',
+    ) as HTMLDivElement;
+
+    // No overflow: content fits
+    Object.defineProperty(scroll, "scrollWidth", {
+      configurable: true,
+      value: 200,
+    });
+    Object.defineProperty(scroll, "clientWidth", {
+      configurable: true,
+      value: 200,
+    });
+    let scrollLeft = 0;
+    Object.defineProperty(scroll, "scrollLeft", {
+      configurable: true,
+      get: () => scrollLeft,
+      set: (v: number) => {
+        scrollLeft = v;
+      },
+    });
+
+    fireEvent.pointerDown(scroll, {
+      button: 0,
+      pointerId: 1,
+      clientX: 100,
+    });
+    // Would exceed old 4px / new 8px threshold if drag were armed
+    fireEvent.pointerMove(scroll, {
+      pointerId: 1,
+      clientX: 80,
+    });
+    expect(scrollLeft).toBe(0);
+    fireEvent.pointerUp(scroll, { pointerId: 1, clientX: 80 });
+    fireEvent.click(screen.getByText("Settings"));
+    expect(onChange).toHaveBeenCalledWith("settings");
+  });
+
+  it("micro-jitter under threshold still activates tab when overflow exists (CUI-TAB-03)", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <NavigationTabsBar
+        items={[
+          { key: "home", label: "Home" },
+          { key: "settings", label: "Settings" },
+          { key: "reports", label: "Reports" },
+        ]}
+        onChange={onChange}
+      />,
+    );
+    const scroll = container.querySelector(
+      '[data-slot="navigation-tabs-bar-scroll"]',
+    ) as HTMLDivElement;
+
+    Object.defineProperty(scroll, "scrollWidth", {
+      configurable: true,
+      value: 800,
+    });
+    Object.defineProperty(scroll, "clientWidth", {
+      configurable: true,
+      value: 200,
+    });
+    let scrollLeft = 0;
+    Object.defineProperty(scroll, "scrollLeft", {
+      configurable: true,
+      get: () => scrollLeft,
+      set: (v: number) => {
+        scrollLeft = v;
+      },
+    });
+
+    fireEvent.pointerDown(scroll, {
+      button: 0,
+      pointerId: 1,
+      clientX: 100,
+    });
+    // 5px < DRAG_THRESHOLD_PX(8) → still a click
+    fireEvent.pointerMove(scroll, {
+      pointerId: 1,
+      clientX: 95,
+    });
+    expect(scrollLeft).toBe(0);
+    fireEvent.pointerUp(scroll, { pointerId: 1, clientX: 95 });
+    fireEvent.click(screen.getByText("Settings"));
+    expect(onChange).toHaveBeenCalledWith("settings");
+  });
+
   it("shows scroll-right chevron when ResizeObserver reports overflow (issue #21)", () => {
     const OriginalRO = globalThis.ResizeObserver;
     type Cb = ResizeObserverCallback;

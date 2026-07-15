@@ -18,8 +18,11 @@ import {
   ContextMenuSeparator,
 } from "@/components/ui/context-menu";
 
-/** Movement (px) before pointer gesture becomes a horizontal drag-scroll. */
-const DRAG_THRESHOLD_PX = 4;
+/**
+ * Movement (px) before pointer gesture becomes a horizontal drag-scroll.
+ * Real mouse clicks often jitter a few px; 4 was too low and swallowed tab activation.
+ */
+const DRAG_THRESHOLD_PX = 8;
 
 export interface NavigationTabsBarTabItem {
   key: string;
@@ -140,6 +143,9 @@ function NavigationTabsBar({
     if (isInteractiveTarget(e.target)) return;
     const el = scrollRef.current;
     if (!el) return;
+    // No horizontal overflow → never arm drag. Otherwise micro-jitter on tab
+    // labels sets suppressClick and tabs appear "unclickable" (CUI-TAB-03).
+    if (el.scrollWidth <= el.clientWidth + 1) return;
     dragRef.current = {
       active: true,
       pointerId: e.pointerId,
@@ -180,6 +186,8 @@ function NavigationTabsBar({
         // ignore
       }
     }
+    // suppress only after a real drag. Drag is never armed without overflow
+    // (see onScrollPointerDown), so short clicks / micro-jitter keep working.
     if (drag.dragged) {
       suppressClickRef.current = true;
       // Clear on next macrotask in case no click follows (e.g. pointer left window).
@@ -238,7 +246,11 @@ function NavigationTabsBar({
         onWheel={onScrollWheel}
         className={cn(
           "flex flex-1 items-center gap-1 overflow-x-auto select-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
-          isDragging ? "cursor-grabbing" : "cursor-grab",
+          isDragging
+            ? "cursor-grabbing"
+            : canScrollLeft || canScrollRight
+              ? "cursor-grab"
+              : undefined,
         )}
       >
         {items.map((tab) => {
