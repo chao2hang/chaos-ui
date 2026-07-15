@@ -114,9 +114,16 @@ Typical delivery flow after an approved plan:
 Release flow (chaos-ui):
 
 ```text
-/release  →  apply prep when approved  →  /commit  →  tag vX.Y.Z  →  push tag
-         →  .github/workflows/release.yml publishes npm + GitHub Release from CHANGELOG
+/release  →  apply prep when approved  →  /commit  →  /push (main CI green)
+         →  pnpm run release:check   # local full gate (typecheck+test+prepack+smoke)
+         →  tag vX.Y.Z  →  push tag
+         →  release.yml: require CI green → prepack once → publish --ignore-scripts
+         →  GitHub Release body from CHANGELOG
 ```
+
+- Full quality gate is **local** (`release:check`) + **main CI**, not inside `prepublishOnly`.
+- `prepublishOnly` is intentionally light (`check:no-bom`); do not publish from a dirty tree with `pnpm publish` as the primary path.
+- Project agent/MCP baselines that should stay on GitHub: `.agents/`, `.codex/`, `.mcp.json`, `AGENTS.md` (no secrets / no `.zcode/plans/`).
 
 ## Git Hygiene
 

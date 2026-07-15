@@ -37,11 +37,15 @@ Primary pipeline (SoT = hand-maintained CHANGELOG + version tag):
 
 1. Bump `package.json` version
 2. Add `## [X.Y.Z] — YYYY-MM-DD` section to `CHANGELOG.md` (Keep a Changelog)
-3. Commit: `release: vX.Y.Z - <short summary>`
-4. Tag: `vX.Y.Z` (prerelease: `vX.Y.Z-rc.N` / `-beta` → workflow marks prerelease)
-5. Push tag → `.github/workflows/release.yml`:
-   - `pnpm publish`
+3. Commit: `release: vX.Y.Z - <short summary>` and push to `main` (wait for **CI** green)
+4. Local full gate: `pnpm run release:check` (typecheck + test + prepack + smoke)
+5. Tag: `vX.Y.Z` (prerelease: `vX.Y.Z-rc.N` / `-beta` → workflow marks prerelease)
+6. Push tag → `.github/workflows/release.yml`:
+   - Require tag commit on `main` + workflow `CI` success for that SHA
+   - `pnpm run prepack` once, then `pnpm publish --ignore-scripts`
    - GitHub Release notes from `scripts/extract-changelog-section.mjs`
+
+Do **not** treat heavy `prepublishOnly` as the release gate — it is intentionally light (`check:no-bom`). Full suite is `release:check` + main CI.
 
 Changesets (`pnpm changeset` / `version` / `release:changeset`) are **secondary**; mention only if the user is on that path.
 
@@ -73,6 +77,10 @@ Output:
 
 release: vX.Y.Z - <summary>
 
+## Before tag (local)
+
+pnpm run release:check
+
 ## Suggested tag commands (not run)
 
 git tag vX.Y.Z
@@ -80,7 +88,8 @@ git push origin vX.Y.Z
 
 ## After tag push (CI)
 
-- npm publish via release.yml
+- release.yml requires green main CI for the same SHA
+- prepack once + npm publish --ignore-scripts
 - GitHub Release body from CHANGELOG
 
 ## Stop
@@ -109,5 +118,6 @@ Include issue refs (`#9`) and internal IDs (`CUI-*`) in CHANGELOG bullets when k
 ## Boundaries
 
 - Never print or request npm tokens.
-- Never skip `prepublishOnly` / CI by publishing from a dirty broken tree.
+- Never skip `release:check` / main CI by tagging a red or untested commit.
+- Prefer tag → Actions publish over local `pnpm publish`.
 - Report faithfully if version already exists as a tag.

@@ -108,3 +108,6 @@ bash_cmds.txt
 
 # local long-running dev pids/logs
 .dev/
+
+# local agent session plans (ephemeral; share plans via designs/)
+.zcode/plans/

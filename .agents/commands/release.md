@@ -14,4 +14,6 @@ Defaults:
 
 - Propose SemVer, CHANGELOG draft, version bump, commit message, and tag commands.
 - **Do not** push tags or publish to npm unless the user explicitly authorizes each step after the proposal.
-- Primary path for chaos-ui: CHANGELOG + `v*` tag → `release.yml` (not Changesets unless asked).
+- Primary path for chaos-ui: CHANGELOG + version on main → **`pnpm run release:check`** → `v*` tag → `release.yml` (not Changesets unless asked).
+- Before tagging, remind the user to run `pnpm run release:check` locally and wait for main CI to be green for that commit.
+- Release CI only rebuilds (`prepack`) and publishes with `--ignore-scripts`; it requires the same SHA’s CI workflow to be success.

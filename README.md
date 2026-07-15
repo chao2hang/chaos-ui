@@ -239,7 +239,25 @@ DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d
 
 ### GitHub Actions Release
 
-Tag pushes trigger the release workflow in `.github/workflows/release.yml`. It builds, tests, and publishes `@chaos_team/chaos-ui` to npmjs.org using the `NPM_TOKEN` secret.
+Release quality gates run **locally** before you tag. GitHub only rebuilds the package, checks that main CI is green for the same commit, publishes to npm, and creates a GitHub Release.
+
+```bash
+# 1) Full local gate (typecheck + unit tests + prepack + smoke)
+pnpm run release:check
+
+# 2) After CHANGELOG + version bump are committed on main and CI is green:
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
+Tag pushes trigger `.github/workflows/release.yml`:
+
+1. Verify the tag commit is on `main` and workflow `CI` is `success` for that SHA
+2. `pnpm run prepack` once (build + size-limit)
+3. `pnpm publish --ignore-scripts` to npmjs.org (`NPM_TOKEN` secret)
+4. Create GitHub Release notes from `CHANGELOG.md`
+
+Do **not** rely on `prepublishOnly` for the full suite — it only runs a light `check:no-bom` if someone publishes with lifecycle scripts enabled. Prefer the tag → Actions path above.
 
 ### Public npm Publish
 
