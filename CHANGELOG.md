@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **business/BrowseDialog · RemoteSelect**: JSDoc clarifies `keyword` is opaque to the library; consumers implement search (name / code / pinyin) in `loadData` / `fetcher`.
+- **size-limit**: business entry threshold 240 → 250 KB gzip (remote picker loaders).
 
 ## [1.5.8] — 2026-07-15
 
