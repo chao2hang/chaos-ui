@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.10] — 2026-07-15
+
+### Fixed
+
+- **layout/NavigationTabsBar (#26 / CUI-TAB-03)**: do not arm drag-to-scroll when tabs do not overflow; raise drag threshold `4` → `8` px so real-mouse micro-jitter no longer sets `suppressClick` and swallows tab activation; show `cursor-grab` only when the strip is horizontally scrollable.
+
 ## [1.5.9] — 2026-07-15
 
 ### Added
