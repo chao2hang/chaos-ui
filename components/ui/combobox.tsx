@@ -38,6 +38,8 @@ interface ComboboxProps {
   clearable?: boolean;
   searchable?: boolean;
   renderOption?: (option: ComboboxOption) => React.ReactNode;
+  /** Trigger height via Button size: default h-8; sm h-7 */
+  size?: "sm" | "default";
 }
 
 /**
@@ -66,6 +68,7 @@ export function Combobox({
   clearable = true,
   searchable = true,
   renderOption,
+  size = "default",
 }: ComboboxProps) {
   const { t } = useTranslation("ui");
   const [open, setOpen] = React.useState(false);
@@ -76,14 +79,21 @@ export function Combobox({
   const selected = options.find((o) => o.value === value);
 
   return (
-    <Popover open={open} onOpenChange={setOpen} data-slot="combobox">
+    <Popover
+      open={open}
+      onOpenChange={setOpen}
+      data-slot="combobox"
+      data-size={size}
+    >
       <PopoverTrigger
         render={
           <Button
             variant="outline"
             role="combobox"
+            size={size}
             disabled={disabled}
             aria-expanded={open}
+            data-size={size}
             className={cn(
               "w-[200px] justify-between font-normal",
               !selected && "text-muted-foreground",

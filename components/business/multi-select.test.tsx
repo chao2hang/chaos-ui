@@ -142,4 +142,17 @@ describe("MultiSelect", () => {
   it("exports MultiSelect", () => {
     expect(MultiSelect).toBeDefined();
   });
+
+  it("keeps default min-h-9 and sm uses min-h-7 (issue #31)", () => {
+    const options = [{ value: "1", label: "One" }];
+    const { container, rerender } = render(
+      <MultiSelect options={options} value={[]} />,
+    );
+    const defBtn = container.querySelector("button") as HTMLElement;
+    expect(defBtn.className).toMatch(/min-h-9/);
+    rerender(<MultiSelect options={options} value={[]} size="sm" />);
+    const smBtn = container.querySelector('[data-size="sm"]') as HTMLElement;
+    expect(smBtn).toBeTruthy();
+    expect(smBtn.className).toMatch(/min-h-7/);
+  });
 });

@@ -58,6 +58,8 @@ interface UserBrowseProps {
   onChange?: (value: User | User[] | undefined) => void;
   onBrowse?: () => void;
   className?: string;
+  /** Trigger height: default min-h-8; sm aligns with Button/SelectTrigger h-7 */
+  size?: "sm" | "default";
 }
 
 const defaultUsers: User[] = [
@@ -121,7 +123,9 @@ function UserBrowse({
   searchDebounceMs = 300,
   onChange,
   className,
+  size = "default",
 }: UserBrowseProps) {
+  const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const [remoteUsers, setRemoteUsers] = React.useState<User[] | null>(null);
@@ -220,13 +224,24 @@ function UserBrowse({
   };
 
   return (
-    <div data-slot="user-browse" className={cn("w-full", className)}>
+    <div
+      data-slot="user-browse"
+      data-size={size}
+      className={cn("w-full", className)}
+    >
       <div
+        data-size={size}
         className={cn(
-          "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+          "border-input flex w-full items-center gap-1 border bg-transparent px-2.5 text-sm transition-colors",
           "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "dark:bg-input/30",
+          isSm
+            ? cn(
+                "min-h-7 rounded-[min(var(--radius-md),10px)] py-0",
+                !multiple && "h-7",
+              )
+            : "min-h-8 rounded-lg py-1",
           disabled && "cursor-not-allowed opacity-50",
         )}
       >
@@ -243,8 +258,15 @@ function UserBrowse({
             {value.length > 0 ? (
               <div className="flex flex-1 flex-wrap gap-1">
                 {value.map((user) => (
-                  <Badge key={user.id} variant="secondary" className="gap-1">
-                    <Avatar className="size-4">
+                  <Badge
+                    key={user.id}
+                    variant="secondary"
+                    className={cn(
+                      "gap-1",
+                      isSm && "h-4 px-1.5 py-0 text-[10px] leading-none",
+                    )}
+                  >
+                    <Avatar className={cn(isSm ? "size-3" : "size-4")}>
                       <AvatarImage src={user.avatar} />
                       <AvatarFallback className="text-[0.5rem]">
                         {user.name.charAt(0)}
@@ -268,7 +290,7 @@ function UserBrowse({
                         }}
                         className="hover:bg-muted ml-0.5 flex cursor-pointer items-center rounded-full"
                       >
-                        <XIcon className="size-3" />
+                        <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
                         <span className="sr-only">Remove</span>
                       </span>
                     )}

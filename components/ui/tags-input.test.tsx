@@ -153,4 +153,19 @@ describe("tags-input", () => {
     const mod = await import("@/components/ui/tags-input");
     expect(mod.TagsInput).toBeDefined();
   });
+
+  it("applies size sm min-h-7 and data-size (issue #31)", () => {
+    const { container, rerender } = render(<TagsInput value={[]} />);
+    expect(
+      (
+        container.querySelector('[data-slot="tags-input"]') as HTMLElement
+      ).getAttribute("data-size"),
+    ).toBe("default");
+    rerender(<TagsInput value={[]} size="sm" />);
+    const root = container.querySelector(
+      '[data-slot="tags-input"]',
+    ) as HTMLElement;
+    expect(root.getAttribute("data-size")).toBe("sm");
+    expect(root.className).toMatch(/min-h-7/);
+  });
 });

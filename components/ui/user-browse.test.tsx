@@ -258,4 +258,20 @@ describe("user-browse", () => {
     });
     expect(await screen.findByText("章超")).toBeDefined();
   });
+
+  it("defaults data-size to default and applies sm (issue #29)", () => {
+    const { rerender } = render(<UserBrowse users={[]} />);
+    expect(
+      document
+        .querySelector('[data-slot="user-browse"]')
+        ?.getAttribute("data-size"),
+    ).toBe("default");
+    rerender(<UserBrowse users={[]} size="sm" />);
+    const root = document.querySelector(
+      '[data-slot="user-browse"]',
+    ) as HTMLElement;
+    expect(root.getAttribute("data-size")).toBe("sm");
+    expect(root.querySelector(".min-h-7")?.className).toMatch(/min-h-7/);
+    expect(root.querySelector(".h-7")?.className).toMatch(/\bh-7\b/);
+  });
 });

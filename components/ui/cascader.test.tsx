@@ -229,4 +229,16 @@ describe("Cascader", () => {
       expect.arrayContaining([expect.objectContaining({ value: "xihu" })]),
     );
   });
+
+  it("applies size sm data attribute and h-7 (issue #30)", () => {
+    const { container, rerender } = render(
+      <Cascader options={tree} value={[]} />,
+    );
+    let btn = container.querySelector("[data-size]") as HTMLElement | null;
+    // default may not set data-size on root if only on trigger
+    rerender(<Cascader options={tree} value={[]} size="sm" />);
+    btn = container.querySelector('button[data-size="sm"]') as HTMLElement;
+    expect(btn).toBeTruthy();
+    expect(btn.className).toMatch(/\bh-7\b/);
+  });
 });

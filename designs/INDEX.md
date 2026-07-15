@@ -4,7 +4,8 @@
 
 ## 📋 未执行
 
-- [Form 控件 size 波次 #29–#32](./2026-07-15_Form控件size波次_#29-32_设计计划.md)
+（空）
+
 
 ## 🔨 工作中
 
@@ -12,13 +13,14 @@
 
 ## 👀 待审核
 
-- [TreeTable flush 水平 inset CUI-LIST-03 #27](./2026-07-15_TreeTable_flush水平inset_CUI-LIST-03_设计计划.md)
+- [Form 控件 size 波次 #29–#32](./2026-07-15_Form控件size波次_#29-32_设计计划.md)
 - [浏览 / 选人远程检索接口](./2026-07-15_浏览选人远程检索接口_设计计划.md)
 - [Chart 图例显隐 + SearchTable 表体 inset #23/#24](./2026-07-15_Chart图例显隐_SearchTable表体inset_设计计划.md)
 - [文档站前后台示例模板](./2026-07-12_文档站前后台示例模板_设计计划.md)
 
 ## ✅ 完成
 
+- [TreeTable flush 水平 inset CUI-LIST-03 #27](./2026-07-15_TreeTable_flush水平inset_CUI-LIST-03_设计计划.md)
 - [TreeSelect size 变体 #28](./2026-07-15_TreeSelect_size变体_设计计划.md)
 - [NavigationTabsBar 点击被吞 CUI-TAB-03 #26](./2026-07-15_NavigationTabsBar点击被吞_CUI-TAB-03_设计计划.md)
 - [AreaChart Tooltip/Crosshair CUI-DASH-07 #22](./2026-07-14_AreaChart_Tooltip_Crosshair_CUI-DASH-07_设计计划.md)
