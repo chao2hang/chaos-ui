@@ -13,7 +13,11 @@ import { NativeSelect } from "@/components/ui/native-select";
  * @component OrderLineEditor
  * @category business/bill
  * @since 0.2.0
- * @description 订单明细专版(基于 line-editor,内置 SKU/单价/数量/小计/合计) / Order detail line editor with SKU picker, price, qty, subtotal
+ * @description 订单明细**轻预设**（SKU / 单价 / 数量 / 小计）。仅适合演示或极简明细。
+ * 真实下单若含赠送、双单位数量/金额换算、政策价等，请用 `LineEditor` 自组列 + 域逻辑，
+ * 赠品区可用 `GiftLineEditor`，不要在本组件上扩展 ERP 全链路（#42 产品边界）。
+ * / Thin order-line preset (SKU, price, qty, subtotal). For real orders with gifts,
+ * UOM conversion, or pricing rules, compose `LineEditor` (+ `GiftLineEditor`) in the app.
  * @keywords order, line, editor, detail, sku, price, subtotal
  * @example
  * <OrderLineEditor

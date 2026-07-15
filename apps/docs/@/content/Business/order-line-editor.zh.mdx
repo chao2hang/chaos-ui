@@ -3,38 +3,70 @@ import { CodeBlock } from "@/components/code-block";
 
 # OrderLineEditor 订单行编辑器
 
-> 业务组件
+> 业务组件 / Domain-specific business components for ERP scenarios.
 
-订单行编辑器 — 面向 ERP/企业场景的业务组件。
+**轻预设**：内置 SKU / 单价 / 数量 / 小计 / 备注，适合演示或极简单据明细。  
+**不是**完整下单引擎——赠送、双单位数量/金额换算、政策价等请在消费方用 `LineEditor` 编排。
 
 ## 何时使用
 
-需要订单行编辑器时使用本组件。用于 ERP/业务域场景（单据、选择器、审批、对账等）；按业务语义接入而不是当纯 UI 积木。
+| 场景                        | 推荐                           |
+| --------------------------- | ------------------------------ |
+| 演示、简单明细、无换算      | `OrderLineEditor`              |
+| 真实下单、多单位、价税/政策 | `LineEditor` + 域列/换算       |
+| 搭赠 / 赠品行               | `GiftLineEditor`（与主表分离） |
 
 ## 代码示例
 
-### 基础用法
+### 基础用法（轻预设）
 
 <CodeBlock code={`import { OrderLineEditor } from "@chaos_team/chaos-ui/business"
 
 export function Basic() {
-  return <OrderLineEditor />
+  return (
+    <OrderLineEditor
+      data={[{ id: "1", sku: "", qty: 1, price: 0 }]}
+      onChange={() => {}}
+      skuOptions={[{ value: "sku-1", label: "示例商品", price: 10 }]}
+      currency="CNY"
+    />
+  )
+}`} lang="tsx" />
+
+### 复杂订单：自组 LineEditor（推荐）
+
+<CodeBlock code={`import { LineEditor, GiftLineEditor } from "@chaos_team/chaos-ui/business"
+
+// 列与 convertQty / convertPrice 由业务侧定义；赠品区独立
+export function OrderLinesPanel({ lines, gifts, onLines, onGifts }) {
+return (
+<>
+<LineEditor columns={/* 业务列 */} data={lines} onChange={onLines} />
+<GiftLineEditor value={gifts} onChange={onGifts} />
+</>
+)
 }`} lang="tsx" />
 
 ## API / Props
 
 ### OrderLineEditor
 
-| Prop        | Type                          | Default | 说明                  |
-| ----------- | ----------------------------- | ------- | --------------------- |
-| `className` | `string`                      | —       | 自定义样式类名        |
-| `lines`     | `OrderLine[]`                 | —       |                       |
-| `onChange`  | `() => void`                  | —       | 值变化回调            |
-| ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
+| Prop                  | Type                          | Default | 说明     |
+| --------------------- | ----------------------------- | ------- | -------- |
+| `data`                | `OrderLine[]`                 | —       | 明细行   |
+| `onChange`            | `(data: OrderLine[]) => void` | —       | 行变更   |
+| `skuOptions`          | `SkuOption[]`                 | `[]`    | SKU 选项 |
+| `onSkuSearch`         | `(keyword: string) => void`   | —       | SKU 搜索 |
+| `readOnly`            | `boolean`                     | `false` | 只读     |
+| `minRows` / `maxRows` | `number`                      | `1` / — | 行数限制 |
+| `currency`            | `string`                      | `"¥"`   | 货币符号 |
+| `className`           | `string`                      | —       | 样式类名 |
+| ...rest               | `div` props                   | —       | 透传容器 |
 
 ## 注意事项
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
-- **原生属性**: 继承所有 `<div>` 原生 HTML 属性。
+- Client Component（`"use client"`）。
+- 列文案为英文预设；复杂中文 ERP 请用 `LineEditor` 自带列标题（产品边界 #42）。
+- 单位数量/金额换算、赠送策略属于域逻辑，放在消费方，不要期望本组件扩展全链路。
 
-> 📘 完整交互式示例与控件属性请查看 [Storybook 文档](http://localhost:6006/?path=/docs/business-orderlineeditor--docs)。
+> 📘 交互示例见 Storybook `Business/OrderLineEditor`。

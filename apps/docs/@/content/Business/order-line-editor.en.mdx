@@ -5,33 +5,68 @@ import { CodeBlock } from "@/components/code-block";
 
 > Domain-specific business components for ERP scenarios.
 
-OrderLineEditor — a business component for ERP / enterprise scenarios.
+**Thin preset**: built-in SKU / price / qty / subtotal / remark for demos or minimal line entry.  
+**Not** a full order engine — gifts, dual-UOM qty/price conversion, and policy pricing should be composed in the app with `LineEditor`.
 
 ## When to Use
 
-Use OrderLineEditor when you need: OrderLineEditor: enterprise business component — see Storybook for interactive demos. Use for ERP/domain workflows (docs, pickers, approval, settlement) with business semantics.
+| Scenario                            | Prefer                                      |
+| ----------------------------------- | ------------------------------------------- |
+| Demo / simple lines / no conversion | `OrderLineEditor`                           |
+| Real order, multi-UOM, tax/policy   | `LineEditor` + domain columns               |
+| Gift / bonus lines                  | `GiftLineEditor` (separate from main lines) |
 
 ## Examples
 
-### Basic Usage
+### Basic (thin preset)
 
 <CodeBlock code={`import { OrderLineEditor } from "@chaos_team/chaos-ui/business"
 
 export function Basic() {
-  return <OrderLineEditor />
+  return (
+    <OrderLineEditor
+      data={[{ id: "1", sku: "", qty: 1, price: 0 }]}
+      onChange={() => {}}
+      skuOptions={[{ value: "sku-1", label: "Sample SKU", price: 10 }]}
+      currency="CNY"
+    />
+  )
+}`} lang="tsx" />
+
+### Complex order: compose LineEditor
+
+<CodeBlock code={`import { LineEditor, GiftLineEditor } from "@chaos_team/chaos-ui/business"
+
+// App owns columns + convertQty / convertPrice; gifts stay separate.
+export function OrderLinesPanel({ lines, gifts, onLines, onGifts }) {
+return (
+<>
+<LineEditor columns={/* app columns */} data={lines} onChange={onLines} />
+<GiftLineEditor value={gifts} onChange={onGifts} />
+</>
+)
 }`} lang="tsx" />
 
 ## API / Props
 
 ### OrderLineEditor
 
-| Prop        | Type                          | Default | Description                     |
-| ----------- | ----------------------------- | ------- | ------------------------------- |
-| `className` | `string`                      | —       | Custom CSS class                |
-| `lines`     | `OrderLine[]`                 | —       |                                 |
-| `onChange`  | `() => void`                  | —       | Callback when value changes     |
-| ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
+| Prop                  | Type                          | Default | Description         |
+| --------------------- | ----------------------------- | ------- | ------------------- |
+| `data`                | `OrderLine[]`                 | —       | Line rows           |
+| `onChange`            | `(data: OrderLine[]) => void` | —       | Row change          |
+| `skuOptions`          | `SkuOption[]`                 | `[]`    | SKU options         |
+| `onSkuSearch`         | `(keyword: string) => void`   | —       | Optional SKU search |
+| `readOnly`            | `boolean`                     | `false` | Read-only           |
+| `minRows` / `maxRows` | `number`                      | `1` / — | Row limits          |
+| `currency`            | `string`                      | `"¥"`   | Currency symbol     |
+| `className`           | `string`                      | —       | CSS class           |
+| ...rest               | `div` props                   | —       | Container props     |
 
 ## Notes
 
-- **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。
+- Client component (`"use client"`).
+- Built-in column titles are English preset strings. For Chinese ERP line headers, compose `LineEditor` with your own titles rather than expanding this preset into a domain API (product boundary #42).
+- Qty/price UOM conversion and gift policy are **domain logic** — keep them in the consumer app.
+
+> Full demos: Storybook `Business/OrderLineEditor`.
