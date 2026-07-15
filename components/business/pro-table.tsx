@@ -402,7 +402,12 @@ function ProTable<T extends Record<string, unknown>>({
       className={cn("flex flex-col gap-2", className)}
       {...props}
     >
-      <div className="flex items-center justify-between gap-2">
+      {/* Toolbar / table / pagination horizontal inset under CardContent flush
+          (CUI-LIST-03 / #27). Inner table frame keeps rounded border. */}
+      <div
+        data-slot="pro-table-toolbar"
+        className="flex items-center justify-between gap-2 px-[var(--card-spacing,1rem)]"
+      >
         <div className="text-muted-foreground text-sm">
           {total} {total === 1 ? "record" : "records"}
         </div>
@@ -460,203 +465,212 @@ function ProTable<T extends Record<string, unknown>>({
         </div>
       </div>
 
-      <div className="relative overflow-x-auto rounded-lg border">
-        {loading && (
-          <div className="bg-primary absolute top-0 right-0 left-0 z-10 h-0.5 animate-pulse" />
-        )}
-        <Table className="w-full">
-          <TableHeader>
-            <TableRow>
-              {rowDraggable && (
-                <TableHead
-                  className={cn(
-                    "bg-background w-8",
-                    densityHeaderPadding[currentDensity],
-                  )}
-                />
-              )}
-              {expandable && (
-                <TableHead
-                  className={cn(
-                    "bg-background w-8",
-                    densityHeaderPadding[currentDensity],
-                  )}
-                />
-              )}
-              {rowSelection?.showCheckbox && (
-                <TableHead
-                  className={cn(
-                    "bg-background sticky left-0 z-10",
-                    densityHeaderPadding[currentDensity],
-                  )}
-                  style={{ width: 36 }}
-                >
-                  <Checkbox
-                    checked={allSelected}
-                    onCheckedChange={handleSelectAll}
-                  />
-                </TableHead>
-              )}
-              {visibleColumns.map((col) => (
-                <TableHead
-                  key={col.key}
-                  className={cn(
-                    densityHeaderPadding[currentDensity],
-                    col.fixed === "left" && "bg-background sticky left-0 z-10",
-                    col.fixed === "right" &&
-                      "bg-background sticky right-0 z-10",
-                  )}
-                  style={{ width: col.width }}
-                >
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="font-medium">{col.title}</span>
-                    {col.resizable !== false && (
-                      <div
-                        className="hover:bg-primary/20 -mr-1 h-4 w-1.5 cursor-col-resize rounded"
-                        onMouseDown={(e) => handleResizeStart(e, col)}
-                      />
-                    )}
-                  </div>
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {data.length === 0 ? (
+      <div data-slot="pro-table-body" className="px-[var(--card-spacing,1rem)]">
+        <div className="relative overflow-x-auto rounded-lg border">
+          {loading && (
+            <div className="bg-primary absolute top-0 right-0 left-0 z-10 h-0.5 animate-pulse" />
+          )}
+          <Table className="w-full">
+            <TableHeader>
               <TableRow>
-                <TableCell
-                  colSpan={visibleColumns.length + leadingCols}
-                  className="text-muted-foreground py-8 text-center"
-                >
-                  No data
-                </TableCell>
+                {rowDraggable && (
+                  <TableHead
+                    className={cn(
+                      "bg-background w-8",
+                      densityHeaderPadding[currentDensity],
+                    )}
+                  />
+                )}
+                {expandable && (
+                  <TableHead
+                    className={cn(
+                      "bg-background w-8",
+                      densityHeaderPadding[currentDensity],
+                    )}
+                  />
+                )}
+                {rowSelection?.showCheckbox && (
+                  <TableHead
+                    className={cn(
+                      "bg-background sticky left-0 z-10",
+                      densityHeaderPadding[currentDensity],
+                    )}
+                    style={{ width: 36 }}
+                  >
+                    <Checkbox
+                      checked={allSelected}
+                      onCheckedChange={handleSelectAll}
+                    />
+                  </TableHead>
+                )}
+                {visibleColumns.map((col) => (
+                  <TableHead
+                    key={col.key}
+                    className={cn(
+                      densityHeaderPadding[currentDensity],
+                      col.fixed === "left" &&
+                        "bg-background sticky left-0 z-10",
+                      col.fixed === "right" &&
+                        "bg-background sticky right-0 z-10",
+                    )}
+                    style={{ width: col.width }}
+                  >
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="font-medium">{col.title}</span>
+                      {col.resizable !== false && (
+                        <div
+                          className="hover:bg-primary/20 -mr-1 h-4 w-1.5 cursor-col-resize rounded"
+                          onMouseDown={(e) => handleResizeStart(e, col)}
+                        />
+                      )}
+                    </div>
+                  </TableHead>
+                ))}
               </TableRow>
-            ) : (
-              data.map((row, index) => {
-                const key = String(row[rowKey]);
-                const isSelected =
-                  rowSelection?.selectedKeys?.includes(key) ?? false;
-                const canExpand =
-                  !!expandable &&
-                  (expandable.rowExpandable
-                    ? expandable.rowExpandable(row)
-                    : true);
-                const isExpanded = expandedKeys.includes(key);
-                return (
-                  <React.Fragment key={key}>
-                    <TableRow
-                      data-state={isSelected ? "selected" : undefined}
-                      data-expanded={isExpanded || undefined}
-                      draggable={rowDraggable}
-                      onDragStart={() => {
-                        if (rowDraggable) rowDragIndexRef.current = index;
-                      }}
-                      onDragOver={(e) => {
-                        if (!rowDraggable) return;
-                        e.preventDefault();
-                        setRowDragOver(index);
-                      }}
-                      onDrop={() => {
-                        if (!rowDraggable) return;
-                        const from = rowDragIndexRef.current;
-                        if (from != null && from !== index) {
-                          onRowReorder?.(from, index);
-                        }
-                        rowDragIndexRef.current = null;
-                        setRowDragOver(null);
-                      }}
-                      onDragEnd={() => {
-                        rowDragIndexRef.current = null;
-                        setRowDragOver(null);
-                      }}
-                      className={cn(
-                        rowDragOver === index && "bg-muted/50",
-                        rowDraggable && "cursor-grab active:cursor-grabbing",
-                      )}
-                    >
-                      {rowDraggable && (
-                        <TableCell
-                          className={cn(
-                            densityPadding[currentDensity],
-                            "w-8 text-center",
-                          )}
-                        >
-                          <GripVerticalIcon className="text-muted-foreground mx-auto size-3.5" />
-                        </TableCell>
-                      )}
-                      {expandable && (
-                        <TableCell
-                          className={cn(densityPadding[currentDensity], "w-8")}
-                        >
-                          {canExpand ? (
-                            <button
-                              type="button"
-                              aria-label={
-                                isExpanded ? "Collapse row" : "Expand row"
-                              }
-                              aria-expanded={isExpanded}
-                              className="hover:bg-muted inline-flex size-6 items-center justify-center rounded"
-                              onClick={() => toggleExpand(row)}
-                            >
-                              {isExpanded ? (
-                                <ChevronDownIcon className="size-4" />
-                              ) : (
-                                <ChevronRightIcon className="size-4" />
-                              )}
-                            </button>
-                          ) : null}
-                        </TableCell>
-                      )}
-                      {rowSelection?.showCheckbox && (
-                        <TableCell
-                          className={cn(
-                            "bg-background sticky left-0 z-10",
-                            densityPadding[currentDensity],
-                          )}
-                          style={{ width: 36 }}
-                        >
-                          <Checkbox
-                            checked={isSelected}
-                            onCheckedChange={() => handleSelectRow(key)}
-                          />
-                        </TableCell>
-                      )}
-                      {visibleColumns.map((col) => (
-                        <TableCell
-                          key={col.key}
-                          className={cn(
-                            densityPadding[currentDensity],
-                            col.fixed === "left" &&
+            </TableHeader>
+            <TableBody>
+              {data.length === 0 ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={visibleColumns.length + leadingCols}
+                    className="text-muted-foreground py-8 text-center"
+                  >
+                    No data
+                  </TableCell>
+                </TableRow>
+              ) : (
+                data.map((row, index) => {
+                  const key = String(row[rowKey]);
+                  const isSelected =
+                    rowSelection?.selectedKeys?.includes(key) ?? false;
+                  const canExpand =
+                    !!expandable &&
+                    (expandable.rowExpandable
+                      ? expandable.rowExpandable(row)
+                      : true);
+                  const isExpanded = expandedKeys.includes(key);
+                  return (
+                    <React.Fragment key={key}>
+                      <TableRow
+                        data-state={isSelected ? "selected" : undefined}
+                        data-expanded={isExpanded || undefined}
+                        draggable={rowDraggable}
+                        onDragStart={() => {
+                          if (rowDraggable) rowDragIndexRef.current = index;
+                        }}
+                        onDragOver={(e) => {
+                          if (!rowDraggable) return;
+                          e.preventDefault();
+                          setRowDragOver(index);
+                        }}
+                        onDrop={() => {
+                          if (!rowDraggable) return;
+                          const from = rowDragIndexRef.current;
+                          if (from != null && from !== index) {
+                            onRowReorder?.(from, index);
+                          }
+                          rowDragIndexRef.current = null;
+                          setRowDragOver(null);
+                        }}
+                        onDragEnd={() => {
+                          rowDragIndexRef.current = null;
+                          setRowDragOver(null);
+                        }}
+                        className={cn(
+                          rowDragOver === index && "bg-muted/50",
+                          rowDraggable && "cursor-grab active:cursor-grabbing",
+                        )}
+                      >
+                        {rowDraggable && (
+                          <TableCell
+                            className={cn(
+                              densityPadding[currentDensity],
+                              "w-8 text-center",
+                            )}
+                          >
+                            <GripVerticalIcon className="text-muted-foreground mx-auto size-3.5" />
+                          </TableCell>
+                        )}
+                        {expandable && (
+                          <TableCell
+                            className={cn(
+                              densityPadding[currentDensity],
+                              "w-8",
+                            )}
+                          >
+                            {canExpand ? (
+                              <button
+                                type="button"
+                                aria-label={
+                                  isExpanded ? "Collapse row" : "Expand row"
+                                }
+                                aria-expanded={isExpanded}
+                                className="hover:bg-muted inline-flex size-6 items-center justify-center rounded"
+                                onClick={() => toggleExpand(row)}
+                              >
+                                {isExpanded ? (
+                                  <ChevronDownIcon className="size-4" />
+                                ) : (
+                                  <ChevronRightIcon className="size-4" />
+                                )}
+                              </button>
+                            ) : null}
+                          </TableCell>
+                        )}
+                        {rowSelection?.showCheckbox && (
+                          <TableCell
+                            className={cn(
                               "bg-background sticky left-0 z-10",
-                            col.fixed === "right" &&
-                              "bg-background sticky right-0 z-10",
-                          )}
-                          style={{ width: col.width }}
-                        >
-                          {renderCell(col, row, index)}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                    {expandable && isExpanded && canExpand ? (
-                      <TableRow data-slot="pro-table-expanded-row">
-                        <TableCell
-                          colSpan={visibleColumns.length + leadingCols}
-                          className="bg-muted/20 p-3"
-                        >
-                          {expandable.expandedRowRender(row, index)}
-                        </TableCell>
+                              densityPadding[currentDensity],
+                            )}
+                            style={{ width: 36 }}
+                          >
+                            <Checkbox
+                              checked={isSelected}
+                              onCheckedChange={() => handleSelectRow(key)}
+                            />
+                          </TableCell>
+                        )}
+                        {visibleColumns.map((col) => (
+                          <TableCell
+                            key={col.key}
+                            className={cn(
+                              densityPadding[currentDensity],
+                              col.fixed === "left" &&
+                                "bg-background sticky left-0 z-10",
+                              col.fixed === "right" &&
+                                "bg-background sticky right-0 z-10",
+                            )}
+                            style={{ width: col.width }}
+                          >
+                            {renderCell(col, row, index)}
+                          </TableCell>
+                        ))}
                       </TableRow>
-                    ) : null}
-                  </React.Fragment>
-                );
-              })
-            )}
-          </TableBody>
-        </Table>
+                      {expandable && isExpanded && canExpand ? (
+                        <TableRow data-slot="pro-table-expanded-row">
+                          <TableCell
+                            colSpan={visibleColumns.length + leadingCols}
+                            className="bg-muted/20 p-3"
+                          >
+                            {expandable.expandedRowRender(row, index)}
+                          </TableCell>
+                        </TableRow>
+                      ) : null}
+                    </React.Fragment>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
       {pagination && (
-        <div className="flex items-center justify-between">
+        <div
+          data-slot="pro-table-pagination"
+          className="flex items-center justify-between px-[var(--card-spacing,1rem)]"
+        >
           <span className="text-muted-foreground text-sm">
             {currentPage * pageSize + 1}-
             {Math.min((currentPage + 1) * pageSize, total)} of {total}

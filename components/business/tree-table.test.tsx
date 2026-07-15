@@ -377,4 +377,19 @@ describe("TreeTable", () => {
       expect.arrayContaining(["1"]),
     );
   });
+
+  it("pads the table body horizontally under flush cards (CUI-LIST-03 / #27)", () => {
+    const { container } = render(
+      <TreeTable columns={columns} data={nestedData} rowKey="id" />,
+    );
+    const body = container.querySelector(
+      '[data-slot="tree-table-body"]',
+    ) as HTMLElement;
+    expect(body).not.toBeNull();
+    expect(body.className).toMatch(/px-\[var\(--card-spacing/);
+    const tableWrap = body.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(tableWrap).not.toBeNull();
+    expect(tableWrap.className).toMatch(/border/);
+    expect(tableWrap.className).not.toMatch(/px-\[var\(--card-spacing/);
+  });
 });
