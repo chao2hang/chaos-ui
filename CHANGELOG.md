@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] — 2026-07-15
+
+### Changed
+
+- **business/ConfirmDialog · hooks/useConfirmAsync (#38)**: confirm chrome is centered with a larger icon (`size-12` circle, `size-6` glyph) and `text-center` title/description; destructive variant tints the icon well (`bg-destructive/10 text-destructive`). Footer actions stay end-aligned.
+- **hooks/useConfirmAsync / ConfirmProvider (#38)**: default title, description, OK, and Cancel labels use `navigation.confirmDialog.*` via `useSafeTranslation` (Chinese fallbacks when i18n is not initialized) instead of hard-coded English.
+
+### Notes
+
+- Agent workflow docs: close GitHub issues when work is fully shipped (`/release` step + `/iss` after implement).
+
 ## [1.6.1] — 2026-07-15
 
 ### Changed
