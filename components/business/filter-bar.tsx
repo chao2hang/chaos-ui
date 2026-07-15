@@ -24,7 +24,7 @@ interface FilterField {
   /**
    * Select presentation for `type: "select"`.
    * - `portal` (default): design-system compound Select popover
-   * - `native`: browser `<select>` via NativeSelect (dense forms / native a11y)
+   * - `native`: browser native select via NativeSelect (dense forms / native a11y)
    */
   selectVariant?: "portal" | "native";
   /** For custom type */
