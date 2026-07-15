@@ -5,6 +5,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui";
 import { Input } from "@/components/ui";
 import { NativeSelect } from "@/components/ui/native-select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui";
 
 interface FilterField {
@@ -14,6 +21,12 @@ interface FilterField {
   placeholder?: string;
   /** For select type: options */
   options?: { label: string; value: string }[];
+  /**
+   * Select presentation for `type: "select"`.
+   * - `portal` (default): design-system compound Select popover
+   * - `native`: browser `<select>` via NativeSelect (dense forms / native a11y)
+   */
+  selectVariant?: "portal" | "native";
   /** For custom type */
   render?: (
     value: unknown,
@@ -36,6 +49,11 @@ interface FilterBarProps {
   collapsible?: boolean;
   /** Loading state */
   loading?: boolean;
+  /**
+   * Default select presentation for fields without `selectVariant`.
+   * Defaults to portal (design-system dropdown). / 字段未指定时的默认 select 形态
+   */
+  selectVariant?: "portal" | "native";
   className?: string;
 }
 
@@ -53,6 +71,7 @@ function FilterBar({
   layout = "inline",
   collapsible = true,
   loading = false,
+  selectVariant = "portal",
   className,
 }: FilterBarProps) {
   const [values, setValues] = React.useState<Record<string, unknown>>(() => {
@@ -88,19 +107,49 @@ function FilterBar({
     }
 
     if (field.type === "select" && field.options) {
+      const variant = field.selectVariant ?? selectVariant;
+      const current = String(values[field.key] ?? "");
+      const placeholder = field.placeholder || field.label;
+
+      if (variant === "native") {
+        return (
+          <NativeSelect
+            className="min-w-44"
+            value={current}
+            onChange={(e) =>
+              handleChange(field.key, e.target.value || undefined)
+            }
+            options={[
+              { value: "", label: placeholder },
+              ...field.options.map((opt) => ({
+                value: opt.value,
+                label: opt.label,
+              })),
+            ]}
+          />
+        );
+      }
+
+      // Default: compound Select (issue #41) — popover matches design system.
+      // Empty selection uses undefined so SelectValue shows placeholder (not a fake option).
       return (
-        <NativeSelect
-          className="min-w-44"
-          value={String(values[field.key] ?? "")}
-          onChange={(e) => handleChange(field.key, e.target.value || undefined)}
-          options={[
-            { value: "", label: field.placeholder || field.label },
-            ...field.options.map((opt) => ({
-              value: opt.value,
-              label: opt.label,
-            })),
-          ]}
-        />
+        <Select
+          value={current || undefined}
+          onValueChange={(v) =>
+            handleChange(field.key, v == null || v === "" ? undefined : v)
+          }
+        >
+          <SelectTrigger className="min-w-44" size="default">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+          <SelectContent>
+            {field.options.map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       );
     }
 

@@ -33,11 +33,48 @@ describe("filter-bar", () => {
 
   it("renders field labels", () => {
     render(<FilterBar fields={baseFields.slice(0, 2)} onSearch={vi.fn()} />);
-    // "状态" appears as both the field label and the select placeholder option;
-    // assert the label element exists.
+    // "状态" is the field label; portal Select uses it as placeholder, not a fake option.
     const labels = screen.getAllByText("状态");
     expect(labels.length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("姓名")).toBeDefined();
+  });
+
+  it("uses portal Select for type=select by default (not a native select)", () => {
+    const { container } = render(
+      <FilterBar fields={baseFields.slice(0, 2)} onSearch={vi.fn()} />,
+    );
+    expect(
+      container.querySelector(
+        'select[data-slot="native-select"], [data-slot="native-select"] select',
+      ),
+    ).toBeNull();
+    // Compound Select trigger is a button-like control, not <select>.
+    expect(
+      container.querySelector('[data-slot="select-trigger"]'),
+    ).not.toBeNull();
+  });
+
+  it("opt-in native select when selectVariant is native", () => {
+    const { container } = render(
+      <FilterBar
+        fields={[
+          {
+            key: "status",
+            label: "状态",
+            type: "select",
+            selectVariant: "native",
+            options: [
+              { label: "启用", value: "1" },
+              { label: "禁用", value: "0" },
+            ],
+          },
+        ]}
+        onSearch={vi.fn()}
+      />,
+    );
+    expect(
+      container.querySelector('[data-slot="native-select"]'),
+    ).not.toBeNull();
   });
 
   it("shows search and reset buttons", () => {
@@ -122,7 +159,24 @@ describe("filter-bar", () => {
 
   it("renders select field with options and fires search on change", () => {
     const onSearch = vi.fn();
-    render(<FilterBar fields={baseFields.slice(1, 2)} onSearch={onSearch} />);
+    // Native path keeps fireEvent.change simple; portal Select uses pointer/listbox UX.
+    render(
+      <FilterBar
+        fields={[
+          {
+            key: "status",
+            label: "状态",
+            type: "select",
+            selectVariant: "native",
+            options: [
+              { label: "启用", value: "1" },
+              { label: "禁用", value: "0" },
+            ],
+          },
+        ]}
+        onSearch={onSearch}
+      />,
+    );
     const select = screen.getByRole("combobox") as HTMLSelectElement;
     expect(select).toBeDefined();
     fireEvent.change(select, { target: { value: "1" } });
