@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] — 2026-07-15
+
+### Added
+
+- **ui/TreeSelect (#28)**: additive `size?: "sm" | "default"` (default `"default"`); sm single-select trigger `h-7 min-h-7` aligns with Button/SelectTrigger sm; multi-value sm uses `min-h-7` only (no hard clip); compact Badges + `data-size` on root/trigger.
+- **Form control size wave (#29–#32)**: same `size` + `data-size` contract on:
+  - **#29** UserBrowse · DepartmentBrowse
+  - **#30** Cascader · OrgTreeSelect · AddressPicker
+  - **#31** Combobox · MultiSelect · TagsInput
+  - **#32** Input (omits native HTML `size`; InputGroupInput forwards `InputProps`)
+- MultiSelect **keeps** default `min-h-9`; `size="sm"` uses `min-h-7` for toolbar alignment.
+
+### Fixed
+
+- **business/TreeTable · EditableTreeTable · DataTable · ProTable (#27 / CUI-LIST-03)**: horizontal body (and ProTable toolbar/pagination) inset via `px-[var(--card-spacing,1rem)]` under `CardContent flush`, matching SearchTable (#24).
+
+### Notes
+
+- No breaking removals — all `size` props default to existing heights.
+- NavigationTabsBar click-swallow fix shipped in **1.5.10** (#26 / CUI-TAB-03).
+
 ## [1.5.10] — 2026-07-15
 
 ### Fixed
