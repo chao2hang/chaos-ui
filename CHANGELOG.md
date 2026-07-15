@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.8] — 2026-07-15
+
 ### Added
 
 - **business/AreaChart · LineChart (#23 / CUI-DASH-08)**: interactive multi-series **legend toggle** (click to show/hide; allow hide-all); Y scale + tooltip use visible series only; `interactiveLegend` (default `true`), `defaultHiddenSeries`, `onSeriesVisibilityChange`.
@@ -15,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **business/SearchTable (#24 / CUI-LIST-02)**: table body uses horizontal `px-[var(--card-spacing,1rem)]` under `CardContent flush`, matching FilterBar / pagination rhythm (updates #8 full-bleed table body contract).
+
+### Fixed
+
+- **lint**: ignore `**/dist/**` / package build artifacts so local `pnpm run check` is not blocked by `packages/**/dist` noise.
 
 ## [1.5.7] — 2026-07-14
 
