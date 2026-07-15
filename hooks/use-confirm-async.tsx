@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { AlertCircleIcon } from "@/components/ui/icons";
+import { useSafeTranslation } from "@/components/ui/i18n-provider";
+import { cn } from "@/lib/utils";
 
 /**
  * @hook useConfirmAsync
@@ -69,6 +71,71 @@ function confirmAsync(options: ConfirmOptions): Promise<boolean> {
 // Module-level ref so confirmAsync() works without React context
 let moduleLevelConfirm: ConfirmFn | null = null;
 
+function ConfirmAsyncDialog({
+  open,
+  options,
+  onOk,
+  onCancel,
+}: {
+  open: boolean;
+  options: ConfirmOptions;
+  onOk: () => void;
+  onCancel: () => void;
+}) {
+  const { t } = useSafeTranslation("navigation");
+  const isDestructive = options.okVariant === "destructive";
+
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        if (!next) onCancel();
+      }}
+    >
+      <DialogContent
+        data-slot="confirm-dialog"
+        showCloseButton={false}
+        className="sm:max-w-sm"
+      >
+        <DialogHeader>
+          <div className="flex flex-col items-center gap-3 text-center">
+            <div
+              className={cn(
+                "flex size-12 items-center justify-center rounded-full [&_svg]:size-6",
+                isDestructive
+                  ? "bg-destructive/10 text-destructive"
+                  : "bg-muted",
+              )}
+            >
+              {options.icon ?? <AlertCircleIcon />}
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <DialogTitle>
+                {options.title ?? t("confirmDialog.title", "确认操作")}
+              </DialogTitle>
+              <DialogDescription>
+                {options.content ??
+                  t("confirmDialog.description", "此操作不可撤销，是否继续？")}
+              </DialogDescription>
+            </div>
+          </div>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" onClick={onCancel}>
+            {options.cancelText ?? t("confirmDialog.cancel", "取消")}
+          </Button>
+          <Button
+            variant={isDestructive ? "destructive" : "default"}
+            onClick={onOk}
+          >
+            {options.okText ?? t("confirmDialog.confirm", "确认")}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 // --- Provider ---
 
 interface ConfirmProviderProps {
@@ -114,44 +181,12 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
   return (
     <ConfirmContext.Provider value={confirm}>
       {children}
-      <Dialog
+      <ConfirmAsyncDialog
         open={state.open}
-        onOpenChange={(open) => {
-          if (!open) handleCancel();
-        }}
-      >
-        <DialogContent showCloseButton={false} className="sm:max-w-sm">
-          <DialogHeader>
-            <div className="flex flex-col gap-3">
-              <div className="bg-muted flex size-9 items-center justify-center rounded-full">
-                {state.options.icon ?? <AlertCircleIcon className="size-4" />}
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <DialogTitle>{state.options.title ?? "Confirm"}</DialogTitle>
-                <DialogDescription>
-                  {state.options.content ??
-                    "This action cannot be undone. Continue?"}
-                </DialogDescription>
-              </div>
-            </div>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={handleCancel}>
-              {state.options.cancelText ?? "Cancel"}
-            </Button>
-            <Button
-              variant={
-                state.options.okVariant === "destructive"
-                  ? "destructive"
-                  : "default"
-              }
-              onClick={handleOk}
-            >
-              {state.options.okText ?? "Confirm"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        options={state.options}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      />
     </ConfirmContext.Provider>
   );
 }
@@ -187,44 +222,12 @@ function useConfirmAsync(): [
   }, [state.resolve]);
 
   const ConfirmDialog = () => (
-    <Dialog
+    <ConfirmAsyncDialog
       open={state.open}
-      onOpenChange={(open) => {
-        if (!open) handleCancel();
-      }}
-    >
-      <DialogContent showCloseButton={false} className="sm:max-w-sm">
-        <DialogHeader>
-          <div className="flex flex-col gap-3">
-            <div className="bg-muted flex size-9 items-center justify-center rounded-full">
-              {state.options.icon ?? <AlertCircleIcon className="size-4" />}
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <DialogTitle>{state.options.title ?? "Confirm"}</DialogTitle>
-              <DialogDescription>
-                {state.options.content ??
-                  "This action cannot be undone. Continue?"}
-              </DialogDescription>
-            </div>
-          </div>
-        </DialogHeader>
-        <DialogFooter>
-          <Button variant="outline" onClick={handleCancel}>
-            {state.options.cancelText ?? "Cancel"}
-          </Button>
-          <Button
-            variant={
-              state.options.okVariant === "destructive"
-                ? "destructive"
-                : "default"
-            }
-            onClick={handleOk}
-          >
-            {state.options.okText ?? "Confirm"}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      options={state.options}
+      onOk={handleOk}
+      onCancel={handleCancel}
+    />
   );
 
   return [confirm, ConfirmDialog];

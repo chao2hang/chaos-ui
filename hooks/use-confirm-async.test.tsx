@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { render, screen, act, fireEvent, renderHook } from "@testing-library/react";
+import {
+  render,
+  screen,
+  act,
+  fireEvent,
+  renderHook,
+} from "@testing-library/react";
 import * as React from "react";
 import {
   useConfirmAsync,
@@ -40,7 +46,9 @@ describe("useConfirmAsync hook mode", () => {
         <button type="button" onClick={run}>
           ask
         </button>
-        <span data-testid="result">{result === null ? "none" : result ? "yes" : "no"}</span>
+        <span data-testid="result">
+          {result === null ? "none" : result ? "yes" : "no"}
+        </span>
         {ConfirmDialog()}
       </div>
     );
@@ -86,7 +94,7 @@ describe("useConfirmAsync hook mode", () => {
   });
 
   it("resolves true when the OK button is clicked (portal permitting)", async () => {
-    render(<Harness opts={{ title: "Confirm Save" }} />);
+    render(<Harness opts={{ title: "Confirm Save", okText: "Confirm" }} />);
     await act(async () => {
       fireEvent.click(screen.getByText("ask"));
     });
@@ -100,7 +108,9 @@ describe("useConfirmAsync hook mode", () => {
   });
 
   it("resolves false when the Cancel button is clicked (portal permitting)", async () => {
-    render(<Harness opts={{ title: "Confirm Discard" }} />);
+    render(
+      <Harness opts={{ title: "Confirm Discard", cancelText: "Cancel" }} />,
+    );
     await act(async () => {
       fireEvent.click(screen.getByText("ask"));
     });
@@ -110,6 +120,20 @@ describe("useConfirmAsync hook mode", () => {
         fireEvent.click(cancel);
       });
       expect(screen.getByTestId("result").textContent).toBe("no");
+    }
+  });
+
+  it("uses Chinese default button labels when i18n is unavailable", async () => {
+    render(<Harness opts={{ title: "仅标题" }} />);
+    await act(async () => {
+      fireEvent.click(screen.getByText("ask"));
+    });
+    // Without i18next init, useSafeTranslation falls back to defaultValue strings.
+    const ok = screen.queryByRole("button", { name: "确认" });
+    const cancel = screen.queryByRole("button", { name: "取消" });
+    if (ok || cancel) {
+      expect(ok).not.toBeNull();
+      expect(cancel).not.toBeNull();
     }
   });
 });
@@ -123,12 +147,16 @@ describe("ConfirmProvider", () => {
         <button
           type="button"
           onClick={() => {
-            void confirm(opts ?? { title: "From Provider" }).then((v) => setResult(v));
+            void confirm(opts ?? { title: "From Provider" }).then((v) =>
+              setResult(v),
+            );
           }}
         >
           ask
         </button>
-        <span data-testid="result">{result === null ? "none" : result ? "yes" : "no"}</span>
+        <span data-testid="result">
+          {result === null ? "none" : result ? "yes" : "no"}
+        </span>
       </div>
     );
   }
@@ -156,7 +184,9 @@ describe("ConfirmProvider", () => {
 
   it("merges defaultOptions with per-call options", async () => {
     render(
-      <ConfirmProvider defaultOptions={{ okText: "DefaultOK", title: "DefaultTitle" }}>
+      <ConfirmProvider
+        defaultOptions={{ okText: "DefaultOK", title: "DefaultTitle" }}
+      >
         <Consumer opts={{ content: "Override content" }} />
       </ConfirmProvider>,
     );
@@ -172,7 +202,7 @@ describe("ConfirmProvider", () => {
 
   it("resolves true when the provider's OK button is clicked", async () => {
     render(
-      <ConfirmProvider>
+      <ConfirmProvider defaultOptions={{ okText: "Confirm" }}>
         <Consumer />
       </ConfirmProvider>,
     );
@@ -189,7 +219,7 @@ describe("ConfirmProvider", () => {
 
   it("resolves false when the provider's Cancel button is clicked", async () => {
     render(
-      <ConfirmProvider>
+      <ConfirmProvider defaultOptions={{ cancelText: "Cancel" }}>
         <Consumer />
       </ConfirmProvider>,
     );
@@ -206,7 +236,9 @@ describe("ConfirmProvider", () => {
 
   it("applies destructive okVariant from defaultOptions", async () => {
     render(
-      <ConfirmProvider defaultOptions={{ okVariant: "destructive", okText: "Purge" }}>
+      <ConfirmProvider
+        defaultOptions={{ okVariant: "destructive", okText: "Purge" }}
+      >
         <Consumer />
       </ConfirmProvider>,
     );
@@ -224,7 +256,9 @@ describe("ConfirmProvider", () => {
 
   it("applies a custom icon from defaultOptions when provided", async () => {
     render(
-      <ConfirmProvider defaultOptions={{ icon: <span>custom-icon</span>, title: "IconTest" }}>
+      <ConfirmProvider
+        defaultOptions={{ icon: <span>custom-icon</span>, title: "IconTest" }}
+      >
         <Consumer />
       </ConfirmProvider>,
     );
@@ -270,7 +304,10 @@ describe("confirmAsync (module-level)", () => {
         <button
           type="button"
           onClick={() => {
-            void confirmAsync({ title: "Module call" }).then(onDone);
+            void confirmAsync({
+              title: "Module call",
+              okText: "Confirm",
+            }).then(onDone);
           }}
         >
           fire

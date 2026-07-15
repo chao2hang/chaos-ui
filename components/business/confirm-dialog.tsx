@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui";
 import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 interface ConfirmDialogProps {
   open?: boolean;
@@ -74,6 +75,7 @@ export function ConfirmDialog({
   };
 
   const isLoading = loading || pending;
+  const isDestructive = variant === "destructive";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -83,9 +85,16 @@ export function ConfirmDialog({
         className="sm:max-w-sm"
       >
         <DialogHeader>
-          <div className="flex flex-col gap-3">
-            <div className="bg-muted flex size-9 items-center justify-center rounded-full">
-              {icon ?? <AlertTriangleIcon className="size-4" />}
+          <div className="flex flex-col items-center gap-3 text-center">
+            <div
+              className={cn(
+                "flex size-12 items-center justify-center rounded-full [&_svg]:size-6",
+                isDestructive
+                  ? "bg-destructive/10 text-destructive"
+                  : "bg-muted",
+              )}
+            >
+              {icon ?? <AlertTriangleIcon />}
             </div>
             <div className="flex flex-col gap-1.5">
               <DialogTitle>{resolvedTitle}</DialogTitle>
@@ -102,7 +111,7 @@ export function ConfirmDialog({
             {resolvedCancelText}
           </Button>
           <Button
-            variant={variant === "destructive" ? "destructive" : "default"}
+            variant={isDestructive ? "destructive" : "default"}
             onClick={handle}
             disabled={isLoading}
           >
