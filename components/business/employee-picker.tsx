@@ -44,10 +44,31 @@ interface EmployeePickerOption {
   disabled?: boolean;
 }
 
+/** Remote fetcher: raw keyword in, options out. Pinyin match is backend-owned. */
+type EmployeePickerFetcher = (
+  keyword: string,
+) => Promise<EmployeePickerOption[]>;
+
 interface EmployeePickerProps {
   value?: string;
   onChange?: (value: string | undefined) => void;
+  /**
+   * Local static options. Used when `fetcher` is omitted, or as seed while
+   * remote results are loading.
+   */
   options?: EmployeePickerOption[];
+  /**
+   * Remote search. When set, the popover search input calls this with the raw
+   * keyword (debounced). Matching (incl. pinyin) must be implemented by the backend.
+   * @example
+   * fetcher={async (keyword) => {
+   *   const res = await api.searchEmployees({ q: keyword });
+   *   return res.list.map((e) => ({ value: e.id, label: e.name, code: e.no }));
+   * }}
+   */
+  fetcher?: EmployeePickerFetcher;
+  /** Debounce for `fetcher` in ms (default 300). */
+  debounceMs?: number;
   placeholder?: string;
   searchPlaceholder?: string;
   emptyText?: string;
@@ -60,6 +81,8 @@ function EmployeePicker({
   value,
   onChange,
   options = [],
+  fetcher,
+  debounceMs = 300,
   placeholder,
   searchPlaceholder,
   emptyText,
@@ -70,6 +93,11 @@ function EmployeePicker({
   const { t } = useTranslation("ui");
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const [remoteOptions, setRemoteOptions] = React.useState<
+    EmployeePickerOption[] | null
+  >(null);
+  const [loading, setLoading] = React.useState(false);
+  const [loadError, setLoadError] = React.useState<string | null>(null);
 
   const resolvedPlaceholder =
     placeholder ??
@@ -80,9 +108,51 @@ function EmployeePicker({
   const resolvedEmpty =
     emptyText ?? t("employeePicker.empty", { defaultValue: "无匹配员工" });
 
-  const selected = options.find((o) => o.value === value);
+  const listSource = fetcher ? (remoteOptions ?? options) : options;
+  const selected =
+    listSource.find((o) => o.value === value) ??
+    options.find((o) => o.value === value);
+
+  React.useEffect(() => {
+    if (!open || !fetcher) return;
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(null);
+    const timer = window.setTimeout(() => {
+      void fetcher(query)
+        .then((rows) => {
+          if (!cancelled) {
+            setRemoteOptions(rows);
+            setLoading(false);
+          }
+        })
+        .catch((err: unknown) => {
+          if (!cancelled) {
+            setLoadError(err instanceof Error ? err.message : "加载失败");
+            setRemoteOptions([]);
+            setLoading(false);
+          }
+        });
+    }, debounceMs);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [open, query, fetcher, debounceMs]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setRemoteOptions(null);
+      setLoadError(null);
+      setLoading(false);
+    }
+  }, [open]);
 
   const filtered = React.useMemo(() => {
+    if (fetcher) {
+      return remoteOptions ?? options;
+    }
     if (!query.trim()) return options;
     const q = query.trim().toLowerCase();
     return options.filter(
@@ -92,7 +162,7 @@ function EmployeePicker({
         o.code?.toLowerCase().includes(q) ||
         o.department?.toLowerCase().includes(q),
     );
-  }, [options, query]);
+  }, [options, query, fetcher, remoteOptions]);
 
   return (
     <Popover data-slot="employee-picker" open={open} onOpenChange={setOpen}>
@@ -154,52 +224,74 @@ function EmployeePicker({
               className="h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
             />
           </div>
-          <ul role="listbox" className="max-h-64 overflow-y-auto p-1">
-            {filtered.length === 0 && (
+          <ul
+            role="listbox"
+            className="max-h-64 overflow-y-auto p-1"
+            data-slot="employee-picker-list"
+          >
+            {loading && (
+              <li
+                className="text-muted-foreground px-2 py-6 text-center text-sm"
+                data-slot="employee-picker-loading"
+              >
+                {t("employeePicker.loading", { defaultValue: "加载中…" })}
+              </li>
+            )}
+            {loadError && !loading && (
+              <li
+                className="text-destructive px-2 py-6 text-center text-sm"
+                data-slot="employee-picker-error"
+              >
+                {loadError}
+              </li>
+            )}
+            {!loading && !loadError && filtered.length === 0 && (
               <li className="text-muted-foreground px-2 py-6 text-center text-sm">
                 {resolvedEmpty}
               </li>
             )}
-            {filtered.map((o) => {
-              const isSelected = o.value === value;
-              return (
-                <li key={o.value} role="option" aria-selected={isSelected}>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    type="button"
-                    {...(o.disabled !== undefined
-                      ? { disabled: o.disabled }
-                      : {})}
-                    onClick={() => {
-                      onChange?.(o.value);
-                      setOpen(false);
-                      setQuery("");
-                    }}
-                    className={cn(
-                      "h-auto w-full justify-start gap-2 rounded-sm px-2 py-1.5 font-normal",
-                      isSelected && "bg-accent/50",
-                      o.disabled && "pointer-events-none opacity-50",
-                    )}
-                  >
-                    <span className="flex-1 truncate">
-                      {o.label}
-                      {o.code && (
-                        <span className="text-muted-foreground ml-1 text-xs">
-                          · {o.code}
+            {!loading &&
+              !loadError &&
+              filtered.map((o) => {
+                const isSelected = o.value === value;
+                return (
+                  <li key={o.value} role="option" aria-selected={isSelected}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      type="button"
+                      {...(o.disabled !== undefined
+                        ? { disabled: o.disabled }
+                        : {})}
+                      onClick={() => {
+                        onChange?.(o.value);
+                        setOpen(false);
+                        setQuery("");
+                      }}
+                      className={cn(
+                        "h-auto w-full justify-start gap-2 rounded-sm px-2 py-1.5 font-normal",
+                        isSelected && "bg-accent/50",
+                        o.disabled && "pointer-events-none opacity-50",
+                      )}
+                    >
+                      <span className="flex-1 truncate">
+                        {o.label}
+                        {o.code && (
+                          <span className="text-muted-foreground ml-1 text-xs">
+                            · {o.code}
+                          </span>
+                        )}
+                      </span>
+                      {o.department && (
+                        <span className="text-muted-foreground shrink-0 text-xs">
+                          {o.department}
                         </span>
                       )}
-                    </span>
-                    {o.department && (
-                      <span className="text-muted-foreground shrink-0 text-xs">
-                        {o.department}
-                      </span>
-                    )}
-                    {isSelected && <CheckIcon className="size-4 shrink-0" />}
-                  </Button>
-                </li>
-              );
-            })}
+                      {isSelected && <CheckIcon className="size-4 shrink-0" />}
+                    </Button>
+                  </li>
+                );
+              })}
           </ul>
         </PopoverContent>
       )}
@@ -208,4 +300,8 @@ function EmployeePicker({
 }
 
 export { EmployeePicker };
-export type { EmployeePickerProps, EmployeePickerOption };
+export type {
+  EmployeePickerProps,
+  EmployeePickerOption,
+  EmployeePickerFetcher,
+};

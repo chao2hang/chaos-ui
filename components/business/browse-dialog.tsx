@@ -89,8 +89,11 @@ export interface BrowseDialogProps<
   /** Async fetcher that receives search/pagination params and returns rows + total.
    *  Prefer this for remote OA-style browse.
    *  Optional when `items` is provided (local static list).
+   *  `params.keyword` is the raw search input — matching (name, code, pinyin, …)
+   *  is entirely backend-owned; the library does not expand or transliterate.
    *  @example
    *  loadData={async (params) => {
+   *    // Backend may treat keyword as Chinese, full pinyin, or initials.
    *    const res = await api.search(params);
    *    return { rows: res.list, total: res.total };
    *  }}

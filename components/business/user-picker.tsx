@@ -35,6 +35,12 @@ interface UserItem {
   department?: string;
 }
 
+/** Remote search params for `loadUsers`. Matching (incl. pinyin) is backend-owned. */
+interface UserPickerLoadParams {
+  /** Raw search keyword from the input; passed through unchanged. */
+  keyword: string;
+}
+
 /**
  * Props for the UserPicker component.
  */
@@ -49,8 +55,24 @@ interface UserPickerProps {
   multiple?: boolean;
   /** Currently selected keys / 当前选中的键 */
   selectedKeys?: string[];
-  /** User list data / 用户列表数据 */
+  /**
+   * Local static list. Used when `loadUsers` is omitted, or as seed while
+   * remote results are loading.
+   */
   users?: UserItem[];
+  /**
+   * Remote loader. When set, search calls this with the raw keyword (debounced).
+   * Pinyin / fuzzy match must be implemented by the backend — the library only
+   * ships the keyword through the API surface.
+   * @example
+   * loadUsers={async ({ keyword }) => {
+   *   const res = await api.searchUsers({ q: keyword });
+   *   return res.list.map((u) => ({ key: u.id, name: u.name, email: u.email }));
+   * }}
+   */
+  loadUsers?: (params: UserPickerLoadParams) => Promise<UserItem[]>;
+  /** Debounce for `loadUsers` in ms (default 300). */
+  searchDebounceMs?: number;
   /** Additional className / 额外类名 */
   className?: string;
 }
@@ -64,15 +86,16 @@ interface UserPickerProps {
  * @category business/user
  * @since 0.2.0
  * @description User selector dialog with search input, user list with
- *   checkboxes, and selected chips bar at the bottom. / 用户选择器对话框，
- *   包含搜索输入框、带复选框的用户列表和底部已选标签栏。
- * @keywords user, picker, dialog, select, search, checkbox, chips
+ *   checkboxes, and selected chips bar. Optional remote `loadUsers({ keyword })`
+ *   — keyword is passed through; pinyin/fuzzy match is backend-owned.
+ *   / 用户选择器对话框；可选远程 loadUsers，拼音等匹配由后端完成。
+ * @keywords user, picker, dialog, select, search, checkbox, chips, remote
  * @example
  * ```tsx
  * <UserPicker
  *   open={open}
  *   onOpenChange={setOpen}
- *   users={userList}
+ *   loadUsers={async ({ keyword }) => api.searchUsers(keyword)}
  *   onConfirm={(keys) => console.log(keys)}
  * />
  * ```
@@ -84,17 +107,61 @@ function UserPicker({
   multiple = true,
   selectedKeys = [],
   users = [],
+  loadUsers,
+  searchDebounceMs = 300,
   className,
 }: UserPickerProps) {
   const [internalSelected, setInternalSelected] =
     React.useState<string[]>(selectedKeys);
   const [query, setQuery] = React.useState("");
+  const [remoteUsers, setRemoteUsers] = React.useState<UserItem[] | null>(null);
+  const [loading, setLoading] = React.useState(false);
+  const [loadError, setLoadError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     setInternalSelected(selectedKeys);
   }, [selectedKeys]);
 
+  React.useEffect(() => {
+    if (!open || !loadUsers) return;
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(null);
+    const timer = window.setTimeout(() => {
+      void loadUsers({ keyword: query })
+        .then((rows) => {
+          if (!cancelled) {
+            setRemoteUsers(rows);
+            setLoading(false);
+          }
+        })
+        .catch((err: unknown) => {
+          if (!cancelled) {
+            setLoadError(err instanceof Error ? err.message : "加载失败");
+            setRemoteUsers([]);
+            setLoading(false);
+          }
+        });
+    }, searchDebounceMs);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [open, query, loadUsers, searchDebounceMs]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setRemoteUsers(null);
+      setLoadError(null);
+      setLoading(false);
+    }
+  }, [open]);
+
   const filteredUsers = React.useMemo(() => {
+    if (loadUsers) {
+      return remoteUsers ?? users;
+    }
     if (!query) return users;
     const q = query.toLowerCase();
     return users.filter(
@@ -103,7 +170,7 @@ function UserPicker({
         u.email?.toLowerCase().includes(q) ||
         u.department?.toLowerCase().includes(q),
     );
-  }, [users, query]);
+  }, [users, query, loadUsers, remoteUsers]);
 
   const selectedUsers = React.useMemo(
     () =>
@@ -163,8 +230,25 @@ function UserPicker({
         </div>
 
         {/* User list */}
-        <div className="max-h-[300px] overflow-y-auto rounded-lg border p-1">
-          {filteredUsers.length === 0 ? (
+        <div
+          className="max-h-[300px] overflow-y-auto rounded-lg border p-1"
+          data-slot="user-picker-list"
+        >
+          {loading ? (
+            <div
+              className="text-muted-foreground flex h-32 items-center justify-center text-sm"
+              data-slot="user-picker-loading"
+            >
+              加载中…
+            </div>
+          ) : loadError ? (
+            <div
+              className="text-destructive flex h-32 items-center justify-center text-sm"
+              data-slot="user-picker-error"
+            >
+              {loadError}
+            </div>
+          ) : filteredUsers.length === 0 ? (
             <div className="text-muted-foreground flex h-32 items-center justify-center text-sm">
               <UserIcon className="mr-1.5 size-4" />
               暂无用户
@@ -259,4 +343,4 @@ function UserPicker({
 }
 
 export { UserPicker };
-export type { UserPickerProps, UserItem };
+export type { UserPickerProps, UserItem, UserPickerLoadParams };

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 // DialogContent calls useTranslation("ui"); mock it so the portal renders in jsdom.
 vi.mock("react-i18next", async (importOriginal) => {
@@ -234,5 +234,28 @@ describe("user-browse", () => {
   it("module is importable", async () => {
     const mod = await import("./user-browse");
     expect(mod.UserBrowse).toBeDefined();
+  });
+
+  it("calls loadUsers with raw keyword (remote contract, backend owns match)", async () => {
+    const loadUsers = vi.fn(async ({ keyword }: { keyword: string }) => {
+      if (keyword === "zc") {
+        return [{ id: "9", name: "章超", email: "zc@example.com" }];
+      }
+      return [];
+    });
+    render(
+      <UserBrowse users={[]} loadUsers={loadUsers} searchDebounceMs={0} />,
+    );
+    fireEvent.click(screen.getByText("Select user..."));
+    await waitFor(() => {
+      expect(loadUsers).toHaveBeenCalledWith({ keyword: "" });
+    });
+
+    const input = screen.getByPlaceholderText("Search users...");
+    fireEvent.change(input, { target: { value: "zc" } });
+    await waitFor(() => {
+      expect(loadUsers).toHaveBeenCalledWith({ keyword: "zc" });
+    });
+    expect(await screen.findByText("章超")).toBeDefined();
   });
 });

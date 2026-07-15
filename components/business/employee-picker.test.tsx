@@ -1,7 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { EmployeePicker } from "./employee-picker";
-import type { EmployeePickerProps, EmployeePickerOption } from "./employee-picker";
+import type {
+  EmployeePickerProps,
+  EmployeePickerOption,
+} from "./employee-picker";
 
 const options: EmployeePickerOption[] = [
   { value: "E1", label: "张三", code: "001", department: "销售部" },
@@ -39,7 +42,9 @@ describe("EmployeePicker", () => {
 
   it("marks the combobox as disabled when disabled prop is set", () => {
     render(<EmployeePicker options={[]} disabled placeholder="请选择员工" />);
-    expect((screen.getByRole("combobox") as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole("combobox") as HTMLButtonElement).disabled).toBe(
+      true,
+    );
   });
 
   it("renders options with code and department badges in the popover", () => {
@@ -109,14 +114,18 @@ describe("EmployeePicker", () => {
   it("calls onChange(undefined) when clearing via keyboard (Enter)", () => {
     const onChange = vi.fn();
     render(<EmployeePicker value="E1" options={options} onChange={onChange} />);
-    fireEvent.keyDown(screen.getByRole("button", { name: "清除" }), { key: "Enter" });
+    fireEvent.keyDown(screen.getByRole("button", { name: "清除" }), {
+      key: "Enter",
+    });
     expect(onChange).toHaveBeenCalledWith(undefined);
   });
 
   it("calls onChange(undefined) when clearing via keyboard (Space)", () => {
     const onChange = vi.fn();
     render(<EmployeePicker value="E1" options={options} onChange={onChange} />);
-    fireEvent.keyDown(screen.getByRole("button", { name: "清除" }), { key: " " });
+    fireEvent.keyDown(screen.getByRole("button", { name: "清除" }), {
+      key: " ",
+    });
     expect(onChange).toHaveBeenCalledWith(undefined);
   });
 
@@ -126,7 +135,40 @@ describe("EmployeePicker", () => {
   });
 
   it("applies the className to the combobox trigger", () => {
-    render(<EmployeePicker options={[]} className="custom-class" placeholder="请选择员工" />);
+    render(
+      <EmployeePicker
+        options={[]}
+        className="custom-class"
+        placeholder="请选择员工"
+      />,
+    );
     expect(screen.getByRole("combobox").className).toContain("custom-class");
+  });
+
+  it("calls fetcher with raw keyword (remote contract)", async () => {
+    const fetcher = vi.fn(async (keyword: string) => {
+      if (keyword === "zhangchao") {
+        return [{ value: "E9", label: "章超", code: "1009" }];
+      }
+      return [];
+    });
+    render(
+      <EmployeePicker
+        options={[]}
+        fetcher={fetcher}
+        debounceMs={0}
+        placeholder="请选择员工"
+      />,
+    );
+    fireEvent.click(screen.getByRole("combobox"));
+    await waitFor(() => {
+      expect(fetcher).toHaveBeenCalledWith("");
+    });
+    const input = screen.getByLabelText("搜索员工");
+    fireEvent.change(input, { target: { value: "zhangchao" } });
+    await waitFor(() => {
+      expect(fetcher).toHaveBeenCalledWith("zhangchao");
+    });
+    expect(await screen.findByText("章超")).toBeDefined();
   });
 });

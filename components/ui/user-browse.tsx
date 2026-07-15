@@ -25,6 +25,12 @@ interface User {
   department?: string;
 }
 
+/** Remote search params for `loadUsers`. Matching (incl. pinyin) is backend-owned. */
+interface UserBrowseLoadParams {
+  /** Raw search keyword from the input; passed through unchanged. */
+  keyword: string;
+}
+
 interface UserBrowseProps {
   value?: User | User[];
   defaultValue?: User | User[];
@@ -32,7 +38,23 @@ interface UserBrowseProps {
   disabled?: boolean;
   multiple?: boolean;
   maxCount?: number;
+  /**
+   * Local static list. Used when `loadUsers` is omitted, or as the empty-keyword
+   * seed while remote results are loading.
+   */
   users?: User[];
+  /**
+   * Remote loader. When set, dialog search calls this with the raw keyword
+   * (debounced). Pinyin / fuzzy match must be implemented by the backend.
+   * @example
+   * loadUsers={async ({ keyword }) => {
+   *   const res = await api.searchUsers({ q: keyword });
+   *   return res.list;
+   * }}
+   */
+  loadUsers?: (params: UserBrowseLoadParams) => Promise<User[]>;
+  /** Debounce for `loadUsers` in ms (default 300). */
+  searchDebounceMs?: number;
   onChange?: (value: User | User[] | undefined) => void;
   onBrowse?: () => void;
   className?: string;
@@ -75,11 +97,13 @@ const defaultUsers: User[] = [
  * @component UserBrowse
  * @category ui/user
  * @since 0.2.0
- * @description User picker dialog with search, avatar display, single/multi-select, and department badges / 用户选择器对话框，支持搜索、头像显示、单选/多选和部门标签
- * @keywords user, browse, picker, select, avatar, department, 用户选择
+ * @description User picker dialog with search, avatar display, single/multi-select, and department badges.
+ * Supports optional remote `loadUsers({ keyword })` — keyword is passed through; pinyin/fuzzy match is backend-owned.
+ * / 用户选择器对话框，支持搜索、头像、单/多选、部门标签；可选远程 loadUsers，拼音等匹配由后端完成。
+ * @keywords user, browse, picker, select, avatar, department, remote, 用户选择
  * @example
  * <UserBrowse
- *   users={userList}
+ *   loadUsers={async ({ keyword }) => api.searchUsers(keyword)}
  *   value={selectedUser}
  *   onChange={setSelectedUser}
  *   multiple
@@ -93,11 +117,16 @@ function UserBrowse({
   multiple = false,
   maxCount,
   users = defaultUsers,
+  loadUsers,
+  searchDebounceMs = 300,
   onChange,
   className,
 }: UserBrowseProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
+  const [remoteUsers, setRemoteUsers] = React.useState<User[] | null>(null);
+  const [loading, setLoading] = React.useState(false);
+  const [loadError, setLoadError] = React.useState<string | null>(null);
   const [uncontrolledValue, setUncontrolledValue] = React.useState<User[]>(
     Array.isArray(defaultValue)
       ? defaultValue
@@ -111,7 +140,47 @@ function UserBrowse({
       : [controlledValue]
     : uncontrolledValue;
 
+  // Remote: debounce keyword → loadUsers. Local: client-side includes filter.
+  React.useEffect(() => {
+    if (!open || !loadUsers) return;
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(null);
+    const timer = window.setTimeout(() => {
+      void loadUsers({ keyword: search })
+        .then((rows) => {
+          if (!cancelled) {
+            setRemoteUsers(rows);
+            setLoading(false);
+          }
+        })
+        .catch((err: unknown) => {
+          if (!cancelled) {
+            setLoadError(err instanceof Error ? err.message : "加载失败");
+            setRemoteUsers([]);
+            setLoading(false);
+          }
+        });
+    }, searchDebounceMs);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [open, search, loadUsers, searchDebounceMs]);
+
+  React.useEffect(() => {
+    if (!open) {
+      setSearch("");
+      setRemoteUsers(null);
+      setLoadError(null);
+      setLoading(false);
+    }
+  }, [open]);
+
   const filteredUsers = React.useMemo(() => {
+    if (loadUsers) {
+      return remoteUsers ?? users;
+    }
     if (!search) return users;
     const q = search.toLowerCase();
     return users.filter(
@@ -120,7 +189,7 @@ function UserBrowse({
         user.email?.toLowerCase().includes(q) ||
         user.department?.toLowerCase().includes(q),
     );
-  }, [users, search]);
+  }, [users, search, loadUsers, remoteUsers]);
 
   const handleSelect = (user: User) => {
     let newValue: User[];
@@ -226,44 +295,62 @@ function UserBrowse({
               />
             </div>
             <ScrollArea className="h-[300px]">
-              <div className="space-y-1">
-                {filteredUsers.map((user) => {
-                  const isSelected = value.some((u) => u.id === user.id);
-                  return (
-                    <div
-                      key={user.id}
-                      className={cn(
-                        "hover:bg-muted flex cursor-pointer items-center gap-3 rounded-md p-2",
-                        isSelected && "bg-muted",
-                      )}
-                      onClick={() => handleSelect(user)}
-                    >
-                      {multiple && <Checkbox checked={isSelected} />}
-                      <Avatar className="size-8">
-                        <AvatarImage src={user.avatar} />
-                        <AvatarFallback>
-                          <UserIcon className="size-4" />
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium">
-                          {user.name}
-                        </p>
-                        {user.email && (
-                          <p className="text-muted-foreground truncate text-xs">
-                            {user.email}
+              <div className="space-y-1" data-slot="user-browse-list">
+                {loading && (
+                  <div
+                    className="text-muted-foreground flex flex-col items-center justify-center py-8 text-sm"
+                    data-slot="user-browse-loading"
+                  >
+                    加载中…
+                  </div>
+                )}
+                {loadError && !loading && (
+                  <div
+                    className="text-destructive flex flex-col items-center justify-center py-8 text-sm"
+                    data-slot="user-browse-error"
+                  >
+                    {loadError}
+                  </div>
+                )}
+                {!loading &&
+                  !loadError &&
+                  filteredUsers.map((user) => {
+                    const isSelected = value.some((u) => u.id === user.id);
+                    return (
+                      <div
+                        key={user.id}
+                        className={cn(
+                          "hover:bg-muted flex cursor-pointer items-center gap-3 rounded-md p-2",
+                          isSelected && "bg-muted",
+                        )}
+                        onClick={() => handleSelect(user)}
+                      >
+                        {multiple && <Checkbox checked={isSelected} />}
+                        <Avatar className="size-8">
+                          <AvatarImage src={user.avatar} />
+                          <AvatarFallback>
+                            <UserIcon className="size-4" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium">
+                            {user.name}
                           </p>
+                          {user.email && (
+                            <p className="text-muted-foreground truncate text-xs">
+                              {user.email}
+                            </p>
+                          )}
+                        </div>
+                        {user.department && (
+                          <Badge variant="outline" className="shrink-0">
+                            {user.department}
+                          </Badge>
                         )}
                       </div>
-                      {user.department && (
-                        <Badge variant="outline" className="shrink-0">
-                          {user.department}
-                        </Badge>
-                      )}
-                    </div>
-                  );
-                })}
-                {filteredUsers.length === 0 && (
+                    );
+                  })}
+                {!loading && !loadError && filteredUsers.length === 0 && (
                   <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
                     <UserIcon className="mb-2 size-8" />
                     <p className="text-sm">No users found</p>
@@ -296,4 +383,4 @@ function UserBrowse({
 }
 
 export { UserBrowse };
-export type { User, UserBrowseProps };
+export type { User, UserBrowseProps, UserBrowseLoadParams };

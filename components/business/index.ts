@@ -358,7 +358,11 @@ export type { DistributorPickerProps } from "./distributor-picker";
 export { DonutChart } from "./donut-chart";
 export type { DonutChartProps } from "./donut-chart";
 export { EmployeePicker } from "./employee-picker";
-export type { EmployeePickerProps } from "./employee-picker";
+export type {
+  EmployeePickerProps,
+  EmployeePickerOption,
+  EmployeePickerFetcher,
+} from "./employee-picker";
 export { ErrorPage, NotFound, InternalError, Unauthorized } from "./error-page";
 export { GaugeChart } from "./gauge-chart";
 export type { GaugeChartProps } from "./gauge-chart";
@@ -493,7 +497,11 @@ export type { ImageCropperProps } from "./image-cropper";
 export { OrgPicker } from "./org-picker";
 export type { OrgPickerProps, OrgNode, OrgMember } from "./org-picker";
 export { UserPicker } from "./user-picker";
-export type { UserPickerProps, UserItem } from "./user-picker";
+export type {
+  UserPickerProps,
+  UserItem,
+  UserPickerLoadParams,
+} from "./user-picker";
 export { AddressInput } from "./address-input";
 export type { AddressInputProps, AddressValue } from "./address-input";
 export { MarkdownViewerBiz } from "./markdown-viewer-biz";

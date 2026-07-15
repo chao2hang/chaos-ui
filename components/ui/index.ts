@@ -415,7 +415,11 @@ export type { TreeNode, TreeSelectProps } from "./tree-select";
 export { TreeView } from "./tree-view";
 export type { TreeNode as TreeViewNode, TreeViewProps } from "./tree-view";
 export { UserBrowse } from "./user-browse";
-export type { User, UserBrowseProps } from "./user-browse";
+export type {
+  User,
+  UserBrowseProps,
+  UserBrowseLoadParams,
+} from "./user-browse";
 export { VirtualList } from "./virtual-list";
 export type { VirtualListProps } from "./virtual-list";
 export { VirtualTable } from "./virtual-table";
