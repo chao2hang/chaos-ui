@@ -31,7 +31,9 @@ function useSeriesVisibility({
     () => new Set(defaultHiddenSeries),
   );
   const onChangeRef = React.useRef(onSeriesVisibilityChange);
-  onChangeRef.current = onSeriesVisibilityChange;
+  React.useEffect(() => {
+    onChangeRef.current = onSeriesVisibilityChange;
+  }, [onSeriesVisibilityChange]);
 
   const hiddenNames = React.useMemo(
     () => Array.from(hidden).sort((a, b) => a.localeCompare(b)),

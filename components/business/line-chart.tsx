@@ -270,24 +270,24 @@ function LineChart({
               );
             }
             return (
-              <button
-                key={s.name}
-                type="button"
-                role="listitem"
-                className={itemClass}
-                aria-pressed={!hidden}
-                aria-label={
-                  hidden ? `显示系列 ${s.name}` : `隐藏系列 ${s.name}`
-                }
-                onClick={() => toggle(s.name)}
-              >
-                <span
-                  className="inline-block size-2 rounded-sm"
-                  style={{ backgroundColor: s.resolvedColor }}
-                  aria-hidden="true"
-                />
-                {s.name}
-              </button>
+              <span key={s.name} role="listitem" className="inline-flex">
+                <button
+                  type="button"
+                  className={itemClass}
+                  aria-pressed={!hidden}
+                  aria-label={
+                    hidden ? `显示系列 ${s.name}` : `隐藏系列 ${s.name}`
+                  }
+                  onClick={() => toggle(s.name)}
+                >
+                  <span
+                    className="inline-block size-2 rounded-sm"
+                    style={{ backgroundColor: s.resolvedColor }}
+                    aria-hidden="true"
+                  />
+                  {s.name}
+                </button>
+              </span>
             );
           })}
         </li>

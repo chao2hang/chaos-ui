@@ -57,6 +57,8 @@ const eslintConfig = defineConfig([
     "output/**",
     "build/**",
     "dist/**",
+    "**/dist/**",
+    "packages/**/dist/**",
     "storybook-static/**",
     "coverage/**",
     ".playwright-mcp/**",
