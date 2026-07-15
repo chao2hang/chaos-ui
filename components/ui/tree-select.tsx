@@ -40,6 +40,8 @@ interface TreeSelectProps {
   data: TreeNode[];
   onChange?: (value: string | string[] | undefined) => void;
   className?: string;
+  /** Trigger height: default min-h-8; sm aligns with Button/SelectTrigger h-7 / 触发器高度：default 为 min-h-8；sm 对齐 Button/SelectTrigger 的 h-7 */
+  size?: "sm" | "default";
 }
 
 /**
@@ -158,6 +160,7 @@ function findNodeById(nodes: TreeNode[], id: string): TreeNode | undefined {
  *   onChange={setSelected}
  *   multiple
  * />
+ * <TreeSelect data={treeData} size="sm" placeholder="Filter..." />
  */
 function TreeSelect({
   value: controlledValue,
@@ -169,6 +172,7 @@ function TreeSelect({
   data,
   onChange,
   className,
+  size = "default",
 }: TreeSelectProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -252,17 +256,31 @@ function TreeSelect({
     return node?.label || id;
   };
 
+  const isSm = size === "sm";
+
   return (
-    <div data-slot="tree-select" className={cn("w-full", className)}>
+    <div
+      data-slot="tree-select"
+      data-size={size}
+      className={cn("w-full", className)}
+    >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
             <div
+              data-size={size}
               className={cn(
-                "border-input flex min-h-8 w-full items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm transition-colors",
+                "border-input flex w-full items-center gap-1 border bg-transparent px-2.5 text-sm transition-colors",
                 "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 "dark:bg-input/30",
+                // #28: size variants align with SelectTrigger / Button sm (h-7)
+                isSm
+                  ? cn(
+                      "min-h-7 rounded-[min(var(--radius-md),10px)] py-0",
+                      !multiple && "h-7",
+                    )
+                  : "min-h-8 rounded-lg py-1",
                 disabled && "cursor-not-allowed opacity-50",
               )}
             />
@@ -272,7 +290,14 @@ function TreeSelect({
           {value.length > 0 ? (
             <div className="flex flex-1 flex-wrap gap-1">
               {value.map((id) => (
-                <Badge key={id} variant="secondary" className="gap-1">
+                <Badge
+                  key={id}
+                  variant="secondary"
+                  className={cn(
+                    "gap-1",
+                    isSm && "h-4 px-1.5 py-0 text-[10px] leading-none",
+                  )}
+                >
                   <span>{getLabelById(id)}</span>
                   {!disabled && (
                     <button
@@ -282,7 +307,7 @@ function TreeSelect({
                       }}
                       className="hover:bg-muted ml-0.5 rounded-full"
                     >
-                      <XIcon className="size-3" />
+                      <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
                       <span className="sr-only">Remove</span>
                     </button>
                   )}

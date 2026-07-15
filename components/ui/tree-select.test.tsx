@@ -1,6 +1,15 @@
 import { describe, it, expect, vi } from "vitest";
+import { render } from "@testing-library/react";
 import { TreeSelect } from "@/components/ui/tree-select";
 import type { TreeNode, TreeSelectProps } from "@/components/ui/tree-select";
+
+const sampleData: TreeNode[] = [
+  {
+    id: "1",
+    label: "Root",
+    children: [{ id: "1-1", label: "Child" }],
+  },
+];
 
 describe("tree-select", () => {
   it("exports TreeSelect", () => {
@@ -47,10 +56,12 @@ describe("tree-select", () => {
       data: [],
       onChange: vi.fn(),
       className: "test",
+      size: "sm",
     };
     expect(props.placeholder).toBe("Select...");
     expect(props.multiple).toBe(false);
     expect(props.maxCount).toBe(5);
+    expect(props.size).toBe("sm");
   });
 
   it("TreeSelectProps supports multiple selection with string array value", () => {
@@ -69,5 +80,38 @@ describe("tree-select", () => {
       data: [],
     };
     expect(typeof props.value).toBe("string");
+  });
+
+  it("defaults data-size to default on root", () => {
+    render(<TreeSelect data={sampleData} />);
+    expect(
+      document
+        .querySelector('[data-slot="tree-select"]')
+        ?.getAttribute("data-size"),
+    ).toBe("default");
+  });
+
+  it("applies sm size data attribute (issue #28)", () => {
+    render(<TreeSelect data={sampleData} size="sm" />);
+    const root = document.querySelector(
+      '[data-slot="tree-select"]',
+    ) as HTMLElement;
+    expect(root.getAttribute("data-size")).toBe("sm");
+    expect(root.className).toContain("w-full");
+    expect(
+      Array.from(root.querySelectorAll("[data-size='sm']")).length,
+    ).toBeGreaterThanOrEqual(1);
+  });
+
+  it("sm single-select trigger includes h-7 min-h-7", () => {
+    const { container } = render(
+      <TreeSelect data={sampleData} size="sm" placeholder="Filter..." />,
+    );
+    const className = container
+      .querySelector('[data-slot="tree-select"]')
+      ?.querySelector(".min-h-7")?.className;
+    expect(className).toBeDefined();
+    expect(className).toMatch(/min-h-7/);
+    expect(className).toMatch(/\bh-7\b/);
   });
 });

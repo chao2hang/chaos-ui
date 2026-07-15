@@ -12,6 +12,7 @@
 
 ## 👀 待审核
 
+- [TreeSelect size 变体 #28](./2026-07-15_TreeSelect_size变体_设计计划.md)
 - [NavigationTabsBar 点击被吞 CUI-TAB-03 #26](./2026-07-15_NavigationTabsBar点击被吞_CUI-TAB-03_设计计划.md)
 - [浏览 / 选人远程检索接口](./2026-07-15_浏览选人远程检索接口_设计计划.md)
 - [Chart 图例显隐 + SearchTable 表体 inset #23/#24](./2026-07-15_Chart图例显隐_SearchTable表体inset_设计计划.md)
