@@ -83,8 +83,8 @@ export function ConfirmDialog({
         className="sm:max-w-sm"
       >
         <DialogHeader>
-          <div className="flex items-start gap-3">
-            <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
+          <div className="flex flex-col gap-3">
+            <div className="bg-muted flex size-9 items-center justify-center rounded-full">
               {icon ?? <AlertTriangleIcon className="size-4" />}
             </div>
             <div className="flex flex-col gap-1.5">

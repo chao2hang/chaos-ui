@@ -122,8 +122,8 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
       >
         <DialogContent showCloseButton={false} className="sm:max-w-sm">
           <DialogHeader>
-            <div className="flex items-start gap-3">
-              <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
+            <div className="flex flex-col gap-3">
+              <div className="bg-muted flex size-9 items-center justify-center rounded-full">
                 {state.options.icon ?? <AlertCircleIcon className="size-4" />}
               </div>
               <div className="flex flex-col gap-1.5">
@@ -195,8 +195,8 @@ function useConfirmAsync(): [
     >
       <DialogContent showCloseButton={false} className="sm:max-w-sm">
         <DialogHeader>
-          <div className="flex items-start gap-3">
-            <div className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-full">
+          <div className="flex flex-col gap-3">
+            <div className="bg-muted flex size-9 items-center justify-center rounded-full">
               {state.options.icon ?? <AlertCircleIcon className="size-4" />}
             </div>
             <div className="flex flex-col gap-1.5">
