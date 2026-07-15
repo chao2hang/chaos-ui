@@ -18,9 +18,9 @@
 - [文档站前后台示例模板](./2026-07-12_文档站前后台示例模板_设计计划.md)
 
 ## ✅ 完成
+
 - [TreeSelect size 变体 #28](./2026-07-15_TreeSelect_size变体_设计计划.md)
 - [NavigationTabsBar 点击被吞 CUI-TAB-03 #26](./2026-07-15_NavigationTabsBar点击被吞_CUI-TAB-03_设计计划.md)
-
 - [AreaChart Tooltip/Crosshair CUI-DASH-07 #22](./2026-07-14_AreaChart_Tooltip_Crosshair_CUI-DASH-07_设计计划.md)
 - [NavigationTabsBar 拖拽横向滚动 #21](./2026-07-14_NavigationTabsBar拖拽横向滚动_设计计划.md)
 - [CardSection 标题内容间距 #20](./2026-07-14_CardSection标题内容间距_设计计划.md)
