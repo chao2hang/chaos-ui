@@ -138,8 +138,19 @@ Default: wait for user to say **开始修 / implement**.
 If a `designs/` plan is required, say so before coding.
 ```
 
+## After implementation (when user asks to implement / ship)
+
+Default `/iss` is plan-only. Once the user authorizes implementation and the work is **done** (merged/on main, and released if this repo cuts a package version for it):
+
+1. **Close the issue** — required project rule (处理完成就必须关 issue). Do not wait for the user to ask.
+2. Prefer: `gh issue close N --comment "…"` with commit SHA, PR, and/or `vX.Y.Z` release URL.
+3. If shipping via `/release`, issue close is step 10 of **prepare-release** for all issues in that cut; if shipping without a release cut, close immediately after the fix is on the delivery branch.
+
+Plan-only analysis does **not** close issues. Partial progress → comment, leave open.
+
 ## Boundaries
 
 - Do **not** modify the working tree in the default `/iss` flow.
-- Do **not** open PRs or comment on the issue unless asked.
+- Do **not** open PRs or comment on the issue unless asked (**exception**: closing with a completion comment after ship is required).
 - After the user authorizes implementation, still avoid drive-by refactors; stage intentional files only when committing later.
+- After the work is fully shipped, **do** close the issue — not optional.

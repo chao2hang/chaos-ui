@@ -97,18 +97,29 @@ updated: 2026-07-08
 
 Project commands live in `.agents/commands/` and mount skills under `.agents/skills/`. A matching copy may also exist under `~/.agents/` for cross-project use (user scope wins when names collide).
 
-| Command                                 | Default behavior                                                                                                                                                                         |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement)                                                                    |
-| `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                                                                                        |
-| `/push`                                 | Push current branch; pre-push fast gate only (`typecheck` + `lint`); no force on `main`                                                                                                  |
-| `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                                                                                     |
-| `/release [patch\|minor\|major\|x.y.z]` | **Real cut by default**: patch bump (empty args); minor for large waves; CHANGELOG + version commit → push main → `release:check` → tag push → `release.yml`. `plan-only` to draft only. |
+| Command                                 | Default behavior                                                                                                                                                                                                    |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/iss` or `/iss <n>`                    | No number → list **all open** issues; with `n` → analyze `#n` and **plan only** (no edits until you ask to implement)                                                                                               |
+| `/commit`                               | Conventional commit; intentional staging only (never `git add .`)                                                                                                                                                   |
+| `/push`                                 | Push current branch; pre-push fast gate only (`typecheck` + `lint`); no force on `main`                                                                                                                             |
+| `/pr`                                   | Open PR from current branch using `.github/pull_request_template.md`                                                                                                                                                |
+| `/release [patch\|minor\|major\|x.y.z]` | **Real cut by default**: patch bump (empty args); minor for large waves; CHANGELOG + version commit → push main → `release:check` → tag push → `release.yml` → **close shipped issues**. `plan-only` to draft only. |
+
+### Issue lifecycle（必须遵守）
+
+**处理完成就必须关闭对应 GitHub issue** — 不是可选项。
+
+- **Done when shipped**: after the fix is on `main` and (for library releases) published / tagged as intended, **close every issue fully resolved by that work**.
+- Prefer `gh issue close N --comment "…"` with version/commit/PR links; one comment is enough.
+- Do this as the last step of `/release` (issues listed in the release CHANGELOG / commits), or immediately after a non-release fix lands if no release is planned.
+- **Do not** leave resolved issues open waiting for the user to close them.
+- Plan-only `/iss` stays open (analysis only). Partial work → leave open or comment progress; do not close early.
 
 Typical delivery flow after an approved plan:
 
 ```text
-/iss 9  →  implement (when asked)  →  /commit  →  /push  →  /pr  →  gh pr checks --watch
+/iss 9  →  implement (when asked)  →  /commit  →  /push  →  /pr  →  merge/checks
+       →  /release (if library cut)  →  close #9 with release note
 ```
 
 Quality gates (do not run all of these on every push):
@@ -132,6 +143,7 @@ Release flow (chaos-ui):
   → tag vX.Y.Z  →  push tag
   → release.yml: require CI green → prepack once → publish --ignore-scripts
   → GitHub Release body from CHANGELOG
+  → close all issues fully shipped in this cut (comment: version + SHA + release URL)
 ```
 
 - Full quality gate is **local** (`release:check`) + **main CI**, not inside `prepublishOnly`.

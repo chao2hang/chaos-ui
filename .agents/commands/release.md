@@ -14,6 +14,7 @@ Defaults:
 
 - **Execute** a full release cut unless args/user say `plan-only` / `dry-run` / `只提案`.
 - SemVer: empty → **patch** (last segment +1); `minor` for large feature waves; `major` only when breaking; or exact `x.y.z`.
-- Steps: bump `package.json` + CHANGELOG → `release: vX.Y.Z - …` commit → push `main` → **`pnpm run release:check`** → wait for **main CI** green on that SHA → `git tag` + `git push origin vX.Y.Z`.
+- Steps: bump `package.json` + CHANGELOG → `release: vX.Y.Z - …` commit → push `main` → **`pnpm run release:check`** → wait for **main CI** green on that SHA → `git tag` + `git push origin vX.Y.Z` → **close all issues fully shipped in this cut**.
 - Publish path: tag → `release.yml` (prepack once + `publish --ignore-scripts`); do not local-publish unless Actions cannot and user asks.
 - Never skip `release:check` or tag a red commit; never force-push or overwrite an existing tag.
+- **Issue close is required** after a successful cut (处理完成就必须关 issue) — `gh issue close N --comment` with version + SHA + release URL.

@@ -15,5 +15,6 @@ Defaults:
 - If `$1` / `$ARGUMENTS` has **no** issue number: list **all open** issues for the current repo (triage table), then wait for a number.
 - If a number is present: fetch that issue, locate related code, write a concrete fix/implementation plan.
 - **Do not** edit files, commit, push, or open a PR unless the user explicitly asks to implement after the plan.
+- After implementation is **fully shipped** (on main / released as intended): **close the issue** with a completion comment — required project rule (处理完成就必须关 issue). Plan-only leaves issues open.
 
 If chaos-ui project rules apply (designs board, pnpm checks), include them in single-issue plans.

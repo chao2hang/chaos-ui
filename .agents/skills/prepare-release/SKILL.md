@@ -74,6 +74,11 @@ When the user runs bare `/release` or `/release patch|minor|major|x.y.z` **witho
 7. Poll / check CI for the release SHA; if red, stop and report.
 8. **Tag** `vX.Y.Z` and **push tag** when gates pass.
 9. Report npm/Actions status if available (`gh run list` / release workflow).
+10. **Close shipped issues (required)** — collect issue numbers from this cut’s CHANGELOG bullets and commits (`#N` / `Fixes #N`). For each still-open issue that is fully resolved by this release:
+    ```bash
+    gh issue close N --comment "Shipped in vX.Y.Z (SHA). Release: <url>. …"
+    ```
+    Do **not** leave resolved issues open. Skip already-closed issues. If an issue is only partially addressed, leave open and comment progress instead of closing.
 
 Announce each step briefly as it completes. Do not print npm tokens.
 
@@ -95,3 +100,4 @@ Only if the user says **plan-only**, **dry-run**, **只提案**, or **不要发�
 - Never force-push `main` or overwrite an existing release tag.
 - Stage only intentional release files for the release commit.
 - Local `pnpm publish` only if Actions cannot and user explicitly asks.
+- After a successful publish/tag for issues included in the cut: **close them** (project rule — 处理完成就必须关 issue).
