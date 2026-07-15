@@ -3,6 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { formatNumber } from "@/lib/format";
 import { indexFromClientX } from "./chart-hover";
+import { useSeriesVisibility } from "./use-series-visibility";
 
 /**
  * @component AreaChart
@@ -12,6 +13,7 @@ import { indexFromClientX } from "./chart-hover";
  * multi-series overlay with gradient fills and per-series colors.
  * Wide containers measure width so the plot fills horizontally (issue #13).
  * Hover shows x-aligned multi-series tooltip + crosshair (issue #22).
+ * Multi-series legend is interactive by default (issue #23 / CUI-DASH-08).
  * @param data Single-series values (legacy) or use `series` for multi-series.
  * @param series One or more named series with optional colors.
  * @param labels X-axis labels aligned to data points.
@@ -19,6 +21,9 @@ import { indexFromClientX } from "./chart-hover";
  * @param color Default fill/stroke color for single-series mode.
  * @param gradient Whether to use SVG gradient fill (default true).
  * @param showTooltip Whether to show hover tooltip + crosshair (default true).
+ * @param interactiveLegend Click legend to toggle series visibility (default true).
+ * @param defaultHiddenSeries Series names hidden on first render.
+ * @param onSeriesVisibilityChange Callback with hidden series names after toggle.
  * @param className Extra classes on the root.
  * @example
  * ```tsx
@@ -57,6 +62,15 @@ export interface AreaChartProps {
    * Default true. Disable for static sparkline-like embeds.
    */
   showTooltip?: boolean;
+  /**
+   * Click multi-series legend to show/hide series (issue #23).
+   * Default true. Set false for static legend.
+   */
+  interactiveLegend?: boolean;
+  /** Series names hidden on first render (issue #23). */
+  defaultHiddenSeries?: string[];
+  /** Fires after legend toggle with currently hidden series names. */
+  onSeriesVisibilityChange?: (hidden: string[]) => void;
   className?: string;
 }
 
@@ -108,6 +122,9 @@ function AreaChart({
   color,
   gradient = true,
   showTooltip = true,
+  interactiveLegend = true,
+  defaultHiddenSeries,
+  onSeriesVisibilityChange,
   className,
 }: AreaChartProps) {
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -116,6 +133,11 @@ function AreaChart({
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const pad = 8;
   const baseId = React.useId();
+  const { isHidden, toggle } = useSeriesVisibility({
+    interactiveLegend,
+    defaultHiddenSeries,
+    onSeriesVisibilityChange,
+  });
 
   React.useEffect(() => {
     const el = rootRef.current;
@@ -149,17 +171,6 @@ function AreaChart({
           },
         ];
 
-  const allValues = multiSeries.flatMap((s) => s.values);
-  const max = Math.max(1, ...allValues);
-  const min = Math.min(0, ...allValues);
-  const range = max - min || 1;
-  const len = Math.max(1, ...multiSeries.map((s) => s.values.length));
-  const stepX = (chartWidth - pad * 2) / Math.max(1, len - 1);
-  const yAt = (v: number) => pad + (1 - (v - min) / range) * (height - pad * 2);
-
-  // Generate stable gradient IDs from useId
-  const gradientIds = multiSeries.map((_, i) => `${baseId}-grad-${i}`);
-
   const resolvedSeries = multiSeries.map((s, si) => ({
     ...s,
     resolvedColor: resolveAreaColor(
@@ -167,6 +178,19 @@ function AreaChart({
       AREA_PALETTE[si % AREA_PALETTE.length]!,
     ),
   }));
+
+  // Scale + draw from visible series only (issue #23); hide-all is safe.
+  const visibleSeries = resolvedSeries.filter((s) => !isHidden(s.name));
+  const allValues = visibleSeries.flatMap((s) => s.values);
+  const max = allValues.length > 0 ? Math.max(1, ...allValues) : 1;
+  const min = allValues.length > 0 ? Math.min(0, ...allValues) : 0;
+  const range = max - min || 1;
+  const len = Math.max(1, ...multiSeries.map((s) => s.values.length));
+  const stepX = (chartWidth - pad * 2) / Math.max(1, len - 1);
+  const yAt = (v: number) => pad + (1 - (v - min) / range) * (height - pad * 2);
+
+  // Generate stable gradient IDs from useId
+  const gradientIds = multiSeries.map((_, i) => `${baseId}-grad-${i}`);
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!showTooltip) return;
@@ -212,20 +236,47 @@ function AreaChart({
           className="mb-1 flex flex-wrap items-center gap-3 text-[10px]"
           role="list"
         >
-          {resolvedSeries.map((s) => (
-            <span
-              key={s.name}
-              className="flex items-center gap-1"
-              role="listitem"
-            >
-              <span
-                className="inline-block size-2 rounded-sm"
-                style={{ backgroundColor: s.resolvedColor }}
-                aria-hidden="true"
-              />
-              {s.name}
-            </span>
-          ))}
+          {resolvedSeries.map((s) => {
+            const hidden = isHidden(s.name);
+            const itemClass = cn(
+              "inline-flex items-center gap-1 rounded-sm",
+              interactiveLegend &&
+                "hover:bg-muted/60 focus-visible:ring-ring cursor-pointer focus-visible:ring-1 focus-visible:outline-none",
+              hidden && "text-muted-foreground line-through opacity-45",
+            );
+            if (!interactiveLegend) {
+              return (
+                <span key={s.name} className={itemClass} role="listitem">
+                  <span
+                    className="inline-block size-2 rounded-sm"
+                    style={{ backgroundColor: s.resolvedColor }}
+                    aria-hidden="true"
+                  />
+                  {s.name}
+                </span>
+              );
+            }
+            return (
+              <span key={s.name} role="listitem" className="inline-flex">
+                <button
+                  type="button"
+                  className={itemClass}
+                  aria-pressed={!hidden}
+                  aria-label={
+                    hidden ? `显示系列 ${s.name}` : `隐藏系列 ${s.name}`
+                  }
+                  onClick={() => toggle(s.name)}
+                >
+                  <span
+                    className="inline-block size-2 rounded-sm"
+                    style={{ backgroundColor: s.resolvedColor }}
+                    aria-hidden="true"
+                  />
+                  {s.name}
+                </button>
+              </span>
+            );
+          })}
         </div>
       )}
       <div
@@ -263,6 +314,7 @@ function AreaChart({
             })}
           </defs>
           {resolvedSeries.map((s, si) => {
+            if (isHidden(s.name)) return null;
             const gid = gradientIds[si];
             const pts = s.values.map((v, i) => `${pad + i * stepX},${yAt(v)}`);
             const linePath = `M ${pts.join(" L ")}`;
@@ -335,7 +387,7 @@ function AreaChart({
               {activeLabel}
             </div>
             <ul className="space-y-0.5">
-              {resolvedSeries.map((s) => {
+              {visibleSeries.map((s) => {
                 const v = s.values[activeIndex];
                 if (v === undefined) return null;
                 return (

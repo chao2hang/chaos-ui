@@ -97,4 +97,46 @@ describe("LineChart", () => {
       container.querySelector('[data-slot="line-chart-tooltip"]'),
     ).toBeNull();
   });
+
+  it("toggles series visibility from interactive legend (issue #23)", () => {
+    const { container } = render(
+      <LineChart
+        series={[
+          { name: "订单", values: [10, 20, 30], color: "#3b82f6" },
+          { name: "费用", values: [4, 5, 6], color: "#10b981" },
+        ]}
+        labels={["1月", "2月", "3月"]}
+      />,
+    );
+    const hideOrder = container.querySelector(
+      'button[aria-label="隐藏系列 订单"]',
+    ) as HTMLButtonElement;
+    expect(hideOrder).not.toBeNull();
+    fireEvent.click(hideOrder);
+    expect(hideOrder.getAttribute("aria-pressed")).toBe("false");
+    expect(
+      container.querySelectorAll('path[stroke]:not([stroke="none"])').length,
+    ).toBe(1);
+
+    const plot = container.querySelector(
+      '[data-slot="line-chart-plot"]',
+    ) as HTMLElement;
+    vi.spyOn(plot, "getBoundingClientRect").mockReturnValue({
+      x: 0,
+      y: 0,
+      top: 0,
+      left: 0,
+      bottom: 180,
+      right: 320,
+      width: 320,
+      height: 180,
+      toJSON() {
+        return {};
+      },
+    });
+    fireEvent.pointerMove(plot, { clientX: 8, clientY: 40 });
+    const tooltip = container.querySelector('[data-slot="line-chart-tooltip"]');
+    expect(tooltip?.textContent).toContain("费用");
+    expect(tooltip?.textContent).not.toContain("订单");
+  });
 });

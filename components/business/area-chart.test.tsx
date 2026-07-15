@@ -237,4 +237,87 @@ describe("AreaChart", () => {
       container.querySelector('[data-slot="area-chart-tooltip"]'),
     ).toBeNull();
   });
+
+  it("toggles series visibility from interactive legend (issue #23)", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <AreaChart
+        series={[
+          { name: "订单", values: [10, 20, 30], color: "primary" },
+          { name: "费用", values: [4, 5, 6], color: "chart-2" },
+        ]}
+        labels={["1月", "2月", "3月"]}
+        gradient={false}
+        onSeriesVisibilityChange={onChange}
+      />,
+    );
+    const legend = container.querySelector(
+      '[data-slot="area-chart-legend"]',
+    ) as HTMLElement;
+    const orderBtn = legend.querySelector(
+      'button[aria-label="隐藏系列 订单"]',
+    ) as HTMLButtonElement;
+    expect(orderBtn).not.toBeNull();
+    expect(orderBtn.getAttribute("aria-pressed")).toBe("true");
+
+    fireEvent.click(orderBtn);
+    expect(orderBtn.getAttribute("aria-pressed")).toBe("false");
+    expect(orderBtn.className).toMatch(/opacity|line-through/);
+
+    // One stroke path remains (费用 only)
+    const strokes = container.querySelectorAll(
+      'path[stroke]:not([stroke="none"])',
+    );
+    expect(strokes.length).toBe(1);
+
+    // Tooltip omits hidden series
+    const plot = container.querySelector(
+      '[data-slot="area-chart-plot"]',
+    ) as HTMLElement;
+    mockPlotRect(plot, 320, 180);
+    fireEvent.pointerMove(plot, { clientX: 8, clientY: 40 });
+    const tooltip = container.querySelector('[data-slot="area-chart-tooltip"]');
+    expect(tooltip?.textContent).toContain("费用");
+    expect(tooltip?.textContent).not.toContain("订单");
+  });
+
+  it("allows hiding all series without crashing (issue #23)", () => {
+    const { container } = render(
+      <AreaChart
+        series={[
+          { name: "订单", values: [10, 20, 30], color: "primary" },
+          { name: "费用", values: [4, 5, 6], color: "chart-2" },
+        ]}
+        labels={["1月", "2月", "3月"]}
+        gradient={false}
+        defaultHiddenSeries={["订单", "费用"]}
+      />,
+    );
+    expect(
+      container.querySelectorAll('path[stroke]:not([stroke="none"])').length,
+    ).toBe(0);
+    const svg = container.querySelector("svg");
+    expect(svg).not.toBeNull();
+  });
+
+  it("keeps static legend when interactiveLegend is false (issue #23)", () => {
+    const { container } = render(
+      <AreaChart
+        series={[
+          { name: "订单", values: [1, 2, 3], color: "primary" },
+          { name: "费用", values: [1, 1, 1], color: "chart-2" },
+        ]}
+        labels={["a", "b", "c"]}
+        gradient={false}
+        interactiveLegend={false}
+      />,
+    );
+    const legend = container.querySelector(
+      '[data-slot="area-chart-legend"]',
+    ) as HTMLElement;
+    expect(legend.querySelector("button")).toBeNull();
+    expect(
+      container.querySelectorAll('path[stroke]:not([stroke="none"])').length,
+    ).toBe(2);
+  });
 });

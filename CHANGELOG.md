@@ -5,6 +5,17 @@ All notable changes to **@chaos_team/chaos-ui** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **business/AreaChart · LineChart (#23 / CUI-DASH-08)**: interactive multi-series **legend toggle** (click to show/hide; allow hide-all); Y scale + tooltip use visible series only; `interactiveLegend` (default `true`), `defaultHiddenSeries`, `onSeriesVisibilityChange`.
+- **business/useSeriesVisibility**: shared hook for pure-SVG legend visibility state.
+
+### Changed
+
+- **business/SearchTable (#24 / CUI-LIST-02)**: table body uses horizontal `px-[var(--card-spacing,1rem)]` under `CardContent flush`, matching FilterBar / pagination rhythm (updates #8 full-bleed table body contract).
+
 ## [1.5.7] — 2026-07-14
 
 ### Added

@@ -97,82 +97,89 @@ function SearchTable<
 
   return (
     <div data-slot="search-table" className={cn("space-y-2", className)}>
-      <div className="overflow-x-auto rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              {columns.map((col) => (
-                <TableHead
-                  key={col.key}
-                  className={alignClass[col.align || "left"]}
-                  style={{ width: col.width, minWidth: col.width }}
-                >
-                  {col.title}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {loading ? (
-              Array.from({ length: 5 }).map((_, ri) => (
-                <TableRow key={ri}>
-                  {columns.map((_, ci) => (
-                    <TableCell key={ci}>
-                      <Skeleton className="h-4 w-full" />
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : dataSource.length === 0 ? (
+      {/* Table body inset under CardContent flush — align with FilterBar /
+          pagination horizontal rhythm (CUI-LIST-02 / #24). Inner frame keeps
+          rounded border; outer pad uses --card-spacing. */}
+      <div
+        data-slot="search-table-body"
+        className="px-[var(--card-spacing,1rem)]"
+      >
+        <div className="overflow-x-auto rounded-md border">
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="text-muted-foreground py-12 text-center"
-                >
-                  {emptyText}
-                </TableCell>
-              </TableRow>
-            ) : (
-              dataSource.map((record, rowIndex) => {
-                const rowProps = onRow?.(record, rowIndex);
-                return (
-                  <TableRow
-                    key={String(record[rowKey] || rowIndex)}
-                    className={cn(
-                      rowProps?.onClick && "hover:bg-muted/50 cursor-pointer",
-                    )}
-                    onClick={rowProps?.onClick}
+                {columns.map((col) => (
+                  <TableHead
+                    key={col.key}
+                    className={alignClass[col.align || "left"]}
+                    style={{ width: col.width, minWidth: col.width }}
                   >
-                    {columns.map((col) => {
-                      const value = getValue(record, col);
-                      const content = col.render
-                        ? col.render(value, record, rowIndex)
-                        : value != null
-                          ? String(value)
-                          : "-";
-
-                      return (
-                        <TableCell
-                          key={col.key}
-                          className={cn(
-                            alignClass[col.align || "left"],
-                            col.ellipsis && "max-w-0 truncate",
-                          )}
-                        >
-                          {content}
-                        </TableCell>
-                      );
-                    })}
+                    {col.title}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {loading ? (
+                Array.from({ length: 5 }).map((_, ri) => (
+                  <TableRow key={ri}>
+                    {columns.map((_, ci) => (
+                      <TableCell key={ci}>
+                        <Skeleton className="h-4 w-full" />
+                      </TableCell>
+                    ))}
                   </TableRow>
-                );
-              })
-            )}
-          </TableBody>
-        </Table>
+                ))
+              ) : dataSource.length === 0 ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="text-muted-foreground py-12 text-center"
+                  >
+                    {emptyText}
+                  </TableCell>
+                </TableRow>
+              ) : (
+                dataSource.map((record, rowIndex) => {
+                  const rowProps = onRow?.(record, rowIndex);
+                  return (
+                    <TableRow
+                      key={String(record[rowKey] || rowIndex)}
+                      className={cn(
+                        rowProps?.onClick && "hover:bg-muted/50 cursor-pointer",
+                      )}
+                      onClick={rowProps?.onClick}
+                    >
+                      {columns.map((col) => {
+                        const value = getValue(record, col);
+                        const content = col.render
+                          ? col.render(value, record, rowIndex)
+                          : value != null
+                            ? String(value)
+                            : "-";
+
+                        return (
+                          <TableCell
+                            key={col.key}
+                            className={cn(
+                              alignClass[col.align || "left"],
+                              col.ellipsis && "max-w-0 truncate",
+                            )}
+                          >
+                            {content}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
-      {/* Pagination — keep horizontal inset under CardContent flush (CUI-LIST-01 / #8).
-          Table body stays full-bleed; only the footer bar is padded. */}
+      {/* Pagination — horizontal inset under CardContent flush (CUI-LIST-01 / #8). */}
       {pagination && (
         <div
           data-slot="search-table-pagination"
