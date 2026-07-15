@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] — 2026-07-15
+
+### Changed
+
+- **business/ConfirmDialog · hooks/useConfirmAsync (#37)**: confirm header layout is now vertical — circular icon stacked above title/description (left-aligned) so long copy is not squeezed by a side-by-side icon; same structure in ConfirmDialog, ConfirmProvider, hook-mode dialog, and docs mirror. No API change.
+
 ## [1.6.0] — 2026-07-15
 
 ### Added
