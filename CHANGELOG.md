@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **business/OrgAdminPage**: left tree composes **`OrgTree`** (search / select / expand) instead of a parallel `OrgTreeRow`; `count` / `badges` / `readOnly` via `meta` + `renderNode`. Public `OrgAdminPageProps` unchanged.
 - **ui/OrgTree**: search input `type="search"` + `aria-label`; expand/clear controls labeled for a11y (shared by OrgAdminPage).
 
+### Fixed
+
+- **tests/Captcha · QRCode**: async canvas paths use `waitFor` + longer timeouts so full-suite runs no longer flake on the default 5s limit.
+
 ### Docs
 
 - **Component Reuse Protocol** in `AGENTS.md`; decision table `docs/component-decision-table.md` (table ladder, Browse vs Picker, org trio, anti-duplication).

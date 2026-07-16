@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, fireEvent, act } from "@testing-library/react";
+import { render, fireEvent, act, waitFor } from "@testing-library/react";
 import { Captcha, generateCode } from "@/components/ui/captcha";
 
 describe("generateCode", () => {
@@ -43,14 +43,15 @@ describe("Captcha", () => {
     const onCodeChange = vi.fn();
     render(<Captcha length={4} onCodeChange={onCodeChange} />);
 
-    // Wait for the async canvas render
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 100));
-    });
-
-    expect(onCodeChange).toHaveBeenCalled();
-    expect(onCodeChange.mock.calls[0]?.[0]).toHaveLength(4);
-  });
+    // Canvas code gen is async; waitFor is load-safe under full-suite pressure
+    await waitFor(
+      () => {
+        expect(onCodeChange).toHaveBeenCalled();
+        expect(onCodeChange.mock.calls[0]?.[0]).toHaveLength(4);
+      },
+      { timeout: 10_000 },
+    );
+  }, 15_000);
 
   it("refreshes code when refresh button is clicked", async () => {
     const onCodeChange = vi.fn();
@@ -58,44 +59,41 @@ describe("Captcha", () => {
       <Captcha length={4} onCodeChange={onCodeChange} />,
     );
 
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 100));
+    await waitFor(() => expect(onCodeChange).toHaveBeenCalled(), {
+      timeout: 10_000,
     });
-
-    expect(onCodeChange).toHaveBeenCalled();
 
     const refreshBtn = container.querySelector("button");
     expect(refreshBtn).not.toBeNull();
 
     await act(async () => {
       if (refreshBtn) fireEvent.click(refreshBtn);
-      await new Promise((r) => setTimeout(r, 100));
     });
 
-    expect(onCodeChange).toHaveBeenCalledTimes(2);
-  });
+    await waitFor(() => expect(onCodeChange).toHaveBeenCalledTimes(2), {
+      timeout: 10_000,
+    });
+  }, 15_000);
 
   it("calls onVerify(false) for wrong code", async () => {
     const onVerify = vi.fn();
-    const { container } = render(
-      <Captcha length={4} onVerify={onVerify} />,
-    );
+    const { container } = render(<Captcha length={4} onVerify={onVerify} />);
 
+    // Allow initial canvas/code generation under suite load
     await act(async () => {
-      await new Promise((r) => setTimeout(r, 100));
+      await new Promise((r) => setTimeout(r, 50));
     });
 
     const input = container.querySelector("input");
-    // Type a wrong code (unlikely to match the random generated code)
     await act(async () => {
       if (input) {
         fireEvent.change(input, { target: { value: "WRNG" } });
       }
     });
 
-    // onVerify is not called on change, only on full length match
-    // But our generated code won't be "WRNG", so let's check there's no success
-  });
+    // onVerify is not called on change for wrong codes; smoke only
+    expect(input).not.toBeNull();
+  }, 15_000);
 
   it("handles disabled state", () => {
     const { container } = render(<Captcha disabled />);

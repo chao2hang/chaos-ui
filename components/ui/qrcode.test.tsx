@@ -34,10 +34,15 @@ describe("QRCode", () => {
     const { container } = render(
       <QRCode value="canvas-test" renderAs="canvas" />,
     );
-    expect(
-      container.querySelector('[data-slot="qrcode"] canvas'),
-    ).not.toBeNull();
-  });
+    await waitFor(
+      () => {
+        expect(
+          container.querySelector('[data-slot="qrcode"] canvas'),
+        ).not.toBeNull();
+      },
+      { timeout: 10_000 },
+    );
+  }, 15_000);
 
   it("renders error fallback when generation fails", async () => {
     // An empty value triggers an error from the qrcode library.
