@@ -40,5 +40,21 @@
   "expenseLine.remarkPlaceholder": "任意",
   "expenseLine.items": "{{count}} 行",
   "expenseLine.total": "合計：{{currency}}{{amount}}",
-  "expenseLine.empty": "明細がありません"
+  "expenseLine.empty": "明細がありません",
+  "userBrowse.placeholder": "ユーザーを選択...",
+  "userBrowse.title": "ユーザーを選択",
+  "userBrowse.searchPlaceholder": "ユーザーを検索...",
+  "userBrowse.empty": "ユーザーが見つかりません",
+  "userBrowse.remove": "削除",
+  "userBrowse.clearAll": "すべてクリア",
+  "userBrowse.selectedCount": "{{count}} 人選択中",
+  "userBrowse.maxCount": "最大 {{count}}",
+  "departmentBrowse.placeholder": "部門を選択...",
+  "departmentBrowse.title": "部門を選択",
+  "departmentBrowse.searchPlaceholder": "部門を検索...",
+  "departmentBrowse.empty": "部門が見つかりません",
+  "departmentBrowse.remove": "削除",
+  "departmentBrowse.clearAll": "すべてクリア",
+  "departmentBrowse.selectedCount": "{{count}} 部門選択中",
+  "departmentBrowse.maxCount": "最大 {{count}}"
 }

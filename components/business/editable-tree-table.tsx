@@ -31,6 +31,13 @@ import {
  * Supports text, number, and select editors with validation, dirty tracking,
  * and a save/cancel toolbar. Essential for BOM editing, chart of accounts
  * maintenance, and similar hierarchical data editing scenarios.
+ *
+ * **Lazy-load contract (#50 sibling):** this component currently expands only
+ * when `children` is a non-empty array (no `onExpandRow`). If lazy load is
+ * added later, **must** ship `isLeafKey` / `canExpand` (or equivalent) together
+ * with the async loader — never show expand chrome with
+ * `hasChildren || !!onExpandRow` for every row (TreeTable #50 regression).
+ *
  * @keywords table, tree, editable, inline-edit, bom, spreadsheet, hierarchy
  */
 

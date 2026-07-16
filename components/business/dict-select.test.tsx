@@ -8,7 +8,9 @@ describe("DictSelect", () => {
     const _props: DictSelectProps = {
       options: [{ label: "Active", value: "1" }],
       onChange: (v) => {
-        expect(v === undefined || typeof v === "string" || typeof v === "number").toBe(true);
+        expect(
+          v === undefined || typeof v === "string" || typeof v === "number",
+        ).toBe(true);
       },
     };
     expect(_props.options?.length).toBe(1);
@@ -18,7 +20,9 @@ describe("DictSelect", () => {
     const { container } = render(
       <DictSelect options={[{ label: "Active", value: "1" }]} />,
     );
-    expect(container.querySelector('[data-slot="select-trigger"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="select-trigger"]'),
+    ).not.toBeNull();
   });
 
   it("renders skeleton when loading", () => {
@@ -35,9 +39,7 @@ describe("DictSelect", () => {
   });
 
   it("renders error state when fetcher rejects", async () => {
-    const failing = vi
-      .fn()
-      .mockRejectedValue(new Error("network down"));
+    const failing = vi.fn().mockRejectedValue(new Error("network down"));
     const { container } = render(
       <DictSelect categoryCode="err_status_unique" fetcher={failing} />,
     );
@@ -57,15 +59,17 @@ describe("DictSelect", () => {
     // Loading skeleton shown first
     expect(container.querySelector('[data-slot="skeleton"]')).not.toBeNull();
     await waitFor(() => {
-      expect(container.querySelector('[data-slot="select-trigger"]')).not.toBeNull();
+      expect(
+        container.querySelector('[data-slot="select-trigger"]'),
+      ).not.toBeNull();
     });
     expect(fetcher).toHaveBeenCalledWith("cached_status_unique");
   });
 
   it("uses global fetcher set via setDictFetcher", async () => {
-    const globalFetcher = vi.fn().mockResolvedValue([
-      { label: "Open", value: "open" },
-    ]);
+    const globalFetcher = vi
+      .fn()
+      .mockResolvedValue([{ label: "Open", value: "open" }]);
     setDictFetcher(globalFetcher);
     try {
       render(<DictSelect categoryCode="global_status_unique" />);
@@ -86,15 +90,14 @@ describe("DictSelect", () => {
         allowClear
       />,
     );
-    expect(container.querySelector('[data-slot="select-trigger"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="select-trigger"]'),
+    ).not.toBeNull();
   });
 
   it("respects disabled prop on the select", () => {
     const { container } = render(
-      <DictSelect
-        options={[{ label: "Active", value: "1" }]}
-        disabled
-      />,
+      <DictSelect options={[{ label: "Active", value: "1" }]} disabled />,
     );
     const trigger = container.querySelector(
       '[data-slot="select-trigger"]',
@@ -112,5 +115,13 @@ describe("DictSelect", () => {
     const mod = await import("@/components/business/dict-select");
     expect(mod.DictSelect).toBeDefined();
     expect(mod.setDictFetcher).toBeDefined();
+  });
+
+  it("size=sm uses h-7 (toolbar align, regression D)", () => {
+    const { container } = render(
+      <DictSelect size="sm" options={[{ label: "A", value: "a" }]} />,
+    );
+    const trigger = container.querySelector('[data-slot="select-trigger"]');
+    expect(trigger?.className.includes("h-7")).toBe(true);
   });
 });

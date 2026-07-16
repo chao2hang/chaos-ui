@@ -40,5 +40,21 @@
   "expenseLine.remarkPlaceholder": "Optional",
   "expenseLine.items": "{{count}} items",
   "expenseLine.total": "Total: {{currency}}{{amount}}",
-  "expenseLine.empty": "No expense items added"
+  "expenseLine.empty": "No expense items added",
+  "userBrowse.placeholder": "Select user...",
+  "userBrowse.title": "Select user",
+  "userBrowse.searchPlaceholder": "Search users...",
+  "userBrowse.empty": "No users found",
+  "userBrowse.remove": "Remove",
+  "userBrowse.clearAll": "Clear all",
+  "userBrowse.selectedCount": "{{count}} user(s) selected",
+  "userBrowse.maxCount": "Max: {{count}}",
+  "departmentBrowse.placeholder": "Select department...",
+  "departmentBrowse.title": "Select department",
+  "departmentBrowse.searchPlaceholder": "Search departments...",
+  "departmentBrowse.empty": "No departments found",
+  "departmentBrowse.remove": "Remove",
+  "departmentBrowse.clearAll": "Clear all",
+  "departmentBrowse.selectedCount": "{{count}} department(s) selected",
+  "departmentBrowse.maxCount": "Max: {{count}}"
 }

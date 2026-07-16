@@ -303,9 +303,23 @@ function TransferPanel({
                   render(item)
                 ) : (
                   <>
-                    <div className="truncate">{item.label}</div>
+                    <div
+                      className="truncate"
+                      title={
+                        typeof item.label === "string" ? item.label : undefined
+                      }
+                    >
+                      {item.label}
+                    </div>
                     {item.description && (
-                      <div className="text-muted-foreground truncate text-xs">
+                      <div
+                        className="text-muted-foreground truncate text-xs"
+                        title={
+                          typeof item.description === "string"
+                            ? item.description
+                            : undefined
+                        }
+                      >
                         {item.description}
                       </div>
                     )}

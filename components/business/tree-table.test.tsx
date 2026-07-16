@@ -151,24 +151,24 @@ describe("TreeTable", () => {
     // Actually Backend has no children, so it should not have a button
   });
 
-  it("lazy loading fires onExpandRow callback", async () => {
+  it("lazy loading fires onExpandRow when children are omitted (issue #50)", async () => {
     const onExpandRow = vi.fn().mockResolvedValue([
       { id: "lazy-1", name: "Lazy Child 1" },
       { id: "lazy-2", name: "Lazy Child 2" },
     ]);
 
-    const leafData: Row[] = [{ id: "root", name: "Root Node" }];
+    // Omit children (undefined) = pending lazy load; not children: []
+    const pendingData: Row[] = [{ id: "root", name: "Root Node" }];
 
     render(
       <TreeTable
         columns={columns}
-        data={leafData}
+        data={pendingData}
         rowKey="id"
         onExpandRow={onExpandRow}
       />,
     );
 
-    // With onExpandRow, even leaf nodes show expand button
     const expandBtn = screen.getByLabelText("Expand");
     fireEvent.click(expandBtn);
 
@@ -179,6 +179,74 @@ describe("TreeTable", () => {
     await waitFor(() => {
       expect(screen.getByText("Lazy Child 1")).toBeTruthy();
       expect(screen.getByText("Lazy Child 2")).toBeTruthy();
+    });
+  });
+
+  it("isLeafKey hides expand control even with onExpandRow (issue #50)", () => {
+    const onExpandRow = vi.fn();
+    type Region = Row & { isLeaf?: boolean };
+    const data: Region[] = [
+      { id: "p", name: "Province" },
+      { id: "s", name: "Street leaf", isLeaf: true },
+    ];
+    render(
+      <TreeTable
+        columns={columns}
+        data={data}
+        rowKey="id"
+        isLeafKey="isLeaf"
+        onExpandRow={onExpandRow}
+      />,
+    );
+    // Province (no isLeaf) can expand; Street leaf cannot
+    expect(screen.getAllByLabelText("Expand").length).toBe(1);
+    expect(onExpandRow).not.toHaveBeenCalled();
+  });
+
+  it("canExpand false hides expand control (issue #50)", () => {
+    const data: Row[] = [{ id: "root", name: "Root Node" }];
+    render(
+      <TreeTable
+        columns={columns}
+        data={data}
+        rowKey="id"
+        onExpandRow={async () => []}
+        canExpand={() => false}
+      />,
+    );
+    expect(screen.queryByLabelText("Expand")).toBeNull();
+  });
+
+  it("empty children array without load does not show expand (issue #50)", () => {
+    const data: Row[] = [{ id: "leaf", name: "Explicit empty", children: [] }];
+    render(
+      <TreeTable
+        columns={columns}
+        data={data}
+        rowKey="id"
+        onExpandRow={async () => [{ id: "x", name: "X" }]}
+      />,
+    );
+    expect(screen.queryByLabelText("Expand")).toBeNull();
+  });
+
+  it("loading empty children removes expand after resolve (issue #50)", async () => {
+    const onExpandRow = vi.fn().mockResolvedValue([]);
+    const data: Row[] = [{ id: "root", name: "Maybe empty" }];
+    render(
+      <TreeTable
+        columns={columns}
+        data={data}
+        rowKey="id"
+        onExpandRow={onExpandRow}
+      />,
+    );
+    fireEvent.click(screen.getByLabelText("Expand"));
+    await waitFor(() => {
+      expect(onExpandRow).toHaveBeenCalled();
+    });
+    await waitFor(() => {
+      expect(screen.queryByLabelText("Expand")).toBeNull();
     });
   });
 

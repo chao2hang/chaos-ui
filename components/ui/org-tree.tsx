@@ -144,14 +144,14 @@ function OrgTree({
     new Set(defaultSelectedKeys),
   );
   const selected = React.useMemo(
-    () =>
-      controlledSelected ? new Set(controlledSelected) : internalSelected,
+    () => (controlledSelected ? new Set(controlledSelected) : internalSelected),
     [controlledSelected, internalSelected],
   );
 
   // Expansion state
-  const [internalExpanded, setInternalExpanded] =
-    React.useState<Set<string>>(new Set(defaultExpandedKeys));
+  const [internalExpanded, setInternalExpanded] = React.useState<Set<string>>(
+    new Set(defaultExpandedKeys),
+  );
   const expanded = React.useMemo(
     () => (controlledExpanded ? new Set(controlledExpanded) : internalExpanded),
     [controlledExpanded, internalExpanded],
@@ -247,20 +247,21 @@ function OrgTree({
         const selfMatch =
           node.label.toLowerCase().includes(q) ||
           node.description?.toLowerCase().includes(q);
-        const filteredChildren = node.children
-          ? filterTree(node.children)
-          : [];
+        const filteredChildren = node.children ? filterTree(node.children) : [];
 
         if (selfMatch || filteredChildren.length > 0) {
           result.push({
             id: node.id,
             label: node.label,
-            ...(node.description != null ? { description: node.description } : {}),
+            ...(node.description != null
+              ? { description: node.description }
+              : {}),
             ...(node.avatar != null ? { avatar: node.avatar } : {}),
             ...(node.loading != null ? { loading: node.loading } : {}),
             ...(node.disabled != null ? { disabled: node.disabled } : {}),
             ...(node.meta != null ? { meta: node.meta } : {}),
-            children: filteredChildren.length > 0 ? filteredChildren : node.children,
+            children:
+              filteredChildren.length > 0 ? filteredChildren : node.children,
           } as OrgTreeNode);
         }
       }
@@ -325,24 +326,24 @@ function OrgTree({
       {/* Search */}
       {searchable && (
         <div className="relative mb-2">
-          <SearchIcon className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+          <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={searchPlaceholder}
             className={cn(
-              "h-8 w-full rounded-lg border border-input bg-transparent pl-8 pr-8",
-              "text-sm outline-none transition-colors",
+              "border-input h-8 w-full rounded-lg border bg-transparent pr-8 pl-8",
+              "text-sm transition-colors outline-none",
               "placeholder:text-muted-foreground",
-              "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+              "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3",
             )}
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
             >
               <XIcon className="size-3.5" />
             </button>
@@ -352,17 +353,13 @@ function OrgTree({
 
       {/* Empty state */}
       {flatNodes.length === 0 && (
-        <div className="py-8 text-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground py-8 text-center text-sm">
           {searchQuery ? "无匹配结果" : "暂无数据"}
         </div>
       )}
 
       {/* Tree list */}
-      <div
-        role="tree"
-        aria-label="组织架构树"
-        className="select-none"
-      >
+      <div role="tree" aria-label="组织架构树" className="select-none">
         {flatNodes.map(({ node, depth, hasChildren, isLast }) => {
           const isExpanded = effectiveExpanded.has(node.id);
           const isSelected = selected.has(node.id);
@@ -376,27 +373,20 @@ function OrgTree({
               aria-selected={isSelected}
               draggable={draggable && !node.disabled}
               onDragStart={
-                draggable
-                  ? (e) => handleDragStart(e, node)
-                  : undefined
+                draggable ? (e) => handleDragStart(e, node) : undefined
               }
               onDragOver={
-                draggable
-                  ? (e) => handleDragOver(e, node.id)
-                  : undefined
+                draggable ? (e) => handleDragOver(e, node.id) : undefined
               }
               onDragLeave={draggable ? handleDragLeave : undefined}
-              onDrop={
-                draggable
-                  ? (e) => handleDrop(e, node)
-                  : undefined
-              }
+              onDrop={draggable ? (e) => handleDrop(e, node) : undefined}
               className={cn(
                 "group/tree-node flex cursor-pointer items-center gap-0.5 rounded-md px-1.5 py-1 transition-colors",
                 isSelected && "bg-accent text-accent-foreground",
                 !isSelected && "hover:bg-muted/50",
                 node.disabled && "cursor-not-allowed opacity-50",
-                dragOverId === node.id && "bg-primary/10 ring-1 ring-primary/30",
+                dragOverId === node.id &&
+                  "bg-primary/10 ring-primary/30 ring-1",
               )}
               onClick={(e) => {
                 e.stopPropagation();
@@ -413,7 +403,7 @@ function OrgTree({
                     <span
                       key={i}
                       className={cn(
-                        "inline-block w-5 border-l border-border/60",
+                        "border-border/60 inline-block w-5 border-l",
                         i === depth - 1 && !isLast && "h-full",
                       )}
                       style={{ height: "100%" }}
@@ -430,7 +420,7 @@ function OrgTree({
                     e.stopPropagation();
                     toggleExpand(node.id);
                   }}
-                  className="flex size-5 shrink-0 items-center justify-center rounded text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground flex size-5 shrink-0 items-center justify-center rounded"
                 >
                   {isLoading ? (
                     <span className="size-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -458,7 +448,7 @@ function OrgTree({
                     checked={isSelected}
                     disabled={node.disabled}
                     onChange={() => {}}
-                    className="size-3.5 shrink-0 rounded accent-primary"
+                    className="accent-primary size-3.5 shrink-0 rounded"
                   />
                 </label>
               )}
@@ -477,10 +467,24 @@ function OrgTree({
                 {renderNode ? (
                   renderNode(node, isExpanded)
                 ) : (
-                  <span className="flex items-center gap-1.5">
-                    <span className="truncate text-sm">{node.label}</span>
+                  <span className="flex min-w-0 items-center gap-1.5">
+                    <span
+                      className="truncate text-sm"
+                      title={
+                        typeof node.label === "string" ? node.label : undefined
+                      }
+                    >
+                      {node.label}
+                    </span>
                     {node.description && (
-                      <span className="truncate text-xs text-muted-foreground">
+                      <span
+                        className="text-muted-foreground truncate text-xs"
+                        title={
+                          typeof node.description === "string"
+                            ? node.description
+                            : undefined
+                        }
+                      >
                         {node.description}
                       </span>
                     )}

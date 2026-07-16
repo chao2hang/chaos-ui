@@ -42,7 +42,10 @@ function setDictFetcher(fetcher: DictFetcher) {
   globalFetcher = fetcher;
 }
 
-interface DictSelectProps extends Omit<React.ComponentProps<"div">, "onChange"> {
+interface DictSelectProps extends Omit<
+  React.ComponentProps<"div">,
+  "onChange"
+> {
   /** Dictionary category code (fetches from backend) / 字典分类编码 */
   categoryCode?: string;
   /** Inline options (bypass fetch) / 内联选项(跳过请求) */
@@ -129,8 +132,14 @@ function DictSelect({
     };
   }, [categoryCode, inlineOptions, fetcher]);
 
+  // Align with Button / SelectTrigger ladder: sm=h-7, default(md)=h-8, lg=h-9+
+  // (was sm=h-8 which mismatched toolbar Button sm — regression audit wave D).
   const sizeClass =
-    size === "sm" ? "h-8 text-xs" : size === "lg" ? "h-11 text-base" : "h-9 text-sm";
+    size === "sm"
+      ? "h-7 text-xs"
+      : size === "lg"
+        ? "h-11 text-base"
+        : "h-8 text-sm";
 
   if (loading) {
     return (
@@ -144,7 +153,7 @@ function DictSelect({
     return (
       <div
         className={cn(
-          "flex items-center rounded-md border border-destructive/30 bg-destructive/5 px-3 text-xs text-destructive",
+          "border-destructive/30 bg-destructive/5 text-destructive flex items-center rounded-md border px-3 text-xs",
           sizeClass,
           className,
         )}
@@ -159,18 +168,18 @@ function DictSelect({
     <div data-slot="dict-select" className={cn("w-full", className)} {...props}>
       <Select
         value={value !== undefined ? String(value) : undefined}
-            onValueChange={(v) => {
-              if (v === null || v === undefined) return;
-              // The clear option uses value="" — emit undefined (clear semantics)
-              // instead of an empty string, which would collide with real empty
-              // values and mislead consumers expecting null/undefined on clear.
-              if (v === "") {
-                onChange?.(undefined);
-                return;
-              }
-              const original = internalOptions.find((o) => String(o.value) === v);
-              onChange?.(original?.value ?? v);
-            }}
+        onValueChange={(v) => {
+          if (v === null || v === undefined) return;
+          // The clear option uses value="" — emit undefined (clear semantics)
+          // instead of an empty string, which would collide with real empty
+          // values and mislead consumers expecting null/undefined on clear.
+          if (v === "") {
+            onChange?.(undefined);
+            return;
+          }
+          const original = internalOptions.find((o) => String(o.value) === v);
+          onChange?.(original?.value ?? v);
+        }}
         disabled={disabled}
       >
         <SelectTrigger className={cn(sizeClass, "w-full")}>

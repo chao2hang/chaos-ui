@@ -173,7 +173,9 @@ function Cascader({
           />
         }
       >
-        <span className="truncate">{displayText}</span>
+        <span className="truncate" title={displayText || undefined}>
+          {displayText}
+        </span>
         <ChevronRight className="size-4 rotate-90 opacity-50" />
       </PopoverTrigger>
       <PopoverContent align="start" className="w-auto p-0">
@@ -197,7 +199,16 @@ function Cascader({
                     )}
                     onClick={() => handleSelect(colIdx, option)}
                   >
-                    <span className="truncate">{option.label}</span>
+                    <span
+                      className="truncate"
+                      title={
+                        typeof option.label === "string"
+                          ? option.label
+                          : undefined
+                      }
+                    >
+                      {option.label}
+                    </span>
                     {option.children?.length && (
                       <ChevronLeft className="size-3.5 rotate-180 opacity-40" />
                     )}

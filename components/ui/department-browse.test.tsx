@@ -1,12 +1,26 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 
 // DialogContent calls useTranslation("ui"); mock it so the portal renders in jsdom.
 vi.mock("react-i18next", async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...(actual as Record<string, unknown>),
-    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+    useTranslation: () => ({
+      t: (k: string, opts?: string | { defaultValue?: string }) => {
+        if (typeof opts === "string") return opts;
+        if (
+          opts &&
+          typeof opts === "object" &&
+          "defaultValue" in opts &&
+          opts.defaultValue != null
+        ) {
+          return String(opts.defaultValue);
+        }
+        return k;
+      },
+      i18n: { language: "en" },
+    }),
   };
 });
 
@@ -44,7 +58,7 @@ describe("department-browse", () => {
 
   it("renders a default placeholder", () => {
     render(<DepartmentBrowse departments={[]} />);
-    expect(screen.getByText("Select department...")).toBeDefined();
+    expect(screen.getByText("选择部门...")).toBeDefined();
   });
 
   it("renders a selected department as a badge", () => {
@@ -81,7 +95,10 @@ describe("department-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /clear all/i }));
+    const root = document.querySelector(
+      '[data-slot="department-browse"]',
+    ) as HTMLElement;
+    fireEvent.click(within(root).getByRole("button", { name: /^清除全部$/ }));
     expect(onChange).toHaveBeenCalledWith(undefined);
   });
 
@@ -95,7 +112,10 @@ describe("department-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /clear all/i }));
+    const root = document.querySelector(
+      '[data-slot="department-browse"]',
+    ) as HTMLElement;
+    fireEvent.click(within(root).getByRole("button", { name: /^清除全部$/ }));
     expect(onChange).toHaveBeenCalledWith([]);
   });
 
@@ -112,7 +132,9 @@ describe("department-browse", () => {
         onChange={onChange}
       />,
     );
-    const removeBtns = screen.getAllByRole("button", { name: /^remove$/i });
+    const removeBtns = screen.getAllByRole("button", {
+      name: /^移除$|^remove$/i,
+    });
     fireEvent.click(removeBtns[0]!);
     expect(onChange).toHaveBeenCalledWith([{ id: "1-1", name: "Child One" }]);
     expect(screen.queryByText("Root")).toBeNull();
@@ -126,23 +148,30 @@ describe("department-browse", () => {
         disabled
       />,
     );
-    expect(screen.queryByRole("button", { name: /clear all/i })).toBeNull();
-    expect(screen.queryByRole("button", { name: /^remove$/i })).toBeNull();
+    const root = document.querySelector(
+      '[data-slot="department-browse"]',
+    ) as HTMLElement;
+    expect(
+      within(root).queryByRole("button", { name: /^清除全部$/ }),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: /^移除$|^remove$/i }),
+    ).toBeNull();
   });
 
   it("opens the dialog and shows the title and tree", () => {
     render(<DepartmentBrowse departments={customDepartments} />);
     // Trigger is the wrapper div; click it to open.
-    fireEvent.click(screen.getByText("Select department..."));
-    expect(screen.getByText("Select Department")).toBeDefined();
+    fireEvent.click(screen.getByText("选择部门..."));
+    expect(screen.getByText("选择部门")).toBeDefined();
     expect(screen.getByText("Root")).toBeDefined();
     expect(screen.getByText("Child One")).toBeDefined();
   });
 
   it("filters the tree by search query", () => {
     render(<DepartmentBrowse departments={customDepartments} />);
-    fireEvent.click(screen.getByText("Select department..."));
-    const search = screen.getByPlaceholderText("Search departments...");
+    fireEvent.click(screen.getByText("选择部门..."));
+    const search = screen.getByPlaceholderText("搜索部门...");
     fireEvent.change(search, { target: { value: "child one" } });
     expect(screen.getByText("Child One")).toBeDefined();
     expect(screen.queryByText("Child Two")).toBeNull();
@@ -150,10 +179,10 @@ describe("department-browse", () => {
 
   it("shows the empty state when no departments match the search", () => {
     render(<DepartmentBrowse departments={customDepartments} />);
-    fireEvent.click(screen.getByText("Select department..."));
-    const search = screen.getByPlaceholderText("Search departments...");
+    fireEvent.click(screen.getByText("选择部门..."));
+    const search = screen.getByPlaceholderText("搜索部门...");
     fireEvent.change(search, { target: { value: "zzznomatch" } });
-    expect(screen.getByText("No departments found")).toBeDefined();
+    expect(screen.getByText("未找到部门")).toBeDefined();
   });
 
   it("selects a department in single mode and closes the dialog", () => {
@@ -161,7 +190,7 @@ describe("department-browse", () => {
     render(
       <DepartmentBrowse departments={customDepartments} onChange={onChange} />,
     );
-    fireEvent.click(screen.getByText("Select department..."));
+    fireEvent.click(screen.getByText("选择部门..."));
     fireEvent.click(screen.getByText("Child One"));
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({ id: "1-1", name: "Child One" }),
@@ -177,7 +206,7 @@ describe("department-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByText("Select department..."));
+    fireEvent.click(screen.getByText("选择部门..."));
     fireEvent.click(screen.getByText("Child One"));
     expect(onChange).toHaveBeenCalledWith(
       expect.arrayContaining([
@@ -185,7 +214,7 @@ describe("department-browse", () => {
       ]),
     );
     // Dialog title still visible — did not close.
-    expect(screen.getByText("Select Department")).toBeDefined();
+    expect(screen.getByText("选择部门")).toBeDefined();
   });
 
   it("shows the selection count and max in multiple mode", () => {
@@ -198,13 +227,13 @@ describe("department-browse", () => {
       />,
     );
     fireEvent.click(screen.getByText("Child One"));
-    expect(screen.getByText("1 department(s) selected")).toBeDefined();
-    expect(screen.getByText("Max: 5")).toBeDefined();
+    expect(screen.getByText("已选 1 个部门")).toBeDefined();
+    expect(screen.getByText("最多 5")).toBeDefined();
   });
 
   it("expands and collapses a parent node via the chevron", () => {
     render(<DepartmentBrowse departments={customDepartments} />);
-    fireEvent.click(screen.getByText("Select department..."));
+    fireEvent.click(screen.getByText("选择部门..."));
     // Children visible when dialog opens (level<2 expands by default).
     expect(screen.getByText("Child One")).toBeDefined();
     expect(screen.getByText("Child Two")).toBeDefined();
@@ -229,5 +258,13 @@ describe("department-browse", () => {
     expect(root.getAttribute("data-size")).toBe("sm");
     expect(root.querySelector(".min-h-7")?.className).toMatch(/min-h-7/);
     expect(root.querySelector(".h-7")?.className).toMatch(/\bh-7\b/);
+  });
+
+  it("does not emit Base UI nativeButton console error on mount (#45 sibling)", () => {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    render(<DepartmentBrowse departments={[]} />);
+    const joined = spy.mock.calls.map((c) => String(c[0] ?? "")).join("\n");
+    expect(joined).not.toMatch(/nativeButton/i);
+    spy.mockRestore();
   });
 });

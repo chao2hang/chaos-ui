@@ -96,6 +96,18 @@ interface TreeTableProps<T extends Record<string, unknown>> {
   onExpandedChange?: (keys: (string | number)[]) => void;
   /** Lazy load children callback -- return a Promise with children rows */
   onExpandRow?: (row: T) => Promise<T[]>;
+  /**
+   * Row field meaning "no descendants" (issue #50).
+   * When the field is `true`, never show expand control and never call `onExpandRow`.
+   * / 行字段：true 表示叶节点，不显示展开箭头
+   */
+  isLeafKey?: keyof T & string;
+  /**
+   * Override whether a row can expand (issue #50).
+   * When provided, takes precedence over `isLeafKey` / children / lazy heuristics.
+   * / 自定义是否可展开；优先于 isLeafKey 与默认启发式
+   */
+  canExpand?: (row: T) => boolean;
   /** Table caption */
   caption?: string;
   /** Enable stripe rows */
@@ -115,8 +127,54 @@ interface FlatRow<T> {
   hasChildren: boolean;
   isExpanded: boolean;
   isLeaf: boolean;
+  /** Whether the expand control should render (lazy-aware). */
+  canShowExpand: boolean;
   ancestors: (string | number)[];
   childKeys: (string | number)[];
+}
+
+/**
+ * Decide if a row should show the expand control (issue #50).
+ *
+ * Lazy semantics when `onExpandRow` is set:
+ * - `children` with length > 0 → expandable
+ * - `isLeafKey` true → not expandable
+ * - already loaded with empty children → not expandable
+ * - `children` undefined/null (not yet loaded) → expandable
+ * - `children: []` without a successful load → treat as leaf (omit children to mark "pending load")
+ */
+function resolveCanShowExpand<T extends Record<string, unknown>>(
+  row: T,
+  hasChildren: boolean,
+  key: string | number,
+  options: {
+    onExpandRow?: (row: T) => Promise<T[]>;
+    isLeafKey?: string;
+    canExpand?: (row: T) => boolean;
+    childrenKey: string;
+    loadedKeys: Set<string | number>;
+  },
+): boolean {
+  const { onExpandRow, isLeafKey, canExpand, childrenKey, loadedKeys } =
+    options;
+
+  if (canExpand) return canExpand(row);
+
+  if (isLeafKey && (row as Record<string, unknown>)[isLeafKey] === true) {
+    return false;
+  }
+
+  if (hasChildren) return true;
+
+  if (!onExpandRow) return false;
+
+  if (loadedKeys.has(key)) return false;
+
+  const children = (row as Record<string, unknown>)[childrenKey];
+  // Pending lazy load: omit children / undefined / null
+  if (children === undefined || children === null) return true;
+  // Explicit empty array before any load → leaf (do not show fake expand)
+  return false;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -170,6 +228,12 @@ function flattenTree<T extends Record<string, unknown>>(
   rowKeyField: string,
   childrenField: string,
   expanded: Set<string | number>,
+  expandOptions: {
+    onExpandRow?: (row: T) => Promise<T[]>;
+    isLeafKey?: string;
+    canExpand?: (row: T) => boolean;
+    loadedKeys: Set<string | number>;
+  },
   depth = 0,
   ancestors: (string | number)[] = [],
 ): FlatRow<T>[] {
@@ -187,6 +251,10 @@ function flattenTree<T extends Record<string, unknown>>(
           (c) => (c as Record<string, unknown>)[rowKeyField] as string | number,
         )
       : [];
+    const canShowExpand = resolveCanShowExpand(node, hasChildren, key, {
+      ...expandOptions,
+      childrenKey: childrenField,
+    });
 
     result.push({
       row: node,
@@ -194,7 +262,8 @@ function flattenTree<T extends Record<string, unknown>>(
       depth,
       hasChildren,
       isExpanded,
-      isLeaf: !hasChildren,
+      isLeaf: !canShowExpand && !hasChildren,
+      canShowExpand,
       ancestors: [...ancestors],
       childKeys,
     });
@@ -206,6 +275,7 @@ function flattenTree<T extends Record<string, unknown>>(
           rowKeyField,
           childrenField,
           expanded,
+          expandOptions,
           depth + 1,
           [...ancestors, key],
         ),
@@ -370,6 +440,8 @@ function TreeTable<T extends Record<string, unknown>>({
   expandedKeys: controlledExpandedKeys,
   onExpandedChange,
   onExpandRow,
+  isLeafKey,
+  canExpand,
   caption,
   striped = false,
   className,
@@ -416,6 +488,8 @@ function TreeTable<T extends Record<string, unknown>>({
     new Set(),
   );
   const loadedKeysRef = React.useRef<Set<string | number>>(new Set());
+  /** Bump after lazy load so flatten re-reads loadedKeysRef (issue #50). */
+  const [loadedVersion, setLoadedVersion] = React.useState(0);
 
   /* ---- sort state (manual -- we sort the tree ourselves) ---- */
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -427,10 +501,23 @@ function TreeTable<T extends Record<string, unknown>>({
     return sortTree(treeData, sortKey, desc ? "desc" : "asc", childrenKey);
   }, [treeData, sorting, childrenKey]);
 
+  const expandOptions = React.useMemo(
+    () => ({
+      ...(onExpandRow ? { onExpandRow } : {}),
+      ...(isLeafKey ? { isLeafKey } : {}),
+      ...(canExpand ? { canExpand } : {}),
+      loadedKeys: loadedKeysRef.current,
+    }),
+    // loadedVersion forces recompute after successful lazy loads
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- loadedKeys is a ref
+    [onExpandRow, isLeafKey, canExpand, loadedVersion],
+  );
+
   /* ---- flatten for rendering ---- */
   const flatRows = React.useMemo(
-    () => flattenTree(sortedTree, rowKey, childrenKey, expandedSet),
-    [sortedTree, rowKey, childrenKey, expandedSet],
+    () =>
+      flattenTree(sortedTree, rowKey, childrenKey, expandedSet, expandOptions),
+    [sortedTree, rowKey, childrenKey, expandedSet, expandOptions],
   );
 
   /* ---- selection helpers ---- */
@@ -511,24 +598,42 @@ function TreeTable<T extends Record<string, unknown>>({
   /* ---- expand / collapse handler ---- */
   const handleToggleExpand = React.useCallback(
     async (key: string | number, rowData: T) => {
-      const isLazy = !!onExpandRow;
       const children = (rowData as Record<string, unknown>)[childrenKey] as
         T[] | undefined;
-      const hasNoChildren = !Array.isArray(children) || children.length === 0;
+      const hasChildren = Array.isArray(children) && children.length > 0;
+      const showExpand = resolveCanShowExpand(rowData, hasChildren, key, {
+        ...(onExpandRow ? { onExpandRow } : {}),
+        ...(isLeafKey ? { isLeafKey } : {}),
+        ...(canExpand ? { canExpand } : {}),
+        childrenKey,
+        loadedKeys: loadedKeysRef.current,
+      });
+      if (!showExpand) return;
+
+      const isLazy = !!onExpandRow;
+      const hasNoChildren = !hasChildren;
+      // Only lazy-load when children field is omitted (undefined/null), not explicit []
+      const childrenMissing = children === undefined || children === null;
       const needsLoad =
-        isLazy && hasNoChildren && !loadedKeysRef.current.has(key);
+        isLazy &&
+        hasNoChildren &&
+        childrenMissing &&
+        !loadedKeysRef.current.has(key);
 
       if (needsLoad && onExpandRow) {
         setLoadingKeys((prev) => new Set(prev).add(key));
         try {
           const loaded = await onExpandRow(rowData);
           loadedKeysRef.current.add(key);
+          setLoadedVersion((v) => v + 1);
           setTreeData((prev) =>
             replaceNodeChildren(prev, key, loaded, rowKey, childrenKey),
           );
-          const next = new Set(expandedSet);
-          next.add(key);
-          updateExpanded(next);
+          if (loaded.length > 0) {
+            const next = new Set(expandedSet);
+            next.add(key);
+            updateExpanded(next);
+          }
         } finally {
           setLoadingKeys((prev) => {
             const s = new Set(prev);
@@ -546,7 +651,15 @@ function TreeTable<T extends Record<string, unknown>>({
         updateExpanded(next);
       }
     },
-    [onExpandRow, childrenKey, rowKey, expandedSet, updateExpanded],
+    [
+      onExpandRow,
+      isLeafKey,
+      canExpand,
+      childrenKey,
+      rowKey,
+      expandedSet,
+      updateExpanded,
+    ],
   );
 
   /* ---- selection handler ---- */
@@ -768,8 +881,7 @@ function TreeTable<T extends Record<string, unknown>>({
                                   }}
                                   className="inline-flex shrink-0"
                                 />
-                                {(fr.hasChildren ||
-                                  (!!onExpandRow && !fr.hasChildren)) && (
+                                {fr.canShowExpand ? (
                                   <button
                                     type="button"
                                     data-slot="tree-table-expand"
@@ -793,8 +905,7 @@ function TreeTable<T extends Record<string, unknown>>({
                                       <ChevronRightIcon className="size-4" />
                                     )}
                                   </button>
-                                )}
-                                {!fr.hasChildren && !onExpandRow && (
+                                ) : (
                                   <span className="inline-flex size-5 shrink-0" />
                                 )}
                                 <span className="min-w-0">{cellContent}</span>

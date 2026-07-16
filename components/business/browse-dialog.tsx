@@ -843,7 +843,12 @@ function TreeNodeItem({
         ) : (
           <span className="w-3.5 shrink-0" />
         )}
-        <span className="flex-1 truncate">{node.label}</span>
+        <span
+          className="flex-1 truncate"
+          title={typeof node.label === "string" ? node.label : undefined}
+        >
+          {node.label}
+        </span>
         {node.count != null && (
           <span className="text-muted-foreground shrink-0 text-xs">
             {node.count}

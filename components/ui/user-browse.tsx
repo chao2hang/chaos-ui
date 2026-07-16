@@ -16,6 +16,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SearchIcon, XIcon, UserIcon } from "@/components/ui/icons";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 interface User {
   id: string;
@@ -114,7 +115,7 @@ const defaultUsers: User[] = [
 function UserBrowse({
   value: controlledValue,
   defaultValue,
-  placeholder = "Select user...",
+  placeholder,
   disabled,
   multiple = false,
   maxCount,
@@ -125,6 +126,16 @@ function UserBrowse({
   className,
   size = "default",
 }: UserBrowseProps) {
+  const { t } = useTranslation("ui");
+  const resolvedPlaceholder =
+    placeholder ?? t("userBrowse.placeholder", { defaultValue: "选择用户..." });
+  const dialogTitle = t("userBrowse.title", { defaultValue: "选择用户" });
+  const searchPlaceholder = t("userBrowse.searchPlaceholder", {
+    defaultValue: "搜索用户...",
+  });
+  const emptyText = t("userBrowse.empty", { defaultValue: "未找到用户" });
+  const removeLabel = t("userBrowse.remove", { defaultValue: "移除" });
+  const clearAllLabel = t("userBrowse.clearAll", { defaultValue: "清除全部" });
   const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -291,7 +302,7 @@ function UserBrowse({
                         className="hover:bg-muted ml-0.5 flex cursor-pointer items-center rounded-full"
                       >
                         <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
-                        <span className="sr-only">Remove</span>
+                        <span className="sr-only">{removeLabel}</span>
                       </span>
                     )}
                   </Badge>
@@ -299,20 +310,20 @@ function UserBrowse({
               </div>
             ) : (
               <span className="text-muted-foreground flex-1">
-                {placeholder}
+                {resolvedPlaceholder}
               </span>
             )}
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Select User</DialogTitle>
+              <DialogTitle>{dialogTitle}</DialogTitle>
             </DialogHeader>
             <div className="relative">
               <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search users..."
+                placeholder={searchPlaceholder}
                 className="pl-8"
               />
             </div>
@@ -375,15 +386,27 @@ function UserBrowse({
                 {!loading && !loadError && filteredUsers.length === 0 && (
                   <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
                     <UserIcon className="mb-2 size-8" />
-                    <p className="text-sm">No users found</p>
+                    <p className="text-sm">{emptyText}</p>
                   </div>
                 )}
               </div>
             </ScrollArea>
             {multiple && (
               <div className="text-muted-foreground flex items-center justify-between text-sm">
-                <span>{value.length} user(s) selected</span>
-                {maxCount && <span>Max: {maxCount}</span>}
+                <span>
+                  {t("userBrowse.selectedCount", {
+                    count: value.length,
+                    defaultValue: `已选 ${value.length} 个用户`,
+                  })}
+                </span>
+                {maxCount && (
+                  <span>
+                    {t("userBrowse.maxCount", {
+                      count: maxCount,
+                      defaultValue: `最多 ${maxCount}`,
+                    })}
+                  </span>
+                )}
               </div>
             )}
           </DialogContent>
@@ -396,7 +419,7 @@ function UserBrowse({
             className="shrink-0"
           >
             <XIcon className="size-3" />
-            <span className="sr-only">Clear all</span>
+            <span className="sr-only">{clearAllLabel}</span>
           </Button>
         )}
       </div>

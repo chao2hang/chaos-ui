@@ -4,7 +4,7 @@
 
 ## 📋 未执行
 
-（空）
+- [回归 E：表内密度与 LineEditor 文案 Backlog](./2026-07-16_回归E_表内密度与LineEditor文案_Backlog_设计计划.md)
 
 ## 🔨 工作中
 
@@ -12,6 +12,13 @@
 
 ## 👀 待审核
 
+- [已闭环 Issue 同类回归审计（总）](./2026-07-16_已闭环Issue同类回归审计_设计计划.md)
+- [回归 A：nativeButton + 树标签 title](./2026-07-16_回归A_nativeButton与树标签title_设计计划.md)
+- [回归 B：图表宽卡测量](./2026-07-16_回归B_图表宽卡测量_设计计划.md)
+- [回归 C：浏览选择器默认 i18n](./2026-07-16_回归C_浏览选择器默认i18n_设计计划.md)
+- [回归 D：DictSelect size + EditableTree 懒加载契约](./2026-07-16_回归D_DictSelect与EditableTree懒加载契约_设计计划.md)
+- [TreeTable 懒加载 isLeaf/canExpand #50](./2026-07-16_TreeTable懒加载isLeaf_#50_设计计划.md)
+- [OrgAdminPage 组织管理台 #49](./2026-07-16_OrgAdminPage组织管理台_#49_设计计划.md)
 - [Form 控件 size 波次 #29–#32](./2026-07-15_Form控件size波次_#29-32_设计计划.md)
 - [浏览 / 选人远程检索接口](./2026-07-15_浏览选人远程检索接口_设计计划.md)
 - [Chart 图例显隐 + SearchTable 表体 inset #23/#24](./2026-07-15_Chart图例显隐_SearchTable表体inset_设计计划.md)

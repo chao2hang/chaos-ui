@@ -6,7 +6,21 @@ vi.mock("react-i18next", async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...(actual as Record<string, unknown>),
-    useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }),
+    useTranslation: () => ({
+      t: (k: string, opts?: string | { defaultValue?: string }) => {
+        if (typeof opts === "string") return opts;
+        if (
+          opts &&
+          typeof opts === "object" &&
+          "defaultValue" in opts &&
+          opts.defaultValue != null
+        ) {
+          return String(opts.defaultValue);
+        }
+        return k;
+      },
+      i18n: { language: "en" },
+    }),
   };
 });
 
@@ -38,7 +52,7 @@ describe("user-browse", () => {
 
   it("renders a default placeholder", () => {
     render(<UserBrowse users={[]} />);
-    expect(screen.getByText("Select user...")).toBeDefined();
+    expect(screen.getByText("选择用户...")).toBeDefined();
   });
 
   it("renders a selected user as a badge", () => {
@@ -75,7 +89,7 @@ describe("user-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /clear all/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^清除全部$/ }));
     expect(onChange).toHaveBeenCalledWith(undefined);
   });
 
@@ -89,7 +103,7 @@ describe("user-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /clear all/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^清除全部$/ }));
     expect(onChange).toHaveBeenCalledWith([]);
   });
 
@@ -106,7 +120,9 @@ describe("user-browse", () => {
         onChange={onChange}
       />,
     );
-    const removeBtns = screen.getAllByRole("button", { name: /^remove$/i });
+    const removeBtns = screen.getAllByRole("button", {
+      name: /^移除$|^remove$/i,
+    });
     fireEvent.click(removeBtns[0]!);
     expect(onChange).toHaveBeenCalledWith([{ id: "2", name: "Bob" }]);
     expect(screen.queryByText("Alice")).toBeNull();
@@ -120,29 +136,31 @@ describe("user-browse", () => {
         disabled
       />,
     );
-    expect(screen.queryByRole("button", { name: /clear all/i })).toBeNull();
-    expect(screen.queryByRole("button", { name: /^remove$/i })).toBeNull();
+    expect(screen.queryByRole("button", { name: /^清除全部$/ })).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: /^移除$|^remove$/i }),
+    ).toBeNull();
   });
 
   it("opens the dialog and shows the title and user list", () => {
     render(<UserBrowse users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
-    expect(screen.getByText("Select User")).toBeDefined();
+    fireEvent.click(screen.getByText("选择用户..."));
+    expect(screen.getByText("选择用户")).toBeDefined();
     expect(screen.getByText("Alice")).toBeDefined();
     expect(screen.getByText("bob@example.com")).toBeDefined();
   });
 
   it("shows department badge for each user", () => {
     render(<UserBrowse users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     expect(screen.getByText("Eng")).toBeDefined();
     expect(screen.getByText("Design")).toBeDefined();
   });
 
   it("filters users by name search query", () => {
     render(<UserBrowse users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
-    const search = screen.getByPlaceholderText("Search users...");
+    fireEvent.click(screen.getByText("选择用户..."));
+    const search = screen.getByPlaceholderText("搜索用户...");
     fireEvent.change(search, { target: { value: "alice" } });
     expect(screen.getByText("Alice")).toBeDefined();
     expect(screen.queryByText("Bob")).toBeNull();
@@ -150,8 +168,8 @@ describe("user-browse", () => {
 
   it("filters users by department search query", () => {
     render(<UserBrowse users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
-    const search = screen.getByPlaceholderText("Search users...");
+    fireEvent.click(screen.getByText("选择用户..."));
+    const search = screen.getByPlaceholderText("搜索用户...");
     fireEvent.change(search, { target: { value: "design" } });
     expect(screen.getByText("Bob")).toBeDefined();
     expect(screen.queryByText("Alice")).toBeNull();
@@ -159,16 +177,16 @@ describe("user-browse", () => {
 
   it("shows the empty state when no users match the search", () => {
     render(<UserBrowse users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
-    const search = screen.getByPlaceholderText("Search users...");
+    fireEvent.click(screen.getByText("选择用户..."));
+    const search = screen.getByPlaceholderText("搜索用户...");
     fireEvent.change(search, { target: { value: "zzznomatch" } });
-    expect(screen.getByText("No users found")).toBeDefined();
+    expect(screen.getByText("未找到用户")).toBeDefined();
   });
 
   it("selects a user in single mode and closes the dialog", () => {
     const onChange = vi.fn();
     render(<UserBrowse users={customUsers} onChange={onChange} />);
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     fireEvent.click(screen.getByText("Bob"));
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({ id: "2", name: "Bob" }),
@@ -178,7 +196,7 @@ describe("user-browse", () => {
   it("toggles selection in multiple mode without closing", () => {
     const onChange = vi.fn();
     render(<UserBrowse multiple users={customUsers} onChange={onChange} />);
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     // Click Bob in the dialog list (the second occurrence).
     const bobElements = screen.getAllByText("Bob");
     const bobInDialog = bobElements.find((el) => el.tagName === "P")!;
@@ -186,7 +204,7 @@ describe("user-browse", () => {
     expect(onChange).toHaveBeenCalledWith(
       expect.arrayContaining([expect.objectContaining({ id: "2" })]),
     );
-    expect(screen.getByText("Select User")).toBeDefined();
+    expect(screen.getByText("选择用户")).toBeDefined();
   });
 
   it("enforces maxCount by not adding beyond the limit", () => {
@@ -199,7 +217,7 @@ describe("user-browse", () => {
         onChange={onChange}
       />,
     );
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     fireEvent.click(screen.getByText("Alice"));
     expect(onChange).toHaveBeenCalledTimes(1);
     // Trying to add a second user should be ignored.
@@ -217,15 +235,15 @@ describe("user-browse", () => {
       />,
     );
     fireEvent.click(screen.getByText("Alice"));
-    expect(screen.getByText("1 user(s) selected")).toBeDefined();
-    expect(screen.getByText("Max: 5")).toBeDefined();
+    expect(screen.getByText("已选 1 个用户")).toBeDefined();
+    expect(screen.getByText("最多 5")).toBeDefined();
   });
 
   it("renders a checkbox per user in multiple mode", () => {
     render(<UserBrowse multiple users={customUsers} />);
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     // Verify dialog content renders with users.
-    expect(screen.getByText("Select User")).toBeDefined();
+    expect(screen.getByText("选择用户")).toBeDefined();
     expect(screen.getByText("Alice")).toBeDefined();
     expect(screen.getByText("Bob")).toBeDefined();
     expect(screen.getByText("Carol")).toBeDefined();
@@ -246,12 +264,12 @@ describe("user-browse", () => {
     render(
       <UserBrowse users={[]} loadUsers={loadUsers} searchDebounceMs={0} />,
     );
-    fireEvent.click(screen.getByText("Select user..."));
+    fireEvent.click(screen.getByText("选择用户..."));
     await waitFor(() => {
       expect(loadUsers).toHaveBeenCalledWith({ keyword: "" });
     });
 
-    const input = screen.getByPlaceholderText("Search users...");
+    const input = screen.getByPlaceholderText("搜索用户...");
     fireEvent.change(input, { target: { value: "zc" } });
     await waitFor(() => {
       expect(loadUsers).toHaveBeenCalledWith({ keyword: "zc" });

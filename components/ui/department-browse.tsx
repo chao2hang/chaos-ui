@@ -15,6 +15,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 import { BuildingIcon, ChevronRightIcon, SearchIcon, XIcon } from "./icons";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 interface Department {
   id: string;
@@ -177,7 +178,7 @@ function DepartmentTreeItem({
 function DepartmentBrowse({
   value: controlledValue,
   defaultValue,
-  placeholder = "Select department...",
+  placeholder,
   disabled,
   multiple = false,
   maxCount,
@@ -186,6 +187,23 @@ function DepartmentBrowse({
   className,
   size = "default",
 }: DepartmentBrowseProps) {
+  const { t } = useTranslation("ui");
+  const resolvedPlaceholder =
+    placeholder ??
+    t("departmentBrowse.placeholder", { defaultValue: "选择部门..." });
+  const dialogTitle = t("departmentBrowse.title", {
+    defaultValue: "选择部门",
+  });
+  const searchPlaceholder = t("departmentBrowse.searchPlaceholder", {
+    defaultValue: "搜索部门...",
+  });
+  const emptyText = t("departmentBrowse.empty", {
+    defaultValue: "未找到部门",
+  });
+  const removeLabel = t("departmentBrowse.remove", { defaultValue: "移除" });
+  const clearAllLabel = t("departmentBrowse.clearAll", {
+    defaultValue: "清除全部",
+  });
   const isSm = size === "sm";
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -271,6 +289,8 @@ function DepartmentBrowse({
     >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
+          // #45 sibling: custom div trigger is not a native <button>
+          nativeButton={false}
           render={
             <div
               data-size={size}
@@ -306,6 +326,7 @@ function DepartmentBrowse({
                   <span>{dept.name}</span>
                   {!disabled && (
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleRemove(dept.id);
@@ -313,14 +334,16 @@ function DepartmentBrowse({
                       className="hover:bg-muted ml-0.5 rounded-full"
                     >
                       <XIcon className={cn(isSm ? "size-2.5" : "size-3")} />
-                      <span className="sr-only">Remove</span>
+                      <span className="sr-only">{removeLabel}</span>
                     </button>
                   )}
                 </Badge>
               ))}
             </div>
           ) : (
-            <span className="text-muted-foreground flex-1">{placeholder}</span>
+            <span className="text-muted-foreground flex-1">
+              {resolvedPlaceholder}
+            </span>
           )}
           {value.length > 0 && !disabled && (
             <Button
@@ -330,20 +353,20 @@ function DepartmentBrowse({
               className="shrink-0"
             >
               <XIcon className="size-3" />
-              <span className="sr-only">Clear all</span>
+              <span className="sr-only">{clearAllLabel}</span>
             </Button>
           )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Select Department</DialogTitle>
+            <DialogTitle>{dialogTitle}</DialogTitle>
           </DialogHeader>
           <div className="relative">
             <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search departments..."
+              placeholder={searchPlaceholder}
               className="pl-8"
             />
           </div>
@@ -360,15 +383,27 @@ function DepartmentBrowse({
               {filteredDepartments.length === 0 && (
                 <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
                   <BuildingIcon className="mb-2 size-8" />
-                  <p className="text-sm">No departments found</p>
+                  <p className="text-sm">{emptyText}</p>
                 </div>
               )}
             </div>
           </ScrollArea>
           {multiple && (
             <div className="text-muted-foreground flex items-center justify-between text-sm">
-              <span>{value.length} department(s) selected</span>
-              {maxCount && <span>Max: {maxCount}</span>}
+              <span>
+                {t("departmentBrowse.selectedCount", {
+                  count: value.length,
+                  defaultValue: `已选 ${value.length} 个部门`,
+                })}
+              </span>
+              {maxCount && (
+                <span>
+                  {t("departmentBrowse.maxCount", {
+                    count: maxCount,
+                    defaultValue: `最多 ${maxCount}`,
+                  })}
+                </span>
+              )}
             </div>
           )}
         </DialogContent>

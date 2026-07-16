@@ -37,9 +37,19 @@ const orgData: OrgNode[] = [
             role: "Frontend Lead",
             headcount: 20,
             children: [
-              { id: "fe-1", name: "Dave Park", role: "Senior Engineer", headcount: 1 },
+              {
+                id: "fe-1",
+                name: "Dave Park",
+                role: "Senior Engineer",
+                headcount: 1,
+              },
               { id: "fe-2", name: "Eve Lin", role: "Engineer", headcount: 1 },
-              { id: "fe-3", name: "Frank Zhou", role: "Engineer", headcount: 1 },
+              {
+                id: "fe-3",
+                name: "Frank Zhou",
+                role: "Engineer",
+                headcount: 1,
+              },
             ],
           },
           {
@@ -48,11 +58,26 @@ const orgData: OrgNode[] = [
             role: "Backend Lead",
             headcount: 25,
             children: [
-              { id: "be-1", name: "Hank Lee", role: "Senior Engineer", headcount: 1 },
-              { id: "be-2", name: "Iris Zhang", role: "Engineer", headcount: 1 },
+              {
+                id: "be-1",
+                name: "Hank Lee",
+                role: "Senior Engineer",
+                headcount: 1,
+              },
+              {
+                id: "be-2",
+                name: "Iris Zhang",
+                role: "Engineer",
+                headcount: 1,
+              },
             ],
           },
-          { id: "infra-lead", name: "Jack Ma", role: "Infra Lead", headcount: 15 },
+          {
+            id: "infra-lead",
+            name: "Jack Ma",
+            role: "Infra Lead",
+            headcount: 15,
+          },
         ],
       },
       {
@@ -61,7 +86,12 @@ const orgData: OrgNode[] = [
         role: "CMO",
         headcount: 30,
         children: [
-          { id: "mkt-1", name: "Leo Wang", role: "Content Lead", headcount: 10 },
+          {
+            id: "mkt-1",
+            name: "Leo Wang",
+            role: "Content Lead",
+            headcount: 10,
+          },
           { id: "mkt-2", name: "Mia Xu", role: "Growth Lead", headcount: 12 },
         ],
       },
@@ -71,7 +101,12 @@ const orgData: OrgNode[] = [
         role: "CFO",
         headcount: 20,
         children: [
-          { id: "fin-1", name: "Olivia Qian", role: "Controller", headcount: 8 },
+          {
+            id: "fin-1",
+            name: "Olivia Qian",
+            role: "Controller",
+            headcount: 8,
+          },
         ],
       },
     ],
@@ -81,7 +116,13 @@ const orgData: OrgNode[] = [
 const orgColumns: TreeTableColumn<OrgNode>[] = [
   { key: "name", title: "Name", sortable: true },
   { key: "role", title: "Role", sortable: true },
-  { key: "headcount", title: "Headcount", width: 120, align: "right", sortable: true },
+  {
+    key: "headcount",
+    title: "Headcount",
+    width: 120,
+    align: "right",
+    sortable: true,
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -136,22 +177,37 @@ export const FlatData: Story = {
   },
 };
 
-/** Lazy loading children on expand. */
+/**
+ * Lazy loading (issue #50): omit `children` for pending parents.
+ * Use `isLeaf: true` (isLeafKey) so true leaves never show a chevron.
+ */
 export const LazyLoad: Story = {
   args: {
     columns: orgColumns as any,
     data: [
       { id: "ceo", name: "Alice Chen", role: "CEO", headcount: 150 },
       { id: "cto", name: "Bob Smith", role: "CTO", headcount: 60 },
-      { id: "cmo", name: "Karen Li", role: "CMO", headcount: 30 },
+      {
+        id: "street",
+        name: "Leaf Street (no expand)",
+        role: "Leaf",
+        headcount: 1,
+        isLeaf: true,
+      },
     ],
     rowKey: "id",
+    isLeafKey: "isLeaf",
     onExpandRow: async (row: Record<string, unknown>) => {
       await new Promise((r) => setTimeout(r, 800));
       const id = row.id as string;
       if (id === "ceo") {
         return [
-          { id: "ceo-direct-1", name: "VP Engineering", role: "VP", headcount: 40 },
+          {
+            id: "ceo-direct-1",
+            name: "VP Engineering",
+            role: "VP",
+            headcount: 40,
+          },
           { id: "ceo-direct-2", name: "VP Sales", role: "VP", headcount: 35 },
         ];
       }
@@ -159,13 +215,16 @@ export const LazyLoad: Story = {
         return [
           { id: "cto-1", name: "Frontend Team", role: "Team", headcount: 20 },
           { id: "cto-2", name: "Backend Team", role: "Team", headcount: 25 },
-          { id: "cto-3", name: "Infra Team", role: "Team", headcount: 15 },
+          {
+            id: "cto-3",
+            name: "Infra Team",
+            role: "Team",
+            headcount: 15,
+            isLeaf: true,
+          },
         ];
       }
-      return [
-        { id: "cmo-1", name: "Content Team", role: "Team", headcount: 10 },
-        { id: "cmo-2", name: "Growth Team", role: "Team", headcount: 12 },
-      ];
+      return [];
     },
   },
 };
@@ -187,7 +246,11 @@ export const Selectable: Story = {
 export const LargeDataset: Story = {
   args: {} as any,
   render: () => {
-    const buildTree = (prefix: string, depth: number, breadth: number): OrgNode[] => {
+    const buildTree = (
+      prefix: string,
+      depth: number,
+      breadth: number,
+    ): OrgNode[] => {
       if (depth <= 0) return [];
       return Array.from({ length: breadth }, (_, i) => {
         const id = `${prefix}-${i}`;

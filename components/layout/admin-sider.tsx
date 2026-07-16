@@ -378,7 +378,12 @@ function AdminSider({
     const body = (
       <>
         {child.icon && <span className="shrink-0">{child.icon}</span>}
-        <span className="flex-1 truncate">{child.label}</span>
+        <span
+          className="flex-1 truncate"
+          title={typeof child.label === "string" ? child.label : undefined}
+        >
+          {child.label}
+        </span>
         {child.badge && <span className="shrink-0">{child.badge}</span>}
       </>
     );

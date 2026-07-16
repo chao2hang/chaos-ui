@@ -40,5 +40,21 @@
   "expenseLine.remarkPlaceholder": "选填",
   "expenseLine.items": "{{count}} 行",
   "expenseLine.total": "合计：{{currency}}{{amount}}",
-  "expenseLine.empty": "暂无费用明细"
+  "expenseLine.empty": "暂无费用明细",
+  "userBrowse.placeholder": "选择用户...",
+  "userBrowse.title": "选择用户",
+  "userBrowse.searchPlaceholder": "搜索用户...",
+  "userBrowse.empty": "未找到用户",
+  "userBrowse.remove": "移除",
+  "userBrowse.clearAll": "清除全部",
+  "userBrowse.selectedCount": "已选 {{count}} 个用户",
+  "userBrowse.maxCount": "最多 {{count}}",
+  "departmentBrowse.placeholder": "选择部门...",
+  "departmentBrowse.title": "选择部门",
+  "departmentBrowse.searchPlaceholder": "搜索部门...",
+  "departmentBrowse.empty": "未找到部门",
+  "departmentBrowse.remove": "移除",
+  "departmentBrowse.clearAll": "清除全部",
+  "departmentBrowse.selectedCount": "已选 {{count}} 个部门",
+  "departmentBrowse.maxCount": "最多 {{count}}"
 }

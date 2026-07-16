@@ -118,7 +118,8 @@ function formatFileSize(bytes: number | undefined): string {
   if (bytes == null) return "—";
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  if (bytes < 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  if (bytes < 1024 * 1024 * 1024)
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
 }
 
@@ -140,11 +141,24 @@ function getFileIcon(node: FileNode, isOpen?: boolean): React.ReactNode {
   const ext = node.extension?.toLowerCase();
   if (ext === "xlsx" || ext === "xls" || ext === "csv")
     return <FileSpreadsheetIcon className="size-5 text-green-600" />;
-  if (ext === "png" || ext === "jpg" || ext === "jpeg" || ext === "gif" || ext === "svg" || ext === "webp")
+  if (
+    ext === "png" ||
+    ext === "jpg" ||
+    ext === "jpeg" ||
+    ext === "gif" ||
+    ext === "svg" ||
+    ext === "webp"
+  )
     return <ImageIcon className="size-5 text-purple-500" />;
-  if (ext === "docx" || ext === "doc" || ext === "pdf" || ext === "txt" || ext === "md")
+  if (
+    ext === "docx" ||
+    ext === "doc" ||
+    ext === "pdf" ||
+    ext === "txt" ||
+    ext === "md"
+  )
     return <FileTextIcon className="size-5 text-blue-500" />;
-  return <FileIcon className="size-5 text-muted-foreground" />;
+  return <FileIcon className="text-muted-foreground size-5" />;
 }
 
 // ---------------------------------------------------------------------------
@@ -175,7 +189,8 @@ function FileManager({
   const currentFolderId = controlledFolder ?? internalFolder;
 
   // View state
-  const [internalView, setInternalView] = React.useState<ViewMode>(defaultViewMode);
+  const [internalView, setInternalView] =
+    React.useState<ViewMode>(defaultViewMode);
   const view = controlledView ?? internalView;
 
   // Search
@@ -220,7 +235,9 @@ function FileManager({
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       items = items.filter(
-        (n) => n.name.toLowerCase().includes(q) || n.extension?.toLowerCase().includes(q),
+        (n) =>
+          n.name.toLowerCase().includes(q) ||
+          n.extension?.toLowerCase().includes(q),
       );
     }
 
@@ -247,10 +264,14 @@ function FileManager({
   };
 
   // Sidebar tree renderer
-  const renderSidebarNode = (node: FileNode, depth: number = 0): React.ReactNode => {
+  const renderSidebarNode = (
+    node: FileNode,
+    depth: number = 0,
+  ): React.ReactNode => {
     const isExpanded = expandedFolders.has(node.id);
     const isActive = currentFolderId === node.id;
-    const hasChildren = node.type === "folder" && node.children && node.children.length > 0;
+    const hasChildren =
+      node.type === "folder" && node.children && node.children.length > 0;
 
     return (
       <div key={node.id}>
@@ -271,8 +292,9 @@ function FileManager({
           }}
           className={cn(
             "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-left text-sm transition-colors",
-            isActive && "bg-accent font-medium text-accent-foreground",
-            !isActive && "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
+            isActive && "bg-accent text-accent-foreground font-medium",
+            !isActive &&
+              "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
           )}
           style={{ paddingLeft: depth * 16 + 8 }}
         >
@@ -290,11 +312,15 @@ function FileManager({
           )}
 
           {getFileIcon(node, isActive)}
-          <span className="truncate">{node.name}</span>
+          <span className="truncate" title={node.name}>
+            {node.name}
+          </span>
         </button>
 
         {/* Children */}
-        {hasChildren && isExpanded && node.children?.map((child) => renderSidebarNode(child, depth + 1))}
+        {hasChildren &&
+          isExpanded &&
+          node.children?.map((child) => renderSidebarNode(child, depth + 1))}
       </div>
     );
   };
@@ -302,16 +328,21 @@ function FileManager({
   return (
     <div
       data-slot="file-manager"
-      className={cn("flex h-[500px] overflow-hidden rounded-lg border bg-background", className)}
+      className={cn(
+        "bg-background flex h-[500px] overflow-hidden rounded-lg border",
+        className,
+      )}
     >
       {/* Sidebar */}
       {showSidebar && (
         <div
-          className="shrink-0 overflow-auto border-r bg-muted/20"
+          className="bg-muted/20 shrink-0 overflow-auto border-r"
           style={{ width: sidebarWidth }}
         >
-          <div className="sticky top-0 border-b bg-muted/30 px-3 py-2">
-            <span className="text-xs font-medium text-muted-foreground">目录</span>
+          <div className="bg-muted/30 sticky top-0 border-b px-3 py-2">
+            <span className="text-muted-foreground text-xs font-medium">
+              目录
+            </span>
           </div>
           <div className="p-1.5">
             {data.map((node) => renderSidebarNode(node))}
@@ -323,7 +354,7 @@ function FileManager({
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Toolbar */}
         {showToolbar && (
-          <div className="flex shrink-0 items-center gap-1 border-b bg-muted/30 px-3 py-1.5">
+          <div className="bg-muted/30 flex shrink-0 items-center gap-1 border-b px-3 py-1.5">
             {/* Breadcrumbs */}
             <div className="flex items-center gap-0.5 text-xs">
               <button
@@ -333,7 +364,7 @@ function FileManager({
                   const root = data.find((n) => n.type === "folder");
                   if (root) updateFolder(root.id);
                 }}
-                className="rounded p-0.5 text-muted-foreground hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground rounded p-0.5"
               >
                 <HomeIcon className="size-3.5" />
               </button>
@@ -344,9 +375,9 @@ function FileManager({
                     type="button"
                     onClick={() => updateFolder(crumb.id)}
                     className={cn(
-                      "truncate rounded px-0.5 hover:text-foreground",
+                      "hover:text-foreground truncate rounded px-0.5",
                       i === breadcrumbs.length - 1
-                        ? "font-medium text-foreground"
+                        ? "text-foreground font-medium"
                         : "text-muted-foreground",
                     )}
                   >
@@ -363,22 +394,22 @@ function FileManager({
             <div className="flex items-center gap-0.5">
               {/* Search */}
               <div className="relative">
-                <SearchIcon className="absolute left-2 top-1/2 size-3 -translate-y-1/2 text-muted-foreground" />
+                <SearchIcon className="text-muted-foreground absolute top-1/2 left-2 size-3 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="搜索..."
                   className={cn(
-                    "h-7 w-36 rounded-md border border-input bg-transparent pl-6 pr-6 text-xs",
-                    "outline-none focus-visible:border-ring",
+                    "border-input h-7 w-36 rounded-md border bg-transparent pr-6 pl-6 text-xs",
+                    "focus-visible:border-ring outline-none",
                   )}
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground absolute top-1/2 right-1 -translate-y-1/2"
                   >
                     <XIcon className="size-3" />
                   </button>
@@ -386,13 +417,15 @@ function FileManager({
               </div>
 
               {/* View toggle */}
-              <div className="ml-1 flex rounded border border-input">
+              <div className="border-input ml-1 flex rounded border">
                 <button
                   type="button"
                   onClick={() => updateView("list")}
                   className={cn(
                     "rounded-l p-1 transition-colors",
-                    view === "list" ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground",
+                    view === "list"
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   <ListIcon className="size-3.5" />
@@ -401,8 +434,10 @@ function FileManager({
                   type="button"
                   onClick={() => updateView("grid")}
                   className={cn(
-                    "rounded-r border-l border-input p-1 transition-colors",
-                    view === "grid" ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground",
+                    "border-input rounded-r border-l p-1 transition-colors",
+                    view === "grid"
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   <Grid3X3Icon className="size-3.5" />
@@ -414,7 +449,7 @@ function FileManager({
                 <button
                   type="button"
                   onClick={onUpload}
-                  className="ml-1 rounded p-1 text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground ml-1 rounded p-1"
                   title="上传"
                 >
                   <UploadIcon className="size-3.5" />
@@ -438,7 +473,7 @@ function FileManager({
 
         {/* File list header (list view) */}
         {view === "list" && (
-          <div className="flex shrink-0 items-center border-b bg-muted/20 px-3 py-1 text-[11px] font-medium text-muted-foreground">
+          <div className="bg-muted/20 text-muted-foreground flex shrink-0 items-center border-b px-3 py-1 text-[11px] font-medium">
             <div className="w-6" />
             <div className="flex-1">名称</div>
             <div className="w-20 text-right">大小</div>
@@ -450,7 +485,7 @@ function FileManager({
         {/* Content */}
         <div className="flex-1 overflow-auto p-1">
           {visibleItems.length === 0 ? (
-            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex h-full items-center justify-center text-sm">
               {searchQuery ? "无匹配结果" : "此文件夹为空"}
             </div>
           ) : view === "list" ? (
@@ -490,11 +525,13 @@ function FileManager({
                     className="size-3.5 shrink-0 rounded"
                   />
                   {getFileIcon(item)}
-                  <span className="flex-1 truncate">{item.name}</span>
-                  <span className="w-20 text-right text-xs text-muted-foreground">
+                  <span className="flex-1 truncate" title={item.name}>
+                    {item.name}
+                  </span>
+                  <span className="text-muted-foreground w-20 text-right text-xs">
                     {formatFileSize(item.size)}
                   </span>
-                  <span className="w-24 text-right text-xs text-muted-foreground">
+                  <span className="text-muted-foreground w-24 text-right text-xs">
                     {formatDate(item.modifiedAt)}
                   </span>
                   <button
@@ -503,7 +540,7 @@ function FileManager({
                       e.stopPropagation();
                       toggleSelect(item.id);
                     }}
-                    className="rounded p-0.5 text-muted-foreground/40 hover:text-foreground"
+                    className="text-muted-foreground/40 hover:text-foreground rounded p-0.5"
                   >
                     <MoreVerticalIcon className="size-3.5" />
                   </button>
@@ -533,14 +570,19 @@ function FileManager({
                   }}
                   className={cn(
                     "flex flex-col items-center gap-1 rounded-lg p-3 text-center transition-colors",
-                    selectedIds.has(item.id) && "bg-accent ring-1 ring-primary/30",
+                    selectedIds.has(item.id) &&
+                      "bg-accent ring-primary/30 ring-1",
                     !selectedIds.has(item.id) && "hover:bg-muted/50",
                   )}
                 >
                   {getFileIcon(item)}
-                  <span className="w-full truncate text-xs">{item.name}</span>
-                  <span className="text-[10px] text-muted-foreground">
-                    {item.type === "folder" ? "文件夹" : item.extension?.toUpperCase() ?? "—"}
+                  <span className="w-full truncate text-xs" title={item.name}>
+                    {item.name}
+                  </span>
+                  <span className="text-muted-foreground text-[10px]">
+                    {item.type === "folder"
+                      ? "文件夹"
+                      : (item.extension?.toUpperCase() ?? "—")}
                   </span>
                 </button>
               ))}
@@ -549,7 +591,7 @@ function FileManager({
         </div>
 
         {/* Status bar */}
-        <div className="flex shrink-0 items-center border-t bg-muted/20 px-3 py-1 text-[10px] text-muted-foreground">
+        <div className="bg-muted/20 text-muted-foreground flex shrink-0 items-center border-t px-3 py-1 text-[10px]">
           <span>{visibleItems.length} 项</span>
           {selectedIds.size > 0 && (
             <span className="ml-2">已选择 {selectedIds.size} 项</span>
@@ -564,4 +606,4 @@ function FileManager({
 }
 
 export { FileManager };
-export type { FileManagerProps, FileNode, ViewMode };  
+export type { FileManagerProps, FileNode, ViewMode };

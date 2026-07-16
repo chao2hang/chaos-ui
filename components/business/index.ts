@@ -317,6 +317,7 @@ export * from "./mobile-list-item";
 
 // ─── P1 new business components ──────────────────────────────────
 export * from "./tree-table";
+export * from "./org-admin-page";
 export * from "./editable-tree-table";
 export * from "./diff-viewer-table";
 export * from "./address-picker";

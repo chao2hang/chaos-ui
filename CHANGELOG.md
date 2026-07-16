@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] — 2026-07-16
+
+### Added
+
+- **business/TreeTable (#50)**: lazy-load expand control uses `isLeafKey` / `canExpand` and clearer `children` semantics — omit `children` (undefined) for pending lazy parents; `children: []` after load (or without load) is a leaf. No more fake chevrons on every row when `onExpandRow` is set.
+- **business/OrgAdminPage (#49)**: organization admin workbench — left org tree (search, badges, count, readOnly) + right summary/tabs slots. Prefer over whole-page TreeTable for department/HR pages; keep TreeCrudPage for category CRUD.
+
+### Fixed
+
+- **ui/DepartmentBrowse** (regression #45): `DialogTrigger` with custom `div` render sets `nativeButton={false}` (same Base UI contract as TreeSelect).
+- **ui/OrgTree · Cascader · FileManager · Transfer · business/BrowseDialog · layout/AdminSider** (regression #48): truncated labels set native `title` for full-text hover recovery.
+- **business/ScatterChart · WaterfallChart** (regression #13/#40): measure container width via ResizeObserver so wide cards are not stuck on viewBox width 320.
+
+### Changed
+
+- **business/TreeTable (#50)**: with `onExpandRow`, expand chrome is shown only when the row is expandable (not for explicit leaf / loaded empty children).
+- **ui/UserBrowse · DepartmentBrowse** (regression #19): default dialog/search/empty copy uses i18n (`userBrowse.*` / `departmentBrowse.*`) with Chinese `defaultValue`.
+- **business/DictSelect**: `size="sm"` height is **h-7** (was h-8); `md` default is h-8 to align with SelectTrigger/Button ladder.
+- **business/EditableTreeTable**: JSDoc lazy-load contract — if `onExpandRow` is added later, ship `isLeafKey`/`canExpand` with it (#50 sibling).
+
+### Docs
+
+- designs: closed-issue sibling regression audit waves A–E; #49/#50 implementation plans.
+
 ## [1.7.1] — 2026-07-16
 
 ### Fixed

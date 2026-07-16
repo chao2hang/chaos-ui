@@ -69,30 +69,20 @@ describe("OrgTree", () => {
   });
 
   it("renders checkboxes when checkable", () => {
-    const { container } = render(
-      <OrgTree data={sampleData} checkable />,
-    );
+    const { container } = render(<OrgTree data={sampleData} checkable />);
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBeGreaterThanOrEqual(1);
   });
 
   it("shows search input when searchable", () => {
-    const { container } = render(
-      <OrgTree data={sampleData} searchable />,
-    );
-    const searchInput = container.querySelector(
-      'input[placeholder="搜索..."]',
-    );
+    const { container } = render(<OrgTree data={sampleData} searchable />);
+    const searchInput = container.querySelector('input[placeholder="搜索..."]');
     expect(searchInput).not.toBeNull();
   });
 
   it("filters nodes on search", () => {
-    const { container } = render(
-      <OrgTree data={sampleData} searchable />,
-    );
-    const searchInput = container.querySelector(
-      'input[placeholder="搜索..."]',
-    );
+    const { container } = render(<OrgTree data={sampleData} searchable />);
+    const searchInput = container.querySelector('input[placeholder="搜索..."]');
     expect(searchInput).not.toBeNull();
 
     fireEvent.change(searchInput!, { target: { value: "技术" } });
@@ -102,12 +92,8 @@ describe("OrgTree", () => {
   });
 
   it("shows empty state when no search results", () => {
-    const { container } = render(
-      <OrgTree data={sampleData} searchable />,
-    );
-    const searchInput = container.querySelector(
-      'input[placeholder="搜索..."]',
-    );
+    const { container } = render(<OrgTree data={sampleData} searchable />);
+    const searchInput = container.querySelector('input[placeholder="搜索..."]');
     expect(searchInput).not.toBeNull();
 
     fireEvent.change(searchInput!, { target: { value: "ZZZZNOTEXISTZZZZ" } });
@@ -160,5 +146,16 @@ describe("OrgTree", () => {
   it("module is importable", async () => {
     const mod = await import("@/components/ui/org-tree");
     expect(mod.OrgTree).toBeDefined();
+  });
+
+  it("sets title on truncated labels (#48 sibling)", () => {
+    const long = "超长组织节点名称用于截断与 title 恢复测试";
+    const data: OrgTreeNode[] = [
+      { id: "1", label: long, description: "备注很长" },
+    ];
+    const { getByText } = render(<OrgTree data={data} />);
+    const label = getByText(long);
+    expect(label.getAttribute("title")).toBe(long);
+    expect(getByText("备注很长").getAttribute("title")).toBe("备注很长");
   });
 });
