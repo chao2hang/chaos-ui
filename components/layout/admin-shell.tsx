@@ -8,6 +8,7 @@ import {
 import {
   AdminSider,
   type AdminCollapseTrigger,
+  type AdminMenuExpandMode,
   type AdminSiderLinkComponent,
   type MenuItem,
 } from "@/components/layout/admin-sider";
@@ -82,10 +83,10 @@ interface AdminShellProps extends Omit<
   collapseTrigger?: AdminCollapseTrigger;
   /**
    * Top-level menu expand mode for AdminSider (issue #43).
-   * Default `"multiple"`. Pass `"accordion"` for single top-level group open.
-   * / 顶层菜单展开模式；透传 AdminSider
+   * Default `"multiple"`. Use `"accordion"` for ERP long menus.
+   * / 顶层菜单展开模式；长菜单建议 accordion
    */
-  menuExpandMode?: "multiple" | "accordion";
+  menuExpandMode?: AdminMenuExpandMode;
 
   // ── Header ──
   /** Breadcrumb items / 面包屑项 */
@@ -312,6 +313,7 @@ export function AdminShell({
         onCollapse={setCollapsed}
         collapseTrigger={collapseTrigger}
         menuItems={menuItems}
+        {...(menuExpandMode !== undefined ? { menuExpandMode } : {})}
         {...(selectedMenuKey !== undefined
           ? { selectedKey: selectedMenuKey }
           : {})}

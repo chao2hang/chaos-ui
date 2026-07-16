@@ -69,7 +69,8 @@ describe("admin-sider", () => {
     const aside = container.querySelector(
       '[data-slot="admin-sider"]',
     ) as HTMLElement;
-    expect(aside.className).toMatch(/transition-\[width\]/);
+    // #18 width + #43 transform/opacity for mobile drawer enter/exit
+    expect(aside.className).toMatch(/transition-\[width/);
 
     rerender(
       <AdminSider
@@ -261,6 +262,102 @@ describe("admin-sider", () => {
     expect(event.defaultPrevented).toBe(true);
     fireEvent.click(anchor);
     expect(onItemClick).toHaveBeenCalled();
+  });
+
+  it("accordion mode keeps only one top-level group open (issue #43)", () => {
+    const multiTop = [
+      {
+        key: "system",
+        label: "System",
+        children: [{ key: "system-users", label: "Users" }],
+      },
+      {
+        key: "policy",
+        label: "Policy",
+        children: [{ key: "policy-list", label: "List" }],
+      },
+    ];
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="accordion"
+        menuItems={multiTop}
+      />,
+    );
+    // Both closed initially
+    expect(screen.queryByText("Users")).toBeNull();
+    expect(screen.queryByText("List")).toBeNull();
+
+    fireEvent.click(screen.getByText("System"));
+    expect(screen.getByText("Users")).toBeDefined();
+    expect(screen.queryByText("List")).toBeNull();
+
+    fireEvent.click(screen.getByText("Policy"));
+    expect(screen.getByText("List")).toBeDefined();
+    expect(screen.queryByText("Users")).toBeNull();
+
+    // Closing the open top-level is allowed
+    fireEvent.click(screen.getByText("Policy"));
+    expect(screen.queryByText("List")).toBeNull();
+  });
+
+  it("accordion deep-link seeds only the active top-level group (issue #43)", () => {
+    const multiTop = [
+      {
+        key: "system",
+        label: "System",
+        children: [{ key: "system-users", label: "Users" }],
+      },
+      {
+        key: "policy",
+        label: "Policy",
+        children: [{ key: "policy-list", label: "List" }],
+      },
+    ];
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="accordion"
+        selectedKey="policy-list"
+        menuItems={multiTop}
+      />,
+    );
+    expect(screen.getByText("List")).toBeDefined();
+    expect(screen.queryByText("Users")).toBeNull();
+  });
+
+  it("multiple mode still allows two top-level groups open (issue #43)", () => {
+    const multiTop = [
+      {
+        key: "system",
+        label: "System",
+        children: [{ key: "system-users", label: "Users" }],
+      },
+      {
+        key: "policy",
+        label: "Policy",
+        children: [{ key: "policy-list", label: "List" }],
+      },
+    ];
+    render(<AdminSider collapsed={false} menuItems={multiTop} />);
+    fireEvent.click(screen.getByText("System"));
+    fireEvent.click(screen.getByText("Policy"));
+    expect(screen.getByText("Users")).toBeDefined();
+    expect(screen.getByText("List")).toBeDefined();
+  });
+
+  it("mobile overlay is present when mobileOpen (issue #43)", () => {
+    const { container } = render(
+      <AdminSider
+        collapsed={false}
+        mobileOpen
+        onMobileOpenChange={() => {}}
+        menuItems={[{ key: "home", label: "Home" }]}
+      />,
+    );
+    expect(
+      container.querySelector('[data-slot="admin-sider-overlay"]'),
+    ).not.toBeNull();
   });
 
   it("opens a flyout for nested items when collapsed (issue #10)", () => {

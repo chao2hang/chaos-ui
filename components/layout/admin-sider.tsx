@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import {
   Popover,
   PopoverContent,
@@ -55,6 +56,13 @@ type AdminSiderLinkComponent = React.ComponentType<{
 /** Where the desktop collapse control is rendered (issue #17). */
 type AdminCollapseTrigger = "sider-edge" | "header" | "both" | "none";
 
+/**
+ * Top-level menu expand behavior (issue #43).
+ * - `"multiple"`: any number of top-level groups may stay open (default)
+ * - `"accordion"`: at most one top-level group open; nested levels stay multi-open
+ */
+type AdminMenuExpandMode = "multiple" | "accordion";
+
 interface AdminSiderProps extends React.ComponentProps<"aside"> {
   /** Whether sidebar is collapsed / 是否折叠 */
   collapsed?: boolean;
@@ -68,6 +76,12 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
    * / 桌面折叠钮位置；单独用 Sider 时默认侧栏边缘
    */
   collapseTrigger?: AdminCollapseTrigger;
+  /**
+   * How top-level groups expand (issue #43). Nested parents always multi-toggle.
+   * Default `"multiple"` preserves historical multi-open behavior.
+   * / 顶层菜单展开模式；嵌套层级始终多开
+   */
+  menuExpandMode?: AdminMenuExpandMode;
   /** Menu items / 菜单项 */
   menuItems?: MenuItem[];
   /** Selected menu key / 选中的菜单 key */
@@ -104,14 +118,6 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
    * / 自定义链接组件（如 Next.js Link），有 href 的菜单项走此组件
    */
   linkComponent?: AdminSiderLinkComponent;
-  /**
-   * How top-level menu groups expand (issue #43).
-   * - `"multiple"` (default): several top-level groups may stay open
-   * - `"accordion"`: opening one top-level group closes other top-level groups
-   * Nested levels always toggle independently.
-   * / 顶层菜单展开模式；accordion 仅约束 depth === 0
-   */
-  menuExpandMode?: "multiple" | "accordion";
 }
 
 function normalizePathKey(key: string): string {
@@ -283,6 +289,7 @@ function AdminSider({
   collapsed = false,
   onCollapse,
   collapseTrigger = "sider-edge",
+  menuExpandMode = "multiple",
   menuItems = [],
   selectedKey,
   selectedMatch = "prefix",
@@ -295,7 +302,6 @@ function AdminSider({
   mobileOpen = false,
   onMobileOpenChange,
   linkComponent: LinkComponent,
-  menuExpandMode = "multiple",
   ...props
 }: AdminSiderProps) {
   const showSiderEdgeCollapse =
@@ -307,7 +313,6 @@ function AdminSider({
     () => resolveActiveMenuKey(menuItems, rawCurrent, selectedMatch),
     [menuItems, rawCurrent, selectedMatch],
   );
-
   // Seed expanded ancestors on first paint so deep-link / refresh does not
   // wait for a post-mount effect (CUI-NAV-02).
   const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(() =>
@@ -316,6 +321,30 @@ function AdminSider({
 
   /** Collapsed parent key whose flyout is open (issue #10). */
   const [flyoutKey, setFlyoutKey] = React.useState<string | null>(null);
+
+  /**
+   * Mobile drawer presence: keep DOM mounted through exit so opacity/transform
+   * can animate (issue #43). Desktop always shows via lg:flex.
+   */
+  const [mobileVisible, setMobileVisible] = React.useState(mobileOpen);
+  const [mobileEntered, setMobileEntered] = React.useState(mobileOpen);
+
+  React.useEffect(() => {
+    // Presence updates run in rAF/timeout (not sync setState) for enter/exit paint.
+    if (mobileOpen) {
+      const id = requestAnimationFrame(() => {
+        setMobileVisible(true);
+        requestAnimationFrame(() => setMobileEntered(true));
+      });
+      return () => cancelAnimationFrame(id);
+    }
+    const closeId = window.setTimeout(() => setMobileEntered(false), 0);
+    const hideId = window.setTimeout(() => setMobileVisible(false), 300);
+    return () => {
+      window.clearTimeout(closeId);
+      window.clearTimeout(hideId);
+    };
+  }, [mobileOpen]);
 
   // Keep ancestors expanded when selectedKey / menu tree changes
   React.useEffect(() => {
@@ -589,29 +618,36 @@ function AdminSider({
             {content}
           </a>
         )}
-        {/* Mount only when expanded so inactive branches stay out of a11y tree;
-            enter motion via animate-in (issue #43). */}
-        {hasChildren && expanded && !collapsed && (
-          <div
-            data-slot="admin-sider-submenu"
-            data-state="open"
-            className="animate-in fade-in-0 slide-in-from-top-1 mt-0.5 space-y-0.5 duration-300 ease-in-out motion-reduce:animate-none"
-          >
-            {item.children!.map((child) => renderMenuItem(child, level + 1))}
-          </div>
-        )}
+        {/* #43: Collapsible height motion; unmounts when closed after exit */}
+        {hasChildren && !collapsed ? (
+          <Collapsible open={expanded} className="group/admin-sider-sub">
+            <CollapsibleContent
+              data-slot="admin-sider-submenu"
+              keepMounted={false}
+              className="mt-0.5"
+            >
+              <div className="space-y-0.5">
+                {item.children!.map((child) =>
+                  renderMenuItem(child, level + 1),
+                )}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        ) : null}
       </React.Fragment>
     );
   };
 
   return (
     <>
-      {/* Mobile overlay — mounted when open; fade via animate-in (issue #43) */}
-      {mobileOpen ? (
+      {/* Mobile overlay — presence for enter/exit (issue #43) */}
+      {mobileVisible ? (
         <div
           data-slot="admin-sider-overlay"
-          data-state="open"
-          className="animate-in fade-in-0 fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ease-in-out motion-reduce:animate-none motion-reduce:transition-none lg:hidden"
+          className={cn(
+            "fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ease-in-out motion-reduce:transition-none lg:hidden",
+            mobileEntered ? "opacity-100" : "opacity-0",
+          )}
           onClick={() => onMobileOpenChange?.(false)}
         />
       ) : null}
@@ -621,12 +657,15 @@ function AdminSider({
         className={cn(
           // relative is required for the collapse control (absolute -right-3).
           // Never use lg:static here — it cancels relative and reintroduces CUI-LAYOUT-02.
-          // #18: transition width only (+ ease); overflow-x clips label during animate
-          // #43: mobile drawer uses slide-in when open (hidden when closed on small screens)
-          "border-border bg-background relative flex flex-col overflow-x-hidden overflow-y-visible border-r transition-[width] duration-300 ease-in-out motion-reduce:transition-none",
-          mobileOpen
-            ? "animate-in slide-in-from-left-2 fade-in-0 fixed inset-y-0 left-0 z-50 duration-300 motion-reduce:animate-none lg:relative lg:inset-auto lg:z-auto lg:animate-none"
-            : "hidden lg:flex",
+          // #18/#43: width + mobile slide; overflow-x clips label during animate
+          "border-border bg-background relative flex flex-col overflow-x-hidden overflow-y-visible border-r transition-[width,transform,opacity] duration-300 ease-in-out motion-reduce:transition-none",
+          // Desktop: always flex; mobile: presence + slide
+          "lg:relative lg:inset-auto lg:z-auto lg:flex lg:translate-x-0 lg:opacity-100",
+          mobileVisible ? "fixed inset-y-0 left-0 z-50" : "hidden",
+          mobileVisible &&
+            (mobileEntered
+              ? "max-lg:translate-x-0 max-lg:opacity-100"
+              : "max-lg:-translate-x-full max-lg:opacity-0"),
           className,
         )}
         style={{ width: collapsed ? collapsedWidth : width }}
@@ -721,4 +760,5 @@ export type {
   MenuItem,
   AdminSiderLinkComponent,
   AdminCollapseTrigger,
+  AdminMenuExpandMode,
 };

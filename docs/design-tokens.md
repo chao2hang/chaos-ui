@@ -37,6 +37,12 @@ Chaos UI uses CSS custom properties (CSS variables) as the primary design token 
 
 - `shadow-sm`, `shadow`, `shadow-md`, `shadow-lg`, `shadow-xl`
 
+### Motion
+
+- Prefer Tailwind duration utilities already used in shell: `duration-100` / `duration-200` / `duration-300`
+- Height panels: Base UI CSS variables `--accordion-panel-height`, `--collapsible-panel-height` (see `docs/motion.md`)
+- Always pair transitions with `motion-reduce:transition-none` for a11y
+
 ## Dark Mode
 
 Dark mode is supported via `next-themes` and the `.dark` class. All tokens have corresponding dark variants.

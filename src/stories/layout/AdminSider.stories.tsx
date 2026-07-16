@@ -107,8 +107,8 @@ export const Empty: Story = {
 };
 
 /**
- * Top-level accordion: opening one group closes other top-level groups (issue #43).
- * Nested levels still multi-open. Motion: submenu enter + reduced-motion respect.
+ * Accordion expand: only one top-level group open at a time (issue #43).
+ * Submenu height motion uses Collapsible; toggle OS reduced-motion to verify snap.
  */
 export const AccordionExpand: Story = {
   args: {
@@ -118,5 +118,20 @@ export const AccordionExpand: Story = {
     onItemClick: noopItem,
     onCollapse: noop,
     logo: <span className="text-sm font-semibold">Chaos</span>,
+  },
+};
+
+/** Mobile drawer open — overlay fade + slide enter/exit (issue #43). */
+export const MobileOpen: Story = {
+  args: {
+    menuItems,
+    mobileOpen: true,
+    onMobileOpenChange: noop,
+    onItemClick: noopItem,
+    onCollapse: noop,
+    logo: <span className="text-sm font-semibold">Chaos</span>,
+  },
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
   },
 };

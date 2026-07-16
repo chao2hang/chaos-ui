@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **layout/AdminSider**: submenu height motion via Collapsible; mobile overlay/drawer enter-exit presence (beyond enter-only animate-in).
+- **ui/Collapsible**: `CollapsibleContent` height transition via `--collapsible-panel-height` + starting/ending styles; `motion-reduce:transition-none`.
+- **docs/motion.md**: consumer guide for CSS-first motion, AdminSider accordion, reduced-motion, and optional third-party Motion policy.
+
+### Changed
+
+- **ui/Dialog · Sheet**: overlay/content honor `motion-reduce:animate-none` / `motion-reduce:transition-none` for reduced-motion hosts.
+
 ## [1.8.1] — 2026-07-16
 
 ### Changed

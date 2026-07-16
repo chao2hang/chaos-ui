@@ -2,6 +2,8 @@
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
+import { cn } from "@/lib/utils";
+
 /**
  * @component Collapsible
  * @category ui/shell
@@ -37,16 +39,31 @@ function CollapsibleTrigger({ ...props }: CollapsiblePrimitive.Trigger.Props) {
  * @component CollapsibleContent
  * @category ui/shell
  * @since 0.2.0
- * @description Content panel that shows/hides based on collapsible state / 根据折叠状态显示/隐藏的内容面板
- * @keywords collapsible, content, panel, expandable, disclosure
+ * @description Content panel that shows/hides based on collapsible state, with height motion / 根据折叠状态显示/隐藏的内容面板（带高度过渡）
+ * @keywords collapsible, content, panel, expandable, disclosure, motion
  * @example
  * <CollapsibleContent>
  *   <p>Hidden content revealed on expand</p>
  * </CollapsibleContent>
  */
-function CollapsibleContent({ ...props }: CollapsiblePrimitive.Panel.Props) {
+function CollapsibleContent({
+  className,
+  children,
+  ...props
+}: CollapsiblePrimitive.Panel.Props) {
   return (
-    <CollapsiblePrimitive.Panel data-slot="collapsible-content" {...props} />
+    <CollapsiblePrimitive.Panel
+      data-slot="collapsible-content"
+      className={cn(
+        // Base UI sets --collapsible-panel-height; starting/ending force 0 for exit.
+        // motion-reduce: snap without transition (issue #43 motion policy).
+        "h-(--collapsible-panel-height) overflow-hidden text-sm transition-[height] duration-300 ease-in-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </CollapsiblePrimitive.Panel>
   );
 }
 
