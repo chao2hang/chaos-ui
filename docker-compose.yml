@@ -19,7 +19,8 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    # ── 选项 B: 从 registry 拉取（CI/CD 环境） ──
+    # ── 选项 B: 从 GHCR 拉取容器镜像（可选，CI/CD） ──
+    # 注意：这是 GitHub Container Registry，与 npm 包仓库无关；npm 包仅使用 registry.npmjs.org
     # image: ghcr.io/chao2hang/chaos-ui:${TAG:-latest}
 
     container_name: chaos-ui

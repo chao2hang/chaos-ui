@@ -54,6 +54,12 @@ interface FilterBarProps {
    * Defaults to portal (design-system dropdown). / 字段未指定时的默认 select 形态
    */
   selectVariant?: "portal" | "native";
+  /**
+   * Control density for fields + action buttons (issue #46).
+   * Default `"sm"` so Input/Select/Button share h-7 in the toolbar row.
+   * / 筛选栏密度；默认 sm 与操作按钮同高
+   */
+  size?: "sm" | "default";
   className?: string;
 }
 
@@ -72,6 +78,7 @@ function FilterBar({
   collapsible = true,
   loading = false,
   selectVariant = "portal",
+  size = "sm",
   className,
 }: FilterBarProps) {
   const [values, setValues] = React.useState<Record<string, unknown>>(() => {
@@ -115,6 +122,7 @@ function FilterBar({
         return (
           <NativeSelect
             className="min-w-44"
+            size={size}
             value={current}
             onChange={(e) =>
               handleChange(field.key, e.target.value || undefined)
@@ -139,7 +147,7 @@ function FilterBar({
             handleChange(field.key, v == null || v === "" ? undefined : v)
           }
         >
-          <SelectTrigger className="min-w-44" size="default">
+          <SelectTrigger className="min-w-44" size={size}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>
@@ -156,6 +164,7 @@ function FilterBar({
     // Default: input
     return (
       <Input
+        size={size}
         placeholder={field.placeholder || `请输入${field.label}`}
         value={String(values[field.key] ?? "")}
         onChange={(e) => handleChange(field.key, e.target.value)}
@@ -188,11 +197,11 @@ function FilterBar({
       ))}
 
       <div className="flex items-center gap-2">
-        <Button size="sm" onClick={handleSearch} disabled={loading}>
+        <Button size={size} onClick={handleSearch} disabled={loading}>
           查询
         </Button>
         <Button
-          size="sm"
+          size={size}
           variant="outline"
           onClick={handleReset}
           disabled={loading}
@@ -202,7 +211,7 @@ function FilterBar({
 
         {collapsible && hiddenCount > 0 && (
           <Button
-            size="sm"
+            size={size}
             variant="ghost"
             onClick={() => setExpanded(!expanded)}
           >

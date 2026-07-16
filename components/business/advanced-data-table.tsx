@@ -154,13 +154,14 @@ function AdvancedDataTable({
           <div className="relative max-w-sm flex-1">
             <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
+              size="sm"
               placeholder={searchPlaceholder}
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
                 setPage(0);
               }}
-              className="h-8 pl-8"
+              className="pl-8"
             />
           </div>
         )}

@@ -278,7 +278,30 @@ describe("TreeView", () => {
         disabled: "off",
         icon: "ico",
       },
+      labelOverflow: "wrap",
     };
     expect(props).toBeDefined();
+  });
+
+  it("sets title on truncated labels (issue #48)", () => {
+    const long = "030101010101 250ML 玻璃瓶 特级生抽 整箱";
+    render(<TreeView data={[{ id: "1", label: long }]} showIcon={false} />);
+    const el = screen.getByText(long);
+    expect(el.getAttribute("title")).toBe(long);
+    expect(el.className).toMatch(/truncate/);
+  });
+
+  it("wrap overflow skips title and uses wrap classes (issue #48)", () => {
+    const long = "030101010101 250ML wrap mode label";
+    render(
+      <TreeView
+        data={[{ id: "1", label: long }]}
+        showIcon={false}
+        labelOverflow="wrap"
+      />,
+    );
+    const el = screen.getByText(long);
+    expect(el.getAttribute("title")).toBeNull();
+    expect(el.className).toMatch(/break-words|whitespace-normal/);
   });
 });

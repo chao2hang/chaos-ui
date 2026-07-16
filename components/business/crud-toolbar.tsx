@@ -122,7 +122,8 @@ function CrudToolbar({
         <div className="relative max-w-xs flex-1">
           <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
           <Input
-            className="h-8 pl-8 text-sm"
+            size="sm"
+            className="pl-8"
             placeholder={searchPlaceholder}
             value={searchValue}
             onChange={(e) => {
@@ -141,7 +142,7 @@ function CrudToolbar({
           <DropdownMenuTrigger>
             <button
               type="button"
-              className="hover:bg-accent hover:text-accent-foreground inline-flex h-8 w-8 items-center justify-center rounded-md border"
+              className="hover:bg-accent hover:text-accent-foreground inline-flex h-7 w-7 items-center justify-center rounded-md border"
             >
               <MoreHorizontalIcon className="size-4" />
             </button>

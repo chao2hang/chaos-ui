@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1] — 2026-07-16
+
+### Fixed
+
+- **ui/TreeSelect (#45)**: `DialogTrigger` with custom `div` render now sets `nativeButton={false}` so Base UI no longer logs a console error on mount.
+- **ui/TreeView · TreeSelect (#48)**: truncated node labels set native `title` to the full string so deep trees can hover to read full names; optional `labelOverflow` (`truncate` | `wrap` | `none`, default `truncate`).
+
+### Changed
+
+- **business/FilterBar (#46)**: toolbar density defaults to **`size="sm"`** so Input / Select / NativeSelect / action buttons share `h-7` (fields were default `h-8` next to `Button sm`). Pass `size="default"` to keep the previous field height.
+- **business toolbars (#47)**: align search/filter rows to `size="sm"` — CrudToolbar, FilterBuilder, AdvancedDataTable, DictManageDialog, InvoiceTitlePicker, AuditTrailDiff (remove hard-coded `h-8` beside sm buttons).
+
+### Docs
+
+- **npm registry**: keep public `registry.npmjs.org` only; remove legacy Verdaccio notes; clarify Docker GHCR is unrelated to npm.
+
 ## [1.7.0] — 2026-07-16
 
 ### Added

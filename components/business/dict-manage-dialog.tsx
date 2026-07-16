@@ -335,6 +335,7 @@ function DictManageDialog({
             <div className="relative min-w-0 flex-1">
               <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2" />
               <Input
+                size="sm"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={searchPlaceholder}

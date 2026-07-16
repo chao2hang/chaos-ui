@@ -225,14 +225,14 @@ docker run -d \
 #### Docker Compose
 
 ```bash
-# 方式 A：从 registry 拉取（推荐，一键部署）
-docker compose up -d
-
-# 方式 B：从源码构建
+# 默认从源码构建（docker-compose.yml）
 docker compose up -d --build
 
+# 若已改为使用 GHCR 镜像（见 compose 内 image 选项），直接启动即可：
+# docker compose up -d
+
 # 自定义端口
-DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d
+DOCS_PORT=3000 STORYBOOK_PORT=9000 docker compose up -d --build
 ```
 
 端口可通过环境变量 `DOCS_PORT`（默认 `3001`）和 `STORYBOOK_PORT`（默认 `3002`）配置。

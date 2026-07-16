@@ -30,6 +30,8 @@ interface TreeNode {
   disabled?: boolean;
 }
 
+type TreeLabelOverflow = "truncate" | "wrap" | "none";
+
 interface TreeSelectProps {
   value?: string | string[];
   defaultValue?: string | string[];
@@ -42,6 +44,21 @@ interface TreeSelectProps {
   className?: string;
   /** Trigger height: default min-h-8; sm aligns with Button/SelectTrigger h-7 / 触发器高度：default 为 min-h-8；sm 对齐 Button/SelectTrigger 的 h-7 */
   size?: "sm" | "default";
+  /**
+   * How long node labels overflow (issue #48).
+   * - `"truncate"` (default): single-line ellipsis + native `title` for full text
+   * - `"wrap"`: multi-line wrap
+   * - `"none"`: no truncation/wrap helpers
+   */
+  labelOverflow?: TreeLabelOverflow;
+}
+
+function treeLabelClassName(overflow: TreeLabelOverflow): string {
+  return cn(
+    "flex-1 text-sm",
+    overflow === "truncate" && "truncate",
+    overflow === "wrap" && "whitespace-normal break-words",
+  );
 }
 
 /**
@@ -59,6 +76,7 @@ function TreeSelectItem({
   onToggleExpand,
   onSelect,
   multiple,
+  labelOverflow = "truncate",
 }: {
   node: TreeNode;
   level?: number;
@@ -67,6 +85,7 @@ function TreeSelectItem({
   onToggleExpand: (id: string) => void;
   onSelect: (node: TreeNode) => void;
   multiple?: boolean;
+  labelOverflow?: TreeLabelOverflow;
 }) {
   const hasChildren = node.children && node.children.length > 0;
   const isExpanded = expandedIds.has(node.id);
@@ -114,7 +133,12 @@ function TreeSelectItem({
               <FileIcon className="size-4" />
             ))}
         </span>
-        <span className="flex-1 truncate text-sm">{node.label}</span>
+        <span
+          className={treeLabelClassName(labelOverflow)}
+          title={labelOverflow === "truncate" ? node.label : undefined}
+        >
+          {node.label}
+        </span>
       </div>
       {hasChildren && isExpanded && (
         <div>
@@ -127,6 +151,7 @@ function TreeSelectItem({
               expandedIds={expandedIds}
               onToggleExpand={onToggleExpand}
               onSelect={onSelect}
+              labelOverflow={labelOverflow}
               {...(multiple !== undefined ? { multiple } : {})}
             />
           ))}
@@ -173,6 +198,7 @@ function TreeSelect({
   onChange,
   className,
   size = "default",
+  labelOverflow = "truncate",
 }: TreeSelectProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -266,6 +292,8 @@ function TreeSelect({
     >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
+          // #45: custom div trigger is not a native <button>; disable Base UI button expectation
+          nativeButton={false}
           render={
             <div
               data-size={size}
@@ -353,6 +381,7 @@ function TreeSelect({
                   onToggleExpand={handleToggleExpand}
                   onSelect={handleSelect}
                   multiple={multiple}
+                  labelOverflow={labelOverflow}
                 />
               ))}
               {filteredData.length === 0 && (
@@ -376,4 +405,4 @@ function TreeSelect({
 }
 
 export { TreeSelect };
-export type { TreeNode, TreeSelectProps };
+export type { TreeNode, TreeSelectProps, TreeLabelOverflow };

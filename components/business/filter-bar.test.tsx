@@ -255,4 +255,55 @@ describe("filter-bar", () => {
       expect(content.className).not.toMatch(/px-\[var\(--card-spacing/);
     }
   });
+
+  it("defaults field controls and actions to sm height (issue #46)", () => {
+    const fields: FilterField[] = [
+      { key: "keyword", label: "搜索", type: "input" },
+      {
+        key: "status",
+        label: "状态",
+        type: "select",
+        options: [
+          { label: "在职", value: "1" },
+          { label: "离职", value: "0" },
+        ],
+      },
+    ];
+    const { container } = render(
+      <FilterBar fields={fields} onSearch={vi.fn()} />,
+    );
+    const input = container.querySelector('[data-slot="input"]') as HTMLElement;
+    expect(input?.getAttribute("data-size")).toBe("sm");
+    expect(input?.className).toMatch(/\bh-7\b/);
+    const trigger = container.querySelector(
+      '[data-slot="select-trigger"]',
+    ) as HTMLElement | null;
+    if (trigger) {
+      expect(
+        trigger.getAttribute("data-size") === "sm" ||
+          trigger.className.includes("h-7"),
+      ).toBe(true);
+    }
+    // Action buttons use size sm (h-7)
+    const buttons = Array.from(container.querySelectorAll("button")).filter(
+      (b) => /查询|重置/.test(b.textContent ?? ""),
+    );
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
+    for (const b of buttons) {
+      expect(b.className).toMatch(/\bh-7\b/);
+    }
+  });
+
+  it("size=default aligns fields and buttons at h-8 (issue #46)", () => {
+    const { container } = render(
+      <FilterBar
+        fields={[{ key: "keyword", label: "搜索", type: "input" }]}
+        onSearch={vi.fn()}
+        size="default"
+      />,
+    );
+    const input = container.querySelector('[data-slot="input"]') as HTMLElement;
+    expect(input?.getAttribute("data-size")).toBe("default");
+    expect(input?.className).toMatch(/\bh-8\b/);
+  });
 });

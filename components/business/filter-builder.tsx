@@ -91,7 +91,7 @@ function FilterBuilder({
             }
           }}
         >
-          <SelectTrigger className="h-7 w-20">
+          <SelectTrigger size="sm" className="w-20">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -115,7 +115,7 @@ function FilterBuilder({
             value={filter.field}
             onValueChange={(v) => v && updateFilter(i, "field", v)}
           >
-            <SelectTrigger className="h-8 w-40">
+            <SelectTrigger size="sm" className="w-40">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -130,7 +130,7 @@ function FilterBuilder({
             value={filter.operator}
             onValueChange={(v) => v && updateFilter(i, "operator", v)}
           >
-            <SelectTrigger className="h-8 w-36">
+            <SelectTrigger size="sm" className="w-36">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -142,7 +142,8 @@ function FilterBuilder({
             </SelectContent>
           </Select>
           <Input
-            className="h-8 flex-1"
+            size="sm"
+            className="flex-1"
             placeholder={t("filterBuilder.valuePlaceholder")}
             value={filter.value}
             onChange={(e) => updateFilter(i, "value", e.target.value)}

@@ -27,6 +27,8 @@ interface FieldNames {
   icon?: string;
 }
 
+type TreeLabelOverflow = "truncate" | "wrap" | "none";
+
 interface TreeViewProps {
   data: TreeNode[];
   selectedIds?: string[];
@@ -41,6 +43,21 @@ interface TreeViewProps {
   className?: string;
   /** Field name mapping for backend data / 后端数据字段映射 */
   fieldNames?: FieldNames;
+  /**
+   * How long node labels overflow (issue #48).
+   * - `"truncate"` (default): single-line ellipsis + native `title` for full text
+   * - `"wrap"`: multi-line wrap
+   * - `"none"`: no truncation/wrap helpers
+   */
+  labelOverflow?: TreeLabelOverflow;
+}
+
+function treeLabelClassName(overflow: TreeLabelOverflow): string {
+  return cn(
+    "flex-1 text-sm",
+    overflow === "truncate" && "truncate",
+    overflow === "wrap" && "whitespace-normal break-words",
+  );
 }
 
 function normalizeNode(
@@ -96,6 +113,7 @@ function TreeViewItem({
   showCheckbox = false,
   showIcon = true,
   disabled = false,
+  labelOverflow = "truncate",
 }: {
   node: TreeNode;
   level?: number;
@@ -106,6 +124,7 @@ function TreeViewItem({
   showCheckbox?: boolean;
   showIcon?: boolean;
   disabled?: boolean;
+  labelOverflow?: TreeLabelOverflow;
 }) {
   const hasChildren = node.children && node.children.length > 0;
   const isExpanded = expandedIds.has(node.id);
@@ -157,7 +176,12 @@ function TreeViewItem({
               ))}
           </span>
         )}
-        <span className="flex-1 truncate text-sm">{node.label}</span>
+        <span
+          className={treeLabelClassName(labelOverflow)}
+          title={labelOverflow === "truncate" ? node.label : undefined}
+        >
+          {node.label}
+        </span>
       </div>
       {hasChildren && isExpanded && (
         <div>
@@ -173,6 +197,7 @@ function TreeViewItem({
               showCheckbox={showCheckbox}
               showIcon={showIcon}
               disabled={isDisabled}
+              labelOverflow={labelOverflow}
             />
           ))}
         </div>
@@ -208,6 +233,7 @@ function TreeView({
   disabled = false,
   className,
   fieldNames,
+  labelOverflow = "truncate",
 }: TreeViewProps) {
   const normalizedData = React.useMemo(
     () => (fieldNames ? normalizeData(data, fieldNames) : (data as TreeNode[])),
@@ -260,6 +286,7 @@ function TreeView({
           showCheckbox={showCheckbox}
           showIcon={showIcon}
           disabled={disabled}
+          labelOverflow={labelOverflow}
         />
       ))}
     </div>
@@ -267,4 +294,4 @@ function TreeView({
 }
 
 export { TreeView };
-export type { TreeNode, TreeViewProps };
+export type { TreeNode, TreeViewProps, TreeLabelOverflow };

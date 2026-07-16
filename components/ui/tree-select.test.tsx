@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { TreeSelect } from "@/components/ui/tree-select";
 import type { TreeNode, TreeSelectProps } from "@/components/ui/tree-select";
 
@@ -113,5 +113,25 @@ describe("tree-select", () => {
     expect(className).toBeDefined();
     expect(className).toMatch(/min-h-7/);
     expect(className).toMatch(/\bh-7\b/);
+  });
+
+  it("does not emit Base UI nativeButton console error on mount (issue #45)", () => {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    render(<TreeSelect data={sampleData} placeholder="Pick" />);
+    const joined = spy.mock.calls.map((c) => String(c[0] ?? "")).join("\n");
+    expect(joined).not.toMatch(/nativeButton/i);
+    spy.mockRestore();
+  });
+
+  it("dropdown node labels expose title when truncated (issue #48)", () => {
+    const long =
+      "030101010101 250ML 玻璃瓶 特级生抽 整箱 超长分类名用于截断测试";
+    const flat: TreeNode[] = [{ id: "1", label: long }];
+    const { getByText } = render(<TreeSelect data={flat} />);
+    // Open dialog so tree items mount
+    fireEvent.click(document.querySelector('[data-slot="dialog-trigger"]')!);
+    const label = getByText(long);
+    expect(label.getAttribute("title")).toBe(long);
+    expect(label.className).toMatch(/truncate/);
   });
 });

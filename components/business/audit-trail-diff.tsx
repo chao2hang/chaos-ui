@@ -169,7 +169,8 @@ function AuditTrailDiff({
           <div className="relative min-w-[200px] flex-1">
             <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
             <Input
-              className="h-8 pl-8 text-sm"
+              size="sm"
+              className="pl-8"
               placeholder="Search fields, entities, users..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}

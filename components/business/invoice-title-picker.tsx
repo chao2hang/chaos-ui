@@ -119,6 +119,7 @@ function InvoiceTitlePicker({
           <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
           <Input
             type="text"
+            size="sm"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="搜索公司名称或税号"
