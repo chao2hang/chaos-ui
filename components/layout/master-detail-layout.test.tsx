@@ -21,9 +21,14 @@ describe("MasterDetailLayout", () => {
 
   it("renders sidebar + main in non-collapsible mode", () => {
     const { container, getByText } = render(
-      <MasterDetailLayout sidebar={<div>sidebar</div>} main={<div>main</div>} />,
+      <MasterDetailLayout
+        sidebar={<div>sidebar</div>}
+        main={<div>main</div>}
+      />,
     );
-    expect(container.querySelector('[data-slot="master-detail-layout"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-slot="master-detail-layout"]'),
+    ).not.toBeNull();
     expect(getByText("sidebar")).toBeTruthy();
     expect(getByText("main")).toBeTruthy();
   });
@@ -38,21 +43,43 @@ describe("MasterDetailLayout", () => {
 
   it("applies gap variant classes (sm, lg)", () => {
     const { container: c1 } = render(
-      <MasterDetailLayout gap="sm" sidebar={<div>s</div>} main={<div>m</div>} />,
+      <MasterDetailLayout
+        gap="sm"
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
     );
-    expect(c1.querySelector('[data-slot="master-detail-layout"]')?.classList.contains("gap-2")).toBe(true);
+    expect(
+      c1
+        .querySelector('[data-slot="master-detail-layout"]')
+        ?.classList.contains("gap-2"),
+    ).toBe(true);
 
     const { container: c2 } = render(
-      <MasterDetailLayout gap="lg" sidebar={<div>s</div>} main={<div>m</div>} />,
+      <MasterDetailLayout
+        gap="lg"
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
     );
-    expect(c2.querySelector('[data-slot="master-detail-layout"]')?.classList.contains("gap-6")).toBe(true);
+    expect(
+      c2
+        .querySelector('[data-slot="master-detail-layout"]')
+        ?.classList.contains("gap-6"),
+    ).toBe(true);
   });
 
   it("renders a default toggle button in collapsible mode", () => {
     const { container } = render(
-      <MasterDetailLayout collapsible sidebar={<div>sidebar</div>} main={<div>main</div>} />,
+      <MasterDetailLayout
+        collapsible
+        sidebar={<div>sidebar</div>}
+        main={<div>main</div>}
+      />,
     );
-    const toggle = container.querySelector('button[aria-label="Toggle master"]');
+    const toggle = container.querySelector(
+      'button[aria-label="Toggle master"]',
+    );
     expect(toggle).not.toBeNull();
   });
 
@@ -82,14 +109,18 @@ describe("MasterDetailLayout", () => {
     // Closed initially -> translate-x-full negative
     expect(aside?.className ?? "").toContain("-translate-x-full");
     // No backdrop when closed
-    expect(container.querySelector('button[aria-label="Close master"]')).toBeNull();
+    expect(
+      container.querySelector('button[aria-label="Close master"]'),
+    ).toBeNull();
 
     fireEvent.click(screen.getByLabelText("Toggle master"));
     const asideAfter = container.querySelector("aside");
     expect(asideAfter?.className ?? "").toContain("translate-x-0");
     expect(asideAfter?.className ?? "").not.toContain("-translate-x-full");
     // Backdrop appears when open
-    expect(container.querySelector('button[aria-label="Close master"]')).not.toBeNull();
+    expect(
+      container.querySelector('button[aria-label="Close master"]'),
+    ).not.toBeNull();
   });
 
   it("closes the drawer via the backdrop button", () => {
@@ -101,11 +132,17 @@ describe("MasterDetailLayout", () => {
         main={<div>main</div>}
       />,
     );
-    const backdrop = container.querySelector('button[aria-label="Close master"]');
+    const backdrop = container.querySelector(
+      'button[aria-label="Close master"]',
+    );
     expect(backdrop).not.toBeNull();
     fireEvent.click(backdrop as HTMLElement);
-    expect(container.querySelector('button[aria-label="Close master"]')).toBeNull();
-    expect(container.querySelector("aside")?.className ?? "").toContain("-translate-x-full");
+    expect(
+      container.querySelector('button[aria-label="Close master"]'),
+    ).toBeNull();
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "-translate-x-full",
+    );
   });
 
   it("fires onMasterOpenChange when toggling", () => {
@@ -134,10 +171,14 @@ describe("MasterDetailLayout", () => {
         main={<div>main</div>}
       />,
     );
-    expect(container.querySelector("aside")?.className ?? "").toContain("-translate-x-full");
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "-translate-x-full",
+    );
     // Clicking the toggle fires onMasterOpenChange but, controlled, stays closed until prop changes
     fireEvent.click(screen.getByLabelText("Toggle master"));
-    expect(container.querySelector("aside")?.className ?? "").toContain("-translate-x-full");
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "-translate-x-full",
+    );
     // Parent updates the controlled prop
     rerender(
       <MasterDetailLayout
@@ -147,11 +188,15 @@ describe("MasterDetailLayout", () => {
         main={<div>main</div>}
       />,
     );
-    expect(container.querySelector("aside")?.className ?? "").toContain("translate-x-0");
-    expect(container.querySelector('button[aria-label="Close master"]')).not.toBeNull();
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "translate-x-0",
+    );
+    expect(
+      container.querySelector('button[aria-label="Close master"]'),
+    ).not.toBeNull();
   });
 
-  it("applies sidebarWidth as maxWidth on the aside", () => {
+  it("applies sidebarWidth as CSS var for fixed desktop width (issue #53)", () => {
     const { container } = render(
       <MasterDetailLayout
         sidebar={<div>s</div>}
@@ -160,7 +205,10 @@ describe("MasterDetailLayout", () => {
       />,
     );
     const aside = container.querySelector("aside");
-    expect(aside?.getAttribute("style") ?? "").toContain("max-width: 420px");
+    expect(aside?.getAttribute("style") ?? "").toContain(
+      "--master-sidebar-width: 420px",
+    );
+    expect(aside?.className ?? "").toMatch(/md:w-\(--master-sidebar-width\)/);
   });
 
   it("renders collapsibleDesktop toggle without md:hidden when enabled", () => {
@@ -172,7 +220,9 @@ describe("MasterDetailLayout", () => {
         main={<div>m</div>}
       />,
     );
-    const toggleWrap = container.querySelector('button[aria-label="Toggle master"]')?.parentElement;
+    const toggleWrap = container.querySelector(
+      'button[aria-label="Toggle master"]',
+    )?.parentElement;
     expect(toggleWrap?.className ?? "").not.toContain("md:hidden");
   });
 
@@ -201,10 +251,11 @@ describe("MasterDetailLayout", () => {
       />,
     );
     const aside = container.querySelector("aside");
-    // Open + desktop collapse => width-auto arm, not the collapsed 0-width arm
-    expect(aside?.className ?? "").toContain("md:w-auto");
+    // Open + desktop collapse => fixed width arm, not the collapsed 0-width arm
+    expect(aside?.className ?? "").toMatch(/md:w-\(--master-sidebar-width\)/);
     expect(aside?.className ?? "").toContain("md:opacity-100");
     expect(aside?.className ?? "").not.toContain("md:!w-0");
+    expect(aside?.className ?? "").not.toContain("md:w-auto");
   });
 
   it("collapsibleDesktop applies the collapsed 0-width classes when drawer is closed", () => {
@@ -231,7 +282,9 @@ describe("MasterDetailLayout", () => {
         main={<div>m</div>}
       />,
     );
-    const toggleWrap = container.querySelector('button[aria-label="Toggle master"]')?.parentElement;
+    const toggleWrap = container.querySelector(
+      'button[aria-label="Toggle master"]',
+    )?.parentElement;
     expect(toggleWrap?.className ?? "").toContain("md:hidden");
   });
 
@@ -244,8 +297,12 @@ describe("MasterDetailLayout", () => {
         main={<div>m</div>}
       />,
     );
-    expect(container.querySelector("aside")?.className ?? "").toContain("translate-x-0");
-    expect(container.querySelector('button[aria-label="Close master"]')).not.toBeNull();
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "translate-x-0",
+    );
+    expect(
+      container.querySelector('button[aria-label="Close master"]'),
+    ).not.toBeNull();
   });
 
   it("custom masterToggle click still calls onMasterOpenChange when wired", () => {
@@ -255,7 +312,11 @@ describe("MasterDetailLayout", () => {
         collapsible
         defaultMasterOpen={false}
         onMasterOpenChange={onMasterOpenChange}
-        masterToggle={<button type="button" onClick={() => onMasterOpenChange(true)}>Open Drawer</button>}
+        masterToggle={
+          <button type="button" onClick={() => onMasterOpenChange(true)}>
+            Open Drawer
+          </button>
+        }
         sidebar={<div>s</div>}
         main={<div>m</div>}
       />,
@@ -266,7 +327,12 @@ describe("MasterDetailLayout", () => {
 
   it("applies gap-sm on the root in collapsible mode", () => {
     const { container } = render(
-      <MasterDetailLayout collapsible gap="sm" sidebar={<div>s</div>} main={<div>m</div>} />,
+      <MasterDetailLayout
+        collapsible
+        gap="sm"
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
     );
     const root = container.querySelector('[data-slot="master-detail-layout"]');
     expect(root?.classList.contains("gap-2")).toBe(true);
@@ -274,7 +340,12 @@ describe("MasterDetailLayout", () => {
 
   it("renders a custom className on the root in collapsible mode", () => {
     const { container } = render(
-      <MasterDetailLayout collapsible className="custom-collapsible" sidebar={<div>s</div>} main={<div>m</div>} />,
+      <MasterDetailLayout
+        collapsible
+        className="custom-collapsible"
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
     );
     const root = container.querySelector('[data-slot="master-detail-layout"]');
     expect(root?.classList.contains("custom-collapsible")).toBe(true);
@@ -282,7 +353,12 @@ describe("MasterDetailLayout", () => {
 
   it("forwards extra div props to the root element", () => {
     const { container } = render(
-      <MasterDetailLayout id="md-root" aria-label="Master detail" sidebar={<div>s</div>} main={<div>m</div>} />,
+      <MasterDetailLayout
+        id="md-root"
+        aria-label="Master detail"
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
     );
     const root = container.querySelector('[data-slot="master-detail-layout"]');
     expect(root?.id).toBe("md-root");

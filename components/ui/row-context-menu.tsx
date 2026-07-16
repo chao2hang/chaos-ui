@@ -24,6 +24,11 @@ interface RowMenuItem {
   disabled?: boolean;
   /** Render as a separator divider / 渲染为分隔线 */
   separator?: boolean;
+  /**
+   * Optional click handler (RowActionsMenu prefers this over onItemSelect).
+   * / 可选点击回调；RowActionsMenu 优先调用
+   */
+  onClick?: () => void;
 }
 
 /**

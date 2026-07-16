@@ -304,4 +304,36 @@ describe("TreeView", () => {
     expect(el.getAttribute("title")).toBeNull();
     expect(el.className).toMatch(/break-words|whitespace-normal/);
   });
+  it("single selectionMode keeps only one id and re-click clears (issue #54)", () => {
+    const onSelect = vi.fn();
+    render(
+      <TreeView
+        data={sampleData}
+        selectionMode="single"
+        defaultExpandedIds={["1"]}
+        onSelect={onSelect}
+      />,
+    );
+    fireEvent.click(screen.getByText("File 1-1"));
+    expect(onSelect).toHaveBeenLastCalledWith(["1-1"]);
+    fireEvent.click(screen.getByText("File 1-2"));
+    expect(onSelect).toHaveBeenLastCalledWith(["1-2"]);
+    fireEvent.click(screen.getByText("File 1-2"));
+    expect(onSelect).toHaveBeenLastCalledWith([]);
+  });
+
+  it("multiple selectionMode still accumulates ids (issue #54)", () => {
+    const onSelect = vi.fn();
+    render(
+      <TreeView
+        data={sampleData}
+        selectionMode="multiple"
+        defaultExpandedIds={["1"]}
+        onSelect={onSelect}
+      />,
+    );
+    fireEvent.click(screen.getByText("File 1-1"));
+    fireEvent.click(screen.getByText("File 1-2"));
+    expect(onSelect).toHaveBeenLastCalledWith(["1-1", "1-2"]);
+  });
 });

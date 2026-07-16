@@ -209,8 +209,13 @@ function OrgTree({
     const next = new Set(selected);
 
     if (selectable === "single" && !checkable) {
-      next.clear();
-      next.add(nodeId);
+      // Re-click clears selection (filter trees / master-detail navigation).
+      if (next.has(nodeId)) {
+        next.clear();
+      } else {
+        next.clear();
+        next.add(nodeId);
+      }
     } else {
       if (next.has(nodeId)) {
         next.delete(nodeId);
@@ -395,10 +400,10 @@ function OrgTree({
                 handleNodeClick({ node, depth, hasChildren, isLast });
               }}
             >
-              {/* Indent + Lines */}
+              {/* Indent + Lines: same width for leaf/parent at equal depth (#51) */}
               <div
                 className="flex shrink-0 items-center"
-                style={{ width: depth * 20 + (hasChildren ? 0 : 16) }}
+                style={{ width: `${depth * 20}px` }}
               >
                 {showLine &&
                   Array.from({ length: depth }).map((_, i) => (

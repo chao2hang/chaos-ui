@@ -9,9 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **ui/RowActionsMenu (#52)**: click-triggered row actions menu for list/table action columns (default link/sm「操作」); composes DropdownMenu; shares `RowMenuItem` (+ optional `onClick`).
+- **ui/TreeView (#54)**: `selectionMode?: "single" | "multiple"` (default `"multiple"` for compatibility). Single keeps at most one id and re-click clears — for master-data filter trees.
 - **layout/AdminSider**: submenu height motion via Collapsible; mobile overlay/drawer enter-exit presence (beyond enter-only animate-in).
 - **ui/Collapsible**: `CollapsibleContent` height transition via `--collapsible-panel-height` + starting/ending styles; `motion-reduce:transition-none`.
 - **docs/motion.md**: consumer guide for CSS-first motion, AdminSider accordion, reduced-motion, and optional third-party Motion policy.
+
+### Fixed
+
+- **ui/OrgTree (#51)**: same-depth leaf/parent label left edge alignment — remove extra leaf indent `+16` (expand placeholder remains `w-5`).
+- **layout/MasterDetailLayout (#53)**: desktop master column uses fixed `sidebarWidth` via `--master-sidebar-width` (no content-driven `md:w-auto` jitter when deep trees expand).
+- **ui/OrgTree**: `selectable="single"` re-click clears selection (aligned with TreeView single / filter trees).
 
 ### Changed
 

@@ -158,4 +158,45 @@ describe("OrgTree", () => {
     expect(label.getAttribute("title")).toBe(long);
     expect(getByText("备注很长").getAttribute("title")).toBe("备注很长");
   });
+  it("uses equal indent width for leaf and parent at same depth (issue #51)", () => {
+    const mixed: OrgTreeNode[] = [
+      {
+        id: "p",
+        label: "采购部",
+        children: [{ id: "c", label: "董事办" }],
+      },
+      { id: "leaf", label: "漂白部" },
+    ];
+    const { getByText } = render(
+      <OrgTree data={mixed} defaultExpandedKeys={["p"]} />,
+    );
+    const indentOf = (label: string) => {
+      const row = getByText(label).closest(
+        '[role="treeitem"]',
+      ) as HTMLElement | null;
+      const indent = row?.children[0] as HTMLElement | undefined;
+      return indent?.getAttribute("style") ?? "";
+    };
+    // Same depth (0): parent and leaf share indent (no leaf +16)
+    expect(indentOf("采购部")).toBe(indentOf("漂白部"));
+    expect(indentOf("采购部")).toContain("width: 0px");
+    // depth 1 child
+    expect(indentOf("董事办")).toContain("width: 20px");
+  });
+
+  it("single mode re-click clears selection (issue #54 sibling)", async () => {
+    const onSelect = vi.fn();
+    const { container } = render(
+      <OrgTree data={sampleData} selectable="single" onSelect={onSelect} />,
+    );
+    const treeitems = container.querySelectorAll('[role="treeitem"]');
+    await act(async () => {
+      fireEvent.click(treeitems[0]!);
+    });
+    expect(onSelect.mock.calls.at(-1)?.[0]).toEqual(["1"]);
+    await act(async () => {
+      fireEvent.click(treeitems[0]!);
+    });
+    expect(onSelect.mock.calls.at(-1)?.[0]).toEqual([]);
+  });
 });

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { TreeView, type TreeNode } from "@/components/ui/tree-view"
+import type { Meta, StoryObj } from "@storybook/react";
+import { TreeView, type TreeNode } from "@/components/ui/tree-view";
 
 const sampleData: TreeNode[] = [
   {
@@ -21,30 +21,47 @@ const sampleData: TreeNode[] = [
   {
     id: "3",
     label: "Videos",
-    children: [
-      { id: "3-1", label: "Video1.mp4" },
-    ],
+    children: [{ id: "3-1", label: "Video1.mp4" }],
   },
-]
+];
 
 const meta = {
   title: "Components/TreeView",
   component: TreeView,
   tags: ["autodocs", "a11y"],
-} satisfies Meta<typeof TreeView>
+} satisfies Meta<typeof TreeView>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { data: sampleData, defaultExpandedIds: ["1"] },
-}
+};
 
 export const WithCheckboxes: Story = {
   args: { data: sampleData, showCheckbox: true, defaultExpandedIds: ["1"] },
-}
+};
 
 export const WithoutIcons: Story = {
   args: { data: sampleData, showIcon: false, defaultExpandedIds: ["1", "2"] },
-}
+};
 
+/** Master-data filter tree: at most one selection; re-click clears (issue #54). */
+export const SingleSelect: Story = {
+  args: {
+    data: sampleData,
+    selectionMode: "single",
+    showIcon: false,
+    defaultExpandedIds: ["1", "2"],
+  },
+};
+
+/** Multi-select (default / historical toggle set). */
+export const MultipleSelect: Story = {
+  args: {
+    data: sampleData,
+    selectionMode: "multiple",
+    showCheckbox: true,
+    defaultExpandedIds: ["1"],
+  },
+};

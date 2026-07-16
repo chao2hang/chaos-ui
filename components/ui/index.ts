@@ -413,7 +413,11 @@ export {
 export { TreeSelect } from "./tree-select";
 export type { TreeNode, TreeSelectProps } from "./tree-select";
 export { TreeView } from "./tree-view";
-export type { TreeNode as TreeViewNode, TreeViewProps } from "./tree-view";
+export type {
+  TreeNode as TreeViewNode,
+  TreeViewProps,
+  TreeViewSelectionMode,
+} from "./tree-view";
 export { UserBrowse } from "./user-browse";
 export type {
   User,
@@ -728,6 +732,8 @@ export { StatGrid } from "./stat-grid";
 export type { StatGridProps, StatItem } from "./stat-grid";
 export { RowContextMenu } from "./row-context-menu";
 export type { RowContextMenuProps, RowMenuItem } from "./row-context-menu";
+export { RowActionsMenu } from "./row-actions-menu";
+export type { RowActionsMenuProps } from "./row-actions-menu";
 export { ProgressiveImage } from "./progressive-image";
 export type { ProgressiveImageProps } from "./progressive-image";
 export { PasswordPolicyValidator } from "./password-policy-validator";

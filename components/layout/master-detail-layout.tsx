@@ -29,7 +29,11 @@ interface MasterDetailLayoutProps extends React.ComponentProps<"div"> {
   sidebar: React.ReactNode;
   /** Main area content / 主区域内容 */
   main: React.ReactNode;
-  /** Sidebar width in px / 侧边栏宽度 */
+  /**
+   * Desktop master column target width in px (issue #53).
+   * Applied as fixed `width` + `maxWidth` on open desktop; not a soft max only.
+   * / 桌面 master 目标固定宽（非仅 maxWidth）
+   */
   sidebarWidth?: number;
   /** Gap between sidebar and main / 间距 */
   gap?: "sm" | "md" | "lg";
@@ -92,11 +96,18 @@ function MasterDetailLayout({
     [isControlled, onMasterOpenChange],
   );
 
-  const sidebarStyle = { maxWidth: sidebarWidth } as React.CSSProperties;
+  // Desktop master is a fixed target width (issue #53): content must not drive
+  // aside width. Mobile drawer keeps 85vw; md+ uses CSS var from sidebarWidth.
+  const sidebarStyle = {
+    ["--master-sidebar-width" as string]: `${sidebarWidth}px`,
+  } as React.CSSProperties;
   const sidebarInnerStyle = {
     width: "100%",
-    maxWidth: sidebarWidth,
+    maxWidth: "100%",
+    minWidth: 0,
   } as React.CSSProperties;
+  const desktopFixedWidthClass =
+    "md:w-(--master-sidebar-width) md:max-w-(--master-sidebar-width)";
 
   // `collapsible` explicitly set takes precedence; otherwise use `responsive`.
   const shouldCollapse = collapsible || responsive;
@@ -108,7 +119,10 @@ function MasterDetailLayout({
         {...props}
       >
         <aside
-          className="w-full shrink-0 md:overflow-y-auto md:border-r"
+          className={cn(
+            "w-full shrink-0 overflow-x-hidden md:overflow-y-auto md:border-r",
+            desktopFixedWidthClass,
+          )}
           style={sidebarStyle}
         >
           <div style={sidebarInnerStyle}>{sidebar}</div>
@@ -146,14 +160,14 @@ function MasterDetailLayout({
       <aside
         style={sidebarStyle}
         className={cn(
-          // desktop: static column (collapses to 0 width when collapsibleDesktop + closed)
-          "shrink-0 md:static md:overflow-y-auto md:border-r md:bg-transparent md:p-0 md:transition-all md:duration-200",
+          // desktop: fixed-width column (issue #53); collapses to 0 when collapsibleDesktop + closed
+          "shrink-0 overflow-x-hidden md:static md:overflow-y-auto md:border-r md:bg-transparent md:p-0 md:transition-all md:duration-200",
           collapsibleDesktop
             ? open
-              ? "md:w-auto md:translate-x-0 md:opacity-100"
+              ? cn(desktopFixedWidthClass, "md:translate-x-0 md:opacity-100")
               : "md:!w-0 md:!max-w-0 md:overflow-hidden md:border-r-0 md:opacity-0"
-            : "md:w-auto md:translate-x-0",
-          // mobile: fixed drawer
+            : cn(desktopFixedWidthClass, "md:translate-x-0"),
+          // mobile: fixed drawer; md+ uses --master-sidebar-width
           "bg-background fixed inset-y-0 left-0 z-50 w-[85vw] max-w-[320px] border-r p-3 shadow-lg transition-transform duration-200",
           open ? "translate-x-0" : "-translate-x-full",
         )}

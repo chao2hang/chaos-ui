@@ -29,6 +29,9 @@ interface FieldNames {
 
 type TreeLabelOverflow = "truncate" | "wrap" | "none";
 
+/** Selection behavior for TreeView (issue #54). */
+type TreeViewSelectionMode = "single" | "multiple";
+
 interface TreeViewProps {
   data: TreeNode[];
   selectedIds?: string[];
@@ -37,6 +40,13 @@ interface TreeViewProps {
   defaultExpandedIds?: string[];
   onSelect?: (ids: string[]) => void;
   onExpand?: (ids: string[]) => void;
+  /**
+   * Selection mode (issue #54).
+   * - `"multiple"` (default): click toggles membership in the set (historical)
+   * - `"single"`: at most one id; re-click clears (master-data filter trees)
+   * / 选择模式；筛选导航树用 single
+   */
+  selectionMode?: TreeViewSelectionMode;
   showCheckbox?: boolean;
   showIcon?: boolean;
   disabled?: boolean;
@@ -228,6 +238,7 @@ function TreeView({
   defaultExpandedIds = [],
   onSelect,
   onExpand,
+  selectionMode = "multiple",
   showCheckbox = false,
   showIcon = true,
   disabled = false,
@@ -239,6 +250,10 @@ function TreeView({
     () => (fieldNames ? normalizeData(data, fieldNames) : (data as TreeNode[])),
     [data, fieldNames],
   );
+
+  // Checkbox trees are multi-select by nature even if selectionMode is omitted.
+  const mode: TreeViewSelectionMode =
+    showCheckbox && selectionMode === "single" ? "multiple" : selectionMode;
 
   const [uncontrolledSelectedIds, setUncontrolledSelectedIds] =
     React.useState<string[]>(defaultSelectedIds);
@@ -266,9 +281,14 @@ function TreeView({
   };
 
   const handleSelect = (id: string) => {
-    const newSelectedIds = selectedIdsSet.has(id)
-      ? selectedIds.filter((i) => i !== id)
-      : [...selectedIds, id];
+    let newSelectedIds: string[];
+    if (mode === "single") {
+      newSelectedIds = selectedIdsSet.has(id) ? [] : [id];
+    } else {
+      newSelectedIds = selectedIdsSet.has(id)
+        ? selectedIds.filter((i) => i !== id)
+        : [...selectedIds, id];
+    }
     setUncontrolledSelectedIds(newSelectedIds);
     onSelect?.(newSelectedIds);
   };
@@ -294,4 +314,9 @@ function TreeView({
 }
 
 export { TreeView };
-export type { TreeNode, TreeViewProps, TreeLabelOverflow };
+export type {
+  TreeNode,
+  TreeViewProps,
+  TreeLabelOverflow,
+  TreeViewSelectionMode,
+};
