@@ -25,7 +25,7 @@ export const Default: Story = {
         description="Welcome to your dashboard"
         actions={
           <Button>
-            <PlusIcon className="size-4 mr-1" /> Add New
+            <PlusIcon className="mr-1 size-4" /> Add New
           </Button>
         }
       />
@@ -34,7 +34,7 @@ export const Default: Story = {
           {Array.from({ length: 4 }).map((_, i) => (
             <Card key={i}>
               <CardContent className="pt-6">
-                <p className="text-sm text-muted-foreground">Content {i + 1}</p>
+                <p className="text-muted-foreground text-sm">Content {i + 1}</p>
               </CardContent>
             </Card>
           ))}
@@ -51,9 +51,35 @@ export const Small: Story = {
       <PageContent>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Settings content goes here.
             </p>
+          </CardContent>
+        </Card>
+      </PageContent>
+    </PageContainer>
+  ),
+};
+
+/** Compact header + content density for document pages (issue #44). */
+export const CompactDensity: Story = {
+  render: () => (
+    <PageContainer>
+      <PageHeader
+        title="Document"
+        description="Compact density stack"
+        size="sm"
+        actions={<Button size="sm">Save</Button>}
+      />
+      <PageContent density="compact">
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-muted-foreground text-sm">Section 1</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-muted-foreground text-sm">Section 2</p>
           </CardContent>
         </Card>
       </PageContent>

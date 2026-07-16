@@ -329,4 +329,96 @@ describe("admin-sider", () => {
     expect(logoSlot).not.toBeNull();
     expect(logoSlot.className.split(/\s+/)).toContain("overflow-hidden");
   });
+
+  const multiGroupMenu: MenuItem[] = [
+    {
+      key: "users",
+      label: "Users",
+      children: [
+        { key: "users-list", label: "All users" },
+        { key: "users-roles", label: "Roles" },
+      ],
+    },
+    {
+      key: "settings",
+      label: "Settings",
+      children: [
+        { key: "settings-general", label: "General" },
+        { key: "settings-security", label: "Security" },
+      ],
+    },
+  ];
+
+  it("menuExpandMode multiple keeps both top-level groups open (issue #43)", () => {
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="multiple"
+        menuItems={multiGroupMenu}
+      />,
+    );
+    fireEvent.click(screen.getByText("Users"));
+    expect(screen.getByText("All users")).toBeDefined();
+    fireEvent.click(screen.getByText("Settings"));
+    expect(screen.getByText("All users")).toBeDefined();
+    expect(screen.getByText("General")).toBeDefined();
+  });
+
+  it("menuExpandMode accordion opens only one top-level group (issue #43)", () => {
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="accordion"
+        menuItems={multiGroupMenu}
+      />,
+    );
+    fireEvent.click(screen.getByText("Users"));
+    expect(screen.getByText("All users")).toBeDefined();
+    fireEvent.click(screen.getByText("Settings"));
+    expect(screen.queryByText("All users")).toBeNull();
+    expect(screen.getByText("General")).toBeDefined();
+  });
+
+  it("accordion deep-link seed keeps only the active top-level branch (issue #43)", () => {
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="accordion"
+        selectedKey="settings-security"
+        menuItems={multiGroupMenu}
+      />,
+    );
+    expect(screen.getByText("Security")).toBeDefined();
+    expect(screen.getByText("General")).toBeDefined();
+    expect(screen.queryByText("All users")).toBeNull();
+  });
+
+  it("accordion allows closing the open top-level group (issue #43)", () => {
+    render(
+      <AdminSider
+        collapsed={false}
+        menuExpandMode="accordion"
+        menuItems={multiGroupMenu}
+      />,
+    );
+    fireEvent.click(screen.getByText("Users"));
+    expect(screen.getByText("All users")).toBeDefined();
+    fireEvent.click(screen.getByText("Users"));
+    expect(screen.queryByText("All users")).toBeNull();
+  });
+
+  it("submenu panel has enter motion classes when expanded (issue #43)", () => {
+    const { container } = render(
+      <AdminSider
+        collapsed={false}
+        menuItems={multiGroupMenu}
+        selectedKey="users-list"
+      />,
+    );
+    const sub = container.querySelector(
+      '[data-slot="admin-sider-submenu"]',
+    ) as HTMLElement;
+    expect(sub).not.toBeNull();
+    expect(sub.className).toMatch(/animate-in|duration-300/);
+  });
 });

@@ -119,6 +119,7 @@ export * from "./multi-select";
 export * from "./notification-center";
 export * from "./order-line-editor";
 export * from "./page-header";
+export * from "./page-chrome";
 export * from "./permission-matrix";
 export * from "./pivot-table";
 export * from "./prompt-dialog";

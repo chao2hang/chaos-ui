@@ -59,10 +59,7 @@ describe("PageHeader", () => {
 
   it("renders explicit actions node", () => {
     render(
-      <PageHeader
-        title="T"
-        actions={<button type="button">Action</button>}
-      />,
+      <PageHeader title="T" actions={<button type="button">Action</button>} />,
     );
     fireEvent.click(screen.getByText("Action"));
     // action rendered
@@ -79,12 +76,37 @@ describe("PageHeader", () => {
     expect(screen.getByText("Save")).toBeDefined();
   });
 
+  it("size default keeps display title classes (issue #44)", () => {
+    const { container } = render(<PageHeader title="Dashboard" />);
+    const root = container.querySelector('[data-slot="page-header"]');
+    expect(root?.getAttribute("data-size")).toBe("default");
+    const h1 = container.querySelector("h1");
+    expect(h1?.className).toMatch(/text-2xl/);
+    expect(h1?.className).toMatch(/font-bold/);
+  });
+
+  it("size sm uses compact title classes (issue #44)", () => {
+    const { container } = render(
+      <PageHeader title="Detail" description="Sub" size="sm" />,
+    );
+    const root = container.querySelector('[data-slot="page-header"]');
+    expect(root?.getAttribute("data-size")).toBe("sm");
+    const h1 = container.querySelector("h1");
+    expect(h1?.className).toMatch(/text-lg/);
+    expect(h1?.className).toMatch(/font-semibold/);
+    expect(screen.getByText("Sub").className).toMatch(/text-sm/);
+  });
+
   it("composes secondaryActions before primaryAction", () => {
     render(
       <PageHeader
         title="T"
         primaryAction={<button type="button">Primary</button>}
-        secondaryActions={[<button type="button" key="s">Secondary</button>]}
+        secondaryActions={[
+          <button type="button" key="s">
+            Secondary
+          </button>,
+        ]}
       />,
     );
     expect(screen.getByText("Primary")).toBeDefined();

@@ -29,11 +29,11 @@ export const WithActions: Story = {
       actions={
         <>
           <Button variant="outline">
-            <DownloadIcon className="size-4 mr-1" />
+            <DownloadIcon className="mr-1 size-4" />
             Export
           </Button>
           <Button>
-            <PlusIcon className="size-4 mr-1" />
+            <PlusIcon className="mr-1 size-4" />
             Add User
           </Button>
         </>
@@ -53,6 +53,18 @@ export const WithBreadcrumb: Story = {
         { label: "John Doe" },
       ]}
       actions={<Button variant="outline">Edit</Button>}
+    />
+  ),
+};
+
+/** Compact title for document/detail pages (issue #44). */
+export const SizeSm: Story = {
+  render: () => (
+    <PageHeader
+      title="Order #1024"
+      description="Bill and line items"
+      size="sm"
+      actions={<Button size="sm">Save</Button>}
     />
   ),
 };

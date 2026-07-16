@@ -105,3 +105,18 @@ export const Empty: Story = {
     logo: <span className="text-sm font-semibold">Chaos</span>,
   },
 };
+
+/**
+ * Top-level accordion: opening one group closes other top-level groups (issue #43).
+ * Nested levels still multi-open. Motion: submenu enter + reduced-motion respect.
+ */
+export const AccordionExpand: Story = {
+  args: {
+    menuItems,
+    menuExpandMode: "accordion",
+    selectedKey: "users-list",
+    onItemClick: noopItem,
+    onCollapse: noop,
+    logo: <span className="text-sm font-semibold">Chaos</span>,
+  },
+};

@@ -80,6 +80,12 @@ interface AdminShellProps extends Omit<
    * / 桌面折叠钮位置；默认顶栏最左
    */
   collapseTrigger?: AdminCollapseTrigger;
+  /**
+   * Top-level menu expand mode for AdminSider (issue #43).
+   * Default `"multiple"`. Pass `"accordion"` for single top-level group open.
+   * / 顶层菜单展开模式；透传 AdminSider
+   */
+  menuExpandMode?: "multiple" | "accordion";
 
   // ── Header ──
   /** Breadcrumb items / 面包屑项 */
@@ -204,6 +210,7 @@ export function AdminShell({
   sidebarWidth = 240,
   collapsedWidth = 64,
   collapseTrigger = "header",
+  menuExpandMode,
 
   // Header
   breadcrumb,
@@ -320,6 +327,7 @@ export function AdminShell({
         mobileOpen={mobileOpen}
         onMobileOpenChange={setMobileOpen}
         {...(linkComponent !== undefined ? { linkComponent } : {})}
+        {...(menuExpandMode !== undefined ? { menuExpandMode } : {})}
       />
 
       {/* Main content area */}

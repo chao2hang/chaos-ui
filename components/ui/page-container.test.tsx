@@ -33,9 +33,7 @@ describe("PageContainer", () => {
   });
 
   it("applies size variants", () => {
-    const { container } = render(
-      <PageContainer size="lg">x</PageContainer>,
-    );
+    const { container } = render(<PageContainer size="lg">x</PageContainer>);
     const el = container.querySelector(
       '[data-slot="page-container"]',
     ) as HTMLElement;
@@ -57,9 +55,7 @@ describe("PageContainer", () => {
 
   it("center=false removes mx-auto", () => {
     const { container } = render(
-      <PageContainer center={false}>
-        x
-      </PageContainer>,
+      <PageContainer center={false}>x</PageContainer>,
     );
     const el = container.querySelector(
       '[data-slot="page-container"]',
@@ -86,9 +82,7 @@ describe("PageContainer", () => {
 
 describe("PageHeader", () => {
   it("renders title and description", () => {
-    render(
-      <PageHeader title="Settings" description="Manage your account" />,
-    );
+    render(<PageHeader title="Settings" description="Manage your account" />);
     expect(screen.getByText("Settings")).toBeDefined();
     expect(screen.getByText("Manage your account")).toBeDefined();
   });
@@ -123,6 +117,44 @@ describe("PageContent", () => {
     expect(
       container.querySelector('[data-slot="page-content"]'),
     ).not.toBeNull();
+  });
+
+  it("density default keeps space-y-6 (issue #44)", () => {
+    const { container } = render(<PageContent>x</PageContent>);
+    const el = container.querySelector('[data-slot="page-content"]');
+    expect(el?.getAttribute("data-density")).toBe("default");
+    expect(el?.className).toMatch(/space-y-6/);
+  });
+
+  it("density compact uses space-y-3 (issue #44)", () => {
+    const { container } = render(
+      <PageContent density="compact">x</PageContent>,
+    );
+    const el = container.querySelector('[data-slot="page-content"]');
+    expect(el?.getAttribute("data-density")).toBe("compact");
+    expect(el?.className).toMatch(/space-y-3/);
+  });
+});
+
+describe("PageHeader size (issue #44)", () => {
+  it("default size keeps text-2xl", () => {
+    const { container } = render(<PageHeader title="Settings" />);
+    expect(
+      container
+        .querySelector('[data-slot="page-header"]')
+        ?.getAttribute("data-size"),
+    ).toBe("default");
+    expect(container.querySelector("h1")?.className).toMatch(/text-2xl/);
+  });
+
+  it("sm size uses text-lg", () => {
+    const { container } = render(<PageHeader title="Settings" size="sm" />);
+    expect(
+      container
+        .querySelector('[data-slot="page-header"]')
+        ?.getAttribute("data-size"),
+    ).toBe("sm");
+    expect(container.querySelector("h1")?.className).toMatch(/text-lg/);
   });
 });
 

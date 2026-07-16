@@ -6,7 +6,6 @@
 
 （空）
 
-
 ## 🔨 工作中
 
 （空）
@@ -20,6 +19,8 @@
 
 ## ✅ 完成
 
+- [PageChrome 密度 + PageHeader size / PageContent density #44](./2026-07-16_PageChrome密度与PageHeader_size_#44_设计计划.md)
+- [AdminSider 手风琴与 Shell 动效 #43](./2026-07-16_AdminSider手风琴与Shell动效_#43_设计计划.md)
 - [TreeTable flush 水平 inset CUI-LIST-03 #27](./2026-07-15_TreeTable_flush水平inset_CUI-LIST-03_设计计划.md)
 - [TreeSelect size 变体 #28](./2026-07-15_TreeSelect_size变体_设计计划.md)
 - [NavigationTabsBar 点击被吞 CUI-TAB-03 #26](./2026-07-15_NavigationTabsBar点击被吞_CUI-TAB-03_设计计划.md)

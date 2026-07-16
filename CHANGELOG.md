@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] — 2026-07-16
+
+### Added
+
+- **business/PageChrome (#44)**: page-type density chrome with `variant="list" | "document" | "overview"`. List hides the in-page title (optional compact actions row); document uses compact header; overview keeps the display header. Composes `PageHeader` + `PageContent` and pairs with `ListPageShell`.
+- **business/PageHeader · ui/PageHeader (#44)**: optional `size="default" | "sm"` (default preserves current `text-2xl` look).
+- **ui/PageContent (#44)**: optional `density="default" | "compact"` (`space-y-6` / `space-y-3`; default unchanged).
+- **layout/AdminSider · AdminShell (#43)**: `menuExpandMode="multiple" | "accordion"` (default `multiple`). Accordion mutually excludes **top-level** groups only; deep-link seed prunes other top-level branches; nested levels still multi-open.
+- **layout/AdminSider (#43)**: submenu enter motion, mobile overlay/drawer enter motion, `prefers-reduced-motion` respect on new transitions.
+
 ## [1.6.3] — 2026-07-15
 
 ### Fixed

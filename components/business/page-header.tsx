@@ -24,6 +24,13 @@ interface PageHeaderProps {
   primaryAction?: React.ReactNode;
   /** Secondary actions (displayed after primary) / 次要操作列表 */
   secondaryActions?: React.ReactNode[];
+  /**
+   * Title density (issue #44).
+   * - `"default"`: display title (`text-2xl`) — current look
+   * - `"sm"`: compact title for document/detail pages
+   * / 标题密度；default 保持现有视觉
+   */
+  size?: "default" | "sm";
   className?: string;
 }
 
@@ -43,20 +50,25 @@ function PageHeader({
   actions,
   primaryAction,
   secondaryActions,
+  size = "default",
   className,
 }: PageHeaderProps) {
   // Compose actions from primaryAction/secondaryActions if no explicit actions
-  const resolvedActions = actions ?? (
-    primaryAction || secondaryActions?.length ? (
+  const resolvedActions =
+    actions ??
+    (primaryAction || secondaryActions?.length ? (
       <div className="flex items-center gap-2">
         {secondaryActions}
         {primaryAction}
       </div>
-    ) : undefined
-  );
+    ) : undefined);
 
   return (
-    <div data-slot="page-header" className={cn("space-y-2", className)}>
+    <div
+      data-slot="page-header"
+      data-size={size}
+      className={cn("space-y-2", className)}
+    >
       {breadcrumbItems && breadcrumbItems.length > 0 && (
         <Breadcrumb>
           <BreadcrumbList>
@@ -80,14 +92,35 @@ function PageHeader({
           </BreadcrumbList>
         </Breadcrumb>
       )}
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+      <div
+        className={cn(
+          "flex justify-between gap-4",
+          size === "sm" ? "items-center" : "items-start",
+        )}
+      >
+        <div className={cn(size === "sm" ? "space-y-0.5" : "space-y-1")}>
+          <h1
+            className={cn(
+              "tracking-tight",
+              size === "sm" ? "text-lg font-semibold" : "text-2xl font-bold",
+            )}
+          >
+            {title}
+          </h1>
           {description && (
-            <p className="text-muted-foreground">{description}</p>
+            <p
+              className={cn(
+                "text-muted-foreground",
+                size === "sm" && "text-sm",
+              )}
+            >
+              {description}
+            </p>
           )}
         </div>
-        {resolvedActions && <div className="flex items-center gap-2">{resolvedActions}</div>}
+        {resolvedActions && (
+          <div className="flex items-center gap-2">{resolvedActions}</div>
+        )}
       </div>
     </div>
   );

@@ -74,6 +74,13 @@ interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   actions?: React.ReactNode;
   breadcrumb?: React.ReactNode;
+  /**
+   * Title density (issue #44).
+   * - `"default"`: display title (`text-2xl`) — current look
+   * - `"sm"`: compact title for document/detail pages
+   * / 标题密度；default 保持现有视觉
+   */
+  size?: "default" | "sm";
 }
 
 /**
@@ -91,20 +98,41 @@ function PageHeader({
   description,
   actions,
   breadcrumb,
+  size = "default",
   ...props
 }: PageHeaderProps) {
   return (
     <div
       data-slot="page-header"
+      data-size={size}
       className={cn("space-y-2", className)}
       {...props}
     >
       {breadcrumb}
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+      <div
+        className={cn(
+          "flex justify-between gap-4",
+          size === "sm" ? "items-center" : "items-start",
+        )}
+      >
+        <div className={cn(size === "sm" ? "space-y-0.5" : "space-y-1")}>
+          <h1
+            className={cn(
+              "tracking-tight",
+              size === "sm" ? "text-lg font-semibold" : "text-2xl font-bold",
+            )}
+          >
+            {title}
+          </h1>
           {description && (
-            <p className="text-muted-foreground">{description}</p>
+            <p
+              className={cn(
+                "text-muted-foreground",
+                size === "sm" && "text-sm",
+              )}
+            >
+              {description}
+            </p>
           )}
         </div>
         {actions && <div className="flex items-center gap-2">{actions}</div>}
@@ -115,6 +143,13 @@ function PageHeader({
 
 interface PageContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  /**
+   * Vertical stack density (issue #44).
+   * - `"default"`: `space-y-6` — current look
+   * - `"compact"`: `space-y-3` for list/document pages
+   * / 内容区间距密度
+   */
+  density?: "default" | "compact";
 }
 
 /**
@@ -129,11 +164,20 @@ interface PageContentProps extends React.HTMLAttributes<HTMLDivElement> {
  *   <Card>Section 2</Card>
  * </PageContent>
  */
-function PageContent({ className, children, ...props }: PageContentProps) {
+function PageContent({
+  className,
+  children,
+  density = "default",
+  ...props
+}: PageContentProps) {
   return (
     <div
       data-slot="page-content"
-      className={cn("space-y-6", className)}
+      data-density={density}
+      className={cn(
+        density === "compact" ? "space-y-3" : "space-y-6",
+        className,
+      )}
       {...props}
     >
       {children}

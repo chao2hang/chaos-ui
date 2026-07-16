@@ -104,6 +104,14 @@ interface AdminSiderProps extends React.ComponentProps<"aside"> {
    * / 自定义链接组件（如 Next.js Link），有 href 的菜单项走此组件
    */
   linkComponent?: AdminSiderLinkComponent;
+  /**
+   * How top-level menu groups expand (issue #43).
+   * - `"multiple"` (default): several top-level groups may stay open
+   * - `"accordion"`: opening one top-level group closes other top-level groups
+   * Nested levels always toggle independently.
+   * / 顶层菜单展开模式；accordion 仅约束 depth === 0
+   */
+  menuExpandMode?: "multiple" | "accordion";
 }
 
 function normalizePathKey(key: string): string {
@@ -199,6 +207,70 @@ function isDescendantSelected(
   );
 }
 
+function collectDescendantKeys(item: MenuItem): string[] {
+  const keys: string[] = [];
+  const walk = (nodes: MenuItem[]) => {
+    for (const node of nodes) {
+      keys.push(node.key);
+      if (node.children?.length) walk(node.children);
+    }
+  };
+  if (item.children?.length) walk(item.children);
+  return keys;
+}
+
+/**
+ * Accordion: keep only one top-level branch open.
+ * Drops other top-level keys and any keys that only belong under them.
+ */
+function pruneToTopLevelBranch(
+  keys: Set<string>,
+  menuItems: MenuItem[],
+  keepTopKey: string | undefined,
+): Set<string> {
+  if (!keepTopKey) {
+    // Drop all top-level keys; leave nested keys that somehow remain (rare)
+    const top = new Set(menuItems.map((m) => m.key));
+    const next = new Set(keys);
+    for (const k of top) next.delete(k);
+    // Also drop descendants of every top-level item
+    for (const item of menuItems) {
+      for (const d of collectDescendantKeys(item)) next.delete(d);
+    }
+    return next;
+  }
+  const keepItem = menuItems.find((m) => m.key === keepTopKey);
+  const allowed = new Set<string>([keepTopKey]);
+  if (keepItem) {
+    for (const d of collectDescendantKeys(keepItem)) allowed.add(d);
+  }
+  // Always allow non-top keys that are under the kept branch only
+  const next = new Set<string>();
+  for (const k of keys) {
+    if (allowed.has(k)) next.add(k);
+  }
+  next.add(keepTopKey);
+  return next;
+}
+
+function seedExpandedKeys(
+  menuItems: MenuItem[],
+  selectedKey: string | undefined,
+  selectedMatch: "exact" | "prefix",
+  menuExpandMode: "multiple" | "accordion",
+): Set<string> {
+  if (!selectedKey) return new Set();
+  const resolved =
+    resolveActiveMenuKey(menuItems, selectedKey, selectedMatch) ?? selectedKey;
+  const ancestors = collectAncestorKeys(menuItems, resolved);
+  if (!ancestors?.length) return new Set();
+  const seeded = new Set(ancestors);
+  if (menuExpandMode === "accordion") {
+    return pruneToTopLevelBranch(seeded, menuItems, ancestors[0]);
+  }
+  return seeded;
+}
+
 function menuLabelText(label: React.ReactNode): string | undefined {
   if (typeof label === "string" || typeof label === "number") {
     return String(label);
@@ -223,6 +295,7 @@ function AdminSider({
   mobileOpen = false,
   onMobileOpenChange,
   linkComponent: LinkComponent,
+  menuExpandMode = "multiple",
   ...props
 }: AdminSiderProps) {
   const showSiderEdgeCollapse =
@@ -237,13 +310,9 @@ function AdminSider({
 
   // Seed expanded ancestors on first paint so deep-link / refresh does not
   // wait for a post-mount effect (CUI-NAV-02).
-  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(() => {
-    if (!rawCurrent) return new Set();
-    const resolved =
-      resolveActiveMenuKey(menuItems, rawCurrent, selectedMatch) ?? rawCurrent;
-    const ancestors = collectAncestorKeys(menuItems, resolved);
-    return new Set(ancestors ?? []);
-  });
+  const [expandedKeys, setExpandedKeys] = React.useState<Set<string>>(() =>
+    seedExpandedKeys(menuItems, rawCurrent, selectedMatch, menuExpandMode),
+  );
 
   /** Collapsed parent key whose flyout is open (issue #10). */
   const [flyoutKey, setFlyoutKey] = React.useState<string | null>(null);
@@ -256,17 +325,27 @@ function AdminSider({
     const ancestors = collectAncestorKeys(menuItems, target);
     if (!ancestors?.length) return;
     setExpandedKeys((prev) => {
+      let next = new Set(prev);
       let changed = false;
-      const next = new Set(prev);
       for (const key of ancestors) {
         if (!next.has(key)) {
           next.add(key);
           changed = true;
         }
       }
+      if (menuExpandMode === "accordion") {
+        const pruned = pruneToTopLevelBranch(next, menuItems, ancestors[0]);
+        if (
+          pruned.size !== next.size ||
+          [...pruned].some((k) => !next.has(k))
+        ) {
+          next = pruned;
+          changed = true;
+        }
+      }
       return changed ? next : prev;
     });
-  }, [activeMenuKey, rawCurrent, menuItems]);
+  }, [activeMenuKey, rawCurrent, menuItems, menuExpandMode]);
 
   React.useEffect(() => {
     if (!collapsed) setFlyoutKey(null);
@@ -342,9 +421,19 @@ function AdminSider({
     const labelText = menuLabelText(item.label);
     const toggleExpanded = () => {
       setExpandedKeys((prev) => {
+        if (prev.has(item.key)) {
+          const next = new Set(prev);
+          next.delete(item.key);
+          for (const d of collectDescendantKeys(item)) next.delete(d);
+          return next;
+        }
+        if (menuExpandMode === "accordion" && level === 0) {
+          const next = pruneToTopLevelBranch(prev, menuItems, item.key);
+          next.add(item.key);
+          return next;
+        }
         const next = new Set(prev);
-        if (next.has(item.key)) next.delete(item.key);
-        else next.add(item.key);
+        next.add(item.key);
         return next;
       });
     };
@@ -495,8 +584,14 @@ function AdminSider({
             {content}
           </a>
         )}
+        {/* Mount only when expanded so inactive branches stay out of a11y tree;
+            enter motion via animate-in (issue #43). */}
         {hasChildren && expanded && !collapsed && (
-          <div className="mt-0.5 space-y-0.5">
+          <div
+            data-slot="admin-sider-submenu"
+            data-state="open"
+            className="animate-in fade-in-0 slide-in-from-top-1 mt-0.5 space-y-0.5 duration-300 ease-in-out motion-reduce:animate-none"
+          >
             {item.children!.map((child) => renderMenuItem(child, level + 1))}
           </div>
         )}
@@ -506,22 +601,26 @@ function AdminSider({
 
   return (
     <>
-      {/* Mobile overlay */}
-      {mobileOpen && (
+      {/* Mobile overlay — mounted when open; fade via animate-in (issue #43) */}
+      {mobileOpen ? (
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          data-slot="admin-sider-overlay"
+          data-state="open"
+          className="animate-in fade-in-0 fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ease-in-out motion-reduce:animate-none motion-reduce:transition-none lg:hidden"
           onClick={() => onMobileOpenChange?.(false)}
         />
-      )}
+      ) : null}
       <aside
         data-slot="admin-sider"
+        data-mobile-open={mobileOpen ? "true" : "false"}
         className={cn(
           // relative is required for the collapse control (absolute -right-3).
           // Never use lg:static here — it cancels relative and reintroduces CUI-LAYOUT-02.
           // #18: transition width only (+ ease); overflow-x clips label during animate
+          // #43: mobile drawer uses slide-in when open (hidden when closed on small screens)
           "border-border bg-background relative flex flex-col overflow-x-hidden overflow-y-visible border-r transition-[width] duration-300 ease-in-out motion-reduce:transition-none",
           mobileOpen
-            ? "fixed inset-y-0 left-0 z-50 lg:relative lg:inset-auto lg:z-auto"
+            ? "animate-in slide-in-from-left-2 fade-in-0 fixed inset-y-0 left-0 z-50 duration-300 motion-reduce:animate-none lg:relative lg:inset-auto lg:z-auto lg:animate-none"
             : "hidden lg:flex",
           className,
         )}
