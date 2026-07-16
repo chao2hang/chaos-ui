@@ -4,19 +4,13 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
   Button,
-  Input,
-  Separator,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui";
-import {
-  PlusIcon,
-  RefreshCwIcon,
-  SearchIcon,
-  XIcon,
-} from "@/components/ui/icons";
+import { PlusIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { OrgTree, type OrgTreeNode } from "@/components/ui/org-tree";
 
 /**
  * Tree node for OrgAdminPage (issue #49).
@@ -74,6 +68,12 @@ export interface OrgAdminPageProps {
   className?: string;
 }
 
+type OrgAdminMeta = {
+  badges?: React.ReactNode;
+  count?: number;
+  readOnly?: boolean;
+};
+
 function flattenOrg(nodes: OrgAdminTreeNode[]): OrgAdminTreeNode[] {
   const out: OrgAdminTreeNode[] = [];
   const walk = (list: OrgAdminTreeNode[]) => {
@@ -86,124 +86,50 @@ function flattenOrg(nodes: OrgAdminTreeNode[]): OrgAdminTreeNode[] {
   return out;
 }
 
-function filterOrgTree(
-  nodes: OrgAdminTreeNode[],
-  q: string,
-): OrgAdminTreeNode[] {
-  const needle = q.trim().toLowerCase();
-  if (!needle) return nodes;
-  const walk = (list: OrgAdminTreeNode[]): OrgAdminTreeNode[] => {
-    const out: OrgAdminTreeNode[] = [];
-    for (const n of list) {
-      const kids = n.children?.length ? walk(n.children) : [];
-      if (n.label.toLowerCase().includes(needle) || kids.length > 0) {
-        const next: OrgAdminTreeNode = { ...n };
-        if (kids.length > 0) next.children = kids;
-        out.push(next);
-      }
+/** Map domain nodes → OrgTreeNode (chrome lives in meta + renderNode). */
+function toOrgTreeData(nodes: OrgAdminTreeNode[]): OrgTreeNode[] {
+  return nodes.map((n) => {
+    const meta: OrgAdminMeta = {};
+    if (n.badges !== undefined) meta.badges = n.badges;
+    if (typeof n.count === "number") meta.count = n.count;
+    if (n.readOnly) meta.readOnly = true;
+    const next: OrgTreeNode = {
+      id: n.id,
+      label: n.label,
+      ...(n.disabled ? { disabled: true } : {}),
+      ...(Object.keys(meta).length > 0 ? { meta } : {}),
+    };
+    if (n.children?.length) {
+      next.children = toOrgTreeData(n.children);
     }
-    return out;
-  };
-  return walk(nodes);
+    return next;
+  });
 }
 
-function OrgTreeRow({
-  node,
-  level,
-  selectedId,
-  expandedIds,
-  onToggle,
-  onSelect,
-}: {
-  node: OrgAdminTreeNode;
-  level: number;
-  selectedId: string | undefined;
-  expandedIds: Set<string>;
-  onToggle: (id: string) => void;
-  onSelect: (id: string) => void;
-}) {
-  const hasChildren = !!node.children?.length;
-  const isExpanded = expandedIds.has(node.id);
-  const isSelected = selectedId === node.id;
-  const isDisabled = !!node.disabled;
+function collectExpandableRootIds(nodes: OrgAdminTreeNode[]): string[] {
+  return nodes.filter((n) => !!n.children?.length).map((n) => n.id);
+}
 
+function renderOrgAdminNode(node: OrgTreeNode) {
+  const meta = (node.meta ?? {}) as OrgAdminMeta;
   return (
-    <li role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
-      <div
-        role="button"
-        tabIndex={isDisabled ? -1 : 0}
-        data-slot="org-admin-tree-item"
-        data-selected={isSelected ? "true" : undefined}
-        data-readonly={node.readOnly ? "true" : undefined}
-        className={cn(
-          "hover:bg-muted flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-sm transition-colors",
-          isSelected && "bg-muted font-medium",
-          isDisabled && "pointer-events-none opacity-50",
-        )}
-        style={{ paddingLeft: `${level * 12 + 8}px` }}
-        onClick={() => !isDisabled && onSelect(node.id)}
-        onKeyDown={(e) => {
-          if (isDisabled) return;
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onSelect(node.id);
-          } else if (e.key === "ArrowRight" && hasChildren && !isExpanded) {
-            e.preventDefault();
-            onToggle(node.id);
-          } else if (e.key === "ArrowLeft" && hasChildren && isExpanded) {
-            e.preventDefault();
-            onToggle(node.id);
-          }
-        }}
-      >
-        {hasChildren ? (
-          <button
-            type="button"
-            className="text-muted-foreground hover:bg-background inline-flex size-5 shrink-0 items-center justify-center rounded text-xs"
-            aria-label={isExpanded ? "Collapse" : "Expand"}
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggle(node.id);
-            }}
-          >
-            {isExpanded ? "▼" : "▶"}
-          </button>
-        ) : (
-          <span className="inline-flex size-5 shrink-0" />
-        )}
-        <span className="min-w-0 flex-1 truncate">{node.label}</span>
-        {typeof node.count === "number" && (
-          <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
-            {node.count}
-          </span>
-        )}
-        {node.badges ? (
-          <span className="flex shrink-0 items-center gap-1">
-            {node.badges}
-          </span>
-        ) : null}
-        {node.readOnly ? (
-          <span className="text-muted-foreground shrink-0 text-[10px]">
-            只读
-          </span>
-        ) : null}
-      </div>
-      {hasChildren && isExpanded && (
-        <ul role="group" className="m-0 list-none p-0">
-          {node.children!.map((child) => (
-            <OrgTreeRow
-              key={child.id}
-              node={child}
-              level={level + 1}
-              selectedId={selectedId}
-              expandedIds={expandedIds}
-              onToggle={onToggle}
-              onSelect={onSelect}
-            />
-          ))}
-        </ul>
-      )}
-    </li>
+    <span
+      data-slot="org-admin-tree-item"
+      className="flex min-w-0 items-center gap-1"
+    >
+      <span className="min-w-0 flex-1 truncate text-sm">{node.label}</span>
+      {typeof meta.count === "number" ? (
+        <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
+          {meta.count}
+        </span>
+      ) : null}
+      {meta.badges ? (
+        <span className="flex shrink-0 items-center gap-1">{meta.badges}</span>
+      ) : null}
+      {meta.readOnly ? (
+        <span className="text-muted-foreground shrink-0 text-[10px]">只读</span>
+      ) : null}
+    </span>
   );
 }
 
@@ -211,9 +137,9 @@ function OrgTreeRow({
  * @component OrgAdminPage
  * @category business/org
  * @since 1.8.0
- * @description Organization admin workbench: left org tree + right summary/tabs.
+ * @description Organization admin workbench: left org tree (`OrgTree`) + right summary/tabs.
  * For category CRUD use TreeCrudPage; for huge lazy geo trees use TreeTable + onExpandRow.
- * / 组织管理台：左树 + 右摘要/Tabs。分类 CRUD 用 TreeCrudPage；超大字典懒加载表用 TreeTable。
+ * / 组织管理台：左树组合 OrgTree + 右摘要/Tabs。分类 CRUD 用 TreeCrudPage；超大字典懒加载表用 TreeTable。
  * @keywords org, department, tree, workbench, admin, hr
  * @example
  * <OrgAdminPage
@@ -254,42 +180,26 @@ function OrgAdminPage({
     ? controlledSelectedId
     : internalSelected;
 
-  const [query, setQuery] = React.useState("");
-  const [expandedIds, setExpandedIds] = React.useState<Set<string>>(() => {
-    const out = new Set<string>();
-    for (const n of treeData) if (n.children?.length) out.add(n.id);
-    return out;
-  });
-
-  const filtered = React.useMemo(
-    () => filterOrgTree(treeData, query),
-    [treeData, query],
-  );
-  const flat = React.useMemo(() => flattenOrg(filtered), [filtered]);
+  const flat = React.useMemo(() => flattenOrg(treeData), [treeData]);
   const selectedNode = flat.find((n) => n.id === selectedId);
 
-  const effectiveExpanded = query.trim()
-    ? new Set(flat.map((n) => n.id))
-    : expandedIds;
+  const orgTreeData = React.useMemo(() => toOrgTreeData(treeData), [treeData]);
+  const defaultExpandedKeys = React.useMemo(
+    () => collectExpandableRootIds(treeData),
+    [treeData],
+  );
 
   const firstTabKey = tabs?.[0]?.key;
   const defaultTab = defaultTabKey ?? firstTabKey;
   const [internalTab, setInternalTab] = React.useState(defaultTab);
   const activeTab = controlledTabKey ?? internalTab ?? defaultTab;
 
-  const handleSelect = (id: string) => {
+  const handleTreeSelect = (keys: string[]) => {
+    const id = keys[0];
+    if (!id) return;
     if (!isControlledSelected) setInternalSelected(id);
     const node = flat.find((n) => n.id === id);
     onSelect?.(id, node);
-  };
-
-  const handleToggle = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
   };
 
   return (
@@ -329,59 +239,35 @@ function OrgAdminPage({
       </div>
 
       <div className="flex min-h-0 flex-1 gap-3">
-        {/* Left tree */}
+        {/* Left tree — composed OrgTree (no parallel OrgTreeRow) */}
         <aside
           data-slot="org-admin-sidebar"
           className="border-border bg-card flex shrink-0 flex-col gap-2 rounded-lg border p-2"
           style={{ width: sidebarWidth }}
           aria-label="组织树"
         >
-          <div className="relative">
-            <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
-            <Input
-              size="sm"
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={treeSearchPlaceholder}
-              aria-label={treeSearchPlaceholder}
-              className="pr-8 pl-8"
-            />
-            {query ? (
-              <button
-                type="button"
-                aria-label="清除搜索"
-                className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
-                onClick={() => setQuery("")}
-              >
-                <XIcon className="size-4" />
-              </button>
-            ) : null}
-          </div>
-          <Separator />
           <div className="min-h-0 flex-1 overflow-auto">
             {treeLoading ? (
               <p className="text-muted-foreground py-6 text-center text-sm">
                 加载中…
               </p>
-            ) : filtered.length === 0 ? (
+            ) : treeData.length === 0 ? (
               <p className="text-muted-foreground py-6 text-center text-sm">
                 {emptyTree}
               </p>
             ) : (
-              <ul role="tree" aria-label="组织" className="m-0 list-none p-0">
-                {filtered.map((node) => (
-                  <OrgTreeRow
-                    key={node.id}
-                    node={node}
-                    level={0}
-                    selectedId={selectedId}
-                    expandedIds={effectiveExpanded}
-                    onToggle={handleToggle}
-                    onSelect={handleSelect}
-                  />
-                ))}
-              </ul>
+              <OrgTree
+                data={orgTreeData}
+                selectable="single"
+                searchable
+                searchPlaceholder={treeSearchPlaceholder}
+                selectedKeys={selectedId ? [selectedId] : []}
+                defaultExpandedKeys={defaultExpandedKeys}
+                showLine={false}
+                onSelect={handleTreeSelect}
+                renderNode={renderOrgAdminNode}
+                className="min-h-0"
+              />
             )}
           </div>
         </aside>

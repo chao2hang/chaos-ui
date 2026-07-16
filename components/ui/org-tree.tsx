@@ -326,12 +326,13 @@ function OrgTree({
       {/* Search */}
       {searchable && (
         <div className="relative mb-2">
-          <SearchIcon className="text-muted-foreground absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
+          <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
           <input
-            type="text"
+            type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={searchPlaceholder}
+            aria-label={searchPlaceholder}
             className={cn(
               "border-input h-8 w-full rounded-lg border bg-transparent pr-8 pl-8",
               "text-sm transition-colors outline-none",
@@ -342,6 +343,7 @@ function OrgTree({
           {searchQuery && (
             <button
               type="button"
+              aria-label="清除搜索"
               onClick={() => setSearchQuery("")}
               className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
             >
@@ -416,6 +418,7 @@ function OrgTree({
                 <button
                   type="button"
                   tabIndex={-1}
+                  aria-label={isExpanded ? "Collapse" : "Expand"}
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleExpand(node.id);

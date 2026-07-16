@@ -50,6 +50,48 @@ Use native search such as `rg` for literal text queries, comments, docs, and exa
 - Do not hardcode secrets, credentials, or production-only URLs.
 - Before finishing significant changes, run the narrowest reliable verification first, then broader checks when feasible.
 
+## Component Reuse Protocol（防 AI / 人重复造轮子）
+
+组件库很大时，默认失败模式是**未检索就新建近似组件**。实现任何 UI 前遵守本节；选型细节见 [`docs/component-decision-table.md`](./docs/component-decision-table.md)。
+
+### 分层
+
+| 层         | 路径                  | 规则                                         |
+| ---------- | --------------------- | -------------------------------------------- |
+| ui         | `components/ui`       | 无业务假设；可长期稳定                       |
+| business   | `components/business` | 领域约定明确；可版本化、可弃用               |
+| layout     | `components/layout`   | 壳 / 导航 / 页框；不承载表格业务逻辑         |
+| app / demo | 应用或 Story          | 一次性拼装；禁止复制库内实现改名后当公共 API |
+
+### 实现前 4 步（强制）
+
+1. **查选型表**：`docs/component-decision-table.md` 按场景匹配「用这个 / 不要做」。
+2. **搜现有实现**：`rg` / CodeGraph 搜组件名、`@component`、近义词（table/tree/browse/dict/shell…）。
+3. **抄 Story**：打开 `src/stories/**` 对应故事，按 Story 的用法改数据与回调，不要凭记忆编 props。
+4. **无匹配时**：优先用现有 ui + business **组合**。只有需要**新公共 API** 时 → 先写 `designs/` 计划（见 Design Workflow）→ 再实现 → 更新选型表一行。
+
+### 硬禁止
+
+- 未做检索就在 `components/ui` 或 `components/business` 新增与现有近名/同职责组件。
+- 新代码使用已 `@deprecated` 的公共件（例如 `AdvancedDataTable`；优先 `SearchTable` / `DataTable` / `ProTable`）。
+- 在 ui 层写入路由、具体后端 path、业务实体 ID 语义。
+- 可复用组件内硬编码中文/英文字符串（走 i18n 资源）。
+- 用大量布尔 props 扩展公共 API 而不开 designs。
+- `git add .` 或顺手改无关组件「顺便重构」。
+
+### 新公共组件 DoD
+
+- [ ] `designs/` 计划已批准可开发（或任务明确为文档-only 小补丁）
+- [ ] 选型表已更新（新增/弃用行）
+- [ ] Named export；需要时挂上对应 barrel（如 `components/business/index.ts`）
+- [ ] Story + autodocs；关键路径测试
+- [ ] i18n 按库约定补齐
+- [ ] 验收命令：窄测 → `npx tsc --noEmit` / `npm run lint`（按改动面）
+
+### 评审时只抓一类问题（优先）
+
+重复封装、API 分叉、弃用件新用、未更新选型表/Story。其它风格问题次之。
+
 ## Verification Commands
 
 - `npm run dev` starts the docs site (Next.js) on port `3001`.

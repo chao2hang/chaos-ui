@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] — 2026-07-16
+
+### Changed
+
+- **business/OrgAdminPage**: left tree composes **`OrgTree`** (search / select / expand) instead of a parallel `OrgTreeRow`; `count` / `badges` / `readOnly` via `meta` + `renderNode`. Public `OrgAdminPageProps` unchanged.
+- **ui/OrgTree**: search input `type="search"` + `aria-label`; expand/clear controls labeled for a11y (shared by OrgAdminPage).
+
+### Docs
+
+- **Component Reuse Protocol** in `AGENTS.md`; decision table `docs/component-decision-table.md` (table ladder, Browse vs Picker, org trio, anti-duplication).
+- designs template: mandatory “existing component search”; designs plan for reuse convergence + picker/table backlog.
+- Storybook intro (zh/en): recommend SearchTable / ProTable / TreeTable; mark `AdvancedDataTable` deprecated for new work.
+
 ## [1.8.0] — 2026-07-16
 
 ### Added
