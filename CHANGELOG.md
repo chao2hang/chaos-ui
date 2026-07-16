@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] — 2026-07-17
+
 ### Added
 
 - **ui/RowActionsMenu (#52)**: click-triggered row actions menu for list/table action columns (default link/sm「操作」); composes DropdownMenu; shares `RowMenuItem` (+ optional `onClick`).
