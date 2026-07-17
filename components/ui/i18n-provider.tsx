@@ -164,24 +164,32 @@ function useSafeTranslation(
   // If i18next hasn't been initialized, return a silent fallback.
   // This prevents the "You will need to pass in an i18next instance" warning
   // from escalating to an error in strict environments.
+  const withDefaultValue = (
+    key: string,
+    defaultValueOrOptions?: string | Record<string, unknown>,
+    translated?: string,
+  ): string => {
+    // When the key is missing, i18next returns the key itself — honor defaultValue.
+    if (translated && translated !== key) return translated;
+    if (typeof defaultValueOrOptions === "string") return defaultValueOrOptions;
+    if (
+      defaultValueOrOptions &&
+      typeof defaultValueOrOptions === "object" &&
+      "defaultValue" in defaultValueOrOptions
+    ) {
+      return String(
+        (defaultValueOrOptions as { defaultValue: unknown }).defaultValue,
+      );
+    }
+    return translated ?? key;
+  };
+
   if (!i18next.isInitialized) {
     return {
       t: ((
         key: string,
         defaultValueOrOptions?: string | Record<string, unknown>,
-      ) => {
-        if (typeof defaultValueOrOptions === "string")
-          return defaultValueOrOptions;
-        if (
-          defaultValueOrOptions &&
-          typeof defaultValueOrOptions === "object" &&
-          "defaultValue" in defaultValueOrOptions
-        ) {
-          return (defaultValueOrOptions as { defaultValue: string })
-            .defaultValue;
-        }
-        return key;
-      }) as SafeTFunction,
+      ) => withDefaultValue(key, defaultValueOrOptions)) as SafeTFunction,
       i18n: {
         language: "zh-CN",
         changeLanguage: noop,
@@ -191,7 +199,29 @@ function useSafeTranslation(
     };
   }
 
-  return result as unknown as SafeTranslationResult;
+  // Wrap so missing keys with `defaultValue` still render the default in tests
+  // and partial resource packs.
+  const originalT = result.t as (
+    key: string,
+    options?: string | Record<string, unknown>,
+  ) => string;
+  return {
+    ...(result as unknown as SafeTranslationResult),
+    t: ((
+      key: string,
+      defaultValueOrOptions?: string | Record<string, unknown>,
+    ) => {
+      try {
+        const translated = originalT(
+          key,
+          defaultValueOrOptions as never,
+        ) as string;
+        return withDefaultValue(key, defaultValueOrOptions, translated);
+      } catch {
+        return withDefaultValue(key, defaultValueOrOptions);
+      }
+    }) as SafeTFunction,
+  };
 }
 
 export { I18nProvider, I18nContext, useI18n, useSafeTranslation };

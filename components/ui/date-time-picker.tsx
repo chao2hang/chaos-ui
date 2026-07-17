@@ -1,4 +1,5 @@
 "use client";
+// native-select-exception: compact hour/minute stepper inside popover footer
 
 import * as React from "react";
 import { CalendarIcon } from "lucide-react";

@@ -562,11 +562,6 @@ function ItemFromConfig({
         {!ctx.inlineCollapsed && (
           <span className="flex-1 truncate">{config.label}</span>
         )}
-        {ctx.inlineCollapsed && (
-          <span className="sr-only">
-            {typeof config.label === "string" ? config.label : config.key}
-          </span>
-        )}
       </button>
     </li>
   );

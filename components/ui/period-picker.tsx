@@ -1,4 +1,5 @@
 "use client";
+// native-select-exception: compact year/period index selects inside popover
 
 import * as React from "react";
 import { CalendarIcon } from "lucide-react";
