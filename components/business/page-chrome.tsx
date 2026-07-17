@@ -34,7 +34,9 @@ interface PageChromeProps {
   /** Only `overview`; ignored otherwise */
   description?: string;
   /**
-   * list: compact action row (no h1)
+   * list: optional **page-level** compact action row (no h1).
+   * **Do not** put CRUD 刷新/新增 here (#58) — use `ListPageShell` toolbar
+   * on the same row as FilterBar instead. Prefer leaving list `actions` empty.
    * overview: PageHeader actions
    * form / detail / document: ignored (detail uses `identity`)
    */
@@ -64,11 +66,14 @@ function resolveVariant(
  * @description Page-level density chrome. list / form / detail hide in-page title
  * (shell breadcrumb + tabs locate the page). overview keeps display header.
  * `document` is a deprecated alias of `form` (#55).
- * / 页级密度壳：list/form/detail 不渲染页内大标题；overview 展示型头；document 弃用别名 form。
+ * List CRUD actions: put on `ListPageShell` toolbar (same row as filter), **not** `actions` (#58).
+ * / 页级密度壳：list/form/detail 不渲染页内大标题；列表主操作走 ListPageShell 同行 toolbar。
  * @keywords page, chrome, density, list, form, detail, document, overview, header, identity
  * @example
- * <PageChrome variant="list" actions={<Button size="sm">新增</Button>}>
- *   <ListPageShell>...</ListPageShell>
+ * <PageChrome variant="list">
+ *   <ListPageShell filterFields={fields} onSearch={...} toolbar={<Button size="sm">新增</Button>}>
+ *     <SearchTable ... />
+ *   </ListPageShell>
  * </PageChrome>
  * <PageChrome variant="detail" identity={<><span>SO-001</span><Badge>已审</Badge></>}>
  *   ...

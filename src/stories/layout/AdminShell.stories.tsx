@@ -6,12 +6,11 @@ import {
   UsersIcon,
   FileTextIcon,
   PackageIcon,
-  PlusIcon,
 } from "@/components/ui/icons";
 import { AdminShell } from "@/components/layout/admin-shell";
 import { PageChrome } from "@/components/business/page-chrome";
+import { ListPageShell } from "@/components/business/list-page-shell";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 const meta: Meta<typeof AdminShell> = {
   title: "Layouts/AdminShell",
@@ -122,14 +121,14 @@ export const FullAdminShell: Story = {
   },
 };
 
-/** Multi-tabs + PageChrome list — tabs sit close to list actions (#57). */
+/** Multi-tabs + list: shell gutter (#57) + filter/toolbar same row (#58). */
 export const TabsWithListChrome: Story = {
-  name: "Tabs + PageChrome list (gutter)",
+  name: "Tabs + list (gutter + inline toolbar)",
   parameters: {
     docs: {
       description: {
         story:
-          "Default `contentPadding={true}` with tabs uses `px-4 pt-2 pb-4`. PageChrome list actions are the first content row — no extra isotropic `p-6` wrapper.",
+          "Tabs → content uses default `pt-2` (#57). CRUD actions sit on `ListPageShell` toolbar **beside** FilterBar (#58) — not `PageChrome.actions`.",
       },
     },
   },
@@ -145,23 +144,30 @@ export const TabsWithListChrome: Story = {
     activeTabKey: "dict",
     breadcrumb: [{ label: "基础数据" }, { label: "字典管理" }],
     children: (
-      <PageChrome
-        variant="list"
-        actions={
-          <Button size="sm">
-            <PlusIcon className="mr-1 size-4" />
-            新增
-          </Button>
-        }
-      >
-        <Card>
-          <CardContent className="pt-4">
-            <p className="text-muted-foreground text-sm">
-              Table / SearchTable — distance from tab bar bottom to actions is
-              shell top gutter (~8px) only.
-            </p>
-          </CardContent>
-        </Card>
+      <PageChrome variant="list">
+        <ListPageShell
+          filterFields={[
+            {
+              key: "keyword",
+              label: "关键词",
+              type: "input",
+              placeholder: "编码 / 名称",
+            },
+          ]}
+          onSearch={() => {}}
+          toolbar={
+            <>
+              <Button variant="outline" size="sm">
+                刷新
+              </Button>
+              <Button size="sm">新增</Button>
+            </>
+          }
+        >
+          <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
+            SearchTable — no full-width empty actions strip.
+          </div>
+        </ListPageShell>
       </PageChrome>
     ),
   },

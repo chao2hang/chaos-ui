@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] — 2026-07-17
+
+### Added
+
+- **business/ListPageShell (#58)**: `toolbarPlacement?: "end-of-filter-row" | "below-filter"`. Default **`end-of-filter-row`** puts FilterBar and primary actions on one flex row (no full-width empty strip). Use `below-filter` for the previous stacked layout.
+- Storybook: PageChrome list recommended vs **Do Not** (`actions` strip); AdminShell tabs + inline toolbar demo.
+
+### Changed
+
+- **business/PageChrome (#58)**: docs/JSDoc — list CRUD 刷新/新增 belong on `ListPageShell.toolbar`, not `PageChrome.actions`.
+- **docs**: decision table — list filter + actions same-row guidance.
+
 ## [1.11.0] — 2026-07-17
 
 ### Added

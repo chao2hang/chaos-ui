@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Page-type density chrome (#44 / #55). `list` / `form` / `detail` hide in-page title (locate via shell breadcrumb/tabs). `overview` keeps display header. `document` is a deprecated alias of `form`.",
+          "Page-type density chrome (#44 / #55 / #58). `list` / `form` / `detail` hide in-page title. List CRUD: put 刷新/新增 on `ListPageShell` toolbar (same row as filter) — **not** `PageChrome.actions`. `document` is a deprecated alias of `form`.",
       },
     },
   },
@@ -44,29 +44,68 @@ export const Overview: Story = {
   },
 };
 
+/** Recommended list: no PageChrome.actions; toolbar beside FilterBar (#58). */
 export const List: Story = {
+  name: "List (recommended)",
+  args: {
+    variant: "list",
+    children: (
+      <ListPageShell
+        filterFields={[
+          {
+            key: "keyword",
+            label: "关键词",
+            type: "input",
+            placeholder: "姓名 / 工号",
+          },
+        ]}
+        onSearch={() => {}}
+        toolbar={
+          <>
+            <Button variant="outline" size="sm">
+              <RefreshCwIcon className="mr-1 size-4" />
+              刷新
+            </Button>
+            <Button size="sm">
+              <PlusIcon className="mr-1 size-4" />
+              新增
+            </Button>
+          </>
+        }
+      >
+        <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
+          SearchTable / data grid — filter and actions share one row.
+        </div>
+      </ListPageShell>
+    ),
+  },
+};
+
+/** Anti-pattern: full-width justify-end strip under tabs (#58). */
+export const ListActionsAntiPattern: Story = {
+  name: "List + actions (Do Not)",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "**Do not** put CRUD 刷新/新增 on `PageChrome.actions` — creates a full-width empty strip. Use `ListPageShell` toolbar instead.",
+      },
+    },
+  },
   args: {
     variant: "list",
     actions: (
       <>
         <Button variant="outline" size="sm">
-          <RefreshCwIcon className="mr-1 size-4" />
           刷新
         </Button>
-        <Button size="sm">
-          <PlusIcon className="mr-1 size-4" />
-          新增
-        </Button>
+        <Button size="sm">新增</Button>
       </>
     ),
     children: (
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-muted-foreground text-sm">
-            List body (table) — no in-page h1.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
+        Anti-pattern demo only.
+      </div>
     ),
   },
 };
@@ -143,43 +182,37 @@ export const Document: Story = {
 };
 
 export const ListWithShell: Story = {
-  name: "List + ListPageShell",
+  name: "List + ListPageShell (inline toolbar)",
   args: {
     variant: "list",
-    actions: (
-      <Button size="sm">
-        <PlusIcon className="mr-1 size-4" />
-        新增员工
-      </Button>
-    ),
     children: (
-      <Card>
-        <CardContent className="p-0">
-          <div className="p-4">
-            <ListPageShell
-              filterFields={[
-                {
-                  key: "keyword",
-                  label: "关键词",
-                  type: "input",
-                  placeholder: "姓名 / 工号",
-                },
-              ]}
-              onSearch={() => {}}
-              extra={<span className="text-sm">共 128 条</span>}
-              toolbar={
-                <Button variant="outline" size="sm">
-                  导出
-                </Button>
-              }
-            >
-              <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
-                SearchTable / data grid
-              </div>
-            </ListPageShell>
-          </div>
-        </CardContent>
-      </Card>
+      <ListPageShell
+        filterFields={[
+          {
+            key: "keyword",
+            label: "关键词",
+            type: "input",
+            placeholder: "姓名 / 工号",
+          },
+        ]}
+        onSearch={() => {}}
+        extra={<span className="text-sm">共 128 条</span>}
+        toolbar={
+          <>
+            <Button variant="outline" size="sm">
+              导出
+            </Button>
+            <Button size="sm">
+              <PlusIcon className="mr-1 size-4" />
+              新增员工
+            </Button>
+          </>
+        }
+      >
+        <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
+          SearchTable / data grid
+        </div>
+      </ListPageShell>
     ),
   },
 };
