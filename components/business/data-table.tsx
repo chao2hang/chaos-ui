@@ -19,6 +19,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 
 /**
@@ -62,12 +63,15 @@ function DataTable<T = Record<string, unknown>>({
   dataSource = [] as T[],
   rowKey = "id" as keyof T & string,
   loading = false,
-  emptyText = "No data",
+  emptyText,
   size = "md",
   sortable = false,
   expandable,
   className,
 }: DataTableProps<T>) {
+  const { t } = useTranslation("ui");
+  const resolvedEmptyText =
+    emptyText ?? t("table.empty", { defaultValue: "暂无数据" });
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
 
@@ -184,7 +188,7 @@ function DataTable<T = Record<string, unknown>>({
                     colSpan={columns.length + (expandable ? 1 : 0)}
                     className="text-muted-foreground py-12 text-center"
                   >
-                    {emptyText}
+                    {resolvedEmptyText}
                   </TableCell>
                 </TableRow>
               ) : (

@@ -180,7 +180,10 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
   const message = useMessage();
   const isEdit = editing !== null;
 
+  const fetchSeqRef = React.useRef(0);
+
   const fetchData = React.useCallback(async () => {
+    const seq = ++fetchSeqRef.current;
     setLoading(true);
     try {
       const result = await fetcher(
@@ -188,10 +191,12 @@ function useCrud<T extends Record<string, unknown>, F = Partial<T>>(
         pagination.pageSize,
         filters,
       );
+      // Ignore stale responses when page/filters change mid-flight.
+      if (seq !== fetchSeqRef.current) return;
       setData(result.list);
       setTotal(result.total);
     } finally {
-      setLoading(false);
+      if (seq === fetchSeqRef.current) setLoading(false);
     }
   }, [fetcher, pagination.page, pagination.pageSize, filters]);
 

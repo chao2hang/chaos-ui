@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.1] — 2026-07-18
+
+### Fixed — 审计整改后续补丁
+
+- **hooks/useAsync**: 并发 `run` 仅应用最新结果，避免慢请求覆盖新数据。
+- **hooks/useCrud**: fetch 序号忽略过期响应。
+- **SearchTable / DataTable**: empty 文案走 i18n `table.empty`（默认「暂无数据」）。
+- **date-presets**: 补单测；本周起点与 `lib/date` 周一一致。
+- **depcruise**: 增加 layout↛business、business↛mobile 为 **warn**（已知 barrel/admin-shell 待收敛）。
+- **COMPONENT_INDEX**: 标注 1.14+ Ecology 组件。
+
 ## [1.15.0] — 2026-07-18
 
 ### Fixed — 全项目多角色审计整改

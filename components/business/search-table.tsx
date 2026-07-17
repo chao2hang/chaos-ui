@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui";
 import { Skeleton } from "@/components/ui";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 interface ColumnDef<T = Record<string, unknown>> {
   key: string;
@@ -86,10 +87,13 @@ function SearchTable<
   rowKey = "id",
   loading = false,
   pagination,
-  emptyText = "暂无数据",
+  emptyText,
   onRow,
   className,
 }: SearchTableProps<T>) {
+  const { t } = useTranslation("ui");
+  const resolvedEmptyText =
+    emptyText ?? t("table.empty", { defaultValue: "暂无数据" });
   const alignClass: Record<string, string> = {
     left: "text-left",
     center: "text-center",
@@ -149,7 +153,7 @@ function SearchTable<
                     colSpan={columns.length}
                     className="text-muted-foreground py-12 text-center"
                   >
-                    {emptyText}
+                    {resolvedEmptyText}
                   </TableCell>
                 </TableRow>
               ) : (

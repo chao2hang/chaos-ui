@@ -61,6 +61,33 @@ module.exports = {
         path: "^components/layout/",
       },
     },
+    // Layer hygiene (warn until remaining known facades are unpicked):
+    // - layout/admin-shell still composes business UserMenu/NotificationCenter
+    // - business/index re-exports mobile for discoverability
+    {
+      name: "no-layout-importing-business",
+      severity: "warn",
+      comment:
+        "Layout should stay shell-only; inject business chrome via slots. Known: admin-shell.",
+      from: {
+        path: "^components/layout/",
+      },
+      to: {
+        path: "^components/business/",
+      },
+    },
+    {
+      name: "no-business-importing-mobile",
+      severity: "warn",
+      comment:
+        "Prefer @chaos_team/chaos-ui/mobile; business barrel re-exports mobile temporarily.",
+      from: {
+        path: "^components/business/",
+      },
+      to: {
+        path: "^components/mobile/",
+      },
+    },
   ],
   options: {
     doNotFollow: {

@@ -36,3 +36,29 @@ describe("useAsync", () => {
     expect(result.current.data).toBe(10);
   });
 });
+
+it("ignores stale success when a newer run finishes first", async () => {
+  let resolveSlow: (v: string) => void = () => undefined;
+  const slow = new Promise<string>((r) => {
+    resolveSlow = r;
+  });
+  const fn = vi.fn(async (id: number) => {
+    if (id === 1) return slow;
+    return "fast";
+  });
+  const { result } = renderHook(() => useAsync(fn, false));
+  await act(async () => {
+    void result.current.run(1);
+  });
+  await act(async () => {
+    await result.current.run(2);
+  });
+  await waitFor(() => expect(result.current.data).toBe("fast"));
+  await act(async () => {
+    resolveSlow("slow");
+    await Promise.resolve();
+  });
+  // Stale slow must not overwrite fast
+  expect(result.current.data).toBe("fast");
+  expect(result.current.status).toBe("success");
+});
