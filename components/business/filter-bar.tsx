@@ -121,7 +121,7 @@ function FilterBar({
       if (variant === "native") {
         return (
           <NativeSelect
-            className="min-w-44"
+            className="w-full min-w-44 sm:w-auto"
             size={size}
             value={current}
             onChange={(e) =>
@@ -147,7 +147,7 @@ function FilterBar({
             handleChange(field.key, v == null || v === "" ? undefined : v)
           }
         >
-          <SelectTrigger className="min-w-44" size={size}>
+          <SelectTrigger className="w-full min-w-44 sm:w-auto" size={size}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>
@@ -169,7 +169,7 @@ function FilterBar({
         value={String(values[field.key] ?? "")}
         onChange={(e) => handleChange(field.key, e.target.value)}
         onKeyDown={handleKeyDown}
-        className="w-44"
+        className="w-full sm:w-44"
       />
     );
   };

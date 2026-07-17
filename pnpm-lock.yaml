@@ -3992,8 +3992,8 @@ packages:
       '@chromatic-com/vitest':
         optional: true
 
-  chromedriver@150.0.3:
-    resolution: {integrity: sha512-i2L979d6YDTVVUDUPWXz75HGKKVhjNXo74gLiy/f8Adb5zHLU+h3ABdg8RRoiegtjJB0m9vUEiPTdecD0ifa3w==}
+  chromedriver@150.0.4:
+    resolution: {integrity: sha512-Yg2oXBONi1mqAMOG2ybwUneSvxIn04NF4qNAJ+yGO2H7WwX1WYLGQRHVHsbySEjIuqIyDmS1ZfAw6p0wtl43zQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -8482,7 +8482,7 @@ snapshots:
     dependencies:
       '@axe-core/webdriverjs': 4.12.1(selenium-webdriver@4.44.0)
       axe-core: 4.12.1
-      chromedriver: 150.0.3
+      chromedriver: 150.0.4
       colors: 1.4.0
       commander: 9.5.0
       dotenv: 17.4.2
@@ -12062,7 +12062,7 @@ snapshots:
     dependencies:
       semver: 7.8.4
 
-  chromedriver@150.0.3:
+  chromedriver@150.0.4:
     dependencies:
       '@testim/chrome-version': 1.1.4
       adm-zip: 0.5.18

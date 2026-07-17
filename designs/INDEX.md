@@ -8,10 +8,11 @@
 
 ## 🔨 工作中
 
-（空）
+- [Ecology Wea* 对齐组件波次 #62–#69](./2026-07-17_Ecology对齐组件波次_#62-#69_设计计划.md)
 
 ## 👀 待审核
 
+- [FE-10 桌面与移动页面范式收口 #60/#61](./2026-07-17_FE-10桌面与移动范式收口_#60_#61_设计计划.md)
 - [PageChrome list / ListPageShell 工具条同行 #58](./2026-07-17_PageChrome_ListPageShell_工具条同行_#58_设计计划.md)
 - [AdminShell contentPadding 分向 #57](./2026-07-17_AdminShell_contentPadding分向_#57_设计计划.md)
 - [PageChrome form/detail #55 + AdminSider no-scrollbar #56](./2026-07-17_PageChrome与AdminSider_#55_#56_设计计划.md)

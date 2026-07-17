@@ -36,16 +36,19 @@ function MasterDetailTabs({
   return (
     <div
       data-slot="master-detail-tabs"
-      className={cn("flex h-full flex-col gap-0 lg:flex-row", className)}
+      className={cn(
+        "flex h-full min-h-0 flex-col gap-0 lg:flex-row",
+        className,
+      )}
     >
       <div
-        className="shrink-0 overflow-auto border-r lg:w-[40%]"
+        className="h-full min-h-0 shrink-0 overflow-auto border-r lg:w-[40%]"
         style={{ width: masterWidth }}
       >
         {master}
       </div>
 
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
         <Tabs
           value={active}
           onValueChange={(v) => {

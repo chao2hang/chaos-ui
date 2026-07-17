@@ -9,7 +9,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui";
-import { PlusIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { PlusIcon, RefreshCwIcon, ArrowLeftIcon } from "@/components/ui/icons";
 import { OrgTree, type OrgTreeNode } from "@/components/ui/org-tree";
 
 /**
@@ -139,7 +139,11 @@ function renderOrgAdminNode(node: OrgTreeNode) {
  * @since 1.8.0
  * @description Organization admin workbench: left org tree (`OrgTree`) + right summary/tabs.
  * For category CRUD use TreeCrudPage; for huge lazy geo trees use TreeTable + onExpandRow.
- * / 组织管理台：左树组合 OrgTree + 右摘要/Tabs。分类 CRUD 用 TreeCrudPage；超大字典懒加载表用 TreeTable。
+ *
+ * FE-10 (#61): on narrow screens (`<md`) the workbench is a single column — the
+ * tree fills the viewport; selecting a node switches to the detail pane with a
+ * "返回组织树" back button. `md+` keeps the two-column layout.
+ * / 组织管理台：左树组合 OrgTree + 右摘要/Tabs。窄屏单栏切换；分类 CRUD 用 TreeCrudPage；超大字典懒加载表用 TreeTable。
  * @keywords org, department, tree, workbench, admin, hr
  * @example
  * <OrgAdminPage
@@ -200,6 +204,16 @@ function OrgAdminPage({
     if (!isControlledSelected) setInternalSelected(id);
     const node = flat.find((n) => n.id === id);
     onSelect?.(id, node);
+    // #61: on narrow screens, selecting a node reveals the detail pane.
+    setMobileView("detail");
+  };
+
+  // #61: mobile single-column IA — "tree | detail" switch.
+  const [mobileView, setMobileView] = React.useState<"tree" | "detail">("tree");
+  const handleMobileBack = () => {
+    if (!isControlledSelected) setInternalSelected(undefined);
+    onSelect?.(undefined, undefined);
+    setMobileView("tree");
   };
 
   return (
@@ -242,8 +256,15 @@ function OrgAdminPage({
         {/* Left tree — composed OrgTree (no parallel OrgTreeRow) */}
         <aside
           data-slot="org-admin-sidebar"
-          className="border-border bg-card flex shrink-0 flex-col gap-2 rounded-lg border p-2"
-          style={{ width: sidebarWidth }}
+          className={cn(
+            "border-border bg-card flex shrink-0 flex-col gap-2 rounded-lg border p-2",
+            "w-full md:w-(--org-admin-sidebar-width)",
+            // #61: <md shows tree only in "tree" view; md+ always visible
+            mobileView === "tree" ? "flex" : "hidden md:flex",
+          )}
+          style={{
+            ["--org-admin-sidebar-width" as string]: `${sidebarWidth}px`,
+          }}
           aria-label="组织树"
         >
           <div className="min-h-0 flex-1 overflow-auto">
@@ -275,9 +296,24 @@ function OrgAdminPage({
         {/* Right panel */}
         <section
           data-slot="org-admin-main"
-          className="flex min-w-0 flex-1 flex-col gap-3"
+          className={cn(
+            "flex min-w-0 flex-1 flex-col gap-3",
+            // #61: <md shows detail only in "detail" view; md+ always visible
+            mobileView === "detail" ? "flex" : "hidden md:flex",
+          )}
           aria-label="组织详情"
         >
+          {selectedId ? (
+            <button
+              type="button"
+              onClick={handleMobileBack}
+              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 self-start text-sm md:hidden"
+              aria-label="返回组织树"
+            >
+              <ArrowLeftIcon className="size-4" />
+              返回组织树
+            </button>
+          ) : null}
           {!selectedId ? (
             <div className="text-muted-foreground border-border flex flex-1 items-center justify-center rounded-lg border border-dashed p-8 text-sm">
               {emptySelection}

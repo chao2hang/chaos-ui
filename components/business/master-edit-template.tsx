@@ -9,6 +9,11 @@ import { ArrowLeftIcon, SaveIcon, XIcon } from "@/components/ui";
  * @component MasterEditTemplate
  * @category business/bill
  * @since 0.7.0
+ * @deprecated Since 1.13.0. This template renders an in-page `<h2>` title and a
+ * fixed action bar, which conflicts with FE-10 page density (issue #60 §1 L3).
+ * Prefer `PageChrome variant="form"` + `Card`/`CardSection` for create/edit
+ * forms (no in-page title; submit in card/footer). Kept for backward
+ * compatibility; do not use in new pages.
  * @description 主数据编辑模板 — 含返回/保存/取消操作栏与表单内容区的标准编辑页骨架。
  * @param title 页面标题
  * @param onBack 返回回调
@@ -32,6 +37,9 @@ interface MasterEditTemplateProps {
   className?: string;
 }
 
+/**
+ * @deprecated Use `PageChrome variant="form"` + `Card`/`CardSection`.
+ */
 function MasterEditTemplate({
   title = "编辑",
   onBack,
@@ -62,9 +70,7 @@ function MasterEditTemplate({
         )}
         <h2 className="text-lg font-semibold">{title}</h2>
       </div>
-      <div className="flex-1 rounded-lg border bg-card p-4">
-        {children}
-      </div>
+      <div className="bg-card flex-1 rounded-lg border p-4">{children}</div>
       <div className="flex items-center justify-end gap-2 border-t pt-3">
         {onCancel && (
           <Button

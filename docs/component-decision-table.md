@@ -49,31 +49,34 @@ Table (ui 原子)
 弃用： AdvancedDataTable（禁止新用；2.0 移除）
 ```
 
-| 需求                                     | 用这个                                    | 不要做                                                                                   |
-| ---------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------- |
-| 纯展示表格（无筛选/分页编排）            | `DataTable`（business）                   | 新写 `MyTable`；不要用已弃用的 `AdvancedDataTable`                                       |
-| 后台标准列表（列 + 数据 + 分页）         | `SearchTable`                             | 用 `Table` 原子自己拼完整列表页却不复用 SearchTable 契约                                 |
-| 重型表格（列显隐/密度/导出/保存视图等）  | `ProTable`                                | 在 SearchTable 外包一层「假 Pro」                                                        |
-| 树形只读表（层级展开、懒加载、选择联动） | `TreeTable`                               | `Table` + 递归 `map` 自造树表                                                            |
-| 树形可编辑（BOM、科目等）                | `EditableTreeTable`                       | 在 TreeTable 外挂不受控编辑态                                                            |
-| 超大行数虚拟滚动                         | `VirtualTable`（ui）                      | 无虚拟化硬渲 1 万行 DOM                                                                  |
-| 表格原子结构（自己完全控制）             | `Table` + Header/Body/…（ui）             | 业务列表页从零搭却重复 SearchTable 能力                                                  |
-| 平面可编辑表格                           | `EditableTable`（ui）或业务 `*LineEditor` | 与 `EditableTreeTable` 混用场景                                                          |
-| **弃用**                                 | —                                         | `AdvancedDataTable`：新代码禁止；见 barrel 注释，优先 SearchTable / DataTable / ProTable |
+| 需求                                                   | 用这个                                                      | 不要做                                                                                   |
+| ------------------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 纯展示表格（无筛选/分页编排）                          | `DataTable`（business）                                     | 新写 `MyTable`；不要用已弃用的 `AdvancedDataTable`                                       |
+| 后台标准列表（列 + 数据 + 分页）                       | `SearchTable`                                               | 用 `Table` 原子自己拼完整列表页却不复用 SearchTable 契约                                 |
+| 重型表格（列显隐/密度/导出/保存视图等）                | `ProTable`                                                  | 在 SearchTable 外包一层「假 Pro」                                                        |
+| **报表型服务端列表（JSON 列元数据 + summary 合计行）** | `ReportTable`（复用 ProTable；列元数据协议 + loadData #66） | 另起报表表格引擎；在 ProTable 外手拼 summary 行                                          |
+| 树形只读表（层级展开、懒加载、选择联动）               | `TreeTable`                                                 | `Table` + 递归 `map` 自造树表                                                            |
+| 树形可编辑（BOM、科目等）                              | `EditableTreeTable`                                         | 在 TreeTable 外挂不受控编辑态                                                            |
+| 超大行数虚拟滚动                                       | `VirtualTable`（ui）                                        | 无虚拟化硬渲 1 万行 DOM                                                                  |
+| 表格原子结构（自己完全控制）                           | `Table` + Header/Body/…（ui）                               | 业务列表页从零搭却重复 SearchTable 能力                                                  |
+| 平面可编辑表格                                         | `EditableTable`（ui）或业务 `*LineEditor`                   | 与 `EditableTreeTable` 混用场景                                                          |
+| **表格分页栏（button onClick 非路由）**                | `PaginationBar`（business #68）                             | 用 ui `Pagination`（anchor）做表格分页；手拼页码按钮                                     |
+| **路由分页（anchor href）**                            | `Pagination`（ui）                                          | 在非路由表格场景误用 anchor 分页                                                         |
+| **弃用**                                               | —                                                           | `AdvancedDataTable`：新代码禁止；见 barrel 注释，优先 SearchTable / DataTable / ProTable |
 
 列表页壳：
 
-| 需求                               | 用这个                                                     | 不要做                                                                          |
-| ---------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| 筛选条 + 工具条 + 表体的列表壳     | `ListPageShell` + `FilterBar` + `SearchTable`              | 每页手写 header/filter/table 间距互不一致                                       |
-| 列表筛选 + 刷新/新增 (#58)         | `ListPageShell` + `toolbar`（默认与 FilterBar **同一行**） | `PageChrome.actions` 全宽悬空行；刻意拆行才用 `toolbarPlacement="below-filter"` |
-| 主数据简单列表骨架                 | `MasterListTemplate`                                       | 与 ListPageShell 再发明第三套                                                   |
-| 页头 / 密度 / 内容区               | `PageHeader` + `PageChrome`                                | 页面内魔法数 padding 替代 density 契约                                          |
-| 列表页（无页内 h1）                | `PageChrome variant="list"` **不传** CRUD `actions`        | 手写 `PageHeader` 再 `[&_h1]` 压高度                                            |
-| 创建/编辑表单（无 h1、无顶工具行） | `PageChrome variant="form"`                                | 依赖旧 `document` 出 sm 标题                                                    |
-| 详情（无 h1；可选 identity）       | `PageChrome variant="detail"` + `identity`                 | 把单号塞进 PageHeader title                                                     |
-| 工作台/总览（展示型 title）        | `PageChrome variant="overview"`                            | list 页误用 overview                                                            |
-| ~~document~~                       | **deprecated** → 同 `form`（无 title）                     | 新代码写 `form`                                                                 |
+| 需求                               | 用这个                                                                                                 | 不要做                                                                          |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| 筛选条 + 工具条 + 表体的列表壳     | `ListPageShell` + `FilterBar` + `SearchTable`                                                          | 每页手写 header/filter/table 间距互不一致                                       |
+| 列表筛选 + 刷新/新增 (#58)         | `ListPageShell` + `toolbar`（默认与 FilterBar **同一行**；无 filter 时右对齐无幽灵列；窄屏堆叠不裁切） | `PageChrome.actions` 全宽悬空行；刻意拆行才用 `toolbarPlacement="below-filter"` |
+| 主数据简单列表骨架                 | ~~`MasterListTemplate`~~ **@deprecated 1.13** → `PageChrome list` + `ListPageShell`                    | 与 ListPageShell 再发明第三套；新页不要再抄旧模板的页内 h2                      |
+| 页头 / 密度 / 内容区               | `PageHeader` + `PageChrome`                                                                            | 页面内魔法数 padding 替代 density 契约                                          |
+| 列表页（无页内 h1）                | `PageChrome variant="list"` **不传** CRUD `actions`                                                    | 手写 `PageHeader` 再 `[&_h1]` 压高度                                            |
+| 创建/编辑表单（无 h1、无顶工具行） | `PageChrome variant="form"`                                                                            | 依赖旧 `document` 出 sm 标题                                                    |
+| 详情（无 h1；可选 identity）       | `PageChrome variant="detail"` + `identity`                                                             | 把单号塞进 PageHeader title                                                     |
+| 工作台/总览（展示型 title）        | `PageChrome variant="overview"`                                                                        | list 页误用 overview                                                            |
+| ~~document~~                       | **deprecated** → 同 `form`（无 title）                                                                 | 新代码写 `form`                                                                 |
 
 ---
 
@@ -92,18 +95,20 @@ Table (ui 原子)
 
 ### 3.2 组织三件套
 
-| 需求                           | 用这个                                                   | 不要做                                                                |
-| ------------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------- |
-| 纯树展示/选择（无业务 chrome） | `TreeView` / `TreeSelect`（ui）                          | 用 `div`+递归冒充树选择                                               |
-| 组织树展示/单选（可搜索）      | `OrgTree`（ui）                                          | 在页面组件内再写一套 `OrgTreeRow`                                     |
-| 部门浏览弹窗                   | `DepartmentBrowse`（ui）                                 | Modal+Transfer 临时拼部门选择                                         |
-| 用户浏览弹窗                   | `UserBrowse`（ui）                                       | 自建用户双栏选择；**新选人优先 UserBrowse，不要复制 UserPicker 内芯** |
-| 通用浏览弹窗（表/树/远程）     | `BrowseDialog`（business）                               | 每个实体一个互不兼容的 BrowseModal                                    |
-| 领域实体浏览                   | 现有 `*Browse` 适配器，或新建 **仅** BrowseDialog 薄封装 | 复制 400 行 Dialog 浏览壳                                             |
-| 触发浏览的输入框               | `BrowseInput`（ui）+ 打开 Browse/`*Browse`               | Input 右侧自己绑无障碍按钮却无统一清除/浏览                           |
-| 组织管理整页（左树右详情+Tab） | `OrgAdminPage`（business，**左树应组合 OrgTree**）       | 用 layout + 一堆 ui 重拼；禁止页内自绘树                              |
-| 左树右「分类 CRUD」通用页      | `TreeCrudPage`                                           | 与 OrgAdminPage 场景重叠时硬造第三套左树                              |
-| 穿梭多选                       | `Transfer`（ui）                                         | 两个 List + 自己搬 keys                                               |
+| 需求                                     | 用这个                                                                                                     | 不要做                                                                              |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| 纯树展示/选择（无业务 chrome）           | `TreeView` / `TreeSelect`（ui）                                                                            | 用 `div`+递归冒充树选择                                                             |
+| 组织树展示/单选（可搜索）                | `OrgTree`（ui）                                                                                            | 在页面组件内再写一套 `OrgTreeRow`                                                   |
+| 部门浏览弹窗                             | `DepartmentBrowse`（ui）                                                                                   | Modal+Transfer 临时拼部门选择                                                       |
+| 用户浏览弹窗                             | `UserBrowse`（ui）                                                                                         | 自建用户双栏选择；**新选人优先 UserBrowse，不要复制 UserPicker 内芯**               |
+| 通用浏览弹窗（表/树/远程）               | `BrowseDialog`（business）                                                                                 | 每个实体一个互不兼容的 BrowseModal                                                  |
+| 领域实体浏览                             | 现有 `*Browse` 适配器，或新建 **仅** BrowseDialog 薄封装                                                   | 复制 400 行 Dialog 浏览壳                                                           |
+| 触发浏览的输入框                         | `BrowseInput`（ui）+ 打开 Browse/`*Browse`                                                                 | Input 右侧自己绑无障碍按钮却无统一清除/浏览                                         |
+| **表单级浏览字段（弹层+多选+联想 #62）** | `BrowserField`（business，复用 BrowseDialog）                                                              | 在表单里手拼 Input+Dialog+chips；用轻量 Picker 冒充 BrowserField                    |
+| 组织管理整页（左树右详情+Tab）           | `OrgAdminPage`（business，**左树应组合 OrgTree**；窄屏单栏切换 #61）                                       | 用 layout + 一堆 ui 重拼；禁止页内自绘树                                            |
+| 左树右「分类 CRUD」通用页                | `TreeCrudPage`（`sidebarWidth` 默认 320，chrome 与 Card 同源 #60）                                         | 与 OrgAdminPage 场景重叠时硬造第三套左树                                            |
+| 左树筛右表（商品管理）                   | `MasterDetailLayout` + 双侧 `Card` **同 size** + `chromeBorder={false}` + 右 `ListPageShell`/`SearchTable` | 左右不同 Card size（标题行 12 vs 16 不齐）；aside 双竖线不传 `chromeBorder={false}` |
+| 穿梭多选                                 | `Transfer`（ui）                                                                                           | 两个 List + 自己搬 keys                                                             |
 
 ```text
 组织树 UI     → OrgTree
@@ -131,27 +136,28 @@ Table (ui 原子)
 
 ## 5. 表单 / 对话框 / 向导
 
-| 需求         | 用这个                                                                 | 不要做                                      |
-| ------------ | ---------------------------------------------------------------------- | ------------------------------------------- |
-| 表单原子     | `Form` / 各 Input* / `FormGrid` / `FormSection`（ui）                  | 无 label/a11y 的裸 input 堆叠当「表单体系」 |
-| 弹窗表单     | `FormDialog`（business）                                               | Dialog 里堆字段但无统一提交/校验槽          |
-| 多步表单     | `FormWizard`                                                           | 自造 Stepper 状态机且不复用                 |
-| 通用确认     | `ConfirmDialog` / `useConfirm`（business）或 `AlertDialog`（ui）       | `window.confirm`                            |
-| 通用模态壳   | `Dialog` / `Sheet` / `Drawer`（ui）                                    | 新 `MyModal` 包装同一套 Radix               |
-| 标准 CRUD 页 | `CrudPage` / `TabCrudPage`（注意 deprecated 字段偏好 FormDialogField） | 与 ListPageShell 能力重复时再发明           |
+| 需求                                      | 用这个                                                                 | 不要做                                                                  |
+| ----------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| 表单原子                                  | `Form` / 各 Input* / `FormGrid` / `FormSection`（ui）                  | 无 label/a11y 的裸 input 堆叠当「表单体系」                             |
+| **JSON/配置驱动表单（对齐 WeaForm #64）** | `SchemaForm`（business，复用 Input/Select/DatePicker/BrowserField）    | 手写 switch-case 渲染表单；新页用 FormDesignerRuntime（标 @deprecated） |
+| 弹窗表单                                  | `FormDialog`（business）                                               | Dialog 里堆字段但无统一提交/校验槽                                      |
+| 多步表单                                  | `FormWizard`                                                           | 自造 Stepper 状态机且不复用                                             |
+| 通用确认                                  | `ConfirmDialog` / `useConfirm`（business）或 `AlertDialog`（ui）       | `window.confirm`                                                        |
+| 通用模态壳                                | `Dialog` / `Sheet` / `Drawer`（ui）                                    | 新 `MyModal` 包装同一套 Radix                                           |
+| 标准 CRUD 页                              | `CrudPage` / `TabCrudPage`（注意 deprecated 字段偏好 FormDialogField） | 与 ListPageShell 能力重复时再发明                                       |
 
 ---
 
 ## 6. 布局 / 后台壳
 
-| 需求                 | 用这个                                                                        | 不要做                                                   |
-| -------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
-| 标准管理后台壳       | `AdminShell` + `AdminSider` / `AdminHeader` / `AdminTabs`                     | 再实现一套侧栏+顶栏高度链                                |
-| 通用应用壳           | `AppShell`                                                                    | 与 AdminShell 混用契约却复制 CSS 变量                    |
-| 登录/空白/打印等     | `AuthLayout` / `BlankLayout` / `PrintLayout` / …                              | 页面级 `min-h-screen` 分叉布局体系                       |
-| 主从                 | `MasterDetailLayout` / `MasterDetailTabs`                                     | 无障碍与尺寸不统一的 split 私有实现                      |
-| 内容区 gutter（#57） | `contentPadding`：`true` / `false` / class 字符串 / `{ inline, top, bottom }` | 业务页手写 `pt-*` 盖壳层；无脑四边 `p-4 lg:p-6` 叠多标签 |
-| 多标签 + list 页     | `AdminShell` tabs + 默认顶距收紧 + `PageChrome variant="list"`                | 壳层顶距仍按无标签整页 padding                           |
+| 需求                 | 用这个                                                                                                                                                                   | 不要做                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| 标准管理后台壳       | `AdminShell` + `AdminSider` / `AdminHeader` / `AdminTabs`                                                                                                                | 再实现一套侧栏+顶栏高度链                                |
+| 通用应用壳           | `AppShell`                                                                                                                                                               | 与 AdminShell 混用契约却复制 CSS 变量                    |
+| 登录/空白/打印等     | `AuthLayout` / `BlankLayout` / `PrintLayout` / …                                                                                                                         | 页面级 `min-h-screen` 分叉布局体系                       |
+| 主从                 | `MasterDetailLayout` / `MasterDetailTabs`（FE-10：槽位 `Card className="h-full"` 默认齐高；子节点为 Card 时传 `chromeBorder={false}` #60；**`resizable` 拖拽改宽 #67**） | 无障碍与尺寸不统一的 split 私有实现                      |
+| 内容区 gutter（#57） | `contentPadding`：`true` / `false` / class 字符串 / `{ inline, top, bottom }`                                                                                            | 业务页手写 `pt-*` 盖壳层；无脑四边 `p-4 lg:p-6` 叠多标签 |
+| 多标签 + list 页     | `AdminShell` tabs + 默认顶距收紧 + `PageChrome variant="list"`                                                                                                           | 壳层顶距仍按无标签整页 padding                           |
 
 高度链、折叠、Tab、**分向 contentPadding** 以 AdminShell designs 为准，**禁止**在业务页用 globals 盖 `navigation-tabs-bar` 或重复包一层 main gutter。
 
@@ -229,15 +235,24 @@ Table (ui 原子)
 列表 → SearchTable / ListPageShell / FilterBar
 轻表 → DataTable
 重表 → ProTable
+报表列表 → ReportTable（JSON 列 + summary #66）
+分页栏 → PaginationBar（表格用 #68）/ Pagination（路由用）
 树表 → TreeTable | EditableTreeTable
 壳子 → AdminShell | PageChrome | PageHeader
 字典 → DictSelect
 远程下拉 → RemoteSelect
 浏览弹窗 → BrowseDialog 或 *Browse 薄适配器
+表单浏览字段 → BrowserField（弹层+多选+联想 #62）
+JSON 表单 → SchemaForm（对齐 WeaForm #64）
 选人浏览 → UserBrowse（勿复制 UserPicker 内芯）
 组织树 → OrgTree
-组织台 → OrgAdminPage（组合 OrgTree）
+组织台 → OrgAdminPage（组合 OrgTree；窄屏单栏）
+分类树 CRUD → TreeCrudPage（sidebarWidth 320；resizable #67）
+左树筛右表 → MasterDetailLayout + 双 Card 同 size + chromeBorder={false}（resizable #67）
+日期时间 → DateTimePicker / PeriodPicker / datePresets（#63）
+消息中心 → MessageCenter + messageCenter.push（#65）
+反馈协调 → notify（toast+inbox #69）；决策表见 docs/specs/feedback-api.md
 确认 → ConfirmDialog / AlertDialog
 表单弹窗 → FormDialog
-禁止 → AdvancedDataTable 新用；页内自绘树；未检索新建 components/**
+弃用 → AdvancedDataTable 新用；MasterListTemplate/MasterEditTemplate 新用；FormDesignerRuntime 新用；页内自绘树；未检索新建 components/**
 ```

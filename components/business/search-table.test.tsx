@@ -39,6 +39,41 @@ describe("SearchTable", () => {
     expect(screen.getByText("Status")).toBeDefined();
   });
 
+  it("hideOnMobile adds hidden md:table-cell to header and body cells (#61)", () => {
+    const cols: ColumnDef<Row>[] = [
+      { key: "name", title: "Name", dataIndex: "name" },
+      {
+        key: "age",
+        title: "Age",
+        dataIndex: "age",
+        align: "right",
+        hideOnMobile: true,
+      },
+    ];
+    const { container } = render(
+      <SearchTable columns={cols} dataSource={data} />,
+    );
+    const headers = container.querySelectorAll("th");
+    const ageHeader = Array.from(headers).find((h) =>
+      h.textContent?.includes("Age"),
+    );
+    expect(ageHeader?.className ?? "").toContain("hidden");
+    expect(ageHeader?.className ?? "").toContain("md:table-cell");
+
+    // The name header is not hidden
+    const nameHeader = Array.from(headers).find((h) =>
+      h.textContent?.includes("Name"),
+    );
+    expect(nameHeader?.className ?? "").not.toContain("hidden");
+
+    // Body cells for the hidden column also carry the class
+    const bodyCells = container.querySelectorAll("tbody td");
+    const hiddenBodyCell = Array.from(bodyCells).find(
+      (td) => td.textContent === "30" || td.textContent === "25",
+    );
+    expect(hiddenBodyCell?.className ?? "").toContain("hidden md:table-cell");
+  });
+
   it("renders data rows using dataIndex and render", () => {
     render(<SearchTable columns={columns} dataSource={data} />);
     expect(screen.getByText("Alice")).toBeDefined();

@@ -98,6 +98,10 @@ VISUAL_TEST_REPORT.md
 # tooling scratch
 .workbuddy/
 .claude/ga-work/
+.claude_consciousness.*
+
+# temp JSON outputs
+new_runs*.json
 
 # scratch scripts/logs
 analyze_*.py

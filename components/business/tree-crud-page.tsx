@@ -20,6 +20,8 @@ import {
  * @category Business
  * @since 1.0.0-beta.0
  * @description 左树右表 CRUD 布局。左侧分类树（可展开 / 选中 / 搜索），右侧承载对应分类的 CRUD 详情。
+ * FE-10 (#60): 侧栏默认宽 320（与 MasterDetailLayout / OrgAdminPage 一致），
+ * chrome 与 Card 同源（`rounded-xl` + `--card-spacing`），高度链闭合，窄屏自动堆叠。
  * @param tree 左侧树数据；每项含 id / label / 可选 children
  * @param selected 当前选中节点 id（受控）
  * @param defaultSelected 默认选中节点 id（非受控）
@@ -66,6 +68,19 @@ export interface TreeCrudPageProps {
   onQueryChange?: (value: string) => void;
   /** 由调用方按选中节点渲染的 CRUD 详情 */
   children?: React.ReactNode;
+  /**
+   * Desktop sidebar target width in px (FE-10 #60). Default `320`, aligned with
+   * `MasterDetailLayout` / `OrgAdminPage`. / 桌面侧栏目标宽
+   */
+  sidebarWidth?: number;
+  /**
+   * Enable desktop drag-to-resize for the sidebar (#67). / 桌面侧栏可拖拽改宽
+   */
+  resizable?: boolean;
+  /** Minimum sidebar width when dragging (default 200). / 拖拽最小宽 */
+  minSidebarWidth?: number;
+  /** Maximum sidebar width when dragging (default 600). / 拖拽最大宽 */
+  maxSidebarWidth?: number;
   className?: string;
 }
 
@@ -146,7 +161,7 @@ function TreeRow({
         onKeyDown={handleRowKeyDown}
         onClick={() => onSelect(node.id)}
         className={cn(
-          "flex cursor-pointer items-center gap-1 rounded-md py-1.5 pr-2 outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50",
+          "focus-visible:ring-ring/50 flex cursor-pointer items-center gap-1 rounded-md py-1.5 pr-2 transition-colors outline-none focus-visible:ring-3",
           isSelected ? "bg-primary/10 text-primary" : "hover:bg-muted",
         )}
         style={{ paddingLeft: `${level * 16 + 4}px` }}
@@ -154,12 +169,14 @@ function TreeRow({
         {hasChildren ? (
           <button
             type="button"
-            aria-label={isExpanded ? `收起 ${node.label}` : `展开 ${node.label}`}
+            aria-label={
+              isExpanded ? `收起 ${node.label}` : `展开 ${node.label}`
+            }
             onClick={(e) => {
               e.stopPropagation();
               onToggle(node.id);
             }}
-            className="inline-flex size-4 shrink-0 items-center justify-center rounded outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
+            className="hover:bg-muted focus-visible:ring-ring/50 inline-flex size-4 shrink-0 items-center justify-center rounded outline-none focus-visible:ring-3"
           >
             {isExpanded ? (
               <ChevronDownIcon className="size-3.5" />
@@ -168,9 +185,12 @@ function TreeRow({
             )}
           </button>
         ) : (
-          <span className="inline-flex size-4 shrink-0 items-center justify-center" aria-hidden="true" />
+          <span
+            className="inline-flex size-4 shrink-0 items-center justify-center"
+            aria-hidden="true"
+          />
         )}
-        <span className="shrink-0 text-muted-foreground" aria-hidden="true">
+        <span className="text-muted-foreground shrink-0" aria-hidden="true">
           {hasChildren ? (
             isExpanded ? (
               <FolderOpenIcon className="size-4" />
@@ -212,13 +232,19 @@ function TreeCrudPage({
   query,
   onQueryChange,
   children,
+  sidebarWidth = 320,
+  resizable = false,
+  minSidebarWidth = 200,
+  maxSidebarWidth = 600,
   className,
 }: TreeCrudPageProps) {
   const isControlledSelected = selected !== undefined;
   const [internalSelected, setInternalSelected] = React.useState<string | null>(
     defaultSelected ?? null,
   );
-  const selectedId = isControlledSelected ? (selected as string | null) : internalSelected;
+  const selectedId = isControlledSelected
+    ? (selected as string | null)
+    : internalSelected;
 
   const [internalQuery, setInternalQuery] = React.useState("");
   const currentQuery = query !== undefined ? query : internalQuery;
@@ -230,7 +256,10 @@ function TreeCrudPage({
     return out;
   });
 
-  const filtered = React.useMemo(() => filterTree(tree, currentQuery), [tree, currentQuery]);
+  const filtered = React.useMemo(
+    () => filterTree(tree, currentQuery),
+    [tree, currentQuery],
+  );
   const flat = React.useMemo(() => flatten(filtered), [filtered]);
 
   // When searching, expand all matches so they remain visible
@@ -260,18 +289,64 @@ function TreeCrudPage({
 
   const selectedNode = flat.find((n) => n.id === selectedId) ?? null;
 
+  // Resizable sidebar width (#67)
+  const [resizeW, setResizeW] = React.useState(sidebarWidth);
+  const onHandlePointerDown = React.useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      const startX = e.clientX;
+      const startW = resizeW;
+      const move = (ev: PointerEvent) => {
+        const delta = ev.clientX - startX;
+        const next = Math.min(
+          Math.max(startW + delta, minSidebarWidth),
+          maxSidebarWidth,
+        );
+        setResizeW(next);
+      };
+      const up = () => {
+        window.removeEventListener("pointermove", move);
+        window.removeEventListener("pointerup", up);
+        document.body.style.userSelect = "";
+        document.body.style.cursor = "";
+      };
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+      document.body.style.userSelect = "none";
+      document.body.style.cursor = "col-resize";
+    },
+    [resizeW, minSidebarWidth, maxSidebarWidth],
+  );
+  const resizeHandle = resizable ? (
+    <div
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize sidebar"
+      onPointerDown={onHandlePointerDown}
+      onDoubleClick={() => setResizeW(sidebarWidth)}
+      className="hover:bg-primary/30 absolute top-0 right-0 bottom-0 z-20 hidden w-1 cursor-col-resize bg-transparent transition-colors md:block"
+    />
+  ) : null;
+  const effectiveWidth = resizable ? resizeW : sidebarWidth;
+
   return (
     <div
       data-slot="tree-crud-page"
-      className={cn("flex h-full min-h-0 gap-3", className)}
+      className={cn(
+        "flex h-full min-h-0 flex-col gap-3 md:flex-row",
+        className,
+      )}
       role="group"
       aria-label="左树右表 CRUD"
     >
       <aside
-        className="flex w-64 shrink-0 flex-col gap-2 rounded-lg border bg-card p-2"
+        className="bg-card relative flex w-full shrink-0 flex-col gap-(--card-spacing) rounded-xl border py-(--card-spacing) [--card-spacing:--spacing(4)] md:w-(--tree-crud-sidebar-width)"
+        style={{
+          ["--tree-crud-sidebar-width" as string]: `${effectiveWidth}px`,
+        }}
         aria-label="分类树"
       >
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 px-(--card-spacing)">
           {onCreate && (
             <Button
               type="button"
@@ -296,36 +371,40 @@ function TreeCrudPage({
           )}
         </div>
 
-        <div className="relative">
-          <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="search"
-            value={currentQuery}
-            onChange={handleQueryChange}
-            placeholder="搜索分类"
-            aria-label="搜索分类"
-            className="pl-8 pr-8"
-          />
-          {currentQuery && (
-            <button
-              type="button"
-              aria-label="清除搜索"
-              onClick={() => {
-                if (query === undefined) setInternalQuery("");
-                onQueryChange?.("");
-              }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            >
-              <XIcon className="size-4" />
-            </button>
-          )}
+        <div className="px-(--card-spacing)">
+          <div className="relative">
+            <SearchIcon className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+            <Input
+              type="search"
+              value={currentQuery}
+              onChange={handleQueryChange}
+              placeholder="搜索分类"
+              aria-label="搜索分类"
+              className="pr-8 pl-8"
+            />
+            {currentQuery && (
+              <button
+                type="button"
+                aria-label="清除搜索"
+                onClick={() => {
+                  if (query === undefined) setInternalQuery("");
+                  onQueryChange?.("");
+                }}
+                className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2"
+              >
+                <XIcon className="size-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         <Separator />
 
-        <div className="min-h-0 flex-1 overflow-auto">
+        <div className="min-h-0 flex-1 overflow-auto px-(--card-spacing)">
           {filtered.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">暂无分类</p>
+            <p className="text-muted-foreground py-6 text-center text-sm">
+              暂无分类
+            </p>
           ) : (
             <ul role="tree" aria-label="分类" className="m-0 list-none p-0">
               {filtered.map((node) => (
@@ -342,14 +421,18 @@ function TreeCrudPage({
             </ul>
           )}
         </div>
+        {resizeHandle}
       </aside>
 
-      <section className="flex min-w-0 flex-1 flex-col gap-2" aria-label="CRUD 详情">
-        <div className="flex items-center justify-between rounded-lg border bg-card px-3 py-2">
+      <section
+        className="flex min-h-0 min-w-0 flex-1 flex-col gap-(--card-spacing)"
+        aria-label="CRUD 详情"
+      >
+        <div className="bg-card flex items-center justify-between rounded-xl border px-(--card-spacing) py-(--card-spacing) [--card-spacing:--spacing(4)]">
           <span className="truncate text-sm font-medium">
             {selectedNode ? selectedNode.label : "未选择分类"}
           </span>
-          <span className="text-xs text-muted-foreground tabular-nums">
+          <span className="text-muted-foreground text-xs tabular-nums">
             共 {flat.length} 项
           </span>
         </div>

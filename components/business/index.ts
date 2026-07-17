@@ -117,6 +117,14 @@ export * from "@/components/mobile/mobile-tabs";
 export * from "@/components/mobile/mobile-textarea";
 export * from "./multi-select";
 export * from "./notification-center";
+export {
+  MessageCenter,
+  messageCenter,
+  useMessageCenter,
+  type MessageCenterProps,
+  type MessageCenterApi,
+  type MessageItem,
+} from "./message-center";
 export * from "./order-line-editor";
 export * from "./page-header";
 export * from "./page-chrome";
@@ -335,6 +343,37 @@ export * from "./report-builder";
 export * from "./dashboard-designer";
 export * from "./contract-template";
 export * from "./browse-dialog";
+export {
+  BrowserField,
+  registerBrowserType,
+  getBrowserTypeConfig,
+  type BrowserFieldProps,
+  type BrowserType,
+  type BrowserTypeConfig,
+  type BrowserLabel,
+  type BrowseItem,
+} from "./browser-field";
+export {
+  SchemaForm,
+  type SchemaFormProps,
+  type FormSchema,
+  type FormGroupSchema,
+  type FormFieldSchema,
+  type FormFieldRule,
+  type FormFieldDependency,
+  type FieldType,
+} from "./schema-form";
+export {
+  ReportTable,
+  type ReportTableProps,
+  type ReportColumn,
+  type ReportLoadParams,
+  type ReportLoadResult,
+  type ReportDataType,
+  type ReportRender,
+} from "./report-table";
+export { PaginationBar, type PaginationBarProps } from "./pagination-bar";
+export { notify, type NotifyApi, type NotifyInboxOptions } from "./notify";
 
 // AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
 export { AreaChart } from "./area-chart";

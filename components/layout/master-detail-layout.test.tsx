@@ -211,6 +211,56 @@ describe("MasterDetailLayout", () => {
     expect(aside?.className ?? "").toMatch(/md:w-\(--master-sidebar-width\)/);
   });
 
+  it("sidebar inner wrapper propagates height chain (#59/#60 M1)", () => {
+    const { container } = render(
+      <MasterDetailLayout sidebar={<div>s</div>} main={<div>m</div>} />,
+    );
+    const inner = container.querySelector("aside > div");
+    expect(inner?.className ?? "").toContain("h-full");
+    expect(inner?.className ?? "").toContain("min-h-0");
+    // main is the flex-1 div (not the mobile toggle wrapper)
+    const main = container.querySelector(
+      '[data-slot="master-detail-layout"] > div.flex-1',
+    );
+    expect(main?.className ?? "").toContain("h-full");
+  });
+
+  it("renders md:border-r by default (chromeBorder defaults true)", () => {
+    const { container } = render(
+      <MasterDetailLayout sidebar={<div>s</div>} main={<div>m</div>} />,
+    );
+    expect(container.querySelector("aside")?.className ?? "").toContain(
+      "md:border-r",
+    );
+  });
+
+  it("chromeBorder={false} removes the aside right border (#60 M2)", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        chromeBorder={false}
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    expect(container.querySelector("aside")?.className ?? "").not.toContain(
+      "md:border-r",
+    );
+  });
+
+  it("chromeBorder={false} removes the border in collapsible mode too", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        collapsible
+        chromeBorder={false}
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    expect(container.querySelector("aside")?.className ?? "").not.toContain(
+      "md:border-r",
+    );
+  });
+
   it("renders collapsibleDesktop toggle without md:hidden when enabled", () => {
     const { container } = render(
       <MasterDetailLayout
@@ -363,5 +413,74 @@ describe("MasterDetailLayout", () => {
     const root = container.querySelector('[data-slot="master-detail-layout"]');
     expect(root?.id).toBe("md-root");
     expect(root?.getAttribute("aria-label")).toBe("Master detail");
+  });
+
+  // ---- Resizable tests (#67) ----
+
+  it("does not render a resize handle when resizable is false", () => {
+    const { container } = render(
+      <MasterDetailLayout sidebar={<div>s</div>} main={<div>m</div>} />,
+    );
+    expect(container.querySelector('[role="separator"]')).toBeNull();
+  });
+
+  it("renders a resize handle when resizable is true", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        resizable
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    const handle = container.querySelector('[role="separator"]');
+    expect(handle).not.toBeNull();
+    expect(handle?.getAttribute("aria-label")).toBe("Resize sidebar");
+  });
+
+  it("renders a resize handle in collapsible mode too", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        resizable
+        collapsible
+        defaultMasterOpen
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    expect(container.querySelector('[role="separator"]')).not.toBeNull();
+  });
+
+  it("uses sidebarWidth as the initial CSS var when resizable", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        resizable
+        sidebarWidth={350}
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    const aside = container.querySelector("aside");
+    expect(aside?.getAttribute("style") ?? "").toContain(
+      "--master-sidebar-width: 350px",
+    );
+  });
+
+  it("double-click on the handle resets width to sidebarWidth", () => {
+    const { container } = render(
+      <MasterDetailLayout
+        resizable
+        sidebarWidth={300}
+        sidebar={<div>s</div>}
+        main={<div>m</div>}
+      />,
+    );
+    const handle = container.querySelector('[role="separator"]') as HTMLElement;
+    // Simulate a drag that changes width would require pointer events;
+    // here we just verify double-click is wired (no throw)
+    expect(() => fireEvent.doubleClick(handle)).not.toThrow();
+    const aside = container.querySelector("aside");
+    expect(aside?.getAttribute("style") ?? "").toContain(
+      "--master-sidebar-width: 300px",
+    );
   });
 });

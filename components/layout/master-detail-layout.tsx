@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { MenuIcon } from "@/components/ui/icons";
+import { FilterIcon } from "@/components/ui/icons";
 
 /**
  * @component MasterDetailLayout
@@ -13,6 +13,13 @@ import { MenuIcon } from "@/components/ui/icons";
  * 宽屏并排；窄屏默认堆叠为上下，开启 `collapsible` 或 `responsive` 后窄屏把
  * master 折叠成左侧抽屉（overlay + 遮罩），对齐 Sidebar 的 collapsible 行为。
  * `responsive` 是 `collapsible` 的语义化别名，默认为 `true`（移动端自动折叠）。
+ *
+ * FE-10 (#60/#61): slot `sidebar`/`main` may render `Card className="h-full"` —
+ * the inner wrappers propagate the row stretch so the two Cards equalize height.
+ * When slots are Cards, pass `chromeBorder={false}` so the Card border is the
+ * only divider (avoids a double right border on the aside). The mobile toggle
+ * defaults to a Filter glyph (not a hamburger) to avoid colliding with the
+ * AdminShell mobile menu button.
  * / Master-detail two-column layout; mobile master collapses to a drawer.
  * @keywords layout, master-detail, sidebar, two-column, responsive, drawer
  * @example
@@ -32,9 +39,21 @@ interface MasterDetailLayoutProps extends React.ComponentProps<"div"> {
   /**
    * Desktop master column target width in px (issue #53).
    * Applied as fixed `width` + `maxWidth` on open desktop; not a soft max only.
-   * / 桌面 master 目标固定宽（非仅 maxWidth）
+   * When `resizable` is enabled this becomes the **initial / reset** width.
+   * / 桌面 master 目标固定宽（非仅 maxWidth）；resizable 时为初始/重置宽
    */
   sidebarWidth?: number;
+  /**
+   * Enable desktop drag-to-resize for the master sidebar (#67).
+   * Renders a 4px handle on the aside right edge (md+ only). Double-click
+   * resets to `sidebarWidth`. Mobile never shows the handle.
+   * / 桌面侧栏可拖拽改宽（仅 md+）；双击重置
+   */
+  resizable?: boolean;
+  /** Minimum sidebar width when dragging (default 200). / 拖拽最小宽 */
+  minSidebarWidth?: number;
+  /** Maximum sidebar width when dragging (default 600). / 拖拽最大宽 */
+  maxSidebarWidth?: number;
   /** Gap between sidebar and main / 间距 */
   gap?: "sm" | "md" | "lg";
   /**
@@ -61,6 +80,13 @@ interface MasterDetailLayoutProps extends React.ComponentProps<"div"> {
    * Also collapse master on desktop (not just mobile). / 桌面端也支持折叠 master
    */
   collapsibleDesktop?: boolean;
+  /**
+   * Render the aside right border (`md:border-r`) on desktop. Default `true`.
+   * Set `false` when `sidebar`/`main` slots render their own `Card` (FE-10 §3 #60):
+   * the Card border owns the divider, so the aside border would double up.
+   * / 桌面侧栏右边框；子节点为 Card 时传 false 避免双竖线
+   */
+  chromeBorder?: boolean;
 }
 
 const gapMap = {
@@ -74,6 +100,9 @@ function MasterDetailLayout({
   sidebar,
   main,
   sidebarWidth = 300,
+  resizable = false,
+  minSidebarWidth = 200,
+  maxSidebarWidth = 600,
   gap = "md",
   collapsible = false,
   responsive = true,
@@ -82,6 +111,7 @@ function MasterDetailLayout({
   onMasterOpenChange,
   masterToggle,
   collapsibleDesktop = false,
+  chromeBorder = true,
   ...props
 }: MasterDetailLayoutProps) {
   const [internalOpen, setInternalOpen] = React.useState(defaultMasterOpen);
@@ -96,10 +126,51 @@ function MasterDetailLayout({
     [isControlled, onMasterOpenChange],
   );
 
+  // Resizable sidebar width (#67): starts from sidebarWidth; drag handle adjusts.
+  const [resizeW, setResizeW] = React.useState(sidebarWidth);
+  const onHandlePointerDown = React.useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      const startX = e.clientX;
+      const startW = resizeW;
+      const move = (ev: PointerEvent) => {
+        const delta = ev.clientX - startX;
+        const next = Math.min(
+          Math.max(startW + delta, minSidebarWidth),
+          maxSidebarWidth,
+        );
+        setResizeW(next);
+      };
+      const up = () => {
+        window.removeEventListener("pointermove", move);
+        window.removeEventListener("pointerup", up);
+        document.body.style.userSelect = "";
+        document.body.style.cursor = "";
+      };
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+      document.body.style.userSelect = "none";
+      document.body.style.cursor = "col-resize";
+    },
+    [resizeW, minSidebarWidth, maxSidebarWidth],
+  );
+
+  const resizeHandle = resizable ? (
+    <div
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize sidebar"
+      onPointerDown={onHandlePointerDown}
+      onDoubleClick={() => setResizeW(sidebarWidth)}
+      className="hover:bg-primary/30 absolute top-0 right-0 bottom-0 z-20 hidden w-1 cursor-col-resize bg-transparent transition-colors md:block"
+    />
+  ) : null;
+
   // Desktop master is a fixed target width (issue #53): content must not drive
   // aside width. Mobile drawer keeps 85vw; md+ uses CSS var from sidebarWidth.
+  const effectiveWidth = resizable ? resizeW : sidebarWidth;
   const sidebarStyle = {
-    ["--master-sidebar-width" as string]: `${sidebarWidth}px`,
+    ["--master-sidebar-width" as string]: `${effectiveWidth}px`,
   } as React.CSSProperties;
   const sidebarInnerStyle = {
     width: "100%",
@@ -120,19 +191,26 @@ function MasterDetailLayout({
       >
         <aside
           className={cn(
-            "w-full shrink-0 overflow-x-hidden md:overflow-y-auto md:border-r",
+            "relative w-full shrink-0 overflow-x-hidden md:overflow-y-auto",
+            chromeBorder !== false && "md:border-r",
             desktopFixedWidthClass,
           )}
           style={sidebarStyle}
         >
-          <div style={sidebarInnerStyle}>{sidebar}</div>
+          {/* #59/#60 M1: inner wrapper propagates row stretch so slot Card h-full resolves */}
+          <div className="h-full min-h-0" style={sidebarInnerStyle}>
+            {sidebar}
+          </div>
+          {resizeHandle}
         </aside>
-        <div className="min-w-0 flex-1">{main}</div>
+        <div className="h-full min-h-0 min-w-0 flex-1">{main}</div>
       </div>
     );
   }
 
   // Collapsible: desktop row; mobile drawer (overlay + backdrop).
+  // #61: default toggle uses a Filter glyph (not a hamburger) so it does not
+  // collide with the AdminShell mobile menu button. aria-label is unchanged.
   const toggle = masterToggle ?? (
     <button
       type="button"
@@ -143,7 +221,7 @@ function MasterDetailLayout({
         collapsibleDesktop ? "" : "md:hidden",
       )}
     >
-      <MenuIcon className="size-4" />
+      <FilterIcon className="size-4" />
     </button>
   );
 
@@ -161,7 +239,8 @@ function MasterDetailLayout({
         style={sidebarStyle}
         className={cn(
           // desktop: fixed-width column (issue #53); collapses to 0 when collapsibleDesktop + closed
-          "shrink-0 overflow-x-hidden md:static md:overflow-y-auto md:border-r md:bg-transparent md:p-0 md:transition-all md:duration-200",
+          "relative shrink-0 overflow-x-hidden md:static md:overflow-y-auto md:bg-transparent md:p-0 md:transition-all md:duration-200",
+          chromeBorder !== false && "md:border-r",
           collapsibleDesktop
             ? open
               ? cn(desktopFixedWidthClass, "md:translate-x-0 md:opacity-100")
@@ -172,7 +251,11 @@ function MasterDetailLayout({
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <div style={sidebarInnerStyle}>{sidebar}</div>
+        {/* #59/#60 M1: height chain for slot Card h-full */}
+        <div className="h-full min-h-0" style={sidebarInnerStyle}>
+          {sidebar}
+        </div>
+        {resizeHandle}
       </aside>
 
       {/* Mobile backdrop */}
@@ -186,7 +269,7 @@ function MasterDetailLayout({
         />
       )}
 
-      <div className="min-w-0 flex-1">{main}</div>
+      <div className="h-full min-h-0 min-w-0 flex-1">{main}</div>
     </div>
   );
 }

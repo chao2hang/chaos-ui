@@ -46,7 +46,12 @@ export interface ListPageShellProps extends React.ComponentProps<"div"> {
  * @description Lightweight composition for FilterBar + optional toolbar + table.
  * Default places toolbar on the **same row** as the filter (#58). Does not wrap
  * PageHeader/Card — consumers keep their own page chrome (e.g. PageChrome list **without** actions).
- * / 轻量列表壳：默认筛选与主操作同一行；不包 PageHeader/Card。
+ *
+ * FE-10 (#60 L1 / #61): when there is no filter, the actions row is right-aligned
+ * with **no ghost empty column**. On narrow screens (`<sm`) the filter and actions
+ * stack vertically and the actions row spans full width so primary buttons are
+ * never clipped.
+ * / 轻量列表壳：默认筛选与主操作同一行；无筛选时动作右对齐无幽灵空白列；窄屏堆叠不裁切。
  * @keywords list, shell, filter, toolbar, search-table
  * @example
  * <ListPageShell
@@ -90,13 +95,15 @@ export function ListPageShell({
   const actions = hasActions ? (
     <div
       data-slot="list-page-shell-actions"
-      className="flex shrink-0 flex-wrap items-center gap-2"
+      className="flex w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:ml-auto sm:w-auto"
     >
       {extra ? (
         <div className="text-muted-foreground min-w-0 text-sm">{extra}</div>
       ) : null}
       {toolbar ? (
-        <div className="flex flex-wrap items-center gap-2">{toolbar}</div>
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          {toolbar}
+        </div>
       ) : null}
     </div>
   ) : null;
@@ -114,15 +121,13 @@ export function ListPageShell({
       {inlineRow ? (
         <div
           data-slot="list-page-shell-filter-row"
-          className="flex flex-wrap items-end justify-between gap-3"
+          className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between"
         >
           {filterNode ? (
-            <div className="min-w-0 flex-1 basis-[min(100%,20rem)]">
+            <div className="min-w-0 flex-1 sm:basis-[min(100%,20rem)]">
               {filterNode}
             </div>
-          ) : (
-            <div className="min-w-0 flex-1" />
-          )}
+          ) : null}
           {actions}
         </div>
       ) : (
@@ -131,9 +136,8 @@ export function ListPageShell({
           {hasActions ? (
             <div
               data-slot="list-page-shell-toolbar-row"
-              className="flex flex-wrap items-center justify-between gap-2"
+              className="flex flex-wrap items-center justify-end gap-2"
             >
-              <div className="min-w-0 flex-1" />
               {actions}
             </div>
           ) : null}

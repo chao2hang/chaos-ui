@@ -27,6 +27,12 @@ interface ColumnDef<T = Record<string, unknown>> {
   ellipsis?: boolean;
   align?: "left" | "center" | "right";
   fixed?: "left" | "right";
+  /**
+   * Hide this column on narrow screens (`<md`) to keep wide tables readable on
+   * mobile (FE-10 #61). The column reappears at `md+`. Combine with `fixed` on
+   * a primary column for a stable anchor. / 窄屏隐藏该列
+   */
+  hideOnMobile?: boolean;
 }
 
 interface SearchTableProps<T = Record<string, unknown>> {
@@ -90,6 +96,10 @@ function SearchTable<
     right: "text-right",
   };
 
+  // #61: column hidden on <md via display:none table-cell
+  const mobileHiddenClass = (col: ColumnDef<T>) =>
+    col.hideOnMobile ? "hidden md:table-cell" : "";
+
   const getValue = (record: T, col: ColumnDef<T>) => {
     const key = (col.dataIndex || col.key) as keyof T;
     return record[key];
@@ -111,7 +121,10 @@ function SearchTable<
                 {columns.map((col) => (
                   <TableHead
                     key={col.key}
-                    className={alignClass[col.align || "left"]}
+                    className={cn(
+                      alignClass[col.align || "left"],
+                      mobileHiddenClass(col),
+                    )}
                     style={{ width: col.width, minWidth: col.width }}
                   >
                     {col.title}
@@ -123,8 +136,8 @@ function SearchTable<
               {loading ? (
                 Array.from({ length: 5 }).map((_, ri) => (
                   <TableRow key={ri}>
-                    {columns.map((_, ci) => (
-                      <TableCell key={ci}>
+                    {columns.map((col, ci) => (
+                      <TableCell key={ci} className={mobileHiddenClass(col)}>
                         <Skeleton className="h-4 w-full" />
                       </TableCell>
                     ))}
@@ -163,6 +176,7 @@ function SearchTable<
                             key={col.key}
                             className={cn(
                               alignClass[col.align || "left"],
+                              mobileHiddenClass(col),
                               col.ellipsis && "max-w-0 truncate",
                             )}
                           >

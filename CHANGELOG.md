@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.0] — 2026-07-17
+
+### Added — Ecology 对齐组件波次 (#62–#69)
+
+- **business/BrowserField (#62)**: 表单级浏览选择字段，对齐 Ecology WeaBrowser。弹层触发器 + 已选回显 + 单/多选 + 分类树 + 联想搜索 + 新增按钮 + 链接回显。内部复用 `BrowseDialog`，支持 `registerBrowserType` 注册默认配置。
+- **ui/DateTimePicker (#63)**: 日期+时间组合选择器，对齐 Ecology WeaDatePicker+WeaTimePicker。单触发器内同时选日期与时分，支持 Date 或字符串受控、时分步进、禁用日期。
+- **ui/PeriodPicker (#63)**: 会计期间选择器（年/季/月），对齐 Ecology WeaPeriod。输出期间键与起止日期，适合预算、销售期间等场景。
+- **ui/date-presets (#63)**: 日期范围预设工具（今天/昨天/本周/本月/上月/本年）。
+- **business/SchemaForm (#64)**: JSON/配置驱动表单，对齐 Ecology WeaForm+fieldConfig。仅凭一份 schema 渲染文本/下拉/日期/浏览等字段，支持分组、联动依赖与校验。内部复用 ui 表单原语与 BrowserField。
+- **business/MessageCenter (#65)**: 顶栏消息中心，对齐 Ecology WeaMessageCenter。铃铛 + 未读数 + 分类 tab + 列表 + 已读/跳转 + 加载更多。复用 NotificationCenter 铃铛面板，附加命令式 push store（`useMessageCenter`）。
+- **business/ReportTable (#66)**: 报表型服务端列表，对齐 Ecology WeaTable。列元数据 JSON + 服务端 loadData 分页/排序 + 合计行。内部复用 ProTable（列设置/密度/导出）。
+- **business/PaginationBar (#68)**: 独立分页条组件，含页码按钮、每页条数切换、快速跳转。对齐 Ecology 分页交互。
+- **business/notify (#69)**: 反馈协调助手 API，统一 toast（即时消失）与 inbox（持久留痕）两个通道。`notify.success/error/warning/info` → toast only；`notify.loading` → toast loading；`notify.inbox` → MessageCenter.push + 可选 toast。
+- **layout/MasterDetailLayout (#67)**: `resizable?: boolean` + `resizeHandle?` 支持拖拽调整主从面板宽度，对齐 Ecology 可调整布局。
+- **business/TreeCrudPage (#67)**: 透传 `resizable` / `resizeHandle` 到底层 MasterDetailLayout。
+- Storybook: `BrowserField`、`SchemaForm`、`ReportTable`、`MessageCenter`、`PaginationBar`、`DateTimePicker`+`PeriodPicker` stories + autodocs。
+- docs: `feedback-api.md` — toast vs inbox 决策表；`component-decision-table.md` — 新增 ReportTable / PaginationBar / BrowserField / SchemaForm 选型行。
+
+### Changed
+
+- **business/NotificationCenter**: 增加 tab 筛选、加载更多、`href` 点击跳转支持。
+- **business/FilterBar**: 可折叠筛选区适配 PaginationBar 集成。
+
+## [1.13.0] — 2026-07-17
+
+### Added
+
+- **layout/MasterDetailLayout (#60/#61)**: `chromeBorder?: boolean` (default `true`). Set `chromeBorder={false}` when `sidebar`/`main` slots render their own `Card` so the Card border is the only divider (avoids the double right border on the aside). The mobile default toggle now uses a Filter glyph instead of a hamburger so it no longer collides with the `AdminShell` mobile menu button.
+- **business/TreeCrudPage (#60)**: `sidebarWidth?: number` (default `320`, aligned with `MasterDetailLayout` / `OrgAdminPage`). Sidebar chrome is now Card-aligned (`rounded-xl` + `--card-spacing`), the height chain is closed, and narrow screens stack the tree above the detail.
+- **business/OrgAdminPage (#61)**: responsive single-column IA on `<md` — the tree fills the viewport; selecting a node switches to the detail pane with a "返回组织树" back button. `md+` keeps the two-column layout. Sidebar width now applies only at `md+`.
+- **business/SearchTable (#61)**: `ColumnDef.hideOnMobile?: boolean` hides a column on `<md` (header + body + skeleton cells) to keep wide tables readable on phones.
+- **business/ListPageShell (#60/#61)**: when there is no filter, the actions row is right-aligned with **no ghost empty column**. On `<sm` the filter and actions stack vertically and the actions row spans full width so primary buttons are never clipped.
+- **business/FilterBar (#61)**: fields are full-width on `<sm` (`w-full sm:w-44` / `sm:w-auto`) so multi-field filter bars no longer overflow on narrow screens.
+- Storybook: `MasterDetailLayout` — FE-10 dual-Card equal-height Do/Don't recipes (`Fe10DualCardEqualHeight`, `DontMismatchedCardSize`).
+
+### Changed
+
+- **layout/MasterDetailLayout (#60 M1)**: sidebar inner wrapper and main container now propagate the row stretch (`h-full min-h-0`) so slot `Card className="h-full"` equalizes height (#59, which was closed but not actually fixed in code, is now resolved).
+- **layout/MasterDetailTabs**: inner panes get `h-full min-h-0` for the same height-chain guarantee.
+- **docs**: component decision table — TreeCrud vs OrgAdmin vs MasterDetail selection row; `MasterListTemplate` / `MasterEditTemplate` marked deprecated; `chromeBorder` + same-`size` Card guidance.
+
+### Deprecated
+
+- **business/MasterListTemplate**: `@deprecated` since 1.13.0 — renders an in-page `<h2>` that conflicts with FE-10 list density. Use `PageChrome variant="list"` + `ListPageShell` + `SearchTable`.
+- **business/MasterEditTemplate**: `@deprecated` since 1.13.0 — use `PageChrome variant="form"` + `Card`/`CardSection`.
+
+### Migration (FE-10 整仓迁移指引 — 消费方 qxy-mop)
+
+1. `/chaos-ui-up` to `1.13.0`.
+2. 列表手拼 → `ListPageShell`；删 `PageChrome.actions` 上的 CRUD 刷新/新增。
+3. 商品分类 / 费用科目 → `TreeCrudPage`（`sidebarWidth` 默认 320）。
+4. 商品管理 → `MasterDetailLayout` + 双侧 `Card` **同 size** + `chromeBorder={false}`，删 `[&…]` 高度/边框临时 class。
+5. 部门 → `OrgAdminPage`（窄屏自动单栏）；移动端 390 验收「选部门 → 看摘要」。
+6. 宽表移动 → `SearchTable` 首列 `fixed:"left"` + 次要列 `hideOnMobile`。
+7. 工作台 `Row`+`Col span={17/7}` → 响应式 `xs={24} md={17}` / `xs={24} md={7}`。
+8. 删业务级第二套汉堡（`MasterDetail` 移动 toggle 已改 Filter 图标）。
+
 ## [1.12.0] — 2026-07-17
 
 ### Added

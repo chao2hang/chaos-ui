@@ -72,4 +72,57 @@ describe("OrgAdminPage", () => {
       expect(screen.getByTestId("oa")).toBeDefined();
     }
   });
+
+  it("mobile IA: tree first, select → detail + back, back clears (#61)", () => {
+    const onSelect = vi.fn();
+    const { container } = render(
+      <OrgAdminPage treeData={tree} onSelect={onSelect} />,
+    );
+    const aside = container.querySelector('[data-slot="org-admin-sidebar"]');
+    const section = container.querySelector('[data-slot="org-admin-main"]');
+
+    // Initial: tree visible, detail hidden on narrow
+    expect(aside?.className ?? "").toContain("flex");
+    expect(aside?.className ?? "").not.toContain("hidden");
+    expect(section?.className ?? "").toContain("hidden");
+
+    // No back button before a selection
+    expect(screen.queryByLabelText("返回组织树")).toBeNull();
+
+    // Select a node → detail pane reveals + back button appears
+    fireEvent.click(screen.getByText("工程部"));
+    const sectionAfter = container.querySelector(
+      '[data-slot="org-admin-main"]',
+    );
+    expect(sectionAfter?.className ?? "").toContain("flex");
+    expect(sectionAfter?.className ?? "").not.toContain("hidden");
+    expect(onSelect.mock.calls.at(-1)?.[0]).toBe("eng");
+    const back = screen.getByLabelText("返回组织树");
+    expect(back).toBeDefined();
+
+    // Back → tree visible again, detail hidden, selection cleared
+    fireEvent.click(back);
+    const asideFinal = container.querySelector(
+      '[data-slot="org-admin-sidebar"]',
+    );
+    const sectionFinal = container.querySelector(
+      '[data-slot="org-admin-main"]',
+    );
+    expect(asideFinal?.className ?? "").not.toContain("hidden");
+    expect(sectionFinal?.className ?? "").toContain("hidden");
+    expect(onSelect.mock.calls.at(-1)?.[0]).toBeUndefined();
+  });
+
+  it("sidebar width applied as CSS var (responsive desktop width)", () => {
+    const { container } = render(
+      <OrgAdminPage treeData={tree} sidebarWidth={360} />,
+    );
+    const aside = container.querySelector('[data-slot="org-admin-sidebar"]');
+    expect(aside?.getAttribute("style") ?? "").toContain(
+      "--org-admin-sidebar-width: 360px",
+    );
+    expect(aside?.className ?? "").toContain(
+      "md:w-(--org-admin-sidebar-width)",
+    );
+  });
 });

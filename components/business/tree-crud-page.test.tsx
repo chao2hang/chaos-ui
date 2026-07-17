@@ -30,6 +30,30 @@ describe("TreeCrudPage", () => {
     expect(screen.getByRole("searchbox", { name: "搜索分类" })).toBeDefined();
   });
 
+  it("applies sidebarWidth as a CSS var and defaults to 320 (#60)", () => {
+    const { container, rerender } = render(<TreeCrudPage tree={tree} />);
+    const aside = container.querySelector("aside");
+    expect(aside?.getAttribute("style") ?? "").toContain(
+      "--tree-crud-sidebar-width: 320px",
+    );
+    expect(aside?.className ?? "").toContain(
+      "md:w-(--tree-crud-sidebar-width)",
+    );
+    rerender(<TreeCrudPage tree={tree} sidebarWidth={400} />);
+    const asideAfter = container.querySelector("aside");
+    expect(asideAfter?.getAttribute("style") ?? "").toContain(
+      "--tree-crud-sidebar-width: 400px",
+    );
+  });
+
+  it("aside chrome is Card-aligned (rounded-xl + card-spacing) (#60)", () => {
+    const { container } = render(<TreeCrudPage tree={tree} />);
+    const aside = container.querySelector("aside");
+    expect(aside?.className ?? "").toContain("rounded-xl");
+    expect(aside?.className ?? "").toContain("py-(--card-spacing)");
+    expect(aside?.className ?? "").toContain("[--card-spacing:--spacing(4)]");
+  });
+
   it("renders children as the detail region", () => {
     render(
       <TreeCrudPage tree={tree} defaultSelected="c1">
@@ -85,7 +109,11 @@ describe("TreeCrudPage", () => {
 
   it("uses the controlled selected prop and shows it in the detail header", () => {
     const onSelect = vi.fn();
-    render(<TreeCrudPage tree={tree} selected="g2" onSelect={onSelect}>{null}</TreeCrudPage>);
+    render(
+      <TreeCrudPage tree={tree} selected="g2" onSelect={onSelect}>
+        {null}
+      </TreeCrudPage>,
+    );
     // the detail header shows the selected node's label ("零食")
     expect(screen.getAllByText("零食").length).toBeGreaterThan(0);
     // controlled: clicking a node fires onSelect but does not change internal selection
@@ -131,7 +159,9 @@ describe("TreeCrudPage", () => {
 
   it("renders the clear-search button and clears the query when clicked (uncontrolled)", () => {
     render(<TreeCrudPage tree={tree} />);
-    const search = screen.getByRole("searchbox", { name: "搜索分类" }) as HTMLInputElement;
+    const search = screen.getByRole("searchbox", {
+      name: "搜索分类",
+    }) as HTMLInputElement;
     fireEvent.change(search, { target: { value: "果汁" } });
     expect(screen.getByRole("button", { name: "清除搜索" })).toBeDefined();
     fireEvent.click(screen.getByRole("button", { name: "清除搜索" }));
@@ -150,8 +180,12 @@ describe("TreeCrudPage", () => {
 
   it("uses the controlled query value", () => {
     const onQueryChange = vi.fn();
-    render(<TreeCrudPage tree={tree} query="果汁" onQueryChange={onQueryChange} />);
-    const search = screen.getByRole("searchbox", { name: "搜索分类" }) as HTMLInputElement;
+    render(
+      <TreeCrudPage tree={tree} query="果汁" onQueryChange={onQueryChange} />,
+    );
+    const search = screen.getByRole("searchbox", {
+      name: "搜索分类",
+    }) as HTMLInputElement;
     expect(search.value).toBe("果汁");
     expect(screen.getByText("果汁")).toBeDefined();
     // typing fires onQueryChange but the value is controlled
@@ -165,13 +199,21 @@ describe("TreeCrudPage", () => {
   });
 
   it("renders the selected node label in the detail header", () => {
-    render(<TreeCrudPage tree={tree} defaultSelected="c1">{null}</TreeCrudPage>);
+    render(
+      <TreeCrudPage tree={tree} defaultSelected="c1">
+        {null}
+      </TreeCrudPage>,
+    );
     // the detail header shows the selected node's label
     expect(screen.getAllByText("碳酸饮料").length).toBeGreaterThan(0);
   });
 
   it("applies the className to the root element", () => {
-    render(<TreeCrudPage tree={tree} className="my-tree">{null}</TreeCrudPage>);
+    render(
+      <TreeCrudPage tree={tree} className="my-tree">
+        {null}
+      </TreeCrudPage>,
+    );
     const root = document.querySelector('[data-slot="tree-crud-page"]');
     expect(root?.className).toContain("my-tree");
   });
