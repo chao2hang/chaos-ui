@@ -24,6 +24,7 @@ describe("PageChrome", () => {
     expect(screen.getByText("table")).toBeDefined();
     const root = container.querySelector('[data-slot="page-chrome"]');
     expect(root?.getAttribute("data-variant")).toBe("list");
+    expect(root?.getAttribute("data-mode")).toBe("list");
   });
 
   it("list with actions: compact action row, no title", () => {
@@ -43,7 +44,33 @@ describe("PageChrome", () => {
     ).not.toBeNull();
   });
 
-  it("document uses sm header and compact content", () => {
+  it("form: no h1, ignores title/actions, compact content (#55)", () => {
+    const { container } = render(
+      <PageChrome
+        variant="form"
+        title="代客下单"
+        description="ignored"
+        actions={<button type="button">提交</button>}
+      >
+        <div>form-body</div>
+      </PageChrome>,
+    );
+    expect(container.querySelector("h1")).toBeNull();
+    expect(screen.queryByText("代客下单")).toBeNull();
+    expect(screen.queryByText("提交")).toBeNull();
+    expect(
+      container.querySelector('[data-slot="page-chrome-actions"]'),
+    ).toBeNull();
+    const content = container.querySelector('[data-slot="page-content"]');
+    expect(content?.getAttribute("data-density")).toBe("compact");
+    expect(
+      container
+        .querySelector('[data-slot="page-chrome"]')
+        ?.getAttribute("data-mode"),
+    ).toBe("form");
+  });
+
+  it("document aliases form: no h1, compact (#55 deprecated)", () => {
     const { container } = render(
       <PageChrome
         variant="document"
@@ -54,13 +81,43 @@ describe("PageChrome", () => {
         <div>form</div>
       </PageChrome>,
     );
-    const h1 = container.querySelector("h1");
-    expect(h1?.textContent).toBe("Order detail");
-    expect(h1?.className).toMatch(/text-lg/);
-    expect(screen.getByText("Edit bill")).toBeDefined();
+    expect(container.querySelector("h1")).toBeNull();
+    expect(screen.queryByText("Order detail")).toBeNull();
+    expect(screen.queryByText("Edit bill")).toBeNull();
+    expect(screen.queryByText("Save")).toBeNull();
     const content = container.querySelector('[data-slot="page-content"]');
     expect(content?.getAttribute("data-density")).toBe("compact");
-    expect(content?.className).toMatch(/space-y-3/);
+    const root = container.querySelector('[data-slot="page-chrome"]');
+    expect(root?.getAttribute("data-variant")).toBe("document");
+    expect(root?.getAttribute("data-mode")).toBe("form");
+  });
+
+  it("detail: no h1; identity slot only (#55)", () => {
+    const { container } = render(
+      <PageChrome
+        variant="detail"
+        title="Should ignore"
+        actions={<button type="button">ignored-action</button>}
+        identity={
+          <>
+            <span>SO-001</span>
+            <span>已审</span>
+          </>
+        }
+      >
+        <div>detail-body</div>
+      </PageChrome>,
+    );
+    expect(container.querySelector("h1")).toBeNull();
+    expect(screen.queryByText("Should ignore")).toBeNull();
+    expect(screen.queryByText("ignored-action")).toBeNull();
+    expect(screen.getByText("SO-001")).toBeDefined();
+    expect(screen.getByText("已审")).toBeDefined();
+    expect(
+      container.querySelector('[data-slot="page-chrome-identity"]'),
+    ).not.toBeNull();
+    const content = container.querySelector('[data-slot="page-content"]');
+    expect(content?.getAttribute("data-density")).toBe("compact");
   });
 
   it("overview uses default header size and density", () => {

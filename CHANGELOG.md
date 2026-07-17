@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] — 2026-07-17
+
+### Added
+
+- **business/PageChrome (#55)**: `variant="form"` (no in-page title, no top toolbar) and `variant="detail"` with optional **`identity`** thin slot (bill no / status / secondary actions — not `PageHeader`). Prefer shell breadcrumb/tabs for page location (Feishu-style).
+- Storybook: Form / Detail / Document(deprecated) examples for PageChrome.
+
+### Changed
+
+- **business/PageChrome (#55)**: `variant="document"` is **deprecated** and now aliases **`form`** (no sm title). Migration: use `form` or `detail` + `identity`. `list` / `overview` unchanged.
+- **docs**: component decision table — when to use list / form / detail / overview.
+
+### Fixed
+
+- **layout/AdminSider (#56)**: menu `nav` adds `no-scrollbar` while keeping `overflow-y-auto` (scroll without visible scrollbar; matches `SidebarContent`).
+
 ## [1.9.0] — 2026-07-17
 
 ### Added

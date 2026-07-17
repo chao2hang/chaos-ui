@@ -715,8 +715,8 @@ function AdminSider({
           </div>
         )}
 
-        {/* Menu */}
-        <nav className="flex-1 space-y-0.5 overflow-x-hidden overflow-y-auto p-2">
+        {/* Menu — scrollable without visible scrollbar (#56, match SidebarContent) */}
+        <nav className="no-scrollbar flex-1 space-y-0.5 overflow-x-hidden overflow-y-auto p-2">
           {menuItems.map((item) => renderMenuItem(item))}
         </nav>
 

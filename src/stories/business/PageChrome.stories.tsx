@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PageChrome } from "@/components/business/page-chrome";
 import { ListPageShell } from "@/components/business/list-page-shell";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlusIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { PlusIcon, RefreshCwIcon, PrinterIcon } from "@/components/ui/icons";
 
 const meta = {
   title: "Business/PageChrome",
@@ -13,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Page-type density chrome (issue #44). `list` hides the in-page title; `document` uses compact header; `overview` keeps the display header.",
+          "Page-type density chrome (#44 / #55). `list` / `form` / `detail` hide in-page title (locate via shell breadcrumb/tabs). `overview` keeps display header. `document` is a deprecated alias of `form`.",
       },
     },
   },
@@ -43,29 +44,6 @@ export const Overview: Story = {
   },
 };
 
-export const Document: Story = {
-  args: {
-    variant: "document",
-    title: "Employee detail",
-    description: "Edit profile and employment info",
-    actions: (
-      <>
-        <Button variant="outline" size="sm">
-          Cancel
-        </Button>
-        <Button size="sm">Save</Button>
-      </>
-    ),
-    children: (
-      <Card>
-        <CardContent className="space-y-3 pt-6">
-          <p className="text-muted-foreground text-sm">Form fields go here.</p>
-        </CardContent>
-      </Card>
-    ),
-  },
-};
-
 export const List: Story = {
   args: {
     variant: "list",
@@ -86,6 +64,77 @@ export const List: Story = {
         <CardContent className="pt-6">
           <p className="text-muted-foreground text-sm">
             List body (table) — no in-page h1.
+          </p>
+        </CardContent>
+      </Card>
+    ),
+  },
+};
+
+export const Form: Story = {
+  args: {
+    variant: "form",
+    // title/actions intentionally ignored — submit lives in card footer
+    title: "ignored",
+    children: (
+      <Card>
+        <CardContent className="space-y-3 pt-6">
+          <p className="text-muted-foreground text-sm">
+            Create / edit form — no page title, no top toolbar.
+          </p>
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" size="sm">
+              Cancel
+            </Button>
+            <Button size="sm">Submit</Button>
+          </div>
+        </CardContent>
+      </Card>
+    ),
+  },
+};
+
+export const Detail: Story = {
+  args: {
+    variant: "detail",
+    identity: (
+      <>
+        <span className="font-medium tabular-nums">SO-20260717-001</span>
+        <Badge variant="secondary">已审</Badge>
+        <div className="ml-auto flex items-center gap-1">
+          <Button variant="ghost" size="sm">
+            <PrinterIcon className="mr-1 size-3.5" />
+            打印
+          </Button>
+          <Button variant="outline" size="sm">
+            更多
+          </Button>
+        </div>
+      </>
+    ),
+    children: (
+      <Card>
+        <CardContent className="pt-6">
+          <p className="text-muted-foreground text-sm">
+            Detail body — identity strip only, no h1.
+          </p>
+        </CardContent>
+      </Card>
+    ),
+  },
+};
+
+/** @deprecated Prefer Form — same layout */
+export const Document: Story = {
+  name: "Document (deprecated → form)",
+  args: {
+    variant: "document",
+    title: "No longer shown as header",
+    children: (
+      <Card>
+        <CardContent className="pt-6">
+          <p className="text-muted-foreground text-sm">
+            `document` aliases `form`: no in-page title.
           </p>
         </CardContent>
       </Card>

@@ -7,44 +7,71 @@ import {
 } from "@/components/business/page-header";
 import { PageContent } from "@/components/ui/page-container";
 
-type PageChromeVariant = "list" | "document" | "overview";
+/**
+ * Page-type density (#44 / #55).
+ * - `list`: no title; optional compact actions row
+ * - `form`: no title, no top bar (create/edit; submit in card/footer)
+ * - `detail`: no title; optional thin `identity` slot (bill no + status)
+ * - `overview`: display PageHeader + default density
+ * - `document`: **deprecated** alias of `form` (no in-page title)
+ */
+type PageChromeVariant =
+  | "list"
+  | "form"
+  | "detail"
+  | "overview"
+  /** @deprecated Use `form`. Behavior matches form (no in-page title). */
+  | "document";
 
 interface PageChromeProps {
   /**
-   * Page-type density (issue #44).
-   * - `list`: no in-page title/description; optional compact actions row
-   * - `document`: medium header (`PageHeader size="sm"`) + compact content
-   * - `overview`: display header + default content gap
+   * Page-type density (issues #44 / #55).
+   * Prefer `list` | `form` | `detail` | `overview`. `document` is deprecated → `form`.
    */
   variant: PageChromeVariant;
-  /** document / overview; ignored for list */
+  /** Only `overview` renders title; ignored for list / form / detail / document */
   title?: string;
-  /** document / overview optional; ignored for list */
+  /** Only `overview`; ignored otherwise */
   description?: string;
   /**
-   * list: compact action row only (no h1)
-   * document / overview: PageHeader actions
+   * list: compact action row (no h1)
+   * overview: PageHeader actions
+   * form / detail / document: ignored (detail uses `identity`)
    */
   actions?: React.ReactNode;
-  /** document / overview only; ignored for list */
+  /**
+   * Only `detail`: thin identity strip (bill no, status badge, secondary actions).
+   * Not a PageHeader / not text-2xl.
+   */
+  identity?: React.ReactNode;
+  /** Only `overview`; ignored otherwise */
   breadcrumbItems?: BreadcrumbItemType[];
   className?: string;
   children: React.ReactNode;
+}
+
+function resolveVariant(
+  variant: PageChromeVariant,
+): "list" | "form" | "detail" | "overview" {
+  if (variant === "document") return "form";
+  return variant;
 }
 
 /**
  * @component PageChrome
  * @category business/ux
  * @since 1.7.0
- * @description Page-level density chrome: list hides in-page title; document/overview compose PageHeader + PageContent.
- * Pairs with ListPageShell for CRUD tables without CSS overrides of library headers.
- * / 页级密度壳：list 不渲染页内标题；document/overview 组合 PageHeader + PageContent。
- * @keywords page, chrome, density, list, document, overview, header
+ * @description Page-level density chrome. list / form / detail hide in-page title
+ * (shell breadcrumb + tabs locate the page). overview keeps display header.
+ * `document` is a deprecated alias of `form` (#55).
+ * / 页级密度壳：list/form/detail 不渲染页内大标题；overview 展示型头；document 弃用别名 form。
+ * @keywords page, chrome, density, list, form, detail, document, overview, header, identity
  * @example
  * <PageChrome variant="list" actions={<Button size="sm">新增</Button>}>
- *   <ListPageShell filterFields={fields} onSearch={...}>
- *     <SearchTable ... />
- *   </ListPageShell>
+ *   <ListPageShell>...</ListPageShell>
+ * </PageChrome>
+ * <PageChrome variant="detail" identity={<><span>SO-001</span><Badge>已审</Badge></>}>
+ *   ...
  * </PageChrome>
  */
 function PageChrome({
@@ -52,20 +79,17 @@ function PageChrome({
   title,
   description,
   actions,
+  identity,
   breadcrumbItems,
   className,
   children,
 }: PageChromeProps) {
-  const isList = variant === "list";
-  const isDocument = variant === "document";
-  const contentDensity = isList || isDocument ? "compact" : "default";
-  const headerSize: NonNullable<PageHeaderProps["size"]> = isDocument
-    ? "sm"
-    : "default";
+  const mode = resolveVariant(variant);
+  const contentDensity = mode === "overview" ? "default" : "compact";
 
   let header: React.ReactNode = null;
 
-  if (isList) {
+  if (mode === "list") {
     if (actions) {
       header = (
         <div
@@ -76,32 +100,47 @@ function PageChrome({
         </div>
       );
     }
-  } else if (title) {
-    header = (
-      <PageHeader
-        title={title}
-        {...(description !== undefined ? { description } : {})}
-        {...(actions !== undefined ? { actions } : {})}
-        {...(breadcrumbItems !== undefined ? { breadcrumbItems } : {})}
-        size={headerSize}
-      />
-    );
-  } else if (actions) {
-    // Document/overview without title but with actions — still show action row
-    header = (
-      <div
-        data-slot="page-chrome-actions"
-        className="flex min-h-8 items-center justify-end gap-2"
-      >
-        {actions}
-      </div>
-    );
+  } else if (mode === "detail") {
+    if (identity) {
+      header = (
+        <div
+          data-slot="page-chrome-identity"
+          className="flex min-h-8 flex-wrap items-center gap-2 py-0.5 text-sm"
+        >
+          {identity}
+        </div>
+      );
+    }
+  } else if (mode === "overview") {
+    if (title) {
+      const headerSize: NonNullable<PageHeaderProps["size"]> = "default";
+      header = (
+        <PageHeader
+          title={title}
+          {...(description !== undefined ? { description } : {})}
+          {...(actions !== undefined ? { actions } : {})}
+          {...(breadcrumbItems !== undefined ? { breadcrumbItems } : {})}
+          size={headerSize}
+        />
+      );
+    } else if (actions) {
+      header = (
+        <div
+          data-slot="page-chrome-actions"
+          className="flex min-h-8 items-center justify-end gap-2"
+        >
+          {actions}
+        </div>
+      );
+    }
   }
+  // form (and document→form): no header chrome
 
   return (
     <div
       data-slot="page-chrome"
       data-variant={variant}
+      data-mode={mode}
       className={cn(
         "flex min-h-0 flex-col",
         contentDensity === "compact" ? "gap-3" : "gap-6",

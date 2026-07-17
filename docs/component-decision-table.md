@@ -63,11 +63,16 @@ Table (ui 原子)
 
 列表页壳：
 
-| 需求                           | 用这个                                        | 不要做                                    |
-| ------------------------------ | --------------------------------------------- | ----------------------------------------- |
-| 筛选条 + 工具条 + 表体的列表壳 | `ListPageShell` + `FilterBar` + `SearchTable` | 每页手写 header/filter/table 间距互不一致 |
-| 主数据简单列表骨架             | `MasterListTemplate`                          | 与 ListPageShell 再发明第三套             |
-| 页头 / 密度 / 内容区           | `PageHeader` + `PageChrome`                   | 页面内魔法数 padding 替代 density 契约    |
+| 需求                                | 用这个                                        | 不要做                                    |
+| ----------------------------------- | --------------------------------------------- | ----------------------------------------- |
+| 筛选条 + 工具条 + 表体的列表壳      | `ListPageShell` + `FilterBar` + `SearchTable` | 每页手写 header/filter/table 间距互不一致 |
+| 主数据简单列表骨架                  | `MasterListTemplate`                          | 与 ListPageShell 再发明第三套             |
+| 页头 / 密度 / 内容区                | `PageHeader` + `PageChrome`                   | 页面内魔法数 padding 替代 density 契约    |
+| 列表页（无页内 h1，可选顶 actions） | `PageChrome variant="list"`                   | 手写 `PageHeader` 再 `[&_h1]` 压高度      |
+| 创建/编辑表单（无 h1、无顶工具行）  | `PageChrome variant="form"`                   | 依赖旧 `document` 出 sm 标题              |
+| 详情（无 h1；可选 identity）        | `PageChrome variant="detail"` + `identity`    | 把单号塞进 PageHeader title               |
+| 工作台/总览（展示型 title）         | `PageChrome variant="overview"`               | list 页误用 overview                      |
+| ~~document~~                        | **deprecated** → 同 `form`（无 title）        | 新代码写 `form`                           |
 
 ---
 

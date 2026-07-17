@@ -12,6 +12,7 @@
 
 ## 👀 待审核
 
+- [PageChrome form/detail #55 + AdminSider no-scrollbar #56](./2026-07-17_PageChrome与AdminSider_#55_#56_设计计划.md)
 - [AdminSider 手风琴与库级动效 #43](./2026-07-16_AdminSider手风琴与库级动效_设计计划.md)
 - [组件复用收敛：选型 + OrgAdmin→OrgTree](./2026-07-16_组件复用收敛_选型与OrgAdmin_设计计划.md)
 - [已闭环 Issue 同类回归审计（总）](./2026-07-16_已闭环Issue同类回归审计_设计计划.md)

@@ -518,4 +518,14 @@ describe("admin-sider", () => {
     expect(sub).not.toBeNull();
     expect(sub.className).toMatch(/animate-in|duration-300/);
   });
+
+  it("menu nav is scrollable without visible scrollbar (issue #56)", () => {
+    const { container } = render(
+      <AdminSider collapsed={false} menuItems={multiGroupMenu} />,
+    );
+    const nav = container.querySelector("nav");
+    expect(nav).not.toBeNull();
+    expect(nav?.className).toMatch(/no-scrollbar/);
+    expect(nav?.className).toMatch(/overflow-y-auto/);
+  });
 });
