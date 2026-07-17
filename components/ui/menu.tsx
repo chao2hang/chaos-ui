@@ -39,7 +39,11 @@
  */
 
 import * as React from "react";
-import { ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from "@/components/ui/icons";
+import {
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+} from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 export type MenuMode = "inline" | "vertical" | "horizontal";
@@ -67,7 +71,10 @@ export interface MenuClickInfo {
   domEvent: React.MouseEvent<HTMLElement>;
 }
 
-export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, "onClick" | "onSelect"> {
+export interface MenuProps extends Omit<
+  React.HTMLAttributes<HTMLElement>,
+  "onClick" | "onSelect"
+> {
   /** Menu display mode / 菜单类型 */
   mode?: MenuMode;
   /** Theme / 主题 */
@@ -82,7 +89,7 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, "onCl
   defaultOpenKeys?: string[];
   /** Whether to allow multiple selection / 是否支持多选 */
   multiple?: boolean;
-/** Menu item size / 菜单项尺寸 */
+  /** Menu item size / 菜单项尺寸 */
   size?: MenuSize;
   /** Whether items are selectable / 是否可选择 */
   selectable?: boolean;
@@ -137,7 +144,18 @@ function useMenuContext(component: string) {
   return ctx;
 }
 
-const themeClasses: Record<MenuTheme, { root: string; item: string; subTrigger: string; itemActive: string; itemHover: string; subBg: string; divider: string }> = {
+const themeClasses: Record<
+  MenuTheme,
+  {
+    root: string;
+    item: string;
+    subTrigger: string;
+    itemActive: string;
+    itemHover: string;
+    subBg: string;
+    divider: string;
+  }
+> = {
   light: {
     root: "bg-card text-foreground",
     item: "text-foreground",
@@ -162,9 +180,19 @@ const sizeClasses: Record<
   MenuSize,
   { item: string; icon: string; gap: string; indentBase: number }
 > = {
-  sm: { item: "h-7 px-2 text-xs", icon: "size-3.5", gap: "gap-1.5", indentBase: 6 },
+  sm: {
+    item: "h-7 px-2 text-xs",
+    icon: "size-3.5",
+    gap: "gap-1.5",
+    indentBase: 6,
+  },
   md: { item: "h-9 px-3", icon: "size-4", gap: "gap-2", indentBase: 8 },
-  lg: { item: "h-11 px-4 text-base", icon: "size-5", gap: "gap-2.5", indentBase: 10 },
+  lg: {
+    item: "h-11 px-4 text-base",
+    icon: "size-5",
+    gap: "gap-2.5",
+    indentBase: 10,
+  },
 };
 
 const Menu = React.forwardRef<HTMLElement, MenuProps>(
@@ -195,21 +223,30 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
     },
     ref,
   ) => {
-    const [internalSelected, setInternalSelected] = React.useState<string[]>(defaultSelectedKeys);
-    const [internalOpen, setInternalOpen] = React.useState<string[]>(defaultOpenKeys);
+    const [internalSelected, setInternalSelected] =
+      React.useState<string[]>(defaultSelectedKeys);
+    const [internalOpen, setInternalOpen] =
+      React.useState<string[]>(defaultOpenKeys);
     const [internalCollapsed, setInternalCollapsed] = React.useState(false);
     const isSelectedControlled = controlledSelected !== undefined;
     const isOpenControlled = controlledOpen !== undefined;
     const isCollapsedControlled = controlledCollapsed !== undefined;
-    const currentSelected = isSelectedControlled ? controlledSelected : internalSelected;
+    const currentSelected = isSelectedControlled
+      ? controlledSelected
+      : internalSelected;
     const currentOpen = isOpenControlled ? controlledOpen : internalOpen;
-    const currentCollapsed = isCollapsedControlled ? controlledCollapsed : internalCollapsed;
+    const currentCollapsed = isCollapsedControlled
+      ? controlledCollapsed
+      : internalCollapsed;
 
     // Registry for items-prop-based menu (so we can fire onClick via items)
     const itemsRef = React.useRef<Map<string, MenuItemConfig>>(new Map());
-    const registerItem = React.useCallback((key: string, cfg: MenuItemConfig) => {
-      itemsRef.current.set(key, cfg);
-    }, []);
+    const registerItem = React.useCallback(
+      (key: string, cfg: MenuItemConfig) => {
+        itemsRef.current.set(key, cfg);
+      },
+      [],
+    );
 
     const updateSelected = React.useCallback(
       (next: string[]) => {
@@ -251,7 +288,15 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
         info.item.onClick?.({ key: info.key, keyPath: info.keyPath });
         onClick?.(info);
       },
-      [currentSelected, multiple, onClick, onDeselect, onSelect, selectable, updateSelected],
+      [
+        currentSelected,
+        multiple,
+        onClick,
+        onDeselect,
+        onSelect,
+        selectable,
+        updateSelected,
+      ],
     );
 
     const onItemToggle = React.useCallback(
@@ -263,8 +308,9 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
         } else if (mode === "vertical") {
           // Accordion: close siblings at the same level
           const siblings = parentKey
-            ? itemsRef.current.get(parentKey)?.children?.map((c) => c.key) ?? []
-            : items?.map((i) => i.key) ?? [];
+            ? (itemsRef.current.get(parentKey)?.children?.map((c) => c.key) ??
+              [])
+            : (items?.map((i) => i.key) ?? []);
           next = currentOpen.filter((k) => !siblings.includes(k)).concat(key);
         } else {
           next = [...currentOpen, key];
@@ -307,11 +353,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
       content = (
         <MenuList tag="ul" role="menu">
           {items.map((item) => (
-            <ItemFromConfig
-              key={item.key}
-              config={item}
-              parentPath={[]}
-            />
+            <ItemFromConfig key={item.key} config={item} parentPath={[]} />
           ))}
         </MenuList>
       );
@@ -321,7 +363,11 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
 
     const rootClass = cn(
       "relative",
-      sizeClasses[size].item.includes("text-xs") ? "text-xs" : sizeClasses[size].item.includes("text-base") ? "text-base" : "text-sm",
+      sizeClasses[size].item.includes("text-xs")
+        ? "text-xs"
+        : sizeClasses[size].item.includes("text-base")
+          ? "text-base"
+          : "text-sm",
       mode === "horizontal"
         ? "flex items-center gap-1"
         : mode === "inline"
@@ -353,7 +399,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
               data-slot="menu"
               data-mode={mode}
               data-theme={theme}
-              className={cn(rootClass, "list-none m-0 p-0")}
+              className={cn(rootClass, "m-0 list-none p-0")}
             >
               {content}
             </ul>
@@ -362,7 +408,7 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
                 type="button"
                 onClick={handleCollapseToggle}
                 className={cn(
-                  "absolute bottom-0 left-0 right-0 flex items-center justify-center border-t transition-colors",
+                  "absolute right-0 bottom-0 left-0 flex items-center justify-center border-t transition-colors",
                   sizeClasses[size].item,
                   tc.item,
                   tc.itemHover,
@@ -372,9 +418,13 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
                 title={currentCollapsed ? "展开菜单" : "收起菜单"}
               >
                 {currentCollapsed ? (
-                  <ChevronsRightIcon className={cn("shrink-0", sizeClasses[size].icon)} />
+                  <ChevronsRightIcon
+                    className={cn("shrink-0", sizeClasses[size].icon)}
+                  />
                 ) : (
-                  <ChevronsLeftIcon className={cn("shrink-0", sizeClasses[size].icon)} />
+                  <ChevronsLeftIcon
+                    className={cn("shrink-0", sizeClasses[size].icon)}
+                  />
                 )}
               </button>
             )}
@@ -394,7 +444,7 @@ const MenuList = React.forwardRef<
     ref={ref}
     role="menu"
     data-slot="menu-list"
-    className={cn("list-none m-0 p-0", className)}
+    className={cn("m-0 list-none p-0", className)}
     {...props}
   >
     {children}
@@ -417,7 +467,9 @@ function ItemFromConfig({
   const isSelected = ctx.selectedKeys.includes(config.key);
   const indentStyle =
     ctx.mode === "inline" && !ctx.inlineCollapsed
-      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
+      ? {
+          paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px`,
+        }
       : undefined;
 
   React.useEffect(() => {
@@ -429,7 +481,11 @@ function ItemFromConfig({
       <li
         role="group"
         data-slot="menu-group"
-        className={cn("py-1 text-xs font-semibold text-muted-foreground", ctx.size === "lg" ? "px-4" : "px-2", tc.item)}
+        className={cn(
+          "text-muted-foreground py-1 text-xs font-semibold",
+          ctx.size === "lg" ? "px-4" : "px-2",
+          tc.item,
+        )}
       >
         {config.title ?? config.label}
       </li>
@@ -472,24 +528,45 @@ function ItemFromConfig({
           });
         }}
         className={cn(
-          "w-full flex items-center rounded-md text-left outline-none transition-colors",
+          "flex w-full items-center rounded-md text-left transition-colors outline-none",
+          "focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
           sizeClasses[ctx.size].item,
           sizeClasses[ctx.size].gap,
           tc.item,
           isSelected ? tc.itemActive : tc.itemHover,
-          config.danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
+          config.danger &&
+            "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
           config.disabled && "pointer-events-none opacity-50",
           ctx.inlineCollapsed && "justify-center",
         )}
         style={indentStyle}
         data-selected={isSelected || undefined}
+        aria-label={
+          ctx.inlineCollapsed
+            ? typeof config.label === "string"
+              ? config.label
+              : config.key
+            : undefined
+        }
       >
         {config.icon && (
-          <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
+          <span
+            className={cn(
+              "inline-flex shrink-0 items-center justify-center",
+              sizeClasses[ctx.size].icon,
+            )}
+          >
             {config.icon}
           </span>
         )}
-        {!ctx.inlineCollapsed && <span className="flex-1 truncate">{config.label}</span>}
+        {!ctx.inlineCollapsed && (
+          <span className="flex-1 truncate">{config.label}</span>
+        )}
+        {ctx.inlineCollapsed && (
+          <span className="sr-only">
+            {typeof config.label === "string" ? config.label : config.key}
+          </span>
+        )}
       </button>
     </li>
   );
@@ -512,7 +589,11 @@ function SubMenuContent({
 }) {
   const ctx = useMenuContext("Menu.SubMenu");
   const inlineMode = ctx.mode === "inline";
-  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1, parentKey: config.key };
+  const childContext: MenuContextValue = {
+    ...ctx,
+    level: ctx.level + 1,
+    parentKey: config.key,
+  };
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -540,12 +621,13 @@ function SubMenuContent({
       onClick={handleToggle}
       onMouseEnter={handleHover}
       className={cn(
-        "w-full flex items-center rounded-md text-left outline-none transition-colors",
+        "flex w-full items-center rounded-md text-left transition-colors outline-none",
         sizeClasses[ctx.size].item,
         sizeClasses[ctx.size].gap,
         tc.subTrigger,
         isSelected ? tc.itemActive : tc.itemHover,
-        config.danger && "text-destructive data-[selected=true]:bg-destructive/10",
+        config.danger &&
+          "text-destructive data-[selected=true]:bg-destructive/10",
         config.disabled && "pointer-events-none opacity-50",
         ctx.inlineCollapsed && "justify-center",
       )}
@@ -553,15 +635,22 @@ function SubMenuContent({
       data-selected={isSelected || undefined}
     >
       {config.icon && (
-        <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
+        <span
+          className={cn(
+            "inline-flex shrink-0 items-center justify-center",
+            sizeClasses[ctx.size].icon,
+          )}
+        >
           {config.icon}
         </span>
       )}
-      {!ctx.inlineCollapsed && <span className="flex-1 truncate">{config.label}</span>}
+      {!ctx.inlineCollapsed && (
+        <span className="flex-1 truncate">{config.label}</span>
+      )}
       {!ctx.inlineCollapsed && (
         <ChevronRightIcon
           className={cn(
-            "size-4 shrink-0 transition-transform text-muted-foreground",
+            "text-muted-foreground size-4 shrink-0 transition-transform",
             inlineMode && isOpen && "rotate-90",
           )}
         />
@@ -572,16 +661,25 @@ function SubMenuContent({
   if (ctx.mode === "horizontal") {
     // Horizontal submenu: render as popup
     return (
-      <li role="none" data-slot="menu-submenu" data-key={config.key} className="relative">
+      <li
+        role="none"
+        data-slot="menu-submenu"
+        data-key={config.key}
+        className="relative"
+      >
         {trigger}
         {isOpen && (
           <div
             className={cn(
-              "absolute left-0 top-full z-50 mt-1 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+              "bg-popover text-popover-foreground absolute top-full left-0 z-50 mt-1 min-w-[180px] rounded-md border p-1 shadow-md",
             )}
           >
             <MenuContext.Provider value={childContext}>
-              <ul role="menu" data-slot="menu-sub-content" className="list-none m-0 p-0">
+              <ul
+                role="menu"
+                data-slot="menu-sub-content"
+                className="m-0 list-none p-0"
+              >
                 {config.children!.map((child) => (
                   <ItemFromConfig
                     key={child.key}
@@ -610,7 +708,7 @@ function SubMenuContent({
         <ul
           role="menu"
           data-slot="menu-sub-content"
-          className={cn("list-none m-0 p-0", tc.subBg)}
+          className={cn("m-0 list-none p-0", tc.subBg)}
         >
           <MenuContext.Provider value={childContext}>
             {config.children!.map((child) => (
@@ -626,11 +724,15 @@ function SubMenuContent({
       {!inlineMode && isOpen && (
         <div
           className={cn(
-            "absolute left-full top-0 z-50 ml-1 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+            "bg-popover text-popover-foreground absolute top-0 left-full z-50 ml-1 min-w-[180px] rounded-md border p-1 shadow-md",
           )}
         >
           <MenuContext.Provider value={childContext}>
-            <ul role="menu" data-slot="menu-sub-content" className="list-none m-0 p-0">
+            <ul
+              role="menu"
+              data-slot="menu-sub-content"
+              className="m-0 list-none p-0"
+            >
               {config.children!.map((child) => (
                 <ItemFromConfig
                   key={child.key}
@@ -658,7 +760,15 @@ interface SubMenuProps {
   popupClassName?: string;
 }
 
-function SubMenu({ key: subKey, title, icon, disabled, children, className, style }: SubMenuProps) {
+function SubMenu({
+  key: subKey,
+  title,
+  icon,
+  disabled,
+  children,
+  className,
+  style,
+}: SubMenuProps) {
   const ctx = useMenuContext("SubMenu");
   const tc = themeClasses[ctx.theme];
   const isOpen = ctx.openKeys.includes(subKey);
@@ -666,7 +776,9 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
   const inlineMode = ctx.mode === "inline";
   const indentStyle =
     inlineMode && !ctx.inlineCollapsed
-      ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
+      ? {
+          paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px`,
+        }
       : style;
 
   const handleToggle = (e: React.MouseEvent) => {
@@ -675,7 +787,11 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
     ctx.onItemToggle(subKey, ctx.parentKey);
   };
 
-  const childContext: MenuContextValue = { ...ctx, level: ctx.level + 1, parentKey: subKey };
+  const childContext: MenuContextValue = {
+    ...ctx,
+    level: ctx.level + 1,
+    parentKey: subKey,
+  };
 
   const trigger = (
     <button
@@ -687,7 +803,7 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
       disabled={disabled}
       onClick={handleToggle}
       className={cn(
-        "w-full flex items-center rounded-md text-left outline-none transition-colors",
+        "flex w-full items-center rounded-md text-left transition-colors outline-none",
         sizeClasses[ctx.size].item,
         sizeClasses[ctx.size].gap,
         tc.subTrigger,
@@ -700,7 +816,12 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
       data-selected={isSelected || undefined}
     >
       {icon && (
-        <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
+        <span
+          className={cn(
+            "inline-flex shrink-0 items-center justify-center",
+            sizeClasses[ctx.size].icon,
+          )}
+        >
           {icon}
         </span>
       )}
@@ -708,7 +829,7 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
       {!ctx.inlineCollapsed && (
         <ChevronRightIcon
           className={cn(
-            "size-4 shrink-0 transition-transform text-muted-foreground",
+            "text-muted-foreground size-4 shrink-0 transition-transform",
             inlineMode && isOpen && "rotate-90",
           )}
         />
@@ -717,21 +838,37 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
   );
 
   return (
-    <li role="none" data-slot="menu-submenu" data-key={subKey} data-open={isOpen || undefined} className={!inlineMode ? "relative" : undefined}>
+    <li
+      role="none"
+      data-slot="menu-submenu"
+      data-key={subKey}
+      data-open={isOpen || undefined}
+      className={!inlineMode ? "relative" : undefined}
+    >
       {trigger}
       {inlineMode && isOpen && !ctx.inlineCollapsed && (
-        <ul role="menu" data-slot="menu-sub-content" className={cn("list-none m-0 p-0", tc.subBg)}>
-          <MenuContext.Provider value={childContext}>{children}</MenuContext.Provider>
+        <ul
+          role="menu"
+          data-slot="menu-sub-content"
+          className={cn("m-0 list-none p-0", tc.subBg)}
+        >
+          <MenuContext.Provider value={childContext}>
+            {children}
+          </MenuContext.Provider>
         </ul>
       )}
       {!inlineMode && isOpen && (
         <div
           className={cn(
-            "absolute left-full top-0 z-50 ml-1 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+            "bg-popover text-popover-foreground absolute top-0 left-full z-50 ml-1 min-w-[180px] rounded-md border p-1 shadow-md",
           )}
         >
           <MenuContext.Provider value={childContext}>
-            <ul role="menu" data-slot="menu-sub-content" className="list-none m-0 p-0">
+            <ul
+              role="menu"
+              data-slot="menu-sub-content"
+              className="m-0 list-none p-0"
+            >
               {children}
             </ul>
           </MenuContext.Provider>
@@ -743,8 +880,10 @@ function SubMenu({ key: subKey, title, icon, disabled, children, className, styl
 SubMenu.displayName = "Menu.SubMenu";
 
 // ---------- Item child component API ----------
-interface ItemProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children" | "onClick"> {
+interface ItemProps extends Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "children" | "onClick"
+> {
   key: string;
   icon?: React.ReactNode;
   disabled?: boolean;
@@ -757,7 +896,17 @@ interface ItemProps
 
 const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
   (
-    { key: itemKey, icon, disabled, danger, children, className, style, onClick, ...rest },
+    {
+      key: itemKey,
+      icon,
+      disabled,
+      danger,
+      children,
+      className,
+      style,
+      onClick,
+      ...rest
+    },
     ref,
   ) => {
     const ctx = useMenuContext("Item");
@@ -765,7 +914,9 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
     const isSelected = ctx.selectedKeys.includes(itemKey);
     const indentStyle =
       ctx.mode === "inline" && !ctx.inlineCollapsed
-        ? { paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px` }
+        ? {
+            paddingLeft: `${ctx.level * ctx.inlineIndent + sizeClasses[ctx.size].indentBase}px`,
+          }
         : style;
 
     return (
@@ -782,17 +933,23 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
             ctx.onItemClick({
               key: itemKey,
               keyPath: [itemKey],
-              item: { key: itemKey, label: children as React.ReactNode, ...(disabled !== undefined ? { disabled } : {}), ...(danger !== undefined ? { danger } : {}) },
+              item: {
+                key: itemKey,
+                label: children as React.ReactNode,
+                ...(disabled !== undefined ? { disabled } : {}),
+                ...(danger !== undefined ? { danger } : {}),
+              },
               domEvent: e,
             });
           }}
           className={cn(
-            "w-full flex items-center rounded-md text-left outline-none transition-colors",
+            "flex w-full items-center rounded-md text-left transition-colors outline-none",
             sizeClasses[ctx.size].item,
             sizeClasses[ctx.size].gap,
             tc.item,
             isSelected ? tc.itemActive : tc.itemHover,
-            danger && "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
+            danger &&
+              "text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive",
             disabled && "pointer-events-none opacity-50",
             ctx.inlineCollapsed && "justify-center",
             className,
@@ -802,11 +959,18 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
           {...rest}
         >
           {icon && (
-            <span className={cn("inline-flex shrink-0 items-center justify-center", sizeClasses[ctx.size].icon)}>
+            <span
+              className={cn(
+                "inline-flex shrink-0 items-center justify-center",
+                sizeClasses[ctx.size].icon,
+              )}
+            >
               {icon}
             </span>
           )}
-          {!ctx.inlineCollapsed && <span className="flex-1 truncate">{children}</span>}
+          {!ctx.inlineCollapsed && (
+            <span className="flex-1 truncate">{children}</span>
+          )}
         </button>
       </li>
     );
@@ -823,7 +987,7 @@ function Divider() {
       role="separator"
       aria-orientation="horizontal"
       data-slot="menu-divider"
-      className={cn("my-1 h-px mx-2", tc.divider)}
+      className={cn("mx-2 my-1 h-px", tc.divider)}
     />
   );
 }
@@ -841,14 +1005,14 @@ function ItemGroup({ title, children }: ItemGroupProps) {
     <li role="group" data-slot="menu-group" className="py-1">
       <div
         className={cn(
-          "py-1 text-xs font-semibold text-muted-foreground",
+          "text-muted-foreground py-1 text-xs font-semibold",
           ctx.size === "lg" ? "px-4" : "px-2",
           tc.item,
         )}
       >
         {title}
       </div>
-      <ul role="menu" data-slot="menu-group-list" className="list-none m-0 p-0">
+      <ul role="menu" data-slot="menu-group-list" className="m-0 list-none p-0">
         {children}
       </ul>
     </li>
@@ -862,5 +1026,11 @@ ItemGroup.displayName = "Menu.ItemGroup";
 (Menu as unknown as { Divider: typeof Divider }).Divider = Divider;
 (Menu as unknown as { ItemGroup: typeof ItemGroup }).ItemGroup = ItemGroup;
 
-export { Menu, Item as MenuItem, SubMenu as MenuSubMenu, Divider as MenuDivider, ItemGroup as MenuItemGroup };
+export {
+  Menu,
+  Item as MenuItem,
+  SubMenu as MenuSubMenu,
+  Divider as MenuDivider,
+  ItemGroup as MenuItemGroup,
+};
 export type { ItemProps as MenuItemProps, SubMenuProps };

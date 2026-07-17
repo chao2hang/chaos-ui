@@ -1,9 +1,8 @@
 "use client";
 
 export * from "./activity-feed";
-// AdvancedDataTable — deprecated, prefer SearchTable/DataTable for new work.
-// Re-exported for existing consumers; kept in barrel for discoverability.
-export * from "./advanced-data-table";
+// AdvancedDataTable — deprecated named export only (see bottom of file).
+// Prefer SearchTable / DataTable / ProTable for new work.
 export * from "./advanced-search";
 export * from "./announcement-banner";
 export * from "./approval-timeline";
@@ -375,7 +374,6 @@ export {
 export { PaginationBar, type PaginationBarProps } from "./pagination-bar";
 export { notify, type NotifyApi, type NotifyInboxOptions } from "./notify";
 
-// AdvancedDataTable removed from public barrel (deprecated — use SearchTable/DataTable).
 export { AreaChart } from "./area-chart";
 export type { AreaChartProps } from "./area-chart";
 export { BarChart } from "./bar-chart";

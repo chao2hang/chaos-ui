@@ -26,6 +26,8 @@ import {
  * @component FormDesignerRuntime
  * @category business/lowcode
  * @since 0.7.0
+ * @deprecated Prefer business `SchemaForm` (`@chaos_team/chaos-ui/business`) for
+ * JSON/config-driven forms (Ecology WeaForm). Will be removed in 2.0.
  * @description 表单设计器运行时 — 依据 schema 渲染可填写的表单，并对外抛出 onChange。
  * @keywords form, designer, runtime, render
  * @param schema 表单字段定义集合。

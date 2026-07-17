@@ -22,7 +22,11 @@ interface CookieOptions {
   secure?: boolean;
   /** SameSite policy / SameSite 策略 */
   sameSite?: "strict" | "lax" | "none";
-  /** HttpOnly flag (only works when set by server) / HttpOnly 标志 */
+  /**
+   * HttpOnly cannot be set from browser JS. Accepted for API symmetry with
+   * server-side cookie helpers but silently ignored in this client implementation.
+   * / 浏览器 JS 无法设置 HttpOnly；仅 API 对称，客户端实现会忽略
+   */
   httpOnly?: boolean;
 }
 
@@ -94,7 +98,10 @@ export const cookie = {
   /**
    * Remove a cookie / 删除 Cookie
    */
-  remove(name: string, options: Pick<CookieOptions, "path" | "domain"> = {}): void {
+  remove(
+    name: string,
+    options: Pick<CookieOptions, "path" | "domain"> = {},
+  ): void {
     this.set(name, "", {
       ...options,
       expires: -1,

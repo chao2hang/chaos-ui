@@ -85,22 +85,31 @@ describe("message", () => {
   it("loading forwards to toast.loading and defaults duration to 0", () => {
     message.loading("loading...");
     expect(methodMocks.loading).toHaveBeenCalledTimes(1);
-    expect(methodMocks.loading.mock.calls[0]![1]).toMatchObject({ duration: 0 });
+    expect(methodMocks.loading.mock.calls[0]![1]).toMatchObject({
+      duration: 0,
+    });
   });
 
   it("loading honors an explicit duration instead of 0", () => {
     message.loading("loading...", { duration: 5 });
-    expect(methodMocks.loading.mock.calls[0]![1]).toMatchObject({ duration: 5 });
+    // Public API is seconds; sonner receives milliseconds.
+    expect(methodMocks.loading.mock.calls[0]![1]).toMatchObject({
+      duration: 5000,
+    });
   });
 
   it("maps options.key -> config.id", () => {
     message.success("x", { key: "my-key" });
-    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({ id: "my-key" });
+    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({
+      id: "my-key",
+    });
   });
 
-  it("maps options.duration -> config.duration", () => {
+  it("maps options.duration (seconds) -> config.duration (ms)", () => {
     message.success("x", { duration: 7 });
-    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({ duration: 7 });
+    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({
+      duration: 7000,
+    });
   });
 
   it("maps options.description -> config.description", () => {
@@ -120,7 +129,9 @@ describe("message", () => {
 
   it("maps options.icon -> config.icon", () => {
     message.success("x", { icon: "ICON" });
-    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({ icon: "ICON" });
+    expect(methodMocks.success.mock.calls[0]![1]).toMatchObject({
+      icon: "ICON",
+    });
   });
 
   it("maps options.className -> config.classNames.toast", () => {

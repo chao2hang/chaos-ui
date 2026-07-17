@@ -15,9 +15,16 @@ export function parseDate(
   value: Date | number | string | undefined | null,
 ): Date | undefined {
   if (value === undefined || value === null) return undefined;
-  if (value instanceof Date) return Number.isNaN(value.getTime()) ? undefined : value;
+  if (value instanceof Date)
+    return Number.isNaN(value.getTime()) ? undefined : value;
   if (typeof value === "number") {
     const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? undefined : d;
+  }
+  // Date-only (YYYY-MM-DD) as local calendar day — avoid UTC midnight skew.
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const [ys, ms, ds] = value.split("-");
+    const d = new Date(Number(ys), Number(ms) - 1, Number(ds));
     return Number.isNaN(d.getTime()) ? undefined : d;
   }
   // string: try ISO first, then Date.parse
@@ -34,17 +41,32 @@ export function isValidDate(value: unknown): value is Date {
 export function add(
   date: Date,
   amount: number,
-  unit: "year" | "month" | "week" | "day" | "hour" | "minute" | "second" = "day",
+  unit:
+    "year" | "month" | "week" | "day" | "hour" | "minute" | "second" = "day",
 ): Date {
   const d = new Date(date);
   switch (unit) {
-    case "year": d.setFullYear(d.getFullYear() + amount); break;
-    case "month": d.setMonth(d.getMonth() + amount); break;
-    case "week": d.setDate(d.getDate() + amount * 7); break;
-    case "day": d.setDate(d.getDate() + amount); break;
-    case "hour": d.setHours(d.getHours() + amount); break;
-    case "minute": d.setMinutes(d.getMinutes() + amount); break;
-    case "second": d.setSeconds(d.getSeconds() + amount); break;
+    case "year":
+      d.setFullYear(d.getFullYear() + amount);
+      break;
+    case "month":
+      d.setMonth(d.getMonth() + amount);
+      break;
+    case "week":
+      d.setDate(d.getDate() + amount * 7);
+      break;
+    case "day":
+      d.setDate(d.getDate() + amount);
+      break;
+    case "hour":
+      d.setHours(d.getHours() + amount);
+      break;
+    case "minute":
+      d.setMinutes(d.getMinutes() + amount);
+      break;
+    case "second":
+      d.setSeconds(d.getSeconds() + amount);
+      break;
   }
   return d;
 }
@@ -62,10 +84,14 @@ export function diff(
 ): number {
   const ms = a.getTime() - b.getTime();
   switch (unit) {
-    case "day": return Math.trunc(ms / 86_400_000);
-    case "hour": return Math.trunc(ms / 3_600_000);
-    case "minute": return Math.trunc(ms / 60_000);
-    case "second": return Math.trunc(ms / 1000);
+    case "day":
+      return Math.trunc(ms / 86_400_000);
+    case "hour":
+      return Math.trunc(ms / 3_600_000);
+    case "minute":
+      return Math.trunc(ms / 60_000);
+    case "second":
+      return Math.trunc(ms / 1000);
   }
 }
 
@@ -97,11 +123,12 @@ export function isToday(date: Date): boolean {
   return isSameDay(date, new Date());
 }
 
-/** True if `date` is within the current calendar week (Sun–Sat). */
+/** True if `date` is within the current calendar week (Mon–Sun, ISO/business). */
 export function isThisWeek(date: Date): boolean {
   const now = new Date();
-  const day = now.getDay();
-  const start = startOfDay(addDays(now, -day));
+  const day = now.getDay(); // 0=Sun..6=Sat
+  const diffToMonday = day === 0 ? -6 : 1 - day;
+  const start = startOfDay(addDays(now, diffToMonday));
   const end = addDays(start, 7);
   return date >= start && date < end;
 }

@@ -42,11 +42,16 @@ export function useWebsocket(
     autoConnect = true,
   } = options;
   const [readyState, setReadyState] = React.useState(0);
-  const [lastMessage, setLastMessage] = React.useState<string | undefined>(undefined);
+  const [lastMessage, setLastMessage] = React.useState<string | undefined>(
+    undefined,
+  );
   const wsRef = React.useRef<WebSocket | null>(null);
   const handlersRef = React.useRef({ onOpen, onMessage, onClose, onError });
   handlersRef.current = { onOpen, onMessage, onClose, onError };
-  const retryRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const retryRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  const shouldReconnectRef = React.useRef(true);
 
   const connect = React.useCallback(() => {
     if (!url || typeof WebSocket === "undefined") return;
@@ -65,7 +70,7 @@ export function useWebsocket(
     ws.onclose = (e) => {
       setReadyState(ws.readyState);
       handlersRef.current.onClose?.(e);
-      if (autoConnect && retryInterval > 0) {
+      if (shouldReconnectRef.current && autoConnect && retryInterval > 0) {
         retryRef.current = setTimeout(connect, retryInterval);
       }
     };
@@ -75,8 +80,10 @@ export function useWebsocket(
   }, [url, protocols, autoConnect, retryInterval]);
 
   React.useEffect(() => {
+    shouldReconnectRef.current = true;
     if (autoConnect) connect();
     return () => {
+      shouldReconnectRef.current = false;
       if (retryRef.current) clearTimeout(retryRef.current);
       wsRef.current?.close();
     };
@@ -89,6 +96,7 @@ export function useWebsocket(
   }, []);
 
   const close = React.useCallback(() => {
+    shouldReconnectRef.current = false;
     if (retryRef.current) clearTimeout(retryRef.current);
     wsRef.current?.close();
   }, []);

@@ -35,6 +35,7 @@ import {
 
 /**
  * @component SchemaForm
+ * @note JSON/config-driven form on the **business** entry (`@chaos_team/chaos-ui/business`). Not the ui Zod/RHF SchemaForm (`@chaos_team/chaos-ui` / `/ui`).
  * @category business/form
  * @since 1.14.0
  * @description JSON/配置驱动的表单，对齐 Ecology WeaForm + fieldConfig。仅凭一份
@@ -235,12 +236,14 @@ interface FieldRendererProps {
   field: FormFieldSchema;
   value: unknown;
   error: string | null;
-  onChange: (v: unknown) => void;
+  labels?: Array<{ id: string; label: string }>;
+  onChange: (v: unknown, labels?: Array<{ id: string; label: string }>) => void;
 }
 
 function FieldControl({
   field,
   value,
+  labels,
   onChange,
   id,
 }: Omit<FieldRendererProps, "error"> & { id: string }) {
@@ -383,10 +386,17 @@ function FieldControl({
         <BrowserField
           {...(field.browser ?? {})}
           {...(value != null ? { value: value as string | string[] } : {})}
+          {...(labels ? { labels } : {})}
           {...(field.disabled !== undefined
             ? { disabled: field.disabled }
             : {})}
-          onChange={(v) => onChange(v)}
+          onChange={(v, items) => {
+            const nextLabels = items.map((item) => ({
+              id: String(item.id),
+              label: String(item.name ?? item.id),
+            }));
+            onChange(v, nextLabels);
+          }}
         />
       );
     case "custom":
@@ -419,7 +429,13 @@ function FieldControl({
   }
 }
 
-function FieldRenderer({ field, value, error, onChange }: FieldRendererProps) {
+function FieldRenderer({
+  field,
+  value,
+  error,
+  labels,
+  onChange,
+}: FieldRendererProps) {
   const fieldId = `sf-${field.name}`;
   return (
     <div
@@ -438,6 +454,7 @@ function FieldRenderer({ field, value, error, onChange }: FieldRendererProps) {
       <FieldControl
         field={field}
         value={value}
+        {...(labels ? { labels } : {})}
         onChange={onChange}
         id={fieldId}
       />
@@ -462,9 +479,22 @@ function SchemaForm({
   const { t } = useTranslation("ui");
   const groups = React.useMemo(() => normalizeSchema(schema), [schema]);
 
+  const schemaDefaults = React.useMemo(() => {
+    const defaults: Record<string, unknown> = {};
+    for (const g of groups) {
+      for (const f of g.fields) {
+        if (f.defaultValue !== undefined) defaults[f.name] = f.defaultValue;
+      }
+    }
+    return defaults;
+  }, [groups]);
+
   const [internalData, setInternalData] = React.useState<
     Record<string, unknown>
-  >(value ?? {});
+  >(() => ({ ...schemaDefaults, ...(value ?? {}) }));
+  const [labelMap, setLabelMap] = React.useState<
+    Record<string, Array<{ id: string; label: string }>>
+  >({});
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [collapsedGroups, setCollapsedGroups] = React.useState<
     Record<string, boolean>
@@ -477,9 +507,16 @@ function SchemaForm({
   const isControlled = value !== undefined;
   const data = isControlled ? (value as Record<string, unknown>) : internalData;
 
-  const setValue = (name: string, next: unknown) => {
+  const setValue = (
+    name: string,
+    next: unknown,
+    labels?: Array<{ id: string; label: string }>,
+  ) => {
     const updated = { ...data, [name]: next };
     if (!isControlled) setInternalData(updated);
+    if (labels) {
+      setLabelMap((prev) => ({ ...prev, [name]: labels }));
+    }
     onChange?.(updated);
     // clear field error on change
     if (errors[name]) {
@@ -557,7 +594,12 @@ function SchemaForm({
                             field={resolved}
                             value={data[field.name]}
                             error={errors[field.name] ?? null}
-                            onChange={(v) => setValue(field.name, v)}
+                            {...(labelMap[field.name]
+                              ? { labels: labelMap[field.name] }
+                              : {})}
+                            onChange={(v, labels) =>
+                              setValue(field.name, v, labels)
+                            }
                           />
                         );
                       })}

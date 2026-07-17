@@ -104,7 +104,7 @@ function MasterDetailLayout({
   minSidebarWidth = 200,
   maxSidebarWidth = 600,
   gap = "md",
-  collapsible = false,
+  collapsible,
   responsive = true,
   masterOpen,
   defaultMasterOpen = false,
@@ -180,8 +180,8 @@ function MasterDetailLayout({
   const desktopFixedWidthClass =
     "md:w-(--master-sidebar-width) md:max-w-(--master-sidebar-width)";
 
-  // `collapsible` explicitly set takes precedence; otherwise use `responsive`.
-  const shouldCollapse = collapsible || responsive;
+  // Explicit `collapsible` wins; otherwise fall back to `responsive` (default true).
+  const shouldCollapse = collapsible !== undefined ? collapsible : responsive;
   if (!shouldCollapse) {
     return (
       <div

@@ -104,6 +104,7 @@ function resolveControlType(
 
 /**
  * @component SchemaForm
+ * @note Zod/RHF schema form on the **ui** entry (`@chaos_team/chaos-ui` / `/ui`). Not the business JSON SchemaForm (`@chaos_team/chaos-ui/business`).
  * @category ui/data-entry
  * @since 1.1.0
  * @description A schema-driven form component pairing a zod schema with react-hook-form, rendering fields from `fields` overrides (falling back to defaultValues keys) / 由 zod schema 驱动的表单组件，结合 react-hook-form 与消费者覆盖渲染字段

@@ -194,60 +194,61 @@ function SearchTable<
       </div>
 
       {/* Pagination — horizontal inset under CardContent flush (CUI-LIST-01 / #8). */}
-      {pagination && (
-        <div
-          data-slot="search-table-pagination"
-          className="text-muted-foreground flex items-center justify-between px-[var(--card-spacing,1rem)] text-sm"
-        >
-          <span>共 {pagination.total} 条</span>
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={pagination.current <= 1}
-              onClick={() =>
-                pagination.onChange(pagination.current - 1, pagination.pageSize)
-              }
+      {pagination &&
+        (() => {
+          const pageSize = Math.max(1, pagination.pageSize || 1);
+          const totalPages = Math.max(
+            1,
+            Math.ceil(pagination.total / pageSize),
+          );
+          return (
+            <div
+              data-slot="search-table-pagination"
+              className="text-muted-foreground flex items-center justify-between px-[var(--card-spacing,1rem)] text-sm"
             >
-              上一页
-            </Button>
-            {Array.from(
-              { length: Math.ceil(pagination.total / pagination.pageSize) },
-              (_, i) => i + 1,
-            )
-              .slice(
-                Math.max(0, pagination.current - 3),
-                Math.min(
-                  Math.ceil(pagination.total / pagination.pageSize),
-                  pagination.current + 2,
-                ),
-              )
-              .map((page) => (
+              <span>共 {pagination.total} 条</span>
+              <div className="flex items-center gap-1">
                 <Button
-                  key={page}
-                  variant={page === pagination.current ? "default" : "outline"}
+                  variant="outline"
                   size="sm"
-                  onClick={() => pagination.onChange(page, pagination.pageSize)}
+                  disabled={pagination.current <= 1}
+                  onClick={() =>
+                    pagination.onChange(pagination.current - 1, pageSize)
+                  }
                 >
-                  {page}
+                  上一页
                 </Button>
-              ))}
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={
-                pagination.current >=
-                Math.ceil(pagination.total / pagination.pageSize)
-              }
-              onClick={() =>
-                pagination.onChange(pagination.current + 1, pagination.pageSize)
-              }
-            >
-              下一页
-            </Button>
-          </div>
-        </div>
-      )}
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .slice(
+                    Math.max(0, pagination.current - 3),
+                    Math.min(totalPages, pagination.current + 2),
+                  )
+                  .map((page) => (
+                    <Button
+                      key={page}
+                      variant={
+                        page === pagination.current ? "default" : "outline"
+                      }
+                      size="sm"
+                      onClick={() => pagination.onChange(page, pageSize)}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={pagination.current >= totalPages}
+                  onClick={() =>
+                    pagination.onChange(pagination.current + 1, pageSize)
+                  }
+                >
+                  下一页
+                </Button>
+              </div>
+            </div>
+          );
+        })()}
     </div>
   );
 }

@@ -148,6 +148,7 @@ export interface MessageCenterProps {
 
 function MessageCenter({
   items: itemsProp,
+  unreadCount: unreadCountProp,
   tabs,
   activeTab,
   onTabChange,
@@ -164,12 +165,15 @@ function MessageCenter({
 }: MessageCenterProps) {
   const store = useMessageCenter();
   const items = itemsProp ?? (useStore ? store.items : []);
+  const [panelOpen, setPanelOpen] = React.useState(false);
 
-  // Wire open() to the bell popover via a ref-less approach: NotificationCenter
-  // manages its own popover open state, so onOpen is informational only.
+  // Wire messageCenter.open() → open the NotificationCenter popover.
   React.useEffect(() => {
-    if (!useStore || !onOpen) return;
-    const l = () => onOpen();
+    if (!useStore) return;
+    const l = () => {
+      setPanelOpen(true);
+      onOpen?.();
+    };
     openListeners.add(l);
     return () => {
       openListeners.delete(l);
@@ -194,6 +198,11 @@ function MessageCenter({
     <div data-slot="message-center" className={className}>
       <NotificationCenter
         notifications={mapped}
+        open={panelOpen}
+        onOpenChange={setPanelOpen}
+        {...(unreadCountProp !== undefined
+          ? { badgeCount: unreadCountProp }
+          : {})}
         {...(handleMarkRead ? { onMarkRead: handleMarkRead } : {})}
         {...(handleMarkAllRead ? { onMarkAllRead: handleMarkAllRead } : {})}
         {...(onItemClick ? { onItemClick } : {})}

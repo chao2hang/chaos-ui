@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { renderHook, act as hookAct } from "@testing-library/react";
+import { renderHook, act as hookAct, waitFor } from "@testing-library/react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
 describe("useLocalStorage", () => {
@@ -20,10 +20,13 @@ describe("useLocalStorage", () => {
     expect(result.current[0]).toBe("default");
   });
 
-  it("returns stored value when localStorage has data", () => {
+  it("returns stored value when localStorage has data", async () => {
     localStorage.setItem("test-key", JSON.stringify("stored"));
     const { result } = renderHook(() => useLocalStorage("test-key", "default"));
-    expect(result.current[0]).toBe("stored");
+    // Hydrates from localStorage after mount (SSR-safe first paint).
+    await waitFor(() => {
+      expect(result.current[0]).toBe("stored");
+    });
   });
 
   it("sets value to localStorage", () => {

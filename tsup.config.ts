@@ -37,6 +37,16 @@ const external = [
   "@tiptap/extension-placeholder",
   "@xyflow/react",
   "cronstrue",
+  "zod",
+  "@tanstack/react-query",
+  "@hookform/resolvers",
+  "@uiw/react-codemirror",
+  "@codemirror/lang-css",
+  "@codemirror/lang-html",
+  "@codemirror/lang-javascript",
+  "@codemirror/lang-json",
+  "@codemirror/lang-sql",
+  "@codemirror/theme-one-dark",
 ];
 
 export default defineConfig({

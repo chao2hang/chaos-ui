@@ -345,14 +345,14 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
               <span className="max-w-[140px] truncate">{d.label}</span>
             )}
             {clearable && !disabled && (
-              <span
-                role="button"
+              <button
+                type="button"
                 aria-label={t("browserField.remove", { defaultValue: "移除" })}
                 onClick={(e) => removeOne(d.id, e)}
                 className="hover:bg-muted-foreground/20 inline-flex size-3.5 items-center justify-center rounded-full"
               >
                 <XIcon className="size-2.5" />
-              </span>
+              </button>
             )}
           </Badge>
         ))}
@@ -396,18 +396,21 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
   const trailing = (
     <span className="flex shrink-0 items-center gap-0.5">
       {hasValue && clearable && !disabled && (
-        <span
-          role="button"
+        <button
+          type="button"
           aria-label={t("browserField.clear", { defaultValue: "清空" })}
-          onClick={clearAll}
+          onClick={(e) => {
+            e.stopPropagation();
+            clearAll(e);
+          }}
           className="text-muted-foreground hover:text-foreground inline-flex size-4 items-center justify-center"
         >
           <XIcon className="size-3.5" />
-        </span>
+        </button>
       )}
       {onAdd && !disabled && (
-        <span
-          role="button"
+        <button
+          type="button"
           aria-label={t("browserField.add", { defaultValue: "新增" })}
           onClick={(e) => {
             e.stopPropagation();
@@ -416,10 +419,10 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
           className="text-muted-foreground hover:text-foreground inline-flex size-4 items-center justify-center"
         >
           <PlusIcon className="size-3.5" />
-        </span>
+        </button>
       )}
-      <span
-        role="button"
+      <button
+        type="button"
         aria-label={t("browserField.openDialog", {
           defaultValue: "打开选择弹窗",
         })}
@@ -430,7 +433,7 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
         className="text-muted-foreground hover:text-foreground inline-flex size-4 cursor-pointer items-center justify-center"
       >
         <SearchIcon className="size-4 shrink-0" />
-      </span>
+      </button>
     </span>
   );
 
@@ -481,15 +484,29 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
           {trailing}
         </div>
       ) : (
-        <button
-          type="button"
-          disabled={disabled}
-          onClick={() => setOpen(true)}
-          className={cn(shellClass, "text-left")}
+        <div
+          role="button"
+          tabIndex={disabled ? -1 : 0}
+          aria-disabled={disabled || undefined}
+          onClick={() => {
+            if (!disabled) setOpen(true);
+          }}
+          onKeyDown={(e) => {
+            if (disabled) return;
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setOpen(true);
+            }
+          }}
+          className={cn(
+            shellClass,
+            "text-left",
+            disabled && "pointer-events-none opacity-50",
+          )}
         >
           {labelsRegion}
           {trailing}
-        </button>
+        </div>
       )}
 
       {/* autocomplete dropdown */}

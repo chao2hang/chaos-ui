@@ -50,6 +50,12 @@ interface NotificationCenterProps {
   onLoadMore?: () => void;
   /** Whether more items are loading. / 是否正在加载更多 */
   loadingMore?: boolean;
+  /** Controlled unread badge count override. / 未读徽标受控覆盖 */
+  badgeCount?: number;
+  /** Controlled popover open. / 受控弹出层 */
+  open?: boolean;
+  /** Popover open change. / 弹出层开关回调 */
+  onOpenChange?: (open: boolean) => void;
   align?: "start" | "center" | "end";
   className?: string;
   emptyText?: string;
@@ -82,6 +88,9 @@ export function NotificationCenter({
   onTabChange,
   onLoadMore,
   loadingMore = false,
+  badgeCount,
+  open,
+  onOpenChange,
   align = "end",
   className,
   emptyText = "暂无通知",
@@ -97,13 +106,18 @@ export function NotificationCenter({
     return notifications.filter((n) => n.category === currentTab);
   }, [notifications, tabs, currentTab]);
 
-  const unread = notifications.filter((n) => !n.read).length;
+  const unreadFromItems = notifications.filter((n) => !n.read).length;
+  const unread = badgeCount ?? unreadFromItems;
 
   const resolvedEmptyText =
     emptyText === "暂无通知" ? t("notificationCenter.emptyText") : emptyText;
 
   return (
-    <Popover data-slot="notification-center">
+    <Popover
+      data-slot="notification-center"
+      {...(open !== undefined ? { open } : {})}
+      {...(onOpenChange ? { onOpenChange } : {})}
+    >
       <PopoverTrigger
         render={
           <Button

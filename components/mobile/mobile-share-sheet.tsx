@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "@/components/ui/icons";
@@ -47,24 +48,51 @@ function MobileShareSheet({
   platforms = [],
   className,
 }: MobileShareSheetProps) {
+  const closeRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", onKey);
+    requestAnimationFrame(() => closeRef.current?.focus());
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
     <div
       data-slot="mobile-share-sheet"
-      className={cn("fixed inset-0 z-50", className)}
+      className={cn("fixed inset-0 z-[var(--z-index-modal,1050)]", className)}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
       {/* Sheet */}
-      <div className="bg-background animate-in fade-in-0 slide-in-from-bottom-4 absolute inset-x-0 bottom-0 rounded-t-2xl p-4 pb-[max(1rem,env(safe-area-inset-bottom))] duration-200">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={title || "Share"}
+        className="bg-background animate-in fade-in-0 slide-in-from-bottom-4 absolute inset-x-0 bottom-0 rounded-t-2xl p-4 pb-[max(1rem,env(safe-area-inset-bottom))] duration-200"
+      >
         {/* Handle */}
         <div className="bg-muted mx-auto mb-4 h-1 w-10 rounded-full" />
 
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">Share</h2>
           <Button
+            ref={closeRef}
             variant="ghost"
             size="icon-sm"
             onClick={onClose}

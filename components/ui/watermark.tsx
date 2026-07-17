@@ -35,9 +35,10 @@ export function Watermark({
   fontSize = 14,
   className,
   fullPage = true,
-  zIndex = 1000,
+  // Stay below modals/dialogs (token --z-index-modal is typically 1050).
+  zIndex = 10,
   opacity = 0.08,
-  color = "#000",
+  color = "var(--foreground)",
 }: WatermarkProps) {
   const { t } = useTranslation("data");
   const resolvedText = text ?? t("watermark.default");

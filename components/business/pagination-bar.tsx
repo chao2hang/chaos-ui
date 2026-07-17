@@ -81,7 +81,8 @@ function PaginationBar({
   size = "sm",
   className,
 }: PaginationBarProps) {
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const safePageSize = Math.max(1, pageSize || 1);
+  const totalPages = Math.max(1, Math.ceil(total / safePageSize));
   const currentPage = Math.min(Math.max(1, page), totalPages);
   const btnSize = size === "sm" ? "icon-sm" : "icon";
   const range = getPageRange(currentPage, totalPages);
@@ -91,7 +92,7 @@ function PaginationBar({
   const handleJump = () => {
     const n = parseInt(jumpValue, 10);
     if (!Number.isNaN(n) && n >= 1 && n <= totalPages) {
-      onChange(n, pageSize);
+      onChange(n, safePageSize);
     }
     setJumpValue("");
   };
@@ -113,11 +114,11 @@ function PaginationBar({
       {showSizeChanger && (
         <NativeSelect
           size={size}
-          value={String(pageSize)}
+          value={String(safePageSize)}
           onChange={(e) => {
             const ps = Number(e.target.value);
             // Reset to page 1 when page size changes
-            onChange(1, ps);
+            onChange(1, Math.max(1, ps || 1));
           }}
           className="h-7 w-auto"
           aria-label="每页条数"
@@ -134,7 +135,7 @@ function PaginationBar({
           variant="outline"
           size={btnSize}
           disabled={currentPage <= 1}
-          onClick={() => onChange(currentPage - 1, pageSize)}
+          onClick={() => onChange(currentPage - 1, safePageSize)}
           aria-label="上一页"
         >
           <ChevronLeftIcon />
@@ -153,7 +154,7 @@ function PaginationBar({
               key={item}
               variant={item === currentPage ? "default" : "outline"}
               size={btnSize}
-              onClick={() => onChange(item, pageSize)}
+              onClick={() => onChange(item, safePageSize)}
               aria-current={item === currentPage ? "page" : undefined}
             >
               {item}
@@ -165,7 +166,7 @@ function PaginationBar({
           variant="outline"
           size={btnSize}
           disabled={currentPage >= totalPages}
-          onClick={() => onChange(currentPage + 1, pageSize)}
+          onClick={() => onChange(currentPage + 1, safePageSize)}
           aria-label="下一页"
         >
           <ChevronRightIcon />

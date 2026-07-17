@@ -35,14 +35,14 @@ chaos_style/
 ├── lib/            # 11+ utility libraries
 ├── src/            # Storybook stories and MDX documentation
 ├── app/            # Next.js demo application
-├── package/        # Package entry points (7 subpath exports)
+├── package/        # Package entry points (see package.json exports)
 ├── .storybook/     # Storybook configuration
 └── eslint-plugin-chaos/  # Custom ESLint rules
 ```
 
 ## Package Exports
 
-The library exports 7 subpath entries:
+The library exports multiple subpath entries (see package.json `exports`; root `.` is the ui entry, not a full umbrella):
 
 | Export                          | Entry File            | Contents                          |
 | ------------------------------- | --------------------- | --------------------------------- |

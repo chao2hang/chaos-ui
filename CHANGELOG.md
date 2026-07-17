@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.0] — 2026-07-18
+
+### Fixed — 全项目多角色审计整改
+
+- **lib/message**: `duration` 公共 API 为秒，内部转换为 sonner 毫秒（`0` 仍表示不自动关闭）。
+- **lib/api-client**: 401 refresh 仅重试一次，避免无限循环。
+- **lib/date**: `YYYY-MM-DD` 按本地日历日解析；`isThisWeek` 对齐周一至周日。
+- **FilterBar**: 实现 `date-picker` / `date-range-picker`；i18n 查询/重置/展开；reset 恢复 `defaultValue`；Select 受控 `null` + `items`。
+- **SearchTable / PaginationBar**: `pageSize` 钳制为 ≥1，避免 `Infinity`。
+- **BrowserField**: 非嵌套 interactive 控件（外壳 + 真实 button）。
+- **SchemaForm (business)**: 应用字段 `defaultValue`；browser 字段维护 labels。
+- **PeriodPicker**: 非受控确认后更新 trigger 标签。
+- **DateTimePicker**: 分钟按 `step` 对齐。
+- **ReportTable**: `loadData` 用 ref，避免父级内联函数反复请求。
+- **MessageCenter / NotificationCenter**: 支持 `unreadCount`/`badgeCount` 与 `open`/`messageCenter.open()`。
+- **MasterDetailTabs**: 受控 `activeDetail`。
+- **MasterDetailLayout**: 显式 `collapsible` 优先于 `responsive`。
+- **ImageViewer / MobileShareSheet**: dialog 语义、Escape、body scroll lock、初始焦点。
+- **Menu**: 折叠态 accessible name + focus-visible。
+- **Watermark**: 默认 z-index 降至模态之下。
+- **hooks/useLocalStorage**: SSR 安全 hydrate；**useWebsocket**: unmount/close 后不再自动重连。
+- **AdvancedDataTable**: 去掉 `export *`，仅保留 deprecated 具名导出。
+- **Governance**: 清理陈旧 changeset；access=public；ARCHITECTURE 导出说明；`/business/server` 契约注释；SECURITY 支持版本；tsup external 补 peers；storage/cookie 文档修正。
+
+### Added
+
+- `PeriodPicker` 单测与 Storybook story。
+
 ## [1.14.0] — 2026-07-17
 
 ### Added — Ecology 对齐组件波次 (#62–#69)

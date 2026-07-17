@@ -1,13 +1,14 @@
 /**
- * RSC-safe business component entry.
+ * Business "server" subpath entry.
  *
- * This entry re-exports ONLY pure display components — no hooks, no form
- * providers, no client-only state. It does NOT have a "use client" directive,
- * so Server Components can import from `@chaos_team/chaos-ui/business/server`
- * without pulling in react-hook-form or other client-only dependencies.
+ * Historical name: intended as a lighter / display-oriented subset of
+ * `@chaos_team/chaos-ui/business`. **Not fully RSC-safe** — many re-exported
+ * modules still begin with `"use client"` and will force a client boundary
+ * when imported into Next.js Server Components. Prefer pure non-client modules
+ * only, or import interactive pieces from `@chaos_team/chaos-ui/business`.
  *
- * For interactive components (forms, editors, pickers), import from
- * `@chaos_team/chaos-ui/business` instead.
+ * This file itself has no `"use client"` directive so the entry can be analyzed
+ * as a server module graph root, but leaf modules may still be client.
  */
 
 // Pure display components — safe for RSC

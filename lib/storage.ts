@@ -2,7 +2,7 @@
  * @lib storage
  * @category lib/storage
  * @since 0.2.0
- * @description localStorage/sessionStorage 包装(过期/序列化/加密) / Storage wrapper with expiry, serialization, and optional encryption
+ * @description localStorage/sessionStorage 包装(过期/序列化) / Storage wrapper with expiry and serialization (no encryption)
  * @example
  * storage.set('key', { foo: 'bar' }, { expires: 3600 });
  * const data = storage.get<{ foo: string }>('key');
@@ -46,9 +46,7 @@ export const storage = {
 
     const item: StorageItem<T> = {
       value,
-      expiry: options.expires
-        ? Date.now() + options.expires * 1000
-        : undefined,
+      expiry: options.expires ? Date.now() + options.expires * 1000 : undefined,
     };
 
     try {

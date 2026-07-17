@@ -28,6 +28,14 @@ describe("date", () => {
     expect(isValidDate(new Date(NaN))).toBe(false);
   });
 
+  it("parseDate treats YYYY-MM-DD as local calendar day", () => {
+    const d = parseDate("2026-06-30");
+    expect(d).toBeDefined();
+    expect(d!.getFullYear()).toBe(2026);
+    expect(d!.getMonth()).toBe(5);
+    expect(d!.getDate()).toBe(30);
+  });
+
   it("add adds days/weeks/months", () => {
     const base = new Date(2026, 0, 1);
     expect(add(base, 1, "day").getDate()).toBe(2);

@@ -68,7 +68,7 @@ package/               → Package entry points (re-exports)
 
 ## Package Exports
 
-The library exposes 7 subpath exports:
+The library exposes multiple subpath exports (see package.json `exports`; root `.` is the ui entry, not a full umbrella):
 
 - `@chaos_team/chaos-ui` (main)
 - `@chaos_team/chaos-ui/ui`

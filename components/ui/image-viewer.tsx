@@ -46,13 +46,34 @@ function ImageViewer({
   const [zoom, setZoom] = React.useState(1);
   const [rotation, setRotation] = React.useState(0);
 
+  const closeRef = React.useRef<HTMLButtonElement>(null);
+
   React.useEffect(() => {
     if (open) {
       setCurrent(index);
       setZoom(1);
       setRotation(0);
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onOpenChange(false);
+        if (e.key === "ArrowLeft") {
+          setCurrent((c) => (c - 1 + images.length) % images.length);
+        }
+        if (e.key === "ArrowRight") {
+          setCurrent((c) => (c + 1) % images.length);
+        }
+      };
+      window.addEventListener("keydown", onKey);
+      // Focus close control for keyboard users when the dialog opens.
+      requestAnimationFrame(() => closeRef.current?.focus());
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", onKey);
+      };
     }
-  }, [open, index]);
+    return undefined;
+  }, [open, index, images.length, onOpenChange]);
 
   if (!open || images.length === 0) return null;
 
@@ -65,10 +86,14 @@ function ImageViewer({
   return (
     <div
       data-slot="image-viewer"
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90"
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.alt || "Image viewer"}
+      className="fixed inset-0 z-[var(--z-index-modal,1050)] flex items-center justify-center bg-black/90"
       onClick={() => onOpenChange(false)}
     >
       <Button
+        ref={closeRef}
         variant="ghost"
         size="icon"
         className="absolute top-4 right-4 text-white hover:bg-white/10"

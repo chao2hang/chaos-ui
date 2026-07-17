@@ -143,7 +143,11 @@ describe("api-client", () => {
     const client = new ApiClient();
     const data = await client.post("/things", { name: "x" });
     expect(data).toEqual({ id: 9 });
-    expect(fakeInstance.post).toHaveBeenCalledWith("/things", { name: "x" }, undefined);
+    expect(fakeInstance.post).toHaveBeenCalledWith(
+      "/things",
+      { name: "x" },
+      undefined,
+    );
   });
 
   it("put delegates to instance.put", async () => {
@@ -293,8 +297,9 @@ describe("api-client", () => {
   it("omits code/details when response data lacks them", async () => {
     const client = new ApiClient();
     const handle = reject(client);
-    const apiErr = (await handle(makeErr({ status: 400, data: { message: "m" } }))
-      .catch((e: ApiError) => e)) as ApiError;
+    const apiErr = (await handle(
+      makeErr({ status: 400, data: { message: "m" } }),
+    ).catch((e: ApiError) => e)) as ApiError;
     expect(apiErr.code).toBeUndefined();
     expect(apiErr.details).toBeUndefined();
     expect(apiErr.message).toBe("m");
@@ -345,6 +350,20 @@ describe("api-client", () => {
     expect(result).toEqual({ data: { ok: true } });
   });
 
+  it("does not refresh again when the retried request still returns 401", async () => {
+    const refreshToken = vi.fn(async () => "new-token");
+    const onTokenExpired = vi.fn();
+    const client = new ApiClient({ refreshToken, onTokenExpired });
+    const handle = reject(client);
+    const cfg = { url: "/secure", headers: new HeadersBag(), _retry: true };
+    await expect(
+      handle(makeErr({ status: 401, config: cfg })),
+    ).rejects.toMatchObject({ status: 401 });
+    expect(refreshToken).not.toHaveBeenCalled();
+    expect(onTokenExpired).not.toHaveBeenCalled();
+    expect(toastError).toHaveBeenCalledWith("登录已过期");
+  });
+
   it("does not retry when refreshToken returns null (falls through to 401 toast)", async () => {
     const refreshToken = vi.fn(async () => null);
     const onTokenExpired = vi.fn();
@@ -352,7 +371,10 @@ describe("api-client", () => {
     const handle = reject(client);
     await expect(
       handle(
-        makeErr({ status: 401, config: { url: "/x", headers: new HeadersBag() } }),
+        makeErr({
+          status: 401,
+          config: { url: "/x", headers: new HeadersBag() },
+        }),
       ),
     ).rejects.toMatchObject({ status: 401 });
     expect(onTokenExpired).toHaveBeenCalledTimes(1);
@@ -368,7 +390,10 @@ describe("api-client", () => {
     const handle = reject(client);
     await expect(
       handle(
-        makeErr({ status: 401, config: { url: "/x", headers: new HeadersBag() } }),
+        makeErr({
+          status: 401,
+          config: { url: "/x", headers: new HeadersBag() },
+        }),
       ),
     ).rejects.toMatchObject({ status: 401 });
     expect(onTokenExpired).toHaveBeenCalledTimes(1);

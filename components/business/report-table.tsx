@@ -178,14 +178,21 @@ function ReportTable<T extends Record<string, unknown>>({
   >();
   const [loading, setLoading] = React.useState(false);
 
-  // Load data on param changes.
+  // Keep latest loadData without refetching when parent passes an inline function.
+  const loadDataRef = React.useRef(loadData);
+  React.useEffect(() => {
+    loadDataRef.current = loadData;
+  }, [loadData]);
+
+  // Load data on page/pageSize changes only.
   // NOTE: sort wiring is deferred to v2 (ProTable manages visual sort internally
   // and does not yet expose an onSort callback). Consumers needing server-side sort
   // can pass filters via a wrapper until then.
   React.useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    loadData({ page, pageSize })
+    loadDataRef
+      .current({ page, pageSize })
       .then((res) => {
         if (cancelled) return;
         setRows(res.rows);
@@ -203,7 +210,7 @@ function ReportTable<T extends Record<string, unknown>>({
     return () => {
       cancelled = true;
     };
-  }, [loadData, page, pageSize]);
+  }, [page, pageSize]);
 
   // Restore column visibility from localStorage
   const hiddenFromStorage = React.useMemo(() => {

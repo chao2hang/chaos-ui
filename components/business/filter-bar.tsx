@@ -4,6 +4,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui";
 import { Input } from "@/components/ui";
+import { DatePicker } from "@/components/ui/date-picker";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { NativeSelect } from "@/components/ui/native-select";
 import {
   Select,
@@ -13,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 interface FilterField {
   key: string;
@@ -63,6 +66,32 @@ interface FilterBarProps {
   className?: string;
 }
 
+function initialValuesFromFields(
+  fields: FilterField[],
+): Record<string, unknown> {
+  const initial: Record<string, unknown> = {};
+  for (const f of fields) {
+    if (f.defaultValue !== undefined) initial[f.key] = f.defaultValue;
+  }
+  return initial;
+}
+
+function parseDateValue(value: unknown): Date | null {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value;
+  if (typeof value === "string" && value) {
+    const d = new Date(value);
+    if (!Number.isNaN(d.getTime())) return d;
+  }
+  return null;
+}
+
+function parseRangeValue(
+  value: unknown,
+): [Date | null, Date | null] | undefined {
+  if (!Array.isArray(value) || value.length < 2) return undefined;
+  return [parseDateValue(value[0]), parseDateValue(value[1])];
+}
+
 /**
  * 搜索/筛选栏 —— 对标 qxy-mop 所有列表页的 Form layout="inline"。
  *
@@ -81,13 +110,10 @@ function FilterBar({
   size = "sm",
   className,
 }: FilterBarProps) {
-  const [values, setValues] = React.useState<Record<string, unknown>>(() => {
-    const initial: Record<string, unknown> = {};
-    for (const f of fields) {
-      if (f.defaultValue !== undefined) initial[f.key] = f.defaultValue;
-    }
-    return initial;
-  });
+  const { t } = useTranslation("ui");
+  const [values, setValues] = React.useState<Record<string, unknown>>(() =>
+    initialValuesFromFields(fields),
+  );
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (key: string, value: unknown) => {
@@ -96,7 +122,7 @@ function FilterBar({
 
   const handleSearch = () => onSearch(values);
   const handleReset = () => {
-    setValues({});
+    setValues(initialValuesFromFields(fields));
     onReset?.();
   };
 
@@ -139,10 +165,13 @@ function FilterBar({
       }
 
       // Default: compound Select (issue #41) — popover matches design system.
-      // Empty selection uses undefined so SelectValue shows placeholder (not a fake option).
+      // Empty must stay controlled: Base UI treats value===undefined as uncontrolled,
+      // so use null (not undefined / omit) or first selection flips controlled and warns.
+      // items={options} so SelectValue can resolve labels when the popup unmounts.
       return (
         <Select
-          value={current || undefined}
+          value={current || null}
+          items={field.options}
           onValueChange={(v) =>
             handleChange(field.key, v == null || v === "" ? undefined : v)
           }
@@ -161,11 +190,65 @@ function FilterBar({
       );
     }
 
+    if (field.type === "date-picker") {
+      const raw = values[field.key];
+      const stringValue =
+        typeof raw === "string"
+          ? raw
+          : raw instanceof Date
+            ? `${raw.getFullYear()}-${String(raw.getMonth() + 1).padStart(2, "0")}-${String(raw.getDate()).padStart(2, "0")}`
+            : null;
+      return (
+        <DatePicker
+          valueAsString
+          size={size}
+          value={stringValue}
+          placeholder={
+            field.placeholder ||
+            t("filterBar.datePlaceholder", { defaultValue: field.label })
+          }
+          onChange={(v) => handleChange(field.key, v ?? undefined)}
+          className="w-full sm:w-44"
+        />
+      );
+    }
+
+    if (field.type === "date-range-picker") {
+      const range = parseRangeValue(values[field.key]);
+      return (
+        <DateRangePicker
+          presentation="range"
+          size={size}
+          {...(range ? { value: range } : {})}
+          rangePlaceholder={
+            field.placeholder ||
+            t("filterBar.dateRangePlaceholder", {
+              defaultValue: field.label,
+            })
+          }
+          onChange={(next) => {
+            if (!next || (!next[0] && !next[1])) {
+              handleChange(field.key, undefined);
+              return;
+            }
+            handleChange(field.key, next);
+          }}
+          className="w-full min-w-56 sm:w-auto"
+        />
+      );
+    }
+
     // Default: input
     return (
       <Input
         size={size}
-        placeholder={field.placeholder || `请输入${field.label}`}
+        placeholder={
+          field.placeholder ||
+          t("filterBar.inputPlaceholder", {
+            defaultValue: `请输入${field.label}`,
+            label: field.label,
+          })
+        }
         value={String(values[field.key] ?? "")}
         onChange={(e) => handleChange(field.key, e.target.value)}
         onKeyDown={handleKeyDown}
@@ -198,7 +281,7 @@ function FilterBar({
 
       <div className="flex items-center gap-2">
         <Button size={size} onClick={handleSearch} disabled={loading}>
-          查询
+          {t("filterBar.search", { defaultValue: "查询" })}
         </Button>
         <Button
           size={size}
@@ -206,7 +289,7 @@ function FilterBar({
           onClick={handleReset}
           disabled={loading}
         >
-          重置
+          {t("filterBar.reset", { defaultValue: "重置" })}
         </Button>
 
         {collapsible && hiddenCount > 0 && (
@@ -215,7 +298,12 @@ function FilterBar({
             variant="ghost"
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? "收起" : `展开 (${hiddenCount})`}
+            {expanded
+              ? t("filterBar.collapse", { defaultValue: "收起" })
+              : t("filterBar.expand", {
+                  defaultValue: `展开 (${hiddenCount})`,
+                  count: hiddenCount,
+                })}
           </Button>
         )}
       </div>

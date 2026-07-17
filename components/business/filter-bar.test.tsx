@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { FilterBar } from "./filter-bar";
 import type { FilterBarProps, FilterField } from "./filter-bar";
 
@@ -120,6 +121,38 @@ describe("filter-bar", () => {
     expect(onReset).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByText("查询"));
     expect(onSearch).toHaveBeenCalledWith({});
+  });
+
+  it("restores field defaultValue on reset", () => {
+    const onSearch = vi.fn();
+    render(
+      <FilterBar
+        fields={[
+          {
+            key: "name",
+            label: "姓名",
+            defaultValue: "默认值",
+            placeholder: "输入姓名",
+          },
+        ]}
+        onSearch={onSearch}
+      />,
+    );
+    const input = screen.getByPlaceholderText("输入姓名");
+    fireEvent.change(input, { target: { value: "张三" } });
+    fireEvent.click(screen.getByText("重置"));
+    fireEvent.click(screen.getByText("查询"));
+    expect(onSearch).toHaveBeenCalledWith({ name: "默认值" });
+  });
+
+  it("renders date-picker field as DatePicker (not plain text input)", () => {
+    const { container } = render(
+      <FilterBar
+        fields={[{ key: "date", label: "日期", type: "date-picker" }]}
+        onSearch={vi.fn()}
+      />,
+    );
+    expect(container.querySelector('[data-slot="date-picker"]')).not.toBeNull();
   });
 
   it("fires onSearch on Enter keydown in input", () => {
@@ -305,5 +338,79 @@ describe("filter-bar", () => {
     const input = container.querySelector('[data-slot="input"]') as HTMLElement;
     expect(input?.getAttribute("data-size")).toBe("default");
     expect(input?.className).toMatch(/\bh-8\b/);
+  });
+
+  it("keeps portal Select controlled from empty to selected (no Base UI uncontrolled warning)", async () => {
+    // Repro: empty portal Select used value={undefined} then a string after pick →
+    // "changing the uncontrolled value state of Select to be controlled".
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const user = userEvent.setup();
+    const onSearch = vi.fn();
+    render(
+      <FilterBar
+        fields={[
+          {
+            key: "status",
+            label: "状态",
+            type: "select",
+            options: [
+              { label: "启用", value: "1" },
+              { label: "禁用", value: "0" },
+            ],
+          },
+        ]}
+        onSearch={onSearch}
+      />,
+    );
+
+    const trigger = document.querySelector(
+      '[data-slot="select-trigger"]',
+    ) as HTMLElement;
+    expect(trigger).not.toBeNull();
+    await user.click(trigger);
+
+    const option = await screen.findByRole("option", { name: "启用" });
+    await user.click(option);
+
+    fireEvent.click(screen.getByText("查询"));
+    expect(onSearch).toHaveBeenCalledWith({ status: "1" });
+
+    const consoleText = spy.mock.calls
+      .map((args) => args.map(String).join(" "))
+      .join("\n");
+    expect(consoleText).not.toMatch(
+      /uncontrolled value state of Select|controlled value state of Select/,
+    );
+    spy.mockRestore();
+  });
+
+  it("portal Select empty + selected trigger labels use option labels (items map)", async () => {
+    const user = userEvent.setup();
+    render(
+      <FilterBar
+        fields={[
+          {
+            key: "status",
+            label: "状态",
+            type: "select",
+            options: [
+              { label: "启用", value: "1" },
+              { label: "禁用", value: "0" },
+            ],
+          },
+        ]}
+        onSearch={vi.fn()}
+      />,
+    );
+
+    const trigger = document.querySelector(
+      '[data-slot="select-trigger"]',
+    ) as HTMLElement;
+    await user.click(trigger);
+    await user.click(await screen.findByRole("option", { name: "启用" }));
+
+    // Closed trigger should show Chinese label, not raw value "1".
+    expect(trigger.textContent).toMatch(/启用/);
+    expect(trigger.textContent).not.toMatch(/^1$/);
   });
 });

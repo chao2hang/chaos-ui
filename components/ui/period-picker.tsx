@@ -104,9 +104,14 @@ function PeriodPicker({
   const [granularity, setGranularity] = React.useState<PeriodGranularity>(
     value?.granularity ?? granularityProp,
   );
-  const now = new Date();
-  const [year, setYear] = React.useState(value?.year ?? now.getFullYear());
-  const [index, setIndex] = React.useState(value?.index ?? now.getMonth() + 1);
+  const baseYear = React.useMemo(() => new Date().getFullYear(), []);
+  const [year, setYear] = React.useState(value?.year ?? baseYear);
+  const [index, setIndex] = React.useState(
+    value?.index ?? new Date().getMonth() + 1,
+  );
+  const [committed, setCommitted] = React.useState<PeriodValue | null>(
+    value ?? null,
+  );
 
   // Sync internal state when controlled value changes
   React.useEffect(() => {
@@ -114,6 +119,7 @@ function PeriodPicker({
       setGranularity(value.granularity);
       setYear(value.year);
       setIndex(value.index ?? 1);
+      setCommitted(value);
     }
   }, [value]);
 
@@ -123,14 +129,14 @@ function PeriodPicker({
     ...(granularity === "year" ? {} : { index }),
   };
 
-  const displayLabel = value ? formatPeriodLabel(currentValue) : "";
+  const displaySource = value ?? committed;
+  const displayLabel = displaySource ? formatPeriodLabel(displaySource) : "";
   const resolvedPlaceholder =
     placeholder ?? t("periodPicker.placeholder", { defaultValue: "选择期间" });
 
   const years = React.useMemo(() => {
-    const cur = now.getFullYear();
-    return Array.from({ length: 11 }, (_, i) => cur - 5 + i);
-  }, [now]);
+    return Array.from({ length: 11 }, (_, i) => baseYear - 5 + i);
+  }, [baseYear]);
 
   const indexOptions: { value: number; label: string }[] =
     granularity === "quarter"
@@ -144,6 +150,7 @@ function PeriodPicker({
 
   const handleConfirm = () => {
     const range = resolvePeriod(currentValue);
+    setCommitted(currentValue);
     onChange?.(range, currentValue);
     setOpen(false);
   };
@@ -189,7 +196,7 @@ function PeriodPicker({
                       if (g === "year")
                         setIndex(undefined as unknown as number);
                       else if (g === "quarter") setIndex(1);
-                      else setIndex(now.getMonth() + 1);
+                      else setIndex(new Date().getMonth() + 1);
                     }}
                   >
                     {g === "year"

@@ -29,9 +29,11 @@ function MasterDetailTabs({
   className,
 }: MasterDetailTabsProps) {
   const detailKeys = Object.keys(details);
-  const [active, setActive] = React.useState(
+  const [internalActive, setInternalActive] = React.useState(
     activeDetail || detailKeys[0] || "",
   );
+  const isControlled = activeDetail !== undefined;
+  const active = isControlled ? activeDetail : internalActive;
 
   return (
     <div
@@ -52,7 +54,7 @@ function MasterDetailTabs({
         <Tabs
           value={active}
           onValueChange={(v) => {
-            setActive(v);
+            if (!isControlled) setInternalActive(v);
             onDetailChange?.(v);
           }}
         >

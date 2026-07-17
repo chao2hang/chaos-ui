@@ -95,10 +95,20 @@ type ToastFn = ((
   config: (config: MessageGlobalConfig) => void;
 };
 
+function durationToMs(durationSeconds: number | undefined): number | undefined {
+  if (durationSeconds === undefined) return undefined;
+  // Public API is seconds (antd-compatible); sonner expects milliseconds.
+  // 0 means sticky / do not auto-close.
+  if (durationSeconds === 0) return 0;
+  return durationSeconds * 1000;
+}
+
 function buildToastConfig(options?: MessageOptions): Record<string, unknown> {
   const config: Record<string, unknown> = {};
   if (options?.key !== undefined) config.id = options.key;
-  if (options?.duration !== undefined) config.duration = options.duration;
+  if (options?.duration !== undefined) {
+    config.duration = durationToMs(options.duration);
+  }
   if (options?.description !== undefined)
     config.description = options.description;
   if (options?.action) {

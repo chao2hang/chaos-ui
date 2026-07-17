@@ -57,13 +57,33 @@ export class ApiClient {
         const status = err.response?.status ?? 0;
         const data = err.response?.data;
 
-        // Token refresh on 401
-        if (status === 401 && refreshToken && err.config) {
+        // Token refresh on 401 — only once per request to avoid infinite loops
+        // when the refreshed token still gets 401.
+        const originalConfig = err.config as
+          (AxiosRequestConfig & { _retry?: boolean }) | undefined;
+        if (
+          status === 401 &&
+          refreshToken &&
+          originalConfig &&
+          !originalConfig._retry
+        ) {
+          originalConfig._retry = true;
           try {
             const newToken = await refreshToken();
-            if (newToken && err.config.headers) {
-              err.config.headers.set("Authorization", `Bearer ${newToken}`);
-              return this.instance.request(err.config);
+            if (newToken && originalConfig.headers) {
+              const headers = originalConfig.headers as {
+                set?: (key: string, value: string) => void;
+                Authorization?: string;
+                common?: Record<string, string>;
+              };
+              if (typeof headers.set === "function") {
+                headers.set("Authorization", `Bearer ${newToken}`);
+              } else if (headers.common) {
+                headers.common.Authorization = `Bearer ${newToken}`;
+              } else {
+                headers.Authorization = `Bearer ${newToken}`;
+              }
+              return this.instance.request(originalConfig);
             }
           } catch {
             // Refresh failed — fall through to error handling

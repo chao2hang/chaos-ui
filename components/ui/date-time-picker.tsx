@@ -112,13 +112,21 @@ function DateTimePicker(props: DateTimePickerProps) {
     : (controlledValue as Date | null | undefined);
   const value = isControlled ? (controlledDate ?? null) : internalValue;
 
-  // Sync working time when value/open changes
+  const snapMinute = React.useCallback(
+    (m: number) => {
+      if (step <= 1) return m;
+      return Math.min(59, Math.round(m / step) * step);
+    },
+    [step],
+  );
+
+  // Sync working time when value/open changes; snap minutes to `step` grid.
   React.useEffect(() => {
     if (value) {
       setHour(value.getHours());
-      setMinute(value.getMinutes());
+      setMinute(snapMinute(value.getMinutes()));
     }
-  }, [value, open]);
+  }, [value, open, snapMinute]);
 
   const commit = (date: Date | null) => {
     if (!isControlled) setInternalValue(date);
@@ -134,7 +142,7 @@ function DateTimePicker(props: DateTimePickerProps) {
     if (!day) return;
     const next = new Date(day);
     if (showTime) {
-      next.setHours(hour, minute, 0, 0);
+      next.setHours(hour, snapMinute(minute), 0, 0);
     } else {
       next.setHours(0, 0, 0, 0);
     }
@@ -143,11 +151,12 @@ function DateTimePicker(props: DateTimePickerProps) {
   };
 
   const handleTimeChange = (h: number, m: number) => {
+    const snapped = snapMinute(m);
     setHour(h);
-    setMinute(m);
+    setMinute(snapped);
     if (value) {
       const next = new Date(value);
-      next.setHours(h, m, 0, 0);
+      next.setHours(h, snapped, 0, 0);
       commit(next);
     }
   };
@@ -217,7 +226,13 @@ function DateTimePicker(props: DateTimePickerProps) {
               </select>
               <span className="text-muted-foreground">:</span>
               <select
-                value={minute}
+                value={
+                  minutes.includes(minute)
+                    ? minute
+                    : (minutes.find((m) => m >= minute) ??
+                      minutes[minutes.length - 1] ??
+                      0)
+                }
                 onChange={(e) => handleTimeChange(hour, Number(e.target.value))}
                 className="border-input bg-background h-8 rounded-md border px-1 text-sm"
                 aria-label={t("dateTimePicker.minute", { defaultValue: "分" })}
