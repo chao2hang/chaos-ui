@@ -169,13 +169,14 @@ interface AdminShellProps extends Omit<
   footer?: React.ReactNode;
 
   /**
-   * Content area padding (CUI-LAYOUT-03).
-   * - `true` (default): `p-4` for backward compatibility
-   * - `false`: no padding — app layout owns gutter (preferred when nesting FE-10 `p-4 lg:p-6`)
+   * Content area padding (CUI-LAYOUT-03 / #57).
+   * - `true` (default): isotropic `p-4` when no tabs; with tabs → `px-4 pt-2 pb-4` (tighter top under NavigationTabsBar)
+   * - `false`: no padding — app layout owns gutter
    * - string: custom Tailwind classes, e.g. `"p-4 lg:p-6"`
-   * / 内容区内边距。应用自管 gutter 时请传 false，且不要再包一层 main。
+   * - object: directional gutter `{ inline?, top?, bottom? }` (class strings; defaults fill missing sides)
+   * / 内容区内边距。多标签时默认收紧顶距；应用自管 gutter 时请传 false。
    */
-  contentPadding?: boolean | string;
+  contentPadding?: ContentPadding;
   /** Extra class names on the content main / 内容 main 额外类名 */
   contentClassName?: string;
   /**
@@ -196,6 +197,45 @@ interface AdminShellProps extends Omit<
   children?: React.ReactNode;
   /** Additional class names / 额外样式类 */
   className?: string;
+}
+
+/** Directional content gutter for AdminShell (#57). Values are Tailwind class fragments. */
+export type ContentPaddingSides = {
+  /** Horizontal padding classes, default `px-4` */
+  inline?: string;
+  /** Block-start padding, default `pt-2` when tabs else `pt-4` */
+  top?: string;
+  /** Block-end padding, default `pb-4` */
+  bottom?: string;
+};
+
+/**
+ * Content padding config (#57).
+ * Prefer object form when tabs are present so top can stay tighter than horizontal.
+ */
+export type ContentPadding = boolean | string | ContentPaddingSides;
+
+/**
+ * Resolve AdminShell main padding classes.
+ * @param contentPadding - prop value
+ * @param hasTabs - whether NavigationTabsBar is shown (`tabs.length > 0`)
+ */
+export function resolveContentPaddingClass(
+  contentPadding: ContentPadding | undefined,
+  hasTabs: boolean,
+): string | undefined {
+  if (contentPadding === false) return undefined;
+  if (contentPadding === undefined || contentPadding === true) {
+    // With multi-tabs chrome, keep horizontal/bottom density but tighten top (#57)
+    return hasTabs ? "px-4 pt-2 pb-4" : "p-4";
+  }
+  if (typeof contentPadding === "string") {
+    return contentPadding;
+  }
+  const inline = contentPadding.inline ?? "px-4";
+  const top = contentPadding.top ?? (hasTabs ? "pt-2" : "pt-4");
+  const bottom = contentPadding.bottom ?? "pb-4";
+  return cn(inline, top, bottom);
 }
 
 export function AdminShell({
@@ -420,11 +460,7 @@ export function AdminShell({
               data-slot="admin-shell-content"
               className={cn(
                 "flex-1 overflow-y-auto",
-                contentPadding === false
-                  ? undefined
-                  : contentPadding === true
-                    ? "p-4"
-                    : contentPadding,
+                resolveContentPaddingClass(contentPadding, tabs.length > 0),
                 contentClassName,
               )}
             >

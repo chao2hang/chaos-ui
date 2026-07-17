@@ -36,8 +36,12 @@ export type { SplitScreenProps } from "./split-screen";
 export { TopBar } from "./top-bar";
 
 // ─── AdminShell (0.8.0) ──────────────────────────────────────────
-export { AdminShell } from "./admin-shell";
-export type { AdminShellProps } from "./admin-shell";
+export { AdminShell, resolveContentPaddingClass } from "./admin-shell";
+export type {
+  AdminShellProps,
+  ContentPadding,
+  ContentPaddingSides,
+} from "./admin-shell";
 
 // ─── Enterprise UI 底座补齐 — 布局组件 ────────────────────────────
 export { MultiTabManager } from "./multi-tab-manager";

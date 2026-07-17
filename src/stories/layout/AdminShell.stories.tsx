@@ -6,8 +6,12 @@ import {
   UsersIcon,
   FileTextIcon,
   PackageIcon,
+  PlusIcon,
 } from "@/components/ui/icons";
 import { AdminShell } from "@/components/layout/admin-shell";
+import { PageChrome } from "@/components/business/page-chrome";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 const meta: Meta<typeof AdminShell> = {
   title: "Layouts/AdminShell",
@@ -17,7 +21,7 @@ const meta: Meta<typeof AdminShell> = {
     docs: {
       description: {
         component:
-          'AdminShell roots with `h-full min-h-0` (CUI-LAYOUT-04). Story canvas supplies a host box (`h-[70vh]`); real Next apps should set `html`/`body` (or a full-height ancestor) to `h-full` / `min-h-svh`, or pass `className="min-h-svh"` on the shell. Unlike AuthLayout, there is no default viewport fill. Desktop sider collapse defaults to the header far-left control (`collapseTrigger="header"`, issue #17); use `collapseTrigger="sider-edge"` for the legacy mid-sider handle.',
+          'AdminShell roots with `h-full min-h-0` (CUI-LAYOUT-04). Story canvas supplies a host box (`h-[70vh]`); real Next apps should set `html`/`body` (or a full-height ancestor) to `h-full` / `min-h-svh`, or pass `className="min-h-svh"` on the shell. Unlike AuthLayout, there is no default viewport fill. Desktop sider collapse defaults to the header far-left control (`collapseTrigger="header"`, issue #17); use `collapseTrigger="sider-edge"` for the legacy mid-sider handle. Content gutter (#57): `contentPadding` supports boolean / class string / `{ inline, top, bottom }`; with tabs, default top is tighter (`pt-2`).',
       },
     },
   },
@@ -107,12 +111,81 @@ export const FullAdminShell: Story = {
     activeTabKey: "home",
     breadcrumb: [{ label: "Home", href: "#" }, { label: "Dashboard" }],
     children: (
-      <div className="p-6">
+      <div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-muted-foreground mt-2">
-          Welcome to the admin panel. Use the sidebar to navigate.
+          Welcome to the admin panel. Use the sidebar to navigate. With tabs,
+          shell default content top is `pt-2` (#57).
         </p>
       </div>
+    ),
+  },
+};
+
+/** Multi-tabs + PageChrome list — tabs sit close to list actions (#57). */
+export const TabsWithListChrome: Story = {
+  name: "Tabs + PageChrome list (gutter)",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Default `contentPadding={true}` with tabs uses `px-4 pt-2 pb-4`. PageChrome list actions are the first content row — no extra isotropic `p-6` wrapper.",
+      },
+    },
+  },
+  args: {
+    logo: <span className="text-lg font-bold">Dict</span>,
+    menuItems: menuItems.slice(0, 3),
+    selectedMenuKey: "home",
+    showSearch: false,
+    tabs: [
+      { key: "dict", label: "字典管理", closable: false },
+      { key: "type", label: "类型" },
+    ],
+    activeTabKey: "dict",
+    breadcrumb: [{ label: "基础数据" }, { label: "字典管理" }],
+    children: (
+      <PageChrome
+        variant="list"
+        actions={
+          <Button size="sm">
+            <PlusIcon className="mr-1 size-4" />
+            新增
+          </Button>
+        }
+      >
+        <Card>
+          <CardContent className="pt-4">
+            <p className="text-muted-foreground text-sm">
+              Table / SearchTable — distance from tab bar bottom to actions is
+              shell top gutter (~8px) only.
+            </p>
+          </CardContent>
+        </Card>
+      </PageChrome>
+    ),
+  },
+};
+
+/** Explicit directional padding for consumers who need lg horizontal. */
+export const DirectionalContentPadding: Story = {
+  name: "Directional contentPadding",
+  args: {
+    logo: <span className="text-lg font-bold">Gutter</span>,
+    menuItems: menuItems.slice(0, 2),
+    selectedMenuKey: "home",
+    showSearch: false,
+    tabs: [{ key: "home", label: "Home", closable: false }],
+    activeTabKey: "home",
+    contentPadding: {
+      inline: "px-4 lg:px-6",
+      top: "pt-2",
+      bottom: "pb-6",
+    },
+    children: (
+      <p className="text-muted-foreground text-sm">
+        Object form: inline / top / bottom class strings.
+      </p>
     ),
   },
 };

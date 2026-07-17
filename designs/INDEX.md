@@ -12,6 +12,7 @@
 
 ## 👀 待审核
 
+- [AdminShell contentPadding 分向 #57](./2026-07-17_AdminShell_contentPadding分向_#57_设计计划.md)
 - [PageChrome form/detail #55 + AdminSider no-scrollbar #56](./2026-07-17_PageChrome与AdminSider_#55_#56_设计计划.md)
 - [AdminSider 手风琴与库级动效 #43](./2026-07-16_AdminSider手风琴与库级动效_设计计划.md)
 - [组件复用收敛：选型 + OrgAdmin→OrgTree](./2026-07-16_组件复用收敛_选型与OrgAdmin_设计计划.md)

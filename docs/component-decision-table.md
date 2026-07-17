@@ -143,14 +143,16 @@ Table (ui 原子)
 
 ## 6. 布局 / 后台壳
 
-| 需求             | 用这个                                                    | 不要做                                |
-| ---------------- | --------------------------------------------------------- | ------------------------------------- |
-| 标准管理后台壳   | `AdminShell` + `AdminSider` / `AdminHeader` / `AdminTabs` | 再实现一套侧栏+顶栏高度链             |
-| 通用应用壳       | `AppShell`                                                | 与 AdminShell 混用契约却复制 CSS 变量 |
-| 登录/空白/打印等 | `AuthLayout` / `BlankLayout` / `PrintLayout` / …          | 页面级 `min-h-screen` 分叉布局体系    |
-| 主从             | `MasterDetailLayout` / `MasterDetailTabs`                 | 无障碍与尺寸不统一的 split 私有实现   |
+| 需求                 | 用这个                                                                        | 不要做                                                   |
+| -------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 标准管理后台壳       | `AdminShell` + `AdminSider` / `AdminHeader` / `AdminTabs`                     | 再实现一套侧栏+顶栏高度链                                |
+| 通用应用壳           | `AppShell`                                                                    | 与 AdminShell 混用契约却复制 CSS 变量                    |
+| 登录/空白/打印等     | `AuthLayout` / `BlankLayout` / `PrintLayout` / …                              | 页面级 `min-h-screen` 分叉布局体系                       |
+| 主从                 | `MasterDetailLayout` / `MasterDetailTabs`                                     | 无障碍与尺寸不统一的 split 私有实现                      |
+| 内容区 gutter（#57） | `contentPadding`：`true` / `false` / class 字符串 / `{ inline, top, bottom }` | 业务页手写 `pt-*` 盖壳层；无脑四边 `p-4 lg:p-6` 叠多标签 |
+| 多标签 + list 页     | `AdminShell` tabs + 默认顶距收紧 + `PageChrome variant="list"`                | 壳层顶距仍按无标签整页 padding                           |
 
-高度链、折叠、Tab 行为以已完成 designs（AdminShell / AdminSider 系列）为准，**禁止**在业务页覆盖 shell 高度约定。
+高度链、折叠、Tab、**分向 contentPadding** 以 AdminShell designs 为准，**禁止**在业务页用 globals 盖 `navigation-tabs-bar` 或重复包一层 main gutter。
 
 ---
 

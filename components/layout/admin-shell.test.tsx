@@ -203,4 +203,53 @@ describe("AdminShell", () => {
     expect(main.className).toContain("lg:p-6");
     expect(main.className).toContain("bg-muted");
   });
+
+  it("tightens top padding when tabs are present (issue #57)", () => {
+    const { container } = render(
+      <AdminShell
+        tabs={[{ key: "t1", label: "Dict" }]}
+        activeTabKey="t1"
+        contentPadding={true}
+      >
+        <p>Page</p>
+      </AdminShell>,
+    );
+    const main = container.querySelector(
+      '[data-slot="admin-shell-content"]',
+    ) as HTMLElement;
+    expect(main.className).toMatch(/pt-2/);
+    expect(main.className).toMatch(/px-4/);
+    expect(main.className).toMatch(/pb-4/);
+    expect(main.className.split(/\s+/)).not.toContain("p-4");
+  });
+
+  it("accepts directional contentPadding object (issue #57)", () => {
+    const { container } = render(
+      <AdminShell
+        tabs={[{ key: "t1", label: "Dict" }]}
+        contentPadding={{
+          inline: "px-4 lg:px-6",
+          top: "pt-1",
+          bottom: "pb-6",
+        }}
+      >
+        <p>Page</p>
+      </AdminShell>,
+    );
+    const main = container.querySelector(
+      '[data-slot="admin-shell-content"]',
+    ) as HTMLElement;
+    expect(main.className).toContain("px-4");
+    expect(main.className).toContain("lg:px-6");
+    expect(main.className).toContain("pt-1");
+    expect(main.className).toContain("pb-6");
+  });
+
+  it("resolveContentPaddingClass helper matches shell defaults", async () => {
+    const { resolveContentPaddingClass } = await import("./admin-shell");
+    expect(resolveContentPaddingClass(true, false)).toBe("p-4");
+    expect(resolveContentPaddingClass(true, true)).toBe("px-4 pt-2 pb-4");
+    expect(resolveContentPaddingClass(false, true)).toBeUndefined();
+    expect(resolveContentPaddingClass({ top: "pt-0" }, true)).toContain("pt-0");
+  });
 });

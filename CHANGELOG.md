@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] — 2026-07-17
+
+### Added
+
+- **layout/AdminShell (#57)**: `contentPadding` accepts a directional object `{ inline?, top?, bottom? }` (Tailwind class fragments). Exported `ContentPadding`, `ContentPaddingSides`, and `resolveContentPaddingClass`.
+- Storybook: Tabs + PageChrome list gutter demo; directional padding example.
+
+### Changed
+
+- **layout/AdminShell (#57)**: when `contentPadding={true}` (default) **and** `tabs` are present, main uses `px-4 pt-2 pb-4` instead of isotropic `p-4` so multi-tab chrome sits closer to list actions. No-tabs default remains `p-4`. Boolean `false` / string class forms unchanged.
+- **docs**: decision table — shell owns block-start under tabs; avoid per-page `pt-*` hacks.
+
 ## [1.10.0] — 2026-07-17
 
 ### Added
