@@ -68,14 +68,14 @@ describe("AdminShell", () => {
     expect(container.querySelector('[aria-label*="Open menu"]')).toBeNull();
   });
 
-  it("renders with user prop without crashing", () => {
+  it("renders with userMenu slot without crashing", () => {
     const { container } = render(
-      <AdminShell user={{ name: "Admin", email: "admin@test.com" }}>
+      <AdminShell userMenu={<button type="button">Admin menu</button>}>
         <p>Content</p>
       </AdminShell>,
     );
-    // Just verify the shell renders without crashing.
     expect(container.querySelector('[data-slot="admin-shell"]')).not.toBeNull();
+    expect(screen.getByText("Admin menu")).toBeDefined();
   });
 
   it("renders search input when showSearch is true", () => {

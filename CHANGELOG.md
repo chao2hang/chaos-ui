@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.2] — 2026-07-18
+
+### Changed — 审计 backlog 分层与数据卫生
+
+- **UserBrowse / DepartmentBrowse**: 移除内置演示数据（John Doe / Head Office）；默认 `users`/`departments` 为空数组，需由消费方或 Story 传入。
+- **AdminShell**: 移除对 business 的硬依赖；顶栏改为 `userMenu` / `notification` slot 注入（破坏性：移除 `user` / `notifications` 等对象 props）。
+- **business barrel**: 停止 re-export `@/components/mobile/*`；移动端请使用 `@chaos_team/chaos-ui/mobile`。
+- **depcruise**: `layout↛business`、`business↛mobile` 升为 **error**（分层门禁）。
+- **docs**: `component-decision-table.md` 补充 slot / 空默认数据 / mobile 入口约定。
+
 ## [1.15.1] — 2026-07-18
 
 ### Fixed — 审计整改后续补丁

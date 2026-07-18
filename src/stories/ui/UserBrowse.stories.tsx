@@ -2,6 +2,27 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { UserBrowse, type User } from "@/components/ui/user-browse";
 import { useState } from "react";
 
+const sampleUsers: User[] = [
+  {
+    id: "1",
+    name: "John Doe",
+    email: "john@example.com",
+    department: "Engineering",
+  },
+  {
+    id: "2",
+    name: "Jane Smith",
+    email: "jane@example.com",
+    department: "Design",
+  },
+  {
+    id: "3",
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    department: "Marketing",
+  },
+];
+
 const meta = {
   title: "Components/UserBrowse",
   component: UserBrowse,
@@ -16,6 +37,7 @@ function DefaultUserBrowse() {
   return (
     <div className="w-[300px]">
       <UserBrowse
+        users={sampleUsers}
         value={value as User}
         onChange={(next) => setValue(Array.isArray(next) ? undefined : next)}
         placeholder="Select user..."
@@ -29,6 +51,7 @@ function MultipleUserBrowse() {
   return (
     <div className="w-[300px]">
       <UserBrowse
+        users={sampleUsers}
         value={value}
         onChange={(next) =>
           setValue(Array.isArray(next) ? next : next ? [next] : [])
@@ -46,6 +69,7 @@ export const Default: Story = {
 
 export const WithDefault: Story = {
   args: {
+    users: sampleUsers,
     defaultValue: { id: "1", name: "John Doe", email: "john@example.com" },
   },
 };
@@ -57,13 +81,19 @@ export const Multiple: Story = {
 export const WithMaxCount: Story = {
   render: () => (
     <div className="w-[300px]">
-      <UserBrowse multiple maxCount={3} placeholder="Select up to 3 users..." />
+      <UserBrowse
+        users={sampleUsers}
+        multiple
+        maxCount={3}
+        placeholder="Select up to 3 users..."
+      />
     </div>
   ),
 };
 
 export const Disabled: Story = {
   args: {
+    users: sampleUsers,
     disabled: true,
     defaultValue: { id: "1", name: "John Doe", email: "john@example.com" },
   },

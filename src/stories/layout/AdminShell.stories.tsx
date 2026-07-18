@@ -8,6 +8,8 @@ import {
   PackageIcon,
 } from "@/components/ui/icons";
 import { AdminShell } from "@/components/layout/admin-shell";
+import { UserMenu } from "@/components/business/user-menu";
+import { NotificationCenter } from "@/components/business/notification-center";
 import { PageChrome } from "@/components/business/page-chrome";
 import { ListPageShell } from "@/components/business/list-page-shell";
 import { Button } from "@/components/ui/button";
@@ -81,27 +83,35 @@ export const FullAdminShell: Story = {
     logo: <span className="text-lg font-bold">Chaos Admin</span>,
     menuItems,
     selectedMenuKey: "home",
-    user: {
-      name: "Admin User",
-      email: "admin@chaos-ui.dev",
-      role: "Administrator",
-    },
-    notifications: [
-      {
-        id: "1",
-        title: "New order #1234",
-        description: "Customer placed a new order",
-        timestamp: Date.now() - 60000,
-        type: "info",
-      },
-      {
-        id: "2",
-        title: "Payment received",
-        description: "$500 from Acme Corp",
-        timestamp: Date.now() - 3600000,
-        type: "success",
-      },
-    ],
+    userMenu: (
+      <UserMenu
+        user={{
+          name: "Admin User",
+          email: "admin@chaos-ui.dev",
+          role: "Administrator",
+        }}
+      />
+    ),
+    notification: (
+      <NotificationCenter
+        notifications={[
+          {
+            id: "1",
+            title: "New order #1234",
+            description: "Customer placed a new order",
+            timestamp: Date.now() - 60000,
+            type: "info",
+          },
+          {
+            id: "2",
+            title: "Payment received",
+            description: "$500 from Acme Corp",
+            timestamp: Date.now() - 3600000,
+            type: "success",
+          },
+        ]}
+      />
+    ),
     tabs: [
       { key: "home", label: "Home", closable: false },
       { key: "orders", label: "Orders" },
@@ -266,7 +276,7 @@ export const WithoutTabs: Story = {
   args: {
     logo: <span className="text-lg font-bold">NoTabs App</span>,
     menuItems,
-    user: { name: "User", email: "user@test.com" },
+    userMenu: <UserMenu user={{ name: "User", email: "user@test.com" }} />,
     children: (
       <div className="p-6">
         <h1 className="text-xl font-semibold">No Tabs Layout</h1>

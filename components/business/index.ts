@@ -1,5 +1,8 @@
 "use client";
 
+// Mobile surface lives on `@chaos_team/chaos-ui/mobile` only.
+// Do not re-export mobile modules from the business barrel (layer hygiene).
+
 export * from "./activity-feed";
 // AdvancedDataTable — deprecated named export only (see bottom of file).
 // Prefer SearchTable / DataTable / ProTable for new work.
@@ -91,29 +94,6 @@ export * from "./language-switcher";
 export * from "./line-editor";
 export * from "./loading-page";
 export * from "./metric-trend";
-export * from "@/components/mobile/mobile-auth-layout";
-export * from "@/components/mobile/mobile-button";
-export * from "@/components/mobile/mobile-card";
-export * from "@/components/mobile/mobile-dashboard-layout";
-export * from "@/components/mobile/mobile-data-table";
-export * from "@/components/mobile/mobile-dialog";
-export * from "@/components/mobile/mobile-empty-state";
-export * from "@/components/mobile/mobile-filter-builder";
-export * from "@/components/mobile/mobile-form";
-export * from "@/components/mobile/mobile-form-field";
-export * from "@/components/mobile/mobile-form-wizard";
-export * from "@/components/mobile/mobile-input";
-export * from "@/components/mobile/mobile-kanban";
-export * from "@/components/mobile/mobile-kpi-card";
-export * from "@/components/mobile/mobile-navigation";
-export * from "@/components/mobile/mobile-page-header";
-export * from "@/components/mobile/mobile-pull-to-refresh";
-export * from "@/components/mobile/mobile-select";
-export * from "@/components/mobile/mobile-sheet";
-export * from "@/components/mobile/mobile-skeleton";
-export * from "@/components/mobile/mobile-swipe-actions";
-export * from "@/components/mobile/mobile-tabs";
-export * from "@/components/mobile/mobile-textarea";
 export * from "./multi-select";
 export * from "./notification-center";
 export {

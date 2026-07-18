@@ -13,15 +13,9 @@ import {
   type MenuItem,
 } from "@/components/layout/admin-sider";
 import { AdminTabs, type TabItem } from "@/components/layout/admin-tabs";
-import {
-  UserMenu,
-  type UserMenuUser,
-  type UserMenuAction,
-} from "@/components/business/user-menu";
-import {
-  NotificationCenter,
-  type NotificationItem,
-} from "@/components/business/notification-center";
+// Business chrome is injected via slots to keep layout free of business imports.
+// Consumers typically pass UserMenu / NotificationCenter / MessageCenter from
+// `@chaos_team/chaos-ui/business` (or custom nodes). / 业务顶栏 chrome 用 slot 注入。
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
@@ -29,13 +23,14 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
  * @component AdminShell
  * @category layout/admin
  * @since 0.8.0
- * @description Pre-wired admin layout composing AdminHeader, AdminSider, AdminTabs, UserMenu, and NotificationCenter into a single config-driven shell. Eliminates repetitive boilerplate wiring across ERP apps. / 预集成的后台布局，将 AdminHeader、AdminSider、AdminTabs、UserMenu、NotificationCenter 组合为单次配置驱动的外壳，消除重复的样板代码。
+ * @description Pre-wired admin layout composing AdminHeader, AdminSider, and AdminTabs. User/notification chrome is slot-injected (`userMenu` / `notification`) so layout does not depend on the business entry. / 预集成后台布局（Header/Sider/Tabs）；用户菜单与通知通过 slot 注入，layout 不依赖 business。
  * @keywords admin, shell, layout, sidebar, header, tabs, notification, user-menu, composition
  * @example
  * <AdminShell
  *   menuItems={menuItems}
  *   logo={<CompanyLogo />}
- *   user={{ name: "Admin", email: "admin@example.com" }}
+ *   userMenu={<UserMenu user={{ name: "Admin" }} />}
+ *   notification={<NotificationCenter notifications={items} />}
  *   tabs={tabs}
  *   activeTabKey="home"
  * >
@@ -105,31 +100,19 @@ interface AdminShellProps extends Omit<
   /** Extra actions in header / 头部额外操作 */
   headerActions?: React.ReactNode;
 
-  // ── User ──
-  /** Current user info / 当前用户信息 */
-  user?: UserMenuUser;
-  /** Custom user menu actions / 自定义用户菜单操作 */
-  userMenuActions?: UserMenuAction[];
-  /** Profile click callback / 个人信息点击回调 */
-  onProfile?: () => void;
-  /** Settings click callback / 设置点击回调 */
-  onSettings?: () => void;
-  /** Sign out callback / 退出登录回调 */
-  onSignOut?: () => void;
-
-  // ── Notifications ──
-  /** Notification items for NotificationCenter / 通知列表 */
-  notifications?: NotificationItem[];
-  /** Mark notification as read / 标记通知已读 */
-  onNotificationMarkRead?: (id: string) => void;
-  /** Mark all notifications as read / 全部标为已读 */
-  onNotificationMarkAllRead?: () => void;
-  /** Clear all notifications / 清空通知 */
-  onNotificationClear?: () => void;
-  /** Notification item click callback / 通知项点击回调 */
-  onNotificationItemClick?: (item: NotificationItem) => void;
-  /** NotificationCenter alignment / 通知中心对齐方式 */
-  notificationAlign?: "start" | "center" | "end";
+  // ── Header chrome slots (inject business components from the app) ──
+  /**
+   * User menu node for the header (e.g. business `UserMenu`).
+   * Prefer this over composing business inside layout.
+   * / 顶栏用户菜单节点（建议传入 business UserMenu）
+   */
+  userMenu?: React.ReactNode;
+  /**
+   * Notification / message center node for the header
+   * (e.g. business `NotificationCenter` or `MessageCenter`).
+   * / 顶栏通知/消息中心节点
+   */
+  notification?: React.ReactNode;
 
   // ── Tabs ──
   /** Tab items / Tab 项 */
@@ -261,20 +244,9 @@ export function AdminShell({
   onSearch,
   headerActions,
 
-  // User
-  user,
-  userMenuActions,
-  onProfile,
-  onSettings,
-  onSignOut,
-
-  // Notifications
-  notifications = [],
-  onNotificationMarkRead,
-  onNotificationMarkAllRead,
-  onNotificationClear,
-  onNotificationItemClick,
-  notificationAlign = "end",
+  // Header chrome slots
+  userMenu,
+  notification,
 
   // Tabs
   tabs = [],
@@ -308,38 +280,8 @@ export function AdminShell({
   const asideOpen = asideOpenProp ?? asideOpenUncontrolled;
   const setAsideOpen = onAsideOpenChange ?? setAsideOpenUncontrolled;
 
-  // Build user menu element
-  const userMenuElement = user ? (
-    <UserMenu
-      user={user}
-      {...(userMenuActions !== undefined ? { actions: userMenuActions } : {})}
-      {...(onProfile !== undefined ? { onProfile } : {})}
-      {...(onSettings !== undefined ? { onSettings } : {})}
-      {...(onSignOut !== undefined ? { onSignOut } : {})}
-    />
-  ) : undefined;
-
-  // Build notification center element (shown in header area).
-  // Prefer NotificationCenter over AdminHeader.notificationCount for full UX.
-  const notificationCenterElement =
-    notifications.length > 0 ? (
-      <NotificationCenter
-        notifications={notifications}
-        {...(onNotificationMarkRead !== undefined
-          ? { onMarkRead: onNotificationMarkRead }
-          : {})}
-        {...(onNotificationMarkAllRead !== undefined
-          ? { onMarkAllRead: onNotificationMarkAllRead }
-          : {})}
-        {...(onNotificationClear !== undefined
-          ? { onClear: onNotificationClear }
-          : {})}
-        {...(onNotificationItemClick !== undefined
-          ? { onItemClick: onNotificationItemClick }
-          : {})}
-        align={notificationAlign}
-      />
-    ) : undefined;
+  const userMenuElement = userMenu;
+  const notificationCenterElement = notification;
 
   return (
     <div

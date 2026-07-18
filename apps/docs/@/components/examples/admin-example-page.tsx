@@ -3,12 +3,10 @@
 import * as React from "react";
 import { useDict } from "@/hooks/use-dict";
 import { ExampleTemplatePage } from "./example-template-page";
-import {
-  AdminTemplateDemo,
-  type AdminSceneId,
-} from "./admin-template-demo";
+import { AdminTemplateDemo, type AdminSceneId } from "./admin-template-demo";
 
 const ADMIN_CODE = `import { AdminShell } from "@chaos_team/chaos-ui/layout";
+import { UserMenu } from "@chaos_team/chaos-ui/business";
 
 export function App() {
   return (
@@ -17,7 +15,7 @@ export function App() {
         { key: "dashboard", label: "仪表盘" },
         { key: "list", label: "列表" },
       ]}
-      user={{ name: "Admin", email: "admin@example.com" }}
+      userMenu={<UserMenu user={{ name: "Admin", email: "admin@example.com" }} />}
     >
       {/* page content: ListPageShell / custom */}
     </AdminShell>

@@ -256,3 +256,13 @@ JSON 表单 → SchemaForm（对齐 WeaForm #64）
 表单弹窗 → FormDialog
 弃用 → AdvancedDataTable 新用；MasterListTemplate/MasterEditTemplate 新用；FormDesignerRuntime 新用；页内自绘树；未检索新建 components/**
 ```
+
+## 1.15+ 审计整改补充
+
+| 场景                   | 用这个                                                                                                                  | 不要做                                                                            |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| 后台壳用户/通知 chrome | `AdminShell` 的 `userMenu` / `notification` **slot**，传入 business `UserMenu` / `NotificationCenter` / `MessageCenter` | 在 layout 内硬依赖 business；旧 `user` / `notifications` 对象 props（已移除）     |
+| 用户/部门浏览数据      | `UserBrowse` / `DepartmentBrowse` **必须**传 `users` / `departments` 或 `loadUsers`；Story 内示例数据                   | 依赖组件内置 John Doe / Head Office 演示数据（1.15.2 起已移除）                   |
+| 移动端组件             | `@chaos_team/chaos-ui/mobile`                                                                                           | 从 `@chaos_team/chaos-ui/business` 取 Mobile*（business barrel 已停止 re-export） |
+| JSON 表单              | business `SchemaForm`                                                                                                   | 新页用 `FormDesignerRuntime`（已 @deprecated）                                    |
+| 弃用表格               | `SearchTable` / `DataTable` / `ProTable` / `ReportTable`                                                                | 新用 `AdvancedDataTable`                                                          |

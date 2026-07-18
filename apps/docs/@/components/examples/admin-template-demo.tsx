@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { AdminShell, AuthLayout } from "@chaos_team/chaos-ui/layout";
-import { ListPageShell } from "@chaos_team/chaos-ui/business";
+import { ListPageShell, UserMenu } from "@chaos_team/chaos-ui/business";
 import {
   Button,
   Input,
@@ -47,11 +47,7 @@ const STAT_CARDS = [
   { title: "归档记录", value: "126", hint: "本季度" },
 ] as const;
 
-function LoginScene({
-  onSubmit,
-}: {
-  onSubmit: () => void;
-}) {
+function LoginScene({ onSubmit }: { onSubmit: () => void }) {
   const [email, setEmail] = React.useState("admin@example.com");
   const [password, setPassword] = React.useState("demo");
 
@@ -70,7 +66,10 @@ function LoginScene({
             }}
           >
             <div className="space-y-1.5">
-              <label className="text-muted-foreground text-xs font-medium" htmlFor="admin-demo-email">
+              <label
+                className="text-muted-foreground text-xs font-medium"
+                htmlFor="admin-demo-email"
+              >
                 邮箱
               </label>
               <Input
@@ -120,7 +119,9 @@ function DashboardScene() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-semibold tracking-tight">{stat.value}</div>
+              <div className="text-2xl font-semibold tracking-tight">
+                {stat.value}
+              </div>
               <p className="text-muted-foreground mt-1 text-xs">{stat.hint}</p>
             </CardContent>
           </Card>
@@ -163,7 +164,10 @@ function ListScene({
       filter={
         <div className="flex flex-wrap items-end gap-2">
           <div className="space-y-1">
-            <label className="text-muted-foreground text-xs" htmlFor="admin-demo-filter-name">
+            <label
+              className="text-muted-foreground text-xs"
+              htmlFor="admin-demo-filter-name"
+            >
               名称
             </label>
             <Input
@@ -175,7 +179,10 @@ function ListScene({
             />
           </div>
           <div className="space-y-1">
-            <label className="text-muted-foreground text-xs" htmlFor="admin-demo-filter-status">
+            <label
+              className="text-muted-foreground text-xs"
+              htmlFor="admin-demo-filter-status"
+            >
               状态
             </label>
             <Input
@@ -234,7 +241,10 @@ function ListScene({
           <TableBody>
             {filtered.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-muted-foreground h-16 text-center text-sm">
+                <TableCell
+                  colSpan={5}
+                  className="text-muted-foreground h-16 text-center text-sm"
+                >
                   暂无数据
                 </TableCell>
               </TableRow>
@@ -267,7 +277,9 @@ function ListScene({
 
 function DetailScene({ rows }: { rows: DemoRow[] }) {
   const row =
-    rows.find((item) => item.id === "ord-1001") ?? rows[0] ?? INITIAL_DEMO_ROWS[0];
+    rows.find((item) => item.id === "ord-1001") ??
+    rows[0] ??
+    INITIAL_DEMO_ROWS[0];
 
   return (
     <Card>
@@ -303,7 +315,9 @@ export function AdminTemplateDemo({
   onSceneChange,
   resetToken = 0,
 }: AdminTemplateDemoProps) {
-  const [rows, setRows] = React.useState<DemoRow[]>(() => [...INITIAL_DEMO_ROWS]);
+  const [rows, setRows] = React.useState<DemoRow[]>(() => [
+    ...INITIAL_DEMO_ROWS,
+  ]);
 
   React.useEffect(() => {
     setRows([...INITIAL_DEMO_ROWS]);
@@ -328,12 +342,20 @@ export function AdminTemplateDemo({
         menuItems={[...MENU_ITEMS]}
         selectedMenuKey={shellScene}
         onMenuItemClick={(item) => {
-          if (item.key === "dashboard" || item.key === "list" || item.key === "detail") {
+          if (
+            item.key === "dashboard" ||
+            item.key === "list" ||
+            item.key === "detail"
+          ) {
             onSceneChange(item.key);
           }
         }}
-        user={{ name: "Demo Admin", email: "admin@example.com" }}
-        onSignOut={() => onSceneChange("login")}
+        userMenu={
+          <UserMenu
+            user={{ name: "Demo Admin", email: "admin@example.com" }}
+            onSignOut={() => onSceneChange("login")}
+          />
+        }
         showSearch={false}
       >
         {shellScene === "dashboard" ? <DashboardScene /> : null}

@@ -63,46 +63,15 @@ interface UserBrowseProps {
   size?: "sm" | "default";
 }
 
-const defaultUsers: User[] = [
-  {
-    id: "1",
-    name: "John Doe",
-    email: "john@example.com",
-    department: "Engineering",
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    email: "jane@example.com",
-    department: "Design",
-  },
-  {
-    id: "3",
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    department: "Marketing",
-  },
-  {
-    id: "4",
-    name: "Alice Williams",
-    email: "alice@example.com",
-    department: "Engineering",
-  },
-  {
-    id: "5",
-    name: "Charlie Brown",
-    email: "charlie@example.com",
-    department: "Sales",
-  },
-];
-
 /**
  * @component UserBrowse
  * @category ui/user
  * @since 0.2.0
  * @description User picker dialog with search, avatar display, single/multi-select, and department badges.
  * Supports optional remote `loadUsers({ keyword })` — keyword is passed through; pinyin/fuzzy match is backend-owned.
+ * Does not ship demo/default users — pass `users` or `loadUsers` (Storybook provides samples).
  * / 用户选择器对话框，支持搜索、头像、单/多选、部门标签；可选远程 loadUsers，拼音等匹配由后端完成。
+ * 不内置演示用户，需传入 users 或 loadUsers（Story 提供示例数据）。
  * @keywords user, browse, picker, select, avatar, department, remote, 用户选择
  * @example
  * <UserBrowse
@@ -119,7 +88,7 @@ function UserBrowse({
   disabled,
   multiple = false,
   maxCount,
-  users = defaultUsers,
+  users = [],
   loadUsers,
   searchDebounceMs = 300,
   onChange,

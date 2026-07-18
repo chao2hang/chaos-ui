@@ -66,9 +66,9 @@ module.exports = {
     // - business/index re-exports mobile for discoverability
     {
       name: "no-layout-importing-business",
-      severity: "warn",
+      severity: "error",
       comment:
-        "Layout should stay shell-only; inject business chrome via slots. Known: admin-shell.",
+        "Layout should stay shell-only; inject business chrome via slots (AdminShell userMenu/notification).",
       from: {
         path: "^components/layout/",
       },
@@ -78,9 +78,9 @@ module.exports = {
     },
     {
       name: "no-business-importing-mobile",
-      severity: "warn",
+      severity: "error",
       comment:
-        "Prefer @chaos_team/chaos-ui/mobile; business barrel re-exports mobile temporarily.",
+        "Prefer @chaos_team/chaos-ui/mobile; do not import mobile from business.",
       from: {
         path: "^components/business/",
       },

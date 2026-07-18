@@ -40,49 +40,6 @@ interface DepartmentBrowseProps {
   size?: "sm" | "default";
 }
 
-const defaultDepartments: Department[] = [
-  {
-    id: "1",
-    name: "Head Office",
-    code: "HQ",
-    children: [
-      {
-        id: "1-1",
-        name: "Engineering",
-        code: "ENG",
-        parentId: "1",
-        children: [
-          { id: "1-1-1", name: "Frontend", code: "FE", parentId: "1-1" },
-          { id: "1-1-2", name: "Backend", code: "BE", parentId: "1-1" },
-          { id: "1-1-3", name: "DevOps", code: "DO", parentId: "1-1" },
-        ],
-      },
-      {
-        id: "1-2",
-        name: "Design",
-        code: "DES",
-        parentId: "1",
-        children: [
-          { id: "1-2-1", name: "UI Design", code: "UI", parentId: "1-2" },
-          { id: "1-2-2", name: "UX Research", code: "UX", parentId: "1-2" },
-        ],
-      },
-      {
-        id: "1-3",
-        name: "Marketing",
-        code: "MKT",
-        parentId: "1",
-      },
-      {
-        id: "1-4",
-        name: "Sales",
-        code: "SAL",
-        parentId: "1",
-      },
-    ],
-  },
-];
-
 /**
  * @component DepartmentTreeItem
  * @category ui/user
@@ -167,6 +124,8 @@ function DepartmentTreeItem({
  * @since 0.2.0
  * @description Department tree picker with search, single/multiple selection, and hierarchical tree view / 部门树选择器，支持搜索、单选/多选和层级树视图
  * @keywords department, browse, tree, picker, organization, hierarchy
+ * Does not ship demo/default departments — pass `departments` from Story/app.
+ * / 不内置演示部门树，需传入 departments。
  * @example
  * <DepartmentBrowse
  *   departments={departments}
@@ -182,7 +141,7 @@ function DepartmentBrowse({
   disabled,
   multiple = false,
   maxCount,
-  departments = defaultDepartments,
+  departments = [],
   onChange,
   className,
   size = "default",
