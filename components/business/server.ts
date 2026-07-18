@@ -11,7 +11,7 @@
  * as a server module graph root, but leaf modules may still be client.
  */
 
-// Pure display components — safe for RSC
+// Display-oriented subset (many still "use client") — not a full RSC guarantee
 export { StatusActionButtons } from "./status-action-buttons";
 export type {
   StatusActionButton,

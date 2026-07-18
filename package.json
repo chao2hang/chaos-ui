@@ -1,6 +1,6 @@
 {
   "name": "@chaos_team/chaos-ui",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "type": "module",
   "description": "Chaos UI — 企业级 React 组件库 / Enterprise-grade React component library for ERP & business systems",
   "license": "MIT",
@@ -226,6 +226,72 @@
       "optional": true
     },
     "zod": {
+      "optional": true
+    },
+    "@dnd-kit/core": {
+      "optional": true
+    },
+    "@dnd-kit/sortable": {
+      "optional": true
+    },
+    "@dnd-kit/utilities": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    },
+    "@tiptap/starter-kit": {
+      "optional": true
+    },
+    "@tiptap/extension-link": {
+      "optional": true
+    },
+    "@tiptap/extension-image": {
+      "optional": true
+    },
+    "@tiptap/extension-placeholder": {
+      "optional": true
+    },
+    "@xyflow/react": {
+      "optional": true
+    },
+    "recharts": {
+      "optional": true
+    },
+    "react-pdf": {
+      "optional": true
+    },
+    "cronstrue": {
+      "optional": true
+    },
+    "react-colorful": {
+      "optional": true
+    },
+    "@tanstack/react-table": {
+      "optional": true
+    },
+    "@tanstack/react-virtual": {
+      "optional": true
+    },
+    "axios": {
+      "optional": true
+    },
+    "@codemirror/lang-css": {
+      "optional": true
+    },
+    "@codemirror/lang-html": {
+      "optional": true
+    },
+    "@codemirror/lang-javascript": {
+      "optional": true
+    },
+    "@codemirror/lang-json": {
+      "optional": true
+    },
+    "@codemirror/lang-sql": {
+      "optional": true
+    },
+    "@codemirror/theme-one-dark": {
       "optional": true
     }
   },

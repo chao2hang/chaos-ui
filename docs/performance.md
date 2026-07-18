@@ -18,7 +18,7 @@ Size limits are configured in `package.json` under `size-limit`.
 
 For large datasets, use:
 
-- `AdvancedDataTable` — Built on `@tanstack/react-virtual` for virtualized rows
+- Prefer `ProTable` / virtualized table patterns for large lists. `AdvancedDataTable` is **deprecated** (not tanstack-virtual based).
 - `VirtualList` — Generic virtual scrolling component
 - `TreeSelect` — Virtualized option list for large option sets
 

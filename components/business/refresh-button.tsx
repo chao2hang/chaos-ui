@@ -1,5 +1,7 @@
 "use client";
 
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
+
 import * as React from "react";
 import { Button } from "@/components/ui";
 import { RefreshCwIcon } from "@/components/ui/icons";
@@ -36,12 +38,14 @@ export function RefreshButton({
   onClick,
   loading = false,
   disabled,
-  label = "刷新",
+  label,
   size = "sm",
   variant = "outline",
   className,
   ...props
 }: RefreshButtonProps) {
+  const { t } = useTranslation("ui");
+  const resolvedLabel = label ?? t("list.refresh", { defaultValue: "刷新" });
   return (
     <Button
       type="button"
@@ -59,7 +63,7 @@ export function RefreshButton({
       className={className}
       {...props}
     >
-      {label}
+      {resolvedLabel}
     </Button>
   );
 }

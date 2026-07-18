@@ -37,6 +37,7 @@ const external = [
   "@tiptap/extension-placeholder",
   "@xyflow/react",
   "cronstrue",
+  "qrcode",
   "zod",
   "@tanstack/react-query",
   "@hookform/resolvers",

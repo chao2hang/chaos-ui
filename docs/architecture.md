@@ -7,7 +7,7 @@ Chaos UI is a Storybook-first React/Next.js enterprise component library for ERP
 ## Tech Stack
 
 - **React 19** + **Next.js 16** (App Router)
-- **TypeScript 5.9** (strict mode, exactOptionalPropertyTypes, verbatimModuleSyntax)
+- **TypeScript (see package.json)** (strict mode, exactOptionalPropertyTypes, verbatimModuleSyntax)
 - **Tailwind CSS 4** (design tokens via CSS custom properties)
 - **@base-ui/react** (headless primitives)
 - **Storybook 10** (component development & documentation)

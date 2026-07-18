@@ -35,7 +35,7 @@ export function AppShell({
   aside,
   footer,
   sidebarWidth = 240,
-  collapsedWidth = 0,
+  collapsedWidth = 64,
   asideWidth = 280,
   sidebarCollapsible = true,
   defaultCollapsed = false,
@@ -47,7 +47,26 @@ export function AppShell({
   const { t } = useTranslation("navigation");
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isMobileViewport, setIsMobileViewport] = React.useState(false);
   const currentWidth = collapsed ? collapsedWidth : sidebarWidth;
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(max-width: 767px)");
+    const apply = () => setIsMobileViewport(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  React.useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
 
   return (
     <div
@@ -72,6 +91,8 @@ export function AppShell({
               onClick={() => setMobileOpen((v) => !v)}
               className="ml-2 md:hidden"
               aria-label={t("appShell.toggleSidebar")}
+              aria-expanded={mobileOpen}
+              aria-controls="app-shell-sidebar"
             >
               <span className="i-lucide-menu" aria-hidden>
                 ≡
@@ -88,9 +109,14 @@ export function AppShell({
               <div
                 className="fixed inset-0 z-40 bg-black/50 md:hidden"
                 onClick={() => setMobileOpen(false)}
+                aria-hidden="true"
               />
             )}
             <aside
+              id="app-shell-sidebar"
+              {...(isMobileViewport && !mobileOpen
+                ? ({ inert: true } as React.HTMLAttributes<HTMLElement>)
+                : {})}
               className={cn(
                 "bg-background z-40 flex shrink-0 flex-col border-r",
                 "fixed inset-y-0 top-14 left-0 transition-transform md:static md:translate-x-0",
@@ -98,8 +124,8 @@ export function AppShell({
                 variant === "floating" &&
                   "md:m-2 md:rounded-lg md:border md:shadow-sm",
               )}
-              style={{ width: currentWidth }}
-              aria-hidden={collapsed && collapsedWidth === 0}
+              style={{ width: Math.max(currentWidth, collapsedWidth || 0) }}
+              aria-hidden={collapsed && collapsedWidth === 0 ? true : undefined}
             >
               <div className="flex-1 overflow-y-auto">{sidebar}</div>
               {sidebarCollapsible && (

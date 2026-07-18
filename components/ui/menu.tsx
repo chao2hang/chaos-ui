@@ -528,7 +528,7 @@ function ItemFromConfig({
           });
         }}
         className={cn(
-          "flex w-full items-center rounded-md text-left transition-colors outline-none",
+          "focus-visible:bg-muted focus-visible:ring-ring/50 flex w-full items-center rounded-md text-left transition-colors outline-none focus-visible:ring-2",
           "focus-visible:bg-muted focus-visible:ring-ring/50 focus-visible:ring-2",
           sizeClasses[ctx.size].item,
           sizeClasses[ctx.size].gap,
@@ -616,7 +616,7 @@ function SubMenuContent({
       onClick={handleToggle}
       onMouseEnter={handleHover}
       className={cn(
-        "flex w-full items-center rounded-md text-left transition-colors outline-none",
+        "focus-visible:bg-muted focus-visible:ring-ring/50 flex w-full items-center rounded-md text-left transition-colors outline-none focus-visible:ring-2",
         sizeClasses[ctx.size].item,
         sizeClasses[ctx.size].gap,
         tc.subTrigger,
@@ -798,7 +798,7 @@ function SubMenu({
       disabled={disabled}
       onClick={handleToggle}
       className={cn(
-        "flex w-full items-center rounded-md text-left transition-colors outline-none",
+        "focus-visible:bg-muted focus-visible:ring-ring/50 flex w-full items-center rounded-md text-left transition-colors outline-none focus-visible:ring-2",
         sizeClasses[ctx.size].item,
         sizeClasses[ctx.size].gap,
         tc.subTrigger,
@@ -938,7 +938,7 @@ const Item = React.forwardRef<HTMLButtonElement, ItemProps>(
             });
           }}
           className={cn(
-            "flex w-full items-center rounded-md text-left transition-colors outline-none",
+            "focus-visible:bg-muted focus-visible:ring-ring/50 flex w-full items-center rounded-md text-left transition-colors outline-none focus-visible:ring-2",
             sizeClasses[ctx.size].item,
             sizeClasses[ctx.size].gap,
             tc.item,

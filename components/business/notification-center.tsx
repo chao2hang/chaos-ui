@@ -260,17 +260,17 @@ export function NotificationCenter({
                         {n.title}
                       </p>
                       {!n.read && (
-                        <span
-                          role="button"
+                        <button
+                          type="button"
                           aria-label={t("notificationCenter.markRead")}
                           onClick={(e) => {
                             e.stopPropagation();
                             onMarkRead?.(n.id);
                           }}
-                          className="opacity-0 group-hover:opacity-100"
+                          className="opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 focus-visible:opacity-100"
                         >
                           <CheckIcon className="text-muted-foreground hover:text-foreground size-3.5" />
-                        </span>
+                        </button>
                       )}
                     </div>
                     {n.description && (

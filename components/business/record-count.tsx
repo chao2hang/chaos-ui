@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * Build the common total-count description used on list page headers.
@@ -36,12 +37,16 @@ export interface RecordCountProps extends React.ComponentProps<"span"> {
  */
 export function RecordCount({
   total,
-  unit = "条记录",
+  unit,
   bare = false,
   className,
   ...props
 }: RecordCountProps) {
-  const text = bare ? `${total} ${unit}` : totalDescription(total, unit);
+  const { t } = useTranslation("ui");
+  const resolvedUnit = unit ?? t("list.recordUnit", { defaultValue: "条记录" });
+  const text = bare
+    ? `${total} ${resolvedUnit}`
+    : `${t("list.totalPrefix", { defaultValue: "共" })} ${total} ${resolvedUnit}`;
   return (
     <span
       data-slot="record-count"

@@ -146,18 +146,7 @@ export {
 } from "../../lib";
 export type { MessageOptions, MessageType } from "../../lib";
 
-// Layout components re-exported for convenience / 便捷导出布局组件
-export {
-  DialogFormBody,
-  FormStack,
-} from "@/components/layout/dialog-form-body";
-export type {
-  DialogFormBodyProps,
-  FormStackProps,
-} from "@/components/layout/dialog-form-body";
-export { MasterDetailLayout } from "@/components/layout/master-detail-layout";
-export { AuthLayout } from "@/components/layout/auth-layout";
-export type { AuthLayoutProps } from "@/components/layout/auth-layout";
+// Layout: use @chaos_team/chaos-ui/layout (no re-export from business).
 
 // --- auto-generated: stage 1 components ---
 export * from "./master-edit-template";
@@ -287,7 +276,9 @@ export * from "./chat-shared-link";
 export * from "./chat-message-input";
 export * from "./chat-message-bubble";
 export * from "./form-designer";
-export * from "./form-designer-runtime";
+/** @deprecated Prefer business SchemaForm. */
+export { FormDesignerRuntime } from "./form-designer-runtime";
+export type { FormDesignerRuntimeProps } from "./form-designer-runtime";
 export * from "./workflow-designer";
 export * from "./workflow-preview";
 export * from "./rule-editor";

@@ -2,10 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FormDesignerRuntime } from "@/components/business/form-designer-runtime";
 
 const meta = {
-  title: "Business/FormDesignerRuntime",
+  title: "Deprecated/FormDesignerRuntime",
   component: FormDesignerRuntime,
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: {
+        component:
+          "**Deprecated.** Prefer business `SchemaForm` for JSON/config-driven forms.",
+      },
+    },
+  },
   tags: ["autodocs"],
-  parameters: { layout: "padded" },
   args: { schema: {} },
 } satisfies Meta<typeof FormDesignerRuntime>;
 export default meta;

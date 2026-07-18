@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.3] — 2026-07-18
+
+### Fixed — 审计缺口波次 2
+
+- **useConfirmAsync / ConfirmProvider**: 新 confirm 打开时将上一个 Promise 以 `false` 结算，避免悬挂。
+- **useSwr**: 请求序号 + key 校验，忽略过期响应。
+- **AppShell**: 默认 `collapsedWidth=64`；移动抽屉 Escape/`aria-expanded`/`aria-controls`；小屏关闭时 `inert`。
+- **FeatureTour**: 焦点陷阱、Escape、body scroll lock、`aria-labelledby`。
+- **PaginationBar / SearchTable / RecordCount / RefreshButton / CrudToolbar**: 列表 chrome i18n。
+- **NotificationCenter**: 标已读改为真实 `button` + focus 可见。
+- **Menu**: 其余 menuitem 补 `focus-visible` ring。
+- **business barrel**: 停止 re-export layout（请用 `/layout`）。
+- **business/server**: 文案明确非全 RSC-safe。
+- **AdvancedDataTable / FormDesignerRuntime**: Story 归入 Deprecated，文档修正。
+- **Dockerfile**: 移除已删除 `packages/chaos-design-ui` COPY。
+- **tsup**: external 补 `qrcode`；更多 feature peers 标 optional。
+- **SECURITY.md**: 支持版本 1.15.x。
+
 ## [1.15.2] — 2026-07-18
 
 ### Changed — 审计 backlog 分层与数据卫生

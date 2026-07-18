@@ -266,3 +266,5 @@ JSON 表单 → SchemaForm（对齐 WeaForm #64）
 | 移动端组件             | `@chaos_team/chaos-ui/mobile`                                                                                           | 从 `@chaos_team/chaos-ui/business` 取 Mobile*（business barrel 已停止 re-export） |
 | JSON 表单              | business `SchemaForm`                                                                                                   | 新页用 `FormDesignerRuntime`（已 @deprecated）                                    |
 | 弃用表格               | `SearchTable` / `DataTable` / `ProTable` / `ReportTable`                                                                | 新用 `AdvancedDataTable`                                                          |
+
+> **Note:** Files still named `components/business/mobile-*.tsx` (page-shell, action-sheet, …) are pending physical move to `components/mobile`. Prefer `@chaos_team/chaos-ui/mobile` for new work.

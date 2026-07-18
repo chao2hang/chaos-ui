@@ -46,6 +46,9 @@ export function useSwr<T>(
   );
   const mountedRef = React.useRef(true);
   const lastFetchedRef = React.useRef(0);
+  const reqIdRef = React.useRef(0);
+  const keyRef = React.useRef(key);
+  keyRef.current = key;
 
   React.useEffect(() => {
     mountedRef.current = true;
@@ -54,24 +57,44 @@ export function useSwr<T>(
     };
   }, []);
 
+  // Reset dedupe window when key changes.
+  React.useEffect(() => {
+    lastFetchedRef.current = 0;
+  }, [key]);
+
   const run = React.useCallback(() => {
     if (!key) return;
     const now = Date.now();
-    if (now - lastFetchedRef.current < dedupingInterval && lastFetchedRef.current !== 0) {
+    if (
+      now - lastFetchedRef.current < dedupingInterval &&
+      lastFetchedRef.current !== 0
+    ) {
       return;
     }
     lastFetchedRef.current = now;
+    const reqId = ++reqIdRef.current;
+    const requestKey = key;
     setIsLoading(true);
-    fetcher(key)
+    fetcher(requestKey)
       .then((d) => {
-        if (!mountedRef.current) return;
-        cache.set(key, { data: d, ts: now });
+        if (
+          !mountedRef.current ||
+          reqId !== reqIdRef.current ||
+          keyRef.current !== requestKey
+        )
+          return;
+        cache.set(requestKey, { data: d, ts: now });
         setData(d);
         setError(undefined);
         setIsLoading(false);
       })
       .catch((err: unknown) => {
-        if (!mountedRef.current) return;
+        if (
+          !mountedRef.current ||
+          reqId !== reqIdRef.current ||
+          keyRef.current !== requestKey
+        )
+          return;
         setError(err instanceof Error ? err : new Error(String(err)));
         setIsLoading(false);
       });
@@ -103,7 +126,9 @@ export function useSwr<T>(
       if (!key) return;
       setData((prev) => {
         const value =
-          typeof next === "function" ? (next as (p: T | undefined) => T)(prev) : next;
+          typeof next === "function"
+            ? (next as (p: T | undefined) => T)(prev)
+            : next;
         if (value !== undefined) {
           cache.set(key, { data: value, ts: Date.now() });
         }

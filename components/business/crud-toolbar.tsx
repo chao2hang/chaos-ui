@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { Button } from "@/components/ui";
 import { Input } from "@/components/ui";
 import {
@@ -60,7 +61,7 @@ interface CrudToolbarProps {
  */
 function CrudToolbar({
   primaryActions,
-  searchPlaceholder = "搜索...",
+  searchPlaceholder,
   searchValue,
   onSearch,
   onSearchChange,
@@ -71,16 +72,30 @@ function CrudToolbar({
   loading = false,
   className,
 }: CrudToolbarProps) {
+  const { t } = useTranslation("ui");
+  const resolvedSearchPlaceholder =
+    searchPlaceholder ??
+    t("list.searchPlaceholder", { defaultValue: "搜索..." });
   const defaultPrimary: CrudToolbarAction[] = primaryActions || [
-    { key: "create", label: "新增", icon: PlusIcon, onClick: () => {} },
+    {
+      key: "create",
+      label: t("list.create", { defaultValue: "新增" }),
+      icon: PlusIcon,
+      onClick: () => {},
+    },
     {
       key: "delete",
-      label: "删除",
+      label: t("list.delete", { defaultValue: "删除" }),
       icon: TrashIcon,
       onClick: () => {},
       danger: true,
     },
-    { key: "refresh", label: "刷新", icon: RefreshCwIcon, onClick: () => {} },
+    {
+      key: "refresh",
+      label: t("list.refresh", { defaultValue: "刷新" }),
+      icon: RefreshCwIcon,
+      onClick: () => {},
+    },
   ];
 
   return (
@@ -92,7 +107,10 @@ function CrudToolbar({
       {selectionCount > 0 && bulkActionLabel ? (
         <div className="flex items-center gap-2">
           <span className="text-muted-foreground text-sm">
-            已选 {selectionCount} 项
+            {t("list.selected", {
+              defaultValue: `已选 ${selectionCount} 项`,
+              count: selectionCount,
+            })}
           </span>
           <Button size="sm" variant="default">
             {bulkActionLabel}
@@ -124,7 +142,7 @@ function CrudToolbar({
           <Input
             size="sm"
             className="pl-8"
-            placeholder={searchPlaceholder}
+            placeholder={resolvedSearchPlaceholder}
             value={searchValue}
             onChange={(e) => {
               onSearchChange?.(e.target.value);

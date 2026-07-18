@@ -155,7 +155,11 @@ function ConfirmProvider({ children, defaultOptions }: ConfirmProviderProps) {
     (options: ConfirmOptions) =>
       new Promise<boolean>((resolve) => {
         const merged = { ...defaultOptions, ...options };
-        setState({ open: true, options: merged, resolve });
+        setState((prev) => {
+          // Drop previous pending confirm so its Promise settles.
+          prev.resolve?.(false);
+          return { open: true, options: merged, resolve };
+        });
       }),
     [defaultOptions],
   );
@@ -206,7 +210,10 @@ function useConfirmAsync(): [
   const confirm = React.useCallback(
     (options: ConfirmOptions) =>
       new Promise<boolean>((resolve) => {
-        setState({ open: true, options, resolve });
+        setState((prev) => {
+          prev.resolve?.(false);
+          return { open: true, options, resolve };
+        });
       }),
     [],
   );

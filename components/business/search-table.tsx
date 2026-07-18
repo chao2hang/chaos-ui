@@ -210,7 +210,11 @@ function SearchTable<
               data-slot="search-table-pagination"
               className="text-muted-foreground flex items-center justify-between px-[var(--card-spacing,1rem)] text-sm"
             >
-              <span>共 {pagination.total} 条</span>
+              <span>
+                {t("pagination.totalPrefix", { defaultValue: "共" })}{" "}
+                {pagination.total}{" "}
+                {t("pagination.totalSuffix", { defaultValue: "条" })}
+              </span>
               <div className="flex items-center gap-1">
                 <Button
                   variant="outline"
@@ -220,7 +224,7 @@ function SearchTable<
                     pagination.onChange(pagination.current - 1, pageSize)
                   }
                 >
-                  上一页
+                  {t("pagination.prev", { defaultValue: "上一页" })}
                 </Button>
                 {Array.from({ length: totalPages }, (_, i) => i + 1)
                   .slice(
@@ -247,7 +251,7 @@ function SearchTable<
                     pagination.onChange(pagination.current + 1, pageSize)
                   }
                 >
-                  下一页
+                  {t("pagination.next", { defaultValue: "下一页" })}
                 </Button>
               </div>
             </div>

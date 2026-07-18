@@ -44,16 +44,16 @@ chaos_style/
 
 The library exports multiple subpath entries (see package.json `exports`; root `.` is the ui entry, not a full umbrella):
 
-| Export                          | Entry File            | Contents                          |
-| ------------------------------- | --------------------- | --------------------------------- |
-| `@chaos_team/chaos-ui`          | `package/index.ts`    | All (ui + business + hooks + lib) |
-| `@chaos_team/chaos-ui/ui`       | `package/ui.ts`       | UI primitives only                |
-| `@chaos_team/chaos-ui/ui/icons` | `package/ui-icons.ts` | Icon exports                      |
-| `@chaos_team/chaos-ui/ui-icons` | `package/ui-icons.ts` | Icon exports (alias)              |
-| `@chaos_team/chaos-ui/business` | `package/business.ts` | Business components only          |
-| `@chaos_team/chaos-ui/hooks`    | `package/hooks.ts`    | Hooks only                        |
-| `@chaos_team/chaos-ui/lib`      | `package/lib.ts`      | Lib utilities only                |
-| `@chaos_team/chaos-ui/next`     | `package/next.ts`     | Next.js utilities                 |
+| Export                          | Entry File                           | Contents                          |
+| ------------------------------- | ------------------------------------ | --------------------------------- |
+| `@chaos_team/chaos-ui`          | `components/ui/index.ts (root = ui)` | All (ui + business + hooks + lib) |
+| `@chaos_team/chaos-ui/ui`       | `package/ui.ts`                      | UI primitives only                |
+| `@chaos_team/chaos-ui/ui/icons` | `package/ui-icons.ts`                | Icon exports                      |
+| `@chaos_team/chaos-ui/ui-icons` | `package/ui-icons.ts`                | Icon exports (alias)              |
+| `@chaos_team/chaos-ui/business` | `package/business.ts`                | Business components only          |
+| `@chaos_team/chaos-ui/hooks`    | `package/hooks.ts`                   | Hooks only                        |
+| `@chaos_team/chaos-ui/lib`      | `package/lib.ts`                     | Lib utilities only                |
+| `@chaos_team/chaos-ui/next`     | `package/next.ts`                    | Next.js utilities                 |
 
 ## Build System
 

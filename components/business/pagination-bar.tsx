@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 import { Button } from "@/components/ui/button";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Input } from "@/components/ui/input";
@@ -81,6 +82,7 @@ function PaginationBar({
   size = "sm",
   className,
 }: PaginationBarProps) {
+  const { t } = useTranslation("ui");
   const safePageSize = Math.max(1, pageSize || 1);
   const totalPages = Math.max(1, Math.ceil(total / safePageSize));
   const currentPage = Math.min(Math.max(1, page), totalPages);
@@ -107,7 +109,9 @@ function PaginationBar({
     >
       {/* Total count */}
       <span className="tabular-nums">
-        共 <span className="text-foreground font-medium">{total}</span> 条
+        {t("pagination.totalPrefix", { defaultValue: "共" })}{" "}
+        <span className="text-foreground font-medium">{total}</span>{" "}
+        {t("pagination.totalSuffix", { defaultValue: "条" })}
       </span>
 
       {/* Page size changer */}
@@ -121,10 +125,13 @@ function PaginationBar({
             onChange(1, Math.max(1, ps || 1));
           }}
           className="h-7 w-auto"
-          aria-label="每页条数"
+          aria-label={t("pagination.pageSize", { defaultValue: "每页条数" })}
           options={pageSizeOptions.map((n) => ({
             value: String(n),
-            label: `${n} 条/页`,
+            label: t("pagination.pageSizeOption", {
+              defaultValue: `${n} 条/页`,
+              count: n,
+            }),
           }))}
         />
       )}
@@ -136,7 +143,7 @@ function PaginationBar({
           size={btnSize}
           disabled={currentPage <= 1}
           onClick={() => onChange(currentPage - 1, safePageSize)}
-          aria-label="上一页"
+          aria-label={t("pagination.prev", { defaultValue: "上一页" })}
         >
           <ChevronLeftIcon />
         </Button>
@@ -167,7 +174,7 @@ function PaginationBar({
           size={btnSize}
           disabled={currentPage >= totalPages}
           onClick={() => onChange(currentPage + 1, safePageSize)}
-          aria-label="下一页"
+          aria-label={t("pagination.next", { defaultValue: "下一页" })}
         >
           <ChevronRightIcon />
         </Button>
@@ -176,7 +183,7 @@ function PaginationBar({
       {/* Quick jumper */}
       {showQuickJumper && totalPages > 1 && (
         <div className="flex items-center gap-1">
-          <span>跳至</span>
+          <span>{t("pagination.jumpTo", { defaultValue: "跳至" })}</span>
           <Input
             size={size}
             value={jumpValue}
@@ -187,9 +194,9 @@ function PaginationBar({
             onBlur={handleJump}
             className="h-7 w-14 text-center"
             inputMode="numeric"
-            aria-label="跳转到页"
+            aria-label={t("pagination.jumpAria", { defaultValue: "跳转到页" })}
           />
-          <span>页</span>
+          <span>{t("pagination.page", { defaultValue: "页" })}</span>
         </div>
       )}
     </div>

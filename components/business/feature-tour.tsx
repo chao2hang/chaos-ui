@@ -39,10 +39,39 @@ function FeatureTour({ steps, open, onClose, className }: FeatureTourProps) {
   }, [open]);
 
   React.useEffect(() => {
-    if (open && panelRef.current) {
-      panelRef.current.focus();
-    }
-  }, [open, current]);
+    if (!open) return;
+    const prevActive = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    panelRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose?.();
+        return;
+      }
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const focusables = panelRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0]!;
+      const last = focusables[focusables.length - 1]!;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      prevActive?.focus?.();
+    };
+  }, [open, current, onClose]);
 
   const safeIndex =
     steps.length === 0 ? 0 : Math.min(current, steps.length - 1);
@@ -87,7 +116,7 @@ function FeatureTour({ steps, open, onClose, className }: FeatureTourProps) {
       )}
       role="dialog"
       aria-modal="true"
-      aria-label="功能引导"
+      aria-labelledby="feature-tour-title"
       onClick={onClose}
     >
       <div
@@ -101,7 +130,12 @@ function FeatureTour({ steps, open, onClose, className }: FeatureTourProps) {
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
             <MousePointerClickIcon className="text-primary size-5" />
-            <h2 className="font-heading text-base font-medium">{step.title}</h2>
+            <h2
+              id="feature-tour-title"
+              className="font-heading text-base font-medium"
+            >
+              {step.title}
+            </h2>
           </div>
           <Button
             type="button"
