@@ -28,7 +28,15 @@ export interface BrowseItem extends Record<string, unknown> {
 
 /** Built-in browser type keys (extensible via `registerBrowserType`). */
 export type BrowserType =
-  "employee" | "department" | "company" | "product" | "custom";
+  | "employee"
+  | "department"
+  | "company"
+  | "product"
+  | "distributor"
+  | "warehouse"
+  | "feeType"
+  | "custom"
+  | (string & {});
 
 /** Label descriptor used to render the trigger display without a full object. */
 export interface BrowserLabel {
@@ -39,6 +47,10 @@ export interface BrowserLabel {
 /** A registered default configuration for a browser type. */
 export interface BrowserTypeConfig<T extends BrowseItem = BrowseItem> {
   loadData?: (params: BrowseLoadParams) => Promise<BrowseLoadResult<T>>;
+  complete?: (keyword: string) => Promise<T[]>;
+  completeMinChars?: number;
+  completeDebounceMs?: number;
+  completeAdvancedSearch?: boolean;
   columns?: BrowseColumn<T>[];
   multiple?: boolean;
   tree?: BrowseDialogProps<T>["tree"];
@@ -114,6 +126,12 @@ export interface BrowserFieldProps<T extends BrowseItem = BrowseItem> {
   /** Remote autocomplete fetcher (debounced). When set, the trigger becomes a
    *  type-ahead combobox; the magnifier button still opens the full dialog. */
   complete?: (keyword: string) => Promise<T[]>;
+  /** Minimum keyword length before invoking `complete` (default: 1). */
+  completeMinChars?: number;
+  /** Debounce delay for `complete` in milliseconds (default: 300). */
+  completeDebounceMs?: number;
+  /** Show the advanced browse action in the suggestion footer (default: true). */
+  completeAdvancedSearch?: boolean;
 
   /* --- add --- */
   /** Render a "＋" add button; resolved item is appended to the selection. */
@@ -170,6 +188,9 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
   title,
   searchPlaceholder,
   complete,
+  completeMinChars: completeMinCharsProp,
+  completeDebounceMs: completeDebounceMsProp,
+  completeAdvancedSearch: completeAdvancedSearchProp,
   onAdd,
   linkHref,
   className,
@@ -188,17 +209,34 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
   const resolvedRowKey = (rowKey ?? cfg?.rowKey ?? "id") as keyof T & string;
   const resolvedPageSize = pageSize ?? cfg?.pageSize ?? 10;
   const resolvedTitle = title ?? cfg?.title;
+  const resolvedComplete = (complete ?? cfg?.complete) as
+    ((keyword: string) => Promise<T[]>) | undefined;
+  const completeMinChars = Math.max(
+    0,
+    completeMinCharsProp ?? cfg?.completeMinChars ?? 1,
+  );
+  const completeDebounceMs = Math.max(
+    0,
+    completeDebounceMsProp ?? cfg?.completeDebounceMs ?? 300,
+  );
+  const completeAdvancedSearch =
+    completeAdvancedSearchProp ?? cfg?.completeAdvancedSearch ?? true;
 
   const [open, setOpen] = React.useState(false);
   const [acOpen, setAcOpen] = React.useState(false);
   const [keyword, setKeyword] = React.useState("");
   const [acItems, setAcItems] = React.useState<T[]>([]);
   const [acLoading, setAcLoading] = React.useState(false);
+  const [acActiveIndex, setAcActiveIndex] = React.useState(-1);
+  const [editing, setEditing] = React.useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const autocompleteId = React.useId();
+  const listboxId = `browser-field-listbox-${autocompleteId}`;
 
   /* ---- derive labels from value ---- */
   const valueIds: string[] = React.useMemo(() => {
     if (value == null) return [];
-    return Array.isArray(value) ? value : [value];
+    return (Array.isArray(value) ? value : [value]).filter((id) => id !== "");
   }, [value]);
 
   const labelMap = React.useMemo(() => {
@@ -221,29 +259,58 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
 
   /* ---- autocomplete ---- */
   const acTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const acRequestId = React.useRef(0);
+  const closeAutocomplete = React.useCallback(() => {
+    if (acTimer.current) {
+      clearTimeout(acTimer.current);
+      acTimer.current = null;
+    }
+    acRequestId.current += 1;
+    setAcItems([]);
+    setAcOpen(false);
+    setAcActiveIndex(-1);
+    setAcLoading(false);
+  }, []);
   const runComplete = React.useCallback(
     (kw: string) => {
-      if (!complete || !kw.trim()) {
-        setAcItems([]);
-        setAcOpen(false);
+      const trimmed = kw.trim();
+      acRequestId.current += 1;
+      const requestId = acRequestId.current;
+      if (acTimer.current) {
+        clearTimeout(acTimer.current);
+        acTimer.current = null;
+      }
+      if (!resolvedComplete || trimmed.length < completeMinChars) {
+        closeAutocomplete();
         return;
       }
-      if (acTimer.current) clearTimeout(acTimer.current);
       acTimer.current = setTimeout(() => {
+        acTimer.current = null;
         setAcLoading(true);
         setAcOpen(true);
-        complete(kw)
-          .then((res) => setAcItems(res))
-          .catch(() => setAcItems([]))
-          .finally(() => setAcLoading(false));
-      }, 300);
+        resolvedComplete(trimmed)
+          .then((res) => {
+            if (requestId !== acRequestId.current) return;
+            setAcItems(res);
+            setAcActiveIndex(-1);
+          })
+          .catch(() => {
+            if (requestId !== acRequestId.current) return;
+            setAcItems([]);
+            setAcActiveIndex(-1);
+          })
+          .finally(() => {
+            if (requestId === acRequestId.current) setAcLoading(false);
+          });
+      }, completeDebounceMs);
     },
-    [complete],
+    [closeAutocomplete, completeDebounceMs, completeMinChars, resolvedComplete],
   );
 
   React.useEffect(
     () => () => {
       if (acTimer.current) clearTimeout(acTimer.current);
+      acRequestId.current += 1;
     },
     [],
   );
@@ -291,8 +358,9 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
     } else {
       onChange?.(id, [item]);
     }
-    setAcOpen(false);
+    closeAutocomplete();
     setKeyword("");
+    if (!multiple) setEditing(false);
   };
 
   const handleAdd = async () => {
@@ -320,7 +388,7 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
   const sizeClass =
     size === "sm" ? "h-7 min-h-7 text-sm" : "h-9 min-h-9 text-sm";
   const hasValue = valueIds.length > 0;
-  const useCombo = !!complete && !disabled;
+  const useCombo = !!resolvedComplete && !disabled;
 
   /* ---- labels region (shared) ---- */
   const labelsRegion = hasValue ? (
@@ -428,6 +496,7 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
         })}
         onClick={(e) => {
           e.stopPropagation();
+          closeAutocomplete();
           setOpen(true);
         }}
         className="text-muted-foreground hover:text-foreground inline-flex size-4 cursor-pointer items-center justify-center"
@@ -454,12 +523,20 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
       {useCombo ? (
         <div
           className={cn(shellClass, "cursor-text")}
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setOpen(false);
+            if (hasValue && !multiple) {
+              setEditing(true);
+              requestAnimationFrame(() => inputRef.current?.focus());
+            }
+          }}
         >
-          {hasValue && !keyword ? (
+          {multiple && hasValue ? labelsRegion : null}
+          {hasValue && !multiple && !keyword && !editing ? (
             labelsRegion
           ) : (
             <input
+              ref={inputRef}
               type="text"
               value={keyword}
               onChange={(e) => {
@@ -467,11 +544,40 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
                 runComplete(e.target.value);
               }}
               onFocus={() => keyword && runComplete(keyword)}
-              onBlur={() => setTimeout(() => setAcOpen(false), 150)}
+              onBlur={() => {
+                closeAutocomplete();
+                if (hasValue && !multiple) setKeyword("");
+                setEditing(false);
+              }}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
+                if (e.key === "ArrowDown" || e.key === "ArrowUp") {
                   e.preventDefault();
-                  setOpen(true);
+                  if (acItems.length === 0) return;
+                  setAcActiveIndex((current) => {
+                    const delta = e.key === "ArrowDown" ? 1 : -1;
+                    return (current + delta + acItems.length) % acItems.length;
+                  });
+                } else if (e.key === "Enter") {
+                  e.preventDefault();
+                  if (acOpen && acItems.length > 0) {
+                    pickAutocomplete(
+                      acItems[acActiveIndex >= 0 ? acActiveIndex : 0]!,
+                    );
+                  } else {
+                    closeAutocomplete();
+                    setOpen(true);
+                  }
+                } else if (e.key === "Escape") {
+                  e.preventDefault();
+                  closeAutocomplete();
+                  setKeyword("");
+                  setEditing(false);
+                } else if (e.key === "Tab") {
+                  closeAutocomplete();
+                  if (hasValue && !multiple) {
+                    setKeyword("");
+                  }
+                  setEditing(false);
                 }
               }}
               placeholder={resolvedPlaceholder}
@@ -479,6 +585,14 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
               aria-label={t("browserField.autocomplete", {
                 defaultValue: "联想搜索",
               })}
+              aria-controls={acOpen ? listboxId : undefined}
+              role="combobox"
+              aria-expanded={acOpen}
+              aria-activedescendant={
+                acActiveIndex >= 0
+                  ? `${listboxId}-option-${String(acItems[acActiveIndex]?.[resolvedRowKey])}`
+                  : undefined
+              }
             />
           )}
           {trailing}
@@ -521,8 +635,12 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
               {t("browserField.noMatch", { defaultValue: "无匹配项" })}
             </div>
           ) : (
-            <ul className="max-h-60 overflow-y-auto">
-              {acItems.map((item) => {
+            <ul
+              id={listboxId}
+              role="listbox"
+              className="max-h-60 overflow-y-auto"
+            >
+              {acItems.map((item, itemIndex) => {
                 const id = String(item[resolvedRowKey]);
                 const lbl =
                   (typeof item.name === "string" ? item.name : undefined) ??
@@ -532,11 +650,18 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
                   <li key={id}>
                     <button
                       type="button"
+                      id={`${listboxId}-option-${id}`}
+                      role="option"
+                      aria-selected={itemIndex === acActiveIndex}
                       onMouseDown={(e) => {
                         e.preventDefault();
                         pickAutocomplete(item);
                       }}
-                      className="hover:bg-muted flex w-full items-center justify-between px-3 py-1.5 text-left text-sm"
+                      onMouseEnter={() => setAcActiveIndex(itemIndex)}
+                      className={cn(
+                        "hover:bg-muted flex w-full items-center justify-between px-3 py-1.5 text-left text-sm",
+                        itemIndex === acActiveIndex && "bg-muted",
+                      )}
                     >
                       <span className="truncate">{lbl}</span>
                       {typeof item.code === "string" && item.code !== lbl && (
@@ -550,17 +675,47 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
               })}
             </ul>
           )}
+          {completeAdvancedSearch && !acLoading && (
+            <button
+              type="button"
+              aria-label={t("browserField.advancedSearch", {
+                defaultValue: "高级搜索",
+              })}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => {
+                closeAutocomplete();
+                setOpen(true);
+              }}
+              className="text-primary hover:bg-muted w-full border-t px-3 py-2 text-left text-sm"
+            >
+              {t("browserField.advancedSearch", { defaultValue: "高级搜索" })}
+            </button>
+          )}
         </div>
       )}
 
       <BrowseDialog<T>
         open={open}
-        onOpenChange={setOpen}
+        onOpenChange={(next) => {
+          if (next) closeAutocomplete();
+          setOpen(next);
+        }}
         {...(loadData ? { loadData } : {})}
         {...(resolvedItems ? { items: resolvedItems as T[] } : {})}
         columns={columns as BrowseColumn<T>[]}
         {...(resolvedTree ? { tree: resolvedTree } : {})}
         rowKey={resolvedRowKey}
+        value={
+          valueIds.map((id) => {
+            const source = resolvedItems?.find(
+              (item) => String(item[resolvedRowKey]) === id,
+            );
+            return (
+              source ??
+              ({ [resolvedRowKey]: id, name: labelMap.get(id) ?? id } as T)
+            );
+          }) as T[]
+        }
         pageSize={resolvedPageSize}
         {...(resolvedTitle ? { title: resolvedTitle } : {})}
         {...(searchPlaceholder ? { searchPlaceholder } : {})}

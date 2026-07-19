@@ -4,5 +4,6 @@
   "schemaForm.submit": "Guardar",
   "schemaForm.reset": "Restablecer",
   "schemaForm.selectPlaceholder": "Seleccionar...",
-  "schemaForm.submitting": "Guardando..."
+  "schemaForm.submitting": "Guardando...",
+  "browserField.advancedSearch": "Búsqueda avanzada"
 }

@@ -33,6 +33,8 @@ export function Basic() {
 | `onReset`   | `() => void`                  | —       |                                 |
 | ...rest     | `React.ComponentProps<"div">` | —       | Inherits all `<div>` attributes |
 
+`FilterField.type` accepts `browser`. Pass BrowserField configuration through `browser`; filter values contain the selected entity IDs.
+
 ## Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

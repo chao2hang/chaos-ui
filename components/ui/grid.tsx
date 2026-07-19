@@ -61,9 +61,9 @@ interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
   offset?: number;
   /** Column order */
   order?: number;
-  /** Responsive: < 576px */
+  /** Responsive: mobile-first base / < 640px */
   xs?: ResponsiveCol;
-  /** Responsive: >= 576px */
+  /** Responsive: >= 640px */
   sm?: ResponsiveCol;
   /** Responsive: >= 768px */
   md?: ResponsiveCol;
@@ -73,25 +73,6 @@ interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
   xl?: ResponsiveCol;
   /** Responsive: >= 1536px */
   xxl?: ResponsiveCol;
-}
-
-// ─── Breakpoint → span/offset class helpers ──────────────
-
-function colSpanClass(prefix: string, span?: ColSpan): string {
-  if (span == null) return "";
-  return prefix ? `${prefix}:col-span-${span}` : `col-span-${span}`;
-}
-
-function colOffsetClass(prefix: string, offset?: number): string {
-  if (offset == null) return "";
-  return prefix
-    ? `${prefix}:col-start-[${offset + 1}]`
-    : `col-start-[${offset + 1}]`;
-}
-
-function colOrderClass(prefix: string, order?: number): string {
-  if (order == null) return "";
-  return prefix ? `${prefix}:order-${order}` : `order-${order}`;
 }
 
 // ─── Row ─────────────────────────────────────────────────
@@ -196,35 +177,31 @@ function Col({
   _gutter,
   ...props
 }: ColProps & { _gutter?: number }) {
-  const classes = [
-    // base (mobile-first): apply to all breakpoints
-    colSpanClass("", span),
-    colOffsetClass("", offset),
-    colOrderClass("", order),
-    // responsive overrides
-    xs && colSpanClass("xs", xs.span),
-    xs && colOffsetClass("xs", xs.offset),
-    xs && colOrderClass("xs", xs.order),
-    sm && colSpanClass("sm", sm.span),
-    sm && colOffsetClass("sm", sm.offset),
-    sm && colOrderClass("sm", sm.order),
-    md && colSpanClass("md", md.span),
-    md && colOffsetClass("md", md.offset),
-    md && colOrderClass("md", md.order),
-    lg && colSpanClass("lg", lg.span),
-    lg && colOffsetClass("lg", lg.offset),
-    lg && colOrderClass("lg", lg.order),
-    xl && colSpanClass("xl", xl.span),
-    xl && colOffsetClass("xl", xl.offset),
-    xl && colOrderClass("xl", xl.order),
-    xxl && colSpanClass("2xl", xxl.span),
-    xxl && colOffsetClass("2xl", xxl.offset),
-    xxl && colOrderClass("2xl", xxl.order),
-  ]
-    .filter(Boolean)
-    .join(" ");
-
+  const responsiveValues = { xs, sm, md, lg, xl, xxl };
   const colStyle: React.CSSProperties = {
+    "--chaos-col-grid": span != null ? `span ${span} / span ${span}` : "auto",
+    ...(offset != null ? { "--chaos-col-start": String(offset + 1) } : {}),
+    ...(order != null ? { "--chaos-col-order": String(order) } : {}),
+    ...(xs?.span != null
+      ? { "--chaos-col-grid": `span ${xs.span} / span ${xs.span}` }
+      : {}),
+    ...(xs?.offset != null
+      ? { "--chaos-col-start": String(xs.offset + 1) }
+      : {}),
+    ...(xs?.order != null ? { "--chaos-col-order": String(xs.order) } : {}),
+    ...(Object.entries(responsiveValues)
+      .filter(([key, value]) => key !== "xs" && value != null)
+      .reduce<Record<string, string>>((vars, [key, value]) => {
+        const prefix = key === "xxl" ? "2xl" : key;
+        if (value?.span != null)
+          vars[`--chaos-col-${prefix}-grid`] =
+            `span ${value.span} / span ${value.span}`;
+        if (value?.offset != null)
+          vars[`--chaos-col-${prefix}-start`] = String(value.offset + 1);
+        if (value?.order != null)
+          vars[`--chaos-col-${prefix}-order`] = String(value.order);
+        return vars;
+      }, {}) as React.CSSProperties),
     ...(_gutter != null &&
       _gutter > 0 && {
         paddingLeft: _gutter / 2,
@@ -235,7 +212,7 @@ function Col({
 
   return (
     <div
-      className={cn(classes, className)}
+      className={cn("chaos-col", className)}
       style={colStyle}
       data-slot="col"
       {...props}

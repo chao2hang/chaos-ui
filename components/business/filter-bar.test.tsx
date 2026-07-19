@@ -241,6 +241,28 @@ describe("filter-bar", () => {
     expect(onSearch).toHaveBeenCalledWith({ custom: "clicked" });
   });
 
+  it("composes BrowserField for browser filters", () => {
+    const onSearch = vi.fn();
+    render(
+      <FilterBar
+        fields={[
+          {
+            key: "company",
+            label: "公司",
+            type: "browser",
+            browser: {
+              items: [{ id: "1", name: "甲公司" }],
+              columns: [{ key: "name", title: "公司" }],
+            },
+          },
+        ]}
+        onSearch={onSearch}
+      />,
+    );
+    expect(screen.getByLabelText("打开选择弹窗")).toBeInTheDocument();
+    expect(screen.getByText("公司")).toBeInTheDocument();
+  });
+
   it("renders card layout wrapped in a Card", () => {
     const { container } = render(
       <FilterBar

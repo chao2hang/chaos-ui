@@ -4,5 +4,6 @@
   "schemaForm.submit": "حفظ",
   "schemaForm.reset": "إعادة تعيين",
   "schemaForm.selectPlaceholder": "اختيار...",
-  "schemaForm.submitting": "جاري الحفظ..."
+  "schemaForm.submitting": "جاري الحفظ...",
+  "browserField.advancedSearch": "بحث متقدم"
 }

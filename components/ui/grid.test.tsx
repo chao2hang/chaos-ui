@@ -64,95 +64,103 @@ describe("grid", () => {
     expect(container.textContent).toContain("Content");
   });
 
-  it("Col applies span class", () => {
+  it("Col applies span through a CSS variable", () => {
     const { container } = render(<Col span={6}>Content</Col>);
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("col-span-6");
-    // base breakpoint must NOT have a leading colon (was a bug in ≤1.2.1)
-    expect(col?.className).not.toMatch(/(^|\s):col-span/);
+    expect(col?.style.getPropertyValue("--chaos-col-grid")).toBe(
+      "span 6 / span 6",
+    );
   });
 
-  it("Col applies offset class", () => {
+  it("Col applies offset through a CSS variable", () => {
     const { container } = render(
       <Col span={6} offset={3}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("col-start-[4]");
-    expect(col?.className).not.toMatch(/(^|\s):col-start/);
+    expect(col?.style.getPropertyValue("--chaos-col-start")).toBe("4");
   });
 
-  it("Col applies order class", () => {
+  it("Col applies order through a CSS variable", () => {
     const { container } = render(
       <Col span={6} order={2}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("order-2");
-    expect(col?.className).not.toMatch(/(^|\s):order/);
+    expect(col?.style.getPropertyValue("--chaos-col-order")).toBe("2");
   });
 
-  it("Col applies responsive xs classes", () => {
+  it("Col treats xs as the mobile-first CSS variable", () => {
     const { container } = render(
       <Col span={12} xs={{ span: 24 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("xs:col-span-24");
+    expect(col?.style.getPropertyValue("--chaos-col-grid")).toBe(
+      "span 24 / span 24",
+    );
   });
 
-  it("Col applies responsive sm classes", () => {
+  it("Col applies responsive sm variables", () => {
     const { container } = render(
       <Col span={12} sm={{ span: 8, offset: 2 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("sm:col-span-8");
-    expect(col?.className).toContain("sm:col-start-[3]");
+    expect(col?.style.getPropertyValue("--chaos-col-sm-grid")).toBe(
+      "span 8 / span 8",
+    );
+    expect(col?.style.getPropertyValue("--chaos-col-sm-start")).toBe("3");
   });
 
-  it("Col applies responsive md classes", () => {
+  it("Col applies responsive md variables", () => {
     const { container } = render(
       <Col span={12} md={{ span: 6 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("md:col-span-6");
+    expect(col?.style.getPropertyValue("--chaos-col-md-grid")).toBe(
+      "span 6 / span 6",
+    );
   });
 
-  it("Col applies responsive lg classes", () => {
+  it("Col applies responsive lg variables", () => {
     const { container } = render(
       <Col span={12} lg={{ order: 1 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("lg:order-1");
+    expect(col?.style.getPropertyValue("--chaos-col-lg-order")).toBe("1");
   });
 
-  it("Col applies responsive xl classes", () => {
+  it("Col applies responsive xl variables", () => {
     const { container } = render(
       <Col span={12} xl={{ span: 4 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("xl:col-span-4");
+    expect(col?.style.getPropertyValue("--chaos-col-xl-grid")).toBe(
+      "span 4 / span 4",
+    );
   });
 
-  it("Col applies responsive xxl classes", () => {
+  it("Col applies responsive xxl variables", () => {
     const { container } = render(
       <Col span={12} xxl={{ span: 3 }}>
         Content
       </Col>,
     );
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("2xl:col-span-3");
+    expect(col?.style.getPropertyValue("--chaos-col-2xl-grid")).toBe(
+      "span 3 / span 3",
+    );
   });
 
   it("Col with _gutter applies padding style", () => {
@@ -189,7 +197,7 @@ describe("grid", () => {
         <Col span={12}>A</Col>
       </Row>,
     );
-    const col = container.querySelector('[class*="col-span-12"]');
+    const col = container.querySelector('[data-slot="col"]');
     expect(col).not.toBeNull();
     const style = (col as HTMLElement).style;
     expect(style.paddingLeft).toBe("12px");
@@ -265,16 +273,35 @@ describe("grid", () => {
     }
   });
 
-  it("Col with no span renders without col-span class", () => {
+  it("Col with no span uses auto grid placement", () => {
     const { container } = render(<Col>Content</Col>);
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).not.toContain("col-span-");
+    expect(col?.style.getPropertyValue("--chaos-col-grid")).toBe("auto");
   });
 
-  it("Col span=17 generates valid class without leading colon (regression for ≤1.2.1 bug)", () => {
+  it("Col span=17 emits a usable grid value", () => {
     const { container } = render(<Col span={17}>Content</Col>);
     const col = container.firstChild as HTMLElement;
-    expect(col?.className).toContain("col-span-17");
-    expect(col?.className).not.toMatch(/(^|\s):col-span/);
+    expect(col?.style.getPropertyValue("--chaos-col-grid")).toBe(
+      "span 17 / span 17",
+    );
+  });
+
+  it("bridges responsive layout values through CSS variables", () => {
+    const { container } = render(
+      <Col span={24} md={{ span: 17, offset: 2, order: 3 }}>
+        Content
+      </Col>,
+    );
+    const col = container.firstChild as HTMLElement;
+    expect(col?.className).toContain("chaos-col");
+    expect(col?.style.getPropertyValue("--chaos-col-grid")).toBe(
+      "span 24 / span 24",
+    );
+    expect(col?.style.getPropertyValue("--chaos-col-md-grid")).toBe(
+      "span 17 / span 17",
+    );
+    expect(col?.style.getPropertyValue("--chaos-col-md-start")).toBe("3");
+    expect(col?.style.getPropertyValue("--chaos-col-md-order")).toBe("3");
   });
 });

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { PageChrome } from "@/components/business/page-chrome";
 import { ListPageShell } from "@/components/business/list-page-shell";
+import { SearchTable } from "@/components/business/search-table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,6 +23,17 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const alignmentColumns = [
+  { key: "code", title: "编码", width: 140 },
+  { key: "name", title: "名称" },
+  { key: "status", title: "状态", width: 120 },
+];
+
+const alignmentRows = [
+  { id: "1", code: "EMP-001", name: "张三", status: "启用" },
+  { id: "2", code: "EMP-002", name: "李四", status: "启用" },
+];
 
 export const Overview: Story = {
   args: {
@@ -212,6 +224,37 @@ export const ListWithShell: Story = {
         <div className="text-muted-foreground border-border rounded-md border border-dashed p-8 text-center text-sm">
           SearchTable / data grid
         </div>
+      </ListPageShell>
+    ),
+  },
+};
+
+/** Regression coverage for #71: toolbar and real SearchTable frame share the same desktop inset. */
+export const ListWithSearchTableAlignment: Story = {
+  name: "List + SearchTable alignment (#71)",
+  args: {
+    variant: "list",
+    children: (
+      <ListPageShell
+        filterFields={[
+          {
+            key: "keyword",
+            label: "关键词",
+            type: "input",
+            placeholder: "姓名 / 工号",
+          },
+        ]}
+        onSearch={() => {}}
+        toolbar={
+          <>
+            <Button variant="outline" size="sm">
+              刷新
+            </Button>
+            <Button size="sm">新增</Button>
+          </>
+        }
+      >
+        <SearchTable columns={alignmentColumns} dataSource={alignmentRows} />
       </ListPageShell>
     ),
   },

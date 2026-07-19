@@ -143,3 +143,43 @@ export const WithAutocomplete: Story = {
     );
   },
 };
+
+export const CompleteDoubleChannel: Story = {
+  name: "Complete double channel + keyboard",
+  render: () => {
+    const [value, setValue] = useState<string>("");
+    const [labels, setLabels] = useState<{ id: string; label: string }[]>([]);
+    return (
+      <div className="max-w-md space-y-4">
+        <BrowserField<MockEmployee>
+          title="选择员工"
+          columns={columns}
+          loadData={loadData}
+          complete={async (keyword) =>
+            mockItems
+              .filter(
+                (item) =>
+                  item.name.includes(keyword) ||
+                  item.code.toLowerCase().includes(keyword.toLowerCase()),
+              )
+              .slice(0, 5)
+          }
+          completeMinChars={1}
+          completeDebounceMs={200}
+          value={value}
+          labels={labels}
+          onChange={(next, items) => {
+            setValue(Array.isArray(next) ? (next[0] ?? "") : next);
+            setLabels(
+              items.map((item) => ({ id: String(item.id), label: item.name })),
+            );
+          }}
+          placeholder="输入拼音首字母或关键字…"
+        />
+        <p className="text-muted-foreground text-xs">
+          输入后可用 ↑↓ + Enter 选择；页脚“高级搜索”打开分页 BrowseDialog。
+        </p>
+      </div>
+    );
+  },
+};

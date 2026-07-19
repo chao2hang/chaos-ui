@@ -56,5 +56,6 @@
   "departmentBrowse.remove": "移除",
   "departmentBrowse.clearAll": "清除全部",
   "departmentBrowse.selectedCount": "已选 {{count}} 个部门",
-  "departmentBrowse.maxCount": "最多 {{count}}"
+  "departmentBrowse.maxCount": "最多 {{count}}",
+  "browserField.advancedSearch": "高级搜索"
 }

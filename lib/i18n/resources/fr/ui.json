@@ -4,5 +4,6 @@
   "schemaForm.submit": "Enregistrer",
   "schemaForm.reset": "Réinitialiser",
   "schemaForm.selectPlaceholder": "Sélectionner...",
-  "schemaForm.submitting": "Enregistrement..."
+  "schemaForm.submitting": "Enregistrement...",
+  "browserField.advancedSearch": "Recherche avancée"
 }

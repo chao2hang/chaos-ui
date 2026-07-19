@@ -1245,6 +1245,145 @@
   }
 
   /* 24-column grid for Row/Col component */
+  .chaos-col {
+    grid-column: var(--chaos-col-grid, auto);
+    grid-column-start: var(--chaos-col-start, auto);
+    order: var(--chaos-col-order, initial);
+  }
+
+  @media (width >= 640px) {
+    .chaos-col {
+      grid-column: var(--chaos-col-sm-grid, var(--chaos-col-grid, auto));
+      grid-column-start: var(
+        --chaos-col-sm-start,
+        var(--chaos-col-start, auto)
+      );
+      order: var(--chaos-col-sm-order, var(--chaos-col-order, initial));
+    }
+  }
+
+  @media (width >= 768px) {
+    .chaos-col {
+      grid-column: var(
+        --chaos-col-md-grid,
+        var(--chaos-col-sm-grid, var(--chaos-col-grid, auto))
+      );
+      grid-column-start: var(
+        --chaos-col-md-start,
+        var(--chaos-col-sm-start, var(--chaos-col-start, auto))
+      );
+      order: var(
+        --chaos-col-md-order,
+        var(--chaos-col-sm-order, var(--chaos-col-order, initial))
+      );
+    }
+  }
+
+  @media (width >= 1024px) {
+    .chaos-col {
+      grid-column: var(
+        --chaos-col-lg-grid,
+        var(
+          --chaos-col-md-grid,
+          var(--chaos-col-sm-grid, var(--chaos-col-grid, auto))
+        )
+      );
+      grid-column-start: var(
+        --chaos-col-lg-start,
+        var(
+          --chaos-col-md-start,
+          var(--chaos-col-sm-start, var(--chaos-col-start, auto))
+        )
+      );
+      order: var(
+        --chaos-col-lg-order,
+        var(
+          --chaos-col-md-order,
+          var(--chaos-col-sm-order, var(--chaos-col-order, initial))
+        )
+      );
+    }
+  }
+
+  @media (width >= 1280px) {
+    .chaos-col {
+      grid-column: var(
+        --chaos-col-xl-grid,
+        var(
+          --chaos-col-lg-grid,
+          var(
+            --chaos-col-md-grid,
+            var(--chaos-col-sm-grid, var(--chaos-col-grid, auto))
+          )
+        )
+      );
+      grid-column-start: var(
+        --chaos-col-xl-start,
+        var(
+          --chaos-col-lg-start,
+          var(
+            --chaos-col-md-start,
+            var(--chaos-col-sm-start, var(--chaos-col-start, auto))
+          )
+        )
+      );
+      order: var(
+        --chaos-col-xl-order,
+        var(
+          --chaos-col-lg-order,
+          var(
+            --chaos-col-md-order,
+            var(--chaos-col-sm-order, var(--chaos-col-order, initial))
+          )
+        )
+      );
+    }
+  }
+
+  @media (width >= 1536px) {
+    .chaos-col {
+      grid-column: var(
+        --chaos-col-2xl-grid,
+        var(
+          --chaos-col-xl-grid,
+          var(
+            --chaos-col-lg-grid,
+            var(
+              --chaos-col-md-grid,
+              var(--chaos-col-sm-grid, var(--chaos-col-grid, auto))
+            )
+          )
+        )
+      );
+      grid-column-start: var(
+        --chaos-col-2xl-start,
+        var(
+          --chaos-col-xl-start,
+          var(
+            --chaos-col-lg-start,
+            var(
+              --chaos-col-md-start,
+              var(--chaos-col-sm-start, var(--chaos-col-start, auto))
+            )
+          )
+        )
+      );
+      order: var(
+        --chaos-col-2xl-order,
+        var(
+          --chaos-col-xl-order,
+          var(
+            --chaos-col-lg-order,
+            var(
+              --chaos-col-md-order,
+              var(--chaos-col-sm-order, var(--chaos-col-order, initial))
+            )
+          )
+        )
+      );
+    }
+  }
+
   .grid-cols-24 {
     grid-template-columns: repeat(24, minmax(0, 1fr));
   }

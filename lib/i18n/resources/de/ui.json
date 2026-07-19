@@ -4,5 +4,6 @@
   "schemaForm.submit": "Speichern",
   "schemaForm.reset": "Zurücksetzen",
   "schemaForm.selectPlaceholder": "Auswählen...",
-  "schemaForm.submitting": "Speichern..."
+  "schemaForm.submitting": "Speichern...",
+  "browserField.advancedSearch": "Erweiterte Suche"
 }

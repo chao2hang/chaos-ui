@@ -16,11 +16,22 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
+import {
+  BrowserField,
+  type BrowserFieldProps,
+  type BrowseItem,
+} from "@/components/business/browser-field";
 
 interface FilterField {
   key: string;
   label: string;
-  type?: "input" | "select" | "date-picker" | "date-range-picker" | "custom";
+  type?:
+    | "input"
+    | "select"
+    | "date-picker"
+    | "date-range-picker"
+    | "browser"
+    | "custom";
   placeholder?: string;
   /** For select type: options */
   options?: { label: string; value: string }[];
@@ -37,6 +48,8 @@ interface FilterField {
   ) => React.ReactNode;
   /** Default value */
   defaultValue?: unknown;
+  /** BrowserField configuration for entity filters. */
+  browser?: Omit<BrowserFieldProps, "value" | "onChange">;
 }
 
 interface FilterBarProps {
@@ -115,6 +128,9 @@ function FilterBar({
     initialValuesFromFields(fields),
   );
   const [expanded, setExpanded] = React.useState(false);
+  const [browserLabels, setBrowserLabels] = React.useState<
+    Record<string, { id: string; label: string }[]>
+  >({});
 
   const handleChange = (key: string, value: unknown) => {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -123,6 +139,7 @@ function FilterBar({
   const handleSearch = () => onSearch(values);
   const handleReset = () => {
     setValues(initialValuesFromFields(fields));
+    setBrowserLabels({});
     onReset?.();
   };
 
@@ -137,6 +154,34 @@ function FilterBar({
   const renderField = (field: FilterField) => {
     if (field.render) {
       return field.render(values[field.key], handleChange);
+    }
+
+    if (field.type === "browser" && field.browser) {
+      const configuredLabels = field.browser.labels ?? [];
+      const currentLabels = browserLabels[field.key] ?? configuredLabels;
+      const currentValue = values[field.key] as string | string[] | undefined;
+      return (
+        <BrowserField<BrowseItem>
+          {...field.browser}
+          {...(currentValue !== undefined ? { value: currentValue } : {})}
+          labels={currentLabels}
+          onChange={(next, items) => {
+            handleChange(field.key, next);
+            setBrowserLabels((prev) => ({
+              ...prev,
+              [field.key]: items.map((item) => ({
+                id: String(item.id),
+                label:
+                  typeof item.name === "string"
+                    ? item.name
+                    : typeof item.code === "string"
+                      ? item.code
+                      : String(item.id),
+              })),
+            }));
+          }}
+        />
+      );
     }
 
     if (field.type === "select" && field.options) {

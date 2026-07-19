@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.0] — 2026-07-19
+
+### Added
+
+- **BrowserField (#72)**: `registerBrowserType` 和字段 props 支持 `complete`、`completeMinChars`、`completeDebounceMs`、`completeAdvancedSearch`；单选已选后可重新输入，支持键盘联想、竞态保护、高级分页浏览与已选回显。
+- **FilterBar (#72)**: `FilterField.type: "browser"` 复用 BrowserField 的浏览、联想与标签回显，筛选值保持为实体 ID。
+- **Storybook**: 补 BrowserField 双通道、Row/Col `17:7` 响应式和 ListPageShell + SearchTable 对齐回归场景。
+
+### Fixed
+
+- **Row / Col (#70)**: 响应式 span、offset、order 改由包内稳定 CSS 变量规则驱动，不再依赖消费方 Tailwind 扫描运行时拼接 class。
+- **ListPageShell (#71)**: 桌面端工具条加入与 SearchTable 一致的 `--card-spacing` 右侧 inset，末尾按钮与可见表格边框对齐。
+
 ## [1.15.4] — 2026-07-19
 
 ### Added — 后台消费端模板

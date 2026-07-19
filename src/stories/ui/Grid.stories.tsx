@@ -68,6 +68,21 @@ export const Responsive: Story = {
   ),
 };
 
+/** Regression coverage for #70: the consumer's 17:7 desktop split must not stay single-column. */
+export const ResponsiveSeventeenSeven: Story = {
+  name: "Responsive 17:7 (#70)",
+  render: () => (
+    <Row gutter={16}>
+      <Col xs={{ span: 24 }} md={{ span: 17 }}>
+        <Box>xs 24 / md 17</Box>
+      </Col>
+      <Col xs={{ span: 24 }} md={{ span: 7 }}>
+        <Box>xs 24 / md 7</Box>
+      </Col>
+    </Row>
+  ),
+};
+
 export const WithOffset: Story = {
   render: () => (
     <Row gutter={16}>

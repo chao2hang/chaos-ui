@@ -36,6 +36,8 @@ export function Basic() {
 | `onReset`   | `() => void`                  | —       |                                                             |
 | ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 <br/> Inherits all `<div>` attributes |
 
+`FilterField.type` 支持 `browser` / accepts `browser`. 通过 `browser` 复用 BrowserField；筛选值仅保存所选实体 ID。
+
 ## 注意事项 / Notes
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

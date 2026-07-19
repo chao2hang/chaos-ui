@@ -56,5 +56,6 @@
   "departmentBrowse.remove": "Remove",
   "departmentBrowse.clearAll": "Clear all",
   "departmentBrowse.selectedCount": "{{count}} department(s) selected",
-  "departmentBrowse.maxCount": "Max: {{count}}"
+  "departmentBrowse.maxCount": "Max: {{count}}",
+  "browserField.advancedSearch": "Advanced search"
 }

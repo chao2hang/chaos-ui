@@ -56,5 +56,6 @@
   "departmentBrowse.remove": "제거",
   "departmentBrowse.clearAll": "모두 지우기",
   "departmentBrowse.selectedCount": "{{count}}개 부서 선택됨",
-  "departmentBrowse.maxCount": "최대 {{count}}"
+  "departmentBrowse.maxCount": "최대 {{count}}",
+  "browserField.advancedSearch": "고급 검색"
 }

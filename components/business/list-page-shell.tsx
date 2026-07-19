@@ -95,7 +95,7 @@ export function ListPageShell({
   const actions = hasActions ? (
     <div
       data-slot="list-page-shell-actions"
-      className="flex w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:ml-auto sm:w-auto"
+      className="flex w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:ml-auto sm:w-auto sm:pr-[var(--card-spacing,1rem)]"
     >
       {extra ? (
         <div className="text-muted-foreground min-w-0 text-sm">{extra}</div>

@@ -147,5 +147,21 @@ describe("ListPageShell", () => {
     expect(
       container.querySelector('[data-slot="list-page-shell-filter-row"]'),
     ).toBeNull();
+    expect(
+      container.querySelector('[data-slot="list-page-shell-actions"]')
+        ?.className,
+    ).toContain("sm:pr-[var(--card-spacing,1rem)]");
+  });
+
+  it("insets inline actions to the SearchTable frame (#71)", () => {
+    const { container } = render(
+      <ListPageShell toolbar={<button type="button">新增</button>}>
+        <div>table</div>
+      </ListPageShell>,
+    );
+    expect(
+      container.querySelector('[data-slot="list-page-shell-actions"]')
+        ?.className,
+    ).toContain("sm:pr-[var(--card-spacing,1rem)]");
   });
 });

@@ -33,6 +33,8 @@ export function Basic() {
 | `onReset`   | `() => void`                  | —       |                       |
 | ...rest     | `React.ComponentProps<"div">` | —       | 透传 `<div>` 原生属性 |
 
+`FilterField.type` 支持 `browser`，通过 `browser` 配置复用 `BrowserField` 的弹层、联想和已选回显；列表筛选只提交浏览字段的 ID 值。
+
 ## 注意事项
 
 - **Client Component**: 使用 `"use client"`,依赖 React hooks/状态,需在客户端渲染。

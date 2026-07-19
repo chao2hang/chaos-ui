@@ -56,5 +56,6 @@
   "departmentBrowse.remove": "削除",
   "departmentBrowse.clearAll": "すべてクリア",
   "departmentBrowse.selectedCount": "{{count}} 部門選択中",
-  "departmentBrowse.maxCount": "最大 {{count}}"
+  "departmentBrowse.maxCount": "最大 {{count}}",
+  "browserField.advancedSearch": "詳細検索"
 }
