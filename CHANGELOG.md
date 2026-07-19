@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.4] — 2026-07-19
+
+### Added — 后台消费端模板
+
+- **后台管理模板**：将 `/examples/admin` 重做为费用管理 / 对账签认工作流，补齐工作台、筛选列表、签认详情、登录和通知等场景。
+- **响应式交互**：复用 `AdminShell`、`PageChrome`、`ListPageShell`、`SearchTable` 和 `StatusBadge`，支持移动端抽屉、表格退化、分页、刷新、签认和新建演示动作。
+- **回归覆盖**：新增筛选、签认和详情场景交互测试，并完成桌面与移动端验收。
+
 ## [1.15.3] — 2026-07-18
 
 ### Fixed — 审计缺口波次 2
