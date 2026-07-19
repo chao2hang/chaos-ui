@@ -6,25 +6,45 @@ import { ExampleTemplatePage } from "./example-template-page";
 import { AdminTemplateDemo, type AdminSceneId } from "./admin-template-demo";
 
 const ADMIN_CODE = `import { AdminShell } from "@chaos_team/chaos-ui/layout";
-import { UserMenu } from "@chaos_team/chaos-ui/business";
+import {
+  ListPageShell,
+  PageChrome,
+  SearchTable,
+  UserMenu,
+} from "@chaos_team/chaos-ui/business";
 
 export function App() {
   return (
     <AdminShell
       menuItems={[
-        { key: "dashboard", label: "仪表盘" },
-        { key: "list", label: "列表" },
+        { key: "dashboard", label: "工作台" },
+        {
+          key: "expenses",
+          label: "费用管理",
+          children: [{ key: "reconciliation", label: "对账签认" }],
+        },
       ]}
-      userMenu={<UserMenu user={{ name: "Admin", email: "admin@example.com" }} />}
+      userMenu={<UserMenu user={{ name: "运营管理员" }} />}
+      selectedMenuKey="reconciliation"
     >
-      {/* page content: ListPageShell / custom */}
+      <PageChrome variant="list">
+        <ListPageShell
+          filterFields={[{ key: "period", label: "账期" }]}
+          onSearch={() => {}}
+        >
+          <SearchTable
+            columns={[{ key: "period", title: "账期" }]}
+            dataSource={[]}
+          />
+        </ListPageShell>
+      </PageChrome>
     </AdminShell>
   );
 }`;
 
 export function AdminExamplePage() {
   const dict = useDict();
-  const [scene, setScene] = React.useState<AdminSceneId>("dashboard");
+  const [scene, setScene] = React.useState<AdminSceneId>("list");
   const [resetToken, setResetToken] = React.useState(0);
 
   const scenes = [
@@ -72,13 +92,21 @@ export function AdminExamplePage() {
           name: "ListPageShell",
           href: "/components/business/list-page-shell",
         },
+        {
+          name: "SearchTable",
+          href: "/components/business/search-table",
+        },
+        {
+          name: "PageChrome",
+          href: "/components/business/page-chrome",
+        },
       ]}
       scenes={scenes}
       activeScene={scene}
       onSceneChange={(id) => setScene(id as AdminSceneId)}
       onReset={() => {
         setResetToken((n) => n + 1);
-        setScene("dashboard");
+        setScene("list");
       }}
       preview={
         <AdminTemplateDemo

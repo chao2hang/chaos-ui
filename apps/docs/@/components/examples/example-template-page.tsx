@@ -30,13 +30,16 @@ export function ExampleTemplatePage(props: ExampleTemplatePageProps) {
   const sceneMeta = props.scenes.find((s) => s.id === props.activeScene);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+    <div className="mx-auto w-full max-w-[1440px] px-4 py-8 sm:px-6 lg:px-8">
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
           {props.breadcrumbs.map((crumb, index) => {
             const isLast = index === props.breadcrumbs.length - 1;
             return (
-              <li key={`${crumb.label}-${index}`} className="flex items-center gap-1.5">
+              <li
+                key={`${crumb.label}-${index}`}
+                className="flex items-center gap-1.5"
+              >
                 {index > 0 ? <span aria-hidden="true">/</span> : null}
                 {crumb.href && !isLast ? (
                   <Link
@@ -47,7 +50,9 @@ export function ExampleTemplatePage(props: ExampleTemplatePageProps) {
                   </Link>
                 ) : (
                   <span
-                    className={isLast ? "text-foreground font-medium" : undefined}
+                    className={
+                      isLast ? "text-foreground font-medium" : undefined
+                    }
                     aria-current={isLast ? "page" : undefined}
                   >
                     {crumb.label}

@@ -57,7 +57,10 @@ export function PreviewChrome({
       )}
     >
       <div className="bg-muted/40 flex items-center justify-between gap-2 border-b px-3 py-2">
-        <div role="tablist" className="flex min-w-0 flex-1 flex-wrap items-center gap-1">
+        <div
+          role="tablist"
+          className="no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto"
+        >
           {scenes.map((scene) => {
             const selected = scene.id === activeScene;
             return (
@@ -67,7 +70,7 @@ export function PreviewChrome({
                 role="tab"
                 aria-selected={selected}
                 className={cn(
-                  "rounded-md px-2.5 py-1 text-sm transition-colors",
+                  "shrink-0 rounded-md px-2 py-1 text-xs transition-colors sm:px-2.5 sm:text-sm",
                   selected
                     ? "bg-background text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground",
@@ -83,7 +86,7 @@ export function PreviewChrome({
           {onReset ? (
             <button
               type="button"
-              className="text-muted-foreground hover:text-foreground rounded-md px-2.5 py-1 text-sm"
+              className="text-muted-foreground hover:text-foreground rounded-md px-1.5 py-1 text-xs sm:px-2.5 sm:text-sm"
               onClick={onReset}
             >
               {resetLabel}
@@ -92,7 +95,7 @@ export function PreviewChrome({
           {allowFullscreen ? (
             <button
               type="button"
-              className="text-muted-foreground hover:text-foreground rounded-md px-2.5 py-1 text-sm"
+              className="text-muted-foreground hover:text-foreground rounded-md px-1.5 py-1 text-xs sm:px-2.5 sm:text-sm"
               onClick={() => setFullscreen((v) => !v)}
             >
               {fullscreen ? exitFullscreenLabel : fullscreenLabel}
@@ -102,8 +105,8 @@ export function PreviewChrome({
       </div>
       <div
         className={cn(
-          "min-h-[70vh] h-[calc(100vh-12rem)] max-h-[900px] overflow-hidden bg-background",
-          fullscreen && "min-h-0 h-full max-h-none flex-1",
+          "bg-background h-[calc(100vh-12rem)] max-h-[900px] min-h-[70vh] overflow-hidden",
+          fullscreen && "h-full max-h-none min-h-0 flex-1",
         )}
       >
         <div className="h-full min-h-0 overflow-auto">{children}</div>
