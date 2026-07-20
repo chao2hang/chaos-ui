@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.1] — 2026-07-20
+
+### Fixed
+
+- **ExportButton (#76)**: print 导出对文件名、列标题与单元格值做 HTML 转义，避免 `document.write` 同源 XSS；CSV 转义逻辑保持独立。
+- **BrowseDialog (#80)**: 远程 `loadData` 打开弹窗时在 debounce 前进入 loading，避免首开闪「暂无数据」。
+- **BrowserField (#73/#74/#75)**: complete 下拉改为 body 级 Portal + fixed 定位（`--z-index-popover`）；失败展示错误态；空数组不渲染下拉面板。
+- **i18n (#77)**: ChatInput、QRCode、MobileGeolocation、SocialShare 用户可见文案接入 `useSafeTranslation` 与资源包。
+
+### Changed
+
+- **Repo (#78)**: 从 git 索引移除已跟踪的 `.playwright-mcp` 本地产物；`CONTRIBUTING` 明确禁止再 stage 该目录。
+
 ## [1.16.0] — 2026-07-19
 
 ### Added
