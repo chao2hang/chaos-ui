@@ -50,4 +50,47 @@ describe("BrowseDialog", () => {
     expect(arg).toHaveLength(1);
     expect(arg[0]!.id).toBe("1");
   });
+
+  it("shows skeleton before debounce instead of empty flash on open", async () => {
+    vi.useFakeTimers();
+    try {
+      const loadData = vi.fn(
+        () =>
+          new Promise<{
+            rows: Array<{ id: string; name: string }>;
+            total: number;
+          }>(() => {
+            /* intentionally pending — assert pre-resolve loading UI */
+          }),
+      );
+
+      render(
+        <BrowseDialog
+          open
+          onOpenChange={() => {}}
+          loadData={loadData}
+          columns={[{ key: "name", title: "Name", dataIndex: "name" }]}
+          searchDebounceMs={300}
+          emptyText="暂无数据"
+        />,
+      );
+
+      // Before debounce fires: loading skeleton, not empty copy.
+      expect(document.body.textContent ?? "").not.toContain("暂无数据");
+      expect(loadData).not.toHaveBeenCalled();
+      expect(
+        document.querySelectorAll('[data-slot="skeleton"]').length,
+      ).toBeGreaterThan(0);
+
+      await vi.advanceTimersByTimeAsync(300);
+      expect(loadData).toHaveBeenCalledTimes(1);
+      // Still loading (promise unresolved): no empty flash.
+      expect(document.body.textContent ?? "").not.toContain("暂无数据");
+      expect(
+        document.querySelectorAll('[data-slot="skeleton"]').length,
+      ).toBeGreaterThan(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 });

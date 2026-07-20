@@ -57,5 +57,9 @@
   "departmentBrowse.clearAll": "すべてクリア",
   "departmentBrowse.selectedCount": "{{count}} 部門選択中",
   "departmentBrowse.maxCount": "最大 {{count}}",
-  "browserField.advancedSearch": "詳細検索"
+  "browserField.advancedSearch": "詳細検索",
+  "browserField.completeError": "検索に失敗しました。再試行してください",
+  "chatInput.messageAria": "メッセージ入力",
+  "chatInput.send": "送信",
+  "qrcode.error": "QRエラー"
 }

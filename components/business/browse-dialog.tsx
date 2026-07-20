@@ -303,6 +303,21 @@ function BrowseDialog<
   const isLocalMode = loadDataProp == null;
 
   const fetchIdRef = React.useRef(0);
+  /** True after at least one remote load settled while the dialog was open. */
+  const remoteHasLoadedRef = React.useRef(false);
+
+  // Open reset: clear remote table before paint so first frame is skeleton, not empty.
+  React.useLayoutEffect(() => {
+    if (!open) {
+      remoteHasLoadedRef.current = false;
+      return;
+    }
+    if (isLocalMode) return;
+    remoteHasLoadedRef.current = false;
+    setRows([]);
+    setTotal(0);
+    setLoading(true);
+  }, [open, isLocalMode]);
 
   // Local static list: filter + paginate synchronously (no race with open-reset).
   React.useEffect(() => {
@@ -338,6 +353,11 @@ function BrowseDialog<
     fetchIdRef.current += 1;
     const currentFetchId = fetchIdRef.current;
 
+    // First open (or after reset): show skeleton during debounce. Later searches keep rows.
+    if (!remoteHasLoadedRef.current) {
+      setLoading(true);
+    }
+
     const timer = setTimeout(() => {
       setLoading(true);
       loadData({
@@ -352,11 +372,13 @@ function BrowseDialog<
           if (currentFetchId !== fetchIdRef.current) return; // stale
           setRows(result.rows);
           setTotal(result.total);
+          remoteHasLoadedRef.current = true;
         })
         .catch(() => {
           if (currentFetchId !== fetchIdRef.current) return;
           setRows([]);
           setTotal(0);
+          remoteHasLoadedRef.current = true;
         })
         .finally(() => {
           if (currentFetchId !== fetchIdRef.current) return;

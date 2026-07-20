@@ -183,3 +183,47 @@ export const CompleteDoubleChannel: Story = {
     );
   },
 };
+
+export const AutocompleteInCardOverflow: Story = {
+  name: "Autocomplete portal escapes Card overflow",
+  render: () => {
+    const [value, setValue] = useState<string>("");
+    const [labels, setLabels] = useState<{ id: string; label: string }[]>([]);
+    return (
+      <div className="max-w-md space-y-2">
+        <div className="overflow-hidden rounded-xl border p-4">
+          <p className="text-muted-foreground mb-24 text-xs">
+            Card 使用 overflow-hidden；联想下拉应 portal 到 body，不被裁切。
+          </p>
+          <BrowserField<MockEmployee>
+            title="选择员工"
+            columns={columns}
+            loadData={loadData}
+            complete={async (keyword) =>
+              mockItems
+                .filter(
+                  (item) =>
+                    item.name.includes(keyword) ||
+                    item.code.toLowerCase().includes(keyword.toLowerCase()),
+                )
+                .slice(0, 8)
+            }
+            completeDebounceMs={100}
+            value={value}
+            labels={labels}
+            onChange={(next, items) => {
+              setValue(Array.isArray(next) ? (next[0] ?? "") : next);
+              setLabels(
+                items.map((item) => ({
+                  id: String(item.id),
+                  label: item.name,
+                })),
+              );
+            }}
+            placeholder="在 Card 底部输入…"
+          />
+        </div>
+      </div>
+    );
+  },
+};

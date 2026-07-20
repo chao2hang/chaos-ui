@@ -57,5 +57,9 @@
   "departmentBrowse.clearAll": "Clear all",
   "departmentBrowse.selectedCount": "{{count}} department(s) selected",
   "departmentBrowse.maxCount": "Max: {{count}}",
-  "browserField.advancedSearch": "Advanced search"
+  "browserField.advancedSearch": "Advanced search",
+  "browserField.completeError": "Search failed. Please try again",
+  "chatInput.messageAria": "Message input",
+  "chatInput.send": "Send",
+  "qrcode.error": "QR Error"
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 import { cn } from "@/lib/utils";
@@ -227,9 +228,14 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
   const [keyword, setKeyword] = React.useState("");
   const [acItems, setAcItems] = React.useState<T[]>([]);
   const [acLoading, setAcLoading] = React.useState(false);
+  const [acError, setAcError] = React.useState<string | null>(null);
   const [acActiveIndex, setAcActiveIndex] = React.useState(-1);
   const [editing, setEditing] = React.useState(false);
+  const [acPanelStyle, setAcPanelStyle] = React.useState<React.CSSProperties>(
+    {},
+  );
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const rootRef = React.useRef<HTMLDivElement>(null);
   const autocompleteId = React.useId();
   const listboxId = `browser-field-listbox-${autocompleteId}`;
 
@@ -270,6 +276,7 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
     setAcOpen(false);
     setAcActiveIndex(-1);
     setAcLoading(false);
+    setAcError(null);
   }, []);
   const runComplete = React.useCallback(
     (kw: string) => {
@@ -287,25 +294,68 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
       acTimer.current = setTimeout(() => {
         acTimer.current = null;
         setAcLoading(true);
+        setAcError(null);
         setAcOpen(true);
         resolvedComplete(trimmed)
           .then((res) => {
             if (requestId !== acRequestId.current) return;
             setAcItems(res);
             setAcActiveIndex(-1);
+            setAcError(null);
+            // Empty results: keep open=false so no empty panel (WeaBrowser parity).
+            if (res.length === 0) setAcOpen(false);
           })
-          .catch(() => {
+          .catch((err: unknown) => {
             if (requestId !== acRequestId.current) return;
             setAcItems([]);
             setAcActiveIndex(-1);
+            const message =
+              err instanceof Error && err.message.trim()
+                ? err.message
+                : t("browserField.completeError", {
+                    defaultValue: "搜索失败，请重试",
+                  });
+            setAcError(message);
+            setAcOpen(true);
           })
           .finally(() => {
             if (requestId === acRequestId.current) setAcLoading(false);
           });
       }, completeDebounceMs);
     },
-    [closeAutocomplete, completeDebounceMs, completeMinChars, resolvedComplete],
+    [
+      closeAutocomplete,
+      completeDebounceMs,
+      completeMinChars,
+      resolvedComplete,
+      t,
+    ],
   );
+
+  const updateAcPanelPosition = React.useCallback(() => {
+    const el = rootRef.current;
+    if (!el || typeof window === "undefined") return;
+    const rect = el.getBoundingClientRect();
+    const gap = 4;
+    const maxPanel = 280;
+    const spaceBelow = window.innerHeight - rect.bottom - gap;
+    const spaceAbove = rect.top - gap;
+    const openUp = spaceBelow < 160 && spaceAbove > spaceBelow;
+    const maxHeight = Math.max(
+      120,
+      Math.min(maxPanel, openUp ? spaceAbove : spaceBelow),
+    );
+    setAcPanelStyle({
+      position: "fixed",
+      left: rect.left,
+      width: rect.width,
+      zIndex: "var(--z-index-popover, 1060)",
+      maxHeight,
+      ...(openUp
+        ? { bottom: window.innerHeight - rect.top + gap, top: "auto" }
+        : { top: rect.bottom + gap, bottom: "auto" }),
+    });
+  }, []);
 
   React.useEffect(
     () => () => {
@@ -389,6 +439,20 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
     size === "sm" ? "h-7 min-h-7 text-sm" : "h-9 min-h-9 text-sm";
   const hasValue = valueIds.length > 0;
   const useCombo = !!resolvedComplete && !disabled;
+  const showAcPanel =
+    useCombo && acOpen && (acLoading || acError != null || acItems.length > 0);
+
+  React.useLayoutEffect(() => {
+    if (!showAcPanel) return;
+    updateAcPanelPosition();
+    const onReposition = () => updateAcPanelPosition();
+    window.addEventListener("resize", onReposition);
+    window.addEventListener("scroll", onReposition, true);
+    return () => {
+      window.removeEventListener("resize", onReposition);
+      window.removeEventListener("scroll", onReposition, true);
+    };
+  }, [showAcPanel, acItems.length, acLoading, acError, updateAcPanelPosition]);
 
   /* ---- labels region (shared) ---- */
   const labelsRegion = hasValue ? (
@@ -515,8 +579,93 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
     sizeClass,
   );
 
+  const acDropdown =
+    showAcPanel && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            data-slot="browser-field-autocomplete"
+            className="bg-popover overflow-hidden rounded-md border shadow-md"
+            style={acPanelStyle}
+          >
+            {acLoading ? (
+              <div className="text-muted-foreground px-3 py-2 text-sm">
+                {t("browserField.searching", { defaultValue: "搜索中…" })}
+              </div>
+            ) : acError ? (
+              <div
+                role="alert"
+                className="text-destructive px-3 py-2 text-sm"
+                data-slot="browser-field-complete-error"
+              >
+                {acError}
+              </div>
+            ) : (
+              <ul
+                id={listboxId}
+                role="listbox"
+                className="max-h-60 overflow-y-auto"
+              >
+                {acItems.map((item, itemIndex) => {
+                  const id = String(item[resolvedRowKey]);
+                  const lbl =
+                    (typeof item.name === "string" ? item.name : undefined) ??
+                    (typeof item.code === "string" ? item.code : undefined) ??
+                    id;
+                  return (
+                    <li key={id}>
+                      <button
+                        type="button"
+                        id={`${listboxId}-option-${id}`}
+                        role="option"
+                        aria-selected={itemIndex === acActiveIndex}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          pickAutocomplete(item);
+                        }}
+                        onMouseEnter={() => setAcActiveIndex(itemIndex)}
+                        className={cn(
+                          "hover:bg-muted flex w-full items-center justify-between px-3 py-1.5 text-left text-sm",
+                          itemIndex === acActiveIndex && "bg-muted",
+                        )}
+                      >
+                        <span className="truncate">{lbl}</span>
+                        {typeof item.code === "string" && item.code !== lbl && (
+                          <span className="text-muted-foreground ml-2 shrink-0 text-xs">
+                            {item.code}
+                          </span>
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            {completeAdvancedSearch && !acLoading && !acError && (
+              <button
+                type="button"
+                aria-label={t("browserField.advancedSearch", {
+                  defaultValue: "高级搜索",
+                })}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => {
+                  closeAutocomplete();
+                  setOpen(true);
+                }}
+                className="text-primary hover:bg-muted w-full border-t px-3 py-2 text-left text-sm"
+              >
+                {t("browserField.advancedSearch", {
+                  defaultValue: "高级搜索",
+                })}
+              </button>
+            )}
+          </div>,
+          document.body,
+        )
+      : null;
+
   return (
     <div
+      ref={rootRef}
       data-slot="browser-field"
       className={cn("relative block w-full", className)}
     >
@@ -623,76 +772,7 @@ function BrowserField<T extends BrowseItem = BrowseItem>({
         </div>
       )}
 
-      {/* autocomplete dropdown */}
-      {useCombo && acOpen && (
-        <div className="bg-popover absolute top-full z-50 mt-1 w-full overflow-hidden rounded-md border shadow-md">
-          {acLoading ? (
-            <div className="text-muted-foreground px-3 py-2 text-sm">
-              {t("browserField.searching", { defaultValue: "搜索中…" })}
-            </div>
-          ) : acItems.length === 0 ? (
-            <div className="text-muted-foreground px-3 py-2 text-sm">
-              {t("browserField.noMatch", { defaultValue: "无匹配项" })}
-            </div>
-          ) : (
-            <ul
-              id={listboxId}
-              role="listbox"
-              className="max-h-60 overflow-y-auto"
-            >
-              {acItems.map((item, itemIndex) => {
-                const id = String(item[resolvedRowKey]);
-                const lbl =
-                  (typeof item.name === "string" ? item.name : undefined) ??
-                  (typeof item.code === "string" ? item.code : undefined) ??
-                  id;
-                return (
-                  <li key={id}>
-                    <button
-                      type="button"
-                      id={`${listboxId}-option-${id}`}
-                      role="option"
-                      aria-selected={itemIndex === acActiveIndex}
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        pickAutocomplete(item);
-                      }}
-                      onMouseEnter={() => setAcActiveIndex(itemIndex)}
-                      className={cn(
-                        "hover:bg-muted flex w-full items-center justify-between px-3 py-1.5 text-left text-sm",
-                        itemIndex === acActiveIndex && "bg-muted",
-                      )}
-                    >
-                      <span className="truncate">{lbl}</span>
-                      {typeof item.code === "string" && item.code !== lbl && (
-                        <span className="text-muted-foreground ml-2 shrink-0 text-xs">
-                          {item.code}
-                        </span>
-                      )}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-          {completeAdvancedSearch && !acLoading && (
-            <button
-              type="button"
-              aria-label={t("browserField.advancedSearch", {
-                defaultValue: "高级搜索",
-              })}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => {
-                closeAutocomplete();
-                setOpen(true);
-              }}
-              className="text-primary hover:bg-muted w-full border-t px-3 py-2 text-left text-sm"
-            >
-              {t("browserField.advancedSearch", { defaultValue: "高级搜索" })}
-            </button>
-          )}
-        </div>
-      )}
+      {acDropdown}
 
       <BrowseDialog<T>
         open={open}

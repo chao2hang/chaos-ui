@@ -5,5 +5,9 @@
   "schemaForm.reset": "Restablecer",
   "schemaForm.selectPlaceholder": "Seleccionar...",
   "schemaForm.submitting": "Guardando...",
-  "browserField.advancedSearch": "Búsqueda avanzada"
+  "browserField.advancedSearch": "Búsqueda avanzada",
+  "browserField.completeError": "Error de búsqueda. Inténtelo de nuevo",
+  "chatInput.messageAria": "Entrada de mensaje",
+  "chatInput.send": "Enviar",
+  "qrcode.error": "Error de QR"
 }

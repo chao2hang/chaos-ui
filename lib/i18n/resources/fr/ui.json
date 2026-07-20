@@ -5,5 +5,9 @@
   "schemaForm.reset": "Réinitialiser",
   "schemaForm.selectPlaceholder": "Sélectionner...",
   "schemaForm.submitting": "Enregistrement...",
-  "browserField.advancedSearch": "Recherche avancée"
+  "browserField.advancedSearch": "Recherche avancée",
+  "browserField.completeError": "Échec de la recherche. Veuillez réessayer",
+  "chatInput.messageAria": "Saisie du message",
+  "chatInput.send": "Envoyer",
+  "qrcode.error": "Erreur QR"
 }

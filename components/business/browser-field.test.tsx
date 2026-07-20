@@ -359,4 +359,58 @@ describe("BrowserField", () => {
     );
     expect(screen.queryByText("a")).not.toBeInTheDocument();
   });
+
+  it("portals autocomplete into document.body", async () => {
+    render(
+      <BrowserField
+        complete={async () => [{ id: "1", name: "门户项" }]}
+        completeDebounceMs={0}
+      />,
+    );
+    fireEvent.change(screen.getByRole("combobox", { name: "联想搜索" }), {
+      target: { value: "a" },
+    });
+    await waitFor(() => {
+      const panel = document.body.querySelector(
+        '[data-slot="browser-field-autocomplete"]',
+      );
+      expect(panel).not.toBeNull();
+      expect(panel?.parentElement).toBe(document.body);
+    });
+  });
+
+  it("shows error state when complete rejects", async () => {
+    render(
+      <BrowserField
+        complete={async () => {
+          throw new Error("网络异常，请重试");
+        }}
+        completeDebounceMs={0}
+      />,
+    );
+    fireEvent.change(screen.getByRole("combobox", { name: "联想搜索" }), {
+      target: { value: "a" },
+    });
+    await waitFor(() => {
+      expect(screen.getByText("网络异常，请重试")).toBeInTheDocument();
+      expect(
+        document.querySelector('[data-slot="browser-field-complete-error"]'),
+      ).not.toBeNull();
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
+  });
+
+  it("does not render autocomplete panel when complete returns empty", async () => {
+    render(<BrowserField complete={async () => []} completeDebounceMs={0} />);
+    fireEvent.change(screen.getByRole("combobox", { name: "联想搜索" }), {
+      target: { value: "zzz" },
+    });
+    await waitFor(() => {
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      expect(screen.queryByText("无匹配项")).not.toBeInTheDocument();
+      expect(
+        document.querySelector('[data-slot="browser-field-autocomplete"]'),
+      ).toBeNull();
+    });
+  });
 });

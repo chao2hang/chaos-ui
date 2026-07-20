@@ -10,6 +10,7 @@
 
 ## 👀 待审核
 
+- [浏览选择 BrowseDialog 与 BrowserField 体验 #80/#73/#74/#75](./2026-07-20_浏览选择_BrowseDialog与BrowserField体验_设计计划.md)
 - [FE-10 桌面与移动页面范式收口 #60/#61](./2026-07-17_FE-10桌面与移动范式收口_#60_#61_设计计划.md)
 - [PageChrome list / ListPageShell 工具条同行 #58](./2026-07-17_PageChrome_ListPageShell_工具条同行_#58_设计计划.md)
 - [AdminShell contentPadding 分向 #57](./2026-07-17_AdminShell_contentPadding分向_#57_设计计划.md)

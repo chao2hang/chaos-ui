@@ -57,5 +57,9 @@
   "departmentBrowse.clearAll": "모두 지우기",
   "departmentBrowse.selectedCount": "{{count}}개 부서 선택됨",
   "departmentBrowse.maxCount": "최대 {{count}}",
-  "browserField.advancedSearch": "고급 검색"
+  "browserField.advancedSearch": "고급 검색",
+  "browserField.completeError": "검색에 실패했습니다. 다시 시도하세요",
+  "chatInput.messageAria": "메시지 입력",
+  "chatInput.send": "보내기",
+  "qrcode.error": "QR 오류"
 }

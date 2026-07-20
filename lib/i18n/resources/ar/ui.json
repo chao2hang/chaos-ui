@@ -5,5 +5,9 @@
   "schemaForm.reset": "إعادة تعيين",
   "schemaForm.selectPlaceholder": "اختيار...",
   "schemaForm.submitting": "جاري الحفظ...",
-  "browserField.advancedSearch": "بحث متقدم"
+  "browserField.advancedSearch": "بحث متقدم",
+  "browserField.completeError": "فشل البحث. يرجى المحاولة مرة أخرى",
+  "chatInput.messageAria": "إدخال الرسالة",
+  "chatInput.send": "إرسال",
+  "qrcode.error": "خطأ QR"
 }

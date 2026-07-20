@@ -57,5 +57,9 @@
   "departmentBrowse.clearAll": "清除全部",
   "departmentBrowse.selectedCount": "已选 {{count}} 个部门",
   "departmentBrowse.maxCount": "最多 {{count}}",
-  "browserField.advancedSearch": "高级搜索"
+  "browserField.advancedSearch": "高级搜索",
+  "browserField.completeError": "搜索失败，请重试",
+  "chatInput.messageAria": "消息输入",
+  "chatInput.send": "发送",
+  "qrcode.error": "二维码错误"
 }
