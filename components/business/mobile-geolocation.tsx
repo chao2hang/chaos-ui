@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { MapPinIcon, RefreshCwIcon } from "@/components/ui/icons";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * @component MobileGeolocation
@@ -23,19 +24,28 @@ interface MobileGeolocationProps {
 type LocateStatus = "idle" | "locating" | "success" | "denied" | "unsupported";
 
 function formatCoord(value: number, axis: "lat" | "lng") {
-  const dir = axis === "lat" ? (value >= 0 ? "N" : "S") : value >= 0 ? "E" : "W";
+  const dir =
+    axis === "lat" ? (value >= 0 ? "N" : "S") : value >= 0 ? "E" : "W";
   return `${Math.abs(value).toFixed(6)}° ${dir}`;
 }
 
 function MobileGeolocation({ onLocate, className }: MobileGeolocationProps) {
+  const { t } = useTranslation("mobile");
   const [status, setStatus] = React.useState<LocateStatus>("idle");
-  const [coords, setCoords] = React.useState<{ lat: number; lng: number } | null>(null);
+  const [coords, setCoords] = React.useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
   const [error, setError] = React.useState<string>("");
 
   const locate = React.useCallback(() => {
     if (typeof navigator === "undefined" || !navigator.geolocation) {
       setStatus("unsupported");
-      setError("当前环境不支持定位");
+      setError(
+        t("mobileGeolocation.unsupported", {
+          defaultValue: "当前环境不支持定位",
+        }),
+      );
       return;
     }
     setStatus("locating");
@@ -54,63 +64,80 @@ function MobileGeolocation({ onLocate, className }: MobileGeolocationProps) {
         setStatus("denied");
         setError(
           err.code === err.PERMISSION_DENIED
-            ? "定位权限被拒绝"
+            ? t("mobileGeolocation.permissionDenied", {
+                defaultValue: "定位权限被拒绝",
+              })
             : err.code === err.POSITION_UNAVAILABLE
-              ? "无法获取位置信息"
-              : "定位超时",
+              ? t("mobileGeolocation.unavailable", {
+                  defaultValue: "无法获取位置信息",
+                })
+              : t("mobileGeolocation.timeout", {
+                  defaultValue: "定位超时",
+                }),
         );
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
     );
-  }, [onLocate]);
+  }, [onLocate, t]);
 
   const statusText =
     status === "locating"
-      ? "正在定位…"
+      ? t("mobileGeolocation.locating", { defaultValue: "正在定位…" })
       : status === "success"
-        ? "定位成功"
+        ? t("mobileGeolocation.success", { defaultValue: "定位成功" })
         : status === "denied" || status === "unsupported"
-          ? error || "定位失败"
-          : "点击按钮获取当前位置";
+          ? error || t("mobileGeolocation.failed", { defaultValue: "定位失败" })
+          : t("mobileGeolocation.idle", {
+              defaultValue: "点击按钮获取当前位置",
+            });
 
   return (
     <div
       data-slot="mobile-geolocation"
-      className={cn("flex flex-col gap-3 rounded-lg border bg-card p-4", className)}
+      className={cn(
+        "bg-card flex flex-col gap-3 rounded-lg border p-4",
+        className,
+      )}
     >
       <div className="flex items-center gap-2 text-sm">
-        <MapPinIcon className="size-4 text-primary" aria-hidden="true" />
-        <span className="flex-1 text-muted-foreground">{statusText}</span>
+        <MapPinIcon className="text-primary size-4" aria-hidden="true" />
+        <span className="text-muted-foreground flex-1">{statusText}</span>
         <button
           type="button"
           onClick={locate}
           disabled={status === "locating"}
-          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground disabled:opacity-50"
+          className="bg-primary text-primary-foreground inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium disabled:opacity-50"
         >
           <RefreshCwIcon
             className={cn("size-3.5", status === "locating" && "animate-spin")}
             aria-hidden="true"
           />
-          {coords ? "重新定位" : "获取定位"}
+          {coords
+            ? t("mobileGeolocation.relocate", { defaultValue: "重新定位" })
+            : t("mobileGeolocation.locate", { defaultValue: "获取定位" })}
         </button>
       </div>
       {coords ? (
         <dl className="grid grid-cols-2 gap-2 text-sm">
-          <div className="rounded-md bg-muted/50 p-2">
-            <dt className="text-xs text-muted-foreground">纬度</dt>
+          <div className="bg-muted/50 rounded-md p-2">
+            <dt className="text-muted-foreground text-xs">
+              {t("mobileGeolocation.latitude", { defaultValue: "纬度" })}
+            </dt>
             <dd className="tabular-nums">{formatCoord(coords.lat, "lat")}</dd>
           </div>
-          <div className="rounded-md bg-muted/50 p-2">
-            <dt className="text-xs text-muted-foreground">经度</dt>
+          <div className="bg-muted/50 rounded-md p-2">
+            <dt className="text-muted-foreground text-xs">
+              {t("mobileGeolocation.longitude", { defaultValue: "经度" })}
+            </dt>
             <dd className="tabular-nums">{formatCoord(coords.lng, "lng")}</dd>
           </div>
         </dl>
       ) : (
         <div
-          className="flex h-24 items-center justify-center rounded-md border border-dashed text-xs text-muted-foreground"
+          className="text-muted-foreground flex h-24 items-center justify-center rounded-md border border-dashed text-xs"
           role="presentation"
         >
-          暂无位置数据
+          {t("mobileGeolocation.empty", { defaultValue: "暂无位置数据" })}
         </div>
       )}
     </div>

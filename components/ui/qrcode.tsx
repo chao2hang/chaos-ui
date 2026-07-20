@@ -3,6 +3,7 @@
 import * as React from "react";
 import { toString as qrToString, toCanvas as qrToCanvas } from "qrcode";
 import { cn } from "@/lib/utils";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * @component QRCode
@@ -45,6 +46,7 @@ function QRCode({
   renderAs = "svg",
   ...props
 }: QRCodeProps) {
+  const { t } = useTranslation("ui");
   const [svgData, setSvgData] = React.useState<string>("");
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [error, setError] = React.useState<string | undefined>();
@@ -89,19 +91,23 @@ function QRCode({
       <div
         data-slot="qrcode"
         className={cn(
-          "inline-flex items-center justify-center rounded-md border border-destructive/30 bg-destructive/5 text-destructive text-xs",
+          "border-destructive/30 bg-destructive/5 text-destructive inline-flex items-center justify-center rounded-md border text-xs",
           className,
         )}
         style={{ width: size, height: size }}
         {...props}
       >
-        QR Error
+        {t("qrcode.error", { defaultValue: "QR Error" })}
       </div>
     );
   }
 
   return (
-    <div data-slot="qrcode" className={cn("inline-block", className)} {...props}>
+    <div
+      data-slot="qrcode"
+      className={cn("inline-block", className)}
+      {...props}
+    >
       {renderAs === "svg" ? (
         <span
           dangerouslySetInnerHTML={{ __html: svgData }}

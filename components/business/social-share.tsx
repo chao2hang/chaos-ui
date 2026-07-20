@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { CheckIcon } from "@/components/ui/icons";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 export interface SocialShareProps {
   /** URL to share. */
@@ -16,14 +17,14 @@ export interface SocialShareProps {
   className?: string;
 }
 
-const platformDefs = {
-  wechat: { label: "WeChat", color: "#07C160" },
-  weibo: { label: "Weibo", color: "#E6162D" },
-  qq: { label: "QQ", color: "#12B7F5" },
-  link: { label: "Copy Link", color: "#6B7280" },
+const platformColors = {
+  wechat: "#07C160",
+  weibo: "#E6162D",
+  qq: "#12B7F5",
+  link: "#6B7280",
 } as const;
 
-type PlatformKey = keyof typeof platformDefs;
+type PlatformKey = keyof typeof platformColors;
 
 /**
  * @component SocialShare
@@ -40,7 +41,15 @@ function SocialShare({
   platforms = ["wechat", "weibo", "qq", "link"],
   className,
 }: SocialShareProps) {
+  const { t } = useTranslation("social");
   const [copied, copy] = useCopyToClipboard();
+
+  const platformLabels: Record<PlatformKey, string> = {
+    wechat: t("wechat", { defaultValue: "WeChat" }),
+    weibo: t("weibo", { defaultValue: "Weibo" }),
+    qq: t("qq", { defaultValue: "QQ" }),
+    link: t("copyLink", { defaultValue: "Copy Link" }),
+  };
 
   const share = (platform: PlatformKey) => {
     const shareUrl = encodeURIComponent(url);
@@ -72,7 +81,7 @@ function SocialShare({
       className={cn("flex items-center gap-2", className)}
     >
       {platforms.map((p) => {
-        const def = platformDefs[p];
+        const color = platformColors[p];
         return (
           <Button
             key={p}
@@ -80,11 +89,15 @@ function SocialShare({
             size="sm"
             onClick={() => share(p as PlatformKey)}
             style={{
-              borderColor: def.color,
-              color: def.color,
+              borderColor: color,
+              color,
             }}
           >
-            {p === "link" && copied ? <CheckIcon /> : <span>{def.label}</span>}
+            {p === "link" && copied ? (
+              <CheckIcon />
+            ) : (
+              <span>{platformLabels[p]}</span>
+            )}
           </Button>
         );
       })}

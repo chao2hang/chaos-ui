@@ -2,5 +2,18 @@
   "mobileBottomNav.ariaLabel": "Bottom navigation",
   "pullToRefresh.refreshing": "Refreshing...",
   "pullToRefresh.pull": "Pull to refresh",
-  "pullToRefresh.release": "Release to refresh"
+  "pullToRefresh.release": "Release to refresh",
+  "mobileGeolocation.unsupported": "Geolocation is not supported in this environment",
+  "mobileGeolocation.permissionDenied": "Location permission denied",
+  "mobileGeolocation.unavailable": "Unable to get location",
+  "mobileGeolocation.timeout": "Location request timed out",
+  "mobileGeolocation.locating": "Locating…",
+  "mobileGeolocation.success": "Location found",
+  "mobileGeolocation.failed": "Location failed",
+  "mobileGeolocation.idle": "Tap the button to get your current location",
+  "mobileGeolocation.relocate": "Relocate",
+  "mobileGeolocation.locate": "Get location",
+  "mobileGeolocation.latitude": "Latitude",
+  "mobileGeolocation.longitude": "Longitude",
+  "mobileGeolocation.empty": "No location data yet"
 }

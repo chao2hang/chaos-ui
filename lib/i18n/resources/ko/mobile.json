@@ -2,5 +2,18 @@
   "mobileBottomNav.ariaLabel": "Bottom navigation",
   "pullToRefresh.refreshing": "Refreshing...",
   "pullToRefresh.pull": "Pull to refresh",
-  "pullToRefresh.release": "Release to refresh"
+  "pullToRefresh.release": "Release to refresh",
+  "mobileGeolocation.unsupported": "현재 환경에서는 위치 정보를 사용할 수 없습니다",
+  "mobileGeolocation.permissionDenied": "위치 권한이 거부되었습니다",
+  "mobileGeolocation.unavailable": "위치 정보를 가져올 수 없습니다",
+  "mobileGeolocation.timeout": "위치 요청 시간이 초과되었습니다",
+  "mobileGeolocation.locating": "위치 확인 중…",
+  "mobileGeolocation.success": "위치 확인 완료",
+  "mobileGeolocation.failed": "위치 확인 실패",
+  "mobileGeolocation.idle": "버튼을 눌러 현재 위치를 가져오세요",
+  "mobileGeolocation.relocate": "다시 위치 확인",
+  "mobileGeolocation.locate": "위치 가져오기",
+  "mobileGeolocation.latitude": "위도",
+  "mobileGeolocation.longitude": "경도",
+  "mobileGeolocation.empty": "위치 데이터가 없습니다"
 }

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { SendIcon } from "@/components/ui/icons";
+import { useSafeTranslation as useTranslation } from "@/components/ui/i18n-provider";
 
 /**
  * @component ChatInput
@@ -37,6 +38,12 @@ function ChatInput({
   disabled,
   className,
 }: ChatInputProps) {
+  const { t } = useTranslation("ui");
+  const messageAria = t("chatInput.messageAria", {
+    defaultValue: "消息输入",
+  });
+  const sendLabel = t("chatInput.send", { defaultValue: "发送" });
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
@@ -60,19 +67,19 @@ function ChatInput({
     <div
       data-slot="chat-input"
       className={cn(
-        "flex items-end gap-2 rounded-lg border border-input bg-background p-2",
+        "border-input bg-background flex items-end gap-2 rounded-lg border p-2",
         disabled && "pointer-events-none opacity-50",
         className,
       )}
     >
       <label htmlFor="chat-input-field" className="sr-only">
-        {placeholder ?? "消息输入"}
+        {placeholder ?? messageAria}
       </label>
       <textarea
         id="chat-input-field"
         data-slot="chat-input-field"
         rows={1}
-        className="min-h-8 flex-1 resize-none bg-transparent px-1 py-1 text-sm outline-none placeholder:text-muted-foreground"
+        className="placeholder:text-muted-foreground min-h-8 flex-1 resize-none bg-transparent px-1 py-1 text-sm outline-none"
         value={value}
         placeholder={placeholder}
         disabled={disabled}
@@ -82,8 +89,8 @@ function ChatInput({
       <button
         type="button"
         data-slot="chat-input-send"
-        aria-label="发送"
-        className="inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/80 disabled:pointer-events-none disabled:opacity-50"
+        aria-label={sendLabel}
+        className="bg-primary text-primary-foreground hover:bg-primary/80 inline-flex size-8 shrink-0 items-center justify-center rounded-md transition-colors disabled:pointer-events-none disabled:opacity-50"
         disabled={disabled}
         onClick={handleClick}
       >

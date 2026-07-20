@@ -2,5 +2,18 @@
   "mobileBottomNav.ariaLabel": "底部导航",
   "pullToRefresh.refreshing": "正在刷新...",
   "pullToRefresh.pull": "下拉刷新",
-  "pullToRefresh.release": "释放刷新"
+  "pullToRefresh.release": "释放刷新",
+  "mobileGeolocation.unsupported": "当前环境不支持定位",
+  "mobileGeolocation.permissionDenied": "定位权限被拒绝",
+  "mobileGeolocation.unavailable": "无法获取位置信息",
+  "mobileGeolocation.timeout": "定位超时",
+  "mobileGeolocation.locating": "正在定位…",
+  "mobileGeolocation.success": "定位成功",
+  "mobileGeolocation.failed": "定位失败",
+  "mobileGeolocation.idle": "点击按钮获取当前位置",
+  "mobileGeolocation.relocate": "重新定位",
+  "mobileGeolocation.locate": "获取定位",
+  "mobileGeolocation.latitude": "纬度",
+  "mobileGeolocation.longitude": "经度",
+  "mobileGeolocation.empty": "暂无位置数据"
 }

@@ -2,5 +2,18 @@
   "mobileBottomNav.ariaLabel": "Bottom navigation",
   "pullToRefresh.refreshing": "Refreshing...",
   "pullToRefresh.pull": "Pull to refresh",
-  "pullToRefresh.release": "Release to refresh"
+  "pullToRefresh.release": "Release to refresh",
+  "mobileGeolocation.unsupported": "この環境では位置情報が利用できません",
+  "mobileGeolocation.permissionDenied": "位置情報の権限が拒否されました",
+  "mobileGeolocation.unavailable": "位置情報を取得できません",
+  "mobileGeolocation.timeout": "位置情報の取得がタイムアウトしました",
+  "mobileGeolocation.locating": "位置情報を取得中…",
+  "mobileGeolocation.success": "位置情報を取得しました",
+  "mobileGeolocation.failed": "位置情報の取得に失敗しました",
+  "mobileGeolocation.idle": "ボタンを押して現在地を取得",
+  "mobileGeolocation.relocate": "再取得",
+  "mobileGeolocation.locate": "位置を取得",
+  "mobileGeolocation.latitude": "緯度",
+  "mobileGeolocation.longitude": "経度",
+  "mobileGeolocation.empty": "位置データがありません"
 }
