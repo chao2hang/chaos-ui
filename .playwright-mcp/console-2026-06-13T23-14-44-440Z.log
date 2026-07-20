@@ -1,2 +1,0 @@
-[     722ms] [WARNING] The 'ariaLabel' prop on 'Button' will become mandatory in Storybook 11. Buttons with text content should set 'ariaLabel={false}' to indicate that they are accessible as-is. Buttons without text content must provide a meaningful 'ariaLabel' for accessibility. The button content is: Share. @ http://localhost:6006/sb-manager/globals-runtime.js:5810
-[    1483ms] [LOG] rulesUpdated {time: 2026/6/14 07:14:45} ???? @ chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/assets/index.ts-25725e10.js:12620

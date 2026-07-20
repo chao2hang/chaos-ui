@@ -44,6 +44,17 @@ function escapeCsv(value: unknown): string {
   return str;
 }
 
+/** Escape text for HTML document.write print export (not for CSV). */
+function escapeHtml(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -145,20 +156,23 @@ export function ExportButton<T extends Record<string, unknown>>({
         th { background: #f5f5f5; }
       </style>
     `;
-    const headerRow = cols.map((c) => `<th>${c.header}</th>`).join("");
+    const safeTitle = escapeHtml(filename);
+    const headerRow = cols
+      .map((c) => `<th>${escapeHtml(c.header)}</th>`)
+      .join("");
     const bodyRows = data
       .map(
         (row) =>
           `<tr>${cols
-            .map(
-              (c) =>
-                `<td>${c.format ? c.format(row[c.key]) : (row[c.key] ?? "")}</td>`,
-            )
+            .map((c) => {
+              const raw = c.format ? c.format(row[c.key]) : (row[c.key] ?? "");
+              return `<td>${escapeHtml(raw)}</td>`;
+            })
             .join("")}</tr>`,
       )
       .join("");
     win.document.write(
-      `<html><head><title>${filename}</title>${styles}</head><body><h1>${filename}</h1><table><thead><tr>${headerRow}</tr></thead><tbody>${bodyRows}</tbody></table></body></html>`,
+      `<html><head><title>${safeTitle}</title>${styles}</head><body><h1>${safeTitle}</h1><table><thead><tr>${headerRow}</tr></thead><tbody>${bodyRows}</tbody></table></body></html>`,
     );
     win.document.close();
     win.print();

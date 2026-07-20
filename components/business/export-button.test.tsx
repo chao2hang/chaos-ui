@@ -143,4 +143,39 @@ describe("export-button", () => {
     const mod = await import("@/components/business/export-button");
     expect(mod.ExportButton).toBeDefined();
   });
+
+  it("escapes HTML in print export title, headers, and cells", () => {
+    const write = vi.fn();
+    const print = vi.fn();
+    const close = vi.fn();
+    vi.spyOn(window, "open").mockReturnValue({
+      document: { write, close },
+      print,
+    } as unknown as Window);
+
+    const payload = "<img src=x onerror=alert(1)>";
+    render(
+      <ExportButton
+        data={[{ name: payload }]}
+        formats={["print"]}
+        filename={`report${payload}`}
+        columns={[{ key: "name", header: `H${payload}` }]}
+        label="Print"
+      />,
+    );
+    fireEvent.click(screen.getByText("Print"));
+
+    expect(write).toHaveBeenCalledTimes(1);
+    const html = String(write.mock.calls[0]?.[0] ?? "");
+    // Escaped as text — no raw HTML tags introduced by untrusted data.
+    expect(html).not.toMatch(/<img\b/i);
+    expect(html).not.toMatch(/<script\b/i);
+    expect(html).toContain("&lt;img src=x onerror=alert(1)&gt;");
+    expect(html).toContain(
+      `<title>report&lt;img src=x onerror=alert(1)&gt;</title>`,
+    );
+    expect(html).toContain(`<th>H&lt;img src=x onerror=alert(1)&gt;</th>`);
+    expect(print).toHaveBeenCalled();
+    expect(close).toHaveBeenCalled();
+  });
 });
