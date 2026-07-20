@@ -48,6 +48,7 @@ Follow the project conventions:
 - Use named exports (no default exports)
 - Use `cva` for component variants
 - Use `cn()` from `@/lib/utils` for className merging
+- Do **not** stage local browser/MCP artifacts under `.playwright-mcp/` (already gitignored; never `git add -f` them)
 
 ### 3. Write Tests
 
