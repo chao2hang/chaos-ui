@@ -110,7 +110,7 @@ jobs:
           head -n 80 "$OUT"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           # Prefer CHANGELOG Fixed/Added/Notes so consumers see what shipped.
           body_path: ${{ steps.notes.outputs.path }}
